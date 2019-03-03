@@ -7,7 +7,7 @@ ms.service: azure-monitor
 ms.topic: reference
 ms.date: 10/11/2018
 ms.author: johnkem
-ms.component: logs
+ms.subservice: logs
 ---
 # Supported services, schemas, and categories for Azure Diagnostic Logs
 
@@ -70,7 +70,7 @@ The schema for resource diagnostic logs varies depending on the resource and log
 | Service Bus |[Azure Service Bus diagnostic logs](../../service-bus-messaging/service-bus-diagnostic-logs.md) |
 | SQL Database | [Azure SQL Database diagnostic logging](../../sql-database/sql-database-metrics-diag-logging.md) |
 | Stream Analytics |[Job diagnostic logs](../../stream-analytics/stream-analytics-job-diagnostic-logs.md) |
-| Traffic Manager | Schema not available. |
+| Traffic Manager | [Traffic Manager Log schema](../../traffic-manager/traffic-manager-diagnostic-logs.md) |
 | Virtual Networks | Schema not available. |
 | Virtual Network Gateways | Schema not available. |
 
@@ -203,3 +203,4 @@ The schema for resource diagnostic logs varies depending on the resource and log
 * [Stream resource diagnostic logs to **Event Hubs**](../../azure-monitor/platform/diagnostic-logs-stream-event-hubs.md)
 * [Change resource diagnostic settings using the Azure Monitor REST API](https://docs.microsoft.com/rest/api/monitor/diagnosticsettings)
 * [Analyze logs from Azure storage with Log Analytics](../../azure-monitor/platform/collect-azure-metrics-logs.md)
+
