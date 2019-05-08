@@ -54,16 +54,17 @@ netsh advfirewall firewall add rule name="NPMDICMPV6TimeExceeded" protocol="icmp
 Start creating your tests to monitor network connectivity to the service endpoints.
 
 1. Select the **Service Connectivity Monitor** tab.
-2. Select **Add Test**, and enter the test name and description. 
+2. Select **Add Test**, and enter the test name and description. You can create maximum 450 tests per workspace. 
 3. Select the type of test:<br>
 
     * Select **Web** to monitor connectivity to a service that responds to HTTP/S requests, such as outlook.office365.com or bing.com.<br>
     * Select **Network** to monitor connectivity to a service that responds to TCP requests but doesn't respond to HTTP/S requests, such as a SQL server, FTP server, or SSH port. 
+    * For example: To create a web test to a blob storage account, select **Web** and enter target as <your storageaccount>.blob.core.windows.net. Similarly you can create tests for other table storage, queue storage and Azure Files using [this link.](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview#storage-account-endpoints)
 4. If you don't want to perform network measurements, such as network latency, packet loss, and topology discovery, clear the **Perform network measurements** check box. Keep it selected to get maximum benefit from the capability. 
 5. In **Target**, enter the URL/FQDN/IP address to which you want to monitor network connectivity.
 6. In **Port number**, enter the port number of the target service. 
 7. In **Test Frequency**, enter a value for how frequently you want the test to run. 
-8. Select the nodes from which you want to monitor the network connectivity to service. 
+8. Select the nodes from which you want to monitor the network connectivity to service. Ensure that the number of agents added per test is less than 150. Any agent can test maximum 150 endpoints/agents.
 
     >[!NOTE]
     > For Windows server-based nodes, the capability uses TCP-based requests to perform the network measurements. For Windows client-based nodes, the capability uses ICMP-based requests to perform the network measurements. In some cases, the target application blocks incoming ICMP-based requests when the nodes are Windows client-based. The solution is unable to perform network measurements. We recommend that you use Windows server-based nodes in such cases. 
