@@ -9,25 +9,25 @@ ms.date: 07/06/2018
 ms.author: johnkem
 ms.subservice: logs
 ---
-# Prepare for format change to Azure Monitor diagnostic logs archived to a storage account
+# Prepare for format change to Azure Monitor platform logs archived to a storage account
 
 > [!WARNING]
-> If you are sending [Azure resource diagnostic logs or metrics to a storage account using resource diagnostic settings](./../../azure-monitor/platform/archive-diagnostic-logs.md) or [activity logs to a storage account using log profiles](./../../azure-monitor/platform/archive-activity-log.md), the format of the data in the storage account will change to JSON Lines on Nov. 1, 2018. The instructions below describe the impact and how to update your tooling to handle the new format. 
+> If you are sending [Azure resource logs or metrics to a storage account using diagnostic settings](resource-logs-collect-storage.md) or [activity logs to a storage account using log profiles](activity-log-export.md), the format of the data in the storage account changed to JSON Lines on Nov. 1, 2018. The instructions below describe the impact and how to update your tooling to handle the new format. 
 >
 > 
 
 ## What is changing
 
-Azure Monitor offers a capability that enables you to send resource diagnostic data and activity log data into an Azure storage account, Event Hubs namespace, or into a Log Analytics workspace in Azure Monitor. In order to address a system performance issue, on **November 1, 2018 at 12:00 midnight UTC** the format of log data send to blob storage will change. If you have tooling that is reading data out of blob storage, you need to update your tooling to understand the new data format.
+Azure Monitor offers a capability that enables you to send resource logs and activity logs into an Azure storage account, Event Hubs namespace, or into a Log Analytics workspace in Azure Monitor. In order to address a system performance issue, on **November 1, 2018 at 12:00 midnight UTC** the format of log data send to blob storage will change. If you have tooling that is reading data out of blob storage, you need to update your tooling to understand the new data format.
 
-* On Thursday, November 1, 2018 at 12:00 midnight UTC, the blob format will change to be [JSON Lines](http://jsonlines.org/). This means each record will be delimited by a newline, with no outer records array and no commas between JSON records.
-* The blob format changes for all diagnostic settings across all subscriptions at once. The first PT1H.json file emitted for November 1 will use this new format. The blob and container names remain the same.
-* Setting a diagnostic setting between now and November 1 continues to emit data in the current format until November 1.
-* This change will occur at once across all public cloud regions. The change will not occur in Microsoft Azure Operated by 21Vianet, Azure Germany, or Azure Government clouds yet.
+* On Thursday, November 1, 2018 at 12:00 midnight UTC, the blob format changed to be [JSON Lines](http://jsonlines.org/). This means each record will be delimited by a newline, with no outer records array and no commas between JSON records.
+* The blob format changed for all diagnostic settings across all subscriptions at once. The first PT1H.json file emitted for November 1 used this new format. The blob and container names remain the same.
+* Setting a diagnostic setting between prior to November 1 continued to emit data in the current format until November 1.
+* This change occurred at once across all public cloud regions. The change will not occur in Microsoft Azure Operated by 21Vianet, Azure Germany, or Azure Government clouds yet.
 * This change impacts the following data types:
-  * [Azure resource diagnostic logs](archive-diagnostic-logs.md) ([see list of resources here](diagnostic-logs-schema.md))
+  * [Azure resource logs](archive-diagnostic-logs.md) ([see list of resources here](diagnostic-logs-schema.md))
   * [Azure resource metrics being exported by diagnostic settings](diagnostic-settings.md)
-  * [Azure Activity log data being exported by log profiles](archive-activity-log.md)
+  * [Azure Activity log data being exported by log profiles](activity-log-collect.md)
 * This change does not impact:
   * Network flow logs
   * Azure service logs not made available through Azure Monitor yet (for example, Azure App Service diagnostic logs, storage analytics logs)
@@ -36,16 +36,16 @@ Azure Monitor offers a capability that enables you to send resource diagnostic d
 ### How to see if you are impacted
 
 You are only impacted by this change if you:
-1. Are sending log data to an Azure storage account using a resource diagnostic setting, and
+1. Are sending log data to an Azure storage account using a diagnostic setting, and
 2. Have tooling that depends on the JSON structure of these logs in storage.
  
-To identify if you have resource diagnostic settings that are sending data to an Azure storage account, you can navigate to the **Monitor** section of the portal, click on **Diagnostic Settings**, and identify any resources that have **Diagnostic Status** set to **Enabled**:
+To identify if you have  diagnostic settings that are sending data to an Azure storage account, you can navigate to the **Monitor** section of the portal, click on **Diagnostic Settings**, and identify any resources that have **Diagnostic Status** set to **Enabled**:
 
-![Azure Monitor Diagnostic Settings blade](./media/diagnostic-logs-append-blobs/portal-diag-settings.png)
+![Azure Monitor Diagnostic Settings blade](media/diagnostic-logs-append-blobs/portal-diag-settings.png)
 
 If Diagnostic Status is set to enabled, you have an active diagnostic setting on that resource. Click on the resource to see if any diagnostic settings are sending data to a storage account:
 
-![Storage account enabled](./media/diagnostic-logs-append-blobs/portal-storage-enabled.png)
+![Storage account enabled](media/diagnostic-logs-append-blobs/portal-storage-enabled.png)
 
 If you do have resources sending data to a storage account using these resource diagnostic settings, the format of the data in that storage account will be impacted by this change. Unless you have custom tooling that operates off of these storage accounts, the format change will not impact you.
 
