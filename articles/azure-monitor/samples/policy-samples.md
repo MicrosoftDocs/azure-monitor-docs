@@ -1,7 +1,7 @@
 ---
 title: Built-in policy definitions for Azure Monitor
 description: Lists Azure Policy built-in policy definitions for Azure Monitor. These built-in policy definitions provide common approaches to managing your Azure resources.
-ms.date: 04/30/2020
+ms.date: 05/13/2020
 ms.topic: sample
 author: bwren
 ms.author: bwren
@@ -9,9 +9,9 @@ ms.custom: subject-policy-samples
 ---
 # Azure Policy built-in policy definitions for Azure Monitor
 
-This page is an index of [Azure Policy](../governance/policy/overview.md) built-in policy
+This page is an index of [Azure Policy](../../governance/policy/overview.md) built-in policy
 definitions for Azure Monitor. For additional Azure Policy built-ins for other services, see
-[Azure Policy built-in definitions](../governance/policy/samples/built-in-policies.md).
+[Azure Policy built-in definitions](../../governance/policy/samples/built-in-policies.md).
 
 The name of each built-in policy definition links to the policy definition in the Azure portal. Use
 the link in the **GitHub** column to view the source on the
@@ -19,10 +19,10 @@ the link in the **GitHub** column to view the source on the
 
 ## Azure Monitor
 
-[!INCLUDE [azure-policy-samples-policies-monitor](../../includes/policy/samples/bycat/policies-monitoring.md)]
+[!INCLUDE [azure-policy-samples-policies-monitor](../../../includes/policy/samples/bycat/policies-monitoring.md)]
 
 ## Next steps
 
 - See the built-ins on the [Azure Policy GitHub repo](https://github.com/Azure/azure-policy).
-- Review the [Azure Policy definition structure](../governance/policy/concepts/definition-structure.md).
-- Review [Understanding policy effects](../governance/policy/concepts/effects.md).
+- Review the [Azure Policy definition structure](../../governance/policy/concepts/definition-structure.md).
+- Review [Understanding policy effects](../../governance/policy/concepts/effects.md).
