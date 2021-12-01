@@ -1,12 +1,20 @@
 ---
 title: Request an authorization token
-description: We support three OAuth2 flows- authorization code grant, implicit grant, and client credentials grant.
+description: Set up authentication and authorization for the Azure Monitor Log Anaytics API.
 author: AbbyMSFT
 ms.author: abbyweisberg
 ms.date: 11/22/2021
 ms.topic: article
 ---
-# Request an Authorization Token
+# Set Up Authentication and Authorization
+
+To set up authentication and authorization for the Azure Monitor Log Analytics API:
+1. [Set up AAD Authentication for the API](../../../active-directory/develop/quickstart-create-new-tenant.md) using these settings:
+     - When asked for the API to connect to, select **APIs my organization uses** and then search for **Log Analytics API**.
+     - For the API permissions, select **Delegated permissions**.
+1. After completing the Active Directory setup, request an authorization token as described in the section below.
+1. (Optional) If you only want to work with sample data, use the API key as described below.
+## Request an Authorization Token
 
 Before beginning, make sure you have all the values required to make OAuth2 calls successfully. All requests require:
 - Your AAD tenant
@@ -15,13 +23,13 @@ Before beginning, make sure you have all the values required to make OAuth2 call
 - A client secret for the AAD app (referred to as "keys" in the AAD App menu bar).
 
 
-## Client Credentials Flow
+### Client Credentials Flow
 
 In the client credentials flow, the token is used with the ARM endpoint. A single request is made to receive a token, using the application permissions provided during the AAD application setup.
 The resource requested is: <https://management.azure.com/>. 
 You can also use this flow to request a token to [https://api.loganalytics.io](https://api.loganalytics.io/), simply replace the "resource" in the example.
 
-### Client Credentials Token URL (POST request)
+#### Client Credentials Token URL (POST request)
 
 ```
     POST /YOUR_AAD_TENANT/oauth2/token HTTP/1.1
@@ -98,11 +106,11 @@ Example Response:
     }
 ```
 
-## Authorization Code Flow
+### Authorization Code Flow
 
 The main OAuth2 flow supported is through [authorization codes](/azure/active-directory/develop/active-directory-protocols-oauth-code). This method requires two HTTP requests to acquire a token with which to call the Log Analytics API. There are two URLs, one endpoint per request. Their formats are:
 
-### Authorization Code URL (GET request):
+#### Authorization Code URL (GET request):
 
 ```
     GET https://login.microsoftonline.com/YOUR_AAD_TENANT/oauth2/authorize?
@@ -120,7 +128,7 @@ When making a request to the Authorize URL, the client\_id is the Application ID
 
 At this point you will have obtained an authorization code, which you need now to request an access token.
 
-### Authorization Code Token URL (POST request)
+#### Authorization Code Token URL (POST request)
 
 ```
     POST /YOUR_AAD_TENANT/oauth2/token HTTP/1.1
@@ -180,11 +188,11 @@ Response example:
     }
 ```
 
-## Implicit Code Flow
+### Implicit Code Flow
 
 The Log Analytics API also supports the OAuth2 [implicit flow](/azure/active-directory/develop/active-directory-dev-understanding-oauth2-implicit-grant). For this flow, only a single request is required but no refresh token can be acquired.
 
-### Implicit Code Authorize URL
+#### Implicit Code Authorize URL
 
 ```
     GET https://login.microsoftonline.com/YOUR_AAD_TENANT/oauth2/authorize?
@@ -202,12 +210,34 @@ A successful request will produce a redirect to your redirect URI with the token
 
 This access\_token can be used as the `Authorization: Bearer` header value when passed to the Log Analytics API to authorize requests.
 
+## Authenticating with an API key
+
+To quickly explore the API without needing to use AAD authentication, use the demonstration workspace with sample data, which supports API key authentication.
+
+To authenticate and run queries against the sample workspace, use `DEMO_WORKSPACE` as the {workspace-id} and pass in the API key `DEMO_KEY`.
+
+If either the Application ID or the API key are incorrect, the API service will return a [403](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_Error) (Forbidden) error.
+
+The API key `DEMO_KEY` can be passed in three different ways, depending on whether you prefer to use the URL, a header, or basic authentication.
+
+1.  **Custom header**: provide the API key in the custom header `X-Api-Key`
+2.  **Query parameter**: provide the API key in the URL parameter `api_key`
+3.  **Basic authentication**: provide the API key as either username or password. If you provide both, the API key must be in the username.
+
+This example uses the Workspace ID and API key in the header:
+
+```
+    POST https://api.loganalytics.io/v1/workspaces/DEMO_WORKSPACE/query
+    X-Api-Key: DEMO_KEY
+    Content-Type: application/json
+    
+    {
+        "query": "AzureActivity | summarize count() by Category"
+    }
+```
 ## More Information
 
-Additional documentation on OAuth2 with Azure AD is available from the following sources.
-
-[Azure AD Authorization Code flow](/azure/active-directory/develop/active-directory-protocols-oauth-code)
-
-[Azure AD Implicit Grant flow](/azure/active-directory/develop/active-directory-dev-understanding-oauth2-implicit-grant)
-
-[Azure AD S2S Client Credentials flow](/azure/active-directory/develop/active-directory-protocols-oauth-service-to-service)
+You can find documentation about OAuth2 with Azure AD here:
+ - [Azure AD Authorization Code flow](/azure/active-directory/develop/active-directory-protocols-oauth-code)
+ - [Azure AD Implicit Grant flow](/azure/active-directory/develop/active-directory-dev-understanding-oauth2-implicit-grant)
+ - [Azure AD S2S Client Credentials flow](/azure/active-directory/develop/active-directory-protocols-oauth-service-to-service)
