@@ -3,6 +3,7 @@ title: Configure BYOS (Bring Your Own Storage) for Profiler & Snapshot Debugger
 description: Configure BYOS (Bring Your Own Storage) for Profiler & Snapshot Debugger
 ms.topic: conceptual
 ms.date: 01/14/2021
+ms.reviewer: jogrima
 ---
 
 # Configure Bring Your Own Storage (BYOS) for Application Insights Profiler and Snapshot Debugger
@@ -274,7 +275,7 @@ _Figure 2.0_
 
 For general Profiler troubleshooting, refer to the [Profiler Troubleshoot documentation](profiler-troubleshooting.md).
 
-For general Snapshot Debugger troubleshooting, refer to the [Snapshot Debugger Troubleshoot documentation](snapshot-debugger-troubleshoot.md). 
+For general Snapshot Debugger troubleshooting, refer to the [Snapshot Debugger Troubleshoot documentation](../app/snapshot-debugger-troubleshoot.md). 
 
 ## FAQs
 * If I have Profiler or Snapshot enabled, and then I enabled BYOS, will my data be migrated into my Storage Account?

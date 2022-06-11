@@ -3,6 +3,7 @@ title: Troubleshoot problems with Azure Application Insights Profiler
 description: This article presents troubleshooting steps and information to help developers enable and use Application Insights Profiler.
 ms.topic: conceptual
 ms.date: 08/06/2018
+ms.reviewer: jogrima
 ---
 
 # Troubleshoot problems enabling or viewing Application Insights Profiler
@@ -116,7 +117,7 @@ You can use the Kudu management site for App Service to get the base url of this
  It will end like this: `https://<kudu-url>/DiagnosticServices`
 
 It will display a Status Page similar like the below:
-![Diagnostic Services Status Page](./media/diagnostic-services-site-extension/status-page.png)
+![Diagnostic Services Status Page](../app/media/diagnostic-services-site-extension/status-page.png)
     
 ### Manual installation
 
@@ -223,5 +224,5 @@ The IPs used by Application Insights Profiler are included in the Azure Monitor 
 
 
 [profiler-search-telemetry]:./media/profiler-troubleshooting/Profiler-Search-Telemetry.png
-[profiler-webjob]:./media/profiler-troubleshooting/Profiler-webjob.png
-[profiler-webjob-log]:./media/profiler-troubleshooting/Profiler-webjob-log.png
+[profiler-webjob]:./media/profiler-troubleshooting/profiler-web-job.png
+[profiler-webjob-log]:./media/profiler-troubleshooting/profiler-web-job-log.png
