@@ -1,3 +1,15 @@
-- name: '<please enter product name here>'
-  tocHref: /
-  topicHref: /
+items:
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Advisor
+    tocHref: /azure/advisor/
+    topicHref: /azure/advisor/
+  - name: Azure Monitor
+    tocHref: /azure/azure-monitor/
+    topicHref: /azure/azure-monitor/
+    items: []
+  - name: Service Health
+    tocHref: /azure/service-health/
+    topicHref: /azure/service-health/
