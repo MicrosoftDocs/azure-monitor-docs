@@ -99,7 +99,7 @@ Azure Hybrid Benefit represents an excellent opportunity to save costs on Azure 
 
 ### Azure Reservations
 
-Review Azure Reservations cost saving opportunities. Use filters for subscriptions, a look back period (7, 30 or 60 days), a term (1 year or 3 years), and a resource type. Learn more about [What are Azure Reservations?](../cost-management-billing/reservations/save-compute-costs-reservations.md) and how much you can [save with Reservations](https://azure.microsoft.com/pricing/reservations).
+Review Azure Reservations cost saving opportunities. Use filters for subscriptions, a look back period (7, 30 or 60 days), a term (1 year or 3 years), and a resource type. Learn more about [What are Azure Reservations?](/azure/cost-management-billing/reservations/save-compute-costs-reservations) and how much you can [save with Reservations](https://azure.microsoft.com/pricing/reservations).
 
 ### Azure savings plan for compute
 
@@ -184,7 +184,7 @@ The following queries show networking resources that you can optimize to save mo
 
 #### Azure Firewall Premium
 
-The Azure Firewall Premium query identifies Azure Firewalls with Premium SKU and evaluates whether the associated policy incorporates premium-only features or not. If a Premium SKU Firewall lacks a policy with premium features, such as TLS or intrusion detection, it is shown on the page. For more information about Azure Firewall SKUs, see [SKU comparison table](../firewall/choose-firewall-sku.md).
+The Azure Firewall Premium query identifies Azure Firewalls with Premium SKU and evaluates whether the associated policy incorporates premium-only features or not. If a Premium SKU Firewall lacks a policy with premium features, such as TLS or intrusion detection, it is shown on the page. For more information about Azure Firewall SKUs, see [SKU comparison table](/azure/firewall/choose-firewall-sku).
 
 #### Azure Firewall instances per region
 

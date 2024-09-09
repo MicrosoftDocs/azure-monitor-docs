@@ -8,7 +8,7 @@ ms.custom:
 
 # Application monitoring for Azure App Service overview
 
-It's now easier than ever to enable monitoring on your web applications based on ASP.NET, ASP.NET Core, Java, and Node.js running on [Azure App Service](../../app-service/index.yml). Previously, you needed to manually instrument your app, but the latest extension/agent is now built into the App Service image by default.
+It's now easier than ever to enable monitoring on your web applications based on ASP.NET, ASP.NET Core, Java, and Node.js running on [Azure App Service](/azure/app-service/). Previously, you needed to manually instrument your app, but the latest extension/agent is now built into the App Service image by default.
 
 ## Enable Application Insights
 

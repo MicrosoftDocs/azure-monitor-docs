@@ -11,7 +11,7 @@ ms.date: 07/21/2024
 
 # Manage tables in a Log Analytics workspace
 
-A Log Analytics workspace lets you collect log data from Azure and non-Azure resources into one space for analysis, use by other services, such as [Sentinel](../../../articles/sentinel/overview.md), and to trigger alerts and actions, for example, using [Azure Logic Apps](../../connectors/connectors-azure-monitor-logs.md). The Log Analytics workspace consists of tables, which you can configure to manage your data model, data access, and log-related costs. This article explains the table configuration options in Azure Monitor Logs and how to set table properties based on your data analysis and cost management needs.
+A Log Analytics workspace lets you collect log data from Azure and non-Azure resources into one space for analysis, use by other services, such as [Sentinel](/azure/sentinel/overview), and to trigger alerts and actions, for example, using [Azure Logic Apps](/azure/connectors/connectors-azure-monitor-logs). The Log Analytics workspace consists of tables, which you can configure to manage your data model, data access, and log-related costs. This article explains the table configuration options in Azure Monitor Logs and how to set table properties based on your data analysis and cost management needs.
 
 ## Table properties
 

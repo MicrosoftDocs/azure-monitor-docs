@@ -134,7 +134,7 @@ The following diagram shows a cloud security architecture as the flow of informa
 ### 1. Sign up for Azure Monitor and collect data
 For your organization to send data to Azure Monitor Logs, you configure a Windows or Linux agent running on Azure virtual machines, or on virtual or physical computers in your environment or other cloud provider.  If you use Operations Manager, from the management group you configure the Operations Manager agent. Users (which might be you, other individual users, or a group of people) create one or more Log Analytics workspaces, and register agents by using one of the following accounts:
 
-* [Organizational ID](../../active-directory/fundamentals/sign-up-organization.md)
+* [Organizational ID](/azure/active-directory/fundamentals/sign-up-organization)
 * [Microsoft Account - Outlook, Office Live, MSN](https://account.microsoft.com/account)
 
 A Log Analytics workspace is where data is collected, aggregated, analyzed, and presented. A workspace is primarily used as a means to partition data, and each workspace is unique. For example, you might want to have your production data managed with one workspace and your test data managed with another workspace. Workspaces also help an administrator control user access to the data. Each workspace can have multiple user accounts associated with it, and each user account can access multiple Log Analytics workspaces. You create workspaces based on datacenter region.
@@ -163,7 +163,7 @@ The Azure Monitor service ensures that incoming data is from a trusted source by
 
 The retention period of collected data stored in the database depends on the selected pricing plan. For the *Free* tier, collected data is available for seven days. For the *Paid* tier, collected data is available for 31 days by default, but can be extended to 730 days. Data is stored encrypted at rest in Azure storage, to ensure data confidentiality, and the data is replicated within the local region using locally redundant storage (LRS), or zone-redundant storage (ZRS) in [supported regions](../logs/availability-zones.md). The last two weeks of data are also stored in SSD-based cache and this cache is encrypted.
 
-Data in database storage can't be altered once ingested but can be deleted via [*purge* API path](personal-data-mgmt.md#delete). Although data can't be altered, some certifications require that data is kept immutable and can't be changed or deleted in storage. Data immutability can be achieved using [data export](logs-data-export.md) to a storage account that is configured as [immutable storage](../../storage/blobs/immutable-policy-configure-version-scope.md).
+Data in database storage can't be altered once ingested but can be deleted via [*purge* API path](personal-data-mgmt.md#delete). Although data can't be altered, some certifications require that data is kept immutable and can't be changed or deleted in storage. Data immutability can be achieved using [data export](logs-data-export.md) to a storage account that is configured as [immutable storage](/azure/storage/blobs/immutable-policy-configure-version-scope).
 
 ### 4. Use Azure Monitor to access the data
 To access your Log Analytics workspace, you sign in to the Azure portal using the organizational account or Microsoft account that you set up previously. All traffic between the portal and Azure Monitor service is sent over a secure HTTPS channel. When using the portal, a session ID is generated on the user client (web browser) and data is stored in a local cache until the session is terminated. When terminated, the cache is deleted. Client-side cookies, which don't contain personally identifiable information, aren't automatically removed. Session cookies are marked HTTPOnly and are secured. After a predetermined idle period, the Azure portal session is terminated.
@@ -184,13 +184,13 @@ Azure Monitor Logs relies on Azure Storage in specific scenarios. Use [private/c
 
 ## Customer Lockbox for Microsoft Azure
 
-[Customer Lockbox for Microsoft Azure](../../security/fundamentals/customer-lockbox-overview.md) provides you with an interface to review and approve or reject customer data access requests. It's used when a Microsoft engineer needs to access customer data, whether in response to a customer-initiated support ticket or a problem identified by Microsoft. To enable Customer Lockbox, you need a [dedicated cluster](../logs/logs-dedicated-clusters.md).
+[Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview) provides you with an interface to review and approve or reject customer data access requests. It's used when a Microsoft engineer needs to access customer data, whether in response to a customer-initiated support ticket or a problem identified by Microsoft. To enable Customer Lockbox, you need a [dedicated cluster](../logs/logs-dedicated-clusters.md).
 
 ## Tamper-proofing and immutability 
 
-Azure Monitor is an append-only data platform, but includes provisions to delete data for compliance purposes. You can [set a lock on your Log Analytics workspace](../../azure-resource-manager/management/lock-resources.md) to block all activities that could delete data: purge, table delete, and table- or workspace-level data retention changes. However, this lock can still be removed. 
+Azure Monitor is an append-only data platform, but includes provisions to delete data for compliance purposes. You can [set a lock on your Log Analytics workspace](/azure/azure-resource-manager/management/lock-resources) to block all activities that could delete data: purge, table delete, and table- or workspace-level data retention changes. However, this lock can still be removed. 
 
-To fully tamper-proof your monitoring solution, we recommend you [export your data to an immutable storage solution](../../storage/blobs/immutable-storage-overview.md).
+To fully tamper-proof your monitoring solution, we recommend you [export your data to an immutable storage solution](/azure/storage/blobs/immutable-storage-overview).
 
 ## Frequently asked questions
 
@@ -198,4 +198,4 @@ This section provides answers to common questions.
 
 ### Does my agent traffic use my Azure ExpressRoute connection?
 
-Traffic to Azure Monitor uses the Microsoft peering ExpressRoute circuit. See [ExpressRoute documentation](../../expressroute/expressroute-faqs.md#supported-services) for a description of the different types of ExpressRoute traffic.
+Traffic to Azure Monitor uses the Microsoft peering ExpressRoute circuit. See [ExpressRoute documentation](/azure/expressroute/expressroute-faqs#supported-services) for a description of the different types of ExpressRoute traffic.

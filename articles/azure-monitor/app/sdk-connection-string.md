@@ -31,7 +31,7 @@ Scenarios most affected by this change:
 
 - Sovereign or hybrid cloud environments:
 
-    Users can send data to a defined [Azure Government region](../../azure-government/compare-azure-government-global-azure.md#application-insights). By using connection strings, you can define endpoint settings for your intranet servers or hybrid cloud settings.
+    Users can send data to a defined [Azure Government region](/azure/azure-government/compare-azure-government-global-azure#application-insights). By using connection strings, you can define endpoint settings for your intranet servers or hybrid cloud settings.
 
 ## Get started
 

@@ -14,7 +14,7 @@ Use the following methods to remove [Container insights](#disable-container-insi
 
 ## Required permissions
 
-- You require at least [Contributor](../../role-based-access-control/built-in-roles.md#contributor) access to the cluster.
+- You require at least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster.
 
 ## Disable Container insights
 

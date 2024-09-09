@@ -151,7 +151,7 @@ You can use a Resource Manager template to create and configure Prometheus rule 
 The basic steps are as follows:
 
 1. Use the following template as a JSON file that describes how to create the rule group.
-2. Deploy the template using any deployment method, such as [Azure portal](../../azure-resource-manager/templates/deploy-portal.md), [Azure CLI](../../azure-resource-manager/templates/deploy-cli.md), [Azure PowerShell](../../azure-resource-manager/templates/deploy-powershell.md), or [Rest API](../../azure-resource-manager/templates/deploy-rest.md).
+2. Deploy the template using any deployment method, such as [Azure portal](/azure/azure-resource-manager/templates/deploy-portal), [Azure CLI](/azure/azure-resource-manager/templates/deploy-cli), [Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell), or [Rest API](/azure/azure-resource-manager/templates/deploy-rest).
 
 ### Template example for a Prometheus rule group
 Following is a sample template that creates a Prometheus rule group, including one recording rule and one alert rule. This template creates a resource of type `Microsoft.AlertsManagement/prometheusRuleGroups`. The scope of this group is limited to a single AKS cluster. The rules are executed in the order they appear within a group. 
@@ -271,7 +271,7 @@ In addition to the rules file, you must provide the utility with other propertie
 
 ### Creating Prometheus rule group using Azure CLI
 
-You can use Azure CLI to create and configure Prometheus rule groups, alert rules, and recording rules. The following code examples use [Azure Cloud Shell](../../cloud-shell/overview.md). 
+You can use Azure CLI to create and configure Prometheus rule groups, alert rules, and recording rules. The following code examples use [Azure Cloud Shell](/azure/cloud-shell/overview). 
 
 1. In the [portal](https://portal.azure.com/), select **Cloud Shell**. At the prompt, use the commands that follow.
 

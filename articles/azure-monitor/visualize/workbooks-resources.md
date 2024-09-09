@@ -56,7 +56,7 @@ Values from resource pickers can come from the workbook context, static list, or
    :::image type="content" source="./media/workbooks-resources/resource-query.png" lightbox="./media/workbooks-resources/resource-query.png" alt-text="Screenshot that shows the creation of a resource parameter by using Azure Resource Graph.":::
 
 
-For more information on Azure Resource Graph, see [What is Azure Resource Graph?](../../governance/resource-graph/overview.md).
+For more information on Azure Resource Graph, see [What is Azure Resource Graph?](/azure/governance/resource-graph/overview).
 
 ## Create a JSON list resource parameter
 

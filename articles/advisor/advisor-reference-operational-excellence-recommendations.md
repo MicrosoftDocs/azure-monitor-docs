@@ -54,13 +54,13 @@ Learn more about [Data explorer resource - ReduceCacheForAzureDataExplorerTables
 
 We have identified API calls from an outdated Azure Spring Apps SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
 
-Learn more about the [Azure Spring Apps service](../spring-apps/index.yml).
+Learn more about the [Azure Spring Apps service](/azure/spring-apps/).
 
 ### Update Azure Spring Apps API Version
 
 We have identified API calls from outdated Azure Spring Apps API for resources under this subscription. We recommend switching to the latest Azure Spring Apps API version. You need to update your existing code to use the latest API version. Also, you need to upgrade your Azure SDK and Azure CLI to the latest version, which ensures you receive the latest features and performance improvements.
 
-Learn more about the [Azure Spring Apps service](../spring-apps/index.yml).
+Learn more about the [Azure Spring Apps service](/azure/spring-apps/).
 
 ### New HCX version is available for upgrade
 
@@ -132,7 +132,7 @@ Learn more about [Virtual machine - GetF5vulnK03009991 (The iControl REST interf
 
 Desired state for Accelerated Networking is set to ‘true’ for one or more interfaces on your VM, but actual state for accelerated networking isn't enabled.
 
-Learn more about [Virtual machine - GetVmListANDisabled (NVA Accelerated Networking enabled but potentially not working.)](../virtual-network/create-vm-accelerated-networking-cli.md).
+Learn more about [Virtual machine - GetVmListANDisabled (NVA Accelerated Networking enabled but potentially not working.)](/azure/virtual-network/create-vm-accelerated-networking-cli).
 
 ### Virtual machines with Citrix Application Delivery Controller (ADC) and accelerated networking enabled might disconnect during maintenance operation
 
@@ -458,43 +458,43 @@ Learn more about [Network Security Group - NSGFlowLogsenableTA (Enable Traffic A
 
 Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless, no requests are dropped because of swap operations.
 
-Learn more about [Subscription - AzureApplicationService (Set up staging environments in Azure App Service)](../app-service/deploy-staging-slots.md).
+Learn more about [Subscription - AzureApplicationService (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
 
 ### Enforce 'Add or replace a tag on resources' using Azure Policy
 
 Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that adds or replaces the specified tag and value when any resource is created or updated. Existing resources can be remediated by triggering a remediation task, which does not modify tags on resource groups.
 
-Learn more about [Subscription - AddTagPolicy (Enforce 'Add or replace a tag on resources' using Azure Policy)](../governance/policy/overview.md).
+Learn more about [Subscription - AddTagPolicy (Enforce 'Add or replace a tag on resources' using Azure Policy)](/azure/governance/policy/overview).
 
 ### Enforce 'Allowed locations' using Azure Policy
 
 Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that enables you to restrict the locations your organization can specify when deploying resources. Use the policy to enforce your geo-compliance requirements.
 
-Learn more about [Subscription - AllowedLocationsPolicy (Enforce 'Allowed locations' using Azure Policy)](../governance/policy/overview.md).
+Learn more about [Subscription - AllowedLocationsPolicy (Enforce 'Allowed locations' using Azure Policy)](/azure/governance/policy/overview).
 
 ### Enforce 'Audit VMs that do not use managed disks' using Azure Policy
 
 Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that audits VMs that do not use managed disks.
 
-Learn more about [Subscription - AuditForManagedDisksPolicy (Enforce 'Audit VMs that do not use managed disks' using Azure Policy)](../governance/policy/overview.md).
+Learn more about [Subscription - AuditForManagedDisksPolicy (Enforce 'Audit VMs that do not use managed disks' using Azure Policy)](/azure/governance/policy/overview).
 
 ### Enforce 'Allowed virtual machine SKUs' using Azure Policy
 
 Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that enables you to specify a set of virtual machine SKUs that your organization can deploy.
 
-Learn more about [Subscription - AllowedVirtualMachineSkuPolicy (Enforce 'Allowed virtual machine SKUs' using Azure Policy)](../governance/policy/overview.md).
+Learn more about [Subscription - AllowedVirtualMachineSkuPolicy (Enforce 'Allowed virtual machine SKUs' using Azure Policy)](/azure/governance/policy/overview).
 
 ### Enforce 'Inherit a tag from the resource group' using Azure Policy
 
 Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that adds or replaces the specified tag and value from the parent resource group when any resource is created or updated. Existing resources can be remediated by triggering a remediation task.
 
-Learn more about [Subscription - InheritTagPolicy (Enforce 'Inherit a tag from the resource group' using Azure Policy)](../governance/policy/overview.md).
+Learn more about [Subscription - InheritTagPolicy (Enforce 'Inherit a tag from the resource group' using Azure Policy)](/azure/governance/policy/overview).
 
 ### Use Azure Lighthouse to simply and securely manage customer subscriptions at scale
 
 Using Azure Lighthouse improves security and reduces unnecessary access to your customer tenants by enabling more granular permissions for your users. It also allows for greater scalability, as your users can work across multiple customer subscriptions using a single login in your tenant.
 
-Learn more about [Subscription - OnboardCSPSubscriptionsToLighthouse (Use Azure Lighthouse to simply and securely manage customer subscriptions at scale)](../lighthouse/concepts/cloud-solution-provider.md).
+Learn more about [Subscription - OnboardCSPSubscriptionsToLighthouse (Use Azure Lighthouse to simply and securely manage customer subscriptions at scale)](/azure/lighthouse/concepts/cloud-solution-provider).
 
 ### Subscription with more than 10 VNets must be managed using AVNM
 
@@ -789,13 +789,13 @@ Learn more about [Host Pool - AVDStartVMonConnect (Permissions missing for start
 
 We have determined that you do not have a validation environment enabled in current subscription. When creating your host pools, you have selected "No" for "Validation environment" in the properties tab. Having at least one host pool with a validation environment enabled ensures the business continuity through Azure Virtual Desktop service deployments with early detection of potential issues.
 
-Learn more about [Host Pool - ValidationEnvHostPools (No validation environment enabled)](../virtual-desktop/create-validation-host-pool.md).
+Learn more about [Host Pool - ValidationEnvHostPools (No validation environment enabled)](/azure/virtual-desktop/create-validation-host-pool).
 
 ### Not enough production environments enabled
 
 We have determined that too many of your host pools have Validation Environment enabled. In order for Validation Environments to best serve their purpose, you must have at least one, but never more than half of your host pools in Validation Environment. By having a healthy balance between your host pools with Validation Environment enabled and those with it disabled, you're best able to utilize the benefits of the multistage deployments that Azure Virtual Desktop offers with certain updates. To fix this issue, open your host pool's properties and select "No" next to the "Validation Environment" setting.
 
-Learn more about [Host Pool - ProductionEnvHostPools (Not enough production environments enabled)](../virtual-desktop/create-host-pools-powershell.md).
+Learn more about [Host Pool - ProductionEnvHostPools (Not enough production environments enabled)](/azure/virtual-desktop/create-host-pools-powershell).
 
 
 
@@ -806,7 +806,7 @@ Learn more about [Host Pool - ProductionEnvHostPools (Not enough production envi
 
 Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless, no requests are dropped because of swap operations.
 
-Learn more about [App service - AzureAppService-StagingEnv (Set up staging environments in Azure App Service)](../app-service/deploy-staging-slots.md).
+Learn more about [App service - AzureAppService-StagingEnv (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
 
 ### Update Service Connector API Version
 

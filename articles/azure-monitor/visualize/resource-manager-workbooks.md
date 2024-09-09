@@ -10,7 +10,7 @@ ms.date: 06/13/2022
 
 # Resource Manager template samples for workbooks in Azure Monitor
 
-This article includes sample [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md) to create workbooks in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
+This article includes sample [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create workbooks in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
 [!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 

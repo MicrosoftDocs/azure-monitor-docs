@@ -21,11 +21,11 @@ The process that's outlined in this article only works on classic virtual machin
 
 ## Prerequisites
 
-- You must be a [service administrator or co-administrator](../../cost-management-billing/manage/add-change-subscription-administrator.md) on your Azure subscription. 
+- You must be a [service administrator or co-administrator](/azure/cost-management-billing/manage/add-change-subscription-administrator) on your Azure subscription. 
 
-- Your subscription must be registered with [Microsoft.Insights](../../azure-resource-manager/management/resource-providers-and-types.md). 
+- Your subscription must be registered with [Microsoft.Insights](/azure/azure-resource-manager/management/resource-providers-and-types). 
 
-- You need to have either [Azure PowerShell](/powershell/azure) or [Azure Cloud Shell](../../cloud-shell/overview.md) installed.
+- You need to have either [Azure PowerShell](/powershell/azure) or [Azure Cloud Shell](/azure/cloud-shell/overview) installed.
 
 ## Create a classic virtual machine and storage account
 
@@ -39,7 +39,7 @@ The process that's outlined in this article only works on classic virtual machin
 
 ## Create a service principal
 
-Create a service principal in your Microsoft Entra tenant by using the instructions at [Create a service principal](../../active-directory/develop/howto-create-service-principal-portal.md). Note the following while going through this process: 
+Create a service principal in your Microsoft Entra tenant by using the instructions at [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal). Note the following while going through this process: 
 - Create new client secret for this app.
 - Save the key and the client ID for use in later steps.
 

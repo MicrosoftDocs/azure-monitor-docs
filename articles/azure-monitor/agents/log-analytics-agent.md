@@ -25,8 +25,8 @@ Use the Log Analytics agent if you need to:
 * Collect logs and performance data from Azure virtual machines or hybrid machines hosted outside of Azure.
 * Send data to a Log Analytics workspace to take advantage of features supported by [Azure Monitor Logs](../logs/data-platform-logs.md), such as [log queries](../logs/log-query-overview.md).
 * Use [VM insights](../vm/vminsights-overview.md), which allows you to monitor your machines at scale and monitor their processes and dependencies on other resources and external processes.  
-* Manage the security of your machines by using [Microsoft Defender for Cloud](../../security-center/security-center-introduction.md) or [Microsoft Sentinel](../../sentinel/overview.md).
-* Use [Azure Automation Update Management](../../automation/update-management/overview.md), [Azure Automation State Configuration](../../automation/automation-dsc-overview.md), or [Azure Automation Change Tracking and Inventory](../../automation/change-tracking/overview.md) to deliver comprehensive management of your Azure and non-Azure machines.
+* Manage the security of your machines by using [Microsoft Defender for Cloud](/azure/security-center/security-center-introduction) or [Microsoft Sentinel](/azure/sentinel/overview).
+* Use [Azure Automation Update Management](/azure/automation/update-management/overview), [Azure Automation State Configuration](/azure/automation/automation-dsc-overview), or [Azure Automation Change Tracking and Inventory](/azure/automation/change-tracking/overview) to deliver comprehensive management of your Azure and non-Azure machines.
 * Use different [solutions](/previous-versions/azure/azure-monitor/insights/solutions) to monitor a particular service or application.
 
 Limitations of the Log Analytics agent:
@@ -56,20 +56,20 @@ This section explains how to install the Log Analytics agent on different types 
 
 - Use [VM insights](../vm/vminsights-enable-overview.md) to install the agent for a [single machine using the Azure portal](../vm/vminsights-enable-portal.md) or for [multiple machines at scale](../vm/vminsights-enable-policy.md). This installs the Log Analytics agent and [Dependency agent](../vm/vminsights-dependency-agent-maintenance.md). 
 - Log Analytics VM extension for [Windows](/azure/virtual-machines/extensions/oms-windows) or [Linux](/azure/virtual-machines/extensions/oms-linux) can be installed with the Azure portal, Azure CLI, Azure PowerShell, or an Azure Resource Manager template.
-- [Microsoft Defender for Cloud can provision the Log Analytics agent](../../security-center/security-center-enable-data-collection.md) on all supported Azure VMs and any new ones that are created if you enable it to monitor for security vulnerabilities and threats.
+- [Microsoft Defender for Cloud can provision the Log Analytics agent](/azure/security-center/security-center-enable-data-collection) on all supported Azure VMs and any new ones that are created if you enable it to monitor for security vulnerabilities and threats.
 - Install for individual Azure virtual machines [manually from the Azure portal](../vm/monitor-virtual-machine.md?toc=%2fazure%2fazure-monitor%2ftoc.json).
 - Connect the machine to a workspace from the **Virtual machines (deprecated)** option in the **Log Analytics workspaces** menu in the Azure portal.
 
 ### Windows virtual machine on-premises or in another cloud
 
-- Use [Azure Arc-enabled servers](../../azure-arc/servers/overview.md) to deploy and manage the Log Analytics VM extension. Review the [deployment options](../../azure-arc/servers/concept-log-analytics-extension-deployment.md) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
+- Use [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) to deploy and manage the Log Analytics VM extension. Review the [deployment options](/azure/azure-arc/servers/concept-log-analytics-extension-deployment) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
 - [Manually install](../agents/agent-windows.md) the agent from the command line.
 - Automate the installation with [Azure Automation DSC](../agents/agent-windows.md#install-the-agent).
 - Use a [Resource Manager template with Azure Stack](https://github.com/Azure/AzureStack-QuickStart-Templates/tree/master/MicrosoftMonitoringAgent-ext-win).
 
 ### Linux virtual machine on-premises or in another cloud
 
-- Use [Azure Arc-enabled servers](../../azure-arc/servers/overview.md) to deploy and manage the Log Analytics VM extension. Review the [deployment options](../../azure-arc/servers/concept-log-analytics-extension-deployment.md) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
+- Use [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) to deploy and manage the Log Analytics VM extension. Review the [deployment options](/azure/azure-arc/servers/concept-log-analytics-extension-deployment) to understand the different deployment methods available for the extension on machines registered with Azure Arc-enabled servers.
 - [Manually install](../agents/agent-linux.md#install-the-agent) the agent calling a wrapper-script hosted on GitHub.
 - Integrate [System Center Operations Manager](./om-agents.md) with Azure Monitor to forward collected data from Windows computers reporting to a management group.
 
@@ -87,7 +87,7 @@ The following table lists the types of data you can configure a Log Analytics wo
 
 ## Other services
 
-The agent for Linux and Windows isn't only for connecting to Azure Monitor. Other services such as Microsoft Defender for Cloud and Microsoft Sentinel rely on the agent and its connected Log Analytics workspace. The agent also supports Azure Automation to host the Hybrid Runbook Worker role and other services such as [Change Tracking](../../automation/change-tracking/overview.md), [Update Management](../../automation/update-management/overview.md), and [Microsoft Defender for Cloud](../../security-center/security-center-introduction.md). For more information about the Hybrid Runbook Worker role, see [Azure Automation Hybrid Runbook Worker](../../automation/automation-hybrid-runbook-worker.md).
+The agent for Linux and Windows isn't only for connecting to Azure Monitor. Other services such as Microsoft Defender for Cloud and Microsoft Sentinel rely on the agent and its connected Log Analytics workspace. The agent also supports Azure Automation to host the Hybrid Runbook Worker role and other services such as [Change Tracking](/azure/automation/change-tracking/overview), [Update Management](/azure/automation/update-management/overview), and [Microsoft Defender for Cloud](/azure/security-center/security-center-introduction). For more information about the Hybrid Runbook Worker role, see [Azure Automation Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker).
 
 ## Workspace and management group limitations
 
@@ -121,12 +121,12 @@ The following table lists the proxy and firewall configuration information requi
 |*.blob.core.windows.net |Port 443 |Outbound|Yes |
 |*.azure-automation.net |Port 443 |Outbound|Yes |
 
-For firewall information required for Azure Government, see [Azure Government management](../../azure-government/compare-azure-government-global-azure.md#azure-monitor).
+For firewall information required for Azure Government, see [Azure Government management](/azure/azure-government/compare-azure-government-global-azure#azure-monitor).
 
 > [!IMPORTANT]
 > If your firewall is doing CNAME inspections, you need to configure it to allow all domains in the CNAME.
 
-If you plan to use the Azure Automation Hybrid Runbook Worker to connect to and register with the Automation service to use runbooks or management features in your environment, it must have access to the port number and the URLs described in [Configure your network for the Hybrid Runbook Worker](../../automation/automation-hybrid-runbook-worker.md#network-planning).
+If you plan to use the Azure Automation Hybrid Runbook Worker to connect to and register with the Automation service to use runbooks or management features in your environment, it must have access to the port number and the URLs described in [Configure your network for the Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker#network-planning).
 
 ### Proxy configuration
 

@@ -16,7 +16,7 @@ ms.reviewer: jeffwo
 If you're new to Azure Monitor or have basic data collection requirements, then you may be able to meet all of your requirements using the Azure portal and the guidance in this article. If you want to take advantage of additional DCR features such as [transformations](../essentials/data-collection-transformations.md), then you may need to create a DCR using other methods or edit it after creating it in the portal. You can also use different methods to manage DCRs and create associations if you want to deploy using CLI, PowerShell, ARM templates, or Azure Policy.
 
 > [!NOTE]
-> To send data across tenants, you must first enable [Azure Lighthouse](../../lighthouse/overview.md).
+> To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 
 
 > [!WARNING]
@@ -61,7 +61,7 @@ When you create a DCR in the Azure portal, you're walked through a series of pag
 ## Create data collection rule
 
 > [!IMPORTANT]
-> Create your data collection rule in the same region as your destination Log Analytics workspace or Azure Monitor workspace. You can associate the data collection rule to machines or containers from any subscription or resource group in the tenant. To send data across tenants, you must first enable [Azure Lighthouse](../../lighthouse/overview.md).
+> Create your data collection rule in the same region as your destination Log Analytics workspace or Azure Monitor workspace. You can associate the data collection rule to machines or containers from any subscription or resource group in the tenant. To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 
 
 On the **Monitor** menu in the Azure portal, select **Data Collection Rules** > **Create** to open the DCR creation page.

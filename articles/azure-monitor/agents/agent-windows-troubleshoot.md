@@ -67,7 +67,7 @@ Double-check that the firewall or proxy is configured to allow the following por
 |*.blob.core.windows.net |Port 443 |Outbound|Yes |  
 |*.agentsvc.azure-automation.net |Port 443 |Outbound|Yes |  
 
-For firewall information required for Azure Government, see [Azure Government management](../../azure-government/compare-azure-government-global-azure.md#azure-monitor). If you plan to use the Azure Automation Hybrid Runbook Worker to connect to and register with the Automation service to use runbooks or management solutions in your environment, it must have access to the port number and the URLs described in [Configure your network for the Hybrid Runbook Worker](../../automation/automation-hybrid-runbook-worker.md#network-planning).
+For firewall information required for Azure Government, see [Azure Government management](/azure/azure-government/compare-azure-government-global-azure#azure-monitor). If you plan to use the Azure Automation Hybrid Runbook Worker to connect to and register with the Automation service to use runbooks or management solutions in your environment, it must have access to the port number and the URLs described in [Configure your network for the Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker#network-planning).
 
 There are several ways you can verify if the agent is successfully communicating with Azure Monitor:
 
@@ -152,9 +152,9 @@ You may have received the breaking change notification even if you have not pers
 -	[Microsoft Defender for Server](/microsoft-365/security/defender-endpoint/update-agent-mma-windows)
 -	[Microsoft Defender for Endpoint](/microsoft-365/security/defender-endpoint/update-agent-mma-windows)
 -	Azure Sentinel
--	[Azure Automation Agent-based Hybrid Worker](../../automation/automation-windows-hrw-install.md#update-log-analytics-agent-to-latest-version)
--	[Azure Automation Change Tracking and Inventory](../../automation/change-tracking/overview.md?tabs=python-2#update-log-analytics-agent-to-latest-version)
--	[Azure Automation Update Management](../../automation/update-management/overview.md#update-windows-log-analytics-agent-to-latest-version)
+-	[Azure Automation Agent-based Hybrid Worker](/azure/automation/automation-windows-hrw-install#update-log-analytics-agent-to-latest-version)
+-	[Azure Automation Change Tracking and Inventory](/azure/automation/change-tracking/overview?tabs=python-2#update-log-analytics-agent-to-latest-version)
+-	[Azure Automation Update Management](/azure/automation/update-management/overview#update-windows-log-analytics-agent-to-latest-version)
 
 
 *Identifying and Remidiating Breaking Agents*

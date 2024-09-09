@@ -10,11 +10,11 @@ ms.reviewer: lualderm
 ---
 # Stream Azure monitoring data to an event hub or external partner
 
-In most cases, the most effective method to stream data from Azure Monitor to external tools is by using [Azure Event Hubs](../../event-hubs/index.yml). This article provides a brief description on how to stream data and then lists some of the partners where you can send it. Some partners have special integration with Azure Monitor and might be hosted on Azure.
+In most cases, the most effective method to stream data from Azure Monitor to external tools is by using [Azure Event Hubs](/azure/event-hubs/). This article provides a brief description on how to stream data and then lists some of the partners where you can send it. Some partners have special integration with Azure Monitor and might be hosted on Azure.
 
 ## Create an Event Hubs namespace
 
-Before you configure streaming for any data source, you need to [create an Event Hubs namespace and event hub](../../event-hubs/event-hubs-create.md). This namespace and event hub is the destination for all of your monitoring data. An Event Hubs namespace is a logical grouping of event hubs that share the same access policy, much like a storage account has individual blobs within that storage account. Consider the following details about the Event Hubs namespace and event hubs that you use for streaming monitoring data:
+Before you configure streaming for any data source, you need to [create an Event Hubs namespace and event hub](/azure/event-hubs/event-hubs-create). This namespace and event hub is the destination for all of your monitoring data. An Event Hubs namespace is a logical grouping of event hubs that share the same access policy, much like a storage account has individual blobs within that storage account. Consider the following details about the Event Hubs namespace and event hubs that you use for streaming monitoring data:
 
 * The number of throughput units allows you to increase throughput scale for your event hubs. Only one throughput unit is typically necessary. If you need to scale up as your log usage increases, you can manually increase the number of throughput units for the namespace or enable auto inflation.
 * The number of partitions allows you to parallelize consumption across many consumers. A single partition can support up to 20 MBps or approximately 20,000 messages per second. Depending on the tool consuming the data, it might or might not support consuming from multiple partitions. Four partitions are reasonable to start with if you're not sure about the number of partitions to set.
@@ -134,7 +134,7 @@ The following JSON is an example of log data sent to an event hub:
 
 ## Manual streaming with a logic app
 
-For data that you can't directly stream to an event hub, you can write to Azure Storage and then you can use a time-triggered logic app that [pulls data from Azure Blob Storage](../../connectors/connectors-create-api-azureblobstorage.md#add-action) and [pushes it as a message to the event hub](../../connectors/connectors-create-api-azure-event-hubs.md#add-action).
+For data that you can't directly stream to an event hub, you can write to Azure Storage and then you can use a time-triggered logic app that [pulls data from Azure Blob Storage](/azure/connectors/connectors-create-api-azureblobstorage#add-action) and [pushes it as a message to the event hub](/azure/connectors/connectors-create-api-azure-event-hubs#add-action).
 
 
 ## Partner tools with Azure Monitor integration

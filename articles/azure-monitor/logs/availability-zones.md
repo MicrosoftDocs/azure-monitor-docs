@@ -12,7 +12,7 @@ ms.custom: references_regions
 ---
 # Enhance data and service resilience in Azure Monitor Logs with availability zones
 
-[Azure availability zones](../../reliability/availability-zones-overview.md) protect applications and data from datacenter failures and can enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. This article describes the data and service resilience benefits Azure Monitor availability zones provide in supported regions.
+[Azure availability zones](/azure/reliability/availability-zones-overview) protect applications and data from datacenter failures and can enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. This article describes the data and service resilience benefits Azure Monitor availability zones provide in supported regions.
 
 > [!NOTE]
 > Application Insights resources can use availability zones only if they're workspace-based. Classic Application Insights resources can't use availability zones.
@@ -27,7 +27,7 @@ ms.custom: references_regions
 
 Each Azure region that supports availability zones is made of one or more datacenters, or zones, equipped with independent power, cooling, and networking infrastructure. 
 
-Azure Monitor Logs availability zones are [zone-redundant](../../reliability/availability-zones-overview.md#zonal-and-zone-redundant-services), which means that Microsoft manages spreading service requests and replicating data across different zones in supported regions. If one zone is affected by an incident, Microsoft manages failover to a different availability zone in the region automatically. You don't need to take any action because switching between zones is seamless. 
+Azure Monitor Logs availability zones are [zone-redundant](/azure/reliability/availability-zones-overview#zonal-and-zone-redundant-services), which means that Microsoft manages spreading service requests and replicating data across different zones in supported regions. If one zone is affected by an incident, Microsoft manages failover to a different availability zone in the region automatically. You don't need to take any action because switching between zones is seamless. 
 
 A subset of the availability zones that support data resilience currently also support service resilience for Azure Monitor Logs. In regions that support **service resilience**, Azure Monitor Logs service operations - for example, log ingestion, queries, and alerts - can continue in the event of a zone failure. In regions that only support **data resilience**, your stored data is protected against zonal failures, but service operations might be impacted by regional incidents.
 
@@ -78,4 +78,4 @@ A subset of the availability zones that support data resilience currently also s
 
 Learn more about how to:
 - [Set up a dedicated cluster](logs-dedicated-clusters.md).
-- [Migrate Log Analytics workspaces to availability zone support](../../availability-zones/migrate-monitor-log-analytics.md).
+- [Migrate Log Analytics workspaces to availability zone support](/azure/availability-zones/migrate-monitor-log-analytics).

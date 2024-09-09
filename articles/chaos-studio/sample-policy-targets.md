@@ -12,7 +12,7 @@ ms.service: azure-chaos-studio
 
 # Azure Policy samples for adding resources to Azure Chaos Studio
 
-This article includes sample [Azure Policy](../governance/policy/overview.md) definitions that create [targets and capabilities](chaos-studio-targets-capabilities.md) for a specific resource type. You can automatically add resources to Azure Chaos Studio. First, you [deploy these samples as custom policy definitions](../governance/policy/tutorials/create-and-manage.md). Then you [assign the policy](../governance/policy/assign-policy-portal.md) to a scope.
+This article includes sample [Azure Policy](/azure/governance/policy/overview) definitions that create [targets and capabilities](chaos-studio-targets-capabilities.md) for a specific resource type. You can automatically add resources to Azure Chaos Studio. First, you [deploy these samples as custom policy definitions](/azure/governance/policy/tutorials/create-and-manage). Then you [assign the policy](/azure/governance/policy/assign-policy-portal) to a scope.
 
 In these samples, we add service-direct targets and capabilities for each [supported resource type](chaos-studio-fault-providers.md) by using [targets and capabilities](chaos-studio-targets-capabilities.md).
 
@@ -21,7 +21,7 @@ In these samples, we add service-direct targets and capabilities for each [suppo
 
 
 > [!NOTE]
-> Make sure the subscription you are using for the automated Azure policy deployment has the correct [RBAC permissions](../governance/policy/overview.md) to do this. 
+> Make sure the subscription you are using for the automated Azure policy deployment has the correct [RBAC permissions](/azure/governance/policy/overview) to do this. 
 
 ## Azure Cache for Redis policy definition
 
@@ -634,7 +634,7 @@ In these samples, we add service-direct targets and capabilities for each [suppo
 ```
 
 ## Troubleshooting issues related to Azure Policy/RBAC
-Please visit [Troubleshoot errors with using Azure Policy](../governance/policy/troubleshoot/general.md) to do this. 
+Please visit [Troubleshoot errors with using Azure Policy](/azure/governance/policy/troubleshoot/general) to do this. 
 
 
 ## Next steps

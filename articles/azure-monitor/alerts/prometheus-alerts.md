@@ -37,7 +37,7 @@ If your rule group is configured with [a specific cluster scope](../essentials/p
 
 1. On the pane that shows the details of fired alerts, select the **View query in Grafana** link.
 
-2. A browser tab opens and takes you to the [Azure Managed Grafana](../../managed-grafana/overview.md) instance that's connected to your Azure Monitor workspace.
+2. A browser tab opens and takes you to the [Azure Managed Grafana](/azure/managed-grafana/overview) instance that's connected to your Azure Monitor workspace.
 
 3. Grafana opens in Explore mode and presents the chart for your alert rule expression query around the alert firing time. You can further explore the query in Grafana to identify the reason that the alert is firing.
 

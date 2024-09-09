@@ -9,7 +9,7 @@ ms.author: aaronmax
 
 ### App Service application settings with Azure Resource Manager
 
-Application settings for Azure App Service can be managed and configured with [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md). You can use this method when you deploy new App Service resources with Resource Manager automation or modify the settings of existing resources.
+Application settings for Azure App Service can be managed and configured with [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax). You can use this method when you deploy new App Service resources with Resource Manager automation or modify the settings of existing resources.
 
 The basic structure of the application settings JSON for an App Service resource:
 

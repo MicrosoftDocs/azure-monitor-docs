@@ -36,7 +36,7 @@ Use environment variables to pass a connection string to the Application Insight
 
 To set a connection string via an environment variable, place the value of the connection string into an environment variable named `APPLICATIONINSIGHTS_CONNECTION_STRING`.
 
-This process can be [automated in your Azure deployments](../../azure-resource-manager/templates/deploy-portal.md#deploy-resources-with-arm-templates-and-azure-portal). For example, the following Azure Resource Manager template shows how you can automatically include the correct connection string with an Azure App Service deployment. Be sure to include any other app settings your app requires:
+This process can be [automated in your Azure deployments](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-with-arm-templates-and-azure-portal). For example, the following Azure Resource Manager template shows how you can automatically include the correct connection string with an Azure App Service deployment. Be sure to include any other app settings your app requires:
 
 ```JSON
 {

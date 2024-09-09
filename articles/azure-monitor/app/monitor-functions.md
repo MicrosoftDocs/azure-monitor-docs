@@ -9,11 +9,11 @@ ms.reviewer: abinetabate
 
 # Monitor Azure Functions with Azure Monitor Application Insights
 
-[Azure Functions](../../azure-functions/functions-overview.md) offers built-in integration with Application Insights to monitor functions. For languages other than .NET and .NET Core, other language-specific workers/extensions are needed to get the full benefits of distributed tracing.
+[Azure Functions](/azure/azure-functions/functions-overview) offers built-in integration with Application Insights to monitor functions. For languages other than .NET and .NET Core, other language-specific workers/extensions are needed to get the full benefits of distributed tracing.
 
 Application Insights collects log, performance, and error data and automatically detects performance anomalies. Application Insights includes powerful analytics tools to help you diagnose issues and understand how your functions are used. When you have visibility into your application data, you can continually improve performance and usability. You can even use Application Insights during local function app project development.
 
-The required Application Insights instrumentation is built into Azure Functions. All you need is a valid connection string to connect your function app to an Application Insights resource. The connection string should be added to your application settings when your function app resource is created in Azure. If your function app doesn't already have a connection string, you can set it manually. For more information, see [Monitor executions in Azure Functions](../../azure-functions/functions-monitoring.md?tabs=cmd) and [Connection strings](sdk-connection-string.md).
+The required Application Insights instrumentation is built into Azure Functions. All you need is a valid connection string to connect your function app to an Application Insights resource. The connection string should be added to your application settings when your function app resource is created in Azure. If your function app doesn't already have a connection string, you can set it manually. For more information, see [Monitor executions in Azure Functions](/azure/azure-functions/functions-monitoring?tabs=cmd) and [Connection strings](sdk-connection-string.md).
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
@@ -24,7 +24,7 @@ For a list of supported autoinstrumentation scenarios, see [Supported environmen
 > [!Note]
 > This feature used to have an 8- to 9-second cold startup implication, which has been reduced to less than 1 second. If you were an early adopter of this feature (for example, prior to February 2023), review the "Troubleshooting" section to update to the current version and benefit from the new faster startup.
 
-To view more data from your Java-based Azure Functions applications than is [collected by default](../../azure-functions/functions-monitoring.md?tabs=cmd), enable the [Application Insights Java 3.x agent](./java-in-process-agent.md). This agent allows Application Insights to automatically collect and correlate dependencies, logs, and metrics from popular libraries and Azure Software Development Kits (SDKs). This telemetry is in addition to the request telemetry already captured by Functions.
+To view more data from your Java-based Azure Functions applications than is [collected by default](/azure/azure-functions/functions-monitoring?tabs=cmd), enable the [Application Insights Java 3.x agent](./java-in-process-agent.md). This agent allows Application Insights to automatically collect and correlate dependencies, logs, and metrics from popular libraries and Azure Software Development Kits (SDKs). This telemetry is in addition to the request telemetry already captured by Functions.
 
 By using the application map and having a more complete view of end-to-end transactions, you can better diagnose issues. You have a topological view of how systems interact along with data on average performance and error rates. You also have more data for end-to-end diagnostics. You can use the application map to easily find the root cause of reliability issues and performance bottlenecks on a per-request basis.
 
@@ -150,7 +150,7 @@ Example:
 
 ## Distributed tracing for Node.js function apps
 
-To view more data from your Node Azure Functions applications than is [collected by default](../../azure-functions/functions-monitoring.md#collecting-telemetry-data), instrument your Function using the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=nodejs).
+To view more data from your Node Azure Functions applications than is [collected by default](/azure/azure-functions/functions-monitoring#collecting-telemetry-data), instrument your Function using the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=nodejs).
 
 ## Distributed tracing for Python function apps
 
@@ -186,7 +186,7 @@ def main(req: func.HttpRequest, context) -> func.HttpResponse:
 
 ## Next steps
 
-* Read more instructions and information about [monitoring Azure Functions](../../azure-functions/functions-monitoring.md).
+* Read more instructions and information about [monitoring Azure Functions](/azure/azure-functions/functions-monitoring).
 * Get an overview of [distributed tracing](distributed-trace-data.md).
 * See what [Application Map](./app-map.md?tabs=net) can do for your business.
 * Read about [requests and dependencies for Java apps](./java-in-process-agent.md).

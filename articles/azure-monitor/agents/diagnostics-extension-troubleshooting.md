@@ -45,7 +45,7 @@ The following paths lead to some important logs and artifacts. We refer to this 
 | MonAgentHost log file | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>\WAD0107\Configuration\MonAgentHost.<seq_num>.log |
 
 ## Metric data doesn't appear in the Azure portal
-Diagnostics provides metric data that can be displayed in the Azure portal. If you have problems seeing the data in the portal, check the `WADMetrics\*` table in the Diagnostics storage account to see if the corresponding metric records are there and ensure that the [resource provider](../../azure-resource-manager/management/resource-providers-and-types.md) Microsoft.Insights is registered.
+Diagnostics provides metric data that can be displayed in the Azure portal. If you have problems seeing the data in the portal, check the `WADMetrics\*` table in the Diagnostics storage account to see if the corresponding metric records are there and ensure that the [resource provider](/azure/azure-resource-manager/management/resource-providers-and-types) Microsoft.Insights is registered.
 
 Here, the `PartitionKey` of the table is the resource ID, virtual machine, or virtual machine scale set. `RowKey` is the metric name. It's also known as the performance counter name.
 

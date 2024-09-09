@@ -12,7 +12,7 @@ You can monitor Azure services and applications by using [Grafana](https://grafa
 - [Azure Monitor Metrics](../essentials/data-platform-metrics.md) for numeric time series data from Azure resources.
 - [Azure Monitor Logs](../logs/data-platform-logs.md) for log and performance data from Azure resources that enables you to query by using the powerful Kusto Query Language (KQL). You can use Application Insights log queries to retrieve Application Insights log based metrics
     - [Application Insights log based metrics](../essentials/app-insights-metrics.md) to let you analyze the health of your monitored apps. You can use Application Insights log queries in Grafana to use the Application Insights log metrics data.
-- [Azure Resource Graph](../../governance/resource-graph/overview.md) to quickly query and identify Azure resources across subscriptions.
+- [Azure Resource Graph](/azure/governance/resource-graph/overview) to quickly query and identify Azure resources across subscriptions.
 
 
 You can then display this performance and availability data on your Grafana dashboard.
@@ -29,7 +29,7 @@ Azure Managed Grafana is optimized for the Azure environment and works seamlessl
 - Manage user authentication and access control by using Microsoft Entra identities.
 - Pin charts from the Azure portal directly to Azure Managed Grafana dashboards.
 
-Use this [quickstart guide](../../managed-grafana/quickstart-managed-grafana-portal.md) to create an Azure Managed Grafana workspace by using the Azure portal.
+Use this [quickstart guide](/azure/managed-grafana/quickstart-managed-grafana-portal) to create an Azure Managed Grafana workspace by using the Azure portal.
 
 ### Set up Grafana locally
 To set up a local Grafana server, [download and install Grafana in your local environment](https://grafana.com/grafana/download).
@@ -47,7 +47,7 @@ Azure Managed Grafana includes an Azure Monitor data source plug-in. By default,
 
 :::image type="content" source="./media/grafana-plugin/azure-managed-grafana.png" lightbox="./media/grafana-plugin/azure-managed-grafana.png" alt-text="Screenshot that shows the Azure Managed Grafana home page.":::
 
-You can expand the resources that can be viewed by your Azure Managed Grafana workspace by [configuring additional permissions](../../managed-grafana/how-to-permissions.md) to assign the included managed identity the [Monitoring Reader role](../roles-permissions-security.md) on other subscriptions or resources.
+You can expand the resources that can be viewed by your Azure Managed Grafana workspace by [configuring additional permissions](/azure/managed-grafana/how-to-permissions) to assign the included managed identity the [Monitoring Reader role](../roles-permissions-security.md) on other subscriptions or resources.
 
  If you're using an instance that isn't Azure Managed Grafana, you have to set up an Azure Monitor data source.
 
@@ -72,8 +72,8 @@ If you're hosting Grafana on your own Azure Virtual Machines or Azure App Servic
 ### Use app registration
 
 1. Create a service principal. Grafana uses a Microsoft Entra service principal to connect to Azure Monitor APIs and collect data. You must create, or use an existing service principal, to manage access to your Azure resources:
-    * See [Create a Microsoft Entra app and service principal in the portal](../../active-directory/develop/howto-create-service-principal-portal.md) to create a service principal. Copy and save your tenant ID (Directory ID), client ID (Application ID), and client secret (Application key value).
-    * View [Assign application to role](../../active-directory/develop/howto-create-service-principal-portal.md) to assign the [Monitoring Reader role](../roles-permissions-security.md) to the Microsoft Entra application on the subscription, resource group, or resource you want to monitor.
+    * See [Create a Microsoft Entra app and service principal in the portal](/azure/active-directory/develop/howto-create-service-principal-portal) to create a service principal. Copy and save your tenant ID (Directory ID), client ID (Application ID), and client secret (Application key value).
+    * View [Assign application to role](/azure/active-directory/develop/howto-create-service-principal-portal) to assign the [Monitoring Reader role](../roles-permissions-security.md) to the Microsoft Entra application on the subscription, resource group, or resource you want to monitor.
   
 1. Provide the connection details you want to use:
     * When you configure the plug-in, you can indicate which Azure Cloud you want the plug-in to monitor: Public, Azure US Government, Azure Germany, or Microsoft Azure operated by 21Vianet.
@@ -168,7 +168,7 @@ One of the many useful features of Grafana is the dashboard playlist. You can cr
 There are many data source plug-ins that you can use to bring these metrics together in a dashboard.
 
 Here are good reference articles on how to use Telegraf, InfluxDB, Azure Monitor managed service for Prometheus, and Docker:
- - [How to configure data sources for Azure Managed Grafana](../../managed-grafana/how-to-data-source-plugins-managed-identity.md)
+ - [How to configure data sources for Azure Managed Grafana](/azure/managed-grafana/how-to-data-source-plugins-managed-identity)
  - [Use Azure Monitor managed service for Prometheus as data source for Grafana using managed system identity](../essentials/prometheus-grafana.md)
  - [How to monitor system Metrics with the TICK Stack on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-monitor-system-metrics-with-the-tick-stack-on-ubuntu-16-04)
  - [A monitoring solution for Docker hosts, containers, and containerized services](https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/)

@@ -59,7 +59,7 @@ Get an instance of `TelemetryClient` (except in JavaScript in webpages):
 
 For [ASP.NET Core](asp-net-core.md) apps and [Non-HTTP/Worker for .NET/.NET Core](worker-service.md#how-can-i-track-telemetry-thats-not-automatically-collected) apps, get an instance of `TelemetryClient` from the dependency injection container as explained in their respective documentation.
 
-If you use Azure Functions v2+ or Azure WebJobs v3+, see [Monitor Azure Functions](../../azure-functions/functions-monitoring.md).
+If you use Azure Functions v2+ or Azure WebJobs v3+, see [Monitor Azure Functions](/azure/azure-functions/functions-monitoring).
 
 *C#*
 

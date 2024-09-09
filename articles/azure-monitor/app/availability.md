@@ -13,7 +13,7 @@ ms.reviewer: cogoodson
 Availability tests don't require any modifications to the website or application you're testing. They work for any HTTP or HTTPS endpoint accessible from the public internet, including REST APIs that your service depends on. This means you can monitor not only your own applications but also external services that are critical to your application's functionality. You can create up to 100 availability tests per Application Insights resource.
 
 > [!NOTE]
-> Availability tests are stored encrypted, according to [Azure data encryption at rest](../../security/fundamentals/encryption-atrest.md#encryption-at-rest-in-microsoft-cloud-services) policies.
+> Availability tests are stored encrypted, according to [Azure data encryption at rest](/azure/security/fundamentals/encryption-atrest#encryption-at-rest-in-microsoft-cloud-services) policies.
 
 ## Types of availability tests
 
@@ -84,19 +84,19 @@ This example is designed only to show you the mechanics of how the `TrackAvailab
 
 > [!div class="checklist"]
 > * [Workspace-based Application Insights resource](create-workspace-resource.md)
-> * Access to the source code of an [Azure Functions app](../../azure-functions/functions-how-to-use-azure-function-app-settings.md)
+> * Access to the source code of an [Azure Functions app](/azure/azure-functions/functions-how-to-use-azure-function-app-settings)
 > * Developer expertise to author custom code for [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability), tailored to your specific business needs
 
 ### Get started
 
 > [!NOTE]
-> To follow these instructions, you must use either the [App Service](../../azure-functions/dedicated-plan.md) plan or Functions Premium plan to allow editing code in App Service Editor.
+> To follow these instructions, you must use either the [App Service](/azure/azure-functions/dedicated-plan) plan or Functions Premium plan to allow editing code in App Service Editor.
 > 
 > If you're testing behind a virtual network or testing nonpublic endpoints, you'll need to use the Functions Premium plan.
 
 #### Create a timer trigger function
 
-1. [Create an Azure Functions resource](../../azure-functions/functions-create-scheduled-function.md#create-a-function-app) with the following consideration:
+1. [Create an Azure Functions resource](/azure/azure-functions/functions-create-scheduled-function#create-a-function-app) with the following consideration:
 
     * **If you don't have an Application Insights resource yet for your timer-triggered function,** it's created *by default* when you create an Azure Functions app.
 
@@ -104,7 +104,7 @@ This example is designed only to show you the mechanics of how the `TrackAvailab
 
         :::image type="content" source="media/availability/create-application-insights.png" alt-text="Screenshot showing selecting your existing Application Insights resource on the Monitoring tab.":::
 
-1. Follow the instructions to [create a timer triggered function](../../azure-functions/functions-create-scheduled-function.md#create-a-timer-triggered-function).
+1. Follow the instructions to [create a timer triggered function](/azure/azure-functions/functions-create-scheduled-function#create-a-timer-triggered-function).
 
 #### Add and edit code in the App Service Editor
 
@@ -463,10 +463,10 @@ To ensure endpoint availability behind firewalls, enable public availability tes
 
 ### Public availability test enablement
 
-Ensure your internal website has a public Domain Name System (DNS) record. Availability tests fail if DNS can't be resolved. For more information, see [Create a custom domain name for internal application](../../cloud-services/cloud-services-custom-domain-name-portal.md#add-an-a-record-for-your-custom-domain).
+Ensure your internal website has a public Domain Name System (DNS) record. Availability tests fail if DNS can't be resolved. For more information, see [Create a custom domain name for internal application](/azure/cloud-services/cloud-services-custom-domain-name-portal#add-an-a-record-for-your-custom-domain).
 
 > [!WARNING]
-> The IP addresses used by the availability tests service are shared and can expose your firewall-protected service endpoints to other tests. IP address filtering alone doesn't secure your service's traffic, so it's recommended to add extra custom headers to verify the origin of web request. For more information, see [Virtual network service tags](../../virtual-network/service-tags-overview.md#virtual-network-service-tags).
+> The IP addresses used by the availability tests service are shared and can expose your firewall-protected service endpoints to other tests. IP address filtering alone doesn't secure your service's traffic, so it's recommended to add extra custom headers to verify the origin of web request. For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview#virtual-network-service-tags).
 
 #### Authenticate traffic
 
@@ -489,13 +489,13 @@ Alternatively, set the *availability test string identifier* as a query paramete
 > [!NOTE]
 > This example is specific to network security group service tag usage. Many Azure services accept service tags, each requiring different configuration steps.
 
-To simplify enabling Azure services without authorizing individual IPs or maintaining an up-to-date IP list, use [Service tags](../../virtual-network/service-tags-overview.md). Apply these tags across Azure Firewall and network security groups, allowing the availability test service access to your endpoints. The service tag `ApplicationInsightsAvailability` applies to all availability tests.
+To simplify enabling Azure services without authorizing individual IPs or maintaining an up-to-date IP list, use [Service tags](/azure/virtual-network/service-tags-overview). Apply these tags across Azure Firewall and network security groups, allowing the availability test service access to your endpoints. The service tag `ApplicationInsightsAvailability` applies to all availability tests.
 
-1. If you're using [Azure network security groups](../../virtual-network/network-security-groups-overview.md), go to your network security group resource and under **Settings**, open the **Inbound security rules** experience, then select **Add**.
+1. If you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview), go to your network security group resource and under **Settings**, open the **Inbound security rules** experience, then select **Add**.
 
 1. Next, select *Service Tag* as the **Source** and *ApplicationInsightsAvailability* as the **Source service tag**. Use open ports 80 (http) and 443 (https) for incoming traffic from the service tag.
 
-To manage access when your endpoints are outside Azure or when service tags aren't an option, allowlist the [IP addresses of our web test agents](ip-addresses.md). You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](../../virtual-network/service-tags-overview.md#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](../../virtual-network/service-tags-overview.md#discover-service-tags-by-using-downloadable-json-files).
+To manage access when your endpoints are outside Azure or when service tags aren't an option, allowlist the [IP addresses of our web test agents](ip-addresses.md). You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
   
 1. In your network security group resource, under **Settings**, open the **Inbound security rules** experience, then select **Add**.
 

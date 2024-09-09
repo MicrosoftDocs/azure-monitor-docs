@@ -10,7 +10,7 @@ ms.reviewer: abinetabate
 
 # Application Monitoring for Azure App Service and Node.js
 
-Monitoring of your Node.js web applications running on [Azure App Services](../../app-service/index.yml) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
+Monitoring of your Node.js web applications running on [Azure App Services](/azure/app-service/) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
 
 ## Enable Application Insights
 

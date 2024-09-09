@@ -42,7 +42,7 @@ Agent-based faults are injected into **Azure Virtual Machines** or **Virtual Mac
 
 ## App Service
 
-This section applies to the `Microsoft.Web/sites` resource type. [Learn more about App Service](../app-service/overview.md).
+This section applies to the `Microsoft.Web/sites` resource type. [Learn more about App Service](/azure/app-service/overview).
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
@@ -73,7 +73,7 @@ This section applies to the `Microsoft.ContainerService/managedClusters` resourc
 
 ## Cloud Services (Classic)
 
-This section applies to the `Microsoft.ClassicCompute/domainNames` resource type. [Learn more about Cloud Services (Classic)](../cloud-services/cloud-services-choose-me.md).
+This section applies to the `Microsoft.ClassicCompute/domainNames` resource type. [Learn more about Cloud Services (Classic)](/azure/cloud-services/cloud-services-choose-me).
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
@@ -81,7 +81,7 @@ This section applies to the `Microsoft.ClassicCompute/domainNames` resource type
 
 ## Clustered Cache for Redis
 
-This section applies to the `Microsoft.Cache/redis` resource type. [Learn more about Clustered Cache for Redis](../azure-cache-for-redis/cache-overview.md).
+This section applies to the `Microsoft.Cache/redis` resource type. [Learn more about Clustered Cache for Redis](/azure/azure-cache-for-redis/cache-overview).
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
@@ -97,7 +97,7 @@ This section applies to the `Microsoft.DocumentDB/databaseAccounts` resource typ
 
 ## Event Hubs
 
-This section applies to the `Microsoft.EventHub/namespaces` resource type. [Learn more about Event Hubs](../event-hubs/event-hubs-about.md).
+This section applies to the `Microsoft.EventHub/namespaces` resource type. [Learn more about Event Hubs](/azure/event-hubs/event-hubs-about).
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
@@ -116,7 +116,7 @@ This section applies to the `Microsoft.KeyVault/vaults` resource type. [Learn mo
 
 ## Network Security Groups
 
-This section applies to the `Microsoft.Network/networkSecurityGroups` resource type. [Learn more about network security groups](../virtual-network/network-security-groups-overview.md).
+This section applies to the `Microsoft.Network/networkSecurityGroups` resource type. [Learn more about network security groups](/azure/virtual-network/network-security-groups-overview).
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
@@ -124,7 +124,7 @@ This section applies to the `Microsoft.Network/networkSecurityGroups` resource t
 
 ## Service Bus
 
-This section applies to the `Microsoft.ServiceBus/namespaces` resource type. [Learn more about Service Bus](../service-bus-messaging/service-bus-messaging-overview.md).
+This section applies to the `Microsoft.ServiceBus/namespaces` resource type. [Learn more about Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview).
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
@@ -1409,7 +1409,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Capability name | ChangeEventHubState-1.0 |
 | Target type | Microsoft-EventHub |
 | Description | Sets individual event hubs to the desired state within an Azure Event Hubs namespace. You can affect specific event hub names or use “*” to affect all within the namespace. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
-| Prerequisites | An Azure Event Hubs namespace with at least one [event hub entity](../event-hubs/event-hubs-create.md). |
+| Prerequisites | An Azure Event Hubs namespace with at least one [event hub entity](/azure/event-hubs/event-hubs-create). |
 | Urn | urn:csci:microsoft:eventHub:changeEventHubState/1.0 |
 | Fault type | Discrete. |
 | Parameters (key, value) | |
@@ -1647,8 +1647,8 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Parameters (key, value) |  |
 | name | A unique name for the security rule that's created. The fault fails if another rule already exists on the NSG with the same name. Must begin with a letter or number. Must end with a letter, number, or underscore. May contain only letters, numbers, underscores, periods, or hyphens. |
 | protocol | Protocol for the security rule. Must be Any, TCP, UDP, or ICMP. |
-| sourceAddresses | A string that represents a JSON-delimited array of CIDR-formatted IP addresses. Can also be a [service tag name](../virtual-network/service-tags-overview.md) for an inbound rule, for example, `AppService`. An asterisk `*` can also be used to match all source IPs. |
-| destinationAddresses | A string that represents a JSON-delimited array of CIDR-formatted IP addresses. Can also be a [service tag name](../virtual-network/service-tags-overview.md) for an outbound rule, for example, `AppService`. An asterisk `*` can also be used to match all destination IPs. |
+| sourceAddresses | A string that represents a JSON-delimited array of CIDR-formatted IP addresses. Can also be a [service tag name](/azure/virtual-network/service-tags-overview) for an inbound rule, for example, `AppService`. An asterisk `*` can also be used to match all source IPs. |
+| destinationAddresses | A string that represents a JSON-delimited array of CIDR-formatted IP addresses. Can also be a [service tag name](/azure/virtual-network/service-tags-overview) for an outbound rule, for example, `AppService`. An asterisk `*` can also be used to match all destination IPs. |
 | action | Security group access type. Must be either Allow or Deny. |
 | destinationPortRanges | A string that represents a JSON-delimited array of single ports and/or port ranges, such as 80 or 1024-65535. |
 | sourcePortRanges | A string that represents a JSON-delimited array of single ports and/or port ranges, such as 80 or 1024-65535. |
@@ -1727,7 +1727,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Capability name | ChangeQueueState-1.0 |
 | Target type | Microsoft-ServiceBus |
 | Description | Sets Queue entities within a Service Bus namespace to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
-| Prerequisites | A Service Bus namespace with at least one [Queue entity](../service-bus-messaging/service-bus-quickstart-portal.md). |
+| Prerequisites | A Service Bus namespace with at least one [Queue entity](/azure/service-bus-messaging/service-bus-quickstart-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeQueueState/1.0 |
 | Fault type | Discrete. |
 | Parameters (key, value) | |
@@ -1770,7 +1770,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Capability name | ChangeSubscriptionState-1.0 |
 | Target type | Microsoft-ServiceBus |
 | Description | Sets Subscription entities within a Service Bus namespace and Topic to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
-| Prerequisites | A Service Bus namespace with at least one [Subscription entity](../service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal.md). |
+| Prerequisites | A Service Bus namespace with at least one [Subscription entity](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeSubscriptionState/1.0 |
 | Fault type | Discrete. |
 | Parameters (key, value) | |
@@ -1818,7 +1818,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 | Capability name | ChangeTopicState-1.0 |
 | Target type | Microsoft-ServiceBus |
 | Description | Sets the specified Topic entities within a Service Bus namespace to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
-| Prerequisites | A Service Bus namespace with at least one [Topic entity](../service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal.md). |
+| Prerequisites | A Service Bus namespace with at least one [Topic entity](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeTopicState/1.0 |
 | Fault type | Discrete. |
 | Parameters (key, value) | |
@@ -2073,7 +2073,7 @@ Currently, only virtual machine scale sets configured with the **Uniform** orche
 | Capability name | Start-1.0 |
 | Target type | Microsoft-AzureLoadTest |
 | Description | Starts a load test (from Azure Load Testing) based on the provided load test ID. |
-| Prerequisites | A load test with a valid load test ID must be created in the [Azure Load Testing service](../load-testing/quickstart-create-and-run-load-test.md). |
+| Prerequisites | A load test with a valid load test ID must be created in the [Azure Load Testing service](/azure/load-testing/quickstart-create-and-run-load-test). |
 | Urn | urn:csci:microsoft:azureLoadTest:start/1.0 |
 | Fault type | Discrete. |
 | Parameters (key, value) |     |    
@@ -2107,7 +2107,7 @@ Currently, only virtual machine scale sets configured with the **Uniform** orche
 | Capability name | Stop-1.0 |
 | Target type | Microsoft-AzureLoadTest |
 | Description | Stops a load test (from Azure Load Testing) based on the provided load test ID. |
-| Prerequisites | A load test with a valid load test ID must be created in the [Azure Load Testing service](../load-testing/quickstart-create-and-run-load-test.md). |
+| Prerequisites | A load test with a valid load test ID must be created in the [Azure Load Testing service](/azure/load-testing/quickstart-create-and-run-load-test). |
 | Urn | urn:csci:microsoft:azureLoadTest:stop/1.0 |
 | Fault type | Discrete. |
 | Parameters (key, value) |     |    

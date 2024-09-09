@@ -29,10 +29,10 @@ Azure Monitor Agent is implemented as an [Azure VM extension](/azure/virtual-mac
 
    | Built-in role | Scopes | Reason |  
    |:---|:---|:---|  
-   | <ul><li>[Virtual Machine Contributor](../../role-based-access-control/built-in-roles.md#virtual-machine-contributor)</li><li>[Azure Connected Machine Resource Administrator](../../role-based-access-control/built-in-roles.md#azure-connected-machine-resource-administrator)</li></ul> | <ul><li>Virtual machines, scale sets,</li><li>Azure Arc-enabled servers</li></ul> | To deploy the agent |  
-   | Any role that includes the action *Microsoft.Resources/deployments/** (for example, [Log Analytics Contributor](../../role-based-access-control/built-in-roles.md#log-analytics-contributor) | <ul><li>Subscription and/or</li><li>Resource group and/or </li></ul> | To deploy agent extension via Azure Resource Manager templates (also used by Azure Policy) |  
+   | <ul><li>[Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)</li><li>[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator)</li></ul> | <ul><li>Virtual machines, scale sets,</li><li>Azure Arc-enabled servers</li></ul> | To deploy the agent |  
+   | Any role that includes the action *Microsoft.Resources/deployments/** (for example, [Log Analytics Contributor](/azure/role-based-access-control/built-in-roles#log-analytics-contributor) | <ul><li>Subscription and/or</li><li>Resource group and/or </li></ul> | To deploy agent extension via Azure Resource Manager templates (also used by Azure Policy) |  
 
-[Managed identity](../../active-directory/managed-identities-azure-resources/overview.md) must be enabled on Azure virtual machines. Both user-assigned and system-assigned managed identities are supported. 
+[Managed identity](/azure/active-directory/managed-identities-azure-resources/overview) must be enabled on Azure virtual machines. Both user-assigned and system-assigned managed identities are supported. 
 
 - **User-assigned**: This managed identity should be used for large-scale deployments and can be configured with [built-in Azure policies](./azure-monitor-agent-policy.md). You can create a user-assigned managed identity once and share it across multiple VMs making it more scalable than a system-assigned managed identity. If you use a user-assigned managed identity, you must pass the managed identity details to Azure Monitor Agent via extension settings:
 
@@ -46,7 +46,7 @@ Azure Monitor Agent is implemented as an [Azure VM extension](/azure/virtual-mac
         }
     }
     ```
-You should use `mi_res_id` as the `identifier-name`. The following sample commands only show usage with `mi_res_id` for the sake of brevity. For more information on `mi_res_id`, `object_id`, and `client_id`, see the [Managed identity documentation](../../active-directory/managed-identities-azure-resources/how-to-use-vm-token.md#get-a-token-using-http).
+You should use `mi_res_id` as the `identifier-name`. The following sample commands only show usage with `mi_res_id` for the sake of brevity. For more information on `mi_res_id`, `object_id`, and `client_id`, see the [Managed identity documentation](/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-http).
 - **System-assigned**: This managed identity is suited for initial testing or small deployments. When used at scale, for all VMs in a subscription for example, it results in a substantial number of identities created and deleted in Microsoft Entra ID. To avoid this churn of identities, use user-assigned managed identities instead. 
 
 > [!IMPORTANT]

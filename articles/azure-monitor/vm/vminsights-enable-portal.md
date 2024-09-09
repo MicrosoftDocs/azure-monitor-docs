@@ -10,7 +10,7 @@ ms.date: 09/28/2023
 ---
 
 # Enable VM insights in the Azure portal
-This article describes how to enable VM insights using the Azure portal for Azure virtual machines, Azure Virtual Machine Scale Sets, and hybrid virtual machines connected with [Azure Arc](../../azure-arc/overview.md).
+This article describes how to enable VM insights using the Azure portal for Azure virtual machines, Azure Virtual Machine Scale Sets, and hybrid virtual machines connected with [Azure Arc](/azure/azure-arc/overview).
 
 > [!NOTE]
 > Azure portal no longer supports enabling VM insights using the legacy Log Analytics agent. 
@@ -38,7 +38,7 @@ To see which virtual machines in your directory are monitored using VM insights:
 
 ## Enable VM insights for Azure Monitor Agent
 > [!NOTE]
-> As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](../../app-service/overview-managed-identity.md?tabs=portal%2chttp#add-a-system-assigned-identity) to the machine if such an identity doesn't already exist.
+> As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity) to the machine if such an identity doesn't already exist.
 
 To enable VM insights on an unmonitored virtual machine or Virtual Machine Scale Set using Azure Monitor Agent:
 

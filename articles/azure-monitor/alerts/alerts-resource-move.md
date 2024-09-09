@@ -10,11 +10,11 @@ ms.reviewer: nolavime
 
 # Update alert rules or alert processing rules when their target resource moves to a different Azure region
 
-This article describes why existing [alert rules](./alerts-overview.md) and [alert processing rules](./alerts-action-rules.md) may be impacted when you move other Azure resources between regions, and how to identify and resolve those issues. Check the main [resource move documentation](../../azure-resource-manager/management/move-resources-overview.md) for additional information on when is resource move between regions useful and a checklist of designing a move process.
+This article describes why existing [alert rules](./alerts-overview.md) and [alert processing rules](./alerts-action-rules.md) may be impacted when you move other Azure resources between regions, and how to identify and resolve those issues. Check the main [resource move documentation](/azure/azure-resource-manager/management/move-resources-overview) for additional information on when is resource move between regions useful and a checklist of designing a move process.
 
 ## Why the problem exists
 
-Alert rules and alert processing rules reference other Azure resources. Examples include [Azure VMs](../../site-recovery/azure-to-azure-tutorial-migrate.md), [Azure SQL](/azure/azure-sql/database/move-resources-across-regions), and [Azure Storage](../../storage/common/storage-account-move.md). When you move the resources those rules refer to, the rules are likely to stop working correctly because they can't find the resources they reference.
+Alert rules and alert processing rules reference other Azure resources. Examples include [Azure VMs](/azure/site-recovery/azure-to-azure-tutorial-migrate), [Azure SQL](/azure/azure-sql/database/move-resources-across-regions), and [Azure Storage](/azure/storage/common/storage-account-move). When you move the resources those rules refer to, the rules are likely to stop working correctly because they can't find the resources they reference.
 
 There are two main reasons why your rules might stop working after moving the target resources:
 

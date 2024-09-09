@@ -25,7 +25,7 @@ There are some limits on the number of metrics and events per application, that 
 | Property value string length | 8,192 | 8,192 | See [type schemas](../app/data-model.md).|
 | Trace and exception message length | 32,768 | 32,768 | See [type schemas](../app/data-model.md).|
 | [Availability tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) count per Application Insights resource | 100 | 100 | |
-| Availability tests count per resource group | 800 | 800 | See [Azure Resource Manager](../../azure-resource-manager/management/resources-without-resource-group-limit.md) |
+| Availability tests count per resource group | 800 | 800 | See [Azure Resource Manager](/azure/azure-resource-manager/management/resources-without-resource-group-limit) |
 | Availability tests maximum redirects per test | 10 | 10 | |
 | Availability tests minimum test frequency | 300 seconds | | Custom test frequencies or frequencies less than 5 minutes require [custom TrackAvailability](../app/availability-azure-functions.md) implementations. |
 | [Profiler](../app/profiler.md) and [Snapshot](../app/snapshot-debugger.md) data retention | Two weeks | [Contact support.](https://azure.microsoft.com/support/options/) Maximum retention limit is six months. | |

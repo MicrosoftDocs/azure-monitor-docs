@@ -334,7 +334,7 @@ PS C:\works\autoscale\predictive_autoscale\arm_template>
 }
 ```
 
-For more information on Azure Resource Manager templates, see [Resource Manager template overview](../../azure-resource-manager/templates/overview.md).
+For more information on Azure Resource Manager templates, see [Resource Manager template overview](/azure/azure-resource-manager/templates/overview).
 
 ## Frequently asked questions
 

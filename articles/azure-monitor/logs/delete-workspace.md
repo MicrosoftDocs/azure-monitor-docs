@@ -209,7 +209,7 @@ If you get a 204 response code with "Resource not found" when you delete a works
 
 ### I'm receiving error code 404 when attempting to recover my workspace 
 
-If you deleted your resource group and your workspace was included, you can see the deleted workspace on the [Open recycle bin](?tabs=azure-portal#recover-a-workspace-in-a-soft-delete-state) page in the Azure portal. The recovery operation will fail with the error code 404 because the resource group doesn't exist. [Re-create your resource group](../../azure-resource-manager/management/manage-resource-groups-portal.md) and try the recovery again.
+If you deleted your resource group and your workspace was included, you can see the deleted workspace on the [Open recycle bin](?tabs=azure-portal#recover-a-workspace-in-a-soft-delete-state) page in the Azure portal. The recovery operation will fail with the error code 404 because the resource group doesn't exist. [Re-create your resource group](/azure/azure-resource-manager/management/manage-resource-groups-portal) and try the recovery again.
 
 ## Next steps
 

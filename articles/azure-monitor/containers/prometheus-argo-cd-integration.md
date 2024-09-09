@@ -108,7 +108,7 @@ spec:
 
 ### Import the Grafana Dashboard
 
-To import the grafana dashboards using the ID or JSON, follow the instructions to [Import a dashboard from Grafana Labs](../../managed-grafana/how-to-create-dashboard.md#import-a-grafana-dashboard). </br>
+To import the grafana dashboards using the ID or JSON, follow the instructions to [Import a dashboard from Grafana Labs](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard). </br>
 
 [ArgoCD](https://grafana.com/grafana/dashboards/14584-argocd/)(ID-14191)
 

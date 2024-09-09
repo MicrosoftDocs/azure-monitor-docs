@@ -18,7 +18,7 @@ Advisor resources are now onboarded to [Azure Resource Graph](https://azure.micr
 
 ## Advisor resource types in Azure Graph
 
-Available Advisor resource types in [Resource Graph](../governance/resource-graph/index.yml):
+Available Advisor resource types in [Resource Graph](/azure/governance/resource-graph/):
 There are 3 resource types available for querying under Advisor resources. Here is the list of the resources that are now available for querying in Resource Graph.
 * Microsoft.Advisor/configurations
 * Microsoft.Advisor/recommendations

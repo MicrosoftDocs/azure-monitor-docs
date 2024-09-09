@@ -48,7 +48,7 @@ The notifications include diagnostic information. Here's an example:
 
 ## Configure Email Notifications
 
-Smart detection notifications are enabled by default. They are sent to users that have [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) and [Monitoring Contributor](../../role-based-access-control/built-in-roles.md#monitoring-contributor) access to the subscription in which the Application Insights resource resides. To change the default notification, either click **Configure** in the email notification, or open **Smart detection settings** in Application Insights. 
+Smart detection notifications are enabled by default. They are sent to users that have [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) and [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) access to the subscription in which the Application Insights resource resides. To change the default notification, either click **Configure** in the email notification, or open **Smart detection settings** in Application Insights. 
   <!-- convertborder later -->
   :::image type="content" source="media/smart-detection-performance/smart_detection_configuration.png" lightbox="media/smart-detection-performance/smart_detection_configuration.png" alt-text="Smart Detection Settings" border="false":::
   
@@ -70,7 +70,7 @@ Emails about smart detection performance anomalies are limited to one email per 
 
   * Not yet, but you can:
     * [Set up alerts](./alerts-log.md) that tell you when a metric crosses a threshold.
-    * [Export telemetry](/previous-versions/azure/azure-monitor/app/export-telemetry) to a [database](../../stream-analytics/app-insights-export-sql-stream-analytics.md) or [to Power BI](../logs/log-powerbi.md), where you can analyze it yourself.
+    * [Export telemetry](/previous-versions/azure/azure-monitor/app/export-telemetry) to a [database](/azure/stream-analytics/app-insights-export-sql-stream-analytics) or [to Power BI](../logs/log-powerbi.md), where you can analyze it yourself.
 * *How often is the analysis done?*
 
   * We run the analysis daily on the telemetry from the previous day (full day in UTC timezone).

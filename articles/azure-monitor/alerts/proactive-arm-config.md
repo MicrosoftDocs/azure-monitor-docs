@@ -16,7 +16,7 @@ ms.reviewer: yagil
 > For more information on the migration process and the behavior of smart detection after the migration, see [Smart detection alerts migration](./alerts-smart-detections-migration.md).
 >
 
- You can manage and configure smart detection rules in Application Insights by using [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md).
+ You can manage and configure smart detection rules in Application Insights by using [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax).
 
 You can use this method when you deploy new Application Insights resources with Resource Manager automation or when you modify the settings of existing resources.
 
@@ -24,7 +24,7 @@ You can use this method when you deploy new Application Insights resources with 
 
 You can configure the following settings for a smart detection rule:
 - If the rule is enabled. (The default is **true**.)
-- If emails should be sent to users associated to the subscription's [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) and [Monitoring Contributor](../../role-based-access-control/built-in-roles.md#monitoring-contributor) roles when a detection is found. (The default is **true**.)
+- If emails should be sent to users associated to the subscription's [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) and [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) roles when a detection is found. (The default is **true**.)
 - Any other email recipients who should get a notification when a detection is found.
     - Email configuration isn't available for smart detection rules marked as _preview_.
 

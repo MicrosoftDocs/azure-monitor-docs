@@ -9,11 +9,11 @@ ms.date: 06/21/2023
 
 # Bring your own storage to save workbooks
 
-There are times when you might have a query or some business logic that you want to secure. You can help secure workbooks by saving their content to your storage. The storage account can then be encrypted with Microsoft-managed keys, or you can manage the encryption by supplying your own keys. For more information, see Azure documentation on [storage service encryption](../../storage/common/storage-service-encryption.md).
+There are times when you might have a query or some business logic that you want to secure. You can help secure workbooks by saving their content to your storage. The storage account can then be encrypted with Microsoft-managed keys, or you can manage the encryption by supplying your own keys. For more information, see Azure documentation on [storage service encryption](/azure/storage/common/storage-service-encryption).
 
 ## Save a workbook with managed identities
 
-1. Before you can save the workbook to your storage, you'll need to create a managed identity by selecting **All Services** > **Managed Identities**. Then give it **Storage Blob Data Contributor** access to your storage account. For more information, see [Azure documentation on managed identities](../../active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal.md).
+1. Before you can save the workbook to your storage, you'll need to create a managed identity by selecting **All Services** > **Managed Identities**. Then give it **Storage Blob Data Contributor** access to your storage account. For more information, see [Azure documentation on managed identities](/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal).
     <!-- convertborder later -->
     :::image type="content" source="./media/workbooks-bring-your-own-storage/add-identity-role-assignment.png" lightbox="./media/workbooks-bring-your-own-storage/add-identity-role-assignment.png" alt-text="Screenshot that shows adding a role assignment." border="false":::
 

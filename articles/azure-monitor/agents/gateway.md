@@ -168,7 +168,7 @@ After installation, you can confirm the settings are accepted (excluding the use
 
 ## Configure network load balancing
 
-You can configure the gateway for high availability using network load balancing (NLB) using either Microsoft [Network Load Balancing (NLB)](/windows-server/networking/technologies/network-load-balancing), [Azure Load Balancer](../../load-balancer/load-balancer-overview.md), or hardware-based load balancers. The load balancer manages traffic by redirecting the requested connections from the Log Analytics agents or Operations Manager management servers across its nodes. If one Gateway server goes down, the traffic gets redirected to other nodes.
+You can configure the gateway for high availability using network load balancing (NLB) using either Microsoft [Network Load Balancing (NLB)](/windows-server/networking/technologies/network-load-balancing), [Azure Load Balancer](/azure/load-balancer/load-balancer-overview), or hardware-based load balancers. The load balancer manages traffic by redirecting the requested connections from the Log Analytics agents or Operations Manager management servers across its nodes. If one Gateway server goes down, the traffic gets redirected to other nodes.
 
 ### Microsoft Network Load Balancing
 
@@ -186,13 +186,13 @@ To learn how to design and deploy a Windows Server 2016 network load balancing c
 
 ### Azure Load Balancer
 
-To learn how to design and deploy an Azure Load Balancer, see [What is Azure Load Balancer?](../../load-balancer/load-balancer-overview.md). To deploy a basic load balancer, follow the steps outlined in this [quickstart](../../load-balancer/quickstart-load-balancer-standard-public-portal.md) excluding the steps outlined in the section **Create back-end servers**.   
+To learn how to design and deploy an Azure Load Balancer, see [What is Azure Load Balancer?](/azure/load-balancer/load-balancer-overview). To deploy a basic load balancer, follow the steps outlined in this [quickstart](/azure/load-balancer/quickstart-load-balancer-standard-public-portal) excluding the steps outlined in the section **Create back-end servers**.   
 
 > [!NOTE]
 > Configuring the Azure Load Balancer using the **Basic SKU**, requires that Azure virtual machines belong to an Availability Set. To learn more about availability sets, see [Manage the availability of Windows virtual machines in Azure](/azure/virtual-machines/availability). To add existing virtual machines to an availability set, refer to [Set Azure Resource Manager VM Availability Set](/troubleshoot/azure/virtual-machines/allocation-failure#resize-a-vm-or-add-vms-to-an-existing-availability-set).
 > 
 
-After the load balancer is created, a backend pool needs to be created, which distributes traffic to one or more gateway servers. Follow the steps described in the quickstart article section [Create resources for the load balancer](../../load-balancer/quickstart-load-balancer-standard-public-portal.md).  
+After the load balancer is created, a backend pool needs to be created, which distributes traffic to one or more gateway servers. Follow the steps described in the quickstart article section [Create resources for the load balancer](/azure/load-balancer/quickstart-load-balancer-standard-public-portal).  
 
 >[!NOTE]
 >When configuring the health probe it should be configured to use the TCP port of the gateway server. The health probe dynamically adds or removes the gateway servers from the load balancer rotation based on their response to health checks. 
@@ -229,7 +229,7 @@ After you install the agent on the gateway server, configure it to report to the
 
 After you complete configuration, restart the **OMS Gateway** service to apply the changes. Otherwise, the gateway will reject agents that attempt to communicate with Log Analytics and will report event 105 in the OMS Gateway event log. This will also happen when you add or remove a workspace from the agent configuration on the gateway server.
 
-For information related to the Automation Hybrid Runbook Worker, see [Automate resources in your datacenter or cloud by using Hybrid Runbook Worker](../../automation/automation-hybrid-runbook-worker.md).
+For information related to the Automation Hybrid Runbook Worker, see [Automate resources in your datacenter or cloud by using Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker).
 
 ### Configure Operations Manager, where all agents use the same proxy server
 
@@ -299,7 +299,7 @@ To configure specific servers or groups to use the Log Analytics gateway server:
 
 If you have Automation Hybrid Runbook Workers in your environment, follow these steps to configure the gateway to support the workers.
 
-Refer to the [Configure your network](../../automation/automation-hybrid-runbook-worker.md#network-planning) section of the Automation documentation to find the URL for each region.
+Refer to the [Configure your network](/azure/automation/automation-hybrid-runbook-worker#network-planning) section of the Automation documentation to find the URL for each region.
 
 If your computer is registered as a Hybrid Runbook Worker automatically, for example if the Update Management solution is enabled for one or more VMs, follow these steps:
 

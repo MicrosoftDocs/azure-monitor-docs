@@ -46,17 +46,17 @@ There are two primary tools to view, analyze, and optimize your Azure Monitor co
 
 
 ## Azure Cost Management + Billing
-To get started analyzing your Azure Monitor charges, open [Cost Management + Billing](../cost-management-billing/costs/quick-acm-cost-analysis.md?toc=/azure/billing/TOC.json) in the Azure portal. This tool includes several built-in dashboards for deep cost analysis like cost by resource and invoice details. Access policies are described [here](/azure/cost-management-billing/manage/manage-billing-access#give-others-access-to-view-billing-information). Select **Cost Management** and then **Cost analysis**. Select your subscription or another [scope](../cost-management-billing/costs/understand-work-scopes.md).
+To get started analyzing your Azure Monitor charges, open [Cost Management + Billing](/azure/cost-management-billing/costs/quick-acm-cost-analysis?toc=/azure/billing/TOC.json) in the Azure portal. This tool includes several built-in dashboards for deep cost analysis like cost by resource and invoice details. Access policies are described [here](/azure/cost-management-billing/manage/manage-billing-access#give-others-access-to-view-billing-information). Select **Cost Management** and then **Cost analysis**. Select your subscription or another [scope](/azure/cost-management-billing/costs/understand-work-scopes).
 
 Next, create a **Daily Costs** view, and change the **Group by** to show costs by **Meter** so that you can see each the costs from each feature. The meter names for each Azure Monitor feature are listed [here](cost-meters.md).
 
 >[!NOTE]
->You might need additional access to use Cost Management data. See [Assign access to Cost Management data](../cost-management-billing/costs/assign-access-acm-data.md).
+>You might need additional access to use Cost Management data. See [Assign access to Cost Management data](/azure/cost-management-billing/costs/assign-access-acm-data).
 
 
 :::image type="content" source="media/usage-estimated-costs/010.png" lightbox="media/usage-estimated-costs/010.png" alt-text="Screenshot that shows Azure Cost Management with cost information.":::
 
-To limit the view to Azure Monitor charges, [create a filter](../cost-management-billing/costs/group-filter.md) for the following **Service names**. 
+To limit the view to Azure Monitor charges, [create a filter](/azure/cost-management-billing/costs/group-filter) for the following **Service names**. 
 - Azure Monitor
 - Log Analytics
 - Insight and Analytics
@@ -64,7 +64,7 @@ To limit the view to Azure Monitor charges, [create a filter](../cost-management
 
 See [Azure Monitor billing meter names](cost-meters.md) for a list of all Azure Monitor billing meters that are included in each of these services.
 
-Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also bill their usage against Log Analytics workspace resources. See [Common cost analysis uses](../cost-management-billing/costs/cost-analysis-common-uses.md) for details on using this view.
+Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also bill their usage against Log Analytics workspace resources. See [Common cost analysis uses](/azure/cost-management-billing/costs/cost-analysis-common-uses) for details on using this view.
 
 
 > [!NOTE]
@@ -74,13 +74,13 @@ Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also 
 Rather than manually analyzing your costs in the Azure portal, you can automate delivery of information using the following methods.
 
 - **Daily cost analysis emails.** After you configure your Cost Analysis view, select **Subscribe** at the top of the screen to receive regular email updates from Cost Analysis.
-- **Budget alerts.** To be notified if there are significant increases in your spending, create a [budget alerts](../cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending.md) for a single workspace or group of workspaces. 
+- **Budget alerts.** To be notified if there are significant increases in your spending, create a [budget alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) for a single workspace or group of workspaces. 
 
 ### Export usage details
 
-To gain deeper understanding of your usage and costs, create exports using **Cost Analysis**. See [Tutorial: Create and manage exported data](../cost-management-billing/costs/tutorial-export-acm-data.md) to learn how to automatically create a daily export you can use for regular analysis.
+To gain deeper understanding of your usage and costs, create exports using **Cost Analysis**. See [Tutorial: Create and manage exported data](/azure/cost-management-billing/costs/tutorial-export-acm-data) to learn how to automatically create a daily export you can use for regular analysis.
 
-These exports are in CSV format and contain a list of daily usage (billed quantity and cost) by resource, [billing meter](cost-meters.md), and several other fields such as [AdditionalInfo](../cost-management-billing/automate/understand-usage-details-fields.md#list-of-fields-and-descriptions). You can use Microsoft Excel to do rich analyses of your usage not possible in the **Cost Analytics** experiences in the portal.
+These exports are in CSV format and contain a list of daily usage (billed quantity and cost) by resource, [billing meter](cost-meters.md), and several other fields such as [AdditionalInfo](/azure/cost-management-billing/automate/understand-usage-details-fields#list-of-fields-and-descriptions). You can use Microsoft Excel to do rich analyses of your usage not possible in the **Cost Analytics** experiences in the portal.
 
 For example, usage from Log Analytics can be found by first filtering on the **Meter Category** column to show: 
 

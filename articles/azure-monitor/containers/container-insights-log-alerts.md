@@ -43,7 +43,7 @@ You might also decide not to split when you want a condition on multiple resourc
 
 :::image type="content" source="../vm/media/monitor-virtual-machines/log-alert-rule.png" alt-text="Screenshot that shows a new log search alert rule with split by dimensions." lightbox="../vm/media/monitor-virtual-machines/log-alert-rule.png":::
 
-You might want to see a list of the alerts by affected computer. You can use a custom workbook that uses a custom [resource graph](../../governance/resource-graph/overview.md) to provide this view. Use the following query to display alerts, and use the data source **Azure Resource Graph** in the workbook.
+You might want to see a list of the alerts by affected computer. You can use a custom workbook that uses a custom [resource graph](/azure/governance/resource-graph/overview) to provide this view. Use the following query to display alerts, and use the data source **Azure Resource Graph** in the workbook.
 
 ## Create a log search alert rule
 To create a log search alert rule by using the portal, see [this example of a log search alert](../alerts/tutorial-log-alert.md), which provides a complete walkthrough. You can use these same processes to create alert rules for AKS clusters by using queries similar to the ones in this article.

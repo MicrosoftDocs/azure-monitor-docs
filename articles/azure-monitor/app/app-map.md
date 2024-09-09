@@ -505,7 +505,7 @@ Here are some general recommendations:
 
 - Upgrade all components to the latest SDK version.
 
-- Support Azure Functions with C# by upgrading to [Azure Functions V2](../../azure-functions/functions-versions.md).
+- Support Azure Functions with C# by upgrading to [Azure Functions V2](/azure/azure-functions/functions-versions).
 
 - Ensure the [cloud role name](#set-cloud-role-names) is correctly configured.
 

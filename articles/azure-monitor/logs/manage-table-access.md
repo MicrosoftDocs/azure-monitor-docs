@@ -29,7 +29,7 @@ Granting table-level read access involves assigning a user two roles:
 
 **To grant a user or group limited permissions to the Log Analytics workspace:**
 
-1. Create a [custom role](../../role-based-access-control/custom-roles.md) at the workspace level to let users read workspace details and run a query in the workspace, without providing read access to data in any tables:
+1. Create a [custom role](/azure/role-based-access-control/custom-roles) at the workspace level to let users read workspace details and run a query in the workspace, without providing read access to data in any tables:
 
     1. Navigate to your workspace and select **Access control (IAM)** > **Roles**.
 
@@ -102,9 +102,9 @@ The user can now read data from this specific table. Grant the user read access 
     
 ## Legacy method of setting table-level read access
 
-The legacy method of table-level also uses [Azure custom roles](../../role-based-access-control/custom-roles.md) to let you grant specific users or groups access to specific tables in the workspace. Azure custom roles apply to workspaces with either workspace-context or resource-context [access control modes](manage-access.md#access-control-mode) regardless of the user's [access mode](manage-access.md#access-mode).
+The legacy method of table-level also uses [Azure custom roles](/azure/role-based-access-control/custom-roles) to let you grant specific users or groups access to specific tables in the workspace. Azure custom roles apply to workspaces with either workspace-context or resource-context [access control modes](manage-access.md#access-control-mode) regardless of the user's [access mode](manage-access.md#access-mode).
 
-To define access to a particular table, create a [custom role](../../role-based-access-control/custom-roles.md):
+To define access to a particular table, create a [custom role](/azure/role-based-access-control/custom-roles):
 
 * Set the user permissions in the **Actions** section of the role definition. 
 * Use `Microsoft.OperationalInsights/workspaces/query/*` to grant access to all tables.

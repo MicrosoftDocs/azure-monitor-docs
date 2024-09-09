@@ -37,7 +37,7 @@ You can manually create alert rules for any of your Azure resources using the ap
 See [Choosing the right type of alert rule](./alerts-types.md) for more information about the different types of alert rules and articles such as [Create or edit a metric alert rule](./alerts-create-metric-alert-rule.yml) and [Create or edit a log alert rule](./alerts-create-log-alert-rule.md) for detailed guidance on manually creating alert rules.
 
 ## Azure Policy
-Using [Azure Policy](../../governance/policy/overview.md), you can automatically create alert rules for all resources of a particular type instead of manually creating rules for each individual resource. You still must define the alerting condition, but the alert rules for each resource will automatically be created for you, for both existing resources and any new ones that you create.
+Using [Azure Policy](/azure/governance/policy/overview), you can automatically create alert rules for all resources of a particular type instead of manually creating rules for each individual resource. You still must define the alerting condition, but the alert rules for each resource will automatically be created for you, for both existing resources and any new ones that you create.
 
 See [Resource Manager template samples for metric alert rules in Azure Monitor](./resource-manager-alerts-metric.md) and [Resource Manager template samples for log alert rules in Azure Monitor](./resource-manager-alerts-log.md) for ARM templates that can be used in policy definitions.
 

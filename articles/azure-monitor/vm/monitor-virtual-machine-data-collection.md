@@ -71,7 +71,7 @@ The [activity log](../essentials/activity-log.md) is collected automatically. It
 You can [view the activity log](../essentials/activity-log-insights.md#view-the-activity-log) for an individual machine or for all resources in a subscription. [Create a diagnostic setting](../essentials/diagnostic-settings.md) to send this data into the same Log Analytics workspace used by Azure Monitor Agent to analyze it with the other monitoring data collected for the virtual machine. There's no cost for ingestion or retention of activity log data.
 
 ### VM availability information in Azure Resource Graph
-With [Azure Resource Graph](../../governance/resource-graph/overview.md), you can use the same Kusto Query Language used in log queries to query your Azure resources at scale with complex filtering, grouping, and sorting by resource properties. You can use [VM health annotations](../../service-health/resource-health-vm-annotation.md) to Resource Graph for detailed failure attribution and downtime analysis.
+With [Azure Resource Graph](/azure/governance/resource-graph/overview), you can use the same Kusto Query Language used in log queries to query your Azure resources at scale with complex filtering, grouping, and sorting by resource properties. You can use [VM health annotations](../../service-health/resource-health-vm-annotation.md) to Resource Graph for detailed failure attribution and downtime analysis.
 
 For information on what data is collected and how to view it, see [Monitor virtual machines with Azure Monitor: Analyze monitoring data](monitor-virtual-machine-analyze.md).
 
@@ -183,14 +183,14 @@ Records from the IIS log are stored in the [W3CIISLog](/azure/azure-monitor/refe
 | `W3CIISLog | summarize sum(csBytes) by Computer` | Review the total bytes received by each IIS machine. |
 
 ## Monitor a service or daemon
-To monitor the status of a Windows service or Linux daemon, enable the [Change Tracking and Inventory](../../automation/change-tracking/overview.md) solution in [Azure Automation](../../automation/automation-intro.md).
+To monitor the status of a Windows service or Linux daemon, enable the [Change Tracking and Inventory](/azure/automation/change-tracking/overview) solution in [Azure Automation](/azure/automation/automation-intro).
 
 Azure Monitor has no ability on its own to monitor the status of a service or daemon. There are some possible methods to use, such as looking for events in the Windows event log, but this method is unreliable. You can also look for the process associated with the service running on the machine from the [VMProcess](/azure/azure-monitor/reference/tables/vmprocess) table populated by VM insights. This table only updates every hour, which isn't typically sufficient if you want to use this data for alerting.
 
 > [!NOTE]
 > The Change Tracking and Analysis solution is different from the [Change Analysis](vminsights-change-analysis.md) feature in VM insights. This feature is in public preview and not yet included in this scenario.
 
-For different options to enable the Change Tracking solution on your virtual machines, see [Enable Change Tracking and Inventory](../../automation/change-tracking/overview.md#enable-change-tracking-and-inventory). This solution includes methods to configure virtual machines at scale. You have to [create an Azure Automation account](../../automation/quickstarts/create-azure-automation-account-portal.md) to support the solution.
+For different options to enable the Change Tracking solution on your virtual machines, see [Enable Change Tracking and Inventory](/azure/automation/change-tracking/overview#enable-change-tracking-and-inventory). This solution includes methods to configure virtual machines at scale. You have to [create an Azure Automation account](/azure/automation/quickstarts/create-azure-automation-account-portal) to support the solution.
 
 When you enable Change Tracking and Inventory, two new tables are created in your Log Analytics workspace. Use these tables for logs queries and log search alert rules.
 
@@ -298,14 +298,14 @@ If you're using VM insights with **Processes and dependencies collection** enabl
     ```
 
 ### Connection Manager
-The [Connection Monitor](../../network-watcher/connection-monitor-overview.md) feature of [Network Watcher](../../network-watcher/network-watcher-monitoring-overview.md) is used to test connections to a port on a virtual machine. A test verifies that the machine is listening on the port and that it's accessible on the network.
+The [Connection Monitor](/azure/network-watcher/connection-monitor-overview) feature of [Network Watcher](/azure/network-watcher/network-watcher-monitoring-overview) is used to test connections to a port on a virtual machine. A test verifies that the machine is listening on the port and that it's accessible on the network.
 
-Connection Manager requires the Network Watcher extension on the client machine initiating the test. It doesn't need to be installed on the machine being tested. For more information, see [Tutorial: Monitor network communication using the Azure portal](../../network-watcher/connection-monitor.md).
+Connection Manager requires the Network Watcher extension on the client machine initiating the test. It doesn't need to be installed on the machine being tested. For more information, see [Tutorial: Monitor network communication using the Azure portal](/azure/network-watcher/connection-monitor).
 
 There's an extra cost for Connection Manager. For more information, see [Network Watcher pricing](https://azure.microsoft.com/pricing/details/network-watcher/).
 
 ## Run a process on a local machine
-Monitoring of some workloads requires a local process. An example is a PowerShell script that runs on the local machine to connect to an application and collect or process data. You can use [Hybrid Runbook Worker](../../automation/automation-hybrid-runbook-worker.md), which is part of [Azure Automation](../../automation/automation-intro.md), to run a local PowerShell script. There's no direct charge for Hybrid Runbook Worker, but there's a cost for each runbook that it uses.
+Monitoring of some workloads requires a local process. An example is a PowerShell script that runs on the local machine to connect to an application and collect or process data. You can use [Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker), which is part of [Azure Automation](/azure/automation/automation-intro), to run a local PowerShell script. There's no direct charge for Hybrid Runbook Worker, but there's a cost for each runbook that it uses.
 
 The runbook can access any resources on the local machine to gather required data. It can't send data directly to Azure Monitor or create an alert. To create an alert, have the runbook write an entry to a custom log. Then configure that log to be collected by Azure Monitor. Create a log search alert rule that fires on that log entry.
 

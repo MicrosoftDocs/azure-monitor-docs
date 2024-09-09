@@ -77,10 +77,10 @@ Users must have the appropriate permissions to view or edit a workbook. Workbook
 
 Standard Azure roles that provide access to workbooks:
 
-- [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) includes standard `/read` privileges that would be used by monitoring tools (including workbooks) to read data from resources.
- - [Monitoring Contributor](../../role-based-access-control/built-in-roles.md#monitoring-contributor) includes general `/write` privileges used by various monitoring tools for saving items (including `workbooks/write` privilege to save shared workbooks). Workbooks Contributor adds `workbooks/write` privileges to an object to save shared workbooks.
+- [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) includes standard `/read` privileges that would be used by monitoring tools (including workbooks) to read data from resources.
+ - [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) includes general `/write` privileges used by various monitoring tools for saving items (including `workbooks/write` privilege to save shared workbooks). Workbooks Contributor adds `workbooks/write` privileges to an object to save shared workbooks.
 
-For custom roles, you must add `microsoft.insights/workbooks/write` to the user's permissions to edit and save a workbook. For more information, see the [Workbook Contributor](../../role-based-access-control/built-in-roles.md#monitoring-contributor) role.
+For custom roles, you must add `microsoft.insights/workbooks/write` to the user's permissions to edit and save a workbook. For more information, see the [Workbook Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) role.
 
 
 ## Next steps

@@ -456,7 +456,7 @@ The following JSON shows an example response body.
 In addition to querying for metrics on an individual resource, some resource types also support querying for multiple resources in a single request. These APIs are what power the [Multi-Resource experience in Azure metrics explorer](./metrics-dynamic-scope.md). The set of resources types that support querying for multiple metrics can be seen on the [Metrics blade in Azure monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics) via the resource type drop-down in the scope selector on the context blade. For more information, see the [Multi-Resource UX documentation](./metrics-dynamic-scope.md).
 
 There are some important differences between querying metrics for multiple and individual resources.
-+ Metrics multi-resource APIs operate at the subscription level instead of the resource ID level. This restriction means users querying these APIs must have [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) permissions on the subscription itself.
++ Metrics multi-resource APIs operate at the subscription level instead of the resource ID level. This restriction means users querying these APIs must have [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permissions on the subscription itself.
 + Metrics multi-resource APIs only support a single resourceType per query, which must be specified in the form of a metric namespace query parameter.
 + Metrics multi-resource APIs only support a single Azure region per query, which must be specified in the form of a region query parameter.
 
@@ -618,7 +618,7 @@ GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef0123
     Using a wildcard filter such as `Microsoft.ResourceId eq '*'` causes the API to return a time series for every resourceId in the subscription and region. If the subscription and region combination contains no resources, an empty time series is returned. The same query without the wildcard filter would return a single time series, aggregating the requested metric over the requested dimensions, for example subscription and region.
  
 + 401 authorization errors:  
-    The individual resource metrics APIs requires a user have the [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) permission on the resource being queried. Because the multi resource metrics APIs are subscription level APIs, users must have the  [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) permission for the queried subscription to use the multi resource metrics APIs. Even if users have Monitoring Reader on all the resources in a subscription, the request fails if the user doesn't have Monitoring Reader on the subscription itself.
+    The individual resource metrics APIs requires a user have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission on the resource being queried. Because the multi resource metrics APIs are subscription level APIs, users must have the  [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission for the queried subscription to use the multi resource metrics APIs. Even if users have Monitoring Reader on all the resources in a subscription, the request fails if the user doesn't have Monitoring Reader on the subscription itself.
 
 
 ## Next steps

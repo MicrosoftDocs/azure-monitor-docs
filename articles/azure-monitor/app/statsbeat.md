@@ -18,7 +18,7 @@ Statsbeat collects essential and nonessential [custom metrics](../essentials/met
 Statsbeat data is stored in a Microsoft data store. It doesn't affect customers' overall monitoring volume and cost.
 
 > [!NOTE]
-> Statsbeat doesn't support [Azure Private Link](../../automation/how-to/private-link-security.md).
+> Statsbeat doesn't support [Azure Private Link](/azure/automation/how-to/private-link-security).
 
 ## Supported languages
 

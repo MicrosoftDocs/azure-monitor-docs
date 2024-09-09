@@ -11,7 +11,7 @@ ms.topic: reference
 
 # Azure Chaos Studio service limits
 
-This article provides service limits for Azure Chaos Studio. For more information about Azure-wide service limits and quotas, see [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md).
+This article provides service limits for Azure Chaos Studio. For more information about Azure-wide service limits and quotas, see [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).
 
 ## Experiment and target limits
 
@@ -33,7 +33,7 @@ Chaos Studio applies limits to the number of resources, duration of activities, 
 
 ## API throttling limits
 
-Chaos Studio applies limits to all Azure Resource Manager operations. Requests made over the limit are throttled. All request limits are applied for a **five-minute interval** unless otherwise specified. For more information about Azure Resource Manager requests, see [Throttling Resource Manager requests](../azure-resource-manager/management/request-limits-and-throttling.md).
+Chaos Studio applies limits to all Azure Resource Manager operations. Requests made over the limit are throttled. All request limits are applied for a **five-minute interval** unless otherwise specified. For more information about Azure Resource Manager requests, see [Throttling Resource Manager requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
 
 | Operation | Requests |
 |--|--|

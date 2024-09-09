@@ -75,7 +75,7 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 
 
 ## Azure Policy
-Using [Azure Policy](../../governance/policy/overview.md), you can associate a DCR with multiple resources at scale. When you create an assignment between a resource group and a built-in policy or initiative, associations are created between the DCR and each resource of the assigned type in the resource group, including any new resources as they're created. Azure Monitor provides a simplified user experience to create an assignment for a policy or initiative for a particular DCR, which is an alternate method to creating the assignment using Azure Policy directly.
+Using [Azure Policy](/azure/governance/policy/overview), you can associate a DCR with multiple resources at scale. When you create an assignment between a resource group and a built-in policy or initiative, associations are created between the DCR and each resource of the assigned type in the resource group, including any new resources as they're created. Azure Monitor provides a simplified user experience to create an assignment for a policy or initiative for a particular DCR, which is an alternate method to creating the assignment using Azure Policy directly.
 
 > [!NOTE]
 > A **policy** in Azure Policy is a single rule or condition that resources in Azure must comply with. For example, there is a built-in policy called **Configure Windows Machines to be associated with a Data Collection Rule or a Data Collection Endpoint**.
@@ -104,7 +104,7 @@ Once an assignment is created, you can view its details by clicking on it. This 
 :::image type="content" source="media/data-collection-rule-view/data-collection-rule-assignment-details.png" alt-text="Screenshot of assignment details." lightbox="media/data-collection-rule-view/data-collection-rule-assignment-details.png":::
 
 > [!IMPORTANT]
-> The assignment won't be applied to existing resources until you create a remediation task. For more information, see [Remediate non-compliant resources with Azure Policy](../../governance/policy/how-to/remediate-resources.md).
+> The assignment won't be applied to existing resources until you create a remediation task. For more information, see [Remediate non-compliant resources with Azure Policy](/azure/governance/policy/how-to/remediate-resources).
 
 
 ## Next steps

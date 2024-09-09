@@ -56,7 +56,7 @@ The tasks are described in the following sections.
 
 ### Register an application with Microsoft Entra ID
 
-Complete the steps to [register an application with Microsoft Entra ID](../../active-directory/develop/howto-create-service-principal-portal.md#register-an-application-with-azure-ad-and-create-a-service-principal) and create a service principal.
+Complete the steps to [register an application with Microsoft Entra ID](/azure/active-directory/develop/howto-create-service-principal-portal#register-an-application-with-azure-ad-and-create-a-service-principal) and create a service principal.
 
 <a name='get-the-client-id-of-the-azure-active-directory-application'></a>
 

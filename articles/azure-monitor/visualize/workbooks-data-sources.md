@@ -183,7 +183,7 @@ To make a query control that uses this data source, use the **Query type** dropd
 
 The Azure role-based access control (RBAC) provider allows you to check permissions on resources. It's can be used in parameters to check if the correct RBACs are set up. A use case would be to create a parameter to check deployment permission and then notify the user if they don't have deployment permission.
 
-Simple JSON arrays or objects are converted into grid rows and columns or text with a `hasPermission` column with either true or false. The permission is checked on each resource and then either `or` or `and` to get the result. The [operations or actions](../../role-based-access-control/resource-provider-operations.md) can be a string or an array.
+Simple JSON arrays or objects are converted into grid rows and columns or text with a `hasPermission` column with either true or false. The permission is checked on each resource and then either `or` or `and` to get the result. The [operations or actions](/azure/role-based-access-control/resource-provider-operations) can be a string or an array.
 
   **String:**
    ```
@@ -212,7 +212,7 @@ With [Azure Monitor managed service for Prometheus](../essentials/prometheus-met
 
 > [!NOTE]
 > Querying from an Azure Monitor workspace is a data plane action and requires an explicit role assignment of Monitoring Data Reader, which is not assigned by default
-> Learn more about [Azure control and data plane](../../azure-resource-manager/management/control-plane-and-data-plane.md) 
+> Learn more about [Azure control and data plane](/azure/azure-resource-manager/management/control-plane-and-data-plane) 
 
 ## Next steps
 

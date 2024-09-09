@@ -105,7 +105,7 @@ Learn more about [Data explorer resource - PerformanceEnableOptimizedAutoscaleAz
 
 More than 75% of your read requests are landing on the memstore, indicating that the reads are primarily on recent data. Recent data reads suggest that even if a flush happens on the memstore, the recent file needs to be accessed and put in the cache.
 
-Learn more about [HDInsight cluster - HBaseMemstoreReadPercentage (Reads happen on most recent data)](../hdinsight/hbase/apache-hbase-advisor.md).
+Learn more about [HDInsight cluster - HBaseMemstoreReadPercentage (Reads happen on most recent data)](/azure/hdinsight/hbase/apache-hbase-advisor).
 
 ### Consider using Accelerated Writes feature in your HBase cluster to improve cluster performance.
 
@@ -121,25 +121,25 @@ To improve the performance of your cluster, consider utilizing the Accelerated W
 
 To read more on this feature,  visit link:
 
-Learn more about [HDInsight cluster - AccWriteCandidate (Consider using Accelerated Writes feature in your HBase cluster to improve cluster performance.)](../hdinsight/hbase/apache-hbase-accelerated-writes.md).
+Learn more about [HDInsight cluster - AccWriteCandidate (Consider using Accelerated Writes feature in your HBase cluster to improve cluster performance.)](/azure/hdinsight/hbase/apache-hbase-accelerated-writes).
 
 ### More than 75% of your queries are full scan queries
 
 More than 75% of the scan queries on your cluster are doing a full region/table scan. Modify your scan queries to avoid full region or table scans.
 
-Learn more about [HDInsight cluster - ScanQueryTuningcandidate (More than 75% of your queries are full scan queries.)](../hdinsight/hbase/apache-hbase-advisor.md).
+Learn more about [HDInsight cluster - ScanQueryTuningcandidate (More than 75% of your queries are full scan queries.)](/azure/hdinsight/hbase/apache-hbase-advisor).
 
 ### Check your region counts as you have blocking updates
 
 Region counts needs to be adjusted to avoid updates getting blocked. It might require a scale up of the cluster by adding new nodes.
 
-Learn more about [HDInsight cluster - RegionCountCandidate (Check your region counts as you have blocking updates.)](../hdinsight/hbase/apache-hbase-advisor.md).
+Learn more about [HDInsight cluster - RegionCountCandidate (Check your region counts as you have blocking updates.)](/azure/hdinsight/hbase/apache-hbase-advisor).
 
 ### Consider increasing the flusher threads
 
 The flush queue size in your region servers is more than 100 or there are updates getting blocked frequently. Tuning of the flush handler is recommended.
 
-Learn more about [HDInsight cluster - FlushQueueCandidate (Consider increasing the flusher threads)](../hdinsight/hbase/apache-hbase-advisor.md).
+Learn more about [HDInsight cluster - FlushQueueCandidate (Consider increasing the flusher threads)](/azure/hdinsight/hbase/apache-hbase-advisor).
 
 ### Consider increasing your compaction threads for compactions to complete faster
 
@@ -167,7 +167,7 @@ Learn more about [Synapse workspace - UpgradeSynapseManagementClientSDK (Update 
 
 Your vSAN capacity utilization has reached 75%. The cluster utilization is required to remain below the 75% critical threshold for SLA compliance. Add new nodes to the vSphere cluster to increase capacity or delete VMs to reduce consumption or adjust VM workloads
 
-Learn more about [Azure VMware Solution private cloud - vSANCapacity (vSAN capacity utilization has crossed critical threshold)](../azure-vmware/architecture-private-clouds.md).
+Learn more about [Azure VMware Solution private cloud - vSANCapacity (vSAN capacity utilization has crossed critical threshold)](/azure/azure-vmware/architecture-private-clouds).
 
 ### Update Automanage to the latest API Version
 
@@ -179,7 +179,7 @@ Learn more about [Virtual machine - UpdateToLatestApi (Update Automanage to the 
 
 We have determined that your VMs are located in a region different or far from where your users are connecting with Azure Virtual Desktop. Distant user regions might lead to prolonged connection response times and affect overall user experience.
 
-Learn more about [Virtual machine - RegionProximitySessionHosts (Improve user experience and connectivity by deploying VMs closer to user’s location.)](../virtual-desktop/connection-latency.md).
+Learn more about [Virtual machine - RegionProximitySessionHosts (Improve user experience and connectivity by deploying VMs closer to user’s location.)](/azure/virtual-desktop/connection-latency).
 
 ### Use Managed disks to prevent disk I/O throttling
 
@@ -197,7 +197,7 @@ Learn more about [Disk - MDHDDtoPremiumForPerformance (Convert Managed Disks fro
 
 We have detected that Accelerated Networking isn't enabled on VM resources in your existing deployment that might be capable of supporting this feature. If your VM OS image supports Accelerated Networking as detailed in the documentation, make sure to enable this free feature on these VMs to maximize the performance and latency of your networking workloads in cloud
 
-Learn more about [Virtual machine - AccelNetConfiguration (Enable Accelerated Networking to improve network performance and latency)](../virtual-network/create-vm-accelerated-networking-cli.md#enable-accelerated-networking-on-existing-vms).
+Learn more about [Virtual machine - AccelNetConfiguration (Enable Accelerated Networking to improve network performance and latency)](/azure/virtual-network/create-vm-accelerated-networking-cli#enable-accelerated-networking-on-existing-vms).
 
 ### Use SSD Disks for your production workloads
 
@@ -215,7 +215,7 @@ Learn more about [Virtual machine - MatchProdVMProdDisks (Match production Virtu
 
 We have detected that Accelerated Networking isn't engaged on VM resources in your existing deployment even though the feature has been requested. In rare cases like this, it might be necessary to stop and start your VM, at your convenience, to re-engage AccelNet.
 
-Learn more about [Virtual machine - AccelNetDisengaged (Accelerated Networking might require stopping and starting the VM)](../virtual-network/create-vm-accelerated-networking-cli.md#enable-accelerated-networking-on-existing-vms).
+Learn more about [Virtual machine - AccelNetDisengaged (Accelerated Networking might require stopping and starting the VM)](/azure/virtual-network/create-vm-accelerated-networking-cli#enable-accelerated-networking-on-existing-vms).
 
 ### Take advantage of Ultra Disk low latency for your log disks and improve your database workload performance
 
@@ -604,19 +604,19 @@ Learn more about [Api Management - apimgmtdeprecation (Upgrade your API Manageme
 
 Azure Communication Services Chat SDK can be used to add rich, real-time chat to your applications. Update to the recommended version of Chat SDK to ensure the latest fixes and features.
 
-Learn more about [Communication service - UpgradeChatSdk (Use recommended version of Chat SDK)](../communication-services/concepts/chat/sdk-features.md).
+Learn more about [Communication service - UpgradeChatSdk (Use recommended version of Chat SDK)](/azure/communication-services/concepts/chat/sdk-features).
 
 ### Use recommended version of Resource Manager SDK
 
 Resource Manager SDK can be used to create and manage Azure Communication Services resources. Update to the recommended version of Resource Manager SDK to ensure the latest fixes and features.
 
-Learn more about [Communication service - UpgradeResourceManagerSdk (Use recommended version of Resource Manager SDK)](../communication-services/quickstarts/create-communication-resource.md?pivots=platform-net&tabs=windows).
+Learn more about [Communication service - UpgradeResourceManagerSdk (Use recommended version of Resource Manager SDK)](/azure/communication-services/quickstarts/create-communication-resource?pivots=platform-net&tabs=windows).
 
 ### Use recommended version of Identity SDK
 
 Azure Communication Services Identity SDK can be used to manage identities, users, and access tokens. Update to the recommended version of Identity SDK to ensure the latest fixes and features.
 
-Learn more about [Communication service - UpgradeIdentitySdk (Use recommended version of Identity SDK)](../communication-services/concepts/sdk-options.md).
+Learn more about [Communication service - UpgradeIdentitySdk (Use recommended version of Identity SDK)](/azure/communication-services/concepts/sdk-options).
 
 ### Use recommended version of SMS SDK
 
@@ -628,25 +628,25 @@ Learn more about [Communication service - UpgradeSmsSdk (Use recommended version
 
 Azure Communication Services Phone Numbers SDK can be used to acquire and manage phone numbers. Update to the recommended version of Phone Numbers SDK to ensure the latest fixes and features.
 
-Learn more about [Communication service - UpgradePhoneNumbersSdk (Use recommended version of Phone Numbers SDK)](../communication-services/concepts/sdk-options.md).
+Learn more about [Communication service - UpgradePhoneNumbersSdk (Use recommended version of Phone Numbers SDK)](/azure/communication-services/concepts/sdk-options).
 
 ### Use recommended version of Calling SDK
 
 Azure Communication Services Calling SDK can be used to enable voice, video, screen-sharing, and other real-time communication. Update to the recommended version of Calling SDK to ensure the latest fixes and features.
 
-Learn more about [Communication service - UpgradeCallingSdk (Use recommended version of Calling SDK)](../communication-services/concepts/voice-video-calling/calling-sdk-features.md).
+Learn more about [Communication service - UpgradeCallingSdk (Use recommended version of Calling SDK)](/azure/communication-services/concepts/voice-video-calling/calling-sdk-features).
 
 ### Use recommended version of Call Automation SDK
 
 Azure Communication Services Call Automation SDK can be used to make and manage calls, play audio, and configure recording. Update to the recommended version of Call Automation SDK to ensure the latest fixes and features.
 
-Learn more about [Communication service - UpgradeServerCallingSdk (Use recommended version of Call Automation SDK)](../communication-services/concepts/voice-video-calling/call-automation-apis.md).
+Learn more about [Communication service - UpgradeServerCallingSdk (Use recommended version of Call Automation SDK)](/azure/communication-services/concepts/voice-video-calling/call-automation-apis).
 
 ### Use recommended version of Network Traversal SDK
 
 Azure Communication Services Network Traversal SDK can be used to access TURN servers for low-level data transport. Update to the recommended version of Network Traversal SDK to ensure the latest fixes and features.
 
-Learn more about [Communication service - UpgradeTurnSdk (Use recommended version of Network Traversal SDK)](../communication-services/concepts/sdk-options.md).
+Learn more about [Communication service - UpgradeTurnSdk (Use recommended version of Network Traversal SDK)](/azure/communication-services/concepts/sdk-options).
 
 ### Use recommended version of Rooms SDK
 
@@ -675,7 +675,7 @@ Learn more about [Azure Traffic Collector - UpgradeATCToLatestSDKLanguage (Upgra
 
 You have been using over 90% of your procured circuit bandwidth recently. If you exceed your allocated bandwidth, you experience an increase in dropped packets sent over ExpressRoute. Upgrade your circuit bandwidth to maintain performance if your bandwidth needs remain this high.
 
-Learn more about [ExpressRoute circuit - UpgradeERCircuitBandwidth (Upgrade your ExpressRoute circuit bandwidth to accommodate your bandwidth needs)](../expressroute/about-upgrade-circuit-bandwidth.md).
+Learn more about [ExpressRoute circuit - UpgradeERCircuitBandwidth (Upgrade your ExpressRoute circuit bandwidth to accommodate your bandwidth needs)](/azure/expressroute/about-upgrade-circuit-bandwidth).
 
 ### Experience more predictable, consistent latency with a private connection to Azure
 
@@ -1073,13 +1073,13 @@ Learn more about [Hyperscale (Citus) server group - OrcasPostgreSqlCitusRebalanc
 
 We have determined that your VMs are located in a region different or far from where your users are connecting with Azure Virtual Desktop, which might lead to prolonged connection response times and affect overall user experience. When you create VMs for your host pools, try to use a region closer to the user. Having close proximity ensures continuing satisfaction with the Azure Virtual Desktop service and a better overall quality of experience.
 
-Learn more about [Host Pool - RegionProximityHostPools (Improve user experience and connectivity by deploying VMs closer to user’s location.)](../virtual-desktop/connection-latency.md).
+Learn more about [Host Pool - RegionProximityHostPools (Improve user experience and connectivity by deploying VMs closer to user’s location.)](/azure/virtual-desktop/connection-latency).
 
 ### Change the max session limit for your depth first load balanced host pool to improve VM performance
 
 Depth first load balancing uses the max session limit to determine the maximum number of users that can have concurrent sessions on a single session host. If the max session limit is too high, all user sessions are directed to the same session host and this might cause performance and reliability issues. Therefore, when setting a host pool to have depth first load balancing, also set an appropriate max session limit according to the configuration of your deployment and capacity of your VMs. To fix this, open your host pool's properties and change the value next to the "Max session limit" setting.
 
-Learn more about [Host Pool - ChangeMaxSessionLimitForDepthFirstHostPool (Change the max session limit for your depth first load balanced host pool to improve VM performance )](../virtual-desktop/configure-host-pool-load-balancing.md).
+Learn more about [Host Pool - ChangeMaxSessionLimitForDepthFirstHostPool (Change the max session limit for your depth first load balanced host pool to improve VM performance )](/azure/virtual-desktop/configure-host-pool-load-balancing).
 
 
 

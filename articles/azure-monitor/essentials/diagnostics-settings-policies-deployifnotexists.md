@@ -169,7 +169,7 @@ Track the status of your remediation task in the **Remediation tasks** tab of th
 
 
 
-For more information on remediation tasks, see [Remediate noncompliant resources](../../governance/policy/how-to/remediate-resources.md)
+For more information on remediation tasks, see [Remediate noncompliant resources](/azure/governance/policy/how-to/remediate-resources)
 
 ## Assign initiatives
 
@@ -539,5 +539,5 @@ Built-in All logs and Audit logs policies for Log Analytics workspaces, Event Hu
 
 * [Create diagnostic settings at scale using Azure Policy](./diagnostic-settings-policy.md)
 * [Azure Policy built-in definitions for Azure Monitor](../policy-reference.md)
-* [Azure Policy Overview](../../governance/policy/overview.md)
+* [Azure Policy Overview](/azure/governance/policy/overview)
 * [Azure Enterprise Policy as Code](https://techcommunity.microsoft.com/t5/core-infrastructure-and-security/azure-enterprise-policy-as-code-a-new-approach/ba-p/3607843)

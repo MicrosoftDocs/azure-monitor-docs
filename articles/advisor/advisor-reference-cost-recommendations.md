@@ -485,13 +485,13 @@ We've analyzed the usage patterns of your App Service plan over the past seven d
 > - Currently, this recommendation only works for App Service plans running on Windows on a SKU that allows you to downscale to less expensive tiers without losing any features, like from P3v2 to P2v2 or from P2v2 to P1v2. 
 > - CPU bursts that last only a few minutes might not be correctly detected. Perform a careful analysis in your App Service plan metrics blade before downscaling your SKU.
 
-Learn more about [App Service plans](../app-service/overview-hosting-plans.md).
+Learn more about [App Service plans](/azure/app-service/overview-hosting-plans).
 
 ### Unused/Empty App Service plans
 
 Your App Service plan does not have any running applications associated with it. Consider deleting the resource to reduce expenses, or add new applications under it to utilize its capabilities.
  
-Learn more about [App Service plans](../app-service/overview-hosting-plans.md).
+Learn more about [App Service plans](/azure/app-service/overview-hosting-plans).
 
 
 

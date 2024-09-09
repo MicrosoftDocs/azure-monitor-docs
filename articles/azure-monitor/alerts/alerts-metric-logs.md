@@ -17,7 +17,7 @@ A Log Analytics workspace supports these log types:
 
 - [Performance counters](./../agents/data-sources-performance-counters.md) for Windows and Linux machines (corresponding with the supported [Log Analytics workspace metrics](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces))
 - [Heartbeat records for Agent Health](../insights/solution-agenthealth.md)
-- [Update management](../../automation/update-management/overview.md) records
+- [Update management](/azure/automation/update-management/overview) records
 - [Event data](./../agents/data-sources-windows-events.md) logs
 
 Benefits of using metric alerts for logs over query-based [log search alerts](./alerts-log.md) in Azure include:
@@ -51,7 +51,7 @@ Before you create a metric alert for logs, make sure that the following items ar
 
 - **Log Analytics workspace**: You must have a valid and active Log Analytics workspace. For more information, see [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
 - **Agent configured for the Log Analytics workspace**: You need to configure an agent for Azure virtual machines or on-premises machines to send data to the Log Analytics workspace. For more information, see [Azure Monitor Agent overview](./../agents/agents-overview.md).
-- **Supported Log Analytics solution**: A Log Analytics solution should be configured and sending data to the Log Analytics workspace. Supported solutions are [performance counters for Windows and Linux](./../agents/data-sources-performance-counters.md), [heartbeat records for Agent Health](../insights/solution-agenthealth.md), [Azure Automation Update Management](../../automation/update-management/overview.md), and [event data](./../agents/data-sources-windows-events.md).
+- **Supported Log Analytics solution**: A Log Analytics solution should be configured and sending data to the Log Analytics workspace. Supported solutions are [performance counters for Windows and Linux](./../agents/data-sources-performance-counters.md), [heartbeat records for Agent Health](../insights/solution-agenthealth.md), [Azure Automation Update Management](/azure/automation/update-management/overview), and [event data](./../agents/data-sources-windows-events.md).
 - **Logs configured for the Log Analytics solution**: The Log Analytics solution should have the required logs and data that correspond to [metrics supported for Log Analytics workspaces](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces) enabled. For example, the *% Available Memory* counter must be configured in the [performance counters](./../agents/data-sources-performance-counters.md) solution first.
 
 ## Methods for creating a metric alert for logs
@@ -347,7 +347,7 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
 }
 ```
 
-Assuming that you saved the preceding parameter file as *metricfromLogsAlertStatic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](../../azure-resource-manager/templates/deploy-portal.md).
+Assuming that you saved the preceding parameter file as *metricfromLogsAlertStatic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
 
 Alternatively, you can use this Azure PowerShell command:
 
@@ -659,7 +659,7 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
 }
 ```
 
-Assuming that you saved the preceding parameter file as *metricfromLogsAlertDynamic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](../../azure-resource-manager/templates/deploy-portal.md).
+Assuming that you saved the preceding parameter file as *metricfromLogsAlertDynamic.parameters.json*, you can create metric alerts for logs by using the [Resource Manager template for creation in the Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
 
 Alternatively, you can use this Azure PowerShell command:
 

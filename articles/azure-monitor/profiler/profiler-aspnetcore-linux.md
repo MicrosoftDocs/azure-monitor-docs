@@ -99,7 +99,7 @@ In this article, you:
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/local-git-repo.png" alt-text="Screenshot that shows setting up the local Git repository.":::    
 
-   For more deployment options, see the [App Service documentation](../../app-service/deploy-best-practices.md).
+   For more deployment options, see the [App Service documentation](/azure/app-service/deploy-best-practices).
 
 ## Deploy your project
 

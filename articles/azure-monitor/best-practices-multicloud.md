@@ -11,9 +11,9 @@ ms.reviewer: bwren
 In addition to monitoring services and application in Azure, Azure Monitor can provide complete monitoring for your resources and applications running in other clouds including Amazon Web Services (AWS) and Google Cloud Platform (GCP). This article describes features of Azure Monitor that allow you to provide complete monitoring across your AWS and GCP environments.
 
 ## Virtual machines
- [Azure Arc-enabled servers](../azure-arc/servers/overview.md) provide a consistent experience between both Azure virtual machines and your AWS EC2 or GCP VM instances. This includes using standard Azure constructs such as Azure Policy and applying tags. The [Azure Monitor agent](agents/agents-overview.md) collects telemetry from the client operating system of virtual machines regardless of their location, and you can use the same [data collection rules](essentials/data-collection-rule-overview.md) that define your data collection across all of the virtual machines across your different cloud environments. If you use [VM insights](vm/vminsights-overview.md) in Azure Monitor, you can view your hybrid machines right alongside your Azure machines and onboard them using identical methods.
+ [Azure Arc-enabled servers](/azure/azure-arc/servers/overview) provide a consistent experience between both Azure virtual machines and your AWS EC2 or GCP VM instances. This includes using standard Azure constructs such as Azure Policy and applying tags. The [Azure Monitor agent](agents/agents-overview.md) collects telemetry from the client operating system of virtual machines regardless of their location, and you can use the same [data collection rules](essentials/data-collection-rule-overview.md) that define your data collection across all of the virtual machines across your different cloud environments. If you use [VM insights](vm/vminsights-overview.md) in Azure Monitor, you can view your hybrid machines right alongside your Azure machines and onboard them using identical methods.
 
-- [Plan and deploy Azure Arc-enabled servers](../azure-arc/servers/plan-at-scale-deployment.md)
+- [Plan and deploy Azure Arc-enabled servers](/azure/azure-arc/servers/plan-at-scale-deployment)
 - [Manage Azure Monitor Agent](agents/azure-monitor-agent-manage.md)
 - [Enable VM insights overview](vm/vminsights-enable-overview.md)
 
@@ -23,13 +23,13 @@ If you use Defender for Cloud for security management and threat detection, then
 - [Connect your GCP projects to Microsoft Defender for Cloud](/azure/defender-for-cloud/quickstart-onboard-gcp)
 
 ## Kubernetes
-[Managed Prometheus](essentials/prometheus-metrics-overview.md) and [Container insights](containers/container-insights-overview.md) in Azure Monitor use [Azure Arc-enabled Kubernetes](../azure-arc/servers/overview.md) to provide a consistent experience between both [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and Kubernetes clusters in your AWS EKS or GCP GKE instances. You can view your hybrid clusters right alongside your Azure machines and onboard them using the same methods. This includes using standard Azure constructs such as Azure Policy and applying tags.
+[Managed Prometheus](essentials/prometheus-metrics-overview.md) and [Container insights](containers/container-insights-overview.md) in Azure Monitor use [Azure Arc-enabled Kubernetes](/azure/azure-arc/servers/overview) to provide a consistent experience between both [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and Kubernetes clusters in your AWS EKS or GCP GKE instances. You can view your hybrid clusters right alongside your Azure machines and onboard them using the same methods. This includes using standard Azure constructs such as Azure Policy and applying tags.
 
 Use Prometheus [remote write](./essentials/prometheus-remote-write.md) from your on-premises, AWS, or GCP clusters to send data to Azure managed service for Prometheus.
 
-The [Azure Monitor agent](agents/agents-overview.md) installed by Container insights collects telemetry from the client operating system of clusters regardless of their location. Use the same analysis tools, [Managed Grafana](../managed-grafana/overview.md) and Container insights, to monitor clusters across your different cloud environments.
+The [Azure Monitor agent](agents/agents-overview.md) installed by Container insights collects telemetry from the client operating system of clusters regardless of their location. Use the same analysis tools, [Managed Grafana](/azure/managed-grafana/overview) and Container insights, to monitor clusters across your different cloud environments.
 
-- [Connect an existing Kubernetes cluster to Azure Arc](../azure-arc/kubernetes/quickstart-connect-cluster.md)
+- [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster)
 - [Azure Monitor Container Insights for Azure Arc-enabled Kubernetes clusters](containers/container-insights-enable-arc-enabled-clusters.md)
 - [Monitoring Azure Kubernetes Service (AKS) with Azure Monitor](/azure/aks/monitor-aks)
 
@@ -45,7 +45,7 @@ In addition to monitoring the health of your cloud resources, you can consolidat
 
 Use the following methods to ingest AWS service log data into Microsoft Sentinel.
 
-- [Microsoft Sentinel connector](../sentinel/connect-aws.md)
+- [Microsoft Sentinel connector](/azure/sentinel/connect-aws)
 - [Azure function](https://github.com/andedevsecops/AWS-CloudTrail-AzFunc)
 - [AWS Lambda function](https://github.com/andedevsecops/aws-data-connector-az-sentinel)
 
@@ -65,7 +65,7 @@ Use the following methods to collect data from your cloud resources that doesn't
 - Use Logstash to collect data and the [Azure Log Analytics output plugin for Logstash](https://github.com/Azure/Azure-Sentinel/tree/master/DataConnectors/microsoft-logstash-output-azure-loganalytics) to ingest it into a Log Analytics workspace.
 
 ## Automation
-[Azure Automation](../automation/overview.md) delivers cloud-based automation, operating system updates, and configuration services that support consistent management across your Azure and non-Azure environments. It includes process automation, configuration management, update management, shared capabilities, and heterogeneous features. [Hybrid Runbook Worker](../automation/automation-hybrid-runbook-worker.md) enables automation runbooks to run directly on the non-Azure virtual machines  against resources in the environment to manage those local resources.
+[Azure Automation](/azure/automation/overview) delivers cloud-based automation, operating system updates, and configuration services that support consistent management across your Azure and non-Azure environments. It includes process automation, configuration management, update management, shared capabilities, and heterogeneous features. [Hybrid Runbook Worker](/azure/automation/automation-hybrid-runbook-worker) enables automation runbooks to run directly on the non-Azure virtual machines  against resources in the environment to manage those local resources.
 
-Through [Arc-enabled servers](../azure-arc/servers/overview.md), Azure Automation provides a consistent deployment and management experience for your non-Azure machines. It enables integration with the Automation service using the VM extension framework to deploy the Hybrid Runbook Worker role, and simplify onboarding to Update Management and Change Tracking and Inventory.
+Through [Arc-enabled servers](/azure/azure-arc/servers/overview), Azure Automation provides a consistent deployment and management experience for your non-Azure machines. It enables integration with the Automation service using the VM extension framework to deploy the Hybrid Runbook Worker role, and simplify onboarding to Update Management and Change Tracking and Inventory.
 

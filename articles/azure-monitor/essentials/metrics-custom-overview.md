@@ -46,7 +46,7 @@ Each metric data point published contains a namespace, name, and dimension infor
 After custom metrics are submitted to Azure Monitor, you can browse through them via the Azure portal and query them via the Azure Monitor REST APIs. You can also create alerts on them to notify you when certain conditions are met.
 
 > [!NOTE]
-> You need to have a reader or contributor role to view custom metrics. See [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader).
+> You need to have a reader or contributor role to view custom metrics. See [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader).
 
 ### Browse your custom metrics via the Azure portal
 

@@ -11,11 +11,11 @@ ms.reviewer: viviandiec
 
 [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) and Container insights work together for complete monitoring of your Kubernetes environment. This article describes both features and the data they collect.
 
-- [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) is a fully managed service based on the [Prometheus](https://aka.ms/azureprometheus-promio) project from the Cloud Native Computing Foundation. It allows you to collect and analyze metrics from your Kubernetes cluster at scale and analyze them using prebuilt dashboards in [Grafana](../../managed-grafana/overview.md).
-- Container insights is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](../../azure-arc/kubernetes/overview.md) clusters and their components.  You can analyze the collected data for the different components in your cluster with a collection of [views](container-insights-analyze.md) and prebuilt [workbooks](container-insights-reports.md).
+- [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) is a fully managed service based on the [Prometheus](https://aka.ms/azureprometheus-promio) project from the Cloud Native Computing Foundation. It allows you to collect and analyze metrics from your Kubernetes cluster at scale and analyze them using prebuilt dashboards in [Grafana](/azure/managed-grafana/overview).
+- Container insights is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters and their components.  You can analyze the collected data for the different components in your cluster with a collection of [views](container-insights-analyze.md) and prebuilt [workbooks](container-insights-reports.md).
 
 > [!IMPORTANT]
-> Container insights collects metric data from your cluster in addition to logs. This functionality has been replaced by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). You can analyze that data using built-in dashboards in [Managed Grafana](../../managed-grafana/overview.md) and alert on them using [prebuilt Prometheus alert rules](container-insights-metric-alerts.md).
+> Container insights collects metric data from your cluster in addition to logs. This functionality has been replaced by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). You can analyze that data using built-in dashboards in [Managed Grafana](/azure/managed-grafana/overview) and alert on them using [prebuilt Prometheus alert rules](container-insights-metric-alerts.md).
 > 
 > You can continue to have Container insights collect metric data so you can use the Container insights monitoring experience. Or you can save cost by disabling this collection and using Grafana for metric analysis. See [Configure data collection in Container insights using data collection rule](container-insights-data-collection-dcr.md) for configuration options.
 > 
@@ -28,7 +28,7 @@ Container insights sends data to a [Log Analytics workspace](../logs/data-platfo
 Container insights supports the following environments:
 
 - [Azure Kubernetes Service (AKS)](/azure/aks/)
-- Following [Azure Arc-enabled Kubernetes cluster distributions](../../azure-arc/kubernetes/validation-program.md):
+- Following [Azure Arc-enabled Kubernetes cluster distributions](/azure/azure-arc/kubernetes/validation-program):
   - AKS on Azure Stack HCI
   - AKS Edge Essentials
   - Canonical
@@ -40,7 +40,7 @@ Container insights supports the following environments:
   - VMware (TKG)
 
 > [!NOTE]
-> Container insights supports ARM64 nodes on AKS. See [Cluster requirements](../../azure-arc/kubernetes/system-requirements.md#cluster-requirements) for the details of Azure Arc-enabled clusters that support ARM64 nodes.
+> Container insights supports ARM64 nodes on AKS. See [Cluster requirements](/azure/azure-arc/kubernetes/system-requirements#cluster-requirements) for the details of Azure Arc-enabled clusters that support ARM64 nodes.
 >
 > Container insights support for Windows Server 2022 operating system is in public preview.
 

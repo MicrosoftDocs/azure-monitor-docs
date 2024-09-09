@@ -12,7 +12,7 @@ ms.reviewer: jeffwo
 
 # Use Azure Policy to install and manage the Azure Monitor agent
 
-Using [Azure Policy](../../governance/policy/overview.md), you can have the Azure Monitor agent automatically installed on your existing and new virtual machines and have the appropriate DCRs automatically associated with them. This article describes the built-in policies and initiatives that you can leverage for this functionality and features of Azure Monitor to assist in managing them.
+Using [Azure Policy](/azure/governance/policy/overview), you can have the Azure Monitor agent automatically installed on your existing and new virtual machines and have the appropriate DCRs automatically associated with them. This article describes the built-in policies and initiatives that you can leverage for this functionality and features of Azure Monitor to assist in managing them.
 
 Use the following policies and policy initiatives to automatically install the agent and associate it with a data collection rule every time you create a virtual machine, scale set, or Azure Arc-enabled server.
 
@@ -47,7 +47,7 @@ There are built-in policy initiatives for Windows and Linux virtual machines, sc
 
 These initiatives above comprise individual policies that:
 
-- (Optional) Create and assign built-in user-assigned managed identity, per subscription, per region. [Learn more](../../active-directory/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy.md#policy-definition-and-details).
+- (Optional) Create and assign built-in user-assigned managed identity, per subscription, per region. [Learn more](/azure/active-directory/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy#policy-definition-and-details).
    - `Bring Your Own User-Assigned Identity`: If set to `false`, it creates the built-in user-assigned managed identity in the predefined resource group and assigns it to all the machines that the policy is applied to. Location of the resource group can be configured in the `Built-In-Identity-RG Location` parameter.
      If set to `true`, you can instead use an existing user-assigned identity that is automatically assigned to all the machines that the policy is applied to.
 - Install Azure Monitor Agent extension on the machine, and configure it to use user-assigned identity as specified by the following parameters.
@@ -63,18 +63,18 @@ These initiatives above comprise individual policies that:
 
 ### Known issues
 
-- Managed Identity default behavior. [Learn more](../../active-directory/managed-identities-azure-resources/managed-identities-faq.md#what-identity-will-imds-default-to-if-dont-specify-the-identity-in-the-request).
-- Possible race condition with using built-in user-assigned identity creation policy. [Learn more](../../active-directory/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy.md#known-issues).
-- Assigning policy to resource groups. If the assignment scope of the policy is a resource group and not a subscription, the identity used by policy assignment (different from the user-assigned identity used by agent) must be manually granted [these roles](../../active-directory/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy.md#required-authorization) prior to assignment/remediation. Failing to do this step will result in *deployment failures*.
-- Other [Managed Identity limitations](../../active-directory/managed-identities-azure-resources/managed-identities-faq.md#limitations).
+- Managed Identity default behavior. [Learn more](/azure/active-directory/managed-identities-azure-resources/managed-identities-faq#what-identity-will-imds-default-to-if-dont-specify-the-identity-in-the-request).
+- Possible race condition with using built-in user-assigned identity creation policy. [Learn more](/azure/active-directory/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy#known-issues).
+- Assigning policy to resource groups. If the assignment scope of the policy is a resource group and not a subscription, the identity used by policy assignment (different from the user-assigned identity used by agent) must be manually granted [these roles](/azure/active-directory/managed-identities-azure-resources/how-to-assign-managed-identity-via-azure-policy#required-authorization) prior to assignment/remediation. Failing to do this step will result in *deployment failures*.
+- Other [Managed Identity limitations](/azure/active-directory/managed-identities-azure-resources/managed-identities-faq#limitations).
 
 
 
 ## Remediation
 
-The initiatives or policies will apply to each virtual machine as it's created. A [remediation task](../../governance/policy/how-to/remediate-resources.md) deploys the policy definitions in the initiative to existing resources, so you can configure Azure Monitor Agent for any resources that were already created.
+The initiatives or policies will apply to each virtual machine as it's created. A [remediation task](/azure/governance/policy/how-to/remediate-resources) deploys the policy definitions in the initiative to existing resources, so you can configure Azure Monitor Agent for any resources that were already created.
 
-When you create the assignment by using the Azure portal, you have the option of creating a remediation task at the same time. For information on the remediation, see [Remediate non-compliant resources with Azure Policy](../../governance/policy/how-to/remediate-resources.md).
+When you create the assignment by using the Azure portal, you have the option of creating a remediation task at the same time. For information on the remediation, see [Remediate non-compliant resources with Azure Policy](/azure/governance/policy/how-to/remediate-resources).
 <!-- convertborder later -->
 :::image type="content" source="media/azure-monitor-agent-install/built-in-ama-dcr-remediation.png" lightbox="media/azure-monitor-agent-install/built-in-ama-dcr-remediation.png" alt-text="Screenshot that shows initiative remediation for Azure Monitor Agent." border="false":::
 

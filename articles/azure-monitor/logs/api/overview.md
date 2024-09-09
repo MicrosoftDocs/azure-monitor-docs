@@ -13,7 +13,7 @@ The Log Analytics Query API is a REST API that you can use to query the full set
 ## Log Analytics API authentication
 
 You must authenticate to access the Log Analytics API:
-- To query your workspaces, you must use [Microsoft Entra authentication](../../../active-directory/fundamentals/active-directory-whatis.md).
+- To query your workspaces, you must use [Microsoft Entra authentication](/azure/active-directory/fundamentals/active-directory-whatis).
 - To quickly explore the API without using Microsoft Entra authentication, you can use an API key to query sample data in a non-production environment.
 
 <a name='azure-ad-authentication-for-workspace-data'></a>

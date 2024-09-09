@@ -127,7 +127,7 @@ Currently supported hardening standards:
 
 
 ## On-premises and other clouds
-Azure Monitor agent is supported on machines in other clouds and on-premises with [Azure Arc-enabled servers](../../azure-arc/servers/overview.md). Azure Monitor agent authenticates to your workspace with managed identity, which is created when you install the [Connected Machine agent](../../azure-arc/servers/agent-overview.md), which is part of Azure Arc. The legacy Log Analytics agent authenticated using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution. 
+Azure Monitor agent is supported on machines in other clouds and on-premises with [Azure Arc-enabled servers](/azure/azure-arc/servers/overview). Azure Monitor agent authenticates to your workspace with managed identity, which is created when you install the [Connected Machine agent](/azure/azure-arc/servers/agent-overview), which is part of Azure Arc. The legacy Log Analytics agent authenticated using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution. 
 
 The Azure Arc agent is only used as an installation mechanism and does not add any cost or resource consumption. There are paid options for Azure Arc, but these aren't required for the Azure Monitor agent.
 

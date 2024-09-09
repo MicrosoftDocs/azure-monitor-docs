@@ -22,7 +22,7 @@ You can use these same steps to set up and run an experiment for any agent-based
 - An Azure subscription. [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
 - A virtual machine running an operating system in the [version compatibility](chaos-studio-versions.md) list. If you don't have a VM, you can [create one](/azure/virtual-machines/linux/quick-create-portal).
 - A network setup that permits you to [SSH into your VM](/azure/virtual-machines/ssh-keys-portal).
-- A user-assigned managed identity. If you don't have a user-assigned managed identity, you can [create one](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md).
+- A user-assigned managed identity. If you don't have a user-assigned managed identity, you can [create one](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
 
 ## Open Azure Cloud Shell
 

@@ -81,7 +81,7 @@ The platform metrics for these services in the following Azure clouds are suppor
 | NetApp files volumes |"Microsoft.NetApp/netAppAccounts/capacityPools/volumes"| Yes      | Yes    | Yes |
 | Azure Key Vault |"Microsoft.KeyVault/vaults"| Yes      | Yes    | Yes |
 | Azure Cache for Redis |"Microsoft.Cache/redis"| Yes      | Yes    | Yes |
-| Azure Stack Edge devices |(There is no specific Resource provider for this resource. Because of how Stack edge devices work, **the metrics are retrieved from several resource providers**. You can check this documentation for more details regarding alerts for this resource: [Review alerts on Azure Stack Edge](../../databox-online/azure-stack-edge-alerts.md)) | Yes      | Yes    | Yes |
+| Azure Stack Edge devices |(There is no specific Resource provider for this resource. Because of how Stack edge devices work, **the metrics are retrieved from several resource providers**. You can check this documentation for more details regarding alerts for this resource: [Review alerts on Azure Stack Edge](/azure/databox-online/azure-stack-edge-alerts)) | Yes      | Yes    | Yes |
 | Recovery Services vaults |"Microsoft.RecoveryServices/Vaults"| Yes      | No     | No  |
 | Azure Database for PostgreSQL - Flexible Server |"Microsoft.DBforPostgreSQL/flexibleServers"| Yes      | Yes    | Yes |
 | Bare Metal Machines (Operator Nexus) |"Microsoft.NetworkCloud/bareMetalMachines"| Yes      | Yes    | Yes |
@@ -163,7 +163,7 @@ Manage new rules in your workspaces by using the [ScheduledQueryRules](/rest/api
 Log search alerts are listed under resource provider `microsoft.insights/scheduledqueryrules` with:
 - Log search alerts on Application Insights shown with the exact resource name along with resource group and alert properties.
 - Log search alerts on Log Analytics are shown with the exact resource name along with resource group and alert properties when they're created by using the scheduledQueryRules API.
-- Log search alerts created from the [legacy Log Analytics API](./api-alerts.md) aren't tracked [Azure resources](../../azure-resource-manager/management/overview.md) and don't have enforced unique resource names. These alerts are still created on `microsoft.insights/scheduledqueryrules` as hidden resources, which have the resource naming structure `<WorkspaceName>|<savedSearchId>|<scheduleId>|<ActionId>`. Log search alerts on the legacy API are shown with the preceding hidden resource name along with resource group and alert properties.
+- Log search alerts created from the [legacy Log Analytics API](./api-alerts.md) aren't tracked [Azure resources](/azure/azure-resource-manager/management/overview) and don't have enforced unique resource names. These alerts are still created on `microsoft.insights/scheduledqueryrules` as hidden resources, which have the resource naming structure `<WorkspaceName>|<savedSearchId>|<scheduleId>|<ActionId>`. Log search alerts on the legacy API are shown with the preceding hidden resource name along with resource group and alert properties.
 
 > [!Note]
 > Unsupported resource characters like <, >, %, &, \, ? and / are replaced with an underscore (_) in the hidden resource names. This character change is also reflected in the billing information.

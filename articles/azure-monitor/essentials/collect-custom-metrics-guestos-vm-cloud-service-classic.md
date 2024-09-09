@@ -19,15 +19,15 @@ The process that's outlined in this article works only for performance counters 
 
 ## Prerequisites
 
-- You must be a [service administrator or co-administrator](../../cost-management-billing/manage/add-change-subscription-administrator.md) on your Azure subscription. 
+- You must be a [service administrator or co-administrator](/azure/cost-management-billing/manage/add-change-subscription-administrator) on your Azure subscription. 
 
-- Your subscription must be registered with [Microsoft.Insights](../../azure-resource-manager/management/resource-providers-and-types.md). 
+- Your subscription must be registered with [Microsoft.Insights](/azure/azure-resource-manager/management/resource-providers-and-types). 
 
-- You need to have either [Azure PowerShell](/powershell/azure) or [Azure Cloud Shell](../../cloud-shell/overview.md) installed.
+- You need to have either [Azure PowerShell](/powershell/azure) or [Azure Cloud Shell](/azure/cloud-shell/overview) installed.
 
 ## Provision a cloud service and storage account 
 
-1. Create and deploy a classic cloud service. A sample classic Cloud Services application and deployment can be found at [Get started with Azure Cloud Services and ASP.NET](../../cloud-services/cloud-services-dotnet-get-started.md). 
+1. Create and deploy a classic cloud service. A sample classic Cloud Services application and deployment can be found at [Get started with Azure Cloud Services and ASP.NET](/azure/cloud-services/cloud-services-dotnet-get-started). 
 
 2. You can use an existing storage account or deploy a new storage account. It's best if the storage account is in the same region as the classic cloud service that you created. In the Azure portal, go to the **Storage accounts** resource pane, and then select **Keys**. Take note of the storage account name and the storage account key. You'll need this information in later steps.
    <!-- convertborder later -->
@@ -35,7 +35,7 @@ The process that's outlined in this article works only for performance counters 
 
 ## Create a service principal 
 
-Create a service principal in your Microsoft Entra tenant by using the instructions at [Use portal to create a Microsoft Entra application and service principal that can access resources](../../active-directory/develop/howto-create-service-principal-portal.md). Note the following while you're going through this process: 
+Create a service principal in your Microsoft Entra tenant by using the instructions at [Use portal to create a Microsoft Entra application and service principal that can access resources](/azure/active-directory/develop/howto-create-service-principal-portal). Note the following while you're going through this process: 
 
 - You can put in any URL for the sign-in URL.  
 - Create new client secret for this app.  

@@ -81,7 +81,7 @@
   - name: SQL Database Advisor
     href: /azure/azure-sql/database/database-advisor-implement-performance-recommendations
   - name: App Service
-    href: ../app-service/app-service-best-practices.md
+    href: /azure/app-service/app-service-best-practices
   - name: REST API
     href: /rest/api/advisor/operation-groups?view=rest-advisor-2023-01-01&preserve-view=true
   - name: Azure CLI

@@ -13,7 +13,7 @@ ms.custom: devx-track-azurecli
 
 # Virtual network injection in Azure Chaos Studio
 
-Azure [Virtual Network](../virtual-network/virtual-networks-overview.md) is the fundamental building block for your private network in Azure. A virtual network enables many types of Azure resources to securely communicate with each other, the internet, and on-premises networks. A virtual network is similar to a traditional network that you operate in your own datacenter. It brings other benefits of Azure's infrastructure, such as scale, availability, and isolation.
+Azure [Virtual Network](/azure/virtual-network/virtual-networks-overview) is the fundamental building block for your private network in Azure. A virtual network enables many types of Azure resources to securely communicate with each other, the internet, and on-premises networks. A virtual network is similar to a traditional network that you operate in your own datacenter. It brings other benefits of Azure's infrastructure, such as scale, availability, and isolation.
 
 Virtual network injection allows an Azure Chaos Studio resource provider to inject containerized workloads into your virtual network so that resources without public endpoints can be accessed via a private IP address on the virtual network. After you've configured virtual network injection for a resource in a virtual network and enabled the resource as a target, you can use it in multiple experiments. An experiment can target a mix of private and nonprivate resources if the private resources are configured according to the instructions in this article.
 
@@ -67,7 +67,7 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 
 ### [Azure CLI](#tab/azure-cli)
 
-1. Register the `Microsoft.ContainerInstance` and `Microsoft.Relay` resource providers with your subscription by running the following commands. If they're both already registered, you can skip this step. For more information, see the [Register resource provider](../azure-resource-manager/management/resource-providers-and-types.md) instructions.
+1. Register the `Microsoft.ContainerInstance` and `Microsoft.Relay` resource providers with your subscription by running the following commands. If they're both already registered, you can skip this step. For more information, see the [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types) instructions.
 
     ```azurecli
     az provider register --namespace 'Microsoft.ContainerInstance' --wait

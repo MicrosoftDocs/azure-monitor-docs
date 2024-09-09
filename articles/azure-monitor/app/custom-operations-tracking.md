@@ -130,7 +130,7 @@ The [W3C Trace Context](https://www.w3.org/TR/trace-context/) and [HTTP Protocol
 
 ### Service Bus queue
 
-For tracing information, see [Distributed tracing and correlation through Azure Service Bus messaging](../../service-bus-messaging/service-bus-end-to-end-tracing.md#distributed-tracing-and-correlation-through-service-bus-messaging).
+For tracing information, see [Distributed tracing and correlation through Azure Service Bus messaging](/azure/service-bus-messaging/service-bus-end-to-end-tracing#distributed-tracing-and-correlation-through-service-bus-messaging).
 
 ### Azure Storage queue
 
@@ -138,7 +138,7 @@ The following example shows how to track the [Azure Storage queue](/azure/storag
 
 The Storage queue has an HTTP API. All calls to the queue are tracked by the Application Insights Dependency Collector for HTTP requests. It's configured by default on ASP.NET and ASP.NET Core applications. With other kinds of applications, see the [Console applications documentation](./console.md).
 
-You also might want to correlate the Application Insights operation ID with the Storage request ID. For information on how to set and get a Storage request client and a server request ID, see [Monitor, diagnose, and troubleshoot Azure Storage](../../storage/common/storage-monitoring-diagnosing-troubleshooting.md#end-to-end-tracing).
+You also might want to correlate the Application Insights operation ID with the Storage request ID. For information on how to set and get a Storage request client and a server request ID, see [Monitor, diagnose, and troubleshoot Azure Storage](/azure/storage/common/storage-monitoring-diagnosing-troubleshooting#end-to-end-tracing).
 
 #### Enqueue
 

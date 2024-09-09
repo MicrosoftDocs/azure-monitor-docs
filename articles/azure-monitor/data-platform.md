@@ -54,7 +54,7 @@ Read more about distributed tracing at [What is distributed tracing?](app/distri
 
 ### Changes
 
-[Changes](./change/change-analysis-visualizations.md) are a series of events that occur in your Azure application, from the infrastructure layer through application deployment. Changes are traced on a subscription-level using [the Change Analysis tool](./change/change-analysis.md). The Change Analysis tool increases observability by building on the power of [Azure Resource Graph](../governance/resource-graph/overview.md) to provide detailed insights into your application changes. 
+[Changes](./change/change-analysis-visualizations.md) are a series of events that occur in your Azure application, from the infrastructure layer through application deployment. Changes are traced on a subscription-level using [the Change Analysis tool](./change/change-analysis.md). The Change Analysis tool increases observability by building on the power of [Azure Resource Graph](/azure/governance/resource-graph/overview) to provide detailed insights into your application changes. 
 
 Once [Change Analysis is enabled](./change/change-analysis-enable.md), the `Microsoft.ChangeAnalysis` resource provider is registered with an Azure Resource Manager subscription to make the resource properties and configuration change data available. Change Analysis provides data for various management and troubleshooting scenarios to help users understand what changes might have caused the issues:
 - Troubleshoot your application via the [Diagnose & solve problems tool](./change/change-analysis-enable.md).
@@ -70,7 +70,7 @@ For a listing of different data sources that populate each type, see [Metrics in
 
 ## Stream data to external systems
 
-In addition to using the tools in Azure to analyze monitoring data, you might have a requirement to forward it to an external tool like a security information and event management product. This forwarding is typically done directly from monitored resources through [Azure Event Hubs](../event-hubs/index.yml).
+In addition to using the tools in Azure to analyze monitoring data, you might have a requirement to forward it to an external tool like a security information and event management product. This forwarding is typically done directly from monitored resources through [Azure Event Hubs](/azure/event-hubs/).
 
 Some sources can be configured to send data directly to an event hub while you can use another process, such as a logic app, to retrieve the required data. For more information, see [Stream Azure monitoring data to an event hub for consumption by an external tool](essentials/stream-monitoring-data-event-hubs.md).
 

@@ -14,7 +14,7 @@ ms.custom: devx-track-azurepowershell
 In this article, you'll learn the steps to move a Log Analytics workspace to another resource group or subscription in the same region. To move a workspace across regions, see [Move a Log Analytics workspace to another region](./move-workspace-region.md).
 
 > [!TIP] 
-> To learn more about how to move Azure resources through the Azure portal, PowerShell, the Azure CLI, or the REST API, see [Move resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md).
+> To learn more about how to move Azure resources through the Azure portal, PowerShell, the Azure CLI, or the REST API, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ In this article, you'll learn the steps to move a Log Analytics workspace to ano
 |:---|:---|
 | Verify the Microsoft Entra tenant. | `Microsoft.AzureActiveDirectory/b2cDirectories/read` permissions, as provided by the [Log Analytics Reader built-in role](./manage-access.md#log-analytics-reader), for example. |
 | Delete a solution. | `Microsoft.OperationsManagement/solutions/delete` permissions on the solution, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
-| Remove alert rules for the Start/Stop VMs solution. | `microsoft.insights/scheduledqueryrules/delete` permissions, as provided by the [Monitoring Contributor built-in role](../../role-based-access-control/built-in-roles.md#monitoring-contributor), for example. |
+| Remove alert rules for the Start/Stop VMs solution. | `microsoft.insights/scheduledqueryrules/delete` permissions, as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example. |
 | Unlink the Automation account | `Microsoft.OperationalInsights/workspaces/linkedServices/delete` permissions on the linked Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
 | Move a Log Analytics workspace. | `Microsoft.OperationalInsights/workspaces/delete` and `Microsoft.OperationalInsights/workspaces/write` permissions on the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
 
@@ -57,7 +57,7 @@ The workspace source and destination subscriptions must exist within the same Mi
 
 ### [Portal](#tab/azure-portal)
 
-[Find your Microsoft Entra tenant](../../azure-portal/get-subscription-tenant-id.md#find-your-azure-ad-tenant) for the source and destination subscriptions.
+[Find your Microsoft Entra tenant](/azure/azure-portal/get-subscription-tenant-id#find-your-azure-ad-tenant) for the source and destination subscriptions.
 
 ### [REST API](#tab/rest-api)
 
@@ -183,7 +183,7 @@ Delete the following alert rules by running the [Remove-AzScheduledQueryRule](/p
 
 ### [Portal](#tab/azure-portal)
 
-See [Delete a standalone Automation account linked to workspace](../../automation/delete-account.md#delete-a-standalone-automation-account-linked-to-workspace).
+See [Delete a standalone Automation account linked to workspace](/azure/automation/delete-account#delete-a-standalone-automation-account-linked-to-workspace).
 
 ### [REST API](#tab/rest-api)
 
@@ -247,4 +247,4 @@ Move-AzResource -ResourceId "/subscriptions/00000000-0000-0000-0000-000000000000
 > After the move operation, removed solutions and the Automation account link should be reconfigured to bring the workspace back to its previous state.
 
 ## Next steps
-For a list of which resources support the move operation, see [Move operation support for resources](../../azure-resource-manager/management/move-support-resources.md).
+For a list of which resources support the move operation, see [Move operation support for resources](/azure/azure-resource-manager/management/move-support-resources).

@@ -206,7 +206,7 @@ The following table lists the different types of data collected from the diagnos
 Several tools are available to view the data after it's transferred to storage. For example:
 
 * **Server Explorer in Visual Studio**: If you've installed the Azure Tools for Microsoft Visual Studio, you can use the Azure Storage node in Server Explorer to view read-only blob and table data from your Azure Storage accounts. You can display data from your local storage emulator account and from storage accounts you've created for Azure. For more information, see [Browsing and managing storage resources with Server Explorer](/visualstudio/azure/vs-azure-tools-storage-resources-server-explorer-browse-manage).
-* [Microsoft Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md): This standalone app enables you to easily work with Azure Storage data on Windows, OSX, and Linux.
+* [Microsoft Azure Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer): This standalone app enables you to easily work with Azure Storage data on Windows, OSX, and Linux.
 * [Azure Management Studio](https://cerebrata.com/blog/introducing-azure-management-studio-and-azure-explorer): This tool includes Azure Diagnostics Manager. Use it to view, download, and manage the diagnostics data collected by the applications running on Azure.
 
 ## Next steps

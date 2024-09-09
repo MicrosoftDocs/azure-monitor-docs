@@ -52,7 +52,7 @@ Application Insights Profiler and Code Optimizations work together to provide a 
 
 ## Cost and overhead
 
-Code Optimizations are generated automatically after [Application Insights Profiler is enabled](../profiler/profiler-overview.md#sampling-rate-and-overhead). It incurs no extra cost to you as it analyzes performance issues and generates performance recommendations. Some features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](../../copilot/overview.md). 
+Code Optimizations are generated automatically after [Application Insights Profiler is enabled](../profiler/profiler-overview.md#sampling-rate-and-overhead). It incurs no extra cost to you as it analyzes performance issues and generates performance recommendations. Some features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](/azure/copilot/overview). 
 
 ## Supported regions
 

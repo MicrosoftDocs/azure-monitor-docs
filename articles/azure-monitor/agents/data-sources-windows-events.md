@@ -26,7 +26,7 @@ As you enter the name of an event log, Azure Monitor provides suggestions of com
 :::image type="content" source="media/data-sources-windows-events/configure.png" lightbox="media/data-sources-windows-events/configure.png" alt-text="Screenshot that shows the Windows event logs tab on the Legacy agents management screen.":::
 
 > [!IMPORTANT]
-> You can't configure collection of security events from the workspace by using the Log Analytics agent. You must use [Microsoft Defender for Cloud](../../security-center/security-center-enable-data-collection.md) or [Microsoft Sentinel](../../sentinel/connect-windows-security-events.md) to collect security events. The [Azure Monitor agent](azure-monitor-agent-overview.md) can also be used to collect security events.
+> You can't configure collection of security events from the workspace by using the Log Analytics agent. You must use [Microsoft Defender for Cloud](/azure/security-center/security-center-enable-data-collection) or [Microsoft Sentinel](/azure/sentinel/connect-windows-security-events) to collect security events. The [Azure Monitor agent](azure-monitor-agent-overview.md) can also be used to collect security events.
 
 Critical events from the Windows event log will have a severity of "Error" in Azure Monitor Logs.
 

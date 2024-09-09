@@ -85,7 +85,7 @@ Using the Azure portal, you can select from multiple preset configurations for d
 
 - Azure CLI minimum version 2.51.0.
 - For AKS clusters, [aks-preview](/azure/aks/cluster-configuration) version 0.5.147 or higher
-- For Arc enabled Kubernetes and AKS hybrid, [k8s-extension](../../azure-arc/kubernetes/extensions.md#prerequisites) version 1.4.3 or higher
+- For Arc enabled Kubernetes and AKS hybrid, [k8s-extension](/azure/azure-arc/kubernetes/extensions#prerequisites) version 1.4.3 or higher
 
 #### Configuration file
 

@@ -12,7 +12,7 @@ This article presents troubleshooting steps and information to enable you to use
 
 ## Are you using the appropriate Profiler endpoint?
 
-Currently, the only regions that require endpoint modifications are [Azure Government](../../azure-government/compare-azure-government-global-azure.md#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
+Currently, the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
 
 |App setting    | US Government Cloud | China Cloud |
 |---------------|---------------------|-------------|
@@ -79,7 +79,7 @@ Search for trace messages and custom events sent by Profiler to your Application
 Even when the Profiler is enabled, it may not capture or upload traces, especially in these situations:
 
 1. **No incoming requests to your application:**   
-     You can manually invoke your application or create an [availability test](../app/availability.md), or a [load test](../../load-testing/overview-what-is-azure-load-testing.md). 
+     You can manually invoke your application or create an [availability test](../app/availability.md), or a [load test](/azure/load-testing/overview-what-is-azure-load-testing). 
 
 1. **No incoming telemetry acknowledged by Application Insights:**  
     - If there is traffic coming to your application: validate that there are incoming requests showing in Application Insights [Live Metrics](../app/live-stream.md). 
@@ -266,7 +266,7 @@ To check the settings that were used to configure Azure Diagnostics:
 
 If your application connects to the internet via a proxy or a firewall, you might need to update the rules to communicate with Profiler.
 
-The IPs used by Application Insights Profiler are included in the Azure Monitor service tag. For more information, see [Service tags documentation](../../virtual-network/service-tags-overview.md).
+The IPs used by Application Insights Profiler are included in the Azure Monitor service tag. For more information, see [Service tags documentation](/azure/virtual-network/service-tags-overview).
 
 ## Support
 

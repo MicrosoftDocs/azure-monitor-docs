@@ -37,7 +37,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
     1. If using Log Analytics workspace as destination, verify that DCR exists in the same physical region as the Log Analytics workspace.  
     2. On your virtual machine, verify the existence of the file `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\mcsconfig.latest.xml`. If this file doesn't exist:
         - The virtual machine may not be associated with a DCR. See step 3
-        - The virtual machine may not have Managed Identity enabled. [See here](../../active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm.md#enable-system-assigned-managed-identity-during-creation-of-a-vm) on how to enable. 
+        - The virtual machine may not have Managed Identity enabled. [See here](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm#enable-system-assigned-managed-identity-during-creation-of-a-vm) on how to enable. 
         - IMDS service isn't running/accessible from the virtual machine. [Check if you can access IMDS from the machine](/azure/virtual-machines/windows/instance-metadata-service?tabs=windows). 
         - AMA can't access IMDS. Check if you see IMDS errors in `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\Tables\MAEventTable.tsf` file.
     3. Open Azure portal > select your data collection rule > Open **Configuration** : **Resources** from the pane on the left > You should see the virtual machine listed here  

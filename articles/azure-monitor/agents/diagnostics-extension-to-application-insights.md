@@ -210,6 +210,6 @@ In the previous configuration, the following lines have the following meanings:
 
 ## Next Steps
 * Learn how to [view your Azure diagnostics information](../app/azure-web-apps-net-core.md) in Application Insights.
-* Use [PowerShell](../../cloud-services/cloud-services-diagnostics-powershell.md) to enable the Azure diagnostics extension for your application.
+* Use [PowerShell](/azure/cloud-services/cloud-services-diagnostics-powershell) to enable the Azure diagnostics extension for your application.
 * Use [Visual Studio](/visualstudio/azure/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines) to enable the Azure diagnostics extension for your application
 

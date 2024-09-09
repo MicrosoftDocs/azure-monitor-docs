@@ -8,7 +8,7 @@ ms.date: 01/08/2024
 
 # Use Azure Monitor managed service for Prometheus as data source for Grafana using managed system identity 
 
-[Azure Monitor managed service for Prometheus](prometheus-metrics-overview.md) allows you to collect and analyze metrics at scale using a [Prometheus](https://aka.ms/azureprometheus-promio)-compatible monitoring solution. The most common way to analyze and present Prometheus data is with a Grafana dashboard. This article explains how to configure Prometheus as a data source for both [Azure Managed Grafana](../../managed-grafana/overview.md) and [self-hosted Grafana](https://grafana.com/) running in an Azure virtual machine using managed system identity authentication.
+[Azure Monitor managed service for Prometheus](prometheus-metrics-overview.md) allows you to collect and analyze metrics at scale using a [Prometheus](https://aka.ms/azureprometheus-promio)-compatible monitoring solution. The most common way to analyze and present Prometheus data is with a Grafana dashboard. This article explains how to configure Prometheus as a data source for both [Azure Managed Grafana](/azure/managed-grafana/overview) and [self-hosted Grafana](https://grafana.com/) running in an Azure virtual machine using managed system identity authentication.
 
 For information on using Grafana with Active Directory, see [Configure self-managed Grafana to use Azure Monitor managed Prometheus with Microsoft Entra ID](./prometheus-self-managed-grafana-azure-active-directory.md). 
 

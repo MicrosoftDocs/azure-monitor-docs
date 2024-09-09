@@ -48,7 +48,7 @@ Global requests from clients can be processed by action group services in any re
    | Option | Behavior |
    | ------ | -------- |
    | Global | The action groups service decides where to store the action group. The action group is persisted in at least two regions to ensure regional resiliency. Processing of actions may be done in any [geographic region](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br></br>Voice, SMS, and email actions performed as the result of [service health alerts](../../service-health/alerts-activity-log-service-notifications-portal.md) are resilient to Azure live-site incidents. |
-   | Regional | The action group is stored within the selected region. The action group is [zone-redundant](../../availability-zones/az-region.md#highly-available-services). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview). You can select one of these regions for regional processing of action groups: <br> - East US <br> - West US <br> - East US2 <br> - West US2 <br> - South Central US <br> - North Central US<br> - Sweden Central<br> - Germany West Central <br> - India Central <br> - India South <br> We're continually adding more regions for regional data processing of action groups.|
+   | Regional | The action group is stored within the selected region. The action group is [zone-redundant](/azure/availability-zones/az-region#highly-available-services). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview). You can select one of these regions for regional processing of action groups: <br> - East US <br> - West US <br> - East US2 <br> - West US2 <br> - South Central US <br> - North Central US<br> - Sweden Central<br> - Germany West Central <br> - India Central <br> - India South <br> We're continually adding more regions for regional data processing of action groups.|
 
    The action group is saved in the subscription, region, and resource group that you select.
 
@@ -82,11 +82,11 @@ Global requests from clients can be processed by action group services in any re
 
    |Action type|Details  |
    |---------|---------|
-   |Automation Runbook|Use Automation Runbook to automate tasks based on metrics. For example, shut down resources when a certain threshold in the associated budget is met. For information about limits on Automation runbook payloads, see [Automation limits](../../azure-resource-manager/management/azure-subscription-service-limits.md#automation-limits). |
-   |Event hubs |An Event Hubs action publishes notifications to Event Hubs. For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](../../event-hubs/event-hubs-about.md). You can subscribe to the alert notification stream from your event receiver.         |
-   |Functions |Calls an existing HTTP trigger endpoint in functions. For more information, see [Azure Functions](../../azure-functions/functions-get-started.md).<br>When you define the function action, the function's HTTP trigger endpoint and access key are saved in the action definition, for example, `https://azfunctionurl.azurewebsites.net/api/httptrigger?code=<access_key>`. If you change the access key for the function, you must remove and re-create the function action in the action group.<br>Your endpoint must support the HTTP POST method.<br>The function must have access to the storage account. If it doesn't have access, keys aren't available and the function URI isn't accessible.<br>[Learn about restoring access to the storage account](../../azure-functions/functions-recover-storage-account.md).|
+   |Automation Runbook|Use Automation Runbook to automate tasks based on metrics. For example, shut down resources when a certain threshold in the associated budget is met. For information about limits on Automation runbook payloads, see [Automation limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#automation-limits). |
+   |Event hubs |An Event Hubs action publishes notifications to Event Hubs. For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver.         |
+   |Functions |Calls an existing HTTP trigger endpoint in functions. For more information, see [Azure Functions](/azure/azure-functions/functions-get-started).<br>When you define the function action, the function's HTTP trigger endpoint and access key are saved in the action definition, for example, `https://azfunctionurl.azurewebsites.net/api/httptrigger?code=<access_key>`. If you change the access key for the function, you must remove and re-create the function action in the action group.<br>Your endpoint must support the HTTP POST method.<br>The function must have access to the storage account. If it doesn't have access, keys aren't available and the function URI isn't accessible.<br>[Learn about restoring access to the storage account](/azure/azure-functions/functions-recover-storage-account).|
    |ITSM  |An ITSM action requires an ITSM connection. To learn how to create an ITSM connection, see [ITSM integration](./itsmc-overview.md). |
-   |Logic apps     |You can use [Azure Logic Apps](../../logic-apps/logic-apps-overview.md) to build and customize workflows for integration and to customize your alert notifications.|
+   |Logic apps     |You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration and to customize your alert notifications.|
    |Secure webhook|When you use a secure webhook action, you must use Microsoft Entra ID to secure the connection between your action group and your endpoint, which is a protected web API. See [Configure authentication for Secure webhook](#configure-authentication-for-secure-webhook). Secure webhook doesn't support basic authentication. If you're using basic authentication, use the Webhook action.|
    |Webhook| If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit.<br>You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI.<br>If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the **Logic Apps** action type to manipulate the alert schema to meet the target webhook's expectations.<br> For information about the rules used for retrying webhook actions, see [Webhook](#webhook).|
 
@@ -153,12 +153,12 @@ The following table describes the role membership requirements that are needed f
   >     - To find common schema samples for all sample types, see [Common alert schema definitions for Test Action Group](./alerts-common-schema-test-action-definitions.md).
   >     - To find non-common schema alert definitions, see [Non-common alert schema definitions for Test Action Group](./alerts-non-common-schema-definitions.md).
 ## Create an action group with a Resource Manager template
-You can use an [Azure Resource Manager template](../../azure-resource-manager/templates/syntax.md) to configure action groups. Using templates, you can automatically set up action groups that can be reused in certain types of alerts. These action groups ensure that all the correct parties are notified when an alert is triggered.
+You can use an [Azure Resource Manager template](/azure/azure-resource-manager/templates/syntax) to configure action groups. Using templates, you can automatically set up action groups that can be reused in certain types of alerts. These action groups ensure that all the correct parties are notified when an alert is triggered.
 
 The basic steps are:
 
 1. Create a template as a JSON file that describes how to create the action group.
-2. Deploy the template by using [any deployment method](../../azure-resource-manager/templates/deploy-powershell.md).
+2. Deploy the template by using [any deployment method](/azure/azure-resource-manager/templates/deploy-powershell).
 
 ### Action group Resource Manager templates
 
@@ -520,7 +520,7 @@ Webhook action groups generally follow these rules when called:
 
 The secure webhook action authenticates to the protected API by using a Service Principal instance in the Microsoft Entra tenant of the "AZNS Microsoft Entra Webhook" Microsoft Entra application. To make the action group work, this Microsoft Entra Webhook Service Principal must be added as a member of a role on the target Microsoft Entra application that grants access to the target endpoint.
 
-For an overview of Microsoft Entra applications and service principals, see [Microsoft identity platform (v2.0) overview](../../active-directory/develop/v2-overview.md). Follow these steps to take advantage of the secure webhook functionality.
+For an overview of Microsoft Entra applications and service principals, see [Microsoft identity platform (v2.0) overview](/azure/active-directory/develop/v2-overview). Follow these steps to take advantage of the secure webhook functionality.
 
 > [!NOTE]
 >
@@ -529,16 +529,16 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 
 [!INCLUDE [Azure AD PowerShell deprecation note](~/reusable-content/msgraph-powershell/includes/aad-powershell-deprecation-note.md)]
 
-1. Create a Microsoft Entra application for your protected web API. For more information, see [Protected web API: App registration](../../active-directory/develop/scenario-protected-web-api-app-registration.md). Configure your protected API to be called by a daemon app and expose application permissions, not delegated permissions. For more information about these permissions, see [If your web API is called by a service or daemon app](../../active-directory/develop/scenario-protected-web-api-app-registration.md#if-your-web-api-is-called-by-a-service-or-daemon-app).
+1. Create a Microsoft Entra application for your protected web API. For more information, see [Protected web API: App registration](/azure/active-directory/develop/scenario-protected-web-api-app-registration). Configure your protected API to be called by a daemon app and expose application permissions, not delegated permissions. For more information about these permissions, see [If your web API is called by a service or daemon app](/azure/active-directory/develop/scenario-protected-web-api-app-registration#if-your-web-api-is-called-by-a-service-or-daemon-app).
 
    > [!NOTE]
    >
-   > Configure your protected web API to accept V2.0 access tokens. For more information about this setting, see [Microsoft Entra app manifest](../../active-directory/develop/reference-app-manifest.md#accesstokenacceptedversion-attribute).
+   > Configure your protected web API to accept V2.0 access tokens. For more information about this setting, see [Microsoft Entra app manifest](/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute).
 1. To enable the action group to use your Microsoft Entra application, use the PowerShell script that follows this procedure.
 
    > [!NOTE]
    >
-   > You must be assigned the [Microsoft Entra Application Administrator role](../../active-directory/roles/permissions-reference.md#all-roles) to run this script.
+   > You must be assigned the [Microsoft Entra Application Administrator role](/azure/active-directory/roles/permissions-reference#all-roles) to run this script.
    1. Modify the PowerShell script's `Connect-AzureAD` call to use your Microsoft Entra tenant ID.
    1. Modify the PowerShell script's `$myAzureADApplicationObjectId` variable to use the object ID of your Microsoft Entra application.
    1. Run the modified script.

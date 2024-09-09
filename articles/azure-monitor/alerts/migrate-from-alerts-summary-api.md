@@ -66,9 +66,9 @@ This is an example of the output from the alertsSummary API:
 
 Use these Azure Resource Graph queries instead of the alertsSummary API call to retrieve alert information, or use these queries as a basis for designing your own queries.
 
-- [List Azure Monitor alerts ordered by severity](../../governance/resource-graph/samples/starter.md#list-azure-monitor-alerts-ordered-by-severity)
-- [List Azure Monitor alerts ordered by severity and alert state](../../governance/resource-graph/samples/starter.md#list-azure-monitor-alerts-ordered-by-severity-and-alert-state)
-- [List Azure Monitor alerts ordered by severity, monitor service, and target resource type](../../governance/resource-graph/samples/starter.md#list-azure-monitor-alerts-ordered-by-severity-monitor-service-and-target-resource-type)
+- [List Azure Monitor alerts ordered by severity](/azure/governance/resource-graph/samples/starter#list-azure-monitor-alerts-ordered-by-severity)
+- [List Azure Monitor alerts ordered by severity and alert state](/azure/governance/resource-graph/samples/starter#list-azure-monitor-alerts-ordered-by-severity-and-alert-state)
+- [List Azure Monitor alerts ordered by severity, monitor service, and target resource type](/azure/governance/resource-graph/samples/starter#list-azure-monitor-alerts-ordered-by-severity-monitor-service-and-target-resource-type)
  
  This is an example of the output from the Azure Resource Graph query:
 

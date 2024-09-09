@@ -13,7 +13,7 @@ ms.custom: template-tutorial
 
 # Tutorial: Schedule a recurring experiment with Azure Chaos Studio
 
-Azure Chaos Studio lets you run chaos experiments that intentionally fail part of your application or service to verify that it's resilient against those failures. It can be useful to run these chaos experiments periodically to ensure that your application's resilience hasn't regressed or to meet compliance requirements. In this tutorial, you use a [logic app](../logic-apps/logic-apps-overview.md) to trigger an experiment to run once a day.
+Azure Chaos Studio lets you run chaos experiments that intentionally fail part of your application or service to verify that it's resilient against those failures. It can be useful to run these chaos experiments periodically to ensure that your application's resilience hasn't regressed or to meet compliance requirements. In this tutorial, you use a [logic app](/azure/logic-apps/logic-apps-overview) to trigger an experiment to run once a day.
 
 In this tutorial, you learn how to:
 
@@ -44,8 +44,8 @@ A logic app is an automated workflow that can execute based on a schedule. The l
    | Property | Value | Description |
    |----------|-------|-------------|
    | **Subscription** | <*Azure-subscription-name*> | Your Azure subscription name. This example uses **Azure Chaos Studio Demo**. |
-   | **Resource group** | chaosstudiodemo | The name for the [Azure resource group](../azure-resource-manager/management/overview.md), which is used to organize related resources. This example creates a new resource group named **chaosstudiodemo**. |
-   | **Type** | Consumption | The [logic app resource type](../logic-apps/single-tenant-overview-compare.md). Set to **Consumption**. |
+   | **Resource group** | chaosstudiodemo | The name for the [Azure resource group](/azure/azure-resource-manager/management/overview), which is used to organize related resources. This example creates a new resource group named **chaosstudiodemo**. |
+   | **Type** | Consumption | The [logic app resource type](/azure/logic-apps/single-tenant-overview-compare). Set to **Consumption**. |
    | **Name** | scheduleExperiment | Your logic app's name, which can contain only letters, numbers, hyphens, underscores, parentheses, and periods. This example uses **scheduleExperiment**. |
    | **Location** | East US | The region where to store your logic app information. This example uses **East US**. |
    | **Enable log analytics** | No | Set up diagnostic logging for the logic app. Set to **No**. |
@@ -57,7 +57,7 @@ A logic app is an automated workflow that can execute based on a schedule. The l
    Azure opens the Logic Apps template selection pane, which shows an introduction video, commonly used triggers, and logic app template patterns.
 
 ## Add the Recurrence trigger
-Next, add the Recurrence [trigger](../logic-apps/logic-apps-overview.md#logic-app-concepts), which runs the workflow based on a specified schedule. Every logic app must start with a trigger, which fires when a specific event happens or when new data meets a specific condition.
+Next, add the Recurrence [trigger](/azure/logic-apps/logic-apps-overview#logic-app-concepts), which runs the workflow based on a specified schedule. Every logic app must start with a trigger, which fires when a specific event happens or when new data meets a specific condition.
 
 1. Scroll down past the video and common triggers sections to the **Templates** section and select **Blank Logic App**.
 
@@ -96,12 +96,12 @@ Next, add the Recurrence [trigger](../logic-apps/logic-apps-overview.md#logic-ap
    | **At these hours** | 8 | This setting is available only when you set the **Frequency** to **Week** or **Day**. For this recurrence, select the hours of the day. This example runs at the **8**-hour mark. |
    | **At these minutes** | 00 | This setting is available only when you set the **Frequency** to **Week** or **Day**. For this recurrence, select the minutes of the day. This example runs once at the zero-hour mark. |
 
-   This trigger fires every weekday at 8:00 AM. The **Preview** box shows the recurrence schedule. For more information, see [Schedule tasks and workflows](../connectors/connectors-native-recurrence.md) and [Workflow actions and triggers](../logic-apps/logic-apps-workflow-actions-triggers.md#recurrence-trigger).
+   This trigger fires every weekday at 8:00 AM. The **Preview** box shows the recurrence schedule. For more information, see [Schedule tasks and workflows](/azure/connectors/connectors-native-recurrence) and [Workflow actions and triggers](/azure/logic-apps/logic-apps-workflow-actions-triggers#recurrence-trigger).
 
 1. Save your logic app. On the designer toolbar, select **Save**.
 
 ## Add a run chaos experiment action
-Now that you have a trigger, add an [action](../logic-apps/logic-apps-overview.md#logic-app-concepts) that starts the experiment. This tutorial uses the **Invoke resource operation** action to start the experiment.
+Now that you have a trigger, add an [action](/azure/logic-apps/logic-apps-overview#logic-app-concepts) that starts the experiment. This tutorial uses the **Invoke resource operation** action to start the experiment.
 
 1. In the Logic App Designer, under the Recurrence trigger, select **New step**.
 

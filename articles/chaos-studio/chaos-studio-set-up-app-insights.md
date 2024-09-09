@@ -20,7 +20,7 @@ In this guide, we'll show you the steps needed to configure a Chaos Studio **Age
 - An existing Chaos Studio [**Agent-based** Experiment](chaos-studio-tutorial-agent-based-portal.md)
 - [Required for Application Insights Resource as well] An existing [Log Analytics Workspace](../azure-monitor/logs/quick-create-workspace.md)
 - An existing [Application Insights Resource](../azure-monitor/app/create-workspace-resource.md)
-- [Required for Agent-based Chaos Experiments] A [User-Assigned Managed Identity](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md)
+- [Required for Agent-based Chaos Experiments] A [User-Assigned Managed Identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities)
 
 ## Step 1: Copy the Instrumentation Key from your Application Insights Resource
 Once you have met all the prerequisite steps, copy the **Instrumentation Key** found in the overview page of your Application Insights Resource (see screenshot)

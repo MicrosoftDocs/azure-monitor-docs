@@ -19,15 +19,15 @@ By using the Azure Monitor [Azure Diagnostics extension for Windows (WAD)](../ag
 
 This article describes the process to send guest OS performance metrics for a Windows virtual machine scale set to the Azure Monitor data store. Starting with Microsoft Azure Diagnostics version 1.11, you can write metrics directly to the Azure Monitor metrics store, where standard platform metrics are already collected. By storing them in this location, you can access the same actions that are available for platform metrics. Actions include near real-time alerting, charting, routing, access from the REST API, and more. In the past, the Microsoft Azure Diagnostics extension wrote to Azure Storage but not the Azure Monitor data store.  
 
-If you're new to Resource Manager templates, learn about [template deployments](../../azure-resource-manager/management/overview.md) and their structure and syntax.  
+If you're new to Resource Manager templates, learn about [template deployments](/azure/azure-resource-manager/management/overview) and their structure and syntax.  
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 ## Prerequisites
 
-- Your subscription must be registered with [Microsoft.Insights](../../azure-resource-manager/management/resource-providers-and-types.md). 
+- Your subscription must be registered with [Microsoft.Insights](/azure/azure-resource-manager/management/resource-providers-and-types). 
 
-- You need to have [Azure PowerShell](/powershell/azure) installed, or you can use [Azure Cloud Shell](../../cloud-shell/overview.md). 
+- You need to have [Azure PowerShell](/powershell/azure) installed, or you can use [Azure Cloud Shell](/azure/cloud-shell/overview). 
 
 ## Set up Azure Monitor as a data sink 
 The Azure Diagnostics extension uses a feature called **data sinks** to route metrics and logs to different locations. The following steps show how to use a Resource Manager template and PowerShell to deploy a VM by using the new Azure Monitor data sink. 

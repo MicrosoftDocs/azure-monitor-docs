@@ -65,8 +65,8 @@ You can deploy the solution with the provided Azure Resource Manager template by
 
 If you're unfamiliar with the concept of deploying resources by using a template, see:
 
-- [Deploy resources with Resource Manager templates and Azure PowerShell](../../azure-resource-manager/templates/deploy-powershell.md)
-- [Deploy resources with Resource Manager templates and the Azure CLI](../../azure-resource-manager/templates/deploy-cli.md)
+- [Deploy resources with Resource Manager templates and Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell)
+- [Deploy resources with Resource Manager templates and the Azure CLI](/azure/azure-resource-manager/templates/deploy-cli)
 
 If you choose to use the Azure CLI, you first need to install and use the CLI locally. You must be running the Azure CLI version 2.0.59 or later. To identify your version, run `az --version`. If you need to install or upgrade the Azure CLI, see [Install the Azure CLI](/cli/azure/install-azure-cli).
 

@@ -41,12 +41,12 @@ To discover the resources that you can autoscale, follow these steps.
 ## Create your first autoscale setting  
 
 > [!NOTE]
-> In addition to the Autoscale instructions in this article, there's new, automatic scaling in Azure App Service. You'll find more on this capability in the [automatic scaling](../../app-service/manage-automatic-scaling.md) article.
+> In addition to the Autoscale instructions in this article, there's new, automatic scaling in Azure App Service. You'll find more on this capability in the [automatic scaling](/azure/app-service/manage-automatic-scaling) article.
 >
 
 Follow the steps below to create your first autoscale setting.
 
-1. Open the **Autoscale** pane in Azure Monitor and select a resource that you want to scale. The following steps use an App Service plan associated with a web app. You can [create your first ASP.NET web app in Azure in 5 minutes.](../../app-service/quickstart-dotnetcore.md)
+1. Open the **Autoscale** pane in Azure Monitor and select a resource that you want to scale. The following steps use an App Service plan associated with a web app. You can [create your first ASP.NET web app in Azure in 5 minutes.](/azure/app-service/quickstart-dotnetcore)
 1. The current instance count is 1. Select **Custom autoscale**.
 
 1. Enter a **Name** and **Resource group** or use the default.
@@ -178,7 +178,7 @@ Use [REST API](/rest/api/monitor/autoscalesettings/createorupdate) to create an 
 
 ### Learn more about moving resources across Azure regions
 
-To learn more about moving resources between regions and disaster recovery in Azure, see [Move resources to a new resource group or subscription](../../azure-resource-manager/management/move-resource-group-and-subscription.md).
+To learn more about moving resources between regions and disaster recovery in Azure, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
 
 ## Next steps
 

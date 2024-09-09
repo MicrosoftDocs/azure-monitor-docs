@@ -125,7 +125,7 @@ The template defines two resources:
 
 ## Deploy the template
 
-Deploy the template using any standard method for [deploying an ARM template](../azure-resource-manager/templates/deploy-portal.md) such as the following examples using CLI and PowerShell. Replace the sample values for **Resource Group** and **emailAddress** with appropriate values for your environment.
+Deploy the template using any standard method for [deploying an ARM template](/azure/azure-resource-manager/templates/deploy-portal) such as the following examples using CLI and PowerShell. Replace the sample values for **Resource Group** and **emailAddress** with appropriate values for your environment.
 
 # [CLI](#tab/CLI)
 

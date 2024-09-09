@@ -71,7 +71,7 @@ Two types of workbook resources can be managed programmatically:
     }
     ```
 1. In the `galleries` object, fill in the `name` and `category` keys with your values. Learn more about [parameters](#parameters) in the next section.
-1. Deploy this ARM template by using either the [Azure portal](../../azure-resource-manager/templates/deploy-portal.md#deploy-resources-from-custom-template), the [command-line interface](../../azure-resource-manager/templates/deploy-cli.md), or [PowerShell](../../azure-resource-manager/templates/deploy-powershell.md).
+1. Deploy this ARM template by using either the [Azure portal](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template), the [command-line interface](/azure/azure-resource-manager/templates/deploy-cli), or [PowerShell](/azure/azure-resource-manager/templates/deploy-powershell).
 1. Open the Azure portal and go to the workbook gallery chosen in the ARM template. In the example template, go to the Azure Monitor workbook gallery:
     1. Open the Azure portal and go to Azure Monitor.
     1. Open `Workbooks` from the table of contents.
@@ -302,4 +302,4 @@ In this example, the following steps facilitate the customization of an exported
 
 ## Next steps
 
-Explore how workbooks are being used to power the new [Storage insights experience](../../storage/common/storage-insights-overview.md?toc=%2fazure%2fazure-monitor%2ftoc.json).
+Explore how workbooks are being used to power the new [Storage insights experience](/azure/storage/common/storage-insights-overview?toc=%2fazure%2fazure-monitor%2ftoc.json).

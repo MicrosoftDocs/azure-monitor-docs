@@ -124,7 +124,7 @@ For example, you might grant access to only specific tables collected by Microso
 - **If you don't require granular access control by table:** Grant the operations and security team access to their resources and allow resource owners to use resource-context RBAC for their resources.
 - **If you require granular access control by table:** Grant or deny access to specific tables by using table-level RBAC.
 
-For more information, see [Manage access to Microsoft Sentinel data by resource](../../sentinel/resource-context-rbac.md).
+For more information, see [Manage access to Microsoft Sentinel data by resource](/azure/sentinel/resource-context-rbac).
 
 ### Resilience
 
@@ -138,7 +138,7 @@ Many designs include multiple workspaces. For example, a central security operat
 Both Azure Monitor and Microsoft Sentinel include features to assist you in analyzing this data across workspaces. For more information, see:
 
 - [Create a log query across multiple workspaces and apps in Azure Monitor](cross-workspace-query.md)
-- [Extend Microsoft Sentinel across workspaces and tenants](../../sentinel/extend-sentinel-across-workspaces-tenants.md)
+- [Extend Microsoft Sentinel across workspaces and tenants](/azure/sentinel/extend-sentinel-across-workspaces-tenants)
 
 When naming each workspace, we recommend including a meaningful indicator in the name so that you can easily identity the purpose of each workspace.
 
@@ -155,13 +155,13 @@ In a distributed architecture, a Log Analytics workspace is created in each Azur
 
 There are two options to allow service provider administrators to access the workspaces in the customer tenants:
 
-- Use [Azure Lighthouse](../../lighthouse/overview.md) to access each customer tenant. The service provider administrators are included in a Microsoft Entra user group in the service provider's tenant. This group is granted access during the onboarding process for each customer. The administrators can then access each customer's workspaces from within their own service provider tenant instead of having to sign in to each customer's tenant individually. For more information, see [Monitor customer resources at scale](../../lighthouse/how-to/monitor-at-scale.md).
-- Add individual users from the service provider as [Microsoft Entra guest users (B2B)](../../active-directory/external-identities/what-is-b2b.md). The customer tenant administrators manage individual access for each service provider administrator. The service provider administrators must sign in to the directory for each tenant in the Azure portal to access these workspaces.
+- Use [Azure Lighthouse](/azure/lighthouse/overview) to access each customer tenant. The service provider administrators are included in a Microsoft Entra user group in the service provider's tenant. This group is granted access during the onboarding process for each customer. The administrators can then access each customer's workspaces from within their own service provider tenant instead of having to sign in to each customer's tenant individually. For more information, see [Monitor customer resources at scale](/azure/lighthouse/how-to/monitor-at-scale).
+- Add individual users from the service provider as [Microsoft Entra guest users (B2B)](/azure/active-directory/external-identities/what-is-b2b). The customer tenant administrators manage individual access for each service provider administrator. The service provider administrators must sign in to the directory for each tenant in the Azure portal to access these workspaces.
 
 Advantages to this strategy:
 
 - Logs can be collected from all types of resources.
-- The customer can confirm specific levels of permissions with [Azure delegated resource management](../../lighthouse/concepts/architecture.md). Or the customer can manage access to the logs by using their own [Azure RBAC](../../role-based-access-control/overview.md).
+- The customer can confirm specific levels of permissions with [Azure delegated resource management](/azure/lighthouse/concepts/architecture). Or the customer can manage access to the logs by using their own [Azure RBAC](/azure/role-based-access-control/overview).
 - Each customer can have different settings for their workspace, such as retention and data cap.
 - Isolation between customers for regulatory and compliance.
 - The charge for each workspace is included in the bill for the customer's subscription.
@@ -191,11 +191,11 @@ In a hybrid model, each tenant has its own workspace. A mechanism is used to pul
 
 There are two options to implement logs in a central location:
 
-- **Central workspace**: The service provider creates a workspace in its tenant and uses a script that utilizes the [Query API](api/overview.md) with the [logs ingestion API](logs-ingestion-api-overview.md) to bring the data from the tenant workspaces to this central location. Another option is to use [Azure Logic Apps](../../logic-apps/logic-apps-overview.md) to copy data to the central workspace.
+- **Central workspace**: The service provider creates a workspace in its tenant and uses a script that utilizes the [Query API](api/overview.md) with the [logs ingestion API](logs-ingestion-api-overview.md) to bring the data from the tenant workspaces to this central location. Another option is to use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to copy data to the central workspace.
 - **Power BI**: The tenant workspaces export data to Power BI by using the integration between the [Log Analytics workspace and Power BI](log-powerbi.md).
 
 ## Next steps
 
 - Learn more about [designing and configuring data access in a workspace](manage-access.md).
-- Get [sample workspace architectures for Microsoft Sentinel](../../sentinel/sample-workspace-designs.md).
+- Get [sample workspace architectures for Microsoft Sentinel](/azure/sentinel/sample-workspace-designs).
 - Here's a video on designing the proper structure for your Log Analytics workspace: [ITOps Talk:Log Analytics workspace design deep dive](/shows/it-ops-talk/ops115-log-analytics-workspace-design-deep-dive)

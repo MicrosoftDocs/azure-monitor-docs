@@ -141,7 +141,7 @@ The template defines two resources:
 
 ## Deploy the template
 
-Deploy the template by using any standard method for [deploying an ARM template](../azure-resource-manager/templates/deploy-portal.md), such as the following examples that use the CLI and PowerShell. Replace the sample values for `ResourceGroup`, and `emailAddress` with appropriate values for your environment. The workspace name must be unique among all Azure subscriptions.
+Deploy the template by using any standard method for [deploying an ARM template](/azure/azure-resource-manager/templates/deploy-portal), such as the following examples that use the CLI and PowerShell. Replace the sample values for `ResourceGroup`, and `emailAddress` with appropriate values for your environment. The workspace name must be unique among all Azure subscriptions.
 
 # [CLI](#tab/CLI)
 

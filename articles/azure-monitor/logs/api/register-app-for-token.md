@@ -77,7 +77,7 @@ The CLI following example assigns the `Reader` role to the service principal for
 For more information on creating a service principal using Azure CLI, see [Create an Azure service principal with the Azure CLI](/cli/azure/create-an-azure-service-principal-azure-cli).
 
 ### [PowerShell](#tab/powershell)
-The following sample script demonstrates creating a Microsoft Entra service principal via PowerShell. For a more detailed walkthrough, see [using Azure PowerShell to create a service principal to access resources](../../../active-directory/develop/howto-authenticate-service-principal-powershell.md)  
+The following sample script demonstrates creating a Microsoft Entra service principal via PowerShell. For a more detailed walkthrough, see [using Azure PowerShell to create a service principal to access resources](/azure/active-directory/develop/howto-authenticate-service-principal-powershell)  
 
 ```powershell
 $subscriptionId = "{azure-subscription-id}"
@@ -115,7 +115,7 @@ For example,
 
 - To grant access to send custom metrics for a resource,  add your app as a member to the **Monitoring Metrics Publisher** role using Access control (IAM) for your resource. For more information, see [Send metrics to the Azure Monitor metric database using REST API](../../essentials/metrics-store-custom-rest-api.md)
 
-For more information, see [Assign Azure roles using the Azure portal](../../../role-based-access-control/role-assignments-portal.yml)
+For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
 
 Once you've assigned a role, you can use your app, client ID, and client secret to generate a bearer token to access the REST API.
 

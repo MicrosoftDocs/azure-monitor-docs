@@ -152,13 +152,13 @@ While these commands don't use the Chaos Studio API specifically, they can be he
 
 ### View Chaos Studio resources with Azure Resource Graph
 
-You can use the Azure Resource Graph [REST API](../governance/resource-graph/first-query-rest-api.md) to query resources associated with Chaos Studio, like targets and capabilities.
+You can use the Azure Resource Graph [REST API](/azure/governance/resource-graph/first-query-rest-api) to query resources associated with Chaos Studio, like targets and capabilities.
 
 ```azurecli
  az rest --method post --url "https://management.azure.com/providers/Microsoft.ResourceGraph/resources?api-version=2021-03-01" --body "{'query':'chaosresources'}"
 ```
 
-Alternatively, you can use Azure Resource Graph's `az cli` [extension](../governance/resource-graph/first-query-azurecli.md).
+Alternatively, you can use Azure Resource Graph's `az cli` [extension](/azure/governance/resource-graph/first-query-azurecli).
 
 ```azurecli-interactive
 az graph query -q "chaosresources | summarize count() by type"

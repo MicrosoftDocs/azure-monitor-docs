@@ -10,7 +10,7 @@ ms.date: 08/08/2023
 
 # Resource Manager template samples for Log Analytics workspaces in Azure Monitor
 
-This article includes sample [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md) to create and configure [Log Analytics workspaces](./log-analytics-workspace-overview.md) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
+This article includes sample [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create and configure [Log Analytics workspaces](./log-analytics-workspace-overview.md) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
 [!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 
@@ -33,7 +33,7 @@ Verify that your Azure subscription allows you to create Log Analytics workspace
 
 ## Create a Log Analytics workspace
 
-The following sample creates a new empty [Log Analytics workspace](./log-analytics-workspace-insights-overview.md). A workspace has unique workspace ID and resource ID. You can reuse the same workspace name when in different [resource groups](../../azure-resource-manager/management/manage-resource-groups-portal.md#what-is-a-resource-group).
+The following sample creates a new empty [Log Analytics workspace](./log-analytics-workspace-insights-overview.md). A workspace has unique workspace ID and resource ID. You can reuse the same workspace name when in different [resource groups](/azure/azure-resource-manager/management/manage-resource-groups-portal#what-is-a-resource-group).
 
 ### Notes
 

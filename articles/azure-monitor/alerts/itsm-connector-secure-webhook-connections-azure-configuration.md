@@ -17,7 +17,7 @@ This article describes the required Azure configurations for using Secure Webhoo
 
 To register the application with Microsoft Entra ID:
 
-1. Follow the steps in [Register an application with the Microsoft identity platform](../../active-directory/develop/quickstart-register-app.md).
+1. Follow the steps in [Register an application with the Microsoft identity platform](/azure/active-directory/develop/quickstart-register-app).
 1. In Microsoft Entra ID, select **Expose application**.
 1. Select **Add** for **Application ID URI**.
 

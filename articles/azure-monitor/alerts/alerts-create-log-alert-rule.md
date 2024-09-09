@@ -190,15 +190,15 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
       - A *reader* role for all data sources that the query accesses. For example, if the query is calling a remote Azure Data Explorer cluster by using the `adx()` function, it needs a reader role on that Azure Data Explorer cluster.
       - A *database viewer* role for all databases that the query accesses.
 
-    For detailed information on managed identities, see [Managed identities for Azure resources](../../active-directory/managed-identities-azure-resources/overview.md).
+    For detailed information on managed identities, see [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).
 
     Select one of the following options for the identity that the alert rule uses:
 
     |Identity option  |Description  |
     |---------|---------|
     |**None**|Alert rule permissions are based on the permissions of the last user who edited the rule, at the time that the rule was edited.|
-    |**Enable system assigned managed identity**| Azure creates a new, dedicated identity for this alert rule. This identity has no permissions and is automatically deleted when the rule is deleted. After you create the rule, you must assign permissions to this identity to access the necessary workspace and data sources for the query. For more information about assigning permissions, see [Assign Azure roles using the Azure portal](../../role-based-access-control/role-assignments-portal.yml). Log search alert rules that use linked storage are not supported. |
-    |**Enable user assigned managed identity**|Before you create the alert rule, you [create an identity](../../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md#create-a-user-assigned-managed-identity) and assign it appropriate permissions for the log query. This is a regular Azure identity. You can use one identity in multiple alert rules. The identity isn't deleted when the rule is deleted. When you select this type of identity, a pane opens for you to select the associated identity for the rule. |
+    |**Enable system assigned managed identity**| Azure creates a new, dedicated identity for this alert rule. This identity has no permissions and is automatically deleted when the rule is deleted. After you create the rule, you must assign permissions to this identity to access the necessary workspace and data sources for the query. For more information about assigning permissions, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Log search alert rules that use linked storage are not supported. |
+    |**Enable user assigned managed identity**|Before you create the alert rule, you [create an identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities#create-a-user-assigned-managed-identity) and assign it appropriate permissions for the log query. This is a regular Azure identity. You can use one identity in multiple alert rules. The identity isn't deleted when the rule is deleted. When you select this type of identity, a pane opens for you to select the associated identity for the rule. |
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-log-rule-details-tab.png" alt-text="Screenshot that shows the Details tab for creating a new log search alert rule.":::
 

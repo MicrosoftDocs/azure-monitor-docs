@@ -19,7 +19,7 @@ This article walks you through creating a chaos experiment that blocks all traff
 ## Prerequisites
 
 - An NSG that's associated with the Azure resource you want to target in your experiment.
-- Use the Bash environment in [Azure Cloud Shell](../cloud-shell/quickstart.md).
+- Use the Bash environment in [Azure Cloud Shell](/azure/cloud-shell/quickstart).
 
 ## Create the NSG fault provider
 

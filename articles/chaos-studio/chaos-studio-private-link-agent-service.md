@@ -71,7 +71,7 @@ az rest --verbose --skip-authorization-header --header "Authorization=Bearer $ac
 
 ## Create your virtual network, subnet, and private endpoint
 
-[Set up your desired virtual network, subnet, and endpoint](../private-link/create-private-endpoint-portal.md) for the experiment if you haven't already.
+[Set up your desired virtual network, subnet, and endpoint](/azure/private-link/create-private-endpoint-portal) for the experiment if you haven't already.
 
 Make sure you attach it to the same VM's virtual network. Screenshots provide examples of creating the virtual network, subnet, and private endpoint. You need to set **Resource type** to **Microsoft.Chaos/privateAccesses** as seen in the screenshot.
 

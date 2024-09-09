@@ -9,13 +9,13 @@ ms.date: 08/12/2024
 
 
 # Export data from a Log Analytics workspace to a storage account by using Logic Apps
-This article describes a method to use [Azure Logic Apps](../../logic-apps/index.yml) to query data from a Log Analytics workspace in Azure Monitor and send it to Azure Storage. Use this process when you need to export your Azure Monitor Logs data for auditing and compliance scenarios or to allow another service to retrieve this data.
+This article describes a method to use [Azure Logic Apps](/azure/logic-apps/) to query data from a Log Analytics workspace in Azure Monitor and send it to Azure Storage. Use this process when you need to export your Azure Monitor Logs data for auditing and compliance scenarios or to allow another service to retrieve this data.
 
 ## Other export methods
 The method discussed in this article describes a scheduled export from a log query by using a logic app. Other options to export data for particular scenarios include:
 
 - To export data from your Log Analytics workspace to a storage account or Azure Event Hubs, use the Log Analytics workspace data export feature of Azure Monitor Logs. See [Log Analytics workspace data export in Azure Monitor](logs-data-export.md).
-- One-time export by using a logic app. See [Azure Monitor Logs connector for Logic Apps](../../connectors/connectors-azure-monitor-logs.md).
+- One-time export by using a logic app. See [Azure Monitor Logs connector for Logic Apps](/azure/connectors/connectors-azure-monitor-logs).
 - One-time export to a local machine by using a PowerShell script. See [Invoke-AzOperationalInsightsQueryExport](https://www.powershellgallery.com/packages/Invoke-AzOperationalInsightsQueryExport).
 
 ## Overview
@@ -53,11 +53,11 @@ The following sections walk you through the procedure.
 
 ### Create a container in the storage account
 
-Use the procedure in [Create a container](../../storage/blobs/storage-quickstart-blobs-portal.md#create-a-container) to add a container to your storage account to hold the exported data. The name used for the container in this article is **loganalytics-data**, but you can use any name.
+Use the procedure in [Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container) to add a container to your storage account to hold the exported data. The name used for the container in this article is **loganalytics-data**, but you can use any name.
 
 ### Create a logic app workflow
 
-1. Go to **Logic Apps** in the Azure portal and select **Add**. Select a **Subscription**, **Resource group**, and **Region** to store the new logic app. Then give it a unique name. You can turn on the **Log Analytics** setting to collect information about runtime data and events as described in [Set up Azure Monitor Logs and collect diagnostics data for Azure Logic Apps](../../logic-apps/monitor-workflows-collect-diagnostic-data.md). This setting isn't required for using the Azure Monitor Logs connector.
+1. Go to **Logic Apps** in the Azure portal and select **Add**. Select a **Subscription**, **Resource group**, and **Region** to store the new logic app. Then give it a unique name. You can turn on the **Log Analytics** setting to collect information about runtime data and events as described in [Set up Azure Monitor Logs and collect diagnostics data for Azure Logic Apps](/azure/logic-apps/monitor-workflows-collect-diagnostic-data). This setting isn't required for using the Azure Monitor Logs connector.
    <!-- convertborder later -->
    :::image type="content" source="media/logs-export-logic-app/create-logic-app.png" lightbox="media/logs-export-logic-app/create-logic-app.png" alt-text="Screenshot that shows creating a logic app." border="false":::
 
@@ -189,7 +189,7 @@ The **Create blob** action writes the composed JSON to storage.
 
 ### Test the workflow
 
-To test the workflow, select **Run**. If the workflow has errors, they're indicated on the step with the problem. You can view the executions and drill in to each step to view the input and output to investigate failures. See [Troubleshoot and diagnose workflow failures in Azure Logic Apps](../../logic-apps/logic-apps-diagnosing-failures.md), if necessary.
+To test the workflow, select **Run**. If the workflow has errors, they're indicated on the step with the problem. You can view the executions and drill in to each step to view the input and output to investigate failures. See [Troubleshoot and diagnose workflow failures in Azure Logic Apps](/azure/logic-apps/logic-apps-diagnosing-failures), if necessary.
 <!-- convertborder later -->
 :::image type="content" source="media/logs-export-logic-app/runs-history.png" lightbox="media/logs-export-logic-app/runs-history.png" alt-text="Screenshot that shows Runs history." border="false":::
 
@@ -314,5 +314,5 @@ The optional Parse JSON step isn't included in template
 ## Next steps
 
 - Learn more about [log queries in Azure Monitor](./log-query-overview.md).
-- Learn more about [Logic Apps](../../logic-apps/index.yml).
+- Learn more about [Logic Apps](/azure/logic-apps/).
 - Learn more about [Power Automate](https://make.powerautomate.com).

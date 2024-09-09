@@ -19,9 +19,9 @@ A daily cap on a Log Analytics workspace allows you to avoid unexpected increase
 | Action | Permissions or role needed |
 |------|------------------------------|
 | Set the daily cap on a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/write` permissions to the Log Analytics workspaces you set the daily cap on, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
-| Set the daily cap on a classic Application Insights resource | `microsoft.insights/components/CurrentBillingFeatures/write` permissions to the classic Application Insights resources you set the daily cap on, as provided by the [Application Insights Component Contributor built-in role](../../role-based-access-control/built-in-roles.md#application-insights-component-contributor), for example. |
-| Create an alert when the daily cap for a Log Analytics workspace is reached | `microsoft.insights/scheduledqueryrules/write` permissions, as provided by the [Monitoring Contributor built-in role](../../role-based-access-control/built-in-roles.md#monitoring-contributor), for example |
-| Create an alert when the daily cap for a classic Application Insights resource is reached | `microsoft.insights/activitylogalerts/write` permissions, as provided by the [Monitoring Contributor built-in role](../../role-based-access-control/built-in-roles.md#monitoring-contributor), for example |
+| Set the daily cap on a classic Application Insights resource | `microsoft.insights/components/CurrentBillingFeatures/write` permissions to the classic Application Insights resources you set the daily cap on, as provided by the [Application Insights Component Contributor built-in role](/azure/role-based-access-control/built-in-roles#application-insights-component-contributor), for example. |
+| Create an alert when the daily cap for a Log Analytics workspace is reached | `microsoft.insights/scheduledqueryrules/write` permissions, as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example |
+| Create an alert when the daily cap for a classic Application Insights resource is reached | `microsoft.insights/activitylogalerts/write` permissions, as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example |
 | View the effect of the daily cap | `Microsoft.OperationalInsights/workspaces/query/*/read` permissions to the Log Analytics workspaces you query, as provided by the [Log Analytics Reader built-in role](./manage-access.md#log-analytics-reader), for example. |
 
 ## How the daily cap works
@@ -154,7 +154,7 @@ Usage
 | summarize IngestedGbBetweenDailyCapResets=sum(Quantity)/1000. by day=bin(StartTime , 1d) // Quantity in units of MB
 | render areachart  
 ```
-Add `Update` and `UpdateSummary` data types to the `where Datatype` line when the Update Management solution is not running on the workspace or solution targeting is enabled ([learn more](../../security-center/security-center-pricing.md#what-data-types-are-included-in-the-500-mb-data-daily-allowance).)
+Add `Update` and `UpdateSummary` data types to the `where Datatype` line when the Update Management solution is not running on the workspace or solution targeting is enabled ([learn more](/azure/security-center/security-center-pricing#what-data-types-are-included-in-the-500-mb-data-daily-allowance).)
 
 ## Next steps
 

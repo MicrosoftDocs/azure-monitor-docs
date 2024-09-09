@@ -11,7 +11,7 @@ ms.date: 04/01/2024
 
 # Resource Manager template samples for Azure Monitor activity log alert rules (Administrative category) 
 
-This article includes examples of [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md) to create and configure activity log alerts for Administrative events in Azure Monitor. 
+This article includes examples of [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create and configure activity log alerts for Administrative events in Azure Monitor. 
 
 [!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 

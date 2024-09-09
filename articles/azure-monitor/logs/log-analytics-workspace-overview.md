@@ -19,7 +19,7 @@ A Log Analytics workspace is a data store into which you can collect any type of
 This article provides an overview of concepts related to Log Analytics workspaces.
 
 > [!IMPORTANT]
-> [Microsoft Sentinel](../../sentinel/overview.md) documentation uses the term *Microsoft Sentinel workspace*. This workspace is the same Log Analytics workspace described in this article, but it's enabled for Microsoft Sentinel. All data in the workspace is subject to Microsoft Sentinel pricing.
+> [Microsoft Sentinel](/azure/sentinel/overview) documentation uses the term *Microsoft Sentinel workspace*. This workspace is the same Log Analytics workspace described in this article, but it's enabled for Microsoft Sentinel. All data in the workspace is subject to Microsoft Sentinel pricing.
 
 ## Log tables
 

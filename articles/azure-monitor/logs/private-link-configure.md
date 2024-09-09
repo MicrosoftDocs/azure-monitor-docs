@@ -72,7 +72,7 @@ Now that you have resources connected to your AMPLS, create a private endpoint t
 1. On the **Virtual Network** tab, select the **Virtual network** and **Subnet** that you want to connect to your Azure Monitor resources.
 1. For **Network policy for private endpoints**, select **edit** if you want to apply network security groups or Route tables to the subnet that contains the private endpoint.  
 
-    In **Edit subnet network policy**, select the checkboxes next to **Network security groups** and **Route tables**, and select **Save**.  For more information, see [Manage network policies for private endpoints](../../private-link/disable-private-endpoint-network-policy.md).
+    In **Edit subnet network policy**, select the checkboxes next to **Network security groups** and **Route tables**, and select **Save**.  For more information, see [Manage network policies for private endpoints](/azure/private-link/disable-private-endpoint-network-policy).
 
 1. For **Private IP configuration**, by default, **Dynamically allocate IP address** is selected. If you want to assign a static IP address, select **Statically allocate IP address**. Then enter a name and private IP.    
    Optionally, you can select or create an **Application security group**. You can use application security groups to group virtual machines and define network security policies based on those groups.
@@ -83,9 +83,9 @@ Now that you have resources connected to your AMPLS, create a private endpoint t
 1. On the **DNS** tab, select **Yes** for **Integrate with private DNS zone**, and let it automatically create a new private DNS zone. The actual DNS zones might be different from what's shown in the following screenshot.
 
     > [!NOTE]
-    > If you select **No** and prefer to manage DNS records manually, first finish setting up your private link. Include this private endpoint and the AMPLS configuration. Then, configure your DNS according to the instructions in [Azure private endpoint DNS configuration](../../private-link/private-endpoint-dns.md). Make sure not to create empty records as preparation for your private link setup. The DNS records you create can override existing settings and affect your connectivity with Azure Monitor.
+    > If you select **No** and prefer to manage DNS records manually, first finish setting up your private link. Include this private endpoint and the AMPLS configuration. Then, configure your DNS according to the instructions in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). Make sure not to create empty records as preparation for your private link setup. The DNS records you create can override existing settings and affect your connectivity with Azure Monitor.
     >
-    >  Additionally, if you select **Yes** or **No** and you're using your own custom DNS servers, you need to set up conditional forwarders for the Public DNS zone forwarders mentioned in [Azure private endpoint DNS configuration](../../private-link/private-endpoint-dns.md).
+    >  Additionally, if you select **Yes** or **No** and you're using your own custom DNS servers, you need to set up conditional forwarders for the Public DNS zone forwarders mentioned in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns).
     > The conditional forwarders need to forward the DNS queries to [Azure DNS](/azure/virtual-network/what-is-ip-address-168-63-129-16).
 
 1. Select **Next: Tags**, then select **Review + create**.
@@ -317,5 +317,5 @@ Make sure that your private link is in good working order:
 ## Next steps
 
 - Learn about [private storage](private-storage.md) for custom logs and customer-managed keys.
-- Learn about [Private Link for Azure Automation](../../automation/how-to/private-link-security.md).
+- Learn about [Private Link for Azure Automation](/azure/automation/how-to/private-link-security).
 - Learn about the new [data collection endpoints](../essentials/data-collection-endpoint-overview.md).

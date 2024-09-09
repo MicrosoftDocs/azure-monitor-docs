@@ -23,7 +23,7 @@ The data collected from the guest operating system that can be sent to Event Hub
 ## Prerequisites
 
 * Windows diagnostics extension 1.6 or higher. See [Azure Diagnostics extension configuration schema versions and history](diagnostics-extension-versions.md) for a version history and [Azure Diagnostics extension overview](diagnostics-extension-overview.md) for supported resources.
-* Event Hubs namespace must always be provisioned. See [Get started with Event Hubs](../../event-hubs/event-hubs-dotnet-standard-getstarted-send.md) for details.
+* Event Hubs namespace must always be provisioned. See [Get started with Event Hubs](/azure/event-hubs/event-hubs-dotnet-standard-getstarted-send) for details.
 * Event hub must be at least Standard tier. Basic tier is not supported.
 
 
@@ -161,7 +161,7 @@ In the following example, the **sinks** attribute is applied directly to three c
 ```
 
 ## Validating configuration
-You can use a variety of methods to validate that data is being sent to the event hub. One straightforward method is to use Event Hubs capture as described in [Capture events through Azure Event Hubs in Azure Blob Storage or Azure Data Lake Storage](../../event-hubs/event-hubs-capture-overview.md). 
+You can use a variety of methods to validate that data is being sent to the event hub. One straightforward method is to use Event Hubs capture as described in [Capture events through Azure Event Hubs in Azure Blob Storage or Azure Data Lake Storage](/azure/event-hubs/event-hubs-capture-overview). 
 
 
 ## Troubleshoot Event Hubs sinks
@@ -172,9 +172,9 @@ You can use a variety of methods to validate that data is being sent to the even
 
 ## Next steps
 
-* [Event Hubs overview](../../event-hubs/event-hubs-about.md)
-* [Create an event hub](../../event-hubs/event-hubs-create.md)
-* [Event Hubs FAQ](../../event-hubs/event-hubs-faq.yml)
+* [Event Hubs overview](/azure/event-hubs/event-hubs-about)
+* [Create an event hub](/azure/event-hubs/event-hubs-create)
+* [Event Hubs FAQ](/azure/event-hubs/event-hubs-faq)
 
 <!-- Images. -->
 [0]: ../../event-hubs/media/event-hubs-streaming-azure-diags-data/dashboard.png

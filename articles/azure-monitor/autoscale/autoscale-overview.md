@@ -87,9 +87,9 @@ Rules can trigger one or more actions. Actions include:
 * **Scale**: Scale resources in or out.
 * **Email**: Send an email to the subscription admins, co-admins, and/or any other email address.
 * **Webhooks**: Call webhooks to trigger multiple complex actions inside or outside Azure. In Azure, you can:
-  * Start an [Azure Automation runbook](../../automation/overview.md).
-  * Call an [Azure function](../../azure-functions/functions-overview.md).
-  * Trigger an [Azure logic app](../../logic-apps/logic-apps-overview.md).
+  * Start an [Azure Automation runbook](/azure/automation/overview).
+  * Call an [Azure function](/azure/azure-functions/functions-overview).
+  * Trigger an [Azure logic app](/azure/logic-apps/logic-apps-overview).
 
 ## Autoscale settings
 
@@ -122,14 +122,14 @@ Autoscale supports the following services.
 |---------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
 | Azure Virtual Machines Scale Sets                 | [Overview of autoscale with Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview) |
 | Web Apps feature of Azure App Service             | [Scaling Web Apps](autoscale-get-started.md)                                                                                                     |
-| Azure API Management service                      | [Automatically scale an Azure API Management instance](../../api-management/api-management-howto-autoscale.md)                                   |
+| Azure API Management service                      | [Automatically scale an Azure API Management instance](/azure/api-management/api-management-howto-autoscale)                                   |
 | Azure Data Explorer clusters                      | [Manage Azure Data Explorer clusters scaling to accommodate changing demand](/azure/data-explorer/manage-cluster-horizontal-scaling)             |
-| Azure Stream Analytics                            | [Autoscale streaming units (preview)](../../stream-analytics/stream-analytics-autoscale.md)                                                      |
-| Azure SignalR Service (Premium tier)              | [Automatically scale units of an Azure SignalR service](../../azure-signalr/signalr-howto-scale-autoscale.md)                                    |
+| Azure Stream Analytics                            | [Autoscale streaming units (preview)](/azure/stream-analytics/stream-analytics-autoscale)                                                      |
+| Azure SignalR Service (Premium tier)              | [Automatically scale units of an Azure SignalR service](/azure/azure-signalr/signalr-howto-scale-autoscale)                                    |
 | Azure Machine Learning workspace                  | [Autoscale an online endpoint](/azure/machine-learning/how-to-autoscale-endpoints)                                                             |
-| Azure Spring Apps                                 | [Set up autoscale for applications](../../spring-apps/enterprise/how-to-setup-autoscale.md)                                                      |
+| Azure Spring Apps                                 | [Set up autoscale for applications](/azure/spring-apps/enterprise/how-to-setup-autoscale)                                                      |
 | Azure Media Services                              | [Autoscaling in Media Services](/azure/media-services/latest/release-notes#autoscaling)                                                          |
-| Azure Service Bus                                 | [Automatically update messaging units of an Azure Service Bus namespace](../../service-bus-messaging/automate-update-messaging-units.md)         |
+| Azure Service Bus                                 | [Automatically update messaging units of an Azure Service Bus namespace](/azure/service-bus-messaging/automate-update-messaging-units)         |
 
 ## Next steps
 

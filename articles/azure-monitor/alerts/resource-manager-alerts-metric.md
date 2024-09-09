@@ -12,7 +12,7 @@ ms.reviewer: harelbr
 
 # Resource Manager template samples for metric alert rules in Azure Monitor
 
-This article provides samples of using [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md) to configure [metric alert rules](../alerts/alerts-metric-near-real-time.md) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
+This article provides samples of using [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to configure [metric alert rules](../alerts/alerts-metric-near-real-time.md) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
 [!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 

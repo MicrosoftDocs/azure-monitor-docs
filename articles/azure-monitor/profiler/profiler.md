@@ -18,7 +18,7 @@ To enable Profiler on Linux, walk through the [ASP.NET Core Azure Linux web apps
 
 ## Prerequisites
 
-- An [Azure App Service ASP.NET/ASP.NET Core app](../../app-service/quickstart-dotnetcore.md).
+- An [Azure App Service ASP.NET/ASP.NET Core app](/azure/app-service/quickstart-dotnetcore).
 - An [Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource) connected to your App Service app.
 
 ## Verify the "Always on" setting is enabled
@@ -80,7 +80,7 @@ Set these values by using:
 
 ## Enable Profiler for regional clouds
 
-Currently, the only regions that require endpoint modifications are [Azure Government](../../azure-government/compare-azure-government-global-azure.md#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
+Currently, the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
 
 |App setting    | US Government Cloud | China Cloud |   
 |---------------|---------------------|-------------|
@@ -99,9 +99,9 @@ To enable Microsoft Entra ID for profile ingestion:
 
 1. Create and add the managed identity to authenticate against your Application Insights resource to your App Service:
 
-   1.  [System-assigned managed identity documentation](../../app-service/overview-managed-identity.md?tabs=portal%2chttp#add-a-system-assigned-identity)
+   1.  [System-assigned managed identity documentation](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity)
 
-   1.  [User-assigned managed identity documentation](../../app-service/overview-managed-identity.md?tabs=portal%2chttp#add-a-user-assigned-identity)
+   1.  [User-assigned managed identity documentation](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-user-assigned-identity)
 
 1. [Configure and enable Microsoft Entra ID](../app/azure-ad-authentication.md?tabs=net#configure-and-enable-azure-ad-based-authentication) in your Application Insights resource.
 

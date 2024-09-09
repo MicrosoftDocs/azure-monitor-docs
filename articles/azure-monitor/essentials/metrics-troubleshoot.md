@@ -18,13 +18,13 @@ Sometimes the charts might show no data after selecting correct resources and me
 
 ### Microsoft.Insights resource provider isn't registered for your subscription
 
-Exploring metrics requires *Microsoft.Insights* resource provider registered in your subscription. In many cases, it's registered automatically (that is, after you configure an alert rule, customize diagnostic settings for any resource, or configure an autoscale rule). If the Microsoft.Insights resource provider isn't registered, you must manually register it by  following steps described in [Azure resource providers and types](../../azure-resource-manager/management/resource-providers-and-types.md).
+Exploring metrics requires *Microsoft.Insights* resource provider registered in your subscription. In many cases, it's registered automatically (that is, after you configure an alert rule, customize diagnostic settings for any resource, or configure an autoscale rule). If the Microsoft.Insights resource provider isn't registered, you must manually register it by  following steps described in [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
 
 **Solution:** Open **Subscriptions**, **Resource providers** tab, and verify that *Microsoft.Insights* is registered for your subscription.
 
 ### You don't have sufficient access rights to your resource
 
-In Azure, [Azure role-based access control (Azure RBAC)](../../role-based-access-control/overview.md) controls access to metrics. You must be a member of [monitoring reader](../../role-based-access-control/built-in-roles.md#monitoring-reader), [monitoring contributor](../../role-based-access-control/built-in-roles.md#monitoring-contributor), or [contributor](../../role-based-access-control/built-in-roles.md#contributor) to explore metrics for any resource.
+In Azure, [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) controls access to metrics. You must be a member of [monitoring reader](/azure/role-based-access-control/built-in-roles#monitoring-reader), [monitoring contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor), or [contributor](/azure/role-based-access-control/built-in-roles#contributor) to explore metrics for any resource.
 
 **Solution:** Ensure that you have sufficient permissions for the resource from which you're exploring metrics.
 

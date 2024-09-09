@@ -18,7 +18,7 @@ There are two ways to query data from multiple workspaces, applications, and res
 
 This article explains how to use the `workspace()`, `app()`, and `resource()` expressions to query data from multiple Log Analytics workspaces, applications, and resources. 
 
-If you manage subscriptions in other Microsoft Entra tenants through [Azure Lighthouse](../../lighthouse/overview.md), you can include [Log Analytics workspaces created in those customer tenants](../../lighthouse/how-to/monitor-at-scale.md) in your queries.
+If you manage subscriptions in other Microsoft Entra tenants through [Azure Lighthouse](/azure/lighthouse/overview), you can include [Log Analytics workspaces created in those customer tenants](/azure/lighthouse/how-to/monitor-at-scale) in your queries.
 
 > [!IMPORTANT]
 > If you're using a [workspace-based Application Insights resource](../app/create-workspace-resource.md), telemetry is stored in a Log Analytics workspace with all other log data. Use the `workspace()` expression to query data from applications in multiple workspaces. You don't need a cross-workspace query to query data from multiple applications in the same workspace.

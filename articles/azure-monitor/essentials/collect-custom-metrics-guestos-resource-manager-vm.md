@@ -21,12 +21,12 @@ Performance data from the guest OS of Azure virtual machines (VMs) isn't collect
 > [!NOTE]
 > For details on configuring the diagnostics extension to collect guest OS metrics by using the Azure portal, see [Install and configure the Windows Azure Diagnostics (WAD) extension](../agents/diagnostics-extension-windows-install.md).
 
-If you're new to ARM templates, learn about [template deployments](../../azure-resource-manager/management/overview.md) and their structure and syntax.
+If you're new to ARM templates, learn about [template deployments](/azure/azure-resource-manager/management/overview) and their structure and syntax.
 
 ## Prerequisites
 
-- Your subscription must be registered with [Microsoft.Insights](../../azure-resource-manager/management/resource-providers-and-types.md).
-- You need to have either [Azure PowerShell](/powershell/azure) or [Azure Cloud Shell](../../cloud-shell/overview.md) installed.
+- Your subscription must be registered with [Microsoft.Insights](/azure/azure-resource-manager/management/resource-providers-and-types).
+- You need to have either [Azure PowerShell](/powershell/azure) or [Azure Cloud Shell](/azure/cloud-shell/overview) installed.
 
 ## Set up Azure Monitor as a data sink
 The Azure Diagnostics extension uses a feature called *data sinks* to route metrics and logs to different locations. The following steps show how to use an ARM template and PowerShell to deploy a VM by using the new Azure Monitor data sink.

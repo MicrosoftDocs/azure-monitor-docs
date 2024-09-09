@@ -15,7 +15,7 @@ ms.date: 09/02/2024
 
 The Diagnostic Settings Storage Retention feature is being deprecated. To configure retention for logs and metrics sent to an Azure Storage account, use Azure Storage Lifecycle Management.  
 
-This guide walks you through migrating from using Azure diagnostic settings storage retention to using [Azure Storage lifecycle management](../../storage/blobs/lifecycle-management-policy-configure.md?tabs=azure-portal) for retention.
+This guide walks you through migrating from using Azure diagnostic settings storage retention to using [Azure Storage lifecycle management](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal) for retention.
 For logs sent to a Log Analytics workspace, retention is set for each table on the **Tables** page of your workspace. For more information on Log Analytics workspace retention, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md).
 
 > [!IMPORTANT]
@@ -75,7 +75,7 @@ Use the [az storage account management-policy create](/cli/azure/storage/account
 az storage account management-policy create   --account-name <storage account name> --resource-group <resource group name> --policy @<policy definition file>
 ```
 
-The sample policy definition file below sets the retention for all blobs in the container *insights-activity-logs* for the given subscription ID. For more information, see [Lifecycle management policy definition](../../storage/blobs/lifecycle-management-overview.md#lifecycle-management-policy-definition).
+The sample policy definition file below sets the retention for all blobs in the container *insights-activity-logs* for the given subscription ID. For more information, see [Lifecycle management policy definition](/azure/storage/blobs/lifecycle-management-overview#lifecycle-management-policy-definition).
 
 ```json
 {
@@ -168,4 +168,4 @@ The following template sets the retention for storage account *azmonstorageaccou
 
 ## Next steps
 
-[Configure a lifecycle management policy](../../storage/blobs/lifecycle-management-policy-configure.md?tabs=azure-portal).
+[Configure a lifecycle management policy](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal).

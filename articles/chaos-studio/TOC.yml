@@ -43,7 +43,7 @@
   - name: Private networking
     href: chaos-studio-private-networking.md
   - name: Reliability 
-    href: ../reliability/reliability-chaos-studio.md?toc=/azure/chaos-studio/toc.json&bc=/azure/chaos-studio/breadcrumb/toc.json
+    href: /azure/reliability/reliability-chaos-studio?toc=/azure/chaos-studio/toc.json&bc=/azure/chaos-studio/breadcrumb/toc.json
 - name: Create and run experiments
   items:
   - name: Service-direct faults

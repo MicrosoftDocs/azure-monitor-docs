@@ -22,7 +22,7 @@ The map feature of VM insights visualizes virtual machine dependencies by discov
 
 VM insights uses [Azure Monitor Agent](../agents/agents-overview.md), which replaces the Log Analytics agent used by Service map. For more information about how to enable VM insights for Azure virtual machines and on-premises machines, see [How to enable VM insights using Azure Monitor Agent for Azure virtual machines](../vm/vminsights-enable-overview.md#agents).
 
-If you have on-premises machines, we recommend enabling [Azure Arc for servers](../../azure-arc/servers/overview.md) so that you enable the virtual machines for VM insights using processes similar to Azure virtual machines.
+If you have on-premises machines, we recommend enabling [Azure Arc for servers](/azure/azure-arc/servers/overview) so that you enable the virtual machines for VM insights using processes similar to Azure virtual machines.
 
 VM insights also collects per-machine performance counters, which provide visibility into the health of your virtual machines. Azure Monitor Log ingests these performance counters every minute, which slightly increases monitoring costs per machine. [Learn more about the pricing](../vm/vminsights-overview.md#pricing).
 

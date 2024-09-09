@@ -53,4 +53,4 @@ The *Chaos Studio fault version* column refers to the individual fault version f
 
 ## Browser compatibility
 
-Review the Azure portal documentation on [Supported devices](../azure-portal/azure-portal-supported-browsers-devices.md) for more information on browser support.
+Review the Azure portal documentation on [Supported devices](/azure/azure-portal/azure-portal-supported-browsers-devices) for more information on browser support.

@@ -147,7 +147,7 @@ The following table highlights the specific parameters supported by setup for th
 
 #### [Azure Automation](#tab/azure-automation)
 
-You can use the following script example to install the agent using Azure Automation DSC. If you do not have an Automation account, see [Get started with Azure Automation](../../automation/index.yml) to understand requirements and steps for creating an Automation account required before using Automation DSC.  If you are not familiar with Automation DSC, review [Getting started with Automation DSC](../../automation/automation-dsc-getting-started.md).
+You can use the following script example to install the agent using Azure Automation DSC. If you do not have an Automation account, see [Get started with Azure Automation](/azure/automation/) to understand requirements and steps for creating an Automation account required before using Automation DSC.  If you are not familiar with Automation DSC, review [Getting started with Automation DSC](/azure/automation/automation-dsc-getting-started).
 
 The following example installs the 64-bit agent, identified by the `URI` value. You can also use the 32-bit version by replacing the URI value. The URIs for both versions are:
 
@@ -202,8 +202,8 @@ To retrieve the product code from the agent install package directly, you can us
         ```
 
 1. Update the `ProductId` value in the script with the product code extracted from the latest version of the agent installation package by using the methods recommended earlier.
-1. [Import the MMAgent.ps1 configuration script](../../automation/automation-dsc-getting-started.md#import-a-configuration-into-azure-automation) into your Automation account.
-1. [Assign a Windows computer or node](../../automation/automation-dsc-getting-started.md#enable-an-azure-resource-manager-vm-for-management-with-state-configuration) to the configuration. Within 15 minutes, the node checks its configuration and the agent is pushed to the node.
+1. [Import the MMAgent.ps1 configuration script](/azure/automation/automation-dsc-getting-started#import-a-configuration-into-azure-automation) into your Automation account.
+1. [Assign a Windows computer or node](/azure/automation/automation-dsc-getting-started#enable-an-azure-resource-manager-vm-for-management-with-state-configuration) to the configuration. Within 15 minutes, the node checks its configuration and the agent is pushed to the node.
 
 
 ---

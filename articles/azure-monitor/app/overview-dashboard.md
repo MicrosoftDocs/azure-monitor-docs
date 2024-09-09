@@ -69,7 +69,7 @@ To complete this tutorial:
 - Enable the [Application Insights SDK](../app/asp-net.md).
 
 > [!NOTE]
-> Required permissions for working with dashboards are discussed in the article on [understanding access control for dashboards](../../azure-portal/azure-portal-dashboard-share-access.md).
+> Required permissions for working with dashboards are discussed in the article on [understanding access control for dashboards](/azure/azure-portal/azure-portal-dashboard-share-access).
 
 ### Sign in to Azure
 
@@ -92,7 +92,7 @@ A single dashboard can contain resources from multiple applications, resource gr
 
 1. Enter a name for the dashboard.
 1. Look at the **Tile Gallery** for various tiles that you can add to your dashboard. You can also pin charts and other views directly from Application Insights to the dashboard.
-1. Locate the **Markdown** tile and drag it on to your dashboard. With this tile, you can add text formatted in Markdown, which is ideal for adding descriptive text to your dashboard. To learn more, see [Use a Markdown tile on Azure dashboards to show custom content](../../azure-portal/azure-portal-markdown-tile.md).
+1. Locate the **Markdown** tile and drag it on to your dashboard. With this tile, you can add text formatted in Markdown, which is ideal for adding descriptive text to your dashboard. To learn more, see [Use a Markdown tile on Azure dashboards to show custom content](/azure/azure-portal/azure-portal-markdown-tile).
 1. Add text to the tile's properties and resize it on the dashboard canvas.
 
     :::image type="content" source="media/overview-dashboard/markdown.png" lightbox="media/overview-dashboard/markdown.png" alt-text="Screenshot that shows the Edit Markdown tile.":::
@@ -167,7 +167,7 @@ Application Insights Logs provides a rich query language that you can use to ana
 ### Share dashboard
 
 1. At the top of the dashboard, select **Share** to publish your changes.
-1. You can optionally define specific users who should have access to the dashboard. For more information, see [Share Azure dashboards by using Azure role-based access control](../../azure-portal/azure-portal-dashboard-share-access.md).
+1. You can optionally define specific users who should have access to the dashboard. For more information, see [Share Azure dashboards by using Azure role-based access control](/azure/azure-portal/azure-portal-dashboard-share-access).
 1. Select **Publish**.
 
 ## Next steps

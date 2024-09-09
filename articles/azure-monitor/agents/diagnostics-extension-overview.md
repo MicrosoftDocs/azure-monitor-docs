@@ -18,7 +18,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 
 Use Azure Diagnostics extension if you need to:
 
-* Send data to Azure Storage for archiving or to analyze it with tools such as [Azure Storage Explorer](../../vs-azure-tools-storage-manage-with-storage-explorer.md).
+* Send data to Azure Storage for archiving or to analyze it with tools such as [Azure Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer).
 * Send data to [Azure Monitor Metrics](../essentials/data-platform-metrics.md) to analyze it with [metrics explorer](../essentials/metrics-getting-started.md) and to take advantage of features such as near-real-time [metric alerts](../alerts/alerts-metric-overview.md) and [autoscale](../autoscale/autoscale-overview.md) (Windows only).
 * Send data to third-party tools by using [Azure Event Hubs](./diagnostics-extension-stream-event-hubs.md).
 * Collect [boot diagnostics](/troubleshoot/azure/virtual-machines/boot-diagnostics) to investigate VM boot issues.
@@ -36,7 +36,7 @@ The key differences to consider are:
 
 * Azure Diagnostics Extension can be used only with Azure virtual machines. The Log Analytics agent can be used with virtual machines in Azure, other clouds, and on-premises.
 * Azure Diagnostics extension sends data to Azure Storage, [Azure Monitor Metrics](../essentials/data-platform-metrics.md) (Windows only) and Azure Event Hubs. The Log Analytics agent collects data to [Azure Monitor Logs](../logs/data-platform-logs.md).
-* The Log Analytics agent is required for retired [solutions](/previous-versions/azure/azure-monitor/insights/solutions), [VM insights](../vm/vminsights-overview.md), and other services such as [Microsoft Defender for Cloud](../../security-center/index.yml).
+* The Log Analytics agent is required for retired [solutions](/previous-versions/azure/azure-monitor/insights/solutions), [VM insights](../vm/vminsights-overview.md), and other services such as [Microsoft Defender for Cloud](/azure/security-center/).
 
 ## Costs
 
@@ -162,10 +162,10 @@ See the following articles for more information.
 
 ### Azure Cloud Services (classic) web and worker roles
 
-* [Introduction to Azure Cloud Services monitoring](../../cloud-services/cloud-services-how-to-monitor.md)
-* [Enabling Azure Diagnostics in Azure Cloud Services](../../cloud-services/cloud-services-dotnet-diagnostics.md)
+* [Introduction to Azure Cloud Services monitoring](/azure/cloud-services/cloud-services-how-to-monitor)
+* [Enabling Azure Diagnostics in Azure Cloud Services](/azure/cloud-services/cloud-services-dotnet-diagnostics)
 * [Application Insights for Azure Cloud Services](../app/azure-web-apps-net-core.md)
-* [Trace the flow of an Azure Cloud Services application with Azure Diagnostics](../../cloud-services/cloud-services-dotnet-diagnostics-trace-flow.md)
+* [Trace the flow of an Azure Cloud Services application with Azure Diagnostics](/azure/cloud-services/cloud-services-dotnet-diagnostics-trace-flow)
 
 ### Azure Service Fabric
 
@@ -173,5 +173,5 @@ See the following articles for more information.
 
 ## Next steps
 
-* Learn to [use performance counters in Azure Diagnostics](../../cloud-services/diagnostics-performance-counters.md).
+* Learn to [use performance counters in Azure Diagnostics](/azure/cloud-services/diagnostics-performance-counters).
 * If you have trouble with diagnostics starting or finding your data in Azure Storage tables, see [Troubleshooting Azure Diagnostics](diagnostics-extension-troubleshooting.md).

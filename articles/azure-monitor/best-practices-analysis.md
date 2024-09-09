@@ -32,7 +32,7 @@ This table describes Azure Monitor features that provide analysis of collected d
 
 ### Azure dashboards
 
-[Azure dashboards](../azure-portal/azure-portal-dashboards.md) are useful in providing a "single pane of glass" of your Azure infrastructure and services. While a workbook provides richer functionality, a dashboard can combine Azure Monitor data with data from other Azure services.
+[Azure dashboards](/azure/azure-portal/azure-portal-dashboards) are useful in providing a "single pane of glass" of your Azure infrastructure and services. While a workbook provides richer functionality, a dashboard can combine Azure Monitor data with data from other Azure services.
 
 :::image type="content" source="media/visualizations/dashboard.png" lightbox="media/visualizations/dashboard.png" alt-text="Screenshot that shows an example of an Azure dashboard with customizable information.":::
 
@@ -53,7 +53,7 @@ Grafana allows you to leverage the extensive flexibility included for combining 
 
 All versions of Grafana include the [Azure Monitor datasource plug-in](visualize/grafana-plugin.md) to visualize your Azure Monitor metrics and logs.
 
-[Azure Managed Grafana](../managed-grafana/overview.md) also optimizes this experience for Azure-native data stores such as Azure Monitor and Azure Data Explorer. In this way, you can easily connect to any resource in your subscription and view all resulting telemetry in a familiar Grafana dashboard. It also supports pinning charts from Azure Monitor metrics and logs to Grafana dashboards. Grafana includes out-of-the-box dashboards for Azure resources. [Create your first Azure Managed Grafana workspace](../managed-grafana/quickstart-managed-grafana-portal.md) to get started.
+[Azure Managed Grafana](/azure/managed-grafana/overview) also optimizes this experience for Azure-native data stores such as Azure Monitor and Azure Data Explorer. In this way, you can easily connect to any resource in your subscription and view all resulting telemetry in a familiar Grafana dashboard. It also supports pinning charts from Azure Monitor metrics and logs to Grafana dashboards. Grafana includes out-of-the-box dashboards for Azure resources. [Create your first Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) to get started.
 
 The [out-of-the-box Grafana Azure alerts dashboard](https://grafana.com/grafana/dashboards/15128-azure-alert-consumption/) allows you to view and consume Azure monitor alerts for Azure Monitor, your Azure datasources, and Azure Monitor managed service for Prometheus.
 
@@ -99,13 +99,13 @@ We recommend using Azure Managed Grafana for data visualizations and dashboards 
 |    | Can query more sources than other visualizations |    |
 |    | Fully customizable |    |
 |    | Designed for collaborating and troubleshooting |    |
-| [**Azure dashboards**](../azure-portal/azure-portal-dashboards.md) |    |    |
+| [**Azure dashboards**](/azure/azure-portal/azure-portal-dashboards) |    |    |
 |    | Native Azure dashboarding platform | For Azure/Arc exclusive environments |
 |    | No added cost   |    |
 |    | Supports at scale deployments    |    |
 |    | Can combine a metrics graph and the results of a log query with operational data for related services |    |
-|    | Share a dashboard with service owners through integration with [Azure role-based access control](../role-based-access-control/overview.md) |    |
-| [**Azure Managed Grafana**](../managed-grafana/overview.md) |    |    |
+|    | Share a dashboard with service owners through integration with [Azure role-based access control](/azure/role-based-access-control/overview) |    |
+| [**Azure Managed Grafana**](/azure/managed-grafana/overview) |    |    |
 |    | Multi-platform, multicloud single pane of glass visualizations | For users without Azure access |
 |    | Seamless integration with Azure | Use for external visualization experiences, especially for RAG type dashboards in SOC and NOC environments |
 |    | Can combine time-series and event data in a single visualization panel | Cloud Native CNCF monitoring |

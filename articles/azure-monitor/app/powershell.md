@@ -13,7 +13,7 @@ ms.reviewer: vitalyg
 
 This article shows you how to automate the creation and update of [Application Insights](./app-insights-overview.md) resources automatically by using Azure Resource Manager. You might, for example, do so as part of a build process. Along with the basic Application Insights resource, you can create [availability web tests](./availability-overview.md), set up [alerts](../alerts/alerts-log.md), set the [pricing scheme](../logs/cost-logs.md#application-insights-billing), and create other Azure resources.
 
-The key to creating these resources is JSON templates for [Resource Manager](../../azure-resource-manager/management/manage-resources-powershell.md). The basic procedure is:
+The key to creating these resources is JSON templates for [Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
 
 - Download the JSON definitions of existing resources.
 - Parameterize certain values, such as names.
@@ -441,7 +441,7 @@ To automate the creation of any other resource of any kind, create an example ma
     `"apiVersion": "2015-05-01",`
 
 ### Parameterize the template
-Now you have to replace the specific names with parameters. To [parameterize a template](../../azure-resource-manager/templates/syntax.md), you write expressions using a [set of helper functions](../../azure-resource-manager/templates/template-functions.md).
+Now you have to replace the specific names with parameters. To [parameterize a template](/azure/azure-resource-manager/templates/syntax), you write expressions using a [set of helper functions](/azure/azure-resource-manager/templates/template-functions).
 
 You can't parameterize only part of a string, so use `concat()` to build strings.
 

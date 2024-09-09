@@ -71,7 +71,7 @@ Please specify the right server address where the Elasticsearch server can be re
 
 ### Import the Grafana Dashboard
 
-Follow the instructions on [Import a dashboard from Grafana Labs](../../managed-grafana/how-to-create-dashboard.md#import-a-grafana-dashboard) to import the grafana dashboards using the ID or JSON.</br>
+Follow the instructions on [Import a dashboard from Grafana Labs](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard) to import the grafana dashboards using the ID or JSON.</br>
 
 [Elastic Search Overview](https://github.com/grafana/jsonnet-libs/blob/master/elasticsearch-mixin/dashboards/elasticsearch-overview.json)(ID-2322)</br>
 [Elasticsearch Exporter Quickstart and Dashboard](https://grafana.com/grafana/dashboards/14191-elasticsearch-overview/)(ID-14191)

@@ -30,7 +30,7 @@ See the following articles for prerequisites and other requirements for Azure Mo
 
 ## Installation options
 
-The following table lists the different options for installing Azure Monitor Agent on Azure VMs and Azure Arc-enabled servers. The [Azure Arc agent](../../azure-arc/servers/deployment-options.md) must be installed on any machines not in Azure before Azure Monitor Agent can be installed.
+The following table lists the different options for installing Azure Monitor Agent on Azure VMs and Azure Arc-enabled servers. The [Azure Arc agent](/azure/azure-arc/servers/deployment-options) must be installed on any machines not in Azure before Azure Monitor Agent can be installed.
 
 | Installation method | Description | 
 |:---|:---|
@@ -42,8 +42,8 @@ The following table lists the different options for installing Azure Monitor Age
 | [Azure Policy](./azure-monitor-agent-policy.md) | Use Azure Policy to automatically install the agent on Azure virtual machines and Azure Arc-enabled servers and automatically associate them with required DCRs. |
 
 > [!NOTE]
-> To send data across tenants, you must first enable [Azure Lighthouse](../../lighthouse/overview.md).
-> Cloning a machine with Azure Monitor Agent installed is not supported. The best practice for these situations is to use [Azure Policy](../../azure-arc/servers/deploy-ama-policy.md) or an Infrastructure as a code tool to deploy AMA at scale.
+> To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
+> Cloning a machine with Azure Monitor Agent installed is not supported. The best practice for these situations is to use [Azure Policy](/azure/azure-arc/servers/deploy-ama-policy) or an Infrastructure as a code tool to deploy AMA at scale.
 
 ## Install agent extension
 
@@ -155,7 +155,7 @@ Get sample templates for installing the agent and creating the association from 
 * [Template to install Azure Monitor Agent (Azure and Azure Arc)](../agents/resource-manager-agent.md#azure-monitor-agent)
 * [Template to create association with data collection rule](../essentials/data-collection-rule-create-edit.md?tabs=arm#create-a-dcr)
 
-Install the templates by using [any deployment method for Resource Manager templates](../../azure-resource-manager/templates/deploy-powershell.md), such as the following commands.
+Install the templates by using [any deployment method for Resource Manager templates](/azure/azure-resource-manager/templates/deploy-powershell), such as the following commands.
 
 * PowerShell
     ```powershell
@@ -294,7 +294,7 @@ To perform a one-time upgrade of the agent, use the following PowerShell command
     Update-AzConnectedExtension -ResourceGroupName $env.ResourceGroupName -MachineName <arc-server-name> -ExtensionTarget $target
     ```
 
-We recommend that you enable automatic update of the agent by enabling the [Automatic Extension Upgrade](../../azure-arc/servers/manage-automatic-vm-extension-upgrade.md#manage-automatic-extension-upgrade) feature by using the following PowerShell commands.
+We recommend that you enable automatic update of the agent by enabling the [Automatic Extension Upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade) feature by using the following PowerShell commands.
 
 * Windows
     ```powershell
@@ -338,7 +338,7 @@ To perform a one-time upgrade of the agent, use the following CLI commands.
     az connectedmachine upgrade-extension --extension-targets "{\"Microsoft.Azure.Monitor.AzureMonitorLinuxAgent\":{\"targetVersion\":\"<target-version-number>\"}}" --machine-name <arc-server-name> --resource-group <resource-group-name>
     ```
   
- We recommend that you enable automatic update of the agent by enabling the [Automatic Extension Upgrade](../../azure-arc/servers/manage-automatic-vm-extension-upgrade.md#manage-automatic-extension-upgrade) feature by using the following PowerShell commands.
+ We recommend that you enable automatic update of the agent by enabling the [Automatic Extension Upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade) feature by using the following PowerShell commands.
 
 * Windows
     ```azurecli

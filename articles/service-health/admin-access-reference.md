@@ -9,7 +9,7 @@ ms.date: 06/10/2022
 
 This document defines all of the roles with tenant admin access, which grant permission to the tenant scope view.
 
-For descriptions of each role, see [Microsoft Entra built-in roles](../active-directory/roles/permissions-reference.md).
+For descriptions of each role, see [Microsoft Entra built-in roles](/azure/active-directory/roles/permissions-reference).
 
 |**Role**  |
 |---------|

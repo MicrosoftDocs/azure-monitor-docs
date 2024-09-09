@@ -35,7 +35,7 @@ Please specify the right server addresses where the kafka servers can be reached
 
 ### Import the Grafana Dashboard
 
-To import the Grafana Dashboards using the ID or JSON, follow the instructions to [Import a dashboard from Grafana Labs](../../managed-grafana/how-to-create-dashboard.md#import-a-grafana-dashboard). </br>
+To import the Grafana Dashboards using the ID or JSON, follow the instructions to [Import a dashboard from Grafana Labs](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard). </br>
 
 [Kafka Exporter Grafana Dashboard](https://grafana.com/grafana/dashboards/7589-kafka-exporter-overview/)(ID-7589)
 

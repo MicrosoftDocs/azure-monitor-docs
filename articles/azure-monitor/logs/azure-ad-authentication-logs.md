@@ -41,7 +41,7 @@ You can disable local authentication by using Azure Policy. Or you can disable i
 
 ### [Azure Policy](#tab/azure-policy)
 
-Azure Policy for `DisableLocalAuth` won't allow you to create a new Log Analytics workspace unless this property is set to `true`. The policy name is `Log Analytics Workspaces should block non-Azure Active Directory based ingestion`. To apply this policy definition to your subscription, [create a new policy assignment and assign the policy](../../governance/policy/assign-policy-portal.md).
+Azure Policy for `DisableLocalAuth` won't allow you to create a new Log Analytics workspace unless this property is set to `true`. The policy name is `Log Analytics Workspaces should block non-Azure Active Directory based ingestion`. To apply this policy definition to your subscription, [create a new policy assignment and assign the policy](/azure/governance/policy/assign-policy-portal).
 
 The policy template definition:
 

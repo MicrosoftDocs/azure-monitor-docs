@@ -104,7 +104,7 @@ To see the history of an alert rule, you must have a role with read permissions 
 
 ## Manage metric alert rules with the Azure CLI
 
-This section describes how to manage metric alert rules using the cross-platform [Azure CLI](/cli/azure/get-started-with-azure-cli). The following examples use [Azure Cloud Shell](../../cloud-shell/overview.md). 
+This section describes how to manage metric alert rules using the cross-platform [Azure CLI](/cli/azure/get-started-with-azure-cli). The following examples use [Azure Cloud Shell](/azure/cloud-shell/overview). 
 
 1. In the [portal](https://portal.azure.com/), select **Cloud Shell**.
 1. Use these options of the `az monitor metrics alert` CLI command in this table:
@@ -165,7 +165,7 @@ To check the current number of metric alert rules in use, follow the next steps.
 
 ## Manage log search alert rules using the CLI
 
-This section describes how to manage log search alerts using the cross-platform [Azure CLI](/cli/azure/get-started-with-azure-cli). The following examples use [Azure Cloud Shell](../../cloud-shell/overview.md). 
+This section describes how to manage log search alerts using the cross-platform [Azure CLI](/cli/azure/get-started-with-azure-cli). The following examples use [Azure Cloud Shell](/azure/cloud-shell/overview). 
 
 > [!NOTE]
 > Azure CLI support is only available for the scheduledQueryRules API version `2021-08-01` and later. Previous API versions can use the Azure Resource Manager CLI with templates as described below. If you use the legacy [Log Analytics Alert API](./api-alerts.md), you will need to switch to use CLI. [Learn more about switching](./alerts-log-api-switch.md).

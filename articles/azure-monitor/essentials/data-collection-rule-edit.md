@@ -53,7 +53,7 @@ In order to update DCR, we are going to retrieve its content and save it as a fi
     $DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath $FilePath
     ```
 ## Edit DCR
-Now, when DCR content is stored as a JSON file, you can use an editor of your choice to make changes in the DCR. You may [prefer to download the file from the Cloud Shell environment](../../cloud-shell/using-the-shell-window.md#upload-and-download-files), if you are using one. 
+Now, when DCR content is stored as a JSON file, you can use an editor of your choice to make changes in the DCR. You may [prefer to download the file from the Cloud Shell environment](/azure/cloud-shell/using-the-shell-window#upload-and-download-files), if you are using one. 
 
 Alternatively you can use code editors supplied with the environment. For example, if you saved your DCR in a file named `temp.dcr` on your Cloud Drive, you could use the following command to open DCR for editing right in the Cloud Shell window:
 ```PowerShell
@@ -74,7 +74,7 @@ Let’s modify the KQL transformation within DCR to drop rows where RequestType 
 
 ## Apply changes
 Our final step is to update DCR back in the system. This is accomplished by “PUT” HTTP call to ARM API, with updated DCR content sent in the HTTP request body.
-1.	If you are using Azure Cloud Shell, save the file and close the embedded editor, or [upload modified DCR file back to the Cloud Shell environment](../../cloud-shell/using-the-shell-window.md#upload-and-download-files).
+1.	If you are using Azure Cloud Shell, save the file and close the embedded editor, or [upload modified DCR file back to the Cloud Shell environment](/azure/cloud-shell/using-the-shell-window#upload-and-download-files).
 2.	Execute the following commands to load DCR content from the file and place HTTP call to update the DCR in the system. Replace `<ResourceId>` with DCR ResourceID and `<FilePath>` with the name of the file modified in the previous part of the tutorial. You can omit first two lines if you read and write to the DCR within the same PowerShell session.
     ```PowerShell
     $ResourceId = "<ResourceId>" # Resource ID of the DCR to edit

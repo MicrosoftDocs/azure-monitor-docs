@@ -151,7 +151,7 @@ Authorization: {credential}
 
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
 
-Use this template to create or update a summary rule. For more information about using and deploying Azure Resource Manager templates, see [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md).
+Use this template to create or update a summary rule. For more information about using and deploying Azure Resource Manager templates, see [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax).
 
 #### Template file
 

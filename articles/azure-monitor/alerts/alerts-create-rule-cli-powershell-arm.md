@@ -15,7 +15,7 @@ You can create a new alert rule using the [the CLI](#create-a-new-alert-rule-usi
 
 ## Create a new alert rule using the CLI
 
-You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-with-azure-cli). The following code examples use [Azure Cloud Shell](../../cloud-shell/overview.md). You can see the full list of the [Azure CLI commands for Azure Monitor](/cli/azure/azure-cli-reference-for-monitor#azure-monitor-references).
+You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-with-azure-cli). The following code examples use [Azure Cloud Shell](/azure/cloud-shell/overview). You can see the full list of the [Azure CLI commands for Azure Monitor](/cli/azure/azure-cli-reference-for-monitor#azure-monitor-references).
 
 1. In the [portal](https://portal.azure.com/), select **Cloud Shell**. At the prompt, use these.
 
@@ -38,7 +38,7 @@ You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-wit
 
 ## Create a new alert rule using an ARM template
 
-You can use an [Azure Resource Manager template (ARM template)](../../azure-resource-manager/templates/syntax.md) to configure alert rules consistently in all of your environments.
+You can use an [Azure Resource Manager template (ARM template)](/azure/azure-resource-manager/templates/syntax) to configure alert rules consistently in all of your environments.
 
 1. Create a new resource, using the following resource types:
     - For metric alerts: `Microsoft.Insights/metricAlerts`
@@ -58,7 +58,7 @@ You can use an [Azure Resource Manager template (ARM template)](../../azure-reso
 1. Edit the template file to contain appropriate information for your alert, and save the file as \<your-alert-template-file\>.json.
 1. Edit the corresponding parameters file to customize the alert, and save as \<your-alert-template-file\>.parameters.json.
 1. Set the `metricName` parameter, using one of the values in [Azure Monitor supported metrics](../essentials/metrics-supported.md).
-1. Deploy the template using [PowerShell](../../azure-resource-manager/templates/deploy-powershell.md#deploy-local-template) or the [CLI](../../azure-resource-manager/templates/deploy-cli.md#deploy-local-template).
+1. Deploy the template using [PowerShell](/azure/azure-resource-manager/templates/deploy-powershell#deploy-local-template) or the [CLI](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
 
 ## Next steps
 - [Manage alert rules](alerts-manage-alert-rules.md)

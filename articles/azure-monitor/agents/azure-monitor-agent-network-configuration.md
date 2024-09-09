@@ -14,9 +14,9 @@ Azure Monitor Agent supports connecting by using direct proxies, Log Analytics g
 
 ## Virtual network service tags
 
-The [Azure virtual network service tags](../../virtual-network/service-tags-overview.md) must be enabled on the virtual network for the virtual machine. Both *AzureMonitor* and *AzureResourceManager* tags are required. 
+The [Azure virtual network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine. Both *AzureMonitor* and *AzureResourceManager* tags are required. 
 
-Azure Virtual network service tags can be used to define network access controls on [network security groups](../../virtual-network/network-security-groups-overview.md#security-rules), [Azure Firewall](../../firewall/service-tags.md), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where Azure virtual network service tags cannot be used, the Firewall requirements are given below.
+Azure Virtual network service tags can be used to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where Azure virtual network service tags cannot be used, the Firewall requirements are given below.
 
 >[!NOTE]
 > Data collection endpoint public IP addresses are not part of the above mentioned network service tags. If you have custom logs or IIS log data collection rules, consider allowing the data collection endpoint's public IP addresses for these scenarios to work until these scenarios are supported by network service tags. 

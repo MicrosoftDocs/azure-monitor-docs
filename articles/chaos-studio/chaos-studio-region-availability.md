@@ -42,7 +42,7 @@ Any target or capability metadata is deleted when a target is deleted.
 
 ## High availability with Chaos Studio
 
-For information on high availability with Chaos Studio, see [Reliability in Chaos Studio](../reliability/reliability-chaos-studio.md).
+For information on high availability with Chaos Studio, see [Reliability in Chaos Studio](/azure/reliability/reliability-chaos-studio).
 
 ## Data Residency
 Azure Chaos Studio doesn't store customer data outside the region the customer deploys the service instance in.

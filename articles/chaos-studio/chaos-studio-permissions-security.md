@@ -26,7 +26,7 @@ Chaos Studio has three levels of security to help you control how and when fault
 
    When you attempt to control the ability to inject faults against a resource, the most important operation to restrict is `Microsoft.Chaos/experiments/start/action`. This operation starts a chaos experiment that injects faults.
 
-* Second, a chaos experiment has a [system-assigned managed identity](../active-directory/managed-identities-azure-resources/overview.md) or a [user-assigned managed identity](../active-directory/managed-identities-azure-resources/overview.md) that executes faults on a resource. If you choose to use a system-assigned managed identity for your experiment, the identity is created at experiment creation time in your Microsoft Entra tenant. User-assigned managed identites may be used across any number of experiments.
+* Second, a chaos experiment has a [system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) or a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) that executes faults on a resource. If you choose to use a system-assigned managed identity for your experiment, the identity is created at experiment creation time in your Microsoft Entra tenant. User-assigned managed identites may be used across any number of experiments.
 
    Within a chaos experiment, you can choose to enable custom role assignment on either your system-assigned or user-assigned managed identity selection. Enabling this functionality allows Chaos Studio to create and assign a custom role containing any necessary experiment action capabilities to your experiment's identity (that do not already exist in your identity selection). If a chaos experiment is using a user-assigned managed identity, any custom roles assigned to the experiment identity by Chaos Studio will persist after experiment deletion.
   
@@ -36,14 +36,14 @@ Chaos Studio has three levels of security to help you control how and when fault
 
 ## User-assigned Managed Identity
 
-A chaos experiment can utilize a [user-assigned managed identity](../active-directory/managed-identities-azure-resources/overview.md) to obtain sufficient permissions to inject faults on the experiment's target resources. Additionally, user-assigned managed identities may be used across any number of experiments in Chaos Studio. To utilize this functionality, you must:
-* First, create a user-assigned managed identity within the [Managed Identities](../active-directory/managed-identities-azure-resources/overview.md) service. You may assign your user-assigned managed identity required permissions to run your chaos experiment(s) at this point.
+A chaos experiment can utilize a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to obtain sufficient permissions to inject faults on the experiment's target resources. Additionally, user-assigned managed identities may be used across any number of experiments in Chaos Studio. To utilize this functionality, you must:
+* First, create a user-assigned managed identity within the [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview) service. You may assign your user-assigned managed identity required permissions to run your chaos experiment(s) at this point.
 * Second, when creating your chaos experiment, select a user-assigned managed identity from your Subscription. You can choose to enable custom role assignment at this step. Enabling this functionality would grant your identity selection any required permissions it may need based on the faults contained in your experiment.
 * Third, after you've added all of your faults to your chaos experiment, review if your identity configuration contains all the necessary actions for your chaos experiment to run successfully. If it does not, contact your system administrator for access or edit your experiment's fault selections.
 
 ## Agent authentication
 
-When you run agent-based faults, you must install the Chaos Studio agent on your virtual machine (VM) or virtual machine scale set. The agent uses a [user-assigned managed identity](../active-directory/managed-identities-azure-resources/overview.md) to authenticate to Chaos Studio and an *agent profile* to establish a relationship to a specific VM resource.
+When you run agent-based faults, you must install the Chaos Studio agent on your virtual machine (VM) or virtual machine scale set. The agent uses a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) to authenticate to Chaos Studio and an *agent profile* to establish a relationship to a specific VM resource.
 
 When you onboard a VM or virtual machine scale set for agent-based faults, you first create an agent target. The agent target must have a reference to the user-assigned managed identity that's used for authentication. The agent target contains an *agent profile ID*, which is provided as configuration when you install the agent. Agent profiles are unique to each target and targets are unique per resource.
 
@@ -63,7 +63,7 @@ Chaos Studio has the following operations:
 | Microsoft.Chaos/experiments/executions/Read | Get the execution status for a run of a chaos experiment. |
 | Microsoft.Chaos/experiments/executions/getExecutionDetails/action | Get the execution details (status and errors for each action) for a run of a chaos experiment. |
 
-To assign these permissions granularly, you can [create a custom role](../role-based-access-control/custom-roles.md).
+To assign these permissions granularly, you can [create a custom role](/azure/role-based-access-control/custom-roles).
 
 ## Network security
 
@@ -71,13 +71,13 @@ All user interactions with Chaos Studio happen through Azure Resource Manager. I
 
 * **Service-direct faults**: Most service-direct faults are executed through Azure Resource Manager and don't require any allowlisted network endpoints.
 * **Service-direct AKS Chaos Mesh faults:** Service-direct faults for Azure Kubernetes Service that use Chaos Mesh require access to the AKS cluster's Kubernetes API server. 
-    * [Learn how to limit AKS network access to a set of IP ranges here](/azure/aks/api-server-authorized-ip-ranges). You can obtain Chaos Studio's IP ranges by querying the `ChaosStudio` [service tag with the Service Tag Discovery API or downloadable JSON files](../virtual-network/service-tags-overview.md).
+    * [Learn how to limit AKS network access to a set of IP ranges here](/azure/aks/api-server-authorized-ip-ranges). You can obtain Chaos Studio's IP ranges by querying the `ChaosStudio` [service tag with the Service Tag Discovery API or downloadable JSON files](/azure/virtual-network/service-tags-overview).
     * Currently, Chaos Studio can't execute Chaos Mesh faults if the AKS cluster has [local accounts disabled](/azure/aks/manage-local-accounts-managed-azure-ad).
 * **Agent-based faults**: To use agent-based faults, the agent needs access to the Chaos Studio agent service. A VM or virtual machine scale set must have outbound access to the agent service endpoint for the agent to connect successfully. The agent service endpoint is `https://acs-prod-<region>.chaosagent.trafficmanager.net`. You must replace the `<region>` placeholder with the region where your VM is deployed. An example is `https://acs-prod-eastus.chaosagent.trafficmanager.net` for a VM in East US.
 * **Agent-based private networking**: The Chaos Studio agent now supports private networking. Please see [Private networking for Chaos Agent](chaos-studio-private-link-agent-service.md). 
 
 ## Service tags
-A [service tag](../virtual-network/service-tags-overview.md) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren’t sufficient to secure traffic.
+A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren’t sufficient to secure traffic.
 
 You can use service tags to explicitly allow inbound traffic from Chaos Studio without the need to know the IP addresses of the platform. Chaos Studio's service tag is `ChaosStudio`.
 
@@ -100,7 +100,7 @@ When evaluating and using service tags, it’s important to note that they don�
 
 Chaos Studio encrypts all data by default. Chaos Studio only accepts input for system properties like managed identity object IDs, experiment/step/branch names, and fault parameters. An example is the network port range to block in a network disconnect fault.
 
-These properties shouldn't be used to store sensitive data, such as payment information or passwords. For more information on how Chaos Studio protects your data, see [Azure customer data protection](../security/fundamentals/protection-customer-data.md).
+These properties shouldn't be used to store sensitive data, such as payment information or passwords. For more information on how Chaos Studio protects your data, see [Azure customer data protection](/azure/security/fundamentals/protection-customer-data).
 
 ## Customer Lockbox
 
@@ -108,7 +108,7 @@ Lockbox gives you the control to approve or reject Microsoft engineer request to
 
 Lockbox can be enabled for chaos experiment information, and permission to access data is granted by the customer at the subscription level if lockbox is enabled.
 
-Learn more about [Customer Lockbox for Microsoft Azure](../security/fundamentals/customer-lockbox-overview.md)
+Learn more about [Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview)
 
 ## Next steps
 Now that you understand how to secure your chaos experiment, you're ready to:

@@ -60,8 +60,8 @@ The UI supports selecting multiple subscriptions to view resource changes. Use t
 
 Use the [View change history](../essentials/activity-log-insights.md#view-change-history) feature to call the Azure Monitor Change Analysis service backend to view changes associated with an operation. Changes returned include:
 
-- Resource level changes from [Azure Resource Graph](../../governance/resource-graph/overview.md).
-- Resource properties from [Azure Resource Manager](../../azure-resource-manager/management/overview.md).
+- Resource level changes from [Azure Resource Graph](/azure/governance/resource-graph/overview).
+- Resource properties from [Azure Resource Manager](/azure/azure-resource-manager/management/overview).
 - In-guest changes from PaaS services, such as a web app.
 
 1. From within your resource, select **Activity Log** from the side menu.

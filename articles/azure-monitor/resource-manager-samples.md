@@ -10,7 +10,7 @@ ms.reviewer: robb
 ---
 # Resource Manager template samples for Azure Monitor
 
-You can deploy and configure Azure Monitor at scale by using [Azure Resource Manager templates](../azure-resource-manager/templates/syntax.md). This article lists sample templates for Azure Monitor features. You can modify these samples for your particular requirements and deploy them by using any standard method for deploying Resource Manager templates.
+You can deploy and configure Azure Monitor at scale by using [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax). This article lists sample templates for Azure Monitor features. You can modify these samples for your particular requirements and deploy them by using any standard method for deploying Resource Manager templates.
 
 ## Deploy the sample templates
 
@@ -18,13 +18,13 @@ The basic steps to use one of the template samples are:
 
 1. Copy the template and save it as a JSON file.
 2. Modify the parameters for your environment and save the JSON file.
-3. Deploy the template by using [any deployment method for Resource Manager templates](../azure-resource-manager/templates/deploy-portal.md).
+3. Deploy the template by using [any deployment method for Resource Manager templates](/azure/azure-resource-manager/templates/deploy-portal).
 
 Following are basic steps for using different methods to deploy the sample templates. Follow the included links for more details.
 
 ## [Azure portal](#tab/portal)
 
-For more details, see [Deploy resources with ARM templates and Azure portal](../azure-resource-manager/templates/deploy-portal.md).
+For more details, see [Deploy resources with ARM templates and Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
 
 1. In the Azure portal, select **Create a resource**, search for **template**. and then select **Template deployment**.
 2. Select **Create**.
@@ -36,7 +36,7 @@ For more details, see [Deploy resources with ARM templates and Azure portal](../
 
 ## [CLI](#tab/cli)
 
-For more details, see [How to use Azure Resource Manager (ARM) deployment templates with Azure CLI](../azure-resource-manager/templates/deploy-cli.md).
+For more details, see [How to use Azure Resource Manager (ARM) deployment templates with Azure CLI](/azure/azure-resource-manager/templates/deploy-cli).
 
 ```azurecli
 az login
@@ -49,7 +49,7 @@ az deployment group create \
 
 ## [PowerShell](#tab/powershell)
 
-For more details, see [Deploy resources with ARM templates and Azure PowerShell](../azure-resource-manager/templates/deploy-powershell.md).
+For more details, see [Deploy resources with ARM templates and Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell).
 
 ```powershell
 Connect-AzAccount
@@ -59,7 +59,7 @@ New-AzResourceGroupDeployment -Name AzureMonitorDeployment -ResourceGroupName <r
 
 ## [REST API](#tab/api)
 
-For more details, see [Deploy resources with ARM templates and Azure Resource Manager REST API](../azure-resource-manager/templates/deploy-rest.md).
+For more details, see [Deploy resources with ARM templates and Azure Resource Manager REST API](/azure/azure-resource-manager/templates/deploy-rest).
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2020-10-01
@@ -101,4 +101,4 @@ In the request body, provide a link to your template and parameter file.
 
 ## Next steps
 
-Learn more about [Resource Manager templates](../azure-resource-manager/templates/overview.md).
+Learn more about [Resource Manager templates](/azure/azure-resource-manager/templates/overview).

@@ -65,15 +65,15 @@ An audit record is created each time a query is run. If you send the data to a L
 |AppInsightsPortalExtension|[Workbooks](../visualize/workbooks-data-sources.md#logs-analytics-tables-application-insights) or [Application insights](../app/app-insights-overview.md).|
 |ASC_Portal|Microsoft Defender for Cloud.|
 |ASI_Portal|Sentinel.|
-|AzureAutomation|[Azure Automation.](../../automation/overview.md)|
-|AzureMonitorLogsConnector|[Azure Monitor Logs Connector](../../connectors/connectors-azure-monitor-logs.md).|
+|AzureAutomation|[Azure Automation.](/azure/automation/overview)|
+|AzureMonitorLogsConnector|[Azure Monitor Logs Connector](/azure/connectors/connectors-azure-monitor-logs).|
 |csharpsdk|[Log Analytics Query API.](../logs/api/overview.md)|
 |Draft-Monitor|[Log search alert creation in the Azure portal.](../alerts/alerts-create-new-alert-rule.md?tabs=log)|
 |Grafana|[Grafana connector.](../visualize/grafana-plugin.md)|
 |IbizaExtension|Experiences of Log Analytics in the Azure portal.|
 |infraInsights/container|[Container insights.](../containers/container-insights-overview.md)|
 |infraInsights/vm|[VM insights.](../vm/vminsights-overview.md)|
-|LogAnalyticsExtension|[Azure Dashboard](../../azure-portal/azure-portal-dashboards.md).|
+|LogAnalyticsExtension|[Azure Dashboard](/azure/azure-portal/azure-portal-dashboards).|
 |LogAnalyticsPSClient|[Log Analytics Query API.](../logs/api/overview.md)|
 |OmsAnalyticsPBI|Log Analytics integration with [Power BI.](../logs/log-powerbi.md)|
 |PowerBIConnector|Log Analytics integration with [Power BI.](../logs/log-powerbi.md)|
@@ -81,7 +81,7 @@ An audit record is created each time a query is run. If you send the data to a L
 |Sentinel-DataCollectionAggregator|Sentinel.|
 |Sentinel-analyticsManagement-customerQuery|Sentinel.|
 |Unknown|[Log Analytics Query API.](../logs/api/overview.md)|
-|UpdateManagement|[Update Management.](../../automation/update-management/overview.md)|
+|UpdateManagement|[Update Management.](/azure/automation/update-management/overview)|
 
 
 ## Considerations

@@ -112,4 +112,4 @@ From here, you'll be able to view all of the changes for that one resource.
 
 ## Next steps
 
-Learn more about [Azure Resource Graph](../../governance/resource-graph/overview.md), which helps power Change Analysis.
+Learn more about [Azure Resource Graph](/azure/governance/resource-graph/overview), which helps power Change Analysis.

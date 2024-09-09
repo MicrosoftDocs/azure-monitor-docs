@@ -12,7 +12,7 @@ ms.reviewer: jagummersall
 This article describes troubleshooting steps for error messages you may get when using the test action group feature.
 
 > [!NOTE]
-> Azure Action Groups doesn't support the use of private links today. It is reccomended that customers use public network access to avoid any issues. For other networking issues ensure you are properly using the [Action Group Service Tag](./../../virtual-network/service-tags-overview.md).
+> Azure Action Groups doesn't support the use of private links today. It is reccomended that customers use public network access to avoid any issues. For other networking issues ensure you are properly using the [Action Group Service Tag](/azure/virtual-network/service-tags-overview).
 
 ## Troubleshooting error codes for actions
 

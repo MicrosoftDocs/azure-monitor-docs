@@ -22,7 +22,7 @@ Snapshot Debugger is preinstalled as part of the Azure Functions runtime, so you
 
 ## Prerequisite
 
-[Enable Application Insights monitoring in your Functions app](../../azure-functions/configure-monitoring.md#new-function-app-in-the-portal).
+[Enable Application Insights monitoring in your Functions app](/azure/azure-functions/configure-monitoring#new-function-app-in-the-portal).
 
 ## Enable Snapshot Debugger
 
@@ -116,7 +116,7 @@ namespace SnapshotCollectorAzureFunction
 
 ## Enable Snapshot Debugger for other clouds
 
-Currently, the only regions that require endpoint modifications are [Azure Government](../../azure-government/compare-azure-government-global-azure.md#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
+Currently, the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
 
 The following example shows the `host.json` updated with the US Government Cloud agent endpoint:
 
@@ -164,5 +164,5 @@ To disable Snapshot Debugger in your Functions app, update your `host.json` file
 ## Next steps
 
 - [View snapshots](snapshot-debugger-data.md?toc=/azure/azure-monitor/toc.json#access-debug-snapshots-in-the-portal) in the Azure portal.
-- Customize Snapshot Debugger configuration based on your use case on your Functions app. For more information, see [Snapshot configuration in host.json](../../azure-functions/functions-host-json.md#applicationinsightssnapshotconfiguration).
+- Customize Snapshot Debugger configuration based on your use case on your Functions app. For more information, see [Snapshot configuration in host.json](/azure/azure-functions/functions-host-json#applicationinsightssnapshotconfiguration).
 - [Troubleshoot Snapshot Debugger issues](snapshot-debugger-troubleshoot.md).

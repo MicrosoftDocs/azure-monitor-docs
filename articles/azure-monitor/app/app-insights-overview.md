@@ -102,8 +102,8 @@ This section lists all supported platforms and frameworks.
 #### Azure service integration (portal enablement, Azure Resource Manager deployments)
 * [Azure Virtual Machines and Azure Virtual Machine Scale Sets](./azure-vm-vmss-apps.md)
 * [Azure App Service](./azure-web-apps.md)
-* [Azure Functions](../../azure-functions/functions-monitoring.md)
-* [Azure Spring Apps](../../spring-apps/enterprise/how-to-application-insights.md)
+* [Azure Functions](/azure/azure-functions/functions-monitoring)
+* [Azure Spring Apps](/azure/spring-apps/enterprise/how-to-application-insights)
 * [Azure Cloud Services](./azure-web-apps-net-core.md), including both web and worker roles
 
 #### Logging frameworks

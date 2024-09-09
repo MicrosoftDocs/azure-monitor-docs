@@ -18,7 +18,7 @@ Based on customer feedback, on April 1, 2019, we’re changing the default roles
 
 ## What is changing?
 
-Currently, Smart Detection email notifications are sent by default to the _Subscription Owner_, _Subscription Contributor_, and _Subscription Reader_ roles. These roles often include users who are not actively involved in monitoring, which causes many of these users to receive notifications unnecessarily. To improve this experience, we are making a change so that email notifications only go to the [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) and [Monitoring Contributor](../../role-based-access-control/built-in-roles.md#monitoring-contributor) roles by default.
+Currently, Smart Detection email notifications are sent by default to the _Subscription Owner_, _Subscription Contributor_, and _Subscription Reader_ roles. These roles often include users who are not actively involved in monitoring, which causes many of these users to receive notifications unnecessarily. To improve this experience, we are making a change so that email notifications only go to the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) and [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) roles by default.
 
 ## Scope of this change
 
@@ -30,9 +30,9 @@ This change will affect all Smart Detection rules, excluding the following ones:
 
 ## How to prepare for this change?
 
-To ensure that email notifications from Smart Detection are sent to relevant users, those users must be assigned to the [Monitoring Reader](../../role-based-access-control/built-in-roles.md#monitoring-reader) or [Monitoring Contributor](../../role-based-access-control/built-in-roles.md#monitoring-contributor) roles of the subscription.
+To ensure that email notifications from Smart Detection are sent to relevant users, those users must be assigned to the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) or [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) roles of the subscription.
 
-To assign users to the Monitoring Reader or Monitoring Contributor roles via the Azure portal, follow the steps described in the [Assign Azure roles](../../role-based-access-control/role-assignments-portal.yml) article. Make sure to select the _Monitoring Reader_ or _Monitoring Contributor_ as the role to which users are assigned.
+To assign users to the Monitoring Reader or Monitoring Contributor roles via the Azure portal, follow the steps described in the [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal) article. Make sure to select the _Monitoring Reader_ or _Monitoring Contributor_ as the role to which users are assigned.
 
 > [!NOTE]
 > Specific recipients of Smart Detection notifications, configured using the _Additional email recipients_ option in the rule settings, will not be affected by this change. These recipients will continue receiving the email notifications.

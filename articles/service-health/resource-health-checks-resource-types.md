@@ -46,7 +46,7 @@ Below is a complete list of all the checks executed through resource health by r
 ## Microsoft.classiccompute/domainnames
 |Executed Checks|
 |---|
-| - Is production slot deployment healthy across all role instances?<br> - Is the role healthy across all its VM instances?<br> - What is the health status of each VM within a role of a cloud service?<br> - Was the VM status change due to platform or customer initiated operation?<br> - Has the booting of the guest OS completed?<br> - Is there ongoing planned maintenance?<br> - Is the host hardware degraded and predicted to fail soon?<br> - [Learn More](../cloud-services/resource-health-for-cloud-services.md) about Executed Checks|
+| - Is production slot deployment healthy across all role instances?<br> - Is the role healthy across all its VM instances?<br> - What is the health status of each VM within a role of a cloud service?<br> - Was the VM status change due to platform or customer initiated operation?<br> - Has the booting of the guest OS completed?<br> - Is there ongoing planned maintenance?<br> - Is the host hardware degraded and predicted to fail soon?<br> - [Learn More](/azure/cloud-services/resource-health-for-cloud-services) about Executed Checks|
 
 ## Microsoft.cognitiveservices/accounts
 |Executed Checks|

@@ -266,7 +266,7 @@ If you received an error while trying to create, update or delete an [alert proc
 
 1. **Check the permissions.**
 
-    You should either have the [Monitoring Contributor built-in role](../../role-based-access-control/built-in-roles.md#monitoring-contributor), or the specific permissions related to alert processing rules and alerts.
+    You should either have the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), or the specific permissions related to alert processing rules and alerts.
 
 1. **Check the alert processing rule parameters.**
 

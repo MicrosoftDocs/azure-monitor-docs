@@ -83,7 +83,7 @@ For more information about Azure Monitor Logs in Azure CLI, see [Managing Azure 
 
 ## [Bicep](#tab/bicep)
 
-The following sample uses [Microsoft.OperationalInsights workspaces](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep) to create a Log Analytics workspace in Azure Monitor. For more information about Bicep, see [Bicep overview](../../azure-resource-manager/bicep/overview.md).
+The following sample uses [Microsoft.OperationalInsights workspaces](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep) to create a Log Analytics workspace in Azure Monitor. For more information about Bicep, see [Bicep overview](/azure/azure-resource-manager/bicep/overview).
 
 [!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 
@@ -158,7 +158,7 @@ param heartbeatTableRetention = 30
 ## [Resource Manager template](#tab/azure-resource-manager)
 
 The following sample uses the [Microsoft.OperationalInsights workspaces](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep) template to create a Log Analytics workspace in Azure Monitor.
-For more information about Azure Resource Manager templates, see [Azure Resource Manager templates](../../azure-resource-manager/templates/syntax.md).
+For more information about Azure Resource Manager templates, see [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax).
 
 [!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 

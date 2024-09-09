@@ -9,9 +9,9 @@ ms.reviewer: rijolly
 
 # Microsoft Entra authentication for Application Insights
 
-Application Insights now supports [Microsoft Entra authentication](../../active-directory/authentication/overview-authentication.md). By using Microsoft Entra ID, you can ensure that only authenticated telemetry is ingested in your Application Insights resources.
+Application Insights now supports [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication). By using Microsoft Entra ID, you can ensure that only authenticated telemetry is ingested in your Application Insights resources.
 
-Using various authentication systems can be cumbersome and risky because it's difficult to manage credentials at scale. You can now choose to [opt out of local authentication](#disable-local-authentication) to ensure only telemetry exclusively authenticated by using [managed identities](../../active-directory/managed-identities-azure-resources/overview.md) and [Microsoft Entra ID](../../active-directory/fundamentals/active-directory-whatis.md) is ingested in your resource. This feature is a step to enhance the security and reliability of the telemetry used to make critical operational ([alerting](../alerts/alerts-overview.md#what-are-azure-monitor-alerts) and [autoscaling](../autoscale/autoscale-overview.md#overview-of-autoscale-in-azure)) and business decisions.
+Using various authentication systems can be cumbersome and risky because it's difficult to manage credentials at scale. You can now choose to [opt out of local authentication](#disable-local-authentication) to ensure only telemetry exclusively authenticated by using [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) and [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) is ingested in your resource. This feature is a step to enhance the security and reliability of the telemetry used to make critical operational ([alerting](../alerts/alerts-overview.md#what-are-azure-monitor-alerts) and [autoscaling](../autoscale/autoscale-overview.md#overview-of-autoscale-in-azure)) and business decisions.
 
 ## Prerequisites
 
@@ -19,10 +19,10 @@ The following preliminary steps are required to enable Microsoft Entra authentic
 
 * Be in the public cloud.
 * Be familiar with:
-    * [Managed identity](../../active-directory/managed-identities-azure-resources/overview.md).
-    * [Service principal](../../active-directory/develop/howto-create-service-principal-portal.md).
-    * [Assigning Azure roles](../../role-based-access-control/role-assignments-portal.yml).
-* Granting access using [Azure built-in roles](../../role-based-access-control/built-in-roles.md) requires having an Owner role to the resource group.
+    * [Managed identity](/azure/active-directory/managed-identities-azure-resources/overview).
+    * [Service principal](/azure/active-directory/develop/howto-create-service-principal-portal).
+    * [Assigning Azure roles](/azure/role-based-access-control/role-assignments-portal).
+* Granting access using [Azure built-in roles](/azure/role-based-access-control/built-in-roles) requires having an Owner role to the resource group.
 * Understand the [unsupported scenarios](#unsupported-scenarios).
 
 ## Unsupported scenarios
@@ -44,15 +44,15 @@ The following Software Development Kits (SDKs) and features are unsupported for 
 
     * We recommend using a managed identity:
 
-        [Set up a managed identity for your Azure service](../../active-directory/managed-identities-azure-resources/services-support-managed-identities.md) (Virtual Machines or App Service).
+        [Set up a managed identity for your Azure service](/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities) (Virtual Machines or App Service).
 
     * We don't recommend using a service principal:
 
-        For more information on how to create a Microsoft Entra application and service principal that can access resources, see [Create a service principal](../../active-directory/develop/howto-create-service-principal-portal.md).
+        For more information on how to create a Microsoft Entra application and service principal that can access resources, see [Create a service principal](/azure/active-directory/develop/howto-create-service-principal-portal).
 
 1. Assign the required Role-based access control (RBAC) role to the Azure identity, service principal, or Azure user account.
 
-    Follow the steps in [Assign Azure roles](../../role-based-access-control/role-assignments-portal.yml) to add the Monitoring Metrics Publisher role to the expected identity, service principal, or Azure user account by setting the target Application Insights resource as the role scope.
+    Follow the steps in [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal) to add the Monitoring Metrics Publisher role to the expected identity, service principal, or Azure user account by setting the target Application Insights resource as the role scope.
 
     > [!NOTE]
     > Although the Monitoring Metrics Publisher role says "metrics," it will publish all telemetry to the Application Insights resource.
@@ -717,7 +717,7 @@ You can disable local authentication by using the Azure portal or Azure Policy o
 
 Azure Policy for `DisableLocalAuth` denies users the ability to create a new Application Insights resource without this property set to `true`. The policy name is `Application Insights components should block non-AAD auth ingestion`.
 
-To apply this policy definition to your subscription, [create a new policy assignment and assign the policy](../../governance/policy/assign-policy-portal.md).
+To apply this policy definition to your subscription, [create a new policy assignment and assign the policy](/azure/governance/policy/assign-policy-portal).
 
 The following example shows the policy template definition:
 

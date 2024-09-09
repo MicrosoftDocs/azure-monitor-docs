@@ -8,7 +8,7 @@ ms.date: 08/16/2024
 
 # Enable Profiler for Azure Cloud Services
 
-You can receive performance traces for your instance of [Azure Cloud Services](../../cloud-services-extended-support/overview.md) by enabling the Application Insights Profiler. Profiler is installed on your instance of Azure Cloud Services via the [Azure Diagnostics extension](../agents/diagnostics-extension-overview.md).
+You can receive performance traces for your instance of [Azure Cloud Services](/azure/cloud-services-extended-support/overview) by enabling the Application Insights Profiler. Profiler is installed on your instance of Azure Cloud Services via the [Azure Diagnostics extension](../agents/diagnostics-extension-overview.md).
 
 In this guide, you learn how to:
 > [!div class="checklist"]
@@ -20,8 +20,8 @@ In this guide, you learn how to:
 
 - Make sure you've [set up diagnostics for your instance of Azure Cloud Services](/visualstudio/azure/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines).
 - Use [.NET Framework 4.6.1](/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed) or newer.
-  - If you're using [OS Family 4](../../cloud-services/cloud-services-guestos-update-matrix.md#family-4-releases), install .NET Framework 4.6.1 or newer with a [startup task](../../cloud-services/cloud-services-dotnet-install-dotnet.md).
-  - [OS Family 5](../../cloud-services/cloud-services-guestos-update-matrix.md#family-5-releases) includes a compatible version of .NET Framework by default.
+  - If you're using [OS Family 4](/azure/cloud-services/cloud-services-guestos-update-matrix#family-4-releases), install .NET Framework 4.6.1 or newer with a [startup task](/azure/cloud-services/cloud-services-dotnet-install-dotnet).
+  - [OS Family 5](/azure/cloud-services/cloud-services-guestos-update-matrix#family-5-releases) includes a compatible version of .NET Framework by default.
 
 ## Track requests with Application Insights
 

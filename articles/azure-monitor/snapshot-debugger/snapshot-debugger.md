@@ -54,7 +54,7 @@ The following environments are supported:
 
 ### Permissions
 
-- Verify you're added to the [Application Insights Snapshot Debugger](../../role-based-access-control/role-assignments-portal.yml) role for the target **Application Insights Snapshot**.
+- Verify you're added to the [Application Insights Snapshot Debugger](/azure/role-based-access-control/role-assignments-portal) role for the target **Application Insights Snapshot**.
 
 ## How Snapshot Debugger works
 

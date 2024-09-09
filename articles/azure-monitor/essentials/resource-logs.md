@@ -200,7 +200,7 @@ Within the PT1H.json file, each event is stored in the following format. It uses
 
 ## Azure Monitor partner integrations
 
-Resource logs can also be sent to partner solutions that are fully integrated into Azure. For a list of these solutions and details on how to configure them, see [Azure Monitor partner integrations](../../partner-solutions/overview.md).
+Resource logs can also be sent to partner solutions that are fully integrated into Azure. For a list of these solutions and details on how to configure them, see [Azure Monitor partner integrations](/azure/partner-solutions/overview).
 
 ## Next steps
 

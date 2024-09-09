@@ -16,7 +16,7 @@ While standard monitoring solutions might alert you to a live site issue, outage
 
 Change Analysis is designed to answer that question in Azure Monitor.
 
-Building on the power of [Azure Resource Graph](../../governance/resource-graph/overview.md), Change Analysis:
+Building on the power of [Azure Resource Graph](/azure/governance/resource-graph/overview), Change Analysis:
 - Provides insights into your Azure application changes.
 - Increases observability.
 - Reduces mean time to repair (MTTR).
@@ -63,7 +63,7 @@ Change Analysis also tracks [resource dependency changes](#dependency-changes) t
 
 ### Azure Resource Manager resource properties changes
 
-Using [Azure Resource Graph](../../governance/resource-graph/overview.md), Change Analysis provides a historical record of how the Azure resources that host your application changed over time. The following basic configuration settings are set using Azure Resource Manager and tracked by Azure Resource Graph:
+Using [Azure Resource Graph](/azure/governance/resource-graph/overview), Change Analysis provides a historical record of how the Azure resources that host your application changed over time. The following basic configuration settings are set using Azure Resource Manager and tracked by Azure Resource Graph:
 - Managed identities
 - Platform OS upgrade
 - Hostnames

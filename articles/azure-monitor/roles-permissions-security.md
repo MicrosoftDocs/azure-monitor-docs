@@ -10,13 +10,13 @@ ms.reviewer: dalek
 
 # Roles, permissions, and security in Azure Monitor
 
-This article shows how to apply [role-based access control (RBAC)](../role-based-access-control/overview.md) monitoring roles to grant or limit access, and discusses security considerations for your Azure Monitor-related resources.
+This article shows how to apply [role-based access control (RBAC)](/azure/role-based-access-control/overview) monitoring roles to grant or limit access, and discusses security considerations for your Azure Monitor-related resources.
 
 ## Built-in monitoring roles
 
-[Azure role-based access control (Azure RBAC)](../role-based-access-control/overview.md) provides built-in roles for monitoring that you can assign to users, groups, service principals, and managed identities. The most common roles are [*Monitoring Reader*](#monitoring-reader) and [*Monitoring Contributor*](#monitoring-contributor) for read and write permissions, respectively.
+[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) provides built-in roles for monitoring that you can assign to users, groups, service principals, and managed identities. The most common roles are [*Monitoring Reader*](#monitoring-reader) and [*Monitoring Contributor*](#monitoring-contributor) for read and write permissions, respectively.
 
-For more detailed information on the monitoring roles, see [RBAC Monitoring Roles](../role-based-access-control/built-in-roles.md#monitor).
+For more detailed information on the monitoring roles, see [RBAC Monitoring Roles](/azure/role-based-access-control/built-in-roles#monitor).
 
 ### Monitoring Reader
 
@@ -59,7 +59,7 @@ This role is a superset of the Monitoring Reader role. It's appropriate for memb
 
 ## Monitor permissions and Azure custom roles
 
-If the built-in roles don't meet the needs of your team, you can [create an Azure custom role](../role-based-access-control/custom-roles.md) with [granular permissions](../role-based-access-control/permissions/monitor.md).
+If the built-in roles don't meet the needs of your team, you can [create an Azure custom role](/azure/role-based-access-control/custom-roles) with [granular permissions](/azure/role-based-access-control/permissions/monitor).
 
 For example, you can use granular permissions to create an Azure custom role for an Activity Log Reader with the following PowerShell script.
 
@@ -82,11 +82,11 @@ New-AzRoleDefinition -Role $role
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-To assign a role, see [Assign Azure roles using Azure PowerShell](../role-based-access-control/role-assignments-powershell.md).
+To assign a role, see [Assign Azure roles using Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
 
 For example, the following PowerShell script assigns a role to a specified user.
 
-Replace `<RoleId>` with the [RBAC Monitoring Role](../role-based-access-control/built-in-roles.md#monitor) ID you want to assign.
+Replace `<RoleId>` with the [RBAC Monitoring Role](/azure/role-based-access-control/built-in-roles#monitor) ID you want to assign.
 
 Replace `<SubscriptionID>`, `<ResourceGroupName>`, and `<UserPrincipalName>` with the appropriate values for your environment.
 
@@ -107,7 +107,7 @@ $Scope = "/subscriptions/$SubscriptionId/resourceGroups/$ResourceGroupName"
 New-AzRoleAssignment -ObjectId $User.Id -RoleDefinitionId $RoleId -Scope $Scope
 ```
 
-You can also [Assign Azure roles by using the Azure portal](../role-based-access-control/role-assignments-portal.yml).
+You can also [Assign Azure roles by using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 > [!IMPORTANT]
 > - Ensure you have the necessary permissions to assign roles in the specified scope. You must have *Owner* rights to the subscription or the resource group.
@@ -145,7 +145,7 @@ $resourceGroup = "ResourceGroupName"
 
 * Use a single, dedicated storage account for monitoring data. If you need to separate monitoring data into multiple storage accounts, always use different storage accounts for monitoring data and other types of data. If you share storage accounts for monitoring and other types of data, you might inadvertently grant access to other data to organizations that should only access monitoring data. For example, a non-Microsoft organization for security information and event management should need only access to monitoring data.
 * Use a single, dedicated service bus or event hub namespace across all diagnostic settings for the same reason described in the previous point.
-* Limit access to monitoring-related storage accounts or event hubs by keeping them in a separate resource group. [Use scope](../role-based-access-control/overview.md#scope) on your monitoring roles to limit access to only that resource group.
+* Limit access to monitoring-related storage accounts or event hubs by keeping them in a separate resource group. [Use scope](/azure/role-based-access-control/overview#scope) on your monitoring roles to limit access to only that resource group.
 * You should never grant the ListKeys permission for either storage accounts or event hubs at subscription scope when a user only needs access to monitoring data. Instead, give these permissions to the user at a resource or resource group scope (if you have a dedicated monitoring resource group).
 
 ### Limit access to monitoring-related storage accounts
@@ -198,5 +198,5 @@ You can follow a similar pattern with event hubs, but first you need to create a
    ```
 ## Next steps
 
-* [Read about Azure RBAC and permissions in Azure Resource Manager](../role-based-access-control/overview.md)
+* [Read about Azure RBAC and permissions in Azure Resource Manager](/azure/role-based-access-control/overview)
 * [Read the overview of monitoring in Azure](overview.md)

@@ -14,7 +14,7 @@ ms.reviewer: edbaynash
 
 This article shows you how to create a logic app and integrate it with an Azure Monitor alert.
 
-You can use [Azure Logic Apps](../../logic-apps/logic-apps-overview.md) to build and customize workflows for integration. Use Logic Apps to customize your alert notifications. You can:
+You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration. Use Logic Apps to customize your alert notifications. You can:
 
 - Customize the alerts email by using your own email subject and body format.
 - Customize the alert metadata by looking up tags for affected resources or fetching a log query search result. For information on how to access the search result rows that contain alerts data, see:
