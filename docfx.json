@@ -7,44 +7,267 @@
           "**/*.yml"
         ],
         "exclude": [
-          "**/obj/**",
+          "iot-edge/**",
+          "**/_themes/**",
           "**/includes/**",
-          "_themes/**",
-          "_themes.pdf/**",
-          "**/docfx.json",
-          "_repo.en-us/**",
-          "README.md",
-          "LICENSE",
-          "LICENSE-CODE",
-          "ThirdPartyNotices.md",
-          "SECURITY.md"
-        ]
+          "**/obj/**",
+          "**/*.graffle"
+        ],
+        "src": "articles",
+        "dest": "."
+      },
+      {
+        "files": [
+          "toc.yml"
+        ],
+        "src": "breadcrumb/azure-monitor",
+        "dest": "breadcrumb/azure-monitor"
       }
     ],
     "resource": [
       {
         "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
           "**/*.png",
-          "**/*.jpg"
+          "**/*.svg"
         ],
         "exclude": [
-          "**/obj/**",
-          "**/includes/**",
-          "_themes/**",
-          "_themes.pdf/**",
-          "**/docfx.json",
-          "_repo.en-us/**"
+          "iot-edge/**",
+          "**/_themes/**",
+          "**/obj/**"
+        ],
+        "src": "articles",
+        "dest": "."
+      },
+      {
+        "files": [
+          "includes/**/*.gif",
+          "includes/**/*.jpeg",
+          "includes/**/*.jpg",
+          "includes/**/*.png",
+          "includes/**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/obj/**"
         ]
       }
     ],
+    "globalMetadata": {
+      "contributors_to_exclude": [
+        "alexbuckgit",
+        "American-Dipper",
+        "AnnaMHuff",
+        "cdpark",
+        "Court72",
+        "damabe",
+        "denrea",
+        "dksimpson",
+        "garycentric",
+        "GitHubber17",
+        "Jak-MS",
+        "JamesJBarnett",
+        "JasonWHowell",
+        "JillGrant615",
+        "JKirsch1",
+        "Jmart1428",
+        "JustPies",
+        "ktoliver",
+        "LizCasey1",
+        "MeeraDi",
+        "meganbradley",
+        "mohitp930",
+        "mSarts",
+        "ms-robkni",
+        "openpublishingbuild",
+        "paulth1",
+        "PMEds28",
+        "PRmerger",
+        "PRMerger17",
+        "PRMerger-2",
+        "PRMerger3",
+        "PRMerger4",
+        "PRMerger5",
+        "PRMerger9",
+        "rjagiewich",
+        "rmca14",
+        "Saisang",
+        "sdwheeler",
+        "ShannonLeavitt",
+        "ShawnJackson",
+        "ShawnKupfer",
+        "tfosmark",
+        "TimShererWithAquent",
+        "ttorble",
+        "tysonn",
+        "v-albemi",
+        "v-ccolin",
+        "v-dirichards",
+        "v-emilypr",
+        "v-lmcdonald",
+        "v-regandowner",
+        "v-savila",
+        "v-shils",
+        "v-stsavell",
+        "v-thepet",
+        "v-thpra"
+      ],
+      "breadcrumb_path": "~/breadcrumb/azure-monitor/toc.yml",
+      "_op_documentIdPathDepotMapping": {
+        "articles/iot-central/": {}
+      },
+      "brand": "azure",
+      "feedback_github_repo": "MicrosoftDocs/azure-docs",
+      "feedback_help_link_url": "https://learn.microsoft.com/answers/tags/133/azure",
+      "feedback_help_link_type": "get-help-at-qna",
+      "feedback_product_url": "https://feedback.azure.com/d365community/forum/79b1327d-d925-ec11-b6e6-000d3a4f06a4",
+      "feedback_system": "Standard",
+      "searchScope": [
+        "Azure"
+      ],
+      "permissioned-type": "public",
+      "recommendations": true,
+      "recommendation_types": [
+        "Training",
+        "Certification"
+      ],
+      "uhfHeaderId": "azure",
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "zone-pivot-groups.json"
+    },
+    "fileMetadata": {
+      "adobe-target": {
+        "articles/azure-monitor/*": true
+      },
+      "author": {
+        "articles/advisor/*.md": "ikhapova",
+        "articles/azure-monitor/*.md": "bwren",
+        "articles/azure-monitor/agents/*.md": "guywi-ms",
+        "articles/azure-monitor/alerts/*.md": "AbbyMSFT",
+        "articles/azure-monitor/app/*.md": "AaronMaxwell",
+        "articles/azure-monitor/autoscale/*.md": "EdB-MSFT",
+        "articles/azure-monitor/change/*.md": "hhunter-ms",
+        "articles/azure-monitor/containers/*.md": "bwren",
+        "articles/azure-monitor/containers/**/*.md": "bwren",
+        "articles/azure-monitor/essentials/*.md": "EdB-MSFT",
+        "articles/azure-monitor/insights/*.md": "bwren",
+        "articles/azure-monitor/logs/*.md": "guywi-ms",
+        "articles/azure-monitor/profiler/*.md": "hhunter-ms",
+        "articles/azure-monitor/snapshot-debugger/*.md": "hhunter-ms",
+        "articles/azure-monitor/visualize/**/*.md": "AbbyMSFT",
+        "articles/azure-monitor/vm/*.md": "bwren",
+        "articles/service-health/*.md": "rboucher"
+      },
+      "featureFlags": {
+        "articles/**/*.md": [
+          "show_learn_banner"
+        ]
+      },
+      "feedback_product_url": {
+        "articles/advisor/**/*.md": "https://feedback.azure.com/d365community/forum/44a8566e-0525-ec11-b6e6-000d3a4f0858",
+        "articles/azure-monitor/**/*.md": "https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0",
+        "articles/azure-monitor/app/**/*.md": "https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0",
+        "articles/chaos-studio/**/*.md": "https://feedback.azure.com/d365community/forum/18f8dc01-dc37-ec11-b6e6-000d3a9c7101",
+        "articles/service-health/**/*.md": "https://feedback.azure.com/d365community/forum/f36c61ce-0625-ec11-b6e6-000d3a4f07b8"
+      },
+      "feedback_help_link_url": {
+        "articles/advisor/**/*": "https://learn.microsoft.com/answers/tags/398/azure-advisor/",
+        "articles/azure-monitor/**/*": "https://learn.microsoft.com/answers/tags/20/azure-monitor/",
+        "articles/chaos-studio/**/*": "https://learn.microsoft.com/answers/tags/456/chaos-studio/",
+        "articles/service-health/**/*": "https://learn.microsoft.com/answers/tags/20/azure-monitor"
+      },
+      "feedback_help_link_type": {
+        "**/*": "get-help-at-qna"
+      },
+      "learn_banner_products": {
+        "articles/**/*.md": [
+          "azure"
+        ]
+      },
+      "manager": {
+        "articles/azure-monitor/**/*.md": "orspodek"
+      },
+      "ms.author": {
+        "articles/advisor/*.md": "ikhapova",
+        "articles/azure-monitor/*.*": "bwren",
+        "articles/azure-monitor/agents/*.md": "guywild",
+        "articles/azure-monitor/alerts/*.md": "abbyweisberg",
+        "articles/azure-monitor/app/*.md": "aaronmax",
+        "articles/azure-monitor/autoscale/*.md": "edbaynash",
+        "articles/azure-monitor/change/*.md": "hannahhunter",
+        "articles/azure-monitor/containers/*.md": "bwren",
+        "articles/azure-monitor/essentials/*.md": "edbaynash",
+        "articles/azure-monitor/insights/*.md": "robb",
+        "articles/azure-monitor/logs/*.md": "guywild",
+        "articles/azure-monitor/profiler/*.md": "hannahhunter",
+        "articles/azure-monitor/snapshot-debugger/*.md": "hannahhunter",
+        "articles/azure-monitor/visualize/**/*.md": "abbyweisberg",
+        "articles/azure-monitor/vm/*.md": "bwren",
+        "articles/service-health/*.md": "robb"
+      },
+      "ms.service": {
+        "articles/advisor/**/*.md": "azure-advisor",
+        "articles/azure-monitor/**/*.md": "azure-monitor",
+        "articles/service-health/**/*.md": "azure-service-health"
+      },
+      "ms.reviewer": {
+        "articles/advisor/*.md": "ikhapova"
+      },
+      "ms.subservice": {
+        "articles/azure-monitor/*.md": "general",
+        "articles/azure-monitor/agents/**/*.md": "agents",
+        "articles/azure-monitor/alerts/**/*.md": "alerts",
+        "articles/azure-monitor/app/**/*.md": "application-insights",
+        "articles/azure-monitor/autoscale/**/*.md": "autoscale",
+        "articles/azure-monitor/change/*.md": "change-analysis",
+        "articles/azure-monitor/containers/**/*.md": "containers",
+        "articles/azure-monitor/essentials/**/*.md": "essentials",
+        "articles/azure-monitor/insights/**/*.md": "insights",
+        "articles/azure-monitor/logs/**/*.md": "logs",
+        "articles/azure-monitor/profiler/*.md": "profiler",
+        "articles/azure-monitor/snapshot-debugger/*.md": "snapshot-debugger",
+        "articles/azure-monitor/visualize/**/*.md": "visualizations",
+        "articles/azure-monitor/vm/**/*.md": "virtual-machines"
+      },
+      "searchScope": {
+        "articles/advisor/**/*.md": [
+          "Azure",
+          "Azure Advisor"
+        ],
+        "articles/advisor/**/*.yml": [
+          "Azure",
+          "Azure Advisor"
+        ],
+        "articles/azure-monitor/**/*.md": [
+          "Azure",
+          "Azure Monitor"
+        ],
+        "articles/azure-monitor/**/*.yml": [
+          "Azure",
+          "Azure Monitor"
+        ],
+        "articles/service-health/**/*.md": [
+          "Azure",
+          "Service Health"
+        ],
+        "articles/service-health/**/*.yml": [
+          "Azure",
+          "Service Health"
+        ]
+      },
+      "titleSuffix": {
+        "articles/advisor/*.yml": "Azure Advisor",
+        "articles/advisor/**/*.md": "Azure Advisor",
+        "articles/azure-monitor/**/*.md": "Azure Monitor",
+        "articles/azure-monitor/**/*.yml": "Azure Monitor",
+        "articles/service-health/*.yml": "Azure Service Health",
+        "articles/service-health/**/*.md": "Azure Service Health"
+      }
+    },
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {
-      "breadcrumb_path": "~/breadcrumb/azure-monitor/toc.yml",
-      "feedback_system": "Standard",
-      "permissioned-type": "public"
-    },
-    "fileMetadata": {},
     "template": []
   }
 }
