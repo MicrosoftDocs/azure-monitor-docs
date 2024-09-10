@@ -9,7 +9,23 @@ items:
   - name: Azure Monitor
     tocHref: /azure/azure-monitor/
     topicHref: /azure/azure-monitor/
-    items: []
+    items:
+    - name: Application Insights
+      tocHref: /azure/azure-monitor/azure-monitor-app-hub
+      topicHref: /azure/azure-monitor/azure-monitor-app-hub
+  - name: Azure Monitor
+    tocHref: /azure/sentinel/
+    topicHref: /azure/azure-monitor/index
   - name: Service Health
     tocHref: /azure/service-health/
     topicHref: /azure/service-health/
+  - name: Chaos Studio
+    tocHref: /azure/chaos-studio/
+    topicHref: /azure/chaos-studio/index
+  - name: Chaos Studio
+    tocHref: /azure/reliability/
+    topicHref: /azure/chaos-studio/index
+    items:
+  - name: Chaos Studio
+    tocHref: /azure/architecture/
+    topicHref: /azure/chaos-studio/index
