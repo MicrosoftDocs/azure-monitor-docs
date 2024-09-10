@@ -10,7 +10,7 @@ ms.date: 08/26/2024
 # Send guest OS metrics to the Azure Monitor metric store by using an Azure Resource Manager template for a Windows virtual machine scale set
 
 > [!NOTE]    
-> Azure Monitor Agent (AMA) collects monitoring data from the guest operating system of Azure and hybrid virtual machines and Virtual Machine Scale Sets and delivers it to Azure Monitor for use by features, insights, and other services such as [Microsoft Sentinel](../../sentintel/../sentinel/overview.md) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction).
+> Azure Monitor Agent (AMA) collects monitoring data from the guest operating system of Azure and hybrid virtual machines and Virtual Machine Scale Sets and delivers it to Azure Monitor for use by features, insights, and other services such as [Microsoft Sentinel](/azure/sentinel/overview) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction).
 >
 >We recommend using the Azure Monitor Agent to collet logs and metrics from  Virtual Machine Scale Sets. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
