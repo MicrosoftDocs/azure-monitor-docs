@@ -55,7 +55,7 @@ The following facilities are supported with the Syslog collector:
 | 22     | local6   |
 | 23     | local7   |
 
-:::image type="content" source="../../sentinel/media/forward-syslog-monitor-agent/create-rule-data-source.png" lightbox="../../sentinel/media/forward-syslog-monitor-agent/create-rule-data-source.png" alt-text="Screenshot that shows the page to select the data source type and minimum log level.":::
+:::image type="content" source="./media/data-collection-syslog/create-rule-data-source.png" lightbox="./media/data-collection-syslog/create-rule-data-source.png" alt-text="Screenshot that shows the page to select the data source type and minimum log level.":::
 
 By default, the agent will collect all events that are sent by the Syslog configuration. Change the **Minimum log level** for each facility to limit data collection. Select **NONE** to collect no events for a particular facility.
 
