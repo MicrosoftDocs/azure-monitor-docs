@@ -18,9 +18,9 @@ page lists the **compliance domains** and **security controls** for Azure Monito
 the built-ins for a **security control** individually to help make your Azure resources compliant
 with the specific standard.
 
-[!INCLUDE [azure-policy-compliancecontrols-introwarning](../../includes/policy/standards/intro-warning.md)]
+[!INCLUDE [azure-policy-compliancecontrols-introwarning]~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-monitor](../../includes/policy/standards/byrp/microsoft.insights.md)]
+[!INCLUDE [azure-policy-compliancecontrols-monitor]~/azure-docs-pr/includes/policy/standards/byrp/microsoft.insights.md)]
 
 ## Next steps
 
