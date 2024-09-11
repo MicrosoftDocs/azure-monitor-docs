@@ -265,7 +265,7 @@ The combined bandwidth used by all the Free SKU Static Web Apps in this subscrip
   
 **Potential benefits**: Higher availability for the apps by avoiding throttling.
   
-For More information, see [Pricing – Static Web Apps ](https://azure.microsoft.com/pricing/details/app-service/static/)  
+For More information, see [Pricing – Static Web Apps](https://azure.microsoft.com/pricing/details/app-service/static/)  
 
 <!--dc3edeee-f0ab-44ae-b612-605a0a739612_end-->
   
@@ -326,7 +326,7 @@ Deploying two or more medium or large sized instances ensures business continuit
   
 **Potential benefits**: Ensure business continuity through application gateway resilience
   
-For More information, see [Multi-region load balancing - Azure Reference Architectures ](https://aka.ms/aa_gatewayrec_learnmore)  
+For More information, see [Multi-region load balancing - Azure Reference Architectures](https://aka.ms/aa_gatewayrec_learnmore)  
 
 <!--6a2b1e70-bd4c-4163-86de-5243d7ac05ee_end-->
 
@@ -913,7 +913,7 @@ We found high number of Control Plane operations on your account through resourc
   
 **Potential benefits**: Optimize control plane operation and avoid operation failure due to rate limiting
   
-For More information, see [Azure Cosmos DB service quotas](https://docs.microsoft.com/azure/cosmos-db/concepts-limits#control-plane)  
+For More information, see [Azure Cosmos DB service quotas](/azure/cosmos-db/concepts-limits#control-plane)  
 
 <!--a030f8ab-4dd4-4751-822b-f231a0df5f5a_end-->
   
@@ -1237,7 +1237,7 @@ To achieve high availability and resiliency, enable zone redundancy for the SQL 
   
 **Potential benefits**: Enabling zone redundancy ensures Azure SQL Database is resilient to zonal hardware and software failures and the recovery is transparent to applications.
   
-For More information, see [Availability through redundancy -  Azure SQL Database](/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#zone-redundant-availability)  
+For More information, see [Availability through redundancy -  Azure SQL Database](/azure/azure-sql/database/high-availability-sla?view=azuresql&preserve-view=true&tabs=azure-powershell#zone-redundant-availability)  
 
 <!--807e58d0-e385-41ad-987b-4a4b3e3fb563_end-->
   
@@ -1406,7 +1406,7 @@ Implementing BCDR strategy improves high availability and reduced risk of data l
   
 **Potential benefits**: Improves high availability and reduced risk of data loss
   
-For More information, see [BCDR for Azure Data Factory and Azure Synapse Analytics pipelines - Azure Architecture Center ](https://aka.ms/AArn7ln)  
+For More information, see [BCDR for Azure Data Factory and Azure Synapse Analytics pipelines - Azure Architecture Center](https://aka.ms/AArn7ln)  
 
 <!--617ee02c-be69-441e-8294-dee5a237efff_end-->
 
@@ -1611,7 +1611,7 @@ Keep your information and applications safe with robust, one click backup from A
   
 **Potential benefits**: Ensure your business-critical applications stay protected
   
-For More information, see [Azure Backup Documentation - Azure Backup ](/azure/backup/)  
+For More information, see [Azure Backup Documentation - Azure Backup](/azure/backup/)  
 
 <!--9e91a63f-faaf-46f2-ac7c-ddfcedf13366_end-->
 
@@ -1694,7 +1694,7 @@ Virtual Machines (VMs) in your subscription are running on images scheduled for 
   
 **Potential benefits**: Minimize any potential disruptions to your VM workloads
   
-For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 <!--11f04d70-5bb3-4065-b717-1f11b2e050a8_end-->
   
@@ -1706,7 +1706,7 @@ Virtual Machines (VMs) in your subscription are running on images scheduled for 
   
 **Potential benefits**: Minimize any potential disruptions to your VM workloads
   
-For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 <!--937d85a4-11b2-4e13-a6b5-9e15e3d74d7b_end-->
   
@@ -1718,7 +1718,7 @@ Virtual Machines (VMs) in your subscription are running on images scheduled for 
   
 **Potential benefits**: Minimize any potential disruptions to your VM workloads
   
-For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 <!--681acf17-11c3-4bdd-8f71-da563c79094c_end-->
   
@@ -1730,7 +1730,7 @@ VMSS in your subscription are running on images that have been scheduled for dep
   
 **Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads
   
-For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
   
@@ -1742,7 +1742,7 @@ VMSS in your subscription are running on images that have been scheduled for dep
   
 **Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads
   
-For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_end-->
   
@@ -1754,7 +1754,7 @@ VMSS in your subscription are running on images that have been scheduled for dep
   
 **Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads
   
-For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+For More information, see [Deprecated Azure Marketplace images - Azure Virtual Machines](https://aka.ms/DeprecatedImagesFAQ)  
 
 <!--44abb62e-7789-4f2f-8001-fa9624cb3eb3_end-->
   
@@ -1863,7 +1863,7 @@ MPSQL servers with an Always On availability group have better availability. You
   
 **Potential benefits**: Improved Database availability and resource use
   
-For More information, see [What is an Always On availability group?](/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server?view=sql-server-ver16#Benefits)  
+For More information, see [What is an Always On availability group?](/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server#Benefits)  
 
 <!--3ca22452-0f8f-4701-a313-a2d83334e3cc_end-->
 
