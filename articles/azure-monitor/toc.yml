@@ -640,6 +640,7 @@ items:
       - name: Data collection endpoints
         href: essentials/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration
+        href: essentials/edge-pipeline-configure.md
       - name: Data plane batch query vs Metrics export
         href: essentials/dataplane-verses-metrics-export.md
     - name: Diagnostic Settings
