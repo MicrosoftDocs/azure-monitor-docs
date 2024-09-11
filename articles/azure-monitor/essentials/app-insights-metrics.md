@@ -4,18 +4,27 @@ description: This article lists Azure Application Insights metrics with supporte
 author: vgorbenko
 services: azure-monitor  
 ms.topic: reference
-ms.date: 07/03/2019    
+ms.date: 09/06/2024
 ms.reviewer: vitalyg
 ---
 
 # Application Insights log-based metrics
 
-Application Insights log-based metrics let you analyze the health of your monitored apps, create powerful dashboards, and configure alerts. There are two kinds of metrics:
+> [!IMPORTANT]
+> Both log-based and preaggregated metrics coexist in Application Insights. To differentiate the two, in the Application Insights user experience the preaggregated metrics are now called standard metrics. The traditional metrics from the events were renamed to log-based metrics.
+
+Application Insights log-based metrics let you analyze the health of your monitored apps, create powerful dashboards, and configure alerts.
+
+<!-- TO BE MOVED
+
+There are two kinds of metrics:
 
 * [Log-based metrics](../app/pre-aggregated-metrics-log-metrics.md#log-based-metrics) behind the scene are translated into [Kusto queries](/azure/kusto/query/) from stored events.
 * [Standard metrics](../app/pre-aggregated-metrics-log-metrics.md#preaggregated-metrics) are stored as preaggregated time series.
 
 Since *standard metrics* are preaggregated during collection, they have better performance at query time. This makes them a better choice for dashboarding and in real-time alerting. The *log-based metrics* have more dimensions, which makes them the superior option for data analysis and ad-hoc diagnostics. Use the [namespace selector](./metrics-store-custom-rest-api.md#namespace) to switch between log-based and standard metrics in [metrics explorer](./analyze-metrics.md).
+
+-->
 
 ## Interpret and use queries from this article
 
@@ -41,9 +50,9 @@ Metrics in the Availability category enable you to see the health of your web ap
 ### Availability (availabilityResults/availabilityPercentage)
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
-|Unit of measure|Supported aggregations|Supported dimensions|
-|---|---|---|---|---|---|
-|Percentage|Average|Run location, Test name|
+| Unit of measure | Supported aggregations | Supported dimensions    |
+|-----------------|------------------------|-------------------------|
+| Percentage      | Average                | Run location, Test name |
 
 ```Kusto
 availabilityResults 
@@ -55,9 +64,9 @@ availabilityResults
 
 The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
 
-|Unit of measure|Supported aggregations|Supported dimensions|
-|---|---|---|---|---|---|
-|Milliseconds|Average, Min, Max|Run location, Test name, Test result
+| Unit of measure | Supported aggregations | Supported dimensions                 |
+|-----------------|------------------------|--------------------------------------|
+| Milliseconds    | Average, Min, Max      | Run location, Test name, Test result |
 
 ```Kusto
 availabilityResults
@@ -71,9 +80,9 @@ availabilityResults
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
 
-|Unit of measure|Supported aggregations|Supported dimensions|
-|---|---|---|---|---|---|
-|Count|Count|Run location, Test name, Test result|
+| Unit of measure | Supported aggregations | Supported dimensions                 |
+|-----------------|------------------------|--------------------------------------|
+| Count           | Count                  | Run location, Test name, Test result |
 
 ```Kusto
 availabilityResults
@@ -92,9 +101,9 @@ Browser metrics are collected by the Application Insights JavaScript SDK from re
 
 Time from user request until DOM, stylesheets, scripts and images are loaded.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|
-|---|---|---|
-|Milliseconds|Average, Min, Max|None|
+| Unit of measure | Supported aggregations | Preaggregated dimensions |
+|-----------------|------------------------|--------------------------|
+| Milliseconds    | Average, Min, Max      | None                     |
 
 ```Kusto
 browserTimings
@@ -110,9 +119,9 @@ browserTimings
 
 Time between receiving the last byte of a document until the DOM is loaded. Async requests may still be processing.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|
-|---|---|---|
-|Milliseconds|Average, Min, Max|None|
+| Unit of measure | Supported aggregations | Preaggregated dimensions |
+|-----------------|------------------------|--------------------------|
+| Milliseconds    | Average, Min, Max      | None                     |
 
 ```Kusto
 browserTimings
@@ -128,9 +137,9 @@ browserTimings
 
 Time between user request and network connection. Includes DNS lookup and transport connection.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|
-|---|---|---|
-|Milliseconds|Average, Min, Max|None|
+| Unit of measure | Supported aggregations | Preaggregated dimensions |
+|-----------------|------------------------|--------------------------|
+| Milliseconds    | Average, Min, Max      | None                     |
 
 ```Kusto
 browserTimings
@@ -146,9 +155,9 @@ browserTimings
 
 Time between the first and last bytes, or until disconnection.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|
-|---|---|---|
-|Milliseconds|Average, Min, Max|None|
+| Unit of measure | Supported aggregations | Preaggregated dimensions |
+|-----------------|------------------------|--------------------------|
+| Milliseconds    | Average, Min, Max      | None                     |
 
 ```Kusto
 browserTimings
@@ -164,9 +173,9 @@ browserTimings
 
 Time between network connection and receiving the first byte.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|
-|---|---|---|
-|Milliseconds|Average, Min, Max|None|
+| Unit of measure | Supported aggregations | Preaggregated dimensions |
+|-----------------|------------------------|--------------------------|
+| Milliseconds    | Average, Min, Max      | None                     |
 
 ```Kusto
 browserTimings
@@ -186,9 +195,9 @@ The metrics in **Failures** show problems with processing requests, dependency c
 
 This metric reflects the number of thrown exceptions from your application code running in browser. Only exceptions that are tracked with a ```trackException()``` Application Insights API call are included in the metric.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|Notes|
-|---|---|---|---|
-|Count|Count|None|Log-based version uses **Sum** aggregation|
+| Unit of measure | Supported aggregations | Preaggregated dimensions | Notes                                      |
+|-----------------|------------------------|--------------------------|--------------------------------------------|
+| Count           | Count                  | None                     | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 exceptions
@@ -201,9 +210,9 @@ exceptions
 
 The number of failed dependency calls.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|Notes|
-|---|---|---|---|
-|Count|Count|None|Log-based version uses **Sum** aggregation|
+| Unit of measure | Supported aggregations | Preaggregated dimensions | Notes                                      |
+|-----------------|------------------------|--------------------------|--------------------------------------------|
+| Count           | Count                  | None                     | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 dependencies
@@ -216,9 +225,9 @@ dependencies
 
 Each time when you log an exception to Application Insights, there is a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|Notes|
-|---|---|---|---|
-|Count|Count|Cloud role name, Cloud role instance, Device type|Log-based version uses **Sum** aggregation|
+| Unit of measure | Supported aggregations | Preaggregated dimensions                          | Notes                                      |
+|-----------------|------------------------|---------------------------------------------------|--------------------------------------------|
+| Count           | Count                  | Cloud role name, Cloud role instance, Device type | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 exceptions
@@ -230,9 +239,9 @@ exceptions
 
 The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx as a failed request. You can customize this logic by modifying  *success* property of request telemetry item in a [custom telemetry initializer](../app/api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|Notes|
-|---|---|---|---|
-|Count|Count|Cloud role instance, Cloud role name, Real or synthetic traffic, Request performance, Response code|Log-based version uses **Sum** aggregation|
+| Unit of measure | Supported aggregations | Preaggregated dimensions                                                                            | Notes                                      |
+|-----------------|------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|
+| Count           | Count                  | Cloud role instance, Cloud role name, Real or synthetic traffic, Request performance, Response code | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 requests
@@ -245,9 +254,9 @@ requests
 
 This metric shows the number of server exceptions.
 
-|Unit of measure|Supported aggregations|Preaggregated dimensions|Notes|
-|---|---|---|---|
-|Count|Count|Cloud role name, Cloud role instance|Log-based version uses **Sum** aggregation|
+| Unit of measure | Supported aggregations | Preaggregated dimensions             | Notes                                      |
+|-----------------|------------------------|--------------------------------------|--------------------------------------------|
+| Count           | Count                  | Cloud role name, Cloud role instance | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 exceptions
@@ -314,9 +323,9 @@ performanceCounters
 
 The metric shows how much of the total processor capacity is consumed by the process that is hosting your monitored app.
 
-|Unit of measure|Supported aggregations|Supported dimensions|
-|---|---|---|
-|Percentage|Average, Min, Max|Cloud role instance|
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Percentage      | Average, Min, Max      | Cloud role instance  |
 
 ```Kusto
 performanceCounters
@@ -331,9 +340,9 @@ performanceCounters
 
 ### Process IO rate (performanceCounters/processIOBytesPerSecond)
 
-|Unit of measure|Supported aggregations|Supported dimensions|
-|---|---|---|
-|Bytes per second|Average, Min, Max|Cloud role instance|
+| Unit of measure  | Supported aggregations | Supported dimensions |
+|------------------|------------------------|----------------------|
+| Bytes per second | Average, Min, Max      | Cloud role instance  |
 
 ```Kusto
 performanceCounters
@@ -347,9 +356,9 @@ performanceCounters
 
 Amount of non-shared memory that the monitored process allocated for its data.
 
-|Unit of measure|Supported aggregations|Supported dimensions|
-|---|---|---|
-|Bytes|Average, Min, Max|Cloud role instance|
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Bytes           | Average, Min, Max      | Cloud role instance  |
 
 ```Kusto
 performanceCounters
@@ -363,9 +372,9 @@ performanceCounters
 
 CPU consumption by *all* processes running on the monitored server instance.
 
-|Unit of measure|Supported aggregations|Supported dimensions|
-|---|---|---|
-|Percentage|Average, Min, Max|Cloud role instance|
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Percentage      | Average, Min, Max      | Cloud role instance  |
 
 >[!NOTE]
 > The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
@@ -525,3 +534,7 @@ output
     "@ai.query": "union (traces | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (requests | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (pageViews | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (dependencies | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (customEvents | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (availabilityResults | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (exceptions | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (customMetrics | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)), (browserTimings | where timestamp >= datetime(2024-06-21T09:14:25.450Z) and timestamp < datetime(2024-06-21T21:14:25.450Z)) | where notempty(user_AuthenticatedId) | summarize ['users/authenticated_unique'] = dcount(user_AuthenticatedId)"
 }
 ```
+
+## Next steps
+
+* ...

@@ -6,11 +6,21 @@ ms.date: 01/31/2024
 ms.reviewer: vitalyg
 ---
 
+<!-- This document will be replaced by a general metrics overview doc, and certain sections moved to log-based, standard, and custom metrics-specific articles -->
+
 # Log-based and preaggregated metrics in Application Insights
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
 
+
+<!-- Moved to metrics-overview.md
+
 This article explains the difference between "traditional" Application Insights metrics that are based on logs and preaggregated metrics. Both types of metrics are available to users of Application Insights. Each one brings a unique value in monitoring application health, diagnostics, and analytics. The developers who are instrumenting applications can decide which type of metric is best suited to a particular scenario. Decisions are based on the size of the application, expected volume of telemetry, and business requirements for metrics precision and alerting.
+
+-->
+
+
+<!-- Moved to metrics-overview.md
 
 ## Log-based metrics
 
@@ -22,6 +32,11 @@ At the same time, collecting a complete set of events might be impractical or ev
 
 > [!NOTE]
 > In Application Insights, the metrics that are based on the query-time aggregation of events and measurements stored in logs are called log-based metrics. These metrics typically have many dimensions from the event properties, which makes them superior for analytics. The accuracy of these metrics is negatively affected by sampling and filtering.
+
+-->
+
+
+<!-- Moved to metrics-overview.md
 
 ## Preaggregated metrics
 
@@ -35,6 +50,11 @@ The newer SDKs ([Application Insights 2.7](https://www.nuget.org/packages/Micros
 For the SDKs that don't implement preaggregation (that is, older versions of Application Insights SDKs or for browser instrumentation), the Application Insights back end still populates the new metrics by aggregating the events received by the Application Insights event collection endpoint. Although you don't benefit from the reduced volume of data transmitted over the wire, you can still use the preaggregated metrics and experience better performance and support of the near real time dimensional alerting with SDKs that don't preaggregate metrics during collection.
 
 The collection endpoint preaggregates events before ingestion sampling. For this reason, [ingestion sampling](./sampling.md) never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
+
+-->
+
+
+<!-- Moved to standard-metrics.md
 
 ### SDK supported preaggregated metrics table
 
@@ -69,11 +89,17 @@ You can use preaggregation with custom metrics. The two main benefits are:
 
 There are several [ways of sending custom metrics from the Application Insights SDK](./api-custom-events-metrics.md). If your version of the SDK offers [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), these methods are the preferred way of sending custom metrics. In this case, preaggregation happens inside the SDK. This approach reduces the volume of data stored in Azure and also the volume of data transmitted from the SDK to Application Insights. Otherwise, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method, which preaggregates metric events during data ingestion.
 
+-->
+
+
 ## Custom metrics dimensions and preaggregation
 
 All metrics that you send using [OpenTelemetry](opentelemetry-add-modify.md), [trackMetric](./api-custom-events-metrics.md#trackmetric), or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
 
 :::image type="content" source="./media/pre-aggregated-metrics-log-metrics/001-cost.png" lightbox="./media/pre-aggregated-metrics-log-metrics/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
+
+
+<!-- Moved to standard-metrics.md
 
 ## Quotas
 
@@ -82,9 +108,15 @@ Preaggregated metrics are stored as time series in Azure Monitor. [Azure Monitor
 > [!NOTE]
 > Going over the quota might have unintended consequences. Azure Monitor might become unreliable in your subscription or region. To learn how to avoid exceeding the quota, see [Design limitations and considerations](../essentials/metrics-custom-overview.md#design-limitations-and-considerations).
 
+-->
+
+
 ## Why is collection of custom metrics dimensions turned off by default?
 
 The collection of custom metrics dimensions is turned off by default because in the future storing custom metrics with dimensions will be billed separately from Application Insights. Storing the nondimensional custom metrics remain free (up to a quota). You can learn about the upcoming pricing model changes on our official [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
+
+
+<!-- Moved to metrics-overview.md
 
 ## Create charts and explore log-based and standard preaggregated metrics
 
@@ -92,11 +124,19 @@ Use [Azure Monitor metrics explorer](../essentials/metrics-getting-started.md) t
 
 :::image type="content" source="./media/pre-aggregated-metrics-log-metrics/002-metric-namespace.png" lightbox="./media/pre-aggregated-metrics-log-metrics/002-metric-namespace.png" alt-text="Screenshot that shows Metric namespace.":::
 
+-->
+
+
+<!-- Moved to metrics-overview.md
+
 ## Pricing models for Application Insights metrics
 
 Ingesting metrics into Application Insights, whether log-based or preaggregated, generates costs based on the size of the ingested data. For more information, see [Azure Monitor Logs pricing details](../logs/cost-logs.md#application-insights-billing). Your custom metrics, including all its dimensions, are always stored in the Application Insights log store. Also, a preaggregated version of your custom metrics with no dimensions is forwarded to the metrics store by default.
 
 Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can generate *extra costs* based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
+
+-->
+
 
 ## Next steps
 
