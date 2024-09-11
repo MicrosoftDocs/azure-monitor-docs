@@ -20,7 +20,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Monitor
 
-[!INCLUDE [azure-policy-reference-policies-monitor]~/azure-docs-pr/includes/policy/reference/bycat/policies-monitoring.md)]
+[!INCLUDE [azure-policy-reference-policies-monitor](~/azure-docs-pr/includes/policy/reference/bycat/policies-monitoring.md)]
 
 ## Next steps
 
