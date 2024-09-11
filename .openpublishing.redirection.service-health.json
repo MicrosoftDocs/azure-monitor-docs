@@ -1,0 +1,14 @@
+{
+  "redirections": [
+    {
+      "source_path_from_root": "/articles/service-health/alerts-activity-log-service-notifications.md",
+      "redirect_url": "/azure/service-health/alerts-activity-log-service-notifications-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/service-health/service-health-rest.md",
+      "redirect_url": "/azure/service-health/index",
+      "redirect_document_id": false
+    }
+  ]
+}
