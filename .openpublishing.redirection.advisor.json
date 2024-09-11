@@ -1,0 +1,29 @@
+{
+  "redirections": [
+    {
+      "source_path_from_root": "/articles/advisor/advisor-alerts.md",
+      "redirect_url": "/azure/advisor/advisor-alerts-portal",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/advisor/advisor-high-availability-recommendations.md",
+      "redirect_url": "/azure/advisor/advisor-reference-reliability-recommendations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/advisor/advisor-operational-excellence-recommendations.md",
+      "redirect_url": "/azure/advisor/advisor-reference-operational-excellence-recommendations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/advisor/advisor-performance-recommendations.md",
+      "redirect_url": "/azure/advisor/advisor-reference-performance-recommendations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/advisor/security-baseline.md",
+      "redirect_url": "/security/benchmark/azure/baselines/advisor-security-baseline",
+      "redirect_document_id": false
+    }
+  ]
+}
