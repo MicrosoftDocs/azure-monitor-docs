@@ -9,6 +9,7 @@ ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio
 ---
+
 # Understand chaos engineering and resilience
 
 Before you start using Azure Chaos Studio, it's useful to understand the core site reliability engineering concepts being applied.
