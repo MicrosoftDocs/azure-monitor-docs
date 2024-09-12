@@ -26,24 +26,6 @@
     - name: ARM template
       displayName: Resource Manager
       href: advisor-alerts-arm.md
-- name: Recommendations list
-  items:
-  - name: Cost
-    href: advisor-reference-cost-recommendations.md
-  - name: Operational Excellence
-    href: advisor-reference-operational-excellence-recommendations.md
-  - name: Performance
-    href: advisor-reference-performance-recommendations.md
-  - name: Reliability
-    href: advisor-reference-reliability-recommendations.md    
-  - name: Security
-    href: /azure/defender-for-cloud/recommendations-reference
-  - name: Sovereign clouds
-    href: advisor-sovereign-clouds.md
-- name: Samples 
-  items:
-  - name: Azure Resource Graph queries
-    href: ./resource-graph-samples.md
 - name: How-to guides
   items:
   - name: Use Azure Well Architected Framework Assessments
@@ -72,6 +54,24 @@
     href: advisor-azure-resource-graph.md
   - name: Calculate total cost savings
     href: advisor-how-to-calculate-total-cost-savings.md
+- name: Recommendations
+  items:
+  - name: Cost
+    href: advisor-reference-cost-recommendations.md
+  - name: Operational Excellence
+    href: advisor-reference-operational-excellence-recommendations.md
+  - name: Performance
+    href: advisor-reference-performance-recommendations.md
+  - name: Reliability
+    href: advisor-reference-reliability-recommendations.md    
+  - name: Security
+    href: /azure/defender-for-cloud/recommendations-reference
+  - name: Sovereign clouds
+    href: advisor-sovereign-clouds.md
+- name: Samples 
+  items:
+  - name: Azure Resource Graph queries
+    href: ./resource-graph-samples.md
 - name: Reference
   items:
   - name: Security baseline
