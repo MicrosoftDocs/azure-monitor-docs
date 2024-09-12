@@ -25,8 +25,8 @@ items:
     href: best-practices-analysis.md
   - name: Plan alerts and automated actions
     href: alerts/alerts-plan.md
-  - name: Optimize costs
-    href: best-practices-cost.md
+  - name: At-scale monitoring solutions
+    href: monitor-at-scale.md
 - name: Monitoring scenarios
   items:
   - name: Monitor an Azure resource
