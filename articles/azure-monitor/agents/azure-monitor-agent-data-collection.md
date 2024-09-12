@@ -101,8 +101,11 @@ The **Collect and deliver** page allows you to add and configure data sources fo
 
 | Screen element | Description |
 |:---|:---|
-| **Data source** | Select a **Data source type** and define related fields based on the data source type you select. See the articles linked in [Data sources](#data-sources) above for details on configuring each type of data source. |
-| **Destination** | Add one or more destinations for each data source. You can select multiple destinations of the same or different types. For instance, you can select multiple Log Analytics workspaces, which is also known as multihoming. See the details for each data type for the different destinations they support. |
+| Data source | Select a **Data source type** and define related fields based on the data source type you select. See the articles linked in [Data sources](#data-sources) above for details on configuring each type of data source. |
+| Destination | Add one or more destinations for each data source. You can select multiple destinations of different types. See the details for each data type for the different destinations they support. |
+
+> [!IMPORTANT]
+> A data source can only use one Log Analytics workspace. If you need to send data to multiple workspaces, create a separate DCR for each workspace.
 
 A DCR can contain multiple different data sources up to a limit of 10 data sources in a single DCR. You can combine different data sources in the same DCR, but you will typically want to create different DCRs for different data collection scenarios. See [Best practices for data collection rule creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md) for recommendations on how to organize your DCRs.
 
