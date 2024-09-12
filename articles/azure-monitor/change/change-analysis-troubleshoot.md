@@ -93,10 +93,6 @@ To troubleshoot virtual machine issues using the troubleshooting tool in the Azu
 1. Select **Diagnose and solve problems** from the side menu.
 1. Browse and select the troubleshooting tool that fits your issue.
 
-:::image type="content" source="./media/change-analysis/vm-dnsp-troubleshootingtools.png" lightbox="./media/change-analysis/vm-dnsp-troubleshootingtools.png" alt-text="Screenshot of the Diagnose and Solve Problems tool for a Virtual Machine with Troubleshooting tools selected.":::
-<!-- convertborder later -->
-:::image type="content" source="./media/change-analysis/analyze-recent-changes.png" lightbox="./media/change-analysis/analyze-recent-changes.png" alt-text="Screenshot of the tile for the Analyze recent changes troubleshooting tool for a Virtual Machine." border="false":::
-
 ## Can't filter to your resource to view changes
 
 When filtering down to a particular resource in the Change Analysis (classic) standalone page, you may encounter a known limitation that only returns 1,000 resource results. To filter through and pinpoint changes for one of your 1,000+ resources:

@@ -48,14 +48,10 @@ For web app in-guest changes, separate enablement is required for scanning code 
    
      :::image type="content" source="./media/change-analysis/configure-button.png" alt-text="Screenshot of the Application Changes options from the top menu."::: 
 
-1. Toggle on **Change Analysis (classic)** status and select **Save**.
+1. Toggle on **Change Analysis (classic)** status for applicable resources and select **Save**.
 
    :::image type="content" source="./media/change-analysis/change-analysis-on.png" alt-text="Screenshot of the Enable Change Analysis (classic) user interface.":::   
   
-    - The tool displays all web apps under an App Service plan, which you can toggle on and off individually. 
-
-      :::image type="content" source="./media/change-analysis/change-analysis-on-2.png" alt-text="Screenshot of the Enable Change Analysis (classic) user interface expanded.":::   
-
 ## Enable Change Analysis (classic) at scale using PowerShell
 
 If your subscription includes several web apps, run the following script to enable *all web apps* in your subscription.

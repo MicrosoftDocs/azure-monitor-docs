@@ -72,16 +72,12 @@ To track an outage, we will:
 
 In the Azure portal, [navigate to the Change Analysis (classic) standalone UI](./change-analysis-visualizations.md#access-change-analysis-classic-screens). Page loading may take a few minutes as the `Microsoft.ChangeAnalysis` resource provider is registered. 
 
-:::image type="content" source="./media/change-analysis/change-analysis-blade.png" alt-text="Screenshot of Change Analysis (classic) in Azure portal.":::
-
 Once the Change Analysis (classic) page loads, you can see resource changes in your subscriptions. To view detailed web app in-guest change data:
 
 - Select **Enable now** from the banner, or 
 - Select **Configure** from the top menu.
 
 In the web app in-guest enablement pane, select the web app you'd like to enable: 
-
-:::image type="content" source="./media/change-analysis/enablement-pane.png" alt-text="Screenshot of Change Analysis (classic) enablement pane.":::
 
 Now Change Analysis (classic) is fully enabled to track both resources and web app in-guest changes. 
 

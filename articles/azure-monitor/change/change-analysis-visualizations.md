@@ -102,10 +102,6 @@ Change Analysis (classic) displays as an insight card in your virtual machine's 
 1. Go to **Troubleshooting tools**.
 1. Scroll to the end of the troubleshooting options and select **Analyze recent changes** to view changes on the virtual machine.
 
-   :::image type="content" source="./media/change-analysis/vm-dnsp-troubleshootingtools.png" alt-text="Screenshot of the VM Diagnose and Solve Problems":::   
-
-   :::image type="content" source="./media/change-analysis/analyze-recent-changes.png" alt-text="Change analyzer in troubleshooting tools":::   
-
 #### Diagnose and solve problems tool for Azure SQL Database and other resources
 
 You can view Change Analysis data for [multiple Azure resources](./change-analysis.md#supported-resource-types), but we highlight Azure SQL Database in these steps.
@@ -198,8 +194,6 @@ If you already have a dashboard to place the pin:
 1. If you selected **Shared**, select the subscription in which you'd like to place the dashboard.
 1. Select **Pin**.
  
-   :::image type="content" source="./media/change-analysis/existing-dashboard-small.png" alt-text="Screenshot of selecting an existing dashboard to pin your changes to. ":::
-
 #### Create a new dashboard
 
 You can create a new dashboard for this pin.
@@ -210,17 +204,11 @@ You can create a new dashboard for this pin.
 1. If you're creating a shared dashboard, enter the resource group and region information. 
 1. Click **Create and pin**. 
 
-   :::image type="content" source="./media/change-analysis/create-pin-dashboard-small.png" alt-text="Screenshot of creating a new dashboard to pin your changes to.":::
-
 Once the dashboard and pin are created, navigate to the Azure dashboard to view them.
 
 1. From the Azure portal home menu, select **Dashboard**. 
 1. Use the **Manage Sharing** button in the top menu to handle access or "unshare". 
 1. Click on the pin to navigate to the curated view of changes.
-
-   :::image type="content" source="./media/change-analysis/azure-dashboard.png" alt-text="Screenshot of selecting the Dashboard in the Azure portal home menu.":::
-
-   :::image type="content" source="./media/change-analysis/view-share-dashboard.png" alt-text="Screenshot of the pin in the dashboard.":::
 
 ### Share a single change with your team
 
@@ -228,8 +216,6 @@ In the Change Analysis (classic) homepage, select a line of change to view detai
 
 1. On the Changed properties page, select **Share** from the top menu. 
 1. On the Share Change Details pane, copy the deep link of the page and share with your team in messages, emails, reports, or whichever communication channel your team prefers.
-
-   :::image type="content" source="./media/change-analysis/share-single-change.png" alt-text="Screenshot of selecting the share button on the dashboard and copying link.":::
 
 ## Next steps
 
