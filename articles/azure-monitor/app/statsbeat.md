@@ -26,21 +26,21 @@ Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonesse
 
 ### [Classic API](#tab/classic-api)
 
-| Statsbeat | C# | Java | JavaScript | Node.js | Python |
-|-----------|----|------|------------|---------|--------|
-| Network   | ❌ | ✅    | ❌         | ✅       | ✅     |
-| Attach    | ❌ | ✅    | ❌         | ✅       | ✅     |
-| Feature   | ❌ | ✅    | ❌         | ✅       | ✅     |
-| Disk I/O  | ❌ | ✅    | ❌         | ❌       | ❌     |
+| Statsbeat                                   | C# | Java | JavaScript | Node.js | Python |
+|---------------------------------------------|----|------|------------|---------|--------|
+| [Network](#network-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
+| [Attach](#attach-statsbeat)                 | ❌ | ✅    | ❌         | ✅       | ✅     |
+| [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
+| [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
 
 ### [OTel](#tab/otel)
 
-| Statsbeat | C# | Java | JavaScript | Node.js | Python |
-|-----------|----|------|------------|---------|--------|
-| Network   | ✅ | ✅    | ❌         | ✅       | ✅     |
-| Attach    | ✅ | ✅    | ❌         | ✅       | ✅     |
-| Feature   | ❌ | ✅    | ❌         | ✅       | ✅     |
-| Disk I/O  | ❌ | ✅    | ❌         | ❌       | ❌     |
+| Statsbeat                                   | C# | Java | JavaScript | Node.js | Python |
+|---------------------------------------------|----|------|------------|---------|--------|
+| [Network](#network-statsbeat)               | ✅ | ✅    | ❌         | ✅       | ✅     |
+| [Attach](#attach-statsbeat)                 | ✅ | ✅    | ❌         | ✅       | ✅     |
+| [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
+| [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
 
 ---
 
@@ -142,3 +142,8 @@ Statsbeat is enabled by default. It can be disabled by setting the environment v
 Statsbeat is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED_ALL` to `true`.
 
 ---
+
+## Next steps
+
+* [Data Collection Basics of Azure Monitor Application Insights](opentelemetry-overview.md)
+* [Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](opentelemetry-enable.md)
