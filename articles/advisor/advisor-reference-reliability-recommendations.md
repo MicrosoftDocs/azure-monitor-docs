@@ -280,19 +280,7 @@ When an application is deployed multiple times in a week, problems might occur. 
 For More information, see [Set up staging environments in Azure App Service](https://aka.ms/ant-staging)  
 
 <!--0dc165fd-69bf-468a-aa04-a69377b6feb0_end-->
-  
-
-<!--6d732ac5-82e0-4a66-887e-eccee79a2063_begin-->  
-#### CX Observer Personalized Recommendation  
-  
-CX Observer Personalized Recommendation  
-  
-**Potential benefits**: NA
-  
-  
-
-<!--6d732ac5-82e0-4a66-887e-eccee79a2063_end-->
-  
+   
 
 <!--8be322ab-e38b-4391-a5f3-421f2270d825_begin-->  
 #### Consider changing your application architecture to 64-bit  
