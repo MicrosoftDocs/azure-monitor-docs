@@ -1,30 +1,48 @@
 ---
 title: Statsbeat in Application Insights | Microsoft Docs
-description: Statistics about Application Insights SDKs and autoinstrumentation
+description: Statistics about Application Insights SDKs, AzMon OTel Distros, and autoinstrumentation
 ms.topic: reference
-ms.date: 08/24/2022
+ms.date: 09/13/2024
 ms.custom: references_regions
-ms.reviwer: heya
+ms.reviwer: mmcc
 ---
 
 # Statsbeat in Application Insights
 
-Statsbeat collects essential and nonessential [custom metrics](../essentials/metrics-custom-overview.md) about Application Insights SDKs and autoinstrumentation. Statsbeat serves three benefits for Application Insights customers:
+Statsbeat collects essential and nonessential [custom metrics](../essentials/metrics-custom-overview.md) about Application Insights SDKs, AzMon OTel Distros, and autoinstrumentation. Statsbeat serves three benefits for Application Insights customers:
 
 *	Service health and reliability (outside-in monitoring of connectivity to ingestion endpoint)
 *	Support diagnostics (self-help insights and CSS insights)
 *	Product improvement (insights for design optimizations)
 
-Statsbeat data is stored in a Microsoft data store. It doesn't affect customers' overall monitoring volume and cost.
+Statsbeat data is stored in a Microsoft data store and doesn't affect customers' overall monitoring volume and cost.
 
 > [!NOTE]
 > Statsbeat doesn't support [Azure Private Link](/azure/automation/how-to/private-link-security).
 
 ## Supported languages
 
-| C#                      | Java      | JavaScript              | Node.js   | Python    |
-|-------------------------|-----------|-------------------------|-----------|-----------|
-| Currently not supported | Supported | Currently not supported | Supported | Supported |
+Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics:
+
+### [Classic API](#tab/classic-api)
+
+| Statsbeat | C# | Java | JavaScript | Node.js | Python |
+|-----------|----|------|------------|---------|--------|
+| Network   | ❌ | ✅    | ❌         | ✅       | ✅     |
+| Attach    | ❌ | ✅    | ❌         | ✅       | ✅     |
+| Feature   | ❌ | ✅    | ❌         | ✅       | ✅     |
+| Disk I/O  | ❌ | ✅    | ❌         | ❌       | ❌     |
+
+### [OTel](#tab/otel)
+
+| Statsbeat | C# | Java | JavaScript | Node.js | Python |
+|-----------|----|------|------------|---------|--------|
+| Network   | ✅ | ✅    | ❌         | ✅       | ✅     |
+| Attach    | ✅ | ✅    | ❌         | ✅       | ✅     |
+| Feature   | ❌ | ✅    | ❌         | ✅       | ✅     |
+| Disk I/O  | ❌ | ✅    | ❌         | ❌       | ❌     |
+
+---
 
 ## Supported EU regions
 
@@ -44,16 +62,6 @@ Statsbeat supports EU Data Boundary for Application Insights resources in the fo
 | Switzerland    | Switzerland West     |
 | United Kingdom | United Kingdom South |
 | United Kingdom | United Kingdom West  |
-
-## Supported metrics
-
-Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics:
-
-| Language | Essential metrics | Non-essential metrics |
-|----------|-------------------|-----------------------|
-| Java     | ✅                | ✅                     |
-| Node.js  | ✅                | ❌                     |
-| Python   | ✅                | ❌                     |
 
 ### Essential Statsbeat
 
@@ -101,6 +109,10 @@ Metrics are sent to the following locations, to which outgoing connections must 
 | Outside of Europe | `westus-0.in.applicationinsights.azure.com`     |
 
 ## Disable Statsbeat
+
+### [C#](#tab/csharp)
+
+Statsbeat is enabled by default. It can be disabled by setting the environment variable ... to `true`.
 
 ### [Java](#tab/java)
 
