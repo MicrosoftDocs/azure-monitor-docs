@@ -10,9 +10,9 @@ ms.date: 09/12/2024
 
 # Azure Workbooks Dashboard Preview
 
-This preview includes new dashboarding functionality in Azure Workbooks.  The dashboard preview only applies to dashboard style workbooks. Opening other workbooks will continue to open them in the non-preview view.
+This preview includes new dashboarding functionality in Azure Workbooks. The dashboard preview only applies to dashboard style workbooks. Opening other workbooks continues to open them in the non-preview view. To open the dashboard preview, use the "Dashboard (preview)" item in the Workbooks gallery.
 
-## Dashboard Mode
+## New Layout Mode
 The workbooks dashboard preview supports a new layout mode that behaves like many dashboarding tools:
 
 :::image type="content" source="./media/workbooks-dashboards/dashboard-preview.png" lightbox="./media/workbooks-dashboards/dashboard-preview.png" alt-text="Screenshot that shows an example dashboard." border="false":::
@@ -66,7 +66,7 @@ Any new settings that might appear in the preview may not work if you open a sav
 > [!NOTE]
 > The dashboard preview doesn't have the full functionality of Workbooks. We're working every day to remove these limitations.
 
-* A limited set of items can be added to dashboards at this time;. Only text, parameters, and query items are currently supported.
+* A limited set of items can be added to dashboards at this time; Only text, parameters, and query items are currently supported.
 * A limited set of data sources are supported in dashboards; only Logs, Azure Resource Graph, Azure Data Explorer, and Prometheus are currently supported.
 * Saved dashboards opened in the non-preview dashboard view display a warning that it may not display accurately outside of the preview, with a link to open that item in the preview view.
 * The updated version of Markdown used in workbooks is *less* forgiving and adheres to modern Markdown specifications, including supporting Git-flavored markdown (GFM). Some markdown that appears to display properly in standard workbooks but isn't correct in the preview need to be updated. The most common cases are in markdown tables that have mismatched columns. In most cases, fixing it to display properly in the preview *also* display properly in standard workbooks.
