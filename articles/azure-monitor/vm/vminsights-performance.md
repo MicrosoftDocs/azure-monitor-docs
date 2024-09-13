@@ -127,19 +127,19 @@ Selecting the pushpin icon in the upper-right corner of a chart pins it to the l
 
 [The Performance Diagnostics tool](/troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json) helps troubleshoot performance issues on Windows or Linux virtual machines by quickly diagnosing and providing insights on issues it currently finds on your machines.
 
-You can install the Performance Diagnostics tool in two ways:
-
 ### Install the Performance Diagnostics tool
 
-1. Go to your VM in the Azure portal.
+### [Install from the **Overview** experience](#tab/overview)
 
-### [Install from the Overview experience](#tab/overview)
+1. Go to your VM in the Azure portal.
 
 2. On the **Overview** page, switch to the **Monitoring** tab.
 
     :::image type="content" source="./media/vminsights-performance/install-from-overview.png" lightbox="./media/vminsights-performance/install-from-overview.png" alt-text="...":::
 
-### [Install from VM Insights](#tab/insights)
+### [Install from the **Insights** experience](#tab/insights)
+
+1. Go to your VM in the Azure portal.
 
 2. In the lefthand navigation menu, expand the **Monitoring** section, then select **Insights**.
 
