@@ -26,21 +26,25 @@ Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonesse
 
 ### [Classic API](#tab/classic-api)
 
-| Statsbeat                                   | C# | Java | JavaScript | Node.js | Python |
-|---------------------------------------------|----|------|------------|---------|--------|
-| [Network](#network-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
-| [Attach](#attach-statsbeat)                 | ❌ | ✅    | ❌         | ✅       | ✅     |
-| [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
-| [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
+| Statsbeat                   |                                             | C# | Java | JavaScript | Node.js | Python |
+|-----------------------------|---------------------------------------------|----|------|------------|---------|--------|
+| **Essential Statsbeat**     |                                             |    |      |            |         |        |
+|                             | [Network](#network-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
+|                             | [Attach](#attach-statsbeat)                 | ❌ | ✅    | ❌         | ✅       | ✅     |
+|                             | [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
+| **Non-essential Statsbeat** |                                             |    |      |            |         |        |
+|                             | [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
 
 ### [OTel](#tab/otel)
 
-| Statsbeat                                   | C# | Java | JavaScript | Node.js | Python |
-|---------------------------------------------|----|------|------------|---------|--------|
-| [Network](#network-statsbeat)               | ✅ | ✅    | ❌         | ✅       | ✅     |
-| [Attach](#attach-statsbeat)                 | ✅ | ✅    | ❌         | ✅       | ✅     |
-| [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
-| [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
+| Statsbeat                   |                                             | C# | Java | JavaScript | Node.js | Python |
+|-----------------------------|---------------------------------------------|----|------|------------|---------|--------|
+| **Essential Statsbeat**     |                                             |    |      |            |         |        |
+|                             | [Network](#network-statsbeat)               | ✅ | ✅    | ❌         | ✅       | ✅     |
+|                             | [Attach](#attach-statsbeat)                 | ✅ | ✅    | ❌         | ✅       | ✅     |
+|                             | [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
+| **Non-essential Statsbeat** |                                             |    |      |            |         |        |
+|                             | [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
 
 ---
 
@@ -112,7 +116,7 @@ Metrics are sent to the following locations, to which outgoing connections must 
 
 ### [C#](#tab/csharp)
 
-Statsbeat is enabled by default. It can be disabled by setting the environment variable ... to `true`.
+Statsbeat is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` to `true`.
 
 ### [Java](#tab/java)
 
