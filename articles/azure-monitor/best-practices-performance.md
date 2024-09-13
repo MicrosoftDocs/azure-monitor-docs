@@ -24,9 +24,6 @@ This article describes [Performance efficiency](/azure/architecture/framework/se
 
 [!INCLUDE [waf-logs-reliability](includes/waf-logs-performance.md)]
 
-## Alerts
-
-[!INCLUDE [waf-containers-reliability](includes/waf-alerts-performance.md)]
 
 ## Virtual machines
 
