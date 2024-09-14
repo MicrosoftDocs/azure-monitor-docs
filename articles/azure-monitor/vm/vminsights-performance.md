@@ -125,8 +125,15 @@ Selecting the pushpin icon in the upper-right corner of a chart pins it to the l
 
 ## Troubleshoot VM performance issues with Performance Diagnostics
 
-[The Performance Diagnostics tool](/troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json) helps troubleshoot performance issues on Windows or Linux virtual machines by quickly diagnosing and providing insights on issues it currently finds on your machines.
+[The Performance Diagnostics tool](/troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json) helps troubleshoot performance issues on Windows or Linux virtual machines by quickly diagnosing and providing insights on issues it currently finds on your machines. It supports two different modes:
 
+* *Continuous diagnostics (preview)* collects data at five-second intervals and reports actionable insights about high resource usage every five minutes.
+
+* *On-demand diagnostics* helps you troubleshoot an ongoing performance issue with more in-depth data, insights, and recommendations based on data collected at a single point in time.
+
+For more information, go to [Troubleshoot performance issues on Azure virtual machines using Performance Diagnostics](/troubleshoot/azure/virtual-machines/windows/performance-diagnostics).
+
+<!-- NEW
 ### Install the Performance Diagnostics tool
 
 ### [Install from the **Overview** experience](#tab/overview)
@@ -152,13 +159,26 @@ Selecting the pushpin icon in the upper-right corner of a chart pins it to the l
 4. Chose diagnostic settings based on your business needs, then click **Apply**.
 
     :::image type="content" source="./media/vminsights-performance/select-diagnostic-settings.png" lightbox="./media/vminsights-performance/select-diagnostic-settings.png" alt-text="...":::
+-->
 
-<!--
+<!-- OLD
 1. Select the **Performance Diagnostics** button from the VM Insights Performance screen > **Install performance diagnostics** and [select an analysis scenario](/troubleshoot/azure/virtual-machines/performance-diagnostics#select-an-analysis-scenario-to-run?toc=/azure/azure-monitor/toc.json)
 
 :::image type="content" source="./media/vminsights-performance/vminsights-performance-diagnostics.png" lightbox="./media/vminsights-performance/vminsights-performance-diagnostics.png" alt-text="Screenshot that shows the Performance Diagnostics button, which enables the Performance Diagnostics tool from the VM Insights Performance screen.":::
 
 -->
+
+### View Performance Diagnostics in the Azure portal
+
+### [Install from the **Overview** experience](#tab/overview)
+
+...
+
+### [Install from the **Insights** experience](#tab/insights)
+
+...
+
+---
 
 ## View performance directly from an Azure virtual machine scale set
 
