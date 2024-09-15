@@ -54,7 +54,7 @@ The Azure portal provides a simplified experience for creating a DCR for virtual
 
 On the **Monitor** menu in the Azure portal, select **Data Collection Rules** > **Create** to open the DCR creation page.
 
-:::image type="content" source="media/data-collection-rule-create-edit/create-data-collection-rule.png" lightbox="media/data-collection-rule-create-edit/create-data-collection-rule.png" alt-text="Screenshot that shows Create button for a new data collection rule":::
+:::image type="content" source="media/data-collection-rule-create-edit/create-data-collection-rule.png" lightbox="media/data-collection-rule-create-edit/create-data-collection-rule.png" alt-text="Screenshot that shows Create button for a new data collection rule.":::
 
 The **Basic** page includes basic information about the DCR.
 
@@ -149,7 +149,7 @@ FilePath="my-dcr.json"
 az rest --method put --url $ResourceId"?api-version=2022-06-01" --body @$FilePath
 ```
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 
 ### Create with ARM template
@@ -397,7 +397,7 @@ For a tutorial that walks through the process of retrieving and then editing an 
 To create a data collection rule for metrics export use the Azure portal, Azure CLI, PowerShell, API, or ARM templates.
 
 > [!IMPORTANT]  
-> To send Platform Telemetry data to a Storage Account or Event Hub, the resource, data collection rule, and the destination Storage Account or the Event Hub must all be in the same region.
+> To send Platform Telemetry data to Storage Accounts or Event Hubs, the resource, data collection rule, and the destination Storage Account or the Event Hubs must all be in the same region.
 
 
 ### [Portal](#tab/portal)
@@ -405,9 +405,9 @@ To create a data collection rule for metrics export use the Azure portal, Azure 
 1. On the Monitor menu in the Azure portal, select **Data Collection Rules** then select **Create**.
 
 1. To create a DCR to collect platform metrics data, select the link on the top of the page.
-    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page":::
+    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
-1. Select **Enable Managed Identity** if you want to send metrics to a Storage Account or Event Hub. 
+1. Select **Enable Managed Identity** if you want to send metrics to a Storage Account or Event Hubs. 
 1. Select **Next**
    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-basics.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
 1. On the **Resources** page, select **Add resources**  to add the resources you want to collect metrics from. 
@@ -418,17 +418,17 @@ To create a data collection rule for metrics export use the Azure portal, Azure 
 1. Select **Next Destinations** to move to the **Destinations** tab.
    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-source.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page."::: 
 
-1. To send metrics to a Log Analytics workspace select *Azure Monitor Logs* from the **Destination type** dropdown. 
+1. To send metrics to a Log Analytics workspace, select *Azure Monitor Logs* from the **Destination type** dropdown. 
     1. Select the **Subscription** and the Log Analytics workspace you want to send the metrics to.
-1. To send metrics to an Event Hub select *Event Hub* from the **Destination type** dropdown.  
+1. To send metrics to Event Hubs, select *Event Hub* from the **Destination type** dropdown.  
     1. Select the **Subscription**, the **Event Hub namespace**, and the **Event Hub instance name**.
-1. To send metrics to a Storage Account select *Storage Account* from the **Destination type** dropdown. 
+1. To send metrics to a Storage Account, select *Storage Account* from the **Destination type** dropdown. 
     1. Select the **Subscription**, the **Storage Account**, and the **Blob container** where you want to store the metrics.  
-> [!NOTE]
-> To sent metrics to a Storage Account or Event Hub, the resource generating the metrics, the DCR, and the Storage Account or Event Hub, must all be in the same region.  
-> To send metrics to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the metrics can be in any region.
+    > [!NOTE]
+    > To sent metrics to a Storage Account or Event Hubs, the resource generating the metrics, the DCR, and the Storage Account or Event Hub, must all be in the same region.  
+    > To send metrics to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the metrics can be in any region.
  
-To select Storage Account or Event Hub as the destination, you must enable managed identity for the DCR on the Basics tab.
+    To select Storage Account or Event Hubs as the destination, you must enable managed identity for the DCR on the Basics tab.
 
 1. Select **Save** , then select **Review + create**. 
    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-destination.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page."::: 
@@ -451,7 +451,7 @@ az monitor data-collection rule create
         --rule-file
         [--identity "{type:'SystemAssigned'}" ]
 ```
-For storage account and Event Hub destinations, you must enable managed identity for the DCR using `--identity "{type:'SystemAssigned'}"`. Identity isn't required for Log Analytics workspaces.
+For storage account and Event Hubs destinations, you must enable managed identity for the DCR using `--identity "{type:'SystemAssigned'}"`. Identity isn't required for Log Analytics workspaces.
 
 For example,
 ```azurecli
@@ -689,7 +689,7 @@ https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 } 
 
 ```
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 
 Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1)
@@ -842,7 +842,7 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 ---
 
-After creating the DCR and DCRA, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account or EventHub is approximately 3 minutes, depending on the resource type. 
+After creating the DCR and DCRA, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type. 
 
 
 ## Verify data flows and troubleshooting

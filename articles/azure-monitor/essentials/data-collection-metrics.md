@@ -1,14 +1,15 @@
----
-title: Metrics Export through Data Collection Rules (Preview)
+provides---
+title: Metrics export through data collection rules (Preview)
 description: Learn how to create data collection rules for metrics.
 author: EdB-MSFT
 ms.author: edbaynash
 services: azure-monitor
 ms.topic: conceptual
 ms.date: 09/15/2024
+ms.custom: references_regions
 ---
 
-# Metrics Export through Data Collection Rules (Preview)
+# Metrics export through data collection rules (Preview)
 
 Data collection rules (DCRs) are used to collect monitoring data from your Azure resources. For a list of data collection scenario, see [Data collection rules - Overview](./data-collection-rule-overview.md). You can now use DCRs to collect and export platform metrics. 
 
@@ -21,7 +22,7 @@ Using DCRs to export metrics provides the following advantages over diagnostic s
 + DCRs are more flexible and scalable compared to Diagnostic Settings.
 + End to end latency for DCRs is within 3 minutes. This is a major improvement over Diagnostic Settings where metrics export latency is 6-10 minutes.
 
-Use metrics export through DCRs for continuous export of metrics data. For querying historical data, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). For a comparison of the two services, see [Data plane Metrics Batch API query versus Metrics export](./dataplane-verses-metrics-export.md).
+Use metrics export through DCRs for continuous export of metrics data. For querying historical data, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). For a comparison of the two services, see [Data plane Metrics Batch API query versus Metrics export](./data-plane-verses-metrics-export.md).
 
 Create DCRs for metrics using the REST API, Azure CLI, or Azure PowerShell. For information on how to create DCRs for metrics export, see [Create data collection rules for metrics](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
 
@@ -108,7 +109,7 @@ Data collection rules are defined in a JSON object. The following properties are
 |`kind`| The kind of data collection rule. Set to `PlatformTelemetry` for metrics export.|
 |`location`| The location of the DCR.|
 
-Only one destination type can be specified per DCR. Remove the unwanted destinations when copying the example below. 
+Only one destination type can be specified per DCR. Remove the unwanted destinations when copying the following example. 
 
 
 ```JSON
@@ -160,7 +161,7 @@ Only one destination type can be specified per DCR. Remove the unwanted destinat
             }
         ]
     },
-    // identity is required for Storage Account and EventHubs destinations
+    // identity is required for Storage Account and Event Hubs destinations
     "identity": {
          "type": "userassigned", 
          "userAssignedIdentities": { 
@@ -248,7 +249,7 @@ The following example shows how to filter metrics by name.
 }
 ```
 
-## Sample Metrics Export JSON objects
+## Sample metrics export JSON objects
 
 The following examples show sample DCR JSON objects for metrics export to each destination type.
 
@@ -351,9 +352,9 @@ The following example shows a data collection rule for metrics that sends all me
 ```
 
 
-### EventHubs
+### Event Hubs
 
-The following example shows a data collection rule for metrics export that sends all metrics from virtual machines, and the `ServiceApiHit` metric from Key Vaults to an Event Hub.
+The following example shows a data collection rule for metrics export that sends all metrics from virtual machines, and the `ServiceApiHit` metric from Key Vaults to Event Hubs.
 
 ```json
 {
@@ -400,7 +401,7 @@ The following example shows a data collection rule for metrics export that sends
 
 ## Create DCRs for metrics export
 
-Create DCRs for metrics export using the Azure portal, CLI, PowerShell, REST API, or ARM. For more informationm see [Create and edit data collection rules (DCRs) and associations in Azure Monitor](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
+Create DCRs for metrics export using the Azure portal, CLI, PowerShell, REST API, or ARM template. For more information, see [Create and edit data collection rules (DCRs) and associations in Azure Monitor](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
 
 
 ## Exported data
@@ -474,6 +475,6 @@ The following example shows a metric exported to Event Hubs.
 ## Next steps
 
 - [Create and edit data collection rules](./data-collection-rule-create-edit.md)
-- [Data plane metrics batch API query versus Metrics Export](./dataplane-verses-metrics-export.md)
+- [Data plane metrics batch API query versus Metrics Export](./data-plane-verses-metrics-export.md)
 - [Data collection rules, overview](/azure/azure-monitor/essentials/data-collection-rule-overview?tabs=portal)
 - [Best practices for data collection rule creation and management in Azure Monitor](/azure/azure-monitor/essentials/data-collection-rule-best-practices)

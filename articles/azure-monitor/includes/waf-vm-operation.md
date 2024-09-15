@@ -13,7 +13,7 @@ ms.date: 03/23/2024
 > - Use Azure Arc to monitor your VMs outside of Azure.
 > - Use Azure Policy to deploy agents and assign data collection rules.
 > - Establish a strategy for structure of data collection rules.
-> - Consider migrating SCOM client management packs to Azure Monitor.
+> - Consider migrating System Center Operations Manager (SCOM) client management packs to Azure Monitor.
 
 
 ### Configuration recommendations
