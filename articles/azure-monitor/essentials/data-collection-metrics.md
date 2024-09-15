@@ -5,7 +5,7 @@ author: EdB-MSFT
 ms.author: edbaynash
 services: azure-monitor
 ms.topic: conceptual
-ms.date: 09/11/2024
+ms.date: 09/15/2024
 ---
 
 # Metrics Export through Data Collection Rules (Preview)

@@ -4,7 +4,7 @@ description: Details on creating and editing data collection rules (DCRs) in Azu
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 09/11/2024
+ms.date: 09/15/2024
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
@@ -54,7 +54,7 @@ The Azure portal provides a simplified experience for creating a DCR for virtual
 
 On the **Monitor** menu in the Azure portal, select **Data Collection Rules** > **Create** to open the DCR creation page.
 
-:::image type="content" source="media/data-collection-rule-create-edit/create-data-collection-rule.png" lightbox="media/data-collection-rule-create-edit/create-data-collection-rule.png" alt-text="Screenshot that shows Create button for a new data collection rule.":::
+:::image type="content" source="media/data-collection-rule-create-edit/create-data-collection-rule.png" lightbox="media/data-collection-rule-create-edit/create-data-collection-rule.png" alt-text="":::
 
 The **Basic** page includes basic information about the DCR.
 
@@ -397,7 +397,7 @@ For a tutorial that walks through the process of retrieving and then editing an 
 To create a data collection rule for metrics export use the Azure portal, Azure CLI, PowerShell, API, or ARM templates.
 
 > [!IMPORTANT]  
-> To send Platform Telemetry data to a Storage Account or Event Hub, the resource, data collection rule, and the destination Storage Account or the Even Hub must all be in the same region.
+> To send Platform Telemetry data to a Storage Account or Event Hub, the resource, data collection rule, and the destination Storage Account or the Event Hub must all be in the same region.
 
 
 ### [Portal](#tab/portal)
@@ -405,7 +405,7 @@ To create a data collection rule for metrics export use the Azure portal, Azure 
 1. On the Monitor menu in the Azure portal, select **Data Collection Rules** then select **Create**.
 
 1. To create a DCR to collect platform metrics data, select the link on the top of the page.
-    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
+    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" alt-text="":::
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
 1. Select **Enable Managed Identity** if you want to send metrics to a Storage Account or Event Hub. 
 1. Select **Next**

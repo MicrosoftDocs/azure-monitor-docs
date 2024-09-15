@@ -1,13 +1,13 @@
 ---
-title: Data plain API and Metrics Batch query versus Metrics export 
-description: A comparison of Data Plain API or Metrics Batch query and Metrics export.
+title: Data plane API and Metrics Batch query versus Metrics export 
+description: A comparison of Data Plane API or Metrics Batch query and Metrics export.
 services: azure-monitor
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: conceptual
-ms.date: 09/11/2024
+ms.date: 09/15/2024
 
-# As an Azure administrator, I want to understand the differences between the Data Plain API or Metrics Batch query and Metrics export so that I can choose the right service for my scenario.
+# As an Azure administrator, I want to understand the differences between the Data Plane API or Metrics Batch query and Metrics export so that I can choose the right service for my scenario.
 
 ---
 
