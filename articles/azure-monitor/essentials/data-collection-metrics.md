@@ -1,4 +1,4 @@
-provides---
+---
 title: Metrics export through data collection rules (Preview)
 description: Learn how to create data collection rules for metrics.
 author: EdB-MSFT
