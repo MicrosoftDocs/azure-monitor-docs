@@ -25,8 +25,18 @@ items:
     href: best-practices-analysis.md
   - name: Plan alerts and automated actions
     href: alerts/alerts-plan.md
-  - name: Optimize costs
-    href: best-practices-cost.md
+  - name: Best practices
+    items:
+    - name: Reliability
+      href: best-practices-reliability.md
+    - name: Security
+      href: best-practices-security.md
+    - name: Cost optimization
+      href: best-practices-cost.md    
+    - name: Operational excellence
+      href: best-practices-operation.md
+    - name: Performance efficiency
+      href: best-practices-performance.md
 - name: Monitoring scenarios
   items:
   - name: Monitor an Azure resource

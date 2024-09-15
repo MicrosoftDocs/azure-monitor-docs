@@ -36,7 +36,7 @@ There are two ways to enable monitoring for applications hosted on App Service:
   
   If you need to make custom API calls to track events/dependencies not captured by default with autoinstrumentation monitoring, you need to use this method. To learn more, see [Application Insights API for custom events and metrics](./api-custom-events-metrics.md).
 
-If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, in .NET only the manual instrumentation settings are honored, while in Java only the autoinstrumentation are emitting the telemetry. This practice is to prevent duplicate data from being sent.
+If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, in .NET and NodeJS only the manual instrumentation settings are honored, while in Java only the autoinstrumentation are emitting the telemetry. In Python, you should only use autoinstrumentation if you aren't using manual instrumentation. This practice is to prevent duplicate data from being sent.
 
 > [!NOTE]
 > Snapshot Debugger and Profiler are only available in .NET and .NET Core.

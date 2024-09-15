@@ -66,7 +66,7 @@ Azure Monitor Managed service for Prometheus has default limits and quotas for i
 ## Limitations/Known issues - Azure Monitor managed Service for Prometheus
 
 - Scraping and storing metrics at frequencies less than 1 second isn't supported.
-- Microsoft Azure operated by 21Vianet cloud and Air gapped clouds aren't supported for Azure Monitor managed service for Prometheus.
+- Support in Microsoft Azure operated by Air gapped clouds is enabled through support. Please contact support to onboard Azure Monitor managed service for Prometheus for Air gapped clouds.
 - To monitor Windows nodes & pods in your clusters, see [Enable monitoring for Azure Kubernetes Service (AKS) cluster](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview).
 - Azure Managed Grafana isn't currently available in the Azure US Government cloud.
 - Usage metrics (metrics under `Metrics` menu for the Azure Monitor workspace) - Ingestion quota limits and current usage for any Azure monitor Workspace aren't available yet in US Government cloud.
