@@ -22,7 +22,7 @@ Using DCRs to export metrics provides the following advantages over diagnostic s
 + DCRs are more flexible and scalable compared to Diagnostic Settings.
 + End to end latency for DCRs is within 3 minutes. This is a major improvement over Diagnostic Settings where metrics export latency is 6-10 minutes.
 
-Use metrics export through DCRs for continuous export of metrics data. For querying historical data, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). For a comparison of the two services, see [Data plane Metrics Batch API query versus Metrics export](./data-plane-verses-metrics-export.md).
+Use metrics export through DCRs for continuous export of metrics data. For querying historical data, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). For a comparison of the two services, see [Data plane Metrics Batch API query versus Metrics export](./data-plane-versus-metrics-export.md).
 
 Create DCRs for metrics using the REST API, Azure CLI, or Azure PowerShell. For information on how to create DCRs for metrics export, see [Create data collection rules for metrics](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
 
@@ -475,6 +475,6 @@ The following example shows a metric exported to Event Hubs.
 ## Next steps
 
 - [Create and edit data collection rules](./data-collection-rule-create-edit.md)
-- [Data plane metrics batch API query versus Metrics Export](./data-plane-verses-metrics-export.md)
+- [Data plane metrics batch API query versus Metrics Export](./data-plane-versus-metrics-export.md)
 - [Data collection rules, overview](/azure/azure-monitor/essentials/data-collection-rule-overview?tabs=portal)
 - [Best practices for data collection rule creation and management in Azure Monitor](/azure/azure-monitor/essentials/data-collection-rule-best-practices)

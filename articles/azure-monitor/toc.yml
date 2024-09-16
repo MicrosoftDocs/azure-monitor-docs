@@ -651,8 +651,8 @@ items:
         href: essentials/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration
         href: essentials/edge-pipeline-configure.md
-      - name: Data plane batch query vs Metrics export
-        href: essentials/data-plane-verses-metrics-export.md
+      - name: Data plane batch query versus Metrics export
+        href: essentials/data-plane-versus-metrics-export.md
     - name: Diagnostic Settings
       items:
       - name: Overview
