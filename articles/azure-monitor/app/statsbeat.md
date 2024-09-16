@@ -24,7 +24,8 @@ Statsbeat data is stored in a Microsoft data store and doesn't affect customers'
 
 Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics:
 
-| Statsbeat                   |                                             | C#  | Java | JavaScript | Node.js | Python |
+<!--
+|Statsbeat                   |                                             | C#  | Java | JavaScript | Node.js | Python |
 |-----------------------------|---------------------------------------------|-----|------|------------|---------|--------|
 | **Essential Statsbeat**     |                                             |     |      |            |         |        |
 |                             | [Network](#network-statsbeat)               | ✔️\* | ✅    | ❌         | ✅       | ✅     |
@@ -32,8 +33,18 @@ Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonesse
 |                             | [Feature](#feature-statsbeat)               | ❌  | ✅    | ❌         | ✅       | ✅     |
 | **Non-essential Statsbeat** |                                             |     |      |            |         |        |
 |                             | [Disk I/O failure](#nonessential-statsbeat) | ❌  | ✅    | ❌         | ❌       | ❌     |
+-->
 
-\* Not supported with Classic API instrumentation (OTel only)
+| Statsbeat                                   | C#  | Java | JavaScript | Node.js | Python |
+|---------------------------------------------|-----|------|------------|---------|--------|
+| **Essential Statsbeat**                     |     |      |            |         |        |
+| [Network](#network-statsbeat)               | ✔️\* | ✅    | ❌         | ✅       | ✅     |
+| [Attach](#attach-statsbeat)                 | ✔️\* | ✅    | ❌         | ✅       | ✅     |
+| [Feature](#feature-statsbeat)               | ❌  | ✅    | ❌         | ✅       | ✅     |
+| **Non-essential Statsbeat**                 |     |      |            |         |        |
+| [Disk I/O failure](#nonessential-statsbeat) | ❌  | ✅    | ❌         | ❌       | ❌     |
+
+\* Not supported with Classic API instrumentation (*OTel only*)
 
 ## Supported EU regions
 
@@ -124,7 +135,7 @@ To disable nonessential Statsbeat, add the following configuration to your confi
 
 You can also disable this feature by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` to `true`. This setting then takes precedence over `disabled`, which is specified in the JSON configuration.
 
-### [Node](#tab/node)
+### [Node.js](#tab/node)
 
 Statsbeat is enabled by default. It can be disabled by setting the environment variable `APPLICATION_INSIGHTS_NO_STATSBEAT` to `true`.
 
