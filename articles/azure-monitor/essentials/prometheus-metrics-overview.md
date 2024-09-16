@@ -110,7 +110,7 @@ If you use the Azure portal to enable Prometheus metrics collection and install 
 Azure Monitor Managed service for Prometheus has default limits and quotas for ingestion. For information on Prometheus metrics limits, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics). When you reach the ingestion limits throttling can occur. In order to avoid throttling, you can monitor and set up an alert on Azure Monitor Workspace ingestion limits.
 
 1. In the Azure portal, navigate to your Azure Monitor Workspace and select **Metrics** under the **Monitoring** section.
-2. Select the Azure Monitor Workspace as scope. In the **Metric** dropdown, select *View standard metrics with the builder*.
+2. Select the Azure Monitor Workspace as scope. In the **Metric** dropdown, select **View standard metrics with the builder**.
 3. In the **Metric** drop-down, select **Active Time Series % Utilization** and **Events Per Minute Ingested % Utilization** and verify that they are below 100%.
 
 :::image type="content" source="media/azure-monitor-workspace-overview/azure-monitor-workspace-limits-metrics.png" alt-text="Screenshot that shows how to create an alert rule for Azure Monitor Workspace ingestion limits." lightbox="media/azure-monitor-workspace-overview/azure-monitor-workspace-limits-metrics.png":::
@@ -122,7 +122,7 @@ Azure Monitor Managed service for Prometheus has default limits and quotas for i
 If the alert is fired i.e. the ingestion utilization is more than the threshold, you can request an increase in these limits by creating a support ticket.
 
 1. In the Azure portal, navigate to your Azure Monitor Workspace, click on **Support + Troubleshooting**.
-2. Type the issue eg. "Service and subscription limits (quotas)", then select **Service and subscription limits (quotas)** and select **Next**.
+2. Type the issue, e.g., "Service and subscription limits (quotas)", then select **Service and subscription limits (quotas)** and select **Next**.
 
 :::image type="content" source="media/azure-monitor-workspace-overview/azure-monitor-workspace-support-ticket.png" alt-text="Screenshot that shows how to create a support ticket for limit increase." lightbox="media/azure-monitor-workspace-overview/azure-monitor-workspace-support-ticket.png":::
 
