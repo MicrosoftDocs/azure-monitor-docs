@@ -31,7 +31,7 @@ Use user-assigned managed identity authentication for services running self mana
 To set up remote write for Azure-managed resources, see [Remote-write using user-assigned managed identity](#remote-write-using-user-assigned-managed-identity-authentication).
 
 
-## Virtual machines and Kubernetes clusters running on non-Azure environments.
+## Virtual machines and Kubernetes clusters running on non-Azure environments
 
 If you have virtual machines or a Kubernetes cluster in non-Azure environments, or you have onboarded to Azure Arc, install self-managed Prometheus, and configure remote-write using Microsoft Entra ID application authentication. For more information, see [Remote-write using Microsoft Entra ID application authentication](#remote-write-using-microsoft-entra-id-application-authentication).
 
@@ -103,7 +103,7 @@ On the workspace's data collection rule, assign the `Monitoring Metrics Publishe
 #### Assign the managed identity to a Virtual Machine or Virtual Machine Scale Set
 
 > [!IMPORTANT]
-> To complete the steps in this section, you must have owner or user access administrator permissions for the Virtual Machine or Virtual MAchine Scale Set.
+> To complete the steps in this section, you must have owner or user access administrator permissions for the Virtual Machine or Virtual Machine Scale Set.
      
 1. In the Azure portal, go to the cluster, Virtual Machine, or Virtual Machine Scale Set's page.
 1. Select **Identity**.
@@ -127,16 +127,16 @@ For each Virtual Machine Scale Set in the resource group, assign the managed ide
 
 Microsoft Entra ID application authentication can be used in any environment. If your Prometheus service is running in an Azure-managed environment, consider using user-assigned managed identity authentication.
 
-To configure remote-write to Azure Monitor workspace using a Microsoft Entra ID application, create an Entra application. On Azure Monitor workspace's data collection rule, assign the `Monitoring Metrics Publisher` role to the Entra application.
+To configure remote-write to Azure Monitor workspace using a Microsoft Entra ID application, create a Microsoft Entra application. On Azure Monitor workspace's data collection rule, assign the `Monitoring Metrics Publisher` role to the Microsoft Entra application.
 
 > [!NOTE]
-> Your Azure Entra application uses a client secret or password. Client secrets have an expiration date. Make sure to create a new client secret before it expires so you don't lose authenticated access
+> Your Microsoft Entra application uses a client secret or password. Client secrets have an expiration date. Make sure to create a new client secret before it expires so you don't lose authenticated access.
 
 #### Create a Microsoft Entra ID application
 
 To create a Microsoft Entra ID application using the portal, see  [Create a Microsoft Entra ID application and service principal that can access resources](/entra/identity-platform/howto-create-service-principal-portal#register-an-application-with-microsoft-entra-id-and-create-a-service-principal).
 
-When you have created your Entra application, get the client ID and generate a client secret. 
+When you have created your Microsoft Entra application, get the client ID and generate a client secret. 
 
 1. In the list of applications, copy the value for **Application (client) ID** for the registered application. This value is used in the Prometheus remote write configuration as the value for `client_id`.
 
@@ -393,7 +393,7 @@ To find your client for managed identity authentication in the portal, go to the
 
 :::image type="content" source="media/prometheus-remote-write-virtual-machines/find-clinet-id.png" lightbox="media/prometheus-remote-write-virtual-machines/find-clinet-id.png" alt-text="A screenshot showing the client ID on the Identity overview page."::: 
 
-To find the client ID for the Microsoft Entra ID application, use the following CLI or see the first step in the [Create an Microsoft Entra ID application using the Azure portal](#remote-write-using-microsoft-entra-id-application-authentication) section.
+To find the client ID for the Microsoft Entra ID application, use the following CLI or see the first step in the [Create a Microsoft Entra ID application using the Azure portal](#remote-write-using-microsoft-entra-id-application-authentication) section.
 
 ```azurecli
 $ az ad app list --display-name < application name>
