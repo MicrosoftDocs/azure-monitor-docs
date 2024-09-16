@@ -2,7 +2,7 @@
 title: Collect data with Azure Monitor Agent
 description: Describes how to collect data from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 07/10/2024
+ms.date: 09/11/2024
 author: guywild
 ms.author: guywild
 ms.reviewer: jeffwo
@@ -57,60 +57,7 @@ When you create a DCR in the Azure portal, you're walked through a series of pag
 | Data source | The type of data to collect from the machine. The list of available data sources are listed above in [Data sources](#data-sources). Each data source has its own configuration settings and potentially prerequisites, so see the individual article for each for details. |
 | Destination | Destination where the data collected from the data source should be sent. If you have multiple data sources in the DCR, they can be sent to separate destinations, and data from a single data source may be sent to multiple destinations. See the article for each data source for more details about their destination such as the table in the Log Analytics workspace. |
 
-
-## Create data collection rule
-
-> [!IMPORTANT]
-> Create your data collection rule in the same region as your destination Log Analytics workspace or Azure Monitor workspace. You can associate the data collection rule to machines or containers from any subscription or resource group in the tenant. To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
-
-
-On the **Monitor** menu in the Azure portal, select **Data Collection Rules** > **Create** to open the DCR creation page.
-
-:::image type="content" source="media/azure-monitor-agent-data-collection/create-data-collection-rule.png" lightbox="media/azure-monitor-agent-data-collection/create-data-collection-rule.png" alt-text="Screenshot that shows Create button for a new data collection rule.":::
-
-The **Basic** page includes basic information about the DCR.
-
-:::image type="content" source="media/azure-monitor-agent-data-collection/basics-tab.png" lightbox="media/azure-monitor-agent-data-collection/basics-tab.png" alt-text="Screenshot that shows the Basic tab for a new data collection rule.":::
-
-| Setting | Description |
-|:---|:---|
-| Rule Name | Name for the DCR. This should be something descriptive that helps you identify the rule. |
-| Subscription | Subscription to store the DCR. This does not need to be the same subscription as the virtual machines. |
-| Resource group | Resource group to store the DCR. This does not need to be the same resource group as the virtual machines. |
-| Region | Region to store the DCR. This must be the same region as any Log Analytics workspace or Azure Monitor workspace used in a destination of the DCR. If you have workspaces in different regions, then create multiple DCRs associated with the same set of machines. |
-| Platform Type | Specifies the type of data sources that will be available for the DCR, either **Windows** or **Linux**. **None** allows for both. <sup>1</sup> |
-| Data Collection Endpoint | Specifies the data collection endpoint (DCE) used to collect data. This is only required if you're using Azure Monitor Private Links. This DCE must be in the same region as the DCR. For more information, see [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md). |
-
-<sup>1</sup> This option sets the `kind` attribute in the DCR. There are other values that can be set for this attribute, but they are not available in the portal.
-
-
-## Add resources
-The **Resources** page allows you to add resources that will be associated with the DCR. Click **+ Add resources** to select resources. The Azure Monitor agent will automatically be installed on any resources that don't already have it.
-
-> [!IMPORTANT] 
-> The portal enables system-assigned managed identity on the target resources, along with existing user-assigned identities, if there are any. For existing applications, unless you specify the user-assigned identity in the request, the machine defaults to using system-assigned identity instead.
-
-
-:::image type="content" source="media/azure-monitor-agent-data-collection/resources-tab.png" lightbox="media/azure-monitor-agent-data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
-
- If the machine you're monitoring is not in the same region as your destination Log Analytics workspace and you're collecting data types that require a DCE, select **Enable Data Collection Endpoints** and select an endpoint in the region of each monitored machine. If the monitored machine is in the same region as your destination Log Analytics workspace, or if you don't require a DCE, don't select a data collection endpoint on the **Resources** tab.
- 
-
-## Add data sources
-The **Collect and deliver** page allows you to add and configure data sources for the DCR and a destination for each.
-
-| Screen element | Description |
-|:---|:---|
-| Data source | Select a **Data source type** and define related fields based on the data source type you select. See the articles linked in [Data sources](#data-sources) above for details on configuring each type of data source. |
-| Destination | Add one or more destinations for each data source. You can select multiple destinations of different types. See the details for each data type for the different destinations they support. |
-
-> [!IMPORTANT]
-> A data source can only use one Log Analytics workspace. If you need to send data to multiple workspaces, create a separate DCR for each workspace.
-
-A DCR can contain multiple different data sources up to a limit of 10 data sources in a single DCR. You can combine different data sources in the same DCR, but you will typically want to create different DCRs for different data collection scenarios. See [Best practices for data collection rule creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md) for recommendations on how to organize your DCRs.
-
-> [!NOTE]
-> It can take up to 5 minutes for data to be sent to the destinations when you create a data collection rule using the data collection rule wizard.
+For detailed steps on how to create a DCR using the Azure portal, see [Create data collection rules](/azure/azure-monitor/essentials/data-collection-rule-create-edit?tabs=portal#create-with-azure-portal).
 
 ## Verify operation
 Once you've created a DCR and associated it with a machine, you can verify that the agent is operational and that data is being collected by running queries in the Log Analytics workspace.
