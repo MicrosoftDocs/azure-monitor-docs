@@ -51,6 +51,7 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 | AlmaLinux 8                                                 | ✓<sup>2</sup> | ✓ |
 | Amazon Linux 2017.09                                        |  | ✓ |
 | Amazon Linux 2                                              | ✓ | ✓ |
+| Amazon Linux 2023                                           | ✓ |  |
 | Azure Linux                                                 | ✓ |   |
 | CentOS Linux 8                                              | ✓ | ✓ |
 | CentOS Linux 7                                              | ✓<sup>2</sup> | ✓ |

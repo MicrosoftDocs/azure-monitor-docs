@@ -2,7 +2,7 @@ items:
   - name: Azure Monitor Reference
     href: index.md
   - name: Azure Monitor supported metrics
-    href: ./supported-metrics/metrics-index.md
+    href: ./metrics-index.md
     items:
       - name: Metrics by resource type
         expanded: false
@@ -462,7 +462,7 @@ items:
           - name: Wandisco.Fusion/migrators/metadataMigrations
             href: supported-metrics/wandisco-fusion-migrators-metadatamigrations-metrics.md
   - name: Azure Monitor resource logs
-    href: ./supported-logs/logs-index.md
+    href: ./logs-index.md
     items:
       - name: Log categories by resource type
         expanded: false
