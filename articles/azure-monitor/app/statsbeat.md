@@ -24,17 +24,6 @@ Statsbeat data is stored in a Microsoft data store and doesn't affect customers'
 
 Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics:
 
-<!--
-|Statsbeat                   |                                             | C#  | Java | JavaScript | Node.js | Python |
-|-----------------------------|---------------------------------------------|-----|------|------------|---------|--------|
-| **Essential Statsbeat**     |                                             |     |      |            |         |        |
-|                             | [Network](#network-statsbeat)               | ✔️\* | ✅    | ❌         | ✅       | ✅     |
-|                             | [Attach](#attach-statsbeat)                 | ✔️\* | ✅    | ❌         | ✅       | ✅     |
-|                             | [Feature](#feature-statsbeat)               | ❌  | ✅    | ❌         | ✅       | ✅     |
-| **Non-essential Statsbeat** |                                             |     |      |            |         |        |
-|                             | [Disk I/O failure](#nonessential-statsbeat) | ❌  | ✅    | ❌         | ❌       | ❌     |
--->
-
 | Statsbeat                                   | C#  | Java | JavaScript | Node.js | Python |
 |---------------------------------------------|-----|------|------------|---------|--------|
 | **Essential Statsbeat**                     |     |      |            |         |        |
@@ -65,9 +54,9 @@ Statsbeat supports EU Data Boundary for Application Insights resources in the fo
 | United Kingdom | United Kingdom South |
 | United Kingdom | United Kingdom West  |
 
-### Essential Statsbeat
+## Essential Statsbeat
 
-#### Network Statsbeat
+### Network Statsbeat
 
 | Metric name            | Unit  | Supported dimensions                                                                                                                                          |
 |------------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -80,19 +69,19 @@ Statsbeat supports EU Data Boundary for Application Insights resources in the fo
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
-#### Attach Statsbeat
+### Attach Statsbeat
 
 | Metric name | Unit  | Supported dimensions                                                                                                                                    |
 |-------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Attach      | Count | `Resource Provider`, `Resource Provider Identifier`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version` |
 
-#### Feature Statsbeat
+### Feature Statsbeat
 
 | Metric name | Unit  | Supported dimensions                                                                                                                       |
 |-------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | Feature     | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Feature`, `Type`, `Operating System`, `Language`, `Version` |
 
-### Nonessential Statsbeat
+## Nonessential Statsbeat
 
 Track the Disk I/O failure when you use disk persistence for reliable telemetry.
 
