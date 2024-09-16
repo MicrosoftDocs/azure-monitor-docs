@@ -31,7 +31,7 @@ Configuring remote write depends on your cluster configuration and the type of a
 - Managed identity is recommended for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster. 
 - Microsoft Entra ID can be used for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster and is required for Kubernetes cluster running in another cloud or on-premises.
 
-For more information on configuring remote write for either user-assigned managed identity and Microsoft Entra ID application, see [Configure remote-write on Kubernetes for Prometheus Operator](../essentials/prometheus-remote-write-virtual-machines.md#configure-remote-write-on-kubernetes-for-prometheus-operator). This option can be used for self-managed Prometheus running in any environment.
+For more information on configuring remote write for either user-assigned managed identity and Microsoft Entra ID application, see [Configure remote-write on Kubernetes for Prometheus Operator](../essentials/prometheus-remote-write-virtual-machines.md#prometheus-operator). This option can be used for self-managed Prometheus running in any environment.
 
 Remote write for Prometheus on Kubernetes clusters can also be configured using a side car container. See the following articles for more information on how to configure remote write for Kubernetes clusters using a side car container.
 

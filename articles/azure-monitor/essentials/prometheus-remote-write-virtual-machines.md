@@ -320,6 +320,8 @@ remote_write:
 
 ### [Configure remote-write on Kubernetes for Prometheus Operator](#tab/prom-operator)
 
+### Prometheus Operator
+
 If you are  on a Kubernetes cluster running Prometheus Operator, follow the below steps to send data to your Azure Monitor Workspace.
 
 1. If you are using Microsoft Entra ID authentication, convert the secret using base64 encoding, and apply the secret into your Kubernetes cluster. Save the following into a yaml file. Skip this step if you are using managed identity authentication.
