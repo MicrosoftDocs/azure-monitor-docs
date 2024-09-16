@@ -32,12 +32,12 @@ The following table lists the metrics available for the Microsoft.Monitor/accoun
 ### Supported metrics for microsoft.insights/autoscalesettings
 The following table lists the metrics available for the microsoft.insights/autoscalesettings resource type.
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [microsoft.insights/autoscalesettings](~~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-insights-autoscalesettings-metrics-include.md)]
+[!INCLUDE [microsoft.insights/autoscalesettings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-insights-autoscalesettings-metrics-include.md)]
 
 ### Supported metrics for microsoft.insights/components
 The following table lists the metrics available for the microsoft.insights/components resource type.
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [microsoft.insights/components](~~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-insights-components-metrics-include.md)]
+[!INCLUDE [microsoft.insights/components](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-insights-components-metrics-include.md)]
 
 ### Supported metrics for Microsoft.Insights/datacollectionrules
 The following table lists the metrics available for the Microsoft.Insights/datacollectionrules resource type.
