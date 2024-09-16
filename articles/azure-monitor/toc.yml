@@ -605,6 +605,9 @@ items:
       - name: Best practices
         displayName: data collection rules, DCR
         href: essentials/data-collection-rule-best-practices.md
+      - name: Metrics export using data collection rules
+        displayName: data collection rules, metrics
+        href: essentials/data-collection-metrics.md
       - name: View and associate
         displayName: data collection rules, DCR
         href: essentials/data-collection-rule-view.md
@@ -648,6 +651,8 @@ items:
         href: essentials/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration
         href: essentials/edge-pipeline-configure.md
+      - name: Data plane batch query versus Metrics export
+        href: essentials/data-plane-versus-metrics-export.md
     - name: Diagnostic Settings
       items:
       - name: Overview
