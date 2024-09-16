@@ -299,11 +299,30 @@ Remote-write is configured in the Prometheus configuration file `prometheus.yml`
 
 For more information on configuring remote-write, see the Prometheus.io article: [Configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write). For more on tuning the remote write configuration, see [Remote write tuning](https://prometheus.io/docs/practices/remote_write/#remote-write-tuning).
 
-### [Configure remote-write for Prometheus Operator](#tab/prom-operator)
+### [Configure remote-write for Prometheus running on virtual machines](#tab/prom-vm)
 
-If you are running Prometheus Operator on a Kubernetes cluster, follow the below steps to send data to your Azure Monitor Workspace.
+To send data to your Azure Monitor Workspace, add the following section to the configuration file (prometheus.yml) of your self-managed Prometheus instance.
 
-1. If you are using Microsoft Entra ID authentication, convert the secret using base64 encoding, and then apply the secret into your Kubernetes cluster. Save the following into a yaml file. Skip this step if you are using managed identity authentication.
+```yaml
+remote_write:   
+  - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
+# AzureAD configuration.
+# The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
+    azuread:
+      cloud: 'AzurePublic'
+      managed_identity:
+        client_id: "<client-id of the managed identity>"
+      oauth:
+        client_id: "<client-id from the Entra app>"
+        client_secret: "<client secret from the Entra app>"
+        tenant_id: "<Azure subscription tenant Id>"
+```
+
+### [Configure remote-write on Kubernetes for Prometheus Operator](#tab/prom-operator)
+
+If you are  on a Kubernetes cluster running Prometheus Operator, follow the below steps to send data to your Azure Monitor Workspace.
+
+1. If you are using Microsoft Entra ID authentication, convert the secret using base64 encoding, and apply the secret into your Kubernetes cluster. Save the following into a yaml file. Skip this step if you are using managed identity authentication.
 
 ```yaml
 apiVersion: v1
@@ -326,7 +345,7 @@ az aks get-credentials -g <aks-rg-name> -n <aks-cluster-name>
 kubectl apply -f <remote-write-secret.yaml>
 ```
 
-2. You will need to update the values for remote write section in Prometheus Operator. Copy the following and save it as a yaml file. For the values of the yaml file, see below section. Refer to [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#azuread) for more details on the Azure Monitor Workspace remote write specification in Prometheus Operator.
+2. Update the values for remote write section in Prometheus Operator. Copy the following yaml and save it as a file. Refer to [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#azuread) for more details on the Azure Monitor Workspace remote write specification in Prometheus Operator.
 
 ```yaml
 prometheus:
@@ -351,25 +370,6 @@ prometheus:
 
 ```azurecli
 helm upgrade -f <YAML-FILENAME>.yml prometheus prometheus-community/kube-prometheus-stack --namespace <namespace where Prometheus Operator is deployed>
-```
-
-### [Configure remote-write for Prometheus running in VMs or other environments](#tab/prom-vm)
-
-To send data to your Azure Monitor Workspace, add the following section to the configuration file (prometheus.yml) of your self-managed Prometheus instance.
-
-```yaml
-remote_write:   
-  - url: "<metrics ingestion endpoint for your Azure Monitor workspace>"
-# AzureAD configuration.
-# The Azure Cloud. Options are 'AzurePublic', 'AzureChina', or 'AzureGovernment'.
-    azuread:
-      cloud: 'AzurePublic'
-      managed_identity:
-        client_id: "<client-id of the managed identity>"
-      oauth:
-        client_id: "<client-id from the Entra app>"
-        client_secret: "<client secret from the Entra app>"
-        tenant_id: "<Azure subscription tenant Id>"
 ```
 
 ---
