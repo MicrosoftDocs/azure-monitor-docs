@@ -24,29 +24,16 @@ Statsbeat data is stored in a Microsoft data store and doesn't affect customers'
 
 Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics:
 
-### [Classic API](#tab/classic-api)
+| Statsbeat                   |                                             | C#  | Java | JavaScript | Node.js | Python |
+|-----------------------------|---------------------------------------------|-----|------|------------|---------|--------|
+| **Essential Statsbeat**     |                                             |     |      |            |         |        |
+|                             | [Network](#network-statsbeat)               | ✔️\* | ✅    | ❌         | ✅       | ✅     |
+|                             | [Attach](#attach-statsbeat)                 | ✔️\* | ✅    | ❌         | ✅       | ✅     |
+|                             | [Feature](#feature-statsbeat)               | ❌  | ✅    | ❌         | ✅       | ✅     |
+| **Non-essential Statsbeat** |                                             |     |      |            |         |        |
+|                             | [Disk I/O failure](#nonessential-statsbeat) | ❌  | ✅    | ❌         | ❌       | ❌     |
 
-| Statsbeat                   |                                             | C# | Java | JavaScript | Node.js | Python |
-|-----------------------------|---------------------------------------------|----|------|------------|---------|--------|
-| **Essential Statsbeat**     |                                             |    |      |            |         |        |
-|                             | [Network](#network-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
-|                             | [Attach](#attach-statsbeat)                 | ❌ | ✅    | ❌         | ✅       | ✅     |
-|                             | [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
-| **Non-essential Statsbeat** |                                             |    |      |            |         |        |
-|                             | [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
-
-### [OTel](#tab/otel)
-
-| Statsbeat                   |                                             | C# | Java | JavaScript | Node.js | Python |
-|-----------------------------|---------------------------------------------|----|------|------------|---------|--------|
-| **Essential Statsbeat**     |                                             |    |      |            |         |        |
-|                             | [Network](#network-statsbeat)               | ✅ | ✅    | ❌         | ✅       | ✅     |
-|                             | [Attach](#attach-statsbeat)                 | ✅ | ✅    | ❌         | ✅       | ✅     |
-|                             | [Feature](#feature-statsbeat)               | ❌ | ✅    | ❌         | ✅       | ✅     |
-| **Non-essential Statsbeat** |                                             |    |      |            |         |        |
-|                             | [Disk I/O failure](#nonessential-statsbeat) | ❌ | ✅    | ❌         | ❌       | ❌     |
-
----
+\* Not supported with Classic API instrumentation (OTel only)
 
 ## Supported EU regions
 
