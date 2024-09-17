@@ -129,9 +129,9 @@ Selecting the pushpin icon in the upper-right corner of a chart pins it to the l
 
 [The Performance Diagnostics tool](/troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json) helps troubleshoot performance issues on Windows or Linux virtual machines by quickly diagnosing and providing insights on issues it currently finds on your machines. It supports two different modes:
 
-* *Continuous diagnostics (preview)* collects data at five-second intervals and reports actionable insights about high resource usage every five minutes.
+* **Continuous diagnostics (preview)** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes.
 
-* *On-demand diagnostics* helps you troubleshoot an ongoing performance issue with more in-depth data, insights, and recommendations based on data collected at a single point in time.
+* **On-demand diagnostics** helps you troubleshoot an ongoing performance issue with more in-depth data, insights, and recommendations based on data collected at a single point in time.
 
 For more information, go to [Troubleshoot performance issues on Azure virtual machines using Performance Diagnostics](/troubleshoot/azure/virtual-machines/windows/performance-diagnostics).
 
