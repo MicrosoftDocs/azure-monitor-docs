@@ -14,14 +14,13 @@ Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonesse
 > [!div class="checklist"]
 > - [Azure Monitor OpenTelemetry Distros](opentelemetry-enable.md)
 > - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
-> - [Application Insights SDKs (Classic API)]
+> - Application Insights SDKs (Classic API)
  
-Statsbeat serves three benefits for Application Insights customers:
+It serves three benefits for Application Insights customers:
  
-> [!div class="checklist"]
-> - Service health and reliability (outside-in monitoring of connectivity to ingestion endpoint)
-> - Support diagnostics (self-help insights and CSS insights)
-> - Product improvement (insights for design optimizations)
+* **Service health and reliability** - Involves monitoring the connectivity to the ingestion endpoint from an external perspective to ensure the service is functioning correctly. <!--(outside-in monitoring of connectivity to ingestion endpoint)-->
+* **Support diagnostics** - Provides self-help insights from Customer Support Services (CSS) to assist in diagnosing and resolving issues. <!--(self-help insights and CSS insights)-->
+* **Product improvement** - Focuses on gathering insights to optimize the design and enhance the overall product experience. <!--(insights for design optimizations)-->
  
 Statsbeat data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost.
 
