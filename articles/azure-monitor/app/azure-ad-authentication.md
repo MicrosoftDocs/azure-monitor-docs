@@ -330,7 +330,7 @@ A successful request receives an access token in the response:
         token_type": "Bearer",
         "expires_in": "86399",
         "ext_expires_in": "86399",
-        "access_token": ""eyJ0eXAiOiJKV1QiLCJ.....Ax"
+        "access_token": "eyJ0eXAiOiJKV1QiLCJ.....Ax"
     }
 ```
 
