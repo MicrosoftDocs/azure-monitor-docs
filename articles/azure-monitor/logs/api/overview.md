@@ -1,7 +1,7 @@
 ---
 title: Overview
 description: This article describes the REST API that makes the data collected by Azure Log Analytics easily available.
-ms.date: 05/26/2024
+ms.date: 09/17/2024
 author: guywi-ms
 ms.author: guywild
 ms.topic: article
