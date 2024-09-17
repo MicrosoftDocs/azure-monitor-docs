@@ -8,32 +8,38 @@ ms.reviwer: mmcc
 ---
 
 # Statsbeat in Application Insights
-
-Statsbeat collects essential and nonessential [custom metrics](../essentials/metrics-custom-overview.md) about Application Insights SDKs, AzMon OTel Distros, and autoinstrumentation. Statsbeat serves three benefits for Application Insights customers:
-
-*	Service health and reliability (outside-in monitoring of connectivity to ingestion endpoint)
-*	Support diagnostics (self-help insights and CSS insights)
-*	Product improvement (insights for design optimizations)
-
-Statsbeat data is stored in a Microsoft data store and doesn't affect customers' overall monitoring volume and cost.
+ 
+Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics about:
+ 
+> [!div class="checklist"]
+> - [Azure Monitor OpenTelemetry Distros](opentelemetry-enable.md)
+> - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
+> - [Application Insights SDKs (Classic API)]
+ 
+Statsbeat serves three benefits for Application Insights customers:
+ 
+> [!div class="checklist"]
+> - Service health and reliability (outside-in monitoring of connectivity to ingestion endpoint)
+> - Support diagnostics (self-help insights and CSS insights)
+> - Product improvement (insights for design optimizations)
+ 
+Statsbeat data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost.
 
 > [!NOTE]
 > Statsbeat doesn't support [Azure Private Link](/azure/automation/how-to/private-link-security).
 
 ## Supported languages
 
-Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics:
-
-| Statsbeat                                   | C#  | Java | JavaScript | Node.js | Python |
-|---------------------------------------------|-----|------|------------|---------|--------|
-| **Essential Statsbeat**                     |     |      |            |         |        |
-| [Network](#network-statsbeat)               | ✔️\* | ✅    | ❌         | ✅       | ✅     |
+| Statsbeat                                   | .NET | Java | JavaScript | Node.js | Python |
+|---------------------------------------------|------|------|------------|---------|--------|
+| **Essential Statsbeat**                     |      |      |            |         |        |
+| [Network](#network-statsbeat)               | ❌   | ✅    | ❌         | ✅       | ✅     |
 | [Attach](#attach-statsbeat)                 | ✔️\* | ✅    | ❌         | ✅       | ✅     |
-| [Feature](#feature-statsbeat)               | ❌  | ✅    | ❌         | ✅       | ✅     |
-| **Non-essential Statsbeat**                 |     |      |            |         |        |
-| [Disk I/O failure](#nonessential-statsbeat) | ❌  | ✅    | ❌         | ❌       | ❌     |
+| [Feature](#feature-statsbeat)               | ❌   | ✅    | ❌         | ✅       | ✅     |
+| **Non-essential Statsbeat**                 |      |      |            |         |        |
+| [Disk I/O failure](#nonessential-statsbeat) | ❌   | ✅    | ❌         | ❌       | ❌     |
 
-\* Not supported with Classic API instrumentation (*OTel only*)
+\* Not supported with Classic API or autoinstrumentation (*OTel only*)
 
 ## Supported EU regions
 
@@ -101,7 +107,7 @@ Metrics are sent to the following locations, to which outgoing connections must 
 
 ## Disable Statsbeat
 
-### [C#](#tab/csharp)
+### [.NET](#tab/dotnet)
 
 Statsbeat is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` to `true`.
 
