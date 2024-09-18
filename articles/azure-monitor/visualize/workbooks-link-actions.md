@@ -40,7 +40,8 @@ Link actions can be accessed through workbook link components or through column 
 |Custom View| Opens a custom view. When this item is selected, more fields appear where you can configure the view extension, view name, and any parameters used to open the view. [See custom view link settings](#custom-view-link-settings). |
 |Metrics| Opens a metrics view.  |
 |Resource Overview| Opens the resource's view in the portal based on the resource ID value in the cell. You can also optionally set a submenu value that opens a specific menu item in the resource view. |
-|Workbook (Template)| Opens a workbook template. When this item is selected, more fields appear where you can configure what template to open.  |
+|Workbook (Template)| Opens a workbook template. When this item is selected, more fields appear where you can configure what template to open. [See Workbook (Template) settings](#workbook-template-link-settings). |
+|Azure Copilot (preview)| When the action is invoked, it will format and send a prompt to Microsoft Copilot in Azure (preview). [See Azure Copilot (preview) settings](#azure-copilot-preview-settings). |
 
 ## Link settings
 
@@ -204,7 +205,7 @@ When the workbook link is opened, the new workbook view is passed to all the val
 <!-- convertborder later -->
 :::image type="content" source="./media/workbooks-link-actions/workbook-template-link-settings-parameter.png" lightbox="./media/workbooks-link-actions/workbook-template-link-settings-parameter.png" alt-text="Screenshot that shows Workbook Template Parameters settings." border="false":::
 
-## Link sources
+### Link sources
 
 | Source | Description |
 |:------------- |:-------------|
@@ -215,3 +216,19 @@ When the workbook link is opened, the new workbook view is passed to all the val
 |Component| Use the value set in the current component of the workbook. It's common in query and metrics components to set the workbook resources in the linked workbook to those resources used in the query/metrics component, not the current workbook. |
 |Workbook| Use the value set in the current workbook. |
 |Default| Use the default value that would be used if no value were specified. This situation is common for **Gallery Type comes from**, where the default gallery would be set by the type of the owner resource. |
+
+## Azure Copilot (preview) settings
+
+When an  **Azure Copilot (preview)** link is invoked, it will format the configured link and send it as a prompt to the [Microsoft Copilot in Azure (preview)](../../../copilot). The Microsoft Copilot in Azure will then respond to the prompt to explain more about Azure concepts, services, or offerings. 
+The link action can be configured to insert parameter values or grid content into the prompt text.
+
+> [!NOTE]
+> If Microsoft Copilot in Azure (preview) is not enabled in your environment, instead of sending the prompt to Microsoft Copilot in Azure, the formatted prompt will be displayed in Cell Details side pane.
+
+Select the **Configure...** button to open the Azure Copilot (preview) prompt settings pane. The Azure Copilot (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax.  At the curren ttime, the prompt will be limited to 500 characters after formatting. Any remaining content will be truncated.
+
+<!-- convertborder later -->
+:::image type="content" source="./media/workbooks-link-actions/copilot-link-settings.png" lightbox="./media/workbooks-link-actions/copilot-link-settings.png" alt-text="Screenshot that shows Azure Copilot (preview) prompt text." border="false":::
+
+
+
