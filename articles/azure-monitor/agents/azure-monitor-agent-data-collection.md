@@ -37,7 +37,7 @@ The table below lists the types of data you can currently collect with the Azure
 | [Syslog](./data-collection-syslog.md) | Information sent to the Linux event logging system. | Linux | Log Analytics workspace |
 | [Text log](./data-collection-log-text.md) | Information sent to a text log file on a local disk. | Windows<br>Linux | Log Analytics workspace
 | [JSON log](./data-collection-log-json.md) | Information sent to a JSON log file on a local disk. | Windows<br>Linux | Log Analytics workspace |
-| [IIS logs](./data-collection-iis.md) | Internet Information Service (IIS) logs from to the local disk of Windows machines | Windows | Log Analytics workspace |
+| [IIS logs](./data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
 
 
 > [!NOTE]
