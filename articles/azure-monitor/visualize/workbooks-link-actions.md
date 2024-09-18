@@ -219,7 +219,7 @@ When the workbook link is opened, the new workbook view is passed to all the val
 
 ## Azure Copilot (preview) settings
 
-When an  **Azure Copilot (preview)** link is invoked, it formats the configured link and sends it as a prompt to the [Microsoft Copilot in Azure (preview)](../../../copilot). The Microsoft Copilot in Azure then responds  to the prompt to explain more about Azure concepts, services, or offerings. 
+When an  **Azure Copilot (preview)** link is invoked, it formats the configured link and sends it as a prompt to the [Microsoft Copilot in Azure (preview)](../../copilot). The Microsoft Copilot in Azure then responds  to the prompt to explain more about Azure concepts, services, or offerings. 
 The link action can be configured to insert parameter values or grid content into the prompt text.
 
 > [!NOTE]
