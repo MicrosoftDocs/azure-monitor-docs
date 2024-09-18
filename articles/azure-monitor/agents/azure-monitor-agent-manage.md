@@ -4,7 +4,7 @@ description: Options for installing and managing Azure Monitor Agent on Azure vi
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/15/2024
+ms.date: 09/11/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -153,7 +153,7 @@ You can use Resource Manager templates to install Azure Monitor Agent on Azure v
 Get sample templates for installing the agent and creating the association from the following resources:
 
 * [Template to install Azure Monitor Agent (Azure and Azure Arc)](../agents/resource-manager-agent.md#azure-monitor-agent)
-* [Template to create association with data collection rule](../essentials/data-collection-rule-create-edit.md?tabs=arm#create-a-dcr)
+* [Template to create association with data collection rule](../essentials/data-collection-rule-create-edit.md?tabs=arm#create-a-dcr-for-logs)
 
 Install the templates by using [any deployment method for Resource Manager templates](/azure/azure-resource-manager/templates/deploy-powershell), such as the following commands.
 
