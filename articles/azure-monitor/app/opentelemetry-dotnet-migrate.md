@@ -1543,6 +1543,12 @@ TelemetryClient.TrackPageView()
 > [!Tip]
 > Our product group is actively seeking feedback on this documentation. Provide feedback to otel@microsoft.com or see the [Support](#support) section.
 
+## Frequently asked questions
+
+#### Can I get live metrics for console and worker service applications?
+
+We recommend the Azure.Monitor.OpenTelemetry.Exporter for console and worker service applications, which does not include live metrics.
+
 ## Support
 
 ### [ASP.NET Core](#tab/aspnetcore)

@@ -431,6 +431,9 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
 
 This feature isn't available in the Azure Monitor .NET Exporter.
 
+> [!NOTE]
+> We recommend the Azure.Monitor.OpenTelemetry.Exporter for console and worker service applications, which does not include live metrics.
+
 ### [Java](#tab/java)
 
 The Live Metrics experience is enabled by default.
