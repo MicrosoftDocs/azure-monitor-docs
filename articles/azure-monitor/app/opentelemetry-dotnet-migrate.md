@@ -1505,6 +1505,10 @@ Not supported in OpenTelemetry.
 TelemetryClient.TrackPageView()
 ```
 
+#### Can I get live metrics for console and worker service applications?
+
+We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for console and worker service applications, which does not include live metrics.
+
 ## Next steps
 
 ### [ASP.NET Core](#tab/aspnetcore)
@@ -1542,12 +1546,6 @@ TelemetryClient.TrackPageView()
 
 > [!Tip]
 > Our product group is actively seeking feedback on this documentation. Provide feedback to otel@microsoft.com or see the [Support](#support) section.
-
-## Frequently asked questions
-
-#### Can I get live metrics for console and worker service applications?
-
-We recommend the Azure.Monitor.OpenTelemetry.Exporter for console and worker service applications, which does not include live metrics.
 
 ## Support
 
