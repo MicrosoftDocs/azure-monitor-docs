@@ -36,12 +36,12 @@ Link actions can be accessed through workbook link components or through column 
 | Link action | Action on select |
 |:------------- |:-------------|
 |ARM Deployment| Deploys an Azure Resource Manager (ARM) template. When this item is selected, more fields are displayed to let you configure which ARM template to open and parameters for the template. [See Azure Resource Manager deployment link settings](#azure-resource-manager-deployment-link-settings). |
-|Create Alert Rule| Creates an alert rule for a resource.  |
+|Create Alert Rule| Creates an alert rule for a resource. |
 |Custom View| Opens a custom view. When this item is selected, more fields appear where you can configure the view extension, view name, and any parameters used to open the view. [See custom view link settings](#custom-view-link-settings). |
-|Metrics| Opens a metrics view.  |
+|Metrics| Opens a metrics view. |
 |Resource Overview| Opens the resource's view in the portal based on the resource ID value in the cell. You can also optionally set a submenu value that opens a specific menu item in the resource view. |
 |Workbook (Template)| Opens a workbook template. When this item is selected, more fields appear where you can configure what template to open. [See Workbook (Template) settings](#workbook-template-link-settings). |
-|Azure Copilot (preview)| When the action is invoked, it will format and send a prompt to Microsoft Copilot in Azure (preview). [See Azure Copilot (preview) settings](#azure-copilot-preview-settings). |
+|Azure Copilot (preview)| When the action is invoked, it formats and sends a prompt to Microsoft Copilot in Azure (preview). [See Azure Copilot (preview) settings](#azure-copilot-preview-settings). |
 
 ## Link settings
 
@@ -67,7 +67,7 @@ When you use the **Make this item a link** option, the following settings are av
 
 ## ARM Action Settings
 
-Use this setting to invoke an ARM action by specifying the ARM API details. The documentation for ARM REST APIs can be found [here](https://aka.ms/armrestapi). In all of the UX fields, you can resolve parameters using `{paramName}`. You can also resolve columns using `["columnName"]`. In the example images below, we can reference the column `id` by writing `["id"]`. If the column is an Azure Resource ID, you can get a friendly name of the resource using the formatter `label`. This is similar to [parameter formatting](workbooks-parameters.md#parameter-formatting-options).
+Use this setting to invoke an ARM action by specifying the ARM API details. The documentation for ARM REST APIs can be found [here](https://aka.ms/armrestapi). In all of the UX fields, you can resolve parameters using `{paramName}`. You can also resolve columns using `["columnName"]`. In the example images below, we can reference the column `id` by writing `["id"]`. If the column is an Azure Resource ID, you can get a friendly name of the resource using the formatter `label`. [See parameter formatting](workbooks-parameters.md#parameter-formatting-options).
 
 ### ARM Action Settings Tab
 
@@ -162,7 +162,7 @@ There are two types of inputs: grids and JSON. Use a grid for simple key and val
 #### Grid
 
 - **Parameter Name**: The name of the View input parameter.
-- **Parameter Comes From**: Where the value of the View parameter should come from. Select from **Cell**, **Column**, **Parameter**, and **Static Value** in [Link sources](#link-sources).
+- **Parameter Comes From**: Indicates where the value of the View parameter should come from. Select from **Cell**, **Column**, **Parameter**, and **Static Value** in [Link sources](#link-sources).
     > [!NOTE]
     > If you select **Static Value**, the parameters can be resolved by using brackets to link `"{paramName}"` in the text box. Columns can be treated as parameters columns by appending `_column` after the column name like `"{columnName_column}"`.
 - **Parameter Value**: Depending on the value in **Parameter Comes From**, this dropdown contains available parameters, columns, or a static value.
@@ -180,7 +180,7 @@ There are two types of inputs: grids and JSON. Use a grid for simple key and val
 
 Paste a portal URL that contains the extension, name of the view, and any inputs needed to open the view. After you select **Initialize Settings**, the form is populated so that you can add, modify, or remove any of the view inputs.
 <!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/custom-tab-settings-url.png" lightbox="./media/workbooks-link-actions/custom-tab-settings-url.png" alt-text="Screenshot that shows the Edit column settings pane that shows the Get Custom View Settings from URL." border="false":::
+:::image type="content" source="./media/workbooks-link-actions/custom-tab-settings-url.png" lightbox="./media/workbooks-link-actions/custom-tab-settings-url.png" alt-text="Screenshot that shows the Edit column settings pane that shows the Custom View Settings from URL view." border="false":::
 
 ## Workbook (Template) link settings
 
@@ -219,13 +219,13 @@ When the workbook link is opened, the new workbook view is passed to all the val
 
 ## Azure Copilot (preview) settings
 
-When an  **Azure Copilot (preview)** link is invoked, it will format the configured link and send it as a prompt to the [Microsoft Copilot in Azure (preview)](../../../copilot). The Microsoft Copilot in Azure will then respond to the prompt to explain more about Azure concepts, services, or offerings. 
+When an  **Azure Copilot (preview)** link is invoked, it formats the configured link and sends it as a prompt to the [Microsoft Copilot in Azure (preview)](../../../copilot). The Microsoft Copilot in Azure then responds  to the prompt to explain more about Azure concepts, services, or offerings. 
 The link action can be configured to insert parameter values or grid content into the prompt text.
 
 > [!NOTE]
 > If Microsoft Copilot in Azure (preview) is not enabled in your environment, instead of sending the prompt to Microsoft Copilot in Azure, the formatted prompt will be displayed in Cell Details side pane.
 
-Select the **Configure...** button to open the Azure Copilot (preview) prompt settings pane. The Azure Copilot (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax.  At the curren ttime, the prompt will be limited to 500 characters after formatting. Any remaining content will be truncated.
+Select the **Configure...** button to open the Azure Copilot (preview) prompt settings pane. The Azure Copilot (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax. At the curret time, the prompt content is limited to 500 characters after formatting. Any remaining content is truncated.
 
 <!-- convertborder later -->
 :::image type="content" source="./media/workbooks-link-actions/copilot-link-settings.png" lightbox="./media/workbooks-link-actions/copilot-link-settings.png" alt-text="Screenshot that shows Azure Copilot (preview) prompt text." border="false":::
