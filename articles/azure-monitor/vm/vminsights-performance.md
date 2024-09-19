@@ -104,9 +104,9 @@ To access directly from a virtual machine:
 
 1. In the [Azure portal](https://portal.azure.com), open **Virtual machines** and select the VM that you want to run diagnostics on.
 1. In the lefthand navigation menu, expand the **Monitoring** section, then select **Insights**.
-1. Switch to the **Performance** tab to view **Performance insights**.
+1. Switch to the **Performance** tab.
 
-This page shows performance utilization charts. It also shows a table for each logical disk discovered with its capacity, utilization, and total average by each measure.
+This page shows [Performance insights](/troubleshoot/azure/virtual-machines/windows/performance-diagnostics?tabs=insights#view-performance-diagnostics-insights) and performance utilization charts. It also shows a table for each logical disk discovered with its capacity, utilization, and total average by each measure.
 
 The following capacity utilization charts are provided:
 
