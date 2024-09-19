@@ -17,7 +17,7 @@ This article is part of the guide [Monitor virtual machines and their workloads 
 > [!NOTE]
 > This scenario describes how to implement complete monitoring of your Azure and hybrid virtual machine environment. To get started monitoring your first Azure virtual machine, see [Monitor Azure virtual machines](/azure/virtual-machines/monitor-vm) or [Tutorial: Collect guest logs and metrics from Azure virtual machine](tutorial-monitor-vm-guest.md).
 
-After [configuring data collection](monitor-virtual-machine-data-collection.md) for your virtual machines, data will be available for analysis. This article describes the different features of Azure Monitor that you can use to analyze the health and performance of your virtual machines. Several of these features provide a different experience depending on whether you're analyzing a single machine or multiple. Each experience is described here with any unique behavior of each feature depending on which experience is being used.
+Once you [configure data collection](monitor-virtual-machine-data-collection.md) for your virtual machines, data will be available for analysis. This article describes the different features of Azure Monitor that you can use to analyze the health and performance of your virtual machines. Several of these features provide a different experience depending on whether you're analyzing a single machine or multiple. Each experience is described here with any unique behavior of each feature depending on which experience is being used.
 
 ## Single machine experience
 
@@ -34,13 +34,13 @@ Access the single machine analysis experience from the **Monitoring** section of
 | Metrics | Open metrics explorer with the scope set to the machine. This option is the same as selecting one of the performance charts from the **Overview** page except that the metric isn't already added. |
 | Diagnostic settings | Enable and configure the [diagnostics extension](../agents/diagnostics-extension-overview.md) for the current virtual machine. This option is different than the **Diagnostic settings** option for other Azure resources. This is a [legacy agent](monitor-virtual-machine-agent.md#legacy-agents) that has been replaced by the [Azure Monitor agent](monitor-virtual-machine-agent.md). |
 | Advisor recommendations | See recommendations for the current virtual machine from [Azure Advisor](../../advisor/index.yml). |
-| Logs | Open [Log Analytics](../logs/log-analytics-overview.md) with the [scope](../logs/scope.md) set to the current virtual machine. You can select from a variety of existing queries to drill into log and performance data for only this machine. |
+| Logs | Open [Log Analytics](../logs/log-analytics-overview.md) with the [scope](../logs/scope.md) set to the current virtual machine. You can select from various existing queries to drill into log and performance data for only this machine. |
 | Connection monitor | Open [Network Watcher Connection Monitor](/azure/network-watcher/connection-monitor-overview) to monitor connections between the current virtual machine and other virtual machines. |
 | Workbooks | Open the workbook gallery with the VM insights workbooks for single machines. For a list of the VM insights workbooks designed for individual machines, see [VM insights workbooks](vminsights-workbooks.md#vm-insights-workbooks). |
 
 ## Multiple machine experience
 
-Access the multiple machine analysis experience from the **Monitor** menu in the Azure portal for each Azure virtual machine and Azure Arc-enabled server. This will include only VMs that are enabled for VM insights. These options provide access to all data so that you can select the virtual machines that you're interested in comparing.
+Access the multiple machine analysis experience from the **Monitor** menu in the Azure portal for each Azure virtual machine and Azure Arc-enabled server. This includes only VMs that are enabled for VM insights. These options provide access to all data so that you can select the virtual machines that you're interested in comparing.
 
 :::image type="content" source="media/monitor-virtual-machines/monitor-menu.png" alt-text="Screenshot that shows analyzing multiple VMs in the Azure portal." lightbox="media/monitor-virtual-machines/monitor-menu.png":::
 
@@ -49,7 +49,7 @@ Access the multiple machine analysis experience from the **Monitor** menu in the
 | Activity log | See [activity log](../essentials/activity-log-insights.md#view-the-activity-log) entries filtered for all resources. Create a filter for a **Resource Type** of virtual machines or Virtual Machine Scale Sets to view events for all your machines. |
 | Alerts | View [alerts](../alerts/alerts-overview.md) for all resources. This includes alerts related to all virtual machines in the workspace. Create a filter for a **Resource Type** of virtual machines or Virtual Machine Scale Sets to view alerts for all your machines. |
 | Metrics | Open [metrics explorer](../essentials/analyze-metrics.md) with no scope selected. This feature is particularly useful when you want to compare trends across multiple machines. Select a subscription or a resource group to quickly add a group of machines to analyze together. |
-| Logs | Open [Log Analytics](../logs/log-analytics-overview.md) with the [scope](../logs/scope.md) set to the workspace. You can select from a variety of existing queries to drill into log and performance data for all machines. Or you can create a custom query to perform additional analysis. |
+| Logs | Open [Log Analytics](../logs/log-analytics-overview.md) with the [scope](../logs/scope.md) set to the workspace. You can select from various existing queries to drill into log and performance data for all machines. Or you can create a custom query to perform additional analysis. |
 | Workbooks | Open the workbook gallery with the VM insights workbooks for multiple machines. For a list of the VM insights workbooks designed for multiple machines, see [VM insights workbooks](vminsights-workbooks.md#vm-insights-workbooks). |
 
 ## VM insights experience
@@ -76,8 +76,8 @@ This level of detail can be confusing if you're new to Azure Monitor. The follow
 
 * Any non-numeric data, such as events, is stored in Logs. Metrics can only include numeric data sampled at regular intervals.
 * Numeric data can be stored in both Metrics and Logs so that it can be analyzed in different ways and support different types of alerts.
-* Performance data from the guest operating system is sent to either Metrics or Logs or both by the Azure Monitor agent.
-* Performance data from the guest operating system is sent to Logs by VM insights.
+* The Azure Monitor agent sends performance data from the guest operating system to either Metrics, Logs, or both.
+* VM insights sends performance data from the guest operating system to Logs.
 
 ## Analyze metric data with metrics explorer
 
@@ -93,7 +93,7 @@ The following namespaces are used by virtual machines.
 
 ## Analyze log data with Log Analytics
 
-Use Log Analytics to perform custom analysis of your log data to dig deeper into the data used to create the views in workbooks and VM insights. Connsider analyzing different logic and aggregations of that data, or correlate security data collected by Microsoft Defender for Cloud and Microsoft Sentinel with your [health and availability data](monitor-virtual-machine-data-collection.md).
+Use Log Analytics to perform custom analysis of your log data to dig deeper into the data used to create the views in workbooks and VM insights. Consider analyzing different logic and aggregations of that data, or correlate security data collected by Microsoft Defender for Cloud and Microsoft Sentinel with your [health and availability data](monitor-virtual-machine-data-collection.md).
 
 You don't necessarily need to understand how to write a log query to use Log Analytics. There are multiple prebuilt queries that you can select and either run without modification or use as a start to a custom query. Select **Queries** at the top of the Log Analytics screen, and view queries with a **Resource type** of **Virtual machines** or **Virtual machine scale sets**. For information on how to use these queries, see [Using queries in Azure Monitor Log Analytics](../logs/queries.md). For a tutorial on how to use Log Analytics to run queries and work with their results, see [Log Analytics tutorial](../logs/log-analytics-tutorial.md).
 
