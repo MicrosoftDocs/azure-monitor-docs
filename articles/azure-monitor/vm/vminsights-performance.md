@@ -102,9 +102,9 @@ Selecting a virtual machine from the list opens the **Properties** pane on the r
 
 To access directly from a virtual machine:
 
-1. In the Azure portal, select **Virtual Machines**.
-1. From the list, select a VM. In the **Monitoring** section, select **Insights**.
-1. Select the **Performance** tab.
+1. In the [Azure portal](https://portal.azure.com), open **Virtual machines** and select the VM that you want to run diagnostics on.
+1. In the lefthand navigation menu, expand the **Monitoring** section, then select **Insights**.
+1. Switch to the **Performance** tab to view **Performance insights**.
 
 This page shows performance utilization charts. It also shows a table for each logical disk discovered with its capacity, utilization, and total average by each measure.
 
