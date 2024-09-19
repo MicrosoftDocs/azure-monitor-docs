@@ -28,7 +28,7 @@ VM insights monitors key operating system performance indicators related to proc
 
 Limitations in performance collection with VM insights:
 
-* Available memory isn't available in all Linux versions, including Red Hat Linux (RHEL) 6 and CentOS 6. It will be available in Linux versions that use [kernel version 3.14](http://www.man7.org/linux/man-pages/man1/free.1.html) or higher. It might be available in some kernel versions between 3.0 and 3.14.
+* Available memory isn't available in all Linux versions, including Red Hat Enterprise Linux (RHEL) 6 and CentOS 6. It's available in Linux versions that use [kernel version 3.14](http://www.man7.org/linux/man-pages/man1/free.1.html) or higher. It might be available in some kernel versions between 3.0 and 3.14.
 * Metrics are only available for data disks on Linux virtual machines that use XFS filesystem or EXT filesystem family (EXT2, EXT3, EXT4).
 * Collecting performance metrics from network shared drives is unsupported.
 
@@ -103,7 +103,7 @@ Selecting a virtual machine from the list opens the **Properties** pane on the r
 To access directly from a virtual machine:
 
 1. In the [Azure portal](https://portal.azure.com), open **Virtual machines** and select the VM that you want to run diagnostics on.
-1. In the lefthand navigation menu, expand the **Monitoring** section, then select **Insights**.
+1. In the left-hand navigation menu, expand the **Monitoring** section, then select **Insights**.
 1. Switch to the **Performance** tab.
 
 This page shows [Performance insights](/troubleshoot/azure/virtual-machines/windows/performance-diagnostics?tabs=insights#view-performance-diagnostics-insights) and performance utilization charts. It also shows a table for each logical disk discovered with its capacity, utilization, and total average by each measure.
