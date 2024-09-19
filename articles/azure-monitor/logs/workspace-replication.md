@@ -324,10 +324,10 @@ To query log data in the inactive region, use this GET command:
 ```http
 GET
 
-api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=<query>&timespan=P1D&overrideWorkspaceRegion=<primary|secondary>
+api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=<query>&timespan=<timespan-in-ISO8601-format>&overrideWorkspaceRegion=<primary|secondary>
 ```
 
-For example, to run a simple query like `Perf | count` in your secondary region, use:
+For example, to run a simple query like `Perf | count` for the past day in your secondary region, use:
 
 ```http
 GET
