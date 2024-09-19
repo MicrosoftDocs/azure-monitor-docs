@@ -310,22 +310,31 @@ The `POST` command is a long running operation that can take some time to comple
 
 ## Audit the inactive workspace
 
-By default, Azure Monitor run queries in your _active_ region. The active region is typically your primary region in your primary workspace. During switchover, the secondary workspace becomes _active_ and the primary region is _inactive_. 
+By default, Azure Monitor runs queries in your _active_ region. The active region is typically your primary region in your primary workspace. During switchover, the secondary workspace becomes _active_ and the primary region is _inactive_. 
 
 In some cases, you might want to query the _inactive_ region. For example, you might want to ensure that your secondary workspace has complete replication of ingested logs before you switch over.
 
+By default, your workspace’s active region is the region where you create the workspace, and the inactive region is the secondary region, where you create the replicated workspace.
+When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it’s not the direct target of log ingestion and query requests.
+It's useful to query the inactive region before you switch between regions to verify that the workspace in the inactive region has the logs you expect to see there.
+
 ### Query inactive region
 
-To query the available logs on the inactive workspace:
+To query log data in the inactive region, use this GET command:
 
-1. In the Azure portal, go to your Log Analytics workspace.
-1. On the left, select **Logs**.
-1. On the query toolbar, select **More tools** (...) at the right.
-1. Enable **Query inactive region**.
+```http
+GET
 
-   :::image type="content" source="media/workspace-replication/query-inactive-region.png" alt-text="Screenshot that shows how to query the inactive region through the workspace Logs page in the Azure portal." lightbox="media/workspace-replication/query-inactive-region.png":::
+api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=<query>&timespan=P1D&overrideWorkspaceRegion=<primary|secondary>
+```
 
-After you enable the **Query inactive region** option, Log Analytics shows query results for the inactive region rather than the active region.
+For example, to run a simple query like `Perf | count` in your secondary region, use:
+
+```http
+GET
+
+api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=Perf%20|%20count&timespan=P1D&overrideWorkspaceRegion=secondary
+```
 
 You can confirm that Azure Monitor runs your query in the intended region by checking these fields in the `LAQueryLogs` table, which is created when you [enable query auditing in your Log Analytics workspace](query-audit.md):
 
