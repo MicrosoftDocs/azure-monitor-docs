@@ -310,12 +310,11 @@ The `POST` command is a long running operation that can take some time to comple
 
 ## Audit the inactive workspace
 
-By default, Azure Monitor runs queries in your _active_ region. The active region is typically your primary region in your primary workspace. During switchover, the secondary workspace becomes _active_ and the primary region is _inactive_. 
-
-In some cases, you might want to query the _inactive_ region. For example, you might want to ensure that your secondary workspace has complete replication of ingested logs before you switch over.
 
 By default, your workspace’s active region is the region where you create the workspace, and the inactive region is the secondary region, where you create the replicated workspace.
+
 When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it’s not the direct target of log ingestion and query requests.
+
 It's useful to query the inactive region before you switch between regions to verify that the workspace in the inactive region has the logs you expect to see there.
 
 ### Query inactive region
