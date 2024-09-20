@@ -2,7 +2,7 @@
 title: Statsbeat in Application Insights | Microsoft Docs
 description: Statistics about Application Insights SDKs, AzMon OTel Distros, and autoinstrumentation
 ms.topic: reference
-ms.date: 09/13/2024
+ms.date: 09/20/2024
 ms.custom: references_regions
 ms.reviwer: mmcc
 ---
@@ -16,10 +16,10 @@ In many cases, Azure Monitor Application Insights automatically collects data ab
 > - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
 > - Application Insights SDKs (Classic API)
  
-Statsbeat serves three benefits for Application Insights customers:
+This has three purposes:
  
 * **Service health and reliability** — It monitors the connectivity to the ingestion endpoint from an external perspective to ensure the service is functioning correctly.
-* **Support diagnostics** — It offers self-help insights and helps Customer Support Services (CSS) to assist in diagnosing and resolving issues.
+* **Support diagnostics** — It offers self-help insights and assists customer support with diagnosing and resolving issues.
 * **Product improvement** — It gathers insights for Microsoft to optimize product design and enhance the overall user experience.
 
 > [!NOTE]
