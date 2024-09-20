@@ -10,18 +10,18 @@ ms.reviwer: mmcc
 # Statsbeat in Application Insights
  
 Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics about:
- 
+
 > [!div class="checklist"]
 > - [Azure Monitor OpenTelemetry Distros](opentelemetry-enable.md)
 > - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
 > - Application Insights SDKs (Classic API)
- 
+
 It serves three benefits for Application Insights customers:
  
 > [!div class="checklist"]
-> - **Service health and reliability** - Monitor the connectivity to the ingestion endpoint from an external perspective.
-> - **Support diagnostics** - Access self-help and CSS insights to assist in resolving issues.
-> - **Product improvement** - Gather insights for design optimizations.
+> - **Service health and reliability** — Monitor the connectivity to the ingestion endpoint from an external perspective.
+> - **Support diagnostics** — Access self-help and CSS insights to assist in resolving issues.
+> - **Product improvement** — Gather insights for design optimizations.
  
 Statsbeat data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost.
 
