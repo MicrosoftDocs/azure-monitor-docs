@@ -197,11 +197,11 @@ Azure Monitor Windows agent version 1.1.1.0 or higher (by using [data collection
 
 Azure Monitor Linux agent version 1.10.5.0 or higher (by using [data collection endpoints](../essentials/data-collection-endpoint-overview.md)).
 
-#### Log Analytics Windows agent (on deprecation path)
+#### Log Analytics Windows agent (deprecated)
 
 Use the Log Analytics agent version 10.20.18038.0 or later.
 
-#### Log Analytics Linux agent (on deprecation path)
+#### Log Analytics Linux agent (deprecated)
 
 Use agent version 1.12.25 or later. If you can't, run the following commands on your VM:
 
