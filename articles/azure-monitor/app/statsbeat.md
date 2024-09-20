@@ -16,11 +16,11 @@ In many instances, Azure Monitor Application Insights automatically collects dat
 > - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
 > - Application Insights SDKs (Classic API)
  
-The three main pruposes of Statsbeat are:
+The three main purposes of Statsbeat are:
  
-* **Service health and reliability** - It monitors the connectivity to the ingestion endpoint from an external perspective to ensure the service is functioning correctly.
-* **Support diagnostics** - It offers self-help insights and assists customer support with diagnosing and resolving issues.
-* **Product improvement** - It gathers insights for Microsoft to optimize product design and enhance the overall user experience.
+* **Service health and reliability** - Monitoring the connectivity to the ingestion endpoint from an external perspective to ensure the service is functioning correctly.
+* **Support diagnostics** - Offering self-help insights and assisting customer support with diagnosing and resolving issues.
+* **Product improvement** - Gathering insights for Microsoft to optimize product design and enhance the overall user experience.
 
 > [!NOTE]
 > Statsbeat doesn't support [Azure Private Link](/azure/automation/how-to/private-link-security).
