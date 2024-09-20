@@ -8,22 +8,19 @@ ms.reviwer: mmcc
 ---
 
 # Statsbeat in Application Insights
- 
-Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics about:
 
+In many cases, Azure Monitor Application Insights automatically collects data about product usage for Microsoft through a feature called Statsbeat. This data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost. Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics about:
+ 
 > [!div class="checklist"]
 > - [Azure Monitor OpenTelemetry Distros](opentelemetry-enable.md)
 > - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
 > - Application Insights SDKs (Classic API)
-
-It serves three benefits for Application Insights customers:
  
-> [!div class="checklist"]
-> - **Service health and reliability** — Monitor the connectivity to the ingestion endpoint from an external perspective.
-> - **Support diagnostics** — Access self-help and CSS insights to assist in resolving issues.
-> - **Product improvement** — Gather insights for design optimizations.
+Statsbeat serves three benefits for Application Insights customers:
  
-Statsbeat data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost.
+* **Service health and reliability** — It monitors the connectivity to the ingestion endpoint from an external perspective to ensure the service is functioning correctly.
+* **Support diagnostics** — It offers self-help insights and helps Customer Support Services (CSS) to assist in diagnosing and resolving issues.
+* **Product improvement** — It gathers insights for Microsoft to optimize product design and enhance the overall user experience.
 
 > [!NOTE]
 > Statsbeat doesn't support [Azure Private Link](/azure/automation/how-to/private-link-security).
