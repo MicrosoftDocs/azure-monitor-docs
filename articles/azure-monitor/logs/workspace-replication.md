@@ -310,8 +310,7 @@ The `POST` command is a long running operation that can take some time to comple
 
 ## Audit the inactive workspace
 
-
-By default, your workspace’s active region is the region where you create the workspace, and the inactive region is the secondary region, where you create the replicated workspace.
+By default, your workspace’s active region is the region where you create the workspace, and the inactive region is the secondary region, where Azure Monitor creates the replicated workspace.
 
 When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it’s not the direct target of log ingestion and query requests.
 
