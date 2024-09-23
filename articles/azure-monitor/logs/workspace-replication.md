@@ -273,7 +273,7 @@ There are several points to consider in your plan for switchback, as described i
 
 #### Log replication state
 
-Before you switch back, verify that Azure Monitor has completed replicating all logs ingested during switchover to the primary region. If you switch back before all logs replicate to the primary workspace, your queries might return partial results until log ingestion completes.
+Before you switch back, verify that Azure Monitor completed replicating all logs ingested during switchover to the primary region. If you switch back before all logs replicate to the primary workspace, your queries might return partial results until log ingestion completes.
 
 You can query your primary workspace in the Azure portal for the inactive region, as described in [Audit the inactive workspace](#audit-the-inactive-workspace).
 
