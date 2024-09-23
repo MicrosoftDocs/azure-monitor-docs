@@ -166,6 +166,14 @@ kubectl rollout restart deployment <deployment-name> -n mynamespace1
 
 This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify that Application Insights is enabled for your application by generating traffic for your application and navigating to your Application Insights resource. You will see your app represented as a cloud role Application Insights experiences such as Application Map, Failures, and Performance blades.
 
+## Remove AutoInstrumentation for AKS
+
+Delete all `instrumentations.monitor.azure.com` custom resources you may have created, remove annotations you have added, and rollout restart your deployments. Then run the following command.
+
+```azurecli
+az aks update --resource-group={resource_group} --name={cluster_name} --disable-azure-monitor-app-monitoring 
+```
+
 ## Annotations
 
 ### Disabling autoinstrumentation
@@ -232,6 +240,10 @@ Refer to this chart to determine when autoinstrumentation or manual instrumentat
 | .NET     | Manual instrumentation |
 | Node.js  | Manual instrumentation |
 | Java     | Autoinstrumentation    |
+
+#### How do I ensure that I am using the latest and most secure versions of Azure Monitor OpenTelemetry Distro
+
+AKS auto-instrumentation injects the Azure Monitor OpenTelemetry Distro into your application pods to generate telemetry. Vulnerabilities detected in Azure Monitor OpenTelemetry Distro are immediately fixed and released in the next version. Check <something> to ensure that your cluster has the latest version of AKS Auto-Instrumentation. If you are on the latest version, run rollout restart deployments on all deployments currently enabled for autoinstrumentation. If you are not on the latest version, raise a ticket so we can investigate.
 
 ## Troubleshooting
 
