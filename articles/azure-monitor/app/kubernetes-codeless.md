@@ -104,7 +104,7 @@ spec:
 At a minimum, the following configuration is required:
 
 - `spec.settings.autoInstrumentationPlatforms`: One or more values based on the languages your pods are running.
-- `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource.
+- `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource. 
 
 > [!TIP]
 > Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
@@ -115,7 +115,8 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
 
 1. Create a unique _Instrumentation_ custom resource for each scenario. Avoid using the name `default`, which is used for namespace-wide onboarding.
 
-    Create _Instrumentation_ custom resources to configure Application Insights in each namespace.
+    Create _Instrumentation_ custom resources to configure Application Insights in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. You can retrieve connection string from the overview page of your Application Insights resource.
+
     
     ```yml
     apiVersion: monitor.azure.com/v1
