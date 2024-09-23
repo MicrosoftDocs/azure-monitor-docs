@@ -187,7 +187,7 @@ To turn autoinstrumentation back on after disabling.
 
 ### Enabling logs in Application Insights
 
-You can opt to collect logs in Application Insights as an addition to or replacement for their Container Insights logs. 
+You can opt to collect logs in Application Insights as an addition to or replacement for Container Insights logs. 
 
 Enabling logs in Application Insights will provide correlated logs, allowing users to easily view distributed traces alongside their related logs. Further, some microservices may not write logs to the console so Container Insights will not be able to collect them and only Application Insights instrumentation will capture these logs. On the down side, Application Insights might not be able to instrument all microservices, such as those using NGINX or unsupported languages, so users might prefer to rely on Container Insights logs only for such microservices. Some users may choose to enable both sources for logs if they have multiple observability teams such as infra engineers using Cotnainer Insights and developers using Application Insights.
 
@@ -213,7 +213,7 @@ Use the following annotation to enable logs in Application Insights
 
 If you want custom metrics in .NET or Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
 
-Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics then they will flow through on top of autoinstrumentation.
+Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics then they will flow through when autoinstrumentation is enabled.
 
 #### Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
 
