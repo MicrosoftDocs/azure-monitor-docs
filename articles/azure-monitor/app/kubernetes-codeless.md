@@ -168,17 +168,29 @@ This command causes autoinstrumentation to take effect, enabling Application Ins
 
 ## Annotations
 
-### Enabling or disabling autoinstrumentation
+### Disabling autoinstrumentation
 
-The following annotations enable or disable autoinstrumentation for the language indicated.
+The following annotations disable autoinstrumentation for the language indicated.
 
 - DotNet: `instrumentation.opentelemetry.io/inject-dotnet`
 - Java: `instrumentation.opentelemetry.io/inject-java`
 - Node.js: `instrumentation.opentelemetry.io/inject-nodejs`
 
+  ```yml
+  instrumentation.opentelemetry.io/inject-java="false"
+  ```
+Remove the annotation or set it to true, to turn autoinstrumentation back on after disabling.
+
+ ```yml
+    instrumentation.opentelemetry.io/inject-java="true"
+ ```
+
 ### Enabling logs in Application Insights
 
-By default, this feature will not collect application logs from standard logging frameworks and send them to Application Insights, as Container Insights may already be gathering similar logs from the console. Users can opt to collect logs in Application Insights as an addition to or replacement for their Container Insights logs. The advantage of logs in Application Insights is that they are correlated, allowing users to easily view distributed traces alongside their related logs. Further, some microservices may not write logs to the console so Container Insights will not be able to collect them and only Application Insights instrumentation will capture these logs. On the other hand, Application Insights might not be able to instrument all microservices, such as those using NGINX or unsupported languages, so users might prefer to rely on Container Insights for those logs. Before enabling this feature, review your [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap) and/or console logging configurations in your code to ensure logs are collected from the best source, avoiding unnecessary duplication and increased costs.
+> [!IMPORTANT]
+> By default, this feature will not collect application logs from standard logging frameworks and send them to Application Insights, as Container Insights may already be gathering similar logs from the console. You can opt to collect logs in Application Insights as an addition to or replacement for their Container Insights logs. This is to avoid unnecessary duplication and increased cost.
+
+The advantage of logs in Application Insights is that they are correlated, allowing users to easily view distributed traces alongside their related logs. Further, some microservices may not write logs to the console so Container Insights will not be able to collect them and only Application Insights instrumentation will capture these logs. On the other hand, Application Insights might not be able to instrument all microservices, such as those using NGINX or unsupported languages, so users might prefer to rely on Container Insights for those logs. Before enabling this feature, review your [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap) and/or console logging configurations in your code to ensure logs are collected from the best source, avoiding unnecessary duplication and increased costs.
 
 Use the following annotation to enable logs in Application Insights
 
@@ -187,32 +199,9 @@ Use the following annotation to enable logs in Application Insights
 > [!IMPORTANT]
 > Always add annotations at the `spec.template.metadata.annotations` level of your deployment to avoid mistakenly adding them to the deployment’s own annotations.
 
-### Annotation examples
-
-1. Enable Java autoinstrumentation.
-
-    ```yml
-    instrumentation.opentelemetry.io/inject-java="true"
-    ```
-
-2. Disable autoinstrumentation.
-
-    ```yml
-    instrumentation.opentelemetry.io/inject-java="false"
-    ```
-
-3. Enable Java and DotNet autoinstrumentation.
-
-    ```yml
-    instrumentation.opentelemetry.io/inject-java="true"
-    instrumentation.opentelemetry.io/inject-dotnet="true"
-    ```
-    
-4. Enable logs in Application Insights.
-
-    ```yml
-    monitor.azure.com/enable-application-logs="true"
-    ```
+  ```yml
+  monitor.azure.com/enable-application-logs="true"
+  ```
 
 ## Frequently asked questions
 
