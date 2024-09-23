@@ -42,7 +42,7 @@ https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{res
 ```
 
 > [!IMPORTANT]
-> Only version `2023-01-01-preview` of the API lets you set the Auxiliary table plan.  
+> Only version `2023-01-01-preview` of the API currently lets you set the Auxiliary table plan.  
 
 Provide this payload - update the table name and adjust the columns based on your table schema: 
 
