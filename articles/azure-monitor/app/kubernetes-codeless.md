@@ -19,20 +19,11 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 ## Prerequisites
 
 * An [AKS cluster](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-portal?tabs=azure-cli) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using .NET, Java, or Node.js in the Azure public cloud
-* Preview feature availability in your region. For more information, see [Determine availability](#determine-availability).
 * [A workspace-based Application Insights resource](create-workspace-resource.md#workspace-based-application-insights-resources).
 
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux ARM64 node pools.
 > - This feature is incompatible with .NET [self-contained](/dotnet/core/deploying/#publish-self-contained) applications.
-
-## Determine availability
-
-Run the following command to determine on which pods this preview feature is available.
-
-```shell
-kubectl get pods -l "app=app-monitoring-webhook" -n kube-system
-```
 
 ## Install the aks-preview Azure CLI extension
 
