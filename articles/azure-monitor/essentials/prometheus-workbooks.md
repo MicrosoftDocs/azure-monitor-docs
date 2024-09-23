@@ -19,7 +19,7 @@ You can also query Prometheus metrics using PromQL from the metrics explorer in 
 
 To query Prometheus metrics from an Azure Monitor workspace, you need the following:
 -	An Azure Monitor workspace. To create an Azure Monitor workspace, see [Create an Azure Monitor Workspace](./azure-monitor-workspace-overview.md?tabs=azure-portal.md).
--	Your Azure Monitor workspace must be [collecting Prometheus metrics](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an AKS cluster, or from a Virtual Machine or Virtual Machine Scale Set. For more information, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](./prometheus-remote-write-virtual-machines).
+-	Your Azure Monitor workspace must be [collecting Prometheus metrics](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an AKS cluster, or from a Virtual Machine or Virtual Machine Scale Set. For more information, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](./prometheus-remote-write-virtual-machines.md).
 -	The user must be assigned role that can perform the **microsoft.monitor/accounts/read** operation on the Azure Monitor workspace.
 
 ## Prometheus Explorer workbook
@@ -85,7 +85,7 @@ This section provides answers to common questions.
 
 ## Next steps
 * [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
-* [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](./prometheus-remote-write-virtual-machines)
+* [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](./prometheus-remote-write-virtual-machines.md)
 * [Azure Monitor metrics explorer with PromQL (Preview)](./metrics-explorer.md)
 * [Azure Monitor workspace](./azure-monitor-workspace-overview.md)
 * [Use Azure Monitor managed service for Prometheus as data source for Grafana using managed system identity](./prometheus-grafana.md)
