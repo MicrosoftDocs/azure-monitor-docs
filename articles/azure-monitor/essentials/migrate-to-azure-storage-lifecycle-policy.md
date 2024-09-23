@@ -61,7 +61,7 @@ The output shows whether the diagnostic setting sends the data to a storage acco
       }
     ],
     "name": "dsetting-1",
-    "resourceGroup": "ed-rg-001",
+    "resourceGroup": "rg-001",
     "storageAccountId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-DCR/providers/Microsoft.Storage/storageAccounts/logs001",
     "type": "Microsoft.Insights/diagnosticSettings"
   }
