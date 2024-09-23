@@ -158,7 +158,7 @@ kubectl rollout restart deployment <deployment-name> -n mynamespace1
 
 This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify that Application Insights is enabled for your application by generating traffic for your application and navigating to your Application Insights resource. You will see your app represented as a cloud role Application Insights experiences such as Application Map, Failures, and Performance blades.
 
-## Remove AutoInstrumentation for AKS
+## Remove Autoinstrumentation for AKS
 
 Ensure that you do not have any instrumented deployments. To uninstrument an instrumented deployment consider removing the associated Instrumentation custom resource and run kubectl rollout restart on the deployment. Next run the following command.
 
@@ -167,7 +167,7 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
 ```
 
  > [!NOTE]
- > If you have instrumented deployment then this feature will not be removed unitl the last instrumented deployment is uninstrumented or removed.
+ > If you have instrumented deployments then this feature will not be removed unitl the last instrumented deployment is uninstrumented or removed.
 
 ## Annotations
 
@@ -201,7 +201,7 @@ You may also choose to enable both sources for logs if you have multiple observa
 Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, Container Insights Logs, or both. Should you chose to disable Container Insights logs, see [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap). 
 
 > [!IMPORTANT]
-> This feature will not collect application logs from standard logging frameworks and send them to Application Insights. This is to avoid unnecessary duplication and increased cost.
+> This feature will not collect application logs from standard logging frameworks and send them to Application Insights unless you enable logs in Application Insights. This is to avoid unnecessary duplication and increased cost.
 
 Use the following annotation to enable logs in Application Insights
 
