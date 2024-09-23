@@ -164,7 +164,7 @@ Run the following command after all custom resources are created and deployments
 kubectl rollout restart deployment <deployment-name> -n mynamespace1
 ```
 
-This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify that Application Insights is enabled for your application by generating traffic for your application and navigating to your Application Insights resource. You will see your app represented as a cloud role in the Application Insights Application Map, Failures, Performance, and other Application Insights experiences.
+This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify that Application Insights is enabled for your application by generating traffic for your application and navigating to your Application Insights resource. You will see your app represented as a cloud role Application Insights experiences such as Application Map, Failures, and Performance blades.
 
 ## Annotations
 
