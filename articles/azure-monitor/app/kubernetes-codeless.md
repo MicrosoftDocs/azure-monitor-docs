@@ -169,11 +169,14 @@ This command causes autoinstrumentation to take effect, enabling Application Ins
 
 ## Remove AutoInstrumentation for AKS
 
-Delete all `instrumentations.monitor.azure.com` custom resources you may have created, remove annotations you have added, and rollout restart your deployments. Then run the following command.
+Ensure that you do not have any instrumented deployments. To uninstrument an instrumented deployment consider removing the associated Instrumentation custom resource and run kubectl rollout restart on the deployment. Next run the following command.
 
 ```azurecli
 az aks update --resource-group={resource_group} --name={cluster_name} --disable-azure-monitor-app-monitoring 
 ```
+
+ > [!NOTE]
+ > If you have instrumented deployment then this feature will not be removed unitl the last instrumented deployment is uninstrumented or removed.
 
 ## Annotations
 
