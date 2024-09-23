@@ -547,16 +547,16 @@ LAQueryLogs
    - Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
 - The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. Therefore, during switchover, solution data is ingested from **all** agents.
 - The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Sentinel. 
-   
-The following features are partially supported or not currently supported:
+- These features are currently not supported or only partially supported:
 
-| Feature | Support |
-| --- | --- |
-| Search jobs, Restore | Partially supported - Search job and restore operations create tables and populate them with search results or restored data. After you enable workspace replication, new tables created for these operations replicate to your secondary workspace. Tables populated **before** you enable replication aren't replicated. If these operations are in progress when you switch over, the outcome is unexpected. It might complete successfully but not replicate, or it might fail, depending on your workspace health and the exact timing.|
-| Application Insights over Log Analytics workspaces | Not supported |
-| VM Insights | Not supported |
-| Container Insights | Not supported |
-| Private links | Not supported during failover |
+    | Feature | Support |
+    | --- | --- |
+    |Auxiliary table plans|Not supported. Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you swith over to your secondary workspace.|
+    | Search jobs, Restore | Partially supported - Search job and restore operations create tables and populate them with search results or restored data. After you enable workspace replication, new tables created for these operations replicate to your secondary workspace. Tables populated **before** you enable replication aren't replicated. If these operations are in progress when you switch over, the outcome is unexpected. It might complete successfully but not replicate, or it might fail, depending on your workspace health and the exact timing.|
+    | Application Insights over Log Analytics workspaces | Not supported |
+    | VM Insights | Not supported |
+    | Container Insights | Not supported |
+    | Private links | Not supported during failover |
 
 ## Related content
 

@@ -41,6 +41,9 @@ To create a custom table, call the [Tables - Create Or Update API](/rest/api/log
 https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table name_CL}?api-version=2023-01-01-preview
 ```
 
+> [!IMPORTANT]
+> Only version `2023-01-01-preview` of the API lets you set the Auxiliary table plan.  
+
 Provide this payload - update the table name and adjust the columns based on your table schema: 
 
 ```json
@@ -238,7 +241,7 @@ During public preview, these limitations apply:
     | **Middle East**     | Israel Central         |
 
 
-- You can set the Auxiliary plan only on data collection rule-based custom tables you create using the [Tables - Create Or Update API](/rest/api/loganalytics/tables/create-or-update).
+- You can set the Auxiliary plan only on data collection rule-based custom tables you create using the [Tables - Create Or Update API](/rest/api/loganalytics/tables/create-or-update), version `2023-01-01-preview`.
 - Tables with the Auxiliary plan: 
     - Are currently unbilled. There's currently no charge for ingestion, queries, search jobs, and long-term retention.
     - Do not support columns with dynamic data.
@@ -253,6 +256,7 @@ During public preview, these limitations apply:
     MyTable_CL
     | summarize count()
     ```
+- The Auxiliary plan doesn't support [Log Analytics workspace replication](workspace-replication.md). Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace.
 
 ## Next steps
 
