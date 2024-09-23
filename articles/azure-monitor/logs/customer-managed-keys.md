@@ -433,6 +433,8 @@ Customer-Managed key is provided on dedicated cluster and these operations are r
 
 - Lockbox isn't available in China currently. 
 
+- Lockbox doesn't apply to tables with the Auxiliary plan.
+
 - [Double encryption](/azure/storage/common/storage-service-encryption#doubly-encrypt-data-with-infrastructure-encryption) is configured automatically for clusters created from October 2020 in supported regions. You can verify if your cluster is configured for double encryption by sending a GET request on the cluster and observing that the `isDoubleEncryptionEnabled` value is `true` for clusters with Double encryption enabled. 
   - If you create a cluster and get an error—"region-name doesn’t support Double Encryption for clusters", you can still create the cluster without Double encryption, by adding `"properties": {"isDoubleEncryptionEnabled": false}` in the REST request body.
   - Double encryption settings can't be changed after the cluster is created.
@@ -453,6 +455,7 @@ Customer-Managed key is provided on dedicated cluster and these operations are r
 
 - The [Auxiliary table plan](data-platform-logs.md#table-plans) doesn't support customer-managed keys. Data in tables with the Auxiliary plan is encrypted with Microsoft-managed keys, even if you protect the data in the rest of your Log Analytics workspace using your own encryption key. 
 
+
 ## Troubleshooting
 
 - Behavior per Key Vault availability:
@@ -460,13 +463,13 @@ Customer-Managed key is provided on dedicated cluster and these operations are r
     
   - Key Vault connection errors—storage handles transient errors (timeouts, connection failures, "DNS" issues), by allowing keys to stay in cache during the availability issue, and it overcomes blips and availability issues. The query and ingestion capabilities continue without interruption.
     
-- Key Vault access rate—The frequency that Azure the cluster storage accesses Key Vault for wrap and unwrap is between 6 to 60 seconds.
+- Key Vault access rate - the frequency with which the cluster storage accesses Key Vault for wrap and unwrap - is between 6 to 60 seconds.
 
 - If you update your cluster while it's at provisioning state, or updating state, the update fails.
 
 - If you get conflict—error when creating a cluster, a cluster with the same name may have been deleted in the last 14 days and kept reserved. Deleted cluster name becomes available 14 days after deletion.
 
-- Workspace link to cluster fails if it's linked to another cluster.
+- Linking a workspace to a cluster fails if the workspace is linked to another cluster.
 
 - If you create a cluster and specify the KeyVaultProperties immediately, the operation might fail until an identity is assigned to the cluster, and granted to Key Vault.
 
