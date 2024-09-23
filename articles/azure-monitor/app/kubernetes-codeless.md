@@ -189,9 +189,9 @@ The following annotations disable autoinstrumentation for the language indicated
   ```
 To turn autoinstrumentation back on after disabling.
 
-   ```yml
-      instrumentation.opentelemetry.io/inject-java="true"
-   ```
+  ```yml
+  instrumentation.opentelemetry.io/inject-java="true"
+  ```
 
 ### Enabling logs in Application Insights
 
