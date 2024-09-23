@@ -100,7 +100,7 @@ Data collection rules are defined in a JSON object. The following properties are
 
 |Property|Description| 
 |---|---|
-|`dataSources.platformTelemetry.streams`| Lists the resource types to collect metrics from in the format: `<resource type>:Metrics-Group-All |<metric name>` <br> For example,	`Microsoft.Compute/virtualMachines:Percentage CPU`|
+|`dataSources.platformTelemetry.streams`| Lists the resource types and the metrics. Specify `Metrics-Group-All` to collect all metrics for the resource or specify individual metrics. Format: `<resource type>:Metrics-Group-All | <metric name>` <br> For example,	`Microsoft.Compute/virtualMachines:Percentage CPU`|
 |`dataSources.platformTelemetry.name`| The name of the data source.|
 |`destinations`| The destination for the metrics. Only one destination is supported per DCR. <br>Valid Destinations types:<br>`storageAccounts`<br> `logAnalytics`<br> `eventHubs` |
 |`dataflows.streams`| A list of streams to pass to the destination in the format: `<resource type>:Metrics-Group-All |<metric name>` <br> For example,	Microsoft.Compute/virtualMachines:Percentage CPU"|
@@ -206,6 +206,8 @@ To use a user assigned identity, add the `identity` object as follows:
 
 When specifying the metrics to export, you can filter the metrics by name or request all metrics by using `Metrics-Group-All`. For a list of supported metrics, see [Supported metrics and log categories by resource type](/azure/azure-monitor/reference/supported-metrics/metrics-index#supported-metrics-and-log-categories-by-resource-type).
 
+To specify more than one metric from the same resource type, create a separate stream item for each metric.
+
 The following example shows how to filter metrics by name.
 
 ```JSON
@@ -216,6 +218,8 @@ The following example shows how to filter metrics by name.
                 {
                     "streams": [
                         "Microsoft.Compute/virtualMachines:Percentage CPU",
+                        "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                        "Microsoft.Compute/virtualMachines:Inbound Flows",  
                         "Microsoft.Compute/virtualMachineScaleSets:Percentage CPU",
                         "Microsoft.Cache/redis:Cache Hits"
                     ],
@@ -235,6 +239,8 @@ The following example shows how to filter metrics by name.
             {
                 "streams": [
                     "Microsoft.Compute/virtualMachines:Percentage CPU",
+                    "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                    "Microsoft.Compute/virtualMachines:Inbound Flows",
                     "Microsoft.Compute/virtualMachineScaleSets:Percentage CPU",
                     "Microsoft.Cache/redis:Cache Hits"
                 ],
@@ -252,6 +258,8 @@ The following example shows how to filter metrics by name.
 ## Sample metrics export JSON objects
 
 The following examples show sample DCR JSON objects for metrics export to each destination type.
+
+### [Log Analytics workspaces](#tab/log-analytics-workspaces)
 
 ### Log Analytics workspaces
 
@@ -299,6 +307,7 @@ The following example shows a data collection rule for metrics that sends specif
     "location": "centralus"
 }
 ```
+### [Storage accounts](#tab/storage-accounts)
 
 ### Storage accounts
 
@@ -351,6 +360,7 @@ The following example shows a data collection rule for metrics that sends all me
 }
 ```
 
+### [Event Hubs](#tab/event-hubs)
 
 ### Event Hubs
 
@@ -398,6 +408,7 @@ The following example shows a data collection rule for metrics export that sends
 }
 
 ```
+---
 
 ## Create DCRs for metrics export
 
