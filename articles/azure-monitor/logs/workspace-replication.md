@@ -551,7 +551,7 @@ LAQueryLogs
 
     | Feature | Support |
     | --- | --- |
-    |Auxiliary table plans|Not supported. Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you swith over to your secondary workspace.|
+    |Auxiliary table plans|Not supported. Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace.|
     | Search jobs, Restore | Partially supported - Search job and restore operations create tables and populate them with search results or restored data. After you enable workspace replication, new tables created for these operations replicate to your secondary workspace. Tables populated **before** you enable replication aren't replicated. If these operations are in progress when you switch over, the outcome is unexpected. It might complete successfully but not replicate, or it might fail, depending on your workspace health and the exact timing.|
     | Application Insights over Log Analytics workspaces | Not supported |
     | VM Insights | Not supported |

@@ -256,7 +256,14 @@ During public preview, these limitations apply:
     MyTable_CL
     | summarize count()
     ```
-- The Auxiliary plan doesn't support [Log Analytics workspace replication](workspace-replication.md). Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace.
+- These features are currently not supported:
+
+    | Feature | Details |
+    | --- | --- |
+    |[Log Analytics workspace replication](workspace-replication.md)| Azure Monitor doesn't replicate data in tables with the Auxiliary plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you swith over to your secondary workspace.|
+    | [Customer-managed keys](customer-managed-keys.md) | Data in tables with the Auxiliary plan is encrypted with Microsoft-managed keys, even if you protect the data in the rest of your Log Analytics workspace using your own encryption key. |
+    | [Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview) | The Lockbox interface, which lets you review and approve or reject customer data access requests in response to a customer-initiated support ticket or a problem identified by Microsoft does not apply to tables with the Auxiliary plan.|
+
 
 ## Next steps
 
