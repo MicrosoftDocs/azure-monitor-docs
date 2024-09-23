@@ -179,7 +179,7 @@ The following annotations disable autoinstrumentation for the language indicated
   ```yml
   instrumentation.opentelemetry.io/inject-java="false"
   ```
-Remove the annotation or set it to true, to turn autoinstrumentation back on after disabling.
+To turn autoinstrumentation back on after disabling.
 
  ```yml
     instrumentation.opentelemetry.io/inject-java="true"
@@ -187,10 +187,14 @@ Remove the annotation or set it to true, to turn autoinstrumentation back on aft
 
 ### Enabling logs in Application Insights
 
-> [!IMPORTANT]
-> By default, this feature will not collect application logs from standard logging frameworks and send them to Application Insights, as Container Insights may already be gathering similar logs from the console. You can opt to collect logs in Application Insights as an addition to or replacement for their Container Insights logs. This is to avoid unnecessary duplication and increased cost.
+You can opt to collect logs in Application Insights as an addition to or replacement for their Container Insights logs. 
 
-The advantage of logs in Application Insights is that they are correlated, allowing users to easily view distributed traces alongside their related logs. Further, some microservices may not write logs to the console so Container Insights will not be able to collect them and only Application Insights instrumentation will capture these logs. On the other hand, Application Insights might not be able to instrument all microservices, such as those using NGINX or unsupported languages, so users might prefer to rely on Container Insights for those logs. Before enabling this feature, review your [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap) and/or console logging configurations in your code to ensure logs are collected from the best source, avoiding unnecessary duplication and increased costs.
+Enabling logs in Application Insights will provide correlated logs, allowing users to easily view distributed traces alongside their related logs. Further, some microservices may not write logs to the console so Container Insights will not be able to collect them and only Application Insights instrumentation will capture these logs. On the down side, Application Insights might not be able to instrument all microservices, such as those using NGINX or unsupported languages, so users might prefer to rely on Container Insights logs only for such microservices. Some users may choose to enable both sources for logs if they have multiple observability teams such as infra engineers using Cotnainer Insights and developers using Application Insights.
+
+Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, Container Insights Logs, or both. Should you chose to disable Container Insights logs, see [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap). 
+
+> [!IMPORTANT]
+> This feature will not collect application logs from standard logging frameworks and send them to Application Insights. This is to avoid unnecessary duplication and increased cost.
 
 Use the following annotation to enable logs in Application Insights
 
