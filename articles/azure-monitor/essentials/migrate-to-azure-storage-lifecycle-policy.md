@@ -28,7 +28,9 @@ For logs sent to a Log Analytics workspace, retention is set for each table on t
 An existing diagnostic setting logging to a storage account.
 
 ## Migration procedures
-To check if a resource has a diagnostic setting, use the following CLi command:
+
+Use the following CLI command to check if a resource has a diagnostic setting:
+
 ```azurecli
  az monitor diagnostic-settings list --resource <resource Id>
 ```
