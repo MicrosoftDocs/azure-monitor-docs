@@ -246,7 +246,7 @@ Refer to this chart to determine when autoinstrumentation or manual instrumentat
 | Node.js  | Manual instrumentation |
 | Java     | Autoinstrumentation    |
 
-#### How do I ensure that I am using the latest and most secure versions of Azure Monitor OpenTelemetry Distro
+#### How do I ensure that I am using the latest and most secure versions of Azure Monitor OpenTelemetry Distro?
 
 AKS auto-instrumentation injects the Azure Monitor OpenTelemetry Distro into your application pods to generate telemetry. Vulnerabilities detected in Azure Monitor OpenTelemetry Distro are immediately fixed and released in the next version. Check <something> to ensure that your cluster has the latest version of AKS Auto-Instrumentation. If you are on the latest version, run rollout restart deployments on all deployments currently enabled for autoinstrumentation. If you are not on the latest version, raise a ticket so we can investigate.
 
