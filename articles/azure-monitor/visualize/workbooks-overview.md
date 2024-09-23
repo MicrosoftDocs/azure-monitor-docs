@@ -5,7 +5,7 @@ services: azure-monitor
 author: AbbyMSFT
 ms.author: abbyweisberg
 ms.topic: conceptual
-ms.date: 09/17/2024
+ms.date: 09/23/2024
 ms.reviewer: gardnerjr 
 ---
 
