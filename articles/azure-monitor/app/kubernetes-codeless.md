@@ -83,7 +83,7 @@ Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. 
 
 ### Namespace-wide onboarding
 
-To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace.
+To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. You can retrieve connection string from the overview page of your Application Insights resource.
 
 ```yml
 apiVersion: monitor.azure.com/v1
