@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/16/2024
+ms.date: 09/24/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1036,19 +1036,6 @@ ms.reviewer: lualderm
 
 - [CCF application errors](./queries/CCFApplicationLogs.md#ccf-application-errors)
 
-## [CHSMManagementAuditLogs](./queries/CHSMManagementAuditLogs.md)
-
-- [Aggregate operations query](./queries/CHSMManagementAuditLogs.md#aggregate-operations-query)
-- [Failed operations count](./queries/CHSMManagementAuditLogs.md#failed-operations-count)
-- [Operations per user](./queries/CHSMManagementAuditLogs.md#operations-per-user)
-
-## [CHSMServiceOperationAuditLogs](./queries/CHSMServiceOperationAuditLogs.md)
-
-- [Are there any slow requests?](./queries/CHSMServiceOperationAuditLogs.md#are-there-any-slow-requests)
-- [How active has this Cloud HSM been?](./queries/CHSMServiceOperationAuditLogs.md#how-active-has-this-cloud-hsm-been)
-- [Are there any failures?](./queries/CHSMServiceOperationAuditLogs.md#are-there-any-failures)
-- [Who is calling this Cloud HSM?](./queries/CHSMServiceOperationAuditLogs.md#who-is-calling-this-cloud-hsm)
-
 ## [CIEventsAudit](./queries/CIEventsAudit.md)
 
 - [CIEventsAudit - API response codes line chart](./queries/CIEventsAudit.md#cieventsaudit---api-response-codes-line-chart)
@@ -1386,7 +1373,6 @@ ms.reviewer: lualderm
 ## [MDCDetectionDNSEvents](./queries/MDCDetectionDNSEvents.md)
 
 - [All DNS events where the domain queried was 'www.google.com' ordered by time](./queries/MDCDetectionDNSEvents.md#all-dns-events-where-the-domain-queried-was-wwwgooglecom-ordered-by-time)
-- [All recent Gating validation events](./queries/MDCDetectionDNSEvents.md#all-recent-gating-validation-events)
 
 ## [MDCDetectionFimEvents](./queries/MDCDetectionFimEvents.md)
 

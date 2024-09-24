@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/16/2024
+ms.date: 09/24/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -234,8 +234,6 @@ Microsoft.HardwareSecurityModules/cloudHsmClusters
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
-- [CHSMManagementAuditLogs](./tables/chsmmanagementauditlogs.md)
-- [CHSMServiceOperationAuditLogs](./tables/chsmserviceoperationauditlogs.md)
 
 ### Azure Cosmos DB  
 
@@ -475,6 +473,28 @@ Microsoft.NetworkAnalytics/DataProducts
 Microsoft.PlayFab/titles  
 
 - [PFTitleAuditLogs](./tables/pftitleauditlogs.md)
+
+### Azure Sentinel  
+
+microsoft.securityinsights  
+
+- [SecurityAlert](./tables/securityalert.md)
+- [SecurityEvent](./tables/securityevent.md)
+- [DnsAuditEvents](./tables/dnsauditevents.md)
+- [CommonSecurityLog](./tables/commonsecuritylog.md)
+- [ASimWebSessionLogs](./tables/asimwebsessionlogs.md)
+- [PurviewDataSensitivityLogs](./tables/purviewdatasensitivitylogs.md)
+- [ASimDhcpEventLogs](./tables/asimdhcpeventlogs.md)
+- [ASimFileEventLogs](./tables/asimfileeventlogs.md)
+- [ASimUserManagementActivityLogs](./tables/asimusermanagementactivitylogs.md)
+- [ASimRegistryEventLogs](./tables/asimregistryeventlogs.md)
+- [ASimAuditEventLogs](./tables/asimauditeventlogs.md)
+- [ASimAuthenticationEventLogs](./tables/asimauthenticationeventlogs.md)
+- [ASimDnsActivityLogs](./tables/asimdnsactivitylogs.md)
+- [ASimNetworkSessionLogs](./tables/asimnetworksessionlogs.md)
+- [ASimProcessEventLogs](./tables/asimprocesseventlogs.md)
+- [ThreatIntelObjects](./tables/threatintelobjects.md)
+- [ThreatIntelIndicators](./tables/threatintelindicators.md)
 
 ### Azure Sphere  
 
@@ -1030,6 +1050,7 @@ Microsoft.OperationalInsights/Workspaces
 
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
+- [AzureMetricsV2](./tables/azuremetricsv2.md)
 
 ### Logic Apps  
 
@@ -1478,6 +1499,13 @@ Microsoft.TimeSeriesInsights/environments
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [TSIIngress](./tables/tsiingress.md)
+
+### Toolchain orchestrator  
+
+Microsoft.ToolchainOrchestrator/diagnostics  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
 
 ### Traffic Manager Profiles  
 
