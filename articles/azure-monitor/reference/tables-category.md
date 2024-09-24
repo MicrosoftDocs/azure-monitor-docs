@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 09/16/2024
+ms.date: 09/24/2024
 ---
 
 # Azure Monitor Log Analytics log tables organized by category
@@ -119,8 +119,6 @@ ms.date: 09/16/2024
 - [CDBPartitionKeyStatistics](./tables/cdbpartitionkeystatistics.md)
 - [CDBQueryRuntimeStatistics](./tables/cdbqueryruntimestatistics.md)
 - [CDBTableApiRequests](./tables/cdbtableapirequests.md)
-- [CHSMManagementAuditLogs](./tables/chsmmanagementauditlogs.md)
-- [CHSMServiceOperationAuditLogs](./tables/chsmserviceoperationauditlogs.md)
 - [CIEventsAudit](./tables/cieventsaudit.md)
 - [CassandraAudit](./tables/cassandraaudit.md)
 - [ChaosStudioExperimentEventLogs](./tables/chaosstudioexperimenteventlogs.md)
@@ -169,6 +167,7 @@ ms.date: 09/16/2024
 - [AlertHistory](./tables/alerthistory.md)
 - [AutoscaleEvaluationsLog](./tables/autoscaleevaluationslog.md)
 - [AutoscaleScaleActionsLog](./tables/autoscalescaleactionslog.md)
+- [AzureMetricsV2](./tables/azuremetricsv2.md)
 - [ComputerGroup](./tables/computergroup.md)
 - [Operation](./tables/operation.md)
 - [Usage](./tables/usage.md)
@@ -329,6 +328,7 @@ ms.date: 09/16/2024
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureLoadTestingOperation](./tables/azureloadtestingoperation.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [AzureMetricsV2](./tables/azuremetricsv2.md)
 - [BlockchainApplicationLog](./tables/blockchainapplicationlog.md)
 - [BlockchainProxyLog](./tables/blockchainproxylog.md)
 - [CCFApplicationLogs](./tables/ccfapplicationlogs.md)
@@ -341,8 +341,6 @@ ms.date: 09/16/2024
 - [CDBPartitionKeyStatistics](./tables/cdbpartitionkeystatistics.md)
 - [CDBQueryRuntimeStatistics](./tables/cdbqueryruntimestatistics.md)
 - [CDBTableApiRequests](./tables/cdbtableapirequests.md)
-- [CHSMManagementAuditLogs](./tables/chsmmanagementauditlogs.md)
-- [CHSMServiceOperationAuditLogs](./tables/chsmserviceoperationauditlogs.md)
 - [CIEventsAudit](./tables/cieventsaudit.md)
 - [CIEventsOperational](./tables/cieventsoperational.md)
 - [ChaosStudioExperimentEventLogs](./tables/chaosstudioexperimenteventlogs.md)
@@ -683,6 +681,16 @@ ms.date: 09/16/2024
 - [AADServicePrincipalSignInLogs](./tables/aadserviceprincipalsigninlogs.md)
 - [AADUserRiskEvents](./tables/aaduserriskevents.md)
 - [ADFSSignInLogs](./tables/adfssigninlogs.md)
+- [ASimAuditEventLogs](./tables/asimauditeventlogs.md)
+- [ASimAuthenticationEventLogs](./tables/asimauthenticationeventlogs.md)
+- [ASimDhcpEventLogs](./tables/asimdhcpeventlogs.md)
+- [ASimDnsActivityLogs](./tables/asimdnsactivitylogs.md)
+- [ASimFileEventLogs](./tables/asimfileeventlogs.md)
+- [ASimNetworkSessionLogs](./tables/asimnetworksessionlogs.md)
+- [ASimProcessEventLogs](./tables/asimprocesseventlogs.md)
+- [ASimRegistryEventLogs](./tables/asimregistryeventlogs.md)
+- [ASimUserManagementActivityLogs](./tables/asimusermanagementactivitylogs.md)
+- [ASimWebSessionLogs](./tables/asimwebsessionlogs.md)
 - [AWSCloudTrail](./tables/awscloudtrail.md)
 - [AWSCloudWatch](./tables/awscloudwatch.md)
 - [AWSGuardDuty](./tables/awsguardduty.md)
@@ -729,6 +737,7 @@ ms.date: 09/16/2024
 - [DeviceTvmSoftwareInventory](./tables/devicetvmsoftwareinventory.md)
 - [DeviceTvmSoftwareVulnerabilities](./tables/devicetvmsoftwarevulnerabilities.md)
 - [DeviceTvmSoftwareVulnerabilitiesKB](./tables/devicetvmsoftwarevulnerabilitieskb.md)
+- [DnsAuditEvents](./tables/dnsauditevents.md)
 - [DynamicEventCollection](./tables/dynamiceventcollection.md)
 - [EmailAttachmentInfo](./tables/emailattachmentinfo.md)
 - [EmailEvents](./tables/emailevents.md)
@@ -768,6 +777,7 @@ ms.date: 09/16/2024
 - [ProtectionStatus](./tables/protectionstatus.md)
 - [PurviewDataSensitivityLogs](./tables/purviewdatasensitivitylogs.md)
 - [RemoteNetworkHealthLogs](./tables/remotenetworkhealthlogs.md)
+- [SecurityAlert](./tables/securityalert.md)
 - [SecurityAttackPathData](./tables/securityattackpathdata.md)
 - [SecurityBaseline](./tables/securitybaseline.md)
 - [SecurityBaselineSummary](./tables/securitybaselinesummary.md)
@@ -780,6 +790,8 @@ ms.date: 09/16/2024
 - [SigninLogs](./tables/signinlogs.md)
 - [StorageMalwareScanningResults](./tables/storagemalwarescanningresults.md)
 - [Syslog](./tables/syslog.md)
+- [ThreatIntelIndicators](./tables/threatintelindicators.md)
+- [ThreatIntelObjects](./tables/threatintelobjects.md)
 - [ThreatIntelligenceIndicator](./tables/threatintelligenceindicator.md)
 - [Update](./tables/update.md)
 - [UrlClickEvents](./tables/urlclickevents.md)
