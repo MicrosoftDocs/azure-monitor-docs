@@ -220,7 +220,7 @@ Use the following annotation to enable logs in Application Insights
 
 If you want custom metrics in .NET or Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
 
-Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics then they will flow through when autoinstrumentation is enabled.
+Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics then they will flow through when autoinstrumentation is enabled.
 
 #### Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
 
