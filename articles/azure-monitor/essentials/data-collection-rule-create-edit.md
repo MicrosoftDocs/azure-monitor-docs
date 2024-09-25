@@ -602,7 +602,6 @@ New-AzDataCollectionRuleAssociation
 
 The following example creates an association between a data collection rule and a Key Vault.
 
-
 ```powershell
 New-AzDataCollectionRuleAssociation 
         -AssociationName keyVault-001-association

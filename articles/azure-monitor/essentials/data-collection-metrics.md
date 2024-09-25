@@ -177,7 +177,7 @@ Use the format in the following JSON object to create a DCR for metrics export. 
     "location": "eastus"
 }
 ```
-
+ 
 > [!NOTE]
 > When creating a DCR for metrics export using the CLI, `kind`, `location`, and `identity` are passed as arguments and must be removed from the JSON object.
 
