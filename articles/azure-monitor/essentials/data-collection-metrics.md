@@ -115,7 +115,7 @@ Data collection rules are defined in a JSON object. The following properties are
 
 ### JSON format for metrics export DCR
 
-Use the format in the following JSON object to create a DCR for metrics export. Remove the unwanted destinations when copying the following generic example. 
+Use the format in the following generic JSON object to create a DCR for metrics export. Remove the unwanted destinations when copying the example. 
 
 ```JSON
 {
