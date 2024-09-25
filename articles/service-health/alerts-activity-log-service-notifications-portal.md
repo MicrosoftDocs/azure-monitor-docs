@@ -13,10 +13,10 @@ Service Health notifications are stored in the [Azure activity log](../azure-mon
 
 You can receive an alert when Azure sends Service Health notifications to your Azure subscription. You can configure the alert based on:
 
-- The class of service health notification (Service issues, Planned maintenance, Health advisories, Security advisories).
-- The subscription affected
-- The service(s) affected
-- The region(s) affected
+- The class of service health notification (Service issues, Planned maintenance, Health advisories, Security advisories)
+- The subscription that is affected
+- The services that are affected
+- The regions that are affected
 
 > [!NOTE]
 > Service Health notifications do not send alerts for resource health events.
@@ -37,15 +37,15 @@ For information on how to configure service health notification alerts by using 
 
     ![The "Service Health" service](media/alerts-activity-log-service-notifications/home-servicehealth.png)
 
-1. In the **Alerts** section, select **Health alerts**.
+1. In the **Service Issues** section, select **Create service health alert** to open a new window where you will fill in the information required to create the alert. Follow the steps in the [create a new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md?tabs=activity-log).
 
     ![The "Health alerts" tab](media/alerts-activity-log-service-notifications/service-health-blades.png)
 
-1. Select **Create** which will open the page **Create an alert rule** with the **Scope** tab open to select your subscription.
+
+   If you need to add more detailed information for the service health alert click **Advanced Options** which will open the page **Create an alert rule** to start entering your data.
 
     ![The "Create service health alert" command](media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png)
 
-1.  Follow the steps to create a new Service Health alert clicking on each tab, starting from the **Conditions** tab, in the [create a new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md?tabs=activity-log).
 
 
 Learn how to [Configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md). For information on the webhook schema for activity log alerts, see [Webhooks for Azure activity log alerts](../azure-monitor/alerts/activity-log-alerts-webhook.md).
