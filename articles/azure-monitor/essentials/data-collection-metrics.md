@@ -109,8 +109,13 @@ Data collection rules are defined in a JSON object. The following properties are
 |`kind`| The kind of data collection rule. Set to `PlatformTelemetry` for metrics export.|
 |`location`| The location of the DCR.|
 
-Only one destination type can be specified per DCR. Remove the unwanted destinations when copying the following example. 
+> [!NOTE] 
+> Only one destination type can be specified per DCR. 
 
+
+### JSON format for metrics export DCR
+
+Use the format in the following generic JSON object to create a DCR for metrics export. Remove the unwanted destinations when copying the example. 
 
 ```JSON
 {
@@ -172,7 +177,7 @@ Only one destination type can be specified per DCR. Remove the unwanted destinat
     "location": "eastus"
 }
 ```
-
+ 
 > [!NOTE]
 > When creating a DCR for metrics export using the CLI, `kind`, `location`, and `identity` are passed as arguments and must be removed from the JSON object.
 
