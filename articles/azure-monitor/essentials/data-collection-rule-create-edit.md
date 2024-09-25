@@ -489,7 +489,7 @@ The following table shows the roles required for each destination type:
 | Event Hubs | `Azure Event Hubs Data Sender` |
 
 For more information on assigning roles, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity). 
-To assign a role to a managed identity using CLI, use `az role assignment create`. For more information, see [Role Assignments - Create](/cli/azure/role/assignment?view=azure-cli-latest)
+To assign a role to a managed identity using CLI, use `az role assignment create`. For more information, see [Role Assignments - Create](/cli/azure/role/assignment)
 
 
 Assign the appropriate role to the managed identity of the DCR.
@@ -513,7 +513,7 @@ az role assignment create --assignee eeeeeeee-ffff-aaaa-5555-666666666666 \
 
 ## Create a data collection rule association
 
-After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/cli/azure/monitor/data-collection/rule/association?view=azure-cli-latest)
+After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/cli/azure/monitor/data-collection/rule/association)
 
 Use `az monitor data-collection rule association create` to create an association between a data collection rule and a resource.
 
