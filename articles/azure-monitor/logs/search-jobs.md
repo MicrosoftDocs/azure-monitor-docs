@@ -309,7 +309,7 @@ The search job pricing model depends on the [table plan](data-platform-logs.md#t
 
 - For tables with the **Analytics plan**, you're charged only for ingesting the search job results into the results table, based on the regular log data ingestion prices.
 
-- For tables with the **Basic or Auxiliary plans**, the charge for a search job is based on: 
+- For tables with the **Basic or Auxiliary plans**, the charge is based on: 
 
     * Search job execution - The amount of data the search job scans.
     * Search job results - The amount of data the search job finds and is ingested into the results table, based on the regular log data ingestion prices.
