@@ -311,10 +311,10 @@ The search job pricing model depends on the [table plan](data-platform-logs.md#t
 
 - For tables with the **Basic or Auxiliary plans**, the charge for a search job is based on: 
 
-    * Search job execution - the amount of data the search job scans.
-    * Search job results - the amount of data the search job finds and is ingested into the results table, based on the regular log data ingestion prices.
+    * Search job execution - The amount of data the search job scans.
+    * Search job results - The amount of data the search job finds and is ingested into the results table, based on the regular log data ingestion prices.
 
-    For example, if your table holds 500 GB per day, for a search over 30 days, you're charged for 15,000 GB of scanned data. If the search job finds 1,000 records that match the search query, you're charged for ingesting these 1,000 records into the results table. 
+    For example, if you run a search over 30 days on a table with the Basic plan, and the table holds 500 GB per day, you're charged for 15,000 GB of scanned data. If the search job finds 1,000 records that match the search query, you're charged for ingesting these 1,000 records into the results table. 
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
