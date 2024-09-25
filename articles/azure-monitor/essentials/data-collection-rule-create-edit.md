@@ -602,11 +602,13 @@ New-AzDataCollectionRuleAssociation
 
 The following example creates an association between a data collection rule and a Key Vault.
 
-```azurecli
-New-AzDataCollectionRuleAssociation -AssociationName key-vault-hub -ResourceUri /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/ed-rg-001/providers/Microsoft.EventHub/namespaces/event-hub-001  -DataCollectionRuleId  /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/ed-rg-DCRTest/providers/Microsoft.Insights/dataCollectionRules/dcr-powershell-hub
 
+```powershell
+New-AzDataCollectionRuleAssociation 
+        -AssociationName keyVault-001-association
+        -ResourceUri /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.KeyVault/vaults/keyVault-001 
+        -DataCollectionRuleId /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.Insights/dataCollectionRules/vaultsDCR001
 ```
-
 
 ### [API](#tab/api)
 
