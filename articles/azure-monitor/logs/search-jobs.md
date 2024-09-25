@@ -304,12 +304,17 @@ Search jobs are intended to scan large volumes of data in a specific table. Ther
 You can use all functions and binary operators within these operators.
 
 ## Pricing model
-The charge for a search job is based on: 
 
-* Search job execution - the amount of data the search job scans.
-* Search job results - the amount of data the search job finds and is ingested into the results table, based on the regular log data ingestion prices.
+The search job pricing model depends on the [table plan](data-platform-logs.md#table-plans) of the table you run the search job on:
 
-For example, if your table holds 500 GB per day, for a search over 30 days, you'll be charged for 15,000 GB of scanned data. 
+- For tables with the **Analytics plan**, you're charged only for ingesting the search job results into the results table, based on the regular log data ingestion prices.
+
+- For tables with the **Basic or Auxiliary plans**, the charge for a search job is based on: 
+
+    * Search job execution - the amount of data the search job scans.
+    * Search job results - the amount of data the search job finds and is ingested into the results table, based on the regular log data ingestion prices.
+
+    For example, if your table holds 500 GB per day, for a search over 30 days, you'll be charged for 15,000 GB of scanned data. 
 If the search job finds 1,000 records that match the search query, you'll be charged for ingesting these 1,000 records into the results table. 
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
