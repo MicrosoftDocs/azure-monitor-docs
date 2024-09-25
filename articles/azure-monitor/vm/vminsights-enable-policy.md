@@ -92,7 +92,7 @@ To see how many virtual machines exist in each of the management groups or subsc
    
    
    
-       The following table describes the compliance information presented on the **Azure Monitor for VMs Policy Coverage** page.
+   The following table describes the compliance information presented on the **Azure Monitor for VMs Policy Coverage** page.
  
     | Function | Description |
  |----------|-------------|
