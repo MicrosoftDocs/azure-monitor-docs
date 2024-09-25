@@ -489,7 +489,7 @@ The following table shows the roles required for each destination type:
 | Event Hubs | `Azure Event Hubs Data Sender` |
 
 For more information on assigning roles, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity). 
-To assign a role to a managed identity using CLI, use `az role assignment create`. For more information, see [Role Assignments - Create](/cli/azure/role/assignment?view=azure-cli-latest)
+To assign a role to a managed identity using CLI, use `az role assignment create`. For more information, see [Role Assignments - Create](/cli/azure/role/assignment)
 
 
 Assign the appropriate role to the managed identity of the DCR.
@@ -513,7 +513,7 @@ az role assignment create --assignee eeeeeeee-ffff-aaaa-5555-666666666666 \
 
 ## Create a data collection rule association
 
-After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/cli/azure/monitor/data-collection/rule/association?view=azure-cli-latest)
+After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/cli/azure/monitor/data-collection/rule/association)
 
 Use `az monitor data-collection rule association create` to create an association between a data collection rule and a resource.
 
@@ -602,11 +602,12 @@ New-AzDataCollectionRuleAssociation
 
 The following example creates an association between a data collection rule and a Key Vault.
 
-```azurecli
-New-AzDataCollectionRuleAssociation -AssociationName key-vault-hub -ResourceUri /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/ed-rg-001/providers/Microsoft.EventHub/namespaces/event-hub-001  -DataCollectionRuleId  /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/ed-rg-DCRTest/providers/Microsoft.Insights/dataCollectionRules/dcr-powershell-hub
-
+```powershell
+New-AzDataCollectionRuleAssociation 
+        -AssociationName keyVault-001-association
+        -ResourceUri /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.KeyVault/vaults/keyVault-001 
+        -DataCollectionRuleId /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.Insights/dataCollectionRules/vaultsDCR001
 ```
-
 
 ### [API](#tab/api)
 
