@@ -85,9 +85,9 @@ Use one of the following two ways to configure the connection string:
     // It is important to keep the LoggerFactory instance active throughout the process lifetime.
     var loggerFactory = LoggerFactory.Create(builder =>
     {
-        builder.AddOpenTelemetry(options =>
+        builder.AddOpenTelemetry(logging =>
         {
-            options.AddAzureMonitorLogExporter(options =>
+            logging.AddAzureMonitorLogExporter(options =>
             {
                 options.ConnectionString = "<Your Connection String>";
             });
@@ -245,11 +245,11 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
 // It is important to keep the LoggerFactory instance active throughout the process lifetime.
 var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.AddOpenTelemetry(options =>
+    builder.AddOpenTelemetry(logging =>
     {
         // Set ResourceBuilder on the Logging config.
-        options.SetResourceBuilder(resourceBuilder);
-        options.AddAzureMonitorLogExporter();
+        logging.SetResourceBuilder(resourceBuilder);
+        logging.AddAzureMonitorLogExporter();
     });
 });
 ```
@@ -333,10 +333,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add the OpenTelemetry telemetry service to the application.
 // This service will collect and send telemetry data to Azure Monitor.
-builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
+builder.Services.AddOpenTelemetry().UseAzureMonitor(options =>
 {
     // Set the sampling ratio to 10%. This means that 10% of all traces will be sampled and sent to Azure Monitor.
-    o.SamplingRatio = 0.1F;
+    options.SamplingRatio = 0.1F;
 });
 
 // Build the ASP.NET Core web application.
@@ -581,9 +581,9 @@ We support the credential classes provided by [Azure Identity](https://github.co
     // It is important to keep the LoggerFactory instance active throughout the process lifetime.
     var loggerFactory = LoggerFactory.Create(builder =>
     {
-        builder.AddOpenTelemetry(options =>
+        builder.AddOpenTelemetry(logging =>
         {
-            options.AddAzureMonitorLogExporter(options =>
+            logging.AddAzureMonitorLogExporter(options =>
             {
                 options.Credential = credential;
             });
@@ -761,9 +761,9 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
 // It is important to keep the LoggerFactory instance active throughout the process lifetime.
 var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.AddOpenTelemetry(options =>
+    builder.AddOpenTelemetry(logging =>
     {
-        options.AddAzureMonitorLogExporter(options =>
+        logging.AddAzureMonitorLogExporter(options =>
         {
             // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
             // This is the directory where the OpenTelemetry SDK will store any log data that cannot be sent to Azure Monitor immediately.
