@@ -4629,6 +4629,38 @@
       "source_path_from_root": "/articles/azure-monitor/logs/move-workspace-region.md",
       "redirect_url": "/azure/operational-excellence/relocation-log-analytics",
       "redirect_document_id": false
-    }
+    },
+    {
+      "source_path": "articles/azure-monitor/reference/supported-metrics/metrics-index.md",
+      "redirect_url": "/azure/azure-monitor/reference/metrics-index",
+      "redirect_document_id": false
+     },
+     {
+      "source_path": "articles/azure-monitor/reference/supported-logs/logs-index.md",
+      "redirect_url": "/azure/azure-monitor/reference/logs-index",
+      "redirect_document_id": false
+     }
+     ,
+     {
+      "source_path": "articles/azure-monitor/reference/tables/tables-index.md",
+      "redirect_url": "/azure/azure-monitor/reference/tables-index",
+      "redirect_document_id": false
+     }
+     ,
+     {
+      "source_path": "articles/azure-monitor/reference/tables/tables-category.md",
+      "redirect_url": "/azure/azure-monitor/reference/tables-category",
+      "redirect_document_id": false
+     },
+     {
+      "source_path": "articles/azure-monitor/reference/queries/chsmmanagementauditlogs.md",
+      "redirect_url": "/azure/azure-monitor/reference",
+      "redirect_document_id": false
+     },
+     {
+      "source_path": "articles/azure-monitor/reference/queries/chsmserviceoperationauditlogs.md",
+      "redirect_url": "/azure/azure-monitor/reference",
+      "redirect_document_id": false
+     }
   ]
 }
