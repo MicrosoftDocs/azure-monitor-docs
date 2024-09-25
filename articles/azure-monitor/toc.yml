@@ -1524,13 +1524,13 @@ items:
   - name: Supported metrics
     items:
     - name: Resource metrics
-      href: /azure/azure-monitor/reference/supported-metrics/metrics-index
+      href: /azure/azure-monitor/reference/metrics-index
     - name: Metrics in alerts
       href: alerts/alerts-metric-near-real-time.md
   - name: Log sources
     items:
     - name: Supported resource log categories
-      href: /azure/azure-monitor/reference/supported-logs/logs-index
+      href: /azure/azure-monitor/reference/logs-index
     - name: Resource log schemas
       href: essentials/resource-logs-schema.md
     - name: Activity log schema
@@ -1538,7 +1538,7 @@ items:
   - name: Azure Monitor Logs
     items:
     - name: Logs tables reference
-      href: /azure/azure-monitor/reference/
+      href: /azure/azure-monitor/reference/tables-index
     - name: Tables that support transformations
       href: logs/tables-feature-support.md
     - name: Tables that support the Basic table plan
