@@ -1,6 +1,6 @@
 ---
 title: Statsbeat in Application Insights | Microsoft Docs
-description: Statistics about Application Insights SDKs, AzMon OTel Distros, and autoinstrumentation
+description: Statistics about the Azure Monitor OpenTelemetry Distro, autoinstrumentation, and Application Insights SDKs (Classic API)
 ms.topic: reference
 ms.date: 09/20/2024
 ms.custom: references_regions
@@ -12,7 +12,7 @@ ms.reviwer: mmcc
 In many instances, Azure Monitor Application Insights automatically collects data about product usage for Microsoft through a feature called Statsbeat. This data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost. Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics about:
  
 > [!div class="checklist"]
-> - [Azure Monitor OpenTelemetry Distros](opentelemetry-enable.md)
+> - [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
 > - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
 > - Application Insights SDKs (Classic API)
  
