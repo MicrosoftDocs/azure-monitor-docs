@@ -846,7 +846,7 @@ public class Global : System.Web.HttpApplication
 
         loggerFactory = LoggerFactory.Create(builder =>
         {
-            builder.AddOpenTelemetry(o => o.AddAzureMonitorLogExporter());
+            builder.AddOpenTelemetry(logging => logging.AddAzureMonitorLogExporter());
         });
     }
 
@@ -897,7 +897,7 @@ internal class Program
 
         ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         {
-            builder.AddOpenTelemetry(o => o.AddAzureMonitorLogExporter());
+            builder.AddOpenTelemetry(logging => logging.AddAzureMonitorLogExporter());
         });
 
         Console.WriteLine("Hello, World!");
@@ -968,7 +968,7 @@ public class Program
                 builder.AddAzureMonitorMetricExporter();
             });
 
-        builder.Logging.AddOpenTelemetry(builder => builder.AddAzureMonitorLogExporter());
+        builder.Logging.AddOpenTelemetry(logging => logging.AddAzureMonitorLogExporter());
 
         var host = builder.Build();
         host.Run();
@@ -1387,10 +1387,10 @@ var resourceAttributes = new Dictionary<string, object>
 var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
 
 using var loggerFactory = LoggerFactory.Create(builder => builder
-   .AddOpenTelemetry(loggerOptions =>
+   .AddOpenTelemetry(logging =>
    {
-       loggerOptions.SetResourceBuilder(resourceBuilder);
-       loggerOptions.AddAzureMonitorLogExporter();
+       logging.SetResourceBuilder(resourceBuilder);
+       logging.AddAzureMonitorLogExporter();
    }));
 
 // Create a new instance `ILogger` from the above LoggerFactory
@@ -1436,10 +1436,10 @@ var resourceAttributes = new Dictionary<string, object>
 var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
 
 using var loggerFactory = LoggerFactory.Create(builder => builder
-   .AddOpenTelemetry(loggerOptions =>
+   .AddOpenTelemetry(logging =>
    {
-       loggerOptions.SetResourceBuilder(resourceBuilder);
-       loggerOptions.AddAzureMonitorLogExporter();
+       logging.SetResourceBuilder(resourceBuilder);
+       logging.AddAzureMonitorLogExporter();
    }));
 
 // Create a new instance `ILogger` from the above LoggerFactory.

@@ -209,9 +209,9 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
 // See https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs#logger-management
 var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.AddOpenTelemetry(options =>
+    builder.AddOpenTelemetry(logging =>
     {
-        options.AddAzureMonitorLogExporter();
+        logging.AddAzureMonitorLogExporter();
     });
 });
 ```

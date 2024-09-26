@@ -86,7 +86,7 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 | Ubuntu 16.04 LTS                                            | ✓ | ✓ |
 | Ubuntu 14.04 LTS                                            |   | ✓ |
 
-<sup>1</sup> Requires Python (2 or 3) to be installed on the machine.<br>
+<sup>1</sup> Requires Python (2 or 3) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
 <sup>2</sup> Also supported on Arm64-based machines.<br>
 <sup>3</sup> Does not include the required least 4GB of disk space by default. See note below.
 
