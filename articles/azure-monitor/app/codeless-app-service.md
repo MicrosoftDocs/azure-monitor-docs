@@ -8,13 +8,13 @@ ms.author: v-nawrothkai
 ms.reviewer: abinetabate
 ---
 
-# Application monitoring for Azure App Service overview
+# Application monitoring for Azure App Service
 
-It's now easier than ever to enable monitoring on your web applications based on ASP.NET, ASP.NET Core, Java, and Node.js running on [Azure App Service](/azure/app-service/). Previously, you needed to manually instrument your app, but the latest extension/agent is now built into the App Service image by default.
+It's now easier than ever to enable monitoring on your web applications based on ASP.NET, ASP.NET Core, Java, Node.js, and Python running on [Azure App Service](/azure/app-service/). Previously, you needed to manually instrument your app, but the latest extension/agent is now built into the App Service image by default.
 
 There are two ways to enable monitoring for applications hosted on App Service:
 
-* **Autoinstrumentation application monitoring** (ApplicationInsightsAgent).
+* **Autoinstrumentation application monitoring** (ApplicationInsightsAgent)
 
     This method is the easiest to enable, and no code change or advanced configurations are required. It's often referred to as "runtime" monitoring. For App Service, we recommend that at a minimum you enable this level of monitoring. Based on your specific scenario, you can evaluate whether more advanced monitoring through manual instrumentation is needed.
     
@@ -28,14 +28,13 @@ There are two ways to enable monitoring for applications hosted on App Service:
     
     If you need to make custom API calls to track events/dependencies not captured by default with autoinstrumentation monitoring, you need to use this method. To learn more, see [Application Insights API for custom events and metrics](./api-custom-events-metrics.md).
 
-If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, in .NET and NodeJS only the manual instrumentation settings are honored, while in Java only the autoinstrumentation are emitting the telemetry. In Python, you should only use autoinstrumentation if you aren't using manual instrumentation. This practice is to prevent duplicate data from being sent.
+> [!IMPORTANT]
+> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, in .NET and Node.js only the manual instrumentation settings are honored, while in Java only the autoinstrumentation are emitting the telemetry. In Python, you should only use autoinstrumentation if you aren't using manual instrumentation. This practice is to prevent duplicate data from being sent.
 
 > [!NOTE]
 > Snapshot Debugger and Profiler are only available in .NET and .NET Core.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+[!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## Enable Application Insights
 
@@ -63,8 +62,6 @@ Enabling monitoring on your ASP.NET-based web applications running on [Azure App
 > Manually adding an Application Insights site extension via **Development Tools** > **Extensions** is deprecated. This method of extension installation was dependent on manual updates for each new version. The latest stable release of the extension is now [preinstalled](https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions) as part of the App Service image. The files are located in *d:\Program Files (x86)\SiteExtensions\ApplicationInsightsAgent* and are automatically updated with each stable release. If you follow the autoinstrumentation instructions to enable monitoring, it will automatically remove the deprecated extension for you.
 
 If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 #### [Java](#tab/java)
 
@@ -340,7 +337,7 @@ You can configure with [OpenTelemetry environment variables][ot_env_vars] such a
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
+[!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
 
 To add the community OpenTelemetry Instrumentation Library, install it via your app's `requirements.txt` file. OpenTelemetry autoinstrumentation automatically picks up and instruments all installed libraries. Find the list of community libraries [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
@@ -394,6 +391,8 @@ To enable client-side monitoring for your Node.js application, you need to [manu
 
 ## Automate monitoring
 
+[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
+
 #### [ASP.NET Core](#tab/aspnetcore)
 
 To enable telemetry collection with Application Insights, only the application settings must be set.
@@ -407,8 +406,6 @@ To enable telemetry collection with Application Insights, only the application s
 | ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` for Windows or `~3` for Linux |
 | XDT_MicrosoftApplicationInsights_Mode | In default mode, only essential features are enabled to ensure optimal performance. | `disabled` or `recommended`. |
 | XDT_MicrosoftApplicationInsights_PreemptSdk | For ASP.NET Core apps only. Enables Interop (interoperation) with the Application Insights SDK. Loads the extension side by side with the SDK and uses it to send telemetry. (Disables the Application Insights SDK.) | `1` |
-
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
 #### [.NET](#tab/net)
 
@@ -424,8 +421,6 @@ To enable telemetry collection with Application Insights, only application setti
 |XDT_MicrosoftApplicationInsights_Mode |  In default mode, only essential features are enabled to ensure optimal performance. | `default` or `recommended` |
 |InstrumentationEngine_EXTENSION_VERSION | Controls if the binary-rewrite engine `InstrumentationEngine` will be turned on. This setting has performance implications and affects cold start/startup time. | `~1` |
 |XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text will be captured along with the dependency calls. Performance warning: Application cold startup time will be affected. This setting requires the `InstrumentationEngine`. | `~1` |
-
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
 #### [Java](#tab/java)
 
@@ -443,8 +438,6 @@ In order to enable telemetry collection with Application Insights, only the foll
 > [!NOTE]
 > Profiler and snapshot debugger are not available for Java applications
 
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
-
 #### [Node.js](#tab/nodejs)
 
 In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
@@ -461,8 +454,6 @@ In order to enable telemetry collection with Application Insights, only the foll
 > [!NOTE]
 > Profiler and snapshot debugger are not available for Node.js applications
 
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
-
 #### [Python (Preview)](#tab/python)
 
 In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
@@ -478,8 +469,6 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 > [!NOTE]
 > Profiler and snapshot debugger are not available for Python applications
-
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
 ---
 
@@ -828,8 +817,6 @@ The `applicationinsights-extension.log` file in the same folder may show other h
 ### Django apps
 
 If your app uses Django and is either failing to start or using incorrect settings, make sure to set the `DJANGO_SETTINGS_MODULE` environment variable. See the [Django Instrumentation](#django-instrumentation) section for details.
-
----
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
