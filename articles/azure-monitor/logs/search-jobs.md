@@ -29,14 +29,10 @@ This video explains when and how to use search jobs:
 
 ## When to use search jobs
 
-Use a search job when the log query timeout of 10 minutes isn't sufficient to search through large volumes of data or if you're running a slow query.
+Use search jobs to: 
 
-Search jobs also let you retrieve records from [long-term retention](data-retention-configure.md) and [tables with the Basic and Auxiliary plans](data-platform-logs.md#table-plans) into a new Analytics table where you can take advantage of Azure Monitor Log's full analytics capabilities. In this way, running a search job can be an alternative to:
-
-- [Restoring data from long-term retention](restore.md) for a specific time range. 
-
-- Querying Basic and Auxiliary tables directly and paying for each query.<br/>
-    To determine which alternative is more cost-effective, compare the cost of querying Basic and Auxiliary tables with the cost of running a search job and storing the search job results.
+- Retrieve records from [long-term retention](data-retention-configure.md) and [tables with the Basic and Auxiliary plans](data-platform-logs.md#table-plans) into a new Analytics table where you can take advantage of Azure Monitor Log's full analytics capabilities. 
+- Scan through large volumes of data, if the log query timeout of 10 minutes isn't sufficient.
 
 ## What does a search job do?
 
@@ -305,21 +301,20 @@ You can use all functions and binary operators within these operators.
 
 ## Pricing model
 
-The search job pricing model depends on the [table plan](data-platform-logs.md#table-plans) of the table you run the search job on:
+The search job charge is based on:
 
-- **Analytics plan**: You're charged only for ingesting the search job results into the results table, based on the regular log data ingestion prices.
+* Search job execution: 
 
-- **Basic or Auxiliary plans**: The charge is based on: 
+    - **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in interactive retention in Analytics tables.
+    - **Basic or Auxiliary plans** - All data the search job scans in both interactive and long-term retention. 
 
-    * Search job execution - The amount of data the search job scans.
-    * Search job results - The amount of data the search job finds and is ingested into the results table, based on the regular log data ingestion prices.
+* Search job results - The amount of data the search job finds and is ingested into the results table, based on the standard log data ingestion rates.
 
-    For example, if your search covers 30 days and the table has a Basic plan and holds 500 GB per day, you're charged for 15,000 GB of scanned data. If the search job finds 1,000 records that match the search query, you're charged for ingesting these 1,000 records into the results table. 
+For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Next steps
 
 - [Learn more about data retention and archiving data.](data-retention-configure.md)
-- [Learn about restoring data, which is another method for retrieving data from long-term retention.](restore.md)
 - [Learn about directly querying Basic and Auxiliary tables.](basic-logs-query.md)
