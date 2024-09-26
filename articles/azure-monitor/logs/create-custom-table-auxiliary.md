@@ -75,7 +75,7 @@ Provide this payload - update the table name and adjust the columns based on you
                 },
                  {
                     "name": "GuidProperty",
-                    "type": "guid"
+                    "type": "real"
                 },
                  {
                     "name": "DateTimeProperty",
@@ -167,12 +167,13 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
                                     },
                                     {
                                         "name": "GuidProperty",
-                                        "type": "guid"
+                                        "type": "real"
                                     },
                                     {
                                         "name": "DateTimeProperty",
                                         "type": "datetime"
                                     }
+                                        ]
                                         }
                                     },
                         "destinations": {
