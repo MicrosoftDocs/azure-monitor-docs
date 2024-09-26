@@ -12,7 +12,7 @@ ms.reviewer: adi.biran
 
 # Run search jobs in Azure Monitor
 
-Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. The search job uses parallel processing and can run for hours across large datasets. This article describes how to create a search job and how to query its resulting data.
+A search job is an asynchronous query you run on any data in your Log Analytics - in both interactive or long-term retention - that makes the query results available for interactive queries in a new search table within your workspace. The search job uses parallel processing and can run for hours across large datasets. This article describes how to create a search job and how to query its resulting data.
 
 This video explains when and how to use search jobs:
  
