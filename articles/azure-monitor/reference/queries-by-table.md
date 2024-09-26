@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/24/2024
+ms.date: 09/26/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1065,6 +1065,12 @@ ms.reviewer: lualderm
 
 - [File name extension change](./queries/CloudAppEvents.md#file-name-extension-change)
 
+## [CloudHsmServiceOperationAuditLogs](./queries/CloudHsmServiceOperationAuditLogs.md)
+
+- [Are there any slow requests?](./queries/CloudHsmServiceOperationAuditLogs.md#are-there-any-slow-requests)
+- [How active has this Cloud HSM been?](./queries/CloudHsmServiceOperationAuditLogs.md#how-active-has-this-cloud-hsm-been)
+- [Are there any failures?](./queries/CloudHsmServiceOperationAuditLogs.md#are-there-any-failures)
+
 ## [CommonSecurityLog](./queries/CommonSecurityLog.md)
 
 - [Palo Alto collector machine usage](./queries/CommonSecurityLog.md#palo-alto-collector-machine-usage)
@@ -1377,6 +1383,10 @@ ms.reviewer: lualderm
 ## [MDCDetectionFimEvents](./queries/MDCDetectionFimEvents.md)
 
 - [All FIM events for directories](./queries/MDCDetectionFimEvents.md#all-fim-events-for-directories)
+
+## [MDCDetectionGatingValidationEvents](./queries/MDCDetectionGatingValidationEvents.md)
+
+- [All recent Gating validation events](./queries/MDCDetectionGatingValidationEvents.md#all-recent-gating-validation-events)
 
 ## [MNFDeviceUpdates](./queries/MNFDeviceUpdates.md)
 
