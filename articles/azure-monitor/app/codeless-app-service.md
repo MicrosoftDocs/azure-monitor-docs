@@ -28,9 +28,6 @@ There are two ways to enable monitoring for applications hosted on App Service:
     
     If you need to make custom API calls to track events/dependencies not captured by default with autoinstrumentation monitoring, you need to use this method. To learn more, see [Application Insights API for custom events and metrics](./api-custom-events-metrics.md).
 
-> [!IMPORTANT]
-> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, in .NET and Node.js only the manual instrumentation settings are honored, while in Java only the autoinstrumentation are emitting the telemetry. In Python, you should only use autoinstrumentation if you aren't using manual instrumentation. This practice is to prevent duplicate data from being sent.
-
 > [!NOTE]
 > Snapshot Debugger and Profiler are only available in .NET and .NET Core.
 
@@ -40,12 +37,7 @@ There are two ways to enable monitoring for applications hosted on App Service:
 
 For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
-> [!NOTE]
-> Autoinstrumentation used to be known as "codeless attach" before October 2021.
-
-See the following [Enable monitoring](#enable-monitoring) section to begin setting up Application Insights with your App Service resource.
-
-#### [ASP.NET Core](#tab/aspnetcore)
+### [ASP.NET Core](#tab/aspnetcore)
 
 Enabling monitoring on your ASP.NET Core-based web applications running on [Azure App Service](/azure/app-service/) is now easier than ever. Previously, you needed to manually instrument your app. Now, the latest extension/agent is built into the App Service image by default. This article walks you through enabling Azure Monitor Application Insights monitoring. It also provides preliminary guidance for automating the process for large-scale deployments.
 
@@ -54,7 +46,7 @@ Enabling monitoring on your ASP.NET Core-based web applications running on [Azur
 
 [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](./asp-net-core.md) via code instead.
 
-#### [.NET](#tab/net)
+### [.NET](#tab/net)
 
 Enabling monitoring on your ASP.NET-based web applications running on [Azure App Service](/azure/app-service/) is now easier than ever. Previously, you needed to manually instrument your app. Now the latest extension/agent is built into the App Service image by default. This article will walk you through enabling Azure Monitor Application Insights monitoring and provide preliminary guidance for automating the process for large-scale deployments.
 
@@ -63,14 +55,14 @@ Enabling monitoring on your ASP.NET-based web applications running on [Azure App
 
 If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
 
-#### [Java](#tab/java)
+### [Java](#tab/java)
 
 Monitoring of your Java web applications running on [Azure App Services](/azure/app-service/) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
 
 > [!NOTE]
 > With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described below.
 
-#### [Node.js](#tab/nodejs)
+### [Node.js](#tab/nodejs)
 
 Monitoring of your Node.js web applications running on [Azure App Services](/azure/app-service/) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
 
@@ -80,10 +72,7 @@ Turning on application monitoring in Azure portal will automatically instrument 
 >[!NOTE]
 > You can configure the automatically attached agent using the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable in the App Service Environment variable blade. For details on the configuration options that can be passed via this environment variable, see [Node.js Configuration](https://github.com/microsoft/ApplicationInsights-node.js#Configuration).
 
-> [!NOTE]
-> If both automatic instrumentation and manual SDK-based instrumentation are detected, only the manual instrumentation settings are honored. This is to prevent duplicate data from being sent. For more information, see the [troubleshooting section](#troubleshooting) in this article.
-
-#### [Python (Preview)](#tab/python)
+### [Python (Preview)](#tab/python)
 
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
@@ -94,18 +83,18 @@ The integration instruments popular Python libraries in your code, letting you a
 
 | Instrumentation | Supported library Name | Supported versions |
 | --------------- | ---------------------- | ------------------ |
-| [OpenTelemetry Django Instrumentation][ot_instrumentation_django] | [`django`][pypi_django] | [link][ot_instrumentation_django_version]
-| [OpenTelemetry FastApi Instrumentation][ot_instrumentation_fastapi] | [`fastapi`][pypi_fastapi] | [link][ot_instrumentation_fastapi_version]
-| [OpenTelemetry Flask Instrumentation][ot_instrumentation_flask] | [`flask`][pypi_flask] | [link][ot_instrumentation_flask_version]
-| [OpenTelemetry Psycopg2 Instrumentation][ot_instrumentation_psycopg2] | [`psycopg2`][pypi_psycopg2] | [link][ot_instrumentation_psycopg2_version]
-| [OpenTelemetry Requests Instrumentation][ot_instrumentation_requests] | [`requests`][pypi_requests] | [link][ot_instrumentation_requests_version]
-| [OpenTelemetry UrlLib Instrumentation][ot_instrumentation_urllib] | [`urllib`][pypi_urllib] | All
-| [OpenTelemetry UrlLib3 Instrumentation][ot_instrumentation_urllib3] | [`urllib3`][pypi_urllib3] | [link][ot_instrumentation_urllib3_version]
+| [OpenTelemetry Django Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-django) | [django](https://pypi.org/project/Django/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django/src/opentelemetry/instrumentation/django/package.py#L16) |
+| [OpenTelemetry FastApi Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-fastapi) | [fastapi](https://pypi.org/project/fastapi/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi/src/opentelemetry/instrumentation/fastapi/package.py#L16) |
+| [OpenTelemetry Flask Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-flask) | [flask](https://pypi.org/project/Flask/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/package.py#L16) |
+| [OpenTelemetry Psycopg2 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-psycopg2) | [psycopg2](https://pypi.org/project/psycopg2/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-psycopg2/src/opentelemetry/instrumentation/psycopg2/package.py#L16) |
+| [OpenTelemetry Requests Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-requests) | [requests](https://pypi.org/project/requests/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-requests/src/opentelemetry/instrumentation/requests/package.py#L16) |
+| [OpenTelemetry UrlLib Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib](https://docs.python.org/3/library/urllib.html) | All |
+| [OpenTelemetry UrlLib3 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib3](https://pypi.org/project/urllib3/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16) |
 
 > [!NOTE]
 > If using Django, see the additional [Django Instrumentation](#django-instrumentation) section in this article.
 
-Logging telemetry is collected at the level of the root logger. To learn more about Python's native logging hierarchy, visit the [Python logging documentation][python_logging_docs].
+Logging telemetry is collected at the level of the root logger. To learn more about Python's native logging hierarchy, visit the [Python logging documentation](https://docs.python.org/3/library/logging.html).
 
 ---
 
@@ -152,33 +141,30 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 
      The following table summarizes the data that's collected for each route.
             
-    | Data | ASP.NET basic collection | ASP.NET recommended collection |
-    | --- | --- | --- |
-    | Adds CPU, memory, and I/O usage trends |No |Yes |
-    | Collects usage trends, and enables correlation from availability results to transactions | Yes |Yes |
-    | Collects exceptions unhandled by the host process | Yes |Yes |
-    | Improves APM metrics accuracy under load, when sampling is used | Yes |Yes |
-    | Correlates micro-services across request/dependency boundaries | No (single-instance APM capabilities only) |Yes |
+    | Data                                                                                     | ASP.NET basic collection                   | ASP.NET recommended collection |
+    |------------------------------------------------------------------------------------------|--------------------------------------------|--------------------------------|
+    | Adds CPU, memory, and I/O usage trends                                                   | No                                         | Yes                            |
+    | Collects usage trends, and enables correlation from availability results to transactions | Yes                                        | Yes                            |
+    | Collects exceptions unhandled by the host process                                        | Yes                                        | Yes                            |
+    | Improves APM metrics accuracy under load, when sampling is used                          | Yes                                        | Yes                            |
+    | Correlates micro-services across request/dependency boundaries                           | No (single-instance APM capabilities only) | Yes                            |
 
 1. To configure sampling, which you could previously control via the *applicationinsights.config* file, you can now interact with it via application settings with the corresponding prefix `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor`.
 
-    - For example, to change the initial sampling percentage, you can create an application setting of `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage` and a value of `100`.
-    - To disable sampling, set `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage` to a value of `100`.
-    - Supported settings include:
-        - `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage`
-        - `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage`
-        - `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_EvaluationInterval`
-        - `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MaxTelemetryItemsPerSecond`
-
-    - For the list of supported adaptive sampling telemetry processor settings and definitions, see the [code](https://github.com/microsoft/ApplicationInsights-dotnet/blob/master/BASE/Test/ServerTelemetryChannel.Test/TelemetryChannel.Tests/AdaptiveSamplingTelemetryProcessorTest.cs) and [sampling documentation](./sampling.md#configuring-adaptive-sampling-for-aspnet-applications).
+    * For example, to change the initial sampling percentage, you can create an application setting of `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage` and a value of `100`.
+    * To disable sampling, set `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage` to a value of `100`.
+    * Supported settings include:
+        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage`
+        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage`
+        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_EvaluationInterval`
+        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MaxTelemetryItemsPerSecond`
+    * For the list of supported adaptive sampling telemetry processor settings and definitions, see the [code](https://github.com/microsoft/ApplicationInsights-dotnet/blob/master/BASE/Test/ServerTelemetryChannel.Test/TelemetryChannel.Tests/AdaptiveSamplingTelemetryProcessorTest.cs) and [sampling documentation](./sampling.md#configuring-adaptive-sampling-for-aspnet-applications).
 
 #### [Java](#tab/java)
 
-The recommended way to enable application monitoring for Java applications running on Azure App Services is through Azure portal.
-Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes.
-You can apply extra configurations, and then based on your specific scenario you [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry) if needed.
+The recommended way to enable application monitoring for Java applications running on Azure App Services is through Azure portal. Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes. You can apply extra configurations, and then based on your specific scenario you [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry) if needed.
 
-### Autoinstrumentation through Azure portal
+##### Autoinstrumentation through Azure portal
 
 You can turn on monitoring for your Java apps running in Azure App Service just with one selection, no code change required. The integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?tabs=java) and auto-collects telemetry.
 
@@ -188,14 +174,14 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 
     :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected."::: 
 
-2. Choose to create a new resource, or select an existing Application Insights resource for this application.
+1. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
     > When you select **OK** to create the new resource you will be prompted to **Apply monitoring settings**. Selecting **Continue** will link your new Application Insights resource to your app service, doing so will also **trigger a restart of your app service**. 
 
     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown.":::
 
-3. This last step is optional. After specifying which resource to use, you can configure the Java agent. If you don't configure the Java agent, default configurations apply.
+1. This last step is optional. After specifying which resource to use, you can configure the Java agent. If you don't configure the Java agent, default configurations apply.
 
     The full [set of configurations](./java-standalone-config.md) is available, you just need to paste a valid [json file](./java-standalone-config.md#an-example). **Exclude the connection string and any configurations that are in preview** - you're able to add the items that are currently in preview as they become generally available.
 
@@ -203,7 +189,7 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 
     :::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application."::: 
     
-## Manually deploy the latest Application Insights Java version
+##### Manually deploy the latest Application Insights Java version
 
 The Application Insights Java version is updated automatically as part of App Services updates.
 
@@ -219,9 +205,9 @@ To manually update, follow these steps:
 
     > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
 
-2. Disable Application Insights via the Application Insights tab in the Azure portal.
+1. Disable Application Insights via the Application Insights tab in the Azure portal.
 
-3. Once the agent jar file is uploaded, go to App Service configurations. If you
+1. Once the agent jar file is uploaded, go to App Service configurations. If you
    need to use **Startup Command** for Linux, please include jvm arguments:
 
    :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
@@ -231,14 +217,14 @@ To manually update, follow these steps:
    If you don't use **Startup Command**, create a new environment variable, `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat, with the value
    `-javaagent:{PATH_TO_THE_AGENT_JAR}/applicationinsights-agent-{VERSION_NUMBER}.jar`.
 
-4. Restart the app to apply the changes.
+1. Restart the app to apply the changes.
 
 > [!NOTE]
 > If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you will have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings. 
 
 #### [Node.js](#tab/nodejs)
 
-### Autoinstrumentation through Azure portal
+##### Autoinstrumentation through Azure portal
 
 For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
@@ -261,7 +247,7 @@ The integration is in public preview. The integration adds Node.js SDK, which is
 
     :::image type="content"source="./media/azure-web-apps-nodejs/app-service-node.png" alt-text="Screenshot of instrument your application."::: 
 
-## Configuration
+##### Configuration
 
 The Node.js agent can be configured using JSON. Set the `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` environment variable to the JSON string or set the `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable to the file path containing the JSON.
 
@@ -279,21 +265,19 @@ The full [set of configurations](https://github.com/microsoft/ApplicationInsight
 
 #### [Python (Preview)](#tab/python)
 
-## Prerequisites
-
-* Python version 3.11 or prior.
-* App Service must be deployed as code. Custom containers aren't supported.
-
-## Enable Application Insights
-
 The easiest way to monitor Python applications on Azure App Services is through the Azure portal.
 
 Activating monitoring in the Azure portal automatically instruments your application with Application Insights and requires no code changes.
 
 > [!NOTE]
-> You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter][azure_monitor_opentelemetry_exporter]. This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
+> You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
 
-### Autoinstrumentation through Azure portal
+##### Prerequisites
+
+* Python version 3.11 or prior.
+* App Service must be deployed as code. Custom containers aren't supported.
+
+##### Autoinstrumentation through Azure portal
 
 For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
@@ -318,22 +302,22 @@ The integration is in public preview. It adds the Python SDK, which is in GA.
 
     :::image type="content"source="./media/azure-web-apps-python/app-service-python.png" alt-text="Screenshot of instrument your application." lightbox="./media/azure-web-apps-python/app-service-python.png":::
 
-## Configuration
+##### Configuration
 
-You can configure with [OpenTelemetry environment variables][ot_env_vars] such as:
+You can configure with [OpenTelemetry environment variables](https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/) such as:
 
 | **Environment Variable**                       | **Description**                                     |
 |--------------------------------------------|----------------------------------------------------|
-| `OTEL_SERVICE_NAME`, `OTEL_RESOURCE_ATTRIBUTES` | Specifies the OpenTelemetry [Resource Attributes][opentelemetry_resource] associated with your application. You can set any Resource Attributes with [OTEL_RESOURCE_ATTRIBUTES][opentelemetry_spec_resource_attributes_env_var] or use [OTEL_SERVICE_NAME][opentelemetry_spec_service_name_env_var] to only set the `service.name`. |
+| `OTEL_SERVICE_NAME`, `OTEL_RESOURCE_ATTRIBUTES` | Specifies the OpenTelemetry [Resource Attributes](https://opentelemetry.io/docs/specs/otel/resource/sdk/) associated with your application. You can set any Resource Attributes with [OTEL_RESOURCE_ATTRIBUTES](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry-sdk-environment-variables) or use [OTEL_SERVICE_NAME](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry.sdk.environment_variables.OTEL_SERVICE_NAME) to only set the `service.name`. |
 | `OTEL_LOGS_EXPORTER` | If set to `None`, disables collection and export of logging telemetry. |
 | `OTEL_METRICS_EXPORTER` | If set to `None`, disables collection and export of metric telemetry. |
 | `OTEL_TRACES_EXPORTER` | If set to `None`, disables collection and export of distributed tracing telemetry. |
 | `OTEL_BLRP_SCHEDULE_DELAY` | Specifies the logging export interval in milliseconds. Defaults to 5000. |
 | `OTEL_BSP_SCHEDULE_DELAY` | Specifies the distributed tracing export interval in milliseconds. Defaults to 5000. |
-| `OTEL_TRACES_SAMPLER_ARG` | Specifies the ratio of distributed tracing telemetry to be [sampled][application_insights_sampling]. Accepted values range from 0 to 1. The default is 1.0, meaning no telemetry is sampled out. |
+| `OTEL_TRACES_SAMPLER_ARG` | Specifies the ratio of distributed tracing telemetry to be [sampled](./sampling.md). Accepted values range from 0 to 1. The default is 1.0, meaning no telemetry is sampled out. |
 | `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` | Specifies which OpenTelemetry instrumentations to disable. When disabled, instrumentations aren't executed as part of autoinstrumentation. Accepts a comma-separated list of lowercase [library names](#application-monitoring-for-azure-app-service-and-python-preview). For example, set it to `"psycopg2,fastapi"` to disable the Psycopg2 and FastAPI instrumentations. It defaults to an empty list, enabling all supported instrumentations. |
 
-### Add a community instrumentation library
+##### Add a community instrumentation library
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
@@ -341,15 +325,15 @@ You can collect more data automatically when you include instrumentation librari
 
 To add the community OpenTelemetry Instrumentation Library, install it via your app's `requirements.txt` file. OpenTelemetry autoinstrumentation automatically picks up and instruments all installed libraries. Find the list of community libraries [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
-## Django Instrumentation
+##### Django Instrumentation
 
-In order to use the OpenTelemetry Django Instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. For more information, see the [Django documentation][django_settings_module_docs].
+In order to use the OpenTelemetry Django Instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. For more information, see the [Django documentation](https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE).
 
 ---
 
 ## Enable client-side monitoring
 
-#### [ASP.NET Core](#tab/aspnetcore)
+### [ASP.NET Core](#tab/aspnetcore)
 
 Client-side monitoring is enabled by default for ASP.NET Core apps with **Recommended** collection, regardless of whether the app setting `APPINSIGHTS_JAVASCRIPT_ENABLED` is present.
 
@@ -363,7 +347,7 @@ If you want to disable client-side monitoring:
 
 1. **Save** the settings. Restart your app.
 
-#### [.NET](#tab/net)
+### [.NET](#tab/net)
 
 Client-side monitoring is an opt-in for ASP.NET. To enable client-side monitoring:
 
@@ -377,15 +361,15 @@ Client-side monitoring is an opt-in for ASP.NET. To enable client-side monitorin
 
 To disable client-side monitoring, either remove the associated key value pair from **Application settings** or set the value to **false**.
 
-#### [Java](#tab/java)
+### [Java](#tab/java)
 
 To enable client-side monitoring for your Java application, you need to [manually add the client-side JavaScript SDK to your application](./javascript.md).
 
-#### [Node.js](#tab/nodejs)
+### [Node.js](#tab/nodejs)
 
 To enable client-side monitoring for your Node.js application, you need to [manually add the client-side JavaScript SDK to your application](./javascript.md).
 
-#### [Python (Preview)](#tab/python)
+### [Python (Preview)](#tab/python)
 
 ---
 
@@ -393,13 +377,13 @@ To enable client-side monitoring for your Node.js application, you need to [manu
 
 [!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
-#### [ASP.NET Core](#tab/aspnetcore)
+### [ASP.NET Core](#tab/aspnetcore)
 
 To enable telemetry collection with Application Insights, only the application settings must be set.
 
 :::image type="content"source="./media/azure-web-apps-net-core/application-settings-net-core.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
 
-### Application settings definitions
+#### Application settings definitions
 
 | App setting name | Definition | Value |
 |------------------|:-----------|------:|
@@ -407,65 +391,65 @@ To enable telemetry collection with Application Insights, only the application s
 | XDT_MicrosoftApplicationInsights_Mode | In default mode, only essential features are enabled to ensure optimal performance. | `disabled` or `recommended`. |
 | XDT_MicrosoftApplicationInsights_PreemptSdk | For ASP.NET Core apps only. Enables Interop (interoperation) with the Application Insights SDK. Loads the extension side by side with the SDK and uses it to send telemetry. (Disables the Application Insights SDK.) | `1` |
 
-#### [.NET](#tab/net)
+### [.NET](#tab/net)
 
 To enable telemetry collection with Application Insights, only application settings need to be set.
 
 :::image type="content"source="./media/azure-web-apps-net/application-settings-net.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
 
-### Application settings definitions
+#### Application settings definitions
 
-|App setting name |  Definition | Value |
-|-----------------|:------------|-------------:|
+| App setting name | Definition | Value |
+|------------------|:-----------|------:|
 |ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` |
 |XDT_MicrosoftApplicationInsights_Mode |  In default mode, only essential features are enabled to ensure optimal performance. | `default` or `recommended` |
 |InstrumentationEngine_EXTENSION_VERSION | Controls if the binary-rewrite engine `InstrumentationEngine` will be turned on. This setting has performance implications and affects cold start/startup time. | `~1` |
 |XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text will be captured along with the dependency calls. Performance warning: Application cold startup time will be affected. This setting requires the `InstrumentationEngine`. | `~1` |
 
-#### [Java](#tab/java)
+### [Java](#tab/java)
 
 In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
 
 :::image type="content"source="./media/azure-web-apps-java/application-settings-java.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings.":::
 
-### Application settings definitions
+#### Application settings definitions
 
-| App setting name | Definition | Value |
-|------------------|------------|------:|
-| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` in Windows or `~3` in Linux. |
-| XDT_MicrosoftApplicationInsights_Java | Flag to control if Java agent is included. | 0 or 1 (only applicable in Windows). |
+| App setting name                           | Definition                                         | Value                                |
+|--------------------------------------------|----------------------------------------------------|-------------------------------------:|
+| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` in Windows or `~3` in Linux.    |
+| XDT_MicrosoftApplicationInsights_Java      | Flag to control if Java agent is included.         | 0 or 1 (only applicable in Windows). |
 
 > [!NOTE]
-> Profiler and snapshot debugger are not available for Java applications
+> Profiler and snapshot debugger are not available for Java applications.
 
-#### [Node.js](#tab/nodejs)
+### [Node.js](#tab/nodejs)
 
 In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
 
 :::image type="content"source="./media/azure-web-apps-nodejs/application-settings-nodejs.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings."::: 
 
-### Application settings definitions
+#### Application settings definitions
 
-| App setting name | Definition | Value |
-|------------------|------------|------:|
-| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` in Windows or `~3` in Linux. |
-| XDT_MicrosoftApplicationInsights_NodeJS | Flag to control if Node.js agent is included. | 0 or 1 (only applicable in Windows). |
+| App setting name                           | Definition                                         | Value                                |
+|--------------------------------------------|----------------------------------------------------|-------------------------------------:|
+| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` in Windows or `~3` in Linux.    |
+| XDT_MicrosoftApplicationInsights_NodeJS    | Flag to control if Node.js agent is included.      | 0 or 1 (only applicable in Windows). |
 
 > [!NOTE]
-> Profiler and snapshot debugger are not available for Node.js applications
+> Profiler and snapshot debugger are not available for Node.js applications.
 
-#### [Python (Preview)](#tab/python)
+### [Python (Preview)](#tab/python)
 
 In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
 
 :::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
 
-### Application settings definitions
+#### Application settings definitions
 
-| App setting name | Definition | Value |
-|------------------|------------|------:|
-| APPLICATIONINSIGHTS_CONNECTION_STRING | Connections string for your Application Insights resource | Example: abcd1234-ab12-cd34-abcd1234abcd |
-| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~3` |
+| App setting name                           | Definition                                                | Value                                    |
+|--------------------------------------------|-----------------------------------------------------------|-----------------------------------------:|
+| APPLICATIONINSIGHTS_CONNECTION_STRING      | Connections string for your Application Insights resource | Example: abcd1234-ab12-cd34-abcd1234abcd |
+| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring.        | `~3`                                     |
 
 > [!NOTE]
 > Profiler and snapshot debugger are not available for Python applications
@@ -474,11 +458,11 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ## Upgrade monitoring extension/agent
 
-#### [ASP.NET Core](#tab/aspnetcore)
+### [ASP.NET Core](#tab/aspnetcore)
 
 To upgrade the monitoring extension/agent, follow the steps in the next sections.
 
-### Upgrade from versions 2.8.9 and up
+#### Upgrade from versions 2.8.9 and up
 
 Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and on application restart they'll be picked up.
 
@@ -486,7 +470,7 @@ To check which version of the extension you're running, go to `https://yoursiten
 
 :::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
 
-### Upgrade from versions 1.0.0 - 2.6.5
+#### Upgrade from versions 1.0.0 - 2.6.5
 
 Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
 
@@ -498,9 +482,9 @@ Starting with version 2.8.9, the preinstalled site extension is used. If you're 
 
 If the upgrade is done from a version prior to 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
 
-#### [.NET](#tab/net)
+### [.NET](#tab/net)
 
-### Upgrade from versions 2.8.9 and up
+#### Upgrade from versions 2.8.9 and up
 
 Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service. They'll be picked when the application restarts.
 
@@ -508,7 +492,7 @@ To check which version of the extension you're running, go to `https://yoursiten
 
 :::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
 
-### Upgrade from versions 1.0.0 - 2.6.5
+#### Upgrade from versions 1.0.0 - 2.6.5
 
 Starting with version 2.8.9, the preinstalled site extension is used. If you're on an earlier version, you can update via one of two ways:
 
@@ -520,11 +504,17 @@ Starting with version 2.8.9, the preinstalled site extension is used. If you're 
 
 If the upgrade is done from a version prior to 2.5.1, check that the Application Insights DLLs are removed from the application bin folder. For more information, see the steps in the [Troubleshooting section](#troubleshooting).
 
-#### [Java](#tab/java)
+### [Java](#tab/java)
+
+...
 
 #### [Node.js](#tab/nodejs)
 
+...
+
 #### [Python (Preview)](#tab/python)
+
+...
 
 ---
 
@@ -577,8 +567,6 @@ What follows is our step-by-step troubleshooting guide for extension/agent-based
 
    :::image type="content" source="media/azure-web-apps-net-core/auto-instrumentation-status.png" alt-text="Screenshot that shows the autoinstrumentation status webpage." lightbox="media/azure-web-apps-net-core/auto-instrumentation-status.png":::
 
----
-
 #### Default website deployed with web apps doesn't support automatic client-side monitoring
 
 When you create a web app with the ASP.NET Core runtimes in App Service, it deploys a single static HTML page as a starter website. The static webpage also loads an ASP.NET-managed web part in IIS. This behavior allows for testing codeless server-side monitoring but doesn't support automatic client-side monitoring.
@@ -613,33 +601,33 @@ Here's our step-by-step troubleshooting guide for extension/agent-based monitori
 
     :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot that shows the preceding link's results page."border ="false":::
 
-    - Confirm that `Application Insights Extension Status` is `Pre-Installed Site Extension, version 2.8.x.xxxx` and is running.
+    * Confirm that `Application Insights Extension Status` is `Pre-Installed Site Extension, version 2.8.x.xxxx` and is running.
 
-         If it isn't running, follow the instructions to [enable Application Insights monitoring](#enable-autoinstrumentation-monitoring).
+        If it isn't running, follow the instructions to [enable Application Insights monitoring](#enable-autoinstrumentation-monitoring).
 
-    - Confirm that the status source exists and looks like `Status source D:\home\LogFiles\ApplicationInsights\status\status_RD0003FF0317B6_4248_1.json`.
+    * Confirm that the status source exists and looks like `Status source D:\home\LogFiles\ApplicationInsights\status\status_RD0003FF0317B6_4248_1.json`.
 
-         If a similar value isn't present, it means the application isn't currently running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which will allow the runtime information to become available.
+        If a similar value isn't present, it means the application isn't currently running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which will allow the runtime information to become available.
 
-    - Confirm that `IKeyExists` is `true`.
+    * Confirm that `IKeyExists` is `true`.
         If not, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your instrumentation key GUID to your application settings.
 
-    - Confirm that there are no entries for `AppAlreadyInstrumented`, `AppContainsDiagnosticSourceAssembly`, and `AppContainsAspNetTelemetryCorrelationAssembly`.
+    * Confirm that there are no entries for `AppAlreadyInstrumented`, `AppContainsDiagnosticSourceAssembly`, and `AppContainsAspNetTelemetryCorrelationAssembly`.
 
-         If any of these entries exist, remove the following packages from your application: `Microsoft.ApplicationInsights`, `System.Diagnostics.DiagnosticSource`, and `Microsoft.AspNet.TelemetryCorrelation`.
+        If any of these entries exist, remove the following packages from your application: `Microsoft.ApplicationInsights`, `System.Diagnostics.DiagnosticSource`, and `Microsoft.AspNet.TelemetryCorrelation`.
 
-### Default website deployed with web apps doesn't support automatic client-side monitoring
+#### Default website deployed with web apps doesn't support automatic client-side monitoring
 
 When you create a web app with the `ASP.NET` runtimes in App Service, it deploys a single static HTML page as a starter website. The static webpage also loads an ASP.NET-managed web part in IIS. This page allows for testing codeless server-side monitoring but doesn't support automatic client-side monitoring.
 
 If you want to test out codeless server and client-side monitoring for ASP.NET in an App Service web app, we recommend that you follow the official guides for [creating an ASP.NET Framework web app](/azure/app-service/quickstart-dotnetcore?tabs=netframework48). Then use the instructions in the current article to enable monitoring.
 
-### APPINSIGHTS_JAVASCRIPT_ENABLED and urlCompression isn't supported
+#### APPINSIGHTS_JAVASCRIPT_ENABLED and urlCompression isn't supported
 
 If you use `APPINSIGHTS_JAVASCRIPT_ENABLED=true` in cases where content is encoded, you might get errors like:
 
-- 500 URL rewrite error.
-- 500.53 URL rewrite module error with the message "Outbound rewrite rules can't be applied when the content of the HTTP response is encoded ('gzip')."
+* 500 URL rewrite error.
+* 500.53 URL rewrite module error with the message "Outbound rewrite rules can't be applied when the content of the HTTP response is encoded ('gzip')."
 
 An error occurs because the `APPINSIGHTS_JAVASCRIPT_ENABLED` application setting is set to `true` and content encoding is present at the same time. This scenario isn't supported yet. The workaround is to remove `APPINSIGHTS_JAVASCRIPT_ENABLED` from your application settings. Unfortunately, if client/browser-side JavaScript instrumentation is still required, manual SDK references are needed for your webpages. Follow the [instructions](https://github.com/Microsoft/ApplicationInsights-JS#snippet-setup-ignore-if-using-npm-setup) for manual instrumentation with the JavaScript SDK.
 
@@ -649,21 +637,21 @@ For the latest information on the Application Insights agent/extension, see the 
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
-### PHP and WordPress aren't supported
+#### PHP and WordPress aren't supported
 
 PHP and WordPress sites aren't supported. There's currently no officially supported SDK/agent for server-side monitoring of these workloads. You can manually instrument client-side transactions on a PHP or WordPress site by adding the client-side JavaScript to your webpages by using the [JavaScript SDK](./javascript.md).
 
 The following table provides a more detailed explanation of what these values mean, their underlying causes, and recommended fixes.
 
-|Problem value|Explanation|Fix
-|---- |----|---|
-| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and will back off. It can be because of a reference to `System.Diagnostics.DiagnosticSource`, `Microsoft.AspNet.TelemetryCorrelation`, or `Microsoft.ApplicationInsights`.  | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio might add references to `Microsoft.ApplicationInsights`.
-|`AppAlreadyInstrumented:true` | This value can also be caused by the presence of the preceding DLLs in the app folder from a previous deployment. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the wwwroot directory on the App Service resource. To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu)** > **Debug console** > **CMD** > **home\site\wwwroot**.
-|`AppContainsAspNetTelemetryCorrelationAssembly: true` | This value indicates that the extension detected references to `Microsoft.AspNet.TelemetryCorrelation` in the application and will back off. | Remove the reference.
-|`AppContainsDiagnosticSourceAssembly**:true`|This value indicates that the extension detected references to `System.Diagnostics.DiagnosticSource` in the application and will back off.| For ASP.NET, remove the reference.
-|`IKeyExists:false`|This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes might be that the values were accidentally removed, or you forgot to set the values in the automation script. | Make sure the setting is present in the App Service application settings.
+| Problem value | Explanation | Fix |
+|---------------|-------------|-----|
+| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and will back off. It can be because of a reference to `System.Diagnostics.DiagnosticSource`, `Microsoft.AspNet.TelemetryCorrelation`, or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio might add references to `Microsoft.ApplicationInsights`. |
+|`AppAlreadyInstrumented:true` | This value can also be caused by the presence of the preceding DLLs in the app folder from a previous deployment. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the wwwroot directory on the App Service resource. To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu)** > **Debug console** > **CMD** > **home\site\wwwroot**. |
+| `AppContainsAspNetTelemetryCorrelationAssembly: true` | This value indicates that the extension detected references to `Microsoft.AspNet.TelemetryCorrelation` in the application and will back off. | Remove the reference. |
+| `AppContainsDiagnosticSourceAssembly**:true`|This value indicates that the extension detected references to `System.Diagnostics.DiagnosticSource` in the application and will back off.| For ASP.NET, remove the reference. |
+| `IKeyExists:false` |This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes might be that the values were accidentally removed, or you forgot to set the values in the automation script. | Make sure the setting is present in the App Service application settings. |
 
-### System.IO.FileNotFoundException after 2.8.44 upgrade
+#### System.IO.FileNotFoundException after 2.8.44 upgrade
 
 The 2.8.44 version of autoinstrumentation upgrades Application Insights SDK to 2.20.0. The Application Insights SDK has an indirect reference to `System.Runtime.CompilerServices.Unsafe.dll` through `System.Diagnostics.DiagnosticSource.dll`. If the application has [binding redirect](/dotnet/framework/configure-apps/file-schema/runtime/bindingredirect-element) for `System.Runtime.CompilerServices.Unsafe.dll` and if this library isn't present in the application folder, it might throw `System.IO.FileNotFoundException`.
 
@@ -701,7 +689,7 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 #### Windows
 
 1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of "~2".
-2. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
+1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
 
     :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot of the link above results page."border ="false"::: 
 
@@ -737,7 +725,7 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 #### Linux
 
 1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of "~3".
-2. Navigate to */var/log/applicationinsights/* and open *status.json*.
+1. Navigate to */var/log/applicationinsights/* and open *status.json*.
 
     Confirm that `SDKPresent` is set to false, `AgentInitializedSuccessfully` to true and `IKey` to have a valid iKey.
 
@@ -770,27 +758,27 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 
 Here we provide our troubleshooting guide for monitoring Python applications on Azure App Services using autoinstrumentation.
 
-### Duplicate telemetry
+#### Duplicate telemetry
 
-You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter][azure_monitor_opentelemetry_exporter]. Using autoinstrumentation on top of the manual instrumentation could cause duplicate telemetry and increase your cost. In order to use App Service OpenTelemetry autoinstrumentation, first remove manual instrumentation of OpenTelemetry from your code.
+You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). Using autoinstrumentation on top of the manual instrumentation could cause duplicate telemetry and increase your cost. In order to use App Service OpenTelemetry autoinstrumentation, first remove manual instrumentation of OpenTelemetry from your code.
 
-### Missing telemetry
+#### Missing telemetry
 
 If you're missing telemetry, follow these steps to confirm that autoinstrumentation is enabled correctly.
 
-#### Step 1: Check the Application Insights blade on your App Service resource
+##### Step 1: Check the Application Insights blade on your App Service resource
 
 Confirm that autoinstrumentation is enabled in the Application Insights blade on your App Service Resource:
 
 :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/azure-web-apps/enable.png"::: 
 
-#### Step 2: Confirm that your App Settings are correct
+##### Step 2: Confirm that your App Settings are correct
 
 Confirm that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3` and that your `APPLICATIONINSIGHTS_CONNECTION_STRING` points to the appropriate Application Insights resource.
 
 :::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
 
-#### Step 3: Check autoinstrumentation diagnostics and status logs
+##### Step 3: Check autoinstrumentation diagnostics and status logs
 Navigate to */var/log/applicationinsights/* and open status_*.json.
 
 Confirm that `AgentInitializedSuccessfully` is set to true and `IKey` to have a valid iKey.
@@ -814,7 +802,7 @@ Here's an example JSON file:
 
 The `applicationinsights-extension.log` file in the same folder may show other helpful diagnostics.
 
-### Django apps
+#### Django apps
 
 If your app uses Django and is either failing to start or using incorrect settings, make sure to set the `DJANGO_SETTINGS_MODULE` environment variable. See the [Django Instrumentation](#django-instrumentation) section for details.
 
@@ -832,94 +820,94 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.44
 
-- .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
+* .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
 
 #### 2.8.43
 
-- Separate .NET/.NET Core, Java and Node.js package into different App Service Windows Site Extension. 
+* Separate .NET/.NET Core, Java and Node.js package into different App Service Windows Site Extension. 
 
 #### 2.8.42
 
-- JAVA extension: Upgraded to [Java Agent 3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0) from 2.5.1.
-- Node.js extension: Updated AI SDK to [2.1.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.8) from 2.1.7. Added support for User and System assigned Microsoft Entra managed identities.
-- .NET Core: Added self-contained deployments and .NET 6.0 support using [.NET Startup Hook](https://github.com/dotnet/runtime/blob/main/docs/design/features/host-startup-hook.md).
+* JAVA extension: Upgraded to [Java Agent 3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0) from 2.5.1.
+* Node.js extension: Updated AI SDK to [2.1.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.8) from 2.1.7. Added support for User and System assigned Microsoft Entra managed identities.
+* .NET Core: Added self-contained deployments and .NET 6.0 support using [.NET Startup Hook](https://github.com/dotnet/runtime/blob/main/docs/design/features/host-startup-hook.md).
 
 #### 2.8.41
 
-- Node.js extension: Updated AI SDK to [2.1.7](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.7) from 2.1.3.
-- .NET Core: Removed out-of-support version (2.1). Supported versions are 3.1 and 5.0.
+* Node.js extension: Updated AI SDK to [2.1.7](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.7) from 2.1.3.
+* .NET Core: Removed out-of-support version (2.1). Supported versions are 3.1 and 5.0.
 
 #### 2.8.40
 
-- JAVA extension: Upgraded to [Java Agent 3.1.1 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.1) from 3.0.2.
-- Node.js extension: Updated AI SDK to [2.1.3](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.3) from 1.8.8.
+* JAVA extension: Upgraded to [Java Agent 3.1.1 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.1) from 3.0.2.
+* Node.js extension: Updated AI SDK to [2.1.3](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.3) from 1.8.8.
 
 #### 2.8.39
 
-- .NET Core: Added .NET Core 5.0 support.
+* .NET Core: Added .NET Core 5.0 support.
 
 #### 2.8.38
 
-- JAVA extension: upgraded to [Java Agent 3.0.2 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.0.2) from 2.5.1.
-- Node.js extension: Updated AI SDK to [1.8.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/1.8.8) from 1.8.7.
-- .NET Core: Removed out-of-support versions (2.0, 2.2, 3.0). Supported versions are 2.1 and 3.1.
+* JAVA extension: upgraded to [Java Agent 3.0.2 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.0.2) from 2.5.1.
+* Node.js extension: Updated AI SDK to [1.8.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/1.8.8) from 1.8.7.
+* .NET Core: Removed out-of-support versions (2.0, 2.2, 3.0). Supported versions are 2.1 and 3.1.
 
 #### 2.8.37
 
-- AppSvc Windows extension: Made .NET Core work with any version of System.Diagnostics.DiagnosticSource.dll.
+* AppSvc Windows extension: Made .NET Core work with any version of System.Diagnostics.DiagnosticSource.dll.
 
 #### 2.8.36
 
-- AppSvc Windows extension: Enabled Inter-op with AI SDK in .NET Core.
+* AppSvc Windows extension: Enabled Inter-op with AI SDK in .NET Core.
 
 #### 2.8.35
 
-- AppSvc Windows extension: Added .NET Core 3.1 support.
+* AppSvc Windows extension: Added .NET Core 3.1 support.
 
 #### 2.8.33
 
-- .NET, .NET core, Java, and Node.js agents and the Windows Extension: Support for sovereign clouds. Connections strings can be used to send data to sovereign clouds.
+* .NET, .NET core, Java, and Node.js agents and the Windows Extension: Support for sovereign clouds. Connections strings can be used to send data to sovereign clouds.
 
 #### 2.8.31
 
-- The ASP.NET Core agent fixed an issue with the Application Insights SDK. If the runtime loaded the incorrect version of `System.Diagnostics.DiagnosticSource.dll`, the codeless extension doesn't crash the application and backs off. To fix the issue, customers should remove `System.Diagnostics.DiagnosticSource.dll` from the bin folder or use the older version of the extension by setting `ApplicationInsightsAgent_EXTENSIONVERSION=2.8.24`. If they don't, application monitoring isn't enabled.
+* The ASP.NET Core agent fixed an issue with the Application Insights SDK. If the runtime loaded the incorrect version of `System.Diagnostics.DiagnosticSource.dll`, the codeless extension doesn't crash the application and backs off. To fix the issue, customers should remove `System.Diagnostics.DiagnosticSource.dll` from the bin folder or use the older version of the extension by setting `ApplicationInsightsAgent_EXTENSIONVERSION=2.8.24`. If they don't, application monitoring isn't enabled.
 
 #### 2.8.26
 
-- ASP.NET Core agent: Fixed issue related to updated Application Insights SDK. The agent doesn't try to load `AiHostingStartup` if the ApplicationInsights.dll is already present in the bin folder. It resolves issues related to reflection via Assembly\<AiHostingStartup\>.GetTypes().
-- Known issues: Exception `System.IO.FileLoadException: Could not load file or assembly 'System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'` could be thrown if another version of `DiagnosticSource` dll is loaded. It could happen, for example, if `System.Diagnostics.DiagnosticSource.dll` is present in the publish folder. As mitigation, use the previous version of extension by setting app settings in app services: ApplicationInsightsAgent_EXTENSIONVERSION=2.8.24.
+* ASP.NET Core agent: Fixed issue related to updated Application Insights SDK. The agent doesn't try to load `AiHostingStartup` if the ApplicationInsights.dll is already present in the bin folder. It resolves issues related to reflection via Assembly\<AiHostingStartup\>.GetTypes().
+* Known issues: Exception `System.IO.FileLoadException: Could not load file or assembly 'System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'` could be thrown if another version of `DiagnosticSource` dll is loaded. It could happen, for example, if `System.Diagnostics.DiagnosticSource.dll` is present in the publish folder. As mitigation, use the previous version of extension by setting app settings in app services: ApplicationInsightsAgent_EXTENSIONVERSION=2.8.24.
 
 #### 2.8.24
 
-- Repackaged version of 2.8.21.
+* Repackaged version of 2.8.21.
 
 #### 2.8.23
 
-- Added ASP.NET Core 3.0 codeless monitoring support.
-- Updated ASP.NET Core SDK to [2.8.0](https://github.com/microsoft/ApplicationInsights-aspnetcore/releases/tag/2.8.0) for runtime versions 2.1, 2.2 and 3.0. Apps targeting .NET Core 2.0 continue to use 2.1.1 of the SDK.
+* Added ASP.NET Core 3.0 codeless monitoring support.
+* Updated ASP.NET Core SDK to [2.8.0](https://github.com/microsoft/ApplicationInsights-aspnetcore/releases/tag/2.8.0) for runtime versions 2.1, 2.2 and 3.0. Apps targeting .NET Core 2.0 continue to use 2.1.1 of the SDK.
 
 #### 2.8.14
 
-- Updated ASP.NET Core SDK version from 2.3.0 to the latest (2.6.1) for apps targeting .NET Core 2.1, 2.2. Apps targeting .NET Core 2.0 continue to use 2.1.1 of the SDK.
+* Updated ASP.NET Core SDK version from 2.3.0 to the latest (2.6.1) for apps targeting .NET Core 2.1, 2.2. Apps targeting .NET Core 2.0 continue to use 2.1.1 of the SDK.
 
 #### 2.8.12
 
-- Support for ASP.NET Core 2.2 apps.
-- Fixed a bug in ASP.NET Core extension causing injection of SDK even when the application is already instrumented with the SDK. For 2.1 and 2.2 apps, the presence of ApplicationInsights.dll in the application folder now causes the extension to back off. For 2.0 apps, the extension backs off only if ApplicationInsights is enabled with a `UseApplicationInsights()` call.
+* Support for ASP.NET Core 2.2 apps.
+* Fixed a bug in ASP.NET Core extension causing injection of SDK even when the application is already instrumented with the SDK. For 2.1 and 2.2 apps, the presence of ApplicationInsights.dll in the application folder now causes the extension to back off. For 2.0 apps, the extension backs off only if ApplicationInsights is enabled with a `UseApplicationInsights()` call.
 
-- Permanent fix for incomplete HTML response for ASP.NET Core apps. This fix is now extended to work for .NET Core 2.2 apps.
+* Permanent fix for incomplete HTML response for ASP.NET Core apps. This fix is now extended to work for .NET Core 2.2 apps.
 
-- Added support to turn off JavaScript injection for ASP.NET Core apps (`APPINSIGHTS_JAVASCRIPT_ENABLED=false appsetting`). For ASP.NET core, the JavaScript injection is in "Opt-Out" mode by default, unless explicitly turned off. (The default setting is done to retain current behavior.)
+* Added support to turn off JavaScript injection for ASP.NET Core apps (`APPINSIGHTS_JAVASCRIPT_ENABLED=false appsetting`). For ASP.NET core, the JavaScript injection is in "Opt-Out" mode by default, unless explicitly turned off. (The default setting is done to retain current behavior.)
 
-- Fixed ASP.NET Core extension bug that caused injection even if ikey wasn't present.
-- Fixed a bug in the SDK version prefix logic that caused an incorrect SDK version in telemetry.
+* Fixed ASP.NET Core extension bug that caused injection even if ikey wasn't present.
+* Fixed a bug in the SDK version prefix logic that caused an incorrect SDK version in telemetry.
 
-- Added SDK version prefix for ASP.NET Core apps to identify how telemetry was collected.
-- Fixed SCM- ApplicationInsights page to correctly show the version of the pre-installed extension.
+* Added SDK version prefix for ASP.NET Core apps to identify how telemetry was collected.
+* Fixed SCM- ApplicationInsights page to correctly show the version of the pre-installed extension.
 
 #### 2.8.10
 
-- Fix for incomplete HTML response for ASP.NET Core apps.
+* Fix for incomplete HTML response for ASP.NET Core apps.
 
 ## Frequently asked questions
 
@@ -961,33 +949,3 @@ Learn how to enable autoinstrumentation application monitoring for your [.NET Co
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.
 * Use [Application Insights for JavaScript apps and webpages](javascript.md) to get client telemetry from the browsers that visit a webpage.
 * [Availability](availability-overview.md)
-
-[application_insights_sampling]: ./sampling.md
-[azure_core_tracing_opentelemetry_plugin]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/core/azure-core-tracing-opentelemetry
-[azure_monitor_opentelemetry_exporter]: /python/api/overview/azure/monitor-opentelemetry-exporter-readme
-[django_settings_module_docs]: https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE
-[ot_env_vars]: https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/
-[ot_instrumentation_django]: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-django
-[ot_instrumentation_django_version]: https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django/src/opentelemetry/instrumentation/django/package.py#L16
-[ot_instrumentation_fastapi]: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-fastapi
-[ot_instrumentation_fastapi_version]: https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi/src/opentelemetry/instrumentation/fastapi/package.py#L16
-[ot_instrumentation_flask]: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-flask
-[ot_instrumentation_flask_version]: https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/package.py#L16
-[ot_instrumentation_psycopg2]: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-psycopg2
-[ot_instrumentation_psycopg2_version]: https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-psycopg2/src/opentelemetry/instrumentation/psycopg2/package.py#L16
-[ot_instrumentation_requests]: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-requests
-[ot_instrumentation_requests_version]: https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-requests/src/opentelemetry/instrumentation/requests/package.py#L16
-[ot_instrumentation_urllib]: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3
-[ot_instrumentation_urllib3]: https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3
-[ot_instrumentation_urllib3_version]: https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16
-[opentelemetry_resource]: https://opentelemetry.io/docs/specs/otel/resource/sdk/
-[opentelemetry_spec_resource_attributes_env_var]: https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry-sdk-environment-variables
-[opentelemetry_spec_service_name_env_var]: https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry.sdk.environment_variables.OTEL_SERVICE_NAME
-[python_logging_docs]: https://docs.python.org/3/library/logging.html
-[pypi_django]: https://pypi.org/project/Django/
-[pypi_fastapi]: https://pypi.org/project/fastapi/
-[pypi_flask]: https://pypi.org/project/Flask/
-[pypi_psycopg2]: https://pypi.org/project/psycopg2/
-[pypi_requests]: https://pypi.org/project/requests/
-[pypi_urllib]: https://docs.python.org/3/library/urllib.html
-[pypi_urllib3]: https://pypi.org/project/urllib3/
