@@ -308,7 +308,9 @@ The search job charge is based on:
     - **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in interactive retention in Analytics tables.
     - **Basic or Auxiliary plans** - All data the search job scans in both interactive and long-term retention. 
 
-* Search job results - The amount of data the search job finds and is ingested into the results table, based on the standard log data ingestion rates.
+    For more information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
+
+* Search job results - The amount of data the search job finds and is ingested into the results table, based on the data ingestion rate for Analytics tables.
 
 For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 
 
@@ -316,5 +318,5 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 
 ## Next steps
 
-- [Learn more about data retention and archiving data.](data-retention-configure.md)
+- [Learn more about managing data retention in a Log Analytics worksapce.](data-retention-configure.md)
 - [Learn about directly querying Basic and Auxiliary tables.](basic-logs-query.md)
