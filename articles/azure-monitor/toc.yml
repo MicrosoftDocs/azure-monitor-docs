@@ -71,10 +71,6 @@ items:
           items:
           - name: New article (placeholder)
             href: app/codeless-app-service.md
-          - name: ASP.NET
-            href: app/azure-web-apps-net.md
-          - name: Java
-            href: app/azure-web-apps-java.md
           - name: Node.js
             href: app/azure-web-apps-nodejs.md
           - name: Python
