@@ -2000,8 +2000,6 @@ items:
             href: tables/cdbtableapirequests.md
           - name: CHSMManagementAuditLogs
             href: tables/chsmmanagementauditlogs.md
-          - name: CHSMServiceOperationAuditLogs
-            href: tables/chsmserviceoperationauditlogs.md
           - name: CIEventsAudit
             href: tables/cieventsaudit.md
           - name: CIEventsOperational
@@ -2014,6 +2012,8 @@ items:
             href: tables/chaosstudioexperimenteventlogs.md
           - name: CloudAppEvents
             href: tables/cloudappevents.md
+          - name: CloudHsmServiceOperationAuditLogs
+            href: tables/cloudhsmserviceoperationauditlogs.md
           - name: CommonSecurityLog
             href: tables/commonsecuritylog.md
           - name: ComputerGroup
@@ -2446,6 +2446,8 @@ items:
             href: tables/mdcdetectiondnsevents.md
           - name: MDCDetectionFimEvents
             href: tables/mdcdetectionfimevents.md
+          - name: MDCDetectionGatingValidationEvents
+            href: tables/mdcdetectiongatingvalidationevents.md
           - name: MDCFileIntegrityMonitoringEvents
             href: tables/mdcfileintegritymonitoringevents.md
           - name: MDECustomCollectionDeviceFileEvents
@@ -3154,6 +3156,8 @@ items:
             href: queries/ChaosStudioExperimentEventLogs.md
           - name: CloudAppEvents
             href: queries/CloudAppEvents.md
+          - name: CloudHsmServiceOperationAuditLogs
+            href: queries/CloudHsmServiceOperationAuditLogs.md
           - name: CommonSecurityLog
             href: queries/CommonSecurityLog.md
           - name: ConfidentialWatchlist
@@ -3270,6 +3274,8 @@ items:
             href: queries/MDCDetectionDNSEvents.md
           - name: MDCDetectionFimEvents
             href: queries/MDCDetectionFimEvents.md
+          - name: MDCDetectionGatingValidationEvents
+            href: queries/MDCDetectionGatingValidationEvents.md
           - name: MNFDeviceUpdates
             href: queries/MNFDeviceUpdates.md
           - name: MNFSystemSessionHistoryUpdates

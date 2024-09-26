@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/24/2024
+ms.date: 09/26/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -234,6 +234,7 @@ Microsoft.HardwareSecurityModules/cloudHsmClusters
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
+- [CloudHsmServiceOperationAuditLogs](./tables/cloudhsmserviceoperationauditlogs.md)
 
 ### Azure Cosmos DB  
 
