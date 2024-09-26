@@ -34,6 +34,7 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md) ¹²
 * [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.SqlClient/README.md) ¹
+* [Azure SDK](https://github.com/Azure/azure-sdk)
 
 **Logging**
 
@@ -161,6 +162,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * R2DBC
 * MongoDB
 * Kafka
+* [Azure SDK](https://github.com/Azure/azure-sdk)
 
 **Metrics**
 
