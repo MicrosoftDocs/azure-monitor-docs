@@ -1,437 +1,437 @@
 {
   "redirections": [
     {
-      "source_path": "azure-monitor-ref/tables/dhcpactivity.md",
+      "source_path": "articles/azure-monitor/reference/tables/dhcpactivity.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/anffileaccess.md",
+      "source_path": "articles/azure-monitor/reference/tables/anffileaccess.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/includes/microsoft-aadiam-tenants-logs-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/includes/microsoft-aadiam-tenants-logs-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/includes/microsoft-cloudtest-hostedpools-logs-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/includes/microsoft-cloudtest-hostedpools-logs-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/includes/microsoft-datacollaboration-workspaces-logs-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/includes/microsoft-datacollaboration-workspaces-logs-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/includes/microsoft-healthcareapis-workspaces-analyticsconnectors-logs-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/includes/microsoft-healthcareapis-workspaces-analyticsconnectors-logs-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/includes/microsoft-cloudtest-hostedpools-metrics-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/includes/microsoft-cloudtest-hostedpools-metrics-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/includes/microsoft-cloudtest-pools-metrics-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/includes/microsoft-cloudtest-pools-metrics-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/includes/microsoft-datacollaboration-workspaces-metrics-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/includes/microsoft-datacollaboration-workspaces-metrics-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/includes/microsoft-healthcareapis-workspaces-analyticsconnectors-metrics-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/includes/microsoft-healthcareapis-workspaces-analyticsconnectors-metrics-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/includes/microsoft-networkanalytics-dataconnectors-metrics-include.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/includes/microsoft-networkanalytics-dataconnectors-metrics-include.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/microsoft-cloudtest-hostedpools-metrics.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-cloudtest-hostedpools-metrics.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/microsoft-cloudtest-pools-metrics.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-cloudtest-pools-metrics.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/microsoft-datacollaboration-workspaces-metrics.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-datacollaboration-workspaces-metrics.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/microsoft-healthcareapis-workspaces-analyticsconnectors-metrics.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-healthcareapis-workspaces-analyticsconnectors-metrics.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-metrics/microsoft-networkanalytics-dataconnectors-metrics.md",
+      "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-networkanalytics-dataconnectors-metrics.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/microsoft-aadiam-tenants-logs.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-aadiam-tenants-logs.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/microsoft-cloudtest-hostedpools-logs.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-cloudtest-hostedpools-logs.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/microsoft-datacollaboration-workspaces-logs.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-datacollaboration-workspaces-logs.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/supported-logs/microsoft-healthcareapis-workspaces-analyticsconnectors-logs.md",
+      "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-healthcareapis-workspaces-analyticsconnectors-logs.md",
       "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/queries/anffileaccess.md",
+      "source_path": "articles/azure-monitor/reference/queries/anffileaccess.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/queries/dependencies.md",
+      "source_path": "articles/azure-monitor/reference/queries/dependencies.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/queries/requests.md",
+      "source_path": "articles/azure-monitor/reference/queries/requests.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/aaddomainservicessystemsecurity.md",
+      "source_path": "articles/azure-monitor/reference/tables/aaddomainservicessystemsecurity.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/appserviceantivirusscanlogs.md",
+      "source_path": "articles/azure-monitor/reference/tables/appserviceantivirusscanlogs.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/availabilityresults.md",
+      "source_path": "articles/azure-monitor/reference/tables/availabilityresults.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/azureactivityv2.md",
+      "source_path": "articles/azure-monitor/reference/tables/azureactivityv2.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/baiclusterevent.md",
+      "source_path": "articles/azure-monitor/reference/tables/baiclusterevent.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/baiclusternodeevent.md",
+      "source_path": "articles/azure-monitor/reference/tables/baiclusternodeevent.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/baijobevent.md",
+      "source_path": "articles/azure-monitor/reference/tables/baijobevent.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/boundport.md",
+      "source_path": "articles/azure-monitor/reference/tables/boundport.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/browsertimings.md",
+      "source_path": "articles/azure-monitor/reference/tables/browsertimings.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/customevents.md",
+      "source_path": "articles/azure-monitor/reference/tables/customevents.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/custommetrics.md",
+      "source_path": "articles/azure-monitor/reference/tables/custommetrics.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/databrickstables.md",
+      "source_path": "articles/azure-monitor/reference/tables/databrickstables.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/dependencies.md",
+      "source_path": "articles/azure-monitor/reference/tables/dependencies.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/devicesleepstate.md",
+      "source_path": "articles/azure-monitor/reference/tables/devicesleepstate.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/dhappfailure.md",
+      "source_path": "articles/azure-monitor/reference/tables/dhappfailure.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/inboundconnection.md",
+      "source_path": "articles/azure-monitor/reference/tables/inboundconnection.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/madevicepnphealth.md",
+      "source_path": "articles/azure-monitor/reference/tables/madevicepnphealth.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/madevicepnphealthalternativeversions.md",
+      "source_path": "articles/azure-monitor/reference/tables/madevicepnphealthalternativeversions.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/madevicepnphealthissues.md",
+      "source_path": "articles/azure-monitor/reference/tables/madevicepnphealthissues.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeaddinentityhealth.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeaddinentityhealth.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeaddinhealth.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeaddinhealth.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeaddinhealtheventnrt.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeaddinhealtheventnrt.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeaddinhealthissues.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeaddinhealthissues.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeaddininstancereadiness.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeaddininstancereadiness.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeapp.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeapp.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeappcrashesnrt.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeappcrashesnrt.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeapphealth.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeapphealth.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeappinstancehealth.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeappinstancehealth.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficeappsessionsnrt.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficeappsessionsnrt.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficecurrencyassessmentdailycounts.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficecurrencyassessmentdailycounts.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficedeploymentstatus.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficedeploymentstatus.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficedeploymentstatusnrt.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficedeploymentstatusnrt.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficemacroerrornrt.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficemacroerrornrt.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficemacroglobalhealth.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficemacroglobalhealth.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficemacrohealth.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficemacrohealth.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficemacrohealthissues.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficemacrohealthissues.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficemacroissueinstancereadiness.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficemacroissueinstancereadiness.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficemacroissuereadiness.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficemacroissuereadiness.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficemacrosummary.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficemacrosummary.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/maofficesuite.md",
+      "source_path": "articles/azure-monitor/reference/tables/maofficesuite.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/mawindowssysreqinstancereadiness.md",
+      "source_path": "articles/azure-monitor/reference/tables/mawindowssysreqinstancereadiness.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/outboundconnection.md",
+      "source_path": "articles/azure-monitor/reference/tables/outboundconnection.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/pageviews.md",
+      "source_path": "articles/azure-monitor/reference/tables/pageviews.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/performancecounters.md",
+      "source_path": "articles/azure-monitor/reference/tables/performancecounters.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/requests.md",
+      "source_path": "articles/azure-monitor/reference/tables/requests.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/reservedcommonfields.md",
+      "source_path": "articles/azure-monitor/reference/tables/reservedcommonfields.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/sqlqueryperformance.md",
+      "source_path": "articles/azure-monitor/reference/tables/sqlqueryperformance.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/sqlthreatprotectionloginaudits.md",
+      "source_path": "articles/azure-monitor/reference/tables/sqlthreatprotectionloginaudits.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/storageantimalwarescanresults.md",
+      "source_path": "articles/azure-monitor/reference/tables/storageantimalwarescanresults.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/synapseintegrationactivityrunsended.md",
+      "source_path": "articles/azure-monitor/reference/tables/synapseintegrationactivityrunsended.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/synapseintegrationpipelinerunsended.md",
+      "source_path": "articles/azure-monitor/reference/tables/synapseintegrationpipelinerunsended.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/synapseintegrationtriggerrunsended.md",
+      "source_path": "articles/azure-monitor/reference/tables/synapseintegrationtriggerrunsended.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/sysmonevent.md",
+      "source_path": "articles/azure-monitor/reference/tables/sysmonevent.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/systemevents.md",
+      "source_path": "articles/azure-monitor/reference/tables/systemevents.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/tables-solution.md",
+      "source_path": "articles/azure-monitor/reference/tables/tables-solution.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/traces.md",
+      "source_path": "articles/azure-monitor/reference/tables/traces.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/uahardwaresecurity.md",
+      "source_path": "articles/azure-monitor/reference/tables/uahardwaresecurity.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/w3ciislogv2.md",
+      "source_path": "articles/azure-monitor/reference/tables/w3ciislogv2.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/includes/dependencies-include.md",
+      "source_path": "articles/azure-monitor/reference/tables/includes/dependencies-include.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/includes/requests-include.md",
+      "source_path": "articles/azure-monitor/reference/tables/includes/requests-include.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/queries/dcrlogtroubleshooting.md",
+      "source_path": "articles/azure-monitor/reference/queries/dcrlogtroubleshooting.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/queries/dynamicsummary.md",
+      "source_path": "articles/azure-monitor/reference/queries/dynamicsummary.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/azuremetricsv2.md",
+      "source_path": "articles/azure-monitor/reference/tables/azuremetricsv2.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
     {
-      "source_path": "azure-monitor-ref/tables/includes/azuremetricsv2-include.md",
+      "source_path": "articles/azure-monitor/reference/tables/includes/azuremetricsv2-include.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
     },
