@@ -547,6 +547,22 @@ Explore Virtual WAN RouteMap to reduce advertised IP routes.
 For More information, see [Virtual WAN FAQ](https://aka.ms/mseeprefixtracking)  
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
+
+#### Consider having at least two origins
+
+Multiple Azure Front Door origins support redundancy by distributing traffic across multiple instances of the application. If one instance is unavailable, then other back-end origins can still receive traffic.
+
+**Potential benefits**: Ensure service availability.
+
+For More information, see [Front Door reliability checklist](https://aka.ms/afd-reliability-checklist).
+
+#### Avoid placing Traffic Manager behind Front Door
+
+Using Traffic Manager as one of the origins for Front Door is not recommended because it can cause routing issues. If you need both services in a high availability architecture, always place Traffic Manager in front of Azure Front Door
+
+**Potential benefits**: Ensure service availability.
+
+For More information, see [Front Door best practices](https://aka.ms/afd-avoid-tm-frontdoor).
   
 <!--microsoft_network_end--->
 ## Application Gateway for Containers
