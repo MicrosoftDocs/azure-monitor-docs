@@ -10,23 +10,12 @@ ms.reviewer: abinetabate
 
 # Application monitoring for Azure App Service
 
-It's now easier than ever to enable monitoring on your web applications based on ASP.NET, ASP.NET Core, Java, Node.js, and Python running on [Azure App Service](/azure/app-service/). Previously, you needed to manually instrument your app, but the latest extension/agent is now built into the App Service image by default.
+Autoinstrumentation is the easiest way to enable Application Insights for Azure App Serive without requiring any code changes or advanced configurations. It's often referred to as *runtime* monitoring. Based on your specific scenario, you can evaluate whether more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options) is needed.
 
-There are two ways to enable monitoring for applications hosted on App Service:
+For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
-* **Autoinstrumentation application monitoring** (ApplicationInsightsAgent)
-
-    This method is the easiest to enable, and no code change or advanced configurations are required. It's often referred to as "runtime" monitoring. For App Service, we recommend that at a minimum you enable this level of monitoring. Based on your specific scenario, you can evaluate whether more advanced monitoring through manual instrumentation is needed.
-    
-    When you enable auto-instrumentation it enables Application Insights with a default setting (it includes sampling as well). Even if you set in Azure AppInsights: Sampling: **All Data 100%** this setting will be ignored.
-    
-    For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
-
-* **Manually instrumenting the application through code** by installing the Azure Monitor OpenTelemtry Distro (recommended) or the Application Insights SDK (Classic API). For more information, go to [Data Collection Basics of Azure Monitor Application Insights](opentelemetry-overview.md).
-
-    This approach is much more customizable, but it requires the following approaches: SDK for [.NET Core](./asp-net-core.md), [.NET](./asp-net.md), [Node.js](./nodejs.md), [Python](./opentelemetry-enable.md?tabs=python), and a standalone agent for [Java](./opentelemetry-enable.md?tabs=java). This method also means you must manage the updates to the latest version of the packages yourself.
-    
-    If you need to make custom API calls to track events/dependencies not captured by default with autoinstrumentation monitoring, you need to use this method. To learn more, see [Application Insights API for custom events and metrics](./api-custom-events-metrics.md).
+> [!IMPORTANT]
+> When you enable autoinstrumentation, it enables Application Insights with default settings, which include sampling. Your sampling settings in **Application Insights** > **Usage and estimated costs** > **Data sampling** will be ignored, even if set to **All Data 100%**.
 
 > [!NOTE]
 > Snapshot Debugger and Profiler are only available in .NET and .NET Core.
@@ -35,72 +24,11 @@ There are two ways to enable monitoring for applications hosted on App Service:
 
 ## Enable Application Insights
 
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
-
 ### [ASP.NET Core](#tab/aspnetcore)
 
-Enabling monitoring on your ASP.NET Core-based web applications running on [Azure App Service](/azure/app-service/) is now easier than ever. Previously, you needed to manually instrument your app. Now, the latest extension/agent is built into the App Service image by default. This article walks you through enabling Azure Monitor Application Insights monitoring. It also provides preliminary guidance for automating the process for large-scale deployments.
-
 > [!IMPORTANT]
-> Only .NET Core [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) is supported for autoinstrumentation.
-
-[Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](./asp-net-core.md) via code instead.
-
-### [.NET](#tab/net)
-
-Enabling monitoring on your ASP.NET-based web applications running on [Azure App Service](/azure/app-service/) is now easier than ever. Previously, you needed to manually instrument your app. Now the latest extension/agent is built into the App Service image by default. This article will walk you through enabling Azure Monitor Application Insights monitoring and provide preliminary guidance for automating the process for large-scale deployments.
-
-> [!NOTE]
-> Manually adding an Application Insights site extension via **Development Tools** > **Extensions** is deprecated. This method of extension installation was dependent on manual updates for each new version. The latest stable release of the extension is now [preinstalled](https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions) as part of the App Service image. The files are located in *d:\Program Files (x86)\SiteExtensions\ApplicationInsightsAgent* and are automatically updated with each stable release. If you follow the autoinstrumentation instructions to enable monitoring, it will automatically remove the deprecated extension for you.
-
-If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
-
-### [Java](#tab/java)
-
-Monitoring of your Java web applications running on [Azure App Services](/azure/app-service/) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
-
-> [!NOTE]
-> With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described below.
-
-### [Node.js](#tab/nodejs)
-
-Monitoring of your Node.js web applications running on [Azure App Services](/azure/app-service/) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
-
-The easiest way to enable application monitoring for Node.js applications running on Azure App Services is through Azure portal.
-Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes.
-
->[!NOTE]
-> You can configure the automatically attached agent using the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable in the App Service Environment variable blade. For details on the configuration options that can be passed via this environment variable, see [Node.js Configuration](https://github.com/microsoft/ApplicationInsights-node.js#Configuration).
-
-### [Python (Preview)](#tab/python)
-
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
-Monitor your Python web applications on Azure App Services without modifying the code. This guide shows you how to enable Azure Monitor Application Insights and offers tips for automating large-scale deployments.
-
-The integration instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. After instrumenting, you collect calls and metrics from these Python libraries:
-
-| Instrumentation | Supported library Name | Supported versions |
-| --------------- | ---------------------- | ------------------ |
-| [OpenTelemetry Django Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-django) | [django](https://pypi.org/project/Django/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django/src/opentelemetry/instrumentation/django/package.py#L16) |
-| [OpenTelemetry FastApi Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-fastapi) | [fastapi](https://pypi.org/project/fastapi/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi/src/opentelemetry/instrumentation/fastapi/package.py#L16) |
-| [OpenTelemetry Flask Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-flask) | [flask](https://pypi.org/project/Flask/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/package.py#L16) |
-| [OpenTelemetry Psycopg2 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-psycopg2) | [psycopg2](https://pypi.org/project/psycopg2/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-psycopg2/src/opentelemetry/instrumentation/psycopg2/package.py#L16) |
-| [OpenTelemetry Requests Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-requests) | [requests](https://pypi.org/project/requests/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-requests/src/opentelemetry/instrumentation/requests/package.py#L16) |
-| [OpenTelemetry UrlLib Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib](https://docs.python.org/3/library/urllib.html) | All |
-| [OpenTelemetry UrlLib3 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib3](https://pypi.org/project/urllib3/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16) |
-
-> [!NOTE]
-> If using Django, see the additional [Django Instrumentation](#django-instrumentation) section in this article.
-
-Logging telemetry is collected at the level of the root logger. To learn more about Python's native logging hierarchy, visit the [Python logging documentation](https://docs.python.org/3/library/logging.html).
-
----
-
-### Enable monitoring
-
-#### [ASP.NET Core](#tab/aspnetcore)
+> * Only .NET Core [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) is supported for autoinstrumentation.
+> * [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](./asp-net-core.md) via code instead.
 
 1. Select **Application Insights** in the left pane for your app service. Then select **Enable**.
 
@@ -117,9 +45,12 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 
     :::image type="content"source="./media/azure-web-apps-net-core/instrument-net-core.png" alt-text=" Screenshot that shows instrumenting your application section.":::
 
-#### [.NET](#tab/net)
+### [.NET](#tab/net)
 
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+> [!NOTE]
+> Manually adding an Application Insights site extension via **Development Tools** > **Extensions** is deprecated. This method of extension installation was dependent on manual updates for each new version. The latest stable release of the extension is now [preinstalled](https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions) as part of the App Service image. The files are located in *d:\Program Files (x86)\SiteExtensions\ApplicationInsightsAgent* and are automatically updated with each stable release. If you follow the autoinstrumentation instructions to enable monitoring, it will automatically remove the deprecated extension for you.
+
+If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
 
 > [!NOTE]
 > The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported. For more information, see the explanation in the [Troubleshooting section](#appinsights_javascript_enabled-and-urlcompression-isnt-supported).
@@ -160,15 +91,18 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
         * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MaxTelemetryItemsPerSecond`
     * For the list of supported adaptive sampling telemetry processor settings and definitions, see the [code](https://github.com/microsoft/ApplicationInsights-dotnet/blob/master/BASE/Test/ServerTelemetryChannel.Test/TelemetryChannel.Tests/AdaptiveSamplingTelemetryProcessorTest.cs) and [sampling documentation](./sampling.md#configuring-adaptive-sampling-for-aspnet-applications).
 
-#### [Java](#tab/java)
+### [Java](#tab/java)
+
+Monitoring of your Java web applications running on [Azure App Services](/azure/app-service/) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
+
+> [!NOTE]
+> With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described below.
 
 The recommended way to enable application monitoring for Java applications running on Azure App Services is through Azure portal. Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes. You can apply extra configurations, and then based on your specific scenario you [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry) if needed.
 
-##### Autoinstrumentation through Azure portal
+#### Autoinstrumentation through Azure portal
 
 You can turn on monitoring for your Java apps running in Azure App Service just with one selection, no code change required. The integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?tabs=java) and auto-collects telemetry.
-
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
 1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
 
@@ -189,7 +123,7 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 
     :::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application."::: 
     
-##### Manually deploy the latest Application Insights Java version
+#### Manually deploy the latest Application Insights Java version
 
 The Application Insights Java version is updated automatically as part of App Services updates.
 
@@ -222,11 +156,15 @@ To manually update, follow these steps:
 > [!NOTE]
 > If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you will have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings. 
 
-#### [Node.js](#tab/nodejs)
+### [Node.js](#tab/nodejs)
 
-##### Autoinstrumentation through Azure portal
+The easiest way to enable application monitoring for Node.js applications running on Azure App Services is through Azure portal.
+Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes.
 
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+>[!NOTE]
+> You can configure the automatically attached agent using the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable in the App Service Environment variable blade. For details on the configuration options that can be passed via this environment variable, see [Node.js Configuration](https://github.com/microsoft/ApplicationInsights-node.js#Configuration).
+
+#### Autoinstrumentation through Azure portal
 
 You can turn on monitoring for your Node.js apps running in Azure App Service just with one click, no code change required.
 Application Insights for Node.js is integrated with Azure App Service on Linux - both code-based and custom containers, and with App Service on Windows for code-based apps.
@@ -247,7 +185,7 @@ The integration is in public preview. The integration adds Node.js SDK, which is
 
     :::image type="content"source="./media/azure-web-apps-nodejs/app-service-node.png" alt-text="Screenshot of instrument your application."::: 
 
-##### Configuration
+#### Configuration
 
 The Node.js agent can be configured using JSON. Set the `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` environment variable to the JSON string or set the `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable to the file path containing the JSON.
 
@@ -263,7 +201,29 @@ The Node.js agent can be configured using JSON. Set the `APPLICATIONINSIGHTS_CON
 
 The full [set of configurations](https://github.com/microsoft/ApplicationInsights-node.js#configuration) is available, you just need to use a valid json file.
 
-#### [Python (Preview)](#tab/python)
+### [Python (Preview)](#tab/python)
+
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+Monitor your Python web applications on Azure App Services without modifying the code. This guide shows you how to enable Azure Monitor Application Insights and offers tips for automating large-scale deployments.
+
+The integration instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. After instrumenting, you collect calls and metrics from these Python libraries:
+
+| Instrumentation | Supported library Name | Supported versions |
+| --------------- | ---------------------- | ------------------ |
+| [OpenTelemetry Django Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-django) | [django](https://pypi.org/project/Django/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django/src/opentelemetry/instrumentation/django/package.py#L16) |
+| [OpenTelemetry FastApi Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-fastapi) | [fastapi](https://pypi.org/project/fastapi/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi/src/opentelemetry/instrumentation/fastapi/package.py#L16) |
+| [OpenTelemetry Flask Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-flask) | [flask](https://pypi.org/project/Flask/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/package.py#L16) |
+| [OpenTelemetry Psycopg2 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-psycopg2) | [psycopg2](https://pypi.org/project/psycopg2/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-psycopg2/src/opentelemetry/instrumentation/psycopg2/package.py#L16) |
+| [OpenTelemetry Requests Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-requests) | [requests](https://pypi.org/project/requests/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-requests/src/opentelemetry/instrumentation/requests/package.py#L16) |
+| [OpenTelemetry UrlLib Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib](https://docs.python.org/3/library/urllib.html) | All |
+| [OpenTelemetry UrlLib3 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib3](https://pypi.org/project/urllib3/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16) |
+
+> [!NOTE]
+> If using Django, see the additional [Django Instrumentation](#django-instrumentation) section in this article.
+
+Logging telemetry is collected at the level of the root logger. To learn more about Python's native logging hierarchy, visit the [Python logging documentation](https://docs.python.org/3/library/logging.html).
 
 The easiest way to monitor Python applications on Azure App Services is through the Azure portal.
 
@@ -272,14 +232,12 @@ Activating monitoring in the Azure portal automatically instruments your applica
 > [!NOTE]
 > You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
 
-##### Prerequisites
+#### Prerequisites
 
 * Python version 3.11 or prior.
 * App Service must be deployed as code. Custom containers aren't supported.
 
-##### Autoinstrumentation through Azure portal
-
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+#### Autoinstrumentation through Azure portal
 
 Toggle on monitoring for your Python apps in Azure App Service with no code changes required.
 
@@ -302,7 +260,7 @@ The integration is in public preview. It adds the Python SDK, which is in GA.
 
     :::image type="content"source="./media/azure-web-apps-python/app-service-python.png" alt-text="Screenshot of instrument your application." lightbox="./media/azure-web-apps-python/app-service-python.png":::
 
-##### Configuration
+#### Configuration
 
 You can configure with [OpenTelemetry environment variables](https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/) such as:
 
@@ -317,7 +275,7 @@ You can configure with [OpenTelemetry environment variables](https://opentelemet
 | `OTEL_TRACES_SAMPLER_ARG` | Specifies the ratio of distributed tracing telemetry to be [sampled](./sampling.md). Accepted values range from 0 to 1. The default is 1.0, meaning no telemetry is sampled out. |
 | `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` | Specifies which OpenTelemetry instrumentations to disable. When disabled, instrumentations aren't executed as part of autoinstrumentation. Accepts a comma-separated list of lowercase [library names](#application-monitoring-for-azure-app-service-and-python-preview). For example, set it to `"psycopg2,fastapi"` to disable the Psycopg2 and FastAPI instrumentations. It defaults to an empty list, enabling all supported instrumentations. |
 
-##### Add a community instrumentation library
+#### Add a community instrumentation library
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
@@ -325,7 +283,7 @@ You can collect more data automatically when you include instrumentation librari
 
 To add the community OpenTelemetry Instrumentation Library, install it via your app's `requirements.txt` file. OpenTelemetry autoinstrumentation automatically picks up and instruments all installed libraries. Find the list of community libraries [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
-##### Django Instrumentation
+#### Django Instrumentation
 
 In order to use the OpenTelemetry Django Instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. For more information, see the [Django documentation](https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE).
 
@@ -370,6 +328,8 @@ To enable client-side monitoring for your Java application, you need to [manuall
 To enable client-side monitoring for your Node.js application, you need to [manually add the client-side JavaScript SDK to your application](./javascript.md).
 
 ### [Python (Preview)](#tab/python)
+
+Python doesn't support client-side monitoring.
 
 ---
 
@@ -459,8 +419,6 @@ In order to enable telemetry collection with Application Insights, only the foll
 ## Upgrade monitoring extension/agent
 
 ### [ASP.NET Core](#tab/aspnetcore)
-
-To upgrade the monitoring extension/agent, follow the steps in the next sections.
 
 #### Upgrade from versions 2.8.9 and up
 
@@ -585,9 +543,9 @@ The following table provides an explanation of what these values mean, their und
 
 | Problem value | Explanation | Fix |
 |---------------|-------------|-----|
-| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and will back off. It can be because of a reference to `Microsoft.ApplicationInsights.AspNetCore` or `Microsoft.ApplicationInsights`.  | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio reference `Microsoft.ApplicationInsights`. |
+| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and will back off. It can be because of a reference to `Microsoft.ApplicationInsights.AspNetCore` or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio reference `Microsoft.ApplicationInsights`. |
 | `AppAlreadyInstrumented:true` | This value can also be caused by the presence of `Microsoft.ApplicationsInsights` DLL in the app folder from a previous deployment. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the *wwwroot* directory on the App Service. (To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu**) > **Debug console** > **CMD** > **home\site\wwwroot**). |
-| `IKeyExists:false`|This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes include accidentally removing the values or forgetting to set the values in automation script. | Make sure the setting is present in the App Service application settings. |
+| `IKeyExists:false` | This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes include accidentally removing the values or forgetting to set the values in automation script. | Make sure the setting is present in the App Service application settings. |
 
 ### [.NET](#tab/net)
 
@@ -818,6 +776,7 @@ This section contains the release notes for Azure Web Apps Extension for runtime
 
 To find which version of the extension you're currently using, go to `https://<yoursitename>.scm.azurewebsites.net/ApplicationInsights`.
 
+<br>
 <details>
 <summary>2.8.44</summary>
 
@@ -1042,9 +1001,7 @@ To find which version of the extension you're currently using, go to `https://<y
 
 This section provides answers to common questions.
 
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
-
-### What does Application Insights modify in my project?
+#### What does Application Insights modify in my project?
 
 The details depend on the type of project. For a web application:
           
@@ -1066,6 +1023,8 @@ The details depend on the type of project. For a web application:
     * packages.config
 
 * (For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).) Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*.
+
+[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
           
 ## Next steps
 
