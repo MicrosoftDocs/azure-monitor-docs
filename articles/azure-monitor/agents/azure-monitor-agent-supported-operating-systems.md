@@ -13,29 +13,29 @@ ms.reviewer: jeffwo
 ---
 
 # Azure Monitor Agent supported operating systems and environments
-This article lists the operating systems supported by [Azure Monitor Agent](./azure-monitor-agent-overview.md) and [legacy agents](./log-analytics-agent.md). See [Install and manage Azure Monitor Agent](./azure-monitor-agent-manage.md) for details on installing the agent.
+This article lists the operating systems supported by [Azure Monitor Agent](./azure-monitor-agent-overview.md). See [Install and manage Azure Monitor Agent](./azure-monitor-agent-manage.md) for details on installing the agent.
 
 > [!NOTE]
 > All operating systems listed are assumed to be x64. x86 isn't supported for any operating system.
 
 ## Windows operating systems
 
-| Operating system | Azure Monitor agent | Legacy agent|
-|:---|:---:|:---:
-| Windows Server 2022                                      | ✓ | ✓ |
-| Windows Server 2022 Core                                 | ✓ |   |
-| Windows Server 2019                                      | ✓ | ✓ |
-| Windows Server 2019 Core                                 | ✓ |   |
-| Windows Server 2016                                      | ✓ | ✓ |
-| Windows Server 2016 Core                                 | ✓ |   |
-| Windows Server 2012 R2                                   | ✓ | ✓ |
-| Windows Server 2012                                      | ✓ | ✓ |
-| Windows 11 Client and Pro                                | ✓<sup>1</sup>, <sup>2</sup> |  |
-| Windows 11 Enterprise<br>(including multi-session)       | ✓ |  |
-| Windows 10 1803 (RS4) and higher                         | ✓<sup>1</sup> |  |
-| Windows 10 Enterprise<br>(including multi-session) and Pro<br>(Server scenarios only)  | ✓ | ✓ |
-| Azure Stack HCI                                          | ✓ | ✓ |
-| Windows IoT Enterprise                                   | ✓ |   |
+| Operating system | Support |
+|:---|:---:|
+| Windows Server 2022                                      | ✓ |
+| Windows Server 2022 Core                                 | ✓ |
+| Windows Server 2019                                      | ✓ |
+| Windows Server 2019 Core                                 | ✓ |
+| Windows Server 2016                                      | ✓ |
+| Windows Server 2016 Core                                 | ✓ |
+| Windows Server 2012 R2                                   | ✓ |
+| Windows Server 2012                                      | ✓ |
+| Windows 11 Client and Pro                                | ✓<sup>1,2</sup> |
+| Windows 11 Enterprise<br>(including multi-session)       | ✓ |
+| Windows 10 1803 (RS4) and higher                         | ✓<sup>1</sup> |
+| Windows 10 Enterprise<br>(including multi-session) and Pro<br>(Server scenarios only)  | ✓ |
+| Azure Stack HCI                                          | ✓ |
+| Windows IoT Enterprise                                   | ✓ |
 
 <sup>1</sup> Requires Azure Monitor agent [client installer](./azure-monitor-agent-windows-client.md).<br>
 <sup>2</sup> Also supported on Arm64-based machines.
@@ -45,46 +45,42 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 > [!CAUTION]
 > CentOS is a Linux distribution that is nearing End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
-| Operating system | Azure Monitor agent <sup>1</sup> | Legacy Agent <sup>1</sup> |
-|:---|:---:|:---:|
-| AlmaLinux 9                                                 | ✓<sup>2</sup> | ✓ |
-| AlmaLinux 8                                                 | ✓<sup>2</sup> | ✓ |
-| Amazon Linux 2017.09                                        |  | ✓ |
-| Amazon Linux 2                                              | ✓ | ✓ |
-| Amazon Linux 2023                                           | ✓ |  |
-| Azure Linux                                                 | ✓ |   |
-| CentOS Linux 8                                              | ✓ | ✓ |
-| CentOS Linux 7                                              | ✓<sup>2</sup> | ✓ |
-| CBL-Mariner 2.0                                             | ✓<sup>2,3</sup> |   |
-| Debian 12                                                   | ✓ |  |
-| Debian 11                                                   | ✓<sup>2</sup> | ✓ |
-| Debian 10                                                   | ✓ | ✓ |
-| Debian 9                                                    | ✓ | ✓ |
-| Debian 8                                                    |   | ✓ |
-| OpenSUSE 15                                                 | ✓ | ✓ |
-| Oracle Linux 9                                              | ✓ |  |
-| Oracle Linux 8                                              | ✓ | ✓ |
-| Oracle Linux 7                                              | ✓ | ✓ |
-| Oracle Linux 6.4+                                           |   |  |
-| Red Hat Enterprise Linux Server 9+                          | ✓ | ✓ |
-| Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> | ✓ |
-| Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ | ✓ |
-| Red Hat Enterprise Linux Server 7                           | ✓ | ✓ |
-| Red Hat Enterprise Linux Server 6.7+                        |   |  |
-| Rocky Linux 9                                               | ✓ | ✓ | 
-| Rocky Linux 8                                               | ✓ | ✓ |
-| SUSE Linux Enterprise Server 15 SP5                         | ✓<sup>2</sup> | ✓ |
-| SUSE Linux Enterprise Server 15 SP4                         | ✓<sup>2</sup> | ✓ |
-| SUSE Linux Enterprise Server 15 SP3                         | ✓ | ✓ |
-| SUSE Linux Enterprise Server 15 SP2                         | ✓ | ✓ |
-| SUSE Linux Enterprise Server 15 SP1                         | ✓ | ✓ |
-| SUSE Linux Enterprise Server 15                             | ✓ | ✓ |
-| SUSE Linux Enterprise Server 12                             | ✓ | ✓ |
-| Ubuntu 22.04 LTS                                            | ✓ | ✓ |
-| Ubuntu 20.04 LTS                                            | ✓<sup>2</sup> | ✓ |
-| Ubuntu 18.04 LTS                                            | ✓<sup>2</sup> | ✓ |
-| Ubuntu 16.04 LTS                                            | ✓ | ✓ |
-| Ubuntu 14.04 LTS                                            |   | ✓ |
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| AlmaLinux 9                                                 | ✓<sup>2</sup> |
+| AlmaLinux 8                                                 | ✓<sup>2</sup> |
+| Amazon Linux 2                                              | ✓ |
+| Amazon Linux 2023                                           | ✓ |
+| Azure Linux                                                 | ✓<sup>2</sup> |
+| CentOS Linux 8                                              | ✓ |
+| CentOS Linux 7                                              | ✓<sup>2</sup> |
+| CBL-Mariner 2.0                                             | ✓<sup>2,3</sup> |
+| Debian 12                                                   | ✓ |
+| Debian 11                                                   | ✓<sup>2</sup> |
+| Debian 10                                                   | ✓ |
+| Debian 9                                                    | ✓ |
+| OpenSUSE 15                                                 | ✓ |
+| Oracle Linux 9                                              | ✓ |
+| Oracle Linux 8                                              | ✓ |
+| Oracle Linux 7                                              | ✓ |
+| Red Hat Enterprise Linux Server 9+                          | ✓ |
+| Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
+| Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
+| Red Hat Enterprise Linux Server 7                           | ✓ |
+| Rocky Linux 9                                               | ✓ |
+| Rocky Linux 8                                               | ✓ |
+| SUSE Linux Enterprise Server 15 SP5                         | ✓<sup>2</sup> |
+| SUSE Linux Enterprise Server 15 SP4                         | ✓<sup>2</sup> |
+| SUSE Linux Enterprise Server 15 SP3                         | ✓ |
+| SUSE Linux Enterprise Server 15 SP2                         | ✓ |
+| SUSE Linux Enterprise Server 15 SP1                         | ✓ |
+| SUSE Linux Enterprise Server 15                             | ✓ |
+| SUSE Linux Enterprise Server 12                             | ✓ |
+| Ubuntu 24.04 LTS                                            | ✓<sup>2</sup> |
+| Ubuntu 22.04 LTS                                            | ✓<sup>2</sup> |
+| Ubuntu 20.04 LTS                                            | ✓<sup>2</sup> |
+| Ubuntu 18.04 LTS                                            | ✓<sup>2</sup> |
+| Ubuntu 16.04 LTS                                            | ✓ |
 
 <sup>1</sup> Requires Python (2 or 3) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
 <sup>2</sup> Also supported on Arm64-based machines.<br>
