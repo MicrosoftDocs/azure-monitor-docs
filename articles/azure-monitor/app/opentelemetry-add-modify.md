@@ -1230,7 +1230,7 @@ span.recordException(e);
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { trace } = require("@opentelemetry/api");
+const { trace, SpanKind } = require("@opentelemetry/api");
 
 // Enable Azure Monitor integration
 useAzureMonitor();
@@ -1239,7 +1239,9 @@ useAzureMonitor();
 const tracer = trace.getTracer("testTracer");
 
 // Start a span with the name "hello"
-let span = tracer.startSpan("hello");
+let span = tracer.startSpan("hello", {
+    kind: SpanKind.SERVER
+});
 
 // Try to throw an error
 try{
