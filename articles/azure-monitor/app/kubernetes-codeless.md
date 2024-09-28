@@ -14,11 +14,11 @@ ms.reviewer: abinetabate
 
 This guide walks through enabling Azure Monitor Application Insights for Azure Kubernetes Service (AKS) workloads without modifying source code.
 
-We cover [installing the aks-preview Azure CLI extension](#install-the-aks-preview-azure-cli-extension), [registering the AzureMonitorAppMonitoringPreview feature flag](#register-the-`AzureMonitorAppMonitoringPreview`-feature-flag), [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps result in autoinstrumentation injecting the Azure Monitor OpenTelemetry Distro in application pods to generate telemetry. For more on autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](codeless-overview.md).
+We cover [installing the aks-preview Azure CLI extension](#install-the-aks-preview-azure-cli-extension), [registering the AzureMonitorAppMonitoringPreview feature flag](#register-the-azuremonitorappmonitoringpreview-feature-flag), [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps result in autoinstrumentation injecting the Azure Monitor OpenTelemetry Distro in application pods to generate telemetry. For more on autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](codeless-overview.md).
 
 ## Prerequisites
 
-* An [AKS cluster](../../aks/learn/quick-kubernetes-deploy-portal.md) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using .NET, Java, or Node.js in the Azure public cloud
+* An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using .NET, Java, or Node.js in the Azure public cloud
 * [A workspace-based Application Insights resource](create-workspace-resource.md#workspace-based-application-insights-resources).
 
 > [!WARNING]
