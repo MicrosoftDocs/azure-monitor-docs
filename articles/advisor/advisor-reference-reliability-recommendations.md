@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 09/16/2024
+ms.date: 09/29/2024
 ---
 
 # Reliability recommendations
@@ -547,6 +547,66 @@ Explore Virtual WAN RouteMap to reduce advertised IP routes.
 For More information, see [Virtual WAN FAQ](https://aka.ms/mseeprefixtracking)  
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
+  
+
+<!--825ff735-ed9a-4335-b132-321df86b0e81_begin-->  
+#### Avoid placing Traffic Manager behind Front Door  
+  
+Using Traffic Manager as one of the origins for Front Door isn't recommended, as this can lead to routing issues. If you need both services in a high availability architecture, always place Traffic Manager in front of Azure Front Door.  
+  
+**Potential benefits**: Increase your workload resiliency
+  
+For More information, see [Best practices for Front Door](https://aka.ms/afd-avoid-tm-frontdoor)  
+
+<!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
+  
+
+<!--589ab0b0-1362-44fd-8551-0e7847767600_begin-->  
+#### Consider having at least two origins  
+  
+Multiple origins support redundancy by distributing traffic across multiple instances of the application. If one instance is unavailable, then other backend origins can still receive traffic.  
+  
+**Potential benefits**: Increase your workload resiliency
+  
+For More information, see [Azure Well-Architected Framework perspective on Azure Front Door](https://aka.ms/afd-reliability-checklist)  
+
+<!--589ab0b0-1362-44fd-8551-0e7847767600_end-->
+  
+
+<!--df989782-82d1-420d-b354-71956bd9379c_begin-->  
+#### Change subnet of V1 gateway named GatewaySubnet as it's reserved for VPN/Express Route  
+  
+Your Application Gateway is at risk of deletion after October 2024 due to a failed internal upgrade. This is due to subnet named Gatewaysubnet, which is reserved for VPN/ExpressRoute. To resolve, please change the subnet or migrate to V2. Allow a day for the message to disappear once fixed  
+  
+**Potential benefits**: Avoid disruption in management of Application Gateway V1 resource
+  
+For More information, see [Frequently asked questions about Application Gateway ](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
+
+<!--df989782-82d1-420d-b354-71956bd9379c_end-->
+  
+
+<!--511a9f7b-7b5e-4713-b18d-0b7464a84d1f_begin-->  
+#### Change subnet of V1 gateway as the current subnet contains a NAT gateway  
+  
+Your Application Gateway may be deleted after October 2024 due to a failed internal upgrade. This is because it lacks a dedicated subnet and contains a NAT Gateway. To resolve, either change the subnet, remove the NAT Gateway, or migrate to V2. Allow a day for the message to disappear once fixed  
+  
+**Potential benefits**: Avoid disruption in management of Application Gateway V1 resource
+  
+For More information, see [Frequently asked questions about Application Gateway ](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
+
+<!--511a9f7b-7b5e-4713-b18d-0b7464a84d1f_end-->
+  
+
+<!--fa44bc92-1747-4cef-9f78-7861be4c0db9_begin-->  
+#### Reactivate the Subscription to unblock internal upgrade for V1 gateway  
+  
+Your Application Gateway is at risk of deletion after October 2024 due to a failed internal upgrade. This is because the subscription is in a non Active state. To fix this, please activate the subscription. Allow a day for this message to disappear once the issue is fixed.  
+  
+**Potential benefits**: Avoid disruption in management of Application Gateway V1 resource
+  
+For More information, see [Reactivate a disabled Azure subscription](/azure/cost-management-billing/manage/subscription-disabled)  
+
+<!--fa44bc92-1747-4cef-9f78-7861be4c0db9_end-->
   
 <!--microsoft_network_end--->
 ## Application Gateway for Containers
@@ -1805,7 +1865,7 @@ Availability Zones (AZ) in Azure help protect your applications and data from da
   
 **Potential benefits**: Usage of zonal VMs protect your apps from zonal outage in any other zones.
   
-For More information, see [What are availability zones?](/azure/reliability/availability-zones-overview)  
+For More information, see [Move Azure single instance VMs from regional to zonal target availability zones](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_end-->
   
