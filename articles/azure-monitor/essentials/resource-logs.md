@@ -1,15 +1,16 @@
 ---
-title: Send Azure resource log data 
+title: Send Azure resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage
 description: Learn how to send Azure resource logs to a Log Analytics workspace, event hub, or Azure Storage in Azure Monitor.
 services: azure-monitor
+ms.author: bwren
 ms.topic: conceptual
-ms.date: 08/08/2023
+ms.date: 09/29/2024
 ms.reviewer: lualderm
 ---
 
-# Send Azure resource log data
+# Send Azure resource log data Log Analytics workspaces, Event Hubs, or Azure Storage
 
-Azure resource logs are [platform logs](../essentials/platform-logs-overview.md) that provide insight into operations that were performed within an Azure resource. The content of resource logs varies by the Azure service and resource type. Resource logs aren't collected by default. This article describes the [diagnostic setting](diagnostic-settings.md) required for each Azure resource to send its resource logs to different destinations. 
+Azure resource logs are [platform logs](../essentials/platform-logs-overview.md) that provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. Resource logs aren't collected by default. To collect resource logs, you must enable and configure Diagnostic Settings or use data collection rules.   For more information on data collection rules, see [Data collection rules in Azure Monitor](data-collection-rule-overview).  This article describes the [diagnostic setting](diagnostic-settings.md) required for each Azure resource to send its resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage.
 
 ## Send to Log Analytics workspace
 
@@ -27,62 +28,19 @@ Azure resource logs are [platform logs](../essentials/platform-logs-overview.md)
 
 ### Resource-specific
 
-In this mode, individual tables in the selected workspace are created for each category selected in the diagnostic setting. We recommend this method because it:
+In resource-specific mode, individual tables in the selected workspace are created for each category selected in the diagnostic setting.
+Resource-specific logs have the following advantages over Azure diagnostics logs:
 
 - Makes it easier to work with the data in log queries.
 - Provides better discoverability of schemas and their structure.
 - Improves performance across ingestion latency and query times.
 - Provides the ability to grant Azure role-based access control rights on a specific table.
 
-All Azure services will eventually migrate to the resource-specific mode.
-
-The example below creates three tables:
-
-- Table `Service1AuditLogs`
-
-    | Resource provider | Category | A | B | C |
-    |:---|:---:|:---:|:---:|:---:| 
-    | Service 1 | AuditLogs | x1 | y1 | z1 |
-    | Service 1 | AuditLogs | x5 | y5 | z5 |
-    | ... |
-
-- Table `Service1ErrorLogs`
-
-    | Resource provider | Category | D | E | F |
-    |:---|:---:|:---:|:---:|:---:| 
-    | Service 1 | ErrorLogs |  q1 | w1 | e1 |
-    | Service 1 | ErrorLogs |  q2 | w2 | e2 |
-    | ... |
-
-- Table `Service2AuditLogs`
-
-    | Resource provider | Category | G | H | I |
-    |:---|:---:|:---:|:---:|:---:| 
-    | Service 2 | AuditLogs | j1 | k1 | l1|
-    | Service 2 | AuditLogs | j3 | k3 | l3|
-    | ... |
+For a description of resource-specific logs and tables, see [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index)
 
 ### Azure diagnostics mode
 
-In this mode, all data from any diagnostic setting is collected in the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table. This legacy method is used today by most Azure services. Because multiple resource types send data to the same table, its schema is the superset of the schemas of all the different data types being collected. For details on the structure of this table and how it works with this potentially large number of columns, see [AzureDiagnostics reference](/azure/azure-monitor/reference/tables/azurediagnostics).
-
-Consider an example where diagnostic settings are collected in the same workspace for the following data types:
-
-- Audit logs of service 1 have a schema that consists of columns A, B, and C
-- Error logs of service 1 have a schema that consists of columns D, E, and F
-- Audit logs of service 2 have a schema that consists of columns G, H, and I
-
-The `AzureDiagnostics` table looks like this example:
-
-| ResourceProvider    | Category     | A  | B  | C  | D  | E  | F  | G  | H  | I  |
-|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:||:---:|
-| Microsoft.Service1 | AuditLogs    | x1 | y1 | z1 |    |    |    |    |    |    |
-| Microsoft.Service1 | ErrorLogs    |    |    |    | q1 | w1 | e1 |    |    |    |
-| Microsoft.Service2 | AuditLogs    |    |    |    |    |    |    | j1 | k1 | l1 |
-| Microsoft.Service1 | ErrorLogs    |    |    |    | q2 | w2 | e2 |    |    |    |
-| Microsoft.Service2 | AuditLogs    |    |    |    |    |    |    | j3 | k3 | l3 |
-| Microsoft.Service1 | AuditLogs    | x5 | y5 | z5 |    |    |    |    |    |    |
-| ... |
+In Azure diagnostics mode, all data from any diagnostic setting is collected in the [AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics) table. This legacy method is used today by many Azure services. Because multiple resource types send data to the same table, its schema is the superset of the schemas of all the different data types being collected. For details on the structure of this table and how it works with this potentially large number of columns, see [AzureDiagnostics reference](/azure/azure-monitor/reference/tables/azurediagnostics).
 
 ### Select the collection mode
 
@@ -111,8 +69,8 @@ The following sample output data is from Azure Event Hubs for a resource log:
     "records": [
         {
             "time": "2019-07-15T18:00:22.6235064Z",
-            "workflowId": "/SUBSCRIPTIONS/00000000-0000-0000-0000-000000000000/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA",
-            "resourceId": "/SUBSCRIPTIONS/00000000-0000-0000-0000-000000000000/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA/RUNS/08587330013509921957/ACTIONS/SEND_EMAIL",
+            "workflowId": "/SUBSCRIPTIONS/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA",
+            "resourceId": "/SUBSCRIPTIONS/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA/RUNS/08587330013509921957/ACTIONS/SEND_EMAIL",
             "category": "WorkflowRuntime",
             "level": "Error",
             "operationName": "Microsoft.Logic/workflows/workflowActionCompleted",
@@ -123,24 +81,24 @@ The following sample output data is from Azure Event Hubs for a resource log:
                 "status": "Failed",
                 "code": "BadGateway",
                 "resource": {
-                    "subscriptionId": "00000000-0000-0000-0000-000000000000",
+                    "subscriptionId": "cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a",
                     "resourceGroupName": "JohnKemTest",
-                    "workflowId": "243aac67fe904cf195d4a28297803785",
+                    "workflowId": "2222cccc-33dd-eeee-ff44-aaaaaa555555",
                     "workflowName": "JohnKemTestLA",
                     "runId": "08587330013509921957",
                     "location": "westus",
                     "actionName": "Send_email"
                 },
                 "correlation": {
-                    "actionTrackingId": "29a9862f-969b-4c70-90c4-dfbdc814e413",
+                    "actionTrackingId": "3333dddd-44ee-ffff-aa55-bbbbbbbb6666",
                     "clientTrackingId": "08587330013509921958"
                 }
             }
         },
         {
             "time": "2019-07-15T18:01:15.7532989Z",
-            "workflowId": "/SUBSCRIPTIONS/00000000-0000-0000-0000-000000000000/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA",
-            "resourceId": "/SUBSCRIPTIONS/00000000-0000-0000-0000-000000000000/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA/RUNS/08587330012106702630/ACTIONS/SEND_EMAIL",
+            "workflowId": "/SUBSCRIPTIONS/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA",
+            "resourceId": "/SUBSCRIPTIONS/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA/RUNS/08587330012106702630/ACTIONS/SEND_EMAIL",
             "category": "WorkflowRuntime",
             "level": "Information",
             "operationName": "Microsoft.Logic/workflows/workflowActionStarted",
@@ -149,16 +107,16 @@ The following sample output data is from Azure Event Hubs for a resource log:
                 "startTime": "2016-07-15T18:01:15.5828115Z",
                 "status": "Running",
                 "resource": {
-                    "subscriptionId": "00000000-0000-0000-0000-000000000000",
+                    "subscriptionId": "cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a",
                     "resourceGroupName": "JohnKemTest",
-                    "workflowId": "243aac67fe904cf195d4a28297803785",
+                    "workflowId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
                     "workflowName": "JohnKemTestLA",
                     "runId": "08587330012106702630",
                     "location": "westus",
                     "actionName": "Send_email"
                 },
                 "correlation": {
-                    "actionTrackingId": "042fb72c-7bd4-439e-89eb-3cf4409d429e",
+                    "actionTrackingId": "ffff5555-aa66-7777-88bb-999999cccccc",
                     "clientTrackingId": "08587330012106702632"
                 }
             }
@@ -183,7 +141,7 @@ insights-logs-{log category name}/resourceId=/SUBSCRIPTIONS/{subscription ID}/RE
 The blob for a network security group might have a name similar to this example:
 
 ```
-insights-logs-networksecuritygrouprulecounter/resourceId=/SUBSCRIPTIONS/00000000-0000-0000-0000-000000000000/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUP/TESTNSG/y=2016/m=08/d=22/h=18/m=00/PT1H.json
+insights-logs-networksecuritygrouprulecounter/resourceId=/SUBSCRIPTIONS/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUP/TESTNSG/y=2016/m=08/d=22/h=18/m=00/PT1H.json
 ```
 
 Each PT1H.json blob contains a JSON object with events from log files that were received during the hour specified in the blob URL. During the present hour, events are appended to the PT1H.json file as they're received, regardless of when they were generated. The minute value in the URL, `m=00` is always `00` as blobs are created on a per hour basis.
@@ -195,7 +153,7 @@ Within the PT1H.json file, each event is stored in the following format. It uses
 > At the start of a new hour, it is possible that existing logs are still being written to the previous hour’s blob while new logs are written to the new hour’s blob.  
 
 ```json
-{"time": "2016-07-01T00:00:37.2040000Z","systemId": "46cdbb41-cb9c-4f3d-a5b4-1d458d827ff1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/s1id1234-5679-0123-4567-890123456789/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{12345678-9012-3456-7890-123456789012}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/ s1id1234-5679-0123-4567-890123456789/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
+{"time": "2016-07-01T00:00:37.2040000Z","systemId": "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{12345678-9012-3456-7890-123456789012}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/ aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
 ```
 
 ## Azure Monitor partner integrations
