@@ -4,13 +4,13 @@ description: Learn how to send Azure resource logs to a Log Analytics workspace,
 services: azure-monitor
 ms.author: bwren
 ms.topic: conceptual
-ms.date: 09/29/2024
+ms.date: 09/30/2024
 ms.reviewer: lualderm
 ---
 
 # Send Azure resource log data Log Analytics workspaces, Event Hubs, or Azure Storage
 
-Azure resource logs are [platform logs](../essentials/platform-logs-overview.md) that provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. Resource logs aren't collected by default. To collect resource logs, you must enable and configure Diagnostic Settings or use data collection rules.   For more information on data collection rules, see [Data collection rules in Azure Monitor](data-collection-rule-overview).  This article describes the [diagnostic setting](diagnostic-settings.md) required for each Azure resource to send its resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage.
+Azure resource logs are [platform logs](../essentials/platform-logs-overview.md) that provide insight into operations that are performed in an Azure resource. The content of resource logs is different for each resource type. Resource logs aren't collected by default. To collect resource logs, you must enable and configure Diagnostic Settings or use data collection rules.   For more information on data collection rules, see [Data collection rules in Azure Monitor](./data-collection-rule-overview).  This article describes the [diagnostic setting](diagnostic-settings.md) required for each Azure resource to send its resource logs to Log Analytics workspaces, Event Hubs, or Azure Storage.
 
 ## Send to Log Analytics workspace
 
