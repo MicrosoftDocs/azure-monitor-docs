@@ -35,7 +35,7 @@ Your original workspace and region are referred to as the **primary**. The repli
 
 The workspace replication process creates an instance of your workspace in the secondary region. The process creates the secondary workspace with the same configuration as your primary workspace, and Azure Monitor automatically updates the secondary workspace with any future changes you make to your primary workspace configuration. 
 
-The secondary workspace is a "shadow" workspace for resiliency purposes only. You can’t see the secondary workspace in the Azure portal, and you can't manage or access it directly.
+The secondary workspace is a "shadow" workspace for resilience purposes only. You can’t see the secondary workspace in the Azure portal, and you can't manage or access it directly.
 
 When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren’t copied over. 
 
@@ -47,6 +47,14 @@ When you switch over, the secondary workspace becomes active and your primary be
 > After you switch over to the secondary region, if the primary region can't process incoming log data, Azure Monitor buffers the data in the secondary region for up to 11 days. During the first four days, Azure Monitor automatically reattempts to replicate the data periodically.
 
 :::image type="content" source="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" alt-text="Diagram that shows ingestion flows during normal and switchover modes." lightbox="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" border="false":::
+
+### Azure Monitor protects in-transit data in the primary region during a regional failure
+
+Azure Monitor uses several mechanisms to protect data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process and replicate the data. Data that isn’t fully processed and ingested isn’t deleted. When the pipeline becomes available, it continues to process the in-transit data, and Azure Monitor ingests and replicates the data.
+
+If the primary region's ingestion endpoint isn't available, Azure Monitor Agent regularly retries sending log data to the endpoint. The data ingestion endpoint in the secondary region starts to receive data from agents a few minutes after you trigger the switchover.
+
+If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. If the client retries sending log data periodically, the data ingestion endpoint in the secondary region starts to receive data from client a few minutes after you trigger the switchover.
 
 
 ### Supported regions
