@@ -17,8 +17,8 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 ## Migrate from Azure Diagnostic extensions for Linux (LAD) and Windows (WAD) to Azure Monitor Agent
 
 - Azure Monitor Agent can collect and send data to multiple destinations, including Log Analytics workspaces, Azure Event Hubs, and Azure Storage.
-- Check whether LAD or WAD are installed on your VM on the VM Extensions blade.
-- Remove LAD or WAD after you set up Azure Monitor Agent to the same data to Event Hubs or Azure Storage to avoid duplicate data. 
+- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
+- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
 - As an alternative to storage, we highly recommend you set up a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
 
 ## Primary scenarios
