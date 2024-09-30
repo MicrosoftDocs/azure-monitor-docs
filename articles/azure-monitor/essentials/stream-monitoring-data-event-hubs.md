@@ -8,19 +8,19 @@ ms.topic: conceptual
 ms.date: 09/30/2024
 ms.reviewer: lualderm
 ---
-# Stream Azure monitoring data to an event hub or external partner
+# Stream Azure monitoring data to an event hub and external partner
 
 An effective method to stream data from Azure Monitor to external tools is by using [Azure Event Hubs](/azure/event-hubs/). This article provides a description of how to stream data to Event Hubs and lists some of the partners that can consume that data from the hub. Some partners integrate with Azure Monitor and have Azure hosted services.
 
 ## Create an Event Hubs namespace
 
-Before you configure streaming for any data source, you need to [create an Event Hubs namespace and event hub](/azure/event-hubs/event-hubs-create). This namespace and event hub is the destination for all of your monitoring data. An Event Hubs namespace is a logical grouping of event hubs that share the same access policy, much like a storage account has individual blobs within that storage account. Consider the following details about the Event Hubs namespace and event hubs that you use for streaming monitoring data:
+Before you configure streaming for a data source, you need to [create an Event Hubs namespace and event hub](/azure/event-hubs/event-hubs-create). This namespace and event hub is the destination for all of your monitoring data. An Event Hubs namespace is a logical grouping of event hubs that share the same access policy, much like a storage account has individual containers for blobs within the storage account. Consider the following details about the Event Hubs namespace and event hubs that you use for streaming monitoring data:
 
 + The number of throughput units allows you to increase throughput scale for your event hubs. Only one throughput unit is typically necessary. If you need to scale up as your log usage increases, you can manually increase the number of throughput units for the namespace or enable auto inflation.
 + The number of partitions allows you to parallelize consumption across many consumers. A single partition can support up to 20 MBps or approximately 20,000 messages per second. Depending on the tool consuming the data, it might or might not support consuming from multiple partitions. Four partitions are reasonable to start with if you're not sure about the number of partitions to set.
 + Set message retention on your event hub to at least seven days. If your consuming tool goes down for more than a day, this retention ensures that the tool can pick up where it left off for events up to seven days old.
 + Use the default consumer group for your event hub. There's no need to create other consumer groups or use a separate consumer group unless you plan to have two different tools consume the same data from the same event hub.
-+ For the Azure activity log, when you select an Event Hubs namespace, and Azure Monitor creates an event hub within that namespace called `insights-logs-operational-logs`. For other log types, you can either choose an existing event hub or have Azure Monitor create an event hub per log category.
++ For the Azure activity log, when you select an Event Hubs namespace, Azure Monitor creates an event hub within that namespace called `insights-logs-operational-logs`. For other log types, you can either choose an existing event hub or have Azure Monitor create an event hub per log category.
 + Outbound port 5671 and 5672 must be opened on the machine or virtual network consuming data from the event hub.
 
 
@@ -36,7 +36,7 @@ Data can be sent to Event Hubs by using the following methods in Azure Monitor:
 + **Diagnostic settings**  
     Use diagnostics setting to stream logs and metrics to Event Hubs. For information on how to set up diagnostic settings, see [Create diagnostic settings](./create-diagnostic-settings.md)
 
-+ **Manually stream using Logic Apps** 
++ **Manually stream using Logic Apps**   
     For data that you can't directly stream to an event hub, you can write to Azure Storage and then you can use a time-triggered logic app that pulls data from Azure Blob Storage and pushes it as a message to the event hub. For more information, see [Connect to an event hub from workflows in Azure Logic Apps](/azure/connectors/connectors-create-api-azure-event-hubs).
 
 
