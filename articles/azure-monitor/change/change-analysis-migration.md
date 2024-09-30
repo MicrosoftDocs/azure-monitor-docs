@@ -10,7 +10,7 @@ ms.subservice: change-analysis
 
 # Migrate to the Azure Resource Graph Change Analysis offering
 
-To better support all Azure subscriptions at scale, Azure Monitor Change Analysis is being retired and replaced by Azure Resource Graph (ARG) Change Analysis. 
+To better support all Azure subscriptions at scale, Azure Monitor Change Analysis is being retired and replaced by Azure Resource Graph Change Analysis. 
 
 ## How to migrate
 
@@ -25,7 +25,7 @@ You can [access the Azure Resource Graph Change Analysis experience in the porta
 
 [See this table for differences in change data.](#differences-between-azure-monitor-change-analysis-classic-and-azure-resource-graph-change-analysis) If you only view resource changes through the portal UI, you don't need to do anything to migrate. All Change Analysis data in the portal is updated to use Azure Resource Graph's new UI.
 
-[Learn more about the Azure Resource Graph Change Analysis portal experience.](/governance/resource-graph/changes/view-resource-changes)
+[Learn more about the Azure Resource Graph Change Analysis portal experience.](/azure/governance/resource-graph/changes/view-resource-changes)
 
 # [PowerShell/Azure CLI](#tab/powershell-cli)
 
@@ -44,7 +44,7 @@ For migrating to Azure Resource Graph Change Analysis, you can query Azure Resou
 
    Azure Resource Graph queries use the full power of Kusto Query Language (KQL), enabling more granular filtering to see specific values, as opposed to returning all values like the classic method. 
 
-[Learn more using guidance provided by Azure Resource Graph](/governance/resource-graph/changes/get-resource-changes).
+[Learn more using guidance provided by Azure Resource Graph](/azure/governance/resource-graph/changes/get-resource-changes).
 
 # [REST APIs](#tab/rest-apis)
 
@@ -71,7 +71,7 @@ At a high level, the Azure Resource Graph Change Analysis offers:
 
 - **Change Actor Identification:** Gain visibility into the individuals responsible for making changes and the methods used for those modifications. 
 
-[Learn more about the Azure Resource Graph Change Analysis.](/governance/resource-graph/changes/resource-graph-changes)  
+[Learn more about the Azure Resource Graph Change Analysis.](/azure/governance/resource-graph/changes/resource-graph-changes)  
 
 ## Differences between Azure Monitor Change Analysis (Classic) and Azure Resource Graph Change Analysis
 
@@ -96,6 +96,6 @@ At a high level, the Azure Resource Graph Change Analysis offers:
 ## Next steps
 
 Learn more about the Azure Resource Graph Change Analysis:
-- [Analyze changes to your Azure resources](/governance/resource-graph/changes/resource-graph-changes)
-- [Get resource changes](/governance/resource-graph/changes/get-resource-changes)
-- [View resource changes in the portal](/governance/resource-graph/changes/view-resource-changes)
+- [Analyze changes to your Azure resources](/azure/governance/resource-graph/changes/resource-graph-changes)
+- [Get resource changes](/azure/governance/resource-graph/changes/get-resource-changes)
+- [View resource changes in the portal](/azure/governance/resource-graph/changes/view-resource-changes)
