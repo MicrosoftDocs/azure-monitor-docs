@@ -2,17 +2,14 @@
 title: Diagnose with live metrics - Application Insights - Azure Monitor
 description: Monitor your web app in real time with custom metrics, and diagnose issues with a live feed of failures, traces, and events.
 ms.topic: conceptual
-ms.date: 08/11/2023
-ms.reviewer: sdash
+ms.date: 10/30/2024
+ms.reviewer: cogoodson
 ms.devlang: csharp
 ---
 
 # Live metrics: Monitor and diagnose with 1-second latency
 
-Monitor your live, in-production web application by using live metrics (also known as QuickPulse) from [Application Insights](./app-insights-overview.md). You can select and filter metrics and performance counters to watch in real time, without any disturbance to your service. You can also inspect stack traces from sample failed requests and exceptions. Together with [Profiler](./profiler.md) and [Snapshot Debugger](./snapshot-debugger.md), live metrics provide a powerful and noninvasive diagnostic tool for your live website.
-
-> [!NOTE]
-> Live metrics only support TLS 1.2. For more information, see [Troubleshooting](#troubleshooting).
+Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. Combined with [Profiler](./profiler.md) and [Snapshot Debugger](./snapshot-debugger.md), the live metrics experience is a powerful diagnostic tool.
 
 With live metrics, you can:
 
@@ -26,15 +23,7 @@ With live metrics, you can:
 
 :::image type="content" source="./media/live-stream/live-metric.png" lightbox="./media/live-stream/live-metric.png" alt-text="Screenshot that shows the live metrics tab.":::
 
-Live metrics are currently supported for ASP.NET, ASP.NET Core, Azure Functions, Java, and Node.js apps.
-
-> [!NOTE]
-> The number of monitored server instances displayed by live metrics might be lower than the actual number of instances allocated for the application. This mismatch is because many modern web servers will unload applications that don't receive requests over a period of time to conserve resources. Because live metrics only count servers that are currently running the application, servers that have already unloaded the process won't be included in that total.
-
 ## Get started
-
-> [!IMPORTANT]
-> To enable Application Insights, ensure that it's activated in the Azure portal and your app is using a recent version of the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) or Classic [Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package. Without the NuGet package, some telemetry is sent to Application Insights, but that telemetry won't show in the live metrics pane.
 
 1. Follow language-specific guidelines to enable live metrics:
 
@@ -146,9 +135,19 @@ Basic metrics include request, dependency, and exception rate. Performance metri
 
 ## Troubleshooting
 
-Live metrics use different IP addresses than other Application Insights telemetry. Make sure [those IP addresses](../ip-addresses.md) are open in your firewall. Also check that [outgoing ports for live metrics](../ip-addresses.md#outgoing-ports) are open in the firewall of your servers.
+The following section discusses common troubleshooting scenarios for the live metrics experience.
+
+### Missing live metrics data
+
+The live metrics experience uses different IP addresses than other Application Insights telemetry. Make sure [those IP addresses](../ip-addresses.md) are open in your firewall. Also check that [outgoing ports for live metrics](../ip-addresses.md#outgoing-ports) are open in the firewall of your servers.
 
 As described in the [Azure TLS 1.2 migration announcement](https://azure.microsoft.com/updates/azuretls12/), live metrics now only support TLS 1.2. If you're using an older version of TLS, the live metrics pane doesn't display any data. For applications based on .NET Framework 4.5.1, see [Enable Transport Layer Security (TLS) 1.2 on clients - Configuration Manager](/mem/configmgr/core/plan-design/security/enable-tls-1-2-client#bkmk_net) to support the newer TLS version.
+
+Validate Application Insights is enabled and your app is using a recent version of the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md). If you're using the.NET Classic API, install the [Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
+
+### Low number of monitored server instances
+
+The number of monitored server instances displayed by live metrics might be lower than the actual number of instances allocated for the application. This mismatch is because many modern web servers will unload applications that don't receive requests over a period of time to conserve resources. Because live metrics only count servers that are currently running the application, servers that have already unloaded the process won't be included in that total.
 
 ### Missing configuration for .NET
 
