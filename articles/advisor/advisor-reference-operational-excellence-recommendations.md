@@ -524,7 +524,11 @@ Azure Front Door Standard and Premium combine the capabilities of static and dyn
 
 Learn more about [Azure Front Door (classic) will be retired on 31 March 2027](https://azure.microsoft.com/updates/azure-front-door-classic-will-be-retired-on-31-march-2027/).
 
+### Migrate Azure CDN Standard from Microsoft (Classic) to Azure Front Door Standard/Premium tier
 
+Azure CDN Standard from Microsoft (classic) will be retired on 30 September 2027. We encourage you to use the zero down-time migration tool to migrate to the Azure Front Door Standard and Premium SKUs which have feature parity with Azure CDN Standard from Microsoft (classic), as well as new features and security enhancements.
+
+Learn more about [Migrate Azure CDN from Microsoft (classic) to Standard/Premium tier](https://learn.microsoft.com/azure/cdn/migrate-tier)
 
 ## SAP for Azure
 
