@@ -28,18 +28,6 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
 ## What's supported
 
 ### Data types
-@@ -46,7 +56,7 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting
-### Data types
-
-- Windows:
-   - ETW Logs (Coming in a later released)
-**Footnotes**
-
-<a name="FN1">1</a>: Not all data types are supported; refer to [What's supported](#whats-supported) for specifics.
-
-## What's supported
-
-### Data types
 
 - Windows:
    - Windows Event Logs – to eventhub and storage
@@ -62,11 +50,10 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
 ### Data types
 
 - Windows:
-   - ETW Logs
+   - ETW Logs (Coming in a later released)
    - Windows Crash Dumps (not planned nor will be supported)
    - Application Logs (not planned nor will be supported)
    - .NET event source logs (not planned nor will be supported)
-
 ## Prerequisites
 
 A managed identity (either system or user) associated with the resources below. We highly recommend using [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for better scalability and performance.
