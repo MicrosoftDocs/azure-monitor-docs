@@ -47,7 +47,7 @@ With live metrics, you can:
 
 2. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
 
-3. [Secure the control channel](#secure-the-control-channel) if you might use sensitive data like customer names in your filters.
+3. [Secure the control channel](#secure-the-control-channel) by enabling [Microsoft Entra authentication](./azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
