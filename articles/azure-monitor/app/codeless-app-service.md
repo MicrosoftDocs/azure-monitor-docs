@@ -2,7 +2,7 @@
 title: Monitor Azure App Service performance | Microsoft Docs
 description: Application performance monitoring for Azure App Service. Chart load and response time, dependency information, and set alerts on performance.
 ms.topic: conceptual
-ms.date: 09/30/2024
+ms.date: 10/01/2024
 ms.custom:
 ms.author: v-nawrothkai
 ms.reviewer: abinetabate
@@ -10,9 +10,7 @@ ms.reviewer: abinetabate
 
 # Application monitoring for Azure App Service
 
-Autoinstrumentation is the easiest way to enable Application Insights for Azure App Serive without requiring any code changes or advanced configurations. It's often referred to as *runtime* monitoring. Based on your specific scenario, you can evaluate whether more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options) is needed.
-
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+Autoinstrumentation is the easiest way to enable Application Insights for Azure App Serive without requiring any code changes or advanced configurations. It's often referred to as *runtime* monitoring. Based on your specific scenario, you can evaluate whether more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options) is required.
 
 > [!IMPORTANT]
 > When you enable autoinstrumentation, it enables Application Insights with default settings, which include sampling. Your sampling settings in **Application Insights** > **Usage and estimated costs** > **Data sampling** will be ignored, even if set to **All Data 100%**.
@@ -27,8 +25,11 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 ### [ASP.NET Core](#tab/aspnetcore)
 
 > [!IMPORTANT]
-> * Only .NET Core [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) is supported for autoinstrumentation.
-> * [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](./asp-net-core.md) via code instead.
+> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
+
+> [!NOTE]
+> * Only .NET Core [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) (LTS) releases are supported.
+> * [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](./asp-net-core.md) instead.
 
 1. Select **Application Insights** in the left pane for your app service. Then select **Enable**.
 
@@ -47,10 +48,8 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 
 ### [.NET](#tab/net)
 
-> [!NOTE]
-> Manually adding an Application Insights site extension via **Development Tools** > **Extensions** is deprecated. This method of extension installation was dependent on manual updates for each new version. The latest stable release of the extension is now [preinstalled](https://github.com/projectkudu/kudu/wiki/Azure-Site-Extensions) as part of the App Service image. The files are located in *d:\Program Files (x86)\SiteExtensions\ApplicationInsightsAgent* and are automatically updated with each stable release. If you follow the autoinstrumentation instructions to enable monitoring, it will automatically remove the deprecated extension for you.
-
-If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
+> [!IMPORTANT]
+> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
 
 > [!NOTE]
 > The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported. For more information, see the explanation in the [Troubleshooting section](#appinsights_javascript_enabled-and-urlcompression-isnt-supported).
@@ -93,14 +92,12 @@ If both autoinstrumentation monitoring and manual SDK-based instrumentation are 
 
 ### [Java](#tab/java)
 
-Monitoring of your Java web applications running on [Azure App Services](/azure/app-service/) doesn't require any modifications to the code. This article walks you through enabling Azure Monitor Application Insights monitoring and provides preliminary guidance for automating the process for large-scale deployments.
-
 > [!NOTE]
 > With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described below.
 
 The recommended way to enable application monitoring for Java applications running on Azure App Services is through Azure portal. Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes. You can apply extra configurations, and then based on your specific scenario you [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry) if needed.
 
-#### Autoinstrumentation through Azure portal
+#### Autoinstrumentation in the Azure portal
 
 You can turn on monitoring for your Java apps running in Azure App Service just with one selection, no code change required. The integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?tabs=java) and auto-collects telemetry.
 
@@ -125,9 +122,7 @@ You can turn on monitoring for your Java apps running in Azure App Service just 
     
 #### Manually deploy the latest Application Insights Java version
 
-The Application Insights Java version is updated automatically as part of App Services updates.
-
-If you encounter an issue that's fixed in the latest version of Application Insights Java, you can update it manually. 
+The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that's fixed in the latest version of Application Insights Java, you can update it manually. 
 
 To manually update, follow these steps:
 
@@ -158,13 +153,13 @@ To manually update, follow these steps:
 
 ### [Node.js](#tab/nodejs)
 
-The easiest way to enable application monitoring for Node.js applications running on Azure App Services is through Azure portal.
-Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes.
+> [!IMPORTANT]
+> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
 
 >[!NOTE]
 > You can configure the automatically attached agent using the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable in the App Service Environment variable blade. For details on the configuration options that can be passed via this environment variable, see [Node.js Configuration](https://github.com/microsoft/ApplicationInsights-node.js#Configuration).
 
-#### Autoinstrumentation through Azure portal
+#### Autoinstrumentation in the Azure portal
 
 You can turn on monitoring for your Node.js apps running in Azure App Service just with one click, no code change required.
 Application Insights for Node.js is integrated with Azure App Service on Linux - both code-based and custom containers, and with App Service on Windows for code-based apps.
@@ -416,6 +411,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ---
 
+<!--
 ## Upgrade monitoring extension/agent
 
 ### [ASP.NET Core](#tab/aspnetcore)
@@ -475,8 +471,13 @@ If the upgrade is done from a version prior to 2.5.1, check that the Application
 ...
 
 ---
+-->
 
 ## Troubleshooting
+
+[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
+
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -530,10 +531,6 @@ What follows is our step-by-step troubleshooting guide for extension/agent-based
 When you create a web app with the ASP.NET Core runtimes in App Service, it deploys a single static HTML page as a starter website. The static webpage also loads an ASP.NET-managed web part in IIS. This behavior allows for testing codeless server-side monitoring but doesn't support automatic client-side monitoring.
 
 If you want to test out codeless server and client-side monitoring for ASP.NET Core in an App Service web app, we recommend that you follow the official guides for [creating an ASP.NET Core web app](/azure/app-service/quickstart-dotnetcore). Then use the instructions in the current article to enable monitoring.
-
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
 #### PHP and WordPress aren't supported
 
@@ -591,10 +588,6 @@ An error occurs because the `APPINSIGHTS_JAVASCRIPT_ENABLED` application setting
 
 For the latest information on the Application Insights agent/extension, see the [release notes](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/app-insights-web-app-extensions-releasenotes.md).
 
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
-
 #### PHP and WordPress aren't supported
 
 PHP and WordPress sites aren't supported. There's currently no officially supported SDK/agent for server-side monitoring of these workloads. You can manually instrument client-side transactions on a PHP or WordPress site by adding the client-side JavaScript to your webpages by using the [JavaScript SDK](./javascript.md).
@@ -635,10 +628,6 @@ Use our step-by-step guide to troubleshoot Java-based applications running on Az
 
 1. After enabling application monitoring for your Java app, you can validate that the agent is working by looking at the live metrics - even before you deploy and app to App Service you'll see some requests from the environment. Remember that the full set of telemetry is only available when you have your app deployed and running. 
 1. Set APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL environment variable to 'debug' if you don't see any errors and there's no telemetry
-
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ### [Node.js](#tab/nodejs)
 
@@ -708,10 +697,6 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 
     If `SDKPresent` is true this indicates that the extension detected that some aspect of the SDK is already present in the Application, and will back-off.
 
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
-
 ### [Python (Preview)](#tab/python)
 
 Here we provide our troubleshooting guide for monitoring Python applications on Azure App Services using autoinstrumentation.
@@ -763,8 +748,6 @@ The `applicationinsights-extension.log` file in the same folder may show other h
 #### Django apps
 
 If your app uses Django and is either failing to start or using incorrect settings, make sure to set the `DJANGO_SETTINGS_MODULE` environment variable. See the [Django Instrumentation](#django-instrumentation) section for details.
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
 For the latest updates and bug fixes, [consult the release notes](web-app-extension-release-notes.md).
 
@@ -1029,9 +1012,7 @@ The details depend on the type of project. For a web application:
 ## Next steps
 
 * [Run the Profiler on your live app](./profiler.md).
-* [Monitor Azure Functions with Application Insights](monitor-functions.md).
 * [Enable Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md) to be sent to Application Insights.
 * [Monitor service health metrics](../data-platform.md) to make sure your service is available and responsive.
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.
-* Use [Application Insights for JavaScript apps and webpages](javascript.md) to get client telemetry from the browsers that visit a webpage.
 * [Availability](availability-overview.md)
