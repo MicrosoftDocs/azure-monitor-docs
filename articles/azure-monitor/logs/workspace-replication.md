@@ -50,7 +50,7 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 #### Protection of data in transit in the primary region during a regional failure
 
-Azure Monitor has several mechanisms that ensure that data in transit isn’t lost when there's a regional failure. 
+Azure Monitor has several mechanisms to ensure that data in transit isn’t lost when there's a failure in the primary region. 
 
 Azure Monitor protects data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process the data. When the pipeline becomes available, it continues to process data in transit, and Azure Monitor ingests and replicates the data to the secondary region.
 
