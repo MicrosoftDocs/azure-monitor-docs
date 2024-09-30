@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 09/29/2024
+ms.date: 09/30/2024
 ---
 
 # Reliability recommendations
@@ -1492,7 +1492,7 @@ Auto-upgrade of Self-hosted Integration runtime has been disabled. Know that you
   
 **Potential benefits**: To get the latest changes and bug fixes on the Self-Hosted Integration runtime
   
-For More information, see [Self-hosted integration runtime auto-update and expire notification](https://aka.ms/shirexpirynotification)  
+For More information, see [Self-hosted integration runtime autoupdate and expire notification](https://aka.ms/shirexpirynotification)  
 
 <!--939b97dc-fdca-4324-ba36-6ea7e1ab399b_end-->
   
