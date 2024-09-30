@@ -44,7 +44,7 @@ In Azure diagnostics mode, all data from any diagnostic setting is collected in 
 
 The AzureDiagnostics table contains the resourceId of the resource that generated the log, the category of the log, and the time the log was generated as well as resource specific properties.
 
-:::image type="content" source="./media/resource-logs/azure-diagnostics-table.png" lightbox="./media/resource-logs/azure-diagnostics-table.png" alt-text="A screenshot showing the AzureDiagnostics table in an Log Analytics workspace.":::
+:::image type="content" source="./media/resource-logs/azure-diagnostics-table.png" lightbox="./media/resource-logs/azure-diagnostics-table.png" alt-text="A screenshot showing the AzureDiagnostics table in a Log Analytics workspace.":::
 
 ### Select the collection mode
 
