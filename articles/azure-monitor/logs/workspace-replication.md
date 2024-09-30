@@ -50,7 +50,9 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 #### In-transit data protection in the primary region during a regional failure
 
-Azure Monitor uses several mechanisms to protect data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process and replicate the data. Data that isn’t fully processed and ingested isn’t deleted. When the pipeline becomes available, it continues to process the in-transit data, and Azure Monitor ingests and replicates the data.
+Azure Monitor Data has several mechanisms that ensure that data in-transit data isn’t lost when there's a regional failure. 
+
+Azure Monitor protects data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process the data. When the pipeline becomes available, it continues to process in-transit data, and Azure Monitor ingests and replicates the data to the secondary region.
 
 If the primary region's ingestion endpoint isn't available, Azure Monitor Agent regularly retries sending log data to the endpoint. The data ingestion endpoint in the secondary region starts to receive data from agents a few minutes after you trigger switchover.
 
