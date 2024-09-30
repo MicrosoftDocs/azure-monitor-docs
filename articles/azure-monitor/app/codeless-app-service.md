@@ -15,9 +15,6 @@ Autoinstrumentation is the easiest way to enable Application Insights for Azure 
 > [!IMPORTANT]
 > When you enable autoinstrumentation, it enables Application Insights with default settings, which include sampling. Your sampling settings in **Application Insights** > **Usage and estimated costs** > **Data sampling** will be ignored, even if set to **All Data 100%**.
 
-> [!NOTE]
-> Snapshot Debugger and Profiler are only available in .NET and .NET Core.
-
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## Enable Application Insights
@@ -95,7 +92,7 @@ Autoinstrumentation is the easiest way to enable Application Insights for Azure 
 > [!NOTE]
 > With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described below.
 
-The recommended way to enable application monitoring for Java applications running on Azure App Services is through Azure portal. Turning on application monitoring in Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes. You can apply extra configurations, and then based on your specific scenario you [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry) if needed.
+Turning on application monitoring in the Azure portal will automatically instrument your application with Application Insights, and doesn't require any code changes. You can apply extra configurations and based on your specific scenario [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry) if needed.
 
 #### Autoinstrumentation in the Azure portal
 
@@ -161,13 +158,11 @@ To manually update, follow these steps:
 
 #### Autoinstrumentation in the Azure portal
 
-You can turn on monitoring for your Node.js apps running in Azure App Service just with one click, no code change required.
-Application Insights for Node.js is integrated with Azure App Service on Linux - both code-based and custom containers, and with App Service on Windows for code-based apps.
-The integration is in public preview. The integration adds Node.js SDK, which is in GA.
+Application Insights for Node.js is integrated with Azure App Service on Linux - both code-based and custom containers, and with App Service on Windows for code-based apps. The integration is in public preview.
 
 1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
 
-    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected."::: 
+    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected.":::
 
 2. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
@@ -201,8 +196,6 @@ The full [set of configurations](https://github.com/microsoft/ApplicationInsight
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-Monitor your Python web applications on Azure App Services without modifying the code. This guide shows you how to enable Azure Monitor Application Insights and offers tips for automating large-scale deployments.
-
 The integration instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. After instrumenting, you collect calls and metrics from these Python libraries:
 
 | Instrumentation | Supported library Name | Supported versions |
@@ -222,17 +215,16 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 
 The easiest way to monitor Python applications on Azure App Services is through the Azure portal.
 
-Activating monitoring in the Azure portal automatically instruments your application with Application Insights and requires no code changes.
-
 > [!NOTE]
 > You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
 
 #### Prerequisites
 
-* Python version 3.11 or prior.
-* App Service must be deployed as code. Custom containers aren't supported.
+> [!div class="checklist"]
+> * Python version 3.11 or prior.
+> * App Service must be deployed as code. Custom containers aren't supported.
 
-#### Autoinstrumentation through Azure portal
+#### Autoinstrumentation in the Azure portal
 
 Toggle on monitoring for your Python apps in Azure App Service with no code changes required.
 
@@ -259,8 +251,8 @@ The integration is in public preview. It adds the Python SDK, which is in GA.
 
 You can configure with [OpenTelemetry environment variables](https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/) such as:
 
-| **Environment Variable**                       | **Description**                                     |
-|--------------------------------------------|----------------------------------------------------|
+| **Environment Variable** | **Description** |
+|--------------------------|-----------------|
 | `OTEL_SERVICE_NAME`, `OTEL_RESOURCE_ATTRIBUTES` | Specifies the OpenTelemetry [Resource Attributes](https://opentelemetry.io/docs/specs/otel/resource/sdk/) associated with your application. You can set any Resource Attributes with [OTEL_RESOURCE_ATTRIBUTES](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry-sdk-environment-variables) or use [OTEL_SERVICE_NAME](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry.sdk.environment_variables.OTEL_SERVICE_NAME) to only set the `service.name`. |
 | `OTEL_LOGS_EXPORTER` | If set to `None`, disables collection and export of logging telemetry. |
 | `OTEL_METRICS_EXPORTER` | If set to `None`, disables collection and export of metric telemetry. |
@@ -330,11 +322,9 @@ Python doesn't support client-side monitoring.
 
 ## Automate monitoring
 
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
+In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
 
 ### [ASP.NET Core](#tab/aspnetcore)
-
-To enable telemetry collection with Application Insights, only the application settings must be set.
 
 :::image type="content"source="./media/azure-web-apps-net-core/application-settings-net-core.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
 
@@ -348,22 +338,18 @@ To enable telemetry collection with Application Insights, only the application s
 
 ### [.NET](#tab/net)
 
-To enable telemetry collection with Application Insights, only application settings need to be set.
-
 :::image type="content"source="./media/azure-web-apps-net/application-settings-net.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
 
 #### Application settings definitions
 
 | App setting name | Definition | Value |
 |------------------|:-----------|------:|
-|ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` |
-|XDT_MicrosoftApplicationInsights_Mode |  In default mode, only essential features are enabled to ensure optimal performance. | `default` or `recommended` |
-|InstrumentationEngine_EXTENSION_VERSION | Controls if the binary-rewrite engine `InstrumentationEngine` will be turned on. This setting has performance implications and affects cold start/startup time. | `~1` |
-|XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text will be captured along with the dependency calls. Performance warning: Application cold startup time will be affected. This setting requires the `InstrumentationEngine`. | `~1` |
+| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` |
+| XDT_MicrosoftApplicationInsights_Mode |  In default mode, only essential features are enabled to ensure optimal performance. | `default` or `recommended` |
+| InstrumentationEngine_EXTENSION_VERSION | Controls if the binary-rewrite engine `InstrumentationEngine` will be turned on. This setting has performance implications and affects cold start/startup time. | `~1` |
+| XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text will be captured along with the dependency calls. Performance warning: Application cold startup time will be affected. This setting requires the `InstrumentationEngine`. | `~1` |
 
 ### [Java](#tab/java)
-
-In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
 
 :::image type="content"source="./media/azure-web-apps-java/application-settings-java.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings.":::
 
@@ -375,11 +361,9 @@ In order to enable telemetry collection with Application Insights, only the foll
 | XDT_MicrosoftApplicationInsights_Java      | Flag to control if Java agent is included.         | 0 or 1 (only applicable in Windows). |
 
 > [!NOTE]
-> Profiler and snapshot debugger are not available for Java applications.
+> Profiler and Snapshot Debugger are not available for Java applications.
 
 ### [Node.js](#tab/nodejs)
-
-In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
 
 :::image type="content"source="./media/azure-web-apps-nodejs/application-settings-nodejs.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings."::: 
 
@@ -395,21 +379,21 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ### [Python (Preview)](#tab/python)
 
-In order to enable telemetry collection with Application Insights, only the following Application settings need to be set:
-
 :::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
 
 #### Application settings definitions
 
-| App setting name                           | Definition                                                | Value                                    |
-|--------------------------------------------|-----------------------------------------------------------|-----------------------------------------:|
-| APPLICATIONINSIGHTS_CONNECTION_STRING      | Connections string for your Application Insights resource | Example: abcd1234-ab12-cd34-abcd1234abcd |
-| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring.        | `~3`                                     |
+| App setting name                           | Definition                                                 | Value                                    |
+|--------------------------------------------|------------------------------------------------------------|-----------------------------------------:|
+| APPLICATIONINSIGHTS_CONNECTION_STRING      | Connections string for your Application Insights resource. | Example: abcd1234-ab12-cd34-abcd1234abcd |
+| ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring.         | `~3`                                     |
 
 > [!NOTE]
-> Profiler and snapshot debugger are not available for Python applications
+> Profiler and Snapshot Debugger are not available for Python applications.
 
 ---
+
+[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
 <!--
 ## Upgrade monitoring extension/agent
@@ -474,10 +458,6 @@ If the upgrade is done from a version prior to 2.5.1, check that the Application
 -->
 
 ## Troubleshooting
-
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -752,6 +732,10 @@ If your app uses Django and is either failing to start or using incorrect settin
 For the latest updates and bug fixes, [consult the release notes](web-app-extension-release-notes.md).
 
 ---
+
+[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
+
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## Release notes
 
