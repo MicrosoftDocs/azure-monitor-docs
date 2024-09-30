@@ -7,7 +7,7 @@ ms.date: 09/26/2024
 
 # Quick Fix remediation for Advisor
 
-The **Quick Fix** feature provides a faster and easier way to remediate a recommendation on multiple resources. *The **Quick Fix** feature allows you to used bulk remediations for resources. The **Quick Fix** feature helps you to quickly optimize and scale your subscription with remediation for your resources.
+The **Quick Fix** feature provides a faster and easier way to remediate a recommendation on multiple resources. The **Quick Fix** feature allows you to used bulk remediations for resources. The **Quick Fix** feature helps you to quickly optimize and scale your subscription with remediation for your resources.
 The **Quick Fix** feature is only available for specific recommendations using Azure portal.
 
 
@@ -15,14 +15,14 @@ The **Quick Fix** feature is only available for specific recommendations using A
 
 1.  On the list of recommendations, select a recommendation with the **Quick Fix** label.
 
-    :::image alt-text="List of recommendations with Quick Fix labels in Azure Advisor." lightbox="./media/advisor-all-recommendations-label-quick-fix.png" source="./media/advisor-all-recommendations-label-quick-fix-preview.png" type="content":::
+    :::image alt-text="Screenshot showing a list of recommendations with Quick Fix labels in Azure Advisor." lightbox="./media/advisor-all-recommendations-label-quick-fix.png" source="./media/advisor-all-recommendations-label-quick-fix-preview.png" type="content":::
 
     > [!NOTE]
     > Prices in the image are only for example purposes.
 
-1.  On the Recommendation details page, the list of resources associated with the recommendation. Select all of the resources you want to remediate.
+1.  On the Recommendation details page, review the list of resources associated with the recommendation. Select all of the resources you want to remediate.
 
-    :::image alt-text="The Impacted resources window with list items and the highlighted Quick Fix button." lightbox="./media/quick-fix-2.png" source="./media/quick-fix-2.png" type="content":::
+    :::image alt-text="Screenshot showing the Impacted resources window with list items and the highlighted Quick Fix button." lightbox="./media/quick-fix-2.png" source="./media/quick-fix-2.png" type="content":::
 
     > [!NOTE]
     > Prices in the image are only for example purposes.

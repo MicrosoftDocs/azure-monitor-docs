@@ -38,7 +38,7 @@ You can track the progress you make over time by viewing your overall score and 
 
 1. Select **Advisor score** on the left pane to open the score page.
 
-:::image alt-text="The entry point of Advisor Score in Azure Advisor." lightbox="./media/advisor-score.png" source="./media/advisor-score-preview.png" type="content":::
+:::image alt-text="Screenshot showing the entry point of Advisor Score in Azure Advisor." lightbox="./media/advisor-score.png" source="./media/advisor-score-preview.png" type="content":::
 
 ## Interpret an Advisor score
 
@@ -50,7 +50,7 @@ Advisor displays your overall Advisor score and a breakdown for Advisor categori
 
 The contribution of each recommendation to your category score is shown clearly on the **Advisor score** page in the Azure portal. You can increase each category score by the percentage point listed in the **Potential score increase** column. This value reflects both the weight of the recommendation within the category and the predicted ease of implementation to address the potentially easiest tasks. Focusing on the recommendations with the greatest score impact helps you make the most progress with time.
 
-:::image alt-text="The reliability score impact of a recommendation." lightbox="./media/advisor-score-reliability-score-impact.png" source="./media/advisor-score-reliability-score-impact-preview.png" type="content":::
+:::image alt-text="Screenshot showing the reliability score impact of a recommendation." lightbox="./media/advisor-score-reliability-score-impact.png" source="./media/advisor-score-reliability-score-impact-preview.png" type="content":::
 
 If any Advisor recommendations aren't relevant for an individual resource, you can postpone or dismiss those recommendations. They're excluded from the score calculation with the next refresh. Advisor also uses this input as feedback to improve the model.
 
