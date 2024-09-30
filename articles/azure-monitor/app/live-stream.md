@@ -9,23 +9,24 @@ ms.devlang: csharp
 
 # Live metrics: Monitor and diagnose with 1-second latency
 
-Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. Combined with [Profiler](./profiler.md) and [Snapshot Debugger](./snapshot-debugger.md), the live metrics experience is a powerful diagnostic tool.
+Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. The live metrics experience is a powerful diagnostic tool when combined with [Profiler](./profiler.md) and [Snapshot Debugger](./snapshot-debugger.md).
 
 With live metrics, you can:
 
-* Validate a fix while it's released by watching performance and failure counts.
-* Watch the effect of test loads and diagnose issues live.
-* Focus on particular test sessions or filter out known issues by selecting and filtering the metrics you want to watch.
-* Get exception traces as they happen.
-* Experiment with filters to find the most relevant KPIs.
-* Monitor any Windows performance counter live.
-* Easily identify a server that's having issues and filter all the KPI/live feed to just that server.
+> [!div class="checklist"]
+> - Validate a fix while it's released by watching performance and failure counts.
+> - Watch the effect of test loads and diagnose issues live.
+> - Focus on particular test sessions or filter out known issues by selecting and filtering the metrics you want to watch.
+> - Get exception traces as they happen.
+> - Experiment with filters to find the most relevant KPIs.
+> - Monitor any Windows performance counter live.
+> - Easily identify a server that's having issues and filter all the KPI/live feed to just that server.
 
 :::image type="content" source="./media/live-stream/live-metric.png" lightbox="./media/live-stream/live-metric.png" alt-text="Screenshot that shows the live metrics tab.":::
 
 ## Get started
 
-1. Follow language-specific guidelines to enable live metrics:
+1. Enable live metrics by following language-specific guidelines:
 
   # [OpenTelemetry (Recommended)](#tab/otel)
 
@@ -65,7 +66,7 @@ With live metrics, you can:
 
 These capabilities are available with ASP.NET, ASP.NET Core, and Azure Functions (v2).
 
-You can monitor custom KPI live by applying arbitrary filters on any Application Insights telemetry from the portal. Select the filter control that shows when you mouse-over any of the charts. The following chart plots a custom **Request** count KPI with filters on **URL** and **Duration** attributes. Validate your filters with the stream preview section that shows a live feed of telemetry that matches the criteria you've specified at any point in time.
+You can monitor custom performance indicators live by applying arbitrary filters on any Application Insights telemetry from the portal. Select the filter control that shows when you mouse-over any of the charts. The following chart plots a custom **Request** count KPI with filters on **URL** and **Duration** attributes. Validate your filters with the stream preview section that shows a live feed of telemetry that matches the criteria you've specified at any point in time.
 
 :::image type="content" source="./media/live-stream/filter-request.png" lightbox="./media/live-stream/filter-request.png" alt-text="Screenshot that shows the Filter request rate.":::
 
@@ -77,7 +78,7 @@ Along with Application Insights telemetry, you can also monitor any Windows perf
 
 Live metrics are aggregated at two points: locally on each server and then across all servers. You can change the default at either one by selecting other options in the respective dropdown lists.
 
-## Sample telemetry: Custom live diagnostic events
+## Sample telemetry: custom live diagnostic events
 By default, the live feed of events shows samples of failed requests and dependency calls, exceptions, events, and traces. Select the filter icon to see the applied criteria at any point in time.
 
 :::image type="content" source="./media/live-stream/filter.png" lightbox="./media/live-stream/filter.png" alt-text="Screenshot that shows the Filter button.":::
@@ -101,17 +102,10 @@ If you want to monitor a particular server role instance, you can filter by serv
 
 ## Secure the control channel
 
-Live metrics custom filters allow you to control which of your application's telemetry is streamed to the live metrics pane in the Azure portal. The filters criteria are sent to the apps that are instrumented with the Application Insights SDK. The filter value could potentially contain sensitive information, such as the customer ID. To keep this value secured and prevent potential disclosure to unauthorized applications, secure the live metrics channel by using [Microsoft Entra authentication](./azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication).
+Secure the live metrics control channel by enabling [Microsoft Entra authentication](./azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication), which prevents unauthorized disclosure of potentially sensitive information entered into custom filters.
 
 > [!NOTE]
 > On September 30, 2025, API keys used to stream live metrics telemetry into Application Insights will be retired. After that date, applications that use API keys won't be able to send live metrics data to your Application Insights resource. Authenticated telemetry ingestion for live metrics streaming to Application Insights will need to be done with [Microsoft Entra authentication for Application Insights](./azure-ad-authentication.md).
-
-It's possible to try custom filters without having to set up an authenticated channel. Select any of the filter icons and authorize the connected servers. If you choose this option, you have to authorize the connected servers once every new session or whenever a new server comes online.
-
-> [!WARNING]
-> We strongly discourage the use of unsecured channels and will disable this option six months after you start using it. The **Authorize connected servers** dialog displays the date after which this option will be disabled.
-
-:::image type="content" source="media/live-stream/live-stream-auth.png" alt-text="Screenshot that shows the Authorize connected servers dialog." lightbox="media/live-stream/live-stream-auth.png":::
 
 ## Supported features table
 
@@ -145,9 +139,19 @@ As described in the [Azure TLS 1.2 migration announcement](https://azure.microso
 
 Validate Application Insights is enabled and your app is using a recent version of the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md). If you're using the.NET Classic API, install the [Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
 
+### Authorize connected servers: This option will not be available
+
+We strongly discourage the use of unsecured channels.
+
+If you choose to try custom filters without setting up an authenticated channel, you'll have to authorize connected servers in every new session or when new servers come online. Further, the use of unsecured channels will be automatically disabled after six months.
+
+A dialog will display a warning, "You can stream metrics and events with custom filters, which are sent back to your app. Avoid entering potentially sensitive information (such as customer ID), until you set up an authenticated channel. However, if you recognize and trust all servers below, you can try custom filters without authentication. This option will not be available after ##/##/####. Servers connected without authentication:"
+
+To fix this warning, see [Secure the control channel](#secure-the-control-channel).
+
 ### Low number of monitored server instances
 
-The number of monitored server instances displayed by live metrics might be lower than the actual number of instances allocated for the application. This mismatch is because many modern web servers will unload applications that don't receive requests over a period of time to conserve resources. Because live metrics only count servers that are currently running the application, servers that have already unloaded the process won't be included in that total.
+The number of monitored server instances displayed by live metrics might be lower than the actual number of instances allocated for the application. This mismatch is because many modern web servers unload applications that don't receive requests over a period of time to conserve resources. Because live metrics only count servers that are currently running the application, servers that have already unloaded the process won't be included in that total.
 
 ### Missing configuration for .NET
 
@@ -172,13 +176,13 @@ The number of monitored server instances displayed by live metrics might be lowe
 
 ### "Data is temporarily inaccessible" status message
 
-When navigating to live metrics, you may see a banner with the status message: "Data is temporarily inaccessible. The updates on our status are posted here https://aka.ms/aistatus "
+When navigating to live metrics, you can see a banner with the status message: "Data is temporarily inaccessible. The updates on our status are posted here https://aka.ms/aistatus "
 
 Follow the link to the *Azure status* page and check if there's an activate outage affecting Application Insights. Verify that firewalls and browser extensions aren't blocking access to live metrics if an outage isn't occurring. For example, some popular ad-blocker extensions block connections to `*.monitor.azure.com`. In order to use the full capabilities of live metrics, either disable the ad-blocker extension or add an exclusion rule for the domain `*.livediagnostics.monitor.azure.com` to your ad-blocker, firewall, etc.
 
 ### Unexpected large number of requests to livediagnostics.monitor.azure.com
 
-Application Insights SDKs use a REST API to communicate with QuickPulse endpoints, which provide live metrics for your web application. By default, the SDKs poll the endpoints once every five seconds to check if you are viewing the live metrics pane in the Azure portal.
+Application Insights SDKs use a REST API to communicate with QuickPulse endpoints, which provide live metrics for your web application. By default, the SDKs poll the endpoints once every five seconds to check if you're viewing the live metrics pane in the Azure portal.
 
 If you open live metrics, the SDKs switch to a higher frequency mode and send new metrics to QuickPulse every second. This allows you to monitor and diagnose your live application with 1-second latency, but also generates more network traffic. To restore normal flow of traffic, naviage away from the live metrics pane.
 
