@@ -49,7 +49,7 @@ To find which version of the extension you're currently using, go to `https://<y
 
 ### Release notes
 
-#### ANT 103 - Linux
+#### Latest Version (default) - Linux
 <details>
   <summary>.NET/.NET Core</summary>
   .NET/.NET Core content here
@@ -68,7 +68,7 @@ To find which version of the extension you're currently using, go to `https://<y
     Python content here
 </details>
 
-#### ANT 103 - Windows
+#### Latest Version (default) - Windows
 
 <details>
   <summary>.NET/.NET Core</summary>
