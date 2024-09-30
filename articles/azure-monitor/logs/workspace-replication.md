@@ -52,9 +52,9 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 Azure Monitor uses several mechanisms to protect data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process and replicate the data. Data that isn’t fully processed and ingested isn’t deleted. When the pipeline becomes available, it continues to process the in-transit data, and Azure Monitor ingests and replicates the data.
 
-If the primary region's ingestion endpoint isn't available, Azure Monitor Agent regularly retries sending log data to the endpoint. The data ingestion endpoint in the secondary region starts to receive data from agents a few minutes after you trigger the switchover.
+If the primary region's ingestion endpoint isn't available, Azure Monitor Agent regularly retries sending log data to the endpoint. The data ingestion endpoint in the secondary region starts to receive data from agents a few minutes after you trigger switchover.
 
-If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. If the client retries sending log data periodically, the data ingestion endpoint in the secondary region starts to receive data from client a few minutes after you trigger the switchover.
+If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. If the client retries sending log data periodically, the data ingestion endpoint in the secondary region starts to receive data from client a few minutes after you trigger switchover.
 
 
 ### Supported regions
