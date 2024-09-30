@@ -4,7 +4,7 @@ description: Understand the supported services and event schemas for Azure Monit
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/16/2024
+ms.date: 09/30/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -118,6 +118,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.Relay <a name="microsoftrelay"></a>|[namespaces](./supported-metrics/Microsoft-Relay-namespaces-metrics.md)<br>|[namespaces](./supported-logs/Microsoft-Relay-namespaces-logs.md)<br>|
 |Microsoft.Search <a name="microsoftsearch"></a>|[searchServices](./supported-metrics/Microsoft-Search-searchServices-metrics.md)<br>|[searchServices](./supported-logs/Microsoft-Search-searchServices-logs.md)<br>|
 |Microsoft.Security <a name="microsoftsecurity"></a>|N/A|[antiMalwareSettings](./supported-logs/Microsoft-Security-antiMalwareSettings-logs.md)<br>[defenderForStorageSettings](./supported-logs/Microsoft-Security-defenderForStorageSettings-logs.md)<br>|
+|microsoft.securityinsights <a name="microsoftsecurityinsights"></a>|N/A|[settings](./supported-logs/microsoft-securityinsights-settings-logs.md)<br>|
 |Microsoft.ServiceBus <a name="microsoftservicebus"></a>|[Namespaces](./supported-metrics/Microsoft-ServiceBus-Namespaces-metrics.md)<br>|[Namespaces](./supported-logs/Microsoft-ServiceBus-Namespaces-logs.md)<br>|
 |Microsoft.ServiceNetworking <a name="microsoftservicenetworking"></a>|[trafficControllers](./supported-metrics/Microsoft-ServiceNetworking-trafficControllers-metrics.md)<br>|[trafficControllers](./supported-logs/Microsoft-ServiceNetworking-trafficControllers-logs.md)<br>|
 |Microsoft.SignalRService <a name="microsoftsignalrservice"></a>|[SignalR](./supported-metrics/Microsoft-SignalRService-SignalR-metrics.md)<br>[SignalR/replicas](./supported-metrics/Microsoft-SignalRService-SignalR-replicas-metrics.md)<br>[WebPubSub](./supported-metrics/Microsoft-SignalRService-WebPubSub-metrics.md)<br>[WebPubSub/replicas](./supported-metrics/Microsoft-SignalRService-WebPubSub-replicas-metrics.md)<br>|[SignalR](./supported-logs/Microsoft-SignalRService-SignalR-logs.md)<br>[SignalR/replicas](./supported-logs/Microsoft-SignalRService-SignalR-replicas-logs.md)<br>[WebPubSub](./supported-logs/Microsoft-SignalRService-WebPubSub-logs.md)<br>[WebPubSub/replicas](./supported-logs/Microsoft-SignalRService-WebPubSub-replicas-logs.md)<br>|
@@ -162,6 +163,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.StorageTasks <a name="microsoftstoragetasks"></a>|[storageTasks](./supported-metrics/Microsoft-StorageTasks-storageTasks-metrics.md)<br>|N/A|
 |Microsoft.VoiceServices <a name="microsoftvoiceservices"></a>|[CommunicationsGateways](./supported-metrics/Microsoft-VoiceServices-CommunicationsGateways-metrics.md)<br>|N/A|
 |Oracle.Database <a name="oracledatabase"></a>|[Oracle.Database/autonomousDatabases](./supported-metrics/Oracle-Database-autonomousDatabases-metrics.md)<br>[Oracle.Database/cloudVmClusters](./supported-metrics/Oracle-Database-cloudVmClusters-metrics.md)<br>|N/A|
+|Private.MessagingConnectors <a name="privatemessagingconnectors"></a>|[Private.MessagingConnectors/connectors](./supported-metrics/Private-MessagingConnectors-connectors-metrics.md)<br>|N/A|
 |Wandisco.Fusion <a name="wandiscofusion"></a>|[Wandisco.Fusion/migrators](./supported-metrics/Wandisco-Fusion-migrators-metrics.md)<br>[Wandisco.Fusion/migrators/dataTransferAgents](./supported-metrics/Wandisco-Fusion-migrators-dataTransferAgents-metrics.md)<br>[Wandisco.Fusion/migrators/liveDataMigrations](./supported-metrics/Wandisco-Fusion-migrators-liveDataMigrations-metrics.md)<br>[Wandisco.Fusion/migrators/metadataMigrations](./supported-metrics/Wandisco-Fusion-migrators-metadataMigrations-metrics.md)<br>|N/A|
 
 ## Next Steps
