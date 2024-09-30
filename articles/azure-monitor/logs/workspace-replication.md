@@ -48,7 +48,7 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 :::image type="content" source="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" alt-text="Diagram that shows ingestion flows during normal and switchover modes." lightbox="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" border="false":::
 
-#### Protection of data in transit in the primary region during a regional failure
+#### Protection against loss of data in transit during a regional failure
 
 Azure Monitor has several mechanisms to ensure that data in transit isn’t lost when there's a failure in the primary region. 
 
