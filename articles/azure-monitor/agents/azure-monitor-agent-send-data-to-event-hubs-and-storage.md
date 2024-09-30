@@ -16,14 +16,13 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
 
 > [!NOTE]
 > Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.
+
 ## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
 
-- LAD and WAD were announced for deprecation on 9/30/2024 and will be retired on 3/31/2026
-- Azure Monitor Agent is the new converged agent that can collect data and send to multiple data destinations including event hubs and storage
-- You can see if LAD/WAD are installed in your VM within the VM Extensions blade
-- A new diagnostic settings experience will be coming before final retirement
-- As part of your migration planning, plan to remove LAD/WAD once you have set up an AMA that can send the same data to event hubs and/or storage to avoid duplicate data. 
-- For logs going to storage, we highly suggest using [Log Analytics Auxiliary Logs](https://azure.microsoft.com/en-us/updates/v2/azure-monitor-auxiliary-logs) which provide cost effective logging
+- Azure Monitor Agent can collect and send data to multiple destinations, including Log Analytics workspaces, Azure Event Hubs, and Azure Storage.
+- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
+- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
+- As an alternative to storage, we highly recommend you set up a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
 
 
 ## What's supported
@@ -33,7 +32,6 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
 ### Data types
 
 - Windows:
-   - ETW Logs
    - ETW Logs (Coming in a later released)
 **Footnotes**
 
