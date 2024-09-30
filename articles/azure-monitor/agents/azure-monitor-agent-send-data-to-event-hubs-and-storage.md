@@ -17,6 +17,10 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
 > [!NOTE]
 > Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.
 
+**Footnotes**
+
+<a name="FN1">1</a>: Not all data types are supported; refer to [What's supported](#whats-supported) for specifics.
+
 ## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
 
 - Azure Monitor Agent can collect and send data to multiple destinations, including Log Analytics workspaces, Azure Event Hubs, and Azure Storage.
