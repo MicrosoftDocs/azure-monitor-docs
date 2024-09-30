@@ -15,8 +15,26 @@ This article describes how to use the Azure Monitor Agent (AMA) to upload data t
 The Azure Monitor Agent is the new, consolidated telemetry agent for collecting data from IaaS resources like virtual machines. By using the upload capability in this preview, you can upload the logs<sup>[1](#FN1)</sup> you send to Log Analytics workspaces to Event Hubs and Storage. Both data destinations use data collection rules to configure collection setup for the agents.
 
 > [!NOTE]
-> This functionality replaces the Windows diagnostics extension (WAD) and Linux diagnostics extension (LAD). For more information, see [Compare Azure Monitor Agent to legacy agents](./agents-overview.md#compare-to-legacy-agents).
+> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.
+## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
 
+- LAD and WAD were announced for deprecation on 9/30/2024 and will be retired on 3/31/2026
+- Azure Monitor Agent is the new converged agent that can collect data and send to multiple data destinations including event hubs and storage
+- You can see if LAD/WAD are installed in your VM within the VM Extensions blade
+- A new diagnostic settings experience will be coming before final retirement
+- As part of your migration planning, plan to remove LAD/WAD once you have set up an AMA that can send the same data to event hubs and/or storage to avoid duplicate data. 
+- For logs going to storage, we highly suggest using [Log Analytics Auxiliary Logs](https://azure.microsoft.com/en-us/updates/v2/azure-monitor-auxiliary-logs) which provide cost effective logging
+
+
+## What's supported
+
+### Data types
+@@ -46,7 +56,7 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting
+### Data types
+
+- Windows:
+   - ETW Logs
+   - ETW Logs (Coming in a later released)
 **Footnotes**
 
 <a name="FN1">1</a>: Not all data types are supported; refer to [What's supported](#whats-supported) for specifics.
