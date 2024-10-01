@@ -1,3 +1,16 @@
+---
+title: Container Image Details and Instructions on How to Pull It for Azure Chaos Studio - Relay Bridge Host
+description: Learn how to use pull the container image used by Azure Chaos Studio during VNET injection
+services: chaos-studio
+author: nikhilkaul
+ms.topic: instructional
+ms.date: 10/01/24
+ms.author: abbyweisberg
+ms.reviewer: nikhilkaul
+ms.service: azure-chaos-studio
+ms.custom: devx-track-azurecli
+---
+
 # Container Image Details and Instructions on How to Pull It for Azure Chaos Studio - Relay Bridge Host
 
 The following container image is the Relay Bridge Host for Azure Chaos Studio, available from the Microsoft Container Registry (MCR). This image is used to facilitate communication between Azure Chaos Studio and target resources when those resources are within private networks.
