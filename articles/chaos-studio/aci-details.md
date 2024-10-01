@@ -1,6 +1,6 @@
 ---
 title: Container Image Details and Instructions on How to Pull It for Azure Chaos Studio - Relay Bridge Host
-description: Learn how to use pull the container image used by Azure Chaos Studio during VNET injection
+description: Learn how to pull the container image used by Azure Chaos Studio during virtual network (VNET) injection
 services: chaos-studio
 author: nikhilkaul
 ms.topic: reference
@@ -22,7 +22,7 @@ The following container image is the Relay Bridge Host for Azure Chaos Studio, a
 - **Repository**: `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host`
 - **Full Image URI**: `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host:<Tag address>`
 
-This image version (aka "Tag address" above) corresponds to a specific release of the Relay Bridge Host used by Azure Chaos Studio. For example, at the time of writing it is currently `1.0.02749.72`.
+This image version (also known as "Tag address") corresponds to a specific release of the Relay Bridge Host used by Azure Chaos Studio. For example, at the time of writing it's currently `1.0.02749.72`.
 
 ---
 
@@ -33,7 +33,7 @@ Customers can pull this container image using Docker or any container runtime th
 ### Prerequisites
 
 - **Docker Installed**: Ensure Docker is installed and running on your machine or server. You can download Docker from the [official website](https://www.docker.com/).
-- **Network Access**: Make sure your environment has network access to `mcr.microsoft.com` to pull images from MCR.
+- **Network Access**: To pull images from MCR, make sure your environment has network access to `mcr.microsoft.com`. 
 
 ### Pulling the Image
 
