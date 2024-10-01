@@ -36,9 +36,9 @@ The tasks are described in the following sections.
 
 ### Enable OpenID Connect and query the Issuer
 
-To enable OpenID Connect (OIDC) on an AKS cluster, follow the instructions in [Create an OpenID Connect provider on AKS](/azure/aks/use-oidc-issuer.md). 
+To enable OpenID Connect (OIDC) on an AKS cluster, follow the instructions in [Create an OpenID Connect provider on AKS](/azure/aks/use-oidc-issuer). 
 
-Once enabled, make a note of the SERVICE_ACCOUNT_ISSUER which is essentially the OIDC issuer URL. To get the OIDC issuer URL, run the [az aks show][az-aks-show] command. Replace the default values for the cluster name and the resource group name.
+Once enabled, make a note of the SERVICE_ACCOUNT_ISSUER which is essentially the OIDC issuer URL. To get the OIDC issuer URL, run the *az aks show* command. Replace the default values for the cluster name and the resource group name.
 
 ```azurecli-interactive
 az aks show --name myAKScluster --resource-group myResourceGroup --query "oidcIssuerProfile.issuerUrl" -o tsv
