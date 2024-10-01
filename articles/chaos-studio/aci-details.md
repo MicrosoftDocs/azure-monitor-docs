@@ -3,8 +3,8 @@ title: Container Image Details and Instructions on How to Pull It for Azure Chao
 description: Learn how to use pull the container image used by Azure Chaos Studio during VNET injection
 services: chaos-studio
 author: nikhilkaul
-ms.topic: instructional
-ms.date: 10/01/24
+ms.topic: reference
+ms.date: 10/01/2024
 ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.service: azure-chaos-studio
