@@ -97,7 +97,7 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 You can turn on monitoring for your Java apps running in Azure App Service just with one selection, no code change required. The integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?tabs=java) and autocollects telemetry. You can further apply extra configurations and [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry).
 
 > [!NOTE]
-> With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described below.
+> With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described here.
 
 #### Autoinstrumentation in the Azure portal
 
@@ -112,44 +112,15 @@ You can turn on monitoring for your Java apps running in Azure App Service just 
 
     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown.":::
 
-1. \[Optional\] After specifying which resource to use, you can configure the Java agent. If you don't configure the Java agent, default configurations apply.
+#### Configuration
 
-    The full [set of configurations](./java-standalone-config.md) is available. You just need to paste a valid [json file](./java-standalone-config.md#an-example). **Exclude the connection string and any configurations that are in preview** - you're able to add the items that are currently in preview as they become generally available.
+After specifying which resource to use, you can configure the Java agent. If you don't configure the Java agent, default configurations apply.
 
-    Once you modify the configurations through the Azure portal, `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable are automatically populated and appear in App Service settings panel. This variable contains the full json content that you pasted in the Azure portal configuration text box for your Java app. 
+The full [set of configurations](./java-standalone-config.md) is available. You just need to paste a valid [json file](./java-standalone-config.md#an-example). **Exclude the connection string and any configurations that are in preview** - you're able to add the items that are currently in preview as they become generally available.
 
-    :::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application."::: 
-    
-#### Manually deploy the latest Application Insights Java version
+Once you modify the configurations through the Azure portal, `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable are automatically populated and appear in App Service settings panel. This variable contains the full json content that you pasted in the Azure portal configuration text box for your Java app. 
 
-The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that got fixed in the latest version of Application Insights Java, you can update it manually. 
-
-To manually update, follow these steps:
-
-1. Upload the Java agent jar file to App Service
-
-    > a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
-
-    > b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
-
-    > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
-
-1. Disable Application Insights via the Application Insights tab in the Azure portal.
-
-1. Once the agent jar file is uploaded, go to App Service configurations. If you
-   need to use **Startup Command** for Linux, include JVM arguments:
-
-   :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
-   
-   **Startup Command** doesn't honor `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat.
-
-   If you don't use **Startup Command**, create a new environment variable, `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat, with the value
-   `-javaagent:{PATH_TO_THE_AGENT_JAR}/applicationinsights-agent-{VERSION_NUMBER}.jar`.
-
-1. To apply the changes, restart the app.
-
-> [!NOTE]
-> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings. 
+:::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application."::: 
 
 ### [Node.js](#tab/nodejs)
 
@@ -350,7 +321,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 | ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` |
 | XDT_MicrosoftApplicationInsights_Mode |  In default mode, only essential features are enabled to ensure optimal performance. | `default` or `recommended` |
 | InstrumentationEngine_EXTENSION_VERSION | Controls if the binary-rewrite engine `InstrumentationEngine` are turned on. This setting has performance implications and affects cold start/startup time. | `~1` |
-| XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text are captured along with the dependency calls. Performance warning: Application cold startup time are affected. This setting requires the `InstrumentationEngine`. | `~1` |
+| XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text are captured along with the dependency calls. Performance warning: Application cold startup time is affected. This setting requires the `InstrumentationEngine`. | `~1` |
 
 ### [Java](#tab/java)
 
@@ -398,7 +369,6 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 [!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
-<!--
 ## Upgrade monitoring extension/agent
 
 ### [ASP.NET Core](#tab/aspnetcore)
@@ -447,7 +417,34 @@ If the upgrade is done from a version prior to 2.5.1, check that the Application
 
 ### [Java](#tab/java)
 
-...
+The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that got fixed in the latest version of Application Insights Java, you can update it manually.
+
+To manually update, follow these steps:
+
+1. Upload the Java agent jar file to App Service
+
+    > a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
+
+    > b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
+
+    > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
+
+1. Disable Application Insights via the Application Insights tab in the Azure portal.
+
+1. Once the agent jar file is uploaded, go to App Service configurations. If you
+   need to use **Startup Command** for Linux, include JVM arguments:
+
+   :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
+   
+   **Startup Command** doesn't honor `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat.
+
+   If you don't use **Startup Command**, create a new environment variable, `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat, with the value
+   `-javaagent:{PATH_TO_THE_AGENT_JAR}/applicationinsights-agent-{VERSION_NUMBER}.jar`.
+
+1. To apply the changes, restart the app.
+
+> [!NOTE]
+> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings. 
 
 #### [Node.js](#tab/nodejs)
 
@@ -458,13 +455,12 @@ If the upgrade is done from a version prior to 2.5.1, check that the Application
 ...
 
 ---
--->
 
 ## Frequently asked questions
 
 This section provides answers to common questions.
 
-#### What does Application Insights modify in my project?
+### What does Application Insights modify in my project?
 
 The details depend on the type of project. For a web application:
           
@@ -517,7 +513,7 @@ What follows is our step-by-step troubleshooting guide for extension/agent-based
 
     * Confirm that **IKeyExists** is `True`. If it's `False`, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your ikey GUID to your application settings.
 
-    *  If your application refers to any Application Insights packages, enabling the App Service integration might not take effect and the data might not appear in Application Insights. An example would be if you previously instrumented, or attempted to instrument, your app with the [ASP.NET Core SDK](./asp-net-core.md). To fix the issue, in the portal, turn on **Interop with Application Insights SDK**. You'll start seeing the data in Application Insights.
+    *  If your application refers to any Application Insights packages, enabling the App Service integration might not take effect, and the data might not appear in Application Insights. An example would be if you previously instrumented, or attempted to instrument, your app with the [ASP.NET Core SDK](./asp-net-core.md). To fix the issue, in the portal, turn on **Interop with Application Insights SDK**. You'll start seeing the data in Application Insights.
     
         > [!IMPORTANT]
         > This functionality is in preview.
@@ -647,7 +643,7 @@ Use our step-by-step guide to troubleshoot Java-based applications running on Az
 
 ### [Node.js](#tab/nodejs)
 
-Below is our step-by-step troubleshooting guide for extension/agent based monitoring for Node.js based applications running on Azure App Services.
+This is our step-by-step troubleshooting guide for extension/agent based monitoring for Node.js based applications running on Azure App Services.
 
 #### Windows
 
@@ -664,7 +660,7 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 
     Confirm that `SDKPresent` is set to false, `AgentInitializedSuccessfully` to true and `IKey` to have a valid iKey.
 
-    Below is an example of the JSON file:
+    Example of the JSON file:
 
     ```json
         "AppType":"node.js",
@@ -692,7 +688,7 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 
     Confirm that `SDKPresent` is set to false, `AgentInitializedSuccessfully` to true and `IKey` to have a valid iKey.
 
-    Below is an example of the JSON file:
+    Example of the JSON file:
 
     ```json
         "AppType":"node.js",
@@ -775,143 +771,13 @@ This section contains the release notes for Azure Web Apps Extension for runtime
 
 To find which version of the extension you're currently using, go to `https://<yoursitename>.scm.azurewebsites.net/ApplicationInsights`.
 
-<!--
-<br>
-<details>
-<summary>2.8.44</summary>
-
-* .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
-</details>
-
-<details>
-<summary>2.8.43</summary>
-
-* Separate .NET/.NET Core, Java and Node.js package into different App Service Windows Site Extension. 
-</details>
-
-<details>
-<summary>2.8.42</summary>
-
-* JAVA extension: Upgraded to [Java Agent 3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0) from 2.5.1.
-* Node.js extension: Updated AI SDK to [2.1.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.8) from 2.1.7. Added support for User and System assigned Microsoft Entra managed identities.
-* .NET Core: Added self-contained deployments and .NET 6.0 support using [.NET Startup Hook](https://github.com/dotnet/runtime/blob/main/docs/design/features/host-startup-hook.md).
-</details>
-
-<details>
-<summary>2.8.41</summary>
-
-* Node.js extension: Updated AI SDK to [2.1.7](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.7) from 2.1.3.
-* .NET Core: Removed out-of-support version (2.1). Supported versions are 3.1 and 5.0.
-</details>
-
-<details>
-<summary>2.8.40</summary>
-
-* JAVA extension: Upgraded to [Java Agent 3.1.1 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.1) from 3.0.2.
-* Node.js extension: Updated AI SDK to [2.1.3](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.3) from 1.8.8.
-</details>
-
-<details>
-<summary>2.8.39</summary>
-
-* .NET Core: Added .NET Core 5.0 support.
-</details>
-
-<details>
-<summary>2.8.38</summary>
-
-* JAVA extension: upgraded to [Java Agent 3.0.2 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.0.2) from 2.5.1.
-* Node.js extension: Updated AI SDK to [1.8.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/1.8.8) from 1.8.7.
-* .NET Core: Removed out-of-support versions (2.0, 2.2, 3.0). Supported versions are 2.1 and 3.1.
-</details>
-
-<details>
-<summary>2.8.37</summary>
-
-* AppSvc Windows extension: Made .NET Core work with any version of System.Diagnostics.DiagnosticSource.dll.
-</details>
-
-<details>
-<summary>2.8.36</summary>
-
-* AppSvc Windows extension: Enabled Inter-op with AI SDK in .NET Core.
-</details>
-
-<details>
-<summary>2.8.35</summary>
-
-* AppSvc Windows extension: Added .NET Core 3.1 support.
-</details>
-
-<details>
-<summary>2.8.33</summary>
-
-* .NET, .NET core, Java, and Node.js agents and the Windows Extension: Support for sovereign clouds. Connections strings can be used to send data to sovereign clouds.
-</details>
-
-<details>
-<summary>2.8.31</summary>
-
-* The ASP.NET Core agent fixed an issue with the Application Insights SDK. If the runtime loaded the incorrect version of `System.Diagnostics.DiagnosticSource.dll`, the codeless extension doesn't crash the application and backs off. To fix the issue, customers should remove `System.Diagnostics.DiagnosticSource.dll` from the bin folder or use the older version of the extension by setting `ApplicationInsightsAgent_EXTENSIONVERSION=2.8.24`. If they don't, application monitoring isn't enabled.
-</details>
-
-<details>
-<summary>2.8.26</summary>
-
-* ASP.NET Core agent: Fixed issue related to updated Application Insights SDK. The agent doesn't try to load `AiHostingStartup` if the ApplicationInsights.dll is already present in the bin folder. It resolves issues related to reflection via Assembly\<AiHostingStartup\>.GetTypes().
-* Known issues: Exception `System.IO.FileLoadException: Could not load file or assembly 'System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'` could be thrown if another version of `DiagnosticSource` dll is loaded. It could happen, for example, if `System.Diagnostics.DiagnosticSource.dll` is present in the publish folder. As mitigation, use the previous version of extension by setting app settings in app services: ApplicationInsightsAgent_EXTENSIONVERSION=2.8.24.
-</details>
-
-<details>
-<summary>2.8.24</summary>
-
-* Repackaged version of 2.8.21.
-</details>
-
-<details>
-<summary>2.8.23</summary>
-
-* Added ASP.NET Core 3.0 codeless monitoring support.
-* Updated ASP.NET Core SDK to [2.8.0](https://github.com/microsoft/ApplicationInsights-aspnetcore/releases/tag/2.8.0) for runtime versions 2.1, 2.2 and 3.0. Apps targeting .NET Core 2.0 continue to use 2.1.1 of the SDK.
-</details>
-
-<details>
-<summary>2.8.14</summary>
-
-* Updated ASP.NET Core SDK version from 2.3.0 to the latest (2.6.1) for apps targeting .NET Core 2.1, 2.2. Apps targeting .NET Core 2.0 continue to use 2.1.1 of the SDK.
-</details>
-
-<details>
-<summary>2.8.12</summary>
-
-* Support for ASP.NET Core 2.2 apps.
-* Fixed a bug in ASP.NET Core extension causing injection of SDK even when the application is already instrumented with the SDK. For 2.1 and 2.2 apps, the presence of ApplicationInsights.dll in the application folder now causes the extension to back off. For 2.0 apps, the extension backs off only if ApplicationInsights is enabled with a `UseApplicationInsights()` call.
-
-* Permanent fix for incomplete HTML response for ASP.NET Core apps. This fix is now extended to work for .NET Core 2.2 apps.
-
-* Added support to turn off JavaScript injection for ASP.NET Core apps (`APPINSIGHTS_JAVASCRIPT_ENABLED=false appsetting`). For ASP.NET core, the JavaScript injection is in "Opt-Out" mode by default, unless explicitly turned off. (The default setting is done to retain current behavior.)
-
-* Fixed ASP.NET Core extension bug that caused injection even if ikey wasn't present.
-* Fixed a bug in the SDK version prefix logic that caused an incorrect SDK version in telemetry.
-
-* Added SDK version prefix for ASP.NET Core apps to identify how telemetry was collected.
-* Fixed SCM- ApplicationInsights page to correctly show the version of the pre-installed extension.
-</details>
-
-<details>
-<summary>2.8.10</summary>
-
-* Fix for incomplete HTML response for ASP.NET Core apps.
-</details>
--->
-
 #### 2.8.44
 
 * .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
 
 #### 2.8.43
 
-* Separate .NET/.NET Core, Java and Node.js package into different App Service Windows Site Extension. 
+* Separate .NET/.NET Core, Java, and Node.js package into different App Service Windows Site Extension. 
 
 #### 2.8.42
 
@@ -981,16 +847,12 @@ To find which version of the extension you're currently using, go to `https://<y
 
 * Support for ASP.NET Core 2.2 apps.
 * Fixed a bug in ASP.NET Core extension causing injection of SDK even when the application is already instrumented with the SDK. For 2.1 and 2.2 apps, the presence of ApplicationInsights.dll in the application folder now causes the extension to back off. For 2.0 apps, the extension backs off only if ApplicationInsights is enabled with a `UseApplicationInsights()` call.
-
 * Permanent fix for incomplete HTML response for ASP.NET Core apps. This fix is now extended to work for .NET Core 2.2 apps.
-
 * Added support to turn off JavaScript injection for ASP.NET Core apps (`APPINSIGHTS_JAVASCRIPT_ENABLED=false appsetting`). For ASP.NET core, the JavaScript injection is in "Opt-Out" mode by default, unless explicitly turned off. (The default setting is done to retain current behavior.)
-
 * Fixed ASP.NET Core extension bug that caused injection even if ikey wasn't present.
 * Fixed a bug in the SDK version prefix logic that caused an incorrect SDK version in telemetry.
-
 * Added SDK version prefix for ASP.NET Core apps to identify how telemetry was collected.
-* Fixed SCM- ApplicationInsights page to correctly show the version of the pre-installed extension.
+* Fixed SCM- ApplicationInsights page to correctly show the version of the preinstalled extension.
 
 #### 2.8.10
 
@@ -998,8 +860,8 @@ To find which version of the extension you're currently using, go to `https://<y
           
 ## Next steps
 
-* [Run the Profiler on your live app](./profiler.md).
+* [Run Profiler](./profiler.md) on your live app.
 * [Enable Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md) to be sent to Application Insights.
 * [Monitor service health metrics](../data-platform.md) to make sure your service is available and responsive.
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.
-* [Availability](availability-overview.md)
+* [Set up availability tests](availability-overview.md) for your application.
