@@ -524,7 +524,7 @@ items:
       - name: Microsoft Entra authentication
         displayName: Prometheus,remote-write
         href: containers/prometheus-remote-write-active-directory.md
-      - name: Microsoft Entra Workload ID (preview) authentication
+      - name: Microsoft Entra Workload ID authentication
         displayName: Prometheus,remote-write
         href: containers/prometheus-remote-write-azure-workload-identity.md
       - name: (Deprecated) Microsoft Entra pod-managed identity authentication
