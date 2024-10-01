@@ -10,10 +10,12 @@ ms.reviewer: abinetabate
 
 # Application monitoring for Azure App Service
 
-Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Serive without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options).
+Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Service without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options).
 
+<!--
 > [!IMPORTANT]
 > When you enable autoinstrumentation, it enables Application Insights with default settings, which include sampling. Your sampling settings in **Application Insights** > **Usage and estimated costs** > **Data sampling** will be ignored, even if set to **All Data 100%**.
+-->
 
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
@@ -22,13 +24,13 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 ### [ASP.NET Core](#tab/aspnetcore)
 
 > [!IMPORTANT]
-> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see [Troubleshooting](#troubleshooting).
+> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings are honored. This arrangement prevents duplicate data from being sent. To learn more, see [Troubleshooting](#troubleshooting).
 
 > [!NOTE]
 > * Only .NET Core [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) (LTS) releases are supported.
 > * [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](./asp-net-core.md) instead.
 
-1. Select **Application Insights** in the lefthand navigation menu of your app service, then select **Enable**.
+1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
     :::image type="content"source="./media/azure-web-apps/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
 
@@ -46,12 +48,12 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 ### [.NET](#tab/net)
 
 > [!IMPORTANT]
-> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see [Troubleshooting](#troubleshooting).
+> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings are honored. This arrangement prevents duplicate data from being sent. To learn more, see [Troubleshooting](#troubleshooting).
 
 > [!NOTE]
-> The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported. For more information, see the explanation in the [Troubleshooting section](#appinsights_javascript_enabled-and-urlcompression-isnt-supported).
+> The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported. For more information, see the explanation in the [Troubleshooting section](#appinsights_javascript_enabled-and-urlcompression-not-supported).
 
-1. Select **Application Insights** in the lefthand navigation menu of your app service, then select **Enable**.
+1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
     :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot that shows the Application Insights tab with Enable selected.":::
 
@@ -106,7 +108,7 @@ You can turn on monitoring for your Java apps running in Azure App Service just 
 1. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
-    > When you select **OK** to create the new resource you will be prompted to **Apply monitoring settings**. Selecting **Continue** will link your new Application Insights resource to your app service, doing so will also **trigger a restart of your app service**. 
+    > When you select **OK** to create the new resource you are prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**. 
 
     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown.":::
 
@@ -147,12 +149,12 @@ To manually update, follow these steps:
 1. To apply the changes, restart the app.
 
 > [!NOTE]
-> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you will have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings. 
+> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings. 
 
 ### [Node.js](#tab/nodejs)
 
 > [!IMPORTANT]
-> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings will be honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
+> If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings are honored. This arrangement prevents duplicate data from being sent. To learn more, see the [Troubleshooting section](#troubleshooting).
 
 >[!NOTE]
 > You can configure the automatically attached agent using the `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` environment variable in the App Service Environment variable blade. For details on the configuration options that can be passed via this environment variable, see [Node.js Configuration](https://github.com/microsoft/ApplicationInsights-node.js#Configuration).
@@ -168,7 +170,7 @@ Application Insights for Node.js is integrated with Azure App Service on Linux -
 2. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
-    > When you select **OK** to create the new resource you will be prompted to **Apply monitoring settings**. Selecting **Continue** will link your new Application Insights resource to your app service, doing so will also **trigger a restart of your app service**.
+    > When you select **OK** to create the new resource you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**.
 
     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown."::: 
 
@@ -240,7 +242,7 @@ The integration is in public preview. It adds the Python SDK, which is in GA.
 2. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
-    > When you select **OK** to create the new resource you will be prompted to **Apply monitoring settings**. Selecting **Continue** will link your new Application Insights resource to your app service, doing so will also **trigger a restart of your app service**.
+    > When you select **OK** to create the new resource you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**.
 
     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown." lightbox="./media/azure-web-apps/change-resource.png":::
 
@@ -261,7 +263,7 @@ You can configure with [OpenTelemetry environment variables](https://opentelemet
 | `OTEL_BLRP_SCHEDULE_DELAY` | Specifies the logging export interval in milliseconds. Defaults to 5000. |
 | `OTEL_BSP_SCHEDULE_DELAY` | Specifies the distributed tracing export interval in milliseconds. Defaults to 5000. |
 | `OTEL_TRACES_SAMPLER_ARG` | Specifies the ratio of distributed tracing telemetry to be [sampled](./sampling.md). Accepted values range from 0 to 1. The default is 1.0, meaning no telemetry is sampled out. |
-| `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` | Specifies which OpenTelemetry instrumentations to disable. When disabled, instrumentations aren't executed as part of autoinstrumentation. Accepts a comma-separated list of lowercase [library names](#application-monitoring-for-azure-app-service-and-python-preview). For example, set it to `"psycopg2,fastapi"` to disable the Psycopg2 and FastAPI instrumentations. It defaults to an empty list, enabling all supported instrumentations. |
+| `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` | Specifies which OpenTelemetry instrumentations to disable. When disabled, instrumentations aren't executed as part of autoinstrumentation. Accepts a comma-separated list of lowercase [library names](#enable-application-insights). For example, set it to `"psycopg2,fastapi"` to disable the Psycopg2 and FastAPI instrumentations. It defaults to an empty list, enabling all supported instrumentations. |
 
 #### Add a community instrumentation library
 
@@ -347,8 +349,8 @@ In order to enable telemetry collection with Application Insights, only the foll
 |------------------|:-----------|------:|
 | ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring. | `~2` |
 | XDT_MicrosoftApplicationInsights_Mode |  In default mode, only essential features are enabled to ensure optimal performance. | `default` or `recommended` |
-| InstrumentationEngine_EXTENSION_VERSION | Controls if the binary-rewrite engine `InstrumentationEngine` will be turned on. This setting has performance implications and affects cold start/startup time. | `~1` |
-| XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text will be captured along with the dependency calls. Performance warning: Application cold startup time will be affected. This setting requires the `InstrumentationEngine`. | `~1` |
+| InstrumentationEngine_EXTENSION_VERSION | Controls if the binary-rewrite engine `InstrumentationEngine` are turned on. This setting has performance implications and affects cold start/startup time. | `~1` |
+| XDT_MicrosoftApplicationInsights_BaseExtensions | Controls if SQL and Azure table text are captured along with the dependency calls. Performance warning: Application cold startup time are affected. This setting requires the `InstrumentationEngine`. | `~1` |
 
 ### [Java](#tab/java)
 
@@ -362,7 +364,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 | XDT_MicrosoftApplicationInsights_Java      | Flag to control if Java agent is included.         | `0` or `1` (only applicable in Windows). |
 
 > [!NOTE]
-> Profiler and Snapshot Debugger are not available for Java applications.
+> Profiler and Snapshot Debugger aren't available for Java applications.
 
 ### [Node.js](#tab/nodejs)
 
@@ -376,7 +378,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 | XDT_MicrosoftApplicationInsights_NodeJS    | Flag to control if Node.js agent is included.      | `0` or `1` (only applicable in Windows). |
 
 > [!NOTE]
-> Profiler and Snapshot Debugger are not available for Node.js applications.
+> Profiler and Snapshot Debugger aren't available for Node.js applications.
 
 ### [Python (Preview)](#tab/python)
 
@@ -390,7 +392,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 | ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring.         | `~3`                                     |
 
 > [!NOTE]
-> Profiler and Snapshot Debugger are not available for Python applications.
+> Profiler and Snapshot Debugger aren't available for Python applications.
 
 ---
 
@@ -501,21 +503,21 @@ What follows is our step-by-step troubleshooting guide for extension/agent-based
 #### Windows
 
 1. Check that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2`.
-1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
+1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
 
     :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot that shows the link above the results page."border ="false":::
     
     * Confirm that **Application Insights Extension Status** is `Pre-Installed Site Extension, version 2.8.x.xxxx, is running.`
     
-         If it isn't running, follow the instructions in the section [Enable Application Insights monitoring](#enable-autoinstrumentation-monitoring).
+        If it isn't running, follow the instructions in the section [Enable Application Insights monitoring](#enable-application-insights).
 
     * Confirm that the status source exists and looks like `Status source D:\home\LogFiles\ApplicationInsights\status\status_RD0003FF0317B6_4248_1.json`.
 
-         If a similar value isn't present, it means the application isn't currently running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which will allow the runtime information to become available.
+        If a similar value isn't present, it means the application isn't currently running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which allows the runtime information to become available.
 
     * Confirm that **IKeyExists** is `True`. If it's `False`, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your ikey GUID to your application settings.
 
-    *  If your application refers to any Application Insights packages, enabling the App Service integration might not take effect and the data might not appear in Application Insights. An example would be if you've previously instrumented, or attempted to instrument, your app with the [ASP.NET Core SDK](./asp-net-core.md). To fix the issue, in the portal, turn on **Interop with Application Insights SDK**. You'll start seeing the data in Application Insights.
+    *  If your application refers to any Application Insights packages, enabling the App Service integration might not take effect and the data might not appear in Application Insights. An example would be if you previously instrumented, or attempted to instrument, your app with the [ASP.NET Core SDK](./asp-net-core.md). To fix the issue, in the portal, turn on **Interop with Application Insights SDK**. You'll start seeing the data in Application Insights.
     
         > [!IMPORTANT]
         > This functionality is in preview.
@@ -532,11 +534,11 @@ What follows is our step-by-step troubleshooting guide for extension/agent-based
 1. Check that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3`.
 1. Browse to `https://your site name.scm.azurewebsites.net/ApplicationInsights`.
 1. Within this site, confirm:
-   * The status source exists and looks like `Status source /var/log/applicationinsights/status_abcde1234567_89_0.json`.
-   * The value `Auto-Instrumentation enabled successfully` is displayed. If a similar value isn't present, it means the application isn't running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which will allow the runtime information to become available.
-   * **IKeyExists** is `True`. If it's `False`, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your ikey GUID to your application settings.
-
-   :::image type="content" source="media/azure-web-apps-net-core/auto-instrumentation-status.png" alt-text="Screenshot that shows the autoinstrumentation status webpage." lightbox="media/azure-web-apps-net-core/auto-instrumentation-status.png":::
+    * The status source exists and looks like `Status source /var/log/applicationinsights/status_abcde1234567_89_0.json`.
+    * The value `Auto-Instrumentation enabled successfully` is displayed. If a similar value isn't present, it means the application isn't running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which allows the runtime information to become available.
+    * **IKeyExists** is `True`. If it's `False`, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your ikey GUID to your application settings.
+    
+    :::image type="content" source="media/azure-web-apps-net-core/auto-instrumentation-status.png" alt-text="Screenshot that shows the autoinstrumentation status webpage." lightbox="media/azure-web-apps-net-core/auto-instrumentation-status.png":::
 
 #### Default website deployed with web apps doesn't support automatic client-side monitoring
 
@@ -570,11 +572,11 @@ Here's our step-by-step troubleshooting guide for extension/agent-based monitori
 
     * Confirm that `Application Insights Extension Status` is `Pre-Installed Site Extension, version 2.8.x.xxxx` and is running.
 
-        If it isn't running, follow the instructions to [enable Application Insights monitoring](#enable-autoinstrumentation-monitoring).
+        If it isn't running, follow the instructions to [enable Application Insights monitoring](#enable-application-insights).
 
     * Confirm that the status source exists and looks like `Status source D:\home\LogFiles\ApplicationInsights\status\status_RD0003FF0317B6_4248_1.json`.
 
-        If a similar value isn't present, it means the application isn't currently running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which will allow the runtime information to become available.
+        If a similar value isn't present, it means the application isn't currently running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which allows the runtime information to become available.
 
     * Confirm that `IKeyExists` is `true`.
         If not, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your instrumentation key GUID to your application settings.
@@ -589,7 +591,7 @@ When you create a web app with the ASP.NET runtimes in App Service, it deploys a
 
 If you want to test out codeless server and client-side monitoring for ASP.NET in an App Service web app, we recommend that you follow the official guides for [creating an ASP.NET Framework web app](/azure/app-service/quickstart-dotnetcore?tabs=netframework48). Then use the instructions in the current article to enable monitoring.
 
-#### APPINSIGHTS_JAVASCRIPT_ENABLED and urlCompression isn't supported
+#### APPINSIGHTS_JAVASCRIPT_ENABLED and urlCompression not supported
 
 If you use `APPINSIGHTS_JAVASCRIPT_ENABLED=true` in cases where content is encoded, you might get errors like:
 
@@ -602,9 +604,9 @@ For the latest information on the Application Insights agent/extension, see the 
 
 #### PHP and WordPress aren't supported
 
-PHP and WordPress sites aren't supported. There's currently no officially supported SDK/agent for server-side monitoring of these workloads. You can manually instrument client-side transactions on a PHP or WordPress site by adding the client-side JavaScript to your webpages by using the [JavaScript SDK](./javascript.md).
+PHP and WordPress sites aren't supported. There's currently no officially supported SDK/agent for server-side monitoring of these workloads. To manually instrument client-side transactions on a PHP or WordPress site by adding the client-side JavaScript to your webpages, use the [JavaScript SDK](./javascript.md).
 
-The following table provides a more detailed explanation of what these values mean, their underlying causes, and recommended fixes.
+The following table provides an explanation of what these values mean, their underlying causes, and recommended fixes.
 
 | Problem value | Explanation | Fix |
 |---------------|-------------|-----|
@@ -627,7 +629,7 @@ To resolve this issue, remove the binding redirect entry for `System.Runtime.Com
 </dependentAssembly>
 ```
 
-As a temporary workaround, you could set the app setting `ApplicationInsightsAgent_EXTENSION_VERSION` to a value of `2.8.37`. This setting will trigger App Service to use the old Application Insights extension. Temporary mitigations should only be used as an interim.
+As a temporary workaround, you could set the app setting `ApplicationInsightsAgent_EXTENSION_VERSION` to a value of `2.8.37`. This setting triggers App Service to use the old Application Insights extension. Temporary mitigations should only be used as an interim.
 
 ### [Java](#tab/java)
 
@@ -649,7 +651,7 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 
 #### Windows
 
-1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of "~2".
+1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2`.
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
 
     :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot of the link above results page."border ="false"::: 
@@ -685,7 +687,7 @@ Below is our step-by-step troubleshooting guide for extension/agent based monito
 
 #### Linux
 
-1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of "~3".
+1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3`.
 1. Navigate to */var/log/applicationinsights/* and open *status.json*.
 
     Confirm that `SDKPresent` is set to false, `AgentInitializedSuccessfully` to true and `IKey` to have a valid iKey.
