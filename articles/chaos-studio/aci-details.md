@@ -1,1 +1,51 @@
+# Container Image Details and Instructions on How to Pull It for Azure Chaos Studio - Relay Bridge Host
 
+The following container image is the Relay Bridge Host for Azure Chaos Studio, available from the Microsoft Container Registry (MCR). This image is used to facilitate communication between Azure Chaos Studio and target resources when those resources are within private networks.
+
+---
+
+## Image Details
+
+- **Repository**: `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host`
+- **Full Image URI**: `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host:<Tag address>`
+
+This image version (aka "Tag address" above) corresponds to a specific release of the Relay Bridge Host used by Azure Chaos Studio. For example, at the time of writing it is currently `1.0.02749.72`.
+
+---
+
+## Instructions to Pull the Image
+
+Customers can pull this container image using Docker or any container runtime that supports Docker images.
+
+### Prerequisites
+
+- **Docker Installed**: Ensure Docker is installed and running on your machine or server. You can download Docker from the [official website](https://www.docker.com/).
+- **Network Access**: Make sure your environment has network access to `mcr.microsoft.com` to pull images from MCR.
+
+### Pulling the Image
+
+1. **Open Command Prompt**:
+
+   Access the command line interface on your machine.
+
+2. **Pull the Image Using Docker**:
+
+   Run the following command to pull the specific version of the Relay Bridge Host image:
+
+   ```bash
+   docker pull mcr.microsoft.com/azure-chaos-studio/relay-bridge-host:1.0.02749.72
+   ```
+
+   This command downloads the image tagged `1.0.02749.72` from the specified repository.
+
+3. **Verify the Image Pull**:
+
+   After the pull operation is completed, verify that the image is available locally:
+
+   ```bash
+   docker images
+   ```
+
+   You should see `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host` listed with the tag `1.0.02749.72`.
+
+---
