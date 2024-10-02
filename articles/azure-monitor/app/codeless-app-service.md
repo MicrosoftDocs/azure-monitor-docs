@@ -771,6 +771,8 @@ This section contains the release notes for Azure Web Apps Extension for runtime
 
 To find which version of the extension you're currently using, go to `https://<yoursitename>.scm.azurewebsites.net/ApplicationInsights`.
 
+### [ASP.NET Core](#tab/aspnetcore)
+
 #### 2.8.44
 
 * .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
@@ -781,19 +783,11 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.42
 
-* JAVA extension: Upgraded to [Java Agent 3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0) from 2.5.1.
-* Node.js extension: Updated AI SDK to [2.1.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.8) from 2.1.7. Added support for User and System assigned Microsoft Entra managed identities.
 * .NET Core: Added self-contained deployments and .NET 6.0 support using [.NET Startup Hook](https://github.com/dotnet/runtime/blob/main/docs/design/features/host-startup-hook.md).
 
 #### 2.8.41
 
-* Node.js extension: Updated AI SDK to [2.1.7](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.7) from 2.1.3.
 * .NET Core: Removed out-of-support version (2.1). Supported versions are 3.1 and 5.0.
-
-#### 2.8.40
-
-* JAVA extension: Upgraded to [Java Agent 3.1.1 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.1) from 3.0.2.
-* Node.js extension: Updated AI SDK to [2.1.3](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.3) from 1.8.8.
 
 #### 2.8.39
 
@@ -801,8 +795,6 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.38
 
-* JAVA extension: upgraded to [Java Agent 3.0.2 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.0.2) from 2.5.1.
-* Node.js extension: Updated AI SDK to [1.8.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/1.8.8) from 1.8.7.
 * .NET Core: Removed out-of-support versions (2.0, 2.2, 3.0). Supported versions are 2.1 and 3.1.
 
 #### 2.8.37
@@ -857,6 +849,84 @@ To find which version of the extension you're currently using, go to `https://<y
 #### 2.8.10
 
 * Fix for incomplete HTML response for ASP.NET Core apps.
+
+### [.NET](#tab/net)
+
+#### 2.8.44
+
+* .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
+
+#### 2.8.43
+
+* Separate .NET/.NET Core, Java, and Node.js package into different App Service Windows Site Extension.
+
+#### 2.8.33
+
+* .NET, .NET core, Java, and Node.js agents and the Windows Extension: Support for sovereign clouds. Connections strings can be used to send data to sovereign clouds.
+
+#### 2.8.24
+
+* Repackaged version of 2.8.21.
+
+### [Java](#tab/java)
+
+#### 2.8.43
+
+* Separate .NET/.NET Core, Java, and Node.js package into different App Service Windows Site Extension.
+
+#### 2.8.42
+
+* JAVA extension: Upgraded to [Java Agent 3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0) from 2.5.1.
+
+#### 2.8.40
+
+* JAVA extension: Upgraded to [Java Agent 3.1.1 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.1) from 3.0.2.
+
+#### 2.8.38
+
+* JAVA extension: upgraded to [Java Agent 3.0.2 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.0.2) from 2.5.1.
+
+#### 2.8.33
+
+* .NET, .NET core, Java, and Node.js agents and the Windows Extension: Support for sovereign clouds. Connections strings can be used to send data to sovereign clouds.
+
+#### 2.8.24
+
+* Repackaged version of 2.8.21.
+
+### [Node.js](#tab/nodejs)
+
+#### 2.8.43
+
+* Separate .NET/.NET Core, Java, and Node.js package into different App Service Windows Site Extension. 
+
+#### 2.8.42
+
+* Node.js extension: Updated AI SDK to [2.1.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.8) from 2.1.7. Added support for User and System assigned Microsoft Entra managed identities.
+
+#### 2.8.41
+
+* Node.js extension: Updated AI SDK to [2.1.7](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.7) from 2.1.3.
+
+#### 2.8.40
+
+* Node.js extension: Updated AI SDK to [2.1.3](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.3) from 1.8.8.
+
+#### 2.8.38
+
+* Node.js extension: Updated AI SDK to [1.8.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/1.8.8) from 1.8.7.
+
+#### 2.8.33
+
+* .NET, .NET core, Java, and Node.js agents and the Windows Extension: Support for sovereign clouds. Connections strings can be used to send data to sovereign clouds.
+
+#### 2.8.24
+
+* Repackaged version of 2.8.21.
+
+### [Python (Preview)](#tab/python)
+
+---
           
 ## Next steps
 
