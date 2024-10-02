@@ -195,7 +195,7 @@ In order to use the OpenTelemetry Django Instrumentation, you need to set the `D
 
 ---
 
-## Manually upgrade monitoring extension/agent
+## Manually upgrade the monitoring extension/agent
 
 ## [ASP.NET Core](#tab/aspnetcore)
 
@@ -281,8 +281,7 @@ N/A
 
 ---
 
-## Configure the agent/extension
-
+## Configure the monitoring extension/agent
 
 ## [ASP.NET Core](#tab/aspnetcore)
 
