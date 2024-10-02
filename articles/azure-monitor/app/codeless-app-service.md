@@ -767,7 +767,7 @@ For the latest updates and bug fixes, [consult the release notes](web-app-extens
 
 ## Release notes
 
-This section contains the release notes for Azure Web Apps Extension for runtime instrumentation with Application Insights.
+This section contains the release notes for Azure Web Apps based on ANT release for runtime instrumentation with Application Insights.
 
 To find which version of the extension you're currently using, go to `https://<yoursitename>.scm.azurewebsites.net/ApplicationInsights`.
 
@@ -775,7 +775,7 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.44
 
-* .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
+* Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
 
 #### 2.8.43
 
@@ -783,19 +783,19 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.42
 
-* .NET Core: Added self-contained deployments and .NET 6.0 support using [.NET Startup Hook](https://github.com/dotnet/runtime/blob/main/docs/design/features/host-startup-hook.md).
+* Added self-contained deployments and .NET 6.0 support using [.NET Startup Hook](https://github.com/dotnet/runtime/blob/main/docs/design/features/host-startup-hook.md).
 
 #### 2.8.41
 
-* .NET Core: Removed out-of-support version (2.1). Supported versions are 3.1 and 5.0.
+* Removed out-of-support version (2.1). Supported versions are 3.1 and 5.0.
 
 #### 2.8.39
 
-* .NET Core: Added .NET Core 5.0 support.
+* Added .NET Core 5.0 support.
 
 #### 2.8.38
 
-* .NET Core: Removed out-of-support versions (2.0, 2.2, 3.0). Supported versions are 2.1 and 3.1.
+* Removed out-of-support versions (2.0, 2.2, 3.0). Supported versions are 2.1 and 3.1.
 
 #### 2.8.37
 
@@ -819,7 +819,8 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.26
 
-* ASP.NET Core agent: Fixed issue related to updated Application Insights SDK. The agent doesn't try to load `AiHostingStartup` if the ApplicationInsights.dll is already present in the bin folder. It resolves issues related to reflection via Assembly\<AiHostingStartup\>.GetTypes().
+* Fixed issue related to updated Application Insights SDK. The agent doesn't try to load `AiHostingStartup` if the ApplicationInsights.dll is already present in the bin folder. It resolves issues related to reflection via Assembly\<AiHostingStartup\>.GetTypes().
+
 * Known issues: Exception `System.IO.FileLoadException: Could not load file or assembly 'System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51'` could be thrown if another version of `DiagnosticSource` dll is loaded. It could happen, for example, if `System.Diagnostics.DiagnosticSource.dll` is present in the publish folder. As mitigation, use the previous version of extension by setting app settings in app services: ApplicationInsightsAgent_EXTENSIONVERSION=2.8.24.
 
 #### 2.8.24
@@ -829,6 +830,7 @@ To find which version of the extension you're currently using, go to `https://<y
 #### 2.8.23
 
 * Added ASP.NET Core 3.0 codeless monitoring support.
+
 * Updated ASP.NET Core SDK to [2.8.0](https://github.com/microsoft/ApplicationInsights-aspnetcore/releases/tag/2.8.0) for runtime versions 2.1, 2.2 and 3.0. Apps targeting .NET Core 2.0 continue to use 2.1.1 of the SDK.
 
 #### 2.8.14
@@ -838,12 +840,19 @@ To find which version of the extension you're currently using, go to `https://<y
 #### 2.8.12
 
 * Support for ASP.NET Core 2.2 apps.
+
 * Fixed a bug in ASP.NET Core extension causing injection of SDK even when the application is already instrumented with the SDK. For 2.1 and 2.2 apps, the presence of ApplicationInsights.dll in the application folder now causes the extension to back off. For 2.0 apps, the extension backs off only if ApplicationInsights is enabled with a `UseApplicationInsights()` call.
+
 * Permanent fix for incomplete HTML response for ASP.NET Core apps. This fix is now extended to work for .NET Core 2.2 apps.
+
 * Added support to turn off JavaScript injection for ASP.NET Core apps (`APPINSIGHTS_JAVASCRIPT_ENABLED=false appsetting`). For ASP.NET core, the JavaScript injection is in "Opt-Out" mode by default, unless explicitly turned off. (The default setting is done to retain current behavior.)
+
 * Fixed ASP.NET Core extension bug that caused injection even if ikey wasn't present.
+
 * Fixed a bug in the SDK version prefix logic that caused an incorrect SDK version in telemetry.
+
 * Added SDK version prefix for ASP.NET Core apps to identify how telemetry was collected.
+
 * Fixed SCM- ApplicationInsights page to correctly show the version of the preinstalled extension.
 
 #### 2.8.10
@@ -854,7 +863,7 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.44
 
-* .NET/.NET Core: Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
+* Upgraded to [ApplicationInsights .NET SDK to 2.20.1](https://github.com/microsoft/ApplicationInsights-dotnet/tree/autoinstrumentation/2.20.1).
 
 #### 2.8.43
 
@@ -876,15 +885,15 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.42
 
-* JAVA extension: Upgraded to [Java Agent 3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0) from 2.5.1.
+* Upgraded to [Java Agent 3.2.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0) from 2.5.1.
 
 #### 2.8.40
 
-* JAVA extension: Upgraded to [Java Agent 3.1.1 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.1) from 3.0.2.
+* Upgraded to [Java Agent 3.1.1 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.1.1) from 3.0.2.
 
 #### 2.8.38
 
-* JAVA extension: upgraded to [Java Agent 3.0.2 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.0.2) from 2.5.1.
+* Upgraded to [Java Agent 3.0.2 (GA)](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.0.2) from 2.5.1.
 
 #### 2.8.33
 
@@ -902,19 +911,19 @@ To find which version of the extension you're currently using, go to `https://<y
 
 #### 2.8.42
 
-* Node.js extension: Updated AI SDK to [2.1.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.8) from 2.1.7. Added support for User and System assigned Microsoft Entra managed identities.
+* Updated AI SDK to [2.1.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.8) from 2.1.7. Added support for User and System assigned Microsoft Entra managed identities.
 
 #### 2.8.41
 
-* Node.js extension: Updated AI SDK to [2.1.7](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.7) from 2.1.3.
+* Updated AI SDK to [2.1.7](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.7) from 2.1.3.
 
 #### 2.8.40
 
-* Node.js extension: Updated AI SDK to [2.1.3](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.3) from 1.8.8.
+* Updated AI SDK to [2.1.3](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/2.1.3) from 1.8.8.
 
 #### 2.8.38
 
-* Node.js extension: Updated AI SDK to [1.8.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/1.8.8) from 1.8.7.
+* Updated AI SDK to [1.8.8](https://github.com/microsoft/ApplicationInsights-node.js/releases/tag/1.8.8) from 1.8.7.
 
 #### 2.8.33
 
