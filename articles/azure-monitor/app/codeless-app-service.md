@@ -453,7 +453,7 @@ This section provides answers to common questions.
 
 ### What does Application Insights modify in my project?
 
-The details depend on the type of project. The following is an example for a web application.
+The details depend on the type of project. The following list is an example for a web application.
           
 * **Adds files to your project:**
     * ApplicationInsights.config
@@ -539,7 +539,7 @@ The following table provides an explanation of what these values mean, their und
 
 | Problem value | Explanation | Fix |
 |---------------|-------------|-----|
-| `AppAlreadyInstrumented:true` | This value indicates that the extension detected some aspect of the SDK already present in the application and backs off. It can be caused by a reference to `Microsoft.ApplicationInsights.AspNetCore` or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio reference `Microsoft.ApplicationInsights`. |
+| `AppAlreadyInstrumented:true` | This value indicates that the extension detected some aspect of the SDK already present in the application and backs off. A reference to `Microsoft.ApplicationInsights.AspNetCore` or `Microsoft.ApplicationInsights` can cause this. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio reference `Microsoft.ApplicationInsights`. |
 | `AppAlreadyInstrumented:true` | The presence of `Microsoft.ApplicationsInsights` DLL in the app folder from a previous deployment can also cause this value. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the *wwwroot* directory on the App Service. (To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu**) > **Debug console** > **CMD** > **home\site\wwwroot**). |
 | `IKeyExists:false` | This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes include accidentally removing the values or forgetting to set the values in automation script. | Make sure the setting is present in the App Service application settings. |
 
@@ -593,8 +593,8 @@ The following table provides an explanation of what these values mean, their und
 
 | Problem value | Explanation | Fix |
 |---------------|-------------|-----|
-| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and backs off. It can be because of a reference to `System.Diagnostics.DiagnosticSource`, `Microsoft.AspNet.TelemetryCorrelation`, or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio might add references to `Microsoft.ApplicationInsights`. |
-|`AppAlreadyInstrumented:true` | This value can also be caused by the presence of the preceding DLLs in the app folder from a previous deployment. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the wwwroot directory on the App Service resource. To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu)** > **Debug console** > **CMD** > **home\site\wwwroot**. |
+| `AppAlreadyInstrumented:true` | This value indicates that the extension detected some aspect of the SDK already present in the application and backs off. A reference to `System.Diagnostics.DiagnosticSource`, `Microsoft.AspNet.TelemetryCorrelation`, or `Microsoft.ApplicationInsights` can cause this. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio might add references to `Microsoft.ApplicationInsights`. |
+|`AppAlreadyInstrumented:true` | The presence of the preceding DLLs in the app folder from a previous deployment can also cause this value. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the wwwroot directory on the App Service resource. To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu)** > **Debug console** > **CMD** > **home\site\wwwroot**. |
 | `AppContainsAspNetTelemetryCorrelationAssembly: true` | This value indicates that the extension detected references to `Microsoft.AspNet.TelemetryCorrelation` in the application and backs off. | Remove the reference. |
 | `AppContainsDiagnosticSourceAssembly**:true`| This value indicates that the extension detected references to `System.Diagnostics.DiagnosticSource` in the application and backs off.| For ASP.NET, remove the reference. |
 | `IKeyExists:false` | This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes might be that the values were accidentally removed, or you forgot to set the values in the automation script. | Make sure the setting is present in the App Service application settings. |
