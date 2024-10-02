@@ -47,31 +47,6 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 
     :::image type="content"source="./media/azure-web-apps-net-core/instrument-net-core.png" alt-text=" Screenshot that shows instrumenting your application section.":::
 
-### Upgrade monitoring extension/agent
-
-To upgrade the monitoring extension/agent, follow the steps in the next sections.
-
-#### Upgrade from versions 2.8.9 and up
-
-Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and are picked up on application restart.
-
-To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
-
-:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
-
-#### Upgrade from versions 1.0.0 - 2.6.5
-
-Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
-
-* [Upgrade by enabling via the Azure portal](#enable-application-insights): Even if you have the Application Insights extension for App Service installed, the UI shows only the **Enable** button. Behind the scenes, the old private site extension is removed.
-
-* [Upgrade through PowerShell](#enable-through-powershell):
-
-    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
-    1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
-
-If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
-
 ## [.NET](#tab/net)
 
 > [!IMPORTANT]
@@ -107,45 +82,6 @@ If the upgrade is done from a version before 2.5.1, check that the `ApplicationI
     | Improves APM metrics accuracy under load, when sampling is used                          | Yes         | Yes                                        |
     | Correlates micro-services across request/dependency boundaries                           | Yes         | No (single-instance APM capabilities only) |
 
-1. To configure sampling, which you could previously control via the *applicationinsights.config* file, you can now interact with it via application settings with the corresponding prefix `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor`.
-
-    * For example, to change the initial sampling percentage, you can create an application setting of `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage` and a value of `100`.
-
-    * To disable sampling, set `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage` to a value of `100`.
-
-    * Supported settings include:
-        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage`
-        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage`
-        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_EvaluationInterval`
-        * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MaxTelemetryItemsPerSecond`
-
-    * For the list of supported adaptive sampling telemetry processor settings and definitions, see the [code](https://github.com/microsoft/ApplicationInsights-dotnet/blob/master/BASE/Test/ServerTelemetryChannel.Test/TelemetryChannel.Tests/AdaptiveSamplingTelemetryProcessorTest.cs) and [sampling documentation](./sampling.md#configuring-adaptive-sampling-for-aspnet-applications).
-
-### Upgrade monitoring extension/agent
-
-To upgrade the monitoring extension/agent, follow the steps in the next sections.
-
-#### Upgrade from versions 2.8.9 and up
-
-Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and are picked up on application restart.
-
-To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
-
-:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
-
-#### Upgrade from versions 1.0.0 - 2.6.5
-
-Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
-
-* [Upgrade by enabling via the Azure portal](#enable-application-insights): Even if you have the Application Insights extension for App Service installed, the UI shows only the **Enable** button. Behind the scenes, the old private site extension is removed.
-
-* [Upgrade through PowerShell](#enable-through-powershell):
-
-    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
-    1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
-
-If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
-
 ## [Java](#tab/java)
 
 > [!NOTE]
@@ -166,44 +102,6 @@ This integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?
 
     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown.":::
 
-### Configuration
-
-After specifying which resource to use, you can configure the Java agent. If you don't configure the Java agent, default configurations apply.
-
-The full [set of configurations](./java-standalone-config.md) is available. You just need to paste a valid [json file](./java-standalone-config.md#an-example). **Exclude the connection string and any configurations that are in preview** - you're able to add the items that are currently in preview as they become generally available.
-
-Once you modify the configurations through the Azure portal, `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable are automatically populated and appear in App Service settings panel. This variable contains the full json content that you pasted in the Azure portal configuration text box for your Java app. 
-
-:::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application.":::
-
-### Manually update the Java agent
-
-The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that got fixed in the latest version of the Application Insights Java agent, you can update it manually.
-
-1. Upload the Java agent jar file to App Service.
-
-    > a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
-
-    > b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
-
-    > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
-
-1. Disable Application Insights via the Application Insights tab in the Azure portal.
-
-1. Once the agent jar file is uploaded, go to App Service configurations. If you need to use **Startup Command** for Linux, include JVM arguments:
-
-    :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
-    
-    **Startup Command** doesn't honor `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat.
-    
-    If you don't use **Startup Command**, create a new environment variable, `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat, with the value
-    `-javaagent:{PATH_TO_THE_AGENT_JAR}/applicationinsights-agent-{VERSION_NUMBER}.jar`.
-
-1. To apply the changes, restart the app.
-
-> [!NOTE]
-> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings.
-
 ## [Node.js](#tab/nodejs)
 
 > [!IMPORTANT]
@@ -220,32 +118,16 @@ Application Insights for Node.js is integrated with Azure App Service on Linux -
 
     :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected.":::
 
-2. Choose to create a new resource, or select an existing Application Insights resource for this application.
+1. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
     > When you select **OK** to create the new resource you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**.
 
     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown."::: 
 
-3. Once you specified which resource to use, you're all set to go. 
+1. Once you specified which resource to use, you're all set to go. 
 
     :::image type="content"source="./media/azure-web-apps-nodejs/app-service-node.png" alt-text="Screenshot of instrument your application."::: 
-
-### Configuration
-
-The Node.js agent can be configured using JSON. Set the `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` environment variable to the JSON string or set the `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable to the file path containing the JSON.
-
-```json
-"samplingPercentage": 80,
-"enableAutoCollectExternalLoggers": true,
-"enableAutoCollectExceptions": true,
-"enableAutoCollectHeartbeat": true,
-"enableSendLiveMetrics": true,
-...
-
-```
-
-The full [set of configurations](https://github.com/microsoft/ApplicationInsights-node.js#configuration) is available. You just need to use a valid json file.
 
 ## [Python (Preview)](#tab/python)
 
@@ -282,21 +164,6 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 
     :::image type="content"source="./media/azure-web-apps-python/app-service-python.png" alt-text="Screenshot of instrument your application." lightbox="./media/azure-web-apps-python/app-service-python.png":::
 
-### Configuration
-
-You can configure with [OpenTelemetry environment variables](https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/) such as:
-
-| **Environment Variable** | **Description** |
-|--------------------------|-----------------|
-| `OTEL_SERVICE_NAME`, `OTEL_RESOURCE_ATTRIBUTES` | Specifies the OpenTelemetry [Resource Attributes](https://opentelemetry.io/docs/specs/otel/resource/sdk/) associated with your application. You can set any Resource Attributes with [OTEL_RESOURCE_ATTRIBUTES](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry-sdk-environment-variables) or use [OTEL_SERVICE_NAME](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry.sdk.environment_variables.OTEL_SERVICE_NAME) to only set the `service.name`. |
-| `OTEL_LOGS_EXPORTER` | If set to `None`, disables collection and export of logging telemetry. |
-| `OTEL_METRICS_EXPORTER` | If set to `None`, disables collection and export of metric telemetry. |
-| `OTEL_TRACES_EXPORTER` | If set to `None`, disables collection and export of distributed tracing telemetry. |
-| `OTEL_BLRP_SCHEDULE_DELAY` | Specifies the logging export interval in milliseconds. Defaults to 5000. |
-| `OTEL_BSP_SCHEDULE_DELAY` | Specifies the distributed tracing export interval in milliseconds. Defaults to 5000. |
-| `OTEL_TRACES_SAMPLER_ARG` | Specifies the ratio of distributed tracing telemetry to be [sampled](./sampling.md). Accepted values range from 0 to 1. The default is 1.0, meaning no telemetry is sampled out. |
-| `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` | Specifies which OpenTelemetry instrumentations to disable. When disabled, instrumentations aren't executed as part of autoinstrumentation. Accepts a comma-separated list of lowercase [library names](#enable-application-insights). For example, set it to `"psycopg2,fastapi"` to disable the Psycopg2 and FastAPI instrumentations. It defaults to an empty list, enabling all supported instrumentations. |
-
 ### Python libraries
 
 After instrumenting, you collect calls and metrics from these Python libraries:
@@ -325,6 +192,158 @@ To add the community OpenTelemetry Instrumentation Library, install it via your 
 ### Django Instrumentation
 
 In order to use the OpenTelemetry Django Instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. For more information, see the [Django documentation](https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE).
+
+---
+
+## Manually upgrade monitoring extension/agent
+
+## [ASP.NET Core](#tab/aspnetcore)
+
+### Upgrade from versions 2.8.9 and up
+
+Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and are picked up on application restart.
+
+To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
+
+:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
+
+### Upgrade from versions 1.0.0 - 2.6.5
+
+Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
+
+* [Upgrade by enabling via the Azure portal](#enable-application-insights): Even if you have the Application Insights extension for App Service installed, the UI shows only the **Enable** button. Behind the scenes, the old private site extension is removed.
+
+* [Upgrade through PowerShell](#enable-through-powershell):
+
+    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
+    1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
+
+If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
+
+## [.NET](#tab/net)
+
+### Upgrade from versions 2.8.9 and up
+
+Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and are picked up on application restart.
+
+To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
+
+:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
+
+### Upgrade from versions 1.0.0 - 2.6.5
+
+Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
+
+* [Upgrade by enabling via the Azure portal](#enable-application-insights): Even if you have the Application Insights extension for App Service installed, the UI shows only the **Enable** button. Behind the scenes, the old private site extension is removed.
+
+* [Upgrade through PowerShell](#enable-through-powershell):
+
+    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
+    1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
+
+If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
+
+## [Java](#tab/java)
+
+The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that got fixed in the latest version of the Application Insights Java agent, you can update it manually.
+
+1. Upload the Java agent jar file to App Service.
+
+    > a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
+
+    > b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
+
+    > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
+
+1. Disable Application Insights via the Application Insights tab in the Azure portal.
+
+1. Once the agent jar file is uploaded, go to App Service configurations. If you need to use **Startup Command** for Linux, include JVM arguments:
+
+    :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
+    
+    **Startup Command** doesn't honor `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat.
+    
+    If you don't use **Startup Command**, create a new environment variable, `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat, with the value
+    `-javaagent:{PATH_TO_THE_AGENT_JAR}/applicationinsights-agent-{VERSION_NUMBER}.jar`.
+
+1. To apply the changes, restart the app.
+
+> [!NOTE]
+> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings.
+
+## [Node.js](#tab/nodejs)
+
+N/A
+
+## [Python (Preview)](#tab/python)
+
+N/A
+
+---
+
+## Configure the agent/extension
+
+
+## [ASP.NET Core](#tab/aspnetcore)
+
+N/A
+
+## [.NET](#tab/net)
+
+To configure sampling, which you could previously control via the *applicationinsights.config* file, you can now interact with it via application settings with the corresponding prefix `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor`.
+    
+* For example, to change the initial sampling percentage, you can create an application setting of `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage` and a value of `100`.
+
+* To disable sampling, set `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage` to a value of `100`.
+
+* Supported settings include:
+    * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_InitialSamplingPercentage`
+    * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MinSamplingPercentage`
+    * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_EvaluationInterval`
+    * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MaxTelemetryItemsPerSecond`
+
+* For the list of supported adaptive sampling telemetry processor settings and definitions, see the [code](https://github.com/microsoft/ApplicationInsights-dotnet/blob/master/BASE/Test/ServerTelemetryChannel.Test/TelemetryChannel.Tests/AdaptiveSamplingTelemetryProcessorTest.cs) and [sampling documentation](./sampling.md#configuring-adaptive-sampling-for-aspnet-applications).
+
+## [Java](#tab/java)
+
+After specifying which resource to use, you can configure the Java agent. If you don't configure the Java agent, default configurations apply.
+
+The full [set of configurations](./java-standalone-config.md) is available. You just need to paste a valid [json file](./java-standalone-config.md#an-example). **Exclude the connection string and any configurations that are in preview** - you're able to add the items that are currently in preview as they become generally available.
+
+Once you modify the configurations through the Azure portal, `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable are automatically populated and appear in App Service settings panel. This variable contains the full json content that you pasted in the Azure portal configuration text box for your Java app. 
+
+:::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application.":::
+
+## [Node.js](#tab/nodejs)
+
+The Node.js agent can be configured using JSON. Set the `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` environment variable to the JSON string or set the `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable to the file path containing the JSON.
+
+```json
+"samplingPercentage": 80,
+"enableAutoCollectExternalLoggers": true,
+"enableAutoCollectExceptions": true,
+"enableAutoCollectHeartbeat": true,
+"enableSendLiveMetrics": true,
+...
+
+```
+
+The full [set of configurations](https://github.com/microsoft/ApplicationInsights-node.js#configuration) is available. You just need to use a valid json file.
+
+## [Python (Preview)](#tab/python)
+
+You can configure with [OpenTelemetry environment variables](https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/) such as:
+
+| **Environment Variable** | **Description** |
+|--------------------------|-----------------|
+| `OTEL_SERVICE_NAME`, `OTEL_RESOURCE_ATTRIBUTES` | Specifies the OpenTelemetry [Resource Attributes](https://opentelemetry.io/docs/specs/otel/resource/sdk/) associated with your application. You can set any Resource Attributes with [OTEL_RESOURCE_ATTRIBUTES](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry-sdk-environment-variables) or use [OTEL_SERVICE_NAME](https://opentelemetry-python.readthedocs.io/en/latest/sdk/environment_variables.html?highlight=OTEL_RESOURCE_ATTRIBUTES%20#opentelemetry.sdk.environment_variables.OTEL_SERVICE_NAME) to only set the `service.name`. |
+| `OTEL_LOGS_EXPORTER` | If set to `None`, disables collection and export of logging telemetry. |
+| `OTEL_METRICS_EXPORTER` | If set to `None`, disables collection and export of metric telemetry. |
+| `OTEL_TRACES_EXPORTER` | If set to `None`, disables collection and export of distributed tracing telemetry. |
+| `OTEL_BLRP_SCHEDULE_DELAY` | Specifies the logging export interval in milliseconds. Defaults to 5000. |
+| `OTEL_BSP_SCHEDULE_DELAY` | Specifies the distributed tracing export interval in milliseconds. Defaults to 5000. |
+| `OTEL_TRACES_SAMPLER_ARG` | Specifies the ratio of distributed tracing telemetry to be [sampled](./sampling.md). Accepted values range from 0 to 1. The default is 1.0, meaning no telemetry is sampled out. |
+| `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` | Specifies which OpenTelemetry instrumentations to disable. When disabled, instrumentations aren't executed as part of autoinstrumentation. Accepts a comma-separated list of lowercase [library names](#enable-application-insights). For example, set it to `"psycopg2,fastapi"` to disable the Psycopg2 and FastAPI instrumentations. It defaults to an empty list, enabling all supported instrumentations. |
 
 ---
 
