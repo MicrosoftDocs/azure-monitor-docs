@@ -47,6 +47,31 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 
     :::image type="content"source="./media/azure-web-apps-net-core/instrument-net-core.png" alt-text=" Screenshot that shows instrumenting your application section.":::
 
+#### Upgrade monitoring extension/agent
+
+To upgrade the monitoring extension/agent, follow the steps in the next sections.
+
+##### Upgrade from versions 2.8.9 and up
+
+Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and on application restart they'll be picked up.
+
+To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
+
+:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
+
+##### Upgrade from versions 1.0.0 - 2.6.5
+
+Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
+
+* [Upgrade by enabling via the Azure portal](#enable-application-insights): Even if you have the Application Insights extension for App Service installed, the UI shows only the **Enable** button. Behind the scenes, the old private site extension will be removed.
+
+* [Upgrade through PowerShell](#enable-through-powershell):
+
+    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
+    1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
+
+If the upgrade is done from a version prior to 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
+
 ### [.NET](#tab/net)
 
 > [!IMPORTANT]
@@ -95,6 +120,31 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
         * `MicrosoftAppInsights_AdaptiveSamplingTelemetryProcessor_MaxTelemetryItemsPerSecond`
 
     * For the list of supported adaptive sampling telemetry processor settings and definitions, see the [code](https://github.com/microsoft/ApplicationInsights-dotnet/blob/master/BASE/Test/ServerTelemetryChannel.Test/TelemetryChannel.Tests/AdaptiveSamplingTelemetryProcessorTest.cs) and [sampling documentation](./sampling.md#configuring-adaptive-sampling-for-aspnet-applications).
+
+#### Upgrade monitoring extension/agent
+
+To upgrade the monitoring extension/agent, follow the steps in the next sections.
+
+##### Upgrade from versions 2.8.9 and up
+
+Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and on application restart they'll be picked up.
+
+To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
+
+:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
+
+##### Upgrade from versions 1.0.0 - 2.6.5
+
+Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
+
+* [Upgrade by enabling via the Azure portal](#enable-application-insights): Even if you have the Application Insights extension for App Service installed, the UI shows only the **Enable** button. Behind the scenes, the old private site extension will be removed.
+
+* [Upgrade through PowerShell](#enable-through-powershell):
+
+    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
+    1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
+
+If the upgrade is done from a version prior to 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
 
 ### [Java](#tab/java)
 
