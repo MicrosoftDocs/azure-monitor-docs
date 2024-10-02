@@ -453,7 +453,7 @@ This section provides answers to common questions.
 
 ### What does Application Insights modify in my project?
 
-The details depend on the type of project. For a web application:
+The details depend on the type of project. For a web application, Application Insights
           
 * Adds files to your project:
     * ApplicationInsights.config
@@ -464,7 +464,7 @@ The details depend on the type of project. For a web application:
     * Application Insights API for Web Applications: Used to send telemetry from the server
     * Application Insights API for JavaScript Applications: Used to send telemetry from the client
 
-* The packages include these assemblies:
+* Includes assemblies in packages:
     * Microsoft.ApplicationInsights
     * Microsoft.ApplicationInsights.Platform
 
@@ -484,8 +484,6 @@ The details depend on the type of project. For a web application:
 
 > [!NOTE]
 > When you create a web app with the `ASP.NET Core` runtimes in App Service, it deploys a single static HTML page as a starter website. We *do not* recommend that you troubleshoot an issue with the default template. Deploy an application before you troubleshoot an issue.
-
-What follows is our step-by-step troubleshooting guide for extension/agent-based monitoring for ASP.NET Core-based applications running on App Service.
 
 ### Windows
 
@@ -541,16 +539,14 @@ The following table provides an explanation of what these values mean, their und
 
 | Problem value | Explanation | Fix |
 |---------------|-------------|-----|
-| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and will back off. It can be because of a reference to `Microsoft.ApplicationInsights.AspNetCore` or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio reference `Microsoft.ApplicationInsights`. |
-| `AppAlreadyInstrumented:true` | This value can also be caused by the presence of `Microsoft.ApplicationsInsights` DLL in the app folder from a previous deployment. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the *wwwroot* directory on the App Service. (To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu**) > **Debug console** > **CMD** > **home\site\wwwroot**). |
+| `AppAlreadyInstrumented:true` | This value indicates that the extension detected some aspect of the SDK already present in the application and backs off. It can be caused by a reference to `Microsoft.ApplicationInsights.AspNetCore` or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio reference `Microsoft.ApplicationInsights`. |
+| `AppAlreadyInstrumented:true` | The presence of `Microsoft.ApplicationsInsights` DLL in the app folder from a previous deployment can also cause this value. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the *wwwroot* directory on the App Service. (To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu**) > **Debug console** > **CMD** > **home\site\wwwroot**). |
 | `IKeyExists:false` | This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes include accidentally removing the values or forgetting to set the values in automation script. | Make sure the setting is present in the App Service application settings. |
 
 ## [.NET](#tab/net)
 
 > [!NOTE]
 > When you create a web app with the `ASP.NET` runtimes in App Service, it deploys a single static HTML page as a starter website. We do *not* recommend that you troubleshoot an issue with a default template. Deploy an application before you troubleshoot an issue.
-
-Here's our step-by-step troubleshooting guide for extension/agent-based monitoring for ASP.NET-based applications running on App Service.
 
 1. Check that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2`.
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
@@ -597,11 +593,11 @@ The following table provides an explanation of what these values mean, their und
 
 | Problem value | Explanation | Fix |
 |---------------|-------------|-----|
-| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and will back off. It can be because of a reference to `System.Diagnostics.DiagnosticSource`, `Microsoft.AspNet.TelemetryCorrelation`, or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio might add references to `Microsoft.ApplicationInsights`. |
+| `AppAlreadyInstrumented:true` | This value indicates that the extension detected that some aspect of the SDK is already present in the application and backs off. It can be because of a reference to `System.Diagnostics.DiagnosticSource`, `Microsoft.AspNet.TelemetryCorrelation`, or `Microsoft.ApplicationInsights`. | Remove the references. Some of these references are added by default from certain Visual Studio templates. Older versions of Visual Studio might add references to `Microsoft.ApplicationInsights`. |
 |`AppAlreadyInstrumented:true` | This value can also be caused by the presence of the preceding DLLs in the app folder from a previous deployment. | Clean the app folder to ensure that these DLLs are removed. Check both your local app's bin directory and the wwwroot directory on the App Service resource. To check the wwwroot directory of your App Service web app, select **Advanced Tools (Kudu)** > **Debug console** > **CMD** > **home\site\wwwroot**. |
-| `AppContainsAspNetTelemetryCorrelationAssembly: true` | This value indicates that the extension detected references to `Microsoft.AspNet.TelemetryCorrelation` in the application and will back off. | Remove the reference. |
-| `AppContainsDiagnosticSourceAssembly**:true`|This value indicates that the extension detected references to `System.Diagnostics.DiagnosticSource` in the application and will back off.| For ASP.NET, remove the reference. |
-| `IKeyExists:false` |This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes might be that the values were accidentally removed, or you forgot to set the values in the automation script. | Make sure the setting is present in the App Service application settings. |
+| `AppContainsAspNetTelemetryCorrelationAssembly: true` | This value indicates that the extension detected references to `Microsoft.AspNet.TelemetryCorrelation` in the application and backs off. | Remove the reference. |
+| `AppContainsDiagnosticSourceAssembly**:true`| This value indicates that the extension detected references to `System.Diagnostics.DiagnosticSource` in the application and backs off.| For ASP.NET, remove the reference. |
+| `IKeyExists:false` | This value indicates that the instrumentation key isn't present in the app setting `APPINSIGHTS_INSTRUMENTATIONKEY`. Possible causes might be that the values were accidentally removed, or you forgot to set the values in the automation script. | Make sure the setting is present in the App Service application settings. |
 
 ### System.IO.FileNotFoundException after 2.8.44 upgrade
 
@@ -624,7 +620,7 @@ Use our step-by-step guide to troubleshoot Java-based applications running on Az
 
 1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2` on Windows, `~3` on Linux
 
-1. Examine the log file to see that the agent has started successfully: browse to `https://yoursitename.scm.azurewebsites.net/`, under SSH change to the root directory, the log file is located under LogFiles/ApplicationInsights.
+1. Examine the log file to see that the agent started successfully: browse to `https://yoursitename.scm.azurewebsites.net/`, under SSH change to the root directory, the log file is located under LogFiles/ApplicationInsights.
   
     :::image type="content"source="./media/azure-web-apps-java/app-insights-java-status.png" alt-text="Screenshot of the link above results page."::: 
 
@@ -633,8 +629,6 @@ Use our step-by-step guide to troubleshoot Java-based applications running on Az
 1. Set `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL` environment variable to `debug` if you don't see any errors and there's no telemetry.
 
 ## [Node.js](#tab/nodejs)
-
-This is our step-by-step troubleshooting guide for extension/agent based monitoring for Node.js based applications running on Azure App Services.
 
 ### Windows
 
@@ -670,7 +664,7 @@ This is our step-by-step troubleshooting guide for extension/agent based monitor
     
     ```
 
-    If `SDKPresent` is true this indicates that the extension detected that some aspect of the SDK is already present in the Application, and will back-off.
+    If `SDKPresent` is true, it means the extension detected that some aspect of the SDK is already present in the Application, and will back-off.
 
 ### Linux
 
@@ -698,11 +692,9 @@ This is our step-by-step troubleshooting guide for extension/agent based monitor
     
     ```
 
-    If `SDKPresent` is true this indicates that the extension detected that some aspect of the SDK is already present in the Application, and will back-off.
+    If `SDKPresent` is true, it means the extension detected that some aspect of the SDK is already present in the Application, and will back-off.
 
 ## [Python (Preview)](#tab/python)
-
-Here we provide our troubleshooting guide for monitoring Python applications on Azure App Services using autoinstrumentation.
 
 ### Duplicate telemetry
 
