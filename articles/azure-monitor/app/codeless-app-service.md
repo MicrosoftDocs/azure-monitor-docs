@@ -453,26 +453,26 @@ This section provides answers to common questions.
 
 ### What does Application Insights modify in my project?
 
-The details depend on the type of project. For a web application, Application Insights
+The details depend on the type of project. The following is an example for a web application.
           
-* Adds files to your project:
+* **Adds files to your project:**
     * ApplicationInsights.config
     * ai.js
 
-* Installs NuGet packages:
+* **Installs NuGet packages:**
     * Application Insights API: The core API
     * Application Insights API for Web Applications: Used to send telemetry from the server
     * Application Insights API for JavaScript Applications: Used to send telemetry from the client
 
-* Includes assemblies in packages:
+* **Includes assemblies in packages:**
     * Microsoft.ApplicationInsights
     * Microsoft.ApplicationInsights.Platform
 
-* Inserts items into:
+* **Inserts items into:**
     * Web.config
     * packages.config
 
-* (For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).) Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*.
+* Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*. For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).
 
 [!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
 
