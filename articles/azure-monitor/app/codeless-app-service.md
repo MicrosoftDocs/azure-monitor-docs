@@ -30,6 +30,8 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 > * Only .NET Core [Long Term Support](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) (LTS) releases are supported.
 > * [Trim self-contained deployments](/dotnet/core/deploying/trimming/trim-self-contained) is *not supported*. Use [manual instrumentation](./asp-net-core.md) instead.
 
+#### Autoinstrumentation in the Azure portal
+
 1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
     :::image type="content"source="./media/azure-web-apps/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
@@ -51,7 +53,9 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 > If both autoinstrumentation monitoring and manual SDK-based instrumentation are detected, only the manual instrumentation settings are honored. This arrangement prevents duplicate data from being sent. To learn more, see [Troubleshooting](#troubleshooting).
 
 > [!NOTE]
-> The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported. For more information, see the explanation in the [Troubleshooting section](#appinsights_javascript_enabled-and-urlcompression-not-supported).
+> The combination of `APPINSIGHTS_JAVASCRIPT_ENABLED` and `urlCompression` isn't supported. For more information, see [Troubleshooting](#appinsights_javascript_enabled-and-urlcompression-not-supported).
+
+#### Autoinstrumentation in the Azure portal
 
 1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
@@ -94,7 +98,7 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 
 ### [Java](#tab/java)
 
-You can turn on monitoring for your Java apps running in Azure App Service just with one selection, no code change required. The integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?tabs=java) and autocollects telemetry. You can further apply extra configurations and [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry).
+This integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?tabs=java) and autocollects telemetry. You can further apply extra configurations and [add your own custom telemetry](./opentelemetry-add-modify.md?tabs=java#modify-telemetry).
 
 > [!NOTE]
 > With Spring Boot Native Image applications, use the [Azure Monitor OpenTelemetry Distro / Application Insights in Spring Boot native image Java application](https://aka.ms/AzMonSpringNative) project instead of the Application Insights Java agent solution described here.
@@ -120,7 +124,35 @@ The full [set of configurations](./java-standalone-config.md) is available. You 
 
 Once you modify the configurations through the Azure portal, `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable are automatically populated and appear in App Service settings panel. This variable contains the full json content that you pasted in the Azure portal configuration text box for your Java app. 
 
-:::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application."::: 
+:::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application.":::
+
+#### Manually update the Java agent
+
+The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that got fixed in the latest version of the Application Insights Java agent, you can update it manually.
+
+1. Upload the Java agent jar file to App Service.
+
+    > a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
+
+    > b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
+
+    > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
+
+1. Disable Application Insights via the Application Insights tab in the Azure portal.
+
+1. Once the agent jar file is uploaded, go to App Service configurations. If you need to use **Startup Command** for Linux, include JVM arguments:
+
+    :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
+    
+    **Startup Command** doesn't honor `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat.
+    
+    If you don't use **Startup Command**, create a new environment variable, `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat, with the value
+    `-javaagent:{PATH_TO_THE_AGENT_JAR}/applicationinsights-agent-{VERSION_NUMBER}.jar`.
+
+1. To apply the changes, restart the app.
+
+> [!NOTE]
+> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings.
 
 ### [Node.js](#tab/nodejs)
 
@@ -170,27 +202,14 @@ The full [set of configurations](https://github.com/microsoft/ApplicationInsight
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-The integration instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. After instrumenting, you collect calls and metrics from these Python libraries:
-
-| Instrumentation | Supported library Name | Supported versions |
-| --------------- | ---------------------- | ------------------ |
-| [OpenTelemetry Django Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-django) | [django](https://pypi.org/project/Django/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django/src/opentelemetry/instrumentation/django/package.py#L16) |
-| [OpenTelemetry FastApi Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-fastapi) | [fastapi](https://pypi.org/project/fastapi/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi/src/opentelemetry/instrumentation/fastapi/package.py#L16) |
-| [OpenTelemetry Flask Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-flask) | [flask](https://pypi.org/project/Flask/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/package.py#L16) |
-| [OpenTelemetry Psycopg2 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-psycopg2) | [psycopg2](https://pypi.org/project/psycopg2/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-psycopg2/src/opentelemetry/instrumentation/psycopg2/package.py#L16) |
-| [OpenTelemetry Requests Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-requests) | [requests](https://pypi.org/project/requests/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-requests/src/opentelemetry/instrumentation/requests/package.py#L16) |
-| [OpenTelemetry UrlLib Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib](https://docs.python.org/3/library/urllib.html) | All |
-| [OpenTelemetry UrlLib3 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib3](https://pypi.org/project/urllib3/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16) |
-
 > [!NOTE]
-> If using Django, see the additional [Django Instrumentation](#django-instrumentation) section in this article.
+> Only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
+
+Application Insights for Python integrates with code-based Linux Azure App Service. The integration is in public preview and adds the Python SDK, which is in GA.
+
+The integration instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. To see which calls and metrics are collected, see [Python libraries](#python-libraries)
 
 Logging telemetry is collected at the level of the root logger. To learn more about Python's native logging hierarchy, visit the [Python logging documentation](https://docs.python.org/3/library/logging.html).
-
-The easiest way to monitor Python applications on Azure App Services is through the Azure portal.
-
-> [!NOTE]
-> You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
 
 #### Prerequisites
 
@@ -199,12 +218,6 @@ The easiest way to monitor Python applications on Azure App Services is through 
 > * App Service must be deployed as code. Custom containers aren't supported.
 
 #### Autoinstrumentation in the Azure portal
-
-Toggle on monitoring for your Python apps in Azure App Service with no code changes required.
-
-Application Insights for Python integrates with code-based Linux Azure App Service.
-
-The integration is in public preview. It adds the Python SDK, which is in GA.
 
 1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
 
@@ -235,6 +248,23 @@ You can configure with [OpenTelemetry environment variables](https://opentelemet
 | `OTEL_BSP_SCHEDULE_DELAY` | Specifies the distributed tracing export interval in milliseconds. Defaults to 5000. |
 | `OTEL_TRACES_SAMPLER_ARG` | Specifies the ratio of distributed tracing telemetry to be [sampled](./sampling.md). Accepted values range from 0 to 1. The default is 1.0, meaning no telemetry is sampled out. |
 | `OTEL_PYTHON_DISABLED_INSTRUMENTATIONS` | Specifies which OpenTelemetry instrumentations to disable. When disabled, instrumentations aren't executed as part of autoinstrumentation. Accepts a comma-separated list of lowercase [library names](#enable-application-insights). For example, set it to `"psycopg2,fastapi"` to disable the Psycopg2 and FastAPI instrumentations. It defaults to an empty list, enabling all supported instrumentations. |
+
+#### Python libraries
+
+After instrumenting, you collect calls and metrics from these Python libraries:
+
+| Instrumentation | Supported library Name | Supported versions |
+| --------------- | ---------------------- | ------------------ |
+| [OpenTelemetry Django Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-django) | [django](https://pypi.org/project/Django/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-django/src/opentelemetry/instrumentation/django/package.py#L16) |
+| [OpenTelemetry FastApi Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-fastapi) | [fastapi](https://pypi.org/project/fastapi/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-fastapi/src/opentelemetry/instrumentation/fastapi/package.py#L16) |
+| [OpenTelemetry Flask Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-flask) | [flask](https://pypi.org/project/Flask/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-flask/src/opentelemetry/instrumentation/flask/package.py#L16) |
+| [OpenTelemetry Psycopg2 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-psycopg2) | [psycopg2](https://pypi.org/project/psycopg2/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-psycopg2/src/opentelemetry/instrumentation/psycopg2/package.py#L16) |
+| [OpenTelemetry Requests Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-requests) | [requests](https://pypi.org/project/requests/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-requests/src/opentelemetry/instrumentation/requests/package.py#L16) |
+| [OpenTelemetry UrlLib Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib](https://docs.python.org/3/library/urllib.html) | All |
+| [OpenTelemetry UrlLib3 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib3](https://pypi.org/project/urllib3/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16) |
+
+> [!NOTE]
+> If using Django, see the additional [Django Instrumentation](#django-instrumentation) section in this article.
 
 #### Add a community instrumentation library
 
@@ -368,93 +398,6 @@ In order to enable telemetry collection with Application Insights, only the foll
 ---
 
 [!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
-
-## Upgrade monitoring extension/agent
-
-### [ASP.NET Core](#tab/aspnetcore)
-
-#### Upgrade from versions 2.8.9 and up
-
-Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service, and on application restart they'll be picked up.
-
-To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
-
-:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
-
-#### Upgrade from versions 1.0.0 - 2.6.5
-
-Starting with version 2.8.9, the preinstalled site extension is used. If you're using an earlier version, you can update via one of two ways:
-
-* [Upgrade by enabling via the portal](#enable-autoinstrumentation-monitoring): Even if you have the Application Insights extension for App Service installed, the UI shows only the **Enable** button. Behind the scenes, the old private site extension will be removed.
-* [Upgrade through PowerShell](#enable-through-powershell):
-
-    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
-    1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
-
-If the upgrade is done from a version prior to 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
-
-### [.NET](#tab/net)
-
-#### Upgrade from versions 2.8.9 and up
-
-Upgrading from version 2.8.9 happens automatically, without any extra actions. The new monitoring bits are delivered in the background to the target app service. They'll be picked when the application restarts.
-
-To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
-
-:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
-
-#### Upgrade from versions 1.0.0 - 2.6.5
-
-Starting with version 2.8.9, the preinstalled site extension is used. If you're on an earlier version, you can update via one of two ways:
-
-* [Upgrade by enabling via the portal](#enable-autoinstrumentation-monitoring): Even if you have the Application Insights extension for App Service installed. The UI shows only the **Enable** button. Behind the scenes, the old private site extension will be removed.
-* [Upgrade through PowerShell](#enable-through-powershell):
-
-    1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
-    1. Manually remove the private site extension named Application Insights extension for App Service.
-
-If the upgrade is done from a version prior to 2.5.1, check that the Application Insights DLLs are removed from the application bin folder. For more information, see the steps in the [Troubleshooting section](#troubleshooting).
-
-### [Java](#tab/java)
-
-The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that got fixed in the latest version of Application Insights Java, you can update it manually.
-
-To manually update, follow these steps:
-
-1. Upload the Java agent jar file to App Service
-
-    > a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
-
-    > b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
-
-    > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
-
-1. Disable Application Insights via the Application Insights tab in the Azure portal.
-
-1. Once the agent jar file is uploaded, go to App Service configurations. If you
-   need to use **Startup Command** for Linux, include JVM arguments:
-
-   :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
-   
-   **Startup Command** doesn't honor `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat.
-
-   If you don't use **Startup Command**, create a new environment variable, `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat, with the value
-   `-javaagent:{PATH_TO_THE_AGENT_JAR}/applicationinsights-agent-{VERSION_NUMBER}.jar`.
-
-1. To apply the changes, restart the app.
-
-> [!NOTE]
-> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings. 
-
-#### [Node.js](#tab/nodejs)
-
-...
-
-#### [Python (Preview)](#tab/python)
-
-...
-
----
 
 ## Frequently asked questions
 
@@ -715,7 +658,9 @@ Here we provide our troubleshooting guide for monitoring Python applications on 
 
 #### Duplicate telemetry
 
-You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). Using autoinstrumentation on top of the manual instrumentation could cause duplicate telemetry and increase your cost. In order to use App Service OpenTelemetry autoinstrumentation, first remove manual instrumentation of OpenTelemetry from your code.
+You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme).
+
+Using autoinstrumentation on top of the manual instrumentation could cause duplicate telemetry and increase your cost. In order to use App Service OpenTelemetry autoinstrumentation, first remove manual instrumentation of OpenTelemetry from your code.
 
 #### Missing telemetry
 
@@ -734,6 +679,7 @@ Confirm that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set
 :::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
 
 ##### Step 3: Check autoinstrumentation diagnostics and status logs
+
 Navigate to */var/log/applicationinsights/* and open status_*.json.
 
 Confirm that `AgentInitializedSuccessfully` is set to true and `IKey` to have a valid iKey.
