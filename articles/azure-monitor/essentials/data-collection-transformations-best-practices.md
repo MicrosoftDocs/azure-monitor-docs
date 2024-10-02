@@ -11,12 +11,6 @@ ms.reviwer: nikeist
 # Best practices and samples for transformations in Azure Monitor
 [Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides best practices and recommendations for using transformations to ensure that they're reliable and cost effective.
 
-Transformations are defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-structure.md) that's applied individually to each entry in the incoming data. It must understand the format of the incoming data and create output in the structure expected by the destination.
-
-The following diagram illustrates the transformation process for incoming data and shows a sample query that might be used. See [Structure of transformation in Azure Monitor](./data-collection-transformations-structure.md) for details on building transformation queries.
-
-:::image type="content" source="media/data-collection-transformations/transformation-overview.png" lightbox="media/data-collection-transformations/transformation-overview.png" alt-text="Diagram that shows ingestion-time transformation for incoming data." border="false":::
-
 ## Monitor transformations
 Because transformations don't run interactively, it's important to monitor them to ensure that they're running properly and not taking excessive time to process data. See [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) for details on logs and metrics that monitor the health and performance of transformations. This includes identifying any errors that occur in the KQL and metrics to track their running duration.
 
@@ -67,24 +61,7 @@ source
     " field10=" Field10: string
 ```
 
-
-## Send data to multiple destinations
-
-With transformations, you can send data to multiple destinations in a Log Analytics workspace by using a single DCR. You provide a KQL query for each destination, and the results of each query are sent to their corresponding location. You can send different sets of data to different tables or use multiple queries to send different sets of data to the same table.
-
-For example, you might send event data into Azure Monitor by using the Logs Ingestion API. Most of the events should be sent an analytics table where it could be queried regularly, while audit events should be sent to a custom table configured for [basic logs](../logs/logs-table-plans.md) to reduce your cost.
-
-To use multiple destinations, you must currently either manually create a new DCR or [edit an existing one](data-collection-rule-edit.md). See the [Samples](#samples) section for examples of DCRs that use multiple destinations.
-
-> [!IMPORTANT]
-> Currently, the tables in the DCR must be in the same Log Analytics workspace. To send to multiple workspaces from a single data source, use multiple DCRs and configure your application to send the data to each.
-
-:::image type="content" source="media/data-collection-transformations/transformation-multiple-destinations.png" lightbox="media/data-collection-transformations/transformation-multiple-destinations.png" alt-text="Diagram that shows transformation sending data to multiple tables." border="false":::
-
-## Samples
-The following Resource Manager templates show sample DCRs with different patterns. You can use these templates as a starting point to creating DCRs with transformations for your own scenarios.
-
-### Single destination
+## Send data to single destination
 
 The following example is a DCR for Azure Monitor Agent that sends data to the `Syslog` table. In this example, the transformation filters the data for records with `error` in the message.
 
@@ -152,7 +129,18 @@ The following example is a DCR for Azure Monitor Agent that sends data to the `S
 } 
 ```
 
-### Multiple Azure tables
+## Send data to multiple destinations
+
+With transformations, you can send data to multiple destinations in a Log Analytics workspace by using a single DCR. You provide a KQL query for each destination, and the results of each query are sent to their corresponding location. You can send different sets of data to different tables or use multiple queries to send different sets of data to the same table.
+
+For example, you might send event data into Azure Monitor by using the Logs Ingestion API. Most of the events should be sent an analytics table where it could be queried regularly, while audit events should be sent to a custom table configured for [basic logs](../logs/logs-table-plans.md) to reduce your cost.
+
+To use multiple destinations, you must currently either manually create a new DCR or [edit an existing one](data-collection-rule-edit.md). See the [Samples](#samples) section for examples of DCRs that use multiple destinations.
+
+> [!IMPORTANT]
+> Currently, the tables in the DCR must be in the same Log Analytics workspace. To send to multiple workspaces from a single data source, use multiple DCRs and configure your application to send the data to each.
+
+:::image type="content" source="media/data-collection-transformations/transformation-multiple-destinations.png" lightbox="media/data-collection-transformations/transformation-multiple-destinations.png" alt-text="Diagram that shows transformation sending data to multiple tables." border="false":::
 
 The following example is a DCR for data from the Logs Ingestion API that sends data to both the `Syslog` and `SecurityEvent` tables. This DCR requires a separate `dataFlow` for each with a different `transformKql` and `OutputStream` for each. In this example, all incoming data is sent to the `Syslog` table while malicious data is also sent to the `SecurityEvent` table. If you didn't want to replicate the malicious data in both tables, you could add a `where` statement to first query to remove those records.
 
@@ -222,7 +210,7 @@ The following example is a DCR for data from the Logs Ingestion API that sends d
 }
 ```
 
-### Combination of Azure and custom tables
+## Combination of Azure and custom tables
 
 The following example is a DCR for data from the Logs Ingestion API that sends data to both the `Syslog` table and a custom table with the data in a different format. This DCR requires a separate `dataFlow` for each with a different `transformKql` and `OutputStream` for each. When using custom tables, it is important to ensure that the schema of the destination (your custom table) contains the custom columns ([how-to add or delete custom columns](../logs/create-custom-table.md#add-or-delete-a-custom-column)) that match the schema of the records you are sending. For instance, if your record has a field called SyslogMessage, but the destination custom table only has TimeGenerated and RawData, you’ll receive an event in the custom table with only the TimeGenerated field populated and the RawData field will be empty. The SyslogMessage field will be dropped because the schema of the destination table doesn’t contain a string field called SyslogMessage.
 
