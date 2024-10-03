@@ -36,7 +36,7 @@ All of the visualizations in the dashboard preview are built on new technology, 
 New chart features:
 * New options and settings for tooltips.
 * New options for location / sorting of metrics and legends.
-* New pan and zoom functionality in maps, including zooming in by default to the area containing data
+* New pan and zoom functionality in maps, including zooming in by default to the area containing data.
 * New data point click action in maps that shows merged data for a point as a table of individual items.
 * New options for icons and coloring options in graph visualization, including colorized links.
 * New layers feature where you can add line, icon, rectangle annotations to a chart based on data in another query.
