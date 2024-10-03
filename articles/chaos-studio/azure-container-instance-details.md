@@ -1,5 +1,5 @@
 ---
-title: Container Image Details and Instructions on How to Pull It for Azure Chaos Studio - Relay Bridge Host
+title: Container image details and instructions on how to pull the image for Azure Chaos Studio - Relay Bridge Host
 description: Learn how to pull the container image used by Azure Chaos Studio during virtual network injection
 services: chaos-studio
 author: nikhilkaul
