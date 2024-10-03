@@ -13,10 +13,10 @@ ms.custom: devx-track-azurecli
 
 # Container image details and instructions on how to pull the image for Azure Chaos Studio - Relay Bridge Host
 
-The following container image is the Relay Bridge Host for Azure Chaos Studio, available from the Microsoft Container Registry. This image is used to facilitate communication between Azure Chaos Studio and target resources when those resources are within private networks. Typically customers look for this image when doing a security review and allow listing the image Chaos Studio uses during VNET injection. This image is a Bastion host that we use for running an experiment in a customer's subscription and hosting the Azure Relay that connects to the Chaos Studio backend during experiment execution.
+The following container image is the Relay Bridge Host for Azure Chaos Studio, available from the Microsoft Container Registry. This image is used to facilitate communication between Azure Chaos Studio and target resources when those resources are within private networks. Typically customers look for this image when doing a security review and allow listing the image Chaos Studio uses during virtual network injection. This image is a Bastion host that we use for running an experiment in a customer's subscription and hosting the Azure Relay that connects to the Chaos Studio backend during experiment execution.
 
 
-## Image Details
+## Image details
 
 - **Repository**: `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host`
 - **Full Image URI**: `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host:<Tag address>`
@@ -24,7 +24,7 @@ The following container image is the Relay Bridge Host for Azure Chaos Studio, a
 This image version (also known as "Tag address") corresponds to a specific release of the Relay Bridge Host used by Azure Chaos Studio. For example, at the time of writing it's currently `1.0.02749.72`.
 
 
-## Instructions to Pull the Image
+## Instructions to pull the image
 
 Customers can pull this container image using Docker or any container runtime that supports Docker images.
 
@@ -33,7 +33,7 @@ Customers can pull this container image using Docker or any container runtime th
 - **Docker Installed**: Ensure Docker is installed and running on your machine or server. You can download Docker from the [official website](https://www.docker.com/).
 - **Network Access**: To pull images from the Microsoft Container Registry, make sure your environment has network access to `mcr.microsoft.com`. 
 
-### Pull the Image
+### Pull the image
 
 1. **Open Command Prompt**:
 
