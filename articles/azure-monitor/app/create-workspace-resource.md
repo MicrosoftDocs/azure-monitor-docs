@@ -48,7 +48,7 @@ Select the blue link text to go to the associated Log Analytics workspace where 
 
 ## Copy the connection string
 
-The [connection string](./sdk-connection-string.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
 
 ## Configure monitoring
 
@@ -410,7 +410,7 @@ Transferring existing Application Insights resources between regions isn't suppo
 
 - Creating a new workspace-based Application Insights resource in the desired region.
 - Re-creating any unique customizations from the original resource in the new one.
-- Updating your application with the new region resource's [connection string](./sdk-connection-string.md).
+- Updating your application with the new region resource's [connection string](./connection-strings.md).
 - Testing to ensure everything works as expected with the new Application Insights resource.
 - Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means losing all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
 

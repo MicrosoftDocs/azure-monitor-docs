@@ -43,7 +43,7 @@ Use PowerShell Gallery for download and installation.
 
 #### Installation prerequisites
 
-To enable monitoring, you must have a connection string. A connection string is displayed on the **Overview** pane of your Application Insights resource. For more information, see [Connection strings](./sdk-connection-string.md?tabs=net#find-your-connection-string).
+To enable monitoring, you must have a connection string. A connection string is displayed on the **Overview** pane of your Application Insights resource. For more information, see [Connection strings](./connection-strings.md?tabs=net#find-your-connection-string).
 
 > [!NOTE]
 > As of April 2020, PowerShell Gallery has deprecated TLS 1.1 and 1.0.
@@ -114,7 +114,7 @@ We've also provided manual download instructions in case you don't have internet
 
 ### Get a connection string
 
-To get started, you need a connection string. For more information, see [Connection strings](sdk-connection-string.md).
+To get started, you need a connection string. For more information, see [Connection strings](connection-strings.md).
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 

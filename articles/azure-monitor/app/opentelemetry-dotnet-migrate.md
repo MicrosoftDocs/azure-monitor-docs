@@ -253,7 +253,7 @@ If you're getting started with Application Insights and don't need to migrate fr
 
 ## Enable OpenTelemetry
 
-We recommended creating a development [resource](./create-workspace-resource.md) and using its [connection string](./sdk-connection-string.md) when following these instructions.
+We recommended creating a development [resource](./create-workspace-resource.md) and using its [connection string](./connection-strings.md) when following these instructions.
 
 :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 

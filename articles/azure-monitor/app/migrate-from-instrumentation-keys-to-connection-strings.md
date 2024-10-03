@@ -8,7 +8,7 @@ ms.reviewer: cogoodson
 
 # Migrate from Application Insights instrumentation keys to connection strings
 
-This article walks through migrating from instrumentation keys to [connection strings](sdk-connection-string.md#overview).
+This article walks through migrating from instrumentation keys to [connection strings](connection-strings.md#overview).
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ This article walks through migrating from instrumentation keys to [connection st
 
 1. Hover over the connection string and select the **Copy to clipboard** icon.
 
-1. Configure the Application Insights SDK by following [How to set connection strings](sdk-connection-string.md#set-a-connection-string).
+1. Configure the Application Insights SDK by following [How to set connection strings](connection-strings.md#set-a-connection-string).
 
 > [!IMPORTANT]
 > Don't use both a connection string and an instrumentation key. The latter one set supersedes the other, and could result in telemetry not appearing on the portal. See [missing data](#missing-data).
@@ -91,7 +91,7 @@ Connection strings provide a single configuration setting and eliminate the need
 
 - **Reliability**: Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.
 - **Security**: Connection strings allow authenticated telemetry ingestion by using [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
-- **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](sdk-connection-string.md#set-a-connection-string).)
+- **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](connection-strings.md#set-a-connection-string).)
 - **Privacy (regional endpoints)**: Connection strings ease privacy concerns by sending data to regional endpoints, ensuring data doesn't leave a geographic region.
 
 ## Supported SDK versions

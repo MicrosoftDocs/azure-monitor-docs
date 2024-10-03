@@ -26,7 +26,7 @@ To add Application Insights to your ASP.NET website, you need to:
 - Create an [Application Insights workspace-based resource](create-workspace-resource.md).
 
 > [!IMPORTANT]
-> We recommend [connection strings](./sdk-connection-string.md?tabs=net) over instrumentation keys. New Azure regions *require* the use of connection strings instead of instrumentation keys.
+> We recommend [connection strings](./connection-strings.md?tabs=net) over instrumentation keys. New Azure regions *require* the use of connection strings instead of instrumentation keys.
 >
 > A connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints that your resource will use as a destination for your telemetry. You'll need to copy the connection string and add it to your application's code or to the “APPLICATIONINSIGHTS_CONNECTION_STRING” environment variable.
 
