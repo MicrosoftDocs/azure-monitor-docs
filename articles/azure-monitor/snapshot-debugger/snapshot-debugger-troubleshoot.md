@@ -118,16 +118,16 @@ However, you may experience small CPU, memory, and I/O overhead associated with 
 
 * Creating a signature for the problem type and deciding whether to create a snapshot adds a small CPU and memory overhead.
 
-* If deoptimization is enabled, there's an overhead for re-JITting the method that threw the exception. This is incurred the next time that method executes. Depending on the size of the method, it could be between 1ms and 100ms of CPU time.
+* If deoptimization is enabled, there's an overhead for re-JITting the method that threw the exception. This is incurred the next time that method executes. Depending on the size of the method, it could be between 1 ms and 100 ms of CPU time.
 
 **If the exception handler decides to create a snapshot:**
 
-* Creating the process snapshot takes about half a second (P50=0.3s, P90=1.2s, P95=1.9s) during which time, the thread that threw the exception is paused. Other threads aren't blocked.
+* Creating the process snapshot takes about half a second (P50 = 0.3 s, P90 = 1.2 s, P95 = 1.9 s) during which time, the thread that threw the exception is paused. Other threads aren't blocked.
 
 * Converting the process snapshot to a minidump and uploading it to Application Insights takes several minutes.
 
-    * Convert: P50=63s, P90=187s, P95=275s.
-    * Upload: P50=31s, P90=75s, P95=98s.
+    * Convert: P50 = 63 s, P90 = 187 s, P95 = 275 s.
+    * Upload: P50 = 31 s, P90 = 75 s, P95 = 98 s.
     
     This is done in Snapshot Uploader, which runs in a separate process. The Snapshot Uploader process runs at below normal CPU priority and uses low priority I/O.
     
@@ -157,7 +157,7 @@ You can check the Status Page of this extension by going to the following url:
 > [!NOTE]
 > The domain of the Status Page link will vary depending on the cloud.
 
-This domain is the same as the Kudu management site for App Service. The status page shows the installation state of the Profiler and Snapshot Collector agents. If there was an unexpected error, it is displayed and shows how to fix it.
+This domain is the same as the Kudu management site for App Service. The status page shows the installation state of the Profiler and Snapshot Collector agents. If there was an unexpected error, it shows how to fix it.
 
 You can use the Kudu management site for App Service to get the base url of this Status Page:
 
