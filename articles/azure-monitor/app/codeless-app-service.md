@@ -12,11 +12,6 @@ ms.reviewer: abinetabate
 
 Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Service without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options).
 
-<!--
-> [!IMPORTANT]
-> When you enable autoinstrumentation, it enables Application Insights with default settings, which include sampling. Your sampling settings in **Application Insights** > **Usage and estimated costs** > **Data sampling** will be ignored, even if set to **All Data 100%**.
--->
-
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## Enable Application Insights
@@ -59,14 +54,14 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 
 1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
-    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot that shows the Application Insights tab with Enable selected.":::
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
 
 1. Create a new resource or select an existing Application Insights resource for this application.
 
     > [!NOTE]
-    > When you select **OK** to create the new resource, you're prompted to select **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service. Doing so also triggers a restart of your app service.
+    > When you select **OK** to create a new resource, you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service. Your app service then restarts.
 
-     :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
 
 1. After you specify which resource to use, you can choose how you want Application Insights to collect data per platform for your application. ASP.NET app monitoring is on by default with two different levels of collection, **Recommended** and **Basic**.
 
@@ -91,16 +86,16 @@ This integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?
 
 ### Autoinstrumentation in the Azure portal
 
-1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
+1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
-    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot of Application Insights tab with enable selected."::: 
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
 
-1. Choose to create a new resource, or select an existing Application Insights resource for this application.
+1. Create a new resource or select an existing Application Insights resource for this application.
 
     > [!NOTE]
-    > When you select **OK** to create the new resource you are prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**. 
+    > When you select **OK** to create a new resource, you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service. Your app service then restarts.
 
-    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot of Change your resource dropdown.":::
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
 
 ## [Node.js](#tab/nodejs)
 
@@ -114,18 +109,18 @@ Application Insights for Node.js is integrated with Azure App Service on Linux -
 
 ### Autoinstrumentation in the Azure portal
 
-1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
+1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
-    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot of Application Insights tab with enable selected.":::
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
 
-1. Choose to create a new resource, or select an existing Application Insights resource for this application.
+1. Create a new resource or select an existing Application Insights resource for this application.
 
     > [!NOTE]
-    > When you select **OK** to create the new resource you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**.
+    > When you select **OK** to create a new resource, you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service. Your app service then restarts.
 
-    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot of Change your resource dropdown."::: 
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
 
-1. Once you specified which resource to use, you're all set to go. 
+1. Once you specified which resource to use, you're all set to go.
 
     :::image type="content"source="./media/codeless-app-service/app-service-node.png" alt-text="Screenshot of instrument your application."::: 
 
@@ -149,18 +144,18 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 
 ### Autoinstrumentation in the Azure portal
 
-1. Select **Application Insights** in the Azure control panel for your app service, then select **Enable**.
+1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
-    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/codeless-app-service/enable.png"::: 
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
 
-2. Choose to create a new resource, or select an existing Application Insights resource for this application.
+1. Create a new resource or select an existing Application Insights resource for this application.
 
     > [!NOTE]
-    > When you select **OK** to create the new resource you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**.
+    > When you select **OK** to create a new resource, you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service. Your app service then restarts.
 
-    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot of Change your resource dropdown." lightbox="./media/codeless-app-service/change-resource.png":::
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
 
-3. You specify the resource, and it's ready to use.
+1. You specify the resource, and it's ready to use.
 
     :::image type="content"source="./media/codeless-app-service/app-service-python.png" alt-text="Screenshot of instrument your application." lightbox="./media/codeless-app-service/app-service-python.png":::
 
@@ -178,8 +173,11 @@ After instrumenting, you collect calls and metrics from these Python libraries:
 | [OpenTelemetry UrlLib Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib](https://docs.python.org/3/library/urllib.html) | All |
 | [OpenTelemetry UrlLib3 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib3](https://pypi.org/project/urllib3/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16) |
 
-> [!NOTE]
-> In order to use the OpenTelemetry Django Instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. For more information, see the [Django documentation](https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE).
+### Django instrumentation
+
+In order to use the OpenTelemetry Django instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. 
+
+For more information, see the [Django documentation](https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE).
 
 ### Add a community instrumentation library
 
@@ -269,11 +267,15 @@ The Application Insights Java version is updated automatically as part of App Se
 
 ## [Node.js](#tab/nodejs)
 
-The Application Insights Node.js version is updated automatically as part of App Service updates and *can't be updated manually*. If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
+The Application Insights Node.js version is updated automatically as part of App Service updates and *can't be updated manually*.
+
+If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
 
 ## [Python (Preview)](#tab/python)
 
-The Application Insights Python version is updated automatically as part of App Service updates and *can't be updated manually*. If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
+The Application Insights Python version is updated automatically as part of App Service updates and *can't be updated manually*.
+
+If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
 
 ---
 
@@ -382,7 +384,7 @@ To enable client-side monitoring for your Node.js application, you need to [manu
 
 ## [Python (Preview)](#tab/python)
 
-Python doesn't support client-side monitoring.
+To enable client-side monitoring for your Python application, you need to [manually add the client-side JavaScript SDK to your application](./javascript.md).
 
 ---
 
