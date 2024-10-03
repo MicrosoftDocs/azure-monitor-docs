@@ -8,7 +8,7 @@ ms.author: v-nawrothkai
 ms.reviewer: abinetabate
 ---
 
-# Application monitoring for Azure App Service
+# Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications
 
 Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Service without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options).
 
@@ -34,18 +34,18 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 
 1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
-    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text=" Screenshot that shows the Application Insights tab with Enable selected.":::
 
 1. Create a new resource or select an existing Application Insights resource for this application.
 
     > [!NOTE]
     > When you select **OK** to create a new resource, you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service. Your app service then restarts.
 
-    :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
 
 1. After you specify which resource to use, you can choose how you want Application Insights to collect data per platform for your application. ASP.NET Core collection options are **Recommended** or **Disabled**.
 
-    :::image type="content"source="./media/azure-web-apps-net-core/instrument-net-core.png" alt-text=" Screenshot that shows instrumenting your application section.":::
+    :::image type="content"source="./media/codeless-app-service/instrument-net-core.png" alt-text=" Screenshot that shows instrumenting your application section.":::
 
 ## [.NET](#tab/net)
 
@@ -59,18 +59,18 @@ Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest wa
 
 1. Select **Application Insights** in the left-hand navigation menu of your app service, then select **Enable**.
 
-    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot that shows the Application Insights tab with Enable selected.":::
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot that shows the Application Insights tab with Enable selected.":::
 
 1. Create a new resource or select an existing Application Insights resource for this application.
 
     > [!NOTE]
     > When you select **OK** to create the new resource, you're prompted to select **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service. Doing so also triggers a restart of your app service.
 
-     :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
+     :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot that shows the Change your resource dropdown.":::
 
 1. After you specify which resource to use, you can choose how you want Application Insights to collect data per platform for your application. ASP.NET app monitoring is on by default with two different levels of collection, **Recommended** and **Basic**.
 
-    :::image type="content"source="./media/azure-web-apps-net/instrument-net.png" alt-text="Screenshot that shows the Application Insights site extensions page with Create new resource selected.":::
+    :::image type="content"source="./media/codeless-app-service/instrument-net.png" alt-text="Screenshot that shows the Application Insights site extensions page with Create new resource selected.":::
 
      The following table summarizes the data collected for each route.
             
@@ -93,14 +93,14 @@ This integration adds [Application Insights Java 3.x](./opentelemetry-enable.md?
 
 1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
 
-    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected."::: 
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot of Application Insights tab with enable selected."::: 
 
 1. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
     > When you select **OK** to create the new resource you are prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**. 
 
-    :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown.":::
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot of Change your resource dropdown.":::
 
 ## [Node.js](#tab/nodejs)
 
@@ -116,18 +116,18 @@ Application Insights for Node.js is integrated with Azure App Service on Linux -
 
 1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
 
-    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected.":::
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot of Application Insights tab with enable selected.":::
 
 1. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
     > When you select **OK** to create the new resource you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**.
 
-    :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown."::: 
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot of Change your resource dropdown."::: 
 
 1. Once you specified which resource to use, you're all set to go. 
 
-    :::image type="content"source="./media/azure-web-apps-nodejs/app-service-node.png" alt-text="Screenshot of instrument your application."::: 
+    :::image type="content"source="./media/codeless-app-service/app-service-node.png" alt-text="Screenshot of instrument your application."::: 
 
 ## [Python (Preview)](#tab/python)
 
@@ -151,18 +151,18 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 
 1. Select **Application Insights** in the Azure control panel for your app service, then select **Enable**.
 
-    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/azure-web-apps/enable.png"::: 
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/codeless-app-service/enable.png"::: 
 
 2. Choose to create a new resource, or select an existing Application Insights resource for this application.
 
     > [!NOTE]
     > When you select **OK** to create the new resource you're prompted to **Apply monitoring settings**. Selecting **Continue** links your new Application Insights resource to your app service, doing so also **triggers a restart of your app service**.
 
-    :::image type="content"source="./media/azure-web-apps/change-resource.png" alt-text="Screenshot of Change your resource dropdown." lightbox="./media/azure-web-apps/change-resource.png":::
+    :::image type="content"source="./media/codeless-app-service/change-resource.png" alt-text="Screenshot of Change your resource dropdown." lightbox="./media/codeless-app-service/change-resource.png":::
 
 3. You specify the resource, and it's ready to use.
 
-    :::image type="content"source="./media/azure-web-apps-python/app-service-python.png" alt-text="Screenshot of instrument your application." lightbox="./media/azure-web-apps-python/app-service-python.png":::
+    :::image type="content"source="./media/codeless-app-service/app-service-python.png" alt-text="Screenshot of instrument your application." lightbox="./media/codeless-app-service/app-service-python.png":::
 
 ### Python libraries
 
@@ -201,7 +201,7 @@ Upgrading from version 2.8.9 happens automatically, without any extra actions. T
 
 To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
 
-:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
+:::image type="content"source="./media/codeless-app-service/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
 
 ### Upgrade from versions 1.0.0 - 2.6.5
 
@@ -224,7 +224,7 @@ Upgrading from version 2.8.9 happens automatically, without any extra actions. T
 
 To check which version of the extension you're running, go to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
 
-:::image type="content"source="./media/azure-web-apps/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
+:::image type="content"source="./media/codeless-app-service/extension-version.png" alt-text="Screenshot that shows the URL path to check the version of the extension you're running." border="false":::
 
 ### Upgrade from versions 1.0.0 - 2.6.5
 
@@ -255,7 +255,7 @@ The Application Insights Java version is updated automatically as part of App Se
 
 1. Once the agent jar file is uploaded, go to App Service configurations. If you need to use **Startup Command** for Linux, include JVM arguments:
 
-    :::image type="content"source="./media/azure-web-apps/startup-command.png" alt-text="Screenshot of startup command.":::
+    :::image type="content"source="./media/codeless-app-service/startup-command.png" alt-text="Screenshot of startup command.":::
     
     **Startup Command** doesn't honor `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat.
     
@@ -307,7 +307,7 @@ The full [set of configurations](./java-standalone-config.md) is available. You 
 
 Once you modify the configurations through the Azure portal, `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable are automatically populated and appear in App Service settings panel. This variable contains the full json content that you pasted in the Azure portal configuration text box for your Java app. 
 
-:::image type="content"source="./media/azure-web-apps-java/create-app-service-ai.png" alt-text="Screenshot of instrument your application.":::
+:::image type="content"source="./media/codeless-app-service/create-app-service-ai.png" alt-text="Screenshot of instrument your application.":::
 
 ## [Node.js](#tab/nodejs)
 
@@ -392,7 +392,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ## [ASP.NET Core](#tab/aspnetcore)
 
-:::image type="content"source="./media/azure-web-apps-net-core/application-settings-net-core.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
+:::image type="content"source="./media/codeless-app-service/application-settings-net-core.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
 
 ### Application settings definitions
 
@@ -404,7 +404,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ## [.NET](#tab/net)
 
-:::image type="content"source="./media/azure-web-apps-net/application-settings-net.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
+:::image type="content"source="./media/codeless-app-service/application-settings-net.png" alt-text="Screenshot that shows App Service application settings with Application Insights settings.":::
 
 ### Application settings definitions
 
@@ -417,7 +417,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ## [Java](#tab/java)
 
-:::image type="content"source="./media/azure-web-apps-java/application-settings-java.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings.":::
+:::image type="content"source="./media/codeless-app-service/application-settings-java.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings.":::
 
 ### Application settings definitions
 
@@ -431,7 +431,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ## [Node.js](#tab/nodejs)
 
-:::image type="content"source="./media/azure-web-apps-nodejs/application-settings-nodejs.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings."::: 
+:::image type="content"source="./media/codeless-app-service/application-settings-nodejs.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings."::: 
 
 ### Application settings definitions
 
@@ -445,7 +445,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ## [Python (Preview)](#tab/python)
 
-:::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
+:::image type="content"source="./media/codeless-app-service/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/codeless-app-service/application-settings-python.png":::
 
 ### Application settings definitions
 
@@ -507,7 +507,7 @@ The details depend on the type of project. The following list is an example for 
 
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
 
-    :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot that shows the link above the results page."border ="false":::
+    :::image type="content"source="./media/codeless-app-service/app-insights-sdk-status.png" alt-text="Screenshot that shows the link above the results page."border ="false":::
     
     * Confirm that **Application Insights Extension Status** is `Pre-Installed Site Extension, version 2.8.x.xxxx, is running.`
     
@@ -524,7 +524,7 @@ The details depend on the type of project. The following list is an example for 
         > [!IMPORTANT]
         > This functionality is in preview.
 
-        :::image type="content"source="./media/azure-web-apps-net-core/interop.png" alt-text=" Screenshot that shows the interop setting enabled.":::
+        :::image type="content"source="./media/codeless-app-service/interop.png" alt-text=" Screenshot that shows the interop setting enabled.":::
         
         The data is sent using a codeless approach, even if the Application Insights SDK was originally used or attempted to be used.
 
@@ -542,7 +542,7 @@ The details depend on the type of project. The following list is an example for 
     * The value `Auto-Instrumentation enabled successfully` is displayed. If a similar value isn't present, it means the application isn't running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which allows the runtime information to become available.
     * **IKeyExists** is `True`. If it's `False`, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your ikey GUID to your application settings.
     
-    :::image type="content" source="media/azure-web-apps-net-core/auto-instrumentation-status.png" alt-text="Screenshot that shows the autoinstrumentation status webpage." lightbox="media/azure-web-apps-net-core/auto-instrumentation-status.png":::
+    :::image type="content" source="media/codeless-app-service/auto-instrumentation-status.png" alt-text="Screenshot that shows the autoinstrumentation status webpage." lightbox="media/codeless-app-service/auto-instrumentation-status.png":::
 
 ### Default website deployed with web apps doesn't support automatic client-side monitoring
 
@@ -573,7 +573,7 @@ The following table provides an explanation of what these values mean, their und
 
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
 
-    :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot that shows the preceding link's results page."border ="false":::
+    :::image type="content"source="./media/codeless-app-service/app-insights-sdk-status.png" alt-text="Screenshot that shows the preceding link's results page."border ="false":::
 
     * Confirm that `Application Insights Extension Status` is `Pre-Installed Site Extension, version 2.8.x.xxxx` and is running.
 
@@ -644,7 +644,7 @@ As a temporary workaround, you could set the app setting `ApplicationInsightsAge
 
 1. Examine the log file to see that the agent started successfully: browse to `https://yoursitename.scm.azurewebsites.net/`, under SSH change to the root directory, the log file is located under LogFiles/ApplicationInsights.
   
-    :::image type="content"source="./media/azure-web-apps-java/app-insights-java-status.png" alt-text="Screenshot of the link above results page."::: 
+    :::image type="content"source="./media/codeless-app-service/app-insights-java-status.png" alt-text="Screenshot of the link above results page."::: 
 
 1. After enabling application monitoring for your Java app, you can validate that the agent is working by looking at the live metrics - even before you deploy and app to App Service you'll see some requests from the environment. Remember that the full set of telemetry is only available when you have your app deployed and running.
 
@@ -659,7 +659,7 @@ As a temporary workaround, you could set the app setting `ApplicationInsightsAge
 1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2`.
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
 
-    :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot of the link above results page."border ="false"::: 
+    :::image type="content"source="./media/codeless-app-service/app-insights-sdk-status.png" alt-text="Screenshot of the link above results page."border ="false"::: 
 
     - Confirm that the `Application Insights Extension Status` is `Pre-Installed Site Extension, version 2.8.x.xxxx, is running.` 
 
@@ -732,11 +732,11 @@ If you're missing telemetry, follow these steps to confirm that autoinstrumentat
 
 1. Confirm that autoinstrumentation is enabled in the Application Insights experience on your App Service resource.
 
-    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/azure-web-apps/enable.png"::: 
+    :::image type="content"source="./media/codeless-app-service/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/codeless-app-service/enable.png"::: 
 
 1. Confirm that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3` and that your `APPLICATIONINSIGHTS_CONNECTION_STRING` points to the appropriate Application Insights resource.
     
-    :::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
+    :::image type="content"source="./media/codeless-app-service/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/codeless-app-service/application-settings-python.png":::
 
 1. Check autoinstrumentation diagnostics and status logs.
 
