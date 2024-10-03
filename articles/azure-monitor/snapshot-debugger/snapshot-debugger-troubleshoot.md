@@ -84,7 +84,7 @@ Make sure you're using the correct instrumentation key in your published applica
 
 ## <a id="SSL"></a>Check TLS/SSL client settings (ASP.NET)
 
-If you have an ASP.NET application hosted in Azure App Service or in IIS on a virtual machine, your application could fail to connect to the Snapshot Debugger service due to a missing SSL security protocol.
+If you have an ASP.NET application which is hosted in Azure App Service or in IIS on a virtual machine, your application could fail to connect to the Snapshot Debugger service due to a missing SSL security protocol.
 
 [The Snapshot Debugger endpoint requires TLS version 1.2](snapshot-debugger-upgrade.md?toc=/azure/azure-monitor/toc.json). The set of SSL security protocols is one of the quirks enabled by the `httpRuntime targetFramework` value in the `system.web` section of `web.config`.
 If the `httpRuntime targetFramework` is 4.5.2 or lower, then TLS 1.2 isn't included by default.
@@ -118,7 +118,7 @@ However, you may experience small CPU, memory, and I/O overhead associated with 
 
 * Creating a signature for the problem type and deciding whether to create a snapshot adds a small CPU and memory overhead.
 
-* If deoptimization is enabled, there's an overhead for re-JITting the method that threw the exception. This will be incurred the next time that method executes. Depending on the size of the method, it could be between 1ms and 100ms of CPU time.
+* If deoptimization is enabled, there's an overhead for re-JITting the method that threw the exception. This is incurred the next time that method executes. Depending on the size of the method, it could be between 1ms and 100ms of CPU time.
 
 **If the exception handler decides to create a snapshot:**
 
@@ -157,7 +157,7 @@ You can check the Status Page of this extension by going to the following url:
 > [!NOTE]
 > The domain of the Status Page link will vary depending on the cloud.
 
-This domain will be the same as the Kudu management site for App Service. The status page shows the installation state of the Profiler and Snapshot Collector agents. If there was an unexpected error, it will be displayed and show how to fix it.
+This domain is the same as the Kudu management site for App Service. The status page shows the installation state of the Profiler and Snapshot Collector agents. If there was an unexpected error, it is displayed and shows how to fix it.
 
 You can use the Kudu management site for App Service to get the base url of this Status Page:
 
