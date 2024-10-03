@@ -10,55 +10,55 @@ ms.date: 08/21/2024
 ms.custom: devdivchpfy22, devx-track-dotnet
 ---
 
-# <a id="troubleshooting"></a> Troubleshoot problems enabling Application Insights Snapshot Debugger or viewing snapshots
+# <a id="troubleshooting"></a>Troubleshoot problems enabling Application Insights Snapshot Debugger or viewing snapshots
 
 If you enabled Application Insights Snapshot Debugger for your application, but aren't seeing snapshots for exceptions, you can use these instructions to troubleshoot.
 
 There can be many different reasons why snapshots aren't generated. You can start by running the snapshot health check to identify some of the possible common causes.
 
-## Not Supported Scenarios
+## Unsupported scenarios
 
 Scenarios where Snapshot Collector isn't supported:
 
-|Scenario    | Side Effects | Recommendation |
-|------------|--------------|----------------|
-|When using the Snapshot Collector SDK in your application directly (*.csproj*) and you enabled the advance option *Interop*.| The local Application Insights SDK (including Snapshot Collector telemetry) is lost, therefore, no Snapshots is available. <br/> Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor` <br/> For more information about the Application Insights feature *Interop*, see the [documentation.](../app/azure-web-apps-net-core.md#troubleshooting) | If you're using the advance option *Interop*, use the codeless Snapshot Collector injection enabled through the Azure portal. |
+| Scenario | Side Effects | Recommendation |
+|----------|--------------|----------------|
+| When using the Snapshot Collector SDK in your application directly (*.csproj*) and you enabled the advance option *Interop*. | The local Application Insights SDK (including Snapshot Collector telemetry) is lost, therefore, no Snapshots is available. <br/>Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor`.<br/>For more information about the Application Insights feature *Interop*, see the [documentation.](../app/azure-web-apps-net-core.md#troubleshooting) | If you're using the advance option *Interop*, use the codeless Snapshot Collector injection enabled through the Azure portal. |
 
-## Make sure you're using the appropriate Snapshot Debugger Endpoint
+## Make sure you're using the appropriate Snapshot Debugger endpoint
 
-Currently the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
+Currently, the only regions requiring endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
 
 For App Service and applications using the Application Insights SDK, you have to update the connection string using the supported overrides for Snapshot Debugger:
 
-|Connection String Property    | US Government Cloud | China Cloud |  
-|---------------|---------------------|-------------|
-|SnapshotEndpoint         | `https://snapshot.monitor.azure.us`    | `https://snapshot.monitor.azure.cn` |
+| Connection String Property | US Government Cloud                 | China Cloud                         |
+|----------------------------|-------------------------------------|-------------------------------------|
+| SnapshotEndpoint           | `https://snapshot.monitor.azure.us` | `https://snapshot.monitor.azure.cn` |
 
 For more information about other connection overrides, see [Application Insights documentation](../app/connection-strings.md?tabs=net#connection-string-with-explicit-endpoint-overrides).
 
 For Function App, you have to update the `host.json` using the supported overrides:
 
-|Property    | US Government Cloud | China Cloud |  
-|---------------|---------------------|-------------|
-|AgentEndpoint         | `https://snapshot.monitor.azure.us`    | `https://snapshot.monitor.azure.cn` |
+| Property      | US Government Cloud                 | China Cloud                         |
+|---------------|-------------------------------------|-------------------------------------|
+| AgentEndpoint | `https://snapshot.monitor.azure.us` | `https://snapshot.monitor.azure.cn` |
 
 Example of the `host.json` updated with the US Government Cloud agent endpoint:
 
 ```json
 {
-  "version": "2.0",
-  "logging": {
-    "applicationInsights": {
-      "samplingExcludedTypes": "Request",
-      "samplingSettings": {
-        "isEnabled": true
-      },
-      "snapshotConfiguration": {
-        "isEnabled": true,
-        "agentEndpoint": "https://snapshot.monitor.azure.us"
-      }
+    "version": "2.0",
+    "logging": {
+        "applicationInsights": {
+            "samplingExcludedTypes": "Request",
+            "samplingSettings": {
+                "isEnabled": true
+            },
+            "snapshotConfiguration": {
+                "isEnabled": true,
+                "agentEndpoint": "https://snapshot.monitor.azure.us"
+            }
+        }
     }
-  }
 }
 ```
 
@@ -84,25 +84,27 @@ Make sure you're using the correct instrumentation key in your published applica
 
 ## <a id="SSL"></a>Check TLS/SSL client settings (ASP.NET)
 
-If you have an ASP.NET application that's hosted in Azure App Service or in IIS on a virtual machine, your application could fail to connect to the Snapshot Debugger service due to a missing SSL security protocol.
+If you have an ASP.NET application hosted in Azure App Service or in IIS on a virtual machine, your application could fail to connect to the Snapshot Debugger service due to a missing SSL security protocol.
 
 [The Snapshot Debugger endpoint requires TLS version 1.2](snapshot-debugger-upgrade.md?toc=/azure/azure-monitor/toc.json). The set of SSL security protocols is one of the quirks enabled by the `httpRuntime targetFramework` value in the `system.web` section of `web.config`.
 If the `httpRuntime targetFramework` is 4.5.2 or lower, then TLS 1.2 isn't included by default.
 
 > [!NOTE]
 > The `httpRuntime targetFramework` value is independent of the target framework used when building your application.
+
 To check the setting, open your *web.config* file and find the system.web section. Ensure that the `targetFramework` for `httpRuntime` is set to 4.6 or higher.
 
-   ```xml
-   <system.web>
-      ...
-      <httpRuntime targetFramework="4.7.2" />
-      ...
-   </system.web>
-   ```
+```xml
+<system.web>
+    ...
+    <httpRuntime targetFramework="4.7.2" />
+    ...
+</system.web>
+```
 
 > [!NOTE]
 > Modifying the `httpRuntime targetFramework` value changes the runtime quirks applied to your application and can cause other, subtle behavior changes. Be sure to test your application thoroughly after making this change. For a full list of compatibility changes, see [Re-targeting changes](/dotnet/framework/migration-guide/application-compatibility#retargeting-changes).
+
 > [!NOTE]
 > If the `targetFramework` is 4.7 or higher, Windows determines the available protocols. In Azure App Service, TLS 1.2 is available. However, if you're using your own virtual machine, you may need to enable TLS 1.2 in the OS.
 
@@ -114,26 +116,28 @@ However, you may experience small CPU, memory, and I/O overhead associated with 
 
 **When an exception is thrown in your application:**
 
-* Creating a signature for the problem type and deciding whether to create a snapshot adds a very small CPU and memory overhead.
-* If deoptimization is enabled, there's an overhead for re-JITting the method that threw the exception. This will be incurred the next time that method executes. Depending on the size of the method, this could be between 1ms and 100ms of CPU time.
+* Creating a signature for the problem type and deciding whether to create a snapshot adds a small CPU and memory overhead.
+
+* If deoptimization is enabled, there's an overhead for re-JITting the method that threw the exception. This will be incurred the next time that method executes. Depending on the size of the method, it could be between 1ms and 100ms of CPU time.
 
 **If the exception handler decides to create a snapshot:**
 
 * Creating the process snapshot takes about half a second (P50=0.3s, P90=1.2s, P95=1.9s) during which time, the thread that threw the exception is paused. Other threads aren't blocked.
 
-* Converting the process snapshot to a minidump and uploading it to Application Insights takes several minutes. 
-   - Convert: P50=63s, P90=187s, P95=275s. 
-   - Upload: P50=31s, P90=75s, P95=98s. 
+* Converting the process snapshot to a minidump and uploading it to Application Insights takes several minutes.
 
-   This is done in Snapshot Uploader, which runs in a separate process. The Snapshot Uploader process runs at below normal CPU priority and uses low priority I/O. 
-
-   The minidump is first written to disk and the amount of disk spaced is roughly the same as the working set of the original process. Writing the minidump can induce page faults as memory is read. 
-
-   The minidump is compressed during upload, which consumes both CPU and memory in the Snapshot Uploader process. The CPU, memory, and disk overhead for this is proportional to the size of the process snapshot. Snapshot Uploader processes snapshots serially.
+    * Convert: P50=63s, P90=187s, P95=275s.
+    * Upload: P50=31s, P90=75s, P95=98s.
+    
+    This is done in Snapshot Uploader, which runs in a separate process. The Snapshot Uploader process runs at below normal CPU priority and uses low priority I/O.
+    
+    The minidump is first written to disk and the amount of disk spaced is roughly the same as the working set of the original process. Writing the minidump can induce page faults as memory is read.
+    
+    The minidump is compressed during upload, which consumes both CPU and memory in the Snapshot Uploader process. The CPU, memory, and disk overhead is proportional to the size of the process snapshot. Snapshot Uploader processes snapshots serially.
 
 **When `TrackException` is called:**
 
-The Snapshot Debugger checks if the exception is new or if a snapshot has been created for it. This adds a very small CPU overhead.
+The Snapshot Debugger checks if the exception is new or if a snapshot was created for it. This adds a small CPU overhead.
 
 ## Preview Versions of .NET Core
 
@@ -146,21 +150,21 @@ If Snapshot Debugger was enabled through the [Application Insights pane](snapsho
 > [!NOTE]
 > Codeless installation of Application Insights Snapshot Debugger follows the .NET Core support policy.
 > For more information about supported runtimes, see [.NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
+
 You can check the Status Page of this extension by going to the following url:
 `https://{site-name}.scm.azurewebsites.net/DiagnosticServices`
 
 > [!NOTE]
 > The domain of the Status Page link will vary depending on the cloud.
-This domain will be the same as the Kudu management site for App Service.
-This Status Page shows the installation state of the Profiler and Snapshot Collector agents. If there was an unexpected error, it will be displayed and show how to fix it.
+
+This domain will be the same as the Kudu management site for App Service. The status page shows the installation state of the Profiler and Snapshot Collector agents. If there was an unexpected error, it will be displayed and show how to fix it.
 
 You can use the Kudu management site for App Service to get the base url of this Status Page:
 
 1. Open your App Service application in the Azure portal.
 1. Select **Advanced Tools**, or search for **Kudu**.
 1. Select **Go**.
-1. Once you are on the Kudu management site, in the URL, **append the following `/DiagnosticServices` and press enter**.
- It will end like this: `https://<kudu-url>/DiagnosticServices`
+1. Once you are on the Kudu management site, in the URL, **append the following `/DiagnosticServices` and press enter**. It ends like this: `https://<kudu-url>/DiagnosticServices`
 
 ## Upgrade to the latest version of the NuGet package
 
@@ -170,11 +174,11 @@ Based on how Snapshot Debugger was enabled, see the following options:
 
 * If Snapshot Debugger was enabled by including the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package, use Visual Studio's NuGet Package Manager to make sure you're using the latest version of `Microsoft.ApplicationInsights.SnapshotCollector`.
 
-For the latest updates and bug fixes [consult the release notes](https://github.com/microsoft/ApplicationInsights-SnapshotCollector/blob/main/CHANGELOG.md).
+For the latest updates and bug fixes, [consult the release notes](https://github.com/microsoft/ApplicationInsights-SnapshotCollector/blob/main/CHANGELOG.md).
 
 ## Check the uploader logs
 
-After a snapshot is created, a minidump file (*.dmp*) is created on disk. A separate uploader process creates that minidump file and uploads it, along with any associated PDBs, to Application Insights Snapshot Debugger storage. After the minidump has uploaded successfully, it's deleted from disk. The log files for the uploader process are kept on disk. In an App Service environment, you can find these logs in `D:\Home\LogFiles`. Use the Kudu management site for App Service to find these log files.
+After a snapshot is created, a minidump file (*.dmp*) is created on disk. A separate uploader process creates that minidump file and uploads it, along with any associated PDBs, to Application Insights Snapshot Debugger storage. After the minidump uploaded successfully, it's deleted from disk. The log files for the uploader process are kept on disk. In an App Service environment, you can find these logs in `D:\Home\LogFiles`. Use the Kudu management site for App Service to find these log files.
 
 1. Open your App Service application in the Azure portal.
 1. Select **Advanced Tools**, or search for **Kudu**.
@@ -245,50 +249,50 @@ Follow these steps to configure your Cloud Service role with a dedicated local r
 
 1. Add a new local resource to your Cloud Service by editing the Cloud Service definition (.csdef) file. The following example defines a resource called `SnapshotStore` with a size of 5 GB.
 
-   ```xml
-   <LocalResources>
-     <LocalStorage name="SnapshotStore" cleanOnRoleRecycle="false" sizeInMB="5120" />
-   </LocalResources>
-   ```
+    ```xml
+    <LocalResources>
+        <LocalStorage name="SnapshotStore" cleanOnRoleRecycle="false" sizeInMB="5120" />
+    </LocalResources>
+    ```
 
 1. Modify your role's startup code to add an environment variable that points to the `SnapshotStore` local resource. For Worker Roles, the code should be added to your role's `OnStart` method:
 
-   ```csharp
-   public override bool OnStart()
-   {
-       Environment.SetEnvironmentVariable("SNAPSHOTSTORE", RoleEnvironment.GetLocalResource("SnapshotStore").RootPath);
-       return base.OnStart();
-   }
-   ```
+    ```csharp
+    public override bool OnStart()
+    {
+        Environment.SetEnvironmentVariable("SNAPSHOTSTORE", RoleEnvironment.GetLocalResource("SnapshotStore").RootPath);
+        return base.OnStart();
+    }
+    ```
 
-   For Web Roles (ASP.NET), the code should be added to your web application's `Application_Start` method:
+    For Web Roles (ASP.NET), the code should be added to your web application's `Application_Start` method:
 
-   ```csharp
-   using Microsoft.WindowsAzure.ServiceRuntime;
-   using System;
-   namespace MyWebRoleApp
-   {
-       public class MyMvcApplication : System.Web.HttpApplication
-       {
-          protected void Application_Start()
-          {
-             Environment.SetEnvironmentVariable("SNAPSHOTSTORE", RoleEnvironment.GetLocalResource("SnapshotStore").RootPath);
-             // TODO: The rest of your application startup code
-          }
-       }
-   }
+    ```csharp
+    using Microsoft.WindowsAzure.ServiceRuntime;
+    using System;
+    namespace MyWebRoleApp
+    {
+        public class MyMvcApplication : System.Web.HttpApplication
+        {
+            protected void Application_Start()
+            {
+                Environment.SetEnvironmentVariable("SNAPSHOTSTORE", RoleEnvironment.GetLocalResource("SnapshotStore").RootPath);
+                // TODO: The rest of your application startup code
+            }
+        }
+    }
    ```
 
 1. Update your role's *ApplicationInsights.config* file to override the temporary folder location used by `SnapshotCollector`
 
-   ```xml
-   <TelemetryProcessors>
-    <Add Type="Microsoft.ApplicationInsights.SnapshotCollector.SnapshotCollectorTelemetryProcessor, Microsoft.ApplicationInsights.SnapshotCollector">
-      <!-- Use the SnapshotStore local resource for snapshots -->
-      <TempFolder>%SNAPSHOTSTORE%</TempFolder>
-      <!-- Other SnapshotCollector configuration options -->
-    </Add>
-   </TelemetryProcessors>
+    ```xml
+    <TelemetryProcessors>
+        <Add Type="Microsoft.ApplicationInsights.SnapshotCollector.SnapshotCollectorTelemetryProcessor, Microsoft.ApplicationInsights.SnapshotCollector">
+            <!-- Use the SnapshotStore local resource for snapshots -->
+            <TempFolder>%SNAPSHOTSTORE%</TempFolder>
+            <!-- Other SnapshotCollector configuration options -->
+        </Add>
+    </TelemetryProcessors>
    ```
 
 ## Overriding the Shadow Copy folder
@@ -312,28 +316,28 @@ Since these errors usually happen during startup, they're often followed by an `
 
 To work around these errors, you can specify the shadow copy folder manually via the `ShadowCopyFolder` configuration option. For example, using *ApplicationInsights.config*:
 
-   ```xml
-   <TelemetryProcessors>
+```xml
+<TelemetryProcessors>
     <Add Type="Microsoft.ApplicationInsights.SnapshotCollector.SnapshotCollectorTelemetryProcessor, Microsoft.ApplicationInsights.SnapshotCollector">
-      <!-- Override the default shadow copy folder. -->
-      <ShadowCopyFolder>D:\SnapshotUploader</ShadowCopyFolder>
-      <!-- Other SnapshotCollector configuration options -->
+        <!-- Override the default shadow copy folder. -->
+        <ShadowCopyFolder>D:\SnapshotUploader</ShadowCopyFolder>
+        <!-- Other SnapshotCollector configuration options -->
     </Add>
-   </TelemetryProcessors>
-   ```
+</TelemetryProcessors>
+```
 
 Or, if you're using *appsettings.json* with a .NET Core application:
 
-   ```json
-   {
-     "ApplicationInsights": {
-       "InstrumentationKey": "<your instrumentation key>"
-     },
-     "SnapshotCollectorConfiguration": {
-       "ShadowCopyFolder": "D:\\SnapshotUploader"
-     }
-   }
-   ```
+```json
+{
+    "ApplicationInsights": {
+        "InstrumentationKey": "<your instrumentation key>"
+    },
+    "SnapshotCollectorConfiguration": {
+        "ShadowCopyFolder": "D:\\SnapshotUploader"
+    }
+}
+```
 
 ## Use Application Insights search to find exceptions with snapshots
 

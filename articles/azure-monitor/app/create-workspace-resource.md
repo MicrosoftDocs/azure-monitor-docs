@@ -71,7 +71,7 @@ For information on how to set up an Application Insights SDK for code-based moni
 
 ### Codeless monitoring
 
-For codeless monitoring of services like Azure Functions and Azure App Services, you can first create your workspace-based Application Insights resource. Then you point to that resource when you configure monitoring. Alternatively, you can create an new Application Insights resource as part of Application Insights enablement.
+For codeless monitoring of services like Azure Functions and Azure App Services, you can first create your workspace-based Application Insights resource. Then you point to that resource when you configure monitoring. Alternatively, you can create a new Application Insights resource as part of Application Insights enablement.
 
 ## Create a resource automatically
 
@@ -412,7 +412,7 @@ Transferring existing Application Insights resources between regions isn't suppo
 - Re-creating any unique customizations from the original resource in the new one.
 - Updating your application with the new region resource's [connection string](./connection-strings.md).
 - Testing to ensure everything works as expected with the new Application Insights resource.
-- Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means losing all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
+- Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means to lose all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
 
           
 Unique customizations that commonly need to be manually re-created or updated for the resource in the new region include but aren't limited to:

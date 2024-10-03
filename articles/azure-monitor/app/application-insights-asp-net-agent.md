@@ -108,9 +108,7 @@ Enable-ApplicationInsightsMonitoring -ConnectionString 'InstrumentationKey=00000
 
 ### [Detailed instructions](#tab/detailed-instructions)
 
-This tab describes how to onboard to the PowerShell Gallery and download the ApplicationMonitor module.
-Included are the most common parameters that you need to get started.
-We've also provided manual download instructions in case you don't have internet access.
+This tab describes how to onboard to the PowerShell Gallery and download the ApplicationMonitor module. Included are the most common parameters that you need to get started. We also provide manual download instructions in case you don't have internet access.
 
 ### Get a connection string
 
@@ -352,8 +350,8 @@ The instrumentation engine can supplement data collected by the .NET SDKs.
 It collects events and messages that describe the execution of a managed process. These events and messages include dependency result codes, HTTP verbs, and [SQL command text](asp-net-dependencies.md#advanced-sql-tracking-to-get-full-sql-query).
 
 Enable the instrumentation engine if:
-- You've already enabled monitoring with the Enable cmdlet but didn't enable the instrumentation engine.
-- You've manually instrumented your app with the .NET SDKs and want to collect extra telemetry.
+- You already enabled monitoring with the `Enable` cmdlet but didn't enable the instrumentation engine.
+- You manually instrumented your app with the .NET SDKs and want to collect extra telemetry.
 
 #### Examples
 
@@ -661,7 +659,7 @@ In this example;
 - **DemoWebApp333** has been manually instrumented using the Application Insights SDK. Application Insights Agent detected the SDK and doesn't monitor this site.
 
 
-- The presence of `AppAlreadyInstrumented : true` signifies that the Application Insights agent identified a [conflicting dll](/troubleshoot/azure/azure-monitor/app-insights/agent/status-monitor-v2-troubleshoot) loaded in the web application, assumed that the web app is manually instrumented, and the agent has backed-off and is not instrumenting this process.
+- The presence of `AppAlreadyInstrumented : true` signifies that the Application Insights agent identified a [conflicting dll](/troubleshoot/azure/azure-monitor/app-insights/agent/status-monitor-v2-troubleshoot) loaded in the web application, assumed that the web app is manually instrumented, and the agent has backed-off and isn't instrumenting this process.
 
 - `Instrumented : true` indicates that the Application Insights agent successfully instrumented the web app running in the specified w3wp.exe process.
 
