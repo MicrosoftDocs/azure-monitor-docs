@@ -33,10 +33,11 @@ Use the following procedure to enable VM insights using the Azure Monitor agent 
     :::image type="content" source="media/vminsights-enable-portal/add-azure-monitor-agent.png" lightbox="media/vminsights-enable-portal/add-azure-monitor-agent.png" alt-text="Screenshot showing monitoring configuration to Azure Monitor agent to monitored machine.":::
 
 1. On the **Monitoring configuration** page, select **Azure Monitor agent** and select a rule from the **Data collection rule** dropdown. 
-![Screenshot of VM Insights Agent Configuration Page.](media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png)
+
+    :::image type="content" source="media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png" lightbox="media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png" alt-text="creenshot of VM Insights Agent Configuration Page.":::
 
 
-1. The **Data collection rule** dropdown lists only rules configured for VM insights. If a data collection rule hasn't already been created for VM insights, Azure Monitor creates a rule with: 
+2. The **Data collection rule** dropdown lists only rules configured for VM insights. If a data collection rule hasn't already been created for VM insights, Azure Monitor creates a rule with: 
 
    - **Guest performance** enabled.
    - **Processes and dependencies** enabled for backward compatibility with the Log Analytics agent.
@@ -44,14 +45,15 @@ Use the following procedure to enable VM insights using the Azure Monitor agent 
 
        > [!NOTE]
        > Selecting a data collection rule that does not use the Map feature does not uninstall Dependency Agent from the machine. If you do not need the Map feature, [uninstall Dependency Agent manually](../vm/vminsights-dependency-agent-maintenance.md#uninstall-dependency-agent).
-   1.  With both agents installed, Azure Monitor displays a warning that you may be collecting duplicate data.
+   2.  With both agents installed, Azure Monitor displays a warning that you may be collecting duplicate data.
 
-       [Screenshot showing warning message for both agents installed]:::image type="content" source="media/vminsights-enable-portal/both-agents-installed.png" lightbox="media/vminsights-enable-portal/both-agents-installed.png" alt-text="Screenshot showing warning message for both agents installed.":::
-
-       > [!WARNING]
-       > Collecting duplicate data from a single machine with both the Azure Monitor agent and Log Analytics agent can result in:
-       > - Additional cost of ingestion duplicate data to the Log Analytics workspace.
-       > - The map feature of VM insights may be inaccurate since it does not check for duplicate data. For more information about 
+       :::image type="content" source="media/vminsights-enable-portal/both-agents-installed.png" lightbox="media/vminsights-enable-portal/both-agents-installed.png" alt-text="Screenshot showing warning message for both agents installed.":::
 
 ## Remove Log Analytics agent
+
+> [!WARNING]
+> Collecting duplicate data from a single machine with both the Azure Monitor agent and Log Analytics agent can result in:
+> - Additional cost of ingestion duplicate data to the Log Analytics workspace.
+> - The map feature of VM insights may be inaccurate since it does not check for duplicate data. For more information about 
+
 Once you've verified that the Azure Monitor agent has been enabled, remove the Log Analytics agent from the machine to prevent duplicate data collection. See [Uninstall agent](../agents/azure-monitor-agent-mma-removal-tool.md) for details on removing a single agent or [MMA/OMS Discovery and Removal Utility](../agents/azure-monitor-agent-mma-removal-tool.md) for details on the tool for removing multiple agents.
