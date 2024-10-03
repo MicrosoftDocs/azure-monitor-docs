@@ -14,7 +14,7 @@ This preview includes new dashboarding functionality in Azure Workbooks. The das
 
 #### Don't see the preview?
 
-The dashboard preview is slowly rolling out to all users. If you dont see the "Dashboard (preview)" item in the Workbooks gallery yet, check back later.
+The dashboard preview is slowly rolling out to all users. If you don't see the "Dashboard (preview)" item in the Workbooks gallery yet, check back later.
 
 ## New Layout Mode
 The workbooks dashboard preview supports a new layout mode that behaves like many dashboarding tools:
@@ -74,6 +74,6 @@ Any new settings that might appear in the preview may not work if you open a sav
 * A limited set of data sources are supported in dashboards; only Logs, Azure Resource Graph, Azure Data Explorer, and Prometheus queries are currently supported.
 * Saved dashboards opened in the non-preview dashboard view display a warning that it may not display accurately outside of the preview, with a link to open that item in the preview view.
 * The updated version of Markdown used in workbooks is *less* forgiving and adheres to modern Markdown specifications, including supporting Git-flavored markdown (GFM). Some markdown that appears to display properly in standard workbooks but isn't correct in the preview need to be updated. The most common cases are in markdown tables that have mismatched columns. In most cases, fixing it to display properly in the preview *also* display properly in standard workbooks.
-* As dashboards are based on the workbooks infrastructure, there's still an implicit order of items in the dashboard, which determines which parameters are available to other items on the dashboard. This order is determined by the order in which items are added to the dashboard. The  order of items can be changed by using the **Step Order** option in the edit menu toolbar.  The layout of items on the dashboard itself is not directly related to the order of items, so you can do things like move the parameters of the dashboard to the right side of the dashboard, but make sure it appears in the step order panel above any other items that need those parameters.
+* As dashboards are based on the workbooks infrastructure, there's still an implicit order of items in the dashboard, which determines which parameters or exported data are available to other items on the dashboard. This order is determined by the order in which items are added to the dashboard. The  order of items can be changed by using the **Step Order** option in the edit menu toolbar. The layout of items on the dashboard itself isn't directly related to the order of items, so you can do things like move a parameters step to the right side of the dashboard instead of the top; but make sure the parameters step appears in the step order panel above any other items that need those parameters.
 
 If you have feedback, or run into issues, use the **Feedback** item in toolbar the Workbooks dashboard preview view.
