@@ -1,6 +1,6 @@
 ---
 title: Container Image Details and Instructions on How to Pull It for Azure Chaos Studio - Relay Bridge Host
-description: Learn how to pull the container image used by Azure Chaos Studio during virtual network (VNET) injection
+description: Learn how to pull the container image used by Azure Chaos Studio during virtual network injection
 services: chaos-studio
 author: nikhilkaul
 ms.topic: reference
@@ -11,11 +11,10 @@ ms.service: azure-chaos-studio
 ms.custom: devx-track-azurecli
 ---
 
-# Container Image Details and Instructions on How to Pull It for Azure Chaos Studio - Relay Bridge Host
+# Container image details and instructions on how to pull the image for Azure Chaos Studio - Relay Bridge Host
 
-The following container image is the Relay Bridge Host for Azure Chaos Studio, available from the Microsoft Container Registry (MCR). This image is used to facilitate communication between Azure Chaos Studio and target resources when those resources are within private networks.
+The following container image is the Relay Bridge Host for Azure Chaos Studio, available from the Microsoft Container Registry. This image is used to facilitate communication between Azure Chaos Studio and target resources when those resources are within private networks. Typically customers look for this image when doing a security review and allow listing the image Chaos Studio uses during VNET injection. This image is a Bastion host that we use for running an experiment in a customer's subscription and hosting the Azure Relay that connects to the Chaos Studio backend during experiment execution.
 
----
 
 ## Image Details
 
@@ -24,7 +23,6 @@ The following container image is the Relay Bridge Host for Azure Chaos Studio, a
 
 This image version (also known as "Tag address") corresponds to a specific release of the Relay Bridge Host used by Azure Chaos Studio. For example, at the time of writing it's currently `1.0.02749.72`.
 
----
 
 ## Instructions to Pull the Image
 
@@ -33,9 +31,9 @@ Customers can pull this container image using Docker or any container runtime th
 ### Prerequisites
 
 - **Docker Installed**: Ensure Docker is installed and running on your machine or server. You can download Docker from the [official website](https://www.docker.com/).
-- **Network Access**: To pull images from MCR, make sure your environment has network access to `mcr.microsoft.com`. 
+- **Network Access**: To pull images from the Microsoft Container Registry, make sure your environment has network access to `mcr.microsoft.com`. 
 
-### Pulling the Image
+### Pull the Image
 
 1. **Open Command Prompt**:
 
@@ -61,4 +59,3 @@ Customers can pull this container image using Docker or any container runtime th
 
    You should see `mcr.microsoft.com/azure-chaos-studio/relay-bridge-host` listed with the tag `1.0.02749.72`.
 
----
