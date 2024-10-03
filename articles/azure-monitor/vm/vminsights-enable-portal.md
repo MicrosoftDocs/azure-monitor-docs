@@ -36,7 +36,7 @@ To see which virtual machines in your directory are monitored using VM insights:
 
     The **Not monitored** tab includes all machines that don't have VM insights enabled, even if the machines have Azure Monitor Agent or Log Analytics agent installed. If a virtual machine has the Log Analytics agent installed but not the Dependency agent, it will be listed as not monitored. In this case, Azure Monitor Agent will be started without being given the option for the Log Analytics agent.
 
-## Enable VM insights for Azure Monitor Agent
+## Enable VM insights
 > [!NOTE]
 > As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity) to the machine if such an identity doesn't already exist.
 
@@ -68,38 +68,7 @@ To enable VM insights on an unmonitored virtual machine or Virtual Machine Scale
  
 1. If you use a manual upgrade model for your Virtual Machine Scale Set, upgrade the instances to complete the setup. You can start the upgrades from the **Instances** page, in the **Settings** section.
 
-## Enable VM Insights for Azure Monitor Agent on machines monitored with Log Analytics agent
 
-To add Azure Monitor Agent to machines that are already enabled with the Log Analytics agent: 
-
-1. From the **Monitor** menu in the Azure portal, select **Virtual Machines** > **Overview** > **Monitored**.
- 
-1. Select **Configure using Azure Monitor agent** next to any machine that you want to enable. If a machine is currently running, you must start it to enable it.
-
-    :::image type="content" source="media/vminsights-enable-portal/add-azure-monitor-agent.png" lightbox="media/vminsights-enable-portal/add-azure-monitor-agent.png" alt-text="Screenshot showing monitoring configuration to Azure Monitor agent to monitored machine.":::
-
-1. On the **Monitoring configuration** page, select **Azure Monitor agent** and select a rule from the **Data collection rule** dropdown. 
-![Screenshot of VM Insights Agent Configuration Page.](media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png)
-
-
-1. The **Data collection rule** dropdown lists only rules configured for VM insights. If a data collection rule hasn't already been created for VM insights, Azure Monitor creates a rule with: 
-
-   - **Guest performance** enabled.
-   - **Processes and dependencies** enabled for backward compatibility with the Log Analytics agent.
-   1.  Select **Create new** to create a new data collection rule. This lets you select a workspace and specify whether to collect processes and dependencies using the [VM insights Map feature](vminsights-maps.md).
-
-       > [!NOTE]
-       > Selecting a data collection rule that does not use the Map feature does not uninstall Dependency Agent from the machine. If you do not need the Map feature, [uninstall Dependency Agent manually](../vm/vminsights-dependency-agent-maintenance.md#uninstall-dependency-agent).
-   1.  With both agents installed, Azure Monitor displays a warning that you may be collecting duplicate data.
-
-       [Screenshot showing warning message for both agents installed]:::image type="content" source="media/vminsights-enable-portal/both-agents-installed.png" lightbox="media/vminsights-enable-portal/both-agents-installed.png" alt-text="Screenshot showing warning message for both agents installed.":::
-
-       > [!WARNING]
-       > Collecting duplicate data from a single machine with both the Azure Monitor agent and Log Analytics agent can result in:
-       > - Additional cost of ingestion duplicate data to the Log Analytics workspace.
-       > - The map feature of VM insights may be inaccurate since it does not check for duplicate data. For more information about 
-           
-1. Once you've verified that the Azure Monitor agent has been enabled, remove the Log Analytics agent from the machine to prevent duplicate data collection. 
 
 ## Next steps
 
