@@ -9,7 +9,7 @@ ms.reviwer: nikeist
 ---
 
 # Best practices and samples for transformations in Azure Monitor
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides best practices and recommendations for using transformations to ensure that they're reliable and cost effective.
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides best practices and recommendations for using transformations to ensure that they're reliable and cost effective. It also includes samples for common scenarios that you can use to get started creating your own transformation.
 
 ## Monitor transformations
 Because transformations don't run interactively, it's important to monitor them to ensure that they're running properly and not taking excessive time to process data. See [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) for details on logs and metrics that monitor the health and performance of transformations. This includes identifying any errors that occur in the KQL and metrics to track their running duration.
@@ -22,44 +22,6 @@ The following metrics are automatically collected for transformations and should
 - Logs Transformation Duration per Min
 - Logs Transformation Errors per Min
 
-
-## Parse data
-A common use of transformations is to parse incoming data into multiple columns to match the schema of the destination table. For example, you may collect entries from a log file that isn't in a structured format and need to parse the data into columns for the table. Use the `parse` operator in KQL to extract the data into columns, but be careful to limit the number of columns you extract in a single statement. An excessive number of extractions in a single statement can result in significantly increased processing time. Instead, break the extractions into multiple `parse` statements.
-
-For example, the following query extracts ten fields from a log entry using a single parse statement.
-
- ```kql 
-source
-| parse Message with
-    * "field1=" Field1: string
-    " field2=" Field2: string
-    " field3=" Field3: string
-    " field4=" Field4: string
-    " field5=" Field5: string
-    " field6=" Field6: string
-    " field7=" Field7: string
-    " field8=" Field8: string
-    " field9=" Field9: string
-    " field10=" Field10: string
-```
-
-The above statement can be rewritten to the following to break the extractions into two statements.
-
- ```kql 
-source
-| parse Message with
-    * "field1=" Field1: string
-    " field2=" Field2: string
-    " field3=" Field3: string
-    " field4=" Field4: string
-    " field5=" Field5: string
-| parse Message with
-    * " field6=" Field6: string
-    " field7=" Field7: string
-    " field8=" Field8: string
-    " field9=" Field9: string
-    " field10=" Field10: string
-```
 
 ## Send data to single destination
 
@@ -278,6 +240,44 @@ The following example is a DCR for data from the Logs Ingestion API that sends d
         }
     ]
 }
+```
+
+## Parse data
+A common use of transformations is to parse incoming data into multiple columns to match the schema of the destination table. For example, you may collect entries from a log file that isn't in a structured format and need to parse the data into columns for the table. Use the `parse` operator in KQL to extract the data into columns, but be careful to limit the number of columns you extract in a single statement. An excessive number of extractions in a single statement can result in significantly increased processing time. Instead, break the extractions into multiple `parse` statements.
+
+For example, the following query extracts ten fields from a log entry using a single parse statement.
+
+ ```kql 
+source
+| parse Message with
+    * "field1=" Field1: string
+    " field2=" Field2: string
+    " field3=" Field3: string
+    " field4=" Field4: string
+    " field5=" Field5: string
+    " field6=" Field6: string
+    " field7=" Field7: string
+    " field8=" Field8: string
+    " field9=" Field9: string
+    " field10=" Field10: string *
+```
+
+The above statement can be rewritten to the following to break the extractions into two statements.
+
+ ```kql 
+source
+| parse Message with
+    * "field1=" Field1: string
+    " field2=" Field2: string
+    " field3=" Field3: string
+    " field4=" Field4: string
+    " field5=" Field5: string *
+| parse Message with
+    * " field6=" Field6: string
+    " field7=" Field7: string
+    " field8=" Field8: string
+    " field9=" Field9: string
+    " field10=" Field10: string *
 ```
 
 ## Next steps
