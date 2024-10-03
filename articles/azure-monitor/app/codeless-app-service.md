@@ -149,7 +149,7 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 
 ### Autoinstrumentation in the Azure portal
 
-1. **Select Application Insights** in the Azure control panel for your app service, then select **Enable**.
+1. Select **Application Insights** in the Azure control panel for your app service, then select **Enable**.
 
     :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/azure-web-apps/enable.png"::: 
 
@@ -179,7 +179,7 @@ After instrumenting, you collect calls and metrics from these Python libraries:
 | [OpenTelemetry UrlLib3 Instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-urllib3) | [urllib3](https://pypi.org/project/urllib3/) | [link](https://github.com/open-telemetry/opentelemetry-python-contrib/blob/main/instrumentation/opentelemetry-instrumentation-urllib3/src/opentelemetry/instrumentation/urllib3/package.py#L16) |
 
 > [!NOTE]
-> If using Django, see the additional [Django Instrumentation](#django-instrumentation) section in this article.
+> In order to use the OpenTelemetry Django Instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. For more information, see the [Django documentation](https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE).
 
 ### Add a community instrumentation library
 
@@ -188,10 +188,6 @@ You can collect more data automatically when you include instrumentation librari
 [!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
 
 To add the community OpenTelemetry Instrumentation Library, install it via your app's `requirements.txt` file. OpenTelemetry autoinstrumentation automatically picks up and instruments all installed libraries. Find the list of community libraries [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
-
-### Django Instrumentation
-
-In order to use the OpenTelemetry Django Instrumentation, you need to set the `DJANGO_SETTINGS_MODULE` environment variable in the App Service settings to point from your app folder to your settings module. For more information, see the [Django documentation](https://docs.djangoproject.com/en/4.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE).
 
 ---
 
@@ -218,7 +214,7 @@ Starting with version 2.8.9, the preinstalled site extension is used. If you're 
     1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
     1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
 
-If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
+If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting](#troubleshooting).
 
 ## [.NET](#tab/net)
 
@@ -241,11 +237,11 @@ Starting with version 2.8.9, the preinstalled site extension is used. If you're 
     1. Set the application settings to enable the preinstalled site extension `ApplicationInsightsAgent`. For more information, see [Enable through PowerShell](#enable-through-powershell).
     1. Manually remove the private site extension named **Application Insights extension for Azure App Service**.
 
-If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting steps](#troubleshooting).
+If the upgrade is done from a version before 2.5.1, check that the `ApplicationInsights` DLLs are removed from the application bin folder. For more information, see [Troubleshooting](#troubleshooting).
 
 ## [Java](#tab/java)
 
-The Application Insights Java version is updated automatically as part of App Services updates. If you encounter an issue that got fixed in the latest version of the Application Insights Java agent, you can update it manually.
+The Application Insights Java version is updated automatically as part of App Service updates. If you encounter an issue that got fixed in the latest version of the Application Insights Java agent, you can update it manually.
 
 1. Upload the Java agent jar file to App Service.
 
@@ -269,15 +265,15 @@ The Application Insights Java version is updated automatically as part of App Se
 1. To apply the changes, restart the app.
 
 > [!NOTE]
-> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the portal. Alternatively, if you prefer to enable Application Insights from the portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings.
+> If you set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat environment variable, you have to disable Application Insights in the Azure portal. Alternatively, if you prefer to enable Application Insights from the Azure portal, make sure that you don't set the `JAVA_OPTS` for JavaSE or `CATALINA_OPTS` for Tomcat variable in App Service configurations settings.
 
 ## [Node.js](#tab/nodejs)
 
-N/A
+The Application Insights Node.js version is updated automatically as part of App Service updates and *can't be updated manually*. If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
 
 ## [Python (Preview)](#tab/python)
 
-N/A
+The Application Insights Python version is updated automatically as part of App Service updates and *can't be updated manually*. If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
 
 ---
 
@@ -285,7 +281,7 @@ N/A
 
 ## [ASP.NET Core](#tab/aspnetcore)
 
-N/A
+We currently don't offer options to configure the monitoring extension for ASP.NET Core.
 
 ## [.NET](#tab/net)
 
@@ -503,9 +499,12 @@ The details depend on the type of project. The following list is an example for 
 > [!NOTE]
 > When you create a web app with the `ASP.NET Core` runtimes in App Service, it deploys a single static HTML page as a starter website. We *do not* recommend that you troubleshoot an issue with the default template. Deploy an application before you troubleshoot an issue.
 
-### Windows
+### Missing telemetry
+
+#### Windows
 
 1. Check that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2`.
+
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.
 
     :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot that shows the link above the results page."border ="false":::
@@ -520,7 +519,7 @@ The details depend on the type of project. The following list is an example for 
 
     * Confirm that **IKeyExists** is `True`. If it's `False`, add `APPINSIGHTS_INSTRUMENTATIONKEY` and `APPLICATIONINSIGHTS_CONNECTION_STRING` with your ikey GUID to your application settings.
 
-    *  If your application refers to any Application Insights packages, enabling the App Service integration might not take effect, and the data might not appear in Application Insights. An example would be if you previously instrumented, or attempted to instrument, your app with the [ASP.NET Core SDK](./asp-net-core.md). To fix the issue, in the Azure portal, turn on **Interop with Application Insights SDK**.
+    * If your application refers to any Application Insights packages, enabling the App Service integration might not take effect, and the data might not appear in Application Insights. An example would be if you previously instrumented, or attempted to instrument, your app with the [ASP.NET Core SDK](./asp-net-core.md). To fix the issue, in the Azure portal, turn on **Interop with Application Insights SDK**.
     
         > [!IMPORTANT]
         > This functionality is in preview.
@@ -532,10 +531,12 @@ The details depend on the type of project. The following list is an example for 
         > [!IMPORTANT]
         > If the application used the Application Insights SDK to send any telemetry, the telemetry will be disabled. In other words, custom telemetry (for example, any `Track*()` methods) and custom settings (such as sampling) will be disabled.
 
-### Linux
+#### Linux
 
 1. Check that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3`.
+
 1. Browse to `https://your site name.scm.azurewebsites.net/ApplicationInsights`.
+
 1. Within this site, confirm:
     * The status source exists and looks like `Status source /var/log/applicationinsights/status_abcde1234567_89_0.json`.
     * The value `Auto-Instrumentation enabled successfully` is displayed. If a similar value isn't present, it means the application isn't running or isn't supported. To ensure that the application is running, try manually visiting the application URL/application endpoints, which allows the runtime information to become available.
@@ -566,7 +567,10 @@ The following table provides an explanation of what these values mean, their und
 > [!NOTE]
 > When you create a web app with the `ASP.NET` runtimes in App Service, it deploys a single static HTML page as a starter website. We do *not* recommend that you troubleshoot an issue with a default template. Deploy an application before you troubleshoot an issue.
 
+### Missing telemetry
+
 1. Check that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2`.
+
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
 
     :::image type="content"source="./media/azure-web-apps/app-insights-sdk-status.png" alt-text="Screenshot that shows the preceding link's results page."border ="false":::
@@ -634,7 +638,7 @@ As a temporary workaround, you could set the app setting `ApplicationInsightsAge
 
 ## [Java](#tab/java)
 
-Use our step-by-step guide to troubleshoot Java-based applications running on Azure App Services.
+### Missing telemetry
 
 1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2` on Windows, `~3` on Linux
 
@@ -648,7 +652,9 @@ Use our step-by-step guide to troubleshoot Java-based applications running on Az
 
 ## [Node.js](#tab/nodejs)
 
-### Windows
+### Missing telemetry
+
+#### Windows
 
 1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~2`.
 1. Browse to `https://yoursitename.scm.azurewebsites.net/ApplicationInsights`.  
@@ -684,7 +690,7 @@ Use our step-by-step guide to troubleshoot Java-based applications running on Az
 
     If `SDKPresent` is true, it means the extension detected that some aspect of the SDK is already present in the Application, and will back-off.
 
-### Linux
+#### Linux
 
 1. Check that `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3`.
 1. Navigate to */var/log/applicationinsights/* and open *status.json*.
@@ -716,7 +722,7 @@ Use our step-by-step guide to troubleshoot Java-based applications running on Az
 
 ### Duplicate telemetry
 
-You should only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme).
+Only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme).
 
 Using autoinstrumentation on top of the manual instrumentation could cause duplicate telemetry and increase your cost. In order to use App Service OpenTelemetry autoinstrumentation, first remove manual instrumentation of OpenTelemetry from your code.
 
@@ -724,42 +730,38 @@ Using autoinstrumentation on top of the manual instrumentation could cause dupli
 
 If you're missing telemetry, follow these steps to confirm that autoinstrumentation is enabled correctly.
 
-#### Step 1: Check the Application Insights blade on your App Service resource
+1. Confirm that autoinstrumentation is enabled in the Application Insights experience on your App Service resource.
 
-Confirm that autoinstrumentation is enabled in the Application Insights blade on your App Service Resource:
+    :::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/azure-web-apps/enable.png"::: 
 
-:::image type="content"source="./media/azure-web-apps/enable.png" alt-text="Screenshot of Application Insights tab with enable selected." lightbox="./media/azure-web-apps/enable.png"::: 
+1. Confirm that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3` and that your `APPLICATIONINSIGHTS_CONNECTION_STRING` points to the appropriate Application Insights resource.
+    
+    :::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
 
-#### Step 2: Confirm that your App Settings are correct
+1. Check autoinstrumentation diagnostics and status logs.
 
-Confirm that the `ApplicationInsightsAgent_EXTENSION_VERSION` app setting is set to a value of `~3` and that your `APPLICATIONINSIGHTS_CONNECTION_STRING` points to the appropriate Application Insights resource.
+    > a. Navigate to */var/log/applicationinsights/* and open status_*.json.
 
-:::image type="content"source="./media/azure-web-apps-python/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/azure-web-apps-python/application-settings-python.png":::
+    > b. Confirm that `AgentInitializedSuccessfully` is set to true and `IKey` to have a valid iKey.
 
-#### Step 3: Check autoinstrumentation diagnostics and status logs
+    Example JSON file:
 
-Navigate to */var/log/applicationinsights/* and open status_*.json.
+    ```json
+        "AgentInitializedSuccessfully":true,
+                
+        "AppType":"python",
+                
+        "MachineName":"c89d3a6d0357",
+                
+        "PID":"47",
+                
+        "IKey":"00000000-0000-0000-0000-000000000000",
+                
+        "SdkVersion":"1.0.0"
+    
+    ```
 
-Confirm that `AgentInitializedSuccessfully` is set to true and `IKey` to have a valid iKey.
-
-Here's an example JSON file:
-
-```json
-    "AgentInitializedSuccessfully":true,
-            
-    "AppType":"python",
-            
-    "MachineName":"c89d3a6d0357",
-            
-    "PID":"47",
-            
-    "IKey":"00000000-0000-0000-0000-000000000000",
-            
-    "SdkVersion":"1.0.0"
-
-```
-
-The `applicationinsights-extension.log` file in the same folder may show other helpful diagnostics.
+    The `applicationinsights-extension.log` file in the same folder may show other helpful diagnostics.
 
 ### Django apps
 
@@ -771,7 +773,7 @@ For the latest updates and bug fixes, [consult the release notes](web-app-extens
 
 ## Release notes
 
-This section contains the release notes for Azure Web Apps based on ANT release for runtime instrumentation with Application Insights.
+This section contains the release notes for Azure App Service based on ANT release for runtime instrumentation with Application Insights.
 
 To find which version of the extension you're currently using, go to `https://<yoursitename>.scm.azurewebsites.net/ApplicationInsights`.
 
@@ -939,7 +941,7 @@ To find which version of the extension you're currently using, go to `https://<y
 
 ## [Python (Preview)](#tab/python)
 
-N/A
+Release notes for Python will show here.
 
 ---
           
