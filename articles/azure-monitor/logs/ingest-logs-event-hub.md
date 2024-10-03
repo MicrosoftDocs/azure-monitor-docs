@@ -164,7 +164,7 @@ To create a data collection rule in the Azure portal:
     - `datasources` - Specifies the [event hub consumer group](/azure/event-hubs/event-hubs-features#consumer-groups) and the stream to which you ingest the data.
     - `destinations` - Specifies all of the destinations where the data will be sent. You can [ingest data to one or more Log Analytics workspaces](../essentials/data-collection-transformations.md#).
     - `dataFlows` - Matches the stream with the destination workspace and specifies the transformation query and the destination table. In our example, we ingest data to the custom table we created previously. You can also [ingest into a supported Azure table](#ingest-log-data-into-an-azure-table-optional). 
-    - `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table we've created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../essentials/data-collection-transformations.md#multiple-destinations).
+    - `transformKql` - Specifies a transformation to apply to the incoming data (stream declaration) before it's sent to the workspace. In our example, we set `transformKql` to `source`, which doesn't modify the data from the source in any way, because we're mapping incoming data to a custom table we've created specifically with the corresponding schema. If you're ingesting data to a table with a different schema or to filter data before ingestion, [define a data collection transformation](../essentials/data-collection-transformations.md).
 
     ```json
     {
@@ -266,7 +266,7 @@ To create a data collection rule in the Azure portal:
         ]
     }
     ```
-1. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values for the parameters defined in the template, including: 
+2. On the **Custom deployment** screen, specify a **Subscription** and **Resource group** to store the data collection rule and then provide values for the parameters defined in the template, including: 
 
     - **Region** - Region for the data collection rule. Populated automatically based on the resource group you select. 
     - **Data Collection Rule Name** - Give the rule a name.
@@ -279,11 +279,11 @@ To create a data collection rule in the Azure portal:
 
 1. Select **Review + create** and then **Create** when you review the details.
 
-1. When the deployment is complete, expand the **Deployment details** box, and select your data collection rule to view its details. Select **JSON View**.
+2. When the deployment is complete, expand the **Deployment details** box, and select your data collection rule to view its details. Select **JSON View**.
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-details.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-details.png" alt-text="Screenshot that shows the Data Collection Rule Overview screen.":::
 
-1. Copy the **Resource ID** for the data collection rule. You'll use this information in the next step.
+3. Copy the **Resource ID** for the data collection rule. You'll use this information in the next step.
 
     :::image type="content" source="media/ingest-logs-event-hub/data-collection-rule-json-view.png" lightbox="media/ingest-logs-event-hub/data-collection-rule-json-view.png" alt-text="Screenshot that shows the data collection rule JSON view.":::
 
