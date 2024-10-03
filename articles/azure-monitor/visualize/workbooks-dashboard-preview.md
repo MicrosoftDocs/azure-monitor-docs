@@ -5,12 +5,16 @@ services: azure-monitor
 author: jgardner
 ms.author: jgardner
 ms.topic: conceptual
-ms.date: 09/12/2024
+ms.date: 10/3/2024
 ---
 
 # Azure Workbooks Dashboard Preview
 
 This preview includes new dashboarding functionality in Azure Workbooks. The dashboard preview only applies to dashboard style workbooks. Opening other workbooks continues to open them in the non-preview view. To open the dashboard preview, use the "Dashboard (preview)" item in the Workbooks gallery.
+
+#### Don't see the preview?
+
+The dashboard preview is slowly rolling out to all users. If you dont see the "Dashboard (preview)" item in the Workbooks gallery yet, check back later.
 
 ## New Layout Mode
 The workbooks dashboard preview supports a new layout mode that behaves like many dashboarding tools:
@@ -21,7 +25,7 @@ Dashboard features
 * Items can be dragged to be moved and resized
   * If an item has a title, the title area allows dragging of that item
   * If an item doesn't have a title, there's a drag icon in the floating toolbar that can be used to move the item 
-* Any visualization in a dashboard can be expanded to full screen by using the "View" item in the item's "..." toolbar
+* Any visualization in a dashboard can be expanded to full screen by using the **View** item in the item's **...** menu in the toolbar
 * Only one item on the dashboard can be edited at a time, and editing takes place in a popup view.
 * Items are added to dashboards via a new widget window, including by drag and drop
   * only a subset of items can currently be added in dashboards
@@ -50,7 +54,6 @@ Any new settings that might appear in the preview may not work if you open a sav
 
     * Quick create - new options when creating parameters to quickly create time range and subscription parameters with common settings
 
-
 * Mermaid content in text steps - Text steps in the dashboard preview also allow embedding [Mermaid](https://mermaid.js.org/intro/) content,
   to embed flow chart, sequence, and other diagrams inline with other Markdown content.
 
@@ -59,6 +62,7 @@ Any new settings that might appear in the preview may not work if you open a sav
 * When editing various items in edit mode, you can choose to split the editor horizontally. You can also expand the editor to be full screen.
 
 * Style options on items include new options for border styles, like dashed, rounded.
+
 * New options in grid columns let you sort / resize / move columns via context menu and keyboard 
 
 ## Preview Limitations
@@ -67,8 +71,9 @@ Any new settings that might appear in the preview may not work if you open a sav
 > The dashboard preview doesn't have the full functionality of Workbooks. We're working every day to remove these limitations.
 
 * A limited set of items can be added to dashboards at this time; Only text, parameters, and query items are currently supported.
-* A limited set of data sources are supported in dashboards; only Logs, Azure Resource Graph, Azure Data Explorer, and Prometheus are currently supported.
+* A limited set of data sources are supported in dashboards; only Logs, Azure Resource Graph, Azure Data Explorer, and Prometheus queries are currently supported.
 * Saved dashboards opened in the non-preview dashboard view display a warning that it may not display accurately outside of the preview, with a link to open that item in the preview view.
 * The updated version of Markdown used in workbooks is *less* forgiving and adheres to modern Markdown specifications, including supporting Git-flavored markdown (GFM). Some markdown that appears to display properly in standard workbooks but isn't correct in the preview need to be updated. The most common cases are in markdown tables that have mismatched columns. In most cases, fixing it to display properly in the preview *also* display properly in standard workbooks.
+* As dashboards are based on the workbooks infrastructure, there's still an implicit order of items in the dashboard, which determines which parameters are available to other items on the dashboard. This order is determined by the order in which items are added to the dashboard. The  order of items can be changed by using the **Step Order** option in the edit menu toolbar.  The layout of items on the dashboard itself is not directly related to the order of items, so you can do things like move the parameters of the dashboard to the right side of the dashboard, but make sure it appears in the step order panel above any other items that need those parameters.
 
-If you have feedback, or run into issues, use the feedback item in toolbar the Workbooks dashboard preview view.
+If you have feedback, or run into issues, use the **Feedback** item in toolbar the Workbooks dashboard preview view.
