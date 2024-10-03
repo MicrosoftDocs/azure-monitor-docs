@@ -18,17 +18,17 @@ There can be many different reasons why snapshots aren't generated. You can star
 
 ## Not Supported Scenarios
 
-Below you can find scenarios where Snapshot Collector isn't supported:
+Scenarios where Snapshot Collector isn't supported:
 
 |Scenario    | Side Effects | Recommendation |
 |------------|--------------|----------------|
-|When using the Snapshot Collector SDK in your application directly (*.csproj*) and you have enabled the advance option "Interop".| The local Application Insights SDK (including Snapshot Collector telemetry) will be lost, therefore, no Snapshots will be available. <br/> Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor` <br/> For more information about the Application Insights feature "Interop", see the [documentation.](../app/azure-web-apps-net-core.md#troubleshooting) | If you're using the advance option "Interop", use the codeless Snapshot Collector injection (enabled thru the Azure portal UX) |
+|When using the Snapshot Collector SDK in your application directly (*.csproj*) and you enabled the advance option *Interop*.| The local Application Insights SDK (including Snapshot Collector telemetry) is lost, therefore, no Snapshots is available. <br/> Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor` <br/> For more information about the Application Insights feature *Interop*, see the [documentation.](../app/azure-web-apps-net-core.md#troubleshooting) | If you're using the advance option *Interop*, use the codeless Snapshot Collector injection enabled through the Azure portal. |
 
 ## Make sure you're using the appropriate Snapshot Debugger Endpoint
 
 Currently the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
 
-For App Service and applications using the Application Insights SDK, you have to update the connection string using the supported overrides for Snapshot Debugger as defined below:
+For App Service and applications using the Application Insights SDK, you have to update the connection string using the supported overrides for Snapshot Debugger:
 
 |Connection String Property    | US Government Cloud | China Cloud |  
 |---------------|---------------------|-------------|
@@ -36,13 +36,13 @@ For App Service and applications using the Application Insights SDK, you have to
 
 For more information about other connection overrides, see [Application Insights documentation](../app/connection-strings.md?tabs=net#connection-string-with-explicit-endpoint-overrides).
 
-For Function App, you have to update the `host.json` using the supported overrides below:
+For Function App, you have to update the `host.json` using the supported overrides:
 
 |Property    | US Government Cloud | China Cloud |  
 |---------------|---------------------|-------------|
 |AgentEndpoint         | `https://snapshot.monitor.azure.us`    | `https://snapshot.monitor.azure.cn` |
 
-Below is an example of the `host.json` updated with the US Government Cloud agent endpoint:
+Example of the `host.json` updated with the US Government Cloud agent endpoint:
 
 ```json
 {
@@ -91,7 +91,7 @@ If the `httpRuntime targetFramework` is 4.5.2 or lower, then TLS 1.2 isn't inclu
 
 > [!NOTE]
 > The `httpRuntime targetFramework` value is independent of the target framework used when building your application.
-To check the setting, open your *web.config* file and find the system.web section. Ensure that the `targetFramework` for `httpRuntime` is set to 4.6 or above.
+To check the setting, open your *web.config* file and find the system.web section. Ensure that the `targetFramework` for `httpRuntime` is set to 4.6 or higher.
 
    ```xml
    <system.web>
@@ -104,7 +104,7 @@ To check the setting, open your *web.config* file and find the system.web sectio
 > [!NOTE]
 > Modifying the `httpRuntime targetFramework` value changes the runtime quirks applied to your application and can cause other, subtle behavior changes. Be sure to test your application thoroughly after making this change. For a full list of compatibility changes, see [Re-targeting changes](/dotnet/framework/migration-guide/application-compatibility#retargeting-changes).
 > [!NOTE]
-> If the `targetFramework` is 4.7 or above then Windows determines the available protocols. In Azure App Service, TLS 1.2 is available. However, if you're using your own virtual machine, you may need to enable TLS 1.2 in the OS.
+> If the `targetFramework` is 4.7 or higher, Windows determines the available protocols. In Azure App Service, TLS 1.2 is available. However, if you're using your own virtual machine, you may need to enable TLS 1.2 in the OS.
 
 ## Snapshot Debugger overhead scenarios
 
@@ -114,14 +114,14 @@ However, you may experience small CPU, memory, and I/O overhead associated with 
 
 **When an exception is thrown in your application:**
 
-- Creating a signature for the problem type and deciding whether to create a snapshot adds a very small CPU and memory overhead.
-- If de-optimization is enabled, there is an overhead for re-JITting the method that threw the exception. This will be incurred the next time that method executes. Depending on the size of the method, this could be between 1ms and 100ms of CPU time.
+* Creating a signature for the problem type and deciding whether to create a snapshot adds a very small CPU and memory overhead.
+* If deoptimization is enabled, there's an overhead for re-JITting the method that threw the exception. This will be incurred the next time that method executes. Depending on the size of the method, this could be between 1ms and 100ms of CPU time.
 
 **If the exception handler decides to create a snapshot:**
 
-- Creating the process snapshot takes about half a second (P50=0.3s, P90=1.2s, P95=1.9s) during which time, the thread that threw the exception is paused. Other threads are not blocked.
+* Creating the process snapshot takes about half a second (P50=0.3s, P90=1.2s, P95=1.9s) during which time, the thread that threw the exception is paused. Other threads aren't blocked.
 
-- Converting the process snapshot to a minidump and uploading it to Application Insights takes several minutes. 
+* Converting the process snapshot to a minidump and uploading it to Application Insights takes several minutes. 
    - Convert: P50=63s, P90=187s, P95=275s. 
    - Upload: P50=31s, P90=75s, P95=98s. 
 
@@ -211,7 +211,8 @@ SnapshotUploader.exe Information: 0 : Deleted D:\local\Temp\Dumps\c12a605e73c443
 ```
 
 > [!NOTE]
-> The example above is from version 1.2.0 of the `Microsoft.ApplicationInsights.SnapshotCollector` NuGet package. In earlier versions, the uploader process is called `MinidumpUploader.exe` and the log is less detailed.
+> The previous example is from version 1.2.0 of the `Microsoft.ApplicationInsights.SnapshotCollector` NuGet package. In earlier versions, the uploader process is called `MinidumpUploader.exe` and the log is less detailed.
+
 In the previous example, the instrumentation key is `c12a605e73c44346a984e00000000000`. This value should match the instrumentation key for your application.
 The minidump is associated with a snapshot with the ID `139e411a23934dc0b9ea08a626db16c5`. You can use this ID later to locate the associated exception record in Application Insights Analytics.
 
@@ -238,7 +239,7 @@ The space needed depends on the total working set of your application and the nu
 
 The working set of a 32-bit ASP.NET web role is typically between 200 MB and 500 MB. Allow for at least two concurrent snapshots.
 
-For example, if your application uses 1 GB of total working set, you should make sure there is at least 2 GB of disk space to store snapshots.
+For example, if your application uses 1 GB of total working set, you should make sure there's at least 2 GB of disk space to store snapshots.
 
 Follow these steps to configure your Cloud Service role with a dedicated local resource for snapshots.
 
@@ -307,7 +308,7 @@ If the copy fails, Snapshot Collector reports a `ShadowCopyFailed` error.
 
 If the uploader can't be launched, Snapshot Collector reports an `UploaderCannotStartFromShadowCopy` error. The body of the message often contains `System.UnauthorizedAccessException`. This error usually occurs because the application is running under an account with reduced permissions. The account has permission to write to the shadow copy folder, but it doesn't have permission to execute code.
 
-Since these errors usually happen during startup, they'll usually be followed by an `ExceptionDuringConnect` error saying *Uploader failed to start*."
+Since these errors usually happen during startup, they're often followed by an `ExceptionDuringConnect` error saying *Uploader failed to start*.
 
 To work around these errors, you can specify the shadow copy folder manually via the `ShadowCopyFolder` configuration option. For example, using *ApplicationInsights.config*:
 
@@ -344,7 +345,7 @@ When a snapshot is created, the throwing exception is tagged with a snapshot ID.
 
 :::image type="content" source="./media/snapshot-debugger/search-snapshot-portal.png" alt-text="Screenshot showing search for telemetry with a snapshot ID in the portal.":::
 
-If this search returns no results, then, no snapshots were reported to Application Insights in the selected time range.
+If this search returns no results, no snapshots were reported to Application Insights in the selected time range.
 
 To search for a specific snapshot ID from the Uploader logs, type that ID in the Search box. If you can't find records for a snapshot that you know was uploaded, follow these steps:
 
