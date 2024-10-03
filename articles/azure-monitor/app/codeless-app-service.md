@@ -1,8 +1,8 @@
 ---
-title: Monitor Azure App Service performance | Microsoft Docs
+title: Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications - Azure Monitor | Microsoft Docs
 description: Application performance monitoring for Azure App Service. Chart load and response time, dependency information, and set alerts on performance.
 ms.topic: conceptual
-ms.date: 10/01/2024
+ms.date: 10/03/2024
 ms.custom:
 ms.author: v-nawrothkai
 ms.reviewer: abinetabate
