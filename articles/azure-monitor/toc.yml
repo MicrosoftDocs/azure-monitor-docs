@@ -628,6 +628,9 @@ items:
         - name: Structure
           displayName: Transformations
           href: essentials/data-collection-transformations-structure.md
+        - name: Best practices and samples
+          displayName: Transformations
+          href: essentials/data-collection-transformations-best-practices.md
         - name: Tutorial
           displayName: Custom text logs, transformations
           href: agents/azure-monitor-agent-transformation.md
