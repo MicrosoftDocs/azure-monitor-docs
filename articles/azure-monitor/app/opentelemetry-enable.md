@@ -18,13 +18,13 @@ This article describes how to enable and configure OpenTelemetry-based data coll
 * Allows collecting [custom](opentelemetry-add-modify.md#collect-custom-telemetry) telemetry.
 * Supports [Live Metrics](live-stream.md) to monitor and collect more telemetry from live, in-production web applications.
 
-For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](#why-should-i-use-the-azure-monitor-opentelemetry-distro).
+For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](opentelemetry-faq.md#why-should-i-use-the-azure-monitor-opentelemetry-distro).
 
-To learn more about collecting data using OpenTelemetry, check out [Data Collection Basics](opentelemetry-overview.md) or the [OpenTelemetry FAQ](#frequently-asked-questions).
+To learn more about collecting data using OpenTelemetry, check out [Data Collection Basics](opentelemetry-overview.md) or the [OpenTelemetry FAQ](.\opentelemetry-faq.md).
 
 ### OpenTelemetry release status
 
-OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](opentelemetry-faq.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
 
 ## Enable OpenTelemetry with Application Insights
 
