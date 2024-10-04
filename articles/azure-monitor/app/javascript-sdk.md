@@ -133,6 +133,9 @@ To paste the connection string in your environment, follow these steps:
     
     The connection string isn't considered a security token or key. For more information, see [Do new Azure regions require the use of connection strings?](./connection-strings.md#do-new-azure-regions-require-the-use-of-connection-strings).
 
+    > [!NOTE]
+    > The Application Insights JavaScript SDK requires the connection string to be passed in during initialization and configuration. It's viewable in plain text in client browsers. There's no easy way to use the [Microsoft Entra ID-based authentication](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights) for browser telemetry. We recommend that you consider creating a separate Application Insights resource for browser telemetry if you need to secure the service telemetry.
+
 ### (Optional) Add SDK configuration
 
 The optional [SDK configuration](./javascript-sdk-configuration.md#sdk-configuration) is passed to the Application Insights JavaScript SDK during initialization.
@@ -216,7 +219,6 @@ See GitHub for full details on [Internet Explorer 8 support](https://github.com/
 
 Yes, the Application Insights JavaScript SDK is open source. To view the source code or to contribute to the project, see the [official GitHub repository](https://github.com/Microsoft/ApplicationInsights-JS).
       
-
 ## Support
 
 * If you can't run the application or you aren't getting data as expected, see the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/javascript-sdk-troubleshooting).

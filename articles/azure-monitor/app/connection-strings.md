@@ -1,68 +1,64 @@
 ---
-title: Connection strings in Application Insights | Microsoft Docs
+title: Connection strings in Application Insights - Azure Monitor | Microsoft Docs
 description: This article shows how to use connection strings.
 ms.topic: conceptual
-ms.date: 02/29/2024
+ms.date: 10/07/2024
 ms.custom: devx-track-csharp
 ms.reviewer: cogoodson
 ---
 
-# Connection strings
+# Connection strings in Application Insights
 
-This article shows how to use connection strings.
-
-## Overview
-
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
-
-Connection strings define where to send telemetry data.
+Connection strings define to which Application Insights resource your instrumented application sends telemetry data.
 
 Key-value pairs provide an easy way for users to define a prefix suffix combination for each Application Insights service or product.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 > [!IMPORTANT]
 > The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. These ikey unique identifiers aren't security tokens or security keys. If you want to protect your AI resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
 
-> [!NOTE]
-> The Application Insights JavaScript SDK requires the connection string to be passed in during initialization and configuration. It's viewable in plain text in client browsers. There's no easy way to use the [Microsoft Entra ID-based authentication](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights) for browser telemetry. We recommend that you consider creating a separate Application Insights resource for browser telemetry if you need to secure the service telemetry.
+## Connection string capabilities
 
-## Scenario overview
+[!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+
+Connection strings provide a single configuration setting and eliminate the need for multiple proxy settings.
+
+* **Reliability**: Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.
+* **Security**: Connection strings allow authenticated telemetry ingestion by using [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
+* **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](connection-strings.md#set-a-connection-string).)
+* **Privacy (regional endpoints)**: Connection strings ease privacy concerns by sending data to regional endpoints, ensuring data doesn't leave a geographic region.
+
+### Scenarios
 
 Scenarios most affected by this change:
 
-* Firewall exceptions or proxy redirects:
+* **Firewall exceptions or proxy redirects**
     
     In cases where monitoring for intranet web server is required, our earlier solution asked you to add individual service endpoints to your configuration. For more information, see the [Can I monitor an intranet web server?](../ip-addresses.md#can-i-monitor-an-intranet-web-server). Connection strings offer a better alternative by reducing this effort to a single setting. A simple prefix, suffix amendment, allows automatic population and redirection of all endpoints to the right services.
 
-* Sovereign or hybrid cloud environments:
+* **Sovereign or hybrid cloud environments**
 
     Users can send data to a defined [Azure Government region](/azure/azure-government/compare-azure-government-global-azure#application-insights). By using connection strings, you can define endpoint settings for your intranet servers or hybrid cloud settings.
 
-## Get started
-
-Review the following sections to get started.
-
-### Find your connection string
+## Find your connection string
 
 Your connection string appears in the **Overview** section of your Application Insights resource.
 
 :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
-### Schema
+## Schema
 
 Schema elements are explained in the following sections.
 
-#### Max length
+### Max length
 
 The connection has a maximum supported length of 4,096 characters.
 
-#### Key-value pairs
+### Key-value pairs
 
 A connection string consists of a list of settings represented as key-value pairs separated by a semicolon:
 `key1=value1;key2=value2;key3=value3`
 
-#### Syntax
+### Syntax
 
 * `InstrumentationKey` (for example, 00000000-0000-0000-0000-000000000000).
   `InstrumentationKey` is a *required* field.
@@ -77,20 +73,20 @@ A connection string consists of a list of settings represented as key-value pair
     * `ProfilerEndpoint` (for example, `https://profiler.monitor.azure.com`)
     * `SnapshotEndpoint` (for example, `https://snapshot.monitor.azure.com`)
 
-#### Endpoint schema
+### Endpoint schema
 
 `<prefix>.<suffix>`
-* Prefix: Defines a service.
-* Suffix: Defines the common domain name.
+* **Prefix:** Defines a service.
+* **Suffix:** Defines the common domain name.
 
-##### Valid suffixes
+#### Valid suffixes
 
 * applicationinsights.azure.cn
 * applicationinsights.us
 
 For more information, see [Regions that require endpoint modification](./create-new-resource.md#regions-that-require-endpoint-modification).
 
-##### Valid prefixes
+#### Valid prefixes
 
 * [Telemetry Ingestion](./app-insights-overview.md): `dc`
 * [Live Metrics](./live-stream.md): `live`
@@ -147,6 +143,7 @@ Run the following command in the [Azure CLI](/cli/azure/account?view=azure-cli-l
 ## Set a connection string
 
 Connection strings are supported in the following SDK versions:
+
 * .NET v2.12.0
 * Java v2.5.1 and Java 3.0
 * JavaScript v2.3.0
@@ -161,6 +158,21 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 ### Code samples
 
+**Application Insights SDKs (Classic API):**
+
+* ASP.NET Core - [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) under *3. Set up the connection string*.
+* [.NET](asp-net.md#add-application-insights-manually) under *4. [...] add the connection string*.
+* [Java]()
+* Node.js
+    * [Basic usage](nodejs.md#basic-usage)
+    * [Use multiple connection strings](nodejs.md#use-multiple-connection-strings)
+* [OpenCensus Python (deprecated)]()
+
+**Azure Monitor OpenTelemetry Distro:**
+
+* [Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](opentelemetry-enable.md##paste-the-connection-string-in-your-environment)
+
+<!--
 # [.NET 5.0+](#tab/dotnet5)
 
 1. Set the connection string in the `appsettings.json` file:
@@ -256,6 +268,7 @@ tracer = Tracer(exporter=AzureExporter(connection_string='InstrumentationKey=000
 ```
 
 ---
+-->
 
 ## Frequently asked questions
 

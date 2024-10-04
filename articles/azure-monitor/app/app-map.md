@@ -509,7 +509,7 @@ Here are some general recommendations:
 
 - Ensure the [cloud role name](#set-cloud-role-names) is correctly configured.
 
-- Confirm any missing dependencies are listed as [autocollected dependencies](asp-net-dependencies.md#dependency-auto-collection). If a dependency isn't listed, you can track it manually with a [track dependency call](./api-custom-events-metrics.md#trackdependency).
+- Confirm any missing dependencies are listed as [autocollected dependencies](asp-net-dependencies.md#dependency-autocollection). If a dependency isn't listed, you can track it manually with a [track dependency call](./api-custom-events-metrics.md#trackdependency).
 
 ### Too many nodes on map
 

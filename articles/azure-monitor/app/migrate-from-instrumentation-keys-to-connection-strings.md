@@ -8,12 +8,13 @@ ms.reviewer: cogoodson
 
 # Migrate from Application Insights instrumentation keys to connection strings
 
-This article walks through migrating from instrumentation keys to [connection strings](connection-strings.md#overview).
+This article walks through migrating from instrumentation keys to connection strings. To learn about new capabilities connection strings provide over instrumentation keys, go to [Connection strings in Application Insights](connection-strings.md#new-capabilities).
 
 ## Prerequisites
 
-- A [supported SDK version](#supported-sdk-versions)
-- An existing [Application Insights resource](create-workspace-resource.md)
+> [!div class="checklist"]
+> * A [supported SDK version](#supported-sdk-versions)
+> * An existing [Application Insights resource](create-workspace-resource.md)
 
 ## Migration
 
@@ -85,22 +86,13 @@ This process can be [automated in your Azure deployments](/azure/azure-resource-
 
 ```
 
-## New capabilities
-
-Connection strings provide a single configuration setting and eliminate the need for multiple proxy settings.
-
-- **Reliability**: Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.
-- **Security**: Connection strings allow authenticated telemetry ingestion by using [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
-- **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](connection-strings.md#set-a-connection-string).)
-- **Privacy (regional endpoints)**: Connection strings ease privacy concerns by sending data to regional endpoints, ensuring data doesn't leave a geographic region.
-
 ## Supported SDK versions
 
-- .NET and .NET Core v2.12.0+
-- Java v2.5.1 and Java 3.0+
-- JavaScript v2.3.0+
-- NodeJS v1.5.0+
-- Python v1.0.0+
+* .NET and .NET Core v2.12.0+
+* Java v2.5.1 and Java 3.0+
+* JavaScript v2.3.0+
+* NodeJS v1.5.0+
+* Python v1.0.0+
 
 ## Troubleshooting
 
@@ -112,13 +104,13 @@ Follow the [migration steps](#migration) in this article to resolve this alert.
 
 ### Missing data
 
-- Confirm you're using a [supported SDK version](#supported-sdk-versions). If you use Application Insights integration in another Azure product offering, check its documentation on how to properly configure a connection string.
-- Confirm you aren't setting both an instrumentation key and connection string at the same time. Instrumentation key settings should be removed from your configuration.
-- Confirm your connection string is exactly as provided in the Azure portal.
+* Confirm you're using a [supported SDK version](#supported-sdk-versions). If you use Application Insights integration in another Azure product offering, check its documentation on how to properly configure a connection string.
+* Confirm you aren't setting both an instrumentation key and connection string at the same time. Instrumentation key settings should be removed from your configuration.
+* Confirm your connection string is exactly as provided in the Azure portal.
 
 ### Environment variables aren't working
 
- If you hardcode an instrumentation key in your application code, that programming might take precedence before environment variables.
+If you hardcode an instrumentation key in your application code, that programming might take precedence before environment variables.
 
 ## Frequently asked questions
 
