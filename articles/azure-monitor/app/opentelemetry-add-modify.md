@@ -128,8 +128,8 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * [Azure Storage - Queues](/java/api/overview/azure/storage-queue-readme) 12.9.0+
 * [Azure Text Analytics](/java/api/overview/azure/ai-textanalytics-readme) 5.0.4+
 
+```
 [//]: # "Azure Cosmos DB 4.22.0+ due to https://github.com/Azure/azure-sdk-for-java/pull/25571"
-
 [//]: # "the remaining above names and links scraped from https://azure.github.io/azure-sdk/releases/latest/java.html"
 [//]: # "and version synched manually against the oldest version in maven central built on azure-core 1.14.0"
 [//]: # ""
@@ -147,6 +147,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 [//]: # "  str += '* [' + name + '](' + link + ') ' + version + '\n'"
 [//]: # "}"
 [//]: # "console.log(str)"
+```
 
 #### [Java native](#tab/java-native)
 
@@ -430,7 +431,7 @@ The following table represents the currently supported custom telemetry types:
 
 ### Add custom metrics
 
-In this context, custom metrics refers to manually instrumenting your code to collect additional metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
+In this context, the custom metrics term refers to manually instrumenting your code to collect additional metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
 
 The OpenTelemetry API offers six metric "instruments" to cover various metric scenarios and you need to pick the correct "Aggregation Type" when visualizing metrics in Metrics Explorer. This requirement is true when using the OpenTelemetry Metric API to send metrics and when using an instrumentation library.
 
@@ -2062,7 +2063,7 @@ You can populate the _client_IP_ field for requests by setting an attribute on t
 
 ##### [ASP.NET Core](#tab/aspnetcore)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
 
 ```C#
 // Add the client IP address to the activity as a tag.
@@ -2072,7 +2073,7 @@ activity.SetTag("client.address", "<IP Address>");
 
 ##### [.NET](#tab/net)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
 
 ```C#
 // Add the client IP address to the activity as a tag.
@@ -2090,7 +2091,7 @@ This field is automatically populated.
 
 ##### [Node.js](#tab/nodejs)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```typescript
 ...
@@ -2109,7 +2110,7 @@ class SpanEnrichingProcessor implements SpanProcessor {
 
 ##### [Python](#tab/python)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `SpanEnrichingProcessor.py`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `SpanEnrichingProcessor.py`:
 
 ```python
 # Set the `http.client_ip` attribute of the span to the specified IP address.
@@ -2127,7 +2128,7 @@ You can populate the _user_Id_ or _user_AuthenticatedId_ field for requests by u
 
 ##### [ASP.NET Core](#tab/aspnetcore)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span):
+Use the [custom property example](#add-a-custom-property-to-a-span):
 
 ```csharp
 // Add the user ID to the activity as a tag, but only if the activity is not null.
@@ -2136,7 +2137,7 @@ activity?.SetTag("enduser.id", "<User Id>");
 
 ##### [.NET](#tab/net)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span):
+Use the [custom property example](#add-a-custom-property-to-a-span):
 
 ```csharp
 // Add the user ID to the activity as a tag, but only if the activity is not null.
@@ -2179,7 +2180,7 @@ Span.current().setAttribute("enduser.id", "myuser");
 
 ##### [Node.js](#tab/nodejs)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```typescript
 ...
@@ -2198,7 +2199,7 @@ class SpanEnrichingProcessor implements SpanProcessor {
 
 ##### [Python](#tab/python)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```python
 # Set the `enduser.id` attribute of the span to the specified user ID.
@@ -2421,7 +2422,7 @@ It's not possible to filter telemetry in Java native.
 
 1. Use a custom processor. You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
 
-    Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+    Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
     ```typescript
     // Import the necessary packages.
