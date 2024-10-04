@@ -221,10 +221,6 @@ items:
           href: app/convert-classic-resource.md
         - name: Migrate to connection strings
           href: app/migrate-from-instrumentation-keys-to-connection-strings.md
-      - name: Create a resource
-        href: app/create-workspace-resource.md
-      - name: Manage Application Insights
-        href: app/powershell.md
     - name: Experiences
       items:
       - name: Application dashboard
@@ -336,6 +332,8 @@ items:
           href: alerts/proactive-email-notification.md
     - name: Management and security
       items:
+      - name: Create a resource
+        href: app/create-resource.md
       - name: Geolocation and IP address handling
         href: app/ip-collection.md
         displayName: geolocation, IP collection, IP tracking, IP storage

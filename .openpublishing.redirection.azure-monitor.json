@@ -1176,6 +1176,16 @@
    "redirect_document_id": false
   },
   {
+    "source_path_from_root": "/articles/azure-monitor/app/create-workspace-resource.md",
+    "redirect_url": "/azure/azure-monitor/app/create-resource",
+    "redirect_document_id": false
+  },
+  {
+    "source_path_from_root": "/articles/azure-monitor/app/powershell.md",
+    "redirect_url": "/azure/azure-monitor/app/create-resource",
+    "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/app/java-agent.md",
    "redirect_url": "/azure/azure-monitor/app/java-in-process-agent",
    "redirect_document_id": false
