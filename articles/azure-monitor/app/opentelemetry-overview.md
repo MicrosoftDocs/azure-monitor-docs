@@ -87,8 +87,6 @@ Dependencies | Other Span Types (Client, Internal, etc.)
 Operation ID | Trace ID
 ID or Operation Parent ID | Span ID
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](../includes/azure-monitor-app-insights-opentelemetry-support.md)]
-
 ## Frequently asked questions
 
 #### Where can I find a list of Application Insights SDK versions and their names?
