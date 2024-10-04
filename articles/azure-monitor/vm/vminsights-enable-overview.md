@@ -83,7 +83,7 @@ The data collection rule specifies the data to collect and the workspace to use:
 | Log Analytics workspace | Workspace to store the data. Only workspaces with VM Insights are listed. |
 
 
-If you associate a data collection rule with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you install Dependency Agent. We recommend following the procedure described in [Enable VM Insights for Azure Monitor Agent](vminsights-enable-portal.md#enable-vm-insights-for-azure-monitor-agent).
+If you associate a data collection rule with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you install Dependency Agent. We recommend following the procedure described in [Enable VM Insights for Azure Monitor Agent](vminsights-enable-portal.md#enable-vm-insights).
 
 ## Enable network isolation using Private Link
 

@@ -18,9 +18,11 @@ Get full details about the Azure Monitor agent from [Azure Monitor Agent overvie
 
 ## Prerequisites
 
-- See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported.
+- See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) to verify that your operating system is supported by Dependency agent.
 
 - Azure Monitor agent requires [Data Collection Rules (DCRs)](../essentials/data-collection-rule-overview.md) to specify which data to collect and how it should be processed. If you use the Azure portal to migrate VM insights, a DCR will be created for you. If you use other methods to enable VM insights include PowerShell, Arm Template, or Azure Policy, then you first need to create a DCR either by enabling a machine with the Azure portal or by downloading the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip).
+
+- Dependency agent is no longer a requirement for VM insights. It's only required if you choose the option to collect processes and dependencies using the [VM insights Map feature](vminsights-maps.md). If you don't choose this option then Dependency agent isn't installed.
 
 
 ## Migrate with Azure portal
