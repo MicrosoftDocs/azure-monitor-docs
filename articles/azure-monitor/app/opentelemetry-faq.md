@@ -1,20 +1,20 @@
 ---
-author: AaronMaxwell
-ms.author: aaronmax
-ms.service: azure-monitor
-ms.topic: include
-ms.date: 12/15/2023
+title: OpenTelemetry frequently asked questions (FAQ) for Azure Monitor Application Insights
+description: This article provides answers to frequently asked questions (FAQ) for OpenTelemetry on Azure Monitor Application Insights for .NET, Java, Node.js, and Python apps.
+ms.topic: conceptual
+ms.date: 10/04/2024
+ms.reviewer: mmcc
 ---
 
-## Frequently asked questions
+# Frequently asked questions
 
-This section provides answers to common questions.
+This article provides answers to frequently asked questions about OpenTelemetry on Azure Monitor Application Insights for .NET, Java, Node.js, and Python apps.
 
-### What is OpenTelemetry?
+## What is OpenTelemetry?
 
 It's a new open-source standard for observability. Learn more at [OpenTelemetry](https://opentelemetry.io/).
 
-### Why is Microsoft Azure Monitor investing in OpenTelemetry?
+## Why is Microsoft Azure Monitor investing in OpenTelemetry?
 
 Microsoft is investing in OpenTelemetry for the following reasons:
 
@@ -24,15 +24,15 @@ Microsoft is investing in OpenTelemetry for the following reasons:
 * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights SDKs.
 * OpenTelemetry aligns with Microsoft's strategy to [embrace open source](https://opensource.microsoft.com/).
 
-### What's the status of OpenTelemetry?
+## What's the status of OpenTelemetry?
 
 See [OpenTelemetry Status](https://opentelemetry.io/status/).
 
-### What is the Azure Monitor OpenTelemetry Distro?
+## What is the Azure Monitor OpenTelemetry Distro?
 
 You can think of it as a thin wrapper that bundles together all the OpenTelemetry components for a first-class experience on Azure. This wrapper is also called a [distribution](https://opentelemetry.io/docs/concepts/distributions/) in OpenTelemetry.
 
-### Why should I use the Azure Monitor OpenTelemetry Distro?
+## Why should I use the Azure Monitor OpenTelemetry Distro?
 
 There are several advantages to using the Azure Monitor OpenTelemetry Distro over native OpenTelemetry from the community:
 
@@ -60,17 +60,17 @@ Because the Distro provides an [OpenTelemetry distribution](https://opentelemetr
 
 For languages without a supported standalone OpenTelemetry exporter, the Azure Monitor OpenTelemetry Distro is the only currently supported way to use OpenTelemetry with Azure Monitor. For languages with a supported standalone OpenTelemetry exporter, you have the option of using either the Azure Monitor OpenTelemetry Distro or the appropriate standalone OpenTelemetry exporter depending on your telemetry scenario. For more information, see [When should I use the Azure Monitor OpenTelemetry exporter?](#when-should-i-use-the-azure-monitor-opentelemetry-exporter).
 
-### How can I test out the Azure Monitor OpenTelemetry Distro?
+## How can I test out the Azure Monitor OpenTelemetry Distro?
 
 Check out our enablement docs for [.NET, Java, JavaScript (Node.js), and Python](../app/opentelemetry-enable.md).
 
-### Should I use OpenTelemetry or the Application Insights SDK?
+## Should I use OpenTelemetry or the Application Insights SDK?
 
 We recommend using the OpenTelemetry Distro unless you require a [feature that is only available with formal support in the Application Insights SDK](#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
 
 Adopting OpenTelemetry now prevents having to migrate at a later date.
 
-### When should I use the Azure Monitor OpenTelemetry exporter?
+## When should I use the Azure Monitor OpenTelemetry exporter?
 
 For ASP.NET Core, Java, Node.js, and Python, we recommend using the Azure Monitor OpenTelemetry Distro. It's one line of code to get started.
 
@@ -78,7 +78,7 @@ For all other .NET scenarios, including classic ASP.NET, console apps, Windows F
 
 For more complex Python telemetry scenarios that require advanced configuration, we recommend using the Python [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme?view=azure-python-preview&preserve-view=true).
 
-### What's the current release state of features within the Azure Monitor OpenTelemetry Distro?
+## What's the current release state of features within the Azure Monitor OpenTelemetry Distro?
 
 The following chart breaks out OpenTelemetry feature support for each language.
 
@@ -109,39 +109,39 @@ The following chart breaks out OpenTelemetry feature support for each language.
 * :warning: This feature is available as a public preview. See [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 * :x: This feature isn't available or isn't applicable.
 
-### Can OpenTelemetry be used for web browsers?
+## Can OpenTelemetry be used for web browsers?
 
 Yes, but we don't recommend it and Azure doesn't support it. OpenTelemetry JavaScript is heavily optimized for Node.js. Instead, we recommend using the Application Insights JavaScript SDK.
 
-### When can we expect the OpenTelemetry SDK to be available for use in web browsers?
+## When can we expect the OpenTelemetry SDK to be available for use in web browsers?
 
 The OpenTelemetry web SDK doesn't have a determined availability timeline. We're likely several years away from a browser SDK that is a viable alternative to the Application Insights JavaScript SDK.
 
-### Can I test OpenTelemetry in a web browser today?
+## Can I test OpenTelemetry in a web browser today?
 
 The [OpenTelemetry web sandbox](https://github.com/open-telemetry/opentelemetry-sandbox-web-js) is a fork designed to make OpenTelemetry work in a browser. It's not yet possible to send telemetry to Application Insights. The SDK doesn't define general client events.
 
-### Is running Application Insights alongside competitor agents like AppDynamics, DataDog, and NewRelic supported?
+## Is running Application Insights alongside competitor agents like AppDynamics, DataDog, and NewRelic supported?
 
 This practice isn't something we plan to test or support, although our Distros allow you to [export to an OTLP endpoint](../app/opentelemetry-configuration.md#enable-the-otlp-exporter) alongside Azure Monitor simultaneously.
 
-### Can I use preview features in production environments?
+## Can I use preview features in production environments?
 
 We don't recommend it. See [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-### What's the difference between manual and automatic instrumentation?
+## What's the difference between manual and automatic instrumentation?
 
 See the [OpenTelemetry Overview](../app/opentelemetry-overview.md#instrumentation-options).
 
-### Can I use the OpenTelemetry Collector?
+## Can I use the OpenTelemetry Collector?
 
 Some customers use the OpenTelemetry Collector as an agent alternative, even though Microsoft doesn't officially support an agent-based approach for application monitoring yet. In the meantime, the open-source community contributed an [OpenTelemetry Collector Azure Monitor Exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/azuremonitorexporter) that some customers are using to send data to Azure Monitor Application Insights. **This is not supported by Microsoft.**
 
-### What's the difference between OpenCensus and OpenTelemetry?
+## What's the difference between OpenCensus and OpenTelemetry?
 
 [OpenCensus](https://opencensus.io/) is the precursor to [OpenTelemetry](https://opentelemetry.io/). Microsoft helped bring together [OpenTracing](https://opentracing.io/) and OpenCensus to create OpenTelemetry, a single observability standard for the world. The current [production-recommended Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) for Azure Monitor is based on OpenCensus. Microsoft is committed to making Azure Monitor based on OpenTelemetry.
 
-### In Grafana, why do I see `Status: 500. Can't visualize trace events using the trace visualizer`?
+## In Grafana, why do I see `Status: 500. Can't visualize trace events using the trace visualizer`?
 
 You could be trying to visualize raw text logs rather than OpenTelemetry traces.
 

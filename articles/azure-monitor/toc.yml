@@ -96,6 +96,10 @@ items:
           href: app/opentelemetry-configuration.md
         - name: Add and modify OpenTelemetry
           href: app/opentelemetry-add-modify.md
+        - name: Frequently asked questions (FAQ)
+          href: app/opentelemetry-faq.md
+        - name: Troubleshooting, support, and feedback
+          href: app/opentelemetry-troubleshooting.md
         - name: .NET (supplemental)
           items:
           - name: Migrate from Application Insights .NET SDKs to OpenTelemetry
