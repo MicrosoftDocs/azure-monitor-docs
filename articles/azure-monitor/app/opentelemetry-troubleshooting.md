@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry troubleshooting, support, and feedback for Azure Monitor Application Insights
-description: This article provides troubleshooting steps, as well as support and feedback options, for OpenTelemetry on Azure Monitor Application Insights for .NET, Java, Node.js, and Python apps.
+description: Troubleshooting, support, and feedback options for OpenTelemetry on Azure Monitor Application Insights for .NET, Java, Node.js, and Python apps.
 ms.topic: conceptual
 ms.date: 10/04/2024
 ms.reviewer: mmcc
@@ -8,7 +8,7 @@ ms.reviewer: mmcc
 
 # OpenTelemetry Troubleshooting
 
-This article provides [troubleshooting steps](#troubleshooting), as well as [support](#support) and [feedback](#feedback) options, for OpenTelemetry on [Azure Monitor Application Insights](.\opentelemetry-enable.md) for .NET, Java, Node.js, and Python apps.
+This article provides [troubleshooting steps](#troubleshooting), [support](#support), and [feedback](#opentelemetry-feedback) options for OpenTelemetry on [Azure Monitor Application Insights](.\opentelemetry-enable.md) for .NET, Java, Node.js, and Python apps.
 
 ## Troubleshooting
 
@@ -16,11 +16,11 @@ This article provides [troubleshooting steps](#troubleshooting), as well as [sup
 
 #### Step 1: Enable diagnostic logging
 
-The Azure Monitor Exporter uses EventSource for its internal logging. The exporter logs are available to any EventListener by opting in to the source that's named `OpenTelemetry-AzureMonitor-Exporter`. For troubleshooting steps, see [OpenTelemetry Troubleshooting](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry#troubleshooting) on GitHub.
+The Azure Monitor Exporter uses EventSource for its internal logging. The exporter logs are available to any EventListener by opting in to the source named `OpenTelemetry-AzureMonitor-Exporter`. For troubleshooting steps, see [OpenTelemetry Troubleshooting](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry#troubleshooting) on GitHub.
 
 #### Step 2: Test connectivity between your application host and the ingestion service
 
-Application Insights SDKs and agents send telemetry to get ingested as REST calls at our ingestion endpoints. To test connectivity from your web server or application host computer to the ingestion service endpoints, use cURL commands or raw REST requests from PowerShell. For more information, see [Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry).
+Application Insights software development kits (SDKs) and agents send telemetry to get ingested as REST calls at our ingestion endpoints. To test connectivity from your web server or application host computer to the ingestion service endpoints, use cURL commands or raw REST requests from PowerShell. For more information, see [Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry).
 
 #### Known issues
 
@@ -34,7 +34,7 @@ The following items are known issues for the Azure Monitor OpenTelemetry Exporte
 
 #### Step 1: Enable diagnostic logging
 
-The Azure Monitor Exporter uses EventSource for its internal logging. The exporter logs are available to any EventListener by opting in to the source that's named `OpenTelemetry-AzureMonitor-Exporter`. For troubleshooting steps, see [OpenTelemetry Troubleshooting](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry#troubleshooting) on GitHub.
+The Azure Monitor Exporter uses EventSource for its internal logging. The exporter logs are available to any EventListener by opting in to the source named `OpenTelemetry-AzureMonitor-Exporter`. For troubleshooting steps, see [OpenTelemetry Troubleshooting](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/src/OpenTelemetry#troubleshooting) on GitHub.
 
 #### Step 2: Test connectivity between your application host and the ingestion service
 
@@ -104,7 +104,7 @@ docker run -e APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL=DEBUG <image-name>
 
 **Third-party information disclaimer**
 
-The third-party products that this article discusses are manufactured by companies that are independent of Microsoft. Microsoft makes no warranty, implied or otherwise, about the performance or reliability of these products.
+Microsoft makes no warranty, implied or otherwise, about the performance or reliability of these independent third-party products.
 
 ### [Node.js](#tab/nodejs)
 
@@ -174,7 +174,7 @@ If you see a pair of entries for each trace log within Application Insights, you
 - The native logging instrumentation in Azure Functions
 - The `azure-monitor-opentelemetry` logging instrumentation within the distribution
 
-To prevent duplication, you can disable the distribution's logging, but leave the native logging instrumentation in Azure Functions enabled. To do this, set the `OTEL_LOGS_EXPORTER` environment variable to `None`.
+To prevent duplication, you can disable the distribution's logging, but leave the native logging instrumentation in Azure Functions enabled. To achieve this goal, set the `OTEL_LOGS_EXPORTER` environment variable to `None`.
 
 ##### Duplicate telemetry in "Always On" Azure Functions
 
@@ -274,7 +274,7 @@ Select a tab for the language of your choice to discover support options.
 
 ---
 
-## Feedback
+## OpenTelemetry Feedback
 
 To provide feedback:
 
