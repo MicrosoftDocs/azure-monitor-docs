@@ -1,6 +1,6 @@
 ---
 title: OpenTelemetry help, support, and feedback for Azure Monitor Application Insights
-description: This article provides answers to frequently asked questions (FAQ), troublehsooting steps, support options, and feedback mechansisms for OpenTelemetry on Azure Monitor Application Insights for .NET, Java, Node.js, and Python apps.
+description: This article provides answers to frequently asked questions (FAQ), troubleshooting steps, support options, and feedback mechanisms for OpenTelemetry on Azure Monitor Application Insights for .NET, Java, Node.js, and Python apps.
 ms.topic: conceptual
 ms.date: 10/05/2024
 ms.reviewer: mmcc
@@ -8,7 +8,13 @@ ms.reviewer: mmcc
 
 # OpenTelemetry help, support, and feedback
 
-This article provides answers to [frequently asked questions](#frequently-asked-questions), [troubleshooting steps](#troubleshooting), [support](#support), and [feedback](#opentelemetry-feedback) options for OpenTelemetry on [Azure Monitor Application Insights](.\opentelemetry-enable.md) for .NET, Java, Node.js, and Python apps.
+This article provides help, support, and feedback options for OpenTelemetry on [Azure Monitor Application Insights](.\opentelemetry-enable.md) for .NET, Java, Node.js, and Python apps.
+
+> [!div class="checklist"]
+> - [Review frequently asked questions](#frequently-asked-questions)
+> - [Take troubleshooting steps](#troubleshooting)
+> - [Get support](#support)
+> - [Provide feedback](#opentelemetry-feedback)
 
 ## Frequently asked questions
 
