@@ -18,6 +18,8 @@ This article provides help, support, and feedback options for OpenTelemetry on [
 
 ## Frequently asked questions
 
+### What is OpenTelemetry?
+
 It's a new open-source standard for observability. Learn more at [OpenTelemetry](https://opentelemetry.io/).
 
 ### Why is Microsoft Azure Monitor investing in OpenTelemetry?
