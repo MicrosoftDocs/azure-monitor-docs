@@ -5089,16 +5089,16 @@
       "source_path": "articles/azure-monitor/reference/tables/chsmserviceoperationauditlogs.md",
       "redirect_url": "/azure/azure-monitor/reference",
       "redirect_document_id": false
-     }
+     },
      {
       "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-faq.md",
       "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
       "redirect_document_id": false
      },
      {
-       "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-troubleshooting.md",
-       "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
-       "redirect_document_id": false
-     },
+      "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-troubleshooting.md",
+      "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
+      "redirect_document_id": false
+     }
     ]
-}
+   }
