@@ -4156,11 +4156,6 @@
    "redirect_document_id": false
   },
   {
-    "source_path_from_root": "/articles/azure-monitor/app/java-in-process-agent.md",
-    "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable",
-    "redirect_document_id": false
-  },
-  {
    "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-faq.md",
    "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
    "redirect_document_id": false
