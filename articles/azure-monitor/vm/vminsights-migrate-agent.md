@@ -10,23 +10,27 @@ ms.custom: references_regions
 
 ---
 
-# Migrate to Azure Monitor agent in VM Insights
+# Migrate to Azure Monitor Agent from Log Analytics agent in VM Insights
 Log Analytics agent for Azure Monitor was retired on August 31, 2024 and replaced with Azure Monitor agent. This article describes how to migrate to Azure Monitor agent for machines that you previously onboarded to VM insights using Log Analytics agent.
 
-Get full details about the Azure Monitor agent from [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
+- Get full details about the Azure Monitor agent from [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
+- Get additional migration details including the advantages of the new agent at [Migrate to Azure Monitor Agent from Log Analytics agent](../agents/azure-monitor-agent-migration.md).
 
 
 ## Prerequisites
 
 - See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) to verify that your operating system is supported by Dependency agent.
 
-- Azure Monitor agent requires [Data Collection Rules (DCRs)](../essentials/data-collection-rule-overview.md) to specify which data to collect and how it should be processed. If you use the Azure portal to migrate VM insights, a DCR will be created for you. If you use other methods to enable VM insights include PowerShell, Arm Template, or Azure Policy, then you first need to create a DCR either by enabling a machine with the Azure portal or by downloading the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip).
-
 - Dependency agent is no longer a requirement for VM insights. It's only required if you choose the option to collect processes and dependencies using the [VM insights Map feature](vminsights-maps.md). If you don't choose this option then Dependency agent isn't installed.
 
+## Data collection rules
+Azure Monitor agent requires [Data Collection Rules (DCRs)](../essentials/data-collection-rule-overview.md) to specify which data to collect and how it should be processed. 
+
+
+If you use the Azure portal to migrate VM insights, a DCR will be created for you. If you use other methods to enable VM insights include PowerShell, Arm Template, or Azure Policy, then you first need to create a DCR either by enabling a machine with the Azure portal or by downloading the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip).
 
 ## Migrate with Azure portal
-Use the following procedure to enable VM insights using the Azure Monitor agent on a machine that was previously enabled using Log Analytics agent.
+Use the following procedure to enable VM insights using the Azure Monitor agent on a machine that was previously enabled using Log Analytics agent. This method creates the required DCR or lets you select an existing one. It doesn't remove the Log Analytics agent from the machine though, so you still must perform this task after enabling the machine.
 
 1. From the **Monitor** menu in the Azure portal, select **Virtual Machines** > **Overview** > **Monitored**.
  

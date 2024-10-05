@@ -9,16 +9,23 @@ ms.date: 09/28/2023
 
 ---
 
-# Enable VM insights in the Azure portal
-This article describes how to enable VM insights using the Azure portal for Azure virtual machines, Azure Virtual Machine Scale Sets, and hybrid virtual machines connected with [Azure Arc](/azure/azure-arc/overview).
+# Enable VM insights using the Azure portal
+This article describes how to enable [VM insights](./vminsights-overview.md) using the Azure portal.
 
 > [!NOTE]
 > Azure portal no longer supports enabling VM insights using the legacy Log Analytics agent. 
 
+## Supported machines
+
+- Azure virtual machines
+- Azure Virtual Machine Scale Sets
+- Hybrid virtual machines connected with [Azure Arc](/azure/azure-arc/overview)
+
+
 ## Prerequisites
 
 - [Log Analytics workspace](../logs/quick-create-workspace.md).
-- See [Supported operating systems](./vminsights-enable-overview.md#supported-operating-systems) to ensure that the operating system of the virtual machine or Virtual Machine Scale Set you're enabling is supported. 
+- See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 - To enable network isolation for Azure Monitor Agent, see [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md).
 

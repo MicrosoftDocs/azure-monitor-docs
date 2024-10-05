@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 This article provides an overview of how to enable VM Insights in Azure Monitor.
 
-## Installation options and supported machines
+## Installation options
 
 The following table shows the installation methods available for enabling VM Insights on supported machines.
 
@@ -31,7 +31,6 @@ The following table shows the installation methods available for enabling VM Ins
 
 - Azure virtual machines
 - Azure Virtual Machine Scale Sets
-- On-premises virtual machines
 - Hybrid virtual machines connected with Azure Arc
   - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
 
