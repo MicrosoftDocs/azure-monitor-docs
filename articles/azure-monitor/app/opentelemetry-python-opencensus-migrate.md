@@ -137,4 +137,4 @@ The OpenCensus Python Azure Monitor exporter automatically collected system and 
 
 ## Support
 
-To review troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry troubleshooting, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-troubleshooting.md).
+To review troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry troubleshooting, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
