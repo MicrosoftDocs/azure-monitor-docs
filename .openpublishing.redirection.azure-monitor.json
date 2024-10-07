@@ -3352,7 +3352,7 @@
      },
      {
       "source_path_from_root": "/articles/azure-monitor/platform/powershell-workspace-configuration.md",
-      "redirect_url": "/azure/azure-monitor/logs/powershell-workspace-configuration",
+      "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
       "redirect_document_id": false
      },
      {
@@ -3812,7 +3812,7 @@
      },
      {
       "source_path_from_root": "/articles/azure-monitor/logs/powershell-sample-create-workspace.md",
-      "redirect_url": "/azure/azure-monitor/logs/powershell-workspace-configuration",
+      "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
       "redirect_document_id": false
      },
      {
