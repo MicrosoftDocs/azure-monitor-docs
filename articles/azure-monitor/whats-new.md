@@ -22,20 +22,21 @@ This article lists significant changes to Azure Monitor documentation.
 ## September 2024
 |Subservice | Article | Description |
 |---|---|---|
-|General|[Operational excellence best practices in Azure Monitor]()|New best practice articles|
-|General|[Performance efficiency in Azure Monitor]()|New best practice articles|
-|General|[Reliability best practices in Azure Monitor]()|New best practice articles|
-|General|[Security best practices in Azure Monitor]()|New best practice articles|
-|Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor]()|Added DCRs for Metrics export|
-|Essentials|[Data plane metrics batch API query versus metrics export]()|New article; Comparing metrics retrieval methods for export.|
-|Essentials|[Metrics export through data collection rules (Preview)]()|New feature: Metrics export using DCRs|
-|Application-Insights|[Configure Azure Monitor OpenTelemetry]()|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which doesn't include live metrics.|
-|Application-Insights|[Live metrics: Monitor and diagnose with 1-second latency]()|We revamped this article for simplicity and linked out to Microsoft Entra documentation for more information on how to secure potentially sensitive information entered into custom filters.|
-|Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry]()|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which doesn't include live metrics.|
-|Application-Insights|[Statsbeat in Application Insights]()|We revamped Statsbeat documentation to include OpenTelemetry scenarios.|
-|Alerts|[Create a new alert rule using the CLI, PowerShell, or an ARM template]()|Added prerequisites for all alert rule types stating that in order to create alert rules that use action groups, you must have a role with permissions for those action groups.|
-|Agents|[Azure Diagnostics extension overview]()|Announced that Azure Diagnostics extension will be deprecated on March 31, 2026.|
-|Agents|[Azure Monitor Agent supported operating systems and environments]()|Added Azure Monitor Agent support for Amazon Linux 2023.|
+|Agents|[Azure Diagnostics extension overview](/azure/azure-monitor/agents/diagnostics-extension-overview)|Announced that Azure Diagnostics extension will be deprecated on March 31, 2026.|
+|Agents|[Azure Monitor Agent supported operating systems and environments](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems)|Added Azure Monitor Agent support for Amazon Linux 2023.|
+|Alerts|[Create a new alert rule using the CLI, PowerShell, or an ARM template](/azure/azure-monitor/alerts/alerts-create-rule-cli-powershell-arm)|Added prerequisites for all alert rule types stating that in order to create alert rules that use action groups, you must have a role with permissions for those action groups.|
+|Application-Insights|[Configure Azure Monitor OpenTelemetry](/azure/azure-monitor/alerts/alerts-create-rule-cli-powershell-arm)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which does not include live metrics.|
+|Application-Insights|[Live metrics: Monitor and diagnose with 1-second latency](/azure/azure-monitor/app/live-stream?tabs=otel)|We revamped this article for simplicity and linked out to Entra documentation for more information on how to secure potentially sensitive information entered into custom filters.|
+|Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-dotnet-migrate?tabs=aspnetcore)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which does not include live metrics.|
+|Application-Insights|[Statsbeat in Application Insights](/azure/azure-monitor/app/statsbeat?tabs=dotnet)|We revamped Statsbeat documentation to include OpenTelemetry scenarios.|
+|Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor](/azure/azure-monitor/essentials/data-collection-rule-create-edit?tabs=portal)|Added DCRs for metrics|
+|Essentials|[Data plane metrics batch API query versus metrics export](/azure/azure-monitor/essentials/data-plane-versus-metrics-export)|New article: Comparison of metrics retrieval methods|
+|Essentials|[Metrics export through data collection rules (Preview)](/azure/azure-monitor/essentials/data-collection-metrics?tabs=log-analytics-workspaces)|New feature - DCRs for Metrics|
+|General|[Operational excellence best practices in Azure Monitor](/azure/azure-monitor/best-practices-operation)|New best practice articles|
+|General|[Performance efficiency in Azure Monitor](/azure/azure-monitor/best-practices-performance)|New best practice articles|
+|General|[Reliability best practices in Azure Monitor](/azure/azure-monitor/best-practices-reliability)|New best practice articles|
+|General|[Security best practices in Azure Monitor](/azure/azure-monitor/best-practices-security)|New best practice articles|
+
 
 
 ## August 2024
