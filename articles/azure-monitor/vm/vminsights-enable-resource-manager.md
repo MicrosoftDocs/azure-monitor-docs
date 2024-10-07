@@ -17,8 +17,6 @@ This article describes how to enable VM insights for a virtual machine or Virtua
 - Azure Virtual Machine Scale Sets
 - Hybrid virtual machines connected with [Azure Arc](/azure/azure-arc/overview)
 
-If you aren't familiar with how to deploy a Resource Manager template, see [Deploy templates](#deploy-templates).
-
 ## Prerequisites
 
 - See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.

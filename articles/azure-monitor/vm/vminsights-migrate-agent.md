@@ -24,10 +24,7 @@ Log Analytics agent for Azure Monitor was retired on August 31, 2024 and replace
 - Dependency agent is no longer a requirement for VM insights. It's only required if you choose the option to collect processes and dependencies using the [VM insights Map feature](vminsights-maps.md). If you don't choose this option then Dependency agent isn't installed.
 
 ## Data collection rules
-Azure Monitor agent requires [Data Collection Rules (DCRs)](../essentials/data-collection-rule-overview.md) to specify which data to collect and how it should be processed. 
-
-
-If you use the Azure portal to migrate VM insights, a DCR will be created for you. If you use other methods to enable VM insights include PowerShell, Arm Template, or Azure Policy, then you first need to create a DCR either by enabling a machine with the Azure portal or by downloading the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip).
+Azure Monitor agent requires [Data Collection Rules (DCRs)](../essentials/data-collection-rule-overview.md) to specify which data to collect and how it should be processed. If you use the Azure portal to migrate VM insights, a DCR will be created for you. If you use other methods to enable VM insights include PowerShell, Arm Template, or Azure Policy, then you first need to create a DCR either by enabling a machine with the Azure portal or by downloading the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip).
 
 ## Migrate with Azure portal
 Use the following procedure to enable VM insights using the Azure Monitor agent on a machine that was previously enabled using Log Analytics agent. This method creates the required DCR or lets you select an existing one. It doesn't remove the Log Analytics agent from the machine though, so you still must perform this task after enabling the machine.
@@ -54,6 +51,9 @@ Use the following procedure to enable VM insights using the Azure Monitor agent 
    2.  With both agents installed, Azure Monitor displays a warning that you may be collecting duplicate data.
 
        :::image type="content" source="media/vminsights-enable-portal/both-agents-installed.png" lightbox="media/vminsights-enable-portal/both-agents-installed.png" alt-text="Screenshot showing warning message for both agents installed.":::
+
+## Enable Azure Monitor agent
+
 
 ## Remove Log Analytics agent
 

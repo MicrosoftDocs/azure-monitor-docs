@@ -376,7 +376,7 @@ items:
           href: vm/vminsights-enable-overview.md
         - name: Azure portal
           href: vm/vminsights-enable-portal.md
-        - name: Azure PowerShell
+        - name: PowerShell script
           href: vm/vminsights-enable-powershell.md
         - name: ARM templates
           href: vm/vminsights-enable-resource-manager.md
