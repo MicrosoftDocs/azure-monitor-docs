@@ -41,6 +41,8 @@ The following table shows the installation methods available for enabling VM Ins
 | [PowerShell](vminsights-enable-powershell.md) | Use a PowerShell script to enable multiple machines. |
 | [Manual install](vminsights-enable-hybrid.md) | Virtual machines or physical computers on-premises with other cloud environments.|
 
+## VM insights DCR
+
 > [!IMPORTANT]
 > VM Insights automatically creates a DCR that includes a special data stream required for its operation. Do not modify the VM Insights data collection rule or create your own data collection rule to support VM Insights. To collect additional data, such as Windows and Syslog events, create separate data collection rules and associate them with your machines.
 

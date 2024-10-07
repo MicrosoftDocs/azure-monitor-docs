@@ -36,7 +36,7 @@ Azure Monitor Agent transmits data to Azure Monitor directly or through the [Log
 
 To enable VM Insights on a Windows client machine: 
 
-1. If you don't have an existing VM Insights data collection rule, [deploy a VM Insights data collection rule using ARM templates](vminsights-enable-resource-manager.md#deploy-dcr). The data collection rule must be in the same region as your Log Analytics workspace.
+1. If you don't have an existing VM Insights data collection rule, [deploy a VM Insights data collection rule using ARM templates](vminsights-enable-resource-manager.md#create-data-collection-rule-dcr). The data collection rule must be in the same region as your Log Analytics workspace.
 1. Follow the steps described in [Install Azure Monitor Agent on Windows client devices](../agents/azure-monitor-agent-windows-client.md) to:
 
     - Install Azure Monitor Agent on your machine using the client installer.
