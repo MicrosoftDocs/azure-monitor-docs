@@ -43,7 +43,7 @@ Use the following procedure to enable VM insights on an unmonitored virtual mach
 
 1. On the **Insights Onboarding** page, select **Enable**. 
  
-2. On the **Monitoring configuration** page, select **Azure Monitor agent** and select a [DCR](vminsights-enable-overview.md#vm-insights-DCR) from the **Data collection rule** dropdown. Only rules configured for VM insights are listed. If a DCR hasn't already been created for VM insights, Azure Monitor creates one with the following settings.
+2. On the **Monitoring configuration** page, select **Azure Monitor agent** and select a [DCR](vminsights-enable-overview.md#vm-insights-dcr) from the **Data collection rule** dropdown. Only rules configured for VM insights are listed. If a DCR hasn't already been created for VM insights, Azure Monitor creates one with the following settings.
 
     - **Guest performance** enabled.
     - **Processes and dependencies** disabled.
