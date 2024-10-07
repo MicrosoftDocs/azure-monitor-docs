@@ -20,7 +20,7 @@ This article describes how to enable VM insights for a virtual machine or Virtua
 ## Prerequisites
 
 - See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. 
-- See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance) to verify that your operating system is supported by Dependency agent.
+- See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md) to verify that your operating system is supported by Dependency agent.
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 
 ## Steps
