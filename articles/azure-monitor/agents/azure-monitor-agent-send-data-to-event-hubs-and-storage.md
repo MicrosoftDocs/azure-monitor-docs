@@ -734,7 +734,7 @@ No, this support isn't a part of the roadmap. The Azure Monitoring Agent is mean
 
 ### Does this mean the Linux (LAD) and Windows (WAD) Diagnostic Extensions are no longer supported/retired?
 
-No, not until Azure formally announces the deprecation of these agents, which would start a three-year clock until they're no longer supported.
+LAD and WAD will be retired on March 31, 2026. Beyond required security patches and bug/regression fixes there are no enhancements nor feature development planned for WAD/LAD. We highly recommend you move to the Azure Monitor Agent as soon as possible.
 
 ### How to configure AMA for event hubs and storage data destinations
 
