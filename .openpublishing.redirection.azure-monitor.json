@@ -1967,7 +1967,7 @@
      },
      {
       "source_path_from_root": "/articles/azure-monitor/platform/template-workspace-configuration.md",
-      "redirect_url": "/azure/azure-monitor/samples/resource-manager-workspace",
+      "redirect_url": "/azure/azure-monitor/samples/quick-create-workspace",
       "redirect_document_id": false
      },
      {
@@ -3352,7 +3352,7 @@
      },
      {
       "source_path_from_root": "/articles/azure-monitor/platform/powershell-workspace-configuration.md",
-      "redirect_url": "/azure/azure-monitor/logs/powershell-workspace-configuration",
+      "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
       "redirect_document_id": false
      },
      {
@@ -3377,7 +3377,7 @@
      },
      {
       "source_path_from_root": "/articles/azure-monitor/samples/resource-manager-workspace.md",
-      "redirect_url": "/azure/azure-monitor/logs/resource-manager-workspace",
+      "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
       "redirect_document_id": false
      },
      {
@@ -3782,7 +3782,7 @@
      },
      {
       "source_path_from_root": "/articles/azure-monitor/logs/quick-create-workspace-cli.md",
-      "redirect_url": "/azure/azure-monitor/logs/resource-manager-workspace",
+      "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
       "redirect_document_id": false
      },
      {
@@ -3812,7 +3812,7 @@
      },
      {
       "source_path_from_root": "/articles/azure-monitor/logs/powershell-sample-create-workspace.md",
-      "redirect_url": "/azure/azure-monitor/logs/powershell-workspace-configuration",
+      "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
       "redirect_document_id": false
      },
      {
@@ -5099,6 +5099,11 @@
       "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-troubleshooting.md",
       "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
       "redirect_document_id": false
-     }
+     },
+     {
+        "source_path_from_root": "/articles/azure-monitor/logs/resource-manager-workspace.md",
+        "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
+        "redirect_document_id": false
+    }
     ]
    }
