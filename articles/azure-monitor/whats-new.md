@@ -19,6 +19,25 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## [2024](#tab/2024)
 
+## September 2024
+|Subservice | Article | Description |
+|---|---|---|
+|General|[Operational excellence best practices in Azure Monitor]()|New best practice articles|
+|General|[Performance efficiency in Azure Monitor]()|New best practice articles|
+|General|[Reliability best practices in Azure Monitor]()|New best practice articles|
+|General|[Security best practices in Azure Monitor]()|New best practice articles|
+|Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor]()|Added DCRs for Metrics export|
+|Essentials|[Data plane metrics batch API query versus metrics export]()|New article; Comparing metrics retrieval methods for export.|
+|Essentials|[Metrics export through data collection rules (Preview)]()|New feature: Metrics export using DCRs|
+|Application-Insights|[Configure Azure Monitor OpenTelemetry]()|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which doesn't include live metrics.|
+|Application-Insights|[Live metrics: Monitor and diagnose with 1-second latency]()|We revamped this article for simplicity and linked out to Microsoft Entra documentation for more information on how to secure potentially sensitive information entered into custom filters.|
+|Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry]()|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which doesn't include live metrics.|
+|Application-Insights|[Statsbeat in Application Insights]()|We revamped Statsbeat documentation to include OpenTelemetry scenarios.|
+|Alerts|[Create a new alert rule using the CLI, PowerShell, or an ARM template]()|Added prerequisites for all alert rule types stating that in order to create alert rules that use action groups, you must have a role with permissions for those action groups.|
+|Agents|[Azure Diagnostics extension overview]()|Announced that Azure Diagnostics extension will be deprecated on March 31, 2026.|
+|Agents|[Azure Monitor Agent supported operating systems and environments]()|Added Azure Monitor Agent support for Amazon Linux 2023.|
+
+
 ## August 2024
 
 |Subservice | Article | Description |
