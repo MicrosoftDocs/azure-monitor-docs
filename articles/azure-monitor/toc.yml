@@ -90,16 +90,14 @@ items:
           href: app/application-insights-asp-net-agent.md
       - name: OpenTelemetry Distro
         items:
-        - name: Get started with OpenTelemetry (.NET, Node.js, Python and Java)
+        - name: Get started with OpenTelemetry
           href: app/opentelemetry-enable.md
         - name: Configure OpenTelemetry
           href: app/opentelemetry-configuration.md
         - name: Add and modify OpenTelemetry
           href: app/opentelemetry-add-modify.md
-        - name: Frequently asked questions (FAQ)
-          href: app/opentelemetry-faq.md
-        - name: Troubleshooting, support, and feedback
-          href: app/opentelemetry-troubleshooting.md
+        - name: Help, support, and feedback
+          href: app/opentelemetry-help-support-feedback.md
         - name: .NET (supplemental)
           items:
           - name: Migrate from Application Insights .NET SDKs to OpenTelemetry
@@ -1488,8 +1486,6 @@ items:
         href: alerts/resource-manager-action-groups.md
     - name: Diagnostic settings
       href: essentials/resource-manager-diagnostic-settings.md
-    - name: Log Analytics workspaces
-      href: logs/resource-manager-workspace.md
     - name: Log queries
       href: logs/resource-manager-log-queries.md
     - name: SQL Insights (preview)
@@ -1506,8 +1502,6 @@ items:
         href: alerts/alerts-log-alert-query-samples.md
       - name: Log search alert payloads with webhooks
         href: alerts/alerts-log-webhook.md
-  - name: Configure workspaces using PowerShell
-    href: logs/powershell-workspace-configuration.md
   - name: Azure Resource Graph queries
     href: ./resource-graph-samples.md
   - name: Azure CLI metric alerts

@@ -4,7 +4,7 @@ description: Learn how to use Log Analytics in Azure Monitor to build and run a 
 ms.topic: tutorial
 author: guywild
 ms.author: guywild
-ms.reviewer: roygal
+ms.reviewer: ilanawaitser
 ms.date: 09/05/2024
 
 ---
