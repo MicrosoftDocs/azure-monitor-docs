@@ -1,20 +1,20 @@
 ---
-title: View Code Optimizations results (Preview)
+title: View Code Optimizations results
 description: Learn how to access the results provided by Azure Monitor's Code Optimizations feature.
 ms.topic: conceptual
 ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 06/25/2024
+ms.date: 10/07/2024
 ms.reviewer: ryankahng
 ---
 
-# View Code Optimizations results (Preview)
+# View Code Optimizations results
 
 Now that you set up and configured Code Optimizations on your app, [access and view any insights you received directly via the Azure portal.](https://aka.ms/codeoptimizations) 
 
-You can also access Code Optimizations through any of your Application Insights resources from **Performance** pane and select **Code Optimizations (preview)** button from the top menu.
+You can also access Code Optimizations through any of your Application Insights resources from **Performance** pane and select **Code Optimizations** button from the top menu.
 
 :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
 
