@@ -1488,8 +1488,6 @@ items:
         href: alerts/resource-manager-action-groups.md
     - name: Diagnostic settings
       href: essentials/resource-manager-diagnostic-settings.md
-    - name: Log Analytics workspaces
-      href: logs/resource-manager-workspace.md
     - name: Log queries
       href: logs/resource-manager-log-queries.md
     - name: SQL Insights (preview)
@@ -1506,8 +1504,6 @@ items:
         href: alerts/alerts-log-alert-query-samples.md
       - name: Log search alert payloads with webhooks
         href: alerts/alerts-log-webhook.md
-  - name: Configure workspaces using PowerShell
-    href: logs/powershell-workspace-configuration.md
   - name: Azure Resource Graph queries
     href: ./resource-graph-samples.md
   - name: Azure CLI metric alerts
