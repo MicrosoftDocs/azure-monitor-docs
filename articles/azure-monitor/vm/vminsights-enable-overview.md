@@ -12,7 +12,22 @@ ms.custom: references_regions
 
 # Enable VM Insights overview
 
-This article provides an overview of how to enable VM Insights in Azure Monitor.
+This article provides an overview of how to enable VM Insights in Azure Monitor. See [Installation options](#installation-options) for the different methods available to enable VM Insights on supported machines.
+
+## Supported machines
+
+- Azure virtual machines
+- Azure Virtual Machine Scale Sets
+- Hybrid virtual machines connected with Azure Arc
+  - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
+
+## Supported operating systems
+
+- VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor agent overview](../agents/agents-overview.md#supported-operating-systems).
+- The Dependency Agent supports the same [Windows versions that Azure Monitor Agent supports](../agents/agents-overview.md#supported-operating-systems), except Windows Server 2008 SP2 and Azure Stack HCI. For Dependency Agent Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
+
+> [!IMPORTANT]
+> If the Ethernet device for your virtual machine has more than nine characters, it won't be recognized by VM Insights and data won't be sent to the InsightsMetrics table. The agent will collect data from [other sources](../agents/agent-data-sources.md).
 
 ## Installation options
 
@@ -31,23 +46,8 @@ The following table shows the installation methods available for enabling VM Ins
 
 [Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. To enable VM Insights on a machine with Azure Monitor Agent, associate a VM insights DCR with the agent. When you enable VM Insights using the Azure portal, a DCR can be created for you. You can either use this DCR or a downloadable template when you use other installation methods. 
 
-If you associate a data collection rule with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you install Dependency Agent. We recommend following the procedure described in [Enable VM Insights for Azure Monitor Agent](vminsights-enable-portal.md#enable-vm-insights).
+If you associate a data collection rule with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you install Dependency Agent.
 
-
-## Supported machines
-
-- Azure virtual machines
-- Azure Virtual Machine Scale Sets
-- Hybrid virtual machines connected with Azure Arc
-  - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
-
-## Supported operating systems
-
-- VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor agent overview](../agents/agents-overview.md#supported-operating-systems).
-- The Dependency Agent supports the same [Windows versions that Azure Monitor Agent supports](../agents/agents-overview.md#supported-operating-systems), except Windows Server 2008 SP2 and Azure Stack HCI. For Dependency Agent Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
-
-> [!IMPORTANT]
-> If the Ethernet device for your virtual machine has more than nine characters, it won't be recognized by VM Insights and data won't be sent to the InsightsMetrics table. The agent will collect data from [other sources](../agents/agent-data-sources.md).
 
 
 ## Agents
