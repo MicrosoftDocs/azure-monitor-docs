@@ -68,19 +68,7 @@ items:
         - name: Azure VM and Virtual Machine Scale Sets
           href: app/azure-vm-vmss-apps.md
         - name: Azure App Service
-          items:
-          - name: Overview
-            href: app/azure-web-apps.md
-          - name: ASP.NET Core
-            href: app/azure-web-apps-net-core.md
-          - name: ASP.NET
-            href: app/azure-web-apps-net.md
-          - name: Java
-            href: app/azure-web-apps-java.md
-          - name: Node.js
-            href: app/azure-web-apps-nodejs.md
-          - name: Python
-            href: app/azure-web-apps-python.md
+          href: app/codeless-app-service.md
         - name: Azure Functions
           displayName: functions, monitor functions, automation
           href: app/monitor-functions.md
