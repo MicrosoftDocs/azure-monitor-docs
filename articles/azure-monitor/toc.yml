@@ -216,7 +216,7 @@ items:
       - name: Upgrade from classic resources and iKey
         items:
         - name: Migrate to a workspace-based resource
-          href: app/convert-classic-resource.md
+          href: /previous-versions/azure/azure-monitor/app/convert-classic-resource
         - name: Migrate to connection strings
           href: app/migrate-from-instrumentation-keys-to-connection-strings.md
       - name: Create a resource
