@@ -5,32 +5,34 @@ ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 author: guywi-ms
 ms.author: guywild
-ms.date: 05/20/2024
+ms.date: 10/04/2024
 ---
 
-# Enable VM insights by using PowerShell
-This article describes how to enable VM insights on Azure virtual machines by using PowerShell. This procedure can be used for:
+# Enable VM insights using PowerShell script
+This article describes how to enable [VM insights](./vminsights-overview.md) using a PowerShell script that can enable multiple VMs. This process uses a script installs VM extensions for Azure Monitoring Agent (AMA) and, if necessary, the Dependency Agent to enable VM Insights. If AMA is onboarded, a Data Collection Rule (DCR) and a User Assigned Managed Identity (UAMI) is also associated with the virtual machines and virtual machine scale sets.
+
+> [!NOTE]
+> To use PowerShell to enable VM insights without using this script, see [Enable VM insights using ARM templates](./vminsights-enable-resource-manager.md)
+
+
+## Supported machines
 
 - Azure Virtual Machines
 - Azure Virtual Machine Scale Sets
-
-This script installs VM extensions for Azure Monitoring Agent (AMA) and, if necessary, the Dependency Agent to enable VM Insights. If AMA is onboarded, a Data Collection Rule (DCR) and a User Assigned Managed Identity (UAMI) is also associated with the virtual machines and virtual machine scale sets.
 
 > [!NOTE]
 > Azure Monitor Agent is supported from version 1.10.1.
 
 ## Prerequisites
 
-You need to:
-
-- See [Manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor Agent.
-- See [Supported operating systems](./vminsights-enable-overview.md#supported-operating-systems) to ensure that the operating system of the virtual machine or virtual machine scale set you're enabling is supported.
+- See [Manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor Agent. 
+- See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) to verify that your operating system is supported by Dependency agent.
 - To enable network isolation for Azure Monitor Agent, see [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md).
 
 
 ## PowerShell script
 
-To enable VM insights for multiple VMs or virtual machine scale set, use the PowerShell script [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights). The script is available from the Azure PowerShell Gallery. This script iterates through the virtual machines or virtual machine scale sets according to the parameters that you specify. The script can be used to enable VM insights for:
+Use the PowerShell script [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights) to enable VM insights for multiple VMs or virtual machine scale sets. This script iterates through the virtual machines or virtual machine scale sets according to the parameters that you specify. The script can be used to enable VM insights for:
 
 - Every virtual machine and virtual machine scale set in your subscription.
 - The scoped resource groups specified by `-ResourceGroup`.

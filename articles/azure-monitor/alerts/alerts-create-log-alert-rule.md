@@ -12,11 +12,19 @@ ms.reviewer: nolavime
 
 # Create or edit a log search alert rule
 
-This article shows you how to create a new alert rule or edit an existing alert rule for log search in Azure Monitor. To learn more about alerts, see the [alerts overview](alerts-overview.md).
+This article shows you how to create a new log search alert rule or edit an existing log search alert rule in Azure Monitor. To learn more about alerts, see the [alerts overview](alerts-overview.md).
 
-You create an alert rule by combining the resources to be monitored, the monitoring data from the resource, and the conditions that you want to trigger the alert. You can then define [action groups](./action-groups.md) and [alert processing rules](alerts-action-rules.md) to determine what happens when an alert is triggered.
+Alert rules combine the resources to be monitored, the monitoring data from the resource, and the conditions that you want to trigger the alert. You can then define [action groups](./action-groups.md) and [alert processing rules](alerts-action-rules.md) to determine what happens when an alert is triggered.
 
 Alerts triggered by these alert rules contain a payload that uses the [common alert schema](alerts-common-schema.md).
+
+## Prerequisites
+
+To create or edit an alert rule, you must have the following permissions:
+
+- Read permission on the target resource of the alert rule.
+- Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+- Read permission on any action group associated to the alert rule, if applicable.
 
 [!INCLUDE [alerts-wizard-access](../includes/alerts-wizard-access.md)]
 
@@ -70,7 +78,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
 
-   Cross-service queries aren't supported in government clouds. For more information about limitations, see [Cross-service query limitations](../logs/azure-monitor-data-explorer-proxy.md#limitations) and [Combine Azure Resource Graph tables with a Log Analytics workspace](../logs/azure-monitor-data-explorer-proxy.md#combine-azure-resource-graph-tables-with-a-log-analytics-workspace).
+   Cross-service queries aren't supported in government clouds. For more information about limitations, see [Cross-service query limitations](../logs/azure-monitor-data-explorer-proxy.md#limitations) and [Combine Azure Resource Graph tables with a Log Analytics workspace](../logs/azure-monitor-data-explorer-proxy.md#azure-resource-graph-cross-service-query-limitations).
 
 1. Select **Run** to run the alert.
 1. The **Preview** section shows you the query results. When you finish editing your query, select **Continue Editing Alert**.

@@ -78,12 +78,14 @@ items:
           href: app/application-insights-asp-net-agent.md
       - name: OpenTelemetry Distro
         items:
-        - name: Get started with OpenTelemetry (.NET, Node.js, Python and Java)
+        - name: Get started with OpenTelemetry
           href: app/opentelemetry-enable.md
         - name: Configure OpenTelemetry
           href: app/opentelemetry-configuration.md
         - name: Add and modify OpenTelemetry
           href: app/opentelemetry-add-modify.md
+        - name: Help, support, and feedback
+          href: app/opentelemetry-help-support-feedback.md
         - name: .NET (supplemental)
           items:
           - name: Migrate from Application Insights .NET SDKs to OpenTelemetry
@@ -202,7 +204,7 @@ items:
       - name: Upgrade from classic resources and iKey
         items:
         - name: Migrate to a workspace-based resource
-          href: app/convert-classic-resource.md
+          href: /previous-versions/azure/azure-monitor/app/convert-classic-resource
         - name: Migrate to connection strings
           href: app/migrate-from-instrumentation-keys-to-connection-strings.md
       - name: Create a resource
@@ -364,7 +366,7 @@ items:
           href: vm/vminsights-enable-overview.md
         - name: Azure portal
           href: vm/vminsights-enable-portal.md
-        - name: Azure PowerShell
+        - name: PowerShell script
           href: vm/vminsights-enable-powershell.md
         - name: ARM templates
           href: vm/vminsights-enable-resource-manager.md
@@ -374,7 +376,9 @@ items:
           href: vm/vminsights-enable-hybrid.md
         - name: Dependency Agent
           href: vm/vminsights-dependency-agent-maintenance.md
-        - name: Migrate from deprecated VM insights policies
+        - name: Migrate to Azure Monitor agent
+          href: vm/vminsights-migrate-agent.md
+        - name: Migrate from deprecated policies
           href: vm/vminsights-migrate-deprecated-policies.md
       - name: Map dependencies
         href: vm/vminsights-maps.md
@@ -512,12 +516,12 @@ items:
       - name: Microsoft Entra authentication
         displayName: Prometheus,remote-write
         href: containers/prometheus-remote-write-active-directory.md
-      - name: Microsoft Entra pod-managed identity authentication
-        displayName: Prometheus,remote-write
-        href: containers/prometheus-remote-write-azure-ad-pod-identity.md
-      - name: Microsoft Entra Workload ID (preview) authentication
+      - name: Microsoft Entra Workload ID authentication
         displayName: Prometheus,remote-write
         href: containers/prometheus-remote-write-azure-workload-identity.md
+      - name: (Deprecated) Microsoft Entra pod-managed identity authentication
+        displayName: Prometheus,remote-write
+        href: containers/prometheus-remote-write-azure-ad-pod-identity.md
       - name: Troubleshoot remote-write
         displayName: Prometheus,remote-write
         href: containers/prometheus-remote-write-troubleshooting.md
@@ -616,6 +620,9 @@ items:
         - name: Structure
           displayName: Transformations
           href: essentials/data-collection-transformations-structure.md
+        - name: Best practices and samples
+          displayName: Transformations
+          href: essentials/data-collection-transformations-best-practices.md
         - name: Tutorial
           displayName: Custom text logs, transformations
           href: agents/azure-monitor-agent-transformation.md
@@ -1166,6 +1173,8 @@ items:
       href: visualize/workbooks-samples.md
     - name: Troubleshoot insights
       href: insights/troubleshoot-workbooks.md
+    - name: Dashboard Preview
+      href: visualize/workbooks-dashboard-preview.md
   - name: Grafana
     href: visualize/grafana-plugin.md
   - name: Dashboards
@@ -1469,8 +1478,6 @@ items:
         href: alerts/resource-manager-action-groups.md
     - name: Diagnostic settings
       href: essentials/resource-manager-diagnostic-settings.md
-    - name: Log Analytics workspaces
-      href: logs/resource-manager-workspace.md
     - name: Log queries
       href: logs/resource-manager-log-queries.md
     - name: SQL Insights (preview)
@@ -1487,8 +1494,6 @@ items:
         href: alerts/alerts-log-alert-query-samples.md
       - name: Log search alert payloads with webhooks
         href: alerts/alerts-log-webhook.md
-  - name: Configure workspaces using PowerShell
-    href: logs/powershell-workspace-configuration.md
   - name: Azure Resource Graph queries
     href: ./resource-graph-samples.md
   - name: Azure CLI metric alerts
