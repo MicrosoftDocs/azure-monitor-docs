@@ -10,37 +10,47 @@ ms.date: 10/06/2024
 
 # Azure Monitor and Prometheus
 
-< what is prom> 
-< How does prom integrate into Azure >
-    < Anzure managaed>
-    <Standalone withe reomte write>
+Prometheus is a popular open-source monitoring and alerting solution that's widely used in the cloud-native ecosystem. Prometheus is used to monitor and alert on the performance of infrastructure and workloads and often used in Kubernetes environments. 
 
-Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md), providing more flexibility in the types of metric data that you can collect and analyze with Azure Monitor. Prometheus metrics are supported by analysis tools like  [Azure Monitor Metrics Explorer with PromQL](./metrics-explorer.md) and open source tools such as [PromQL](https://aka.ms/azureprometheus-promio-promql) and [Grafana](/azure/managed-grafana/overview).
+Azure Monitor Managed Service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md) that provides a fully managed and scalable environment for running Prometheus. It simplifies the deployment, management, and scaling of Prometheus in an Azure Kubernetes Service, allowing you to focus on monitoring your applications and infrastructure.
 
-Azure Monitor managed service for Prometheus allows you to collect and analyze metrics at scale using a Prometheus-compatible monitoring solution, based on the [Prometheus](https://aka.ms/azureprometheus-promio) project from the Cloud Native Computing Foundation. This fully managed service allows you to use the [Prometheus query language (PromQL)](https://aka.ms/azureprometheus-promio-promql) to analyze and alert on the performance of monitored infrastructure and workloads without having to operate the underlying infrastructure.
+Use Prometheus as an Azure managed service, or as a self managed service to collect metrics from your Azure Kubernetes Service (AKS) clusters, Azure Arc-enabled Kubernetes clusters, virtual machines, and virtual machine scale sets.
+
+Prometheus metrics are stored in an Azure Monitor workspace, where you can analyze and visualize the data using [Metrics Explorer with PromQL](./metrics-explorer.md) and [Azure Managed Grafana](/azure/managed-grafana/overview).
+
 
 > [!IMPORTANT] 
-> Azure Monitor managed service for Prometheus is intended for storing information about service health of customer machines and applications. It is not intended for storing any data classified as Personal Identifiable Information (PII) or End User Identifiable Information (EUII). We strongly recommend that you do not send any sensitive information (usernames, credit card numbers etc.) into Azure Monitor managed service for Prometheus fields like metric names, label names, or label values.
+> Azure Monitor hosted Prometheus is intended for storing information about service health of customer machines and applications. It is not intended for storing any data classified as Personal Identifiable Information (PII) or End User Identifiable Information (EUII). We strongly recommend that you do not send any sensitive information (usernames, credit card numbers etc.) into Azure Monitor hosted Prometheus fields like metric names, label names, or label values.
 
 ## Data sources
-Azure Monitor managed service for Prometheus can currently collect data from any of the following data sources:
+
+Azure Monitor managed service for Prometheus collects data from Azure Kubernetes services:
 
 - Azure Kubernetes service (AKS)
 - Azure Arc-enabled Kubernetes
 
-## Enable
-The only requirement to enable Azure Monitor managed service for Prometheus is to create an [Azure Monitor workspace](azure-monitor-workspace-overview.md), which is where Prometheus metrics are stored. Once this workspace is created, you can onboard services that collect Prometheus metrics.
+Using remote-write, you can also collect data from self-managed Prometheus servers. This includes Prometheus servers running on:
+
+- Azure virtual machines
+- Azure virtual machine scale sets
+- Arc-enabled servers
+- Azure or arc-enabled Kubernetes clusters.
+
+
+## Enable Azure Monitor managed service for Prometheus
+
+To enable Azure Monitor managed service for Prometheus, you must create an [Azure Monitor workspace](azure-monitor-workspace-overview.md) to store the metrics. Once the workspace is created, you can onboard services that collect Prometheus metrics.
 
 - To collect Prometheus metrics from your Kubernetes cluster, see [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
-- To configure remote-write to collect data from your self-managed Prometheus server, see [Azure Monitor managed service for Prometheus remote write](./remote-write-prometheus.md).
+- To configure remote-write to collect data from a self-managed Prometheus server, see [Azure Monitor managed service for Prometheus remote write](./remote-write-prometheus.md).
 
-To enable Managed Prometheus for Microsoft Azure air-gapped clouds please contact support. 
+To enable Managed Prometheus for Microsoft Azure air-gapped clouds, contact support. 
 
-## Remote write
+## Self-managed Prpometheus using remote write
 
 In addition to the managed service for Prometheus, you can also use self-managed prometheus and remote-write to collect metrics and store them in an Azure Monitor workspace.
 
-### Kubernetes services
+### Self-managed Kubernetes services
 
 Send metrics from self-managed Prometheus on Kubernetes clusters. For more information on remote-write to Azure Monitor workspaces for Kubernetes services, see the following articles:
 
@@ -53,13 +63,40 @@ Send metrics from self-managed Prometheus on Kubernetes clusters. For more infor
 
 Send data from self-managed Prometheus on virtual machines and virtual machine scale sets. Servers can be in an Azure-managed environment or on-premises. Fro more information, see [Send Prometheus metrics from Virtual Machines to an Azure Monitor workspace](/azure/azure-monitor/essentials/prometheus-remote-write-virtual-machines).
 
-## Azure Monitor Metrics Explorer with PromQL
+
+## Retrieve and analyze Prometheus metrics
+
+Prometheus data is stored in an Azure Monitor workspace and can be retrieved using Prometheus Query Language (PromQL). You can write your own queries, use queries from the open source community, and use Grafana dashboards that include PromQL queries. See the [Prometheus project](https://prometheus.io/docs/prometheus/latest/querying/basics/). 
+
+
+The following Azure services support querying Prometheus metrics from an Azure Monitor workspace:
+
+- [Azure Monitor Metrics Explorer with PromQL](./metrics-explore.md)
+- [Azure Managed Grafana](/azure/managed-grafana/overview)
+- [Azure Monitor Workbooks](../visualize/workbooks-overview.md)
+- [Prometheus query APIs](prometheus-api-promql.md)
+
+
+### Azure Monitor Metrics explorer with PromQL
 
 Metrics Explorer with PromQL allows you to analyze and visualize platform metrics, and use Prometheus query language (PromQL) to query Prometheus and other metrics stored in an Azure Monitor workspace. Metrics Explorer with PromQL is available from the **Metrics** menu item of any Azure Monitor workspace in the Azure portal. See [Metrics Explorer with PromQL](./metrics-explorer.md) for more information.
 
-## Grafana integration
 
-The primary method for visualizing Prometheus metrics is [Azure Managed Grafana](/azure/managed-grafana/overview). [Connect your Azure Monitor workspace to a Grafana workspace](./azure-monitor-workspace-manage.md#link-a-grafana-workspace) so that it can be used as a data source in a Grafana dashboard. You then have access to multiple prebuilt dashboards that use Prometheus metrics and the ability to create any number of custom dashboards.
+[!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](../includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
+
+### Azure workbooks
+
+Create charts and dashboards powered by Azure Monitor managed service for Prometheus using Azure Workbooks and PromQL queries. For more information, see [Query Prometheus metrics using Azure workbooks](prometheus-workbooks.md) 
+
+
+### Grafana integration
+
+VisualizE Prometheus metrics using [Azure Managed Grafana](/azure/managed-grafana/overview). Connect your Azure Monitor workspace to a Grafana workspace so that it can be used as a data source in a Grafana dashboard. You then have access to multiple prebuilt dashboards that use Prometheus metrics and the ability to create any number of custom dashboards. For more information, see [Link a Grafana workspace to an Azure Monitor workspace](./azure-monitor-workspace-manage.md#link-a-grafana-workspace)
+
+
+### Prometheus query API
+
+Use PromQL via the REST API to query Prometheus metrics stored in an Azure Monitor workspace. For more information see [Prometheus query API](prometheus-api-promql.md).
 
 ## Rules and alerts
 Azure Monitor managed service for Prometheus supports recording rules and alert rules using PromQL queries. Metrics recorded by recording rules are stored back in the Azure Monitor workspace and can be queried by dashboard or by other rules. Alert rules and recording rules can be created and managed using [Azure Managed Prometheus rule groups](prometheus-rule-groups.md). For your AKS cluster, a set of [predefined Prometheus alert rules](../containers/container-insights-metric-alerts.md) and [recording rules](./prometheus-metrics-scrape-default.md#recording-rules) is provided to allow easy quick start.
@@ -96,11 +133,7 @@ Following are links to Prometheus documentation.
 
 This section provides answers to common questions.
 
-### How do I retrieve Prometheus metrics?
-<Add azmon workspace links, promql in metrics support>
-Prometheus data is retrieved from an Azure Monitor workspace using Prometheus Query Language (PromQL). You can write your own queries, use queries from the open source community, and use Grafana dashboards that include PromQL queries. See the [Prometheus project](https://prometheus.io/docs/prometheus/latest/querying/basics/). 
 
-[!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](../includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 
 ### When I use managed service for Prometheus, can I store data for more than one cluster in an Azure Monitor workspace?
 
