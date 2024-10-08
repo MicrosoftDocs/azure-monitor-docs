@@ -937,8 +937,6 @@ items:
       - name: Overview
         displayName: Prometheus
         href: essentials/prometheus-metrics-overview.md
-      - name: FAQ
-        href: essentials/prometheus-metrics-overview.md#frequently-asked-questions
       - name: Prometheus remote-write from virtual-machines
         displayName: Prometheus remote-write
         href: essentials/prometheus-remote-write-virtual-machines.md

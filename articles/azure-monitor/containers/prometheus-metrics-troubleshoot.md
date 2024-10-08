@@ -18,13 +18,12 @@ If you encounter an error while you attempt to enable monitoring for your AKS cl
 
 ## Metrics Throttling
 
-In the Azure portal, navigate to your Azure Monitor Workspace. Go to `Metrics`, click on the `Add Metric` dropdown and then click on the `Add with builder` option to verify that the metrics `Active Time Series % Utilization` and `Events Per Minute Ingested % Utilization` are below 100%.
+In the Azure portal, navigate to your Azure Monitor Workspace. Go to `Metrics`, click on the `Add Metric` dropdown and then click on the `Add with builder` option to verify that the metrics `Active Time Series % Utilization` and `Events Per Minute Received % Utilization` are below 100%.
 
 :::image type="content" source="media/prometheus-metrics-troubleshoot/throttling.png" alt-text="Screenshot showing how to navigate to the throttling metrics." lightbox="media/prometheus-metrics-troubleshoot/throttling.png":::
 
 If either of them are more than 100%, ingestion into this workspace is being throttled. In the same workspace, navigate to `New Support Request` to create a request to increase the limits. Select the issue type as `Service and subscription limits (quotas)` and the quota type as `Managed Prometheus`.
 
-You can also monitor and set up an alert on the ingestion limits. See [Monitor ingestion limits](../essentials/prometheus-metrics-overview.md#how-can-i-monitor-the-service-limits-and-quota) to avoid metrics ingestion throttling.
 
 ## Intermittent gaps in metric data collection
 
