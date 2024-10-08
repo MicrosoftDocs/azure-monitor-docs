@@ -183,7 +183,7 @@ If you see metrics missed, you can first check if the ingestion limits are being
 - Events Per Minute Ingested Limit - The maximum number of events per minute that can be ingested before getting throttled
 - Events Per Minute Ingested % Utilization - The percentage of current metric ingestion rate limit being util
 
-To avoid metrics ingestion throttling, you can **monitor and set up an alert on the ingestion limits**. See [Monitor ingestion limits](../essentials/prometheus-metrics-overview.md#how-can-i-monitor-the-service-limits-and-quota).
+To avoid metrics ingestion throttling, you can **monitor and set up an alert on the ingestion limits**. See [Monitor ingestion limits](../essentials/prometheus-monitor-ingest-limits.md).
 
 Refer to [service quotas and limits](../service-limits.md#prometheus-metrics) for default quotas and also to understand what can be increased based on your usage. You can request quota increase for Azure Monitor workspaces using the `Support Request` menu for the Azure Monitor workspace. Ensure you include the ID, internal ID and Location/Region for the Azure Monitor workspace in the support request, which you can find in the `Properties' menu for the Azure Monitor workspace in the Azure portal.
 
