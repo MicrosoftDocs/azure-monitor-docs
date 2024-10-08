@@ -11,7 +11,7 @@ ms.date: 07/24/2024
 # Azure Monitor workspace
 An Azure Monitor workspace is a unique environment for data collected by Azure Monitor. Each workspace has its own data repository, configuration, and permissions.
 
-> [!Note]
+> [!NOTE]
 > Log Analytics workspaces contain logs and metrics data from multiple Azure resources, whereas Azure Monitor workspaces currently contain only metrics related to Prometheus.
   
 ## Contents of Azure Monitor workspace
