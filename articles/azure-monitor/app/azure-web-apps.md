@@ -43,7 +43,7 @@ If both autoinstrumentation monitoring and manual SDK-based instrumentation are 
 
 ## Release notes
 
-This section contains the release notes for Azure Web Apps based on ANT release for runtime instrumentation with Application Insights.
+This section contains the release notes for Azure Web Apps based on the latest release for runtime instrumentations with Application Insights.
 
 To find which version of the extension you're currently using, go to `https://<yoursitename>.scm.azurewebsites.net/ApplicationInsights`.
 
