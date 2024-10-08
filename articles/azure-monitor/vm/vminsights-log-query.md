@@ -38,7 +38,7 @@ Records in these tables are generated from data reported by the Dependency Agent
 
 The following fields and conventions apply to both VMConnection and VMBoundPort: 
 
-- Computer: Fully-qualified domain name of reporting machine 
+- Computer: Fully qualified domain name of reporting machine 
 - AgentId: The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent  
 - Machine: Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form *m-{GUID}*, where *GUID* is the same GUID as AgentId  
 - Process: Name of the Azure Resource Manager resource for the process exposed by ServiceMap. It's of the form *p-{hex string}*. Process is unique within a machine scope and to generate a unique process ID across machines, combine Machine and Process fields. 
