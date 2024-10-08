@@ -47,42 +47,43 @@ This section contains the release notes for Azure Web Apps based on ANT release 
 
 To find which version of the extension you're currently using, go to `https://<yoursitename>.scm.azurewebsites.net/ApplicationInsights`.
 
-### Release notes
+### Latest Version (default) - Linux
 
-#### Latest Version (default) - Linux
-<details>
-  <summary>.NET/.NET Core</summary>
-  .NET/.NET Core content here
-</details>
-<details>
-  <summary>Node.js</summary>
-    Released the private preview of the OpenTelemetry agent (insert version) <br>
-    Production agent was updated to use (insert version) of the Node.js Application Insights SDK.
-</details>
-<details>
-  <summary>Java</summary>
-    Java content here
-</details>
-<details>
-  <summary>Python</summary>
-    Python content here
-</details>
+#### [ASP.NET Core](#tab/asp.net)
+insert ASAP.NET Core agent version information and link to releases here
 
-#### Latest Version (default) - Windows
+#### [.NET](#tab/.net)
+insert .NET agent version information and link to releases here
 
-<details>
-  <summary>.NET/.NET Core</summary>
-  .NET/.NET Core content here
-</details>
-<details>
-  <summary>Node.js</summary>
-    Released the private preview of the OpenTelemetry agent (insert version) <br>
-    Production agent was updated to use (insert version) of the Node.js Application Insights SDK.
-</details>
-<details>
-  <summary>Java</summary>
-    Java content here
-</details>
+#### [Java](#tab/java)
+insert Java agent version information and link to releases here
+
+#### [Node.js](#tab/nodejs)
+Released version 3.x.x of the OpenTelemetry based agent.
+Released version 2.x.x of the Application Insights agent.
+[Node.js SDK releases](https://github.com/microsoft/ApplicationInsights-node.js/releases)
+
+#### [Python (Preview)](#tab/python)
+insert Python agent version information and link to releases here
+
+### Latest Version (default) - Windows
+
+#### [ASP.NET Core](#tab/asp.net)
+insert ASAP.NET Core agent version information and link to releases here
+
+#### [.NET](#tab/.net)
+insert .NET agent version information and link to releases here
+
+#### [Java](#tab/java)
+insert Java agent version information and link to releases here
+
+#### [Node.js](#tab/nodejs)
+Released version 3.x.x of the OpenTelemetry based agent.
+Released version 2.x.x of the Application Insights agent.
+[Node.js SDK releases](https://github.com/microsoft/ApplicationInsights-node.js/releases)
+
+#### [Python (Preview)](#tab/python)
+insert Python agent version information and link to releases here
 
 ## Frequently asked questions
 
