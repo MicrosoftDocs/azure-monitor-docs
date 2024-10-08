@@ -243,11 +243,11 @@ The Application Insights Java version is updated automatically as part of App Se
 
 1. Upload the Java agent jar file to App Service.
 
-    > a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
+    a. First, get the latest version of Azure CLI by following the instructions [here](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
 
-    > b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
+    b. Next, get the latest version of the Application Insights Java agent by following the instructions [here](./opentelemetry-enable.md?tabs=java).
 
-    > c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
+    c. Then, deploy the Java agent jar file to App Service using the following command: `az webapp deploy --src-path applicationinsights-agent-{VERSION_NUMBER}.jar --target-path java/applicationinsights-agent-{VERSION_NUMBER}.jar --type static --resource-group {YOUR_RESOURCE_GROUP} --name {YOUR_APP_SVC_NAME}`. Alternatively, you can use [this guide](/azure/app-service/quickstart-java?tabs=javase&pivots=platform-linux#3---configure-the-maven-plugin) to deploy the agent through the Maven plugin.
 
 1. Disable Application Insights via the Application Insights tab in the Azure portal.
 
@@ -744,9 +744,9 @@ If you're missing telemetry, follow these steps to confirm that autoinstrumentat
 
 1. Check autoinstrumentation diagnostics and status logs.
 
-    > a. Navigate to */var/log/applicationinsights/* and open status_*.json.
+    a. Navigate to */var/log/applicationinsights/* and open status_*.json.
 
-    > b. Confirm that `AgentInitializedSuccessfully` is set to true and `IKey` to have a valid iKey.
+    b. Confirm that `AgentInitializedSuccessfully` is set to true and `IKey` to have a valid iKey.
 
     Example JSON file:
 
