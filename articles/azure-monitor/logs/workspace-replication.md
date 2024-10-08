@@ -56,7 +56,7 @@ Azure Monitor protects data that reaches the primary region's ingestion endpoint
 
 If the primary region's ingestion endpoint isn't available, Azure Monitor Agent regularly retries sending log data to the endpoint. The data ingestion endpoint in the secondary region starts to receive data from agents a few minutes after you trigger switchover.
 
-If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. If the client retries sending log data periodically, the data ingestion endpoint in the secondary region starts to receive data from client a few minutes after you trigger switchover.
+If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. 
 
 
 ### Supported regions
