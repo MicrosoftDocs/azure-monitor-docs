@@ -376,7 +376,9 @@ To disable client-side monitoring, either remove the associated key value pair f
 
 ## [Java](#tab/java)
 
-To enable client-side monitoring for your Java application, you need to [manually add the client-side JavaScript SDK to your application](./javascript.md).
+To enable client-side monitoring, the Java agent can automatically inject the [Browser SDK Loader (Preview)](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) into your application's HTML pages, including configuring the appropriate connection string.
+
+For more information, go to [Configuration options: Azure Monitor Application Insights for Java](java-standalone-config.md#browser-sdk-loader-preview).
 
 ## [Node.js](#tab/nodejs)
 
