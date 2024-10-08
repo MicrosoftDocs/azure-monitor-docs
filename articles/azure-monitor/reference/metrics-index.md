@@ -7,7 +7,7 @@ services: azure-monitor
 ms.topic: reference
 ms.service: azure-monitor
 ms.custom: ignite-2022
-ms.date: 09/30/2024
+ms.date: 10/06/2024
 ms.reviewer: priyamishra
 ---
 
@@ -16,7 +16,7 @@ ms.reviewer: priyamishra
 > [!NOTE]
 > This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 
-Last updated: 09/30/2024.
+Last updated: 10/06/2024.
 
 Azure Monitor provides several ways to interact with metrics, including charting them in the Azure portal, accessing them through the REST API, or querying them by using PowerShell or the Azure CLI (Command Line Interface).  
 
@@ -64,7 +64,7 @@ Following table lists metrics and log categories available for each resource typ
   |Microsoft.AAD <a name="microsoftaad"></a>|[DomainServices](./supported-metrics/Microsoft-AAD-DomainServices-metrics.md)<br>|[DomainServices](./supported-logs/Microsoft-AAD-DomainServices-logs.md)<br>|
 |Microsoft.AgFoodPlatform <a name="microsoftagfoodplatform"></a>|N/A|[farmBeats](./supported-logs/Microsoft-AgFoodPlatform-farmBeats-logs.md)<br>|
 |Microsoft.AnalysisServices <a name="microsoftanalysisservices"></a>|[servers](./supported-metrics/Microsoft-AnalysisServices-servers-metrics.md)<br>|[servers](./supported-logs/Microsoft-AnalysisServices-servers-logs.md)<br>|
-|Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>|
+|Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>[service/workspaces](./supported-logs/Microsoft-ApiManagement-service-workspaces-logs.md)<br>|
 |Microsoft.App <a name="microsoftapp"></a>|[containerapps](./supported-metrics/Microsoft-App-containerapps-metrics.md)<br>[jobs](./supported-metrics/Microsoft-App-jobs-metrics.md)<br>[managedEnvironments](./supported-metrics/Microsoft-App-managedEnvironments-metrics.md)<br>|[managedEnvironments](./supported-logs/Microsoft-App-managedEnvironments-logs.md)<br>|
 |Microsoft.AppConfiguration <a name="microsoftappconfiguration"></a>|[configurationStores](./supported-metrics/Microsoft-AppConfiguration-configurationStores-metrics.md)<br>|[configurationStores](./supported-logs/Microsoft-AppConfiguration-configurationStores-logs.md)<br>|
 |Microsoft.AppPlatform <a name="microsoftappplatform"></a>|[spring](./supported-metrics/Microsoft-AppPlatform-spring-metrics.md)<br>|[spring](./supported-logs/Microsoft-AppPlatform-spring-logs.md)<br>|
