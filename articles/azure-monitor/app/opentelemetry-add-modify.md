@@ -13,7 +13,7 @@ ms.reviewer: mmcc
 
 This article provides guidance on how to add, modify, and filter OpenTelemetry for applications using [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
 
-To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](#frequently-asked-questions).
+To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
 
@@ -128,8 +128,8 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * [Azure Storage - Queues](/java/api/overview/azure/storage-queue-readme) 12.9.0+
 * [Azure Text Analytics](/java/api/overview/azure/ai-textanalytics-readme) 5.0.4+
 
+```
 [//]: # "Azure Cosmos DB 4.22.0+ due to https://github.com/Azure/azure-sdk-for-java/pull/25571"
-
 [//]: # "the remaining above names and links scraped from https://azure.github.io/azure-sdk/releases/latest/java.html"
 [//]: # "and version synched manually against the oldest version in maven central built on azure-core 1.14.0"
 [//]: # ""
@@ -147,6 +147,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 [//]: # "  str += '* [' + name + '](' + link + ') ' + version + '\n'"
 [//]: # "}"
 [//]: # "console.log(str)"
+```
 
 #### [Java native](#tab/java-native)
 
@@ -430,7 +431,7 @@ The following table represents the currently supported custom telemetry types:
 
 ### Add custom metrics
 
-In this context, custom metrics refers to manually instrumenting your code to collect additional metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
+In this context, the custom metrics term refers to manually instrumenting your code to collect additional metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
 
 The OpenTelemetry API offers six metric "instruments" to cover various metric scenarios and you need to pick the correct "Aggregation Type" when visualizing metrics in Metrics Explorer. This requirement is true when using the OpenTelemetry Metric API to send metrics and when using an instrumentation library.
 
@@ -1230,7 +1231,7 @@ span.recordException(e);
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { trace } = require("@opentelemetry/api");
+const { trace, SpanKind } = require("@opentelemetry/api");
 
 // Enable Azure Monitor integration
 useAzureMonitor();
@@ -1239,7 +1240,9 @@ useAzureMonitor();
 const tracer = trace.getTracer("testTracer");
 
 // Start a span with the name "hello"
-let span = tracer.startSpan("hello");
+let span = tracer.startSpan("hello", {
+    kind: SpanKind.SERVER
+});
 
 // Try to throw an error
 try{
@@ -2060,7 +2063,7 @@ You can populate the _client_IP_ field for requests by setting an attribute on t
 
 ##### [ASP.NET Core](#tab/aspnetcore)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
 
 ```C#
 // Add the client IP address to the activity as a tag.
@@ -2070,7 +2073,7 @@ activity.SetTag("client.address", "<IP Address>");
 
 ##### [.NET](#tab/net)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
 
 ```C#
 // Add the client IP address to the activity as a tag.
@@ -2088,7 +2091,7 @@ This field is automatically populated.
 
 ##### [Node.js](#tab/nodejs)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```typescript
 ...
@@ -2107,7 +2110,7 @@ class SpanEnrichingProcessor implements SpanProcessor {
 
 ##### [Python](#tab/python)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `SpanEnrichingProcessor.py`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `SpanEnrichingProcessor.py`:
 
 ```python
 # Set the `http.client_ip` attribute of the span to the specified IP address.
@@ -2125,7 +2128,7 @@ You can populate the _user_Id_ or _user_AuthenticatedId_ field for requests by u
 
 ##### [ASP.NET Core](#tab/aspnetcore)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span):
+Use the [custom property example](#add-a-custom-property-to-a-span):
 
 ```csharp
 // Add the user ID to the activity as a tag, but only if the activity is not null.
@@ -2134,7 +2137,7 @@ activity?.SetTag("enduser.id", "<User Id>");
 
 ##### [.NET](#tab/net)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span):
+Use the [custom property example](#add-a-custom-property-to-a-span):
 
 ```csharp
 // Add the user ID to the activity as a tag, but only if the activity is not null.
@@ -2177,7 +2180,7 @@ Span.current().setAttribute("enduser.id", "myuser");
 
 ##### [Node.js](#tab/nodejs)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```typescript
 ...
@@ -2196,7 +2199,7 @@ class SpanEnrichingProcessor implements SpanProcessor {
 
 ##### [Python](#tab/python)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```python
 # Set the `enduser.id` attribute of the span to the specified user ID.
@@ -2419,7 +2422,7 @@ It's not possible to filter telemetry in Java native.
 
 1. Use a custom processor. You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
 
-    Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+    Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
     ```typescript
     // Import the necessary packages.
@@ -2638,6 +2641,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 #### [.NET](#tab/net)
 
@@ -2647,6 +2651,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/tests/Azure.Monitor.OpenTelemetry.Exporter.Demo).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Java](#tab/java)
 
@@ -2655,6 +2660,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * To enable usage experiences, see [Enable web or browser user monitoring](javascript.md).
 * See the [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Java native](#tab/java-native)
 
@@ -2662,6 +2668,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To review the source code, see [Azure Monitor OpenTelemetry Distro in Spring Boot native image Java application](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-monitor) and [Quarkus OpenTelemetry Exporter for Azure](https://github.com/quarkiverse/quarkus-opentelemetry-exporter/tree/main/quarkus-opentelemetry-exporter-azure).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * See the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Node.js](#tab/nodejs)
 
@@ -2670,6 +2677,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To become more familiar with Azure Monitor Application Insights and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-node.js).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry JavaScript GitHub repository](https://github.com/open-telemetry/opentelemetry-js).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Python](#tab/python)
 
@@ -2681,9 +2689,6 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python).
 * To see available OpenTelemetry instrumentations and components, see the [OpenTelemetry Contributor Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python-contrib).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ---
-
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-faqs](../includes/azure-monitor-app-insights-opentelemetry-faqs.md)]
-
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](../includes/azure-monitor-app-insights-opentelemetry-support.md)]

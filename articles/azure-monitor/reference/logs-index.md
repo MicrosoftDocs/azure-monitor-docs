@@ -4,7 +4,7 @@ description: Understand the supported services and event schemas for Azure Monit
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/16/2024
+ms.date: 10/06/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -35,7 +35,7 @@ Following table lists metrics and log categories available for each resource typ
   |Microsoft.AAD <a name="microsoftaad"></a>|[DomainServices](./supported-metrics/Microsoft-AAD-DomainServices-metrics.md)<br>|[DomainServices](./supported-logs/Microsoft-AAD-DomainServices-logs.md)<br>|
 |Microsoft.AgFoodPlatform <a name="microsoftagfoodplatform"></a>|N/A|[farmBeats](./supported-logs/Microsoft-AgFoodPlatform-farmBeats-logs.md)<br>|
 |Microsoft.AnalysisServices <a name="microsoftanalysisservices"></a>|[servers](./supported-metrics/Microsoft-AnalysisServices-servers-metrics.md)<br>|[servers](./supported-logs/Microsoft-AnalysisServices-servers-logs.md)<br>|
-|Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>|
+|Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>[service/workspaces](./supported-logs/Microsoft-ApiManagement-service-workspaces-logs.md)<br>|
 |Microsoft.App <a name="microsoftapp"></a>|[containerapps](./supported-metrics/Microsoft-App-containerapps-metrics.md)<br>[jobs](./supported-metrics/Microsoft-App-jobs-metrics.md)<br>[managedEnvironments](./supported-metrics/Microsoft-App-managedEnvironments-metrics.md)<br>|[managedEnvironments](./supported-logs/Microsoft-App-managedEnvironments-logs.md)<br>|
 |Microsoft.AppConfiguration <a name="microsoftappconfiguration"></a>|[configurationStores](./supported-metrics/Microsoft-AppConfiguration-configurationStores-metrics.md)<br>|[configurationStores](./supported-logs/Microsoft-AppConfiguration-configurationStores-logs.md)<br>|
 |Microsoft.AppPlatform <a name="microsoftappplatform"></a>|[spring](./supported-metrics/Microsoft-AppPlatform-spring-metrics.md)<br>|[spring](./supported-logs/Microsoft-AppPlatform-spring-logs.md)<br>|
@@ -118,6 +118,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.Relay <a name="microsoftrelay"></a>|[namespaces](./supported-metrics/Microsoft-Relay-namespaces-metrics.md)<br>|[namespaces](./supported-logs/Microsoft-Relay-namespaces-logs.md)<br>|
 |Microsoft.Search <a name="microsoftsearch"></a>|[searchServices](./supported-metrics/Microsoft-Search-searchServices-metrics.md)<br>|[searchServices](./supported-logs/Microsoft-Search-searchServices-logs.md)<br>|
 |Microsoft.Security <a name="microsoftsecurity"></a>|N/A|[antiMalwareSettings](./supported-logs/Microsoft-Security-antiMalwareSettings-logs.md)<br>[defenderForStorageSettings](./supported-logs/Microsoft-Security-defenderForStorageSettings-logs.md)<br>|
+|microsoft.securityinsights <a name="microsoftsecurityinsights"></a>|N/A|[settings](./supported-logs/microsoft-securityinsights-settings-logs.md)<br>|
 |Microsoft.ServiceBus <a name="microsoftservicebus"></a>|[Namespaces](./supported-metrics/Microsoft-ServiceBus-Namespaces-metrics.md)<br>|[Namespaces](./supported-logs/Microsoft-ServiceBus-Namespaces-logs.md)<br>|
 |Microsoft.ServiceNetworking <a name="microsoftservicenetworking"></a>|[trafficControllers](./supported-metrics/Microsoft-ServiceNetworking-trafficControllers-metrics.md)<br>|[trafficControllers](./supported-logs/Microsoft-ServiceNetworking-trafficControllers-logs.md)<br>|
 |Microsoft.SignalRService <a name="microsoftsignalrservice"></a>|[SignalR](./supported-metrics/Microsoft-SignalRService-SignalR-metrics.md)<br>[SignalR/replicas](./supported-metrics/Microsoft-SignalRService-SignalR-replicas-metrics.md)<br>[WebPubSub](./supported-metrics/Microsoft-SignalRService-WebPubSub-metrics.md)<br>[WebPubSub/replicas](./supported-metrics/Microsoft-SignalRService-WebPubSub-replicas-metrics.md)<br>|[SignalR](./supported-logs/Microsoft-SignalRService-SignalR-logs.md)<br>[SignalR/replicas](./supported-logs/Microsoft-SignalRService-SignalR-replicas-logs.md)<br>[WebPubSub](./supported-logs/Microsoft-SignalRService-WebPubSub-logs.md)<br>[WebPubSub/replicas](./supported-logs/Microsoft-SignalRService-WebPubSub-replicas-logs.md)<br>|
@@ -162,6 +163,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.StorageTasks <a name="microsoftstoragetasks"></a>|[storageTasks](./supported-metrics/Microsoft-StorageTasks-storageTasks-metrics.md)<br>|N/A|
 |Microsoft.VoiceServices <a name="microsoftvoiceservices"></a>|[CommunicationsGateways](./supported-metrics/Microsoft-VoiceServices-CommunicationsGateways-metrics.md)<br>|N/A|
 |Oracle.Database <a name="oracledatabase"></a>|[Oracle.Database/autonomousDatabases](./supported-metrics/Oracle-Database-autonomousDatabases-metrics.md)<br>[Oracle.Database/cloudVmClusters](./supported-metrics/Oracle-Database-cloudVmClusters-metrics.md)<br>|N/A|
+|Private.MessagingConnectors <a name="privatemessagingconnectors"></a>|[Private.MessagingConnectors/connectors](./supported-metrics/Private-MessagingConnectors-connectors-metrics.md)<br>|N/A|
 |Wandisco.Fusion <a name="wandiscofusion"></a>|[Wandisco.Fusion/migrators](./supported-metrics/Wandisco-Fusion-migrators-metrics.md)<br>[Wandisco.Fusion/migrators/dataTransferAgents](./supported-metrics/Wandisco-Fusion-migrators-dataTransferAgents-metrics.md)<br>[Wandisco.Fusion/migrators/liveDataMigrations](./supported-metrics/Wandisco-Fusion-migrators-liveDataMigrations-metrics.md)<br>[Wandisco.Fusion/migrators/metadataMigrations](./supported-metrics/Wandisco-Fusion-migrators-metadataMigrations-metrics.md)<br>|N/A|
 
 ## Next Steps

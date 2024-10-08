@@ -10,22 +10,47 @@ ms.date: 09/28/2023
 
 # Dependency Agent
 
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
-
-Dependency Agent collects data about processes running on the virtual machine and external process dependencies. Updates include bug fixes or support of new features or functionality. This article describes Dependency Agent requirements and how to upgrade it manually or through automation.
+Dependency Agent collects data about processes running on the virtual machine and their external process dependencies. Updates include bug fixes or support of new features or functionality. This article describes Dependency Agent requirements and how to upgrade it manually or through automation.
 
 >[!NOTE]
-> Dependency Agent sends heartbeat data to the [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table, for which you incur data ingestion charges. This behavior is different from Azure Monitor Agent, which sends agent health data to the [Heartbeat](/azure/azure-monitor/reference/tables/heartbeat) table, which is free from data collection charges.
+> Dependency Agent sends heartbeat data to the [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table, for which you incur data ingestion charges. This behavior is different from Azure Monitor Agent, which sends agent health data to the [Heartbeat](/azure/azure-monitor/reference/tables/heartbeat) table that is free from data collection charges.
 
 ## Dependency Agent requirements
 
 > [!div class="checklist"]
-> * Requires the Azure Monitor Agent to be installed on the same machine.
+> * Azure Monitor agent must be installed on the same machine.
 > * Collects data using a user-space service and a kernel driver on both Windows and Linux.
 > * Supports the same [Windows versions that Azure Monitor Agent supports](../agents/agents-overview.md#supported-operating-systems), except Windows Server 2008 SP2 and Azure Stack HCI. For Linux, see [Dependency Agent Linux support](#dependency-agent-linux-support).
 
+## Linux considerations
+
+Consider the following before you install Dependency agent for VM Insights on a Linux machine:
+
+- Only default and SMP Linux kernel releases are supported.
+- Nonstandard kernel releases, such as physical address extension (PAE) and Xen, aren't supported for any Linux distribution. For example, a system with the release string of *2.6.16.21-0.8-xen* isn't supported.
+- Custom kernels, including recompilations of standard kernels, aren't supported.
+- For Debian distros other than version 9.4, the Map feature isn't supported. The Performance feature is available only from the Azure Monitor menu. It isn't available directly from the left pane of the Azure VM.
+- CentOSPlus kernel is supported.
+- Installing Dependency agent taints the Linux kernel and you might lose support from your Linux distribution until the machine resets.
+
+The Linux kernel must be patched for the Spectre and Meltdown vulnerabilities. For more information, consult with your Linux distribution vendor. Run the following command to check for availability if Spectre/Meltdown has been mitigated:
+
+```
+$ grep . /sys/devices/system/cpu/vulnerabilities/*
+```
+
+Output for this command looks similar to the following and specify whether a machine is vulnerable to either issue. If these files are missing, the machine is unpatched.
+
+```
+/sys/devices/system/cpu/vulnerabilities/meltdown:Mitigation: PTI
+/sys/devices/system/cpu/vulnerabilities/spectre_v1:Vulnerable
+/sys/devices/system/cpu/vulnerabilities/spectre_v2:Vulnerable: Minimal generic ASM retpoline
+```
+
 ## Install or upgrade Dependency Agent 
+
+> [!NOTE]
+> Dependency Agent is installed automatically when [VM Insights is enabled on a machine](./vminsights-enable-overview.md) for process and connection data. If VM Insights is enabled exclusively for performance data, Dependency Agent won't be installed.
 
 You can upgrade Dependency Agent for Windows and Linux manually or automatically, depending on the deployment scenario and environment the machine is running in, using these methods:
 
@@ -35,10 +60,6 @@ You can upgrade Dependency Agent for Windows and Linux manually or automatically
 | Custom Azure VM images | Manual install of Dependency Agent for Windows/Linux | Updating VMs to the newest version of the agent needs to be performed from the command line running the Windows installer package or Linux self-extracting and installable shell script bundle. |
 | Non-Azure VMs | Manual install of Dependency Agent for Windows/Linux | Updating VMs to the newest version of the agent needs to be performed from the command line running the Windows installer package or Linux self-extracting and installable shell script bundle. |
 
-> [!NOTE]
-> Dependency Agent is installed automatically when VM Insights is enabled for process and connection data via the [Azure portal](vminsights-enable-portal.md), [PowerShell](vminsights-enable-powershell.md), [ARM template deployment](vminsights-enable-resource-manager.md), or [Azure policy](vminsights-enable-policy.md).
->
-> If VM Insights is enabled exclusively for performance data, Dependency Agent won't be installed.
 
 ### Manually install or upgrade Dependency Agent on Windows 
 
