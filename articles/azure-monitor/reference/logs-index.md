@@ -4,7 +4,7 @@ description: Understand the supported services and event schemas for Azure Monit
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/30/2024
+ms.date: 10/06/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -35,7 +35,7 @@ Following table lists metrics and log categories available for each resource typ
   |Microsoft.AAD <a name="microsoftaad"></a>|[DomainServices](./supported-metrics/Microsoft-AAD-DomainServices-metrics.md)<br>|[DomainServices](./supported-logs/Microsoft-AAD-DomainServices-logs.md)<br>|
 |Microsoft.AgFoodPlatform <a name="microsoftagfoodplatform"></a>|N/A|[farmBeats](./supported-logs/Microsoft-AgFoodPlatform-farmBeats-logs.md)<br>|
 |Microsoft.AnalysisServices <a name="microsoftanalysisservices"></a>|[servers](./supported-metrics/Microsoft-AnalysisServices-servers-metrics.md)<br>|[servers](./supported-logs/Microsoft-AnalysisServices-servers-logs.md)<br>|
-|Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>|
+|Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>[service/workspaces](./supported-logs/Microsoft-ApiManagement-service-workspaces-logs.md)<br>|
 |Microsoft.App <a name="microsoftapp"></a>|[containerapps](./supported-metrics/Microsoft-App-containerapps-metrics.md)<br>[jobs](./supported-metrics/Microsoft-App-jobs-metrics.md)<br>[managedEnvironments](./supported-metrics/Microsoft-App-managedEnvironments-metrics.md)<br>|[managedEnvironments](./supported-logs/Microsoft-App-managedEnvironments-logs.md)<br>|
 |Microsoft.AppConfiguration <a name="microsoftappconfiguration"></a>|[configurationStores](./supported-metrics/Microsoft-AppConfiguration-configurationStores-metrics.md)<br>|[configurationStores](./supported-logs/Microsoft-AppConfiguration-configurationStores-logs.md)<br>|
 |Microsoft.AppPlatform <a name="microsoftappplatform"></a>|[spring](./supported-metrics/Microsoft-AppPlatform-spring-metrics.md)<br>|[spring](./supported-logs/Microsoft-AppPlatform-spring-logs.md)<br>|

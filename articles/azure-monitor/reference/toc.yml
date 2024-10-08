@@ -486,6 +486,9 @@ items:
             href: supported-logs/microsoft-apimanagement-service-logs.md
             displayName: Logs related to Developer Portal usage,Logs related to
               ApiManagement Gateway,Logs related to Websocket Connections
+          - name: Microsoft.ApiManagement/service/workspaces
+            href: supported-logs/microsoft-apimanagement-service-workspaces-logs.md
+            displayName: Gateway logs for API Management workspaces
           - name: Microsoft.App/managedEnvironments
             href: supported-logs/microsoft-app-managedenvironments-logs.md
             displayName: Spring App console logs,Container App console logs,Container App
