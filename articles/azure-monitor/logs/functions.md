@@ -65,9 +65,9 @@ Create a function with Log Analytics in the Azure portal by selecting **Save** a
 
 ## [Resource Manager template](#tab/arm)
 
-The following sample uses the [Microsoft.OperationalInsights workspaces/savedSearches](/azure/templates/microsoft.operationalinsights/workspaces/savedsearches?pivots=deployment-language-arm-template) template to create a function. For more information about Azure Resource Manager templates, see [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax).
+The following sample uses the [Microsoft.OperationalInsights workspaces/savedSearches](/azure/templates/microsoft.operationalinsights/workspaces/savedsearches?pivots=deployment-language-arm-template) template to create a function. For more information about Azure Resource Manager templates, see [Understand the structure and syntax of ARM templates](/azure/azure-resource-manager/templates/syntax). To learn more about how to deploy resources from a custom template, go to [Deploy resources with ARM templates and Azure portal](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template).
 
-To learn more about how to deploy resources from a custom template, go to [Deploy resources with ARM templates and Azure portal](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template).
+[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 
 ### Template file
 
