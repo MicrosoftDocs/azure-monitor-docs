@@ -566,6 +566,36 @@
       "redirect_document_id": false
      },
      {
+      "source_path_from_root": "/articles/azure-monitor/app/azure-web-apps.md",
+      "redirect_url": "/azure/azure-monitor/app/codeless-app-service",
+      "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/azure-monitor/app/azure-web-apps-net-core.md",
+      "redirect_url": "/azure/azure-monitor/app/codeless-app-service",
+      "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/azure-monitor/app/azure-web-apps-net.md",
+      "redirect_url": "/azure/azure-monitor/app/codeless-app-service",
+      "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/azure-monitor/app/azure-web-apps-java.md",
+      "redirect_url": "/azure/azure-monitor/app/codeless-app-service",
+      "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/azure-monitor/app/azure-web-apps-nodejs.md",
+      "redirect_url": "/azure/azure-monitor/app/codeless-app-service",
+      "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/azure-monitor/app/azure-web-apps-python.md",
+      "redirect_url": "/azure/azure-monitor/app/codeless-app-service",
+      "redirect_document_id": false
+     },
+     {
       "source_path_from_root": "/articles/azure-monitor/app/visual-studio.md",
       "redirect_url": "https://learn.microsoft.com/visualstudio/azure/azure-app-insights-add-connected-service",
       "redirect_document_id": false

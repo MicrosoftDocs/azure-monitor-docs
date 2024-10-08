@@ -52,12 +52,14 @@ Download the [VM insights data collection rule templates](https://github.com/Azu
    | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. |
    | DeployDcr\\<br>PerfOnlyDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable only Performance experience of VM Insights. |
 
+- See [Deploy templates](#deploy-templates) if you aren't familiar with methods to deploy ARM templates.
 - Deploy the template to the same resource group as your Log Analytics workspace.
 - While not required, you should name the DCR `MSVMI-{WorkspaceName}` to match the naming convention used by the Azure portal.
 
 ## Associate DCR with agents
 The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. You need to create an association between the DCR and the agent to enable using the following template which comes from [Create and edit data collection rules (DCRs) and associations in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-a-dcr). To enable on multiple machines, you need to create an association using this template for each one.
 
+- See [Deploy templates](#deploy-templates) if you aren't familiar with methods to deploy ARM templates.
 
 **ARM template**
 
@@ -120,7 +122,7 @@ The final step in enabling VM insights is to associate the DCR with the Azure Mo
 }
 ```
 ## Deploy templates
-The ARM templates described above can be deployed using any method to install an ARM template. The following examples show how to deploy the templates using common methods.
+The ARM templates described above can be deployed using any method to install an [ARM template](/azure/azure-resource-manager/templates/overview). The following examples show how to deploy the templates using common methods.
 
 ### [Portal](#tab/portal)
 See  [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal) for details on deploying a template from the Azure portal.
