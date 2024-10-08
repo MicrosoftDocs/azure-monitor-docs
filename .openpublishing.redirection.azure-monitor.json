@@ -5104,6 +5104,11 @@
         "source_path_from_root": "/articles/azure-monitor/logs/resource-manager-workspace.md",
         "redirect_url": "/azure/azure-monitor/logs/quick-create-workspace",
         "redirect_document_id": false
-    }
+     },
+     {
+        "source_path_from_root": "/articles/azure-monitor/app/convert-classic-resource.md",
+        "redirect_url": "/previous-versions/azure/azure-monitor/app/convert-classic-resource",
+        "redirect_document_id": false
+     }
     ]
    }
