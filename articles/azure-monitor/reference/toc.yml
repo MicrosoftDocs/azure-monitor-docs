@@ -453,6 +453,8 @@ items:
             href: supported-metrics/oracle-database-autonomousdatabases-metrics.md
           - name: Oracle.Database/cloudVmClusters
             href: supported-metrics/oracle-database-cloudvmclusters-metrics.md
+          - name: Private.MessagingConnectors/connectors
+            href: supported-metrics/private-messagingconnectors-connectors-metrics.md
           - name: Wandisco.Fusion/migrators
             href: supported-metrics/wandisco-fusion-migrators-metrics.md
           - name: Wandisco.Fusion/migrators/dataTransferAgents
@@ -484,6 +486,9 @@ items:
             href: supported-logs/microsoft-apimanagement-service-logs.md
             displayName: Logs related to Developer Portal usage,Logs related to
               ApiManagement Gateway,Logs related to Websocket Connections
+          - name: Microsoft.ApiManagement/service/workspaces
+            href: supported-logs/microsoft-apimanagement-service-workspaces-logs.md
+            displayName: Gateway logs for API Management workspaces
           - name: Microsoft.App/managedEnvironments
             href: supported-logs/microsoft-app-managedenvironments-logs.md
             displayName: Spring App console logs,Container App console logs,Container App
@@ -952,7 +957,7 @@ items:
             displayName: Cluster Manager Deploy or Upgrade Logs
           - name: Microsoft.NetworkCloud/clusters
             href: supported-logs/microsoft-networkcloud-clusters-logs.md
-            displayName: Kubernetes Logs,VM Orchestration Logs
+            displayName: Kubernetes Logs,Platform Operation Logs,VM Orchestration Logs
           - name: Microsoft.NetworkCloud/storageAppliances
             href: supported-logs/microsoft-networkcloud-storageappliances-logs.md
             displayName: Storage Appliance alerts,Storage Appliance audits,Storage Appliance
@@ -1029,6 +1034,9 @@ items:
           - name: Microsoft.Security/defenderForStorageSettings
             href: supported-logs/microsoft-security-defenderforstoragesettings-logs.md
             displayName: AntimalwareScanResults
+          - name: microsoft.securityinsights/settings
+            href: supported-logs/microsoft-securityinsights-settings-logs.md
+            displayName: Analytics,Automation,Data Collection - Connectors
           - name: Microsoft.ServiceBus/Namespaces
             href: supported-logs/microsoft-servicebus-namespaces-logs.md
             displayName: Application Metrics Logs(Unused),Diagnostic Error Logs,Operational
@@ -2000,8 +2008,6 @@ items:
             href: tables/cdbtableapirequests.md
           - name: CHSMManagementAuditLogs
             href: tables/chsmmanagementauditlogs.md
-          - name: CHSMServiceOperationAuditLogs
-            href: tables/chsmserviceoperationauditlogs.md
           - name: CIEventsAudit
             href: tables/cieventsaudit.md
           - name: CIEventsOperational
@@ -2014,6 +2020,8 @@ items:
             href: tables/chaosstudioexperimenteventlogs.md
           - name: CloudAppEvents
             href: tables/cloudappevents.md
+          - name: CloudHsmServiceOperationAuditLogs
+            href: tables/cloudhsmserviceoperationauditlogs.md
           - name: CommonSecurityLog
             href: tables/commonsecuritylog.md
           - name: ComputerGroup
@@ -2446,6 +2454,8 @@ items:
             href: tables/mdcdetectiondnsevents.md
           - name: MDCDetectionFimEvents
             href: tables/mdcdetectionfimevents.md
+          - name: MDCDetectionGatingValidationEvents
+            href: tables/mdcdetectiongatingvalidationevents.md
           - name: MDCFileIntegrityMonitoringEvents
             href: tables/mdcfileintegritymonitoringevents.md
           - name: MDECustomCollectionDeviceFileEvents
@@ -3154,6 +3164,8 @@ items:
             href: queries/ChaosStudioExperimentEventLogs.md
           - name: CloudAppEvents
             href: queries/CloudAppEvents.md
+          - name: CloudHsmServiceOperationAuditLogs
+            href: queries/CloudHsmServiceOperationAuditLogs.md
           - name: CommonSecurityLog
             href: queries/CommonSecurityLog.md
           - name: ConfidentialWatchlist
@@ -3270,6 +3282,8 @@ items:
             href: queries/MDCDetectionDNSEvents.md
           - name: MDCDetectionFimEvents
             href: queries/MDCDetectionFimEvents.md
+          - name: MDCDetectionGatingValidationEvents
+            href: queries/MDCDetectionGatingValidationEvents.md
           - name: MNFDeviceUpdates
             href: queries/MNFDeviceUpdates.md
           - name: MNFSystemSessionHistoryUpdates

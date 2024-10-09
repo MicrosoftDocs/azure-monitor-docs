@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 09/24/2024
+ms.date: 09/26/2024
 ---
 
 # Azure Monitor Log Analytics log tables organized by category
@@ -122,6 +122,7 @@ ms.date: 09/24/2024
 - [CIEventsAudit](./tables/cieventsaudit.md)
 - [CassandraAudit](./tables/cassandraaudit.md)
 - [ChaosStudioExperimentEventLogs](./tables/chaosstudioexperimenteventlogs.md)
+- [CloudHsmServiceOperationAuditLogs](./tables/cloudhsmserviceoperationauditlogs.md)
 - [ContainerAppConsoleLogs](./tables/containerappconsolelogs.md)
 - [ContainerAppSystemLogs](./tables/containerappsystemlogs.md)
 - [ContainerEvent](./tables/containerevent.md)
@@ -344,6 +345,7 @@ ms.date: 09/24/2024
 - [CIEventsAudit](./tables/cieventsaudit.md)
 - [CIEventsOperational](./tables/cieventsoperational.md)
 - [ChaosStudioExperimentEventLogs](./tables/chaosstudioexperimenteventlogs.md)
+- [CloudHsmServiceOperationAuditLogs](./tables/cloudhsmserviceoperationauditlogs.md)
 - [ContainerAppConsoleLogs](./tables/containerappconsolelogs.md)
 - [ContainerAppSystemLogs](./tables/containerappsystemlogs.md)
 - [ContainerEvent](./tables/containerevent.md)
@@ -754,6 +756,7 @@ ms.date: 09/24/2024
 - [LinuxAuditLog](./tables/linuxauditlog.md)
 - [MDCDetectionDNSEvents](./tables/mdcdetectiondnsevents.md)
 - [MDCDetectionFimEvents](./tables/mdcdetectionfimevents.md)
+- [MDCDetectionGatingValidationEvents](./tables/mdcdetectiongatingvalidationevents.md)
 - [MDCFileIntegrityMonitoringEvents](./tables/mdcfileintegritymonitoringevents.md)
 - [MDECustomCollectionDeviceFileEvents](./tables/mdecustomcollectiondevicefileevents.md)
 - [McasShadowItReporting](./tables/mcasshadowitreporting.md)
