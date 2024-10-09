@@ -6,15 +6,32 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/07/2024
+ms.date: 10/09/2024
 ms.reviewer: ryankahng
 ---
 
 # View Code Optimizations results
 
-Now that you set up and configured Code Optimizations on your app, [access and view any insights you received directly via the Azure portal.](https://aka.ms/codeoptimizations) 
+Now that you set up and configured Code Optimizations on your app, access and view any insights you received. 
 
-You can also access Code Optimizations through any of your Application Insights resources from **Performance** pane and select **Code Optimizations** button from the top menu.
+## Access Code Optimizations
+
+You can access Code Optimizations through two main entry points:
+
+- [Via the Code Optimizations overview page.](#via-the-code-optimizations-overview-page-preview)
+- [Via individual Application Insights resources.](#via-individual-application-insights-resources)
+
+### Via the Code Optimizations overview page (preview)
+
+View your Code Optimizations results via [the Code Optimizations overview page](https://aka.ms/codeoptimizations). In this consolidated overview, you can access results across multiple subscriptions for multiple resources. 
+
+<!--placeholder
+:::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
+-->
+
+### Via individual Application Insights resources
+
+You can access Code Optimizations specific to individual Application Insights resources from that resource's **Performance** pane. Select **Code Optimizations** button from the top menu.
 
 :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
 
