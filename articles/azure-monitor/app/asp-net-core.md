@@ -46,11 +46,10 @@ The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Micro
 
 ## Prerequisites
 
-You need:
-
-- A functioning ASP.NET Core application. If you need to create an ASP.NET Core application, follow this [ASP.NET Core tutorial](/aspnet/core/getting-started/).
-- A reference to a supported version of the [Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
-- A valid Application Insights connection string. This string is required to send any telemetry to Application Insights. If you need to create a new Application Insights resource to get a connection string, see [Create an Application Insights resource](./create-workspace-resource.md).
+> [!div class="checklist"]
+> * A functioning ASP.NET Core application. If you need to create an ASP.NET Core application, follow this [ASP.NET Core tutorial](/aspnet/core/getting-started/).
+> * A reference to a supported version of the [Application Insights](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) NuGet package.
+> * A valid Application Insights connection string. This string is required to send any telemetry to Application Insights. If you need to create a new Application Insights resource to get a connection string, see [Create an Application Insights resource](./create-workspace-resource.md).
 
 ## Enable Application Insights server-side telemetry (Visual Studio)
 
@@ -101,35 +100,41 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
     var app = builder.Build();
     ```
     
-1. Set up the connection string.
+1. Add the connection string. This can be done in three ways:
 
-    Although you can provide a connection string as part of the `ApplicationInsightsServiceOptions` argument to `AddApplicationInsightsTelemetry`, we recommend that you specify the connection string in configuration. The following code sample shows how to specify a connection string in `appsettings.json`. Make sure `appsettings.json` is copied to the application root folder during publishing.
-
-    ```json
-    {
-      "Logging": {
-        "LogLevel": {
-          "Default": "Information",
-          "Microsoft.AspNetCore": "Warning"
+    * (Recommended) Set the connection string in configuration.
+    
+        Set the connection string in `appsettings.json` and make sure the configuration file is copied to the application root folder during publishing.
+    
+        ```json
+        {
+            "Logging": {
+                "LogLevel": {
+                    "Default": "Information",
+                    "Microsoft.AspNetCore": "Warning"
+                }
+            },
+            "AllowedHosts": "*",
+            "ApplicationInsights": {
+                "ConnectionString": "Copy connection string from Application Insights Resource Overview"
+            }
         }
-      },
-      "AllowedHosts": "*",
-      "ApplicationInsights": {
-        "ConnectionString": "Copy connection string from Application Insights Resource Overview"
-      }
-    }
-    ```
-
-    Alternatively, specify the connection string in the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable or `ApplicationInsights:ConnectionString` in the JSON configuration file.
+        ```
     
-    For example:
+    * Set the connection string in the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable or `ApplicationInsights:ConnectionString` in the JSON configuration file.
+      
+        For example:
+        
+        * `SET ApplicationInsights:ConnectionString = <Copy connection string from Application Insights Resource Overview>`
+        * `SET APPLICATIONINSIGHTS_CONNECTION_STRING = <Copy connection string from Application Insights Resource Overview>`
+        * Typically, `APPLICATIONINSIGHTS_CONNECTION_STRING` is used in [Web Apps](./azure-web-apps.md?tabs=net). It can also be used in all places where this SDK is supported.
+        
+        > [!NOTE]
+        > A connection string specified in code wins over the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, which wins over other options.
     
-    * `SET ApplicationInsights:ConnectionString = <Copy connection string from Application Insights Resource Overview>`
-    * `SET APPLICATIONINSIGHTS_CONNECTION_STRING = <Copy connection string from Application Insights Resource Overview>`
-    * Typically, `APPLICATIONINSIGHTS_CONNECTION_STRING` is used in [Web Apps](./azure-web-apps.md?tabs=net). It can also be used in all places where this SDK is supported.
+    * Set the connection string in code.
     
-    > [!NOTE]
-    > A connection string specified in code wins over the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, which wins over other options.
+        Provide a connection string as part of the `ApplicationInsightsServiceOptions` argument to `AddApplicationInsightsTelemetry`.
 
 ### User secrets and other configuration providers
 
@@ -245,7 +250,7 @@ The preceding steps are enough to help you start collecting server-side telemetr
 1. In `_Layout.cshtml`, insert `HtmlHelper` at the end of the `<head>` section but before any other script. If you want to report any custom JavaScript telemetry from the page, inject it after this snippet:
 
     ```cshtml
-    @Html.Raw(JavaScriptSnippet.FullScript)
+        @Html.Raw(JavaScriptSnippet.FullScript)
     </head>
     ```
 
@@ -253,7 +258,7 @@ As an alternative to using `FullScript`, `ScriptBody` is available starting in A
 
 ```cshtml
 <script> // apply custom changes to this script tag.
- @Html.Raw(JavaScriptSnippet.ScriptBody)
+    @Html.Raw(JavaScriptSnippet.ScriptBody)
 </script>
 ```
 
@@ -292,20 +297,20 @@ var app = builder.Build();
 
 This table has the full list of `ApplicationInsightsServiceOptions` settings:
 
-|Setting | Description | Default
-|---------------|-------|-------
-|EnablePerformanceCounterCollectionModule  | Enable/Disable `PerformanceCounterCollectionModule`. | True
-|EnableRequestTrackingTelemetryModule   | Enable/Disable `RequestTrackingTelemetryModule`. | True
-|EnableEventCounterCollectionModule   | Enable/Disable `EventCounterCollectionModule`. | True
-|EnableDependencyTrackingTelemetryModule   | Enable/Disable `DependencyTrackingTelemetryModule`. | True
-|EnableAppServicesHeartbeatTelemetryModule  |  Enable/Disable `AppServicesHeartbeatTelemetryModule`. | True
-|EnableAzureInstanceMetadataTelemetryModule   |  Enable/Disable `AzureInstanceMetadataTelemetryModule`. | True
-|EnableQuickPulseMetricStream | Enable/Disable LiveMetrics feature. | True
-|EnableAdaptiveSampling | Enable/Disable Adaptive Sampling. | True
-|EnableHeartbeat | Enable/Disable the heartbeats feature. It periodically (15-min default) sends a custom metric named `HeartbeatState` with information about the runtime like .NET version and Azure environment information, if applicable. | True
-|AddAutoCollectedMetricExtractor | Enable/Disable the `AutoCollectedMetrics extractor`. This telemetry processor sends preaggregated metrics about requests/dependencies before sampling takes place. | True
-|RequestCollectionOptions.TrackExceptions | Enable/Disable reporting of unhandled exception tracking by the request collection module. | False in `netstandard2.0` (because exceptions are tracked with `ApplicationInsightsLoggerProvider`). True otherwise.
-|EnableDiagnosticsTelemetryModule | Enable/Disable `DiagnosticsTelemetryModule`. Disabling causes the following settings to be ignored: `EnableHeartbeat`, `EnableAzureInstanceMetadataTelemetryModule`, and `EnableAppServicesHeartbeatTelemetryModule`. | True
+| Setting                                    | Description                                            | Default |
+|--------------------------------------------|--------------------------------------------------------|---------|
+| EnablePerformanceCounterCollectionModule   | Enable/Disable `PerformanceCounterCollectionModule`.   | True    |
+| EnableRequestTrackingTelemetryModule       | Enable/Disable `RequestTrackingTelemetryModule`.       | True    |
+| EnableEventCounterCollectionModule         | Enable/Disable `EventCounterCollectionModule`.         | True    |
+| EnableDependencyTrackingTelemetryModule    | Enable/Disable `DependencyTrackingTelemetryModule`.    | True    |
+| EnableAppServicesHeartbeatTelemetryModule  | Enable/Disable `AppServicesHeartbeatTelemetryModule`.  | True    |
+| EnableAzureInstanceMetadataTelemetryModule | Enable/Disable `AzureInstanceMetadataTelemetryModule`. | True    |
+| EnableQuickPulseMetricStream               | Enable/Disable LiveMetrics feature.                    | True    |
+| EnableAdaptiveSampling                     | Enable/Disable Adaptive Sampling.                      | True    |
+| EnableHeartbeat | Enable/Disable the heartbeats feature. It periodically (15-min default) sends a custom metric named `HeartbeatState` with information about the runtime like .NET version and Azure environment information, if applicable. | True |
+| AddAutoCollectedMetricExtractor | Enable/Disable the `AutoCollectedMetrics extractor`. This telemetry processor sends preaggregated metrics about requests/dependencies before sampling takes place. | True |
+| RequestCollectionOptions.TrackExceptions | Enable/Disable reporting of unhandled exception tracking by the request collection module. | False in `netstandard2.0` (because exceptions are tracked with `ApplicationInsightsLoggerProvider`). True otherwise. |
+| EnableDiagnosticsTelemetryModule | Enable/Disable `DiagnosticsTelemetryModule`. Disabling causes the following settings to be ignored: `EnableHeartbeat`, `EnableAzureInstanceMetadataTelemetryModule`, and `EnableAppServicesHeartbeatTelemetryModule`. | True |
 
 For the most current list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
 
@@ -512,6 +517,7 @@ public class HomeController : Controller
         this.telemetry.TrackEvent("HomePageRequested");
         return View();
     }
+}
 ```
 
 For more information about custom data reporting in Application Insights, see [Application Insights custom metrics API reference](./api-custom-events-metrics.md). A similar approach can be used for sending custom metrics to Application Insights by using the [GetMetric API](./get-metric.md).
@@ -534,19 +540,19 @@ Capture **Information** and less severe logs by changing the logging configurati
 
 ```json
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information"
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information"
+        },
+        "ApplicationInsights": {
+            "LogLevel": {
+                "Default": "Information"
+            }
+        }
     },
     "ApplicationInsights": {
-      "LogLevel": {
-        "Default": "Information"
-      }
+        "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
     }
-  },
-  "ApplicationInsights": {
-    "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
-  }
 }
 ```
 
@@ -554,11 +560,11 @@ It's important to note that the following example doesn't cause the Application 
 
 ```json
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information"
+    "Logging": {
+        "LogLevel": {
+            "Default": "Information"
+        }
     }
-  }
 }
 ```
 
@@ -572,15 +578,15 @@ The extension method `UseApplicationInsights()` is still supported, but it's mar
 
 If the SDK is installed at build time as shown in this article, you don't need to enable the [Application Insights extension](./azure-web-apps.md) from the App Service portal. If the extension is installed, it backs off when it detects the SDK is already added. If you enable Application Insights from the extension, you don't have to install and update the SDK. But if you enable Application Insights by following instructions in this article, you have more flexibility because:
 
-    * Application Insights telemetry continues to work in:
-        * All operating systems, including Windows, Linux, and Mac.
-        * All publish modes, including self-contained or framework dependent.
-        * All target frameworks, including the full .NET Framework.
-        * All hosting options, including Web Apps, VMs, Linux, containers, AKS, and non-Azure hosting.
-        * All .NET Core versions, including preview versions.
-    * You can see telemetry locally when you're debugging from Visual Studio.
-    * You can track more custom telemetry by using the `TrackXXX()` API.
-    * You have full control over the configuration.
+* Application Insights telemetry continues to work in:
+    * All operating systems, including Windows, Linux, and Mac.
+    * All publish modes, including self-contained or framework dependent.
+    * All target frameworks, including the full .NET Framework.
+    * All hosting options, including Web Apps, VMs, Linux, containers, AKS, and non-Azure hosting.
+    * All .NET Core versions, including preview versions.
+* You can see telemetry locally when you're debugging from Visual Studio.
+* You can track more custom telemetry by using the `TrackXXX()` API.
+* You have full control over the configuration.
 
 ### Can I enable Application Insights monitoring by using tools like Azure Monitor Application Insights Agent (formerly Status Monitor v2)?
 
@@ -615,18 +621,18 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
 * [Your project's name].csproj
 
     ```csharp
-      <PropertyGroup>
+    <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4core</ApplicationInsightsResourceId>
-      </PropertyGroup>
-    
-      <ItemGroup>
+    </PropertyGroup>
+  
+    <ItemGroup>
         <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.12.0" />
-      </ItemGroup>
-    
-      <ItemGroup>
+    </ItemGroup>
+  
+    <ItemGroup>
         <WCFMetadata Include="Connected Services" />
-      </ItemGroup>
+    </ItemGroup>
     ```
 
 * Appsettings.json:
@@ -634,27 +640,28 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
     ```json
     "ApplicationInsights": {
         "InstrumentationKey": "00000000-0000-0000-0000-000000000000"
+    }
     ```
 
 * ConnectedService.json
     
     ```json
     {
-      "ProviderId": "Microsoft.ApplicationInsights.ConnectedService.ConnectedServiceProvider",
-      "Version": "16.0.0.0",
-      "GettingStartedDocument": {
-        "Uri": "https://go.microsoft.com/fwlink/?LinkID=798432"
-      }
+        "ProviderId": "Microsoft.ApplicationInsights.ConnectedService.ConnectedServiceProvider",
+        "Version": "16.0.0.0",
+        "GettingStartedDocument": {
+            "Uri": "https://go.microsoft.com/fwlink/?LinkID=798432"
+        }
     }
     ```
 * Startup.cs
 
     ```csharp
-       public void ConfigureServices(IServiceCollection services)
-            {
-                services.AddRazorPages();
-                services.AddApplicationInsightsTelemetry(); // This is added
-            }
+    public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddRazorPages();
+            services.AddApplicationInsightsTelemetry(); // This is added
+        }
     ```
 
 ### How can I disable telemetry correlation?

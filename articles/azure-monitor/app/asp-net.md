@@ -15,15 +15,15 @@ This procedure configures your ASP.NET web app to send telemetry to the [Applica
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## Prerequisites
+
 To add Application Insights to your ASP.NET website, you need to:
 
-- Install the latest version of [Visual Studio 2019 for Windows](https://www.visualstudio.com/downloads/) with the following workloads:
-	- ASP.NET and web development
-	- Azure development
-
-- Create a [free Azure account](https://azure.microsoft.com/free/) if you don't already have an Azure subscription.
-
-- Create an [Application Insights workspace-based resource](create-workspace-resource.md).
+> [!div class="checklist"]
+> * Install the latest version of [Visual Studio 2019 for Windows](https://www.visualstudio.com/downloads/) with the following workloads:<br>
+>	&ensp;• ASP.NET and web development<br>
+>	&ensp;• Azure development
+> * Create a [free Azure account](https://azure.microsoft.com/free/) if you don't already have an Azure subscription.
+> * Create an [Application Insights workspace-based resource](create-workspace-resource.md).
 
 > [!IMPORTANT]
 > We recommend [connection strings](./connection-strings.md?tabs=net) over instrumentation keys. New Azure regions *require* the use of connection strings instead of instrumentation keys.
@@ -33,25 +33,28 @@ To add Application Insights to your ASP.NET website, you need to:
 ## Create a basic ASP.NET web app
 
 1. Open Visual Studio 2019.
-2. Select **File** > **New** > **Project**.
-3. Select **ASP.NET Web Application(.NET Framework) C#**.
-4. Enter a project name, and then select **Create**.
-5. Select **MVC** > **Create**. 
+1. Select **File** > **New** > **Project**.
+1. Select **ASP.NET Web Application(.NET Framework) C#**.
+1. Enter a project name, and then select **Create**.
+1. Select **MVC** > **Create**. 
 
 ## Add Application Insights automatically
 
 This section guides you through automatically adding Application Insights to a template-based ASP.NET web app. From within your ASP.NET web app project in Visual Studio:
 
 1. Select **Project** > **Add Application Insights Telemetry** > **Application Insights Sdk (local)** > **Next** > **Finish** > **Close**.
-2. Open the *ApplicationInsights.config* file. 
-3. Before the closing `</ApplicationInsights>` tag, add a line that contains the connection string for your Application Insights resource. Find your connection string on the overview pane of the newly created Application Insights resource.
+
+1. Open the *ApplicationInsights.config* file.
+
+1. Before the closing `</ApplicationInsights>` tag, add a line that contains the connection string for your Application Insights resource. Find your connection string on the overview pane of the newly created Application Insights resource.
 
     ```xml
     <ConnectionString>Copy connection string from Application Insights Resource Overview</ConnectionString>
     ```
 
-4. Select **Project** > **Manage NuGet Packages** > **Updates**. Then update each `Microsoft.ApplicationInsights` NuGet package to the latest stable release.   
-5. Run your application by selecting **IIS Express**. A basic ASP.NET app opens. As you browse through the pages on the site, telemetry is sent to Application Insights.
+1. Select **Project** > **Manage NuGet Packages** > **Updates**. Then update each `Microsoft.ApplicationInsights` NuGet package to the latest stable release.
+
+1. Run your application by selecting **IIS Express**. A basic ASP.NET app opens. As you browse through the pages on the site, telemetry is sent to Application Insights.
 
 ## Add Application Insights manually
 
@@ -59,15 +62,15 @@ This section guides you through manually adding Application Insights to a templa
 
 1. Add the following NuGet packages and their dependencies to your project:
 
-    - [`Microsoft.ApplicationInsights.WindowsServer`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer)
-    - [`Microsoft.ApplicationInsights.Web`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)
-    - [`Microsoft.AspNet.TelemetryCorrelation`](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation)
+    * [`Microsoft.ApplicationInsights.WindowsServer`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer)
+    * [`Microsoft.ApplicationInsights.Web`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)
+    * [`Microsoft.AspNet.TelemetryCorrelation`](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation)
 
-2. In some cases, the *ApplicationInsights.config* file is created for you automatically. If the file is already present, skip to step 4. 
+1. In some cases, the *ApplicationInsights.config* file is created for you automatically. If the file is already present, skip to step 4. 
 
 Create it yourself if it's missing. In the root directory of an ASP.NET application, create a new file called *ApplicationInsights.config*.
 
-3. Copy the following XML configuration into your newly created file:
+1. Copy the following XML configuration into your newly created file:
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -210,17 +213,30 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
         Learn more about Application Insights configuration with ApplicationInsights.config here: 
         http://go.microsoft.com/fwlink/?LinkID=513840
       -->
-      <ConnectionString>Copy connection string from Application Insights Resource Overview</ConnectionString>
+      <ConnectionString>Copy the connection string from your Application Insights resource</ConnectionString>
     </ApplicationInsights>
     ```
 
-4. Before the closing `</ApplicationInsights>` tag, add the connection string for your Application Insights resource. You can find your connection string on the overview pane of the newly created Application Insights resource.
+1. Add the connection string. This can be done in two ways.
 
-    ```xml
-    <ConnectionString>Copy connection string from Application Insights Resource Overview</ConnectionString>
-    ```
+    * (Recommended) Set the connection string in configuration:
 
-5. At the same level of your project as the *ApplicationInsights.config* file, create a folder called *ErrorHandler* with a new C# file called *AiHandleErrorAttribute.cs*. The contents of the file look like this:
+        Before the closing `</ApplicationInsights>` tag in *ApplicationInsights.config*, add the connection string for your Application Insights resource. You can find your connection string on the overview pane of the newly created Application Insights resource.
+
+        ```xml
+        <ConnectionString>Copy the connection string from your Application Insights resource</ConnectionString>
+        ```
+
+    * Set the connection string in code:
+
+        ```csharp
+        var configuration = new TelemetryConfiguration
+        {
+            ConnectionString = "Copy the connection string from your Application Insights resource"
+        };
+        ```
+
+1. At the same level of your project as the *ApplicationInsights.config* file, create a folder called *ErrorHandler* with a new C# file called *AiHandleErrorAttribute.cs*. The contents of the file look like this:
 
     ```csharp
     using System;
@@ -249,7 +265,7 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
     }
     ```
 
-6. In the *App_Start* folder, open the *FilterConfig.cs* file and change it to match the sample:
+1. In the *App_Start* folder, open the *FilterConfig.cs* file and change it to match the sample:
 
     ```csharp
     using System.Web;
@@ -267,7 +283,7 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
     }
     ```
 
-7. If *Web.config* is already updated, skip this step. Otherwise, update the file as follows:
+1. If *Web.config* is already updated, skip this step. Otherwise, update the file as follows:
     
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -348,7 +364,6 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
         <!-- Code added for Application Insights end -->
       </system.webServer>
     </configuration>
-    
     ```
 
 At this point, you successfully configured server-side application monitoring. If you run your web app, you see telemetry begin to appear in Application Insights.
@@ -451,20 +466,20 @@ When you add Application Insights to your project, it automatically creates file
 
 When you add Application Insights Telemetry to a Visual Studio ASP.NET project, it adds the following files:
 
-- ApplicationInsights.config
-- AiHandleErrorAttribute.cs
+* ApplicationInsights.config
+* AiHandleErrorAttribute.cs
 
 The following pieces of code are automatically added:
 
 
 
-- [Your project's name].csproj
+* [Your project's name].csproj
 
     ```C#
      <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
     ```
 
-- Packages.config
+* Packages.config
 
     ```xml
     <packages>
@@ -489,7 +504,7 @@ The following pieces of code are automatically added:
     </packages>
     ```
 
-- Layout.cshtml
+* Layout.cshtml
 
     If your project has a Layout.cshtml file, the following code is added.
     
@@ -512,7 +527,7 @@ The following pieces of code are automatically added:
     </head>
     ```
 
-- ConnectedService.json
+* ConnectedService.json
 
     ```json
     {
@@ -524,7 +539,7 @@ The following pieces of code are automatically added:
     }
     ```
 
-- FilterConfig.cs
+* FilterConfig.cs
 
     ```csharp
             public static void RegisterGlobalFilters(GlobalFilterCollection filters)

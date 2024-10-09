@@ -9,18 +9,16 @@ ms.reviewer: cogoodson
 
 # Connection strings in Application Insights
 
-Connection strings define to which Application Insights resource your instrumented application sends telemetry data.
-
-Key-value pairs provide an easy way for users to define a prefix suffix combination for each Application Insights service or product.
+Connection strings define to which Application Insights resource your instrumented application sends telemetry data. A connection string consist of a list of settings represented as key-value pairs separated by a semicolon. This provides a single configuration setting and eliminates the need for multiple proxy settings.
 
 > [!IMPORTANT]
-> The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. These ikey unique identifiers aren't security tokens or security keys. If you want to protect your AI resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
+> The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***These ikey unique identifiers aren't security tokens or security keys.***
+>
+> If you want to protect your AI resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
 
 ## Connection string capabilities
 
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
-
-Connection strings provide a single configuration setting and eliminate the need for multiple proxy settings.
 
 * **Reliability**: Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.
 * **Security**: Connection strings allow authenticated telemetry ingestion by using [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
@@ -160,104 +158,31 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 **Application Insights SDKs (Classic API):**
 
-* ASP.NET Core - [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) under *3. Set up the connection string*.
-* [.NET](asp-net.md#add-application-insights-manually) under *4. [...] add the connection string*.
-* [Java]()
-* Node.js
+* **ASP.NET Core** - Step 3 in [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio).
+* **.NET** - Step 4 in [Configure Application Insights for your ASP.NET website](asp-net.md#).
+* **Java** - [Configuration options: Azure Monitor Application Insights for Java](java-standalone-config.md#connection-string)
+* **JavaScript** - JavaScript doesn't support the use of environment variables. You have two options:
+    * Use the JavaScript (Web) SDK Loader Script, see [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started).
+    * Manual setup: Step 2 in [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md#npm-package).
+* **Node.js**
     * [Basic usage](nodejs.md#basic-usage)
     * [Use multiple connection strings](nodejs.md#use-multiple-connection-strings)
-* [OpenCensus Python (deprecated)]()
+* OpenCensus Python (deprecated) - Step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#logs)
 
 **Azure Monitor OpenTelemetry Distro:**
 
-* [Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](opentelemetry-enable.md##paste-the-connection-string-in-your-environment)
+Go to [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#connection-string) and select the corresponding tab.
 
 <!--
-# [.NET 5.0+](#tab/dotnet5)
-
-1. Set the connection string in the `appsettings.json` file:
-
-    ```json
-    {
-      "ApplicationInsights": {
-        "ConnectionString" : "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{region}.in.applicationinsights.azure.com/;LiveEndpoint=https://{region}.livediagnostics.monitor.azure.com/"
-        }
-    }
-    ```
-
-1. Retrieve the connection string in `Program.cs` when registering the `ApplicationInsightsTelemetry` service:
-
-    ```csharp
-    var options = new ApplicationInsightsServiceOptions { ConnectionString = app.Configuration["ApplicationInsights:ConnectionString"] };
-    builder.Services.AddApplicationInsightsTelemetry(options: options);
-    ```
-
 # [.NET Framework](#tab/dotnet-framework)
 
 Set the property [TelemetryConfiguration.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/add45ceed35a817dc7202ec07d3df1672d1f610d/BASE/src/Microsoft.ApplicationInsights/Extensibility/TelemetryConfiguration.cs#L271-L274) or [ApplicationInsightsServiceOptions.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/81288f26921df1e8e713d31e7e9c2187ac9e6590/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs#L66-L69).
-
-Explicitly set the connection string in code:
-
-```csharp
-var configuration = new TelemetryConfiguration
-{
-    ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{region}.in.applicationinsights.azure.com/;LiveEndpoint=https://{region}.livediagnostics.monitor.azure.com/"
-};
-```
-
-Set the connection string using a configuration file:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<ApplicationInsights xmlns="http://schemas.microsoft.com/ApplicationInsights/2013/Settings">
-    <ConnectionString>InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{region}.in.applicationinsights.azure.com/;LiveEndpoint=https://{region}.livediagnostics.monitor.azure.com/</ConnectionString>
-</ApplicationInsights>
-```
-
-# [Java](#tab/java)
-
-You can set the connection string in the `applicationinsights.json` configuration file:
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{region}.in.applicationinsights.azure.com/;LiveEndpoint=https://{region}.livediagnostics.monitor.azure.com/"
-}
-```
-
-For more information, see [Connection string configuration](./java-standalone-config.md#connection-string).
-
-# [JavaScript](#tab/js)
-
-JavaScript doesn't support the use of environment variables. You have two options:
-
-* To use the JavaScript (Web) SDK Loader Script, see [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started).
-
-* Manual setup:
-
-    ```javascript
-    import { ApplicationInsights } from '@microsoft/applicationinsights-web'
-    
-    const appInsights = new ApplicationInsights({ config: {
-      connectionString: 'InstrumentationKey=00000000-0000-0000-0000-000000000000;'
-      /* ...Other Configuration Options... */
-    } });
-    appInsights.loadAppInsights();
-    appInsights.trackPageView();
-    ```
-
-# [Node.js](#tab/nodejs)
-
-```javascript
-const appInsights = require("applicationinsights");
-appInsights.setup("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{region}.in.applicationinsights.azure.com/;LiveEndpoint=https://{region}.livediagnostics.monitor.azure.com/");
-appInsights.start();
-```
 
 # [Python](#tab/python)
 
 We recommend that users set the environment variable.
 
-To explicitly set the connection string:
+To explicitly set the connection string in code:
 
 ```python
 from opencensus.ext.azure.trace_exporter import AzureExporter
@@ -266,8 +191,6 @@ from opencensus.trace.tracer import Tracer
 
 tracer = Tracer(exporter=AzureExporter(connection_string='InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{region}.in.applicationinsights.azure.com/;LiveEndpoint=https://{region}.livediagnostics.monitor.azure.com/'), sampler=ProbabilitySampler(1.0))
 ```
-
----
 -->
 
 ## Frequently asked questions
