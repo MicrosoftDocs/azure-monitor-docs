@@ -87,7 +87,7 @@ The page opens to show the **Timeline** view for the details:
 
 You can use the **View all** option to see the stack details with trace and event information for the component:
 
-:::image type="content" source="media/app-map/view-traces-events.png" alt-text="Screenshot that shows the All traces and events view for a selected component." lightbox="media/app-map/view-traces-events-large.png":::
+:::image type="content" source="media/app-map/view-traces-events-large.png" alt-text="Screenshot that shows the All traces and events view for a selected component." lightbox="media/app-map/view-traces-events-large.png":::
 
 ### View in Logs (Analytics)
 
