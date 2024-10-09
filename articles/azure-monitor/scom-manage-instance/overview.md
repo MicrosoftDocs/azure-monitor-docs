@@ -68,6 +68,7 @@ The following table highlights the key differences between System Center Operati
 |Alerting|Real-time alerts for infra and apps|Alerting through System Center Operations Manager Ops console.|Integrated alerting with Azure Monitor.|
 |Dashboarding|Basic reports about monitoring setup|SSRS-based reporting.|Built-in templates on Azure workbooks and dashboards for Azure Managed Grafana.|
 |Dashboarding|App-specific reports|Customers must manually integrate with SquaredUp.|Partner published library of dashboards for Azure Managed Grafana.|
+|Fail-over|Ability to fail over to a different datacenter or region|The customer can configure this in their own on-premises environment.|This is not supported by Microsoft.|
 
 ## Architecture
 
