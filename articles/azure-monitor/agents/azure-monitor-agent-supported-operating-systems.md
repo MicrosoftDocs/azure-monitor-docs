@@ -69,6 +69,7 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 | Red Hat Enterprise Linux Server 7                           | ✓ |
 | Rocky Linux 9                                               | ✓ |
 | Rocky Linux 8                                               | ✓ |
+| SUSE Linux Enterprise Server 15 SP6                         | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP5                         | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP4                         | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP3                         | ✓ |

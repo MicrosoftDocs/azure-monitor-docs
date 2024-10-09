@@ -18,12 +18,32 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## [2024](#tab/2024)
 
+## September 2024
+|Subservice | Article | Description |
+|---|---|---|
+|Agents|[Azure Diagnostics extension overview](/azure/azure-monitor/agents/diagnostics-extension-overview)|Announced that Azure Diagnostics extension will be deprecated on March 31, 2026.|
+|Agents|[Azure Monitor Agent supported operating systems and environments](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems)|Added Azure Monitor Agent support for Amazon Linux 2023.|
+|Alerts|[Create a new alert rule using the CLI, PowerShell, or an ARM template](/azure/azure-monitor/alerts/alerts-create-rule-cli-powershell-arm)|Added prerequisites for all alert rule types stating that in order to create alert rules that use action groups, you must have a role with permissions for those action groups.|
+|Application-Insights|[Configure Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-configuration?tabs=aspnetcore)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which does not include live metrics.|
+|Application-Insights|[Live metrics: Monitor and diagnose with 1-second latency](/azure/azure-monitor/app/live-stream?tabs=otel)|We revamped this article for simplicity and linked out to Entra documentation for more information on how to secure potentially sensitive information entered into custom filters.|
+|Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-dotnet-migrate?tabs=aspnetcore)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which does not include live metrics.|
+|Application-Insights|[Statsbeat in Application Insights](/azure/azure-monitor/app/statsbeat?tabs=dotnet)|We revamped Statsbeat documentation to include OpenTelemetry scenarios.|
+|Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor](/azure/azure-monitor/essentials/data-collection-rule-create-edit?tabs=portal)|Added DCRs for metrics|
+|Essentials|[Data plane metrics batch API query versus metrics export](/azure/azure-monitor/essentials/data-plane-versus-metrics-export)|New article: Comparison of metrics retrieval methods|
+|Essentials|[Metrics export through data collection rules (Preview)](/azure/azure-monitor/essentials/data-collection-metrics?tabs=log-analytics-workspaces)|New feature - DCRs for Metrics|
+|General|[Operational excellence best practices in Azure Monitor](/azure/azure-monitor/best-practices-operation)|New best practice articles|
+|General|[Performance efficiency in Azure Monitor](/azure/azure-monitor/best-practices-performance)|New best practice articles|
+|General|[Reliability best practices in Azure Monitor](/azure/azure-monitor/best-practices-reliability)|New best practice articles|
+|General|[Security best practices in Azure Monitor](/azure/azure-monitor/best-practices-security)|New best practice articles|
+
+
+
 ## August 2024
 
 |Subservice | Article | Description |
 |---|---|---|
 |Agents|[MMA/OMS Discovery and Removal Utility](agents/azure-monitor-agent-mma-removal-tool.md)|New Removal Tool|
-|Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|We've updated the table that converts values used in Classic AI resources to Workspace-based resources.|
+|Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|We've updated the table that converts values used in Classic AI resources to Workspace-based resources.|
 |Application-Insights|[Application Insights for ASP.NET Core applications](app/asp-net-core.md)|The option to disable telemetry correlation has been documented for ASP.NET Core.|
 |Application-Insights|[Configure Application Insights for your ASP.NET website](app/asp-net.md)|The option to disable telemetry correlation has been documented for ASP.NET.|
 |Application-Insights|[Configuration options: Azure Monitor Application Insights for Java](app/java-standalone-config.md)|The option to disable telemetry correlation has been documented for Java.|
@@ -104,7 +124,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Alerts|[Create or edit a log search alert rule](alerts/alerts-create-log-alert-rule.md)|Added limitation of log search alert rules to indicate that log search alert rules don't support linked storage.|
 |Alerts|[Common alert schema](alerts/alerts-common-schema.md)|A link to Azure Monitor Investigator was added to the alerts common schema.|
 |App|[Live metrics: Monitor and diagnose with 1-second latency](app/live-stream.md)|Update Distro Feature Matrix|
-|Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|Migration guidance for Classic to Workspace-based resources has been updated. Classic Application Insights resources are fully retired and Continuous Export is disabled.|
+|Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Migration guidance for Classic to Workspace-based resources has been updated. Classic Application Insights resources are fully retired and Continuous Export is disabled.|
 |Application-Insights|[OpenTelemetry on Azure](app/opentelemetry.md)|Our OpenTelemetry on Azure offerings are fully documented here, as well as a link to our OpenTelemetry roadmap.|
 |Application-Insights|[Application Insights availability tests](app/availability-overview.md)|Availability Test TLS support is now fully documented.|
 |Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](app/opentelemetry-enable.md)|A tab for Azure Monitor Application Insights OpenTelemetry support of Java Native images is available.|
@@ -153,7 +173,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Alerts|[Understand the automatic migration process for your classic alert rules](alerts/alerts-automatic-migration.md)|Azure Monitor classic alerts are officially retired, replaced by the newer alerts experience.|
 |Alerts|[Troubleshooting problems in Azure Monitor alerts](alerts/alerts-troubleshoot.md)|Update alerts-troubleshoot.md|
 |Alerts|[Tutorial: Create a log search alert for an Azure resource](alerts/tutorial-log-alert.md)|Added note to indicate that  The combined size of all data in the log alert rule properties can't exceed 64 KB. This can be caused by too many dimensions, the query being too large, too many action groups, or a long description. Remember to optimize these areas when creating log search alert rules.|
-|Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|Continuous Export within Classic Application Insights will be shut down on May 15, 2024. After this date, your Continuous Export configurations will no longer be available.|
+|Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Continuous Export within Classic Application Insights will be shut down on May 15, 2024. After this date, your Continuous Export configurations will no longer be available.|
 |Application-Insights|[Migrate from the Node.js Application Insights SDK 2.X to Azure Monitor OpenTelemetry](app/opentelemetry-nodejs-migrate.md)|Node.js OpenTelemetry migration guidance is available, providing a choice of either clean installing our Distro (recommended) or upgrading to Node.js SDK 3.X as an interim solution.|
 |Application-Insights|[Application monitoring for Azure App Service and Python (Preview)](app/azure-web-apps-python.md)|Codeless OpenTelemetry automatic instrumentation for Python is available in preview.|
 |Application-Insights|[Configuration options: Azure Monitor Application Insights for Java](app/java-standalone-config.md)|Java Custom Instrumentation (preview) is available. Starting from version 3.3.1, you can capture spans for a method in your application.|
@@ -185,7 +205,7 @@ This article lists significant changes to Azure Monitor documentation.
 |---|---|---|
 |Alerts|[Improve the reliability of your application by using Azure Advisor](../../articles/advisor/advisor-high-availability-recommendations.md)|We’ve updated the alerts troubleshooting articles to remove out of date content and include common support issues.|
 |Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](app/opentelemetry-enable.md)|OpenTelemetry sample applications are now provided in a centralized location.|
-|Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|Classic Application Insights resources have been retired. For more information, see this article for migration information and frequently asked questions.|
+|Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Classic Application Insights resources have been retired. For more information, see this article for migration information and frequently asked questions.|
 |Application-Insights|[Sampling overrides - Azure Monitor Application Insights for Java](app/java-standalone-sampling-overrides.md)|The sampling overrides feature has reached general availability (GA), starting from 3.5.0.|
 |Containers|[Configure data collection and cost optimization in Container insights using data collection rule](containers/container-insights-data-collection-dcr.md)|Updated to include new Logs and Events cost preset.|
 |Containers|[Enable private link with Container insights](containers/container-insights-private-link.md)|Updated with ARM templates.|
@@ -206,7 +226,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Alerts|[Monitor the health of log search alert rules](alerts/log-alert-rule-health.md)|Added documentation for new feature - resource health for log search alert rules.|
 |Application-Insights|[Failures and Performance views](app/failures-and-performance-views.md)|A new article was added with current information on both the Performance and Failures views.|
 |Application-Insights|[Release and work item insights](app/release-and-work-item-insights.md)|We've modified our Annotations script to support unicode characters.|
-|Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|The FAQ section was updated with information on what happens if you choose not to manually migrate and similar question/answer pairs related to Classic App Insights resource retirement.|
+|Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|The FAQ section was updated with information on what happens if you choose not to manually migrate and similar question/answer pairs related to Classic App Insights resource retirement.|
 |Containers|[Transition from the Container Monitoring Solution to using Container Insights](containers/container-insights-transition-solution.md)|Changed date for Container Monitoring Solution retirement.|
 |Essentials|[Create alert rules for Azure resources](alerts/alert-options.md)|New article summarizing alert options including Azure Monitor Baseline Alerts (AMBA).|
 |Essentials|[Structure of transformation in Azure Monitor](essentials/data-collection-transformations-structure.md)|Added |
@@ -229,8 +249,8 @@ This article lists significant changes to Azure Monitor documentation.
 |Alerts|[Create or edit a log search alert rule](alerts/alerts-create-log-alert-rule.md)|We've added samples of log search alert rule queries that use Azure Data Explorer and Azure Resource Graph.|
 |Application-Insights|[Data Collection Basics of Azure Monitor Application Insights](app/opentelemetry-overview.md)|We've provided information on how to get a list of Application Insights SDK versions and their names.|
 |Application-Insights|[Application Insights logging with .NET](app/ilogger.md)|We've clarified steps to view ILogger telemetry.|
-|Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|The script to discover classic resources has been updated.|
-|Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|Extra details are now available on migrating from Continuous Export to Diagnostic Settings.|
+|Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|The script to discover classic resources has been updated.|
+|Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Extra details are now available on migrating from Continuous Export to Diagnostic Settings.|
 |Application-Insights|[Telemetry processors (preview) - Azure Monitor Application Insights for Java](app/java-standalone-telemetry-processors.md)|Sample metrics filters have been added.|
 |Application-Insights|[Log-based and preaggregated metrics in Application Insights](app/pre-aggregated-metrics-log-metrics.md)|We've clarified how custom metrics work.|
 |Containers|[Default Prometheus metrics configuration in Azure Monitor](containers/prometheus-metrics-scrape-default.md)|Added default targets for Control Plane to minimal ingestion profile|
@@ -260,7 +280,7 @@ Alerts|[Create or edit a metric alert rule](alerts/alerts-create-new-alert-rule.
 Application-Insights|[Add, modify, and filter OpenTelemetry](app/opentelemetry-add-modify.md)|Custom events code samples and instructions have been added to .NET Core / .NET tabs.|
 Application-Insights|[Migrate availability tests](app/availability-test-migration.md)|We've clarified the URL ping tests retirement statement. Migrate your URL ping tests as soon as possible using the PowerShell scripts provided in this article.|
 Application-Insights|[Enable Azure Monitor Application Insights Real User Monitoring](app/javascript-sdk.md)|More guidance has been added on when to use the npm package.|
-Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|We confirmed that migrating from classic to workspace-based resources doesn't introduce application downtime or restarts, and it doesn't change your existing instrumentation key or connection string.|
+Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|We confirmed that migrating from classic to workspace-based resources doesn't introduce application downtime or restarts, and it doesn't change your existing instrumentation key or connection string.|
 Logs|[Correlate data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace](logs/azure-monitor-data-explorer-proxy.md)|Explained how to query Azure Data Explorer external tables using the `adx("")` expression. |
 Logs|[Logs Ingestion API in Azure Monitor](logs/logs-ingestion-api-overview.md)|Updated Log Ingestion API version.|
 Profiler|[Profile production applications in Azure with Application Insights Profiler](profiler/profiler-overview.md)|Add support for Java profiler and link to docs from .NET profiler overview.|
@@ -365,7 +385,7 @@ Logs|[Query data in Azure Data Explorer and Azure Resource Graph from Azure Moni
 Agents|[Azure Monitor Agent Health (Preview)](agents/azure-monitor-agent-health.md)|Introduced a new Azure Monitor Agent Health workbook, which monitors the health of agents deployed across your organization. |
 Alerts|[Manage your alert instances](alerts/alerts-manage-alert-instances.md)|View alerts as a timeline (preview)|
 Alerts|[Upgrade to the Scheduled Query Rules API from the legacy Log Analytics alerts API](alerts/alerts-log-api-switch.md)|Changes to the log alert rule creation experience|
-Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|We now support migrating classic components to workspace-based components via PowerShell cmdlet. |
+Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|We now support migrating classic components to workspace-based components via PowerShell cmdlet. |
 Application-Insights|[EventCounters introduction](app/eventcounters.md)|Code samples have been provided for the latest .NET versions.|
 Application-Insights|[Enable a framework extension for Application Insights JavaScript SDK](app/javascript-framework-extensions.md)|We've added a section for the React Native Manual Device Plugin, and clarified exception tracking and device info collection.|
 Application-Insights|[Migrate availability tests](app/availability-test-migration.md)|Migrate your classic URL ping tests to the new standard availability tests using this prescriptive guidance.|
@@ -523,7 +543,7 @@ Alerts|[Create and manage action groups in the Azure portal](alerts/action-group
 Alerts|[Create and manage action groups in the Azure portal](alerts/action-groups.md)|Clarified that you can't pass security certificates in a webhook action in action groups.|
 Alerts|[Create a new alert rule](alerts/alerts-create-new-alert-rule.md)|Added information about adding custom properties to the alert payload when you use action groups.|
 Alerts|[Manage your alert instances](alerts/alerts-manage-alert-instances.md)|Removed option for managing alert instances by using the Azure CLI.|
-Application-Insights|[Migrate to workspace-based Application Insights resources](app/convert-classic-resource.md)|Added the continuous export deprecation notice to this article for more visibility. We recommend migrating to workspace-based Application Insights resources as soon as possible to take advantage of new features.|
+Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Added the continuous export deprecation notice to this article for more visibility. We recommend migrating to workspace-based Application Insights resources as soon as possible to take advantage of new features.|
 Application-Insights|[Application Insights API for custom events and metrics](app/api-custom-events-metrics.md)|Consolidated client-side JavaScript SDK extensions into two new articles called *Framework extensions* and *Feature extensions*. We've also created new standalone *Upgrade* and *Troubleshooting* articles.|
 Application-Insights|[Monitor Azure Functions with Azure Monitor Application Insights](app/monitor-functions.md)|Overhauled the documentation on Azure Functions integration with Application Insights.|
 Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](app/opentelemetry-enable.md)|Updated Java OpenTelemetry examples.|
@@ -807,7 +827,7 @@ Visualizations|[Azure Workbooks](./visualize/workbooks-overview.md)|New video to
 |[Application Insights SDK support guidance](app/sdk-support-guidance.md)|Updated and clarified the SDK support guidance.|
 |[Application Insights: Dependency autocollection](app/asp-net-dependencies.md#dependency-autocollection)|Updated the latest currently supported node.js modules.|
 |[Application Insights custom metrics with .NET and .NET Core](/previous-versions/azure/azure-monitor/app/tutorial-asp-net-custom-metrics)|Added a new tutorial with step-by-step instructions on how to enable custom metrics with .NET applications.|
-|[Migrate an Application Insights classic resource to a workspace-based resource](app/convert-classic-resource.md)|Added a comprehensive FAQ section to assist with migration to workspace-based resources.|
+|[Migrate an Application Insights classic resource to a workspace-based resource](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Added a comprehensive FAQ section to assist with migration to workspace-based resources.|
 |[Configuration options: Azure Monitor Application Insights for Java](app/java-standalone-config.md)| Updated this article for 3.4.0-BETA.|
 
 ### Autoscale
@@ -991,7 +1011,7 @@ Azure Monitor Workbooks documentation previously resided on an external GitHub r
 | [Application Map in Application Insights](app/app-map.md) | Application Maps Intelligent View feature. |
 | [Application Insights for ASP.NET Core applications](app/asp-net-core.md) | The `telemetry.Flush()` guidance is now available. |
 | [Diagnose with Live Metrics Stream](app/live-stream.md) | Updated information on using unsecure control channel. |
-| [Migrate an Azure Monitor Application Insights classic resource to a workspace-based resource](app/convert-classic-resource.md) | Schema change documentation is now available. |
+| [Migrate an Azure Monitor Application Insights classic resource to a workspace-based resource](/previous-versions/azure/azure-monitor/app/convert-classic-resource) | Schema change documentation is now available. |
 | [Profile production apps in Azure with Application Insights Profiler](profiler/profiler-overview.md) | Profiler documentation now has a new home in the TOC. |
 
 All references to unsupported versions of .NET and .NET CORE are scrubbed from Application Insights product documentation. See [.NET and .NET Core Support Policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).

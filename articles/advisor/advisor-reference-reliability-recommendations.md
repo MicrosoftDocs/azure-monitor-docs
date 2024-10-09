@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 09/30/2024
+ms.date: 10/08/2024
 ---
 
 # Reliability recommendations
@@ -1928,6 +1928,18 @@ Azure Disks with ZRS provide synchronous replication of data across three Availa
 For More information, see [Convert a disk from LRS to ZRS](https://aka.ms/migratedisksfromLRStoZRS)  
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_end-->
+  
+
+<!--490262e8-313c-431f-a143-a9c2cadba41b_begin-->  
+#### DNS Servers should be configured at the Virtual Network level  
+  
+Set the DNS Servers for the VM at the Virtual Network level to ensure consistency throughout the environment. In the configuration of the primary network interface, DNS Servers setting should be set to Inherit from virtual network.  
+  
+**Potential benefits**: Ensures consistency and reliable name resolution
+  
+For More information, see [Name resolution for resources in Azure virtual networks](https://aka.ms/azvnetnameres)  
+
+<!--490262e8-313c-431f-a143-a9c2cadba41b_end-->
   
 <!--microsoft_compute_end--->
 ## Workloads
