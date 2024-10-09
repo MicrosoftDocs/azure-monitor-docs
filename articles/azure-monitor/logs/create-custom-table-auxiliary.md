@@ -234,13 +234,13 @@ During public preview, these limitations apply:
     |                 | North Central US       |
     | **Asia Pacific**    | Australia East         |
     |                 | Australia South East   |
+    |                 | East Asia         |
     | **Europe**          | West Europe        |
     |                 | North Europe           |
     |                 | UK South               |
     |                 | Germany West Central   |
     |                 | Switzerland North      |
     |                 | France Central         |
-    |                 | East Asia         |
     | **Middle East**     | Israel Central         |
 
 
