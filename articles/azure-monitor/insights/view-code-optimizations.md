@@ -35,7 +35,7 @@ You can access Code Optimizations specific to individual Application Insights re
 
 :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
 
-## Interpret estimated Memory and CPU percentages
+## Interpret estimated Memory and CPU peak usage percentages
 
 The estimated CPU and Memory are determined based on the amount of activity in your application. In addition to the Memory and CPU percentages, Code Optimizations also includes:
 
@@ -43,7 +43,7 @@ The estimated CPU and Memory are determined based on the amount of activity in y
 - A breakdown of the allocated types made within the call
 
 ### Memory
-For Memory, the number is just a percentage of all allocations made within the trace. For example, if an issue takes 24% memory, you spent 24% of all your allocations within that call.
+For Memory, the number is a percentage of all allocations made within the trace. For example, if an issue takes 24% memory, you spent 24% of all your allocations within that call.
 
 ### CPU
 For CPU, the percentage is based on the number of CPUs in your machine (four core, eight core, etc.) and the trace time. For example, let's say your trace is 10 seconds long and you have 4 CPUs: you have a total of 40 seconds of CPU time. If the insight says the line of code is using 5% of the CPU, it’s using 5% of 40 seconds, or 2 seconds.
@@ -71,6 +71,14 @@ After sorting and filtering the Code Optimizations results, you can then select 
 - Detailed description of the performance bug insight.
 - The full call stack.
 - Recommendations on how to fix the performance issue.
+- The timeline of the issue's trend impact and threshold.
+
+### Insights
+
+The **Insights** tab provides:
+- A brief description of the selected issue. 
+- The current condition of your resource memory or CPU usage. 
+- An AI-generated recommendation for fixing the issue. 
 
 :::image type="content" source="./media/code-optimizations/code-optimizations-details.png" alt-text="Screenshot of the detail pane for a specific Code Optimizations C-P-U result.":::
 
@@ -88,12 +96,11 @@ In the insights details pane, under the **Call Stack** heading, you can:
 
 :::image type="content" source="./media/code-optimizations/code-optimizations-call-stack.png" alt-text="Screenshot of the expanded call stack for the specific C-P-U result from earlier.":::
 
-### Trend impact
+### Timeline
 
-You can also view a graph depicting a specific performance issue's impact and threshold. The trend impact results vary depending on the filters you set. For example, a CPU `String.SubString()` performance issue's insights seen over a seven day time frame may look like:
+In the details pane, under **Timeline**, you can also view a graph depicting a the timeline of a specific performance issue's impact and threshold. The results vary depending on the filters you set. For example, a Memory "Inefficient `String.SubString()`" performance issue's insights seen over the last 24 hours may look like:
 
 :::image type="content" source="./media/code-optimizations/code-optimizations-trend-impact.png" alt-text="Screenshot of the C-P-U trend impact over the course of seven days.":::
-
 
 ## Next steps
 
