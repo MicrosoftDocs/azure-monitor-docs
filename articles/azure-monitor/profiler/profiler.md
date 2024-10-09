@@ -50,9 +50,8 @@ If your Application Insights resource is in the same subscription as your instan
 
 1. In the left menu, select **Monitoring** > **Application Insights**.
 
-   :::image type="content" source="./media/profiler/app-insights-menu.png" alt-text="Screenshot that shows selecting Application Insights on the left pane.":::
-
 1. Under **Application Insights**, select **Enable**.
+
 1. Verify that you connected an Application Insights resource to your app.
 
    :::image type="content" source="./media/profiler/enable-app-insights.png" alt-text="Screenshot that shows enabling Application Insights on your app.":::
