@@ -9,14 +9,12 @@ ms.reviewer: cogoodson
 
 # Connection strings in Application Insights
 
-Connection strings specify to which Application Insights resource your instrumented application sends telemetry data.
-
-A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
+Connection strings specify to which Application Insights resource your application sends telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
-> The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***These ikey unique identifiers aren't security tokens or security keys.***
+> The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys.***
 >
-> If you want to protect your AI resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
+> If you want to protect your Application Insights resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
 
 ## Connection string capabilities
 
@@ -157,7 +155,7 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 ### Code samples
 
-| Language | CLassic API | OpenTelemetry |
+| Language | Classic API | OpenTelemetry |
 |-----------------|-------------|---------------|
 | ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
 | .NET (Framework) | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |

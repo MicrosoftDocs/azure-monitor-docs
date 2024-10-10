@@ -101,7 +101,7 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
     var app = builder.Build();
     ```
     
-1. Add the connection string. This can be done in three ways:
+1. Add the connection string, which can be done in three ways:
 
     * **(Recommended)** Set the connection string in configuration.
     
@@ -263,7 +263,7 @@ As an alternative to using `FullScript`, `ScriptBody` is available starting in A
 </script>
 ```
 
-The *.cshtml* file names referenced earlier are from a default MVC application template. Ultimately, if you want to properly enable client-side monitoring for your application, the JavaScript JavaScript (Web) SDK Loader Script must appear in the `<head>` section of each page of your application that you want to monitor. Add the JavaScript JavaScript (Web) SDK Loader Script to *_Layout.cshtml* in an application template to enable client-side monitoring.
+The *.cshtml* file names referenced earlier are from a default MVC application template. Ultimately, if you want to properly enable client-side monitoring for your application, the JavaScript (Web) SDK Loader Script must appear in the `<head>` section of each page of your application that you want to monitor. Add the JavaScript (Web) SDK Loader Script to *_Layout.cshtml* in an application template to enable client-side monitoring.
 
 If your project doesn't include *_Layout.cshtml*, you can still add [client-side monitoring](./website-monitoring.md) by adding the JavaScript JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
 
@@ -528,7 +528,7 @@ For more information about custom data reporting in Application Insights, see [A
 ASP.NET Core has [built-in
 support](/aspnet/core/fundamentals/http-logging) for
 logging HTTP Request/Response information (including body) via
-[`ILogger`](#ilogger-logs). It is recommended to leverage this. This may
+[`ILogger`](#ilogger-logs). It's recommended to leverage this. This may
 potentially expose personally identifiable information (PII) in telemetry, and
 can cause costs (performance costs and Application Insights billing) to
 significantly increase, so evaluate the risks carefully before using this.
@@ -601,7 +601,7 @@ Yes. Feature support for the SDK is the same in all platforms, with the followin
 
 ### Is this SDK supported for Worker Services?
 
-No. Please use [Application Insights for Worker Service applications (non-HTTP applications)](worker-service.md) for worker services.
+No. Instead, use [Application Insights for Worker Service applications (non-HTTP applications)](worker-service.md) for worker services.
 
 ### How can I uninstall the SDK?
 
