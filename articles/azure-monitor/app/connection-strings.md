@@ -9,7 +9,7 @@ ms.reviewer: cogoodson
 
 # Connection strings in Application Insights
 
-Connection strings define to which Application Insights resource your instrumented application sends telemetry data. A connection string consist of a list of settings represented as key-value pairs separated by a semicolon, which provides a single configuration setting and eliminates the need for multiple proxy settings.
+Connection strings specify to which Application Insights resource your instrumented application sends telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
 > The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***These ikey unique identifiers aren't security tokens or security keys.***
@@ -140,15 +140,14 @@ Run the following command in the [Azure CLI](/cli/azure/account?view=azure-cli-l
 
 ## Set a connection string
 
-Connection strings are supported in the following SDK versions:
+Connection strings are supported by all our OpenTelemetry offerings and the following SDK versions:
 
-* .NET v2.12.0
-* Java v2.5.1 and Java 3.0
-* JavaScript v2.3.0
-* NodeJS v1.5.0
-* Python v1.0.0
+* .NET v2.12.0 and newer
+* JavaScript v2.3.0 and newer
+* NodeJS v1.5.0 and newer
+* Python v1.0.0 and newer
 
-You can set a connection string in code or by using an environment variable or a configuration file.
+You can set a connection string in code, by using an environment variable, or a configuration file.
 
 ### Environment variable
 
@@ -156,40 +155,14 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 ### Code samples
 
-***Option 1***
-
-#### Application Insights SDKs (Classic API)
-
-* **ASP.NET Core** - See step 3 in [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio).
-
-* **.NET** - See step 4 in [Configure Application Insights for your ASP.NET website](asp-net.md#add-application-insights-manually-no-visual-studio).
-
-* **Java** - See OpenTelemetry below.
-
-* **JavaScript** - See [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code).
-
-* **Node.js** - See [Monitor your Node.js services and apps with Application Insights](nodejs.md#basic-usage).
-
-* **OpenCensus Python (deprecated)** - See step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing).
-
-#### Azure Monitor OpenTelemetry Distro
-
-Go to [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#connection-string) and select the corresponding tab.
-
-***Option 2***
-
-| Instrumentation | CLassic API | OpenTelemetry |
+| Language | CLassic API | OpenTelemetry |
 |-----------------|-------------|---------------|
 | ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
 | .NET (Framework) | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
-| Java | N/A | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
-| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | N/A |
+| Java | [N/A](java-standalone-upgrade-from-2x.md) | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
+| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | [N/A](opentelemetry-help-support-feedback.md?tabs=aspnetcore#can-opentelemetry-be-used-for-web-browsers) |
 | Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
 | Python | [OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
-
-<!-- .NET Framework
-Set the property [TelemetryConfiguration.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/add45ceed35a817dc7202ec07d3df1672d1f610d/BASE/src/Microsoft.ApplicationInsights/Extensibility/TelemetryConfiguration.cs#L271-L274) or [ApplicationInsightsServiceOptions.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/81288f26921df1e8e713d31e7e9c2187ac9e6590/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs#L66-L69).
--->
 
 ## Frequently asked questions
 
