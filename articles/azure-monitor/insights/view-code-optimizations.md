@@ -21,19 +21,53 @@ You can access Code Optimizations through two main entry points:
 - [Via the Code Optimizations overview page.](#via-the-code-optimizations-overview-page-preview)
 - [Via individual Application Insights resources.](#via-individual-application-insights-resources)
 
-### Via the Code Optimizations overview page (preview)
+### Via the Code Optimizations consolidated overview page (preview)
 
-View your Code Optimizations results via [the Code Optimizations overview page](https://aka.ms/codeoptimizations). In this consolidated overview, you can access results across multiple subscriptions for multiple resources. 
+View your Code Optimizations results via [the Code Optimizations overview page](https://aka.ms/codeoptimizations). In this consolidated overview, you can access results across multiple subscriptions for multiple Application Insights resources. 
 
 <!--placeholder
 :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
 -->
 
+You can filter the consolidated results by searching for filter field, or setting the following filters:
+
+| Filter | Description | Default |
+| ------ | ----------- | ------- |
+| Time Range | Select the time range from which you'd like to view Code Optimizations results. | Last 24 Hours | 
+| Role | The role name assigned to the reporting services machine or workload. Can be updated via the Application Insights configuration. | All Roles |
+| Subscription | The subscription that the insight belongs to. You can select more than one. | N/A |
+| Application Insights | The Application Insights resource with which your application is associated. You can select more than one. | N/A |
+| Insight Type | The type of issue, such as CPU, memory, or blocking. | All Types |
+
+You can then sort the columns in the insights results based on your desired view, including by:
+- Performance issue
+- The full name of the parent method
+
 ### Via individual Application Insights resources
 
-You can access Code Optimizations specific to individual Application Insights resources from that resource's **Performance** pane. Select **Code Optimizations** button from the top menu.
+You can access Code Optimizations specific to individual Application Insights resources from that resource's left menu.
 
-:::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
+- Click **Investigate** > **Code Optimizations**.
+
+   :::image type="content" source="./media/code-optimizations/code-optimizations-filter.png" alt-text="Screenshot of available filters for Code Optimizations results.":::
+
+- Click **Investigate** > **Performance** and select the **Code Optimizations** button from the top menu.
+
+   :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
+
+
+You can filter the consolidated results by searching for filter field, or setting the following filters:
+
+| Filter | Description | Default |
+| ------ | ----------- | ------- |
+| Time Range | Select the time range from which you'd like to view Code Optimizations results. | Last 24 Hours | 
+| Role | The role name assigned to the reporting services machine or workload. Can be updated via the Application Insights configuration. | All Roles |
+| Insight Type | The type of issue, such as CPU, memory, or blocking. | All Types |
+
+You can then sort the columns in the insights results based on your desired view, including by:
+- Performance issue
+- The number of profiles that contained that issue
+- The full name of the parent method
 
 ## Interpret estimated Memory and CPU peak usage percentages
 
@@ -47,22 +81,6 @@ For Memory, the number is a percentage of all allocations made within the trace.
 
 ### CPU
 For CPU, the percentage is based on the number of CPUs in your machine (four core, eight core, etc.) and the trace time. For example, let's say your trace is 10 seconds long and you have 4 CPUs: you have a total of 40 seconds of CPU time. If the insight says the line of code is using 5% of the CPU, it’s using 5% of 40 seconds, or 2 seconds.
-
-## Filter and sort results
-
-On the Code Optimizations page, you can filter the results by:
-
-- Using the search bar to filter by field.
-- Setting the time range via the **Time Range** drop-down menu.
-- Selecting the corresponding role from the **Role** drop-down menu.
-
-You can also sort columns in the insights results based on:
-
-- Type (memory or CPU).
-- Issue frequency within a specific time period (count).
-- Corresponding role, if your service has multiple roles (role).
-
-:::image type="content" source="./media/code-optimizations/code-optimizations-filter.png" alt-text="Screenshot of available filters for Code Optimizations results.":::
 
 ## View insights
 
