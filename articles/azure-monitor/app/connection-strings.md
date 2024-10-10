@@ -160,23 +160,17 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 #### Application Insights SDKs (Classic API)
 
-* **ASP.NET Core** - Step 3 in [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio).
+* **ASP.NET Core** - See step 3 in [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio).
 
-* **.NET** - Step 4 in [Configure Application Insights for your ASP.NET website](asp-net.md#add-application-insights-manually-no-visual-studio).
+* **.NET** - See step 4 in [Configure Application Insights for your ASP.NET website](asp-net.md#add-application-insights-manually-no-visual-studio).
 
-* **Java** - [Configuration options: Azure Monitor Application Insights for Java](java-standalone-config.md#connection-string)
+* **Java** - See OpenTelemetry below.
 
-* **JavaScript**
+* **JavaScript** - See [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code).
 
-    * Use the [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started).
-    * Step 2 in [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md?tabs=npmpackage#add-the-javascript-code).
+* **Node.js** - See [Monitor your Node.js services and apps with Application Insights](nodejs.md#basic-usage).
 
-* **Node.js**
-
-    * [Basic usage](nodejs.md#basic-usage)
-    * [Use multiple connection strings](nodejs.md#use-multiple-connection-strings)
-
-* **OpenCensus Python (deprecated)** - Step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing)
+* **OpenCensus Python (deprecated)** - See step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing).
 
 #### Azure Monitor OpenTelemetry Distro
 
@@ -189,7 +183,7 @@ Go to [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#con
 | ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
 | .NET (Framework) | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
 | Java | N/A | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
-| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) | N/A |
+| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | N/A |
 | Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
 | Python | [OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
 
