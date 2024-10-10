@@ -18,7 +18,7 @@ Now that you set up and configured Code Optimizations on your app, access and vi
 
 You can access Code Optimizations through two main entry points:
 
-- [Via the Code Optimizations overview page.](#via-the-code-optimizations-overview-page-preview)
+- [Via the Code Optimizations consolidated overview page.](#via-the-code-optimizations-consolidated-overview-page-preview)
 - [Via individual Application Insights resources.](#via-individual-application-insights-resources)
 
 ### Via the Code Optimizations consolidated overview page (preview)
