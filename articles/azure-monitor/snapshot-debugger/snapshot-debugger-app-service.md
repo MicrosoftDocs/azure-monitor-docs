@@ -18,6 +18,7 @@ ms.custom: devdivchpfy22, devx-track-arm-template, devx-track-dotnet
 Snapshot Debugger currently supports ASP.NET and ASP.NET Core apps running on Azure App Service on Windows service plans.
 
 We recommend that you run your application on the Basic or higher service tiers when using Snapshot Debugger. For most applications:
+
 * The Free and Shared service tiers don't have enough memory or disk space to save snapshots. 
 * The Consumption tier isn't currently available for Snapshot Debugger.
 
@@ -101,7 +102,7 @@ Generate traffic to your application that can trigger an exception. Then, wait 1
 
 Currently the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide) through the Application Insights Connection String.
 
-| Connection String Property | US Government Cloud                 | China Cloud                         |  |
+| Connection String Property | US Government Cloud                 | China Cloud                         |
 |----------------------------|-------------------------------------|-------------------------------------|
 | SnapshotEndpoint           | `https://snapshot.monitor.azure.us` | `https://snapshot.monitor.azure.cn` |
 

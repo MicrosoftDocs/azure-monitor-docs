@@ -8,7 +8,7 @@ ms.reviewer: cogoodson
 
 # Migrate from Application Insights instrumentation keys to connection strings
 
-This article walks through migrating from instrumentation keys to connection strings. To learn about new capabilities connection strings provide over instrumentation keys, go to [Connection strings in Application Insights](connection-strings.md#new-capabilities).
+This article walks through migrating from instrumentation keys to connection strings. To learn about new capabilities connection strings provide over instrumentation keys, go to [Connection strings in Application Insights](connection-strings.md).
 
 ## Prerequisites
 

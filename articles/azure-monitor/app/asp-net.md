@@ -8,7 +8,7 @@ ms.devlang: csharp
 
 # Configure Application Insights for your ASP.NET website
 
-This procedure configures your ASP.NET web app to send telemetry to the [Application Insights](./app-insights-overview.md) feature of the Azure Monitor service. It works for ASP.NET apps that are hosted either in your own Internet Information Servers (IIS) on-premises or in the cloud.
+This procedure configures your ASP.NET web app to send telemetry to [Application Insights](./app-insights-overview.md). It works for ASP.NET apps hosted either in your own Internet Information Servers (IIS) on-premises or in the cloud.
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
 
@@ -19,26 +19,26 @@ This procedure configures your ASP.NET web app to send telemetry to the [Applica
 To add Application Insights to your ASP.NET website, you need to:
 
 > [!div class="checklist"]
-> * Install the latest version of [Visual Studio 2019 for Windows](https://www.visualstudio.com/downloads/) with the following workloads:<br>
->	&ensp;• ASP.NET and web development<br>
->	&ensp;• Azure development
+> * Install the latest version of [Visual Studio for Windows](https://www.visualstudio.com/downloads/) with the following workloads:
+>     * ASP.NET and web development
+>     * Azure development
 > * Create a [free Azure account](https://azure.microsoft.com/free/) if you don't already have an Azure subscription.
 > * Create an [Application Insights workspace-based resource](create-workspace-resource.md).
 
 > [!IMPORTANT]
 > We recommend [connection strings](./connection-strings.md?tabs=net) over instrumentation keys. New Azure regions *require* the use of connection strings instead of instrumentation keys.
 >
-> A connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints that your resource will use as a destination for your telemetry. You'll need to copy the connection string and add it to your application's code or to the “APPLICATIONINSIGHTS_CONNECTION_STRING” environment variable.
+> A connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints that your resource will use as a destination for your telemetry. You'll need to copy the connection string and add it to your application's code or to the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable.
 
 ## Create a basic ASP.NET web app
 
-1. Open Visual Studio 2019.
+1. Open Visual Studio.
 1. Select **File** > **New** > **Project**.
-1. Select **ASP.NET Web Application(.NET Framework) C#**.
+1. Select **ASP.NET Web Application (.NET Framework) C#**.
 1. Enter a project name, and then select **Create**.
 1. Select **MVC** > **Create**. 
 
-## Add Application Insights automatically
+## Add Application Insights automatically (Visual Studio)
 
 This section guides you through automatically adding Application Insights to a template-based ASP.NET web app. From within your ASP.NET web app project in Visual Studio:
 
@@ -56,7 +56,7 @@ This section guides you through automatically adding Application Insights to a t
 
 1. Run your application by selecting **IIS Express**. A basic ASP.NET app opens. As you browse through the pages on the site, telemetry is sent to Application Insights.
 
-## Add Application Insights manually
+## Add Application Insights manually (no Visual Studio)
 
 This section guides you through manually adding Application Insights to a template-based ASP.NET web app. This section assumes that you're using a web app based on the standard Model, View, and Controller (MVC) web app template for the ASP.NET Framework.
 
@@ -556,7 +556,7 @@ To disable telemetry correlation in configuration, see `<ExcludeComponentCorrela
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
 
-There's a known issue in the current version of Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
+There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 

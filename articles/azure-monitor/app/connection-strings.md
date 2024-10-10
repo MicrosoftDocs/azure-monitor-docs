@@ -9,7 +9,7 @@ ms.reviewer: cogoodson
 
 # Connection strings in Application Insights
 
-Connection strings define to which Application Insights resource your instrumented application sends telemetry data. A connection string consist of a list of settings represented as key-value pairs separated by a semicolon. This provides a single configuration setting and eliminates the need for multiple proxy settings.
+Connection strings define to which Application Insights resource your instrumented application sends telemetry data. A connection string consist of a list of settings represented as key-value pairs separated by a semicolon, which provides a single configuration setting and eliminates the need for multiple proxy settings.
 
 > [!IMPORTANT]
 > The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***These ikey unique identifiers aren't security tokens or security keys.***
@@ -156,20 +156,25 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 ### Code samples
 
-**Application Insights SDKs (Classic API):**
+#### Application Insights SDKs (Classic API)
 
 * **ASP.NET Core** - Step 3 in [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio).
-* **.NET** - Step 4 in [Configure Application Insights for your ASP.NET website](asp-net.md#).
+
+* **.NET** - Step 4 in [Configure Application Insights for your ASP.NET website](asp-net.md#add-application-insights-manually-no-visual-studio).
+
 * **Java** - [Configuration options: Azure Monitor Application Insights for Java](java-standalone-config.md#connection-string)
+
 * **JavaScript** - JavaScript doesn't support the use of environment variables. You have two options:
     * Use the JavaScript (Web) SDK Loader Script, see [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started).
-    * Manual setup: Step 2 in [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md#npm-package).
+    * Manual setup: Step 2 in [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md?tabs=npmpackage#add-the-javascript-code).
+
 * **Node.js**
     * [Basic usage](nodejs.md#basic-usage)
     * [Use multiple connection strings](nodejs.md#use-multiple-connection-strings)
-* OpenCensus Python (deprecated) - Step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#logs)
 
-**Azure Monitor OpenTelemetry Distro:**
+* **OpenCensus Python (deprecated)** - Step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#logs)
+
+#### Azure Monitor OpenTelemetry Distro
 
 Go to [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#connection-string) and select the corresponding tab.
 
