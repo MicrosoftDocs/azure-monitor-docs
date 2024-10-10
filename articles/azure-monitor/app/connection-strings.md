@@ -156,6 +156,8 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 ### Code samples
 
+***Option 1***
+
 #### Application Insights SDKs (Classic API)
 
 * **ASP.NET Core** - Step 3 in [Enable Application Insights server-side telemetry (no Visual Studio)](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio).
@@ -164,38 +166,32 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 * **Java** - [Configuration options: Azure Monitor Application Insights for Java](java-standalone-config.md#connection-string)
 
-* **JavaScript** - JavaScript doesn't support the use of environment variables. You have two options:
-    * Use the JavaScript (Web) SDK Loader Script, see [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started).
-    * Manual setup: Step 2 in [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md?tabs=npmpackage#add-the-javascript-code).
+* **JavaScript**
+
+    * Use the [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started).
+    * Step 2 in [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md?tabs=npmpackage#add-the-javascript-code).
 
 * **Node.js**
+
     * [Basic usage](nodejs.md#basic-usage)
     * [Use multiple connection strings](nodejs.md#use-multiple-connection-strings)
 
-* **OpenCensus Python (deprecated)** - Step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#logs)
+* **OpenCensus Python (deprecated)** - Step 3 in [Set up Azure Monitor for your Python application](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing)
 
 #### Azure Monitor OpenTelemetry Distro
 
 Go to [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#connection-string) and select the corresponding tab.
 
-<!--
-# [.NET Framework](#tab/dotnet-framework)
+***Option 2***
 
+| Instrumentation | ASP.NET Core | .NET (Framework) | Java | Java native | JavaScript | Node.js | Python |
+|-----------------|--------------|------------------|------|------------|---------|--------|
+| Application Insights SDK (Classic API) | [link](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [link](asp-net.md#add-application-insights-manually-no-visual-studio) | [link](java-standalone-config.md#connection-string) | N/A | * [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started)<br>* [Manual](javascript-sdk.md?tabs=npmpackage#add-the-javascript-code) | [Single](nodejs.md#basic-usage)<br>[Multiple](nodejs.md#use-multiple-connection-strings) | [link](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) |
+| OpenTelemetry | [link](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) | [link](opentelemetry-configuration.md?tabs=net#connection-string) | [link](opentelemetry-configuration.md?tabs=java#connection-string) | [link](opentelemetry-configuration.md?tabs=java-native#connection-string) | N/A | [link](opentelemetry-configuration.md?tabs=nodejs#connection-string) | [link](opentelemetry-configuration.md?tabs=python#connection-string) |
+
+
+<!-- .NET Framework
 Set the property [TelemetryConfiguration.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/add45ceed35a817dc7202ec07d3df1672d1f610d/BASE/src/Microsoft.ApplicationInsights/Extensibility/TelemetryConfiguration.cs#L271-L274) or [ApplicationInsightsServiceOptions.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/81288f26921df1e8e713d31e7e9c2187ac9e6590/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs#L66-L69).
-
-# [Python](#tab/python)
-
-We recommend that users set the environment variable.
-
-To explicitly set the connection string in code:
-
-```python
-from opencensus.ext.azure.trace_exporter import AzureExporter
-from opencensus.trace.samplers import ProbabilitySampler
-from opencensus.trace.tracer import Tracer
-
-tracer = Tracer(exporter=AzureExporter(connection_string='InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://{region}.in.applicationinsights.azure.com/;LiveEndpoint=https://{region}.livediagnostics.monitor.azure.com/'), sampler=ProbabilitySampler(1.0))
-```
 -->
 
 ## Frequently asked questions
