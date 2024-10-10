@@ -184,22 +184,14 @@ Go to [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#con
 
 ***Option 2***
 
-| Instrumentation | ASP.NET Core | .NET (Framework) | Java | Java native | JavaScript | Node.js | Python |
-|-----------------|--------------|------------------|------|------------|---------|--------|
-| Application Insights SDK (Classic API) | [link](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [link](asp-net.md#add-application-insights-manually-no-visual-studio) | [link](java-standalone-config.md#connection-string) | N/A |  | • [Single](nodejs.md#basic-usage)<br>• [Multiple](nodejs.md#use-multiple-connection-strings) | [link](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) |
-| OpenTelemetry | [link](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) | [link](opentelemetry-configuration.md?tabs=net#connection-string) | [link](opentelemetry-configuration.md?tabs=java#connection-string) | [link](opentelemetry-configuration.md?tabs=java-native#connection-string) | N/A | [link](opentelemetry-configuration.md?tabs=nodejs#connection-string) | [link](opentelemetry-configuration.md?tabs=python#connection-string) |
-
-***Option 3***
-
 | Instrumentation | CLassic API | OpenTelemetry |
 |-----------------|-------------|---------------|
-| ASP.NET Core | [Manual instrumentation](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
-| .NET (Framework) | [Manual instrumentation](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
-| Java | [Standalone](java-standalone-config.md#connection-string) | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
-| Java native | N/A | [link](opentelemetry-configuration.md?tabs=java-native#connection-string) |
-| JavaScript | • [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started)<br>• [Manual instrumentation](javascript-sdk.md?tabs=npmpackage#add-the-javascript-code) | N/A |
-| Node.js | • [Single connection string](nodejs.md#basic-usage)<br>• [Multiple connection strings](nodejs.md#use-multiple-connection-strings) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
-| Python | [Manual instrumentation](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
+| ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
+| .NET (Framework) | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
+| Java | N/A | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
+| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) | N/A |
+| Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
+| Python | [OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
 
 <!-- .NET Framework
 Set the property [TelemetryConfiguration.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/add45ceed35a817dc7202ec07d3df1672d1f610d/BASE/src/Microsoft.ApplicationInsights/Extensibility/TelemetryConfiguration.cs#L271-L274) or [ApplicationInsightsServiceOptions.ConnectionString](https://github.com/microsoft/ApplicationInsights-dotnet/blob/81288f26921df1e8e713d31e7e9c2187ac9e6590/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs#L66-L69).
