@@ -3,7 +3,7 @@ title: Monitor applications on AKS with Azure Monitor Application Insights (Prev
 description: Azure Monitor integrates seamlessly with your application running on Azure Kubernetes Service and allows you to spot the problems with your apps quickly.
 ms.topic: conceptual
 ms.custom: devx-track-extended-java
-ms.date: 09/13/2024
+ms.date: 10/10/2024
 ms.reviewer: abinetabate
 ---
 
@@ -156,11 +156,11 @@ Run the following command after all custom resources are created and deployments
 kubectl rollout restart deployment <deployment-name> -n mynamespace1
 ```
 
-This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify that Application Insights is enabled for your application by generating traffic for your application and navigating to your Application Insights resource. You will see your app represented as a cloud role in Application Insights experiences such as Application Map, Failures, and Performance blades.
+This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences such as Application Map, Failures, and Performance blades.
 
 ## Remove Autoinstrumentation for AKS
 
-Ensure that you do not have any instrumented deployments. To uninstrument an instrumented deployment remove the associated Instrumentation custom resource and run kubectl rollout restart on the deployment. Next run the following command.
+Ensure that you don't have any instrumented deployments. To uninstrument an instrumented deployment, remove the associated Instrumentation custom resource and run `kubectl rollout restart` on the deployment. Next run the following command.
 
 ```azurecli
 az aks update --resource-group={resource_group} --name={cluster_name} --disable-azure-monitor-app-monitoring 
@@ -192,13 +192,13 @@ To turn autoinstrumentation back on after disabling.
 
 You can opt to collect logs in Application Insights as an addition to or replacement for Container Insights logs. 
 
-Enabling logs in Application Insights will provide correlated logs, allowing users to easily view distributed traces alongside their related logs. Further, some microservices may not write logs to the console so Container Insights will not be able to collect them and only Application Insights instrumentation will capture these logs. 
+Enabling logs in Application Insights provide correlated logs, allowing users to easily view distributed traces alongside their related logs. Further, some microservices don't write logs to the console so Container Insights isn't able to collect them and only Application Insights instrumentation captures these logs.
 
-Conversely, Application Insights might not be able to instrument all microservices, such as those using NGINX or unsupported languages, so users might prefer to rely on Container Insights logs only for such microservices. 
+Conversely, Application Insights might not be able to instrument all microservices. As an example, those using NGINX or unsupported languages. Users might prefer to rely on Container Insights logs only for such microservices.
 
-You may also choose to enable both sources for logs if you have multiple observability teams such as infra engineers using Cotnainer Insights and developers using Application Insights.
+You can also choose to enable both sources for logs if you have multiple observability teams such as infra engineers using Container Insights and developers using Application Insights.
 
-Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, Container Insights Logs, or both. Should you chose to disable Container Insights logs, see [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap). 
+Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, Container Insights Logs, or both. If you disable Container Insights logs, see [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap).
 
 > [!IMPORTANT]
 > This feature will not collect application logs from standard logging frameworks and send them to Application Insights unless you enable logs in Application Insights. This is to avoid unnecessary duplication and increased cost.
@@ -218,9 +218,9 @@ Use the following annotation to enable logs in Application Insights
 
 #### Does AKS autoinstrumentation support custom metrics?
 
-If you want custom metrics in .NET or Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
+If you want custom metrics in .NET or Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro.](opentelemetry-enable.md)
 
-Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics then they will flow through when autoinstrumentation is enabled.
+Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
 
 #### Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
 
@@ -240,9 +240,13 @@ Refer to this chart to determine when autoinstrumentation or manual instrumentat
 | Node.js  | Manual instrumentation |
 | Java     | Autoinstrumentation    |
 
-#### How do I ensure that I am using the latest and most secure versions of Azure Monitor OpenTelemetry Distro?
+#### How do I ensure I'm using the latest and most secure versions of Azure Monitor OpenTelemetry Distro?
 
-Vulnerabilities detected in Azure Monitor OpenTelemetry Distro are prioritized, fixed, and released in the next version. AKS autoinstrumentation injects the latest version of Azure Monitor OpenTelemetry Distro into your application pods every time your deployment is changed or restarted. For deployments that have not been touched for a long time, AzMon Distro will eventually become vulnerable. Any update to the deployment or a restart will ensure that the latest version of the Distro is being used.
+Vulnerabilities detected in the Azure Monitor OpenTelemetry Distro are prioritized, fixed, and released in the next version.
+
+AKS autoinstrumentation injects the latest version of the Azure Monitor OpenTelemetry Distro into your application pods every time your deployment is changed or restarted.
+
+The OpenTelemetry Distro can become vulnerable on deployments that aren't changed or restarted for extended periods of time. For this reason, we suggest updating or restarting deployments weekly to ensure a recent version of the Distro is being used.
 
 ## Troubleshooting
 
