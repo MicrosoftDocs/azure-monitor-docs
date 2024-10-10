@@ -217,9 +217,9 @@ This section guides you through manually adding Application Insights to a templa
     </ApplicationInsights>
     ```
 
-1. Add the connection string. This can be done in two ways.
+1. Add the connection string, which can be done in two ways:
 
-    * (Recommended) Set the connection string in configuration:
+    * **(Recommended)** Set the connection string in configuration.
 
         Before the closing `</ApplicationInsights>` tag in *ApplicationInsights.config*, add the connection string for your Application Insights resource. You can find your connection string on the overview pane of the newly created Application Insights resource.
 
@@ -227,7 +227,9 @@ This section guides you through manually adding Application Insights to a templa
         <ConnectionString>Copy the connection string from your Application Insights resource</ConnectionString>
         ```
 
-    * Set the connection string in code:
+    * Set the connection string in code.
+
+        Provide a connection string in your *program.cs* class.
 
         ```csharp
         var configuration = new TelemetryConfiguration
