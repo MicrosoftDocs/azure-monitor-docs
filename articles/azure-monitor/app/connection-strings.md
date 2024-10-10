@@ -2,14 +2,16 @@
 title: Connection strings in Application Insights - Azure Monitor | Microsoft Docs
 description: This article shows how to use connection strings.
 ms.topic: conceptual
-ms.date: 10/07/2024
+ms.date: 10/10/2024
 ms.custom: devx-track-csharp
 ms.reviewer: cogoodson
 ---
 
 # Connection strings in Application Insights
 
-Connection strings specify to which Application Insights resource your instrumented application sends telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
+Connection strings specify to which Application Insights resource your instrumented application sends telemetry data.
+
+A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
 > The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***These ikey unique identifiers aren't security tokens or security keys.***
@@ -140,12 +142,12 @@ Run the following command in the [Azure CLI](/cli/azure/account?view=azure-cli-l
 
 ## Set a connection string
 
-Connection strings are supported by all our OpenTelemetry offerings and the following SDK versions:
+Connection strings are supported by all our OpenTelemetry offerings and the following SDK versions onwards:
 
-* .NET v2.12.0 and newer
-* JavaScript v2.3.0 and newer
-* NodeJS v1.5.0 and newer
-* Python v1.0.0 and newer
+* .NET v2.12.0
+* JavaScript v2.3.0
+* NodeJS v1.5.0
+* Python v1.0.0
 
 You can set a connection string in code, by using an environment variable, or a configuration file.
 

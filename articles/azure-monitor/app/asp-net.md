@@ -68,7 +68,7 @@ This section guides you through manually adding Application Insights to a templa
 
 1. In some cases, the *ApplicationInsights.config* file is created for you automatically. If the file is already present, skip to step 4. 
 
-Create it yourself if it's missing. In the root directory of an ASP.NET application, create a new file called *ApplicationInsights.config*.
+    Create it yourself if it's missing. In the root directory of an ASP.NET application, create a new file called *ApplicationInsights.config*.
 
 1. Copy the following XML configuration into your newly created file:
 
@@ -466,20 +466,20 @@ When you add Application Insights to your project, it automatically creates file
 
 When you add Application Insights Telemetry to a Visual Studio ASP.NET project, it adds the following files:
 
-* ApplicationInsights.config
-* AiHandleErrorAttribute.cs
+* *ApplicationInsights.config*
+* *AiHandleErrorAttribute.cs*
 
 The following pieces of code are automatically added:
 
 
 
-* [Your project's name].csproj
+* *[Your project's name].csproj*
 
     ```C#
      <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
     ```
 
-* Packages.config
+* *Packages.config*
 
     ```xml
     <packages>
@@ -504,9 +504,9 @@ The following pieces of code are automatically added:
     </packages>
     ```
 
-* Layout.cshtml
+* *Layout.cshtml*
 
-    If your project has a Layout.cshtml file, the following code is added.
+    If your project has a *Layout.cshtml* file, the following code is added.
     
     ```html
     <head>
@@ -527,7 +527,7 @@ The following pieces of code are automatically added:
     </head>
     ```
 
-* ConnectedService.json
+* *ConnectedService.json*
 
     ```json
     {
@@ -539,7 +539,7 @@ The following pieces of code are automatically added:
     }
     ```
 
-* FilterConfig.cs
+* *FilterConfig.cs*
 
     ```csharp
             public static void RegisterGlobalFilters(GlobalFilterCollection filters)

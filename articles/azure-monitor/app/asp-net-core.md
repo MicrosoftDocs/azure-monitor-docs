@@ -36,13 +36,14 @@ An [OpenTelemetry-based .NET offering](opentelemetry-enable.md?tabs=net) is avai
 
 The [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) can monitor your applications no matter where or how they run. If your application is running and has network connectivity to Azure, telemetry can be collected. Application Insights monitoring is supported everywhere .NET Core is supported and covers the following scenarios:
 
-* **Operating system**: Windows, Linux, or Mac
-* **Hosting method**: In process or out of process
-* **Deployment method**: Framework dependent or self-contained
-* **Web server**: Internet Information Server (IIS) or Kestrel
-* **Hosting platform**: The Web Apps feature of Azure App Service, Azure Virtual Machines, Docker, and Azure Kubernetes Service (AKS)
-* **.NET version**: All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview
-* **IDE**: Visual Studio, Visual Studio Code, or command line
+> [!div class="checklist"]
+> * **Operating system**: Windows, Linux, or Mac
+> * **Hosting method**: In process or out of process
+> * **Deployment method**: Framework dependent or self-contained
+> * **Web server**: Internet Information Server (IIS) or Kestrel
+> * **Hosting platform**: The Web Apps feature of Azure App Service, Azure Virtual Machines, Docker, and Azure Kubernetes Service (AKS)
+> * **.NET version**: All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview
+> * **IDE**: Visual Studio, Visual Studio Code, or command line
 
 ## Prerequisites
 
@@ -67,7 +68,7 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
 
 1. After you add Application Insights to your project, check to confirm that you're using the latest stable release of the SDK. Go to **Project** > **Manage NuGet Packages** > **Microsoft.ApplicationInsights.AspNetCore**. If you need to, select **Update**.
 
-     :::image type="content" source="./media/asp-net-core/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
+    :::image type="content" source="./media/asp-net-core/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
 ## Enable Application Insights server-side telemetry (no Visual Studio)
 
@@ -75,7 +76,7 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
 
     We recommend that you always use the latest stable version. Find full release notes for the SDK on the [open-source GitHub repo](https://github.com/Microsoft/ApplicationInsights-dotnet/releases).
 
-    The following code sample shows the changes to add to your project's `.csproj` file:
+    The following code sample shows the changes to add to your project's *.csproj* file:
 
     ```xml
     <ItemGroup>
@@ -83,9 +84,9 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
     </ItemGroup>
     ```
 
-1. Add `AddApplicationInsightsTelemetry()` to your `program.cs` class.
+1. Add `AddApplicationInsightsTelemetry()` to your *program.cs* class.
 
-    Add `builder.Services.AddApplicationInsightsTelemetry();` after the `WebApplication.CreateBuilder()` method in your `Program` class, as in this example:
+    Add `builder.Services.AddApplicationInsightsTelemetry();` after the `WebApplication.CreateBuilder()` method, as in this example:
     
     ```csharp
     // This method gets called by the runtime. Use this method to add services to the container.
@@ -102,9 +103,9 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
     
 1. Add the connection string. This can be done in three ways:
 
-    * (Recommended) Set the connection string in configuration.
+    * **(Recommended)** Set the connection string in configuration.
     
-        Set the connection string in `appsettings.json` and make sure the configuration file is copied to the application root folder during publishing.
+        Set the connection string in *appsettings.json* and make sure the configuration file is copied to the application root folder during publishing.
     
         ```json
         {
@@ -134,7 +135,7 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
     
     * Set the connection string in code.
     
-        Provide a connection string as part of the `ApplicationInsightsServiceOptions` argument to `AddApplicationInsightsTelemetry`.
+        Provide a connection string as part of the `ApplicationInsightsServiceOptions` argument to `AddApplicationInsightsTelemetry` in your *program.cs* class.
 
 ### User secrets and other configuration providers
 
@@ -142,7 +143,7 @@ If you want to store the connection string in ASP.NET Core user secrets or retri
 
 In `Microsoft.ApplicationInsights.AspNetCore` version [2.15.0](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) and later, calling `services.AddApplicationInsightsTelemetry()` automatically reads the connection string from `Microsoft.Extensions.Configuration.IConfiguration` of the application. There's no need to explicitly provide `IConfiguration`.
 
-If `IConfiguration` has loaded configuration from multiple providers, then `services.AddApplicationInsightsTelemetry` prioritizes configuration from `appsettings.json`, irrespective of the order in which providers are added. Use the `services.AddApplicationInsightsTelemetry(IConfiguration)` method to read configuration from `IConfiguration` without this preferential treatment for `appsettings.json`.
+If `IConfiguration` has loaded configuration from multiple providers, then `services.AddApplicationInsightsTelemetry` prioritizes configuration from *appsettings.json*, irrespective of the order in which providers are added. Use the `services.AddApplicationInsightsTelemetry(IConfiguration)` method to read configuration from `IConfiguration` without this preferential treatment for *appsettings.json*.
 
 ## Run your application
 
@@ -241,13 +242,13 @@ HttpContext.Features.Get<RequestTelemetry>().Properties["myProp"] = someData
 
 The preceding steps are enough to help you start collecting server-side telemetry. If your application has client-side components, follow the next steps to start collecting [usage telemetry](./usage.md) using JavaScript (Web) SDK Loader Script injection by configuration.
 
-1. In `_ViewImports.cshtml`, add injection:
+1. In *_ViewImports.cshtml*, add injection:
 
     ```cshtml
     @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
     ```
 
-1. In `_Layout.cshtml`, insert `HtmlHelper` at the end of the `<head>` section but before any other script. If you want to report any custom JavaScript telemetry from the page, inject it after this snippet:
+1. In *_Layout.cshtml*, insert `HtmlHelper` at the end of the `<head>` section but before any other script. If you want to report any custom JavaScript telemetry from the page, inject it after this snippet:
 
     ```cshtml
         @Html.Raw(JavaScriptSnippet.FullScript)
@@ -262,16 +263,16 @@ As an alternative to using `FullScript`, `ScriptBody` is available starting in A
 </script>
 ```
 
-The `.cshtml` file names referenced earlier are from a default MVC application template. Ultimately, if you want to properly enable client-side monitoring for your application, the JavaScript JavaScript (Web) SDK Loader Script must appear in the `<head>` section of each page of your application that you want to monitor. Add the JavaScript JavaScript (Web) SDK Loader Script to `_Layout.cshtml` in an application template to enable client-side monitoring.
+The *.cshtml* file names referenced earlier are from a default MVC application template. Ultimately, if you want to properly enable client-side monitoring for your application, the JavaScript JavaScript (Web) SDK Loader Script must appear in the `<head>` section of each page of your application that you want to monitor. Add the JavaScript JavaScript (Web) SDK Loader Script to *_Layout.cshtml* in an application template to enable client-side monitoring.
 
-If your project doesn't include `_Layout.cshtml`, you can still add [client-side monitoring](./website-monitoring.md) by adding the JavaScript JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
+If your project doesn't include *_Layout.cshtml*, you can still add [client-side monitoring](./website-monitoring.md) by adding the JavaScript JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
 
 > [!NOTE]
 > JavaScript injection provides a default configuration experience. If you require [configuration](./javascript.md#configuration) beyond setting the connection string, you're required to remove auto-injection as described and manually add the [JavaScript SDK](./javascript.md#add-the-javascript-sdk).
 
 ## Configure the Application Insights SDK
 
-You can customize the Application Insights SDK for ASP.NET Core to change the default configuration. Users of the Application Insights ASP.NET SDK might be familiar with changing configuration by using `ApplicationInsights.config` or by modifying `TelemetryConfiguration.Active`. For ASP.NET Core, make almost all configuration changes in the `ConfigureServices()` method of your `Startup.cs` class, unless you're directed otherwise. The following sections offer more information.
+You can customize the Application Insights SDK for ASP.NET Core to change the default configuration. Users of the Application Insights ASP.NET SDK might be familiar with changing configuration by using *ApplicationInsights.config* or by modifying `TelemetryConfiguration.Active`. For ASP.NET Core, make almost all configuration changes in the `ConfigureServices()` method of your *Startup.cs* class, unless you're directed otherwise. The following sections offer more information.
 
 > [!NOTE]
 > In ASP.NET Core applications, changing configuration by modifying `TelemetryConfiguration.Active` isn't supported.
@@ -618,7 +619,7 @@ When you add Application Insights to your project, it creates files and adds cod
 
 When you add Application Insights Telemetry to a Visual Studio ASP.NET Core template project, it adds the following code:
 
-* [Your project's name].csproj
+* *[Your project's name].csproj*
 
     ```csharp
     <PropertyGroup>
@@ -635,7 +636,7 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
     </ItemGroup>
     ```
 
-* Appsettings.json:
+* *Appsettings.json*
 
     ```json
     "ApplicationInsights": {
@@ -643,7 +644,7 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
     }
     ```
 
-* ConnectedService.json
+* *ConnectedService.json*
     
     ```json
     {
@@ -654,7 +655,7 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
         }
     }
     ```
-* Startup.cs
+* *Startup.cs*
 
     ```csharp
     public void ConfigureServices(IServiceCollection services)
