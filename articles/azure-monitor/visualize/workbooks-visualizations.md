@@ -9,7 +9,6 @@ ms.date: 10/10/2024
 ms.reviewer: gardnerjr
 ---
 
-
 # Workbook visualizations
 
 Workbooks provide a rich set of capabilities for visualizing Azure Monitor data. The exact set of capabilities depends on the data sources and result sets, but you can expect them to converge over time. These controls allow you to present your analysis in rich interactive reports.

@@ -4,7 +4,7 @@ description: This article explains autoscale settings, how they work, and how th
 author: EdB-MSFT
 ms.service: azure-monitor
 ms.topic: conceptual
-ms.date: 11/29/2023
+ms.date: 10/09/2024
 ms.subservice: autoscale
 ms.author: edbaynash
 ms.reviewer: akkumari

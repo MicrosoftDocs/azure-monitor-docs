@@ -4,7 +4,7 @@ description: Learn how to add parameters to your workbook to collect input from 
 services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 09/17/2024
 ---
 
 # Workbook parameters

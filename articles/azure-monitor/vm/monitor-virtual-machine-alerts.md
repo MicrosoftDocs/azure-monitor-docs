@@ -161,6 +161,8 @@ This section describes memory alerts.
 
 #### Log search alert rules
 
+> [!NOTE]
+> If you need to specify the alert to one disc you can add this to the query: ```| where parse_json(Tags).["vm.azm.ms/mountId"] == "C:"```
 **Available memory in MB**
 
 

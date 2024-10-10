@@ -44,7 +44,7 @@ After you create your resource, you'll see corresponding workspace information i
 Select the blue link text to go to the associated Log Analytics workspace where you can take advantage of the new unified workspace query environment.
 
 > [!NOTE]
-> We still provide full backward compatibility for your Application Insights classic resource queries, workbooks, and log-based alerts. To query or view the [new workspace-based table structure or schema](convert-classic-resource.md#workspace-based-resource-changes), you must first go to your Log Analytics workspace. Select **Logs (Analytics)** in the **Application Insights** panes for access to the classic Application Insights query experience.
+> We still provide full backward compatibility for your Application Insights classic resource queries, workbooks, and log-based alerts. To query or view the [new workspace-based table structure or schema](/previous-versions/azure/azure-monitor/app/convert-classic-resource#workspace-based-resource-changes), you must first go to your Log Analytics workspace. Select **Logs (Analytics)** in the **Application Insights** panes for access to the classic Application Insights query experience.
 
 ## Copy the connection string
 
@@ -425,9 +425,6 @@ Unique customizations that commonly need to be manually re-created or updated fo
 - Any integration that relies on API keys, such as [release annotations](./release-and-work-item-insights.md?tabs=release-annotations) and [live metrics secure control channel](./live-stream.md#secure-the-control-channel). You need to generate new API keys and update the associated integration.
 - Continuous export in classic resources must be configured again.
 - Diagnostic settings in workspace-based resources must be configured again.
-          
-> [!NOTE]
-> If the resource you're creating in a new region is replacing a classic resource, we recommend that you explore the benefits of [creating a new workspace-based resource](#workspace-based-application-insights-resources). Alternatively, [migrate your existing resource to workspace based](./convert-classic-resource.md).
 
 ### Can I use providers('Microsoft.Insights', 'components').apiVersions[0] in my Azure Resource Manager deployments?
 
