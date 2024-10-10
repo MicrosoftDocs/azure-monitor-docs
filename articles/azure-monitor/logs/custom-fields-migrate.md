@@ -82,7 +82,7 @@ You're now ready to create the required KQL snippet and add it to a DCR. This lo
 
 2. Determine where your new KQL definition of the custom column needs to be placed.
  
-    - For logs collected using [Azure Monitor Agent (AMA)](../agents/agents-overview.md), [edit the DCR](../essentials/data-collection-rule-edit.md) collecting data for the table, adding a transformation. For an example, see [Samples](../essentials/data-collection-transformations.md#samples). The transformation query is defined in the `transformKql` element.
+    - For logs collected using [Azure Monitor Agent (AMA)](../agents/agents-overview.md), [edit the DCR](../essentials/data-collection-rule-edit.md) collecting data for the table, adding a transformation. For an example, see [Best practices and samples for transformations in Azure Monitor](../essentials/data-collection-transformations-best-practices.md). The transformation query is defined in the `transformKql` element.
     - For resource logs collected with [diagnostic settings](../essentials/diagnostic-settings.md), add the transformation to the [workspace default DCR](../essentials/data-collection-transformations-workspace.md). The table must [support transformations](../logs/tables-feature-support.md).
 
 

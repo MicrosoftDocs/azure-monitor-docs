@@ -36,7 +36,7 @@ A banner will be displayed to the users until April 2024 on the Summary and Issu
 
 :::image type="content" source="./media/impacted-resource-sec/access-banner-1.PNG" alt-text="Screenshot displaying the new role based access banner for security advisories.":::
 
-After April 2024, an error message on the Summary and Issue Updates tabs will be displayed to users who do not have the following required roles:
+After April 2024, an error message on the Summary and Issue Updates tabs will be displayed to users who do not have one of the following required roles:
 
 **Subscription level**
 - Subscription Owner
@@ -45,8 +45,12 @@ After April 2024, an error message on the Summary and Issue Updates tabs will be
 
 **Tenant level**
 - Security Admin/Security Reader
-- Global Admin/Tenant Admin
 - Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions or Microsoft.ResourceHealth/events/action permissions
+- Global Admin/Tenant Admin 
+
+>[!NOTE]
+> We recommend you do not use the Global Admin role unless absolutely necessary. It's use can create security risks by exposing sensitive data or allowing unauthorized changes. It can also violate the principle of least privilege, which states that users should only have the minimum level of permissions required for their tasks. 
+
 
 ### 2. Service Health API Changes
 
