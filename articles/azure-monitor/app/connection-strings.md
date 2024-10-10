@@ -12,7 +12,7 @@ ms.reviewer: cogoodson
 Connection strings specify to which Application Insights resource your instrumented application should send telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
-> The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys.***
+> The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
 >
 > If you want to protect your Application Insights resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
 
@@ -23,19 +23,7 @@ Connection strings specify to which Application Insights resource your instrumen
 * **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](connection-strings.md#set-a-connection-string).)
 * **Privacy (regional endpoints)**: Connection strings ease privacy concerns by sending data to regional endpoints, ensuring data doesn't leave a geographic region.
 
-### Transition to connection strings
-
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
-
-Scenarios most affected by this change:
-
-* **Firewall exceptions or proxy redirects**
-    
-    In cases where monitoring for intranet web server is required, our earlier solution asked you to add individual service endpoints to your configuration. For more information, see the [Can I monitor an intranet web server?](../ip-addresses.md#can-i-monitor-an-intranet-web-server). Connection strings offer a better alternative by reducing this effort to a single setting. A simple prefix, suffix amendment, allows automatic population and redirection of all endpoints to the right services.
-
-* **Sovereign or hybrid cloud environments**
-
-    Users can send data to a defined [Azure Government region](/azure/azure-government/compare-azure-government-global-azure#application-insights). By using connection strings, you can define endpoint settings for your intranet servers or hybrid cloud settings.
 
 ## Find your connection string
 

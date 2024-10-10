@@ -2,11 +2,17 @@
 title: Migrate from Application Insights instrumentation keys to connection strings
 description: Learn the steps required to upgrade from Azure Monitor Application Insights instrumentation keys to connection strings.
 ms.topic: conceptual
-ms.date: 12/15/2023
+ms.date: 10/10/2024
 ms.reviewer: cogoodson
 ---
 
 # Migrate from Application Insights instrumentation keys to connection strings
+
+On March 31, 2025, support for instrumentation key ingestion will end. Instrumentation key ingestion will continue to work, but we'll no longer provide updates or support for the feature. Scenarios most affected by this change:
+
+* **Firewall exceptions or proxy redirects** - In cases where monitoring for intranet web server is required, our earlier solution asked you to add individual service endpoints to your configuration. For more information, see the [Can I monitor an intranet web server?](../ip-addresses.md#can-i-monitor-an-intranet-web-server). Connection strings offer a better alternative by reducing this effort to a single setting. A simple prefix, suffix amendment, allows automatic population and redirection of all endpoints to the right services.
+
+* **Sovereign or hybrid cloud environments* - Users can send data to a defined [Azure Government region](/azure/azure-government/compare-azure-government-global-azure#application-insights). By using connection strings, you can define endpoint settings for your intranet servers or hybrid cloud settings.
 
 This article walks through migrating from instrumentation keys to connection strings. To learn about new capabilities connection strings provide over instrumentation keys, go to [Connection strings in Application Insights](connection-strings.md).
 
