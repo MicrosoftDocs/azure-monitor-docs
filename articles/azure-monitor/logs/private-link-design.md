@@ -16,7 +16,7 @@ As discussed in [Use Azure Private Link to connect networks to Azure Monitor](pr
 
 The simplest and most secure approach:
 1. Create a single private link connection, with a single private endpoint and a single Azure Monitor Private Link Scope (AMPLS). If your networks are peered, create the private link connection on the shared (or hub) virtual network.
-1. Add *all* Azure Monitor resources like Application Insights components, Log Analytics workspaces, and [data collection endpoints](../essentials/data-collection-endpoint-overview.md) to the AMPLS.
+1. Add *all* Azure Monitor resources like Application Insights components, Log Analytics workspaces, and [data collection endpoints](../essentials/data-collection-endpoint-overview) to the AMPLS.
 1. Block network egress traffic as much as possible.
 
 If you can't add all Azure Monitor resources to your AMPLS, you can still apply your private link to some resources, as explained in [Control how private links apply to your networks](./private-link-design.md#control-how-private-links-apply-to-your-networks). We don't recommend this approach because it doesn't prevent data exfiltration.
@@ -52,7 +52,7 @@ If your networks aren't peered, *you must also separate their DNS to use private
 To test private links locally without affecting other clients on your network, make sure not to update your DNS when you create your private endpoint. Instead, edit the hosts file on your machine so that it will send requests to the private link endpoints:
 
 * Set up a private link, but when you connect to a private endpoint, choose *not* to auto-integrate with the DNS (step 5b).
-* Configure the relevant endpoints on your machines' hosts files. To review the Azure Monitor endpoints that need mapping, see [Review your endpoint's DNS settings](./private-link-configure.md#review-your-endpoints-dns-settings).
+* Configure the relevant endpoints on your machines' hosts files. To review the Azure Monitor endpoints that need mapping, see [Review your endpoint's DNS settings](./private-link-configure#review-your-endpoints-dns-settings).
 
 We don't recommend that approach for production environments.
 
@@ -133,7 +133,7 @@ Restricting access as previously explained applies to data in the resource. Howe
 > * Log Analytics **Workspace Summary (deprecated)** pane (that shows the solutions dashboard)
 
 ## Application Insights considerations
-* You'll need to add resources hosting the monitored workloads to a private link. For example, see [Using private endpoints for Azure Web App](../../app-service/networking/private-endpoint.md).
+* You'll need to add resources hosting the monitored workloads to a private link. For example, see [Using private endpoints for Azure Web App](/azure/app-service/networking/private-endpoint).
 * Non-portal consumption experiences must also run on the private-linked virtual network that includes the monitored workloads.
 * To support private links for the Profiler and Debugger, you'll need to [provide your own storage account](../app/profiler-bring-your-own-storage.md).
 
@@ -163,7 +163,7 @@ Storage accounts are used in the ingestion process of custom logs. By default, s
 For more information on how to connect your own storage account, see [Customer-owned storage accounts for log ingestion](private-storage.md) and specifically [Use private links](private-storage.md#private-links) and [Link storage accounts to your Log Analytics workspace](private-storage.md#link-storage-accounts-to-your-log-analytics-workspace).
 
 ### Automation
-If you use Log Analytics solutions that require an Azure Automation account (such as Update Management, Change Tracking, or Inventory), you should also create a private link for your Automation account. For more information, see [Use Azure Private Link to securely connect networks to Azure Automation](../../automation/how-to/private-link-security.md).
+If you use Log Analytics solutions that require an Azure Automation account (such as Update Management, Change Tracking, or Inventory), you should also create a private link for your Automation account. For more information, see [Use Azure Private Link to securely connect networks to Azure Automation](/azure/automation/how-to/private-link-security).
 
 > [!NOTE]
 > Some products and Azure portal experiences query data through Resource Manager. In this case, they won't be able to query data over a private link unless private link settings are applied to Resource Manager too. To overcome this restriction, you can configure your resources to accept queries from public networks as explained in [Controlling network access to your resources](./private-link-design.md#control-network-access-to-your-resources). (Ingestion can remain limited to private link networks.)
@@ -184,7 +184,7 @@ We've identified the following products and experiences query workspaces through
 Note the following requirements.
 
 ### Network subnet size
-The smallest supported IPv4 subnet is /27 (using CIDR subnet definitions). Although Azure virtual networks [can be as small as /29](../../virtual-network/virtual-networks-faq.md#how-small-and-how-large-can-virtual-networks-and-subnets-be), Azure [reserves five IP addresses](../../virtual-network/virtual-networks-faq.md#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets). The Azure Monitor private link setup requires at least 11 more IP addresses, even if you're connecting to a single workspace. [Review your endpoint's DNS settings](./private-link-configure.md#review-your-endpoints-dns-settings) for the list of Azure Monitor private link endpoints.
+The smallest supported IPv4 subnet is /27 (using CIDR subnet definitions). Although Azure virtual networks [can be as small as /29](/azure/virtual-network/virtual-networks-faq.md#how-small-and-how-large-can-virtual-networks-and-subnets-be), Azure [reserves five IP addresses](/azure/virtual-network/virtual-networks-faq#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets). The Azure Monitor private link setup requires at least 11 more IP addresses, even if you're connecting to a single workspace. [Review your endpoint's DNS settings](./private-link-configure.md#review-your-endpoints-dns-settings) for the list of Azure Monitor private link endpoints.
 
 ### Agents
 The latest versions of the Windows and Linux agents must be used to support secure ingestion to Log Analytics workspaces. Older versions can't upload monitoring data over a private network.
@@ -211,10 +211,10 @@ $ sudo /opt/microsoft/omsagent/bin/omsadmin.sh -w <workspace id> -s <workspace k
 ```
 
 ### Azure portal
-To use Azure Monitor portal experiences such as Application Insights, Log Analytics, and [data collection endpoints](../essentials/data-collection-endpoint-overview.md), you need to allow the Azure portal and Azure Monitor extensions to be accessible on the private networks. Add **AzureActiveDirectory**, **AzureResourceManager**, **AzureFrontDoor.FirstParty**, and **AzureFrontdoor.Frontend** [service tags](../../firewall/service-tags.md) to your network security group.
+To use Azure Monitor portal experiences such as Application Insights, Log Analytics, and [data collection endpoints](../essentials/data-collection-endpoint-overview.md), you need to allow the Azure portal and Azure Monitor extensions to be accessible on the private networks. Add **AzureActiveDirectory**, **AzureResourceManager**, **AzureFrontDoor.FirstParty**, and **AzureFrontdoor.Frontend** [service tags](/azure/firewall/service-tags) to your network security group.
 
 ### Programmatic access
-To use the REST API, the Azure [CLI](/cli/azure/monitor), or PowerShell with Azure Monitor on private networks, add the [service tags](../../virtual-network/service-tags-overview.md) **AzureActiveDirectory** and **AzureResourceManager** to your firewall.
+To use the REST API, the Azure [CLI](/cli/azure/monitor), or PowerShell with Azure Monitor on private networks, add the [service tags](/azure/virtual-network/service-tags-overview) **AzureActiveDirectory** and **AzureResourceManager** to your firewall.
 
 ### Application Insights SDK downloads from a content delivery network
 Bundle the JavaScript code in your script so that the browser doesn't attempt to download code from a CDN. An example is provided on [GitHub](https://github.com/microsoft/ApplicationInsights-JS#npm-setup-ignore-if-using-snippet-setup).
@@ -229,4 +229,4 @@ If you're connecting to your Azure Monitor resources over a private link, traffi
 ## Next steps
 - Learn how to [configure your private link](private-link-configure.md).
 - Learn about [private storage](private-storage.md) for custom logs and customer-managed keys.
-- Learn about [Private Link for Automation](../../automation/how-to/private-link-security.md).
+- Learn about [Private Link for Automation](/azure/automation/how-to/private-link-security).
