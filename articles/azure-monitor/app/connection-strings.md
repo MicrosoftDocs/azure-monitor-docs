@@ -192,6 +192,7 @@ Go to [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#con
 ***Option 3***
 
 | Instrumentation | CLassic API | OpenTelemetry |
+|-----------------|-------------|---------------|
 | ASP.NET Core | [Manual instrumentation](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
 | .NET (Framework) | [Manual instrumentation](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
 | Java | [Standalone](java-standalone-config.md#connection-string) | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
