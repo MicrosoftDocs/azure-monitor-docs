@@ -15,7 +15,7 @@ Azure Workbooks let you easily query and combine data from different Azure subsc
 
 Stat helps you create dashboards that give you instant alerts when a service is healthy or unhealthy, or when important metrics drop below a certain level. This way, you stay informed and can quickly respond to critical changes.
 
-:::image type="content" source="./media/workbooks-stat-visualizations/stat-sample.png" lightbox="./media/workbooks-stat-visualizations/stat-sample.png" alt-text="Promo material for stat." border="false":::
+:::image type="content" source="./media/workbooks-stat-visualizations/stat-sample.png" lightbox="./media/workbooks-stat-visualizations/stat-sample.png" alt-text="Screenshot of various stat examples." border="false":::
 
 ## Add a stat
 
@@ -24,12 +24,12 @@ Stat helps you create dashboards that give you instant alerts when a service is 
 1. For **Query type**, select **Azure Resource Graph**. For **Resource type**, select, for example, **Application Insights**, and select the resources to target.
 1. Use the query editor to enter the KQL (Kusto Query Language) for your analysis.
 
-  ```kusto
-  requests
-  | where name !endswith('.eot')
-  | summarize Requests = count(), Users = dcount(user_Id) by name
-  | order by Requests desc
-  ```
+    ```kusto
+    requests
+    | where name !endswith('.eot')
+    | summarize Requests = count(), Users = dcount(user_Id) by name
+    | order by Requests desc
+    ```
 
 1. Set **Visualization** to **Stat**.
 1. Select the **Stat Settings** button to open the **Stat Settings** pane:
@@ -71,7 +71,7 @@ Stat visualizations can also process time series data and perform simple aggrega
 
 For the above data, the visualization would display the first value by default. If an aggregation function is specified, it applies the function to the selected column's values, summarizing the data accordingly.
 
-## Stat Settings
+## Stat settings
 
 | Setting                       | Description                                                                                                                                      |
 |:------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -102,13 +102,14 @@ Thresholds apply a specific color depending on the visualization's value meeting
 1. For **Query type**, select **Azure Resource Graph**. For **Resource type**, select, for example, **Application Insights**, and select the resources to target.
 1. Use the query editor to enter the KQL for your analysis.
 
-  ```kusto
-  ServiceHealthResources
-  | where type =~ 'Microsoft.ResourceHealth/events' 
-      and properties.EventType == 'ServiceIssue' 
-      and properties.Status == 'Active'
-  | summarize Status = iif(count() == 0, "OK", "Unhealthy")
-  ```
+    ```kusto
+    ServiceHealthResources
+    | where type =~ 'Microsoft.ResourceHealth/events' 
+        and properties.EventType == 'ServiceIssue' 
+        and properties.Status == 'Active'
+    | summarize Status = iif(count() == 0, "OK", "Unhealthy")
+    ```
+
 1. Set **Visualization** to **Stat**.
 1. Select the **Stat Settings** button to open the **Stat Settings** pane:
    - In **Use column**, set: `Status`
@@ -144,13 +145,14 @@ When the **Heatmap** option is selected, the visualization's color is selected a
 1. For **Query type**, select **Azure Resource Graph**. For **Resource type**, select, for example, **Application Insights**, and select the resources to target.
 1. Use the query editor to enter the KQL for your analysis.
 
-  ```kusto
-  ServiceHealthResources
-  | where type =~ 'Microsoft.ResourceHealth/events' 
-      and properties.EventType == 'ServiceIssue' 
-      and properties.Status == 'Active'
-  | summarize Count=count()
-  ```
+    ```kusto
+    ServiceHealthResources
+    | where type =~ 'Microsoft.ResourceHealth/events' 
+        and properties.EventType == 'ServiceIssue' 
+        and properties.Status == 'Active'
+    | summarize Count=count()
+    ```
+
 1. Set **Visualization** to **Stat**.
 1. Select the **Stat Settings** button to open the **Stat Settings** pane:
    - In **Use column**, set: `Count`
@@ -169,7 +171,7 @@ Depending on the value returned by the query in the `Count` column, the color fa
 ### Applying a static color
 When the **Static value** option is selected, the **Color** field dictates which color is used for the stat.
 
-## Use Cases
+## Use cases
 
 ### Querying AKS (Azure Kubernetes Service) clusters for resource usage
 
@@ -186,11 +188,11 @@ When the **Static value** option is selected, the **Color** field dictates which
      - Set the query to:
        - **Data source**: `Azure Resource Graph`
     
-  ```kusto
-resources 
-| where type =~ "microsoft.monitor/accounts" and isnotempty(todynamic(properties).metrics.prometheusQueryEndpoint) 
-| project id
-  ```
+        ```kusto
+        resources 
+        | where type =~ "microsoft.monitor/accounts" and isnotempty(todynamic(properties).metrics.prometheusQueryEndpoint) 
+        | project id
+        ```
 
    - Select **Save**.
 1. Select **Add parameter**, then configure the parameter:
@@ -200,17 +202,20 @@ resources
    - Select **Save**.
 1. Select **Done editing** to finish configuring the parameters.
    - Once the parameter queries finish loading, select the desired Prometheus instance you'd like to monitor.
-2. Use the **Add query** link to add a query control to the workbook.
-3. For **Query type**, select **Prometheus**.
-4. For Azure Monitor workspace, under **Resource Parameters**, select `Prometheus Instance`.
-5. For **Time Range**, under **Time Range Parameters**, select `TimeRange`.
-6. For **Visualization**, select `Stat`.
-7. For the query, choose which metric you'd like to monitor:
+1. Use the **Add query** link to add a query control to the workbook.
+1. For **Query type**, select **Prometheus**.
+1. For Azure Monitor workspace, under **Resource Parameters**, select `Prometheus Instance`.
+1. For **Time Range**, under **Time Range Parameters**, select `TimeRange`.
+1. For **Visualization**, select `Stat`.
+1. For the query, choose which metric you'd like to monitor:
    - CPU Utilization:
+   
      ```promql
      1 - avg(rate(node_cpu_seconds_total{mode="idle"}[5m]))
      ```
+
    - Memory Utilization:
+   
      ```promql
       1 - sum( sum(
       node_memory_MemAvailable_bytes or
@@ -222,16 +227,16 @@ resources
       )
       ) by (cluster)) / sum(node_memory_MemTotal_bytes)
      ```
-8. For each metric, the value must be formatted. Select **Stat Settings**.
+1. For each metric, the value must be formatted. Select **Stat Settings**.
    - Check **Custom number formatting**.
      - **Style**: `Percent`
      - **Minimum fractional digits**: `2` (or desired value)
      - **Maximum fractional digits**: `2` (or desired value)
      
-:::image type="content" source="./media/workbooks-stat-visualizations/stat-number-formatting.png" lightbox="./media/workbooks-stat-visualizations/stat-number-formatting.png" alt-text="Screenshot that shows number formatting settings.":::
+        :::image type="content" source="./media/workbooks-stat-visualizations/stat-number-formatting.png" lightbox="./media/workbooks-stat-visualizations/stat-number-formatting.png" alt-text="Screenshot that shows number formatting settings.":::
      
    - Select **Save and Close**.
-9. Select **Run Query** and see the desired metric.
-10. Select **Done Editing** to exit the step.
+1. Select **Run Query** and see the desired metric.
+1. Select **Done Editing** to exit the step.
 
-:::image type="content" source="./media/workbooks-stat-visualizations/stat-cpu-util.png" lightbox="./media/workbooks-stat-visualizations/stat-cpu-util.png" alt-text="Screenshot that shows CPU utilization through the Stat visualization in Workbooks.":::
+    :::image type="content" source="./media/workbooks-stat-visualizations/stat-cpu-util.png" lightbox="./media/workbooks-stat-visualizations/stat-cpu-util.png" alt-text="Screenshot that shows CPU utilization through the Stat visualization in Workbooks.":::
