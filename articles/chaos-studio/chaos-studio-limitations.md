@@ -25,6 +25,7 @@ The following are known limitations in Chaos Studio.
 - **Version support** - Review the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page for more information on operating system, browser, and integration version compatibility.
 - **PowerShell modules** - Chaos Studio doesn't have dedicated PowerShell modules at this time. For PowerShell, use our REST API
 - **Azure CLI** - Chaos Studio doesn't have dedicated AzCLI modules at this time. Use our REST API from AzCLI
+- **Terraform** - Chaos Studio does not officially support the available preview modules for Terraform. If you are using these modules and encounter an issue with the Terraform module itself, please file a Github issue on the Terraform page found [here] (https://github.com/hashicorp/terraform-provider-azurerm/issues).
 - **Azure Policy** - Chaos Studio doesn't support the applicable built-in policies for our service (audit policy for customer-managed keys and Private Link) at this time. 
 - **Private Link** - We don't support Azure portal UI experiments for Agent-based experiments using Private Link. These restrictions do NOT apply to our Service-direct faults
 - **Customer-Managed Keys** You need to use our 2023-10-27-preview REST API via a CLI to create CMK-enabled experiments. We don't support portal UI experiments using CMK at this time. Experiment info will appear in ARG within the subscription - this is a known issue today, but is limited to only ARG and only viewable by the subscription. 
