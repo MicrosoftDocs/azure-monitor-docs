@@ -16,7 +16,7 @@ As discussed in [Use Azure Private Link to connect networks to Azure Monitor](pr
 
 The simplest and most secure approach:
 1. Create a single private link connection, with a single private endpoint and a single Azure Monitor Private Link Scope (AMPLS). If your networks are peered, create the private link connection on the shared (or hub) virtual network.
-1. Add *all* Azure Monitor resources like Application Insights components, Log Analytics workspaces, and [data collection endpoints](../essentials/data-collection-endpoint-overview) to the AMPLS.
+1. Add *all* Azure Monitor resources like Application Insights components, Log Analytics workspaces, and [data collection endpoints](../essentials/data-collection-endpoint-overview.md) to the AMPLS.
 1. Block network egress traffic as much as possible.
 
 If you can't add all Azure Monitor resources to your AMPLS, you can still apply your private link to some resources, as explained in [Control how private links apply to your networks](./private-link-design.md#control-how-private-links-apply-to-your-networks). We don't recommend this approach because it doesn't prevent data exfiltration.
@@ -52,7 +52,7 @@ If your networks aren't peered, *you must also separate their DNS to use private
 To test private links locally without affecting other clients on your network, make sure not to update your DNS when you create your private endpoint. Instead, edit the hosts file on your machine so that it will send requests to the private link endpoints:
 
 * Set up a private link, but when you connect to a private endpoint, choose *not* to auto-integrate with the DNS (step 5b).
-* Configure the relevant endpoints on your machines' hosts files. To review the Azure Monitor endpoints that need mapping, see [Review your endpoint's DNS settings](./private-link-configure#review-your-endpoints-dns-settings).
+* Configure the relevant endpoints on your machines' hosts files. To review the Azure Monitor endpoints that need mapping, see [Review your endpoint's DNS settings](./private-link-configure.md#review-your-endpoints-dns-settings).
 
 We don't recommend that approach for production environments.
 
@@ -184,7 +184,7 @@ We've identified the following products and experiences query workspaces through
 Note the following requirements.
 
 ### Network subnet size
-The smallest supported IPv4 subnet is /27 (using CIDR subnet definitions). Although Azure virtual networks [can be as small as /29](/azure/virtual-network/virtual-networks-faq.md#how-small-and-how-large-can-virtual-networks-and-subnets-be), Azure [reserves five IP addresses](/azure/virtual-network/virtual-networks-faq#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets). The Azure Monitor private link setup requires at least 11 more IP addresses, even if you're connecting to a single workspace. [Review your endpoint's DNS settings](./private-link-configure.md#review-your-endpoints-dns-settings) for the list of Azure Monitor private link endpoints.
+The smallest supported IPv4 subnet is /27 (using CIDR subnet definitions). Although Azure virtual networks [can be as small as /29](/azure/virtual-network/virtual-networks-faq#how-small-and-how-large-can-virtual-networks-and-subnets-be), Azure [reserves five IP addresses](/azure/virtual-network/virtual-networks-faq#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets). The Azure Monitor private link setup requires at least 11 more IP addresses, even if you're connecting to a single workspace. [Review your endpoint's DNS settings](./private-link-configure.md#review-your-endpoints-dns-settings) for the list of Azure Monitor private link endpoints.
 
 ### Agents
 The latest versions of the Windows and Linux agents must be used to support secure ingestion to Log Analytics workspaces. Older versions can't upload monitoring data over a private network.
