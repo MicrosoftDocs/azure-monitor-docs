@@ -12,32 +12,31 @@ ms.date: 10/06/2024
 
 Prometheus is a popular open-source monitoring and alerting solution that's widely used in the cloud-native ecosystem. Prometheus is used to monitor and alert on the performance of infrastructure and workloads and often used in Kubernetes environments. 
 
+## Azure Monitor Managed Service for Prometheus
+
 Azure Monitor Managed Service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md) that provides a fully managed and scalable environment for running Prometheus. It simplifies the deployment, management, and scaling of Prometheus in an Azure Kubernetes Service, allowing you to focus on monitoring your applications and infrastructure.
 
-Use Prometheus as an Azure managed service, or as a self managed service to collect metrics from your Azure Kubernetes Service (AKS) clusters, Azure Arc-enabled Kubernetes clusters, virtual machines, and virtual machine scale sets.
+Use Prometheus as an Azure managed service, or as a self managed service to collect metrics. Prometheus metrics can be collected from your Azure Kubernetes Service (AKS) clusters, Azure Arc-enabled Kubernetes clusters, virtual machines, and virtual machine scale sets.
 
 Prometheus metrics are stored in an Azure Monitor workspace, where you can analyze and visualize the data using [Metrics Explorer with PromQL](./metrics-explorer.md) and [Azure Managed Grafana](/azure/managed-grafana/overview).
 
+As a fully managed service, Azure Monitor managed service for Prometheus automatically deploys Prometheus in AKS or ARC-enabled Kubernetes. The service provides high availability, SLA guarantees and automatic software updates. The service provides a highly scalable metrics store, with data retention of up to 18 months.
+
+Azure Monitor managed service for Prometheus provides pre-configured alerts, rules, and dashboards. With recommended dashboards from the Prometheus community and native Grafana integration, you can achieve comprehensive monitoring immediately.
+Natively integrates with Azure Managed Grafana, and also works with self-managed Grafana.
+
+Pricing is based on ingestion and query with no additional storage cost. For more information, see the **Metrics** tab in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 > [!IMPORTANT] 
 > Azure Monitor hosted Prometheus is intended for storing information about service health of customer machines and applications. It is not intended for storing any data classified as Personal Identifiable Information (PII) or End User Identifiable Information (EUII). We strongly recommend that you do not send any sensitive information (usernames, credit card numbers etc.) into Azure Monitor hosted Prometheus fields like metric names, label names, or label values.
 
-## Data sources
+
+### Enable Azure Monitor managed service for Prometheus
 
 Azure Monitor managed service for Prometheus collects data from Azure Kubernetes services:
 
 - Azure Kubernetes service (AKS)
 - Azure Arc-enabled Kubernetes
-
-Using remote-write, you can also collect data from self-managed Prometheus servers. This includes Prometheus servers running on:
-
-- Azure virtual machines
-- Azure virtual machine scale sets
-- Arc-enabled servers
-- Azure or arc-enabled Kubernetes clusters.
-
-
-## Enable Azure Monitor managed service for Prometheus
 
 To enable Azure Monitor managed service for Prometheus, you must create an [Azure Monitor workspace](azure-monitor-workspace-overview.md) to store the metrics. Once the workspace is created, you can onboard services that collect Prometheus metrics.
 
@@ -46,9 +45,19 @@ To enable Azure Monitor managed service for Prometheus, you must create an [Azur
 
 To enable Managed Prometheus for Microsoft Azure air-gapped clouds, contact support. 
 
-## Self-managed Prometheus using remote write
 
-In addition to the managed service for Prometheus, you can also use self-managed prometheus and remote-write to collect metrics and store them in an Azure Monitor workspace.
+
+## Azure hosted self-managed Prometheus
+
+In addition to the managed service for Prometheus, you can install and manage your own Prometheus instance and use remote-write to store metrics in an Azure Monitor workspace.
+
+Using remote-write, you can collect data from self-managed Prometheus servers running in the following environments:
+
+- Azure virtual machines
+- Azure virtual machine scale sets
+- Arc-enabled servers
+- Self manged Azure-hosted or arc-enabled Kubernetes clusters.
+
 
 ### Self-managed Kubernetes services
 
@@ -61,7 +70,7 @@ Send metrics from self-managed Prometheus on Kubernetes clusters. For more infor
 
 ### Virtual Machines and Virtual Machine Scale sets
 
-Send data from self-managed Prometheus on virtual machines and virtual machine scale sets. Servers can be in an Azure-managed environment or on-premises. Fro more information, see [Send Prometheus metrics from Virtual Machines to an Azure Monitor workspace](/azure/azure-monitor/essentials/prometheus-remote-write-virtual-machines).
+Send data from self-managed Prometheus on virtual machines and virtual machine scale sets. The virtual machines can be in an Azure-managed environment or on-premises. Fro more information, see [Send Prometheus metrics from Virtual Machines to an Azure Monitor workspace](/azure/azure-monitor/essentials/prometheus-remote-write-virtual-machines).
 
 ## Data storage 
 
@@ -104,7 +113,7 @@ Use PromQL via the REST API to query Prometheus metrics stored in an Azure Monit
 
 ## Rules and alerts
 
-Azure Monitor managed service for Prometheus supports recording rules and alert rules using PromQL queries. Metrics recorded by recording rules are stored in the Azure Monitor workspace and can be queried by dashboard or by other rules. Alert rules and recording rules can be created and managed using [Azure Managed Prometheus rule groups](prometheus-rule-groups.md). For your AKS cluster, a set of [predefined Prometheus alert rules](../containers/container-insights-metric-alerts.md) and [recording rules](./prometheus-metrics-scrape-default.md#recording-rules) is provided to allow easy quick start.
+Prometheus supports recording rules and alert rules using PromQL queries. Rules and alerts are automatically deployed Azure Monitor managed service for Prometheus. Metrics recorded by recording rules are stored in the Azure Monitor workspace and can be queried by dashboard or by other rules. Alert rules and recording rules can be created and managed using [Azure Managed Prometheus rule groups](prometheus-rule-groups.md). For your AKS cluster, a set of [predefined Prometheus alert rules](../containers/container-insights-metric-alerts.md) and [recording rules](./prometheus-metrics-scrape-default.md#recording-rules) is provided to allow easy quick start.
 
 Alerts fired by alert rules can trigger actions or notifications, as defined in the [action groups](../alerts/action-groups.md) configured for the alert rule. You can also view fired and resolved Prometheus alerts in the Azure portal along with other alert types. 
 
@@ -117,9 +126,8 @@ To monitor and alert on your ingestion metrics, see [Monitoring metrics limits](
 ## Limitations/Known issues - Azure Monitor managed Service for Prometheus
 
 - The minimum frequency for scraping and storing metrics is 1 second.
-- During node updates, you might experience gaps lasting 1 to 2 minutes in some metric collections from our cluster level collector. This gap is due to a regular action from Azure Kubernetes Service to update the nodes in your cluster. This behavior is expected and occurs due to the node it runs on being updated. Recommended alert rules are  not affected by this behavior. 
-- Azure Managed Grafana doesn't support the Azure US Government cloud.
-- Usage metrics (metrics under `Metrics` menu for the Azure Monitor workspace) - Ingestion quota limits and current usage for any Azure monitor Workspace aren't available yet in US Government cloud.
+- During node updates, you might experience gaps lasting 1 to 2 minutes in some metric collections from our cluster level collector. This gap is due to a regular action from Azure Kubernetes Service to update the nodes in your cluster. This behavior is expected and occurs due to the node it runs on being updated. Recommended alert rules are not affected by this behavior. 
+- Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes & pods in your clusters, see [Monitor Windows nodes & pods in your clusters](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview).
 
 [!INCLUDE [case sensitivity](../includes/prometheus-case-sensitivity.md)] 
 
