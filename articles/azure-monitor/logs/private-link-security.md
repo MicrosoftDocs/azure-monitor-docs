@@ -8,7 +8,7 @@ ms.date: 07/25/2023
 
 # Use Azure Private Link to connect networks to Azure Monitor
 
-With [Azure Private Link](/azure/private-link/private-link-overview), you can securely link Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. Azure Monitor is a constellation of different interconnected services that work together to monitor your workloads. An Azure Monitor private link connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. That set is called an Azure Monitor Private Link Scope (AMPLS).
+With [Azure Private Link](../../private-link/private-link-overview.md), you can securely link Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. Azure Monitor is a constellation of different interconnected services that work together to monitor your workloads. An Azure Monitor private link connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. That set is called an Azure Monitor Private Link Scope (AMPLS).
 
 > [!NOTE]
 > Azure Monitor private links are structured differently from private links to other services you might use. Instead of creating multiple private links, one for each resource the virtual network connects to, Azure Monitor uses a single private link connection, from the virtual network to an AMPLS. AMPLS is the set of all Azure Monitor resources to which a virtual network connects through a private link.
@@ -23,7 +23,7 @@ With Private Link you can:
 - Securely connect your private on-premises network to Azure Monitor by using Azure ExpressRoute and Private Link.
 - Keep all traffic inside the Azure backbone network.
 
-For more information, see [Key benefits of Private Link](/azure/private-link/private-link-overview#key-benefits).
+For more information, see [Key benefits of Private Link](../../private-link/private-link-overview.md#key-benefits).
 
 ## How it works: Main principles
 An Azure Monitor private link connects a private endpoint to a set of Azure Monitor resources made up of Log Analytics workspaces and Application Insights resources. That set is called an Azure Monitor Private Link Scope.
