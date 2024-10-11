@@ -35,15 +35,24 @@ In this section, we review the step-by-step process of setting up a private link
 
 ### Connect Azure Monitor resources
 
+#### Connect Individual Azure Monitor resources
 Connect Azure Monitor resources like Log Analytics workspaces, Application Insights components, and [data collection endpoints](../essentials/data-collection-endpoint-overview.md)) to your Azure Monitor Private Link Scope (AMPLS).
 
 1. In your AMPLS, select **Azure Monitor Resources** in the menu on the left. Select **Add**.
-1. Add the workspace or component. Selecting **Add** opens a dialog where you can select Azure Monitor resources. You can browse through your subscriptions and resource groups. You can also enter their names to filter down to them. Select the workspace or component and select **Apply** to add them to your scope.
+1. Add the workspace, component, or data collection endpoint. Selecting **Add** opens a dialog where you can select Azure Monitor resources. You can browse through your subscriptions and resource groups. You can also enter their names to filter down to them. Select the resource you'd like to add and select **Apply** to add them to your scope.
 
-    :::image type="content" source="./media/private-link-security/ampls-select-2.png" lightbox="./media/private-link-security/ampls-select-2.png" alt-text="Screenshot that shows selecting a scope.":::
+    :::image type="content" source="./media/private-link-security/ampls-select-resource.png" lightbox="./media/private-link-security/ampls-select-resource.png" alt-text="Screenshot that shows Select a Scope.":::
 
 > [!NOTE]
 > Deleting Azure Monitor resources requires that you first disconnect them from any AMPLS objects they're connected to. It's not possible to delete resources connected to an AMPLS.
+
+#### Connect Platform Metrics subscriptions
+In addition to individual resources, you can also connect Platform Metrics by scoping an entire subscription to your AMPLS. Scoping a subscription for Platform Metrics will not affect individual Azure Monitor resources in that subscription.
+
+1. In your AMPLS, select **Platform Metrics Subscriptions** in the menu on the left. Select **Add**.
+2. From the **Add Subscription** panel, select a subscription you would like to connect to your AMPLS. You can enter their names to filter down to the subscription you are looking for. When you've selected the correct subscription, select **Apply** to add them to your scope
+
+    :::image type="content" source="./media/private-link-security/ampls-select-metrics-subscription.png" lightbox="./media/private-link-security/ampls-select-resource.png" alt-text="Screenshot that shows selecting a platform metrics subscription.":::
 
 ### Connect to a private endpoint
 
