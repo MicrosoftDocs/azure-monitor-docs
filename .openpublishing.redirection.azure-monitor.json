@@ -811,6 +811,11 @@
       "redirect_document_id": false
      },
      {
+      "source_path_from_root": "/articles/azure-monitor/app/sdk-connection-string.md",
+      "redirect_url": "/azure/azure-monitor/app/connection-strings",
+      "redirect_document_id": false
+     },
+     {
       "source_path_from_root": "/articles/azure-monitor/app/java-on-premises.md",
       "redirect_url": "/azure/azure-monitor/app/java-in-process-agent",
       "redirect_document_id": false

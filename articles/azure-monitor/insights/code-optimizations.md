@@ -62,7 +62,7 @@ Code Optimizations is available in the same regions as Application Insights. You
 az account list-locations -o table
 ```
 
-You can set an explicit region using connection strings. [Learn more about connection strings with examples.](../app/sdk-connection-string.md#connection-string-examples)
+You can set an explicit region using connection strings. [Learn more about connection strings with examples.](../app/connection-strings.md#connection-string-examples)
 
 ## Next steps
 
