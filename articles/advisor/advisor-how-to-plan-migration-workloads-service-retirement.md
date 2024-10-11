@@ -29,9 +29,9 @@ The workbook shows a list and a map view of service retirements that impact your
 
 *   Share the report with your team to help them plan migration using export function.
 
-:::image type="content" source="media/advisor-service-retirement-workbook-overview.png" alt-text="Screenshot of the Azure Advisor service retirement workbook template." lightbox="media/advisor-service-retirement-workbook-overview.png":::
+:::image alt-text="Screenshot of the Azure Advisor service retirement workbook template." lightbox="./media/advisor-service-retirement-workbook-overview.png" source="./media/advisor-service-retirement-workbook-overview-preview.png" type="content":::
 
-:::image type="content" source="media/advisor-service-retirement-workbook-details.png" alt-text="Screenshot of the Azure Advisor service retirement workbook template, detailed view." lightbox="media/advisor-service-retirement-workbook-details.png":::
+:::image alt-text="Screenshot of the Azure Advisor service retirement workbook template, detailed view." lightbox="./media/advisor-service-retirement-workbook-details.png" source="./media/advisor-service-retirement-workbook-details-preview.png" type="content":::
 
 > [!NOTE]
 > The workbook contains information about a subset of services and features that are in the retirement lifecycle. While we continue to add more services to this workbook, you can view the lifecycle status of all Azure services by visiting [Azure updates](https://azure.microsoft.com/updates/?updateType=retirements).
