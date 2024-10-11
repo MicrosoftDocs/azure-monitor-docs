@@ -265,7 +265,7 @@ As an alternative to using `FullScript`, `ScriptBody` is available starting in A
 
 The *.cshtml* file names referenced earlier are from a default MVC application template. Ultimately, if you want to properly enable client-side monitoring for your application, the JavaScript (Web) SDK Loader Script must appear in the `<head>` section of each page of your application that you want to monitor. Add the JavaScript (Web) SDK Loader Script to *_Layout.cshtml* in an application template to enable client-side monitoring.
 
-If your project doesn't include *_Layout.cshtml*, you can still add [client-side monitoring](./website-monitoring.md) by adding the JavaScript JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
+If your project doesn't include *_Layout.cshtml*, you can still add [client-side monitoring](./website-monitoring.md) by adding the JavaScript (Web) SDK Loader Script to an equivalent file that controls the `<head>` of all pages within your app. Alternatively, you can add the JavaScript (Web) SDK Loader Script to multiple pages, but we don't recommend it.
 
 > [!NOTE]
 > JavaScript injection provides a default configuration experience. If you require [configuration](./javascript.md#configuration) beyond setting the connection string, you're required to remove auto-injection as described and manually add the [JavaScript SDK](./javascript.md#add-the-javascript-sdk).

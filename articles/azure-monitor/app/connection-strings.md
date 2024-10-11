@@ -1,9 +1,10 @@
 ---
-title: Connection strings in Application Insights - Azure Monitor | Microsoft Docs
-description: This article shows how to use connection strings.
+title: Connection strings in Application Insights
+description: This article explains the components of connection strings and how to use them.
 ms.topic: conceptual
 ms.date: 10/10/2024
-ms.custom: devx-track-csharp
+ms.service: azure-monitor
+ms.subservice: application-insights
 ms.reviewer: cogoodson
 ---
 
