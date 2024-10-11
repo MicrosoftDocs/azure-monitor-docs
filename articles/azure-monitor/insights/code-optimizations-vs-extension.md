@@ -50,7 +50,7 @@ az login
 
 ## Install the Code Optimizations extension (preview)
 
-Install [the Code Optimizations extension for Visual Studio code]()
+Install [the Code Optimizations extension for Visual Studio]()
 
 ## Fix issues in your code using the extension
 
@@ -58,7 +58,7 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 
 1. In Visual Studio, open the repo holding your .NET application with Code Optimizations enabled. 
 1. Open the GitHub Copilot chat. 
-1. Invoke the extension by executing the following command, replacing the placeholder with your own Application Insights resoure name.
+1. Invoke the extension by executing the following command, replacing the placeholder with your own Application Insights resource name.
 
     ```bash
     @code_optimizations /connect <YOUR_APPLICATION_INSIGHTS_RESOURCE_NAME>

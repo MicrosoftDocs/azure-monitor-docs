@@ -243,6 +243,14 @@ items:
           href: insights/set-up-code-optimizations.md
         - name: View insights
           href: insights/view-code-optimizations.md
+        - name: Code Optimizations extensions (preview)
+          items:
+          - name: Overview
+            href: insights/code-optimizations-extensions.md
+          - name: Visual Studio extension
+            href: insights/code-optimizations-vs-extension.md
+          - name: Visual Studio Code extension
+            href: insights/code-optimizations-vscode-extension.md
         - name: Troubleshooting
           href: insights/code-optimizations-troubleshoot.md
         - name: Profiler
