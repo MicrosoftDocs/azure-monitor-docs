@@ -869,14 +869,6 @@ items:
           href: logs/tutorial-logs-ingestion-code.md
       - name: Data collector API
         href: logs/data-collector-api.md
-  - name: Private Link networking
-    items:
-    - name: Private Link overview
-      href: logs/private-link-security.md
-    - name: Private Link design
-      href: logs/private-link-design.md
-    - name: Private Link configuration
-      href: logs/private-link-configure.md
   - name: Collect logs from Event Hubs
     href: logs/ingest-logs-event-hub.md
   - name: Send data
