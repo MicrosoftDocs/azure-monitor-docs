@@ -232,10 +232,6 @@ items:
         href: app/release-and-work-item-insights.md
       - name: Transaction Search and Diagnostics
         href: app/transaction-search-and-diagnostics.md
-    - name: Terms and concepts
-      items:
-      - name: Connection strings
-        href: app/connection-strings.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -324,8 +320,10 @@ items:
           href: alerts/proactive-arm-config.md
         - name: E-mail notification
           href: alerts/proactive-email-notification.md
-    - name: Management and security
+    - name: Terms and concepts
       items:
+      - name: Connection strings
+        href: app/connection-strings.md
       - name: Geolocation and IP address handling
         href: app/ip-collection.md
         displayName: geolocation, IP collection, IP tracking, IP storage
