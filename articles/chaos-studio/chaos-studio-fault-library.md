@@ -1025,12 +1025,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkChaos-2.1 |
+| Capability name | NetworkChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes a network fault available through [Chaos Mesh](https://chaos-mesh.org/docs/simulate-network-chaos-on-kubernetes/) to run against your Azure Kubernetes Service (AKS) cluster. Useful for re-creating AKS incidents that result from network outages, delays, duplications, loss, and corruption. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [NetworkChaos kind](https://chaos-mesh.org/docs/simulate-network-chaos-on-kubernetes/#create-experiments-using-the-yaml-files). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1042,7 +1042,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
@@ -1059,12 +1059,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | PodChaos-2.1 |
+| Capability name | PodChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes a pod fault available through [Chaos Mesh](https://chaos-mesh.org/docs/simulate-pod-chaos-on-kubernetes/) to run against your AKS cluster. Useful for re-creating AKS incidents that are a result of pod failures or container issues. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [PodChaos kind](https://chaos-mesh.org/docs/simulate-pod-chaos-on-kubernetes/#create-experiments-using-yaml-configuration-files). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1076,7 +1076,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
@@ -1093,12 +1093,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | StressChaos-2.1 |
+| Capability name | StressChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes a stress fault available through [Chaos Mesh](https://chaos-mesh.org/docs/simulate-heavy-stress-on-kubernetes/) to run against your AKS cluster. Useful for re-creating AKS incidents because of stresses over a collection of pods, for example, due to high CPU or memory consumption. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [StressChaos kind](https://chaos-mesh.org/docs/simulate-heavy-stress-on-kubernetes/#create-experiments-using-the-yaml-file). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1110,7 +1110,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
@@ -1127,12 +1127,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | IOChaos-2.1 |
+| Capability name | IOChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes an IO fault available through [Chaos Mesh](https://chaos-mesh.org/docs/simulate-io-chaos-on-kubernetes/) to run against your AKS cluster. Useful for re-creating AKS incidents because of IO delays and read/write failures when you use IO system calls such as `open`, `read`, and `write`. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:IOChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:IOChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [IOChaos kind](https://chaos-mesh.org/docs/simulate-io-chaos-on-kubernetes/#create-experiments-using-the-yaml-files). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1144,7 +1144,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:IOChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:IOChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
@@ -1161,12 +1161,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | TimeChaos-2.1 |
+| Capability name | TimeChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes a change in the system clock on your AKS cluster by using  [Chaos Mesh](https://chaos-mesh.org/docs/simulate-time-chaos-on-kubernetes/). Useful for re-creating AKS incidents that result from distributed systems falling out of sync, missing/incorrect leap year/leap second logic, and more. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:timeChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:timeChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [TimeChaos kind](https://chaos-mesh.org/docs/simulate-time-chaos-on-kubernetes/#create-experiments-using-the-yaml-file). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1178,7 +1178,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:timeChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:timeChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
@@ -1195,12 +1195,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | KernelChaos-2.1 |
+| Capability name | KernelChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes a kernel fault available through [Chaos Mesh](https://chaos-mesh.org/docs/simulate-kernel-chaos-on-kubernetes/) to run against your AKS cluster. Useful for re-creating AKS incidents because of Linux kernel-level errors, such as a mount failing or memory not being allocated. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:kernelChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:kernelChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [KernelChaos kind](https://chaos-mesh.org/docs/simulate-kernel-chaos-on-kubernetes/#configuration-file). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1212,7 +1212,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:kernelChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:kernelChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
@@ -1229,12 +1229,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | HTTPChaos-2.1 |
+| Capability name | HTTPChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes an HTTP fault available through [Chaos Mesh](https://chaos-mesh.org/docs/simulate-http-chaos-on-kubernetes/) to run against your AKS cluster. Useful for re-creating incidents because of HTTP request and response processing failures, such as delayed or incorrect responses. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:httpChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:httpChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [HTTPChaos kind](https://chaos-mesh.org/docs/simulate-http-chaos-on-kubernetes/#create-experiments). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1246,7 +1246,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:httpChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:httpChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
@@ -1263,12 +1263,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 | Property | Value |
 |-|-|
-| Capability name | DNSChaos-2.1 |
+| Capability name | DNSChaos-2.2 |
 | Target type | Microsoft-AzureKubernetesServiceChaosMesh |
 | Supported node pool OS types | Linux |
 | Description | Causes a DNS fault available through [Chaos Mesh](https://chaos-mesh.org/docs/simulate-dns-chaos-on-kubernetes/) to run against your AKS cluster. Useful for re-creating incidents because of DNS failures. |
 | Prerequisites | The AKS cluster must [have Chaos Mesh deployed](chaos-studio-tutorial-aks-portal.md) and the [DNS service must be installed](https://chaos-mesh.org/docs/simulate-dns-chaos-on-kubernetes/#deploy-chaos-dns-service). |
-| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:dnsChaos/2.1 |
+| Urn | urn:csci:microsoft:azureKubernetesServiceChaosMesh:dnsChaos/2.2 |
 | Parameters (key, value) |  |
 | jsonSpec | A JSON-formatted Chaos Mesh spec that uses the [DNSChaos kind](https://chaos-mesh.org/docs/simulate-dns-chaos-on-kubernetes/#create-experiments-using-the-yaml-file). You can use a YAML-to-JSON converter like [Convert YAML To JSON](https://www.convertjson.com/yaml-to-json.htm) to convert the Chaos Mesh YAML to JSON and minify it. Use single-quotes within the JSON or escape the quotes with a backslash character. Only include the YAML under the `jsonSpec` property. Don't include information like metadata and kind. Specifying duration within the `jsonSpec` isn't necessary, but it's used if available. |
 
@@ -1280,7 +1280,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:dnsChaos/2.1",
+      "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:dnsChaos/2.2",
       "parameters": [
         {
             "key": "jsonSpec",
