@@ -1,6 +1,6 @@
 ---
-title: Monitor Prometheus metrics ingestion
-description: How to monitor Prometheus metrics ingestion and set up an alert on Azure Monitor Workspace ingestion limits
+title: Monitor Azure Monitor workspace metrics ingestion
+description: How to monitor Azure Monitor workspace metrics ingestion and set up an alert on Azure Monitor Workspace ingestion limits
 author: EdB-MSFT
 ms.service: azure-monitor
 ms-author: edbaynash
@@ -24,12 +24,12 @@ To query Azure Monitor workspace metrics to monitor the ingestion limits, use th
 1. Select **Standard metrics** for the **Metric Namespace**.
 1. In the **Metric** drop-down, select **Active Time Series % Utilization** and **Events Per Minute Received % Utilization** and verify that they are below 100%.
 
-    :::image type="content" source="./media/prometheus-monitor-ingest-limits/monitor-ingest-limits.png" alt-text="Screenshot that shows a metrics chart for Azure Monitor workspace metrics." lightbox="./media/prometheus-monitor-ingest-limits/monitor-ingest-limits.png":::
+    :::image type="content" source="./media/azure-monitor-workspace-monitor-ingest-limits/monitor-ingest-limits.png" alt-text="Screenshot that shows a metrics chart for Azure Monitor workspace metrics." lightbox="./media/azure-monitor-workspace-monitor-ingest-limits/monitor-ingest-limits.png":::
 
 1. Select **New alert rule** to create an Azure alert. Set an Azure Alert to monitor the utilization and fire an alert when the utilization is greater than a certain threshold. For more information, see [Create a metric alert for an Azure resource](../alerts/tutorial-metric-alert.md).
 
 
-    :::image type="content" source="./media/prometheus-monitor-ingest-limits/create-alert.png" alt-text="Screenshot that shows how to create an alert for Azure Monitor Workspace limits." lightbox="./media/prometheus-monitor-ingest-limits/create-alert.png":::
+    :::image type="content" source="./media/azure-monitor-workspace-monitor-ingest-limits/create-alert.png" alt-text="Screenshot that shows how to create an alert for Azure Monitor Workspace limits." lightbox="./media/azure-monitor-workspace-monitor-ingest-limits/create-alert.png":::
 
 See your alerts in the Azure portal by selecting **Alerts** under the **Monitoring** section of your Azure Monitor workspace.
 
