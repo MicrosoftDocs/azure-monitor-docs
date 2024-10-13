@@ -8,7 +8,7 @@ ms.topic: conceptual
 ms.date: 10/06/2024
 ---
 
-# Monitor Prometheus metrics ingestion
+# Monitor Azure Monitor workspace metrics ingestion
 
 Prometheus metrics are ingested into an Azure Monitor workspace. Azure monitor workspaces have default limits and quotas for ingestion. When you reach the ingestion limits, throttling can occur. In order to avoid throttling, you can monitor and alert on the workspace ingestion limits. 
 

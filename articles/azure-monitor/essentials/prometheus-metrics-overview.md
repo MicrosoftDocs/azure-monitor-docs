@@ -122,7 +122,7 @@ Alerts fired by alert rules can trigger actions or notifications, as defined in 
 
 Azure Monitor Managed service for Prometheus has default limits and quotas for ingestion. When you reach the ingestion limits throttling can occur. You can request an increase in these limits. For information on Prometheus metrics limits, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics).
 
-To monitor and alert on your ingestion metrics, see [Monitoring metrics limits](./azure-monitor-workspace-monitor-ingest-limits.md). 
+To monitor and alert on your ingestion metrics, see [Monitor Azure Monitor workspace metrics ingestion](./azure-monitor-workspace-monitor-ingest-limits.md). 
 
 ## Limitations/Known issues - Azure Monitor managed Service for Prometheus
 
