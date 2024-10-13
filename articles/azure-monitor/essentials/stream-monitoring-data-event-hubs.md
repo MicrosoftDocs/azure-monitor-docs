@@ -103,7 +103,7 @@ The following JSON is an example of log data sent to an event hub:
         "callerIpAddress": "10.0.0.10",
         "identity": {
           "claim": {
-            "http://schemas.microsoft.com/identity/claims/objectidentifier": "123abc12-abcd-9876-cdef-123abc456def",
+            "http://schemas.microsoft.com/identity/claims/objectidentifier": "dddddddd-3333-4444-5555-eeeeeeeeeeee",
             "appid": "44445555-eeee-6666-ffff-7777aaaa8888"
           }
         },
