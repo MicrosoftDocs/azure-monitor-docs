@@ -1137,6 +1137,8 @@ items:
             href: visualize/workbooks-graph-visualizations.md
           - name: Map
             href: visualize/workbooks-map-visualizations.md
+          - name: Stat
+            href: visualize/workbooks-stat-visualizations.md
           - name: Honey comb
             href: visualize/workbooks-honey-comb.md
           - name: Composite bar
