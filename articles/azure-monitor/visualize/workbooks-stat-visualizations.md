@@ -239,4 +239,4 @@ When the **Static value** option is selected, the **Color** field dictates which
 1. Select **Run Query** and see the desired metric.
 1. Select **Done Editing** to exit the step.
 
-    :::image type="content" source="./media/workbooks-stat-visualizations/stat-cpu-util.png" lightbox="./media/workbooks-stat-visualizations/stat-cpu-util.png" alt-text="Screenshot that shows CPU utilization through the Stat visualization in Workbooks.":::
+    :::image type="content" source="./media/workbooks-stat-visualizations/stat-cpu-utilization.png" lightbox="./media/workbooks-stat-visualizations/stat-cpu-utilization.png" alt-text="Screenshot that shows CPU utilization through the Stat visualization in Workbooks.":::
