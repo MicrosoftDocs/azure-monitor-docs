@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/09/2024
+ms.date: 10/14/2024
 ms.reviewer: ryankahng
 ---
 
@@ -45,16 +45,9 @@ You can then sort the columns in the insights results based on your desired view
 
 ### Via individual Application Insights resources
 
-You can access Code Optimizations specific to individual Application Insights resources from that resource's left menu.
+You can access Code Optimizations specific to individual Application Insights resources from that resource's left menu. Click **Investigate** > **Performance** and select the **Code Optimizations** button from the top menu.
 
-- Click **Investigate** > **Code Optimizations**.
-
-   :::image type="content" source="./media/code-optimizations/code-optimizations-filter.png" alt-text="Screenshot of available filters for Code Optimizations results.":::
-
-- Click **Investigate** > **Performance** and select the **Code Optimizations** button from the top menu.
-
-   :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
-
+:::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
 
 You can filter the consolidated results by searching for filter field, or setting the following filters:
 
