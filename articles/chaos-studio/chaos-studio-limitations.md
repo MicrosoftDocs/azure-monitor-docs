@@ -4,7 +4,7 @@ description: Understand current limitations and known issues when you use Azure 
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: overview
-ms.date: 11/02/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: carlsonr
 ms.service: azure-chaos-studio

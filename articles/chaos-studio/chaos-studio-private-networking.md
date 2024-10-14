@@ -4,7 +4,7 @@ description: Learn how to use virtual network injection with Azure Chaos Studio.
 services: chaos-studio
 author: prashabora
 ms.topic: conceptual
-ms.date: 10/26/2022
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.service: azure-chaos-studio
