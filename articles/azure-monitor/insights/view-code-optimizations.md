@@ -25,9 +25,7 @@ You can access Code Optimizations through two main entry points:
 
 View your Code Optimizations results via [the Code Optimizations overview page](https://aka.ms/codeoptimizations). In this consolidated overview, you can access results across multiple subscriptions for multiple Application Insights resources. 
 
-<!--placeholder
-:::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
--->
+:::image type="content" source="./media/code-optimizations/code-optimizations-consolidated-page.png" alt-text="Screenshot of Code Optimizations consolidated overview page.":::
 
 You can filter the consolidated results by searching for filter field, or setting the following filters:
 
