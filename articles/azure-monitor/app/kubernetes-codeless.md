@@ -16,6 +16,7 @@ This guide walks through enabling Azure Monitor Application Insights for Azure K
 
 We cover [installing the aks-preview Azure CLI extension](#install-the-aks-preview-azure-cli-extension), [registering the AzureMonitorAppMonitoringPreview feature flag](#register-the-azuremonitorappmonitoringpreview-feature-flag), [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps result in autoinstrumentation injecting the Azure Monitor OpenTelemetry Distro in application pods to generate telemetry. For more on autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](codeless-overview.md).
 
+
 ## Prerequisites
 
 * An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using .NET, Java, or Node.js in the Azure public cloud
@@ -24,6 +25,8 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux ARM64 node pools.
 > - This feature is incompatible with .NET [self-contained](/dotnet/core/deploying/#publish-self-contained) applications.
+> - This feature is incompatible with Node.js applications using gRPC
+
 
 ## Install the aks-preview Azure CLI extension
 
@@ -67,6 +70,9 @@ To prepare a cluster, run the following Azure CLI command.
 ```azurecli
 az aks update --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring 
 ```
+
+> [!Tip]
+> AKS Clusters can be prepared for this feature during cluster creation. See [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-AKS-cluster-create) to learn more.
 
 ## Onboard deployments
 
@@ -219,6 +225,15 @@ Use the following annotation to enable logs in Application Insights
   ```yml
   monitor.azure.com/enable-application-logs="true"
   ```
+
+## Prepare a cluster during AKS cluster create
+
+AKS Clusters can be prepared for this feature during cluster creation. If you prefer to have the cluster prepped during creation run the following Azure CLI command.
+
+```azurecli
+az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
+```
+
 
 ## Frequently asked questions
 
