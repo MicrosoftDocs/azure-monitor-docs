@@ -16,9 +16,9 @@ ms.reviwer: nikeist
 ## Transformation structure
 The KQL statement is applied individually to each entry in the data source. It must understand the format of the incoming data and create output in the structure of the target table. A virtual table named `source` represents the input stream. `source` table columns match the input data stream definition. Following is a typical example of a transformation. This example includes the following functionality:
 
-- Filters the incoming data with a [where](/azure/data-explorer/kusto/query/whereoperator) statement
-- Adds a new column using the [extend](/azure/data-explorer/kusto/query/extendoperator) operator
-- Formats the output to match the columns of the target table using the [project](/azure/data-explorer/kusto/query/projectoperator) operator
+- Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement
+- Adds a new column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator
+- Formats the output to match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator
 
 ```kusto
 source  
@@ -41,7 +41,7 @@ Transformations in a [data collection rule (DCR)](data-collection-rule-overview.
 The [parse](/kusto/query/parse-operator) command in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
 
 ## Required columns
-The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. Make sure to include it in the final `extend` or `project` block! Creating or updating a DCR without `TimeGenerated` in the output of a transformation will lead to an error.
+The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. Make sure to include it in the final `extend` or `project` block! Creating or updating a DCR without `TimeGenerated` in the output of a transformation leads to an error.
 
 ## Handling dynamic data
 Consider the following input with [dynamic data](/azure/data-explorer/kusto/query/scalar-data-types/dynamic):
@@ -103,7 +103,7 @@ print d=parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')
 ### Supported statements
 
 ####	let statement
-The right-hand side of [let](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression or a user-defined function. Only user-defined functions with scalar arguments are supported.
+The right-hand side of [let](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
 
 #### tabular expression statements
 The only supported data sources for the KQL statement are as follows:
@@ -145,29 +145,29 @@ All [Datetime and Timespan arithmetic operators](/azure/data-explorer/kusto/quer
 #### String operators
 The following [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators) are supported.
 
-- ==
-- !=
-- =~
-- !~
-- contains
-- !contains
-- contains_cs
-- !contains_cs
-- has
-- !has
-- has_cs
-- !has_cs
-- startswith
-- !startswith
-- startswith_cs
-- !startswith_cs
-- endswith
-- !endswith
-- endswith_cs
-- !endswith_cs
-- matches regex
-- in
-- !in
+- `==`
+- `!=`
+- `=~`
+- `!~`
+- `contains`
+- `!contains`
+- `contains_cs`
+- `!contains_cs`
+- `has`
+- `!has`
+- `has_cs`
+- `!has_cs`
+- `startswith`
+- `!startswith`
+- `startswith_cs`
+- `!startswith_cs`
+- `endswith`
+- `!endswith`
+- `endswith_cs`
+- !`endswith_cs`
+- `matches regex`
+- `in`
+- `!in`
 
 
 #### Bitwise operators
