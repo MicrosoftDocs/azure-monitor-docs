@@ -22,21 +22,12 @@ In dashboard mode, you can use drag and drop to move items and resize panels, ev
 
 When editing a workbook, this option appears in the pencil item in the toolbar:
 
-:::image type="content" source="./media/workbooks-preview/dashboard-mode-selection.png" lightbox="./media/workbooks-preview/dashboard mode selection.png" alt-text="Screenshot that shows the dashboard mode selection setting." border="false":::
+:::image type="content" source="./media/workbooks-preview/dashboard-mode-selection.png" lightbox="./media/workbooks-preview/dashboard-mode-selection.png" alt-text="Screenshot that shows the dashboard mode selection setting." border="false":::
 
 
 Changing this setting changes the top level layout of the workbook. You can freely switch back and forth between dashboard mode and workbook mode. Editing the layout, shape, sizes of items in one mode may not carry over to the other mode.
 
-This behavior is also available inside a Group item in a workbook.
-
-Dashboard features:
-* Items can be dragged to be moved and resized;
-  * If an item has a title, the title area allows dragging of that item.
-  * If an item doesn't have a title, there's a drag icon in the floating toolbar that can be used to move the item.
-* Any visualization in a dashboard can be expanded to full screen by using the **View** item in the item's dropdown menu in the toolbar.
-* Only one item on the dashboard can be edited at a time, and editing takes place in a popup view.
-* Items are added to dashboards via a new widget window, including by drag and drop;
-  * Only a subset of items can currently be added in dashboards.
+This behavior is also available inside a Group item in a workbook; any group can be displayed in either workbook or dashboard layout.
 
 
 ## Updated Visualizations
@@ -74,7 +65,7 @@ Any new settings that might appear in the preview may not work if you open a sav
 * New Parameters features
     * "Filter" Style - in Filter style, there's a new option in parameter settings that controls if a parameter is always shown. If not, parameters with no value, or set to "All" aren't shown by default. Users then use the **+ Add Filter** option to pick from other available parameters.
       
-      :::image type="content" source="./media/workbooks-preview/filter-style.png" lightbox="./media/workbooks-preview/filter style.png" alt-text="Screenshot that shows parameters in filter style." border="false":::
+      :::image type="content" source="./media/workbooks-preview/filter-style.png" lightbox="./media/workbooks-preview/filter-style.png" alt-text="Screenshot that shows parameters in filter style." border="false":::
 
     * Quick create - new options when creating parameters to create time range and subscription parameters with common settings
 
