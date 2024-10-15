@@ -19,12 +19,11 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 
 ## Prerequisites
 
-* An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using .NET, Java, or Node.js in the Azure public cloud
+* An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using Java or Node.js in the Azure public cloud
 * [A workspace-based Application Insights resource](create-workspace-resource.md#workspace-based-application-insights-resources).
 
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux ARM64 node pools.
-> - This feature is incompatible with .NET [self-contained](/dotnet/core/deploying/#publish-self-contained) applications.
 
 ## Install the aks-preview Azure CLI extension
 
@@ -92,7 +91,6 @@ metadata:
 spec:
   settings:
     autoInstrumentationPlatforms: # required
-      - DotNet
       - Java
       - NodeJs
   destination: # required
@@ -128,7 +126,6 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     spec:
       settings:
         autoInstrumentationPlatforms: # required
-          - DotNet
           - Java
           - NodeJs
         destination: # required
@@ -185,7 +182,6 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
 
 The following annotations disable autoinstrumentation for the language indicated.
 
-- DotNet: `instrumentation.opentelemetry.io/inject-dotnet`
 - Java: `instrumentation.opentelemetry.io/inject-java`
 - Node.js: `instrumentation.opentelemetry.io/inject-nodejs`
 
@@ -237,7 +233,7 @@ az aks create --resource-group={resource_group} --name={cluster_name} --enable-a
 
 #### Does AKS autoinstrumentation support custom metrics?
 
-If you want custom metrics in .NET or Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro.](opentelemetry-enable.md)
+If you want custom metrics in Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro.](opentelemetry-enable.md)
 
 Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
 
@@ -255,7 +251,6 @@ Refer to this chart to determine when autoinstrumentation or manual instrumentat
 
 | Language | Precedence             |
 |----------|------------------------|
-| .NET     | Manual instrumentation |
 | Node.js  | Manual instrumentation |
 | Java     | Autoinstrumentation    |
 
@@ -279,7 +274,7 @@ The following steps can help to resolve problems when no data appears in your Ap
     
     Check the `monitor.azure.com/instrumentation` annotation on the deployment itself and the latest replica set that belongs to it.
     
-    The annotation should be present with proper JSON in the following pattern: `{"crName":"crName1","crResourceVersion":"20177993","platforms":["DotNet"]}`
+    The annotation should be present with proper JSON in the following pattern: `{"crName":"crName1","crResourceVersion":"20177993","platforms":["Java"]}`
 
     If the annotation **isn't present**, then the deployment isn't instrumented and the following steps need to be completed.
     
@@ -304,9 +299,6 @@ The following steps can help to resolve problems when no data appears in your Ap
     
     If connectivity can't be established, then troubleshoot the network connectivity problem such as a firewall or name resolution issue.
 
-#### .NET
-
-For other issues related to .NET autoinstrumentation, see [.NET autoinstrumentation troubleshooting guide](https://github.com/open-telemetry/opentelemetry-dotnet-instrumentation/blob/main/docs/troubleshooting.md).
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 
