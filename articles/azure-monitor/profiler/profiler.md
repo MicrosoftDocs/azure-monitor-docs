@@ -24,12 +24,15 @@ To enable Profiler on Linux, walk through the [ASP.NET Core Azure Linux web apps
 ## Verify the "Always on" setting is enabled
 
 1. In the Azure portal, go to your App Service instance.
-1. Under **Settings** on the left pane, select **Configuration**.
+1. In the left menu, select **Settings** > **Configuration**.
 
    :::image type="content" source="./media/profiler/configuration-menu.png" alt-text="Screenshot that shows selecting Configuration on the left pane.":::
 
 1. Select the **General settings** tab.
 1. Verify that **Always on** > **On** is selected.
+
+   > [!NOTE]
+   > If the **Always on** toggle is disabled, upgrade your App Service web app to run on Basic tier or higher. 
 
    :::image type="content" source="./media/profiler/always-on.png" alt-text="Screenshot that shows the General tab on the Configuration pane showing that Always On is enabled.":::
 
@@ -45,11 +48,10 @@ You can enable Profiler either when:
 
 If your Application Insights resource is in the same subscription as your instance of App Service:
 
-1. Under **Settings** on the left pane, select **Application Insights**.
-
-   :::image type="content" source="./media/profiler/app-insights-menu.png" alt-text="Screenshot that shows selecting Application Insights on the left pane.":::
+1. In the left menu, select **Monitoring** > **Application Insights**.
 
 1. Under **Application Insights**, select **Enable**.
+
 1. Verify that you connected an Application Insights resource to your app.
 
    :::image type="content" source="./media/profiler/enable-app-insights.png" alt-text="Screenshot that shows enabling Application Insights on your app.":::

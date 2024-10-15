@@ -33,7 +33,7 @@ You don't necessarily need to understand how to write a log query to use Log Ana
 
 ## Container tables
 
-For a list of tables and their detailed descriptions used by Container insights, see the [Azure Monitor table reference](/azure/azure-monitor/reference/tables/tables-resourcetype#kubernetes-services). All these tables are available for log queries.
+For a list of tables and their detailed descriptions used by Container insights, see the [Azure Monitor table reference](/azure/azure-monitor/reference/tables-category#containers). All these tables are available for log queries.
 
 ## Example log queries
 

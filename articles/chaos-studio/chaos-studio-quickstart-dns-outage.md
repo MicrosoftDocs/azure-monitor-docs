@@ -4,7 +4,7 @@ description: Get started with Azure Chaos Studio by creating a DNS outage by usi
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: article
-ms.date: 08/26/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

@@ -61,7 +61,7 @@ This guide provides two options to upgrade from the Azure Monitor Application In
 
 3. Test your application.
 
-    To avoid using unsupported configuration options in the Application Insights SDK 3.X, see [Unsupported Properties](https://github.com/microsoft/ApplicationInsights-node.js/tree/beta?tab=readme-ov-file#applicationinsights-shim-unsupported-properties).
+    To avoid using unsupported configuration options in the Application Insights SDK 3.X, see [Unsupported Properties](https://github.com/microsoft/ApplicationInsights-node.js/tree/main?tab=readme-ov-file#applicationinsights-3x-sdk-unsupported-properties).
 
     If the SDK logs warnings about unsupported API usage after a major version bump, and you need the related functionality, continue using the Application Insights SDK 2.X.
 

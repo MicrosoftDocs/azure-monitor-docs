@@ -5,7 +5,7 @@ services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.custom: devx-track-arm-template
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 09/17/2024
 ---
 
 # Programmatically manage workbooks

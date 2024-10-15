@@ -4,7 +4,7 @@ description: Options for installing and managing Azure Monitor Agent on Azure vi
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/15/2024
+ms.date: 09/11/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -358,14 +358,14 @@ N/A
 
 ## Configure (Preview)
 
-[Data Collection Rules (DCRs)](../essentials/data-collection-rule-overview.md) serve as a management tool for Azure Monitor Agent (AMA) on your machine. The AgentSettings DCR can be used to configure AMA parameters like `DisQuotaInMb`, ensuring your agent is tailored to your specific monitoring needs.
+[Data Collection Rules (DCRs)](../essentials/data-collection-rule-overview.md) serve as a management tool for Azure Monitor Agent (AMA) on your machine. The `AgentSettings` DCR can be used to configure certain AMA parameters to configure the agent to your specific monitoring needs.
 
 > [!NOTE]
-> Important considerations to keep in mind when working with the AgentSettings DCR:
+> Important considerations to keep in mind when working with the `AgentSettings` DCR:
 >
-> * The AgentSettings DCR can only be configured via template deployment.
-> * AgentSettings is always it's own DCR and can't be added an existing one.
-> * For proper functionality, both the machine and the AgentSettings DCR must be located in the same region.
+> * The `AgentSettings` DCR can currently only be configured using ARM templates.
+> * `AgentSettings` must be a single DCR with no other settings.
+> * The virtual machine and the `AgentSettings` DCR must be located in the same region.
 
 ### Supported parameters
 
@@ -373,8 +373,8 @@ The AgentSettings DCR currently supports configuring the following parameters:
 
 | Parameter | Description | Valid values |
 | --------- | ----------- | ----------- |
-| `MaxDiskQuotaInMB` | Defines the amount of disk space used by the Azure Monitor Agent log files and cache. | 1000-50000 (in MB) |
-| `TimeReceivedForForwardedEvents` | Changes WEF column in the Sentinel WEF table to use TimeReceived instead of TimeGenerated data | 0 or 1 |
+| `MaxDiskQuotaInMB` | Defines the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: 1025-51199<br>Windows: 4000-51199 |
+| `UseTimeReceivedForForwardedEvents` | Changes WEF column in the Sentinel WEF table to use TimeReceived instead of TimeGenerated data | 0 or 1 |
 
 ### Setting up AgentSettings DCR
 
@@ -384,11 +384,11 @@ Currently not supported.
 
 #### [PowerShell](#tab/azure-powershell)
 
-N/A
+Currently not supported.
 
 #### [Azure CLI](#tab/azure-cli)
 
-N/A
+Currently not supported.
 
 #### [Resource Manager template](#tab/azure-resource-manager)
 
@@ -447,12 +447,6 @@ N/A
             "description": "The name of the virtual machine."
           }
         },
-        "associationName": {
-          "type": "string",
-          "metadata": {
-            "description": "The name of the association."
-          }
-        },
         "dataCollectionRuleId": {
           "type": "string",
           "metadata": {
@@ -465,7 +459,7 @@ N/A
           "type": "Microsoft.Insights/dataCollectionRuleAssociations",
           "apiVersion": "2021-09-01-preview",
           "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
-          "name": "[parameters('associationName')]",
+          "name": "agentSettings",
           "properties": {
             "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
             "dataCollectionRuleId": "[parameters('dataCollectionRuleId')]"
@@ -484,9 +478,6 @@ N/A
       "parameters": {
         "vmName": {
           "value": "my-azure-vm"
-        },
-        "associationName": {
-          "value": "my-windows-vm-my-dcr"
         },
         "dataCollectionRuleId": {
           "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"

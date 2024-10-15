@@ -182,7 +182,7 @@ There's also a standard [sampling telemetry processor](./api-filtering-sampling.
 
 ## ConnectionString
 
-See connection string [code samples](sdk-connection-string.md#code-samples).
+See connection string [code samples](connection-strings.md#code-samples).
 
 ## InstrumentationKey
 

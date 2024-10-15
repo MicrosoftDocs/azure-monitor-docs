@@ -365,6 +365,9 @@ az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <
 
 ### Use existing Log Analytics workspace
 az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id>
+
+### Use legacy authentication
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --enable-msi-auth-for-monitoring false
 ```
 
 **Example**

@@ -4,7 +4,7 @@ description: Understand the concepts of chaos engineering and resilience.
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: article
-ms.date: 11/01/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

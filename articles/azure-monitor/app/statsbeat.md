@@ -1,30 +1,42 @@
 ---
 title: Statsbeat in Application Insights | Microsoft Docs
-description: Statistics about Application Insights SDKs and autoinstrumentation
+description: Statistics about the Azure Monitor OpenTelemetry Distro, autoinstrumentation, and Application Insights SDKs (Classic API)
 ms.topic: reference
-ms.date: 08/24/2022
+ms.date: 09/20/2024
 ms.custom: references_regions
-ms.reviwer: heya
+ms.reviwer: mmcc
 ---
 
 # Statsbeat in Application Insights
 
-Statsbeat collects essential and nonessential [custom metrics](../essentials/metrics-custom-overview.md) about Application Insights SDKs and autoinstrumentation. Statsbeat serves three benefits for Application Insights customers:
-
-*	Service health and reliability (outside-in monitoring of connectivity to ingestion endpoint)
-*	Support diagnostics (self-help insights and CSS insights)
-*	Product improvement (insights for design optimizations)
-
-Statsbeat data is stored in a Microsoft data store. It doesn't affect customers' overall monitoring volume and cost.
+In many instances, Azure Monitor Application Insights automatically collects data about product usage for Microsoft through a feature called Statsbeat. This data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost. Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics about:
+ 
+> [!div class="checklist"]
+> - [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
+> - [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
+> - Application Insights SDKs (Classic API)
+ 
+The three main purposes of Statsbeat are:
+ 
+* **Service health and reliability** - Monitoring the connectivity to the ingestion endpoint from an external perspective to ensure the service is functioning correctly.
+* **Support diagnostics** - Offering self-help insights and assisting customer support with diagnosing and resolving issues.
+* **Product improvement** - Gathering insights for Microsoft to optimize product design and enhance the overall user experience.
 
 > [!NOTE]
 > Statsbeat doesn't support [Azure Private Link](/azure/automation/how-to/private-link-security).
 
 ## Supported languages
 
-| C#                      | Java      | JavaScript              | Node.js   | Python    |
-|-------------------------|-----------|-------------------------|-----------|-----------|
-| Currently not supported | Supported | Currently not supported | Supported | Supported |
+| Statsbeat                                   | .NET | Java | JavaScript | Node.js | Python |
+|---------------------------------------------|------|------|------------|---------|--------|
+| **Essential Statsbeat**                     |      |      |            |         |        |
+| [Network](#network-statsbeat)               | ❌   | ✅    | ❌         | ✅       | ✅     |
+| [Attach](#attach-statsbeat)                 | ✔️\* | ✅    | ❌         | ✅       | ✅     |
+| [Feature](#feature-statsbeat)               | ❌   | ✅    | ❌         | ✅       | ✅     |
+| **Non-essential Statsbeat**                 |      |      |            |         |        |
+| [Disk I/O failure](#nonessential-statsbeat) | ❌   | ✅    | ❌         | ❌       | ❌     |
+
+\* Not supported with Classic API or autoinstrumentation (*OTel only*)
 
 ## Supported EU regions
 
@@ -45,19 +57,9 @@ Statsbeat supports EU Data Boundary for Application Insights resources in the fo
 | United Kingdom | United Kingdom South |
 | United Kingdom | United Kingdom West  |
 
-## Supported metrics
+## Essential Statsbeat
 
-Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonessential-statsbeat) metrics:
-
-| Language | Essential metrics | Non-essential metrics |
-|----------|-------------------|-----------------------|
-| Java     | ✅                | ✅                     |
-| Node.js  | ✅                | ❌                     |
-| Python   | ✅                | ❌                     |
-
-### Essential Statsbeat
-
-#### Network Statsbeat
+### Network Statsbeat
 
 | Metric name            | Unit  | Supported dimensions                                                                                                                                          |
 |------------------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -70,19 +72,19 @@ Statsbeat collects [essential](#essential-statsbeat) and [nonessential](#nonesse
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
-#### Attach Statsbeat
+### Attach Statsbeat
 
 | Metric name | Unit  | Supported dimensions                                                                                                                                    |
 |-------------|-------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Attach      | Count | `Resource Provider`, `Resource Provider Identifier`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version` |
 
-#### Feature Statsbeat
+### Feature Statsbeat
 
 | Metric name | Unit  | Supported dimensions                                                                                                                       |
 |-------------|-------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | Feature     | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Feature`, `Type`, `Operating System`, `Language`, `Version` |
 
-### Nonessential Statsbeat
+## Nonessential Statsbeat
 
 Track the Disk I/O failure when you use disk persistence for reliable telemetry.
 
@@ -101,6 +103,10 @@ Metrics are sent to the following locations, to which outgoing connections must 
 | Outside of Europe | `westus-0.in.applicationinsights.azure.com`     |
 
 ## Disable Statsbeat
+
+### [.NET](#tab/dotnet)
+
+Statsbeat is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` to `true`.
 
 ### [Java](#tab/java)
 
@@ -121,7 +127,7 @@ To disable nonessential Statsbeat, add the following configuration to your confi
 
 You can also disable this feature by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` to `true`. This setting then takes precedence over `disabled`, which is specified in the JSON configuration.
 
-### [Node](#tab/node)
+### [Node.js](#tab/node)
 
 Statsbeat is enabled by default. It can be disabled by setting the environment variable `APPLICATION_INSIGHTS_NO_STATSBEAT` to `true`.
 
@@ -130,3 +136,8 @@ Statsbeat is enabled by default. It can be disabled by setting the environment v
 Statsbeat is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED_ALL` to `true`.
 
 ---
+
+## Next steps
+
+* [Data Collection Basics of Azure Monitor Application Insights](opentelemetry-overview.md)
+* [Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](opentelemetry-enable.md)

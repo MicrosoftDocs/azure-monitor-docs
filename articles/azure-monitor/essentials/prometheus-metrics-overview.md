@@ -5,12 +5,12 @@ author: EdB-MSFT
 ms.service: azure-monitor
 ms-author: edbaynash
 ms.topic: conceptual
-ms.date: 01/25/2024
+ms.date: 09/16/2024
 ---
 
 # Azure Monitor managed service for Prometheus
 
-Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md), providing more flexibility in the types of metric data that you can collect and analyze with Azure Monitor. Prometheus metrics are supported by analysis tool like  [Azure Monitor Metrics Explorer with PromQL](./metrics-explorer.md) and open source tools such as [PromQL](https://aka.ms/azureprometheus-promio-promql) and [Grafana](/azure/managed-grafana/overview).
+Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md), providing more flexibility in the types of metric data that you can collect and analyze with Azure Monitor. Prometheus metrics are supported by analysis tools like  [Azure Monitor Metrics Explorer with PromQL](./metrics-explorer.md) and open source tools such as [PromQL](https://aka.ms/azureprometheus-promio-promql) and [Grafana](/azure/managed-grafana/overview).
 
 Azure Monitor managed service for Prometheus allows you to collect and analyze metrics at scale using a Prometheus-compatible monitoring solution, based on the [Prometheus](https://aka.ms/azureprometheus-promio) project from the Cloud Native Computing Foundation. This fully managed service allows you to use the [Prometheus query language (PromQL)](https://aka.ms/azureprometheus-promio-promql) to analyze and alert on the performance of monitored infrastructure and workloads without having to operate the underlying infrastructure.
 
@@ -66,7 +66,7 @@ Azure Monitor Managed service for Prometheus has default limits and quotas for i
 ## Limitations/Known issues - Azure Monitor managed Service for Prometheus
 
 - Scraping and storing metrics at frequencies less than 1 second isn't supported.
-- Microsoft Azure operated by 21Vianet cloud and Air gapped clouds aren't supported for Azure Monitor managed service for Prometheus.
+- Support in Microsoft Azure operated by Air gapped clouds is enabled through support. Please contact support to onboard Azure Monitor managed service for Prometheus for Air gapped clouds.
 - To monitor Windows nodes & pods in your clusters, see [Enable monitoring for Azure Kubernetes Service (AKS) cluster](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview).
 - Azure Managed Grafana isn't currently available in the Azure US Government cloud.
 - Usage metrics (metrics under `Metrics` menu for the Azure Monitor workspace) - Ingestion quota limits and current usage for any Azure monitor Workspace aren't available yet in US Government cloud.
@@ -109,20 +109,20 @@ If you use the Azure portal to enable Prometheus metrics collection and install 
 
 Azure Monitor Managed service for Prometheus has default limits and quotas for ingestion. For information on Prometheus metrics limits, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics). When you reach the ingestion limits throttling can occur. In order to avoid throttling, you can monitor and set up an alert on Azure Monitor Workspace ingestion limits.
 
-1. In the Azure portal, navigate to your Azure Monitor Workspace, click on **Metrics** under the **Monitoring** section.
-2. Select the Azure Monitor Workspace as scope, and in the drop-down for Metric, select *"View standard metrics with the builder"*.
-3. In the drop-down for Metric, select **Active Time Series % Utilization** and **Events Per Minute Ingested % Utilization** and verify that they are below 100%.
+1. In the Azure portal, navigate to your Azure Monitor Workspace and select **Metrics** under the **Monitoring** section.
+2. Select the Azure Monitor Workspace as scope. In the **Metric** dropdown, select **View standard metrics with the builder**.
+3. In the **Metric** drop-down, select **Active Time Series % Utilization** and **Events Per Minute Ingested % Utilization** and verify that they are below 100%.
 
 :::image type="content" source="media/azure-monitor-workspace-overview/azure-monitor-workspace-limits-metrics.png" alt-text="Screenshot that shows how to create an alert rule for Azure Monitor Workspace ingestion limits." lightbox="media/azure-monitor-workspace-overview/azure-monitor-workspace-limits-metrics.png":::
 
-4. You can set an Azure Alert to monitor the utilization and fire an alert when the utilization is greater than a certain threshold (eg. 80% of the limit). Click on "**New alert rule**" to create an Azure alert for the same.
+4. You can set an Azure Alert to monitor the utilization and fire an alert when the utilization is greater than a certain threshold. Select **New alert rule** to create an Azure alert.
 
 :::image type="content" source="media/azure-monitor-workspace-overview/alert-azure-monitor-workspace.png" alt-text="Screenshot that shows how to create an alert for Azure Monitor Workspace limits." lightbox="media/azure-monitor-workspace-overview/alert-azure-monitor-workspace.png":::
 
 If the alert is fired i.e. the ingestion utilization is more than the threshold, you can request an increase in these limits by creating a support ticket.
 
 1. In the Azure portal, navigate to your Azure Monitor Workspace, click on **Support + Troubleshooting**.
-2. Type the issue eg. "Service and subscription limits (quotas)", then select **Service and subscription limits (quotas)** and click "Next".
+2. Type the issue, e.g., "Service and subscription limits (quotas)", then select **Service and subscription limits (quotas)** and select **Next**.
 
 :::image type="content" source="media/azure-monitor-workspace-overview/azure-monitor-workspace-support-ticket.png" alt-text="Screenshot that shows how to create a support ticket for limit increase." lightbox="media/azure-monitor-workspace-overview/azure-monitor-workspace-support-ticket.png":::
 

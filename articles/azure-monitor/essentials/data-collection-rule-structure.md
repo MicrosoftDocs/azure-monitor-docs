@@ -96,11 +96,14 @@ Unique source of monitoring data that has its own format and method of exposing 
 ## `dataFlows`
 Matches streams with destinations and optionally specifies a transformation.
 
+> [!IMPORTANT]
+> One stream can only send to one Log Analytics workspace in a DCR. You can have multiple `dataFlow` entries for a single stream if they are using different tables in the same workspace. If you need to send data to multiple Log Analytics workspaces from a single stream, create a separate DCR for each workspace.
+
 ### `dataFlows/Streams`
 One or more streams defined in the previous section. You may include multiple streams in a single data flow if you want to send multiple data sources to the same destination. Only use a single stream though if the data flow includes a transformation. One stream can also be used by multiple data flows when you want to send a particular data source to multiple tables in the same Log Analytics workspace. 
 
 ### `dataFlows/destinations`
-One or more destinations from the `destinations` section above. Multiple destinations are allowed for multi-homing scenarios.
+One or more destinations from the `destinations` section above.
 
 ### `dataFlows/transformKql`
 Optional [transformation](data-collection-transformations.md) applied to the incoming stream. The transformation must understand the schema of the incoming data and output data in the schema of the target table. If you use a transformation, the data flow should only use a single stream.

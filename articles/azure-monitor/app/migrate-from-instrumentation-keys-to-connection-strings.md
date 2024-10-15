@@ -2,18 +2,27 @@
 title: Migrate from Application Insights instrumentation keys to connection strings
 description: Learn the steps required to upgrade from Azure Monitor Application Insights instrumentation keys to connection strings.
 ms.topic: conceptual
-ms.date: 12/15/2023
+ms.date: 10/10/2024
 ms.reviewer: cogoodson
 ---
 
 # Migrate from Application Insights instrumentation keys to connection strings
 
-This article walks through migrating from instrumentation keys to [connection strings](sdk-connection-string.md#overview).
+Application Insights is changing from global ingestion endpoints to regional endpoints that use connection strings, which provide [additional capabilities](connection-strings.md#connection-string-capabilities).
+
+Scenarios most affected by this change:
+
+* **Firewall exceptions or proxy redirects** - In cases where monitoring for intranet web server is required, our earlier solution asked you to add individual service endpoints to your configuration. For more information, see the [Can I monitor an intranet web server?](../ip-addresses.md#can-i-monitor-an-intranet-web-server). Connection strings offer a better alternative by reducing this effort to a single setting. A simple prefix, suffix amendment, allows automatic population and redirection of all endpoints to the right services.
+
+* **Sovereign or hybrid cloud environments** - Users can send data to a defined [Azure Government region](/azure/azure-government/compare-azure-government-global-azure#application-insights). By using connection strings, you can define endpoint settings for your intranet servers or hybrid cloud settings.
+
+This article walks through migrating from instrumentation keys to connection strings.
 
 ## Prerequisites
 
-- A [supported SDK version](#supported-sdk-versions)
-- An existing [Application Insights resource](create-workspace-resource.md)
+> [!div class="checklist"]
+> * A [supported SDK version](#supported-sdk-versions)
+> * An existing [Application Insights resource](create-workspace-resource.md)
 
 ## Migration
 
@@ -25,7 +34,7 @@ This article walks through migrating from instrumentation keys to [connection st
 
 1. Hover over the connection string and select the **Copy to clipboard** icon.
 
-1. Configure the Application Insights SDK by following [How to set connection strings](sdk-connection-string.md#set-a-connection-string).
+1. Configure the Application Insights SDK by following [How to set connection strings](connection-strings.md#set-a-connection-string).
 
 > [!IMPORTANT]
 > Don't use both a connection string and an instrumentation key. The latter one set supersedes the other, and could result in telemetry not appearing on the portal. See [missing data](#missing-data).
@@ -85,22 +94,13 @@ This process can be [automated in your Azure deployments](/azure/azure-resource-
 
 ```
 
-## New capabilities
-
-Connection strings provide a single configuration setting and eliminate the need for multiple proxy settings.
-
-- **Reliability**: Connection strings make telemetry ingestion more reliable by removing dependencies on global ingestion endpoints.
-- **Security**: Connection strings allow authenticated telemetry ingestion by using [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
-- **Customized endpoints (sovereign or hybrid cloud environments)**: Endpoint settings allow sending data to a specific Azure Government region. ([See examples](sdk-connection-string.md#set-a-connection-string).)
-- **Privacy (regional endpoints)**: Connection strings ease privacy concerns by sending data to regional endpoints, ensuring data doesn't leave a geographic region.
-
 ## Supported SDK versions
 
-- .NET and .NET Core v2.12.0+
-- Java v2.5.1 and Java 3.0+
-- JavaScript v2.3.0+
-- NodeJS v1.5.0+
-- Python v1.0.0+
+* .NET and .NET Core v2.12.0+
+* Java v2.5.1 and Java 3.0+
+* JavaScript v2.3.0+
+* NodeJS v1.5.0+
+* Python v1.0.0+
 
 ## Troubleshooting
 
@@ -112,13 +112,13 @@ Follow the [migration steps](#migration) in this article to resolve this alert.
 
 ### Missing data
 
-- Confirm you're using a [supported SDK version](#supported-sdk-versions). If you use Application Insights integration in another Azure product offering, check its documentation on how to properly configure a connection string.
-- Confirm you aren't setting both an instrumentation key and connection string at the same time. Instrumentation key settings should be removed from your configuration.
-- Confirm your connection string is exactly as provided in the Azure portal.
+* Confirm you're using a [supported SDK version](#supported-sdk-versions). If you use Application Insights integration in another Azure product offering, check its documentation on how to properly configure a connection string.
+* Confirm you aren't setting both an instrumentation key and connection string at the same time. Instrumentation key settings should be removed from your configuration.
+* Confirm your connection string is exactly as provided in the Azure portal.
 
 ### Environment variables aren't working
 
- If you hardcode an instrumentation key in your application code, that programming might take precedence before environment variables.
+If you hardcode an instrumentation key in your application code, that programming might take precedence before environment variables.
 
 ## Frequently asked questions
 

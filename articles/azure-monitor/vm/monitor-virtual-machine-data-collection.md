@@ -86,7 +86,7 @@ When you enable VM insights, it creates a DCR with the *_MSVMI-_* prefix that co
   - [VMConnection](/azure/azure-monitor/reference/tables/vmconnection): Traffic for inbound and outbound connections to and from the machine
   - [VMProcess](/azure/azure-monitor/reference/tables/vmprocess): Processes running on the machine
 
-By default, [VM insights](../vm/vminsights-overview.md) won't enable collection of processes and dependencies to save data ingestion costs. This data is required for the Map feature and also deploys the dependency agent to the machine. [Enable this collection](vminsights-enable-portal.md#enable-vm-insights-for-azure-monitor-agent) if you want to use this feature.
+By default, [VM insights](../vm/vminsights-overview.md) won't enable collection of processes and dependencies to save data ingestion costs. This data is required for the Map feature and also deploys the dependency agent to the machine. [Enable this collection](vminsights-enable-portal.md#enable-vm-insights) if you want to use this feature.
 
 ## Collect Windows and Syslog events
 The operating system and applications in virtual machines often write to the Windows event log or Syslog. You might create an alert as soon as a single event is found or wait for a series of matching events within a particular time window. You might also collect events for later analysis, such as identifying particular trends over time, or for performing troubleshooting after a problem occurs.

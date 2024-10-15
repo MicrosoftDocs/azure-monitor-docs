@@ -4,7 +4,7 @@ description: VM insights solution collects metrics and log data to and this arti
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
+ms.date: 09/28/2024
 ---
 
 # How to query logs from VM insights
@@ -17,7 +17,7 @@ VM insights collects performance and connection metrics, computer and process in
 ## Map records
 
 > [!IMPORTANT]
-> If your virtual machine is using VM insights with Azure Monitor agent, then you must have [processes and dependencies enabled](vminsights-enable-portal.md#enable-vm-insights-for-azure-monitor-agent) for these tables to be created.
+> If your virtual machine is using VM insights with Azure Monitor agent, then you must have [processes and dependencies enabled](vminsights-enable-portal.md#enable-vm-insights-using-the-azure-portal) for these tables to be created.
 
 One record is generated per hour for each unique computer and process, in addition to the records that are generated when a process or computer starts or is added to VM insights. The fields and values in the VMComputer table map to fields of the Machine resource in the ServiceMap Azure Resource Manager API. The fields and values in the VMProcess table map to the fields of the Process resource in the ServiceMap Azure Resource Manager API. The _ResourceId field matches the name field in the corresponding Resource Manager resource. 
 
@@ -38,7 +38,7 @@ Records in these tables are generated from data reported by the Dependency Agent
 
 The following fields and conventions apply to both VMConnection and VMBoundPort: 
 
-- Computer: Fully-qualified domain name of reporting machine 
+- Computer: Fully qualified domain name of reporting machine 
 - AgentId: The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent  
 - Machine: Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form *m-{GUID}*, where *GUID* is the same GUID as AgentId  
 - Process: Name of the Azure Resource Manager resource for the process exposed by ServiceMap. It's of the form *p-{hex string}*. Process is unique within a machine scope and to generate a unique process ID across machines, combine Machine and Process fields. 

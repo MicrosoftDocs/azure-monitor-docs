@@ -43,11 +43,11 @@ To create a Resource Manager template with the default Application Insights sett
 
 1. Select **Review + create**. Then select **Download a template for automation**.
 
-    :::image type="content" source="../app/media/azure-web-apps/create-web-app.png" alt-text="Screenshot that shows the App Service web app creation menu." lightbox="../app/media/azure-web-apps/create-web-app.png":::
+    :::image type="content" source="../app/media/codeless-app-service/create-web-app.png" alt-text="Screenshot that shows the App Service web app creation menu." lightbox="../app/media/codeless-app-service/create-web-app.png":::
 
     This option generates the latest Resource Manager template with all required settings configured.
     
-    :::image type="content" source="../app/media/azure-web-apps/arm-template.png" alt-text="Screenshot that shows an App Service web app template." border="false" lightbox="../app/media/azure-web-apps/arm-template.png":::
+    :::image type="content" source="../app/media/codeless-app-service/arm-template.png" alt-text="Screenshot that shows an App Service web app template." border="false" lightbox="../app/media/codeless-app-service/arm-template.png":::
 
 In the following sample, replace all instances of `AppMonitoredSite` with your site name:
 

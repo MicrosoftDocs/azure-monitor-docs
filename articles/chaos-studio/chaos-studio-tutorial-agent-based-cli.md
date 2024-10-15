@@ -3,7 +3,7 @@ title: Create an experiment using an agent-based fault with Azure CLI
 description: Create an experiment that uses an agent-based fault and configure the chaos agent with the Azure CLI.
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 11/10/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

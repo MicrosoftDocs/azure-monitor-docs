@@ -3,7 +3,7 @@ title: Manage Azure Monitor workbooks
 description: Understand how to Manage Azure Workbooks
 services: azure-monitor
 ms.topic: conceptual
-ms.date: 01/08/2024
+ms.date: 09/17/2024
 ---
 
 # Manage Azure Monitor Workbooks
@@ -13,17 +13,17 @@ This article describes how to manage Azure Workbooks in the Azure portal.
 
 Workbooks are shared resources. They require write access to the parent resource group to be saved.
 
-1. In the Azure portal, select the workbook.
+1. In the Azure portal, select the **Workbook** item from the resource's menu, and create or modify a workbook.
 2. Select **Save**.
 1. Enter the **title**, **subscription**, **resource group**, and **location**.
 1. Select **Save**.
 
-By default, the workbook is auto-filled with the same settings, subscription and resource group as the LA workspace. 
-You can save the workbook directly to shared reports or share the workbook. Keep in mind that the person you want to share with must have permissions to access the workbook as well as to all of the resources referenced in the workbook.
+By default, the workbook save options are auto-filled with the same subscription and resource group as the resource where you've opened Workbooks.
 
 ## Share a workbook
 
-When you want to share a workbook or template, keep in mind that the person you want to share with must have permissions to access the workbook as well as to all of the resources referenced in the workbook. They must have an Azure account, and **Monitoring Reader** permissions.
+When you want to share a workbook or template, keep in mind that the person you want to share with must have permissions to access the workbook, as well as to all of the resources referenced in the workbook. They must have an Azure account, and at least a reader permission for the Workbooks resource and referenced resources, commonly from standard roles like **Workbook Reader**, **Monitoring Reader** or **Microsoft Sentinel Reader**, or by custom roles that have the **Microsoft.Insights/workbooks/read** action.
+
 To share a workbook or workbook template:
 
 1. In the Azure portal, select **Monitor**, and then select **Workbooks** from the left pane.
@@ -41,10 +41,15 @@ To share a workbook or workbook template:
 1. Select **Delete** from the top toolbar.
 
 ## Recover a deleted workbook
-When you delete an Azure Workbook, it is soft-deleted and can be recovered by contacting support. After the soft-delete period, the workbook and its content are nonrecoverable and queued for purge completely within 30 days.
+When you delete an Azure Workbook, it is soft-deleted and can be recovered by using the recycle bin. After the soft-delete period, the workbook and its content are nonrecoverable.
+
+To use the recycle bin, from either the Azure Workbooks browse view, or from any workbook gallery view, select the **Open recycle bin** item from the toolbar. The recycle bin view will appear. The recycle bin will show workbooks that have been recently deleted and can be restored. Deleted workbooks are retained for approximately 90 days.
+
+In the recycle bin view, use the Subscription and Resource Group filters to find the workbook you want to recover. Select the workbook, then select **Recover** from the toolbar. If the workbook was deleted as part of a Resource Group deletion, the Resource Group must be re-created first. Restoring a workbook will not restore a resource 
+group or any other resources that may have been referenced by the workbook.
  
 > [!NOTE]
-> Workbooks that were saved using bring your own storage cannot be recovered by support. You may be able to recover the workbook content from the storage account if the storage account used has enabled soft delete. 
+> Workbooks that were saved using bring your own storage cannot be recovered with the recycle bin or by support. You may be able to recover the workbook content from the storage account if the storage account used has enabled soft delete. 
 
 ## Set up Auto refresh
 

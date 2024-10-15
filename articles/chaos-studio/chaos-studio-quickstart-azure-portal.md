@@ -4,7 +4,7 @@ description: Understand the steps to create and run an Azure Chaos Studio experi
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: quickstart
-ms.date: 11/10/2021
+ms.date: 09/26/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

@@ -2,7 +2,7 @@
 title: Application map in Azure Application Insights
 description: Monitor complex application topologies with Application map and Intelligent view by using Application Insights in Azure Monitor.
 ms.topic: concept-article
-ms.date: 05/23/2024
+ms.date: 10/09/2024
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: devx-track-csharp
@@ -35,7 +35,7 @@ Some considerations about components:
 
 The mapping experience starts with the progressive discovery of the components within the application and their dependencies. When you first load **Application map**, a query set triggers to discover the components related to the main component. As components are discovered, a status bar shows the current number of discovered components:
 
-:::image type="content" source="media/app-map/load-initial.png" alt-text="Screenshot that shows the initial load of an application map in the Azure portal." border="false" lightbox="media/app-map/load-initial-large.png":::
+:::image type="content" source="media/app-map/load-initial.png" alt-text="Screenshot that shows the initial load of an application map in the Azure portal." border="false" lightbox="media/app-map/load-initial.png":::
 
 The following sections describe some of the actions available for working with **Application map** in the Azure portal.
 
@@ -43,7 +43,7 @@ The following sections describe some of the actions available for working with *
 
 The **Update map components** option triggers discovery of components and refreshes the map to show all current nodes. Depending on the complexity of your application, the update can take a minute to load:
 
-:::image type="content" source="media/app-map/update-components.png" alt-text="Screenshot that shows how to update the current components in an application map." lightbox="media/app-map/update-components-large.png" :::
+:::image type="content" source="media/app-map/update-components.png" alt-text="Screenshot that shows how to update the current components in an application map." lightbox="media/app-map/update-components.png" :::
 
 When all application components are roles within a single Application Insights resource, the discovery step isn't required. The initial load in this application scenario discovers all of the components.
 
@@ -51,7 +51,7 @@ When all application components are roles within a single Application Insights r
 
 A key objective for the **Application map** experience is to help you visualize complex topologies that have hundreds of components. In this scenario, it's useful to enhance the map view with details for an individual node by using the **View details** option. The node details pane shows related insights, performance, and failure triage experience for the selected component:
 
-:::image type="content" source="media/app-map/view-details.png" alt-text="Screenshot that shows how to view details for a selected node in an application map." lightbox="media/app-map/view-details-large.png":::
+:::image type="content" source="media/app-map/view-details.png" alt-text="Screenshot that shows how to view details for a selected node in an application map." lightbox="media/app-map/view-details.png":::
 
 Each pane section includes an option to see more information in an expanded view, including failures, performance, and details about failed requests and dependencies.
 
@@ -59,59 +59,59 @@ Each pane section includes an option to see more information in an expanded view
 
 In the node details pane, you can use the **Investigate failures** option to view all failures for the component:
 
-:::image type="content" source="media/app-map/investigate-failures.png" alt-text="Screenshot that shows how to select the Investigate failures option in the node details pane." border="false" lightbox="media/app-map/investigate-failures-large.png":::
+:::image type="content" source="media/app-map/investigate-failures.png" alt-text="Screenshot that shows how to select the Investigate failures option in the node details pane." border="false" lightbox="media/app-map/investigate-failures.png":::
 
 The **Failures** view lets you explore failure data for operations, dependencies, exceptions, and roles related to the selected component:
 
-:::image type="content" source="media/app-map/view-failures.png" alt-text="Screenshot that shows the Failures view for a selected component." lightbox="media/app-map/view-failures-large.png":::
+:::image type="content" source="media/app-map/view-failures.png" alt-text="Screenshot that shows the Failures view for a selected component." lightbox="media/app-map/view-failures.png":::
 
 ### Investigate performance
 
 In the node details pane, you can troubleshoot performance problems with the component by selecting the **Investigate performance** option:
 
-:::image type="content" source="media/app-map/investigate-performance.png" alt-text="Screenshot that shows how to select the Investigate performance option in the node details pane." border="false" lightbox="media/app-map/investigate-performance-large.png":::
+:::image type="content" source="media/app-map/investigate-performance.png" alt-text="Screenshot that shows how to select the Investigate performance option in the node details pane." border="false" lightbox="media/app-map/investigate-performance.png":::
 
 The **Performance** view lets you explore telemetry data for operations, dependencies, and roles connected with the selected component:
 
-:::image type="content" source="media/app-map/view-performance.png" alt-text="Screenshot that shows the Performance view for a selected component." lightbox="media/app-map/view-performance-large.png":::
+:::image type="content" source="media/app-map/view-performance.png" alt-text="Screenshot that shows the Performance view for a selected component." lightbox="media/app-map/view-performance.png":::
 
 ### Go to details and stack trace
 
 The **Go to details** option in the node details pane displays the end-to-end transaction experience for the component. This pane lets you view details at the call stack level:
 
-:::image type="content" source="media/app-map/go-to-details.png" alt-text="Screenshot that shows how to select the Go to details option in the node details pane." border="false" lightbox="media/app-map/go-to-details-large.png":::
+:::image type="content" source="media/app-map/go-to-details.png" alt-text="Screenshot that shows how to select the Go to details option in the node details pane." border="false" lightbox="media/app-map/go-to-details.png":::
 
 The page opens to show the **Timeline** view for the details:
 
-:::image type="content" source="media/app-map/view-end-to-end-transaction.png" alt-text="Screenshot that shows the Details view for a selected component." lightbox="media/app-map/view-end-to-end-transaction-large.png":::
+:::image type="content" source="media/app-map/view-end-to-end-transaction.png" alt-text="Screenshot that shows the Details view for a selected component." lightbox="media/app-map/view-end-to-end-transaction.png":::
 
 You can use the **View all** option to see the stack details with trace and event information for the component:
 
-:::image type="content" source="media/app-map/view-traces-events.png" alt-text="Screenshot that shows the All traces and events view for a selected component." lightbox="media/app-map/view-traces-events-large.png":::
+:::image type="content" source="media/app-map/view-traces-events.png" alt-text="Screenshot that shows the All traces and events view for a selected component." lightbox="media/app-map/view-traces-events.png":::
 
 ### View in Logs (Analytics)
 
 In the node details pane, you can query and investigate your applications data further with the **View in Logs (Analytics)** option: 
 
-:::image type="content" source="media/app-map/view-in-logs.png" alt-text="Screenshot that shows how to select the View in Logs (Analytics) option in the node details pane." lightbox="media/app-map/view-in-logs-large.png":::
+:::image type="content" source="media/app-map/view-in-logs.png" alt-text="Screenshot that shows how to select the View in Logs (Analytics) option in the node details pane." lightbox="media/app-map/view-in-logs.png":::
 
 The **Logs (Analytics)** page provides options to explore your application telemetry table records with built-in or custom queries and functions. You can work with the data by adjusting the format, and saving and exporting your analysis: 
 
-:::image type="content" source="media/app-map/query-log-analytics.png" alt-text="Screenshot that shows the Logs screen with a line graph that summarizes the average response duration of a request over the past 12 hours." lightbox="media/app-map/query-log-analytics-large.png":::
+:::image type="content" source="media/app-map/query-log-analytics.png" alt-text="Screenshot that shows the Logs screen with a line graph that summarizes the average response duration of a request over the past 12 hours." lightbox="media/app-map/query-log-analytics.png":::
 
 ### View alerts and rules
 
 The **View alerts** option in the node details pane lets you see active alerts:
 
-:::image type="content" source="media/app-map/view-alerts.png" alt-text="Screenshot that shows how to select the View Alerts option in the node details pane." lightbox="media/app-map/view-alerts-large.png":::
+:::image type="content" source="media/app-map/view-alerts.png" alt-text="Screenshot that shows how to select the View Alerts option in the node details pane." lightbox="media/app-map/view-alerts.png":::
 
 The **Alerts** page shows critical and fired alerts:
 
-:::image type="content" source="media/app-map/review-alerts.png" alt-text="Screenshot that shows the list of alerts for the selected component." lightbox="media/app-map/review-alerts-large.png":::
+:::image type="content" source="media/app-map/review-alerts.png" alt-text="Screenshot that shows the list of alerts for the selected component." lightbox="media/app-map/review-alerts.png":::
 
 The **Alert rules** option on the **Alerts** page shows the underlying rules that cause the alerts to trigger:
 
-:::image type="content" source="media/app-map/review-alert-rules.png" alt-text="Screenshot that shows the list of alert rules defined for the selected component." lightbox="media/app-map/review-alert-rules-large.png":::
+:::image type="content" source="media/app-map/review-alert-rules.png" alt-text="Screenshot that shows the list of alert rules defined for the selected component." lightbox="media/app-map/review-alert-rules.png":::
 
 <a name="understand-the-cloud-role-name-within-the-context-of-an-application-map"></a>
 
@@ -121,7 +121,7 @@ The **Alert rules** option on the **Alerts** page shows the underlying rules tha
 
 The following example shows a map in **Hierarchical view** with five component nodes and connectors to nine dependent nodes. Each node has a cloud role name.
 
-:::image type="content" source="media/app-map/review-cloud-role-names.png" alt-text="Screenshot that shows an application map with several nodes and different color highlights." lightbox="media/app-map/review-cloud-role-names-large.png":::
+:::image type="content" source="media/app-map/review-cloud-role-names.png" alt-text="Screenshot that shows an application map with several nodes and different color highlights." lightbox="media/app-map/review-cloud-role-names.png":::
 
 **Application map** uses different colors, highlights, and sizes for nodes to depict the application component data and relationships:
 
@@ -308,11 +308,11 @@ exporter.add_telemetry_processor(callback_function)
 
 A quick way to filter is to use the **Filter on this node** option on the context menu for any node on the map:
 
-:::image type="content" source="media/app-map/filter-on-node.png" alt-text="Screenshot that shows how to filter on the selected node in Application map." lightbox="media/app-map/filter-on-node-large.png":::
+:::image type="content" source="media/app-map/filter-on-node.png" alt-text="Screenshot that shows how to filter on the selected node in Application map." lightbox="media/app-map/filter-on-node.png":::
 
 You can also create a filter with the **Add filter** option:
 
-:::image type="content" source="media/app-map/add-filter.png" alt-text="Screenshot that shows how to open the Add filter option in Application map." lightbox="media/app-map/add-filter-large.png":::
+:::image type="content" source="media/app-map/add-filter.png" alt-text="Screenshot that shows how to open the Add filter option in Application map." lightbox="media/app-map/add-filter.png":::
 
 Select your filter type (node or connector) and desired settings, then review your choices and apply them to the current map.
 
@@ -343,11 +343,11 @@ A node filter has three parameters to configure:
 
 The following image shows an example of a filter applied to an application map that shows 30 days of data. The filter instructs **Application map** to search for nodes and connected targets that have properties that contain the text "retailapp":
 
-:::image type="content" source="media/app-map/configure-node-filter.png" alt-text="Screenshot that shows how to configure a node filter to match the text 'retailapp'." lightbox="media/app-map/configure-node-filter-large.png" :::
+:::image type="content" source="media/app-map/configure-node-filter.png" alt-text="Screenshot that shows how to configure a node filter to match the text 'retailapp'." lightbox="media/app-map/configure-node-filter.png" :::
 
 Matching nodes and their connected target nodes are included in the results map:
 
-:::image type="content" source="media/app-map/node-filter-map.png" alt-text="Screenshot that shows the results map with nodes and target nodes that match the node filter." lightbox="media/app-map/node-filter-map-large.png" :::
+:::image type="content" source="media/app-map/node-filter-map.png" alt-text="Screenshot that shows the results map with nodes and target nodes that match the node filter." lightbox="media/app-map/node-filter-map.png" :::
 
 ### Create connector (edge) filters
 
@@ -382,17 +382,17 @@ After you make your selections, the **Review** section of the **Add filter** pop
 
 The following example shows the **Review** summary for a node filter that searches for nodes and targets with properties that have the text "-west":
 
-:::image type="content" source="media/app-map/review-node-filter.png" alt-text="Screenshot that shows the Review section with information about the configured node filter." lightbox="media/app-map/review-node-filter-large.png":::
+:::image type="content" source="media/app-map/review-node-filter.png" alt-text="Screenshot that shows the Review section with information about the configured node filter." lightbox="media/app-map/review-node-filter.png":::
 
 This example shows the summary for a connector filter that searches for connectors (and they nodes they connect) with an average call duration equal to or greater than 42 ms:
 
-:::image type="content" source="media/app-map/review-connector-filter.png" alt-text="Screenshot that shows the Review section with information about the configured connector filter." lightbox="media/app-map/review-connector-filter-large.png":::
+:::image type="content" source="media/app-map/review-connector-filter.png" alt-text="Screenshot that shows the Review section with information about the configured connector filter." lightbox="media/app-map/review-connector-filter.png":::
 
 ### Apply filters to map
 
 After you configure and review your filter settings, select **Apply** to create the filter. You can apply multiple filters to the same application map. In **Application map**, the applied filters display as _pills_ above the map:
 
-:::image type="content" source="media/app-map/apply-filters.png" alt-text="Screenshot that shows the filter pills above the application map." lightbox="media/app-map/apply-filters-large.png":::
+:::image type="content" source="media/app-map/apply-filters.png" alt-text="Screenshot that shows the filter pills above the application map." lightbox="media/app-map/apply-filters.png":::
 
 The **Remove** action :::image type="icon" source="media/app-map/remove-filter.png"::: on a filter pill lets you delete a filter. When you delete an applied filter, the map view updates to subtract the filter logic.
 
@@ -400,13 +400,13 @@ The **Remove** action :::image type="icon" source="media/app-map/remove-filter.p
 
 You can change the configuration for an applied filter by selecting the filter pill. As you change the filter settings, **Application map** shows a preview of the map view with the new filter logic. If you decide not to apply the changes, you can use the **Cancel** option to the current map view and filters.
 
-:::image type="content" source="media/app-map/preview-filter-change.png" alt-text="Screenshot of the preview of the map view that shows the updated filter settings." lightbox="media/app-map/preview-filter-change-large.png":::
+:::image type="content" source="media/app-map/preview-filter-change.png" alt-text="Screenshot of the preview of the map view that shows the updated filter settings." lightbox="media/app-map/preview-filter-change.png":::
 
 ## Explore and save filters
 
 When you discover an interesting filter, you can save the filter to reuse it later with the **Copy Link** or **Pin to dashboard** option:
 
-:::image type="content" source="media/app-map/reuse-filters.png" alt-text="Screenshot that shows the two options to reuse filters in Application map." lightbox="media/app-map/reuse-filters-large.png":::
+:::image type="content" source="media/app-map/reuse-filters.png" alt-text="Screenshot that shows the two options to reuse filters in Application map." lightbox="media/app-map/reuse-filters.png":::
 
 - The **Copy link** option encodes all current filter settings in the copied URL. You can save this link in your browser bookmarks or share it with others. This feature preserves the duration value in filter settings, but not the absolute time. When you use the link later, the produced application map might differ from the map present at the time the link was captured.
 
@@ -473,7 +473,7 @@ There are many benefits to using **Intelligent view**:
 
 A toggle above the application map lets you enable **Intelligent view** and control the issue detection sensitivity:
 
-:::image type="content" source="media/app-map/intelligent-view.png" alt-text="Screenshot that shows how to enable Intelligent view for the application map and control the detection sensitivity." lightbox="media/app-map/intelligent-view-large.png":::
+:::image type="content" source="media/app-map/intelligent-view.png" alt-text="Screenshot that shows how to enable Intelligent view for the application map and control the detection sensitivity." lightbox="media/app-map/intelligent-view.png":::
 
 **Intelligent view** uses the patented AIOps machine learning model to highlight (red) the significant and important data in an application map. Various application data are used to determine which data to highlight on the map, including failure rates, request counts, durations, anomalies, and dependency type. For comparison, the standard map view utilizes only the _raw_ failure rate.
 
@@ -489,7 +489,7 @@ A toggle above the application map lets you enable **Intelligent view** and cont
 
 After you enable **Intelligent view**, select a highlighted edge (red) on the map to see the "actionable insights" for the component. The insights display in a pane to the right and explain why the edge is highlighted.
 
-:::image type="content" source="media/app-map/intelligent-view-insights.png" alt-text="Screenshot that shows the actionable insights for the selected edge in the application map." lightbox="media/app-map/intelligent-view-insights-large.png":::
+:::image type="content" source="media/app-map/intelligent-view-insights.png" alt-text="Screenshot that shows the actionable insights for the selected edge in the application map." lightbox="media/app-map/intelligent-view-insights.png":::
 
 To start troubleshooting an issue, select **Investigate failures**. You can review the information about the component in the **Failures** pane to determine if the detected issue is the root cause. 
 
@@ -509,7 +509,7 @@ Here are some general recommendations:
 
 - Ensure the [cloud role name](#set-cloud-role-names) is correctly configured.
 
-- Confirm any missing dependencies are listed as [autocollected dependencies](asp-net-dependencies.md#dependency-auto-collection). If a dependency isn't listed, you can track it manually with a [track dependency call](./api-custom-events-metrics.md#trackdependency).
+- Confirm any missing dependencies are listed as [autocollected dependencies](asp-net-dependencies.md#dependency-autocollection). If a dependency isn't listed, you can track it manually with a [track dependency call](./api-custom-events-metrics.md#trackdependency).
 
 ### Too many nodes on map
 

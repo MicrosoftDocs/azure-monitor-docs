@@ -595,7 +595,7 @@ In the `metrics:getBatch` error response, the error content is wrapped inside a 
     ```json
     {
       "code": "BadRequest",
-      "message": "Metric: Ingress does not support requested dimension combination: apiname2, supported ones are: GeoType,ApiName,Authentication, TraceId: {ab11d9c2-b17e-4f75-8986-b314ecacbe11}"
+      "message": "Metric: Ingress does not support requested dimension combination: apiname2, supported ones are: GeoType,ApiName,Authentication, TraceId: {6666aaaa-77bb-cccc-dd88-eeeeee999999}"
     }
     ```
 
@@ -605,7 +605,7 @@ In the `metrics:getBatch` error response, the error content is wrapped inside a 
     {
       "error": {
         "code": "BadRequest",
-        "message": "Metric: Egress does not support requested dimension combination: apiname2, supported ones are: GeoType,ApiName,Authentication, TraceId: {cd77617d-5f11-e50d-58c5-ba2f2cdc38ce}"
+        "message": "Metric: Egress does not support requested dimension combination: apiname2, supported ones are: GeoType,ApiName,Authentication, TraceId: {6666aaaa-77bb-cccc-dd88-eeeeee999999}"
       }
     }
     ```

@@ -13,8 +13,7 @@ ms.reviewer: luki
 
 This article provides a detailed overview of the Log Analytics agent and the agent's system and network requirements and deployment methods.
 
->[!IMPORTANT]
->The Log Analytics agent is on a **deprecation path** and won't be supported after **August 31, 2024**. Any new data centers brought online after January 1 2024 will not support the Log Analytics agent. If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate to the new Azure Monitor agent](./azure-monitor-agent-migration.md) prior to that date.
+[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
 
 You might also see the Log Analytics agent referred to as Microsoft Monitoring Agent (MMA).
 

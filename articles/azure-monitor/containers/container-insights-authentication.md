@@ -1,5 +1,5 @@
 ---
-title: Configure agent authentication for the Container Insights agent
+title: Legacy authentication for Container Insights 
 description: This article describes how to configure authentication for the containerized agent used by Container insights.
 ms.topic: conceptual
 ms.custom: devx-track-azurecli
@@ -81,8 +81,9 @@ AKS clusters must first disable monitoring and then upgrade to managed identity.
 ---
 
 
-## Timeline  
-Any new clusters being created or being onboarded now default to Managed Identity authentication. However, existing clusters with legacy solution-based authentication are still supported.  
+## Enable legacy authentication
+If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable.md#enable-container-insights) which has examples of different options for enabling Container insights.
+
 
 ## Next steps
 If you experience issues when you upgrade the agent, review the [troubleshooting guide](container-insights-troubleshoot.md) for support.

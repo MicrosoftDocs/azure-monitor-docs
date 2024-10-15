@@ -3,7 +3,7 @@ title: Create an experiment using a Chaos Mesh fault with the Azure portal
 description: Create an experiment that uses an AKS Chaos Mesh fault by using Azure Chaos Studio with the Azure portal.
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 04/21/2022
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

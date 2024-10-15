@@ -4,7 +4,7 @@ description: Sample Bicep templates to create Azure Chaos Studio experiments.
 services: chaos-studio
 author: rsgel
 ms.topic: sample
-ms.date: 06/09/2023
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: carlsonr
 ms.service: azure-chaos-studio

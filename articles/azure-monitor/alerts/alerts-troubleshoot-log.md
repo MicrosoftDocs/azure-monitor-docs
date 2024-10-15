@@ -202,6 +202,33 @@ If you've reached the quota limit, the following steps might help resolve the is
     - The requested quota limit
 
 
+## Incomplete Time Filtering in ARG and ADX Queries
+When using Azure Data Explorer (ADX) or Azure Resource Graph (ARG) queries in log search alerts, you might encounter an issue where the "Aggregation granularity" setting does not apply a time filter to your queries. This can lead to unexpected results and potential performance issues, as the query returns all 30 days of data from the draft, instead of the intended time range.
+
+To resolve this issue, you need to explicitly apply time filters in your ARG and ADX queries. Here are the steps to ensure: 
+
+1) Proper time filtering:
+Identify the Time Range: Determine the specific time range you want to query. For example, if you want to query data from the last 24 hours, you need to specify this time range in your query.
+
+2) Modify the Query: Add a time filter to your ARG or ADX query to limit the data returned to the desired time range. Here is an example of how to modify your query:
+
+```json
+    // Original query without time filter
+    resources
+    | where type == "microsoft.compute/virtualmachines"
+
+    // Modified query with time filter
+    resources
+    | where type == "microsoft.compute/virtualmachines"
+    | where timestamp >= ago(24h)
+```
+
+3) Test the Query: Run the modified query to ensure it returns the expected results within the specified time range.
+4) Update Alerts: Update your log search alerts to use the modified query with the explicit time filter. This will ensure that your alerts are based on the correct data and do not include unnecessary historical data.
+By applying explicit time filters in your ARG and ADX queries, you can avoid the issue of retrieving excessive data and ensure that your log search alerts are accurate and efficient.
+
+
+
 ## Next steps
 
 - Learn about [log alerts in Azure](./alerts-unified-log.md).
