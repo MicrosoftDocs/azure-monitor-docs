@@ -102,8 +102,7 @@ Azure Monitoring Agent supports all standard Windows hardening standards, includ
 ### Linux hardening
 
 > [!NOTE]
-> Only the Azure Monitoring Agent for Linux supports these hardening standards. They are not supported by the [Azure Diagnostics extension](./diagnostics-extension-overview.md).
-
+> Only the Azure Monitoring Agent for Linux supports these hardening standards. They are not supported by the [Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md) or the [Azure Diagnostics extension](./diagnostics-extension-overview.md).
 The Azure Monitoring Agent for Linux supports various hardening standards for Linux operating systems and distros. Every release of the agent is tested and certified against the supported hardening standards using images that are publicly available on the Azure Marketplace, including those published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). Only the settings and hardening that are applied to those images are supported. CIS-published images with additional customizations and images customized with settings and hardening that differs from official CIS benchmarks are not supported.
 
 Currently supported hardening standards:
