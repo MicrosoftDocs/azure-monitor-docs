@@ -86,7 +86,7 @@ source
 ```
 
 ## Dynamic literals
-Use the [parse_json function](/azure/data-explorer/kusto/query/parsejsonfunction) to handle [dynamic literals](/azure/data-explorer/kusto/query/scalar-data-types/dynamic#dynamic-literals).
+Use the [`parse_json` function](/azure/data-explorer/kusto/query/parsejsonfunction) to handle [dynamic literals](/azure/data-explorer/kusto/query/scalar-data-types/dynamic#dynamic-literals).
 
 For example, the following queries provide the same functionality:
 
@@ -103,7 +103,7 @@ print d=parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')
 ### Supported statements
 
 ####	let statement
-The right-hand side of [let](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
+The right-hand side of [`let`](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
 
 #### tabular expression statements
 The only supported data sources for the KQL statement are as follows:
@@ -116,7 +116,7 @@ source
 | project PreciseTimeStamp, Message
 ```
 
-- [print](/azure/data-explorer/kusto/query/printoperator) operator, which always produces a single row. For example:
+- [`print`](/azure/data-explorer/kusto/query/printoperator) operator, which always produces a single row. For example:
  	
 ```kusto
 print x = 2 + 2, y = 5 | extend z = exp2(x) + exp2(y)
@@ -124,15 +124,15 @@ print x = 2 + 2, y = 5 | extend z = exp2(x) + exp2(y)
 
 
 ### Tabular operators
-- [extend](/azure/data-explorer/kusto/query/extendoperator)
-- [project](/azure/data-explorer/kusto/query/projectoperator)
-- [print](/azure/data-explorer/kusto/query/printoperator)
-- [where](/azure/data-explorer/kusto/query/whereoperator)
-- [parse](/azure/data-explorer/kusto/query/parseoperator)
-- [project-away](/azure/data-explorer/kusto/query/projectawayoperator)
-- [project-rename](/azure/data-explorer/kusto/query/projectrenameoperator)
-- [datatable](/azure/data-explorer/kusto/query/datatableoperator?pivots=azuremonitor)
-- [columnifexists](/azure/data-explorer/kusto/query/columnifexists) (use columnifexists instead of column_ifexists)
+- [`extend`](/azure/data-explorer/kusto/query/extendoperator)
+- [`project`](/azure/data-explorer/kusto/query/projectoperator)
+- [`print`](/azure/data-explorer/kusto/query/printoperator)
+- [`where`](/azure/data-explorer/kusto/query/whereoperator)
+- [`parse`](/azure/data-explorer/kusto/query/parseoperator)
+- [`project-away`](/azure/data-explorer/kusto/query/projectawayoperator)
+- [`project-rename`](/azure/data-explorer/kusto/query/projectrenameoperator)
+- [`datatable`](/azure/data-explorer/kusto/query/datatableoperator?pivots=azuremonitor)
+- [`columnifexists`](/azure/data-explorer/kusto/query/columnifexists) (use columnifexists instead of column_ifexists)
 
 ### Scalar operators
 
@@ -232,31 +232,31 @@ The following [Bitwise operators](/azure/data-explorer/kusto/query/binoperators)
 
 #### Dynamic and array functions
 
-- [array_concat](/azure/data-explorer/kusto/query/arrayconcatfunction)
-- [array_length](/azure/data-explorer/kusto/query/arraylengthfunction)
-- [pack_array](/azure/data-explorer/kusto/query/packarrayfunction)
-- [pack](/azure/data-explorer/kusto/query/packfunction)
-- [parse_json](/azure/data-explorer/kusto/query/parsejsonfunction)
-- [parse_xml](/azure/data-explorer/kusto/query/parse-xmlfunction)
-- [zip](/azure/data-explorer/kusto/query/zipfunction)
+- [`array_concat`](/azure/data-explorer/kusto/query/arrayconcatfunction)
+- [`array_length`](/azure/data-explorer/kusto/query/arraylengthfunction)
+- [`pack_array`](/azure/data-explorer/kusto/query/packarrayfunction)
+- [`pack`](/azure/data-explorer/kusto/query/packfunction)
+- [`parse_json`](/azure/data-explorer/kusto/query/parsejsonfunction)
+- [`parse_xml`](/azure/data-explorer/kusto/query/parse-xmlfunction)
+- [`zip`](/azure/data-explorer/kusto/query/zipfunction)
 
 #### Mathematical functions
 
-- [abs](/azure/data-explorer/kusto/query/abs-function)
-- [bin/floor](/azure/data-explorer/kusto/query/binfunction)
-- [ceiling](/azure/data-explorer/kusto/query/ceilingfunction)
-- [exp](/azure/data-explorer/kusto/query/exp-function)
-- [exp10](/azure/data-explorer/kusto/query/exp10-function)
-- [exp2](/azure/data-explorer/kusto/query/exp2-function)
-- [isfinite](/azure/data-explorer/kusto/query/isfinitefunction)
-- [isinf](/azure/data-explorer/kusto/query/isinffunction)
-- [isnan](/azure/data-explorer/kusto/query/isnanfunction)
-- [log](/azure/data-explorer/kusto/query/log-function)
-- [log10](/azure/data-explorer/kusto/query/log10-function)
-- [log2](/azure/data-explorer/kusto/query/log2-function)
-- [pow](/azure/data-explorer/kusto/query/powfunction)
-- [round](/azure/data-explorer/kusto/query/roundfunction)
-- [sign](/azure/data-explorer/kusto/query/signfunction)
+- [`abs`](/azure/data-explorer/kusto/query/abs-function)
+- [`bin`/`floor`](/azure/data-explorer/kusto/query/binfunction)
+- [`ceiling`](/azure/data-explorer/kusto/query/ceilingfunction)
+- [`exp`](/azure/data-explorer/kusto/query/exp-function)
+- [`exp10`](/azure/data-explorer/kusto/query/exp10-function)
+- [`exp2`](/azure/data-explorer/kusto/query/exp2-function)
+- [`isfinite`](/azure/data-explorer/kusto/query/isfinitefunction)
+- [`isinf`](/azure/data-explorer/kusto/query/isinffunction)
+- [`isnan`](/azure/data-explorer/kusto/query/isnanfunction)
+- [`log`](/azure/data-explorer/kusto/query/log-function)
+- [`log10`](/azure/data-explorer/kusto/query/log10-function)
+- [`log2`](/azure/data-explorer/kusto/query/log2-function)
+- [`pow`](/azure/data-explorer/kusto/query/powfunction)
+- [`round`](/azure/data-explorer/kusto/query/roundfunction)
+- [`sign`](/azure/data-explorer/kusto/query/signfunction)
 
 #### Conditional functions
 
@@ -267,30 +267,30 @@ The following [Bitwise operators](/azure/data-explorer/kusto/query/binoperators)
 
 #### String functions
 
-- [base64_encodestring](/azure/data-explorer/kusto/query/base64_encode_tostringfunction) (use base64_encodestring instead of base64_encode_tostring)
-- [base64_decodestring](/azure/data-explorer/kusto/query/base64_decode_tostringfunction) (use base64_decodestring instead of base64_decode_tostring)
-- [countof](/azure/data-explorer/kusto/query/countoffunction)
-- [extract](/azure/data-explorer/kusto/query/extractfunction)
-- [extract_all](/azure/data-explorer/kusto/query/extractallfunction)
-- [indexof](/azure/data-explorer/kusto/query/indexoffunction)
-- [isempty](/azure/data-explorer/kusto/query/isemptyfunction)
-- [isnotempty](/azure/data-explorer/kusto/query/isnotemptyfunction)
-- [parse_json](/azure/data-explorer/kusto/query/parsejsonfunction)
-- [replace](https://github.com/microsoft/Kusto-Query-Language/blob/master/doc/replacefunction.md)
-- [split](/azure/data-explorer/kusto/query/splitfunction)
-- [strcat](/azure/data-explorer/kusto/query/strcatfunction)
-- [strcat_delim](/azure/data-explorer/kusto/query/strcat-delimfunction)
-- [strlen](/azure/data-explorer/kusto/query/strlenfunction)
-- [substring](/azure/data-explorer/kusto/query/substringfunction)
-- [tolower](/azure/data-explorer/kusto/query/tolowerfunction)
-- [toupper](/azure/data-explorer/kusto/query/toupperfunction)
-- [hash_sha256](/azure/data-explorer/kusto/query/sha256hashfunction)
+- [`base64_encodestring`](/azure/data-explorer/kusto/query/base64_encode_tostringfunction) (use base64_encodestring instead of base64_encode_tostring)
+- [`base64_decodestring`](/azure/data-explorer/kusto/query/base64_decode_tostringfunction) (use base64_decodestring instead of base64_decode_tostring)
+- [`countof`](/azure/data-explorer/kusto/query/countoffunction)
+- [`extract`](/azure/data-explorer/kusto/query/extractfunction)
+- [`extract_all`](/azure/data-explorer/kusto/query/extractallfunction)
+- [`indexof`](/azure/data-explorer/kusto/query/indexoffunction)
+- [`isempty`](/azure/data-explorer/kusto/query/isemptyfunction)
+- [`isnotempty`](/azure/data-explorer/kusto/query/isnotemptyfunction)
+- [`parse_json`](/azure/data-explorer/kusto/query/parsejsonfunction)
+- [`replace`](https://github.com/microsoft/Kusto-Query-Language/blob/master/doc/replacefunction.md)
+- [`split`](/azure/data-explorer/kusto/query/splitfunction)
+- [`strcat`](/azure/data-explorer/kusto/query/strcatfunction)
+- [`strcat_delim`](/azure/data-explorer/kusto/query/strcat-delimfunction)
+- [`strlen`](/azure/data-explorer/kusto/query/strlenfunction)
+- [`substring`](/azure/data-explorer/kusto/query/substringfunction)
+- [`tolower`](/azure/data-explorer/kusto/query/tolowerfunction)
+- [`toupper`](/azure/data-explorer/kusto/query/toupperfunction)
+- [hash`_sha256](/azure/data-explorer/kusto/query/sha256hashfunction)
 
 #### Type functions
 
-- [gettype](/azure/data-explorer/kusto/query/gettypefunction)
-- [isnotnull](/azure/data-explorer/kusto/query/isnotnullfunction)
-- [isnull](/azure/data-explorer/kusto/query/isnullfunction)
+- [`gettype`](/azure/data-explorer/kusto/query/gettypefunction)
+- [`isnotnull`](/azure/data-explorer/kusto/query/isnotnullfunction)
+- [`isnull`](/azure/data-explorer/kusto/query/isnullfunction)
 
 #### Special functions 
 
