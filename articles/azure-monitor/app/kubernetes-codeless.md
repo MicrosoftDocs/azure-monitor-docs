@@ -228,7 +228,7 @@ Use the following annotation to enable logs in Application Insights
 
 ## Prepare a cluster during AKS cluster create
 
-AKS Clusters can be prepared for this feature during cluster creation. If you prefer to have the cluster prepped during creation run the following Azure CLI command.
+AKS Clusters can be prepared for this feature during cluster creation. If you prefer to have the cluster prepped during creation run the following Azure CLI command. Application monitoring will not be enabled just because your cluster is prepped. You must deploy an application and onboard the application to this feature.
 
 ```azurecli
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
