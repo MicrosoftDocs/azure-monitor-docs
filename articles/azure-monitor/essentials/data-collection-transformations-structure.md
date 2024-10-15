@@ -4,7 +4,7 @@ description: Structure of transformation in Azure Monitor including limitations 
 author: bwren
 ms.author: bwren
 ms.topic: conceptual
-ms.date: 06/09/2023
+ms.date: 10/15/2024
 ms.reviwer: nikeist
 
 ---
@@ -35,11 +35,10 @@ source
 ## KQL limitations
 Since the transformation is applied to each record individually, it can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. See [Supported KQL features](#supported-kql-features) for a complete list of supported features.
 
-
-
 Transformations in a [data collection rule (DCR)](data-collection-rule-overview.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. This article describes how to build transformations in a DCR, including details and limitations of the Kusto Query Language (KQL) used for the transform statement.
 
-
+## Parse command
+The [parse](/kusto/query/parse-operator) command in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
 
 ## Required columns
 The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. Make sure to include it in the final `extend` or `project` block! Creating or updating a DCR without `TimeGenerated` in the output of a transformation will lead to an error.
