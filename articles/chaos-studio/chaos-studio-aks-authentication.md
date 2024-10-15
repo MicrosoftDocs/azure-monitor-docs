@@ -23,7 +23,7 @@ Chaos Studio previously only supported using Chaos Mesh with local accounts, but
 
 ## Updating targets
 
-Targets (`Microsoft.Chaos/targets`) represent another Azure resource -- in this case, an AKS cluster -- in Chaos Studio's resource model, so you can easily control whether or not a certain resource is enabled for fault injection and what faults can run against it.
+Targets (`Microsoft.Chaos/targets`) represent another Azure resource in Chaos Studio's resource model, so you can easily control whether or not a certain resource is enabled for fault injection and what faults can run against it. In this case, the target represents an AKS cluster that you want to affect.
 
 If you're onboarding an AKS cluster as a new Chaos Studio target within the Azure portal, the new fault versions will automatically be available.
 
@@ -48,7 +48,7 @@ Follow the [Create a chaos experiment that uses a Chaos Mesh fault to kill AKS p
 ### Azure portal
 1. Open an experiment that contains at least one AKS Chaos Mesh fault. 
 1. Select **Edit** on the fault and copy the `jsonSpec` parameter value to your clipboard.
-1. Open the fault selection dropdown and select the version of your desired fault without the "(deprecated)" marking.
+1. Open the fault selection dropdown and select the version of your desired fault without the `(deprecated)` marking.
 1. Paste the `jsonSpec` from your clipboard into the parameter field.
 1. Save the fault and the experiment.
 
