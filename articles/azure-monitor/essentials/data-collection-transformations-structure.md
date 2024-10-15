@@ -164,7 +164,7 @@ The following [String operators](/azure/data-explorer/kusto/query/datatypes-stri
 - `endswith`
 - `!endswith`
 - `endswith_cs`
-- !`endswith_cs`
+- `!endswith_cs`
 - `matches regex`
 - `in`
 - `!in`
@@ -284,7 +284,7 @@ The following [Bitwise operators](/azure/data-explorer/kusto/query/binoperators)
 - [`substring`](/azure/data-explorer/kusto/query/substringfunction)
 - [`tolower`](/azure/data-explorer/kusto/query/tolowerfunction)
 - [`toupper`](/azure/data-explorer/kusto/query/toupperfunction)
-- [hash`_sha256](/azure/data-explorer/kusto/query/sha256hashfunction)
+- [`hash_sha256`](/azure/data-explorer/kusto/query/sha256hashfunction)
 
 #### Type functions
 
