@@ -25,8 +25,6 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux ARM64 node pools.
 > - This feature is incompatible with .NET [self-contained](/dotnet/core/deploying/#publish-self-contained) applications.
-> - This feature is incompatible with Node.js applications using gRPC
-
 
 ## Install the aks-preview Azure CLI extension
 
