@@ -174,61 +174,61 @@ The following [String operators](/azure/data-explorer/kusto/query/datatypes-stri
 
 The following [Bitwise operators](/azure/data-explorer/kusto/query/binoperators) are supported.
 
-- binary_and()
-- binary_or()
-- binary_xor()
-- binary_not()
-- binary_shift_left()
-- binary_shift_right()
+- `binary_and()`
+- `binary_or()`
+- `binary_xor()`
+- `binary_not()`
+- `binary_shift_left()`
+- `binary_shift_right()`
 
 ### Scalar functions
 
 #### Bitwise functions
 
-- [binary_and](/azure/data-explorer/kusto/query/binary-andfunction)
-- [binary_or](/azure/data-explorer/kusto/query/binary-orfunction)
-- [binary_not](/azure/data-explorer/kusto/query/binary-notfunction)
-- [binary_shift_left](/azure/data-explorer/kusto/query/binary-shift-leftfunction)
-- [binary_shift_right](/azure/data-explorer/kusto/query/binary-shift-rightfunction)
-- [binary_xor](/azure/data-explorer/kusto/query/binary-xorfunction)
+- [`binary_and`](/azure/data-explorer/kusto/query/binary-andfunction)
+- [`binary_or`](/azure/data-explorer/kusto/query/binary-orfunction)
+- [`binary_not`](/azure/data-explorer/kusto/query/binary-notfunction)
+- [`binary_shift_left`](/azure/data-explorer/kusto/query/binary-shift-leftfunction)
+- [`binary_shift_right`](/azure/data-explorer/kusto/query/binary-shift-rightfunction)
+- [`binary_xor`](/azure/data-explorer/kusto/query/binary-xorfunction)
 
 #### Conversion functions
 
-- [tobool](/azure/data-explorer/kusto/query/toboolfunction)
-- [todatetime](/azure/data-explorer/kusto/query/todatetimefunction)
-- [todouble/toreal](/azure/data-explorer/kusto/query/todoublefunction)
-- [toguid](/azure/data-explorer/kusto/query/toguidfunction)
-- [toint](/azure/data-explorer/kusto/query/tointfunction)
-- [tolong](/azure/data-explorer/kusto/query/tolongfunction)
-- [tostring](/azure/data-explorer/kusto/query/tostringfunction)
-- [totimespan](/azure/data-explorer/kusto/query/totimespanfunction)
+- [`tobool`](/azure/data-explorer/kusto/query/toboolfunction)
+- [`todatetime`](/azure/data-explorer/kusto/query/todatetimefunction)
+- [`todouble`/toreal](/azure/data-explorer/kusto/query/todoublefunction)
+- [`toguid`](/azure/data-explorer/kusto/query/toguidfunction)
+- [`toint`](/azure/data-explorer/kusto/query/tointfunction)
+- [`tolong`](/azure/data-explorer/kusto/query/tolongfunction)
+- [`tostring`](/azure/data-explorer/kusto/query/tostringfunction)
+- [`totimespan`](/azure/data-explorer/kusto/query/totimespanfunction)
 
 #### DateTime and TimeSpan functions
 
-- [ago](/azure/data-explorer/kusto/query/agofunction)
-- [datetime_add](/azure/data-explorer/kusto/query/datetime-addfunction)
-- [datetime_diff](/azure/data-explorer/kusto/query/datetime-difffunction)
-- [datetime_part](/azure/data-explorer/kusto/query/datetime-partfunction)
-- [dayofmonth](/azure/data-explorer/kusto/query/dayofmonthfunction)
-- [dayofweek](/azure/data-explorer/kusto/query/dayofweekfunction)
-- [dayofyear](/azure/data-explorer/kusto/query/dayofyearfunction)
-- [endofday](/azure/data-explorer/kusto/query/endofdayfunction)
-- [endofmonth](/azure/data-explorer/kusto/query/endofmonthfunction)
-- [endofweek](/azure/data-explorer/kusto/query/endofweekfunction)
-- [endofyear](/azure/data-explorer/kusto/query/endofyearfunction)
-- [getmonth](/azure/data-explorer/kusto/query/getmonthfunction)
-- [getyear](/azure/data-explorer/kusto/query/getyearfunction)
-- [hourofday](/azure/data-explorer/kusto/query/hourofdayfunction)
-- [make_datetime](/azure/data-explorer/kusto/query/make-datetimefunction)
-- [make_timespan](/azure/data-explorer/kusto/query/make-timespanfunction)
-- [now](/azure/data-explorer/kusto/query/nowfunction)
-- [startofday](/azure/data-explorer/kusto/query/startofdayfunction)
-- [startofmonth](/azure/data-explorer/kusto/query/startofmonthfunction)
-- [startofweek](/azure/data-explorer/kusto/query/startofweekfunction)
-- [startofyear](/azure/data-explorer/kusto/query/startofyearfunction)
-- [todatetime](/azure/data-explorer/kusto/query/todatetimefunction)
-- [totimespan](/azure/data-explorer/kusto/query/totimespanfunction)
-- [weekofyear](/azure/data-explorer/kusto/query/weekofyearfunction)
+- [`ago`](/azure/data-explorer/kusto/query/agofunction)
+- [`datetime_add`](/azure/data-explorer/kusto/query/datetime-addfunction)
+- [`datetime_diff`](/azure/data-explorer/kusto/query/datetime-difffunction)
+- [`datetime_part`](/azure/data-explorer/kusto/query/datetime-partfunction)
+- [`dayofmonth`](/azure/data-explorer/kusto/query/dayofmonthfunction)
+- [`dayofweek`](/azure/data-explorer/kusto/query/dayofweekfunction)
+- [`dayofyear`](/azure/data-explorer/kusto/query/dayofyearfunction)
+- [`endofday`](/azure/data-explorer/kusto/query/endofdayfunction)
+- [`endofmonth`](/azure/data-explorer/kusto/query/endofmonthfunction)
+- [`endofweek`](/azure/data-explorer/kusto/query/endofweekfunction)
+- [`endofyear`](/azure/data-explorer/kusto/query/endofyearfunction)
+- [`getmonth`](/azure/data-explorer/kusto/query/getmonthfunction)
+- [`getyear`](/azure/data-explorer/kusto/query/getyearfunction)
+- [`hourofday`](/azure/data-explorer/kusto/query/hourofdayfunction)
+- [`make_datetime`](/azure/data-explorer/kusto/query/make-datetimefunction)
+- [`make_timespan`](/azure/data-explorer/kusto/query/make-timespanfunction)
+- [`now`](/azure/data-explorer/kusto/query/nowfunction)
+- [`startofday`](/azure/data-explorer/kusto/query/startofdayfunction)
+- [`startofmonth`](/azure/data-explorer/kusto/query/startofmonthfunction)
+- [`startofweek`](/azure/data-explorer/kusto/query/startofweekfunction)
+- [`startofyear`](/azure/data-explorer/kusto/query/startofyearfunction)
+- [`todatetime`](/azure/data-explorer/kusto/query/todatetimefunction)
+- [`totimespan`](/azure/data-explorer/kusto/query/totimespanfunction)
+- [`weekofyear`](/azure/data-explorer/kusto/query/weekofyearfunction)
 
 #### Dynamic and array functions
 
