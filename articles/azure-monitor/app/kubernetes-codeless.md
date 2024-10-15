@@ -74,7 +74,10 @@ Deployments can be onboarded in two ways: _namespace-wide_ or _per-deployment_. 
 
 ### Namespace-wide onboarding
 
-To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. You can retrieve connection string from the overview page of your Application Insights resource.
+To onboard all deployments within a namespace, create a single _Instrumentation_ custom resource named `default` in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource.
+
+> [!TIP]
+> You can retrieve connection string from the overview page of your Application Insights resource.
 
 ```yml
 apiVersion: monitor.azure.com/v1
@@ -106,7 +109,10 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
 
 1. Create a unique _Instrumentation_ custom resource for each scenario. Avoid using the name `default`, which is used for namespace-wide onboarding.
 
-    Create _Instrumentation_ custom resources to configure Application Insights in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. You can retrieve connection string from the overview page of your Application Insights resource.
+    Create _Instrumentation_ custom resources to configure Application Insights in each namespace. Update `applicationInsightsConnectionString` to have the connection string of your Application Insights resource. 
+
+    > [!TIP]
+    > You can retrieve connection string from the overview page of your Application Insights resource.
 
     
     ```yml
@@ -131,7 +137,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     > [!TIP]
     > `spec.settings.autoInstrumentationPlatforms` is ignored in non-default _Instrumentation_ custom resources. The language is determined by the annotation used to associate a deployment to the custom resource.
 
-2. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
+3. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
 
     > [!IMPORTANT]
     > Always add annotations at the `spec.template.metadata.annotations` level of your deployment to avoid mistakenly adding them to the deployment’s own annotations.
@@ -156,7 +162,7 @@ Run the following command after all custom resources are created and deployments
 kubectl rollout restart deployment <deployment-name> -n mynamespace1
 ```
 
-This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences such as Application Map, Failures, and Performance blades.
+This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You will be able to use all Application Insights Experiences with the exception of Live Metrics and Application Insights Code Analysis features. Learn more about the available Application Insights experiences [here](app-insights-overview.md#experiences). 
 
 ## Remove Autoinstrumentation for AKS
 
