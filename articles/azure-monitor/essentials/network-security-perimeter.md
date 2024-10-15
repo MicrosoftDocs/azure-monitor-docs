@@ -4,7 +4,7 @@ description: Details on adding Azure Monitor resources to your network security 
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 04/11/2024
+ms.date: 10/15/2024
 ---
 
 # Configure Azure Monitor with Network Security Perimeter (Preview)
@@ -20,14 +20,13 @@ Network Security Perimeter allows you to control network access using network is
  
 ## Regions
 
-Azure Network Security Perimeter is in public preview and available in all regions. The Network Security Perimeter features in Azure Monitor services though are limited to the following regions for public preview:
+Azure Network Security Perimeter is in public preview and available in all regions except for the following:
 
-  - North Central US
-  - East US
-  - East US 2
-  - West US
-  - West US 2
-  - South central US
+- Chile Central
+- East US STG
+- Israel Northwest
+- Malaysia South
+- South Central US STG
 
 ## Supported components
 The components of Azure Monitor that are supported with a network security perimeter are listed in the following table with their minimum API version.
@@ -43,6 +42,9 @@ The following components of Azure Monitor are **not** supported with a network s
 
 - Application insights Profiler and Debugger
 - Log Analytics customer managed key
+
+> [!NOTE]
+> For Application insights, configure NSP for the Log Analytics workspace used for the Application insights resource.
 
 ## Create a network security perimeter
 
@@ -88,9 +90,7 @@ Use the following process to add an NSP inbound access rule using the Azure port
 
     :::image type="content" source="./media/network-security-perimeter/inbound-access-rules.png" alt-text="Screenshot of network security perimeter profile inbound access rules in the Azure portal." lightbox="./media/network-security-perimeter/inbound-access-rules.png"::: 
 
-4. Click **Add** or **Add inbound access rule**.
-
-    Enter or select the following values:
+4. Click **Add** or **Add inbound access rule**. Enter or select the following values:
 
     | Setting | Value |
     |:---|:---|
@@ -104,9 +104,9 @@ Use the following process to add an NSP inbound access rule using the Azure port
 
 
 ## Add an NSP Outbound Access Rule
-Please refer to the data export documentation mentioned in Azure Monitor public documentation to look for various outbound scenarios. Data export in a Log Analytics workspace lets you continuously export data per selected tables in your workspace. You can export to an Azure Storage Account or Azure Event Hubs as the data arrives to an Azure Monitor pipeline. Also use Azure Logic Apps to query data from a log analytics workspace in Azure Monitor and send it to Azure Storage. 
-Recall that in public preview, Log analytics workspace can only connect to storage and event hubs within the security perimeter. If you have other destinations, then you need to have an outbound access rule to support that connection.
-Network Security Perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your Network Security Perimeter to an FQDN such as mystorageaccount.blob.core.windows.net.
+[Data export in a Log Analytics workspace](../logs/logs-data-export.md) lets you continuously export data for particular tables in your workspace. You can export to an Azure Storage Account or Azure Event Hubs as the data arrives to an Azure Monitor pipeline.
+
+A Log analytics workspace within a security perimeter can only connect to storage and event hubs in the same perimeter. Other destinations require an outbound access rule based on the Fully Qualified Domain Name (FQDN) of the destination. For example, allow outbound access from any service associated with your Network Security Perimeter to an FQDN such as mystorageaccount.blob.core.windows.net.
 
 Use the following process to add an NSP outbound access rule using the Azure portal:
 
@@ -117,21 +117,16 @@ Use the following process to add an NSP outbound access rule using the Azure por
 
 3.	Select **Outbound access rules**.
  
-4. Click **Add** or **Add outbound access rule**.
-
-Enter or select the following values:
-
-| Setting |	Value |
-|:---|:---|
-| Rule Name | The name for the outbound access rule. For example *MyOutboundAccessRule*. |
-| Destination Type | Leave as FQDN. |
-| Allowed Destinations | Enter a comma-separated list of FQDNs you want to allow outbound access to. |
+4. Click **Add** or **Add outbound access rule**. Enter or select the following values:
+    
+    | Setting |	Value |
+    |:---|:---|
+    | Rule Name | The name for the outbound access rule. For example *MyOutboundAccessRule*. |
+    | Destination Type | Leave as FQDN. |
+    | Allowed Destinations | Enter a comma-separated list of FQDNs you want to allow outbound access to. |
 
 5.	Select **Add** to create the outbound access rule.
  
     :::image type="content" source="./media/network-security-perimeter/outbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new outbound access rule in the Azure portal." lightbox="./media/network-security-perimeter/outbound-access-rule-new.png"::: 
 
-
-
-## Next steps
 
