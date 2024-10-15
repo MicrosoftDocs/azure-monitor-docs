@@ -195,7 +195,10 @@ SecurityEvent
 ```
 
 ### Break up large parse commands
-When use the `parse` operator, limit to five the number of columns you extract in a single statement. An excessive number of extractions in a single statement can result in significantly increased processing time. Instead, break the extractions into multiple `parse` statements.
+When using the `parse` operator, limit to five the number of columns you extract in a single statement. An excessive number of extractions in a single statement can result in significantly increased processing time. Instead, break the extractions into multiple `parse` statements.
+
+> [!NOTE]
+> In transformations, the `parse` operator is limited to 10 extractions in a single statement.
 
 For example, the following queries produce the same results, but the second is significantly more efficient because it breaks the parse operation into multiple smaller commands.
 
