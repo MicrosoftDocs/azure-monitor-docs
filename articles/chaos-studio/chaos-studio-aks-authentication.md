@@ -23,7 +23,11 @@ Chaos Studio previously only supported using Chaos Mesh with local accounts, but
 
 ## Updating targets
 
-Before using the updated faults, you need to update the target, which represents your AKS cluster in Chaos Studio's resource model. You can do this in one of two ways:
+Targets (`Microsoft.Chaos/targets`) represent another Azure resource -- in this case, an AKS cluster -- in Chaos Studio's resource model, so you can easily control whether or not a certain resource is enabled for fault injection and what faults can run against it.
+
+If you're onboarding an AKS cluster as a new Chaos Studio target within the Azure portal, the new fault versions will automatically be available.
+
+If you want to use the new fault version on an existing AKS target, you need to update the target. You can do this in one of two ways:
 - Disable and re-enable the target resource. 
     - To do this in the Azure portal, visit the **Targets** pane in the Chaos Studio portal interface, select the relevant AKS cluster(s), and select **Disable targets**. Wait 1-2 minutes or for a confirmation notification, then select **Enable targets** > **Enable service-direct targets** and go through the Review & Create screen.
 - Update the enabled capabilities.
