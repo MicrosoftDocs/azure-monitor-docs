@@ -35,10 +35,10 @@ The following table lists the different kinds of DCRs and their details.
 | Kind | Description |
 |:---|:---|
 | `Direct` | Direct ingestion using Logs ingestion API. Endpoints are created for the DCR only if this kind value is used. |
-| `AgentDirectToStore` | |
-| `AgentSettings` | |
+| `AgentDirectToStore` | Send collected data to Azure Storage and Event Hubs. |
+| `AgentSettings` | Configure Azure Monitor agent parameters. |
 | `Linux` | Collect events and performance data from Linux machines. |
-| `PlatformTelemetry` | |
+| `PlatformTelemetry` | Export platform metrics. |
 | `Windows` | Collect events and performance data from Windows machines. |
 | `WorkspaceTransforms` | Workspace transformation DCR. This DCR doesn't include an input stream. |
 
