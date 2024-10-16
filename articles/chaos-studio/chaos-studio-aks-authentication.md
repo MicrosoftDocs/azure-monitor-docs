@@ -45,14 +45,18 @@ Follow the [Create a chaos experiment that uses a Chaos Mesh fault to kill AKS p
 
 ## Updating an existing experiment
 
-### Azure portal
+Follow one of these two methods to update your existing experiment.
+
+### [Azure portal](#tab/azure-portal)
+
 1. Open an experiment that contains at least one AKS Chaos Mesh fault. 
 1. Select **Edit** on the fault and copy the `jsonSpec` parameter value to your clipboard.
 1. Open the fault selection dropdown and select the version of your desired fault without the `(deprecated)` marking.
 1. Paste the `jsonSpec` from your clipboard into the parameter field.
 1. Save the fault and the experiment.
 
-### Command-line
+### [Command line](#tab/command-line)
+
 1. Use the [REST API](chaos-studio-samples-rest-api.md) to get the experiment JSON.
     ```azurecli-interactive
     az rest --method get --url "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Chaos/experiments/$EXPERIMENT_NAME?api-version=2024-01-01"
