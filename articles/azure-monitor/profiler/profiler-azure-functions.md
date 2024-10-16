@@ -49,7 +49,7 @@ From your Functions app overview page in the Azure portal:
 
    :::image type="content" source="./media/profiler-azure-functions/new-setting-button.png" alt-text="Screenshot outlining the new application setting button.":::
 
-1. Copy the **App Setting** and its **Value** from the [table above](#app-settings-for-enabling-profiler) and paste into the corresponding fields.
+1. Copy the **App Setting** and its **Value** from the [table above](#app-settings-for-enabling-the-net-profiler) and paste into the corresponding fields.
 
    :::image type="content" source="./media/profiler-azure-functions/app-setting-1.png" alt-text="Screenshot adding the app insights profiler feature version setting.":::
 
