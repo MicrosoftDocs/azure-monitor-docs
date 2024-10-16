@@ -504,7 +504,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 | Urn | urn:csci:microsoft:agent:cpuPressure/1.0 |
 | Fault type | Continuous. |
 | Parameters (key, value)  | |
-| pressureLevel | An integer between 1 and 99 that indicates how much CPU pressure (%) is applied to the VM in terms of **% CPU Usage** |
+| pressureLevel | An integer between 1 and 95 that indicates how much CPU pressure (%) is applied to the VM in terms of **% CPU Usage** |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
 #### Sample JSON
@@ -549,7 +549,7 @@ Known issues on Linux:
 | Urn | urn:csci:microsoft:agent:physicalMemoryPressure/1.0 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
-| pressureLevel | An integer between 1 and 99 that indicates how much physical memory pressure (%) is applied to the VM. |
+| pressureLevel | An integer between 1 and 95 that indicates how much physical memory pressure (%) is applied to the VM. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
 #### Sample JSON
@@ -593,7 +593,7 @@ Currently, the Windows agent doesn't reduce memory pressure when other applicati
 | Urn | urn:csci:microsoft:agent:virtualMemoryPressure/1.0 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
-| pressureLevel | An integer between 1 and 99 that indicates how much physical memory pressure (%) is applied to the VM. |
+| pressureLevel | An integer between 1 and 95 that indicates how much physical memory pressure (%) is applied to the VM. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
 #### Sample JSON
@@ -786,7 +786,7 @@ These sample values produced ~100% disk pressure when tested on a `Standard_D2s_
 | Capability name | KillProcess-1.0 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux |
-| Description | Kills all the running instances of a process that matches the process name sent in the fault parameters. Within the duration set for the fault action, a process is killed repetitively based on the value of the kill interval specified. This fault is a destructive fault where system admin would need to manually recover the process if self-healing is configured for it. |
+| Description | Kills all the **running** instances of a process that matches the process name sent in the fault parameters. Within the duration set for the fault action, a process is killed repetitively based on the value of the kill interval specified. This fault is a destructive fault where system admin would need to manually recover the process if self-healing is configured for it. Note that this fault will error when used on an empty name process, when used with an unspecifiec interval, or when we cannot find the target process name that we want to kill.|
 | Prerequisites | None. |
 | Urn | urn:csci:microsoft:agent:killProcess/1.0 |
 | Fault type | Continuous. |

@@ -137,6 +137,8 @@ The destinations currently available are listed in the following table.
 | `eventHubsDirect` | Event Hubs | `eventHubsDirect` - Resource ID of the event hub. |
 
 
+> [!IMPORTANT]
+> One stream can only send to one Log Analytics workspace in a DCR. You can have multiple `dataFlow` entries for a single stream if they are using different tables in the same workspace. If you need to send data to multiple Log Analytics workspaces from a single stream, create a separate DCR for each workspace.
 
 ## Data flows
 Data flows match input streams with destinations. Each data source may optionally specify a transformation and in some cases will specify a specific table in the Log Analytics workspace. 

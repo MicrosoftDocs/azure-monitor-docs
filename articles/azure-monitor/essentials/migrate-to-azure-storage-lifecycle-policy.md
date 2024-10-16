@@ -29,6 +29,45 @@ An existing diagnostic setting logging to a storage account.
 
 ## Migration procedures
 
+Use the following CLI command to check if a resource has a diagnostic setting:
+
+```azurecli
+ az monitor diagnostic-settings list --resource <resource Id>
+```
+The output shows whether the diagnostic setting sends the data to a storage account, for example:
+
+```JSON
+[
+  {
+    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-001/providers/microsoft.insights/datacollectionrules/dcr-east2/providers/microsoft.insights/diagnosticSettings/dsetting-1",
+    "logs": [
+      {
+        "categoryGroup": "allLogs",
+        "enabled": true,
+        "retentionPolicy": {
+          "days": 0,
+          "enabled": false
+        }
+      }
+    ],
+    "metrics": [
+      {
+        "category": "AllMetrics",
+        "enabled": false,
+        "retentionPolicy": {
+          "days": 0,
+          "enabled": false
+        }
+      }
+    ],
+    "name": "dsetting-1",
+    "resourceGroup": "rg-001",
+    "storageAccountId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-DCR/providers/Microsoft.Storage/storageAccounts/logs001",
+    "type": "Microsoft.Insights/diagnosticSettings"
+  }
+]
+```
+
 ## [Azure portal](#tab/portal)
 
 To migrate your diagnostics settings retention rules, follow the steps below:
