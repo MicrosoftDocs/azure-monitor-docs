@@ -24,7 +24,7 @@ Transformations are implemented in [data collection rules (DCRs)](../essentials/
 
 
 ## Data sources
-The [dataSources section of the DCR](../essentials/data-collection-rule-structure.md#datasources) defines the different types of incoming data that the DCR will process. For Container insights, this is the Container insights extension, which includes one or more predefined `streams` starting with the prefix *Microsoft-*.
+The [Data sources section of the DCR](../essentials/data-collection-rule-structure.md#data-sources) defines the different types of incoming data that the DCR will process. For Container insights, this is the Container insights extension, which includes one or more predefined `streams` starting with the prefix *Microsoft-*.
 
 The list of Container insights streams in the DCR depends on the [Cost preset](container-insights-cost-config.md#cost-presets) that you selected for the cluster. If you collect all tables, the DCR will use the `Microsoft-ContainerInsights-Group-Default` stream, which is a group stream that includes all of the streams listed in [Stream values](container-insights-cost-config.md#stream-values). You must change this to individual streams if you're going to use a transformation. Any other cost preset settings will already use individual streams.
 
@@ -55,7 +55,7 @@ The sample below shows the `Microsoft-ContainerInsights-Group-Default` stream. S
 
 
 ## Data flows
-The [dataFlows section of the DCR](../essentials/data-collection-rule-structure.md#dataflows) matches streams with destinations that are defined in the `destinations` section of the DCR. Table names don't have to be specified for known streams if the data is being sent to the default table. The streams that don't require a transformation can be grouped together in a single entry that includes only the workspace destination. Each will be sent to its default table.
+The [Data flows section of the DCR](../essentials/data-collection-rule-structure.md#data-flows) matches streams with destinations that are defined in the `destinations` section of the DCR. Table names don't have to be specified for known streams if the data is being sent to the default table. The streams that don't require a transformation can be grouped together in a single entry that includes only the workspace destination. Each will be sent to its default table.
 
 Create a separate entry for streams that require a transformation. This should include the workspace destination and the `transformKql` property. If you're sending data to an alternate table, then you need to include the `outputStream` property which specifies the name of the destination table.
 
