@@ -61,7 +61,7 @@ The input stream section of a DCR defines the incoming data that's being collect
 | `dataSources` | Known type of data. This is often data processed by Azure Monitor agent and delivered to Azure Monitor using a known data type. |
 | `streamDeclarations` | Custom data that needs to be defined in the DCR. |
 
-Data sent from the Logs ingestion API uses a `streamDeclaration` with the schema of the incoming data. This is because the the API sends custom data that can have any schema.
+Data sent from the Logs ingestion API uses a `streamDeclaration` with the schema of the incoming data. This is because the API sends custom data that can have any schema.
 
 Text logs from AMA are an example of data collection that requires both `dataSources` and `streamDeclarations`. The data source includes the configuration 
 
