@@ -1,6 +1,6 @@
 ---
 title: Enable the .NET Profiler for Azure App Service apps | Microsoft Docs
-description: Profile live apps on Azure App Service with Application Insights profiler for .NET.
+description: Profile live apps on Azure App Service with Application Insights Profiler for .NET.
 ms.topic: how-to
 ms.date: 08/15/2024
 ms.reviewer: ryankahng
@@ -8,9 +8,9 @@ ms.reviewer: ryankahng
 
 # Enable Profiler for Azure App Service apps
 
-[Application Insights profiler for .NET](./profiler-overview.md) is preinstalled as part of the Azure App Service runtime. You can run Profiler on ASP.NET and ASP.NET Core apps running on App Service by using the Basic service tier or higher.
+[Application Insights Profiler for .NET](./profiler-overview.md) is preinstalled as part of the Azure App Service runtime. You can run Profiler on ASP.NET and ASP.NET Core apps running on App Service by using the Basic service tier or higher.
 
-Codeless installation of Application Insights profiler for .NET:
+Codeless installation of Application Insights Profiler for .NET:
 - Follows [the .NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 - Is only supported on *Windows-based* web apps.
 
@@ -38,7 +38,7 @@ To enable .NET Profiler on Linux, walk through the [ASP.NET Core Azure Linux web
 
 1. Select **Save** if you made changes.
 
-## Enable Application Insights and the .NET profiler
+## Enable Application Insights and the .NET Profiler
 
 You can enable Profiler either when:
 - [Your Application Insights resource and App Service resource are in the same subscription](#for-application-insights-and-app-service-in-the-same-subscription), or
@@ -67,7 +67,7 @@ If your Application Insights resource is in the same subscription as your instan
 
 ### For Application Insights and App Service in different subscriptions
 
-If your Application Insights resource is in a different subscription from your instance of App Service, you need to enable the profiler for .NET manually by creating app settings for your App Service instance. You can automate the creation of these settings by using a template or other means. Here are the settings you need to enable Profiler.
+If your Application Insights resource is in a different subscription from your instance of App Service, you need to enable the Profiler for .NET manually by creating app settings for your App Service instance. You can automate the creation of these settings by using a template or other means. Here are the settings you need to enable Profiler.
 
 |App setting    | Value    |
 |---------------|----------|
@@ -93,7 +93,7 @@ Currently, the only regions that require endpoint modifications are [Azure Gover
 
 ## Enable Microsoft Entra authentication for profile ingestion
 
-Application Insights profiler for .NET supports Microsoft Entra authentication for profile ingestion. For all profiles of your application to be ingested, your application must be authenticated and provide the required application settings to the Profiler agent.
+Application Insights Profiler for .NET supports Microsoft Entra authentication for profile ingestion. For all profiles of your application to be ingested, your application must be authenticated and provide the required application settings to the Profiler agent.
 
 Profiler only supports Microsoft Entra authentication when you reference and configure Microsoft Entra ID by using the [Application Insights SDK](../app/asp-net-core.md#configure-the-application-insights-sdk) in your application.
 
@@ -121,7 +121,7 @@ To enable Microsoft Entra ID for profile ingestion:
        | ------------- | -------- |
        | APPLICATIONINSIGHTS_AUTHENTICATION_STRING         | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}`    |
 
-## Disable the .NET profiler
+## Disable the .NET Profiler
 
 To stop or restart Profiler for an individual app's instance:
 
@@ -142,5 +142,5 @@ We recommend that you have Profiler enabled on all your apps to discover any per
 You can delete Profiler's files when you use WebDeploy to deploy changes to your web application. You can prevent the deletion by excluding the *App_Data* folder from being deleted during deployment.
 
 ## Next steps
-- Learn how to [generate load and view the .NET profiler traces](./profiler-data.md)
-- Learn how to use the [Code Optimizations feature](../insights/code-optimizations.md) alongside the Application Insights profiler for .NET
+- Learn how to [generate load and view the .NET Profiler traces](./profiler-data.md)
+- Learn how to use the [Code Optimizations feature](../insights/code-optimizations.md) alongside the Application Insights Profiler for .NET

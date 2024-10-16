@@ -1,13 +1,13 @@
 ---
-title: Generate load and view Application Insights Profiler data
-description: Generate load to your Azure service to view the Profiler data
+title: Generate load and view Application Insights Profiler for .NET data
+description: Generate load to your Azure service to view the .NET Profiler data
 ms.contributor: charles.weininger
 ms.topic: conceptual
 ms.date: 07/11/2024
 ms.reviewer: charles.weininger
 ---
 
-# View Application Insights Profiler data
+# View Application Insights Profiler for .NET data
 
 Let's say you're running a web performance test. You'll need traces to understand how your web app is running under load. In this article, you'll:
 
