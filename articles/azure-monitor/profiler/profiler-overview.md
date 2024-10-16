@@ -1,17 +1,17 @@
 ---
-title: Analyze application performance traces with Azure Monitor Application Insights profiler for .NET
-description: Identify the hot path in your web server code with a low-footprint .NET profiler.
+title: Analyze application performance traces with Azure Monitor Application Insights Profiler for .NET
+description: Identify the hot path in your web server code with a low-footprint .NET Profiler.
 ms.contributor: charles.weininger
 ms.topic: conceptual
 ms.date: 08/15/2024
 ms.reviewer: ryankahng
 ---
 
-# Profile production applications in Azure with Application Insights profiler for .NET
+# Profile production applications in Azure with Application Insights Profiler for .NET
 
 Diagnosing your application's performance issues can be difficult, especially when running on a production environment in the dynamic cloud. Slow responses in your application could be caused by infrastructure, framework, or application code handling the request in the pipeline. 
 
-With Application Insights profiler for .NET, you can capture, identify, and view performance traces for your application running in Azure, regardless of the scenario. The .NET Profiler trace process occurs automatically, at scale, and doesn't negatively affect your users. The .NET Profiler identifies:
+With Application Insights Profiler for .NET, you can capture, identify, and view performance traces for your application running in Azure, regardless of the scenario. The .NET Profiler trace process occurs automatically, at scale, and doesn't negatively affect your users. The .NET Profiler identifies:
 
 - The median, fastest, and slowest response times for each web request made by your customers.
 - The "hot" code path spending the most time handling a particular web request.
