@@ -8,7 +8,7 @@ ms.reviewer: ryankahng
 # Customer Intent: As a .NET developer, I'd like to learn how to enable the .NET Profiler on my ASP.NET Core application running in my container.
 ---
 
-# Profile live Azure containers with Application Insights
+# Enable the .NET Profiler on Azure containers
 
 You can enable the Application Insights Profiler for .NET on applications running in your container almost without code. To enable the .NET Profiler on your container instance, you need to:
 
