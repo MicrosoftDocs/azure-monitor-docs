@@ -154,10 +154,6 @@ Data flows match input streams with destinations. Each data source may optionall
 
 
 
-
-
-
-
 ## Next steps
 
 [Overview of data collection rules and methods for creating them](data-collection-rule-overview.md)
