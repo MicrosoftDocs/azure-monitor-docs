@@ -24,6 +24,18 @@ Currently, the install and usage instructions are found in the following GitHub 
 
 ## Sample questions
 
+Once installed, the Code Optimizations extension (preview) introduces an agent called `@code_optimizations` with a few commands or "skills" that you can use in GitHub Copilot to interface with Code Optimizations issues. For example, you can ask Copilot:
+
+- list
+
+
+**Visual Studio Code**
+
+:::image type="content" source="./media/code-optimizations-extensions/without-code-optimizations.png" alt-text="Screenshot of the GitHub Copilot chat window in Visual Studio Code and using the Code Optimizations command.":::
+
+**Visual Studio**
+
+:::image type="content" source="./media/code-optimizations-extensions/code-optimizations-copilot-command.png" alt-text="Screenshot of the GitHub Copilot chat window in Visual Studio and using the Code Optimizations command.":::
 
 ## Limitations
 
