@@ -262,6 +262,14 @@ AKS autoinstrumentation injects the latest version of the Azure Monitor OpenTele
 
 The OpenTelemetry Distro can become vulnerable on deployments that aren't changed or restarted for extended periods of time. For this reason, we suggest updating or restarting deployments weekly to ensure a recent version of the Distro is being used.
 
+#### How do I learn more about the Azure Monitor OpenTelemetry Distro?
+
+This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods to generate telemetry. 
+
+For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary that is leveraged by this feature. 
+
+For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. See our [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs) to learn more. Keep in mind that we do not have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code based configurations steps related to manual instrumentation. However, everything else in our distro documentation such as default settings, environment variable configurations, etc. will be appicable to this feature.
+
 ## Troubleshooting
 
 #### Missing telemetry
