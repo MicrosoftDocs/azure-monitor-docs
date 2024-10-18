@@ -124,6 +124,8 @@ Follow one of these two methods to update your existing experiment.
     az rest --method put --url "https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Chaos/experiments/$EXPERIMENT_NAME?api-version=2024-01-01" --body @{experimentBody.json} 
     ```
 
+---
+
 ## Permissions
 
 Chaos Studio needs permission to execute faults on your resources. 
