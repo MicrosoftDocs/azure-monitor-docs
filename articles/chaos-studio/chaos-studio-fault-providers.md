@@ -4,7 +4,7 @@ description: Understand the list of supported resource types and which role assi
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: article
-ms.date: 11/01/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio
@@ -26,7 +26,7 @@ More information about role assignments can be found on the [Azure built-in role
 | Microsoft.Compute/virtualMachineScaleSets (service-direct)       | Microsoft-VirtualMachineScaleSet          | [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)                 |
 | Microsoft.ContainerService/managedClusters (service-direct)      | Microsoft-AzureKubernetesServiceChaosMesh (recommended)| [Azure Kubernetes Service RBAC Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-rbac-admin-role) and [Azure Kubernetes Service Cluster User Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-user-role) |
 | Microsoft.ContainerService/managedClusters (service-direct)      | Microsoft-AzureKubernetesServiceChaosMesh (fault version 2.1 with Kubernetes local accounts only)| [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-admin-role) |
-| Microsoft.DocumentDb/databaseAccounts (Cosmos DB, service-direct) | Microsoft-Cosmos DB                      | [Azure Cosmos DB Operator](/azure/role-based-access-control/built-in-roles#cosmos-db-operator)                          |
+| Microsoft.DocumentDb/databaseAccounts (Cosmos DB, service-direct) | Microsoft-Cosmos DB                        | [Cosmos DB Operator](/azure/role-based-access-control/built-in-roles#cosmos-db-operator)                          |
 | Microsoft.Insights/autoscalesettings (service-direct)            | Microsoft-AutoScaleSettings               | [Web Plan Contributor](/azure/role-based-access-control/built-in-roles#web-plan-contributor)                        |
 | Microsoft.KeyVault/vaults (service-direct)                       | Microsoft-KeyVault                        | [Azure Key Vault Contributor](/azure/role-based-access-control/built-in-roles#key-vault-contributor)                       |
 | Microsoft.Network/networkSecurityGroups (service-direct)         | Microsoft-NetworkSecurityGroup            | [Network Contributor](/azure/role-based-access-control/built-in-roles#network-contributor)                         |

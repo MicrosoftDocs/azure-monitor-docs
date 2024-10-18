@@ -786,7 +786,7 @@ These sample values produced ~100% disk pressure when tested on a `Standard_D2s_
 | Capability name | KillProcess-1.0 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux |
-| Description | Kills all the running instances of a process that matches the process name sent in the fault parameters. Within the duration set for the fault action, a process is killed repetitively based on the value of the kill interval specified. This fault is a destructive fault where system admin would need to manually recover the process if self-healing is configured for it. |
+| Description | Kills all the **running** instances of a process that matches the process name sent in the fault parameters. Within the duration set for the fault action, a process is killed repetitively based on the value of the kill interval specified. This fault is a destructive fault where system admin would need to manually recover the process if self-healing is configured for it. Note that this fault will error when used on an empty name process, when used with an unspecifiec interval, or when we cannot find the target process name that we want to kill.|
 | Prerequisites | None. |
 | Urn | urn:csci:microsoft:agent:killProcess/1.0 |
 | Fault type | Continuous. |
