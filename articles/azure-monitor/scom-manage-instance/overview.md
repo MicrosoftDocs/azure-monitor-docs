@@ -88,6 +88,10 @@ The databases hosted in the SQL MI allow formation and to view reports in Power 
 
 A customer-managed part consists of Ops that are used to monitor and administer the instance. The agents to be monitored are under the customer domain, and if they are in another domain, a gateway server is needed to carry out the authentication. The customer-managed part hosts a DNS with a static IP that is provided to the Management Servers hosted in Azure.
 
+### Regional failover
+
+Currently Microsoft does not support a regional failover of the SCOM Managed Instance. When you deploy a new SCOM Managed Instance, both inside the region or cross region, you cannot reuse the existing SQL Managed Instance database. 
+
 **Detailed Architecture of SCOM Managed Instance**
 
 :::image type="Detailed architecture" source="media/operations-manager-managed-instance-overview/detailed-scom-managed-instance-architecture-inline.png" alt-text="Screenshot of SCOM Managed Instance detailed architecture."lightbox="media/operations-manager-managed-instance-overview/detailed-scom-managed-instance-architecture-expanded.png":::
