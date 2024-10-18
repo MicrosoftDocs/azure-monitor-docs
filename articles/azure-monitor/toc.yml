@@ -197,8 +197,6 @@ items:
           - name: Distributed tracing and telemetry correlation
             href: app/distributed-trace-data.md
             displayName: correlation headers, w3c, distributed tracing, tracing
-          - name: Log-based & pre-aggregated metrics
-            href: app/pre-aggregated-metrics-log-metrics.md
         - name: SDK support policy
           href: app/sdk-support-guidance.md
       - name: Upgrade from classic resources and iKey

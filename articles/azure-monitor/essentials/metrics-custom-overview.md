@@ -18,11 +18,11 @@ Azure Monitor custom metrics are currently in public preview.
 
 Custom metrics can be sent to Azure Monitor via several methods:
 
-- Use Azure Application Insights SDK to instrument your application by sending custom telemetry to Azure Monitor.
-- Install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) on your Windows or Linux Azure virtual machine or virtual machine scale set and use a [data collection rule](../agents/azure-monitor-agent-data-collection.md) to send performance counters to Azure Monitor metrics.
-- Install the Azure Diagnostics extension on your [Azure VM](../essentials/collect-custom-metrics-guestos-resource-manager-vm.md), [Virtual Machine Scale Set](../essentials/collect-custom-metrics-guestos-resource-manager-vmss.md), [classic VM](../essentials/collect-custom-metrics-guestos-vm-classic.md), or [classic cloud service](../essentials/collect-custom-metrics-guestos-vm-cloud-service-classic.md). Then send performance counters to Azure Monitor.
-- Install the [InfluxData Telegraf agent](../essentials/collect-custom-metrics-linux-telegraf.md) on your Azure Linux VM. Send metrics by using the Azure Monitor output plug-in.
-- Send custom metrics [directly to the Azure Monitor REST API](./metrics-store-custom-rest-api.md).
+* Use Azure Application Insights SDK to instrument your application by sending custom telemetry to Azure Monitor.
+* Install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) on your Windows or Linux Azure virtual machine or virtual machine scale set and use a [data collection rule](../agents/azure-monitor-agent-data-collection.md) to send performance counters to Azure Monitor metrics.
+* Install the Azure Diagnostics extension on your [Azure VM](../essentials/collect-custom-metrics-guestos-resource-manager-vm.md), [Virtual Machine Scale Set](../essentials/collect-custom-metrics-guestos-resource-manager-vmss.md), [classic VM](../essentials/collect-custom-metrics-guestos-vm-classic.md), or [classic cloud service](../essentials/collect-custom-metrics-guestos-vm-cloud-service-classic.md). Then send performance counters to Azure Monitor.
+* Install the [InfluxData Telegraf agent](../essentials/collect-custom-metrics-linux-telegraf.md) on your Azure Linux VM. Send metrics by using the Azure Monitor output plug-in.
+* Send custom metrics [directly to the Azure Monitor REST API](./metrics-store-custom-rest-api.md).
 
 ## Pricing model and retention
 
@@ -40,6 +40,11 @@ Each metric data point published contains a namespace, name, and dimension infor
 > [!NOTE]
 > Application Insights, the diagnostics extension, and the InfluxData Telegraf agent are already configured to emit metric values against the correct regional endpoint and carry all the preceding properties in each emission.
 
+## Custom metrics dimensions and preaggregation
+
+All metrics that you send using [OpenTelemetry](opentelemetry-add-modify.md), [trackMetric](./api-custom-events-metrics.md#trackmetric), or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
+
+:::image type="content" source="./media/pre-aggregated-metrics-log-metrics/001-cost.png" lightbox="./media/pre-aggregated-metrics-log-metrics/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
 
 ## Using custom metrics
 
@@ -59,7 +64,6 @@ After custom metrics are submitted to Azure Monitor, you can browse through them
 
 For more information on viewing metrics in the Azure portal, see [Analyze metrics with Azure Monitor metrics explorer](./analyze-metrics.md).
 
-
 ## Latency and storage retention
 
 A newly added metric or a newly added dimension to a metric might take up to 3 minutes to appear. After the data is in the system, it should appear in less than 30 seconds 99 percent of the time.
@@ -70,12 +74,12 @@ If you delete a metric or remove a dimension, the change can take a week to a mo
 
 Azure Monitor imposes the following usage limits on custom metrics:
 
-|Category|Limit|
-|---|---|
-|Total active time series in a subscription per region|50,000|
-|Dimension keys per metric|10|
-|String length for metric namespaces, metric names, dimension keys, and dimension values|256 characters|
-|The combined length of all custom metric names, using utf-8 encoding|64 KB| 
+| Category                                                                                | Limit          |
+|-----------------------------------------------------------------------------------------|----------------|
+| Total active time series in a subscription per region                                   | 50,000         |
+| Dimension keys per metric                                                               | 10             |
+| String length for metric namespaces, metric names, dimension keys, and dimension values | 256 characters |
+| The combined length of all custom metric names, using utf-8 encoding                    | 64 KB          |
 
 An active time series is defined as any unique combination of metric, dimension key, or dimension value that has had metric values published in the past 12 hours.
 
@@ -117,10 +121,10 @@ As a test, ask yourself if you would ever chart such data on a graph. If you hav
 
 If you have a variable in the name or a high-cardinality dimension, the following issues can occur:
 
-- Metrics become unreliable because of throttling.
-- Metrics Explorer won't work.
-- Alerting and notifications become unpredictable.
-- Costs can increase unexpectedly. Microsoft isn't charging for custom metrics with dimensions while this feature is in public preview. After charges start in the future, you'll incur unexpected charges. The plan is to charge for metrics consumption based on the number of time series monitored and number of API calls made.
+* Metrics become unreliable because of throttling.
+* Metrics Explorer won't work.
+* Alerting and notifications become unpredictable.
+* Costs can increase unexpectedly. Microsoft isn't charging for custom metrics with dimensions while this feature is in public preview. After charges start in the future, you'll incur unexpected charges. The plan is to charge for metrics consumption based on the number of time series monitored and number of API calls made.
 
 If the metric name or dimension value is populated with an identifier or high-cardinality dimension by mistake, you can easily fix it by removing the variable part.
 
@@ -130,9 +134,10 @@ But if high cardinality is essential for your scenario, the aggregated metrics a
 
 Use custom metrics from various services:
 
- - [Send custom metrics to the Azure Monitor using the REST API](./metrics-store-custom-rest-api.md)
- - [Virtual machine](../essentials/collect-custom-metrics-guestos-resource-manager-vm.md)
- - [Virtual Machine Scale Set](../essentials/collect-custom-metrics-guestos-resource-manager-vmss.md)
- - [Azure virtual machine (classic)](../essentials/collect-custom-metrics-guestos-vm-classic.md)
- - [Linux virtual machine using the Telegraf agent](../essentials/collect-custom-metrics-linux-telegraf.md)\
- - [Classic cloud service](../essentials/collect-custom-metrics-guestos-vm-cloud-service-classic.md)
+ * [Send custom metrics to the Azure Monitor using the REST API](./metrics-store-custom-rest-api.md)
+ * [Virtual machine](../essentials/collect-custom-metrics-guestos-resource-manager-vm.md)
+ * [Virtual Machine Scale Set](../essentials/collect-custom-metrics-guestos-resource-manager-vmss.md)
+ * [Azure virtual machine (classic)](../essentials/collect-custom-metrics-guestos-vm-classic.md)
+ * [Linux virtual machine using the Telegraf agent](../essentials/collect-custom-metrics-linux-telegraf.md)
+ * [Classic cloud service](../essentials/collect-custom-metrics-guestos-vm-cloud-service-classic.md)
+ 
