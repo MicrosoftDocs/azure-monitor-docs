@@ -37,16 +37,6 @@ See [Tables that support transformations in Azure Monitor Logs](../logs/tables-f
 - Any custom table created for the Azure Monitor Agent. (MMA custom table can't use transformations)
 
 
-## Create a transformation
-There are multiple methods to create transformations depending on the data collection method. The following table lists guidance for different methods for creating transformations.
-
-| Data collection | Reference |
-|:---|:---|
-| Logs ingestion API | [Send data to Azure Monitor Logs by using REST API (Azure portal)](../logs/tutorial-logs-ingestion-portal.md)<br>[Send data to Azure Monitor Logs by using REST API (Azure Resource Manager templates)](../logs/tutorial-logs-ingestion-api.md) |
-| Virtual machine with Azure Monitor agent | [Add transformation to Azure Monitor Log](../agents/azure-monitor-agent-transformation.md) |
-| Kubernetes cluster with Container insights | [Data transformations in Container insights](../containers/container-insights-transformations.md) |
-| Azure Event Hubs | [Tutorial: Ingest events from Azure Event Hubs into Azure Monitor Logs (Public Preview)](../logs/ingest-logs-event-hub.md) |
-
 ## Transformation performance
 
 Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md). Optimal transformations should take no more than 1 second to run. If a transformation takes more than 20 seconds, you may experience data loss. See [Monitor transformations](./data-collection-transformations-best-practices.md#monitor-transformations) for guidance on monitoring the DCR metrics that measure the execution time of each transformation.
