@@ -19,7 +19,11 @@ Azure Chaos Studio integrates with Chaos Mesh to run faults on Azure Kubernetes 
 * Kubernetes local accounts are stored in the Kubernetes API server and can be used to authenticate and authorize requests to the cluster. Learn more about local accounts at this page: [Manage local accounts](/azure/aks/manage-local-accounts-managed-azure-ad).
 * AKS-Managed Microsoft Entra authentication allows you to sign in and manage permissions for your cluster using Microsoft Entra credentials and Azure RBAC. Learn how to [Enable AKS-Managed Microsoft Entra authentication](/azure/aks/enable-authentication-microsoft-entra-id).
 
+ > [!NOTE]
+> Local account permissions grant access as long as the credentials are on the client machine, while AKS-Managed Microsoft Entra authentication allows more scoped assignment and management of permissions. Learn more about this best practice: [Best practices for cluster security and upgrades](/azure/aks/operator-best-practices-cluster-security?tabs=azure-cli).
+
 Chaos Studio previously only supported using Chaos Mesh with local accounts, but Version 2.2 of all AKS faults now support both local accounts and Microsoft Entra authentication.
+
 
 ## Updating targets
 
