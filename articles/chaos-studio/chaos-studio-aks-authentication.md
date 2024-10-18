@@ -1,5 +1,5 @@
 ---
-title: Using Microsoft Entra authentication with Chaos Studio AKS faults
+title: Use Microsoft Entra authentication with Chaos Studio AKS faults
 description: Learn about the different ways for Chaos Studio to authenticate with your AKS cluster.
 services: chaos-studio
 author: rsgel
@@ -10,7 +10,7 @@ ms.reviewer: abbyweisberg
 ms.service: azure-chaos-studio
 ---
 
-# Using Microsoft Entra authentication with Chaos Studio AKS faults
+# Use Microsoft Entra authentication with Chaos Studio AKS faults
 
 ## Overview
 
@@ -25,7 +25,7 @@ Azure Chaos Studio integrates with Chaos Mesh to run faults on Azure Kubernetes 
 Chaos Studio previously only supported using Chaos Mesh with local accounts, but Version 2.2 of all AKS faults now support both local accounts and Microsoft Entra authentication.
 
 
-## Updating targets
+## Update targets
 
 Targets (`Microsoft.Chaos/targets`) represent another Azure resource in Chaos Studio's resource model, so you can easily control whether or not a certain resource is enabled for fault injection and what faults can run against it. In this case, the target represents an AKS cluster that you want to affect.
 
@@ -39,7 +39,7 @@ If you want to use the new fault version on an existing AKS target, you need to 
 
 If you're using the API or command-line, follow the instructions at [Create a chaos experiment that uses a Chaos Mesh fault with the Azure CLI](chaos-studio-tutorial-aks-cli.md#enable-chaos-studio-on-your-aks-cluster) to ensure the latest available capabilities are enabled.
 
-## Creating a new experiment
+## Create a new experiment
 
 When you create a new experiment that uses AKS Chaos Mesh faults in the Azure portal, you may see two versions of each fault, such as "AKS Chaos Mesh DNS Chaos" and "AKS Chaos Mesh DNS Chaos (deprecated)". Select the first option, not the deprecated option.
 
@@ -47,7 +47,7 @@ If you don't see your AKS cluster as a possible target after selecting the fault
 
 Follow the [Create a chaos experiment that uses a Chaos Mesh fault to kill AKS pods with the Azure portal](chaos-studio-tutorial-aks-portal.md) tutorial to create an experiment.
 
-## Updating an existing experiment
+## Update an existing experiment
 
 Follow one of these two methods to update your existing experiment.
 

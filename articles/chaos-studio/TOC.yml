@@ -67,7 +67,7 @@
       href: chaos-studio-tutorial-aks-portal.md
     - name: CLI
       href: chaos-studio-tutorial-aks-cli.md
-    - name: Using Microsoft Entra authentication with Chaos Mesh
+    - name: Use Microsoft Entra authentication with Chaos Mesh
       href: chaos-studio-aks-authentication.md
   - name: Dynamic targeting
     items:

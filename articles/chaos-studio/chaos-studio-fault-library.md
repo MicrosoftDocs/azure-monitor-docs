@@ -54,7 +54,7 @@ This section applies to the `Microsoft.Insights/autoscaleSettings` resource type
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
-| [Disable Autoscale](#disable-autoscale) | Compute capacity loss (when used with VMSS Shutdown) |
+| [Disable Autoscale](#disable-autoscale) | Compute capacity loss (when used with Virtual Machine Scale Set Shutdown) |
 
 ## Azure Kubernetes Service
 
@@ -147,8 +147,8 @@ This section applies to the `Microsoft.Compute/virtualMachineScaleSets` resource
 
 | Fault name | Applicable scenarios |
 |------------|----------------------|
-| [VMSS Shutdown](#vmss-shutdown-version-10) | Compute loss/disruption |
-| [VMSS Shutdown (2.0)](#vmss-shutdown-version-20) | Compute loss/disruption (by Availability Zone) |
+| [Virtual Machine Scale Set Shutdown](#virtual-machine-scale-set-shutdown-version-10) | Compute loss/disruption |
+| [Virtual Machine Scale Set Shutdown (2.0)](#virtual-machine-scale-set-shutdown-version-20) | Compute loss/disruption (by Availability Zone) |
 
 ## Orchestration actions
 
@@ -232,7 +232,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 | Capability name | NetworkDisconnectViaFirewall-1.0 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows |
-| Description | Applies a Windows firewall rule to block outbound traffic for specified port range and network block. |
+| Description | Applies a Windows Firewall rule to block outbound traffic for specified port range and network block. |
 | Prerequisites | Agent must run as administrator. If the agent is installed as a VM extension, it runs as administrator by default. |
 | Urn | urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.0 |
 | Fault type | Continuous. |
@@ -408,7 +408,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 | Capability name | NetworkIsolation-1.0 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux (outbound only) |
-| Description | Fully isolate the virtual machine from network connections by dropping all IP-based inbound (on Windows) and outbound (on Windows and Linux) packets for the specified duration. At the end of the duration, network connections will be re-enabled. Because the agent depends on network traffic, this action cannot be cancelled and will run to the specified duration. |
+| Description | Fully isolate the virtual machine from network connections by dropping all IP-based inbound (on Windows) and outbound (on Windows and Linux) packets for the specified duration. At the end of the duration, network connections will be re-enabled. Because the agent depends on network traffic, this action cannot be canceled and will run to the specified duration. |
 | Prerequisites | **Windows:** The agent must run as administrator, which happens by default if installed as a VM extension. |
 | | **Linux:** The `tc` (Traffic Control) package is used for network faults. If it isn't already installed, the agent automatically attempts to install it from the default package manager. |
 | Urn | urn:csci:microsoft:agent:networkIsolation/1.0 |
@@ -435,7 +435,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 #### Limitations
 
-* Because the agent depends on network traffic, **this action cannot be cancelled** and will run to the specified duration. Use with caution.
+* Because the agent depends on network traffic, **this action cannot be canceled** and will run to the specified duration. Use with caution.
 * This fault currently only affects new connections. Existing active connections are unaffected. You can restart the service or process to force connections to break.
 * When running on Linux, this fault can only affect **outbound** traffic, not inbound traffic. The fault can affect **both inbound and outbound** traffic on Windows environments.
 
@@ -786,7 +786,7 @@ These sample values produced ~100% disk pressure when tested on a `Standard_D2s_
 | Capability name | KillProcess-1.0 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux |
-| Description | Kills all the **running** instances of a process that matches the process name sent in the fault parameters. Within the duration set for the fault action, a process is killed repetitively based on the value of the kill interval specified. This fault is a destructive fault where system admin would need to manually recover the process if self-healing is configured for it. Note that this fault will error when used on an empty name process, when used with an unspecifiec interval, or when we cannot find the target process name that we want to kill.|
+| Description | Kills all the **running** instances of a process that matches the process name sent in the fault parameters. Within the duration set for the fault action, a process is killed repetitively based on the value of the kill interval specified. This fault is a destructive fault where system admin would need to manually recover the process if self-healing is configured for it. Note that this fault will error when used on an empty name process, when used with an unspecified interval, or when we cannot find the target process name that we want to kill.|
 | Prerequisites | None. |
 | Urn | urn:csci:microsoft:agent:killProcess/1.0 |
 | Fault type | Continuous. |
@@ -1887,7 +1887,8 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 * The Virtual Machine Redeploy operation is throttled within an interval of 10 hours. If your experiment fails with a "Too many redeploy requests" error, wait for 10 hours to retry the experiment.
 
 
-### VM Shutdown
+### Virtual Machine Shutdown
+
 | Property | Value |
 |-|-|
 | Capability name | Shutdown-1.0 |
@@ -1923,11 +1924,11 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 ```
 
 
-### VMSS Shutdown
+### Virtual Machine Scale Set Shutdown
 
 This fault has two available versions that you can use, Version 1.0 and Version 2.0. The main difference is that Version 2.0 allows you to filter by availability zones, only shutting down instances within a specified zone or zones.
 
-#### VMSS Shutdown Version 1.0
+#### Virtual Machine Scale Set Shutdown Version 1.0
 
 | Property | Value |
 |-|-|
@@ -1968,7 +1969,7 @@ This fault has two available versions that you can use, Version 1.0 and Version 
 }
 ```
 
-#### VMSS Shutdown Version 2.0
+#### Virtual Machine Scale Set Shutdown Version 2.0
 
 | Property | Value |
 |-|-|
