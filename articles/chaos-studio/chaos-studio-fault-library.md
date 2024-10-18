@@ -139,7 +139,7 @@ This section applies to the `Microsoft.Compute/virtualMachines` resource type. [
 | Fault name | Applicable scenarios |
 |------------|----------------------|
 | [VM Redeploy](#vm-redeploy) | Compute disruption, maintenance events |
-| [VM Shutdown](#vm-shutdown) | Compute loss/disruption |
+| [VM Shutdown](#virtual-machine-shutdown) | Compute loss/disruption |
 
 ## Virtual Machine Scale Set
 
