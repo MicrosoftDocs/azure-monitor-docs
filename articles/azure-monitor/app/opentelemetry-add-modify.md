@@ -632,11 +632,17 @@ histogram.record(100, { "testKey2": "testValue" });
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
 
+import os
+
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
 # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
 
 # Get a meter provider and a meter with the name "otel_azure_monitor_histogram_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_histogram_demo")
@@ -838,11 +844,18 @@ counter.add(3, { "testKey": "testValue2" });
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
 
+import os
+
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
 # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
+
 # Get a meter provider and a meter with the name "otel_azure_monitor_counter_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_counter_demo")
 
@@ -1051,6 +1064,7 @@ gauge.addCallback((observableResult: ObservableResult) => {
 ```python
 # Import the necessary packages.
 from typing import Iterable
+import os
 
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
@@ -1061,6 +1075,10 @@ from opentelemetry.metrics import CallbackOptions, Observation
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
 
 # Get a meter provider and a meter with the name "otel_azure_monitor_gauge_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_gauge_demo")
