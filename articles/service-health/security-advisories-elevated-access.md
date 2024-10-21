@@ -68,7 +68,7 @@ The new and existing endpoints listed below will return the security notificatio
 **Example**
 
 ```HTTP
-https://management.azure.com/subscriptions/227b734f-e14f-4de6-b7fc-3190c21e69f6/providers/microsoft.ResourceHealth/events/{trackingId}/fetchEventDetails?api-version=2023-10-01-preview 
+https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/microsoft.ResourceHealth/events/{trackingId}/fetchEventDetails?api-version=2023-10-01-preview 
 ```
 Operation: POST
 
@@ -78,7 +78,7 @@ Operation: POST
  
 **Subscription**
 ```HTTP
-https://management.azure.com/subscriptions/4970d23e-ed41-4670-9c19-02a1d2808ff9/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview 
+https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview 
 ```
 Operation: POST
 
@@ -96,7 +96,7 @@ Operation: POST
 With API version 2023-10-01-preview (and future API versions), the existing Events API endpoint which returns the list of events(including security events with eventType: “Security”) will be restricted to pass only nonsensitive properties listed below for security events. 
 
 ```HTTP
-https://management.azure.com/subscriptions/227b734f-e14f-4de6-b7fc-3190c21e69f6/providers/microsoft.ResourceHealth/events?api-version=2023-10-01-preview&$filter= "eventType eq SecurityAdvisory"
+https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/microsoft.ResourceHealth/events?api-version=2023-10-01-preview&$filter= "eventType eq SecurityAdvisory"
 ```
 Operation: GET
 

@@ -164,7 +164,7 @@ And for a resource level scope, the scope section should look like:
 ],
 ```
 
-For example: `"/subscriptions/d37urb3e-ed41-4670-9c19-02a1d2808ff9/resourcegroups/myRG/providers/microsoft.compute/virtualmachines/myVm"`
+For example: `"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/myRG/providers/microsoft.compute/virtualmachines/myVm"`
 
 > You can go to the Azure Portal and look at the URL when viewing your Azure resource to get this string.
 
