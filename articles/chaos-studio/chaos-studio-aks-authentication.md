@@ -69,8 +69,8 @@ Follow one of these two methods to update your existing experiment.
     {
       "id": "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Chaos/experiments/$EXPERIMENT_NAME",
       "identity": {
-        "principalId": "30221089-383b-433f-8439-4eee8b011b1b",
-        "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
+        "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
+        "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
         "type": "SystemAssigned"
       },
       "location": "eastus",
