@@ -10,24 +10,21 @@ ms.date: 4/18/2024
 ms.reviewer: rapadman
 ---
 
-# Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID (preview) authentication
+# Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID authentication
 
 This article describes how to set up [remote write](prometheus-remote-write.md) to send data from your Azure Monitor managed Prometheus cluster by using Microsoft Entra Workload ID authentication.
 
 ## Prerequisites
 
 - Prometheus versions greater than v2.48 are required for Microsoft Entra ID application authentication. 
-
-- A cluster that has feature flags that are specific to OpenID Connect (OIDC) and an OIDC issuer URL:
-  - For managed clusters (Azure Kubernetes Service, Amazon Elastic Kubernetes Service, and Google Kubernetes Engine), see [Managed Clusters - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/managed-clusters.html).
-  - For self-managed clusters, see [Self-Managed Clusters - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters.html).
-- An installed mutating admission webhook. For more information, see [Mutating Admission Webhook - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/mutating-admission-webhook.html).
 - Prometheus running in the cluster. This article assumes that the Prometheus cluster is set up by using the [kube-prometheus stack](https://azure.github.io/azure-workload-identity/docs/installation/managed-clusters.html), but you can set up Prometheus by using other methods.
 
-## Set up a workload for Microsoft Entra Workload ID
+## Set up remote-write with Microsoft Entra Workload ID
 
-The process to set up Prometheus remote write for a workload by using Microsoft Entra Workload ID authentication involves completing the following tasks:
+The process to set up Prometheus remote write by using Microsoft Entra Workload ID authentication involves completing the following tasks:
 
+1. Enable OpenID Connect and note the issuer URL.
+1. Set up mutating admission webhook.
 1. Set up the workload identity.
 1. Create a Microsoft Entra application or user-assigned managed identity and grant permissions.
 1. Assign the Monitoring Metrics Publisher role on the workspace data collection rule to the application.
@@ -36,6 +33,25 @@ The process to set up Prometheus remote write for a workload by using Microsoft 
 1. Deploy a sidecar container to set up remote write.
 
 The tasks are described in the following sections.
+
+### Enable OpenID Connect and query the Issuer
+
+To enable OpenID Connect (OIDC) on an AKS cluster, follow the instructions in [Create an OpenID Connect provider on AKS](/azure/aks/use-oidc-issuer). 
+
+Once enabled, make a note of the SERVICE_ACCOUNT_ISSUER which is essentially the OIDC issuer URL. To get the OIDC issuer URL, run the *az aks show* command. Replace the default values for the cluster name and the resource group name.
+
+```azurecli-interactive
+az aks show --name myAKScluster --resource-group myResourceGroup --query "oidcIssuerProfile.issuerUrl" -o tsv
+```
+
+By default, the issuer is set to use the base URL `https://{region}.oic.prod-aks.azure.com`, where the value for `{region}` matches the location the AKS cluster is deployed in.
+
+For other managed clusters (Amazon Elastic Kubernetes Service, and Google Kubernetes Engine), see [Managed Clusters - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/managed-clusters.html).
+For self-managed clusters, see [Self-Managed Clusters - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters.html).
+
+### Set up mutating admission webhook
+
+Set up mutating admission webhook to keep federated credentials up to date. See [Mutating Admission Webhook - Microsoft Entra Workload ID](https://azure.github.io/azure-workload-identity/docs/installation/mutating-admission-webhook.html) to set up.
 
 ### Set up the workload identity
 
@@ -49,12 +65,18 @@ export APPLICATION_NAME="<your application name>"
 export USER_ASSIGNED_IDENTITY_NAME="<your user-assigned managed identity name>"
     
 # Environment variables for the Kubernetes service account and federated identity credential
-export SERVICE_ACCOUNT_NAMESPACE="<namespace of Prometheus pod>"
-export SERVICE_ACCOUNT_NAME="<name of service account associated with Prometheus pod>"
-export SERVICE_ACCOUNT_ISSUER="<your service account issuer URL>"
+export SERVICE_ACCOUNT_NAMESPACE="<namespace where Prometheus pod is running>"
+export SERVICE_ACCOUNT_NAME="<name of service account associated with Prometheus pod. See below for more details>"
+export SERVICE_ACCOUNT_ISSUER="<your service account (or OIDC) issuer URL>"
 ```  
 
-For `SERVICE_ACCOUNT_NAME`, check to see whether a service account (separate from the *default* service account) is already associated with the Prometheus pod. Look for the value of `serviceaccountName` or `serviceAccount` (deprecated) in the `spec` of your Prometheus pod. Use this value if it exists. If `serviceaccountName` and `serviceAccount` don't exist, enter the name of the service account you want to associate with your Prometheus pod.
+For `SERVICE_ACCOUNT_NAME`, check to see whether a service account (separate from the *default* service account) is already associated with the Prometheus pod. Look for the value of `serviceaccountName` or `serviceAccount` (deprecated) in the `spec` of your Prometheus pod. Use this value if it exists. To find the service account associated with the Prometheus pod, run the below kubectl command:
+
+```bash
+kubectl get pods/<Promethuespodname> -o yaml
+```
+
+If `serviceaccountName` and `serviceAccount` don't exist, enter the name of the service account you want to associate with your Prometheus pod.
 
 ### Create a Microsoft Entra application or user-assigned managed identity and grant permissions
 

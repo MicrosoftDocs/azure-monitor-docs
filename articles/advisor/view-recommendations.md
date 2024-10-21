@@ -2,7 +2,7 @@
 title: Configure Azure Advisor recommendations view
 description: View and filter Azure Advisor recommendations to reduce noise.
 ms.topic: article
-ms.date: 01/02/2024
+ms.date: 09/26/2024
 ---
 
 # Configure the Azure Advisor recommendations view
@@ -19,7 +19,7 @@ To make changes in the Azure portal:
 
 1. Select **Configuration** from the menu.
 
-    :::image type="content" source="./media/view-recommendations/configuration.png" alt-text="Screenshot of Azure Advisor showing the Configuration pane.":::
+    :::image type="content" source="./media/view-recommendations/configuration.png" alt-text="Screenshot showing the Resources heading on the Configuration pane in Azure Advisor.":::
 
 1. Select the checkbox in the **Include** column for any subscriptions or resource groups to receive Advisor recommendations. If the box is disabled, you might not have permission to make a configuration change on that subscription or resource group. Learn more about [permissions in Azure Advisor](permissions.md).
 
@@ -29,7 +29,7 @@ To make changes in the Azure portal:
 
 Configuration settings remain active until changed. If you want to limit the view of recommendations for a single viewing, you can use the dropdown lists provided at the top of the Advisor pane. You can filter recommendations by subscription, resource group, workload, resource type, recommendation status, and impact. These filters are available for **Overview**, **Score**, **Cost**, **Security**, **Reliability**, **Operational excellence**, **Performance**, and **All recommendations** pages.
 
-   :::image type="content" source="./media/view-recommendations/filtering.png" alt-text="Screenshot of Advisor showing filtering options.":::
+:::image alt-text="Screenshot showing the filter options for recommendations in Azure Advisor." lightbox="./media/azure-advisor-overview-filters.png" source="./media/azure-advisor-overview-filters-preview.png" type="content":::
 
 > [!NOTE]
 > Contact your account team to add new workloads to the workload filter or edit workload names.
@@ -41,21 +41,21 @@ Advisor allows you to dismiss or postpone recommendations on a single resource. 
 ### Postpone a single recommendation in the Azure portal 
 
 1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
-1. Select a recommendation category to view your recommendations.
+1. To view your recommendations, select a recommendation category.
 1. Select a recommendation from the list of recommendations.
 1. Select **Postpone** or **Dismiss** for the recommendation you want to postpone or dismiss.
 
-     :::image type="content" source="./media/view-recommendations/postpone-dismiss.png" alt-text="Screenshot that shows the Use Managed Disks page with the Select column and Postpone and Dismiss actions for a single recommendation highlighted.":::
+     :::image type="content" source="./media/view-recommendations/postpone-dismiss.png" alt-text="Screenshot showing the Use Managed Disks page highlighting the Select column and the Postpone or Dismiss actions for a single recommendation.":::
 
 ### Postpone or dismiss multiple recommendations in the Azure portal
 
 1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
-1. Select a recommendation category to view your recommendations.
+1. To view your recommendations, select a recommendation category.
 1. Select a recommendation from the list of recommendations.
 1. Select the checkbox at the left of the row for all resources you want to postpone or dismiss the recommendation.
 1. Select **Postpone** or **Dismiss** in the upper-left corner of the table.
 
-     :::image type="content" source="./media/view-recommendations/postpone-dismiss-multiple.png" alt-text="Screenshot that shows the Use Managed Disks page with the Select column and Postpone and Dismiss actions in the table highlighted.":::
+     :::image type="content" source="./media/view-recommendations/postpone-dismiss-multiple.png" alt-text="Screenshot showing the Use Managed Disks page highlighting the Select column and the Postpone or Dismiss actions.":::
 
 > [!NOTE]
 > You need Contributor or Owner permission to dismiss or postpone a recommendation. Learn more about permissions in Advisor.
@@ -70,7 +70,9 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
 1. Change the filter on the **Overview** pane to **Postponed**. Advisor then displays postponed or dismissed recommendations.
 
-    :::image type="content" source="./media/view-recommendations/activate-postponed.png" alt-text="Screenshot that shows the Advisor pane with the Postponed dropdown menu selected.":::
+    <!--
+    :::image alt-text="The recommendations filtered by the Postponed & Dismissed status in Azure Advisor." lightbox="./media/view-recommendations/activate-postponed.png" source="./media/view-recommendations/activate-postponed.png" type="content":::
+    -->
 
 1. Select a category to see **Postponed** and **Dismissed** recommendations.
 
@@ -78,7 +80,7 @@ You can activate a recommendation that was postponed or dismissed. This action c
 
 1. Select **Activate** at the end of the row. The recommendation is now active for that resource and removed from the table. The recommendation is visible on the **Active** tab.
 
-     :::image type="content" source="./media/view-recommendations/activate-postponed-2.png" alt-text="Screenshot that shows the Enable Soft Delete pane with the Postponed & Dismissed tab and the Activate action highlighted.":::
+     :::image type="content" source="./media/view-recommendations/activate-postponed-2.png" alt-text="Screenshot showing the Enable Soft Delete pane highlighting the Postponed & Dismissed heading and the Activate action in the Action column.":::
 
 ## Related content
 

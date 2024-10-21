@@ -22,7 +22,7 @@ Any monitoring tool like Azure Monitor, requires an agent installed on a machine
 ### Create a Log Analytics workspace
 You don't need a Log Analytics workspace to deploy the Azure Monitor agent, but you will need one to collect the data that it sends. There's no cost for the workspace, but you do incur ingestion and retention costs when you collect data. 
 
-Many environments use a single workspace for all their virtual machines and other Azure resources they monitor. You can even share a workspace used by [Microsoft Defender for Cloud and Microsoft Sentinel](monitor-virtual-machine-security.md), although many customers choose to segregate their availability and performance telemetry from security data. If you're getting started with Azure Monitor, start with a single workspace and consider creating more workspaces as your requirements evolve. [VM insights]() will create a default workspace which you can use to get started quickly.
+Many environments use a single workspace for all their virtual machines and other Azure resources they monitor. You can even share a workspace used by [Microsoft Defender for Cloud and Microsoft Sentinel](monitor-virtual-machine-security.md), although many customers choose to segregate their availability and performance telemetry from security data. If you're getting started with Azure Monitor, start with a single workspace and consider creating more workspaces as your requirements evolve. [VM insights](/azure/azure-monitor/vm/vminsights-overview) will create a default workspace which you can use to get started quickly.
 
 For complete details on logic that you should consider for designing a workspace configuration, see [Design a Log Analytics workspace configuration](../logs/workspace-design.md).
 

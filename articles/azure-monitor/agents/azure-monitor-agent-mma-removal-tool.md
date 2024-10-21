@@ -127,6 +127,7 @@ function GetArcServersWithLogAnalyticsAgentExtensionInstalled {
             foreach ($ext in $extensions) {
                 $extensionMap[$ext.type] = $ext.name
             }
+            $extensionName = ""
             if ($extensionMap.ContainsKey("MicrosoftMonitoringAgent")) {
                 $extensionName = $extensionMap["MicrosoftMonitoringAgent"]
             }
@@ -212,6 +213,7 @@ function GetVmsWithLogAnalyticsAgentExtensionInstalled
             foreach ($ext in $extensions) {
                 $extensionMap[$ext.type] = $ext.name
             }
+            $extensionName = ""
             if ($extensionMap.ContainsKey("MicrosoftMonitoringAgent")) {
                 $extensionName = $extensionMap["MicrosoftMonitoringAgent"]
             }
@@ -272,6 +274,7 @@ function GetVmssWithLogAnalyticsAgentExtensionInstalled
         foreach ($ext in $extensions) {
             $extensionMap[$ext.type] = $ext.name
         }
+        $extensionName = ""
         if ($extensionMap.ContainsKey("MicrosoftMonitoringAgent")) {
             $extensionName = $extensionMap["MicrosoftMonitoringAgent"]
         }
