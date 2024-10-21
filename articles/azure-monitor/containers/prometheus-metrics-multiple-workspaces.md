@@ -170,7 +170,7 @@ ms.reviewer: aul
     "name": "[parameters('roleNameGuid')]",
     "scope": "[parameters('azureMonitorWorkspaceResourceId2')]",
     "properties": {
-        "roleDefinitionId": "[concat('/subscriptions/', variables('clusterSubscriptionId'), '/providers/Microsoft.Authorization/roleDefinitions/', 'b0d8363b-8ddd-447d-831f-62ca05bff136')]",
+        "roleDefinitionId": "[concat('/subscriptions/', variables('clusterSubscriptionId'), '/providers/Microsoft.Authorization/roleDefinitions/', '00000000-0000-0000-0000-000000000000')]",
         "principalId": "[reference(resourceId('Microsoft.Dashboard/grafana', split(parameters('grafanaResourceId'),'/')[8]), '2022-08-01', 'Full').identity.principalId]"
     }
   }

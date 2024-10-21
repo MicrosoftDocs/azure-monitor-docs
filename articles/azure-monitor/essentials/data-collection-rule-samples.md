@@ -122,7 +122,7 @@ The sample [data collection rule](../essentials/data-collection-rule-overview.md
       "destinations": {
         "logAnalytics": [
           {
-            "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+            "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
             "name": "centralWorkspace"
           }
         ]
@@ -201,7 +201,7 @@ The sample data collection rule below is used to collect [text logs using Azure 
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
                     "name": "MyDestination"
                 }
             ]
@@ -259,7 +259,7 @@ The sample data collection rule below is used to collect [data from an event hub
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
                     "name": "MyDestination"
                 }
             ]
@@ -314,7 +314,7 @@ The sample [data collection rule](../essentials/data-collection-rule-overview.md
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
                     "name": "LogAnalyticsDest"
                 }
             ]
@@ -346,7 +346,7 @@ The sample [data collection rule](../essentials/data-collection-rule-overview.md
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
                     "name": "clv2ws1"
                 }
             ]
@@ -371,4 +371,3 @@ The sample [data collection rule](../essentials/data-collection-rule-overview.md
 
 - [Get details for the different properties in a DCR](../essentials/data-collection-rule-structure.md)
 - [See different methods for creating a DCR](../essentials/data-collection-rule-create-edit.md)
-
