@@ -104,6 +104,7 @@ At a minimum, the following configuration is required:
 
 > [!TIP]
 > Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
+> [Resart deployments](#restart-deployment) is required for settings to take effect.
 
 ### Per-deployment onboarding
 
@@ -148,6 +149,9 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     ```yml
     instrumentation.opentelemetry.io/inject-java="cr1"
     ```
+> [!TIP]
+> [Resart deployments](#restart-deployment) is required for settings to take effect.
+
 ### Mixed mode onboarding
 
 Use mixed mode when most deployments use a default configuration and a few deployments must use different configurations.
