@@ -12,15 +12,9 @@ Application Insights supports three different types of metrics: standard (preagg
 
 * **[Standard metrics](standard-metrics.md):** Standard metrics in Application Insights are predefined metrics that are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics are preaggregated during collection, which gives them better performance at query time. This makes them the best choice for dashboards and real-time alerting.
 
-    For more information, see [Application Insights standard metrics](standard-metrics.md).
-
 * **[Log-based metrics](../essentials/app-insights-metrics.md):** Log-based metrics in Application Insights are derived from log data collected from your application. These metrics are created by aggregating and analyzing log entries to provide insights into specific aspects of your application's performance and usage. They are highly customizable and can be tailored to track specific events or conditions within your application.
 
-    For more information, see [Application Insights log-based metrics](app-insights-metrics.md).
-
 * **[Custom metrics (preview)](../essentials/metrics-custom-overview.md):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that is not covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
-
-    For more information, see [Custom metrics in Azure Monitor (preview)](../essentials/metrics-custom-overview.md).
 
 ### Feature comparison
 
@@ -53,7 +47,7 @@ Use [Azure Monitor metrics explorer](../essentials/metrics-getting-started.md) t
 
 Ingesting metrics into Application Insights, whether log-based or preaggregated, generates costs based on the size of the ingested data. For more information, see [Azure Monitor Logs pricing details](../logs/cost-logs.md#application-insights-billing). Your custom metrics, including all its dimensions, are always stored in the Application Insights log store. Also, a preaggregated version of your custom metrics with no dimensions is forwarded to the metrics store by default.
 
-Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can generate *extra costs* based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
+Selecting the [Enable alerting on custom metric dimensions](./../essentials/metrics-custom-overview.md#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can generate *extra costs* based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Next steps
 

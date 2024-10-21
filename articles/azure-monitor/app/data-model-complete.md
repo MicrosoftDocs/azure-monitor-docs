@@ -16,23 +16,27 @@ Data collected by Application Insights models this typical application execution
 
 :::image type="content" source="./media/data-model-complete/application-insights-data-model.png" lightbox="./media/data-model-complete/application-insights-data-model.png" alt-text="Diagram that shows an Application Insights telemetry data model.":::
 
+## Telemetry types
+
 The following types of telemetry are used to monitor the execution of your app. The Application Insights SDK from the web application framework automatically collects these three types:
 
-* **[Dependency](#dependency):** Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`.
+|Telemetry type | Description
+| --- | --- |
+| **[Dependency](#dependency)** | Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`. |
+| **[Exception](#exception)** | Typically represents an exception that causes an operation to fail. |
+| **[Request](#request)** | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives. |
 
-* **[Exception](#exception):** Typically represents an exception that causes an operation to fail.
+An *operation* is made up of the threads of execution that process a request. You can also [write code](./api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data. Each operation has an ID. The ID can be used to [group](distributed-trace-data.md) all telemetry generated while your app is processing the request. Each operation has a duration of time and either succeeds or fails.
 
-* **[Request](#request):** Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives.
-
-    An *operation* is made up of the threads of execution that process a request. You can also [write code](./api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data. Each operation has an ID. The ID can be used to [group](distributed-trace-data.md) all telemetry generated while your app is processing the request. Each operation has a duration of time and either succeeds or fails.
+## Data types
 
 Application Insights provides three data types for custom telemetry:
 
-* **[Event](#event):** Typically used to capture user interaction with your service to analyze usage patterns.
-
-* **[Metric](#metric):** Used to report periodic scalar measurements.
-
-* **[Trace](#trace):** Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`.
+| Data type | Description |
+| --- | --- |
+| **[Event](#event)** | Typically used to capture user interaction with your service to analyze usage patterns. |
+| **[Metric](#metric)** | Used to report periodic scalar measurements. |
+| **[Trace](#trace)** | Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`. |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
@@ -49,13 +53,13 @@ To report data model or schema problems and suggestions, use our [GitHub reposit
 ## Customization
 
 | Telemetry type | Custom properties | Custom measurements |
-|---------|---------|---------|
-| Dependency | ✅ | ✅ |
-| Exception | ✅ | ✅ |
-| Request | ✅ | ✅ |
-| Event | ✅ | ✅ |
-| Metric | ✅ | ❌ |
-| Trace | ✅ | ❌ |
+|----------------|-------------------|---------------------|
+| Dependency     | ✅                | ✅                   |
+| Exception      | ✅                | ✅                   |
+| Request        | ✅                | ✅                   |
+| Event          | ✅                | ✅                   |
+| Metric         | ✅                | ❌                   |
+| Trace          | ✅                | ❌                   |
 
 #### Custom properties
 
@@ -85,11 +89,11 @@ Dependency telemetry (in [Application Insights](./app-insights-overview.md)) rep
 In [Application Insights](./app-insights-overview.md), an instance of exception represents a handled or unhandled exception that occurred during execution of the monitored application.
 
 
-| Field | Description | Max length (characters) |
-|---------|---------|---------|
-| **Problem ID** | The problem ID identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024 |
-| **Severity level** | This field is the trace severity level. The value can be `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
-| **Exception details** | (to be extended) | |
+| Field                 | Description                                                                                                                                                                                 | Max length (characters) |
+|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| **Problem ID**        | The problem ID identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024                   |
+| **Severity level**    | This field is the trace severity level. The value can be `Verbose`, `Information`, `Warning`, `Error`, or `Critical`.                                                                       |                         |
+| **Exception details** | (to be extended)                                                                                                                                                                            |                         |
 
 ## Request
 
@@ -117,9 +121,9 @@ You can create event telemetry items (in [Application Insights](./app-insights-o
 
 Semantically, events might or might not be correlated to requests. If used properly, event telemetry is more important than requests or traces. Events represent business telemetry and should be subject to separate, less aggressive [sampling](./api-filtering-sampling.md).
 
-| Field | Description | Maximum length (characters) |
-|---------|---------|---------|
-| **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512 |
+| Field    | Description                                                                                                                                                                                             | Maximum length (characters) |
+|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
+| **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512                         |
 
 ## Metric
 
@@ -145,15 +149,14 @@ The following table shows the metrics that represent system and process counters
 
 For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
 
-
-| Field | Description |
-|---------|---------|
-| **Name** | This field is the name of the metric you want to see in the Application Insights portal and UI. |
-| **Value** | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. |
-| **Count** | This field is the metric weight of the aggregated metric. It shouldn't be set for a measurement. |
-| **Min** | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement. |
-| **Max** | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement. |
-| **Standard deviation** | This field is the standard deviation of the aggregated metric. It shouldn't be set for a measurement. |
+| Field                  | Description                                                                                                  |
+|------------------------|--------------------------------------------------------------------------------------------------------------|
+| **Name**               | This field is the name of the metric you want to see in the Application Insights portal and UI.              |
+| **Value**              | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. |
+| **Count**              | This field is the metric weight of the aggregated metric. It shouldn't be set for a measurement.             |
+| **Min**                | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement.             |
+| **Max**                | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement.             |
+| **Standard deviation** | This field is the standard deviation of the aggregated metric. It shouldn't be set for a measurement.        |
 
 #### Custom properties
 
@@ -163,9 +166,9 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
 
 Trace telemetry in [Application Insights](./app-insights-overview.md) represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
-| Field | Description | Values |
-|---------|---------|---------|
-| **Message** | Trace message. | **Maximum length:** 32,768 characters |
+| Field              | Description           | Values                                                                   |
+|--------------------|-----------------------|--------------------------------------------------------------------------|
+| **Message**        | Trace message.        | **Maximum length:** 32,768 characters                                    |
 | **Severity level** | Trace severity level. | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
 
 ## PageView
@@ -192,11 +195,11 @@ Modern browsers expose measurements for page load actions with the [Performance 
 * `browserTimings/processingDuration` = #5
 * `browsertimings/totalDuration` = #1 + #2 + #3 + #4 + #5
 * `pageViews/duration`
-   * The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).
-   * If `PerformanceNavigationTiming` is available, that duration is used.
+    * The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).
+    * If `PerformanceNavigationTiming` is available, that duration is used.
      
-     If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
-   * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
+If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
+    * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
 
 :::image type="content" source="./media/javascript/page-view-load-time.png" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." lightbox="./media/javascript/page-view-load-time.png" border="false":::
 
@@ -255,7 +258,7 @@ To learn more:
 * Check out standard context properties collection [configuration](./configuration-with-applicationinsights-config.md#telemetry-initializers-aspnet).
 * Explore [.NET trace logs in Application Insights](./asp-net-trace-logs.md).
 * Explore [Java trace logs in Application Insights](./opentelemetry-add-modify.md?tabs=java#send-custom-telemetry-using-the-application-insights-classic-api).
-* Learn about the [Azure Functions built-in integration with Application Insights](../../azure-functions/functions-monitoring.md?toc=/azure/azure-monitor/toc.json) to monitor functions executions.
+* Learn about the [Azure Functions built-in integration with Application Insights](/azure/azure-functions/functions-monitoring?toc=/azure/azure-monitor/toc.json) to monitor functions executions.
 * Learn how to [configure an ASP.NET Core](./asp-net.md) application with Application Insights.
 * Learn how to [diagnose exceptions in your web apps with Application Insights](./asp-net-exceptions.md).
 * Learn how to [extend and filter telemetry](./api-filtering-sampling.md).
