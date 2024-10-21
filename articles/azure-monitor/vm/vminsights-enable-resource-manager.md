@@ -116,7 +116,7 @@ The final step in enabling VM insights is to associate the DCR with the Azure Mo
       "value": "my-windows-vm-my-dcr"
     },
     "dataCollectionRuleId": {
-      "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
+      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
     }
    }
 }
