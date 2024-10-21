@@ -1396,7 +1396,7 @@ using var loggerFactory = LoggerFactory.Create(builder => builder
 // Create a new instance `ILogger` from the above LoggerFactory
 var logger = loggerFactory.CreateLogger<Program>();
 
-// Use the logger instance to write a new log
+// Emit log: This uses the logger instance to write a new log
 logger.FoodPrice("tomato", 2.99);
 
 internal static partial class LoggerExtensions
@@ -1452,6 +1452,7 @@ try
 }
 catch (Exception ex)
 {
+    // Emit exception: This uses the logger instance to write a new exception
     logger?.LogError(ex, "An error occurred");
 }
 ```
