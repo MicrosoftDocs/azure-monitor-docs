@@ -103,8 +103,8 @@ At a minimum, the following configuration is required:
 - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource. 
 
 > [!TIP]
-> Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
-> [Resart deployments](#restart-deployment) is required for settings to take effect.
+> - Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
+> - [Resart deployments](#restart-deployment) for settings to take effect.
 
 ### Per-deployment onboarding
 
@@ -150,7 +150,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     instrumentation.opentelemetry.io/inject-java="cr1"
     ```
 > [!TIP]
-> [Resart deployments](#restart-deployment) is required for settings to take effect.
+> [Resart deployments](#restart-deployment) for settings to take effect.
 
 ### Mixed mode onboarding
 
