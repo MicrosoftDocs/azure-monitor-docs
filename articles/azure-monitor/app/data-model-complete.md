@@ -16,19 +16,14 @@ Data collected by Application Insights models this typical application execution
 
 :::image type="content" source="./media/data-model-complete/application-insights-data-model.png" lightbox="./media/data-model-complete/application-insights-data-model.png" alt-text="Diagram that shows an Application Insights telemetry data model.":::
 
-## Telemetry types
+The following types of telemetry are used to monitor the execution of your app. The Application Insights SDK from the web application framework automatically collects these types:
 
-The following types of telemetry are used to monitor the execution of your app. The Application Insights SDK from the web application framework automatically collects these three types:
-
-|Telemetry type | Description
+| Telemetry type | Description |
 | --- | --- |
 | **[Dependency](#dependency)** | Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`. |
 | **[Exception](#exception)** | Typically represents an exception that causes an operation to fail. |
-| **[Request](#request)** | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives. |
-
-An *operation* is made up of the threads of execution that process a request. You can also [write code](./api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data. Each operation has an ID. The ID can be used to [group](distributed-trace-data.md) all telemetry generated while your app is processing the request. Each operation has a duration of time and either succeeds or fails.
-
-## Data types
+| **[Request](#request)** | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives.<br><br>An *operation* is made up of the threads of execution that process a request. You can also [write code](./api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data. Each operation has an ID. The ID can be used to [group](distributed-trace-data.md) all telemetry generated while your app is processing the request. Each operation has a duration of time and either succeeds or fails. |
+| **[PageView](#pageview)** | ... |
 
 Application Insights provides three data types for custom telemetry:
 
@@ -115,6 +110,38 @@ Request telemetry supports the standard extensibility model by using custom `pro
 | **Response code** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. | 1,024 |
 | **Success** | Success indicates whether a call was successful or unsuccessful. This field is required. When a request isn't set explicitly to `false`, it's considered to be successful. If an exception or returned error result code interrupted the operation, set this value to `false`.<br><br>For web applications, Application Insights defines a request as successful when the response code is less than `400` or equal to `401`. However, there are cases when this default mapping doesn't match the semantics of the application.<br><br>Response code `404` might indicate "no records," which can be part of regular flow. It also might indicate a broken link. For broken links, you can implement more advanced logic. You can mark broken links as failures only when those links are located on the same site by analyzing the URL referrer. Or you can mark them as failures when they're accessed from the company's mobile application. Similarly, `301` and `302` indicate failure when they're accessed from the client that doesn't support redirect.<br><br>Partially accepted content `206` might indicate a failure of an overall request. For instance, an Application Insights endpoint might receive a batch of telemetry items as a single request. It returns `206` when some items in the batch weren't processed successfully. An increasing rate of `206` indicates a problem that needs to be investigated. Similar logic applies to `207` Multi-Status, where the success might be the worst of separate response codes. | |
 
+## PageView
+
+PageView telemetry (in [Application Insights](./app-insights-overview.md)) is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action. This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
+
+> [!NOTE]
+> * By default, Application Insights SDKs log single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#measure-browsertiming-in-application-insights). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
+> * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
+
+#### Measure browserTiming in Application Insights
+
+Modern browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
+
+1. **Client <--> DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
+1. **Client <--> Web Server:** Client creates TCP and then TLS handshakes with the web server.
+1. **Client <--> Web Server:** Client sends request payload, waits for the server to execute the request, and receives the first response packet.
+1. **Client <--> Web Server:** Client receives the rest of the response payload bytes from the web server.
+1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
+
+* `browserTimings/networkDuration` = 1. + 2.
+* `browserTimings/sendDuration` = 3.
+* `browserTimings/receiveDuration` = 4.
+* `browserTimings/processingDuration` = 5.
+* `browsertimings/totalDuration` = 1. + 2. + 3. + 4. + 5.
+* `pageViews/duration`
+    * The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).
+    * If `PerformanceNavigationTiming` is available, that duration is used.
+     
+If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
+    * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
+
+:::image type="content" source="./media/javascript/page-view-load-time.png" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." lightbox="./media/javascript/page-view-load-time.png" border="false":::
+
 ## Event
 
 You can create event telemetry items (in [Application Insights](./app-insights-overview.md)) to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
@@ -127,11 +154,25 @@ Semantically, events might or might not be correlated to requests. If used prope
 
 ## Metric
 
-[Application Insights](./app-insights-overview.md) supports two types of metric telemetry: single measurement and preaggregated metric. Single measurement is just a name and value. Preaggregated metric specifies the minimum and maximum value of the metric in the aggregation interval and the standard deviation of it.
+[Application Insights](./app-insights-overview.md) supports two types of metric telemetry:
 
-Preaggregated metric telemetry assumes that the aggregation period was one minute.
+* **Single measurement** is a *name* and a *value*.
+* **Preaggregated metric** specifies the minimum (*min*) and maximum (*max*) value of the metric in the aggregation interval and the *standard deviation* of it. It assumes that the aggregation period was one minute.
+
+| Field                  | Description                                                                                                  |
+|------------------------|--------------------------------------------------------------------------------------------------------------|
+| **Name**               | This field is the name of the metric you want to see in the Application Insights portal and UI.              |
+| **Value**              | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. |
+| **Count**              | This field is the metric weight of the aggregated metric. It shouldn't be set for a measurement.             |
+| **Min**                | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement.             |
+| **Max**                | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement.             |
+| **Standard deviation** | This field is the standard deviation of the aggregated metric. It shouldn't be set for a measurement.        |
 
 Application Insights supports several well-known metric names. These metrics are placed into the `performanceCounters` table.
+
+For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
+
+<!-- Reached out to Timothy Mothra Lee about relevance of this section.
 
 The following table shows the metrics that represent system and process counters.
 
@@ -147,18 +188,9 @@ The following table shows the metrics that represent system and process counters
 | `\ASP.NET Applications(??APP_W3SVC_PROC??)\Request Execution Time` | Work in progress... | Average request execution time. |
 | `\ASP.NET Applications(??APP_W3SVC_PROC??)\Requests In Application Queue` | Work in progress... | Number of requests waiting for the processing in a queue. |
 
-For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
+-->
 
-| Field                  | Description                                                                                                  |
-|------------------------|--------------------------------------------------------------------------------------------------------------|
-| **Name**               | This field is the name of the metric you want to see in the Application Insights portal and UI.              |
-| **Value**              | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. |
-| **Count**              | This field is the metric weight of the aggregated metric. It shouldn't be set for a measurement.             |
-| **Min**                | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement.             |
-| **Max**                | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement.             |
-| **Standard deviation** | This field is the standard deviation of the aggregated metric. It shouldn't be set for a measurement.        |
-
-#### Custom properties
+### Custom properties
 
 The metric with the custom property `CustomPerfCounter` set to `true` indicates that the metric represents the Windows performance counter. These metrics are placed in the `performanceCounters` table, not in `customMetrics`. Also, the name of this metric is parsed to extract category, counter, and instance names.
 
@@ -170,38 +202,6 @@ Trace telemetry in [Application Insights](./app-insights-overview.md) represents
 |--------------------|-----------------------|--------------------------------------------------------------------------|
 | **Message**        | Trace message.        | **Maximum length:** 32,768 characters                                    |
 | **Severity level** | Trace severity level. | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
-
-## PageView
-
-PageView telemetry (in [Application Insights](./app-insights-overview.md)) is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action. This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
-
-> [!NOTE]
-> * By default, Application Insights SDKs log single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#measure-browsertiming-in-application-insights). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
-> * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
-
-#### Measure browserTiming in Application Insights
-
-Modern browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
-
-* **Client <--> DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
-* **Client <--> Web Server:** Client creates TCP and then TLS handshakes with the web server.
-* **Client <--> Web Server:** Client sends request payload, waits for the server to execute the request, and receives the first response packet.
-* **Client <--Web Server:** Client receives the rest of the response payload bytes from the web server.
-* **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
-
-* `browserTimings/networkDuration` = #1 + #2
-* `browserTimings/sendDuration` = #3
-* `browserTimings/receiveDuration` = #4
-* `browserTimings/processingDuration` = #5
-* `browsertimings/totalDuration` = #1 + #2 + #3 + #4 + #5
-* `pageViews/duration`
-    * The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).
-    * If `PerformanceNavigationTiming` is available, that duration is used.
-     
-If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
-    * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
-
-:::image type="content" source="./media/javascript/page-view-load-time.png" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." lightbox="./media/javascript/page-view-load-time.png" border="false":::
 
 ## Context
 
