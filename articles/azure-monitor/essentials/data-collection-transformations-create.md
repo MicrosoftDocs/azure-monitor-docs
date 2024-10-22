@@ -1,6 +1,6 @@
 ---
-title: Structure of transformation in Azure Monitor
-description: Structure of transformation in Azure Monitor including limitations of KQL allowed in a transformation.
+title: Create a transformation in Azure Monitor
+description: Create a transformation in Azure Monitor
 author: bwren
 ms.author: bwren
 ms.topic: conceptual
