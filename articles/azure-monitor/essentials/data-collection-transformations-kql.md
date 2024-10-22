@@ -9,7 +9,7 @@ ms.reviwer: nikeist
 
 ---
 
-## Supported KQL features
+## Supported KQL features in Azure Monitor transformations
 
 ## KQL limitations
 Since the transformation is applied to each record individually, it can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. See [Supported KQL features](#supported-kql-features) for a complete list of supported features.
