@@ -58,6 +58,11 @@ When you configure Private Link even for a single resource, traffic to the follo
 >
 > Private Link settings for Managed Prometheus and ingesting data into your Azure Monitor workspace are configured on the Data Collection Endpoints for the referenced resource. Settings for querying your Azure Monitor workspace over Private Link are made directly on the Azure Monitor workspace and are not handled via AMPLS.
 
+### Kinds of scoped resources
+AMPLS makes a distinction between two kinds of resources, which must be specified when adding resources to a private link scope:
+- `Resource` kind is the label applied to all individual resources that can be scoped to AMPLS. This kind applies to application insights, log analytics workspaces, and data collection endpoints
+- `PlatformMetrics` kind is the label that applies to platform metrics within a subscription. Unlike resource kind, instead of scoping a single resource, an entire subscription and region is added to the AMPLS for platform metrics support. Scoping a subscription with kind `PlatformMetric` will not affect the application insights, log analytics workspaces, or data collection endpoints within that subscription.
+
 ### Resource-specific endpoints
 Log Analytics endpoints are workspace specific, except for the query endpoint discussed earlier. As a result, adding a specific Log Analytics workspace to the AMPLS will send ingestion requests to this workspace over the private link. Ingestion to other workspaces will continue to use the public endpoints.
 
