@@ -167,7 +167,7 @@ Run the following command after all custom resources are created and deployments
 kubectl rollout restart deployment <deployment-name> -n mynamespace1
 ```
 
-This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You will be able to use all Application Insights Experiences with the exception of Live Metrics and Application Insights Code Analysis features. Learn more about the available Application Insights experiences [here](app-insights-overview.md#experiences). 
+This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You're able to use all Application Insights Experiences except Live Metrics and Application Insights Code Analysis features. Learn more about the available Application Insights experiences [here](app-insights-overview.md#experiences). 
 
 ## Remove Autoinstrumentation for AKS
 
@@ -226,7 +226,7 @@ Use the following annotation to enable logs in Application Insights
 
 ## Prepare a cluster during AKS cluster create
 
-AKS Clusters can be prepared for this feature during cluster creation. If you prefer to have the cluster prepped during creation run the following Azure CLI command. Application monitoring will not be enabled just because your cluster is prepped. You must deploy an application and onboard the application to this feature.
+AKS Clusters can be prepared for this feature during cluster creation. Run the following Azure CLI command if you prefer to have the cluster prepped during creation. Application monitoring isn't enabled just because your cluster is prepped. You must deploy an application and onboard the application to this feature.
 
 ```azurecli
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
@@ -268,11 +268,11 @@ The OpenTelemetry Distro can become vulnerable on deployments that aren't change
 
 #### How do I learn more about the Azure Monitor OpenTelemetry Distro?
 
-This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods to generate telemetry. 
+This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods. 
 
-For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary that is leveraged by this feature. 
+For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary. 
 
-For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. See our [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs) to learn more. Keep in mind that we do not have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code based configurations steps related to manual instrumentation. However, everything else in our distro documentation such as default settings, environment variable configurations, etc. will be appicable to this feature.
+For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code based configurations steps related to manual instrumentation. However, everything else in our distro documentation such as default settings, environment variable configurations, etc. is applicable to this feature.
 
 ## Troubleshooting
 
