@@ -128,7 +128,7 @@ The [transformation](../essentials/data-collection-transformations.md) potential
 
 ### ARM template
 
-Use the following ARM template to create a DCR for collecting text log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template.
+Use the following ARM template to create a DCR for collecting JSON log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template.
 
 | Setting | Description |
 |:---|:---|
@@ -183,7 +183,13 @@ Use the following ARM template to create a DCR for collecting text log files, ma
             "metadata": {
                 "description": "Resource ID of the Log Analytics workspace with the target table."
             }
-        }
+        },
+        "timeFormat": {
+            "type": "string"
+            "metadata": {
+                "discription": "The time format that you would like to use to split multi line imput"
+            }
+      }
     },
     "variables": {
         "tableOutputStream": "[concat('Custom-', parameters('tableName'))]"
@@ -236,7 +242,12 @@ Use the following ARM template to create a DCR for collecting text log files, ma
                                 "[parameters('filePatterns')]"
                             ],
                             "format": "json",
-                            "name": "Custom-Json-stream"
+                            "name": "Custom-Json-stream",
+                            "settings": {
+                               "text": {
+                                   "recordStartTimestampFormat": "[parameters('timeFormat')]"
+                               }
+                            }
                         }
                     ]
                 },
