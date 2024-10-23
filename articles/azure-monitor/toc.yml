@@ -619,12 +619,12 @@ items:
         - name: Overview
           displayName: Transformations
           href: essentials/data-collection-transformations.md
-        - name: Structure
+        - name: Create
           displayName: Transformations
-          href: essentials/data-collection-transformations-structure.md
-        - name: Best practices and samples
+          href: essentials/data-collection-transformations-create.md
+        - name: KQL details
           displayName: Transformations
-          href: essentials/data-collection-transformations-best-practices.md
+          href: essentials/data-collection-transformations-kql.md
         - name: Tutorial
           displayName: Custom text logs, transformations
           href: agents/azure-monitor-agent-transformation.md
