@@ -7,7 +7,7 @@ ms.author: v-gjeronika
 manager: jsuri
 ms.date: 05/24/2024
 ms.custom: UpdateFrequency.5
-ms.service: system-center
+ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: article
 ---

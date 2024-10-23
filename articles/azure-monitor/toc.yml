@@ -320,8 +320,10 @@ items:
           href: alerts/proactive-arm-config.md
         - name: E-mail notification
           href: alerts/proactive-email-notification.md
-    - name: Management and security
+    - name: Terms and concepts
       items:
+      - name: Connection strings
+        href: app/connection-strings.md
       - name: Geolocation and IP address handling
         href: app/ip-collection.md
         displayName: geolocation, IP collection, IP tracking, IP storage
@@ -1159,6 +1161,8 @@ items:
             href: visualize/workbooks-graph-visualizations.md
           - name: Map
             href: visualize/workbooks-map-visualizations.md
+          - name: Stat
+            href: visualize/workbooks-stat-visualizations.md
           - name: Honey comb
             href: visualize/workbooks-honey-comb.md
           - name: Composite bar
