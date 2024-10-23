@@ -64,8 +64,6 @@
     href: advisor-reference-performance-recommendations.md
   - name: Reliability
     href: advisor-reference-reliability-recommendations.md    
-  - name: Security
-    href: /azure/defender-for-cloud/recommendations-reference
   - name: Sovereign clouds
     href: advisor-sovereign-clouds.md
 - name: Samples 
