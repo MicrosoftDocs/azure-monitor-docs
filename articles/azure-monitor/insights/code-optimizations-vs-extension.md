@@ -7,21 +7,19 @@ ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
 ms.date: 10/11/2024
-ms.reviewer: ryankahng
+ms.reviewer: jkalis
 ---
 
 # Code Optimizations extensions for Visual Studio (preview)
 
-With the [Code Optimizations extension for Visual Studio](), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps. 
+With the [Code Optimizations extension for Visual Studio](https://aka.ms/CodeOptimizations/VS/Marketplace), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps. 
 
 This article guides you through using the extension with GitHub Copilot in Visual Studio. 
 
 ## Prerequisites
 
-- [Install or update the Azure CLI](/cli/azure/install-azure-cli-windows)
-- [Install the lastest version of Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [Install versions 17.10 or 17.11 of Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - Sign up for and log into a GitHub account with [a valid GitHub Copilot subscription](https://docs.github.com/en/copilot/about-github-copilot/subscription-plans-for-github-copilot).
-- [Install the GitHub Copilot Chat extension](/visualstudio/ide/visual-studio-github-copilot-install-and-states).
 - Enable the following for your .NET application:
   - [Application Insights](../app/create-workspace-resource.md)
   - [.NET Profiler](../profiler/profiler.md)
@@ -40,17 +38,9 @@ To get started, make sure Code Optimizations are identified for your application
   - The Application Insights resource name
   - The account with which you've signed into the Azure portal
 
-## Log into the Azure CLI
-
-In a terminal, run the following command to log into the Azure CLI.
-
-```azurecli
-az login
-```
-
 ## Install the Code Optimizations extension (preview)
 
-Install [the Code Optimizations extension for Visual Studio]()
+Install [the Code Optimizations extension for Visual Studio](https://aka.ms/CodeOptimizations/VS/Marketplace).
 
 ## Fix issues in your code using the extension
 

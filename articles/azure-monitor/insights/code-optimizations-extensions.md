@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/11/2024
-ms.reviewer: ryankahng
+ms.date: 10/23/2024
+ms.reviewer: jkalis
 ---
 
 # Code Optimizations extensions for Visual Studio and Visual Studio Code (preview)
@@ -16,11 +16,17 @@ The preview extensions available for Visual Studio and Visual Studio Code can he
 
 A [GitHub Copilot subscription](https://docs.github.com/en/copilot/about-github-copilot/subscription-plans-for-github-copilot) is required to use these extensions.
 
-## Install and use
+## Install
 
-Currently, the install and usage instructions are found in the following GitHub repos: 
-- [Visual Studio Code](https://github.com/copilot-code-optimizations/VS-Code-Extension)
-- [Visual Studio](https://github.com/copilot-code-optimizations/VS-Extension)
+Install the Code Optimizations extensions via Marketplace. 
+- [Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace)
+- [Visual Studio](https://aka.ms/CodeOptimizations/VS/Marketplace)
+
+## Usage
+
+Learn how to use the Code Optimizations extensions via the following how-to guides:
+- [Visual Studio Code extension](./code-optimizations-vscode-extension.md)
+- [Visual Studio extension](./code-optimizations-vs-extension.md)
 
 ## Sample questions
 

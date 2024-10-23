@@ -6,43 +6,34 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/11/2024
-ms.reviewer: ryankahng
+ms.date: 10/23/2024
+ms.reviewer: jkalis
 ---
 
 # Code Optimizations extensions for Visual Studio Code (preview)
 
-With the [Code Optimizations extension for Visual Studio Code](), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps. 
+With the [Code Optimizations extension for Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps. 
 
 This article guides you through using the extension with GitHub Copilot in Visual Studio Code. 
 
 ## Prerequisites
 
-- [Install or update the Azure CLI](/cli/azure/install-azure-cli-windows)
 - [Install the lastest version of Visual Studio Code](https://code.visualstudio.com/Download)
 - Sign up for and log into a GitHub account with [a valid GitHub Copilot subscription](https://docs.github.com/en/copilot/about-github-copilot/subscription-plans-for-github-copilot).
-- [Install the GitHub Copilot Chat extension](/visualstudio/ide/visual-studio-github-copilot-install-and-states).
+- [Install the GitHub Copilot Chat extension](https://code.visualstudio.com/docs/copilot/setup).
 - Enable the following for your .NET application:
   - [Application Insights](../app/create-workspace-resource.md)
   - [.NET Profiler](../profiler/profiler.md)
 
-## Log into the Azure CLI
-
-In a terminal, run the following command to log into the Azure CLI.
-
-```azurecli
-az login
-```
-
 ## Install the Code Optimizations extension (preview)
 
-Install [the Code Optimizations extension for Visual Studio Code]()
+Install [the Code Optimizations extension for Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace).
 
 ## Fix performance issues in your code using the extension
 
 Once installed, the Code Optimizations extension (preview) introduces an agent called `@code_optimizations` with a few commands or "skills" that you can use in GitHub Copilot to interface with Code Optimizations issues. 
 
-1. In Visual Studio, open the repo holding your .NET application with Code Optimizations enabled. 
+1. In Visual Studio Code, open the repo holding your .NET application with Code Optimizations enabled. 
 1. Open the GitHub Copilot chat. 
 
 You have two options for using the Code Optimizations extension in Visual Studio Code:
@@ -85,7 +76,7 @@ To get started, make sure Code Optimizations are identified for your application
 
     The command pulls the top issues from Code Optimizations, maps them to source code in your local repo, and suggests fixes/recommendations. It automatically generates the top recommendation. 
 
-    :::image type="content" source="media/code-optimizations-vs-extension/code-optimizations-copilot-command.png" alt-text="Screenshot of the results from running the code-optimizations command in Visual Studio.":::
+    :::image type="content" source="media/code-optimizations-vscode-extension/connect-command.png" alt-text="Screenshot of the results from running the code-optimizations connect command in Visual Studio Code.":::
 
 1. Follow the prompts in the Copilot response to generate fixes for other issues.
 
