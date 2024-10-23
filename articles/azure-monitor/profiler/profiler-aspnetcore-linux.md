@@ -1,22 +1,22 @@
 ---
-title: Enable Application Insights Profiler for .NET for ASP.NET Core web apps hosted in Linux
-description: Learn how to enable the .NET Profiler on your ASP.NET Core web application hosted in Linux on Azure App Service.
+title: Enable Application Insights Profiler for ASP.NET Core web apps hosted in Linux
+description: Learn how to enable the Profiler on your ASP.NET Core web application hosted in Linux on Azure App Service.
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, linux-related-content
 ms.date: 08/19/2024
 ms.reviewer: charles.weininger
-# Customer Intent: As a .NET developer, I'd like to enable Application Insights Profiler for .NET for my .NET web application hosted in Linux
+# Customer Intent: As a .NET developer, I'd like to enable Application Insights Profiler for my .NET web application hosted in Linux
 ---
 
-# Enable the .NET Profiler for ASP.NET Core web apps hosted in Linux
+# Enable Profiler for ASP.NET Core web apps hosted in Linux
 
 By using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps that are hosted in Linux on Azure App Service. This article focuses on web apps hosted in Linux. You can also experiment by using Linux, Windows, and Mac development environments.
 
 In this article, you:
 > [!div class="checklist"]
 > - Set up and deploy an ASP.NET Core web application hosted on Linux.
-> - Add Application Insights Profiler for .NET to the ASP.NET Core web application.
+> - Add Application Insights Profiler to the ASP.NET Core web application.
 
 ## Prerequisites
 

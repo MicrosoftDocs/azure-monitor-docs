@@ -5,7 +5,7 @@ ms.contributor: charles.weininger
 ms.topic: how-to
 ms.date: 08/19/2024
 ms.reviewer: ryankahng
-# Customer Intent: As a .NET developer, I'd like to learn how to enable the .NET Profiler on my ASP.NET Core application running in my container.
+# Customer Intent: As a .NET developer, I'd like to learn how to enable the Profiler on my ASP.NET Core application running in my container.
 ---
 
 # Enable the .NET Profiler on Azure containers
