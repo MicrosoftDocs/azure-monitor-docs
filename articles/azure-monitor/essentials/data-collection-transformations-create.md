@@ -15,12 +15,18 @@ ms.reviwer: nikeist
 ## Transformation query
 Regardless of the method you use to create the transformation, you'll need to create the KQL statement that filters or modifies the incoming data. This query is applied individually to each entry in the data source. It must understand the format of the incoming data and create output in the structure of the target table. 
 
+A common method to build the log query is to collect some initial data without the transformation and use Log Analytics to write a query that filters or modifies the data as needed. You can then copy the query to the transformation query in the DCR.
+
+An alternative to collecting initial data is to use the [`datatable`](/kusto/query/datatable-operator) operator in Log Analytics to create a sample data set.
+```kusto
+
 > [!IMPORTANT]
 > Not all KQL operators are supported in transformation queries, and there are special operators only available in transformations. See [Supported KQL features in Azure Monitor transformations](./data-collection-transformations-kql.md) for a complete list of supported KQL features.
 
 A virtual table named `source` represents the input stream. The columns of the `source` table match the columns of the incoming data stream. 
 
 **No transformation**
+
 The following query simply returns the incoming data without modification. This is the equivalent of using a table name in a log query that simply returns all records.
 
 ```kusto
@@ -28,6 +34,7 @@ source
 ```
 
 **Filter data**
+
 Use a `where` statement to filter the incoming data. If the incoming record doesn't match the statement, then the record is not sent to the destination. In the following example, only records with a severity of "Critical" are sent to the destination.
 
 ```kusto
@@ -35,6 +42,7 @@ source | where severity == "Critical"
 ```
 
 **Modify schema**
+
 Use commands such as `extend` and `project` to modify the schema of the incoming data to match the target table. In the following example, a new column called `TimeGenerated` is added to outgoing data using a KQL function to return the current time.
 
 ```kusto
@@ -42,6 +50,7 @@ source | extend TimeGenerated = now()
 ```
 
 **Parse data**
+
 Use the `split` or `parse` operator to parse data into multiple columns in the destination table. In the following example, the incoming data has a comma-delimited column named `RawData` that's split into individual columns for the destination table.
 
 ```kusto
@@ -49,6 +58,7 @@ source | project d = split(RawData,",") | project TimeGenerated=todatetime(d[0])
 ```
 
 **Combine functions**
+
 A transformation can include multiple functions to filter, modify, and format the incoming data. Following is an:
 
 - Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement. This assumes that the incoming data has a column named `severity`.
@@ -66,6 +76,9 @@ source
     EventName = name,
     EventId = tostring(Properties.EventId)
 ```
+
+> [!IMPORTANT]
+> The transformation query must be on a single line the DCR. If you're creating the transformation in the Azure portal, you can use multiple lines for readability, and `\n` will be included in the query for each new line.
 
 ## DCR
 The transformation is specified in the `transformKql` property in the [Data FLows](./data-collection-rule-structure.md#data-flows) section of the DCR. The transformation is applied to the data source of the data flow before it's sent to the destination. 

@@ -10,6 +10,47 @@ ms.reviwer: nikeist
 ---
 
 # Supported KQL features in Azure Monitor transformations
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details the KQL features that are supported in transformations in addition to special operators that are only available in transformations.
+
+> [!IMPORTANT]
+> Only the operators listed in this article are supported in transformations. Any other operators that may be used in other log queries are not supported in transformations.
+
+## Special functions 
+The following functions are only available in transformations. They cannot be used in other log queries.
+
+### `parse_cef_dictionary`
+
+Given a string containing a CEF message, `parse_cef_dictionary` parses the Extension property of the message into a dynamic key/value object. Semicolon is a reserved character that should be replaced prior to passing the raw message into the method, as shown in the example.
+
+```kusto
+| extend cefMessage=iff(cefMessage contains_cs ";", replace(";", " ", cefMessage), cefMessage) 
+| extend parsedCefDictionaryMessage =parse_cef_dictionary(cefMessage) 
+| extend parsecefDictionaryExtension = parsedCefDictionaryMessage["Extension"]
+| project TimeGenerated, cefMessage, parsecefDictionaryExtension
+```
+
+:::image type="content" source="media/data-collection-transformations-structure/parse_cef_dictionary.png" alt-text="Sample output of parse_cef_dictionary function." lightbox="media/data-collection-transformations-structure/parse_cef_dictionary.png":::
+
+### `geo_location`
+
+Given a string containing IP address (IPv4 and IPv6 are supported), `geo_location` function returns approximate geographical location, including the following attributes:
+* Country
+* Region
+* State
+* City
+* Latitude
+* Longitude
+
+```kusto
+| extend GeoLocation = geo_location("1.0.0.5")
+```
+
+:::image type="content" source="media/data-collection-transformations-structure/geo-location.png" alt-text="Screenshot of sample output of geo_location function." lightbox="media/data-collection-transformations-structure/parse_cef_dictionary.png":::
+
+> [!IMPORTANT]
+> Due to nature of IP geolocation service utilized by this function, it may introduce data ingestion latency if used excessively. Exercise caution when using this function more than several times per transformation.
+
+
 
 ## KQL limitations
 Since the transformation is applied to each record individually, it can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. See [Supported KQL features](#supported-kql-features) for a complete list of supported features.
@@ -38,7 +79,7 @@ print x = 2 + 2, y = 5 | extend z = exp2(x) + exp2(y)
 ```
 
 
-## Tabular operators
+## Supported tabular operators
 - [`extend`](/azure/data-explorer/kusto/query/extendoperator)
 - [`project`](/azure/data-explorer/kusto/query/projectoperator)
 - [`print`](/azure/data-explorer/kusto/query/printoperator)
@@ -49,7 +90,7 @@ print x = 2 + 2, y = 5 | extend z = exp2(x) + exp2(y)
 - [`datatable`](/azure/data-explorer/kusto/query/datatableoperator?pivots=azuremonitor)
 - [`columnifexists`](/azure/data-explorer/kusto/query/columnifexists) (use columnifexists instead of column_ifexists)
 
-## Scalar operators
+## Supported scalar operators
 
 ### Numerical operators
 All [Numerical operators](/azure/data-explorer/kusto/query/numoperators) are supported.
@@ -207,43 +248,6 @@ The following [Bitwise operators](/azure/data-explorer/kusto/query/binoperators)
 - [`isnotnull`](/azure/data-explorer/kusto/query/isnotnullfunction)
 - [`isnull`](/azure/data-explorer/kusto/query/isnullfunction)
 
-## Special functions 
-The following functions are only available in transformations. They cannot be used in other log queries.
-
-### `parse_cef_dictionary`
-
-Given a string containing a CEF message, `parse_cef_dictionary` parses the Extension property of the message into a dynamic key/value object. Semicolon is a reserved character that should be replaced prior to passing the raw message into the method, as shown in the example.
-
-```kusto
-| extend cefMessage=iff(cefMessage contains_cs ";", replace(";", " ", cefMessage), cefMessage) 
-| extend parsedCefDictionaryMessage =parse_cef_dictionary(cefMessage) 
-| extend parsecefDictionaryExtension = parsedCefDictionaryMessage["Extension"]
-| project TimeGenerated, cefMessage, parsecefDictionaryExtension
-```
-
-:::image type="content" source="media/data-collection-transformations-structure/parse_cef_dictionary.png" alt-text="Sample output of parse_cef_dictionary function." lightbox="media/data-collection-transformations-structure/parse_cef_dictionary.png":::
-
-### `geo_location`
-
-Given a string containing IP address (IPv4 and IPv6 are supported), `geo_location` function returns approximate geographical location, including the following attributes:
-* Country
-* Region
-* State
-* City
-* Latitude
-* Longitude
-
-```kusto
-| extend GeoLocation = geo_location("1.0.0.5")
-```
-
-:::image type="content" source="media/data-collection-transformations-structure/geo-location.png" alt-text="Screenshot of sample output of geo_location function." lightbox="media/data-collection-transformations-structure/parse_cef_dictionary.png":::
-
-> [!IMPORTANT]
-> Due to nature of IP geolocation service utilized by this function, it may introduce data ingestion latency if used excessively. Exercise caution when using this function more than several times per transformation.
-
-### Identifier quoting
-Use [Identifier quoting](/azure/data-explorer/kusto/query/schema-entities/entity-names?q=identifier#identifier-quoting) as required.
 
 
 ## Next steps
