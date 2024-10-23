@@ -247,9 +247,9 @@ items:
           items:
           - name: Overview
             href: insights/code-optimizations-extensions.md
-          - name: Visual Studio extension
+          - name: Visual Studio
             href: insights/code-optimizations-vs-extension.md
-          - name: Visual Studio Code extension
+          - name: Visual Studio Code
             href: insights/code-optimizations-vscode-extension.md
         - name: Troubleshooting
           href: insights/code-optimizations-troubleshoot.md
