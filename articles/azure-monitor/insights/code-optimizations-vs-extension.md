@@ -20,7 +20,7 @@ This article guides you through using the extension with GitHub Copilot in Visua
 
 - [Install versions 17.10 or 17.11 of Visual Studio](https://visualstudio.microsoft.com/downloads/)
 - Sign up for and log into a GitHub account with [a valid GitHub Copilot subscription](https://docs.github.com/en/copilot/about-github-copilot/subscription-plans-for-github-copilot).
-- Enable the following for your .NET application:
+- Enable the following services for your .NET application:
   - [Application Insights](../app/create-workspace-resource.md)
   - [.NET Profiler](../profiler/profiler.md)
 
@@ -36,7 +36,7 @@ To get started, make sure Code Optimizations are identified for your application
 
 1. Make note of:
   - The Application Insights resource name
-  - The account with which you've signed into the Azure portal
+  - The account with which you're signed into the Azure portal
 
 ## Install the Code Optimizations extension (preview)
 
@@ -59,7 +59,7 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
     :::image type="content" source="media/code-optimizations-vs-extension/code-optimizations-copilot-command.png" alt-text="Screenshot of the results from running the code-optimizations command in Visual Studio.":::
 
 
-1. Follow the prompts in the Copilot response to generate fixes for other issues.
+1. Generate fixes for other issues by following the prompts in the Copilot response.
 
 ## Related content
 
