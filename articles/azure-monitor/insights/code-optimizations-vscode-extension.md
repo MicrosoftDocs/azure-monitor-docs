@@ -57,8 +57,8 @@ To get started, make sure Code Optimizations are identified for your application
    :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
 
 1. Make note of:
-  - The Application Insights resource name
-  - The account with which you're signed into the Azure portal
+    - The Application Insights resource name.
+    - The account with which you're signed into the Azure portal.
 
 #### Get the Application ID for your app
 

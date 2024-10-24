@@ -32,11 +32,11 @@ To get started, make sure Code Optimizations are identified for your application
 1. Select **Investigate** > **Performance**. 
 1. In the Performance blade, select the **Code Optimizations** button in the top menu.
 
-   :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
+   :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade-inline.png" alt-text="Screenshot of Code Optimizations located in the Performance blade." lightbox="./media/code-optimizations/code-optimizations-performance-blade-expanded.png":::
 
 1. Make note of:  
-    - The Application Insights resource name
-    - The account with which you're signed into the Azure portal
+    - The Application Insights resource name.
+    - The account with which you're signed into the Azure portal.
 
 ## Install the Code Optimizations extension (preview)
 
