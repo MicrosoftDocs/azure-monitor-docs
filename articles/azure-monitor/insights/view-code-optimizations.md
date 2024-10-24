@@ -94,7 +94,7 @@ The **Insights** tab provides:
 > [!NOTE]
 > If you don't see any insights, it's likely that the Code Optimizations service hasn't noticed any performance bottlenecks in your code. Continue to check back to see if any insights pop up. 
 
-### Call stack
+### Call Stack
 
 In the insights details pane, under the **Call Stack** heading, you can:
 
@@ -107,7 +107,7 @@ In the insights details pane, under the **Call Stack** heading, you can:
 
 ### Timeline
 
-In the details pane, under **Timeline**, you can also view a graph depicting a the timeline of a specific performance issue's impact and threshold. The results vary depending on the filters you set. For example, a Memory "Inefficient `String.SubString()`" performance issue's insights seen over the last 24 hours may look like:
+In the details pane, under **Timeline**, you can also view a graph depicting the timeline of a specific performance issue's impact and threshold. The results vary depending on the filters you set. For example, a Memory "Inefficient `String.SubString()`" performance issue's insights seen over the last 24 hours may look like:
 
 :::image type="content" source="./media/code-optimizations/code-optimizations-trend-impact.png" alt-text="Screenshot of the C-P-U trend impact over the course of seven days.":::
 
