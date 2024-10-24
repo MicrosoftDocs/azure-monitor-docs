@@ -7,11 +7,9 @@
           "**/*.yml"
         ],
         "exclude": [
-          "iot-edge/**",
           "**/_themes/**",
           "**/includes/**",
-          "**/obj/**",
-          "**/*.graffle"
+          "**/obj/**"
         ],
         "src": "articles",
         "dest": "."
@@ -34,7 +32,6 @@
           "**/*.svg"
         ],
         "exclude": [
-          "iot-edge/**",
           "**/_themes/**",
           "**/obj/**"
         ],
@@ -134,8 +131,7 @@
         "Certification"
       ],
       "uhfHeaderId": "azure",
-      "ms.suite": "office",
-      "zone_pivot_group_filename": "zone-pivot-groups.json"
+      "ms.suite": "office"
     },
     "fileMetadata": {
       "adobe-target": {
