@@ -23,7 +23,7 @@ This article reviews how configuration is done through the Azure portal. It prov
 
 1. From the **Monitor** menu in the Azure portal, select **Private Link Scopes** and then **Create**.
 
-   :::image type="content" source="./media/private-link-security/ampls-creata.png" lightbox="./media/private-link-security/ampls-create.png" alt-text="Screenshot showing option to create and Azure Monitor Private Link Scope.":::
+   :::image type="content" source="./media/private-link-security/ampls-create.png" lightbox="./media/private-link-security/ampls-create.png" alt-text="Screenshot showing option to create and Azure Monitor Private Link Scope.":::
 
 1. Select a subscription and resource group, and give the AMPLS a meaningful name like *AppServerProdTelem*.
 1. Select **Review + create**.
@@ -298,7 +298,7 @@ Make sure that your private link is in good working order:
   > [!Note]
   > Some browsers might use other DNS settings. For more information, see [Browser DNS settings](./private-link-design.md#browser-dns-settings). Make sure your DNS settings apply.
 
-* To make sure your workspaces or components aren't receiving requests from public networks (not connected through AMPLS), set the resource's public ingestion and query flags to **No** as explained in [Configure access to your resources](#configure-access-to-your-resources).
+* To make sure your workspaces or components aren't receiving requests from public networks (not connected through AMPLS), set the resource's public ingestion and query flags to **No** as explained in [Configure access to your resources](#configure-access-to-resources).
 * From a client on your protected network, use `nslookup` to any of the endpoints listed in your DNS zones. It should be resolved by your DNS server to the mapped private IPs instead of the public IPs used by default.
 
 ## Next steps
