@@ -29,6 +29,8 @@ This article guides you through using the extension with GitHub Copilot in Visua
 
 Install [the Code Optimizations extension for Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace).
 
+When you run the extension for the first time, you might see two dialogue prompts asking you to sign into Azure and connect with your GitHub Copilot account.
+
 ## Fix performance issues in your code using the extension
 
 Once installed, the Code Optimizations extension (preview) introduces an agent called `@code_optimizations` with a few commands or "skills" that you can use in GitHub Copilot to interface with Code Optimizations issues. 

@@ -34,9 +34,9 @@ To get started, make sure Code Optimizations are identified for your application
 
    :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
 
-1. Make note of:
-  - The Application Insights resource name
-  - The account with which you're signed into the Azure portal
+1. Make note of:  
+    - The Application Insights resource name
+    - The account with which you're signed into the Azure portal
 
 ## Install the Code Optimizations extension (preview)
 
@@ -58,6 +58,8 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 
     :::image type="content" source="media/code-optimizations-vs-extension/code-optimizations-copilot-command.png" alt-text="Screenshot of the results from running the code-optimizations command in Visual Studio.":::
 
+    > [!NOTE]
+    > By default, only issues from the past 24 hours are returned. 
 
 1. Generate fixes for other issues by following the prompts in the Copilot response.
 
