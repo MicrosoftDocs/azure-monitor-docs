@@ -11,9 +11,10 @@ ms.reviwer: nikeist
 
 # Structure of transformation in Azure Monitor
 
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides details on how this query is structured and limitations on the KQL language allowed.
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it gets stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides details on how this query is structured and limitations on the KQL language allowed.
 
 ## Transformation structure
+
 The KQL statement is applied individually to each entry in the data source. It must understand the format of the incoming data and create output in the structure of the target table. A virtual table named `source` represents the input stream. `source` table columns match the input data stream definition. Following is a typical example of a transformation. This example includes the following functionality:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
@@ -36,7 +37,7 @@ source
 
 Since the transformation is applied to each record individually, it can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. See [Supported KQL features](#supported-kql-features) for a complete list of supported features.
 
-Transformations in a [data collection rule (DCR)](data-collection-rule-overview.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. This article describes how to build transformations in a DCR, including details and limitations of the Kusto Query Language (KQL) used for the transform statement.
+Transformations in a [data collection rule (DCR)](data-collection-rule-overview.md) allow you to filter or modify incoming data before it gets stored in a Log Analytics workspace. This article describes how to build transformations in a DCR, including details and limitations of the Kusto Query Language (KQL) used for the transform statement.
 
 ## Parse command
 
@@ -107,11 +108,11 @@ print d=parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')
 
 ### Supported statements
 
-#### let statement
+#### Let statement
 
 The right-hand side of [`let`](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
 
-#### tabular expression statements
+#### Tabular expression statements
 
 The only supported data sources for the KQL statement are as follows:
 
@@ -152,6 +153,7 @@ All [Numerical operators](/azure/data-explorer/kusto/query/numoperators) are sup
 All [Datetime and Timespan arithmetic operators](/azure/data-explorer/kusto/query/datetime-timespan-arithmetic) are supported.
 
 #### String operators
+
 The following [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators) are supported.
 
 * `==`
@@ -304,7 +306,7 @@ The following [Bitwise operators](/azure/data-explorer/kusto/query/binoperators)
 
 ##### parse_cef_dictionary
 
-Given a string containing a CEF message, `parse_cef_dictionary` parses the Extension property of the message into a dynamic key/value object. Semicolon is a reserved character that should be replaced prior to passing the raw message into the method, as shown in the example.
+Given a string containing a CEF message, `parse_cef_dictionary` parses the Extension property of the message into a dynamic key/value object. Semicolon is a reserved character that should be replaced before passing the raw message into the method, as shown in the example.
 
 ```kusto
 | extend cefMessage=iff(cefMessage contains_cs ";", replace(";", " ", cefMessage), cefMessage) 

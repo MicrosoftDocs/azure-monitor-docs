@@ -16,7 +16,7 @@ This article includes sample [Azure Resource Manager templates](/azure/azure-res
 
 ## Create a SQL Insights (preview) monitoring profile
 
-The following sample creates a SQL Insights monitoring profile, which includes the SQL monitoring data to collect, frequency of data collection, and specifies the workspace the data will be sent to.
+The following sample creates a SQL Insights monitoring profile. It includes the SQL monitoring data to collect, frequency of data collection, and specifies the workspace the data is sent to.
 
 ### Template file
 
@@ -28,7 +28,7 @@ View the [parameter file on GitHub](https://github.com/microsoft/Application-Ins
 
 ## Add a monitoring VM to a SQL Insights monitoring profile
 
-Once you have created a monitoring profile, you need to allocate Azure virtual machines that will be configured to remotely collect data from the SQL resources you specify in the configuration for that VM. Refer to the SQL Insights enable documentation for more details.
+Once you create a monitoring profile, you need to allocate Azure virtual machines. These VMs will be configured to remotely collect data from the SQL resources you specify in the configuration for that VM. For more details, see [Enable SQL Insights (preview)](/azure/azure-sql/database/sql-insights-enable?view=azuresql&tabs=sqldb).
 
 The following sample configures a monitoring VM to collect the data from the specified SQL resources.
 
@@ -42,9 +42,9 @@ View the [parameter file on GitHub](https://github.com/microsoft/Application-Ins
 
 ## Create an alert rule for SQL Insights
 
-The following sample creates an alert rule that will cover the SQL resources within the scope of the specified monitoring profile. This alert rule will appear in the SQL Insights UI in the alerts UI context panel.
+The following sample creates an alert rule that covers the SQL resources within the scope of the specified monitoring profile. This alert rule appears in the SQL Insights UI in the alerts UI context panel.
 
-The parameter file has values from one of the alert templates we provide in SQL Insights, you can modify it to alert on other data we collect for SQL. The template does not specify an action group for the alert rule.
+The parameter file has values from one of the alert templates we provide in SQL Insights. You can modify it to alert on other data we collect for SQL. The template doesn't specify an action group for the alert rule.
 
 ### Template file
 
