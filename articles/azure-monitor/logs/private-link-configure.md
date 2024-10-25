@@ -89,7 +89,7 @@ From the menu for your AMPLS, select **Network Isolation** to control which netw
 
 **Connected AMPLS**
 
-This screen allows you to review and configure the resource's connections to the AMPLS. Connecting to an AMPLS allows traffic from the connected virtual network connectedto reach the resource. It has the same effect as connecting it from the scope described in [Connect Azure Monitor resources](#connect-azure-monitor-resources).
+This screen allows you to review and configure the resource's connections to the AMPLS. Connecting to an AMPLS allows traffic from the connected virtual network connectedto reach the resource. It has the same effect as connecting it from the scope described in [Connect Azure Monitor resources](#connect-resources-to-the-ampls).
 
 To add a new connection, select **Add** and select the AMPLS. Your resource can connect to five AMPLS objects, as described in [AMPLS limits](./private-link-design.md#ampls-limits).
 
@@ -271,9 +271,9 @@ The following screenshot shows endpoints mapped for an AMPLS with two workspaces
 * To validate that your requests are now sent through the private endpoint, review them with your browser or a network tracking tool. For example, when you attempt to query your workspace or application, make sure the request is sent to the private IP mapped to the API endpoint. In this example, it's *172.17.0.9*.
 
   > [!Note]
-  > Some browsers might use other DNS settings. For more information, see [Browser DNS settings](./private-link-design.md#browser-dns-settings). Make sure your DNS settings apply.
+  > Some browsers might use other DNS settings. For more information, see [Browser DNS settings](#browser-dns-settings). Make sure your DNS settings apply.
 
-* To make sure your workspaces or components aren't receiving requests from public networks (not connected through AMPLS), set the resource's public ingestion and query flags to **No** as explained in [Configure access to your resources](#configure-access-to-resources).
+* To make sure your workspaces or components aren't receiving requests from public networks (not connected through AMPLS), set the resource's public ingestion and query flags to **No** as explained in [Configure access to your resources](#configure-access-to-ampls-resources).
 * From a client on your protected network, use `nslookup` to any of the endpoints listed in your DNS zones. It should be resolved by your DNS server to the mapped private IPs instead of the public IPs used by default.
 * 
 ### Testing locally
@@ -285,7 +285,7 @@ To test private links locally without affecting other clients on your network, m
 ## Additional configuration
 
 ### Network subnet size
-The smallest supported IPv4 subnet is /27 using CIDR subnet definitions. Although Azure virtual networks [can be as small as /29](/azure/virtual-network/virtual-networks-faq#how-small-and-how-large-can-virtual-networks-and-subnets-be), Azure [reserves five IP addresses](/azure/virtual-network/virtual-networks-faq#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets). The Azure Monitor private link setup requires at least 11 more IP addresses even if you're connecting to a single workspace. [Review your endpoint's DNS settings](./private-link-configure.md#review-your-endpoints-dns-settings) for the list of Azure Monitor private link endpoints.
+The smallest supported IPv4 subnet is /27 using CIDR subnet definitions. Although Azure virtual networks [can be as small as /29](/azure/virtual-network/virtual-networks-faq#how-small-and-how-large-can-virtual-networks-and-subnets-be), Azure [reserves five IP addresses](/azure/virtual-network/virtual-networks-faq#are-there-any-restrictions-on-using-ip-addresses-within-these-subnets). The Azure Monitor private link setup requires at least 11 more IP addresses even if you're connecting to a single workspace. [Review your endpoint's DNS settings](#review-endpoints-dns-settings) for the list of Azure Monitor private link endpoints.
 
 ### Azure portal
 To use Azure Monitor portal experiences for Application Insights, Log Analytics, and DCEs, allow the Azure portal and Azure Monitor extensions to be accessible on the private networks. Add **AzureActiveDirectory**, **AzureResourceManager**, **AzureFrontDoor.FirstParty**, and **AzureFrontdoor.Frontend** [service tags](/azure/firewall/service-tags) to your network security group.
@@ -294,7 +294,7 @@ To use Azure Monitor portal experiences for Application Insights, Log Analytics,
 To use the REST API, the Azure [CLI](/cli/azure/monitor), or PowerShell with Azure Monitor on private networks, add the [service tags](/azure/virtual-network/service-tags-overview) **AzureActiveDirectory** and **AzureResourceManager** to your firewall.
 
 ### Browser DNS settings
-If you're connecting to your Azure Monitor resources over a private link, traffic to these resources must go through the private endpoint that's configured on your network. To enable the private endpoint, update your DNS settings as described in [Connect to a private endpoint](./private-link-configure.md#connect-to-a-private-endpoint). Some browsers use their own DNS settings instead of the ones you set. The browser might attempt to connect to Azure Monitor public endpoints and bypass the private link entirely. Verify that your browser settings don't override or cache old DNS settings.
+If you're connecting to your Azure Monitor resources over a private link, traffic to these resources must go through the private endpoint that's configured on your network. To enable the private endpoint, update your DNS settings as described in [Connect to a private endpoint](#connect-ampls-to-a-private-endpoint). Some browsers use their own DNS settings instead of the ones you set. The browser might attempt to connect to Azure Monitor public endpoints and bypass the private link entirely. Verify that your browser settings don't override or cache old DNS settings.
 
 ### Querying limitation: externaldata operator
 
@@ -304,7 +304,6 @@ If you're connecting to your Azure Monitor resources over a private link, traffi
 ## Next steps
 
 - Learn about [private storage](private-storage.md) for custom logs and customer-managed keys.
-- Learn about [Private Link for Azure Automation](../../automation/how-to/private-link-security.md).
 - Learn about the new [data collection endpoints](../essentials/data-collection-endpoint-overview.md).
 
 

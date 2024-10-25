@@ -142,4 +142,4 @@ The sample data collection endpoint (DCE) below is for virtual machines with Azu
 
 ## Next steps
 
-- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-azure-monitor-resources)
+- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-resources-to-the-ampls)

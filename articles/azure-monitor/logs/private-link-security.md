@@ -53,26 +53,6 @@ Log Analytics endpoints are workspace specific, except for the query endpoint di
 
 [Data collection endpoints](../essentials/data-collection-endpoint-overview.md) are also resource specific. You can use them to uniquely configure ingestion settings for collecting guest OS telemetry data from your machines (or set of machines) when you use the new [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and [data collection rules](../essentials/data-collection-rule-overview.md). Configuring a data collection endpoint for a set of machines doesn't affect ingestion of guest telemetry from other machines that use the new agent.
 
-## Private Link access modes: Private Only vs. Open
-As discussed in [Azure Monitor private links rely on your DNS](#azure-monitor-private-links-rely-on-your-dns), only a single AMPLS resource should be created for all networks that share the same DNS. As a result, organizations that use a single global or regional DNS have a single private link to manage traffic to all Azure Monitor resources, across all global or regional networks.
-
-For private links created before September 2021, that means:
-
-* Log ingestion works only for resources in the AMPLS. Ingestion to all other resources is denied (across all networks that share the same DNS), regardless of subscription or tenant.
-* Queries have a more open behavior that allows query requests to reach even resources not in the AMPLS. The intention here was to avoid breaking customer queries to resources not in the AMPLS and allow resource-centric queries to return the complete result set.
-
-This behavior proved to be too restrictive for some customers because it breaks ingestion to resources not in the AMPLS. But it was too permissive for others because it allows querying resources not in the AMPLS.
-
-Starting September 2021, private links have new mandatory AMPLS settings that explicitly set how they should affect network traffic. When you create a new AMPLS resource, you're now required to select the access modes you want for ingestion and queries separately:
-
-* **Private Only mode**: Allows traffic only to Private Link resources.
-* **Open mode**: Uses Private Link to communicate with resources in the AMPLS, but also allows traffic to continue to other resources. To learn more, see [Control how private links apply to your networks](./private-link-design.md#control-how-private-links-apply-to-your-networks).
-
-Although Log Analytics query requests are affected by the AMPLS access mode setting, Log Analytics ingestion requests use resource-specific endpoints and aren't controlled by the AMPLS access mode. To ensure Log Analytics ingestion requests can't access workspaces out of the AMPLS, set the network firewall to block traffic to public endpoints, regardless of the AMPLS access modes.
-
-> [!NOTE]
-> If you've configured Log Analytics with Private Link by initially setting the network security group rules to allow outbound traffic by `ServiceTag:AzureMonitor`, the connected VMs send the logs through a public endpoint. Later, if you change the rules to deny outbound traffic by `ServiceTag:AzureMonitor`, the connected VMs keep sending logs until you reboot the VMs or cut the sessions. To make sure the desired configuration takes immediate effect, reboot the connected VMs.
->
 
 ## Next steps
 - [Design your Azure Private Link setup](private-link-design.md).
