@@ -18,34 +18,35 @@ Azure Resource Health keeps you informed about the current and historical health
 
 To follow the instructions on this page, you'll need to set up a few things in advance:
 
-1. You need to install the [Azure PowerShell module](/powershell/azure/install-azure-powershell)
-2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you
+1. Install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
+1. [Create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 ## Instructions
-1. Using PowerShell, log in to Azure using your account, and select the subscription you want to interact with
+
+1. Using PowerShell, log in to Azure using your account, and select the subscription you want to interact with.
 
     ```azurepowershell
     Login-AzAccount
     Select-AzSubscription -Subscription <subscriptionId>
     ```
-
+    > [!NOTE]
     > You can use `Get-AzSubscription` to list the subscriptions you have access to.
 
-2. Find and save the full Azure Resource Manager ID for your Action Group
+1. Find and save the full Azure Resource Manager ID for your Action Group.
 
     ```azurepowershell
     (Get-AzActionGroup -ResourceGroupName <resourceGroup> -Name <actionGroup>).Id
     ```
 
-3. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details below](#resource-manager-template-options-for-resource-health-alerts))
+1. Create and save a Resource Manager template for Resource Health alerts as `resourcehealthalert.json` ([see details below](#resource-manager-template-options-for-resource-health-alerts)).
 
-4. Create a new Azure Resource Manager deployment using this template
+1. Create a new Azure Resource Manager deployment using this template.
 
     ```azurepowershell
     New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName <resourceGroup> -TemplateFile <path\to\resourcehealthalert.json>
     ```
 
-5. You'll be prompted to type in the Alert Name and Action Group Resource ID you copied earlier:
+1. You'll be prompted to type in the Alert Name and Action Group Resource ID you copied earlier:
 
     ```azurepowershell
     Supply values for the following parameters:
@@ -54,7 +55,7 @@ To follow the instructions on this page, you'll need to set up a few things in a
     actionGroupResourceId: /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/microsoft.insights/actionGroups/<actionGroup>
     ```
 
-6. If everything worked successfully, you'll get a confirmation in PowerShell
+1. If everything worked successfully, you'll get a confirmation in PowerShell.
 
     ```output
     DeploymentName          : ExampleDeployment
@@ -80,6 +81,7 @@ Note that if you are planning on fully automating this process, you simply need 
 
 You can use this base template as a starting point for creating Resource Health alerts. This template will work as written, and will sign you up to receive alerts for all newly activated resource health events across all resources in a subscription.
 
+> [!NOTE]
 > At the bottom of this article we have also included a more complex alert template which should increase the signal to noise ratio for Resource Health alerts as compared to this template.
 
 ```json
@@ -150,6 +152,7 @@ Resource Health alerts can be configured to monitor events at three different sc
 The alert template is configured at the subscription level, but if you would like to configure your alert to only notify you about certain resources, or resources within a certain resource group, you simply need to modify the `scopes` section in the above template.
 
 For a resource group level scope, the scopes section should look like:
+
 ```json
 "scopes": [
     "/subscriptions/<subscription id>/resourcegroups/<resource group>"
@@ -166,7 +169,8 @@ And for a resource level scope, the scope section should look like:
 
 For example: `"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/myRG/providers/microsoft.compute/virtualmachines/myVm"`
 
-> You can go to the Azure Portal and look at the URL when viewing your Azure resource to get this string.
+> [!NOTE]
+> You can go to the Azure portal and look at the URL when viewing your Azure resource to get this string.
 
 ### Adjusting the resource types which alert you
 
@@ -442,10 +446,10 @@ However, you'll know best what configurations are effective for you, so use the 
 ## Next steps
 
 Learn more about Resource Health:
--  [Azure Resource Health overview](Resource-health-overview.md)
--  [Resource types and health checks available through Azure Resource Health](resource-health-checks-resource-types.md)
+* [Azure Resource Health overview](Resource-health-overview.md)
+* [Resource types and health checks available through Azure Resource Health](resource-health-checks-resource-types.md)
 
 
 Create Service Health Alerts:
--  [Configure Alerts for Service Health](./alerts-activity-log-service-notifications-portal.md) 
--  [Azure Activity Log event schema](../azure-monitor/essentials/activity-log-schema.md)
+* [Configure Alerts for Service Health](./alerts-activity-log-service-notifications-portal.md) 
+* [Azure Activity Log event schema](../azure-monitor/essentials/activity-log-schema.md)
