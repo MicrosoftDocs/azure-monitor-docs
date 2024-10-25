@@ -1,24 +1,24 @@
 ---
-title: Configure Application Insights Profiler | Microsoft Docs
-description: Use the Application Insights Profiler settings pane to see Profiler status and start profiling sessions
+title: Configure Application Insights Profiler for .NET | Microsoft Docs
+description: Use the Application Insights Profiler for .NET settings pane to see the Profiler status and start profiling sessions
 ms.contributor: Charles.Weininger
 ms.topic: conceptual
 ms.date: 08/23/2024
 ---
 
-# Configure Application Insights Profiler
+# Configure Application Insights Profiler for .NET
 
-After you enable Application Insights Profiler, you can:
+After you enable Application Insights Profiler for .NET, you can:
 
 - Start a new profiling session.
-- Configure Profiler triggers.
+- Configure the .NET Profiler triggers.
 - View recent profiling sessions.
 
-To open the Application Insights Profiler settings pane, select **Performance** on the left pane on your Application Insights page.
+To open the .NET Profiler settings pane, select **Performance** on the left pane on your Application Insights page.
 
 :::image type="content" source="./media/profiler-settings/performance-blade-inline.png" alt-text="Screenshot that shows the link to open the Performance pane." lightbox="media/profiler-settings/performance-blade.png":::
 
-You can view Profiler traces across your Azure resources via two methods:
+You can view the .NET Profiler traces across your Azure resources via two methods:
 
 - The **Profiler** button:
 
@@ -38,14 +38,14 @@ You can view Profiler traces across your Azure resources via two methods:
 
       :::image type="content" source="./media/profiler-settings/configure-profiler-inline.png" alt-text="Screenshot that shows the overall selection and clicking Profiler traces to view all profiler traces." lightbox="media/profiler-settings/configure-profiler.png":::
 
-Within Profiler, you can configure and view Profiler. The **Application Insights Profiler** page has the following features.
+Within the Profiler page, you can configure and view the .NET Profiler. The **Application Insights Profiler for .NET** page has the following features.
 
 :::image type="content" source="./media/profiler-settings/configure-blade-inline.png" alt-text="Screenshot that shows Profiler page features and settings." lightbox="media/profiler-settings/configure-blade.png":::
 
 | Feature | Description |
 |-|-|
 **Profile now** | Starts profiling sessions for all apps that are linked to this instance of Application Insights.
-**Triggers** | Allows you to configure triggers that cause Profiler to run.
+**Triggers** | Allows you to configure triggers that cause the Profiler to run.
 **Recent profiling sessions** | Displays information about past profiling sessions, which you can sort by using the filters at the top of the page.
 
 ## Profile now
@@ -95,12 +95,12 @@ Triggered by | How the session was started, either by a trigger, Profile now, or
 App Name | Name of the application that was profiled.
 Machine Instance | Name of the machine the Profiler agent ran on.
 Timestamp | Time when the profile was captured.
-CPU % | Percentage of CPU used while Profiler was running.
-Memory % | Percentage of memory used while Profiler was running.
+CPU % | Percentage of CPU used while the Profiler was running.
+Memory % | Percentage of memory used while the Profiler was running.
 
 ## Next steps
 
-[Enable Profiler and view traces](profiler.md?toc=/azure/azure-monitor/toc.json)
+[Enable the .NET Profiler and view traces](profiler.md?toc=/azure/azure-monitor/toc.json)
 
 [profiler-on-demand]: ./media/profiler-settings/profiler-on-demand.png
 [performance-blade]: ./media/profiler-settings/performance-blade.png

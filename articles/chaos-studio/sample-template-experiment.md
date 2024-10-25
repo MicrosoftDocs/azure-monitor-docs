@@ -4,7 +4,7 @@ description: Sample Azure Resource Manager templates to create Azure Chaos Studi
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: sample
-ms.date: 11/10/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

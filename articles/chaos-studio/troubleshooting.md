@@ -6,7 +6,7 @@ ms.service: azure-chaos-studio
 ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.topic: troubleshooting
-ms.date: 11/10/2021
+ms.date: 10/14/2024
 ms.custom: template-troubleshooting
 ---
 
@@ -147,6 +147,16 @@ This error will happen if you try to run multiple agent faults at the same time.
 After starting an experiment, you might see an error message like: `The long-running operation has failed. InternalServerError. The target resource(s) could not be resolved. Error Code: OperationFailedException`. Usually, this indicates that the experiment's identity doesn't have the necessary permissions.
 
 To resolve this error, ensure that the experiment's system-assigned or user-assigned managed identity has permission to all resources in the experiment. Learn more about permissions here: [Permissions and security in Azure Chaos Studio](chaos-studio-permissions-security.md). For example, if the experiment targets a virtual machine, navigate to the virtual machine's identity page and assign the "Virtual Machine Contributor" role to the experiment's managed identity. 
+
+### My AKS Chaos Mesh experiment failed
+
+There are several common errors you may encounter when using AKS Chaos Mesh faults.
+
+| Error message | Suggested action |
+| --- | --- |
+| Getting static credential is not allowed because this cluster is set to disable local accounts. | The AKS Chaos Mesh faults can use either Kubernetes local accounts or Microsoft Entra authentication as of version 2.2. Learn how to migrate your experiments here: [Using Microsoft Entra authentication with Chaos Studio AKS faults](chaos-studio-aks-authentication.md). |
+| The Chaos Mesh experiment could not be started because the provided configuration was invalid | Ensure the `jsonSpec` contains all the required fields. |
+| Chaos Mesh version 'x.x.x' is not currently supported by Chaos Studio | Verify the installed version against the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page and submit a [feature request](https://feedback.azure.com/d365community/forum/18f8dc01-dc37-ec11-b6e6-000d3a9c7101) if the desired version isn't listed. |
 
 ## Problems when setting up a managed identity
 

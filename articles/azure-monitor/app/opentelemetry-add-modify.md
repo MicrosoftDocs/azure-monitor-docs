@@ -46,6 +46,32 @@ For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/
 
 The Azure Monitor Exporter doesn't include any instrumentation libraries.
 
+You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk) using the following code sample to manually subscribe to the source.
+
+```csharp
+// Create an OpenTelemetry tracer provider builder.
+// It is important to keep the TracerProvider instance active throughout the process lifetime.
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+	// The following line subscribes to dependencies emitted from Azure SDKs
+    .AddSource("Azure.*")
+    .AddAzureMonitorTraceExporter()
+    .AddHttpClientInstrumentation(o => o.FilterHttpRequestMessage = (_) =>
+	{
+    	// Azure SDKs create their own client span before calling the service using HttpClient
+		// In this case, we would see two spans corresponding to the same operation
+		// 1) created by Azure SDK 2) created by HttpClient
+		// To prevent this duplication we are filtering the span from HttpClient
+		// as span from Azure SDK contains all relevant information needed.
+		var parentActivity = Activity.Current?.Parent;
+		if (parentActivity != null && parentActivity.Source.Name.Equals("Azure.Core.Http"))
+		{
+		    return false;
+		}
+		return true;
+	})
+    .Build();
+```
+
 #### [Java](#tab/java)
 
 **Requests**
