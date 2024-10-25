@@ -20,35 +20,35 @@ The **Custom Fields** feature of Azure Monitor allows you to extend existing rec
 
 :::image type="content" source="media/custom-fields/overview.png" lightbox="media/custom-fields/overview.png" alt-text="Diagram shows an original record associated with a modified record in a Log Analytics workspace with property value pairs added to the original property in the modified record.":::
 
-For example, the sample record below has useful data buried in the event description. Extracting this data into a separate property makes it available for such actions as sorting and filtering.
+For example, the following sample record has useful data buried in the event description. Extracting this data into a separate property makes it available for such actions as sorting and filtering.
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/sample-extract.png" lightbox="media/custom-fields/sample-extract.png" alt-text="Screenshot of sample extract." border="false":::
 
 > [!NOTE]
-> In the Preview, you are limited to 500 custom fields in your workspace. This limit will be expanded when this feature reaches general availability.
+> In the Preview, you're limited to 500 custom fields in your workspace. This limit will be expanded when this feature reaches general availability.
 
 ## Creating a custom field
 
 When you create a custom field, Log Analytics must understand which data to use to populate its value. It uses a technology from Microsoft Research called FlashExtract to quickly identify this data. Rather than requiring you to provide explicit instructions, Azure Monitor learns about the data you want to extract from examples that you provide.
 
-The following sections provide the procedure for creating a custom field. At the bottom of this article is a walkthrough of a sample extraction.
+The following sections provide the procedure for creating a custom field. To see a walkthrough of a sample extraction, go to [Sample walkthrough](#sample-walkthrough).
 
 > [!NOTE]
 > The custom field is populated as records matching the specified criteria are added to the Log Analytics workspace, so it will only appear on records collected after the custom field is created. The custom field will not be added to records that are already in the data store when it’s created.
 
-### Step 1: Identify records that will have the custom field
+### Step 1: Identify records that get the custom field
 
-The first step is to identify the records that will get the custom field. You start with a [standard log query](./log-query-overview.md) and then select a record to act as the model that Azure Monitor will learn from. When you specify that you are going to extract data into a custom field, the **Field Extraction Wizard** is opened where you validate and refine the criteria.
+The first step is to identify the records that get the custom field. You start with a [standard log query](./log-query-overview.md) and then select a record to act as the model that Azure Monitor learns from. When you specify that you're going to extract data into a custom field, the **Field Extraction Wizard** is opened where you validate and refine the criteria.
 
-1. Go to **Logs** and use a [query to retrieve the records](./log-query-overview.md) that will have the custom field.
+1. Go to **Logs** and use a [query to retrieve the records](./log-query-overview.md) that get the custom field.
 1. Select a record that Log Analytics will use to act as a model for extracting data to populate the custom field. You will identify the data that you want to extract from this record, and Log Analytics will use this information to determine the logic to populate the custom field for all similar records.
 1. Right-click on the record, and select **Extract fields from**.
 1. The **Field Extraction Wizard** is opened, and the record you selected is displayed in the **Main Example** column. The custom field will be defined for those records with the same values in the properties that are selected.  
-1. If the selection is not exactly what you want, select additional fields to narrow the criteria. In order to change the field values for the criteria, you must cancel and select a different record matching the criteria you want.
+1. If the selection isn't exactly what you want, select more fields to narrow the criteria. In order to change the field values for the criteria, you must cancel and select a different record matching the criteria you want.
 
 ### Step 2: Perform initial extract
 
-Once you’ve identified the records that will have the custom field, you identify the data that you want to extract. Log Analytics will use this information to identify similar patterns in similar records. In the step after this you will be able to validate the results and provide further details for Log Analytics to use in its analysis.
+Once you identified the records that get the custom field, you identify the data that you want to extract. Log Analytics uses this information to identify similar patterns in similar records. In [Step 3](#step-3-verify-accuracy-of-the-extract-and-create-custom-field), you'll be able to validate the results and provide further details for Log Analytics to use in its analysis.
 
 1. Highlight the text in the sample record that you want to populate the custom field. You will then be presented with a dialog box to provide a name and data type for the field and to perform the initial extract. The characters **\_CF** will automatically be appended.
 1. Click **Extract** to perform an analysis of collected records.  
@@ -68,7 +68,7 @@ Once you have performed the initial extract, Log Analytics will display its resu
 
 ## Removing a custom field
 
-There are two ways to remove a custom field. The first is the **Remove** option for each field when viewing the complete list as described above. The other method is to retrieve a record and click the button to the left of the field. The menu will have an option to remove the custom field.
+There are two ways to remove a custom field. The first is the **Remove** option for each field when viewing the complete list as described above. The other method is to retrieve a record and click the button to the left of the field. The menu has an option to remove the custom field.
 
 ## Sample walkthrough
 

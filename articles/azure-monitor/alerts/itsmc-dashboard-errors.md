@@ -58,7 +58,7 @@ The following sections describe common errors that appear in the connector statu
 **Error**: 
 
 * "AccessToken and RefreshToken invalid. User needs to authenticate again."
-* "Couldn't sync templates configuration for Event,Alert,Incident. See Exception Message for more details."
+* "Could not sync templates configuration for Event,Alert,Incident. See Exception Message for more details."
 
 **Cause**: A refresh token is expired.
 
@@ -66,7 +66,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## Missing connector
 
-**Error**: "Couldn't create/update work item for alert {alertName}. ITSM Connector {connectionIdentifier} does not exist or was deleted."
+**Error**: "Could not create/update work item for alert {alertName}. ITSM Connector {connectionIdentifier} does not exist or was deleted."
 
 **Cause**: ITSMC was deleted.
 
@@ -78,7 +78,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## Lack of connection details
 
-**Error**: "Something went wrong. Couldn't get connection details." This error appears when you define an ITSM action group.
+**Error**: "Something went wrong. Could not get connection details." This error appears when you define an ITSM action group.
 
 **Cause**: Such an error appears in either of these situations:
 
@@ -112,5 +112,5 @@ The following sections describe common errors that appear in the connector statu
 
 **Resolution**:
 
-* If the integration worked for you previously, the refresh token may have expired. [Sync with the ITSM Connector to generate a new refresh token](./itsmc-resync-servicenow.md). 
-* If the integration never worked, it may be missing integration user rights. See the instructions to [install the user app and create the user role](./itsmc-connections-servicenow.md#install-the-user-app-and-create-the-user-role).
+* If the integration worked for you previously, the refresh token may have expired, see [Sync with the ITSM Connector to generate a new refresh token](./itsmc-resync-servicenow.md). 
+* If the integration never worked, it may be missing integration user rights, see instructions to [install the user app and create the user role](./itsmc-connections-servicenow.md#install-the-user-app-and-create-the-user-role).
