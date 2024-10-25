@@ -6,7 +6,7 @@ ms.topic: conceptual
 ms.date: 10/23/2024
 ---
 
-# Configure private link for Azure Monitor using Azure portal
+# Configure private link for Azure Monitor
 
 This article provides step by step details for creating and configuring an Azure Monitor Private Link Scope (AMPLS) using the Azure portal. Also included in the article are alternate methods for working with AMPLS using CLI, PowerShell, and ARM templates.
 
@@ -268,13 +268,19 @@ The following screenshot shows endpoints mapped for an AMPLS with two workspaces
 
 ### Validate communication over AMPLS
 
-* To validate that your requests are now sent through the private endpoint,review them with your browser or a network tracking tool. For example, when you attempt to query your workspace or application, make sure the request is sent to the private IP mapped to the API endpoint. In this example, it's *172.17.0.9*.
+* To validate that your requests are now sent through the private endpoint, review them with your browser or a network tracking tool. For example, when you attempt to query your workspace or application, make sure the request is sent to the private IP mapped to the API endpoint. In this example, it's *172.17.0.9*.
 
   > [!Note]
   > Some browsers might use other DNS settings. For more information, see [Browser DNS settings](./private-link-design.md#browser-dns-settings). Make sure your DNS settings apply.
 
 * To make sure your workspaces or components aren't receiving requests from public networks (not connected through AMPLS), set the resource's public ingestion and query flags to **No** as explained in [Configure access to your resources](#configure-access-to-resources).
 * From a client on your protected network, use `nslookup` to any of the endpoints listed in your DNS zones. It should be resolved by your DNS server to the mapped private IPs instead of the public IPs used by default.
+* 
+### Testing locally
+To test private links locally without affecting other clients on your network, make sure not to update your DNS when you create your private endpoint. Instead, edit the hosts file on your machine so that it will send requests to the private link endpoints:
+
+* Set up a private link, but when you connect to a private endpoint, choose not to auto-integrate with the DNS.
+* Configure the relevant endpoints on your machines' hosts files.
 
 ## Next steps
 
