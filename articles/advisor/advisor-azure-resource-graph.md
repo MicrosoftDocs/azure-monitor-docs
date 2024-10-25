@@ -7,12 +7,12 @@ ms.date: 03/12/2020
 
 # Query for Azure Advisor data in Resource Graph Explorer (Azure Resource Graph)
 
-Azure Advisor resources are now onboarded to [Azure Resource Graph](https://azure.microsoft.com/features/resource-graph/), which lays the foundation to many at-scale customer scenarios for Azure Advisor recommendations. Scenarios that weren't possible before to do at scale, that can now can be achieved using Azure Resource Graph, are:
+Azure Advisor resources are now onboarded to [Azure Resource Graph](https://azure.microsoft.com/features/resource-graph/), which lays the foundation to many at-scale customer scenarios for Azure Advisor recommendations. Before, the following scenarios weren't possible to do at scale, but can now be achieved using Azure Resource Graph:
 
-* The capability to perform complex query for all your subscriptions in the Azure portal.
-* Recommendations summarized by category types (like reliability, performance) and impact types (high, medium, low).
-* All recommendations for a particular recommendation type.
-* Impacted resource count by recommendation category.
+* Performing complex queries for all your subscriptions in the Azure portal.
+* Summarizing recommendations by category types (like reliability, performance) and impact types (high, medium, low).
+* Viewing all recommendations for a particular recommendation type.
+* Counting impacted resources by recommendation category.
 
 ![Azure Advisor in Azure resource graph explorer](./media/azure-resource-graph-1.png)  
 
