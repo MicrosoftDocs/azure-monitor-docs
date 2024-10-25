@@ -369,7 +369,7 @@ Starting from 3.4.0, rate-limited sampling is available and is now the default. 
 
 For Spring Boot native applications, the [sampling configurations of the OpenTelemetry Java SDK are applicable](https://opentelemetry.io/docs/languages/java/configuration/#sampler).
 
-For Quarkus native applications, please look at the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#sampler).
+For Quarkus native applications, review the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#sampler).
 
 ### [Node.js](#tab/nodejs)
 
@@ -442,7 +442,7 @@ For more information on Java configuration, see [Configuration options: Azure Mo
 
 ### [Java native](#tab/java-native)
 
-The Live Metrics are not available today for GraalVM native applications.
+The Live Metrics aren't available today for GraalVM native applications.
 
 ### [Node.js](#tab/nodejs)
 
@@ -597,7 +597,7 @@ For more information about Java, see the [Java supplemental documentation](java-
 
 ### [Java native](#tab/java-native)
 
-Microsoft Entra ID authentication is not available for GraalVM Native applications.
+Microsoft Entra ID authentication isn't available for GraalVM Native applications.
 
 ### [Node.js](#tab/nodejs)
 
@@ -1034,7 +1034,7 @@ For more information about Java, see the [Java supplemental documentation](java-
 
 For Spring Boot native applications, the [OpenTelemetry Java SDK configurations](https://opentelemetry.io/docs/languages/java/configuration/) are available.
 
-For Quarkus native applications, please look at the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#configuration).
+For Quarkus native applications, review the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#configuration).
 
 ### [Node.js](#tab/nodejs)
 
@@ -1045,3 +1045,31 @@ For more information about OpenTelemetry SDK configuration, see the [OpenTelemet
 For more information about OpenTelemetry SDK configuration, see the [OpenTelemetry documentation](https://opentelemetry.io/docs/concepts/sdk-configuration) and [Azure monitor Distro Usage](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md#usage).
 
 ---
+
+## Redact URL Query Strings
+
+To redact URL query strings, turn off query string collection. We recommend this setting if you call Azure storage using a SAS token.
+
+### [ASP.NET Core](#tab/aspnetcore)
+
+<!-- Example provided by language owners.-->
+
+### [.NET](#tab/net)
+
+<!-- Example provided by language owners.-->
+
+### [Java](#tab/java)
+
+<!-- Example provided by language owners.-->
+
+### [Java native](#tab/java-native)
+
+<!-- Example provided by language owners.-->
+
+### [Node.js](#tab/nodejs)
+
+<!-- Example provided by language owners.-->
+
+### [Python](#tab/python)
+
+<!-- Example provided by language owners.-->
