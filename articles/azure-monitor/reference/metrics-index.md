@@ -7,7 +7,7 @@ services: azure-monitor
 ms.topic: reference
 ms.service: azure-monitor
 ms.custom: ignite-2022
-ms.date: 10/06/2024
+ms.date: 10/27/2024
 ms.reviewer: priyamishra
 ---
 
@@ -16,7 +16,7 @@ ms.reviewer: priyamishra
 > [!NOTE]
 > This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 
-Last updated: 10/06/2024.
+Last updated: 10/27/2024.
 
 Azure Monitor provides several ways to interact with metrics, including charting them in the Azure portal, accessing them through the REST API, or querying them by using PowerShell or the Azure CLI (Command Line Interface).  
 
@@ -141,7 +141,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.PlayFab <a name="microsoftplayfab"></a>|[titles](./supported-metrics/Microsoft-PlayFab-titles-metrics.md)<br>|[titles](./supported-logs/Microsoft-PlayFab-titles-logs.md)<br>|
 |Microsoft.PowerBI <a name="microsoftpowerbi"></a>|N/A|[tenants](./supported-logs/Microsoft-PowerBI-tenants-logs.md)<br>[tenants/workspaces](./supported-logs/Microsoft-PowerBI-tenants-workspaces-logs.md)<br>|
 |Microsoft.PowerBIDedicated <a name="microsoftpowerbidedicated"></a>|[capacities](./supported-metrics/Microsoft-PowerBIDedicated-capacities-metrics.md)<br>|[capacities](./supported-logs/Microsoft-PowerBIDedicated-capacities-logs.md)<br>|
-|Microsoft.ProviderHub <a name="microsoftproviderhub"></a>|N/A|[providerMonitorSettings](./supported-logs/Microsoft-ProviderHub-providerMonitorSettings-logs.md)<br>[providerRegistrations](./supported-logs/Microsoft-ProviderHub-providerRegistrations-logs.md)<br>|
+|Microsoft.ProviderHub <a name="microsoftproviderhub"></a>|N/A|[providerMonitorSettings](./supported-logs/Microsoft-ProviderHub-providerMonitorSettings-logs.md)<br>|
 |microsoft.purview <a name="microsoftpurview"></a>|[accounts](./supported-metrics/microsoft-purview-accounts-metrics.md)<br>|[accounts](./supported-logs/microsoft-purview-accounts-logs.md)<br>|
 |Microsoft.RecoveryServices <a name="microsoftrecoveryservices"></a>|[Vaults](./supported-metrics/Microsoft-RecoveryServices-Vaults-metrics.md)<br>|[Vaults](./supported-logs/Microsoft-RecoveryServices-Vaults-logs.md)<br>|
 |Microsoft.Relay <a name="microsoftrelay"></a>|[namespaces](./supported-metrics/Microsoft-Relay-namespaces-metrics.md)<br>|[namespaces](./supported-logs/Microsoft-Relay-namespaces-logs.md)<br>|
@@ -158,6 +158,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.StorageMover <a name="microsoftstoragemover"></a>|[storageMovers](./supported-metrics/Microsoft-StorageMover-storageMovers-metrics.md)<br>|[storageMovers](./supported-logs/Microsoft-StorageMover-storageMovers-logs.md)<br>|
 |Microsoft.StreamAnalytics <a name="microsoftstreamanalytics"></a>|[streamingjobs](./supported-metrics/Microsoft-StreamAnalytics-streamingjobs-metrics.md)<br>|[streamingjobs](./supported-logs/Microsoft-StreamAnalytics-streamingjobs-logs.md)<br>|
 |Microsoft.Synapse <a name="microsoftsynapse"></a>|[workspaces](./supported-metrics/Microsoft-Synapse-workspaces-metrics.md)<br>[workspaces/bigDataPools](./supported-metrics/Microsoft-Synapse-workspaces-bigDataPools-metrics.md)<br>[workspaces/kustoPools](./supported-metrics/Microsoft-Synapse-workspaces-kustoPools-metrics.md)<br>[workspaces/scopePools](./supported-metrics/Microsoft-Synapse-workspaces-scopePools-metrics.md)<br>[workspaces/sqlPools](./supported-metrics/Microsoft-Synapse-workspaces-sqlPools-metrics.md)<br>|[workspaces](./supported-logs/Microsoft-Synapse-workspaces-logs.md)<br>[workspaces/bigDataPools](./supported-logs/Microsoft-Synapse-workspaces-bigDataPools-logs.md)<br>[workspaces/kustoPools](./supported-logs/Microsoft-Synapse-workspaces-kustoPools-logs.md)<br>[workspaces/scopePools](./supported-logs/Microsoft-Synapse-workspaces-scopePools-logs.md)<br>[workspaces/sqlPools](./supported-logs/Microsoft-Synapse-workspaces-sqlPools-logs.md)<br>|
+|Microsoft. <br>ToolchainOrchestrator <a name="microsofttoolchainorchestrator"></a>|N/A|[diagnostics](./supported-logs/Microsoft-ToolchainOrchestrator-diagnostics-logs.md)<br>|
 |microsoft.videoindexer <a name="microsoftvideoindexer"></a>|N/A|[accounts](./supported-logs/microsoft-videoindexer-accounts-logs.md)<br>|
 |Microsoft.Web <a name="microsoftweb"></a>|[containerapps](./supported-metrics/Microsoft-Web-containerapps-metrics.md)<br>[hostingEnvironments](./supported-metrics/Microsoft-Web-hostingEnvironments-metrics.md)<br>[hostingenvironments/multirolepools](./supported-metrics/Microsoft-Web-hostingenvironments-multirolepools-metrics.md)<br>[hostingenvironments/workerpools](./supported-metrics/Microsoft-Web-hostingenvironments-workerpools-metrics.md)<br>[serverfarms](./supported-metrics/Microsoft-Web-serverfarms-metrics.md)<br>[sites](./supported-metrics/Microsoft-Web-sites-metrics.md)<br>[sites/slots](./supported-metrics/Microsoft-Web-sites-slots-metrics.md)<br>[staticsites](./supported-metrics/Microsoft-Web-staticsites-metrics.md)<br>|[hostingEnvironments](./supported-logs/Microsoft-Web-hostingEnvironments-logs.md)<br>[sites](./supported-logs/Microsoft-Web-sites-logs.md)<br>[sites/slots](./supported-logs/Microsoft-Web-sites-slots-logs.md)<br>[staticsites](./supported-logs/Microsoft-Web-staticsites-logs.md)<br>|
 |microsoft.workloads <a name="microsoftworkloads"></a>|N/A|[sapvirtualinstances](./supported-logs/microsoft-workloads-sapvirtualinstances-logs.md)<br>|
