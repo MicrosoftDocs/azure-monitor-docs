@@ -307,7 +307,7 @@ Learn more about [Redis Cache Server - MigrateFromCloudService (Cloud service ca
 
 ### Redis persistence allows you to persist data stored in a cache so you can reload data from an event that caused data loss.
 
-Redis persistence allows you to persist data stored in Redis. You can also take snapshots and back up the data. If there's a hardware failure, the persisted data is automatically loaded in your cache instance.  Data loss is possible if a failure occurs where Cache nodes are down.
+Redis persistence allows you to persist data stored in Redis. You can also take snapshots and back up the data. If there's a hardware failure, the persisted data is automatically loaded in your cache instance. Data loss is possible if a failure occurs where Cache nodes are down.
 
 Learn more about [Redis Cache Server - Persistence (Redis persistence allows you to persist data stored in a cache so you can reload data from an event that caused data loss.)](https://aka.ms/redis/persistence).
 
@@ -327,7 +327,7 @@ Learn more about [Redis Cache Server - ConsiderUsingRedisEnterprise (You might b
 
 ### Use Azure AD-based authentication for more fine-grained control and simplified management
 
-You can use Azure AD-based authentication, instead of gateway tokens, which allows you to use standard procedures to create, assign and manage permissions and control expiry times. Additionally, you gain fine-grained control across gateway deployments and easily revoke access if there is a breach.
+You can use Azure AD-based authentication, instead of gateway tokens, which allows you to use standard procedures to create, assign and manage permissions and control expiry times. Additionally, you gain fine-grained control across gateway deployments and easily revoke access if there's a breach.
 
 Learn more about [API Management - ShgwUseAdAuth (Use Azure AD-based authentication for more fine-grained control and simplified management)](https://aka.ms/apim/shgw/how-to/use-ad-auth).
 
@@ -507,7 +507,7 @@ Learn more about [Migrate Azure CDN from Microsoft (classic) to Standard/Premium
 
 ### Ensure the HANA DB VM type supports the HANA scenario in your SAP workload
 
-Correct VM type needs to be selected for the specific HANA Scenario. The HANA scenarios can be 'OLAP', 'OLTP', 'OLAP: Scaleup' and 'OLTP: Scaleup'. See SAP note 1928533 for the correct VM type for your SAP workload. The correct VM type helps ensure better performance and support for your SAP systems.
+Correct VM type needs to be selected for the specific HANA Scenario. The HANA scenarios can be `OLAP`, `OLTP`, `OLAP: Scaleup`, and `OLTP: Scaleup`. See SAP note 1928533 for the correct VM type for your SAP workload. The correct VM type helps ensure better performance and support for your SAP systems.
 
 Learn more about [Database Instance - HanaDBSupport (Ensure the HANA DB VM type supports the HANA scenario in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -519,7 +519,7 @@ Learn more about [App Server Instance - AppOSDBSupport (Ensure the Operating sys
 
 ### Set the parameter net.ipv4.tcp_keepalive_time to '300' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the /etc/sysctl.conf file and add net.ipv4.tcp_keepalive_time = 300 to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads in order.
+In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_keepalive_time = 300` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads in order.
 
 Learn more about [App Server Instance - AppIPV4TCPKeepAlive (Set the parameter net.ipv4.tcp_keepalive_time to '300' in the Application VM OS in SAP workloads)](https://launchpad.support.sap.com/#/notes/1410736).
 
@@ -531,19 +531,19 @@ Learn more about [Database Instance - DBOSDBSupport (Ensure the Operating system
 
 ### Set the parameter net.ipv4.tcp_retries2 to '15' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the /etc/sysctl.conf file and add  net.ipv4.tcp_retries2 = 15 to enable faster reconnection after an ASCS failover. This is recommended for all Application VM OS in SAP workloads.
+In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_retries2 = 15` to enable faster reconnection after an ASCS failover. This is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4Retries2 (Set the parameter net.ipv4.tcp_retries2 to '15' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
 ### See the parameter net.ipv4.tcp_keepalive_probes to '9' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the /etc/sysctl.conf file and add net.ipv4.tcp_keepalive_probes = 9 to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_keepalive_probes = 9` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIPV4Probes (See the parameter net.ipv4.tcp_keepalive_probes to '9' in the Application VM OS in SAP workloads)](/azure/virtual-machines/workloads/sap/high-availability-guide).
 
 ### Set the parameter net.ipv4.tcp_tw_recycle to '0' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the /etc/sysctl.conf file and add  net.ipv4.tcp_tw_recycle = 0 to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_tw_recycle = 0` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4Recycle (Set the parameter net.ipv4.tcp_tw_recycle to '0' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
@@ -561,19 +561,19 @@ Learn more about [App Server Instance - VM_0001 (Azure Center for SAP recommenda
 
 ### Set the parameter net.ipv4.tcp_retries1 to '3' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the /etc/sysctl.conf file and add  net.ipv4.tcp_retries1 = 3 to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_retries1 = 3` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4Retries1 (Set the parameter net.ipv4.tcp_retries1 to '3' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
 ### Set the parameter net.ipv4.tcp_tw_reuse to '0' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the /etc/sysctl.conf file and add  net.ipv4.tcp_tw_reuse = 0 to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_tw_reuse = 0` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4TcpReuse (Set the parameter net.ipv4.tcp_tw_reuse to '0' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
 ### Set the parameter net.ipv4.tcp_keepalive_intvl to '75' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the /etc/sysctl.conf file and add net.ipv4.tcp_keepalive_intvl = 75 to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_keepalive_intvl = 75` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIPV4intvl (Set the parameter net.ipv4.tcp_keepalive_intvl to '75' in the Application VM OS in SAP workloads)](/azure/virtual-machines/workloads/sap/high-availability-guide).
 
@@ -690,7 +690,7 @@ Learn more about [Database Instance - NetworkConfigForSap (Azure Center for SAP 
 
 ### Create a backup of HSM
 
-Create a periodic HSM backup to prevent data loss and have ability to recover the HSM if there is a disaster.
+Create a periodic HSM backup to prevent data loss and have ability to recover the HSM if there's a disaster.
 
 Learn more about [Managed HSM Service - CreateHSMBackup (Create a backup of HSM)](/azure/key-vault/managed-hsm/best-practices#create-backups).
 

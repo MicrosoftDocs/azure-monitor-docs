@@ -30,7 +30,7 @@ Because multiple records can exist for a specified process and computer in a spe
 
 ### Connections and ports
 
-The Connection Metrics feature introduces two new tables in Azure Monitor logs - VMConnection and VMBoundPort. These tables provide information about the connections for a machine (inbound and outbound) and the server ports that are open/active on them. ConnectionMetrics are also exposed via APIs that provide the means to obtain a specific metric during a time window. TCP connections resulting from *accepting* on a listening socket are inbound, while those created by *connecting* to a given IP and port are outbound. The direction of a connection is represented by the `Direction` property, which can be set to either **inbound** or **outbound**.
+The Connection Metrics feature introduces two new tables in Azure Monitor logs - VMConnection and VMBoundPort. These tables provide information about the connections for a machine (inbound and outbound) and the server ports that are open/active on them. ConnectionMetrics are also exposed via APIs that provide the means to obtain a specific metric during a time window. TCP connections resulting from *accepting* on a listening socket are inbound, while connections created by *connecting* to a given IP and port are outbound. The direction of a connection is represented by the `Direction` property, which can be set to either **inbound** or **outbound**.
 
 Records in these tables are generated from data reported by the Dependency Agent. Every record represents an observation over a 1-minute time interval. The `TimeGenerated` property indicates the start of the time interval. Each record contains information to identify the respective entity, that is, connection or port, and metrics associated with that entity. Currently, only network activity that occurs using TCP over IPv4 is reported.
 
@@ -435,7 +435,7 @@ let remoteMachines = remote | summarize by RemoteMachine;
 ```
 
 ## Performance records
-Records with a type of *InsightsMetrics* have performance data from the guest operating system of the virtual machine. These records are collected at 60 second intervals and have the properties in the following table:
+Records with a type of *InsightsMetrics* have performance data from the guest operating system of the virtual machine. These records are collected at 60-second intervals and have the properties in the following table:
 
 | Property      | Description                                                                                          |
 |:--------------|:-----------------------------------------------------------------------------------------------------|
