@@ -1081,7 +1081,7 @@ items:
             href: logs/log-excel.md
     - name: Migrate from Splunk to Azure Monitor Logs
       href: logs/migrate-splunk-to-azure-monitor-logs.md
-- name: Security
+- name: Security and networking
   items:
   - name: Data security
     items:
@@ -1100,11 +1100,14 @@ items:
     items:
     - name: Private Link networking
       items:
-      - name: Private Link overview
+      - name: Overview
+        displayName: Private Link
         href: logs/private-link-security.md
-      - name: Private Link design
+      - name: Design
+        displayName: Private Link
         href: logs/private-link-design.md
-      - name: Private Link configuration
+      - name: Configuration
+        displayName: Private Link
         href: logs/private-link-configure.md
     - name: Network security perimeter
       href: essentials/network-security-perimeter.md

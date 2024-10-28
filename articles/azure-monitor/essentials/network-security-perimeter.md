@@ -20,13 +20,11 @@ Network Security Perimeter allows you to control network access using network is
  
 ## Regions
 
-Azure Network Security Perimeter is in public preview and available in all regions except for the following:
+Azure Network Security Perimeter is in public preview and available in 56 regions. It's not available in the following regions:
 
 - Chile Central
-- East US STG
 - Israel Northwest
 - Malaysia South
-- South Central US STG
 
 ## Supported components
 The components of Azure Monitor that are supported with a network security perimeter are listed in the following table with their minimum API version.
@@ -36,12 +34,15 @@ The components of Azure Monitor that are supported with a network security perim
 | Data collection endpoint (DCE) | Microsoft.Insights/dataCollectionEndpoints	| 2023-03-11 |
 | Log Analytics workspace | Microsoft.OperationalInsights/workspaces | 2023-09-01 |
 | Log query alerts | Microsoft.Insights/ScheduledQueryRules | 2022-08-01-preview |
-| Action groups | Microsoft.Insights/actionGroups | 2023-05-01 |
+| Action groups <sup>1</sup> | Microsoft.Insights/actionGroups | 2023-05-01 |
+
+<sup>1</sup> Only [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal) are support, not global action groups.
 
 The following components of Azure Monitor are **not** supported with a network security perimeter:
 
 - Application insights Profiler and Debugger
 - Log Analytics customer managed key
+- Cross-resource queries that include any Log Analytics workspaces associated with an NSP
 
 > [!NOTE]
 > For Application insights, configure NSP for the Log Analytics workspace used for the Application insights resource.
