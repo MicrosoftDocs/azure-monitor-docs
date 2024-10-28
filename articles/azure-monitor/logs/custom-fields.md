@@ -43,7 +43,7 @@ The first step is to identify the records that get the custom field. You start w
 1. Go to **Logs** and use a [query to retrieve the records](./log-query-overview.md) that get the custom field.
 1. Select a record that Log Analytics will use to act as a model for extracting data to populate the custom field. You'll identify the data that you want to extract from this record, and Log Analytics will use this information to determine the logic to populate the custom field for all similar records.
 1. Right-click on the record, and select **Extract fields from**.
-1. The **Field Extraction Wizard** is opened, and the record you selected is displayed in the **Main Example** column. The custom field will be defined for those records with the same values in the properties that are selected.  
+1. The **Field Extraction Wizard** is opened, and the record you selected is displayed in the **Main Example** column. The custom field will be defined for those records with the same values in the properties that are selected.
 1. If the selection isn't exactly what you want, select more fields to narrow the criteria. In order to change the field values for the criteria, you must cancel and select a different record matching the criteria you want.
 
 ### Step 2: Perform initial extract
@@ -68,7 +68,7 @@ Once you have performed the initial extract, Log Analytics will display its resu
 
 ## Removing a custom field
 
-There are two ways to remove a custom field. The first is the **Remove** option for each field when viewing the complete list as described above. The other method is to retrieve a record and click the button to the left of the field. The menu has an option to remove the custom field.
+There are two ways to remove a custom field. The first is the **Remove** option for each field when viewing the complete list as described in [Step 2: Perform initial extract](#step-2-perform-initial-extract). The other method is to retrieve a record and click the button to the left of the field. The menu has an option to remove the custom field.
 
 ## Sample walkthrough
 
@@ -119,5 +119,6 @@ We can now use the custom field like any other record property. To illustrate th
 :::image type="content" source="media/custom-fields/query-group.png" lightbox="media/custom-fields/query-group.png" alt-text="Screenshot of group by query." border="false":::
 
 ## Next steps
+
 * Learn about [log queries](./log-query-overview.md) to build queries using custom fields for criteria.
 * Monitor [custom log files](../agents/data-sources-custom-logs.md) that you parse using custom fields.
