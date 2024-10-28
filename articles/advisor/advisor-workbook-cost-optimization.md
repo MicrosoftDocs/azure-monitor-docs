@@ -1,5 +1,5 @@
 ---
-title: Cost Optimization (Preview) workbook
+title: Cost Optimization workbook
 description: Understand and optimize your Azure costs with the new Azure Cost Optimization workbook.
 ms.topic: article
 ms.date: 10/28/2024
