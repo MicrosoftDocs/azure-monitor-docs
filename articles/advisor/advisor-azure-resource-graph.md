@@ -1,26 +1,26 @@
 ---
-title: Azure Advisor data in Azure Resource Graph
+title: Advisor data in Azure Resource Graph
 description: Make queries for Advisor data in Azure Resource Graph
 ms.topic: article
 ms.date: 03/12/2020
 ---
 
-# Query for Azure Advisor data in Resource Graph Explorer (Azure Resource Graph)
+# Query for Advisor data in Resource Graph Explorer (Azure Resource Graph)
 
-Azure Advisor resources are now onboarded to [Azure Resource Graph](https://azure.microsoft.com/features/resource-graph/), which lays the foundation to many at-scale customer scenarios for Azure Advisor recommendations. Before, the following scenarios weren't possible to do at scale, but can now be achieved using Azure Resource Graph:
+Advisor resources are now onboarded to [Azure Resource Graph](https://azure.microsoft.com/features/resource-graph/), which lays the foundation to many at-scale customer scenarios for Advisor recommendations. Before, the following scenarios weren't possible to do at scale, but can now be achieved using Azure Resource Graph:
 
 * Performing complex queries for all your subscriptions in the Azure portal.
 * Summarizing recommendations by category types (like reliability, performance) and impact types (high, medium, low).
 * Viewing all recommendations for a particular recommendation type.
 * Counting impacted resources by recommendation category.
 
-![Azure Advisor in Azure resource graph explorer](./media/azure-resource-graph-1.png)  
+:::image source="./media/azure-resource-graph.png" type="content" alt-text="Screenshot showing Advisor in Azure Resource Graph Explorer.":::
 
-## Azure Advisor resource types in Azure Graph
+## Advisor resource types in Azure Graph
 
-Available Azure Advisor resource types in [Resource Graph](/azure/governance/resource-graph/):
+Available Advisor resource types in [Resource Graph](/azure/governance/resource-graph/):
 
-There are three resource types available for querying under Azure Advisor resources. Here's the list of the resources that are now available for querying in Resource Graph.
+There are three resource types available for querying under Advisor resources. Here's the list of the resources that are now available for querying in Resource Graph.
 
 * Microsoft.Advisor/configurations
 * Microsoft.Advisor/recommendations
@@ -30,17 +30,19 @@ These resource types are listed under a new table named as *AdvisorResources*, w
 
 ## Next steps
 
-For more information about Azure Advisor, see:
+For more information about Azure Advisor, go to:
 
 * [Introduction to Azure Advisor](advisor-overview.md)
-* [Get started with Azure Advisor](advisor-get-started.md)
+* [Azure Advisor portal basics](advisor-get-started.md)
 * [Azure Advisor REST API](/rest/api/advisor/)
 
-For specific Azure Advisor recommendations, see:
+To learn more about specific Advisor recommendations, see:
 
-* [Cost](advisor-cost-recommendations.md)
-* [Reliability](advisor-high-availability-recommendations.md)
-* [Performance](advisor-performance-recommendations.md)
+* [Reliability](advisor-reference-reliability-recommendations.md)
 * [Security](advisor-security-recommendations.md)
-* [Operational excellence](advisor-operational-excellence-recommendations.md)
+* [Performance](advisor-reference-performance-recommendations.md)
+* [Cost](advisor-reference-cost-recommendations.md)
+* [Operational excellence](advisor-reference-operational-excellence-recommendations.md)
+
+
 

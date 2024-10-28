@@ -28,7 +28,7 @@ View the [parameter file on GitHub](https://github.com/microsoft/Application-Ins
 
 ## Add a monitoring VM to a SQL Insights monitoring profile
 
-Once you create a monitoring profile, you need to allocate Azure virtual machines. These VMs will be configured to remotely collect data from the SQL resources you specify in the configuration for that VM. For more details, see [Enable SQL Insights (preview)](/azure/azure-sql/database/sql-insights-enable).
+Once you create a monitoring profile, you need to allocate Azure virtual machines. These VMs will be configured to remotely collect data from the SQL resources you specify in the configuration for that VM. For more information, see [Enable SQL Insights (preview)](/azure/azure-sql/database/sql-insights-enable).
 
 The following sample configures a monitoring VM to collect the data from the specified SQL resources.
 

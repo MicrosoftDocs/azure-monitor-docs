@@ -1,6 +1,6 @@
 ---
 title: Custom fields in Azure Monitor (Preview)
-description: The Custom Fields feature of Azure Monitor allows you to create your own searchable fields from records in a Log Analytics workspace that add to the properties of a collected record.  This article describes the process to create a custom field and provides a detailed walkthrough with a sample event.
+description: The Custom Fields feature of Azure Monitor allows you to create your own searchable fields from records in a Log Analytics workspace that add to the properties of a collected record. This article describes the process to create a custom field and provides a detailed walkthrough with a sample event.
 ms.topic: conceptual
 author: guywild
 ms.author: guywild
@@ -41,7 +41,7 @@ The following sections provide the procedure for creating a custom field. To see
 The first step is to identify the records that get the custom field. You start with a [standard log query](./log-query-overview.md) and then select a record to act as the model that Azure Monitor learns from. When you specify that you're going to extract data into a custom field, the **Field Extraction Wizard** is opened where you validate and refine the criteria.
 
 1. Go to **Logs** and use a [query to retrieve the records](./log-query-overview.md) that get the custom field.
-1. Select a record that Log Analytics will use to act as a model for extracting data to populate the custom field. You will identify the data that you want to extract from this record, and Log Analytics will use this information to determine the logic to populate the custom field for all similar records.
+1. Select a record that Log Analytics will use to act as a model for extracting data to populate the custom field. You'll identify the data that you want to extract from this record, and Log Analytics will use this information to determine the logic to populate the custom field for all similar records.
 1. Right-click on the record, and select **Extract fields from**.
 1. The **Field Extraction Wizard** is opened, and the record you selected is displayed in the **Main Example** column. The custom field will be defined for those records with the same values in the properties that are selected.  
 1. If the selection isn't exactly what you want, select more fields to narrow the criteria. In order to change the field values for the criteria, you must cancel and select a different record matching the criteria you want.
@@ -50,19 +50,19 @@ The first step is to identify the records that get the custom field. You start w
 
 Once you identified the records that get the custom field, you identify the data that you want to extract. Log Analytics uses this information to identify similar patterns in similar records. In [Step 3](#step-3-verify-accuracy-of-the-extract-and-create-custom-field), you'll be able to validate the results and provide further details for Log Analytics to use in its analysis.
 
-1. Highlight the text in the sample record that you want to populate the custom field. You will then be presented with a dialog box to provide a name and data type for the field and to perform the initial extract. The characters **\_CF** will automatically be appended.
+1. Highlight the text in the sample record that you want to populate the custom field. You'll then be presented with a dialog box to provide a name and data type for the field and to perform the initial extract. The characters **\_CF** will automatically be appended.
 1. Click **Extract** to perform an analysis of collected records.  
 1. The **Summary** and **Search Results** sections display the results of the extract so you can inspect its accuracy. **Summary** displays the criteria used to identify records and a count for each of the data values identified. **Search Results** provides a detailed list of records matching the criteria.
 
 ### Step 3: Verify accuracy of the extract and create custom field
 
-Once you have performed the initial extract, Log Analytics will display its results based on data that has already been collected. If the results look accurate then you can create the custom field with no further work. If not, then you can refine the results so that Log Analytics can improve its logic.
+Once you have performed the initial extract, Log Analytics will display its results based on data that has already been collected. If the results look accurate, you can create the custom field with no further work. If not, you can refine the results so that Log Analytics can improve its logic.
 
 1. If any values in the initial extract aren’t correct, then click the **Edit** icon next to an inaccurate record and select **Modify this highlight** in order to modify the selection.
 1. The entry is copied to the **Additional examples** section underneath the **Main Example**. You can adjust the highlight here to help Log Analytics understand the selection it should have made.
 1. Click **Extract** to use this new information to evaluate all the existing records. The results may be modified for records other than the one you just modified based on this new intelligence.
 1. Continue to add corrections until all records in the extract correctly identify the data to populate the new custom field.
-1. Click **Save Extract** when you are satisfied with the results. The custom field is now defined, but it won’t be added to any records yet.
+1. Click **Save Extract** when you're satisfied with the results. The custom field is now defined, but it won’t be added to any records yet.
 1. Wait for new records matching the specified criteria to be collected and then run the log search again. New records should have the custom field.
 1. Use the custom field like any other record property. You can use it to aggregate and group data and even use it to produce new insights.
 
@@ -102,15 +102,15 @@ We increase the highlight to include the word **WMI** and then rerun the extract
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/additional-example-01.png" lightbox="media/custom-fields/additional-example-01.png" alt-text="Screenshot of additional example." border="false":::
 
-We can see that the entries for **WMI Performance Adapter** have been corrected, and Log Analytics also used that information to correct the records for **Windows Module Installer**.
+We can see that the entries for **WMI Performance Adapter** are corrected, and Log Analytics also used that information to correct the records for **Windows Module Installer**.
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/search-results-02.png" lightbox="media/custom-fields/search-results-02.png" alt-text="Screenshot showing the full service name highlighted in the Search Results pane and the correct service names highlighted in the Summary." border="false":::
 
-We can now run a query that verifies **Service_CF** is created but is not yet added to any records. That's because the custom field doesn't work against existing records so we need to wait for new records to be collected.
+We can now run a query that verifies **Service_CF** is created but isn't yet added to any records. That's because the custom field doesn't work against existing records so we need to wait for new records to be collected.
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/initial-count.png" lightbox="media/custom-fields/initial-count.png" alt-text="Screenshot of initial count." border="false":::
 
-After some time has passed so new events are collected, we can see that the **Service_CF** field is now being added to records that match our criteria.
+After some time, new events are collected and we can see the **Service_CF** field being added to records that match our criteria.
 <!-- convertborder later -->
 :::image type="content" source="media/custom-fields/final-results.png" lightbox="media/custom-fields/final-results.png" alt-text="Final results" border="false":::
 
