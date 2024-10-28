@@ -8,7 +8,7 @@ ms.reviewer: JeffWo
 
 # Send Cloud Service, Virtual Machine, or Service Fabric diagnostic data to Application Insights
 
-Cloud services, Virtual Machines, Virtual Machine Scale Sets and Service Fabric all use the Azure Diagnostics extension to collect data.  Azure diagnostics sends data to Azure Storage tables. However, you can also pipe all or a subset of the data to other locations using Azure Diagnostics extension 1.5 or later.
+Cloud services, Virtual Machines, Virtual Machine Scale Sets and Service Fabric all use the Azure Diagnostics extension to collect data. Azure diagnostics sends data to Azure Storage tables. However, you can also pipe all or a subset of the data to other locations using Azure Diagnostics extension 1.5 or later.
 
 This article describes how to send data from the Azure Diagnostics extension to Application Insights.
 

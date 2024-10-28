@@ -48,7 +48,7 @@ Ensure that there's a **contactable email address** as the [subscription adminis
 
 **2. Check Contacts for Tenant Global Admin, Technical Contact, and Security Admin Roles**
 
-Ensure that there are **contactable email addresses** entered for your [Global Admin(s)](/azure/active-directory/roles/permissions-reference), [Technical contact(s)](/azure/active-directory/fundamentals/active-directory-properties-area), and [security admin(s)](/azure/defender-for-cloud/permissions). These email addresses are used for security issues that would have an impact at the tenant level.
+Ensure that there are **contactable email addresses** entered for your [Global Admins](/azure/active-directory/roles/permissions-reference), [Technical contacts](/azure/active-directory/fundamentals/active-directory-properties-area), and [security admins](/azure/defender-for-cloud/permissions). These email addresses are used for security issues that would have an impact at the tenant level.
 
 **3. Create Azure Service Health Alerts for Subscription Notifications**
 
