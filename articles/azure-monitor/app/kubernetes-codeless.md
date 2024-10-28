@@ -69,7 +69,7 @@ az aks update --resource-group={resource_group} --name={cluster_name} --enable-a
 ```
 
 > [!Tip]
-> AKS Clusters can be prepared for this feature during cluster creation. See [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create) to learn more.prepare-a-cluster-during-aks-cluster-create
+> AKS Clusters can be prepared for this feature during cluster creation. To learn more, see [Prepare a cluster during AKS cluster create](#prepare-a-cluster-during-aks-cluster-create).
 
 ## Onboard deployments
 
