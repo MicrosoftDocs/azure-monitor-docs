@@ -8,7 +8,7 @@ ms.service: azure-monitor
 ms.topic: how-to 
 ms.date: 10/28/2024
 
-# Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
+# Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
 
 # Delete data ingested to a Log Analytics workspace (Preview) 
@@ -26,7 +26,7 @@ ms.date: 10/28/2024
 
 You can: 
 - Submit 10 delete data requests per hour. 
-- Delete data from tables with the Analytics plan only. If data is in Basic plan, change plan to Analytics and Delete data then. Auxiliary plan isn't supported.
+- Only delete data from a table when the table plan is Analytics. If the table plan is Basic, change the plan to Analytics and then delete the data. You can't delete Auxiliary plan isn't supported.
 
 ## Call the delete data API to delete data from a specific table
 
