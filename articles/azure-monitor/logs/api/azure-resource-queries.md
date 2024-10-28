@@ -61,7 +61,7 @@ microsoft.operationalinsights/workspaces/query/<tableName>/read
 
 ## Error responses
 
-Here is a brief listing of common failure scenarios when querying Azure resources along with a description of symptomatic behavior.
+Here's a brief listing of common failure scenarios when querying Azure resources along with a description of symptomatic behavior.
 
 ### Azure resource doesn't exist
 
@@ -143,9 +143,9 @@ They see a normal response, with data sources the user doesn't have permissions 
 
 The `resources` payload describes an attempt to query two VMs. VM1 sends data to workspace WS1, while VM2 sends data to two workspaces: WS2 and WS3. Additionally, the user doesn't have permission to query the `SecurityEvent` or `SecurityBaseline` tables for the resource.
 
-The `dataSources` payload filters the results further by describing which workspaces the user can query. Here the user doesn't have permissions to query WS3, and an additional table filtered out of WS1.
+The `dataSources` payload filters the results further by describing which workspaces the user can query. Here, the user doesn't have permissions to query WS3, and another table filtered out of WS1.
 
 To clearly state what data such a query would return:
 
-* Logs for VM1 in WS1, excluding Tables.Custom from the workspace.
+* Logs for VM1 in WS1, excluding Tables. Custom from the workspace.
 * Logs for VM2, excluding SecurityEvent and SecurityBaseline, in WS2.
