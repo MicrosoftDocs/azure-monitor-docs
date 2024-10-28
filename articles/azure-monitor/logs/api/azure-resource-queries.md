@@ -45,27 +45,27 @@ The `microsoft.insights` resource provider exposes a new set of operations for c
 microsoft.insights/logs/<tableName>/read 
 ```
 
-This permission can be added to roles using the ‘actions’ property to allow specified tables and the ‘notActions’ property to disallow specified tables.
+This permission can be added to roles using the `actions` property to allow specified tables and the `notActions` property to disallow specified tables.
 
 ## Workspace access control
 
-Today, Azure resource queries look over Log Analytics workspaces as possible data sources. However, administrators may have locked down access to the workspace via RBAC roles. By default, the API only returns results from workspaces the user has permissions to access.
+Azure resource queries look over Log Analytics workspaces as possible data sources. However, administrators can lock access to the workspace via RBAC roles. By default, the API only returns results from workspaces the user has permissions to access.
 
-Workspace administrators may want to utilize Azure resource queries without breaking existing RBAC, creating a scenario where a user may have access to read the logs for an Azure resource, but may not have permission to query the workspace containing those logs. Workspace administrators resource, to view logs via a boolean property on the workspace. This allows users to access the logs pertaining to the target Azure resource in a particular workspace, so long as the user has access to read the logs for the target Azure resource. 
+Workspace administrators can use Azure resource queries without breaking existing RBAC. A boolean property on the workspace lets users with read permissions view logs for a specific Azure resource but not query the workspace which contains those logs.
 
 This is the action for scoping access to Tables at the workspace level:
 
 ```
-microsoft.operationalinsights/workspaces/query/<tableName>/read 
+microsoft.operationalinsights/workspaces/query/<tableName>/read
 ```
 
 ## Error responses
 
-Below is a brief listing of common failure scenarios when querying Azure resources along with a description of symptomatic behavior.
+Here is a brief listing of common failure scenarios when querying Azure resources along with a description of symptomatic behavior.
 
-### Azure resource does not exist
+### Azure resource doesn't exist
 
-```
+```json
 HTTP/1.1 404 Not Found
 { 
     "error": { 
@@ -77,7 +77,7 @@ HTTP/1.1 404 Not Found
 
 ### No access to resource
 
-```
+```json
 HTTP/1.1 403 Forbidden 
 {
     "error": { 
@@ -93,18 +93,18 @@ HTTP/1.1 403 Forbidden
 
 ### No logs from resource, or no permission to workspace containing those logs
 
-Depending on the precise combination of data and permissions, the response will either contain a 200 with no resulting data or will throw a syntax error (4xx error).
+Depending on the precise combination of data and permissions, the response either contains a 200 with no resulting data, or throws a syntax error (4xx error).
 
 ## Partial access
 
-There are some scenarios where a user may have partial permissions to access a particular resource's logs. When a user is missing either:
+There are some scenarios where a user may have partial permissions to access a particular resource's logs. This is the case if the user is missing either:
 
-* Access to the workspace containing logs for the Azure resource
-* Access to the tables reference in the query
+* Access to the workspace containing logs for the Azure resource.
+* Access to the tables reference in the query.
 
-They will see a normal response, with data sources the user does not have permissions to access silently filtered out. To see information about a user's access to an Azure resource, the underlying Log Analytics workspaces, and to specific tables, include the header `Prefer: include-permissions=true` with requests. This will cause the response JSON to include a section like the following:
+They see a normal response, with data sources the user doesn't have permissions to access silently filtered out. To see information about a user's access to an Azure resource, the underlying Log Analytics workspaces, and to specific tables, include the header `Prefer: include-permissions=true` with requests. This causes the response JSON to include a section like the following example:
 
-```
+```json
 { 
     "permissions": { 
         "resources": [ 
@@ -141,9 +141,9 @@ They will see a normal response, with data sources the user does not have permis
 }
 ```
 
-The `resources` payload describes an attempt to query two VMs. VM1 sends data to workspace WS1, while VM2 sends data to two workspaces: WS2 and WS3. Additionally, the user does not have permission to query the `SecurityEvent` or `SecurityBaseline` tables for the resource.
+The `resources` payload describes an attempt to query two VMs. VM1 sends data to workspace WS1, while VM2 sends data to two workspaces: WS2 and WS3. Additionally, the user doesn't have permission to query the `SecurityEvent` or `SecurityBaseline` tables for the resource.
 
-The `dataSources` payload filters the results further by describing which workspaces the user can query. Here the user does not have permissions to query WS3, and an additional table filtered out of WS1.
+The `dataSources` payload filters the results further by describing which workspaces the user can query. Here the user doesn't have permissions to query WS3, and an additional table filtered out of WS1.
 
 To clearly state what data such a query would return:
 
