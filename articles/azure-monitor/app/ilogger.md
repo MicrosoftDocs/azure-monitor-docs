@@ -153,7 +153,7 @@ using (_logger.BeginScope(new Dictionary<string, object> { ["MyKey"] = "MyValue"
 }
 ```
 
-If any other type is used as a scope, it's stored under the property `Scope` in Application Insights telemetry. In the following example, `TraceTelemetry` has a property called `Scope` that contains the scope.
+If any other type is used as a scope, it gets stored under the property `Scope` in Application Insights telemetry. In the following example, `TraceTelemetry` has a property called `Scope` that contains the scope.
 
 ```csharp
     using (_logger.BeginScope("hello scope"))
@@ -174,7 +174,7 @@ In the Azure portal:
 
 1. Go to the Azure portal and access your Application Insights resource.
 1. Click on the **Logs** section inside Application Insights.
-1. Use Kusto Query Language (KQL) to query ILogger messages, usually stored in the `traces` table.
+1. Use Kusto Query Language (KQL) to query ILogger messages stored in the `traces` table.
     Example Query: `traces | where message contains "YourSearchTerm"`.
 1. Refine your queries to filter ILogger data by severity, time range, or specific message content.
 

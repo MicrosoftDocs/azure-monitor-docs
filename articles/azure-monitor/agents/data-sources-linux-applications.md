@@ -18,7 +18,7 @@ This article provides details for configuring the [Log Analytics agent for Linux
 
 ## MySQL
 
-If MySQL Server or MariaDB Server is detected on the computer when the Log Analytics agent is installed, a performance monitoring provider for MySQL Server is automatically installed. This provider connects to the local MySQL/MariaDB server to expose performance statistics. MySQL user credentials must be configured so that the provider can access the MySQL Server.
+If MySQL Server or MariaDB Server is detected on the computer with the Log Analytics agent, a performance monitoring provider for MySQL Server is automatically installed. This provider connects to the local MySQL/MariaDB server to expose performance statistics. MySQL user credentials must be configured so that the provider can access the MySQL Server.
 
 ### Configure MySQL credentials
 
@@ -51,7 +51,7 @@ The entries in the authentication file are described in the following table.
 
 ### Default instance
 
-The MySQL OMI authentication file can define a default instance and port number to make managing multiple MySQL instances on one Linux host easier.  The default instance is denoted by an instance with port 0. All other instances inherit properties set from the default instance unless they specify different values. For example, if MySQL instance listening on port ‘3308’ is added, the default instance’s bind-address, username, and Base64 encoded password are used to try and monitor the instance listening on 3308. If the instance on 3308 is bound to another address and uses the same MySQL username and password pair only the bind-address is needed, and the other properties are inherited.
+The MySQL OMI authentication file can define a default instance and port number to make managing multiple MySQL instances on one Linux host easier. The default instance is denoted by an instance with port 0. All other instances inherit properties set from the default instance unless they specify different values. For example, if MySQL instance listening on port 3308 is added, the default instance’s bind-address, username, and Base64 encoded password are used to try to monitor the instance listening on 3308. If the instance on 3308 is bound to another address and uses the same MySQL username and password pair, only the bind-address is needed and the other properties are inherited.
 
 The following table has example instance settings.
 

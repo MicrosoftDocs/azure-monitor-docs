@@ -34,7 +34,7 @@ The body of the request is an array of objects containing the following properti
  
 **Example:**
 
-```
+```json
 POST https://api.loganalytics.azure.com/v1/$batch
 Content-Type: application/json
 Authorization: Bearer <user token>
@@ -91,7 +91,7 @@ The batch returns successfully even when the results of its member queries may b
 
 **Example:**
 
-```
+```json
 {
     "responses":
     [
@@ -133,7 +133,7 @@ The batch returns successfully even when the results of its member queries may b
 
 ## Behavior and errors
 
-The order of responses inside the returned object isn't related to the order in the request. It's determined by time it takes each individual query to complete. Use IDs to map the query response objects to the original requests. Don't assume that the query responses are in order.
+The order of responses inside the returned object isn't related to the order in the request. The time it takes determines each individual query to complete. Use IDs to map the query response objects to the original requests. Don't assume that the query responses are in order.
 
 An entire batch request only fails if:
 
@@ -149,7 +149,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
 
 * 400 - Malformed request. The outer request object was not valid JSON.
 
-    ```
+    ```json
     {
         "error": {
             "message": "The request had some invalid properties",
@@ -171,7 +171,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
 
 * 403 - Forbidden. The token provided does not have access to the resource you are trying to access. Make sure that your token request has the correct resource, and you have granted permissions for your Microsoft Entra application.
 
-    ```
+    ```json
     {
         "error": {
             "message": "The provided authentication is not valid for this resource",
@@ -186,7 +186,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
 
 * 204 - Not Placed. You have no data for the API to pull in the backing store. As a 2xx this is technically a successful request. However, in a batch, it's useful to note the error.
 
-    ```
+    ```json
     {
         "responses": [
             {
@@ -204,7 +204,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
 
 * 404 - Not found. The query path does not exist. This error can also occur in a batch if you specify an invalid HTTP method in the individual request.
 
-    ```
+    ```json
     {
         "responses": [
             {
@@ -223,7 +223,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
 
 * 400 - Failed to resolve resource. The GUID representing the workspace is incorrect.
 
-    ```
+    ```json
     {
         "responses": [
             {
