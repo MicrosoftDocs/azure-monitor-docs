@@ -32,7 +32,7 @@ Because multiple records can exist for a specified process and computer in a spe
 
 The Connection Metrics feature introduces two new tables in Azure Monitor logs - VMConnection and VMBoundPort. These tables provide information about the connections for a machine (inbound and outbound) and the server ports that are open/active on them. ConnectionMetrics are also exposed via APIs that provide the means to obtain a specific metric during a time window. TCP connections resulting from *accepting* on a listening socket are inbound, while those created by *connecting* to a given IP and port are outbound. The direction of a connection is represented by the `Direction` property, which can be set to either **inbound** or **outbound**.
 
-Records in these tables are generated from data reported by the Dependency Agent. Every record represents an observation over a 1-minute time interval. The `TimeGenerated` property indicates the start of the time interval. Each record contains information to identify the respective entity, that is, connection or port, as well as metrics associated with that entity. Currently, only network activity that occurs using TCP over IPv4 is reported.
+Records in these tables are generated from data reported by the Dependency Agent. Every record represents an observation over a 1-minute time interval. The `TimeGenerated` property indicates the start of the time interval. Each record contains information to identify the respective entity, that is, connection or port, and metrics associated with that entity. Currently, only network activity that occurs using TCP over IPv4 is reported.
 
 #### Common fields and conventions
 
@@ -63,12 +63,12 @@ To manage cost and complexity, connection records don't represent individual phy
 
 To account for the impact of grouping, information about the number of grouped physical connections is provided in the following properties of the record:
 
-| Property         | Description                                                                                                                                                          |
-|:-----------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| LinksEstablished | The number of physical network connections that have been established during the reporting time window                                                               |
-| LinksTerminated  | The number of physical network connections that have been terminated during the reporting time window                                                                |
-| LinksFailed      | The number of physical network connections that have failed during the reporting time window. This information is currently available only for outbound connections. |
-| LinksLive        | The number of physical network connections that were open at the end of the reporting time window                                                                    |
+| Property         | Description                                                                                                                                                     |
+|:-----------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| LinksEstablished | The number of physical network connections that were established during the reporting time window                                                               |
+| LinksTerminated  | The number of physical network connections that were terminated during the reporting time window                                                                |
+| LinksFailed      | The number of physical network connections that failed during the reporting time window. This information is currently available only for outbound connections. |
+| LinksLive        | The number of physical network connections that were open at the end of the reporting time window                                                               |
 
 #### Metrics
 
@@ -76,8 +76,8 @@ In addition to connection count metrics, information about the volume of data se
 
 | Property        | Description                                                                                                                 |
 |:----------------|:----------------------------------------------------------------------------------------------------------------------------|
-| BytesSent       | Total number of bytes that have been sent during the reporting time window                                                  |
-| BytesReceived   | Total number of bytes that have been received during the reporting time window                                              |
+| BytesSent       | Total number of bytes that were sent during the reporting time window                                                       |
+| BytesReceived   | Total number of bytes that were received during the reporting time window                                                   |
 | Responses       | The number of responses observed during the reporting time window.                                                          |
 | ResponseTimeMax | The largest response time (milliseconds) observed during the reporting time window. If no value, the property is blank.     |
 | ResponseTimeMin | The smallest response time (milliseconds) observed during the reporting time window. If no value, the property is blank.    |
@@ -89,9 +89,9 @@ In this first release of this feature, our algorithm is an approximation that ma
 
 Here are some important points to consider:
 
-1. If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface will be reported.
-1. Records with wildcard IP will contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic.
-1. To reduce verbosity and data volume, records with wildcard IP will be omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` record property with the specific IP address, will be set to `True` to indicate that the port is exposed over every interface of the reporting machine.
+1. If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface are reported.
+1. Records with wildcard IP contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic.
+1. To reduce verbosity and data volume, records with wildcard IP are omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` record property with the specific IP address is set to `True` to indicate that the port is exposed over every interface of the reporting machine.
 1. Ports that are bound only on a specific interface have `IsWildcardBind` set to `False`.
 
 #### Naming and Classification
@@ -110,7 +110,7 @@ For convenience, the IP address of the remote end of a connection is included in
 
 #### Malicious IP
 
-Every `RemoteIp` property in *VMConnection* table is checked against a set of IPs with known malicious activity. If the `RemoteIp` is identified as malicious the following properties will be populated (they're empty, when the IP isn't considered malicious) in the following properties of the record:
+Every `RemoteIp` property in *VMConnection* table is checked against a set of IPs with known malicious activity. If the `RemoteIp` is identified as malicious, the following properties will be populated (they're empty, when the IP isn't considered malicious) in the following properties of the record:
 
 | Property              | Description                                                                                                                                                                      |
 |:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -137,9 +137,9 @@ Every record in VMBoundPort is identified by the following fields:
 | Process  | Identity of process (or groups of processes) with which the port is associated with. |
 | Ip       | Port IP address (can be wildcard IP, *0.0.0.0*)                                      |
 | Port     | The Port number                                                                      |
-| Protocol | The protocol.  Example, *tcp* or *udp* (only *tcp* is currently supported).          |
+| Protocol | The protocol. Example, *tcp* or *udp* (only *tcp* is currently supported).           |
 
-The identity a port is derived from the above five fields and is stored in the `PortId` property. This property can be used to quickly find records for a specific port across time.
+The identity a port is derived from these fields fields and is stored in the `PortId` property. This property can be used to quickly find records for a specific port across time.
 
 #### Metrics
 
@@ -234,7 +234,7 @@ Records with a type of *VMProcess* have inventory data for TCP-connected process
 | ExecutableName   | The name of the process executable                                                                                                                         |
 | DisplayName      | Process display name                                                                                                                                       |
 | Role             | Process role: *webserver*, *appServer*, *databaseServer*, *ldapServer*, *smbServer*                                                                        |
-| Group            | Process group name. Processes in the same group are logically related, e.g., part of the same product or system component.                                 |
+| Group            | Process group name. Processes in the same group are logically related, for example, part of the same product or system component.                          |
 | StartTime        | The process pool start time                                                                                                                                |
 | FirstPid         | The first PID in the process pool                                                                                                                          |
 | Description      | The process description                                                                                                                                    |
@@ -437,20 +437,20 @@ let remoteMachines = remote | summarize by RemoteMachine;
 ## Performance records
 Records with a type of *InsightsMetrics* have performance data from the guest operating system of the virtual machine. These records are collected at 60 second intervals and have the properties in the following table:
 
-| Property      | Description                                                                                      |
-|:--------------|:-------------------------------------------------------------------------------------------------|
-| TenantId      | Unique identifier for the workspace                                                              |
-| SourceSystem  | *Insights*                                                                                       |
-| TimeGenerated | Time the value was collected (UTC)                                                               |
-| Computer      | The computer FQDN                                                                                |
-| Origin        | *vm.azm.ms*                                                                                      |
-| Namespace     | Category of the performance counter                                                              |
-| Name          | Name of the performance counter                                                                  |
-| Val           | Collected value                                                                                  |
-| Tags          | Related details about the record. See the table below for tags used with different record types. |
-| AgentId       | Unique identifier for each computer's agent                                                      |
-| Type          | *InsightsMetrics*                                                                                |
-| *ResourceId*  | Resource ID of the virtual machine                                                               |
+| Property      | Description                                                                                          |
+|:--------------|:-----------------------------------------------------------------------------------------------------|
+| TenantId      | Unique identifier for the workspace                                                                  |
+| SourceSystem  | *Insights*                                                                                           |
+| TimeGenerated | Time the value was collected (UTC)                                                                   |
+| Computer      | The computer FQDN                                                                                    |
+| Origin        | *vm.azm.ms*                                                                                          |
+| Namespace     | Category of the performance counter                                                                  |
+| Name          | Name of the performance counter                                                                      |
+| Val           | Collected value                                                                                      |
+| Tags          | Related details about the record. See the following table for tags used with different record types. |
+| AgentId       | Unique identifier for each computer's agent                                                          |
+| Type          | *InsightsMetrics*                                                                                    |
+| *ResourceId*  | Resource ID of the virtual machine                                                                   |
 
 The performance counters currently collected into the *InsightsMetrics* table are listed in the following table:
 

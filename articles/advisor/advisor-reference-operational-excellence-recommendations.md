@@ -23,13 +23,13 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 ### Upgrade to the latest version of the Immersive Reader SDK
 
-We have identified resources under this subscription using outdated versions of the Immersive Reader SDK. The latest version of the Immersive Reader SDK provides you with updated security, performance, and an expanded set of features for customizing and enhancing your integration experience.
+We identified resources under this subscription using outdated versions of the Immersive Reader SDK. The latest version of the Immersive Reader SDK provides you with updated security, performance, and an expanded set of features for customizing and enhancing your integration experience.
 
 Learn more about [Azure AI Immersive Reader](/azure/ai-services/immersive-reader/).
 
 ### Upgrade to the latest version of the Immersive Reader SDK
 
-We have identified resources under this subscription using outdated versions of the Immersive Reader SDK. The latest version of the Immersive Reader SDK provides you with updated security, performance and an expanded set of features for customizing and enhancing your integration experience.
+We identified resources under this subscription using outdated versions of the Immersive Reader SDK. The latest version of the Immersive Reader SDK provides you with updated security, performance, and an expanded set of features for customizing and enhancing your integration experience.
 
 Learn more about [Cognitive Service - ImmersiveReaderSDKRecommendation (Upgrade to the latest version of the Immersive Reader SDK)](https://aka.ms/ImmersiveReaderAzureAdvisorSDKLearnMore).
 
@@ -45,13 +45,13 @@ Learn more about [Data explorer resource - ReduceCacheForAzureDataExplorerTables
 
 ### Update your outdated Azure Spring Apps SDK to the latest version
 
-We have identified API calls from an outdated Azure Spring Apps SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
+We identified API calls from an outdated Azure Spring Apps SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
 
 Learn more about the [Azure Spring Apps service](/azure/spring-apps/).
 
 ### Update Azure Spring Apps API Version
 
-We have identified API calls from outdated Azure Spring Apps API for resources under this subscription. We recommend switching to the latest Azure Spring Apps API version. You need to update your existing code to use the latest API version. Also, you need to upgrade your Azure SDK and Azure CLI to the latest version, which ensures you receive the latest features and performance improvements.
+We identified API calls from outdated Azure Spring Apps API for resources under this subscription. We recommend switching to the latest Azure Spring Apps API version. You need to update your existing code to use the latest API version. Also, you need to upgrade your Azure SDK and Azure CLI to the latest version, which ensures you receive the latest features and performance improvements.
 
 Learn more about the [Azure Spring Apps service](/azure/spring-apps/).
 
@@ -75,7 +75,7 @@ Learn more about [Batch account - RecreatePool (Delete and recreate your pool to
 
 ### Upgrade to the latest API version to ensure your Batch account remains operational
 
-In the past 14 days, you have invoked a Batch management or service API version that is scheduled for deprecation. Upgrade to the latest API version to ensure your Batch account remains operational.
+In the past 14 days, you invoked a Batch management or service API version that is scheduled for deprecation. Upgrade to the latest API version to ensure your Batch account remains operational.
 
 Learn more about [Batch account - UpgradeAPI (Upgrade to the latest API version to ensure your Batch account remains operational.)](https://aka.ms/batch_deprecatedapi_learnmore).
 
@@ -117,31 +117,31 @@ Learn more about [Virtual machine - NvaCheckpointNicServicing (An Azure environm
 
 ### The iControl REST interface has an unauthenticated remote command execution vulnerability
 
-An unauthenticated remote command execution vulnerability allows for unauthenticated attackers with network access to the iControl REST interface, through the BIG-IP management interface and self IP addresses, to execute arbitrary system commands, create or delete files, and disable services. This vulnerability can only be exploited through the control plane and can't be exploited through the data plane. Exploitation can lead to complete system compromise. The BIG-IP system in Appliance mode is also vulnerable.
+An unauthenticated remote command execution vulnerability allows attackers with network access to the iControl REST interface to execute arbitrary system commands. They can also create or delete files and disable services through the BIG-IP management interface and self IP addresses. This vulnerability can only be exploited through the control plane and can't be exploited through the data plane. Exploitation can lead to complete system compromise. The BIG-IP system in Appliance mode is also vulnerable.
 
 Learn more about [Virtual machine - GetF5vulnK03009991 (The iControl REST interface has an unauthenticated remote command execution vulnerability.)](https://support.f5.com/csp/article/K03009991).
 
 ### NVA Accelerated Networking enabled but potentially not working
 
-Desired state for Accelerated Networking is set to ‘true’ for one or more interfaces on your VM, but actual state for accelerated networking isn't enabled.
+Desired state for Accelerated Networking is set to `true` for one or more interfaces on your VM, but actual state for accelerated networking isn't enabled.
 
 Learn more about [Virtual machine - GetVmListANDisabled (NVA Accelerated Networking enabled but potentially not working.)](/azure/virtual-network/create-vm-accelerated-networking-cli).
 
 ### Virtual machines with Citrix Application Delivery Controller (ADC) and accelerated networking enabled might disconnect during maintenance operation
 
-We have identified that you're running a Network virtual Appliance (NVA) called Citrix Application Delivery Controller (ADC), and the NVA has accelerated networking enabled. The Virtual machine that this NVA is deployed on might experience connectivity issues during a platform maintenance operation. It is recommended that you follow the article provided by the vendor: https://aka.ms/Citrix_CTX331516
+We identified that you're running a Network virtual Appliance (NVA) called Citrix Application Delivery Controller (ADC), and the NVA has accelerated networking enabled. The Virtual machine that this NVA is deployed on might experience connectivity issues during a platform maintenance operation. It's recommended that you follow the article provided by the vendor: https://aka.ms/Citrix_CTX331516
 
 Learn more about [Virtual machine - GetCitrixVFRevokeError (Virtual machines with Citrix Application Delivery Controller (ADC) and accelerated networking enabled might disconnect during maintenance operation)](https://aka.ms/Citrix_CTX331516).
 
 ### Update your outdated Azure Spring Cloud SDK to the latest version
 
-We have identified API calls from an outdated Azure Spring Cloud SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
+We identified API calls from an outdated Azure Spring Cloud SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
 
 Learn more about [Spring Cloud Service - SpringCloudUpgradeOutdatedSDK (Update your outdated Azure Spring Cloud SDK to the latest version)](/azure/spring-cloud).
 
 ### Update Azure Spring Cloud API Version
 
-We have identified API calls from outdated Azure Spring Cloud API for resources under this subscription. We recommend switching to the latest Spring Cloud API version. You need to update your existing code to use the latest API version. Also, you need to upgrade your Azure SDK and Azure CLI to the latest version, which ensures you receive the latest features and performance improvements.
+We identified API calls from outdated Azure Spring Cloud API for resources under this subscription. We recommend switching to the latest Spring Cloud API version. You need to update your existing code to use the latest API version. Also, you need to upgrade your Azure SDK and Azure CLI to the latest version, which ensures you receive the latest features and performance improvements.
 
 Learn more about [Spring Cloud Service - UpgradeAzureSpringCloudAPI (Update Azure Spring Cloud API Version)](/azure/spring-cloud).
 
@@ -173,7 +173,7 @@ Learn more about [Kubernetes service - DeprecatedKubernetesAPIIn116IsFound (Depr
 
 ### Enable the Cluster Autoscaler
 
-This cluster has not enabled AKS Cluster Autoscaler, and it can't adapt to changing load conditions unless you have other ways to autoscale your cluster.
+This cluster hasn't enabled AKS Cluster Autoscaler, and it can't adapt to changing load conditions unless you have other ways to autoscale your cluster.
 
 Learn more about [Kubernetes service - EnableClusterAutoscaler (Enable the Cluster Autoscaler)](/azure/aks/cluster-autoscaler).
 
@@ -203,13 +203,13 @@ Learn more about [Kubernetes service - UseEphemeralOSdisk (Use Ephemeral OS disk
 
 ### Outdated Azure Linux (Mariner) OS SKUs Found
 
-Found outdated Azure Linux (Mariner) OS SKUs. 'CBL-Mariner' SKU isn't supported. 'Mariner' SKU is equivalent to 'AzureLinux', but it's advisable to switch to 'AzureLinux' SKU for future updates and support, as 'AzureLinux' is the Generally Available version.
+Found outdated Azure Linux (Mariner) OS SKUs. 'CBL-Mariner' SKU isn't supported. Mariner SKU is equivalent to AzureLinux, but it's advisable to switch to 'AzureLinux' SKU for future updates and support, as AzureLinux is the GA (Generally Available) version.
 
 Learn more about [Kubernetes service - ClustersWithDeprecatedMarinerSKU (Outdated Azure Linux (Mariner) OS SKUs Found)](https://aka.ms/AzureLinuxOSSKU).
 
 ### Free and Standard tiers for AKS control plane management
 
-This cluster has not enabled the Standard tier that includes the Uptime SLA by default, and is limited to an SLO of 99.5%.
+This cluster hasn't enabled the Standard tier that includes the Uptime SLA by default, and is limited to an SLO of 99.5%.
 
 Learn more about [Kubernetes service - Free and Standard Tier](/azure/aks/free-standard-pricing-tiers).
 
@@ -223,7 +223,7 @@ Learn more about [Kubernetes service - DeprecatedKubernetesAPIIn122IsFound (Depr
 
 ### Azure SQL IaaS Agent must be installed in full mode
 
-Full mode installs the SQL IaaS Agent to the VM to deliver full functionality. Use it for managing a SQL Server VM with a single instance. There is no cost associated with using the full manageability mode. System administrator permissions are required. Note that installing or upgrading to full mode is an online operation, there is no restart required.
+Full mode installs the SQL IaaS Agent to the VM to deliver full functionality. Use it for managing a SQL Server VM with a single instance. There's no cost associated with using the full manageability mode. System administrator permissions are required. Note that installing or upgrading to full mode is an online operation, there's no restart required.
 
 Learn more about [SQL virtual machine - UpgradeToFullMode (SQL IaaS Agent must be installed in full mode)](/azure/azure-sql/virtual-machines/windows/sql-server-iaas-agent-extension-automate-management).
 
@@ -259,13 +259,13 @@ Learn more about [Azure Database for MySQL flexible server - OrcasMeruMySqlTlsDe
 
 ### Optimize or partition tables in your database which has huge tablespace size
 
-The maximum supported tablespace size in Azure Database for MySQL -Flexible server is 4TB. To effectively manage large tables, we recommended that you optimize the table or implement partitioning, which helps distribute the data across multiple files and prevent reaching the hard limit of 4TB in the tablespace.
+The maximum supported tablespace size in Azure Database for MySQL -Flexible server is 4 TB. To effectively manage large tables, we recommended that you optimize the table or implement partitioning, which helps distribute the data across multiple files and prevent reaching the hard limit of 4 TB in the tablespace.
 
 Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerSingleTablespace4TBLimit2bf9 (Optimize or partition tables in your database which has huge tablespace size)](https://techcommunity.microsoft.com/t5/azure-database-for-mysql-blog/how-to-reclaim-storage-space-with-azure-database-for-mysql/ba-p/3615876).
 
 ### Enable storage autogrow for MySQL Flexible Server
 
-Storage auto-growth prevents a server from running out of storage and becoming read-only.
+Storage autogrowth prevents a server from running out of storage and becoming read-only.
 
 Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerStorageAutogrow43b64 (Enable storage autogrow for MySQL Flexible Server)](/azure/mysql/flexible-server/concepts-service-tiers-storage#storage-auto-grow).
 
@@ -289,19 +289,19 @@ Learn more about [Redis Cache Server - PrivateLink (Injecting a cache into a vir
 
 ### Support for TLS versions 1.0 and 1.1 is retiring on September 30, 2024
 
-Support for TLS 1.0/1.1 is retiring on September 30, 2024. Configure your cache to use TLS 1.2 only and your application to use TLS 1.2 or later. See https://aka.ms/TLSVersions for more information.
+Support for TLS 1.0/1.1 is retiring on September 30, 2024. Configure your cache to use TLS 1.2 only and your application to use TLS 1.2 or later. For more information, see [Remove TLS 1.0 and 1.1 from use with Azure Cache for Redis](https://aka.ms/TLSVersions).
 
 Learn more about [Redis Cache Server - TLSVersion (Support for TLS versions 1.0 and 1.1 is retiring on September 30, 2024.)](https://aka.ms/TLSVersions).
 
 ### TLS versions 1.0 and 1.1 are known to be susceptible to security attacks, and have other Common Vulnerabilities and Exposures (CVE) weaknesses
 
-TLS versions 1.0 and 1.1 are known to be susceptible to security attacks, and have other Common Vulnerabilities and Exposures (CVE) weaknesses. We highly recommend that you configure your cache to use TLS 1.2 only and your application to use TLS 1.2 or later. See https://aka.ms/TLSVersions for more information.
+TLS versions 1.0 and 1.1 are known to be susceptible to security attacks, and have other Common Vulnerabilities and Exposures (CVE) weaknesses. We highly recommend that you configure your cache to use TLS 1.2 only and your application to use TLS 1.2 or later. For more information, see [Remove TLS 1.0 and 1.1 from use with Azure Cache for Redis](https://aka.ms/TLSVersions).
 
 Learn more about [Redis Cache Server - TLSVersion (TLS versions 1.0 and 1.1 are known to be susceptible to security attacks, and have other Common Vulnerabilities and Exposures (CVE) weaknesses.)](https://aka.ms/TLSVersions).
 
 ### Cloud service caches are being retired in August 2024, migrate before then to avoid any problems
 
-This instance of Azure Cache for Redis has a dependency on Cloud Services (classic) which is being retired in August 2024. Follow the instructions found in the following link to migrate to an instance without this dependency. If you need to upgrade your cache to Redis 6  note that upgrading a cache with a dependency on cloud services isn't supported. You must migrate your cache instance to Virtual Machine Scale Set before upgrading. For more information, see the following link. Note: If you have completed your migration away from Cloud Services,  allow up to 24 hours for this recommendation to be removed.
+This instance of Azure Cache for Redis has a dependency on Cloud Services (classic) which is being retired in August 2024. Follow the instructions found in the following link to migrate to an instance without this dependency. If you need to upgrade your cache to Redis 6  note that upgrading a cache with a dependency on cloud services isn't supported. You must migrate your cache instance to Virtual Machine Scale Set before upgrading. For more information, see the following link. Note: If you completed your migration away from Cloud Services,  allow up to 24 hours for this recommendation to be removed.
 
 Learn more about [Redis Cache Server - MigrateFromCloudService (Cloud service caches are being retired in August 2024, migrate before then to avoid any problems)](/azure/azure-cache-for-redis/cache-faq#caches-with-a-dependency-on-cloud-services-%28classic%29).
 
@@ -319,7 +319,7 @@ Learn more about [Redis Cache Server - PersistenceSoftEnable (Using persistence 
 
 ### You might benefit from using an Enterprise tier cache instance
 
-This instance of Azure Cache for Redis is using one or more advanced features from the list - more than 6 shards, geo-replication, zone-redundancy or persistence. Consider switching to an Enterprise tier cache to get the most out of your Redis experience. Enterprise tier caches offer higher availability, better performance and more powerful features like active geo-replication.
+This instance of Azure Cache for Redis is using one or more advanced features from the list - more than six shards, geo-replication, zone-redundancy, or persistence. Consider switching to an Enterprise tier cache to get the most out of your Redis experience. Enterprise tier caches offer higher availability, better performance, and more powerful features like active geo-replication.
 
 Learn more about [Redis Cache Server - ConsiderUsingRedisEnterprise (You might benefit from using an Enterprise tier cache instance)](https://aka.ms/redisenterpriseupgrade).
 
@@ -339,13 +339,13 @@ Learn more about [API Management - validate-jwt-with-insecure-key-size (Validate
 
 ### Use self-hosted gateway v2
 
-We have identified one or more instances of your self-hosted gateway(s) that are using a deprecated version of the self-hosted gateway (v0.x and/or v1.x).
+We identified one or more instances of your self-hosted gateway(s) that are using a deprecated version of the self-hosted gateway (v0.x and/or v1.x).
 
 Learn more about [API Management - shgw-legacy-image-usage (Use self-hosted gateway v2)](https://aka.ms/apim/shgw/migration/v2).
 
 ### Use Configuration API v2 for self-hosted gateways
 
-We have identified one or more instances of your self-hosted gateway(s) that are using the deprecated Configuration API v1.
+We identified one or more instances of your self-hosted gateway(s) that are using the deprecated Configuration API v1.
 
 Learn more about [API Management - shgw-config-api-v1-usage (Use Configuration API v2 for self-hosted gateways)](https://aka.ms/apim/shgw/migration/v2).
 
@@ -357,7 +357,7 @@ Learn more about [API Management - heavy-tracing-usage (Only allow tracing on su
 
 ### Self-hosted gateway instances were identified that use gateway tokens that expire soon
 
-At least one deployed self-hosted gateway instance was identified that uses a gateway token that expires in the next seven days. To ensure that it can connect to the control-plane, generate a new gateway token and update your deployed self-hosted gateways  (does not impact data-plane traffic).
+At least one deployed self-hosted gateway instance was identified that uses a gateway token that expires in the next seven days. To ensure that it can connect to the control-plane, generate a new gateway token and update your deployed self-hosted gateways (doesn't impact data-plane traffic).
 
 Learn more about [API Management - ShgwGatewayTokenNearExpiry (Self-hosted gateway instance(s) were identified that use gateway tokens that expire soon)]().
 
@@ -365,7 +365,7 @@ Learn more about [API Management - ShgwGatewayTokenNearExpiry (Self-hosted gatew
 
 ### IoT Hub Fallback Route Disabled
 
-We have detected that the Fallback Route on your IoT Hub has been disabled. When the Fallback Route is disabled messages stop flowing to the default endpoint. If you're no longer able to ingest telemetry downstream consider re-enabling the Fallback Route.
+We detected that the Fallback Route on your IoT Hub has been disabled. When the Fallback Route is disabled messages stop flowing to the default endpoint. If you're no longer able to ingest telemetry downstream consider re-enabling the Fallback Route.
 
 Learn more about [IoT hub - IoTHubFallbackDisabledAdvisor (IoT Hub Fallback Route Disabled)](/azure/iot-hub/iot-hub-devguide-messages-d2c#fallback-route).
 
@@ -373,13 +373,13 @@ Learn more about [IoT hub - IoTHubFallbackDisabledAdvisor (IoT Hub Fallback Rout
 
 ### Upgrade to Start/Stop VMs v2
 
-The new version of Start/Stop VMs v2 (preview) provides a decentralized low-cost automation option for customers who want to optimize their VM costs. It offers all of the same functionality as the original version available with Azure Automation, but it is designed to take advantage of newer technology in Azure.
+The new version of Start/Stop VMs v2 (preview) provides a decentralized low-cost automation option for customers who want to optimize their VM costs. It offers all of the same functionality as the original version available with Azure Automation, but it's designed to take advantage of newer technology in Azure.
 
 Learn more about [Automation account - SSV1_Upgrade (Upgrade to Start/Stop VMs v2)](https://aka.ms/startstopv2docs).
 
 ### Repair your log alert rule
 
-We have detected that one or more of your alert rules have invalid queries specified in their condition section. Log alert rules are created in Azure Monitor and are used to run analytics queries at specified intervals. The results of the query determine if an alert needs to be triggered. Analytics queries might become invalid overtime due to changes in referenced resources, tables, or commands. We recommend that you correct the query in the alert rule to prevent it from getting auto-disabled and ensure monitoring coverage of your resources in Azure.
+We detected that one or more of your alert rules have invalid queries specified in their condition section. Log alert rules are created in Azure Monitor and are used to run analytics queries at specified intervals. The results of the query determine if an alert needs to be triggered. Analytics queries might become invalid overtime due to changes in referenced resources, tables, or commands. We recommend that you correct the query in the alert rule to prevent it from getting autodisabled and ensure monitoring coverage of your resources in Azure.
 
 Learn more about [Alert Rule - ScheduledQueryRulesLogAlert (Repair your log alert rule)](https://aka.ms/aa_logalerts_queryrepair).
 
@@ -391,7 +391,7 @@ Learn more about [Alert Rule - ScheduledQueryRulesRp (Log alert rule was disable
 
 ### Update Azure Managed Grafana SDK Version
 
-We have identified that an older SDK version has been used to manage or access your Grafana workspace. To get access to all the latest functionality, it is recommended that you switch to use the latest SDK version.
+We identified that an older SDK version has been used to manage or access your Grafana workspace. To get access to all the latest functionality, it's recommended that you switch to use the latest SDK version.
 
 Learn more about [Grafana Dashboard - UpdateAzureManagedGrafanaSDK (Update Azure Managed Grafana SDK Version)](https://aka.ms/GrafanaPortalLearnMore).
 
@@ -405,7 +405,7 @@ Learn more about [Recovery Services vault - SwitchToAzureMonitorAlerts (Switch t
 
 ### Resolve Certificate Update issue for your Application Gateway
 
-We have detected that one or more of your Application Gateways is unable to fetch the latest version certificate present in your Key Vault. If it is intended to use a particular version of the certificate, ignore this message.
+We detected that one or more of your Application Gateways is unable to fetch the latest version certificate present in your Key Vault. If it's intended to use a particular version of the certificate, ignore this message.
 
 Learn more about [Application gateway - AppGwAdvisorRecommendationForCertificateUpdateErrors (Resolve Certificate Update issue for your Application Gateway)]().
 
@@ -415,27 +415,27 @@ We've detected that one or more of your Application Gateways is unable to obtain
 
 Learn more about [Application gateway - AppGwAdvisorRecommendationForKeyVaultErrors (Resolve Azure Key Vault issue for your Application Gateway)](https://aka.ms/agkverror).
 
-### Application Gateway does not have enough capacity to scale out
+### Application Gateway doesn't have enough capacity to scale out
 
-We've detected that your Application Gateway subnet does not have enough capacity for allowing scale-out during high traffic conditions, which can cause downtime.
+We've detected that your Application Gateway subnet doesn't have enough capacity for allowing scale-out during high traffic conditions, which can cause downtime.
 
-Learn more about [Application gateway - AppgwRestrictedSubnetSpace (Application Gateway does not have enough capacity to scale out)](https://aka.ms/application-gateway-faq).
+Learn more about [Application gateway - AppgwRestrictedSubnetSpace (Application Gateway doesn't have enough capacity to scale out)](https://aka.ms/application-gateway-faq).
 
 ### Enable Traffic Analytics to view insights into traffic patterns across Azure resources
 
-Traffic Analytics is a cloud-based solution that provides visibility into user and application activity in Azure. Traffic analytics analyzes Network Watcher network security group (NSG) flow logs to provide insights into traffic flow. With traffic analytics, you can view top talkers across Azure and non Azure deployments, investigate open ports, protocols and malicious flows in your environment and optimize your network deployment for performance. You can process flow logs at 10 mins and 60 mins processing intervals, giving you faster analytics on your traffic.
+Traffic Analytics is a cloud-based solution that provides visibility into user and application activity in Azure. Traffic analytics analyzes Network Watcher network security group (NSG) flow logs to provide insights into traffic flow. With traffic analytics, you can view top talkers across Azure and non Azure deployments, investigate open ports, protocols and malicious flows in your environment and optimize your network deployment for performance. You can process flow logs at 10 minutes and 60 minutes processing intervals, giving you faster analytics on your traffic.
 
 Learn more about [Network Security Group - NSGFlowLogsenableTA (Enable Traffic Analytics to view insights into traffic patterns across Azure resources)](https://aka.ms/aa_enableta_learnmore).
 
 ### Set up staging environments in Azure App Service
 
-Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless, no requests are dropped because of swap operations.
+Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless. No requests are dropped because of swap operations.
 
 Learn more about [Subscription - AzureApplicationService (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
 
 ### Enforce 'Add or replace a tag on resources' using Azure Policy
 
-Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that adds or replaces the specified tag and value when any resource is created or updated. Existing resources can be remediated by triggering a remediation task, which does not modify tags on resource groups.
+Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that adds or replaces the specified tag and value when any resource is created or updated. Existing resources can be remediated by triggering a remediation task, which doesn't modify tags on resource groups.
 
 Learn more about [Subscription - AddTagPolicy (Enforce 'Add or replace a tag on resources' using Azure Policy)](/azure/governance/policy/overview).
 
@@ -447,7 +447,7 @@ Learn more about [Subscription - AllowedLocationsPolicy (Enforce 'Allowed locati
 
 ### Enforce 'Audit VMs that do not use managed disks' using Azure Policy
 
-Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that audits VMs that do not use managed disks.
+Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that audits VMs that don't use managed disks.
 
 Learn more about [Subscription - AuditForManagedDisksPolicy (Enforce 'Audit VMs that do not use managed disks' using Azure Policy)](/azure/governance/policy/overview).
 
@@ -475,15 +475,15 @@ Subscription with more than 10 VNets must be managed using AVNM. Azure Virtual N
 
 Learn more about [Subscription - ManageVNetsUsingAVNM (Subscription with more than 10 VNets must be managed using AVNM)](/azure/virtual-network-manager/).
 
-### VNet with more than 5 peerings must be managed using AVNM connectivity configuration
+### VNet with more than five peerings must be managed using AVNM connectivity configuration
 
-VNet with more than 5 peerings must be managed using AVNM connectivity configuration. Azure Virtual Network Manager is a management service that enables you to group, configure, deploy, and manage virtual networks globally across subscriptions.
+VNet with more than five peerings must be managed using AVNM connectivity configuration. Azure Virtual Network Manager is a management service that enables you to group, configure, deploy, and manage virtual networks globally across subscriptions.
 
-Learn more about [Virtual network - ManagePeeringsUsingAVNM (VNet with more than 5 peerings must be managed using AVNM connectivity configuration)]().
+Learn more about [Virtual network - ManagePeeringsUsingAVNM (VNet with more than five peerings must be managed using AVNM connectivity configuration)]().
 
 ### Upgrade NSG flow logs to VNet flow logs
 
-Virtual Network flow log allows you to record IP traffic flowing in a virtual network. It provides several benefits over Network Security Group flow log like simplified enablement, enhanced coverage, accuracy, performance and observability of Virtual Network Manager rules and encryption status.
+Virtual Network flow log allows you to record IP traffic flowing in a virtual network. It provides several benefits over Network Security Group flow log like simplified enablement, enhanced coverage, accuracy, performance, and observability of Virtual Network Manager rules and encryption status.
 
 Learn more about [Resource - UpgradeNSGToVnetFlowLog (Upgrade NSG flow logs to VNet flow logs)](https://aka.ms/vnetflowlogspreviewdocs).
 
@@ -513,7 +513,7 @@ Learn more about [Database Instance - HanaDBSupport (Ensure the HANA DB VM type 
 
 ### Ensure the Operating system in App VM is supported in combination with DB type in your SAP workload
 
-Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs to ensure better performance and support for your SAP systems.
+Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database, and Application VMs to ensure better performance and support for your SAP systems.
 
 Learn more about [App Server Instance - AppOSDBSupport (Ensure the Operating system in App VM is supported in combination with DB type in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -525,7 +525,7 @@ Learn more about [App Server Instance - AppIPV4TCPKeepAlive (Set the parameter n
 
 ### Ensure the Operating system in DB VM is supported for the DB type in your SAP workload
 
-Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs to ensure better performance and support for your SAP systems.
+Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database, and Application VMs to ensure better performance and support for your SAP systems.
 
 Learn more about [Database Instance - DBOSDBSupport (Ensure the Operating system in DB VM is supported for the DB type in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -549,7 +549,7 @@ Learn more about [App Server Instance - AppIpv4Recycle (Set the parameter net.ip
 
 ### Ensure the Operating system in ASCS VM is supported in combination with DB type in your SAP workload
 
-Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs. The correct OS-DB combinations help ensure better performance and support for your SAP systems.
+Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database, and Application VMs. The correct OS-DB combinations help ensure better performance and support for your SAP systems.
 
 Learn more about [Central Server Instance - ASCSOSDBSupport (Ensure the Operating system in ASCS VM is supported in combination with DB type in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -579,13 +579,13 @@ Learn more about [App Server Instance - AppIPV4intvl (Set the parameter net.ipv4
 
 ### Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads
 
-Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7ms.
+Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7 ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7 ms.
 
 Learn more about [Database Instance - NIC_0001_DB (Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads)](https://launchpad.support.sap.com/#/notes/1928533).
 
 ### Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads
 
-Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7ms.
+Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7 ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7 ms.
 
 Learn more about [App Server Instance - NIC_0001 (Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -662,11 +662,11 @@ Azure Center for SAP recommendation: Ensure all NICs for a system must be attach
 
 Learn more about [App Server Instance - AllVmsHaveSameVnetApp (Azure Center for SAP recommendation: Ensure all NICs for a system are attached to the same VNET)](/azure/virtual-machines/workloads/sap/sap-deployment-checklist#:~:text=this%20article.-,Networking,-.).
 
-### Azure Center for SAP recommendation: Swap space on HANA systems must be 2GB
+### Azure Center for SAP recommendation: Swap space on HANA systems must be 2 GB
 
-Azure Center for SAP solutions recommendation: Swap space on HANA systems must be 2GB.
+Azure Center for SAP solutions recommendation: Swap space on HANA systems must be 2 GB.
 
-Learn more about [Database Instance - SwapSpaceForSap (Azure Center for SAP recommendation: Swap space on HANA systems must be 2GB)](https://launchpad.support.sap.com/#/notes/1999997).
+Learn more about [Database Instance - SwapSpaceForSap (Azure Center for SAP recommendation: Swap space on HANA systems must be 2 GB)](https://launchpad.support.sap.com/#/notes/1999997).
 
 ### Azure Center for SAP recommendation: Ensure all NICs for a system are attached to the same VNET
 
@@ -726,7 +726,7 @@ Learn more about [Capacity Pool - Azure NetApp Files Cool Access SDK version rec
 
 ### Large Volumes SDK Recommendation
 
-The minimum SDK version of 2022-xx-xx is recommended for automation of large volume creation, resizing and deletion.
+The minimum SDK version of 2022-xx-xx is recommended for automation of large volume creation, resizing, and deletion.
 
 Learn more about [Volume - Large Volumes SDK Recommendation](/azure/azure-netapp-files/azure-netapp-files-resource-limits).
 
@@ -738,7 +738,7 @@ Learn more about [Storage Account - StorageAccountScaleTarget (Prevent hitting s
 
 ### Update to newer releases of the Storage Java v12 SDK for better reliability.
 
-We noticed that one or more of your applications use an older version of the Azure Storage Java v12 SDK to write data to Azure Storage. Unfortunately, the version of the SDK being used has a critical issue that uploads incorrect data during retries (for example, in case of HTTP 500 errors), resulting in an invalid object being written. The issue is fixed in newer releases of the Java v12 SDK.
+We noticed that one or more of your applications use an older version of the Azure Storage Java v12 SDK to write data to Azure Storage. Unfortunately, the version of the used SDK has a critical issue that uploads incorrect data during retries (for example, in case of HTTP 500 errors), resulting in an invalid object being written. The issue is fixed in newer releases of the Java v12 SDK.
 
 Learn more about [Storage Account - UpdateStorageJavaSDK (Update to newer releases of the Storage Java v12 SDK for better reliability.)](/azure/developer/java/sdk/?view=azure-java-stable&preserve-view=true).
 
@@ -746,19 +746,19 @@ Learn more about [Storage Account - UpdateStorageJavaSDK (Update to newer releas
 
 ### Permissions missing for start VM on connect
 
-We have determined you enabled start VM on connect but didn't grant the Azure Virtual Desktop the rights to power manage VMs in your subscription. As a result your users connecting to host pools won't receive a remote desktop session. Review feature documentation for requirements.
+We determined you enabled start VM on connect but didn't grant the Azure Virtual Desktop the rights to power manage VMs in your subscription. As a result your users connecting to host pools won't receive a remote desktop session. Review feature documentation for requirements.
 
 Learn more about [Host Pool - AVDStartVMonConnect (Permissions missing for start VM on connect)](https://aka.ms/AVDStartVMRequirement).
 
 ### No validation environment enabled
 
-We have determined that you do not have a validation environment enabled in current subscription. When creating your host pools, you have selected "No" for "Validation environment" in the properties tab. Having at least one host pool with a validation environment enabled ensures the business continuity through Azure Virtual Desktop service deployments with early detection of potential issues.
+We determined that you don't have a validation environment enabled in current subscription. When creating your host pools, you selected "No" for "Validation environment" in the properties tab. Having at least one host pool with a validation environment enabled ensures the business continuity through Azure Virtual Desktop service deployments with early detection of potential issues.
 
 Learn more about [Host Pool - ValidationEnvHostPools (No validation environment enabled)](/azure/virtual-desktop/create-validation-host-pool).
 
 ### Not enough production environments enabled
 
-We have determined that too many of your host pools have Validation Environment enabled. In order for Validation Environments to best serve their purpose, you must have at least one, but never more than half of your host pools in Validation Environment. By having a healthy balance between your host pools with Validation Environment enabled and those with it disabled, you're best able to utilize the benefits of the multistage deployments that Azure Virtual Desktop offers with certain updates. To fix this issue, open your host pool's properties and select "No" next to the "Validation Environment" setting.
+We determined that too many of your host pools have Validation Environment enabled. In order for Validation Environments to best serve their purpose, you must have at least one, but never more than half of your host pools in Validation Environment. By having a healthy balance between your host pools with Validation Environment enabled and those with it disabled, you're best able to utilize the benefits of the multistage deployments that Azure Virtual Desktop offers with certain updates. To fix this issue, open your host pool's properties and select "No" next to the "Validation Environment" setting.
 
 Learn more about [Host Pool - ProductionEnvHostPools (Not enough production environments enabled)](/azure/virtual-desktop/create-host-pools-powershell).
 
@@ -766,21 +766,21 @@ Learn more about [Host Pool - ProductionEnvHostPools (Not enough production envi
 
 ### Set up staging environments in Azure App Service
 
-Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless, no requests are dropped because of swap operations.
+Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless. No requests are dropped because of swap operations.
 
-Learn more about [App service - AzureAppService-StagingEnv (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
+Learn more about [App Service - AzureAppService-StagingEnv (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
 
 ### Update Service Connector API Version
 
-We have identified API calls from outdated Service Connector API for resources under this subscription. We recommend switching to the latest Service Connector API version. You need to update your existing code or tools to use the latest API version.
+We identified API calls from outdated Service Connector API for resources under this subscription. We recommend switching to the latest Service Connector API version. You need to update your existing code or tools to use the latest API version.
 
-Learn more about [App service - UpgradeServiceConnectorAPI (Update Service Connector API Version)](/azure/service-connector).
+Learn more about [App Service - UpgradeServiceConnectorAPI (Update Service Connector API Version)](/azure/service-connector).
 
 ### Update Service Connector SDK to the latest version
 
-We have identified API calls from an outdated Service Connector SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
+We identified API calls from an outdated Service Connector SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
 
-Learn more about [App service - UpgradeServiceConnectorSDK (Update Service Connector SDK to the latest version)](/azure/service-connector).
+Learn more about [App Service - UpgradeServiceConnectorSDK (Update Service Connector SDK to the latest version)](/azure/service-connector).
 
 ## Next steps
 

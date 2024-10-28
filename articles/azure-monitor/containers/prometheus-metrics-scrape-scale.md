@@ -16,7 +16,7 @@ The CPU and memory usage is correlated with the number of bytes of each sample a
 
 The upper volume limit per pod is currently about 3-3.5 million samples per minute, depending on the number of bytes per sample. This limitation is addressed when sharding is added in future.
 
-The agent consists of a deployment with one replica and DaemonSet for scraping metrics. The DaemonSet scrapes any node-level targets such as cAdvisor, kubelet, and node exporter. You can also configure it to scrape any custom targets at the node level with static configs. The replicaset scrapes everything else such as kube-state-metrics or custom scrape jobs that utilize service discovery.
+The agent consists of a deployment with one replica and DaemonSet for scraping metrics. The DaemonSet scrapes any node-level targets such as cAdvisor, kubelet, and node exporter. You can also configure it to scrape any custom targets at the node level with static configs. The replica set scrapes everything else such as kube-state-metrics or custom scrape jobs that utilize service discovery.
 
 ## Comparison between small and large cluster for replica
 
@@ -38,7 +38,7 @@ For more custom metrics, the single pod behaves the same as the replica pod depe
 
 ## Schedule ama-metrics replica pod on a node pool with more resources 
 
-A large volume of metrics per pod requires a large enough node to be able to handle the CPU and memory usage required. If the *ama-metrics* replica pod doesn't get scheduled on a node or nodepool that has enough resources, it might keep getting OOMKilled and go to CrashLoopBackoff. In order to overcome this issue, if you have a node or nodepool on your cluster that has higher resources (in [system node pool](/azure/aks/use-system-pools#system-and-user-node-pools)) and want to get the replica scheduled on that node, you can add the label `azuremonitor/metrics.replica.preferred=true` on the node and the replica pod will get scheduled on this node. Also you can create additional system pool(s), if needed, with larger nodes and can add the same label to their node(s) or nodepool. It's also better to add labels to [nodepool](/azure/aks/use-labels#updating-labels-on-existing-node-pools) rather than nodes so newer nodes in the same pool can also be used for scheduling when this label is applicable to all nodes in the pool.
+A large volume of metrics per pod requires a large enough node to be able to handle the CPU and memory usage required. If the *ama-metrics* replica pod doesn't get scheduled on a node or node pool that has enough resources, it might keep getting OOMKilled and go to CrashLoopBackoff. In order to overcome this issue, if you have a node or node pool on your cluster that has higher resources (in [system node pool](/azure/aks/use-system-pools#system-and-user-node-pools)) and want to get the replica scheduled on that node, you can add the label `azuremonitor/metrics.replica.preferred=true` on the node. Also you can create extra system pool(s), if needed, with larger nodes and can add the same label to their node(s) or node pool. It's also better to add labels to [node pool](/azure/aks/use-labels#updating-labels-on-existing-node-pools) rather than nodes so newer nodes in the same pool can also be used for scheduling when this label is applicable to all nodes in the pool.
 
 ```
 kubectl label nodes <node-name> azuremonitor/metrics.replica.preferred="true"
