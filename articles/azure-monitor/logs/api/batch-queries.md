@@ -139,7 +139,7 @@ An entire batch request only fails if:
 
 * The JSON format of the outer payload isn't valid.
 * Authentication fails: The user doesn't provide an authentication token, or the token is invalid.
-* Individual request objects in the batch don't have required properties, or there are duplicate IDs.
+* Individual request objects in the batch don't have the required properties, or there are duplicate IDs.
 
 Under these conditions, the shape of the response is different from the normal container. The objects contained within the batch object may each fail or succeed independently, see the following example errors.
 
@@ -147,7 +147,7 @@ Under these conditions, the shape of the response is different from the normal c
 
 This list is a nonexhaustive list of examples of possible errors and their meanings.
 
-* 400 - Malformed request. The outer request object was not valid JSON.
+* **400 - Malformed request.** The outer request object wasn't valid JSON.
 
     ```json
     {
@@ -169,7 +169,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
     }
     ```
 
-* 403 - Forbidden. The token provided does not have access to the resource you are trying to access. Make sure that your token request has the correct resource, and you have granted permissions for your Microsoft Entra application.
+* **403 - Forbidden.** The token provided doesn't have access to the resource you're trying to access. Make sure that your token request has the correct resource, and you've granted permissions for your Microsoft Entra application.
 
     ```json
     {
@@ -184,7 +184,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
     }
     ```
 
-* 204 - Not Placed. You have no data for the API to pull in the backing store. As a 2xx this is technically a successful request. However, in a batch, it's useful to note the error.
+* **204 - Not Placed.** You have no data for the API to pull in the backing store. As a 2xx error, this is technically a successful request. However, in a batch, it's useful to note the error.
 
     ```json
     {
@@ -202,7 +202,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
     }
     ```
 
-* 404 - Not found. The query path does not exist. This error can also occur in a batch if you specify an invalid HTTP method in the individual request.
+* **404 - Not found. The query path does not exist.**  This error can also occur in a batch if you specify an invalid HTTP method in the individual request.
 
     ```json
     {
@@ -221,7 +221,7 @@ This list is a nonexhaustive list of examples of possible errors and their meani
     }
     ```
 
-* 400 - Failed to resolve resource. The GUID representing the workspace is incorrect.
+* **400 - Failed to resolve resource.** The GUID representing the workspace is incorrect.
 
     ```json
     {
