@@ -30,9 +30,9 @@ You can:
 
 ## Call the delete data API to delete data from a specific table
 
+Use this: 
 
-
-```json 
+```http  
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.
 OperationalInsights/workspaces/{workspace}/tables/{table}/deleteData?api-version=2023-09-01
 ```
@@ -63,7 +63,7 @@ Where:
 
 Operations are executed asynchronously. To check the status of operation:
  
- ```json 
+```http
 https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
 OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
 ```
