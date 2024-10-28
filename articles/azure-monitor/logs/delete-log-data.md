@@ -35,8 +35,11 @@ Users can request to delete data in a table using a list of columns, operators, 
 ```json 
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.
 OperationalInsights/workspaces/{workspace}/tables/{table}/deleteData?api-version=2023-09-01
-Authorization: {{credential}}
- 
+```
+
+Specify filters in the body of the API call:
+
+```json 
 {
   "filters": [
     {
