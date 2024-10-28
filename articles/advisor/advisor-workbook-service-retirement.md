@@ -2,7 +2,7 @@
 title: Service Retirement workbook
 description: Use Azure Advisor to plan the migration of the workloads impacted by service retirements.
 ms.topic: article
-ms.date: 10/22/2024
+ms.date: 10/28/2024
 
 ---
 
