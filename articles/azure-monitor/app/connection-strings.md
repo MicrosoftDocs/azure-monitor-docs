@@ -45,6 +45,9 @@ The connection has a maximum supported length of 4,096 characters.
 A connection string consists of a list of settings represented as key-value pairs separated by a semicolon:
 `key1=value1;key2=value2;key3=value3`
 
+> [!TIP]
+> Some key-value pairs are not configurable and are set automatically, such as `ApplicationId`. These can be safely ignored if they're observed in your environment.
+
 ### Syntax
 
 * `InstrumentationKey` (for example, 00000000-0000-0000-0000-000000000000).
