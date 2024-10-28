@@ -30,14 +30,14 @@ You can:
 
 ## Call the delete data API to delete data from a specific table
 
-Users can request to delete data in a table using a list of columns, operators, and values as query filter -  Supported operators are ==, =~, in, in~, >, >=, <, <=, between, and have the same behavior as they would in a KQL query. For example:
+
 
 ```json 
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.
 OperationalInsights/workspaces/{workspace}/tables/{table}/deleteData?api-version=2023-09-01
 ```
 
-Specify filters in the body of the API call:
+Specify filters in the body of the API call - for example:
 
 ```json 
 {
@@ -50,6 +50,14 @@ Specify filters in the body of the API call:
   ]
 }
 ```
+
+Where:
+
+- `column` - 
+- `operator` - Supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. 
+- `value` - 
+
+
 
 ## Check delete data operation status 
 
