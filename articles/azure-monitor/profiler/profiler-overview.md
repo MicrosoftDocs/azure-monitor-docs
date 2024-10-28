@@ -26,7 +26,7 @@ Each of these triggers can be [configured, enabled, or disabled](./profiler-sett
 
 ## Sampling rate and overhead 
 
-Profiler randomly runs two minutes per hour on each virtual machine hosting applications with Profiler enabled.
+By default, Profiler actively collects traces every hour for 30 seconds or during periods of high CPU or memory usage for 30 seconds. The hourly traces (called sampling) are great for proactive tuning, while the high CPU and memory traces (called triggers) are useful for reactive troubleshooting.
 
 [!INCLUDE [profiler-overhead](./includes/profiler-overhead.md)]
 
