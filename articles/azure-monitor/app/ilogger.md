@@ -170,10 +170,10 @@ If any other type is used as a scope, it's stored under the property `Scope` in 
 
 **Viewing ILogger Telemetry**
 
-In the Azure Portal:
+In the Azure portal:
 
-1. Go to the Azure Portal and access your Application Insights resource.
-1. Click on the "Logs" section inside Application Insights.
+1. Go to the Azure portal and access your Application Insights resource.
+1. Click on the **Logs** section inside Application Insights.
 1. Use Kusto Query Language (KQL) to query ILogger messages, usually stored in the `traces` table.
     Example Query: `traces | where message contains "YourSearchTerm"`.
 1. Refine your queries to filter ILogger data by severity, time range, or specific message content.
@@ -181,9 +181,9 @@ In the Azure Portal:
 In Visual Studio (Local Debugger):
 
 1. Start your application in debug mode within Visual Studio.
-1. Open the "Diagnostic Tools" window while the application runs.
-1. In the "Events" tab, ILogger logs appear along with other telemetry data.
-1. Utilize the search and filter features in the "Diagnostic Tools" window to locate specific ILogger messages.
+1. Open the **Diagnostic Tools** window while the application runs.
+1. In the **Events** tab, ILogger logs appear along with other telemetry data.
+1. To locate specific ILogger messages, use the search and filter features in the **Diagnostic Tools** window.
 
 If you prefer to always send `TraceTelemetry`, use this snippet:
 

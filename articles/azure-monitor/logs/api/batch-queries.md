@@ -25,12 +25,12 @@ Authorization: Bearer <user token>
 
 The body of the request is an array of objects containing the following properties:
 
-* id
-* headers
-* body
-* method
-* path
-* workspace
+* `id`
+* `headers`
+* `body`
+* `method`
+* `path`
+* `workspace`
  
 **Example:**
 
@@ -133,7 +133,7 @@ The batch returns successfully even when the results of its member queries may b
 
 ## Behavior and errors
 
-The order of responses inside the returned object isn't related to the order in the request. It is determined by time it takes each individual query to complete. Use IDs to map the query response objects to the original requests. Don't assume that the query responses are in order.
+The order of responses inside the returned object isn't related to the order in the request. It's determined by time it takes each individual query to complete. Use IDs to map the query response objects to the original requests. Don't assume that the query responses are in order.
 
 An entire batch request only fails if:
 
@@ -141,11 +141,11 @@ An entire batch request only fails if:
 * Authentication fails: The user doesn't provide an authentication token, or the token is invalid.
 * Individual request objects in the batch don't have required properties, or there are duplicate IDs.
 
-Under these conditions, the shape of the response will be different from the normal container. The objects contained within the batch object may each fail or succeed independently. See below for an example.
+Under these conditions, the shape of the response is different from the normal container. The objects contained within the batch object may each fail or succeed independently, see the following example errors.
 
 ## Example errors
 
-This list is a non-exhaustive list of examples of possible errors and their meanings.
+This list is a nonexhaustive list of examples of possible errors and their meanings.
 
 * 400 - Malformed request. The outer request object was not valid JSON.
 

@@ -18,13 +18,13 @@ This article provides details for configuring the [Log Analytics agent for Linux
 
 ## MySQL
 
-If MySQL Server or MariaDB Server is detected on the computer when the Log Analytics agent is installed, a performance monitoring provider for MySQL Server will be automatically installed. This provider connects to the local MySQL/MariaDB server to expose performance statistics. MySQL user credentials must be configured so that the provider can access the MySQL Server.
+If MySQL Server or MariaDB Server is detected on the computer when the Log Analytics agent is installed, a performance monitoring provider for MySQL Server is automatically installed. This provider connects to the local MySQL/MariaDB server to expose performance statistics. MySQL user credentials must be configured so that the provider can access the MySQL Server.
 
 ### Configure MySQL credentials
 
-The MySQL OMI provider requires a preconfigured MySQL user and installed MySQL client libraries in order to query the performance and health information from the MySQL instance. These credentials are stored in an authentication file that's stored on the Linux agent. The authentication file specifies what bind-address and port the MySQL instance is listening on and what credentials to use to gather metrics.
+The MySQL OMI provider requires a preconfigured MySQL user and installed MySQL client libraries in order to query the performance and health information from the MySQL instance. These credentials are stored in an authentication file stored on the Linux agent. The authentication file specifies what bind-address and port the MySQL instance is listening on and what credentials to use to gather metrics.
 
-During installation of the Log Analytics agent for Linux the MySQL OMI provider will scan MySQL my.cnf configuration files (default locations) for bind-address and port and partially set the MySQL OMI authentication file.
+During installation of the Log Analytics agent for Linux, the MySQL OMI provider scans MySQL my.cnf configuration files (default locations) for bind-address and port and partially set the MySQL OMI authentication file.
 
 The MySQL authentication file is stored at `/var/opt/microsoft/mysql-cimprov/auth/omsagent/mysql-auth`.
 
@@ -41,17 +41,17 @@ AutoUpdate=[true|false]
 
 The entries in the authentication file are described in the following table.
 
-| Property                | Description                                                                                                                                         |
-|:------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Port                    | Represents the current port the MySQL instance is listening on. Port 0 specifies that the properties following are used for default instance.       |
-| Bind-Address            | Current MySQL bind-address.                                                                                                                         |
-| username                | MySQL user used to use to monitor the MySQL server instance.                                                                                        |
-| Base64 encoded Password | Password of the MySQL monitoring user encoded in Base64.                                                                                            |
-| AutoUpdate              | Specifies whether to rescan for changes in the my.cnf file and overwrite the MySQL OMI Authentication file when the MySQL OMI Provider is upgraded. |
+| Property                | Description                                                                                                                                           |
+|:------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Port                    | Represents the current port the MySQL instance is listening on. Port 0 specifies that the properties following are used for default instance.         |
+| Bind-Address            | Current MySQL bind-address.                                                                                                                           |
+| username                | MySQL user used to use to monitor the MySQL server instance.                                                                                          |
+| Base64 encoded Password | Password of the MySQL monitoring user encoded in Base64.                                                                                              |
+| AutoUpdate              | Specifies whether to rescan for changes in the *my.cnf* file and overwrite the MySQL OMI Authentication file when the MySQL OMI Provider is upgraded. |
 
 ### Default instance
 
-The MySQL OMI authentication file can define a default instance and port number to make managing multiple MySQL instances on one Linux host easier.  The default instance is denoted by an instance with port 0. All additional instances will inherit properties set from the default instance unless they specify different values. For example, if MySQL instance listening on port ‘3308’ is added, the default instance’s bind-address, username, and Base64 encoded password will be used to try and monitor the instance listening on 3308. If the instance on 3308 is bound to another address and uses the same MySQL username and password pair only the bind-address is needed, and the other properties will be inherited.
+The MySQL OMI authentication file can define a default instance and port number to make managing multiple MySQL instances on one Linux host easier.  The default instance is denoted by an instance with port 0. All other instances inherit properties set from the default instance unless they specify different values. For example, if MySQL instance listening on port ‘3308’ is added, the default instance’s bind-address, username, and Base64 encoded password are used to try and monitor the instance listening on 3308. If the instance on 3308 is bound to another address and uses the same MySQL username and password pair only the bind-address is needed, and the other properties are inherited.
 
 The following table has example instance settings.
 
@@ -72,15 +72,15 @@ Included with the installation of the MySQL OMI provider is a MySQL OMI authenti
 The following table provides details on the syntax for using mycimprovauth.
 
 | Operation | Example | Description |
-|:--|:--|:--|
-| autoupdate *false or true* | mycimprovauth autoupdate false | Sets whether or not the authentication file will be automatically updated on restart or update. |
-| default *bind-address username password* | mycimprovauth default 127.0.0.1 root pwd | Sets the default instance in the MySQL OMI authentication file.<br>The password field should be entered in plain text - the password in the MySQL OMI authentication file will be Base 64 encoded. |
+|:----------|:--------|:------------|
+| autoupdate *false or true* | mycimprovauth autoupdate false | Sets whether or not the authentication file is automatically updated on restart or update. |
+| default *bind-address username password* | mycimprovauth default 127.0.0.1 root pwd | Sets the default instance in the MySQL OMI authentication file.<br>The password field should be entered in plain text - the password in the MySQL OMI authentication file is Base 64 encoded. |
 | delete *default or port_num* | mycimprovauth 3308 | Deletes the specified instance by either default or by port number. |
-| help | mycimprov help | Prints out a list of commands to use. |
-| print | mycimprov print | Prints out an easy to read MySQL OMI authentication file. |
-| update port_num *bind-address username password* | mycimprov update 3307 127.0.0.1 root pwd | Updates the specified instance or adds the instance if it does not exist. |
+| help | mycimprov help | Prints a list of commands to use. |
+| print | mycimprov print | Prints an easy to read MySQL OMI authentication file. |
+| update port_num *bind-address username password* | mycimprov update 3307 127.0.0.1 root pwd | Updates the specified instance or adds the instance if it doesn't exist. |
 
-The following example commands define a default user account for the MySQL server on localhost. The password field should be entered in plain text - the password in the MySQL OMI authentication file will be Base 64 encoded
+The following example commands define a default user account for the MySQL server on localhost. The password field should be entered in plain text - the password in the MySQL OMI authentication file is Base 64 encoded.
 
 ```console
 sudo su omsagent -c '/opt/microsoft/mysql-cimprov/bin/mycimprovauth default 127.0.0.1 <username> <password>'
@@ -138,7 +138,7 @@ Once you configure the Log Analytics agent for Linux to send data to Azure Monit
 
 ## Apache HTTP Server 
 
-If Apache HTTP Server is detected on the computer when the omsagent bundle is installed, a performance monitoring provider for Apache HTTP Server will be automatically installed. This provider relies on an Apache module that must be loaded into the Apache HTTP Server in order to access performance data. The module can be loaded with the following command:
+If Apache HTTP Server is detected on the computer when the omsagent bundle is installed, a performance monitoring provider for Apache HTTP Server is automatically installed. This provider relies on an Apache module that must be loaded into the Apache HTTP Server in order to access performance data. The module can be loaded with the following command:
 
 ```console
 sudo /opt/microsoft/apache-cimprov/bin/apache_config.sh -c
