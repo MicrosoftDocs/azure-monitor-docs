@@ -8,18 +8,16 @@ ms.date: 10/05/2023
 # Operational excellence recommendations
 
 Operational excellence recommendations in Azure Advisor can help you with: 
-- Process and workflow efficiency.
-- Resource manageability.
-- Deployment best practices. 
+
+* Process and workflow efficiency
+* Resource manageability
+* Deployment best practices
 
 You can get these recommendations on the **Operational Excellence** tab of the Advisor dashboard.
 
 1. Sign in to the [**Azure portal**](https://portal.azure.com).
-
 1. Search for and select [**Advisor**](https://aka.ms/azureadvisordashboard) from any page.
-
 1. On the **Advisor** dashboard, select the **Operational Excellence** tab.
-
 
 ## AI + machine learning
 
@@ -35,18 +33,13 @@ We have identified resources under this subscription using outdated versions of 
 
 Learn more about [Cognitive Service - ImmersiveReaderSDKRecommendation (Upgrade to the latest version of the Immersive Reader SDK)](https://aka.ms/ImmersiveReaderAzureAdvisorSDKLearnMore).
 
-
-
 ## Analytics
 
 ### Reduce the cache policy on your Data Explorer tables
 
-Reduce the table cache policy to match the usage patterns (query lookback period)
+Reduce the table cache policy to match the usage patterns (query lookback period).
 
 Learn more about [Data explorer resource - ReduceCacheForAzureDataExplorerTablesOperationalExcellence (Reduce the cache policy on your Data Explorer tables)](https://aka.ms/adxcachepolicy).
-
-
-
 
 ## Compute
 
@@ -100,7 +93,7 @@ Learn more about [Batch account - EolImage (Recreate your pool with a new image)
 
 ### Increase the number of compute resources you can deploy by 10 vCPU
 
-If quota limits are exceeded, new VM deployments are blocked until quota is increased. Increase your quota now to enable deployment of more resources. Learn More
+If quota limits are exceeded, new VM deployments are blocked until quota is increased. Increase your quota now to enable deployment of more resources.
 
 Learn more about [Virtual machine - IncreaseQuotaExperiment (Increase the number of compute resources you can deploy by 10 vCPU)](https://aka.ms/SubscriptionServiceLimits).
 
@@ -112,7 +105,7 @@ Learn more about [Virtual machine - AddMonitorProdVM (Add Azure Monitor to your 
 
 ### Excessive NTP client traffic caused by frequent DNS lookups and NTP sync for new servers, which happens often on some global NTP servers
 
-Excessive NTP client traffic caused by frequent DNS lookups and NTP sync for new servers, which happens often on some global NTP servers. Frequent DNS lookups and NTP sync can be viewed as malicious traffic and blocked by the DDOS service in the Azure environment
+Excessive NTP client traffic caused by frequent DNS lookups and NTP sync for new servers, which happens often on some global NTP servers. Frequent DNS lookups and NTP sync can be viewed as malicious traffic and blocked by the DDOS service in the Azure environment.
 
 Learn more about [Virtual machine - GetVmlistFortigateNtpIssue (Excessive NTP client traffic caused by frequent DNS lookups and NTP sync for new servers, which happens often on some global NTP servers.)](https://docs.fortinet.com/document/fortigate/6.2.3/fortios-release-notes/236526/known-issues).
 
@@ -124,7 +117,7 @@ Learn more about [Virtual machine - NvaCheckpointNicServicing (An Azure environm
 
 ### The iControl REST interface has an unauthenticated remote command execution vulnerability
 
-An unauthenticated remote command execution vulnerability allows for unauthenticated attackers with network access to the iControl REST interface, through the BIG-IP management interface and self IP addresses, to execute arbitrary system commands, create or delete files, and disable services. This vulnerability can only be exploited through the control plane and can't be exploited through the data plane. Exploitation can lead to complete system compromise. The BIG-IP system in Appliance mode is also vulnerable
+An unauthenticated remote command execution vulnerability allows for unauthenticated attackers with network access to the iControl REST interface, through the BIG-IP management interface and self IP addresses, to execute arbitrary system commands, create or delete files, and disable services. This vulnerability can only be exploited through the control plane and can't be exploited through the data plane. Exploitation can lead to complete system compromise. The BIG-IP system in Appliance mode is also vulnerable.
 
 Learn more about [Virtual machine - GetF5vulnK03009991 (The iControl REST interface has an unauthenticated remote command execution vulnerability.)](https://support.f5.com/csp/article/K03009991).
 
@@ -152,21 +145,17 @@ We have identified API calls from outdated Azure Spring Cloud API for resources 
 
 Learn more about [Spring Cloud Service - UpgradeAzureSpringCloudAPI (Update Azure Spring Cloud API Version)](/azure/spring-cloud).
 
-
-
-
-
 ## Containers
 
-### The api version you use for Microsoft.App is deprecated,  use latest api version
+### The API version you use for Microsoft.App is deprecated, use latest API version
 
-The api version you use for Microsoft.App is deprecated,  use latest api version
+The API version you use for Microsoft.App is deprecated,  use latest API version.
 
-Learn more about [Microsoft App Container App - UseLatestApiVersion (The api version you use for Microsoft.App is deprecated,  use latest api version)](https://aka.ms/containerappsapiversion).
+Learn more about [Microsoft App Container App - UseLatestApiVersion (The API version you use for Microsoft.App is deprecated, use latest API version)](https://aka.ms/containerappsapiversion).
 
 ### Update cluster's service principal
 
-This cluster's service principal is expired and the cluster isn't healthy until the service principal is updated
+This cluster's service principal is expired and the cluster isn't healthy until the service principal is updated.
 
 Learn more about [Kubernetes service - UpdateServicePrincipal (Update cluster's service principal)](/azure/aks/update-credentials).
 
@@ -184,7 +173,7 @@ Learn more about [Kubernetes service - DeprecatedKubernetesAPIIn116IsFound (Depr
 
 ### Enable the Cluster Autoscaler
 
-This cluster has not enabled AKS Cluster Autoscaler, and it can't adapt to changing load conditions unless you have other ways to autoscale your cluster
+This cluster has not enabled AKS Cluster Autoscaler, and it can't adapt to changing load conditions unless you have other ways to autoscale your cluster.
 
 Learn more about [Kubernetes service - EnableClusterAutoscaler (Enable the Cluster Autoscaler)](/azure/aks/cluster-autoscaler).
 
@@ -196,19 +185,19 @@ Learn more about [Kubernetes service - NodeSubnetIsFull (The AKS node pool subne
 
 ### Expired ETCD cert
 
-Expired ETCD cert,  update.
+Expired ETCD cert, update.
 
 Learn more about [Kubernetes service - ExpiredETCDCertPre03012022 (Expired ETCD cert)](https://aka.ms/AKSUpdateCredentials).
 
 ### Disable the Application Routing Addon
 
-This cluster has Pod Security Policies enabled, which are going to be deprecated in favor of Azure Policy for AKS
+This cluster has Pod Security Policies enabled, which are going to be deprecated in favor of Azure Policy for AKS.
 
 Learn more about [Kubernetes service - UseAzurePolicyForKubernetes (Disable the Application Routing Addon)](/azure/aks/use-pod-security-on-azure-policy).
 
 ### Use Ephemeral OS disk
 
-This cluster isn't using ephemeral OS disks which can provide lower read/write latency, along with faster node scaling and cluster upgrades
+This cluster isn't using ephemeral OS disks which can provide lower read/write latency, along with faster node scaling and cluster upgrades.
 
 Learn more about [Kubernetes service - UseEphemeralOSdisk (Use Ephemeral OS disk)](/azure/aks/concepts-storage#ephemeral-os-disk).
 
@@ -229,8 +218,6 @@ Learn more about [Kubernetes service - Free and Standard Tier](/azure/aks/free-s
 Deprecated Kubernetes API in 1.22 has been found. Avoid using deprecated APIs.
 
 Learn more about [Kubernetes service - DeprecatedKubernetesAPIIn122IsFound (Deprecated Kubernetes API in 1.22 has been found)](https://aka.ms/aks-deprecated-k8s-api-1.22).
-
-
 
 ## Databases
 
@@ -264,8 +251,6 @@ Your account has collections that could benefit from enabling partition merge. M
 
 Learn more about [Cosmos DB account - CosmosDBPartitionMerge (Enable partition merge to configure an optimal database partition layout)](/azure/cosmos-db/merge?tabs=azure-powershell).
 
-
-
 ### Your Azure Database for MySQL - Flexible Server is vulnerable using weak, deprecated TLSv1 or TLSv1.1 protocols
 
 To support modern security standards, MySQL community edition discontinued the support for communication over Transport Layer Security (TLS) 1.0 and 1.1 protocols. Microsoft also stopped supporting connections over TLSv1 and TLSv1.1 to Azure Database for MySQL - Flexible server to comply with the modern security standards. We recommend you upgrade your client driver to support TLSv1.2.
@@ -286,20 +271,19 @@ Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServer
 
 ### Apply resource delete lock
 
-Lock your MySQL Flexible Server to protect from accidental user deletions and modifications
+Lock your MySQL Flexible Server to protect from accidental user deletions and modifications.
 
 Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerResourceLockbe19e (Apply resource delete lock)](/azure/azure-resource-manager/management/lock-resources).
 
 ### Add firewall rules for MySQL Flexible Server
 
-Add firewall rules to protect your server from unauthorized access
+Add firewall rules to protect your server from unauthorized access.
 
 Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerNoFirewallRule6e523 (Add firewall rules for MySQL Flexible Server)](/azure/mysql/flexible-server/how-to-manage-firewall-portal).
 
-
 ### Injecting a cache into a virtual network (VNet) imposes complex requirements on your network configuration, which is a common source of incidents affecting customer applications
 
-Injecting a cache into a virtual network (VNet) imposes complex requirements on your network configuration. It's difficult to configure the network accurately and avoid affecting cache functionality. It's easy to break the cache accidentally while making configuration changes for other network resources, which is a common source of incidents affecting customer applications
+Injecting a cache into a virtual network (VNet) imposes complex requirements on your network configuration. It's difficult to configure the network accurately and avoid affecting cache functionality. It's easy to break the cache accidentally while making configuration changes for other network resources, which is a common source of incidents affecting customer applications.
 
 Learn more about [Redis Cache Server - PrivateLink (Injecting a cache into a virtual network (VNet) imposes complex requirements on your network configuration. This is a common source of incidents affecting customer applications)](https://aka.ms/VnetToPrivateLink).
 
@@ -317,7 +301,7 @@ Learn more about [Redis Cache Server - TLSVersion (TLS versions 1.0 and 1.1 are 
 
 ### Cloud service caches are being retired in August 2024, migrate before then to avoid any problems
 
-This instance of Azure Cache for Redis has a dependency on Cloud Services (classic) which is being retired in August 2024. Follow the instructions found in the following link to migrate to an instance without this dependency. If you need to upgrade your cache to Redis 6  note that upgrading a cache with a dependency on cloud services isn't supported. You must migrate your cache instance to Virtual Machine Scale Set before upgrading. For more information, see the following link. Note: If you have completed your migration away from Cloud Services,  allow up to 24 hours for this recommendation to be removed
+This instance of Azure Cache for Redis has a dependency on Cloud Services (classic) which is being retired in August 2024. Follow the instructions found in the following link to migrate to an instance without this dependency. If you need to upgrade your cache to Redis 6  note that upgrading a cache with a dependency on cloud services isn't supported. You must migrate your cache instance to Virtual Machine Scale Set before upgrading. For more information, see the following link. Note: If you have completed your migration away from Cloud Services,  allow up to 24 hours for this recommendation to be removed.
 
 Learn more about [Redis Cache Server - MigrateFromCloudService (Cloud service caches are being retired in August 2024, migrate before then to avoid any problems)](/azure/azure-cache-for-redis/cache-faq#caches-with-a-dependency-on-cloud-services-%28classic%29).
 
@@ -339,48 +323,43 @@ This instance of Azure Cache for Redis is using one or more advanced features fr
 
 Learn more about [Redis Cache Server - ConsiderUsingRedisEnterprise (You might benefit from using an Enterprise tier cache instance)](https://aka.ms/redisenterpriseupgrade).
 
-
-
-
-
 ## Integration
 
 ### Use Azure AD-based authentication for more fine-grained control and simplified management
 
 You can use Azure AD-based authentication, instead of gateway tokens, which allows you to use standard procedures to create, assign and manage permissions and control expiry times. Additionally, you gain fine-grained control across gateway deployments and easily revoke access in case of a breach.
 
-Learn more about [Api Management - ShgwUseAdAuth (Use Azure AD-based authentication for more fine-grained control and simplified management)](https://aka.ms/apim/shgw/how-to/use-ad-auth).
+Learn more about [API Management - ShgwUseAdAuth (Use Azure AD-based authentication for more fine-grained control and simplified management)](https://aka.ms/apim/shgw/how-to/use-ad-auth).
 
 ### Validate JWT policy is being used with security keys that have insecure key size for validating Json Web Token (JWT).
 
 Validate JWT policy is being used with security keys that have insecure key size for validating Json Web Token (JWT). We recommend using longer key sizes to improve security for JWT-based authentication & authorization.
 
-Learn more about [Api Management - validate-jwt-with-insecure-key-size (Validate JWT policy is being used with security keys that have insecure key size for validating Json Web Token (JWT).)]().
+Learn more about [API Management - validate-jwt-with-insecure-key-size (Validate JWT policy is being used with security keys that have insecure key size for validating Json Web Token (JWT).)]().
 
 ### Use self-hosted gateway v2
 
 We have identified one or more instances of your self-hosted gateway(s) that are using a deprecated version of the self-hosted gateway (v0.x and/or v1.x).
 
-Learn more about [Api Management - shgw-legacy-image-usage (Use self-hosted gateway v2)](https://aka.ms/apim/shgw/migration/v2).
+Learn more about [API Management - shgw-legacy-image-usage (Use self-hosted gateway v2)](https://aka.ms/apim/shgw/migration/v2).
 
 ### Use Configuration API v2 for self-hosted gateways
 
 We have identified one or more instances of your self-hosted gateway(s) that are using the deprecated Configuration API v1.
 
-Learn more about [Api Management - shgw-config-api-v1-usage (Use Configuration API v2 for self-hosted gateways)](https://aka.ms/apim/shgw/migration/v2).
+Learn more about [API Management - shgw-config-api-v1-usage (Use Configuration API v2 for self-hosted gateways)](https://aka.ms/apim/shgw/migration/v2).
 
 ### Only allow tracing on subscriptions intended for debugging purposes. Sharing subscription keys with tracing allowed with unauthorized users could lead to disclosure of sensitive information contained in tracing logs such as keys, access tokens, passwords, internal hostnames, and IP addresses.
 
 Traces generated by Azure API Management service might contain sensitive information that is intended for service owner and must not be exposed to clients using the service. Using tracing enabled subscription keys in production or automated scenarios creates a risk of sensitive information exposure if client making call to the service requests a trace.
 
-Learn more about [Api Management - heavy-tracing-usage (Only allow tracing on subscriptions intended for debugging purposes. Sharing subscription keys with tracing allowed with unauthorized users could lead to disclosure of sensitive information contained in tracing logs such as keys, access tokens, passwords, internal hostnames, and IP addresses.)](/azure/api-management/api-management-howto-api-inspector).
+Learn more about [API Management - heavy-tracing-usage (Only allow tracing on subscriptions intended for debugging purposes. Sharing subscription keys with tracing allowed with unauthorized users could lead to disclosure of sensitive information contained in tracing logs such as keys, access tokens, passwords, internal hostnames, and IP addresses.)](/azure/api-management/api-management-howto-api-inspector).
 
 ### Self-hosted gateway instances were identified that use gateway tokens that expire soon
 
 At least one deployed self-hosted gateway instance was identified that uses a gateway token that expires in the next seven days. To ensure that it can connect to the control-plane, generate a new gateway token and update your deployed self-hosted gateways  (does not impact data-plane traffic).
 
-Learn more about [Api Management - ShgwGatewayTokenNearExpiry (Self-hosted gateway instance(s) were identified that use gateway tokens that expire soon)]().
-
+Learn more about [API Management - ShgwGatewayTokenNearExpiry (Self-hosted gateway instance(s) were identified that use gateway tokens that expire soon)]().
 
 ## Internet of Things
 
@@ -389,9 +368,6 @@ Learn more about [Api Management - ShgwGatewayTokenNearExpiry (Self-hosted gatew
 We have detected that the Fallback Route on your IoT Hub has been disabled. When the Fallback Route is disabled messages stop flowing to the default endpoint. If you're no longer able to ingest telemetry downstream consider re-enabling the Fallback Route.
 
 Learn more about [IoT hub - IoTHubFallbackDisabledAdvisor (IoT Hub Fallback Route Disabled)](/azure/iot-hub/iot-hub-devguide-messages-d2c#fallback-route).
-
-
-
 
 ## Management and governance
 
@@ -425,14 +401,11 @@ Switch to Azure Monitor based alerts for backup to leverage various benefits, su
 
 Learn more about [Recovery Services vault - SwitchToAzureMonitorAlerts (Switch to Azure Monitor based alerts for backup)](https://aka.ms/AzMonAlertsBackup).
 
-
-
-
 ## Networking
 
 ### Resolve Certificate Update issue for your Application Gateway
 
-We have detected that one or more of your Application Gateways is unable to fetch the latest version certificate present in your Key Vault. If it is intended to use a particular version of the certificate,  ignore this message.
+We have detected that one or more of your Application Gateways is unable to fetch the latest version certificate present in your Key Vault. If it is intended to use a particular version of the certificate, ignore this message.
 
 Learn more about [Application gateway - AppGwAdvisorRecommendationForCertificateUpdateErrors (Resolve Certificate Update issue for your Application Gateway)]().
 
@@ -520,7 +493,7 @@ On 31 March 2027, Azure Front Door (classic) will be retired for the public clou
 
 Beginning 1 April 2025, you’ll no longer be able to create new Front Door (classic) resources via the Azure portal, Terraform, or any command line tools. However, you can continue to make modifications to existing resources until Front Door (classic) is fully retired.
 
-Azure Front Door Standard and Premium combine the capabilities of static and dynamic content delivery with turnkey security, enhanced DevOps experiences, simplified pricing, and better Azure integrations
+Azure Front Door Standard and Premium combine the capabilities of static and dynamic content delivery with turnkey security, enhanced DevOps experiences, simplified pricing, and better Azure integrations.
 
 Learn more about [Azure Front Door (classic) will be retired on 31 March 2027](https://azure.microsoft.com/updates/azure-front-door-classic-will-be-retired-on-31-march-2027/).
 
@@ -534,13 +507,13 @@ Learn more about [Migrate Azure CDN from Microsoft (classic) to Standard/Premium
 
 ### Ensure the HANA DB VM type supports the HANA scenario in your SAP workload
 
-Correct VM type needs to be selected for the specific HANA Scenario. The HANA scenarios can be 'OLAP', 'OLTP', 'OLAP: Scaleup' and 'OLTP: Scaleup'. See SAP note 1928533 for the correct VM type for your SAP workload. The correct VM type helps ensure better performance and support for your SAP systems
+Correct VM type needs to be selected for the specific HANA Scenario. The HANA scenarios can be 'OLAP', 'OLTP', 'OLAP: Scaleup' and 'OLTP: Scaleup'. See SAP note 1928533 for the correct VM type for your SAP workload. The correct VM type helps ensure better performance and support for your SAP systems.
 
 Learn more about [Database Instance - HanaDBSupport (Ensure the HANA DB VM type supports the HANA scenario in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
 ### Ensure the Operating system in App VM is supported in combination with DB type in your SAP workload
 
-Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs to ensure better performance and support for your SAP systems
+Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs to ensure better performance and support for your SAP systems.
 
 Learn more about [App Server Instance - AppOSDBSupport (Ensure the Operating system in App VM is supported in combination with DB type in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -552,7 +525,7 @@ Learn more about [App Server Instance - AppIPV4TCPKeepAlive (Set the parameter n
 
 ### Ensure the Operating system in DB VM is supported for the DB type in your SAP workload
 
-Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs to ensure better performance and support for your SAP systems
+Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs to ensure better performance and support for your SAP systems.
 
 Learn more about [Database Instance - DBOSDBSupport (Ensure the Operating system in DB VM is supported for the DB type in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -576,7 +549,7 @@ Learn more about [App Server Instance - AppIpv4Recycle (Set the parameter net.ip
 
 ### Ensure the Operating system in ASCS VM is supported in combination with DB type in your SAP workload
 
-Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs. The correct OS-DB combinations help ensure better performance and support for your SAP systems
+Operating system in the VMs in your SAP workload need to be supported for the DB type selected. See SAP note 1928533 for the correct OS-DB combinations for the ASCS, Database and Application VMs. The correct OS-DB combinations help ensure better performance and support for your SAP systems.
 
 Learn more about [Central Server Instance - ASCSOSDBSupport (Ensure the Operating system in ASCS VM is supported in combination with DB type in your SAP workload)](https://launchpad.support.sap.com/#/notes/1928533).
 
@@ -604,23 +577,17 @@ In the Application VM OS, edit the /etc/sysctl.conf file and add net.ipv4.tcp_ke
 
 Learn more about [App Server Instance - AppIPV4intvl (Set the parameter net.ipv4.tcp_keepalive_intvl to '75' in the Application VM OS in SAP workloads)](/azure/virtual-machines/workloads/sap/high-availability-guide).
 
-
-
-
 ### Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads
 
-Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7ms
+Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7ms.
 
 Learn more about [Database Instance - NIC_0001_DB (Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads)](https://launchpad.support.sap.com/#/notes/1928533).
 
 ### Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads
 
-Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7ms
+Network latency between App VMs and DB VMs for SAP workloads is required to be 0.7ms or less. If accelerated networking isn't enabled, network latency can increase beyond the threshold of 0.7ms.
 
 Learn more about [App Server Instance - NIC_0001 (Ensure Accelerated Networking is enabled on all NICs for improved performance of SAP workloads)](https://launchpad.support.sap.com/#/notes/1928533).
-
-
-
 
 ### Azure Center for SAP recommendation: Ensure Accelerated networking is enabled on all interfaces
 
@@ -654,38 +621,38 @@ Learn more about [Database Instance - VM_0001_DB (Azure Center for SAP recommend
 
 ### Disable fstrim in SLES OS to avoid XFS metadata corruption in SAP workloads
 
-fstrim scans the filesystem and sends 'UNMAP' commands for each unused block it finds; useful in thin-provisioned system if the system is over-provisioned. Running SAP HANA on an over-provisioned storage array isn't recommended. Active fstrim can cause XFS metadata corruption See SAP note: 2205917
+fstrim scans the filesystem and sends 'UNMAP' commands for each unused block it finds; useful in thin-provisioned system if the system is over-provisioned. Running SAP HANA on an over-provisioned storage array isn't recommended. Active fstrim can cause XFS metadata corruption See SAP note: 2205917.
 
 Learn more about [App Server Instance - GetFsTrimForApp (Disable fstrim in SLES OS to avoid XFS metadata corruption in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019447).
 
 ### Disable fstrim in SLES OS to avoid XFS metadata corruption in SAP workloads
 
-fstrim scans the filesystem and sends 'UNMAP' commands for each unused block it finds; useful in thin-provisioned system if the system is over-provisioned. Running SAP HANA on an over-provisioned storage array isn't recommended. Active fstrim can cause XFS metadata corruption See SAP note: 2205917
+fstrim scans the filesystem and sends 'UNMAP' commands for each unused block it finds; useful in thin-provisioned system if the system is over-provisioned. Running SAP HANA on an over-provisioned storage array isn't recommended. Active fstrim can cause XFS metadata corruption See SAP note: 2205917.
 
 Learn more about [Central Server Instance - GetFsTrimForAscs (Disable fstrim in SLES OS to avoid XFS metadata corruption in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019447).
 
 ### Disable fstrim in SLES OS to avoid XFS metadata corruption in SAP workloads
 
-fstrim scans the filesystem and sends 'UNMAP' commands for each unused block it finds; useful in thin-provisioned system if the system is over-provisioned. Running SAP HANA on an over-provisioned storage array isn't recommended. Active fstrim can cause XFS metadata corruption See SAP note: 2205917
+fstrim scans the filesystem and sends 'UNMAP' commands for each unused block it finds; useful in thin-provisioned system if the system is over-provisioned. Running SAP HANA on an over-provisioned storage array isn't recommended. Active fstrim can cause XFS metadata corruption See SAP note: 2205917.
 
 Learn more about [Database Instance - GetFsTrimForDb (Disable fstrim in SLES OS to avoid XFS metadata corruption in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019447).
 
 ### For better performance and support, ensure HANA data filesystem type is supported for HANA DB
 
-For different volumes of SAP HANA, where asynchronous I/O is used, SAP only supports filesystems validated as part of an SAP HANA appliance certification. Using an unsupported filesystem might lead to various operational issues, e.g. hanging recovery and index server crashes. See SAP note 2972496.
+For different volumes of SAP HANA, where asynchronous I/O is used, SAP only supports filesystems validated as part of an SAP HANA appliance certification. Using an unsupported filesystem might lead to various operational issues, for example, hanging recovery and index server crashes. See SAP note 2972496.
 
 Learn more about [Database Instance - HanaDataFileSystemSupported (For better performance and support, ensure HANA data filesystem type is supported for HANA DB)](https://launchpad.support.sap.com/#/notes/2972496).
 
 ### For better performance and support, ensure HANA shared filesystem type is supported for HANA DB
 
-For different volumes of SAP HANA, where asynchronous I/O is used, SAP only supports filesystems validated as part of an SAP HANA appliance certification. Using an unsupported filesystem might lead to various operational issues, e.g. hanging recovery and index server crashes. See SAP note 2972496.
+For different volumes of SAP HANA, where asynchronous I/O is used, SAP only supports filesystems validated as part of an SAP HANA appliance certification. Using an unsupported filesystem might lead to various operational issues, for example, hanging recovery and index server crashes. See SAP note 2972496.
 
 Learn more about [Database Instance - HanaSharedFileSystem (For better performance and support, ensure HANA shared filesystem type is supported for HANA DB)](https://launchpad.support.sap.com/#/notes/2972496).
 
 
 ### For better performance and support, ensure HANA log filesystem type is supported for HANA DB
 
-For different volumes of SAP HANA, where asynchronous I/O is used, SAP only supports filesystems validated as part of an SAP HANA appliance certification. Using an unsupported filesystem might lead to various operational issues, e.g. hanging recovery and index server crashes. See SAP note 2972496.
+For different volumes of SAP HANA, where asynchronous I/O is used, SAP only supports filesystems validated as part of an SAP HANA appliance certification. Using an unsupported filesystem might lead to various operational issues, for example, hanging recovery and index server crashes. See SAP note 2972496.
 
 Learn more about [Database Instance - HanaLogFileSystemSupported (For better performance and support, ensure HANA log filesystem type is supported for HANA DB)](https://launchpad.support.sap.com/#/notes/2972496).
 
@@ -718,8 +685,6 @@ Learn more about [Database Instance - AllVmsHaveSameVnetDb (Azure Center for SAP
 Azure Center for SAP  solutions recommendation: Ensure network configuration is optimized for HANA and OS.
 
 Learn more about [Database Instance - NetworkConfigForSap (Azure Center for SAP recommendation: Ensure network configuration is optimized for HANA and OS)](https://launchpad.support.sap.com/#/notes/2382421).
-
-
 
 ## Storage
 
@@ -777,10 +742,6 @@ We noticed that one or more of your applications use an older version of the Azu
 
 Learn more about [Storage Account - UpdateStorageJavaSDK (Update to newer releases of the Storage Java v12 SDK for better reliability.)](/azure/developer/java/sdk/?view=azure-java-stable&preserve-view=true).
 
-
-
-
-
 ## Virtual desktop infrastructure
 
 ### Permissions missing for start VM on connect
@@ -801,9 +762,6 @@ We have determined that too many of your host pools have Validation Environment 
 
 Learn more about [Host Pool - ProductionEnvHostPools (Not enough production environments enabled)](/azure/virtual-desktop/create-host-pools-powershell).
 
-
-
-
 ## Web
 
 ### Set up staging environments in Azure App Service
@@ -823,11 +781,6 @@ Learn more about [App service - UpgradeServiceConnectorAPI (Update Service Conne
 We have identified API calls from an outdated Service Connector SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.
 
 Learn more about [App service - UpgradeServiceConnectorSDK (Update Service Connector SDK to the latest version)](/azure/service-connector).
-
-
-
-
-
 
 ## Next steps
 
