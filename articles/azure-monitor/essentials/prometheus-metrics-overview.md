@@ -96,7 +96,7 @@ The following Azure services support querying Prometheus metrics from an Azure M
 
 Metrics Explorer with PromQL allows you to analyze and visualize platform and Prometheus metrics. Metrics explorer supports PromQL for Prometheus metrics. Metrics Explorer with PromQL (preview) is available from the **Metrics** menu item of the Azure Monitor workspace where your Prometheus metrics are stored. For more information, see [Metrics Explorer with PromQL](./metrics-explorer.md).  
   
-:::image type="content" source="./media/prometheus-metrics-overview/metrics-explorer.png" alt-text="A screenshot showing a promql query in the Metrics explorer." lightbox="./media/prometheus-metrics-overview/metrics-explorer.png":::
+:::image type="content" source="./media/prometheus-metrics-overview/metrics-explorer.png" alt-text="A screenshot showing a PromQL query in the Metrics explorer." lightbox="./media/prometheus-metrics-overview/metrics-explorer.png":::
 
 
 ### Azure workbooks

@@ -19,7 +19,7 @@ For more information on Prometheus and Azure Monitor workspace limits and quotas
 To query Azure Monitor workspace metrics to monitor the ingestion limits, use the following steps:
 
 1. In the Azure portal, navigate to your Azure Monitor workspace and select **Metrics** under the **Monitoring** section.
-1. In the **Add metric** dropdown, select **Add with builder**
+1. In the **Add metric** dropdown, select **Add with builder**.
 1. Select the Azure Monitor workspace as scope.
 1. Select **Standard metrics** for the **Metric Namespace**.
 1. In the **Metric** drop-down, select **Active Time Series % Utilization** and **Events Per Minute Received % Utilization** and verify that they are below 100%.
@@ -36,8 +36,8 @@ See your alerts in the Azure portal by selecting **Alerts** under the **Monitori
 The alert is fired if the ingestion utilization is more than the threshold. Request an increase in the limit by creating a support ticket.
 
 To open a support ticket:
-1. Select **Support + Troubleshooting** from the left pane of the Azure portal, 
-1. Enter *Service and subscription limits (quotas)* in the search field and select **Go**,
+1. Select **Support + Troubleshooting** from the left pane of the Azure portal. 
+1. Enter *Service and subscription limits (quotas)* in the search field and select **Go**.
 1. Select **Service and subscription limits (quotas)**, select **Next**, then select **Create a new support request**.
 1. Select your subscription and then select **Managed Prometheus** as the **Quota type**.
 1. Complete the requested details and submit the request.
