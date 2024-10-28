@@ -129,7 +129,7 @@ Learn more about [Virtual machine - GetVmListANDisabled (NVA Accelerated Network
 
 ### Virtual machines with Citrix Application Delivery Controller (ADC) and accelerated networking enabled might disconnect during maintenance operation
 
-We identified that you're running a Network virtual Appliance (NVA) called Citrix Application Delivery Controller (ADC), and the NVA has accelerated networking enabled. The Virtual machine that this NVA is deployed on might experience connectivity issues during a platform maintenance operation. It's recommended that you follow the article provided by the vendor: https://aka.ms/Citrix_CTX331516
+We identified that you're running a Network virtual Appliance (NVA) called Citrix Application Delivery Controller (ADC), and the NVA has accelerated networking enabled. The Virtual machine that this NVA is deployed on might experience connectivity issues during a platform maintenance operation. We recommend following [the article provided by the vendor](https://aka.ms/Citrix_CTX331516).
 
 Learn more about [Virtual machine - GetCitrixVFRevokeError (Virtual machines with Citrix Application Delivery Controller (ADC) and accelerated networking enabled might disconnect during maintenance operation)](https://aka.ms/Citrix_CTX331516).
 
@@ -327,7 +327,7 @@ Learn more about [Redis Cache Server - ConsiderUsingRedisEnterprise (You might b
 
 ### Use Azure AD-based authentication for more fine-grained control and simplified management
 
-You can use Azure AD-based authentication, instead of gateway tokens, which allows you to use standard procedures to create, assign and manage permissions and control expiry times. Additionally, you gain fine-grained control across gateway deployments and easily revoke access in case of a breach.
+You can use Azure AD-based authentication, instead of gateway tokens, which allows you to use standard procedures to create, assign and manage permissions and control expiry times. Additionally, you gain fine-grained control across gateway deployments and easily revoke access if there is a breach.
 
 Learn more about [API Management - ShgwUseAdAuth (Use Azure AD-based authentication for more fine-grained control and simplified management)](https://aka.ms/apim/shgw/how-to/use-ad-auth).
 
@@ -339,13 +339,13 @@ Learn more about [API Management - validate-jwt-with-insecure-key-size (Validate
 
 ### Use self-hosted gateway v2
 
-We identified one or more instances of your self-hosted gateway(s) that are using a deprecated version of the self-hosted gateway (v0.x and/or v1.x).
+We identified one or more instances of your self-hosted gateways that are using a deprecated version of the self-hosted gateway (v0.x and/or v1.x).
 
 Learn more about [API Management - shgw-legacy-image-usage (Use self-hosted gateway v2)](https://aka.ms/apim/shgw/migration/v2).
 
 ### Use Configuration API v2 for self-hosted gateways
 
-We identified one or more instances of your self-hosted gateway(s) that are using the deprecated Configuration API v1.
+We identified one or more instances of your self-hosted gateways that are using the deprecated Configuration API v1.
 
 Learn more about [API Management - shgw-config-api-v1-usage (Use Configuration API v2 for self-hosted gateways)](https://aka.ms/apim/shgw/migration/v2).
 
@@ -359,7 +359,7 @@ Learn more about [API Management - heavy-tracing-usage (Only allow tracing on su
 
 At least one deployed self-hosted gateway instance was identified that uses a gateway token that expires in the next seven days. To ensure that it can connect to the control-plane, generate a new gateway token and update your deployed self-hosted gateways (doesn't impact data-plane traffic).
 
-Learn more about [API Management - ShgwGatewayTokenNearExpiry (Self-hosted gateway instance(s) were identified that use gateway tokens that expire soon)]().
+Learn more about [API Management - ShgwGatewayTokenNearExpiry (Self-hosted gateway instances were identified that use gateway tokens that expire soon)]().
 
 ## Internet of Things
 
@@ -397,7 +397,7 @@ Learn more about [Grafana Dashboard - UpdateAzureManagedGrafanaSDK (Update Azure
 
 ### Switch to Azure Monitor based alerts for backup
 
-Switch to Azure Monitor based alerts for backup to leverage various benefits, such as - standardized, at-scale alert management experiences offered by Azure, ability to route alerts to different notification channels of choice, and greater flexibility in alert configuration.
+Switch to Azure Monitor based alerts for backup to make use of various benefits, such as - standardized, at-scale alert management experiences offered by Azure, ability to route alerts to different notification channels of choice, and greater flexibility in alert configuration.
 
 Learn more about [Recovery Services vault - SwitchToAzureMonitorAlerts (Switch to Azure Monitor based alerts for backup)](https://aka.ms/AzMonAlertsBackup).
 
@@ -423,13 +423,13 @@ Learn more about [Application gateway - AppgwRestrictedSubnetSpace (Application 
 
 ### Enable Traffic Analytics to view insights into traffic patterns across Azure resources
 
-Traffic Analytics is a cloud-based solution that provides visibility into user and application activity in Azure. Traffic analytics analyzes Network Watcher network security group (NSG) flow logs to provide insights into traffic flow. With traffic analytics, you can view top talkers across Azure and non Azure deployments, investigate open ports, protocols and malicious flows in your environment and optimize your network deployment for performance. You can process flow logs at 10 minutes and 60 minutes processing intervals, giving you faster analytics on your traffic.
+Traffic Analytics is a cloud-based solution that provides visibility into user and application activity in Azure. Traffic analytics analyzes Network Watcher network security group (NSG) flow logs to provide insights into traffic flow. With traffic analytics, you can view top talkers across Azure and non Azure deployments, investigate open ports, protocols, and malicious flows in your environment and optimize your network deployment for performance. You can process flow logs at 10 minutes and 60 minutes processing intervals, giving you faster analytics on your traffic.
 
 Learn more about [Network Security Group - NSGFlowLogsenableTA (Enable Traffic Analytics to view insights into traffic patterns across Azure resources)](https://aka.ms/aa_enableta_learnmore).
 
 ### Set up staging environments in Azure App Service
 
-Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless. No requests are dropped because of swap operations.
+To ensure that all instances of the slot are warmed up before being swapped and eliminate downtime, deploy an app to a slot first and then swap it into production. The traffic redirection is seamless. No requests are dropped because of swap operations.
 
 Learn more about [Subscription - AzureApplicationService (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
 
@@ -445,11 +445,11 @@ Azure Policy is a service in Azure that you use to create, assign, and manage po
 
 Learn more about [Subscription - AllowedLocationsPolicy (Enforce 'Allowed locations' using Azure Policy)](/azure/governance/policy/overview).
 
-### Enforce 'Audit VMs that do not use managed disks' using Azure Policy
+### Enforce 'Audit VMs that don't use managed disks' using Azure Policy
 
 Azure Policy is a service in Azure that you use to create, assign, and manage policies that enforce different rules and effects over your resources. Enforce a policy that audits VMs that don't use managed disks.
 
-Learn more about [Subscription - AuditForManagedDisksPolicy (Enforce 'Audit VMs that do not use managed disks' using Azure Policy)](/azure/governance/policy/overview).
+Learn more about [Subscription - AuditForManagedDisksPolicy (Enforce 'Audit VMs that don't use managed disks' using Azure Policy)](/azure/governance/policy/overview).
 
 ### Enforce 'Allowed virtual machine SKUs' using Azure Policy
 
@@ -690,13 +690,13 @@ Learn more about [Database Instance - NetworkConfigForSap (Azure Center for SAP 
 
 ### Create a backup of HSM
 
-Create a periodic HSM backup to prevent data loss and have ability to recover the HSM in case of a disaster.
+Create a periodic HSM backup to prevent data loss and have ability to recover the HSM if there is a disaster.
 
 Learn more about [Managed HSM Service - CreateHSMBackup (Create a backup of HSM)](/azure/key-vault/managed-hsm/best-practices#create-backups).
 
 ### Application Volume Group SDK Recommendation
 
-The minimum API version for Azure NetApp Files application volume group feature must be 2022-01-01. We recommend using 2022-03-01 when possible to fully leverage the API.
+The minimum API version for Azure NetApp Files application volume group feature must be 2022-01-01. We recommend using 2022-03-01 when possible to make full use of the API.
 
 Learn more about [Volume - Application Volume Group SDK version recommendation (Application Volume Group SDK Recommendation)](https://aka.ms/anf-sdkversion).
 
@@ -738,7 +738,7 @@ Learn more about [Storage Account - StorageAccountScaleTarget (Prevent hitting s
 
 ### Update to newer releases of the Storage Java v12 SDK for better reliability.
 
-We noticed that one or more of your applications use an older version of the Azure Storage Java v12 SDK to write data to Azure Storage. Unfortunately, the version of the used SDK has a critical issue that uploads incorrect data during retries (for example, in case of HTTP 500 errors), resulting in an invalid object being written. The issue is fixed in newer releases of the Java v12 SDK.
+We noticed that one or more of your applications use an older version of the Azure Storage Java v12 SDK to write data to Azure Storage. Unfortunately, the version of the used SDK has a critical issue that uploads incorrect data during retries (for example, if there are HTTP 500 errors), resulting in an invalid object being written. The issue is fixed in newer releases of the Java v12 SDK.
 
 Learn more about [Storage Account - UpdateStorageJavaSDK (Update to newer releases of the Storage Java v12 SDK for better reliability.)](/azure/developer/java/sdk/?view=azure-java-stable&preserve-view=true).
 
@@ -746,7 +746,7 @@ Learn more about [Storage Account - UpdateStorageJavaSDK (Update to newer releas
 
 ### Permissions missing for start VM on connect
 
-We determined you enabled start VM on connect but didn't grant the Azure Virtual Desktop the rights to power manage VMs in your subscription. As a result your users connecting to host pools won't receive a remote desktop session. Review feature documentation for requirements.
+We determined you enabled start VM on connect but didn't grant the Azure Virtual Desktop the rights to power manage VMs in your subscription. As a result, your users connecting to host pools won't receive a remote desktop session. Review feature documentation for requirements.
 
 Learn more about [Host Pool - AVDStartVMonConnect (Permissions missing for start VM on connect)](https://aka.ms/AVDStartVMRequirement).
 

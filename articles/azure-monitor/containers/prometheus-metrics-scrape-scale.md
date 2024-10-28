@@ -38,7 +38,7 @@ For more custom metrics, the single pod behaves the same as the replica pod depe
 
 ## Schedule ama-metrics replica pod on a node pool with more resources 
 
-A large volume of metrics per pod needs a node with enough CPU and memory. If the *ama-metrics* replica pod isn't scheduled on a node or node pool with enough resources, it might get OOMKilled and go into CrashLoopBackoff. To fix this, you can add the label `azuremonitor/metrics.replica.preferred=true` to a node or node pool on your cluster whith higher resources (in [system node pool](/azure/aks/use-system-pools#system-and-user-node-pools)). This will ensure the replica pod gets scheduled on that node. You can also create extra system pools with larger nodes and add the same label. It's better to label node pools rather than individual nodes so new nodes in the pool can also be used for scheduling.
+A large volume of metrics per pod needs a node with enough CPU and memory. If the *ama-metrics* replica pod isn't scheduled on a node or node pool with enough resources, it might get OOMKilled and go into CrashLoopBackoff. To fix this, you can add the label `azuremonitor/metrics.replica.preferred=true` to a node or node pool on your cluster with higher resources (in [system node pool](/azure/aks/use-system-pools#system-and-user-node-pools)). This ensures the replica pod gets scheduled on that node. You can also create extra system pools with larger nodes and add the same label. It's better to label node pools rather than individual nodes so new nodes in the pool can also be used for scheduling.
 
 ```
 kubectl label nodes <node-name> azuremonitor/metrics.replica.preferred="true"
