@@ -58,7 +58,6 @@ Operations are executed asynchronously. To check the status of operation:
  ```json 
 https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
 OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
-Authorization: {{credential}}
 ```
 
 
