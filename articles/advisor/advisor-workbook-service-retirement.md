@@ -1,16 +1,16 @@
 ---
-title: Plan migration of your workloads impacted by service retirement
+title: Service Retirement workbook
 description: Use Azure Advisor to plan the migration of the workloads impacted by service retirements.
 ms.topic: article
-ms.date: 10/22/2024
+ms.date: 10/28/2024
 
 ---
 
-# Plan migration of your workloads impacted by service retirement
+# Service Retirement workbook
 
 Azure Advisor helps you assess and improve the continuity of your business-critical applications. It's important to be aware of upcoming Azure services and feature retirements to understand their impact on your workloads and plan migration.
 
-## Service Retirement workbook
+## Overview of workbook
 
 The Service Retirement workbook provides a single centralized resource level view of service retirements. It helps you assess impact, evaluate options, and plan for migration from retiring services and features. The workbook template is available in Azure Advisor gallery.
 
