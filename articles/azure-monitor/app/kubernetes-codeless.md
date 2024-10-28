@@ -104,7 +104,7 @@ At a minimum, the following configuration is required:
 
 > [!TIP]
 > - Use [annotations](#annotations) if per-deployment overrides are required. For more information, see [annotations](#annotations).
-> - [Resart deployments](#restart-deployment) for settings to take effect.
+> - [Restart deployments](#restart-deployment) for settings to take effect.
 
 ### Per-deployment onboarding
 
