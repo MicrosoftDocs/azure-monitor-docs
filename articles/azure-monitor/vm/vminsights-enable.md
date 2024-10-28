@@ -12,41 +12,24 @@ ms.custom: references_regions
 
 # Enable VM Insights
 
-This article provides an overview of how to enable VM Insights in Azure Monitor. 
-
-## Supported machines
-
-- Azure virtual machines
-- Azure Virtual Machine Scale Sets
-- Hybrid virtual machines connected with Azure Arc
-  - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
-
-## Supported operating systems
-
-- VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
-- The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2019, except Windows Server 2008 SP2 and Azure Stack HCI.
-- For Dependency Agent Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
-
-> [!IMPORTANT]
-> If the Ethernet device for your virtual machine has more than nine characters, it won't be recognized by VM Insights and data won't be sent to the InsightsMetrics table. The agent will collect data from [other sources](../agents/agent-data-sources.md).
+This article provides details on enabling VM Insights in Azure Monitor using different methods including the Azure portal, ARM templates, and PowerShell script.
 
 ## Prerequisites
 
-- [Log Analytics workspace](../logs/quick-create-workspace.md).
+- You must have a [Log Analytics workspace](../logs/quick-create-workspace.md) to store data collected by VM insights. You can create a new workspace if you enable using the Azure portal.
 - See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. 
-- See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md) to verify that your operating system is supported by Dependency agent. .
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
-
+- See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
+- See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md) to verify that your operating system is supported by Dependency agent and for network requirements for the Dependency agent.
 
 ## VM insights DCR
+
+[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. To enable VM Insights on a machine with Azure Monitor Agent, you associate a VM insights DCR with the agent. When you enable VM Insights using the Azure portal, a DCR can be created for you. You can either use this DCR or a downloadable template when you use other installation methods. 
 
 > [!IMPORTANT]
 > VM Insights automatically creates a DCR that includes a special data stream required for its operation. Do not modify the VM Insights data collection rule or create your own data collection rule to support VM Insights. To collect additional data, such as Windows and Syslog events, create separate data collection rules and associate them with your machines.
 
-[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. To enable VM Insights on a machine with Azure Monitor Agent, associate a VM insights DCR with the agent. When you enable VM Insights using the Azure portal, a DCR can be created for you. You can either use this DCR or a downloadable template when you use other installation methods. 
-
-If you associate a data collection rule with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you install Dependency Agent.
-
+If you associate a DCR with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you [install Dependency Agent](./vminsights-dependency-agent-maintenance.md).
 
 
 ## Agents
@@ -60,22 +43,16 @@ When you enable VM Insights for a machine, the following agents are installed.
 - [Azure Monitor agent](../agents/azure-monitor-agent-overview.md): Collects data from the machine and delivers it to a Log Analytics workspace.
 - [Dependency agent](./vminsights-dependency-agent-maintenance.md): Collects discovered data about processes running on the virtual machine and external process dependencies, which are used by the [Map feature in VM Insights](../vm/vminsights-maps.md). The Dependency agent relies on the Azure Monitor Agent agent to deliver its data to Azure Monitor. If you don't need the map feature, you don't need to install the Dependency agent.
 
-## Network requirements
-
-- The Azure Monitor agent requires the machine to have access to the following HTTPS endpoints. For more details, see [Define Azure Monitor Agent network settings](../agents/azure-monitor-agent-data-collection-endpoint.md).
-	- global.handler.control.monitor.azure.com
-	- `<virtual-machine-region-name>`.handler.control.monitor.azure.com (example: westus.handler.control.azure.com)
-	- `<log-analytics-workspace-id>`.ods.opinsights.azure.com (example: 12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com)
-    (If using private links on the agent, you must also add the [data collection endpoints](../essentials/data-collection-endpoint-overview.md#components-of-a-dce))
-
-- The Dependency agent requires a connection from the virtual machine to the address 169.254.169.254. This address identifies the Azure metadata service endpoint. Ensure that firewall settings allow connections to this endpoint.
 
 ## Enable network isolation using Private Link
 
 By default, Azure Monitor Agent connects to a public endpoint to connect to your Azure Monitor environment. To enable network isolation for VM Insights, associate your VM Insights data collection rule to a data collection endpoint linked to an Azure Monitor Private Link Scope, as described in [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md).
 
+## Enable VM insights
 
 ## [Portal](#tab/portal)
+
+### Enable VM insights using the Azure portal
 
 Use the following procedure to enable VM insights on an unmonitored virtual machine or Virtual Machine Scale Set.
 
@@ -110,6 +87,8 @@ Use the following procedure to enable VM insights on an unmonitored virtual mach
 
 ## [ARM Template](#tab/arm)
 
+### Enable VM insights using the Azure portal
+
 The ARM templates described in this section can be deployed using any method to install an [ARM template](/azure/azure-resource-manager/templates/overview). See  [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal) for details on deploying a template from the Azure portal.
 
 The following examples show how to deploy the templates using common methods.
@@ -122,9 +101,6 @@ New-AzResourceGroupDeployment -Name EnableVMinsights -ResourceGroupName <Resourc
 az deployment group create --resource-group <ResourceGroupName> --template-file <Template.json> --parameters <Parameters.json>
 ```
 
-
-### Steps
-The steps to install VM insights using ARM templates are as follows. Each of these steps in described in detail in the following sections.
 
 ### Deploy agents
 Install the required agents on your machines using guidance in the following articles. Dependency agent is only required if you want to enable the Map feature.
@@ -338,15 +314,6 @@ DA-Extension              Succeeded            Microsoft.Azure.Monitoring.Depend
 
 ---
 
-## Diagnostic and usage data
-
-Microsoft automatically collects usage and performance data through your use of Azure Monitor. Microsoft uses this data to improve the quality, security, and integrity of the service.
-
-To provide accurate and efficient troubleshooting capabilities, the Map feature includes data about the configuration of your software. The data provides information such as the operating system and version, IP address, DNS name, and workstation name. Microsoft doesn't collect names, addresses, or other contact information.
-
-For more information about data collection and usage, see the [Microsoft Online Services Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=512132).
-
-[!INCLUDE [GDPR-related guidance](~/reusable-content/ce-skilling/azure/includes/gdpr-dsr-and-stp-note.md)]
 
 ## Next steps
 

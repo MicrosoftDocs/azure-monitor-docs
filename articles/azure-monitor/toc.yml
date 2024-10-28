@@ -370,8 +370,6 @@ items:
       items:
       - name: Overview
         href: vm/vminsights-overview.md
-      - name: Enable
-        href: vm/vminsights-enable.md
       - name: Enable and configure
         items:
         - name: Enable
