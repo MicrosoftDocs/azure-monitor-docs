@@ -24,7 +24,9 @@ ms.date: 10/28/2024
 
 ## Limitations
 
-•	User can submit 10 Delete data request per hour. The delete requests are queued and execution depends on cluster and table business. When available, operation is fast, and performed as Analytics queries.
+You can: 
+- Submit 10 delete data requests per hour. 
+- Delete data from tables with the Analytics plan only. If data is in Basic plan, change plan to Analytics and Delete data then. Auxiliary plan isn't supported.
 
 ## Call the delete data API to delete data from a specific table
 
