@@ -87,7 +87,7 @@ Use the following procedure to enable VM insights on an unmonitored virtual mach
 
 ## [ARM Template](#tab/arm)
 
-### Enable VM insights using the Azure portal
+### Enable VM insights using ARM templates
 
 The ARM templates described in this section can be deployed using any method to install an [ARM template](/azure/azure-resource-manager/templates/overview). See  [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal) for details on deploying a template from the Azure portal.
 
@@ -195,6 +195,8 @@ The final step in enabling VM insights is to associate the DCR with the Azure Mo
 ```
 
 ## [PowerShell script](#tab/powershell)
+
+### Enable VM insights for multiple VMs using PowerShell script
 
 This section describes how to enable [VM insights](./vminsights-overview.md) using a PowerShell script that can enable multiple VMs. This process uses a script installs VM extensions for Azure Monitoring Agent (AMA) and, if necessary, the Dependency Agent to enable VM Insights. If AMA is onboarded, a Data Collection Rule (DCR) and a User Assigned Managed Identity (UAMI) is also associated with the virtual machines and virtual machine scale sets.
 
