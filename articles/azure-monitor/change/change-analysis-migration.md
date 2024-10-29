@@ -14,7 +14,7 @@ To better support you as you scale in Azure, the Azure Monitor Change Analysis (
 
 ## How to migrate
 
-You can migrate your services to the Azure Resource Graph Change Analysis experience in one of three ways, depending on how your integration scenario. 
+You can migrate your services to the ARG Change Analysis experience in one of three ways, depending on how your integration scenario. 
 
 ### Via PowerShell or Azure CLI
 
@@ -33,7 +33,7 @@ To review how you’re using the classic experience, refer to the following link
 - **PowerShell:** [`Get-AzChangeAnalysis` (`Az.ChangeAnalysis`)](/powershell/module/az.changeanalysis/get-azchangeanalysis) 
 - **Azure CLI:** [`az change-analysis`](/cli/azure/change-analysis)
 
-[Learn more using guidance provided by Azure Resource Graph](/azure/governance/resource-graph/changes/get-resource-changes).
+[Learn more using guidance provided by ARG](/azure/governance/resource-graph/changes/get-resource-changes).
 
 ### Via SDK
 
@@ -80,7 +80,7 @@ At a high level, the ARG Change Analysis offers:
 
 ## Next steps
 
-Learn more about the Azure Resource Graph Change Analysis:
+Learn more about the ARG Change Analysis:
 - [Analyze changes to your Azure resources](/azure/governance/resource-graph/changes/resource-graph-changes)
 - [Get resource changes](/azure/governance/resource-graph/changes/get-resource-changes)
 - [View resource changes in the portal](/azure/governance/resource-graph/changes/view-resource-changes)
