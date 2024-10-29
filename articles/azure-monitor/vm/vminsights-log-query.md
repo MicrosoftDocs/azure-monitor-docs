@@ -1,25 +1,25 @@
 ---
-title: How to Query Logs from VM insights
-description: VM insights solution collects metrics and log data to and this article describes the records and includes sample queries.
+title: How to Query Logs from VM Insights
+description: VM Insights solution collects metrics and log data to and this article describes the records and includes sample queries.
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
 ms.date: 09/28/2024
 ---
 
-# How to query logs from VM insights
+# How to query logs from VM Insights
 
 > [!CAUTION]
 > This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
-VM insights collects performance and connection metrics, computer and process inventory data, and health state information and forwards it to the Log Analytics workspace in Azure Monitor. This data is available for [query](../logs/log-query-overview.md) in Azure Monitor. You can apply this data to scenarios that include migration planning, capacity analysis, discovery, and on-demand performance troubleshooting.
+VM Insights collects performance and connection metrics, computer and process inventory data, and health state information and forwards it to the Log Analytics workspace in Azure Monitor. This data is available for [query](../logs/log-query-overview.md) in Azure Monitor. You can apply this data to scenarios that include migration planning, capacity analysis, discovery, and on-demand performance troubleshooting.
 
 ## Map records
 
 > [!IMPORTANT]
-> If your virtual machine is using VM insights with Azure Monitor agent, then you must have [processes and dependencies enabled](vminsights-enable-portal.md#enable-vm-insights-using-the-azure-portal) for these tables to be created.
+> If your virtual machine is using VM Insights with Azure Monitor agent, then you must have [processes and dependencies enabled](vminsights-enable-portal.md#enable-vm-insights-using-the-azure-portal) for these tables to be created.
 
-One record is generated per hour for each unique computer and process, in addition to the records that are generated when a process or computer starts or is added to VM insights. The fields and values in the VMComputer table map to fields of the Machine resource in the ServiceMap Azure Resource Manager API. The fields and values in the VMProcess table map to the fields of the Process resource in the ServiceMap Azure Resource Manager API. The `_ResourceId` field matches the name field in the corresponding Resource Manager resource.
+One record is generated per hour for each unique computer and process, in addition to the records that are generated when a process or computer starts or is added to VM Insights. The fields and values in the *VMComputer* table map to fields of the Machine resource in the ServiceMap Azure Resource Manager API. The fields and values in the *VMProcess* table map to the fields of the Process resource in the ServiceMap Azure Resource Manager API. The `_ResourceId` field matches the name field in the corresponding Resource Manager resource.
 
 There are internally generated properties you can use to identify unique processes and computers:
 
@@ -30,7 +30,7 @@ Because multiple records can exist for a specified process and computer in a spe
 
 ### Connections and ports
 
-The Connection Metrics feature introduces two new tables in Azure Monitor logs - VMConnection and VMBoundPort. These tables provide information about the connections for a machine (inbound and outbound) and the server ports that are open/active on them. ConnectionMetrics are also exposed via APIs that provide the means to obtain a specific metric during a time window. TCP connections resulting from *accepting* on a listening socket are inbound, while connections created by *connecting* to a given IP and port are outbound. The direction of a connection is represented by the `Direction` property, which can be set to either **inbound** or **outbound**.
+The Connection Metrics feature introduces two new tables in Azure Monitor logs - *VMConnection* and *VMBoundPort*. These tables provide information about the connections for a machine (inbound and outbound) and the server ports that are open/active on them. Connection metrics are also exposed via APIs that provide the means to obtain a specific metric during a time window. TCP connections resulting from *accepting* on a listening socket are inbound, while connections created by *connecting* to a given IP and port are outbound. The direction of a connection is represented by the `Direction` property, which can be set to either `inbound` or `outbound`.
 
 Records in these tables are generated from data reported by the Dependency Agent. Every record represents an observation over a 1-minute time interval. The `TimeGenerated` property indicates the start of the time interval. Each record contains information to identify the respective entity, that is, connection or port, and metrics associated with that entity. Currently, only network activity that occurs using TCP over IPv4 is reported.
 
@@ -42,8 +42,8 @@ The following fields and conventions apply to both VMConnection and VMBoundPort:
 |:-------|:------------|
 | Computer | Fully qualified domain name of reporting machine. |
 | AgentId | The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent. |
-| Machine | Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form *m-{GUID}*, where *GUID* is the same GUID as AgentId. |
-| Process | Name of the Azure Resource Manager resource for the process exposed by ServiceMap. It's of the form *p-{hex string}*. Process is unique within a machine scope and to generate a unique process ID across machines, combine Machine and Process fields. |
+| Machine | Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form `m-{GUID}`, where `GUID` is the same GUID as `AgentId`. |
+| Process | Name of the Azure Resource Manager resource for the process exposed by ServiceMap. It's of the form `p-{hex string}`. Process is unique within a machine scope and to generate a unique process ID across machines, combine Machine and Process fields. |
 | ProcessName | Executable name of the reporting process. |
 
 > [!NOTE]
@@ -51,15 +51,15 @@ The following fields and conventions apply to both VMConnection and VMBoundPort:
 
 To manage cost and complexity, connection records don't represent individual physical network connections. Multiple physical network connections are grouped into a logical connection, which is then reflected in the respective table. Meaning, records in *VMConnection* table represent a logical grouping and not the individual physical connections that are being observed. Physical network connection sharing the same value for the following attributes during a given one-minute interval, are aggregated into a single logical record in *VMConnection*.
 
-| Property        | Description                                                                     |
-|:----------------|:--------------------------------------------------------------------------------|
-| Direction       | Direction of the connection, value is *inbound* or *outbound*                   |
-| Machine         | The computer FQDN                                                               |
-| Process         | Identity of process or groups of processes, initiating/accepting the connection |
-| SourceIp        | IP address of the source                                                        |
-| DestinationIp   | IP address of the destination                                                   |
-| DestinationPort | Port number of the destination                                                  |
-| Protocol        | Protocol used for the connection.  Values is *tcp*.                             |
+| Property        | Description                                                                      |
+|:----------------|:---------------------------------------------------------------------------------|
+| Direction       | Direction of the connection, value is `inbound` or `outbound`.                   |
+| Machine         | The computer FQDN.                                                               |
+| Process         | Identity of process or groups of processes, initiating/accepting the connection. |
+| SourceIp        | IP address of the source.                                                        |
+| DestinationIp   | IP address of the destination.                                                   |
+| DestinationPort | Port number of the destination.                                                  |
+| Protocol        | Protocol used for the connection.  Values is `tcp`.                              |
 
 To account for the impact of grouping, information about the number of grouped physical connections is provided in the following properties of the record:
 
@@ -104,9 +104,9 @@ For convenience, the IP address of the remote end of a connection is included in
 
 | Property        | Description                                                                    |
 |:----------------|:-------------------------------------------------------------------------------|
-| RemoteCountry   | The name of the country/region hosting RemoteIp.  For example, *United States* |
-| RemoteLatitude  | The geolocation latitude. For example, *47.68*                                 |
-| RemoteLongitude | The geolocation longitude. For example, *-122.12*                              |
+| RemoteCountry   | The name of the country/region hosting RemoteIp.  For example, `United States` |
+| RemoteLatitude  | The geolocation latitude. For example, `47.68`                                 |
+| RemoteLongitude | The geolocation longitude. For example, `-122.12`                              |
 
 #### Malicious IP
 
@@ -115,14 +115,14 @@ Every `RemoteIp` property in *VMConnection* table is checked against a set of IP
 | Property              | Description                                                                                                                                                                      |
 |:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | MaliciousIp           | The RemoteIp address                                                                                                                                                             |
-| IndicatorThreadType   | Threat indicator detected is one of the following values, *Botnet*, *C2*, *CryptoMining*, *Darknet*, *DDos*, *MaliciousUrl*, *Malware*, *Phishing*, *Proxy*, *PUA*, *Watchlist*. |
+| IndicatorThreadType   | Threat indicator detected is one of the following values, `Botnet`, `C2`, `CryptoMining`, `Darknet`, `DDos`, `MaliciousUrl`, `Malware`, `Phishing`, `Proxy`, `PUA`, `Watchlist`. |
 | Description           | Description of the observed threat.                                                                                                                                              |
-| TLPLevel              | Traffic Light Protocol (TLP) Level is one of the defined values, *White*, *Green*, *Amber*, *Red*.                                                                               |
-| Confidence            | Values are *0 – 100*.                                                                                                                                                            |
-| Severity              | Values are *0 – 5*, where *5* is the most severe and *0* isn't severe at all. Default value is *3*.                                                                              |
+| TLPLevel              | Traffic Light Protocol (TLP) Level is one of the defined values, `White`, `Green`, `Amber`, `Red`.                                                                               |
+| Confidence            | Values are `0 – 100`.                                                                                                                                                            |
+| Severity              | Values are `0 – 5`, where `5` is the most severe and `0` isn't severe at all. Default value is `3`.                                                                              |
 | FirstReportedDateTime | The first time the provider reported the indicator.                                                                                                                              |
 | LastReportedDateTime  | The last time the indicator was seen by Interflow.                                                                                                                               |
-| IsActive              | Indicates indicators are deactivated with *True* or *False* value.                                                                                                               |
+| IsActive              | Indicates indicators are deactivated with `True` or `False` value.                                                                                                               |
 | ReportReferenceLink   | Links to reports related to a given observable. To report a false alert or get more details about the malicious IP, open a Support case and provide this link.                   |
 | AdditionalInformation | Provides additional information, if applicable, about the observed threat.                                                                                                       |
 
@@ -135,9 +135,9 @@ Every record in VMBoundPort is identified by the following fields:
 | Property | Description                                                                          |
 |:---------|:-------------------------------------------------------------------------------------|
 | Process  | Identity of process (or groups of processes) with which the port is associated with. |
-| Ip       | Port IP address (can be wildcard IP, *0.0.0.0*)                                      |
+| Ip       | Port IP address (can be wildcard IP, `0.0.0.0`)                                      |
 | Port     | The Port number                                                                      |
-| Protocol | The protocol. Example, *tcp* or *udp* (only *tcp* is currently supported).           |
+| Protocol | The protocol. Example, `tcp` or `udp` (only `tcp` is currently supported).           |
 
 The identity a port is derived from these fields fields and is stored in the `PortId` property. This property can be used to quickly find records for a specific port across time.
 
@@ -153,103 +153,103 @@ Here are some important points to consider:
 
 * If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface will be reported.
 * Records with wildcard IP will contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic. 
-* To reduce verbosity and data volume, records with wildcard IP will be omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the *IsWildcardBind* property for the record with the specific IP address, will be set to *True*.  This indicates the port is exposed over every interface of the reporting machine.
-* Ports that are bound only on a specific interface have IsWildcardBind set to *False*. 
+* To reduce verbosity and data volume, records with wildcard IP will be omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the *IsWildcardBind* property for the record with the specific IP address, will be set to `True`.  This indicates the port is exposed over every interface of the reporting machine.
+* Ports that are bound only on a specific interface have IsWildcardBind set to `False`. 
 
 ### VMComputer records
 
 Records with a type of *VMComputer* have inventory data for servers with the Dependency agent. These records have the properties in the following table:
 
-| Property                      | Description                                                                                                                                               |
-|:------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TenantId                      | The unique identifier for the workspace                                                                                                                   |
-| SourceSystem                  | *Insights*                                                                                                                                                |
-| TimeGenerated                 | Timestamp of the record (UTC)                                                                                                                             |
-| Computer                      | The computer FQDN                                                                                                                                         |
-| AgentId                       | The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent                                                                |
-| Machine                       | Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form *m-{GUID}*, where *GUID* is the same GUID as AgentId. |
-| DisplayName                   | Display name                                                                                                                                              |
-| FullDisplayName               | Full display name                                                                                                                                         |
-| HostName                      | The name of machine without domain name                                                                                                                   |
-| BootTime                      | The machine boot time (UTC)                                                                                                                               |
-| TimeZone                      | The normalized time zone                                                                                                                                  |
-| VirtualizationState           | *virtual*, *hypervisor*, *physical*                                                                                                                       |
-| Ipv4Addresses                 | Array of IPv4 addresses                                                                                                                                   |
-| Ipv4SubnetMasks               | Array of IPv4 subnet masks (in the same order as Ipv4Addresses).                                                                                          |
-| Ipv4DefaultGateways           | Array of IPv4 gateways                                                                                                                                    |
-| Ipv6Addresses                 | Array of IPv6 addresses                                                                                                                                   |
-| MacAddresses                  | Array of MAC addresses                                                                                                                                    |
-| DnsNames                      | Array of DNS names associated with the machine.                                                                                                           |
-| DependencyAgentVersion        | The version of the Dependency agent running on the machine.                                                                                               |
-| OperatingSystemFamily         | *Linux*, *Windows*                                                                                                                                        |
-| OperatingSystemFullName       | The full name of the operating system                                                                                                                     |
-| PhysicalMemoryMB              | The physical memory in megabytes                                                                                                                          |
-| Cpus                          | The number of processors                                                                                                                                  |
-| CpuSpeed                      | The CPU speed in MHz                                                                                                                                      |
-| VirtualMachineType            | *hyperv*, *vmware*, *xen*                                                                                                                                 |
-| VirtualMachineNativeId        | The VM ID as assigned by its hypervisor                                                                                                                   |
-| VirtualMachineNativeName      | The name of the VM                                                                                                                                        |
-| VirtualMachineHypervisorId    | The unique identifier of the hypervisor hosting the VM                                                                                                    |
-| HypervisorType                | *hyperv*                                                                                                                                                  |
-| HypervisorId                  | The unique ID of the hypervisor                                                                                                                           |
-| HostingProvider               | *azure*                                                                                                                                                   |
-| _ResourceId                   | The unique identifier for an Azure resource                                                                                                               |
-| AzureSubscriptionId           | A globally unique identifier that identifies your subscription                                                                                            |
-| AzureResourceGroup            | The name of the Azure resource group the machine is a member of.                                                                                          |
-| AzureResourceName             | The name of the Azure resource                                                                                                                            |
-| AzureLocation                 | The location of the Azure resource                                                                                                                        |
-| AzureUpdateDomain             | The name of the Azure update domain                                                                                                                       |
-| AzureFaultDomain              | The name of the Azure fault domain                                                                                                                        |
-| AzureVmId                     | The unique identifier of the Azure virtual machine                                                                                                        |
-| AzureSize                     | The size of the Azure VM                                                                                                                                  |
-| AzureImagePublisher           | The name of the Azure VM publisher                                                                                                                        |
-| AzureImageOffering            | The name of the Azure VM offer type                                                                                                                       |
-| AzureImageSku                 | The SKU of the Azure VM image                                                                                                                             |
-| AzureImageVersion             | The version of the Azure VM image                                                                                                                         |
-| AzureCloudServiceName         | The name of the Azure cloud service                                                                                                                       |
-| AzureCloudServiceDeployment   | Deployment ID for the Cloud Service                                                                                                                       |
-| AzureCloudServiceRoleName     | Cloud Service role name                                                                                                                                   |
-| AzureCloudServiceRoleType     | Cloud Service role type: *worker* or *web*                                                                                                                |
-| AzureCloudServiceInstanceId   | Cloud Service role instance ID                                                                                                                            |
-| AzureVmScaleSetName           | The name of the virtual machine scale set                                                                                                                 |
-| AzureVmScaleSetDeployment     | Virtual machine scale set deployment ID                                                                                                                   |
-| AzureVmScaleSetResourceId     | The unique identifier of the virtual machine scale set resource.                                                                                          |
-| AzureVmScaleSetInstanceId     | The unique identifier of the virtual machine scale set                                                                                                    |
-| AzureServiceFabricClusterId   | The unique identifer of the Azure Service Fabric cluster                                                                                                  |
-| AzureServiceFabricClusterName | The name of the Azure Service Fabric cluster                                                                                                              |
+| Property                      | Description                                                                                                                                                 |
+|:------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TenantId                      | The unique identifier for the workspace.                                                                                                                    |
+| SourceSystem                  | *Insights*                                                                                                                                                  |
+| TimeGenerated                 | Timestamp of the record (UTC).                                                                                                                              |
+| Computer                      | The computer FQDN.                                                                                                                                          |
+| AgentId                       | The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent.                                                                 |
+| Machine                       | Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form `m-{GUID}`, where `GUID` is the same GUID as `AgentId`. |
+| DisplayName                   | The display name.                                                                                                                                           |
+| FullDisplayName               | The full display name.                                                                                                                                      |
+| HostName                      | The name of machine without domain name.                                                                                                                    |
+| BootTime                      | The machine boot time (UTC).                                                                                                                                |
+| TimeZone                      | The normalized time zone.                                                                                                                                   |
+| VirtualizationState           | `virtual`, `hypervisor`, `physical`                                                                                                                         |
+| Ipv4Addresses                 | Array of IPv4 addresses.                                                                                                                                    |
+| Ipv4SubnetMasks               | Array of IPv4 subnet masks (in the same order as Ipv4Addresses).                                                                                            |
+| Ipv4DefaultGateways           | Array of IPv4 gateways.                                                                                                                                     |
+| Ipv6Addresses                 | Array of IPv6 addresses.                                                                                                                                    |
+| MacAddresses                  | Array of MAC addresses.                                                                                                                                     |
+| DnsNames                      | Array of DNS names associated with the machine.                                                                                                             |
+| DependencyAgentVersion        | The version of the Dependency agent running on the machine.                                                                                                 |
+| OperatingSystemFamily         | `Linux`, `Windows`                                                                                                                                          |
+| OperatingSystemFullName       | The full name of the operating system.                                                                                                                      |
+| PhysicalMemoryMB              | The physical memory in megabytes.                                                                                                                           |
+| Cpus                          | The number of processors.                                                                                                                                   |
+| CpuSpeed                      | The CPU speed in MHz.                                                                                                                                       |
+| VirtualMachineType            | `hyperv`, `vmware`, `xen`                                                                                                                                   |
+| VirtualMachineNativeId        | The VM ID as assigned by its hypervisor.                                                                                                                    |
+| VirtualMachineNativeName      | The name of the VM.                                                                                                                                         |
+| VirtualMachineHypervisorId    | The unique identifier of the hypervisor hosting the VM.                                                                                                     |
+| HypervisorType                | `hyperv`                                                                                                                                                    |
+| HypervisorId                  | The unique ID of the hypervisor.                                                                                                                            |
+| HostingProvider               | `azure`                                                                                                                                                     |
+| _ResourceId                   | The unique identifier for an Azure resource.                                                                                                                |
+| AzureSubscriptionId           | A globally unique identifier that identifies your subscription.                                                                                             |
+| AzureResourceGroup            | The name of the Azure resource group the machine is a member of.                                                                                            |
+| AzureResourceName             | The name of the Azure resource.                                                                                                                             |
+| AzureLocation                 | The location of the Azure resource.                                                                                                                         |
+| AzureUpdateDomain             | The name of the Azure update domain.                                                                                                                        |
+| AzureFaultDomain              | The name of the Azure fault domain.                                                                                                                         |
+| AzureVmId                     | The unique identifier of the Azure virtual machine.                                                                                                         |
+| AzureSize                     | The size of the Azure VM.                                                                                                                                   |
+| AzureImagePublisher           | The name of the Azure VM publisher.                                                                                                                         |
+| AzureImageOffering            | The name of the Azure VM offer type.                                                                                                                        |
+| AzureImageSku                 | The SKU of the Azure VM image.                                                                                                                              |
+| AzureImageVersion             | The version of the Azure VM image.                                                                                                                          |
+| AzureCloudServiceName         | The name of the Azure cloud service.                                                                                                                        |
+| AzureCloudServiceDeployment   | Deployment ID for the Cloud Service.                                                                                                                        |
+| AzureCloudServiceRoleName     | Cloud Service role name.                                                                                                                                    |
+| AzureCloudServiceRoleType     | Cloud Service role type: `worker` or `web`                                                                                                                  |
+| AzureCloudServiceInstanceId   | Cloud Service role instance ID.                                                                                                                             |
+| AzureVmScaleSetName           | The name of the virtual machine scale set.                                                                                                                  |
+| AzureVmScaleSetDeployment     | Virtual machine scale set deployment ID.                                                                                                                    |
+| AzureVmScaleSetResourceId     | The unique identifier of the virtual machine scale set resource.                                                                                            |
+| AzureVmScaleSetInstanceId     | The unique identifier of the virtual machine scale set.                                                                                                     |
+| AzureServiceFabricClusterId   | The unique identifer of the Azure Service Fabric cluster.                                                                                                   |
+| AzureServiceFabricClusterName | The name of the Azure Service Fabric cluster.                                                                                                               |
 
 ### VMProcess records
 
 Records with a type of *VMProcess* have inventory data for TCP-connected processes on servers with the Dependency agent. These records have the properties in the following table:
 
-| Property         | Description                                                                                                                                                |
-|:-----------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| TenantId         | The unique identifier for the workspace                                                                                                                    |
-| SourceSystem     | *Insights*                                                                                                                                                 |
-| TimeGenerated    | Timestamp of the record (UTC)                                                                                                                              |
-| Computer         | The computer FQDN                                                                                                                                          |
-| AgentId          | The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent                                                                 |
-| Machine          | Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form *m-{GUID}*, where *GUID* is  the same GUID as AgentId. |
-| Process          | The unique identifier of the Service Map process. It's in the form of *p-{GUID}*.                                                                          |
-| ExecutableName   | The name of the process executable                                                                                                                         |
-| DisplayName      | Process display name                                                                                                                                       |
-| Role             | Process role: *webserver*, *appServer*, *databaseServer*, *ldapServer*, *smbServer*                                                                        |
-| Group            | Process group name. Processes in the same group are logically related, for example, part of the same product or system component.                          |
-| StartTime        | The process pool start time                                                                                                                                |
-| FirstPid         | The first PID in the process pool                                                                                                                          |
-| Description      | The process description                                                                                                                                    |
-| CompanyName      | The name of the company                                                                                                                                    |
-| InternalName     | The internal name                                                                                                                                          |
-| ProductName      | The name of the product                                                                                                                                    |
-| ProductVersion   | The version of the product                                                                                                                                 |
-| FileVersion      | The version of the file                                                                                                                                    |
-| ExecutablePath   | The path of the executable                                                                                                                                 |
-| CommandLine      | The command line                                                                                                                                           |
-| WorkingDirectory | The working directory                                                                                                                                      |
-| Services         | An array of services under which the process is executing                                                                                                  |
-| UserName         | The account under which the process is executing                                                                                                           |
-| UserDomain       | The domain under which the process is executing                                                                                                            |
-| _ResourceId      | The unique identifier for a process within the workspace                                                                                                   |
+| Property         | Description                                                                                                                                                 |
+|:-----------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| TenantId         | The unique identifier for the workspace.                                                                                                                    |
+| SourceSystem     | *Insights*                                                                                                                                                  |
+| TimeGenerated    | Timestamp of the record (UTC).                                                                                                                              |
+| Computer         | The computer FQDN.                                                                                                                                          |
+| AgentId          | The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent.                                                                 |
+| Machine          | Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form `m-{GUID}`, where `GUID` is the same GUID as `AgentId`. |
+| Process          | The unique identifier of the Service Map process. It's in the form of `p-{GUID}`.                                                                           |
+| ExecutableName   | The name of the process executable.                                                                                                                         |
+| DisplayName      | The process display name.                                                                                                                                   |
+| Role             | Process role: `webserver`, `appServer`, `databaseServer`, `ldapServer`, `smbServer`                                                                         |
+| Group            | Process group name. Processes in the same group are logically related, for example, part of the same product or system component.                           |
+| StartTime        | The process pool start time.                                                                                                                                |
+| FirstPid         | The first PID in the process pool.                                                                                                                          |
+| Description      | The process description.                                                                                                                                    |
+| CompanyName      | The name of the company.                                                                                                                                    |
+| InternalName     | The internal name.                                                                                                                                          |
+| ProductName      | The name of the product.                                                                                                                                    |
+| ProductVersion   | The version of the product.                                                                                                                                 |
+| FileVersion      | The version of the file.                                                                                                                                    |
+| ExecutablePath   | The path of the executable.                                                                                                                                 |
+| CommandLine      | The command line.                                                                                                                                           |
+| WorkingDirectory | The working directory.                                                                                                                                      |
+| Services         | An array of services under which the process is executing.                                                                                                  |
+| UserName         | The account under which the process is executing.                                                                                                           |
+| UserDomain       | The domain under which the process is executing.                                                                                                            |
+| _ResourceId      | The unique identifier for a process within the workspace.                                                                                                   |
 
 ## Sample map queries
 
@@ -435,22 +435,23 @@ let remoteMachines = remote | summarize by RemoteMachine;
 ```
 
 ## Performance records
+
 Records with a type of *InsightsMetrics* have performance data from the guest operating system of the virtual machine. These records are collected at 60-second intervals and have the properties in the following table:
 
 | Property      | Description                                                                                          |
 |:--------------|:-----------------------------------------------------------------------------------------------------|
-| TenantId      | Unique identifier for the workspace                                                                  |
+| TenantId      | Unique identifier for the workspace.                                                                 |
 | SourceSystem  | *Insights*                                                                                           |
-| TimeGenerated | Time the value was collected (UTC)                                                                   |
-| Computer      | The computer FQDN                                                                                    |
+| TimeGenerated | Time the value was collected (UTC).                                                                  |
+| Computer      | The computer FQDN.                                                                                   |
 | Origin        | *vm.azm.ms*                                                                                          |
-| Namespace     | Category of the performance counter                                                                  |
-| Name          | Name of the performance counter                                                                      |
-| Val           | Collected value                                                                                      |
+| Namespace     | Category of the performance counter.                                                                 |
+| Name          | Name of the performance counter.                                                                     |
+| Val           | The collected value.                                                                                 |
 | Tags          | Related details about the record. See the following table for tags used with different record types. |
-| AgentId       | Unique identifier for each computer's agent                                                          |
+| AgentId       | Unique identifier for each computer's agent.                                                         |
 | Type          | *InsightsMetrics*                                                                                    |
-| *ResourceId*  | Resource ID of the virtual machine                                                                   |
+| *ResourceId*  | Resource ID of the virtual machine.                                                                  |
 
 The performance counters currently collected into the *InsightsMetrics* table are listed in the following table:
 

@@ -87,13 +87,13 @@ Learn more about [Batch account - RemoveA8_A11Pools (Delete and recreate your po
 
 ### Recreate your pool with a new image
 
-Your pool is using an image with an imminent expiration date. Recreate the pool with a new image to avoid potential interruptions. A list of newer images is available via the ListSupportedImages API.
+Your pool is using an image with an imminent expiration date. To avoid potential interruptions, recreate the pool with a new image. A list of newer images is available via the ListSupportedImages API.
 
 Learn more about [Batch account - EolImage (Recreate your pool with a new image)](https://aka.ms/batch_expiring_image_learn_more).
 
 ### Increase the number of compute resources you can deploy by 10 vCPU
 
-If quota limits are exceeded, new VM deployments are blocked until quota is increased. Increase your quota now to enable deployment of more resources.
+If quota limits are exceeded, new VM deployments are blocked until quota is increased. To enable deployment of more resources, increase your quota.
 
 Learn more about [Virtual machine - IncreaseQuotaExperiment (Increase the number of compute resources you can deploy by 10 vCPU)](https://aka.ms/SubscriptionServiceLimits).
 
@@ -147,9 +147,9 @@ Learn more about [Spring Cloud Service - UpgradeAzureSpringCloudAPI (Update Azur
 
 ## Containers
 
-### The API version you use for Microsoft.App is deprecated, use latest API version
+### The API version you use for Microsoft.App is deprecated. Use the latest API version.
 
-The API version you use for Microsoft.App is deprecated,  use latest API version.
+The API version you use for Microsoft.App is deprecated. Use the latest API version.
 
 Learn more about [Microsoft App Container App - UseLatestApiVersion (The API version you use for Microsoft.App is deprecated, use latest API version)](https://aka.ms/containerappsapiversion).
 
@@ -223,7 +223,7 @@ Learn more about [Kubernetes service - DeprecatedKubernetesAPIIn122IsFound (Depr
 
 ### Azure SQL IaaS Agent must be installed in full mode
 
-Full mode installs the SQL IaaS Agent to the VM to deliver full functionality. Use it for managing a SQL Server VM with a single instance. There's no cost associated with using the full manageability mode. System administrator permissions are required. Note that installing or upgrading to full mode is an online operation, there's no restart required.
+Full mode installs the SQL IaaS Agent to the VM to deliver full functionality. Use it for managing a SQL Server VM with a single instance. There's no cost associated with using the full manageability mode. System administrator permissions are required. Installing or upgrading to full mode is an online operation, there's no restart required.
 
 Learn more about [SQL virtual machine - UpgradeToFullMode (SQL IaaS Agent must be installed in full mode)](/azure/azure-sql/virtual-machines/windows/sql-server-iaas-agent-extension-automate-management).
 
@@ -247,7 +247,7 @@ Learn more about [Azure Cosmos DB account - CosmosDBMigrateToContinuousBackup (I
 
 ### Enable partition merge to configure an optimal database partition layout
 
-Your account has collections that could benefit from enabling partition merge. Minimizing the number of partitions reduces rate limiting and resolve storage fragmentation problems. Containers are likely to benefit from this if the RU/s per physical partition is < 3000 RUs and storage is < 20 GB.
+Your account has collections that could benefit from enabling partition merge. Minimizing the number of partitions reduces rate limiting and resolve storage fragmentation problems. Containers are likely to benefit from partition merge if the RU/s per physical partition is < 3000 RUs and storage is < 20 GB.
 
 Learn more about [Cosmos DB account - CosmosDBPartitionMerge (Enable partition merge to configure an optimal database partition layout)](/azure/cosmos-db/merge?tabs=azure-powershell).
 
@@ -299,11 +299,11 @@ TLS versions 1.0 and 1.1 are known to be susceptible to security attacks, and ha
 
 Learn more about [Redis Cache Server - TLSVersion (TLS versions 1.0 and 1.1 are known to be susceptible to security attacks, and have other Common Vulnerabilities and Exposures (CVE) weaknesses.)](https://aka.ms/TLSVersions).
 
-### Cloud service caches are being retired in August 2024, migrate before then to avoid any problems
+### Cloud service caches are being retired in August 2024. Migrate before then to avoid any problems.
 
-This instance of Azure Cache for Redis has a dependency on Cloud Services (classic) which is being retired in August 2024. Follow the instructions found in the following link to migrate to an instance without this dependency. If you need to upgrade your cache to Redis 6  note that upgrading a cache with a dependency on cloud services isn't supported. You must migrate your cache instance to Virtual Machine Scale Set before upgrading. For more information, see the following link. Note: If you completed your migration away from Cloud Services,  allow up to 24 hours for this recommendation to be removed.
+This instance of Azure Cache for Redis has a dependency on Cloud Services (classic) which is being retired in August 2024. To migrate to an instance without this dependency, follow the instructions found in the following link. If you need to upgrade your cache to Redis 6, note that upgrading a cache with a dependency on cloud services isn't supported. You must migrate your cache instance to Virtual Machine Scale Set before upgrading. For more information, see the following link. Note: If you completed your migration away from Cloud Services,  allow up to 24 hours for this recommendation to be removed.
 
-Learn more about [Redis Cache Server - MigrateFromCloudService (Cloud service caches are being retired in August 2024, migrate before then to avoid any problems)](/azure/azure-cache-for-redis/cache-faq#caches-with-a-dependency-on-cloud-services-%28classic%29).
+Learn more about [Redis Cache Server - MigrateFromCloudService (Cloud service caches are being retired in August 2024. Migrate before then to avoid any problems)](/azure/azure-cache-for-redis/cache-faq#caches-with-a-dependency-on-cloud-services-%28classic%29).
 
 ### Redis persistence allows you to persist data stored in a cache so you can reload data from an event that caused data loss.
 
@@ -365,7 +365,7 @@ Learn more about [API Management - ShgwGatewayTokenNearExpiry (Self-hosted gatew
 
 ### IoT Hub Fallback Route Disabled
 
-We detected that the Fallback Route on your IoT Hub has been disabled. When the Fallback Route is disabled messages stop flowing to the default endpoint. If you're no longer able to ingest telemetry downstream consider re-enabling the Fallback Route.
+We detected that the Fallback Route on your IoT Hub has been disabled. When the Fallback Route is disabled, messages stop flowing to the default endpoint. If you're no longer able to ingest telemetry downstream, consider re-enabling the Fallback Route.
 
 Learn more about [IoT hub - IoTHubFallbackDisabledAdvisor (IoT Hub Fallback Route Disabled)](/azure/iot-hub/iot-hub-devguide-messages-d2c#fallback-route).
 
@@ -391,7 +391,7 @@ Learn more about [Alert Rule - ScheduledQueryRulesRp (Log alert rule was disable
 
 ### Update Azure Managed Grafana SDK Version
 
-We identified that an older SDK version has been used to manage or access your Grafana workspace. To get access to all the latest functionality, it's recommended that you switch to use the latest SDK version.
+We identified that an older SDK version has been used to manage or access your Grafana workspace. To get access to all the latest functionality, we recommend switching to the latest SDK version.
 
 Learn more about [Grafana Dashboard - UpdateAzureManagedGrafanaSDK (Update Azure Managed Grafana SDK Version)](https://aka.ms/GrafanaPortalLearnMore).
 
@@ -411,13 +411,13 @@ Learn more about [Application gateway - AppGwAdvisorRecommendationForCertificate
 
 ### Resolve Azure Key Vault issue for your Application Gateway
 
-We've detected that one or more of your Application Gateways is unable to obtain a certificate due to misconfigured Key Vault. You must fix this configuration immediately to avoid operational issues with your gateway.
+We detected that one or more of your Application Gateways is unable to obtain a certificate due to misconfigured Key Vault. You must fix this configuration immediately to avoid operational issues with your gateway.
 
 Learn more about [Application gateway - AppGwAdvisorRecommendationForKeyVaultErrors (Resolve Azure Key Vault issue for your Application Gateway)](https://aka.ms/agkverror).
 
 ### Application Gateway doesn't have enough capacity to scale out
 
-We've detected that your Application Gateway subnet doesn't have enough capacity for allowing scale-out during high traffic conditions, which can cause downtime.
+We detected that your Application Gateway subnet doesn't have enough capacity for allowing scale-out during high traffic conditions, which can cause downtime.
 
 Learn more about [Application gateway - AppgwRestrictedSubnetSpace (Application Gateway doesn't have enough capacity to scale out)](https://aka.ms/application-gateway-faq).
 
@@ -429,7 +429,7 @@ Learn more about [Network Security Group - NSGFlowLogsenableTA (Enable Traffic A
 
 ### Set up staging environments in Azure App Service
 
-To ensure that all instances of the slot are warmed up before being swapped and eliminate downtime, deploy an app to a slot first and then swap it into production. The traffic redirection is seamless. No requests are dropped because of swap operations.
+Ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. Deploy an app to a slot first and then swap it into production. The traffic redirection is seamless. No requests are dropped because of swap operations.
 
 Learn more about [Subscription - AzureApplicationService (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
 
@@ -519,7 +519,7 @@ Learn more about [App Server Instance - AppOSDBSupport (Ensure the Operating sys
 
 ### Set the parameter net.ipv4.tcp_keepalive_time to '300' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_keepalive_time = 300` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads in order.
+To enable faster reconnection after an ASCS failover, edit the */etc/sysctl.conf* file in the Application VM OS and add `net.ipv4.tcp_keepalive_time = 300`. This setting is recommended for all Application VM OS in SAP workloads in order.
 
 Learn more about [App Server Instance - AppIPV4TCPKeepAlive (Set the parameter net.ipv4.tcp_keepalive_time to '300' in the Application VM OS in SAP workloads)](https://launchpad.support.sap.com/#/notes/1410736).
 
@@ -531,19 +531,19 @@ Learn more about [Database Instance - DBOSDBSupport (Ensure the Operating system
 
 ### Set the parameter net.ipv4.tcp_retries2 to '15' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_retries2 = 15` to enable faster reconnection after an ASCS failover. This is recommended for all Application VM OS in SAP workloads.
+To enable faster reconnection after an ASCS failover, edit the */etc/sysctl.conf* file in the Application VM OS and add `net.ipv4.tcp_retries2 = 15`. This is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4Retries2 (Set the parameter net.ipv4.tcp_retries2 to '15' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
 ### See the parameter net.ipv4.tcp_keepalive_probes to '9' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_keepalive_probes = 9` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+To enable faster reconnection after an ASCS failover, edit the */etc/sysctl.conf* file in the Application VM OS and add `net.ipv4.tcp_keepalive_probes = 9`. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIPV4Probes (See the parameter net.ipv4.tcp_keepalive_probes to '9' in the Application VM OS in SAP workloads)](/azure/virtual-machines/workloads/sap/high-availability-guide).
 
 ### Set the parameter net.ipv4.tcp_tw_recycle to '0' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_tw_recycle = 0` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+To enable faster reconnection after an ASCS failover, edit the */etc/sysctl.conf* file in the Application VM OS and add `net.ipv4.tcp_tw_recycle = 0`. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4Recycle (Set the parameter net.ipv4.tcp_tw_recycle to '0' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
@@ -561,19 +561,19 @@ Learn more about [App Server Instance - VM_0001 (Azure Center for SAP recommenda
 
 ### Set the parameter net.ipv4.tcp_retries1 to '3' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_retries1 = 3` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+To enable faster reconnection after an ASCS failover, edit the */etc/sysctl.conf* file in the Application VM OS and add `net.ipv4.tcp_retries1 = 3`. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4Retries1 (Set the parameter net.ipv4.tcp_retries1 to '3' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
 ### Set the parameter net.ipv4.tcp_tw_reuse to '0' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_tw_reuse = 0` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+To enable faster reconnection after an ASCS failover, edit the */etc/sysctl.conf* file in the Application VM OS and add `net.ipv4.tcp_tw_reuse = 0`. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIpv4TcpReuse (Set the parameter net.ipv4.tcp_tw_reuse to '0' in the Application VM OS in SAP workloads)](https://www.suse.com/support/kb/doc/?id=000019722#:~:text=To%20check%20for%20current%20values%20of%20certain%20TCP%20tuning).
 
 ### Set the parameter net.ipv4.tcp_keepalive_intvl to '75' in the Application VM OS in SAP workloads
 
-In the Application VM OS, edit the */etc/sysctl.conf* file and add `net.ipv4.tcp_keepalive_intvl = 75` to enable faster reconnection after an ASCS failover. This setting is recommended for all Application VM OS in SAP workloads.
+To enable faster reconnection after an ASCS failover, edit the */etc/sysctl.conf* file in the Application VM OS and add `net.ipv4.tcp_keepalive_intvl = 75`. This setting is recommended for all Application VM OS in SAP workloads.
 
 Learn more about [App Server Instance - AppIPV4intvl (Set the parameter net.ipv4.tcp_keepalive_intvl to '75' in the Application VM OS in SAP workloads)](/azure/virtual-machines/workloads/sap/high-availability-guide).
 
@@ -732,13 +732,13 @@ Learn more about [Volume - Large Volumes SDK Recommendation](/azure/azure-netapp
 
 ### Prevent hitting subscription limit for maximum storage accounts
 
-A region can support a maximum of 250 storage accounts per subscription. You have either already reached or are about to reach that limit. If you reach that limit, you're unable to create any more storage accounts in that subscription/region combination. Evaluate the recommended action below to avoid hitting the limit.
+A region can support a maximum of 250 storage accounts per subscription. You have already reached or are about to reach that limit. If you reach that limit, you're unable to create any more storage accounts in that subscription/region combination. Evaluate the recommended action below to avoid hitting the limit.
 
 Learn more about [Storage Account - StorageAccountScaleTarget (Prevent hitting subscription limit for maximum storage accounts)](https://aka.ms/subscalelimit).
 
 ### Update to newer releases of the Storage Java v12 SDK for better reliability.
 
-We noticed that one or more of your applications use an older version of the Azure Storage Java v12 SDK to write data to Azure Storage. Unfortunately, the version of the used SDK has a critical issue that uploads incorrect data during retries (for example, if there are HTTP 500 errors), resulting in an invalid object being written. The issue is fixed in newer releases of the Java v12 SDK.
+We noticed that one or more of your applications use an older version of the Azure Storage Java v12 SDK to write data to Azure Storage. Unfortunately, the version of the used SDK has a critical issue that uploads incorrect data during retries (because of HTTP 500 errors, for example), resulting in an invalid object being written. The issue is fixed in newer releases of the Java v12 SDK.
 
 Learn more about [Storage Account - UpdateStorageJavaSDK (Update to newer releases of the Storage Java v12 SDK for better reliability.)](/azure/developer/java/sdk/?view=azure-java-stable&preserve-view=true).
 
@@ -746,7 +746,7 @@ Learn more about [Storage Account - UpdateStorageJavaSDK (Update to newer releas
 
 ### Permissions missing for start VM on connect
 
-We determined you enabled start VM on connect but didn't grant the Azure Virtual Desktop the rights to power manage VMs in your subscription. As a result, your users connecting to host pools won't receive a remote desktop session. Review feature documentation for requirements.
+We determined you enabled start VM on connect but didn't grant the Azure Virtual Desktop the rights to power manage VMs in your subscription. As a result, your users connecting to host pools don't receive a remote desktop session. Review feature documentation for requirements.
 
 Learn more about [Host Pool - AVDStartVMonConnect (Permissions missing for start VM on connect)](https://aka.ms/AVDStartVMRequirement).
 
@@ -766,7 +766,7 @@ Learn more about [Host Pool - ProductionEnvHostPools (Not enough production envi
 
 ### Set up staging environments in Azure App Service
 
-Deploy an app to a slot first and then swap it into production to ensure that all instances of the slot are warmed up before being swapped and eliminate downtime. The traffic redirection is seamless. No requests are dropped because of swap operations.
+Deploy an app to a slot first and then swap it into production. This ensures that all instances of the slot are warmed up before being swapped and eliminates downtime. The traffic redirection is seamless. No requests are dropped because of swap operations.
 
 Learn more about [App Service - AzureAppService-StagingEnv (Set up staging environments in Azure App Service)](/azure/app-service/deploy-staging-slots).
 
