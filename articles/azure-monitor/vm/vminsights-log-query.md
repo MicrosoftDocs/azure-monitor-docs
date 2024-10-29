@@ -110,7 +110,7 @@ For convenience, the IP address of the remote end of a connection is included in
 
 #### Malicious IP
 
-Every `RemoteIp` property in *VMConnection* table is checked against a set of IPs with known malicious activity. If the `RemoteIp` is identified as malicious, the following properties will be populated (they're empty, when the IP isn't considered malicious) in the following properties of the record:
+Every `RemoteIp` property in *VMConnection* table is checked against a set of IPs with known malicious activity. If the `RemoteIp` is identified as malicious, the following properties are populated (they're empty, when the IP isn't considered malicious) in the following properties of the record:
 
 | Property              | Description                                                                                                                                                                      |
 |:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -121,7 +121,7 @@ Every `RemoteIp` property in *VMConnection* table is checked against a set of IP
 | Confidence            | Values are `0 – 100`.                                                                                                                                                            |
 | Severity              | Values are `0 – 5` where `5` is the most severe and `0` isn't severe at all. Default value is `3`.                                                                               |
 | FirstReportedDateTime | The first time the provider reported the indicator.                                                                                                                              |
-| LastReportedDateTime  | The last time the indicator was seen by Interflow.                                                                                                                               |
+| LastReportedDateTime  | The last time Interflow saw the indicator.                                                                                                                                       |
 | IsActive              | Indicates indicators are deactivated with `True` or `False` value.                                                                                                               |
 | ReportReferenceLink   | Links to reports related to a given observable. To report a false alert or get more details about the malicious IP, open a Support case and provide this link.                   |
 | AdditionalInformation | Provides additional information, if applicable, about the observed threat.                                                                                                       |
@@ -130,7 +130,7 @@ Every `RemoteIp` property in *VMConnection* table is checked against a set of IP
 
 Ports on a machine that actively accept incoming traffic or could potentially accept traffic, but are idle during the reporting time window, are written to the *VMBoundPort* table.
 
-Every record in *VMBoundPort* is identified by the following fields:
+The following fields identify every record in *VMBoundPort*:
 
 | Property | Description                                                                          |
 |:---------|:-------------------------------------------------------------------------------------|
@@ -247,8 +247,8 @@ Records with a type of *VMProcess* have inventory data for TCP-connected process
 | CommandLine      | The command line.                                                                                                                                           |
 | WorkingDirectory | The working directory.                                                                                                                                      |
 | Services         | An array of services under which the process runs.                                                                                                          |
-| UserName         | The account under which the process runs.                                                                                                                   |
-| UserDomain       | The domain under which the process runs.                                                                                                                    |
+| UserName         | The account the process runs under.                                                                                                                         |
+| UserDomain       | The domain the process runs under.                                                                                                                          |
 | _ResourceId      | The unique identifier for a process within the workspace.                                                                                                   |
 
 ## Sample map queries
