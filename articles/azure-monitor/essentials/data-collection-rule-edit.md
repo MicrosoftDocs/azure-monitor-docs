@@ -25,19 +25,20 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-To complete this tutorial you need the following:
+To complete this tutorial, you need the following:
 
-* Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
-* [Permissions to create Data Collection Rule objects](data-collection-rule-create-edit.md#permissions) in the workspace.
-* Up to date version of PowerShell. Using Azure Cloud Shell is recommended.
+> [!div class="checklist"]
+> * Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
+> * [Permissions to create Data Collection Rule objects](data-collection-rule-create-edit.md#permissions) in the workspace.
+> * Up-to-date version of PowerShell. Using Azure Cloud Shell is recommended.
 
 ## Overview of tutorial
 
 While going through the wizard on the portal is the simplest way to set up the ingestion of your custom data to Log Analytics, in some cases you might want to update your Data Collection Rule later to:
 
-* Change data collection settings (e.g. Data Collection Endpoint, associated with the DCR)
+* Change data collection settings (for example, Data Collection Endpoint, associated with the DCR)
 * Update data parsing or filtering logic for your data stream
-* Change data destination (e.g. send data to an Azure table, as this option is not directly offered as part of the DCR-based custom log wizard)
+* Change data destination (for example, send data to an Azure table, as this option isn't directly offered as part of the DCR-based custom log wizard)
 
 In this tutorial, you first set up ingestion of a custom log. Then you modify the KQL transformation for your custom log to include additional filtering and apply the changes to your DCR. Finally, we're going to combine all editing operations into a single PowerShell script, which can be used to edit any DCR for any of the above mentioned reasons.
 
@@ -47,7 +48,7 @@ Start by setting up a new custom log. Follow [Tutorial: Send custom logs to Azur
 
 ## Retrieve DCR content
 
-In order to update DCR, we are going to retrieve its content and save it as a file, which can be further edited.
+In order to update DCR, we're going to retrieve its content and save it as a file, which can be further edited.
 
 1. Click the **Cloud Shell** button in the Azure portal and ensure the environment is set to **PowerShell**.
 
@@ -64,7 +65,7 @@ In order to update DCR, we are going to retrieve its content and save it as a fi
 
 ## Edit DCR
 
-Now, when DCR content is stored as a JSON file, you can use an editor of your choice to make changes in the DCR. You may [prefer to download the file from the Cloud Shell environment](/azure/cloud-shell/using-the-shell-window#upload-and-download-files), if you are using one. 
+Now, when DCR content is stored as a JSON file, you can use an editor of your choice to make changes in the DCR. You may [prefer to download the file from the Cloud Shell environment](/azure/cloud-shell/using-the-shell-window#upload-and-download-files), if you're using one. 
 
 Alternatively you can use code editors supplied with the environment. For example, if you saved your DCR in a file named `temp.dcr` on your Cloud Drive, you could use the following command to open DCR for editing right in the Cloud Shell window:
 
@@ -72,7 +73,7 @@ Alternatively you can use code editors supplied with the environment. For exampl
 code "temp.dcr"
 ```
 
-Let’s modify the KQL transformation within DCR to drop rows where RequestType is anything, but “GET”.
+Let’s modify the KQL transformation within DCR to drop rows where RequestType is anything, but `GET`.
 
 1. Open the file created in the previous part for editing using an editor of your choice.
 
@@ -91,9 +92,9 @@ Let’s modify the KQL transformation within DCR to drop rows where RequestType 
 
 ## Apply changes
 
-Our final step is to update DCR back in the system. This is accomplished by “PUT” HTTP call to ARM API, with updated DCR content sent in the HTTP request body.
+Our final step is to update DCR back in the system. This is accomplished by `PUT` HTTP call to ARM API, with updated DCR content sent in the HTTP request body.
 
-1. If you are using Azure Cloud Shell, save the file and close the embedded editor, or [upload modified DCR file back to the Cloud Shell environment](/azure/cloud-shell/using-the-shell-window#upload-and-download-files).
+1. If you're using Azure Cloud Shell, save the file and close the embedded editor, or [upload modified DCR file back to the Cloud Shell environment](/azure/cloud-shell/using-the-shell-window#upload-and-download-files).
 
 1. Execute the following commands to load DCR content from the file and place HTTP call to update the DCR in the system. Replace `<ResourceId>` with DCR ResourceID and `<FilePath>` with the name of the file modified in the previous part of the tutorial. You can omit first two lines if you read and write to the DCR within the same PowerShell session.
 
@@ -104,9 +105,9 @@ Our final step is to update DCR back in the system. This is accomplished by “P
     Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2022-06-01") -Method PUT -Payload $DCRContent 
     ```
 
-1. Upon successful call, you should get the response with status code “200”, indicating that your DCR is now updated.
+1. Upon successful call, you should get the response with status code `200`, indicating that your DCR is now updated.
 
-1. You can now navigate to your DCR and examine its content on the portal via “JSON View” function, or you could repeat the first part of the tutorial to retrieve DCR content into a file.
+1. You can now navigate to your DCR and examine its content on the portal via **JSON View** function, or you could repeat the first part of the tutorial to retrieve DCR content into a file.
 
 ## Putting everything together
 

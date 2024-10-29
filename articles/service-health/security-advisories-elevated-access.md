@@ -1,13 +1,13 @@
 ---
 title: Elevated access for viewing Security Advisories
-description: This article details an upcoming change that requires users to obtain elevated access roles in order to view Security Advisory details
+description: This article details a change that requires users to obtain elevated access roles in order to view Security Advisory details
 ms.topic: conceptual
 ms.date: 10/10/2023
 ---
 
 # Elevated access for viewing Security Advisories
 
-This article details an upcoming change that requires users to obtain elevated access roles in order to view Security Advisory details on Azure Service Health.
+This article details a change that requires users to obtain elevated access roles in order to view Security Advisory details on Azure Service Health.
 
 ## What are Security Advisories?
 
@@ -28,17 +28,17 @@ In 2023, the Impacted resources tab was introduced for Security Advisory events.
 >[!NOTE]
 > The above screenshots reflect the RBAC experience for the Security Advisories as of today.  
 
-## What is changing in Security Advisories?
+## What has changed in Security Advisories?
 
-In the future, accessing Security Advisories will require elevated access across the Summary, Impacted Resources, and Issue Updates tabs. Users who have subscription reader access, or tenant roles at tenant scope, will not be able to view security advisory details until they get the required roles.
+Accessing Security Advisories now requires elevated access across the Summary, Impacted Resources, and Issue Updates tabs. Users who have subscription reader access, or tenant roles at tenant scope, aren't able anymore to view security advisory details until they get the required roles.
 
 ### 1. On the Service Health portal
 
-A banner will be displayed to the users until April 2024 on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
+A banner was displayed to the users until April 2024 on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
 
 :::image type="content" source="./media/impacted-resource-sec/access-banner-1.PNG" alt-text="Screenshot displaying the new role based access banner for security advisories.":::
 
-After April 2024, an error message on the Summary and Issue Updates tabs will be displayed to users who do not have one of the following required roles:
+Since April 2024, an error message on the Summary and Issue Updates tabs is displayed to users who don't have one of the following required roles:
 
 **Subscription level**
 
@@ -57,14 +57,14 @@ After April 2024, an error message on the Summary and Issue Updates tabs will be
 
 ### 2. Service Health API Changes
 
-Events API users will need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive Security Advisories notification details. If users have the above-mentioned roles, they can view event details for a specific event with the new endpoint. The existing endpoint **(/events)** that returns all Service Health event types impacting a subscription or tenant, will no longer return sensitive security notification details. This update will be made to API version 2023-10-01-preview and future versions. 
+Events API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive Security Advisories notification details. If users have the above-mentioned roles, they can view event details for a specific event with the new endpoint. The existing endpoint **(/events)** that returned all Service Health event types impacting a subscription or tenant, no longer returns sensitive security notification details. This update was made to API version 2023-10-01-preview and future versions. 
 
-The new and existing endpoints listed below will return the security notification details for a specific event.
+The new and existing endpoints listed below return the security notification details for a specific event.
 
 #### New API Endpoint Details
 
 * To access the new endpoint below, users need to be authorized with the above-mentioned roles. 
-* This endpoint will return the event object with all available properties for a specific event. 
+* This endpoint returns the event object with all available properties for a specific event. 
 * This is like the impacted resources endpoint below.
 * Available since API version 2022-10-01
 
@@ -98,14 +98,14 @@ Operation: POST
 
 **Security Advisories Subscription List Events** 
 
-With API version 2023-10-01-preview (and future API versions), the existing Events API endpoint which returns the list of events(including security events with eventType: “Security”) will be restricted to pass only nonsensitive properties listed below for security events. 
+With API version 2023-10-01-preview (and future API versions), the existing Events API endpoint which returns the list of events (including security events with eventType: "Security") is now restricted to pass only nonsensitive properties listed below for security events. 
 
 ```HTTP
 https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/microsoft.ResourceHealth/events?api-version=2023-10-01-preview&$filter= "eventType eq SecurityAdvisory"
 ```
 Operation: GET
 
-The following in the events object response will be populated for security Advisories events using this endpoint:
+The following in the events object response are populated for security Advisories events using this endpoint:
 
 * Id
 * name
@@ -113,7 +113,7 @@ The following in the events object response will be populated for security Advis
 * nextLink
 * properties
 
-Only the following will be populated in the properties object:
+Only the following are populated in the properties object:
 
 * eventType
 * eventSource
@@ -128,7 +128,7 @@ Only the following will be populated in the properties object:
 * lastUpdateTime
 * impact
 
-The impactedService property will be populated for the impact object, but only the following properties in the impactedServiceRegion object in the impact object will be populated:
+The impactedService property are populated for the impact object, but only the following properties in the impactedServiceRegion object in the impact object are populated:
 
 * impactedService
 * impactedSubscriptions

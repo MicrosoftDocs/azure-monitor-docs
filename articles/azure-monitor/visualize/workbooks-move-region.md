@@ -13,7 +13,12 @@ ms.reviewer: jgardner
 
 # Move an Azure Workbook to another region
 
-This article describes how to move Azure Workbook resources to a different Azure region. You might move your resources to another region for a number of reasons. For example, to take advantage of a new Azure region, to deploy features or services available in specific regions only, to meet internal policy and governance requirements, or in response to capacity planning requirements.
+This article describes how to move Azure Workbook resources to a different Azure region. You might move your resources to another region for many reasons. For example, to:
+
+* Take advantage of a new Azure regions.
+* Deploy features or services available in specific regions only.
+* Meet internal policy and governance requirements.
+* In response to capacity planning requirements.
 
 ## Prerequisites
 
@@ -47,13 +52,13 @@ Use the Azure Workbooks browse UI to locate the new workbook. Ensure the locatio
 
 ## Clean up
 
-Once your workbook has been created in the new region, delete the original workbook in the previous region.
+Once your workbook is created in the new region, delete the original workbook in the previous region.
 
 1. Open the original workbook in the workbook viewer.
 1. Use the **Edit** toolbar button to enter edit mode.
 1. From the edit tools dropdown (pencil icon), choose **Delete Workbook**.
 
-If you renamed your workbook to import it into a new region, you can rename the workbook to the previous name after the original workbook has been deleted by using the Edit Mode toolbar's edit tools dropdown **Rename** item.
+If you renamed your workbook to import it into a new region, you can rename the workbook to the previous name after the original workbook is deleted by using the Edit Mode toolbar's edit tools dropdown **Rename** item.
 
 ## Next Steps
 
