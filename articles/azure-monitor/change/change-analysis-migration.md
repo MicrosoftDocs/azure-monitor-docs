@@ -1,6 +1,6 @@
 ---
-title: Migrate to the Azure Resource Graph Change Analysis API
-description: Learn how to migrate to the Azure Resource Graph Change Analysis and what it has to offer.
+title: Migrate to the Change Analysis API powered by Azure Resource Graph
+description: Learn how to migrate to the Change Analysis API powered by Azure Resource Graph and what it has to offer.
 ms.topic: conceptual
 ms.author: hannahhunter
 author: hhunter-ms
@@ -8,19 +8,19 @@ ms.date: 10/29/2024
 ms.subservice: change-analysis
 ---
 
-# Migrate to the Azure Resource Graph Change Analysis API
+# Migrate to the Change Analysis API powered by Azure Resource Graph
 
 To better support you as you scale in Azure, the Azure Monitor Change Analysis (classic) API is being retired. The experience will be replaced by the Change Analysis API powered by Azure Resource Graph (ARG).
 
 ## How to migrate
 
-You can migrate your services to the ARG Change Analysis experience in one of three ways, depending on how your integration scenario. 
+You can migrate your services to the Change Analysis API powered by ARG in one of two ways, depending on your integration scenario.
 
 ### Via PowerShell or Azure CLI
 
 If you're using PowerShell or Azure CLI for resource changes, refer to the [Get resource changes](/azure/governance/resource-graph/changes/get-resource-changes) guide to migrate to Change Analysis API powered by ARG. 
 
-To query ARG Change Analysis:
+To query Change Analysis API powered by ARG:
 
 1.	**Install ARG's Graph Query Extension.**  
     You'll be prompted to install this extension via the command line if it's not already installed.
@@ -45,9 +45,9 @@ If you're calling the Change Analysis REST API directly (without CLI or PowerShe
 
 - **Classic SDK:** [`ChangeAnalysisExtensions` Class](/dotnet/api/azure.resourcemanager.changeanalysis.changeanalysisextensions) 
 
-## What ARG Change Analysis provides 
+## What Change Analysis API powered by ARG provides 
 
-At a high level, the ARG Change Analysis offers: 
+At a high level, the updated Change Analysis API offers: 
 
 - **Real-time Insights:** Monitor changes occurring on your resources [directly within the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_OneInventory/ResourceChangesOverview.ReactView). 
 
@@ -61,7 +61,7 @@ At a high level, the ARG Change Analysis offers:
 
 - **Alerting:** With ARG’s Log Analytics connector, create alerts on your changes, such as when a change to a resource was made through the Azure portal.
 
-[Learn more about ARG Change Analysis.](/azure/governance/resource-graph/changes/resource-graph-changes)  
+[Learn more about Change Analysis API powered by ARG.](/azure/governance/resource-graph/changes/resource-graph-changes)  
 
 ## Compare Azure Monitor Change Analysis (Classic) and Change Analysis API powered by ARG
 
@@ -80,7 +80,7 @@ At a high level, the ARG Change Analysis offers:
 
 ## Next steps
 
-Learn more about the ARG Change Analysis:
+Learn more about the Change Analysis API powered by ARG:
 - [Analyze changes to your Azure resources](/azure/governance/resource-graph/changes/resource-graph-changes)
 - [Get resource changes](/azure/governance/resource-graph/changes/get-resource-changes)
 - [View resource changes in the portal](/azure/governance/resource-graph/changes/view-resource-changes)
