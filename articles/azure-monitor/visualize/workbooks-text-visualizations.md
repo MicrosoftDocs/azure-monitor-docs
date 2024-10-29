@@ -41,7 +41,7 @@ When the visualization is set to `Text` and the `Plain` style is selected, the t
 
 :::image type="content" source="./media/workbooks-text-visualizations/workbooks-text-visualization-example.png" alt-text="Screenshot of a workbook in the Azure portal. The screenshot shows an example of a text visualization in plain style." lightbox="./media/workbooks-text-visualizations/workbooks-text-visualization-example.png":::
 
-Text wraps, and any special formatting values is displayed as is, with no formatting.
+Text wraps, and any special formatting values are displayed as is, with no formatting.
 
 ### Header example
 
@@ -63,7 +63,7 @@ For the markdown example, the query response is adjusted to have markdown format
 
 ### Editor example:
 
-For the editor example, newline `\n` and tab `\t` characters have been added to the text to create multiple lines.
+For the editor example, newline `\n` and tab `\t` characters were added to the text to create multiple lines.
 
 :::image type="content" source="./media/workbooks-text-visualizations/workbooks-text-visualization-editor.png" alt-text="Screenshot of a workbook in the Azure portal. The screenshot shows an example of a text visualization in editor style." lightbox="./media/workbooks-text-visualizations/workbooks-text-visualization-editor.png":::
 

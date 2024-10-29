@@ -10,7 +10,7 @@ ms.date: 11/03/2023
 
 # Tutorial: Edit a data collection rule (DCR)
 
-This tutorial describes how to edit the definition of Data Collection Rule (DCR) that has been already provisioned using command line tools.
+This tutorial describes how to edit the definition of Data Collection Rules (DCRs) that have already been provisioned use command line tools.
 
 In this tutorial, you learn how to:
 
@@ -25,7 +25,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-To complete this tutorial, you need the following:
+To complete this tutorial, you need:
 
 > [!div class="checklist"]
 > * Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
@@ -40,7 +40,7 @@ While going through the wizard on the portal is the simplest way to set up the i
 * Update data parsing or filtering logic for your data stream
 * Change data destination (for example, send data to an Azure table, as this option isn't directly offered as part of the DCR-based custom log wizard)
 
-In this tutorial, you first set up ingestion of a custom log. Then you modify the KQL transformation for your custom log to include additional filtering and apply the changes to your DCR. Finally, we're going to combine all editing operations into a single PowerShell script, which can be used to edit any DCR for any of the above mentioned reasons.
+In this tutorial, you first set up ingestion of a custom log. Then, you modify the KQL transformation for your custom log to include additional filtering and apply the changes to your DCR. Finally, we're going to combine all editing operations into a single PowerShell script, which can be used to edit any DCR for any of the above mentioned reasons.
 
 ## Set up new custom log
 

@@ -11,17 +11,17 @@ This article details a change that requires users to obtain elevated access role
 
 ## What are Security Advisories?
 
-Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in three tabs: Summary, Impacted Resources, and Issue Updates.
+Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in three tabs: **Summary**, **Impacted Resources**, and **Issue Updates**.
 
 :::image type="content" source="./media/impacted-resource-sec/security-advisories.PNG" alt-text="Screenshot of Service Health Security Advisories Blade.":::
 
 ## Who can view Security Advisories?
 
-Security Advisories are displayed to users at the subscription or tenant level. Users with the subscription reader role or higher; can view Security Advisory details on the Summary and Issue update tabs. Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the Summary and Issue update tabs.
+Security Advisories are displayed to users at the subscription or tenant level. Users with the subscription reader role or higher; can view Security Advisory details on the **Summary** and **Issue Updates** tabs. Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the **Summary** and **Issue Updates** tabs.
 
 ## What are Impacted Resources within Security Advisories?
 
-In 2023, the Impacted resources tab was introduced for Security Advisory events. Since details displayed in this tab are sensitive, role based access (RBAC) is required for customers viewing security impacted resources via UI or API. [Review this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.
+In 2023, the **Impacted Resources** tab was introduced for Security Advisory events. Since details displayed in this tab are sensitive, role based access (RBAC) is required for customers viewing security impacted resources via UI or API. [Review this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.
 
 :::image type="content" source="./media/impacted-resource-sec/impact-security.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health.":::
 
@@ -30,15 +30,15 @@ In 2023, the Impacted resources tab was introduced for Security Advisory events.
 
 ## What has changed in Security Advisories?
 
-Accessing Security Advisories now requires elevated access across the Summary, Impacted Resources, and Issue Updates tabs. Users who have subscription reader access, or tenant roles at tenant scope, aren't able anymore to view security advisory details until they get the required roles.
+Accessing Security Advisories now requires elevated access across the **Summary**, **Impacted Resources**, and **Issue Updates** tabs. Users who have subscription reader access, or tenant roles at tenant scope, aren't able anymore to view security advisory details until they get the required roles.
 
 ### 1. On the Service Health portal
 
-A banner was displayed to the users until April 2024 on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
+A banner was displayed to the users until April 2024 on the **Summary** and **Issue Updates** tabs prompting customers to get the right roles to view these tabs in future. 
 
 :::image type="content" source="./media/impacted-resource-sec/access-banner-1.PNG" alt-text="Screenshot displaying the new role based access banner for security advisories.":::
 
-Since April 2024, an error message on the Summary and Issue Updates tabs is displayed to users who don't have one of the following required roles:
+Since April 2024, an error message on the **Summary** and **Issue Updates** tabs is displayed to users who don't have one of the following required roles:
 
 **Subscription level**
 
@@ -128,7 +128,7 @@ Only the following are populated in the properties object:
 * lastUpdateTime
 * impact
 
-The impactedService property are populated for the impact object, but only the following properties in the impactedServiceRegion object in the impact object are populated:
+The impactedService property is populated for the impact object, but only the following properties in the impactedServiceRegion object in the impact object are populated:
 
 * impactedService
 * impactedSubscriptions

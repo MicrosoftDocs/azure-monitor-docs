@@ -13,11 +13,11 @@ ms.reviewer: jgardner
 
 # Move an Azure Workbook to another region
 
-This article describes how to move Azure Workbook resources to a different Azure region. You might move your resources to another region for many reasons. For example, to:
+This article describes how to move Azure Workbook resources to a different Azure region. You might move your resources to another region for many reasons. For example:
 
-* Take advantage of a new Azure regions.
-* Deploy features or services available in specific regions only.
-* Meet internal policy and governance requirements.
+* To take advantage of new Azure regions.
+* To deploy features or services available in specific regions only.
+* To meet internal policy and governance requirements.
 * In response to capacity planning requirements.
 
 ## Prerequisites
