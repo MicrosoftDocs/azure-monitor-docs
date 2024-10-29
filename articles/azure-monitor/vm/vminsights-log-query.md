@@ -151,9 +151,9 @@ Port records include metrics representing the connections associated with them. 
 
 Here are some important points to consider:
 
-* If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface will be reported.
-* Records with wildcard IP will contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic. 
-* To reduce verbosity and data volume, records with wildcard IP are omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` property for the record with the specific IP address, is set to `True`. This indicates the port is exposed over every interface of the reporting machine.
+* If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface is reported.
+* Records with wildcard IP contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic. 
+* To reduce verbosity and data volume, records with wildcard IP are omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` property for the record with the specific IP address, is set to `True`. This setting indicates the port is exposed over every interface of the reporting machine.
 * Ports that are bound only on a specific interface have IsWildcardBind set to `False`.
 
 ### VMComputer records
@@ -476,5 +476,5 @@ The performance counters currently collected into the *InsightsMetrics* table ar
 
 ## Next steps
 
-* If you're new to writing log queries in Azure Monitor, review [how to use Log Analytics](../logs/log-analytics-tutorial.md) in the Azure portal to write log queries.
-* Learn about [writing search queries](../logs/get-started-queries.md).
+* Get started with writing log queries in Azure Monitor by reviewing [how to use Log Analytics](../logs/log-analytics-tutorial.md).
+* Learn more about [writing search queries](../logs/get-started-queries.md).
