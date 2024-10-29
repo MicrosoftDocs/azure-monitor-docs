@@ -4,6 +4,7 @@ description: This article details an upcoming change that requires users to obta
 ms.topic: conceptual
 ms.date: 10/10/2023
 ---
+
 # Elevated access for viewing Security Advisories
 
 This article details an upcoming change that requires users to obtain elevated access roles in order to view Security Advisory details on Azure Service Health.
@@ -14,8 +15,8 @@ Azure customers use [Service Health](service-health-overview.md) to stay informe
 
 :::image type="content" source="./media/impacted-resource-sec/security-advisories.PNG" alt-text="Screenshot of Service Health Security Advisories Blade.":::
 
-
 ## Who can view Security Advisories?
+
 Security Advisories are displayed to users at the subscription or tenant level. Users with the subscription reader role or higher; can view Security Advisory details on the Summary and Issue update tabs. Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the Summary and Issue update tabs.
 
 ## What are Impacted Resources within Security Advisories?
@@ -24,7 +25,7 @@ In 2023, the Impacted resources tab was introduced for Security Advisory events.
 
 :::image type="content" source="./media/impacted-resource-sec/impact-security.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health.":::
 
->[!Note]
+>[!NOTE]
 > The above screenshots reflect the RBAC experience for the Security Advisories as of today.  
 
 ## What is changing in Security Advisories?
@@ -32,6 +33,7 @@ In 2023, the Impacted resources tab was introduced for Security Advisory events.
 In the future, accessing Security Advisories will require elevated access across the Summary, Impacted Resources, and Issue Updates tabs. Users who have subscription reader access, or tenant roles at tenant scope, will not be able to view security advisory details until they get the required roles.
 
 ### 1. On the Service Health portal
+
 A banner will be displayed to the users until April 2024 on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
 
 :::image type="content" source="./media/impacted-resource-sec/access-banner-1.PNG" alt-text="Screenshot displaying the new role based access banner for security advisories.":::
@@ -39,18 +41,19 @@ A banner will be displayed to the users until April 2024 on the Summary and Issu
 After April 2024, an error message on the Summary and Issue Updates tabs will be displayed to users who do not have one of the following required roles:
 
 **Subscription level**
-- Subscription Owner
-- Subscription Admin
-- Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions or Microsoft.ResourceHealth/events/action permissions
+
+* Subscription Owner
+* Subscription Admin
+* Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions or Microsoft.ResourceHealth/events/action permissions
 
 **Tenant level**
-- Security Admin/Security Reader
-- Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions or Microsoft.ResourceHealth/events/action permissions
-- Global Admin/Tenant Admin 
+
+* Security Admin/Security Reader
+* Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions or Microsoft.ResourceHealth/events/action permissions
+* Global Admin/Tenant Admin 
 
 >[!NOTE]
 > We recommend you do not use the Global Admin role unless absolutely necessary. It's use can create security risks by exposing sensitive data or allowing unauthorized changes. It can also violate the principle of least privilege, which states that users should only have the minimum level of permissions required for their tasks. 
-
 
 ### 2. Service Health API Changes
 
@@ -60,10 +63,10 @@ The new and existing endpoints listed below will return the security notificatio
 
 #### New API Endpoint Details
 
-- To access the new endpoint below, users need to be authorized with the above-mentioned roles. 
-- This endpoint will return the event object with all available properties for a specific event. 
-- This is like the impacted resources endpoint below.
-- Available since API version 2022-10-01
+* To access the new endpoint below, users need to be authorized with the above-mentioned roles. 
+* This endpoint will return the event object with all available properties for a specific event. 
+* This is like the impacted resources endpoint below.
+* Available since API version 2022-10-01
 
 **Example**
 
@@ -73,21 +76,23 @@ https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/
 Operation: POST
 
 #### Impacted Resources for Security Advisories
-- Customers authorized with the above-mentioned roles can use the following endpoints to access the list of resources impacted by a Security Incident
-- Available since API version 2022-05-01
+
+* Customers authorized with the above-mentioned roles can use the following endpoints to access the list of resources impacted by a Security Incident
+* Available since API version 2022-05-01
  
 **Subscription**
+
 ```HTTP
 https://management.azure.com/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview 
 ```
 Operation: POST
 
 **Tenant**
+
 ```HTTP
 https://management.azure.com/providers/microsoft.resourcehealth/events/{trackingId}/listSecurityAdvisoryImpactedResources?api-version=2023-10-01-preview
 ```
 Operation: POST
-
 
 #### Existing Events API Endpoint
 
@@ -100,39 +105,39 @@ https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/
 ```
 Operation: GET
 
-The following in the events object response will be populated for security Advisories events using this endpoint: 
-- Id
-- name
-- type
-- nextLink
-- properties
+The following in the events object response will be populated for security Advisories events using this endpoint:
+
+* Id
+* name
+* type
+* nextLink
+* properties
 
 Only the following will be populated in the properties object:
-- eventType
-- eventSource
-- status
-- title
-- platformInitiated
-- level
-- eventLevel
-- isHIR
-- priority
-- subscriptionId
-- lastUpdateTime
-- impact
+
+* eventType
+* eventSource
+* status
+* title
+* platformInitiated
+* level
+* eventLevel
+* isHIR
+* priority
+* subscriptionId
+* lastUpdateTime
+* impact
 
 The impactedService property will be populated for the impact object, but only the following properties in the impactedServiceRegion object in the impact object will be populated:
-- impactedService
-- impactedSubscriptions
-- impactedTenants
-- impactedRegion
-- status
 
-
-
-
+* impactedService
+* impactedSubscriptions
+* impactedTenants
+* impactedRegion
+* status
 
 ## Next steps
-- [Stay informed about Azure security events](stay-informed-security.md)
-- [Introduction to Azure Resource Health](resource-health-overview.md)
-- [Frequently asked questions about Azure Resource Health](resource-health-faq.yml)
+
+* [Stay informed about Azure security events](stay-informed-security.md)
+* [Introduction to Azure Resource Health](resource-health-overview.md)
+* [Frequently asked questions about Azure Resource Health](resource-health-faq.yml)
