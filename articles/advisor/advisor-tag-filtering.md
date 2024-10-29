@@ -25,7 +25,7 @@ You can now get Advisor recommendations and scores scoped to a workload, environ
 1. Click **Apply**. Summary tiles are updated to reflect the filter.
 1. Click on any of the categories to review recommendations.
  
-    :::source="./media/tags/overview-tag-filters.png" image type="content" alt-text="Screenshot of the Azure Advisor dashboard that shows count of recommendations after tag filter is applied." lightbox="./media/tags/overview-tag-filters.png":::
+    :::image type="content" source="./media/tags/overview-tag-filters.png"  alt-text="Screenshot of the Azure Advisor dashboard that shows count of recommendations after tag filter is applied." lightbox="./media/tags/overview-tag-filters.png":::
 
 
 ## How to calculate scores using resource tags
@@ -38,7 +38,7 @@ You can now get Advisor recommendations and scores scoped to a workload, environ
 1. Click **Apply**. Advisor score is updated to only include resources impacted by the filter.
 1. Click on any of the categories to review recommendations.
  
-    :::source="./media/tags/score-tag-filters.png" image type="content" alt-text="Screenshot of the Azure Advisor score dashboard that shows score and recommendations after tag filter is applied." lightbox="./media/tags/score-tag-filters.png":::
+    :::image type="content" source="./media/tags/score-tag-filters.png" alt-text="Screenshot of the Azure Advisor score dashboard that shows score and recommendations after tag filter is applied." lightbox="./media/tags/score-tag-filters.png":::
 
 > [!NOTE]
 > Not all capabilities are available when tag filters are used. For example, tag filters are not supported for security score and score history. 
