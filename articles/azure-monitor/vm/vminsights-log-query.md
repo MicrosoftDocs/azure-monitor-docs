@@ -30,20 +30,20 @@ Because multiple records can exist for a specified process and computer in a spe
 
 ### Connections and ports
 
-The Connection Metrics feature introduces two new tables in Azure Monitor logs - *VMConnection* and *VMBoundPort*. These tables provide information about the connections for a machine (inbound and outbound) and the server ports that are open/active on them. Connection metrics are also exposed via APIs that provide the means to obtain a specific metric during a time window. TCP connections resulting from *accepting* on a listening socket are inbound, while connections created by *connecting* to a given IP and port are outbound. The direction of a connection is represented by the `Direction` property, which can be set to either `inbound` or `outbound`.
+The Connection Metrics feature introduces two new tables in Azure Monitor logs - *VMConnection* and *VMBoundPort*. These tables provide information about the connections for a machine (inbound and outbound) and the server ports that are open/active on them. Connection metrics are also exposed via APIs that provide the means to obtain a specific metric during a time window. TCP connections resulting from *accepting* on a listening socket are inbound, while connections created by *connecting* to a given IP and port are outbound. The `Direction` property represents the direction of a connection, which can be set to either `inbound` or `outbound`.
 
 Records in these tables are generated from data reported by the Dependency Agent. Every record represents an observation over a 1-minute time interval. The `TimeGenerated` property indicates the start of the time interval. Each record contains information to identify the respective entity, that is, connection or port, and metrics associated with that entity. Currently, only network activity that occurs using TCP over IPv4 is reported.
 
 #### Common fields and conventions
 
-The following fields and conventions apply to both VMConnection and VMBoundPort:
+The following fields and conventions apply to both *VMConnection* and *VMBoundPort*:
 
 | Fields | Description |
 |:-------|:------------|
 | Computer | Fully qualified domain name of reporting machine. |
 | AgentId | The unique identifier for a machine running Azure Monitor Agent or the Log Analytics agent. |
 | Machine | Name of the Azure Resource Manager resource for the machine exposed by ServiceMap. It's of the form `m-{GUID}`, where `GUID` is the same GUID as `AgentId`. |
-| Process | Name of the Azure Resource Manager resource for the process exposed by ServiceMap. It's of the form `p-{hex string}`. Process is unique within a machine scope and to generate a unique process ID across machines, combine Machine and Process fields. |
+| Process | Name of the Azure Resource Manager resource for the process exposed by ServiceMap. It's of the form `p-{hex string}`. Process is unique within a machine scope. To generate a unique process ID across machines, combine `Machine` and `Process` fields. |
 | ProcessName | Executable name of the reporting process. |
 
 > [!NOTE]
@@ -59,7 +59,7 @@ To manage cost and complexity, connection records don't represent individual phy
 | SourceIp        | IP address of the source.                                                        |
 | DestinationIp   | IP address of the destination.                                                   |
 | DestinationPort | Port number of the destination.                                                  |
-| Protocol        | Protocol used for the connection.  Values is `tcp`.                              |
+| Protocol        | Protocol used for the connection. Values is `tcp`.                               |
 
 To account for the impact of grouping, information about the number of grouped physical connections is provided in the following properties of the record:
 
@@ -128,9 +128,9 @@ Every `RemoteIp` property in *VMConnection* table is checked against a set of IP
 
 ### Ports 
 
-Ports on a machine that actively accept incoming traffic or could potentially accept traffic, but are idle during the reporting time window, are written to the VMBoundPort table.
+Ports on a machine that actively accept incoming traffic or could potentially accept traffic, but are idle during the reporting time window, are written to the *VMBoundPort* table.
 
-Every record in VMBoundPort is identified by the following fields:
+Every record in *VMBoundPort* is identified by the following fields:
 
 | Property | Description                                                                          |
 |:---------|:-------------------------------------------------------------------------------------|
@@ -139,7 +139,7 @@ Every record in VMBoundPort is identified by the following fields:
 | Port     | The Port number                                                                      |
 | Protocol | The protocol. Example, `tcp` or `udp` (only `tcp` is currently supported).           |
 
-The identity a port is derived from these fields fields and is stored in the `PortId` property. This property can be used to quickly find records for a specific port across time.
+The identity a port is derived from these fields and is stored in the `PortId` property. This property can be used to quickly find records for a specific port across time.
 
 #### Metrics
 
@@ -153,7 +153,7 @@ Here are some important points to consider:
 
 * If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface will be reported.
 * Records with wildcard IP will contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic. 
-* To reduce verbosity and data volume, records with wildcard IP will be omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the *IsWildcardBind* property for the record with the specific IP address, will be set to `True`.  This indicates the port is exposed over every interface of the reporting machine.
+* To reduce verbosity and data volume, records with wildcard IP are omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` property for the record with the specific IP address, is set to `True`.  This indicates the port is exposed over every interface of the reporting machine.
 * Ports that are bound only on a specific interface have IsWildcardBind set to `False`. 
 
 ### VMComputer records
