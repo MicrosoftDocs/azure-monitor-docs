@@ -34,14 +34,16 @@ There's no direct cost for VM insights, but you're charged for its activity in t
 
 The log size varies by the string lengths of performance counters. It can increase with the number of logical disks and network adapters allocated to the VM. If you're already using Service Map, the only change you'll see is the extra performance data that's sent to the Azure Monitor `InsightsMetrics` data type.​
 
-## Supported machines
+## Supported machines and operating systems
+
+VM insights supports the following machines:
 
 - Azure virtual machines
 - Azure Virtual Machine Scale Sets
 - Hybrid virtual machines connected with Azure Arc
   - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
 
-## Supported operating systems
+VM insights supports the following operating systems:
 
 - VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
 - The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2019, except Windows Server 2008 SP2 and Azure Stack HCI.
@@ -50,9 +52,6 @@ The log size varies by the string lengths of performance counters. It can increa
 > [!IMPORTANT]
 > If the Ethernet device for your virtual machine has more than nine characters, it won't be recognized by VM Insights and data won't be sent to the InsightsMetrics table. The agent will collect data from [other sources](../agents/agent-data-sources.md).
 
-## Access VM insights
-
-Access VM insights for all your virtual machines and virtual machine scale sets by selecting **Virtual Machines** from the **Monitor** menu in the Azure portal. To access VM insights for a single virtual machine or virtual machine scale set, select **Insights** from the machine's menu in the Azure portal.
 
 ## Limitations
 

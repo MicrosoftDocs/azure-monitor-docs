@@ -31,6 +31,9 @@ This article provides details on enabling VM Insights in Azure Monitor using dif
 
 If you associate a DCR with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you [install Dependency Agent](./vminsights-dependency-agent-maintenance.md).
 
+- RBAC permissions
+- Reasons to create other DCRs 
+
 
 ## Agents
 
