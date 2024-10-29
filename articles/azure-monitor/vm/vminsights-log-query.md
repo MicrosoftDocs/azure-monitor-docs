@@ -89,7 +89,7 @@ In this first release of this feature, our algorithm is an approximation that ma
 
 Here are some important points to consider:
 
-1. If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface are reported.
+1. If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface is reported.
 1. Records with wildcard IP contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic.
 1. To reduce verbosity and data volume, records with wildcard IP are omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` record property with the specific IP address is set to `True` to indicate that the port is exposed over every interface of the reporting machine.
 1. Ports that are bound only on a specific interface have `IsWildcardBind` set to `False`.
@@ -104,7 +104,7 @@ For convenience, the IP address of the remote end of a connection is included in
 
 | Property        | Description                                                                    |
 |:----------------|:-------------------------------------------------------------------------------|
-| RemoteCountry   | The name of the country/region hosting RemoteIp.  For example, `United States` |
+| RemoteCountry   | The name of the country/region hosting RemoteIp. For example, `United States`  |
 | RemoteLatitude  | The geolocation latitude. For example, `47.68`                                 |
 | RemoteLongitude | The geolocation longitude. For example, `-122.12`                              |
 
@@ -119,7 +119,7 @@ Every `RemoteIp` property in *VMConnection* table is checked against a set of IP
 | Description           | Description of the observed threat.                                                                                                                                              |
 | TLPLevel              | Traffic Light Protocol (TLP) Level is one of the defined values, `White`, `Green`, `Amber`, `Red`.                                                                               |
 | Confidence            | Values are `0 – 100`.                                                                                                                                                            |
-| Severity              | Values are `0 – 5`, where `5` is the most severe and `0` isn't severe at all. Default value is `3`.                                                                              |
+| Severity              | Values are `0 – 5` where `5` is the most severe and `0` isn't severe at all. Default value is `3`.                                                                               |
 | FirstReportedDateTime | The first time the provider reported the indicator.                                                                                                                              |
 | LastReportedDateTime  | The last time the indicator was seen by Interflow.                                                                                                                               |
 | IsActive              | Indicates indicators are deactivated with `True` or `False` value.                                                                                                               |
@@ -137,7 +137,7 @@ Every record in *VMBoundPort* is identified by the following fields:
 | Process  | Identity of process (or groups of processes) with which the port is associated with. |
 | Ip       | Port IP address (can be wildcard IP, `0.0.0.0`)                                      |
 | Port     | The Port number                                                                      |
-| Protocol | The protocol. Example, `tcp` or `udp` (only `tcp` is currently supported).           |
+| Protocol | The protocol. Example values are `tcp` or `udp` (only `tcp` is currently supported). |
 
 The identity a port is derived from these fields and is stored in the `PortId` property. This property can be used to quickly find records for a specific port across time.
 
@@ -153,8 +153,8 @@ Here are some important points to consider:
 
 * If a process accepts connections on the same IP address but over multiple network interfaces, a separate record for each interface will be reported.
 * Records with wildcard IP will contain no activity. They're included to represent the fact that a port on the machine is open to inbound traffic. 
-* To reduce verbosity and data volume, records with wildcard IP are omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` property for the record with the specific IP address, is set to `True`.  This indicates the port is exposed over every interface of the reporting machine.
-* Ports that are bound only on a specific interface have IsWildcardBind set to `False`. 
+* To reduce verbosity and data volume, records with wildcard IP are omitted when there's a matching record (for the same process, port, and protocol) with a specific IP address. When a wildcard IP record is omitted, the `IsWildcardBind` property for the record with the specific IP address, is set to `True`. This indicates the port is exposed over every interface of the reporting machine.
+* Ports that are bound only on a specific interface have IsWildcardBind set to `False`.
 
 ### VMComputer records
 
@@ -246,9 +246,9 @@ Records with a type of *VMProcess* have inventory data for TCP-connected process
 | ExecutablePath   | The path of the executable.                                                                                                                                 |
 | CommandLine      | The command line.                                                                                                                                           |
 | WorkingDirectory | The working directory.                                                                                                                                      |
-| Services         | An array of services under which the process is executing.                                                                                                  |
-| UserName         | The account under which the process is executing.                                                                                                           |
-| UserDomain       | The domain under which the process is executing.                                                                                                            |
+| Services         | An array of services under which the process runs.                                                                                                          |
+| UserName         | The account under which the process runs.                                                                                                                   |
+| UserDomain       | The domain under which the process runs.                                                                                                                    |
 | _ResourceId      | The unique identifier for a process within the workspace.                                                                                                   |
 
 ## Sample map queries
