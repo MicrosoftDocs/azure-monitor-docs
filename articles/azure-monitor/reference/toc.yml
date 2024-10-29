@@ -453,6 +453,8 @@ items:
             href: supported-metrics/oracle-database-autonomousdatabases-metrics.md
           - name: Oracle.Database/cloudVmClusters
             href: supported-metrics/oracle-database-cloudvmclusters-metrics.md
+          - name: Private.MessagingConnectors/connectors
+            href: supported-metrics/private-messagingconnectors-connectors-metrics.md
           - name: Wandisco.Fusion/migrators
             href: supported-metrics/wandisco-fusion-migrators-metrics.md
           - name: Wandisco.Fusion/migrators/dataTransferAgents
@@ -484,6 +486,9 @@ items:
             href: supported-logs/microsoft-apimanagement-service-logs.md
             displayName: Logs related to Developer Portal usage,Logs related to
               ApiManagement Gateway,Logs related to Websocket Connections
+          - name: Microsoft.ApiManagement/service/workspaces
+            href: supported-logs/microsoft-apimanagement-service-workspaces-logs.md
+            displayName: Gateway logs for API Management workspaces
           - name: Microsoft.App/managedEnvironments
             href: supported-logs/microsoft-app-managedenvironments-logs.md
             displayName: Spring App console logs,Container App console logs,Container App
@@ -616,7 +621,7 @@ items:
             displayName: Audit events,Operational events
           - name: Microsoft.Dashboard/grafana
             href: supported-logs/microsoft-dashboard-grafana-logs.md
-            displayName: Grafana Login Events
+            displayName: Grafana Login Events,Grafana Usage Insights Events
           - name: Microsoft.Databricks/workspaces
             href: supported-logs/microsoft-databricks-workspaces-logs.md
             displayName: Databricks Accounts,Databricks Brick Store HttpGateway,Databricks
@@ -952,7 +957,7 @@ items:
             displayName: Cluster Manager Deploy or Upgrade Logs
           - name: Microsoft.NetworkCloud/clusters
             href: supported-logs/microsoft-networkcloud-clusters-logs.md
-            displayName: Kubernetes Logs,VM Orchestration Logs
+            displayName: Kubernetes Logs,Platform Operation Logs,VM Orchestration Logs
           - name: Microsoft.NetworkCloud/storageAppliances
             href: supported-logs/microsoft-networkcloud-storageappliances-logs.md
             displayName: Storage Appliance alerts,Storage Appliance audits,Storage Appliance
@@ -997,12 +1002,8 @@ items:
             displayName: Engine
           - name: Microsoft.ProviderHub/providerMonitorSettings
             href: supported-logs/microsoft-providerhub-providermonitorsettings-logs.md
-            displayName: Provisioning Operations,UserRP Http Incoming Requests,UserRP Http
-              Outgoing Requests
-          - name: Microsoft.ProviderHub/providerRegistrations
-            href: supported-logs/microsoft-providerhub-providerregistrations-logs.md
-            displayName: Provisioning Operations,UserRP Http Incoming Requests,UserRP Http
-              Outgoing Requests
+            displayName: UserRP Http Incoming Requests,UserRP Http Outgoing Requests,UserRP
+              Provisioning Operations
           - name: microsoft.purview/accounts
             href: supported-logs/microsoft-purview-accounts-logs.md
             displayName: DataSensitivity,ScanStatus,PurviewAccountAuditEvents
@@ -1029,6 +1030,9 @@ items:
           - name: Microsoft.Security/defenderForStorageSettings
             href: supported-logs/microsoft-security-defenderforstoragesettings-logs.md
             displayName: AntimalwareScanResults
+          - name: microsoft.securityinsights/settings
+            href: supported-logs/microsoft-securityinsights-settings-logs.md
+            displayName: Analytics,Automation,Data Collection - Connectors
           - name: Microsoft.ServiceBus/Namespaces
             href: supported-logs/microsoft-servicebus-namespaces-logs.md
             displayName: Application Metrics Logs(Unused),Diagnostic Error Logs,Operational
@@ -1119,6 +1123,9 @@ items:
             href: supported-logs/microsoft-synapse-workspaces-sqlpools-logs.md
             displayName: Dms Workers,Exec Requests,Request Steps,Sql Requests,Sql Security
               Audit Event,Waits
+          - name: Microsoft.ToolchainOrchestrator/diagnostics
+            href: supported-logs/microsoft-toolchainorchestrator-diagnostics-logs.md
+            displayName: Audit Logs,Diagnostic Logs
           - name: microsoft.videoindexer/accounts
             href: supported-logs/microsoft-videoindexer-accounts-logs.md
             displayName: Audit,Indexing Logs

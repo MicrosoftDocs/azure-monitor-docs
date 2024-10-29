@@ -1,19 +1,19 @@
 ---
-title: Profile Azure containers with Application Insights Profiler
+title: Profile Azure containers with Application Insights Profiler for .NET
 description: Learn how to enable the Application Insights Profiler for your ASP.NET Core application running in Azure containers.
 ms.contributor: charles.weininger
 ms.topic: how-to
 ms.date: 08/19/2024
 ms.reviewer: ryankahng
-# Customer Intent: As a .NET developer, I'd like to learn how to enable Profiler on my ASP.NET Core application running in my container.
+# Customer Intent: As a .NET developer, I'd like to learn how to enable the Profiler on my ASP.NET Core application running in my container.
 ---
 
-# Profile live Azure containers with Application Insights
+# Enable the .NET Profiler on Azure containers
 
-You can enable the Application Insights Profiler for ASP.NET Core application running in your container almost without code. To enable the Application Insights Profiler on your container instance, you need to:
+You can enable the Application Insights Profiler for .NET on applications running in your container almost without code. To enable the .NET Profiler on your container instance, you need to:
 
 - Add the reference to the `Microsoft.ApplicationInsights.Profiler.AspNetCore` NuGet package.
-- Update the code to enable the Profiler.
+- Update the code to enable the Profiler for .NET.
 - Set up the Application Insights instrumentation key.
 
 In this article, you learn about the various ways that you can:
@@ -65,13 +65,13 @@ In this article, you learn about the various ways that you can:
    }
    ```
 
-1. Add the NuGet package to collect the Profiler traces:
+1. Add the NuGet package to collect the .NET Profiler traces:
 
    ```console
    dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
    ```
 
-1. Enable Application Insights and Profiler.
+1. Enable Application Insights and the .NET Profiler.
 
    ### [ASP.NET Core 6 and later](#tab/net-core-new)
    
@@ -181,13 +181,13 @@ Finished calling trace uploader. Exit code: 0   # Uploader is called with exit c
 Service Profiler session finished.              # A profiling session is completed.
 ```
 
-## View the Service Profiler traces
+## View the .NET Profiler traces
 
 1. Wait for 2 to 5 minutes so that the events can be aggregated to Application Insights.
 1. Open the **Performance** pane in your Application Insights resource.
 1. After the trace process is finished, the **Profiler Traces** button appears.
 
-      :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the Profiler traces button in the Performance pane.":::
+      :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the .NET Profiler traces button in the Performance pane.":::
 
 ## Clean up resources
 
@@ -200,4 +200,4 @@ docker rm -f testapp
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Generate load and view Profiler traces](./profiler-data.md)
+> [Generate load and view .NET Profiler traces](./profiler-data.md)

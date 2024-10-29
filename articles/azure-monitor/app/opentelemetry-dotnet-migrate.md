@@ -12,7 +12,7 @@ ms.reviewer: mmcc
 
 This guide provides step-by-step instructions to migrate various .NET applications from using Application Insights software development kits (SDKs) to Azure Monitor OpenTelemetry.
 
-Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](opentelemetry-enable.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
 
 > [!div class="checklist"]
 > - ASP.NET Core migration to the [Azure Monitor OpenTelemetry Distro](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore). (`Azure.Monitor.OpenTelemetry.AspNetCore` NuGet package)
@@ -253,7 +253,7 @@ If you're getting started with Application Insights and don't need to migrate fr
 
 ## Enable OpenTelemetry
 
-We recommended creating a development [resource](./create-workspace-resource.md) and using its [connection string](./sdk-connection-string.md) when following these instructions.
+We recommended creating a development [resource](./create-workspace-resource.md) and using its [connection string](./connection-strings.md) when following these instructions.
 
 :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
@@ -1396,7 +1396,7 @@ using var loggerFactory = LoggerFactory.Create(builder => builder
 // Create a new instance `ILogger` from the above LoggerFactory
 var logger = loggerFactory.CreateLogger<Program>();
 
-// Use the logger instance to write a new log
+// Emit log: This uses the logger instance to write a new log
 logger.FoodPrice("tomato", 2.99);
 
 internal static partial class LoggerExtensions
@@ -1452,6 +1452,7 @@ try
 }
 catch (Exception ex)
 {
+    // Emit exception: This uses the logger instance to write a new exception
     logger?.LogError(ex, "An error occurred");
 }
 ```
