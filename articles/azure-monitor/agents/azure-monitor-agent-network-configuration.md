@@ -50,7 +50,7 @@ Replace the suffix in the endpoints with the suffix in the following table for d
 > The Azure Monitor Metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
 
 > [!NOTE]
-> When using AMA with AMPLS, all of your Data Collection Rules much use Data Collection Endpoints. Those DCE's must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-azure-monitor-resources)
+> When using AMA with AMPLS, all of your Data Collection Rules must use Data Collection Endpoints. Those DCE's must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-azure-monitor-resources)
 
 ## Proxy configuration
 

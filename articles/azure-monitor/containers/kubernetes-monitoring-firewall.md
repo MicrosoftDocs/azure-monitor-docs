@@ -20,7 +20,8 @@ The following table lists the proxy and firewall configuration information requi
 | `*.monitoring.azure.com` | | 443 |
 | `login.microsoftonline.com` | | 443 |
 | `global.handler.control.monitor.azure.com` | Access control service | 443 |
-| `<cluster-region-name>.ingest.monitor.azure.com` | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443 |
+| `*.ingest.monitor.azure.com` | Container Insights - logs ingestion endpoint (DCE) | 443 |
+| `*.metrics.ingest.monitor.azure.com` | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443 |
 | `<cluster-region-name>.handler.control.monitor.azure.com` | Fetch data collection rules for specific cluster | 443 |
 
 ## Microsoft Azure operated by 21Vianet cloud
@@ -32,6 +33,8 @@ The following table lists the proxy and firewall configuration information requi
 | `dc.services.visualstudio.com` | For agent telemetry that uses Azure Public Cloud Application Insights | 443 |
 | `global.handler.control.monitor.azure.cn` | Access control service | 443 |
 | `<cluster-region-name>.handler.control.monitor.azure.cn` | Fetch data collection rules for specific cluster | 443 |
+| `*.ingest.monitor.azure.cn` | Container Insights - logs ingestion endpoint (DCE) | 443 |
+| `*.metrics.ingest.monitor.azure.cn` | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443 |
 
 ## Azure Government cloud
 
@@ -42,6 +45,8 @@ The following table lists the proxy and firewall configuration information requi
 | `dc.services.visualstudio.com` | For agent telemetry that uses Azure Public Cloud Application Insights | 443 |
 | `global.handler.control.monitor.azure.us` | Access control service | 443 |
 | `<cluster-region-name>.handler.control.monitor.azure.us` | Fetch data collection rules for specific cluster | 443 |
+| `*.ingest.monitor.azure.us` | Container Insights - logs ingestion endpoint (DCE) | 443 |
+| `*.metrics.ingest.monitor.azure.us` | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443 |
 
 
 ## Next steps

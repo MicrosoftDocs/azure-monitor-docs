@@ -60,7 +60,7 @@ The endpoint URI uses the following format, where the `Data Collection Endpoint`
 
 :::image type="content" source="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" lightbox="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" alt-text="Screenshot of a data collection rule showing the immutable ID.":::
 
-`Stream Name` refers to the [stream](../essentials/data-collection-rule-structure.md#streamdeclarations) in the DCR that should handle the custom data.
+`Stream Name` refers to the [stream](../essentials/data-collection-rule-structure.md#input-streams) in the DCR that should handle the custom data.
 
 ```
 {Data Collection Endpoint URI}/dataCollectionRules/{DCR Immutable ID}/streams/{Stream Name}?api-version=2023-01-01

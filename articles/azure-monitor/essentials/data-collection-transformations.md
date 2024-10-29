@@ -47,6 +47,10 @@ There are multiple methods to create transformations depending on the data colle
 | Kubernetes cluster with Container insights | [Data transformations in Container insights](../containers/container-insights-transformations.md) |
 | Azure Event Hubs | [Tutorial: Ingest events from Azure Event Hubs into Azure Monitor Logs (Public Preview)](../logs/ingest-logs-event-hub.md) |
 
+## Transformation performance
+
+Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md). Optimal transformations should take no more than 1 second to run. If a transformation takes more than 20 seconds, you may experience data loss. See [Monitor transformations](./data-collection-transformations-best-practices.md#monitor-transformations) for guidance on monitoring the DCR metrics that measure the execution time of each transformation.
+
 ## Cost for transformations
 While transformations themselves don't incur direct costs, the following scenarios can result in additional charges:
 
@@ -68,6 +72,9 @@ See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 
 > [!IMPORTANT]
 > If Azure Sentinel is enabled for the Log Analytics workspace, there's no filtering ingestion charge regardless of how much data the transformation filters.
+
+
+
 
 
 ## Next steps

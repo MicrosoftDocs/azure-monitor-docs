@@ -1,19 +1,19 @@
 ---
-title: Enable Profiler for Azure Cloud Services
-description: Profile Azure Cloud Services in real time with Application Insights Profiler.
+title: Enable Application Insights Profiler for .NET for Azure Cloud Services
+description: Profile Azure Cloud Services in real time with Application Insights Profiler for .NET.
 ms.topic: how-to
 ms.custom: engagement
 ms.date: 08/16/2024
 ---
 
-# Enable Profiler for Azure Cloud Services
+# Enable the .NET Profiler for Azure Cloud Services
 
-You can receive performance traces for your instance of [Azure Cloud Services](/azure/cloud-services-extended-support/overview) by enabling the Application Insights Profiler. Profiler is installed on your instance of Azure Cloud Services via the [Azure Diagnostics extension](../agents/diagnostics-extension-overview.md).
+You can receive performance traces for your instance of [Azure Cloud Services](/azure/cloud-services-extended-support/overview) by enabling the Application Insights Profiler for .NET. The Profiler is installed on your instance of Azure Cloud Services via the [Azure Diagnostics extension](../agents/diagnostics-extension-overview.md).
 
 In this guide, you learn how to:
 > [!div class="checklist"]
 > - Enable your instance of Azure Cloud Services to send diagnostics data to Application Insights.
-> - Configure the Azure Diagnostics extension within your solution to install Profiler.
+> - Configure the Azure Diagnostics extension within your solution to install the .NET Profiler.
 > - Deploy your service and generate traffic to view Profiler traces.
 
 ## Prerequisites
@@ -57,11 +57,11 @@ Add the following `SinksConfig` section as a child element of `WadCfg`:
 > [!NOTE]
 > The instrumentation keys that are used by the application and the `ApplicationInsightsProfiler` sink must match.
 
-Deploy your service with the new Diagnostics configuration. Application Insights Profiler is now configured to run on your instance of Azure Cloud Services.
+Deploy your service with the new Diagnostics configuration. Application Insights Profiler for .NET is now configured to run on your instance of Azure Cloud Services.
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Generate load and view Profiler traces](./profiler-data.md)
+> [Generate load and view the .NET Profiler traces](./profiler-data.md)
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]

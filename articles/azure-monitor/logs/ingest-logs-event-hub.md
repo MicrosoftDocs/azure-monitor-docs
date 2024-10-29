@@ -28,11 +28,12 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-To send events from Azure Event Hubs to Azure Monitor Logs, you need these resources, *all in the same region*:
+To send events from Azure Event Hubs to Azure Monitor Logs, you need these resources:
 
 - [Log Analytics workspace](../logs/quick-create-workspace.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
 - Your Log Analytics workspace needs to be [linked to a dedicated cluster](../logs/logs-dedicated-clusters.md#link-a-workspace-to-a-cluster) or to have a [commitment tier](../logs/cost-logs.md#commitment-tiers).
-- [Event Hubs namespace](/azure/event-hubs/event-hubs-features#namespace) that permits public network access. Private Link and Network Security Perimeters (NSP) are currently not supported.
+- [Event Hubs namespace](/azure/event-hubs/event-hubs-features#namespace) that permits public network access. If public network access is disabled, ensure that "Allow trusted Microsoft services to bypass this firewall" is set to "Yes."
+
 - [Event hub](/azure/event-hubs/event-hubs-create) with events. You can send events to your event hub by following the steps in [Send and receive events in Azure Event Hubs tutorials](/azure/event-hubs/event-hubs-create#next-steps) or by [configuring the diagnostic settings of Azure resources](../essentials/create-diagnostic-settings.md).
 
 ## Supported regions
@@ -50,6 +51,10 @@ Azure Monitor currently supports ingestion from Event Hubs in these regions:
 |	South Central US	|	UK West	|		|		|	Jio India West	|
 |	West US	|	West Europe	|		|		|	Korea Central	|
 |	West US 3	 |		|		|		|	Southeast Asia	|
+
+Event Hub should be located in one of the supported regions, with the DCRA (Data Collection Rule Association) in the same region as the Event Hub. The Log Analytics Workspace can be in any region, but the **DCR** (Data Collection Rule) and **DCE** (Data Collection Endpoint) should be in the same region as the Log Analytics Workspace.
+
+For minimum latency, we recommend placing all resources in the same region.
 
 ## Collect required information
 
@@ -414,7 +419,7 @@ To create a data collection rule association in the Azure portal:
 
 ## Check your destination table for ingested events
 
-Now that you've associated the data collection rule with your event hub, Azure Monitor Logs will ingest all existing events whose [retention period](/azure/event-hubs/event-hubs-features#event-retention) hasn't expired and all new events.
+Once you create your data collection rule association (DCRA) with your event hub, Azure Monitor Logs will ingest all existing events since the DCRA creation, provided their retention period hasn't expired, as well as new events.
 
 To check your destination table for ingested events:
 

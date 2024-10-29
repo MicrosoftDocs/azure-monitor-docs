@@ -621,7 +621,7 @@ items:
             displayName: Audit events,Operational events
           - name: Microsoft.Dashboard/grafana
             href: supported-logs/microsoft-dashboard-grafana-logs.md
-            displayName: Grafana Login Events
+            displayName: Grafana Login Events,Grafana Usage Insights Events
           - name: Microsoft.Databricks/workspaces
             href: supported-logs/microsoft-databricks-workspaces-logs.md
             displayName: Databricks Accounts,Databricks Brick Store HttpGateway,Databricks
@@ -1002,12 +1002,8 @@ items:
             displayName: Engine
           - name: Microsoft.ProviderHub/providerMonitorSettings
             href: supported-logs/microsoft-providerhub-providermonitorsettings-logs.md
-            displayName: Provisioning Operations,UserRP Http Incoming Requests,UserRP Http
-              Outgoing Requests
-          - name: Microsoft.ProviderHub/providerRegistrations
-            href: supported-logs/microsoft-providerhub-providerregistrations-logs.md
-            displayName: Provisioning Operations,UserRP Http Incoming Requests,UserRP Http
-              Outgoing Requests
+            displayName: UserRP Http Incoming Requests,UserRP Http Outgoing Requests,UserRP
+              Provisioning Operations
           - name: microsoft.purview/accounts
             href: supported-logs/microsoft-purview-accounts-logs.md
             displayName: DataSensitivity,ScanStatus,PurviewAccountAuditEvents
@@ -1127,6 +1123,9 @@ items:
             href: supported-logs/microsoft-synapse-workspaces-sqlpools-logs.md
             displayName: Dms Workers,Exec Requests,Request Steps,Sql Requests,Sql Security
               Audit Event,Waits
+          - name: Microsoft.ToolchainOrchestrator/diagnostics
+            href: supported-logs/microsoft-toolchainorchestrator-diagnostics-logs.md
+            displayName: Audit Logs,Diagnostic Logs
           - name: microsoft.videoindexer/accounts
             href: supported-logs/microsoft-videoindexer-accounts-logs.md
             displayName: Audit,Indexing Logs

@@ -1,13 +1,13 @@
 ---
-title: Generate load and view Application Insights Profiler data
-description: Generate load to your Azure service to view the Profiler data
+title: Generate load and view Application Insights Profiler for .NET data
+description: Generate load to your Azure service to view the .NET Profiler data
 ms.contributor: charles.weininger
 ms.topic: conceptual
 ms.date: 07/11/2024
 ms.reviewer: charles.weininger
 ---
 
-# View Application Insights Profiler data
+# View Application Insights Profiler for .NET data
 
 Let's say you're running a web performance test. You'll need traces to understand how your web app is running under load. In this article, you'll:
 
@@ -18,9 +18,9 @@ Let's say you're running a web performance test. You'll need traces to understan
 
 ## Generate traffic to your Azure service
 
-For Profiler to upload traces, your service must be actively handling requests. 
+For .NET Profiler to upload traces, your service must be actively handling requests. 
 
-If you've newly enabled Profiler, run a short [load test with Azure Load Testing](/azure/load-testing/quickstart-create-and-run-load-test). 
+If you've newly enabled the Profiler for .NET, run a short [load test with Azure Load Testing](/azure/load-testing/quickstart-create-and-run-load-test). 
 
 If your Azure service already has incoming traffic or if you just want to manually generate traffic, skip the load test and start a **Profiler on-demand session**:
 
@@ -55,7 +55,7 @@ The trace explorer displays the following information:
 
 ## How to read performance data
 
-Profiler uses a combination of sampling methods and instrumentation to analyze your application's performance. While performing detailed collection, the Profiler:
+The .NET Profiler uses a combination of sampling methods and instrumentation to analyze your application's performance. While performing detailed collection, the .NET Profiler:
 
 - Samples the instruction pointer of each machine CPU every millisecond. 
   - Each sample captures the complete call stack of the thread, giving detailed information at both high and low levels of abstraction. 
@@ -117,7 +117,7 @@ Methods such as **SqlCommand.Execute** indicate that the code is waiting for a d
 
 However, logically, the thread that did the **AWAIT** is "blocked", waiting for the operation to finish. The **AWAIT\_TIME** statement indicates the blocked time, waiting for the task to finish.
 
-If the **AWAIT_TIME** appears to be in framework code instead of your code, the Profiler could be showing:
+If the **AWAIT_TIME** appears to be in framework code instead of your code, the .NET Profiler could be showing:
 - The framework code used to execute the **AWAIT** 
 - Code used for recording telemetry about the **AWAIT** 
 
@@ -132,7 +132,7 @@ You can uncheck the **Framework dependencies** checkbox at the top of the page t
 
 ### Unmanaged Async
 
-In order for async calls to be tracked across threads, .NET Framework emits ETW events and passes activity IDs between threads. Since unmanaged (native) code and some older styles of asynchronous code lack these events and activity IDs, the Profiler can't track the thread and functions running on the thread. This item is labeled **Unmanaged Async** in the call stack. Download the ETW file to use [PerfView](https://github.com/Microsoft/perfview/blob/master/documentation/Downloading.md) for more insight.
+In order for async calls to be tracked across threads, .NET Framework emits ETW events and passes activity IDs between threads. Since unmanaged (native) code and some older styles of asynchronous code lack these events and activity IDs, the .NET Profiler can't track the thread and functions running on the thread. This item is labeled **Unmanaged Async** in the call stack. Download the ETW file to use [PerfView](https://github.com/Microsoft/perfview/blob/master/documentation/Downloading.md) for more insight.
 
 ### CPU time
 
@@ -157,7 +157,7 @@ For these metrics, you can get a value of greater than 100% by consuming multipl
 ## Next steps
 Learn how to...
 > [!div class="nextstepaction"]
-> [Configure Profiler settings](./profiler-settings.md)
+> [Configure the .NET Profiler settings](./profiler-settings.md)
 
 
 [performance-blade]: ./media/profiler-overview/performance-blade-v2-examples.png

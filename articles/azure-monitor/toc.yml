@@ -243,6 +243,14 @@ items:
           href: insights/set-up-code-optimizations.md
         - name: View insights
           href: insights/view-code-optimizations.md
+        - name: Extensions (preview)
+          items:
+          - name: Overview
+            href: insights/code-optimizations-extensions.md
+          - name: Visual Studio
+            href: insights/code-optimizations-vs-extension.md
+          - name: Visual Studio Code
+            href: insights/code-optimizations-vscode-extension.md
         - name: Troubleshooting
           href: insights/code-optimizations-troubleshoot.md
         - name: Profiler
@@ -934,8 +942,6 @@ items:
       - name: Overview
         displayName: Prometheus
         href: essentials/prometheus-metrics-overview.md
-      - name: FAQ
-        href: essentials/prometheus-metrics-overview.md#frequently-asked-questions
       - name: Prometheus remote-write from virtual-machines
         displayName: Prometheus remote-write
         href: essentials/prometheus-remote-write-virtual-machines.md
@@ -947,6 +953,9 @@ items:
         - name: Manage
           displayName: Prometheus
           href: essentials/azure-monitor-workspace-manage.md
+        - name: Monitor metrics ingestion limits
+          displayName: Prometheus Azure Monitor workspace
+          href: essentials/azure-monitor-workspace-monitor-ingest-limits.md
         - name: Best practices for scaling Azure Monitor workspaces  
           href: essentials/azure-monitor-workspace-scaling-best-practice.md
         - name: Private endpoints for Azure Monitor workspaces

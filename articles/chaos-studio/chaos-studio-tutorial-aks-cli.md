@@ -26,7 +26,6 @@ Chaos Studio uses [Chaos Mesh](https://chaos-mesh.org/), a free, open-source cha
 
 * You can use Chaos Mesh faults with private clusters by configuring [VNet Injection in Chaos Studio](chaos-studio-private-networking.md). Any commands issued to the private cluster, including the steps in this article to set up Chaos Mesh, need to follow the [private cluster guidance](/azure/aks/private-clusters). Recommended methods include connecting from a VM in the same virtual network or using the [AKS command invoke](/azure/aks/access-private-cluster) feature.
 * AKS Chaos Mesh faults are only supported on Linux node pools.
-* Currently, Chaos Mesh faults don't work if the AKS cluster has [local accounts disabled](/azure/aks/manage-local-accounts-managed-azure-ad).
 * If your AKS cluster is configured to only allow authorized IP ranges, you need to allow Chaos Studio's IP ranges. You can find them by querying the `ChaosStudio` [service tag with the Service Tag Discovery API or downloadable JSON files](/azure/virtual-network/service-tags-overview). 
 
 ## Open Azure Cloud Shell
@@ -170,7 +169,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
                           "value": "{\"action\":\"pod-failure\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]}}"
                       }
                     ],
-                    "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.1"
+                    "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.2"
                   }
                 ]
               }
@@ -184,7 +183,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
             "targets": [
               {
                 "type": "ChaosTarget",
-                "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRG/providers/Microsoft.ContainerService/managedClusters/myCluster/providers/Microsoft.Chaos/targets/Microsoft-AzureKubernetesServiceChaosMesh"
+                "id": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/myRG/providers/Microsoft.ContainerService/managedClusters/myCluster/providers/Microsoft.Chaos/targets/Microsoft-AzureKubernetesServiceChaosMesh"
               }
             ]
           }
@@ -210,12 +209,16 @@ When you create a chaos experiment, Chaos Studio creates a system-assigned manag
 az rest --method get --uri https://management.azure.com/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Chaos/experiments/$EXPERIMENT_NAME?api-version=2024-01-01
 ```
 
-2. Give the experiment access to your resources by using the following command. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$SUBSCRIPTION_ID`, `$resourceGroupName`, and `$AKS_CLUSTER_NAME` with the relevant strings of the AKS cluster.
+2. Give the experiment access to your resources by using the following commands. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$SUBSCRIPTION_ID`, `$resourceGroupName`, and `$AKS_CLUSTER_NAME` with the relevant strings of the AKS cluster.
 
 
 ```azurecli-interactive
-az role assignment create --role "Azure Kubernetes Service Cluster Admin Role" --assignee-principal-type "ServicePrincipal" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope subscriptions/$SUBSCRIPTION_ID/resourceGroups/$resourceGroupName/providers/Microsoft.ContainerService/managedClusters/$AKS_CLUSTER_NAME
+az role assignment create --role "Azure Kubernetes Service RBAC Admin Role" --assignee-principal-type "ServicePrincipal" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope subscriptions/$SUBSCRIPTION_ID/resourceGroups/$resourceGroupName/providers/Microsoft.ContainerService/managedClusters/$AKS_CLUSTER_NAME
+
+az role assignment create --role "Azure Kubernetes Service Cluster User Role" --assignee-principal-type "ServicePrincipal" --assignee-object-id $EXPERIMENT_PRINCIPAL_ID --scope subscriptions/$SUBSCRIPTION_ID/resourceGroups/$resourceGroupName/providers/Microsoft.ContainerService/managedClusters/$AKS_CLUSTER_NAME
 ```
+
+If you prefer to create custom roles instead of the built-in AKS roles, follow the instructions on the [Supported resource types and role assignments for Chaos Studio](chaos-studio-fault-providers.md) page to list the role-based access control operations needed for a specific fault and add them to a manually created custom role.
 
 ## Run your experiment
 You're now ready to run your experiment. To see the effect, we recommend that you open your AKS cluster overview and go to **Insights** in a separate browser tab. Live data for the **Active Pod Count** shows the effect of running your experiment.

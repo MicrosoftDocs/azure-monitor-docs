@@ -1,5 +1,5 @@
 ---
-title: Monitor and analyze runtime behavior with Code Optimizations (Preview)
+title: Monitor and analyze runtime behavior with Code Optimizations
 description: Identify and remove CPU and memory bottlenecks using Azure Monitor's Code Optimizations feature
 ms.topic: conceptual
 ms.service: azure-monitor
@@ -11,7 +11,7 @@ ms.reviewer: ryankahng
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Monitor and analyze runtime behavior with Code Optimizations (Preview)
+# Monitor and analyze runtime behavior with Code Optimizations
 
 Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler to detect CPU and memory usage performance issues at a code level and provide recommendations on how to fix them. Code Optimizations identifies these CPU and memory bottlenecks by:
 

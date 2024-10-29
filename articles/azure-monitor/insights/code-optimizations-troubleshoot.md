@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot Code Optimizations (Preview)
+title: Troubleshoot Code Optimizations
 description: Learn how to use Application Insights Code Optimizations on Azure. View a checklist of troubleshooting steps.
 author: rkahng 
 ms.author: ryankahng
@@ -7,11 +7,11 @@ editor: v-jsitser
 ms.reviewer: hannahhunter, v-leedennis
 ms.service: azure-monitor
 ms.topic: troubleshooting
-ms.date: 06/25/2024
+ms.date: 10/07/2024
 ms.custom: sap:Availability Tests
 ---
 
-# Troubleshoot Code Optimizations (Preview)
+# Troubleshoot Code Optimizations
 
 This article provides troubleshooting steps and information to use Application Insights Code Optimizations for Microsoft Azure.
 
