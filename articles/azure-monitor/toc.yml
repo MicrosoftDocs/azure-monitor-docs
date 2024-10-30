@@ -1309,6 +1309,8 @@ items:
     items:
     - name: Overview
       href: change/change-analysis.md
+    - name: Migrate Change Analysis
+      href: change/change-analysis-migration.md
     - name: Enable
       href: change/change-analysis-enable.md
     - name: Visualizations
