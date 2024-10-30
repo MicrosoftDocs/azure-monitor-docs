@@ -10,7 +10,7 @@ ms.subservice: change-analysis
 
 # Migrate to the Change Analysis API powered by Azure Resource Graph
 
-To better support you as you scale in Azure, the Azure Monitor Change Analysis (classic) API is being retired. The experience will be replaced by the Change Analysis API powered by Azure Resource Graph (ARG).
+To better support you as you scale in Azure, the Azure Monitor Change Analysis (classic) API will be retired October 31, 2025. The experience will be replaced by the Change Analysis API powered by Azure Resource Graph (ARG).
 
 ## How to migrate
 
