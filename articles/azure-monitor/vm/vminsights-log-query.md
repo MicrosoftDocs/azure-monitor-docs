@@ -1,5 +1,5 @@
 ---
-title: Query log data from VM Insights
+title: Query map data from VM Insights
 description: VM Insights solution collects metrics and log data to and this article describes the records and includes sample queries.
 ms.topic: conceptual
 author: guywi-ms
@@ -7,19 +7,18 @@ ms.author: guywild
 ms.date: 10/29/2024
 ---
 
-# Query log data from VM Insights
+# Query map data from VM Insights
 
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
+When you [enable processes and dependencies](vminsights-enable-portal.md#enable-vm-insights-using-the-azure-portal), in VM insights, computer and process inventory data is collected to support the map feature. In addition to analyzing this data with the map, you can query it directly with Log Analytics. This article describes the available data and provides sample queries.
 
 VM Insights collects performance and connection metrics, computer and process inventory data, and health state information and forwards it to the Log Analytics workspace in Azure Monitor. This data is available for [query](../logs/log-query-overview.md) in Azure Monitor. You can apply this data to scenarios that include migration planning, capacity analysis, discovery, and on-demand performance troubleshooting.
 
+> [!IMPORTANT]
+> You must have processes and dependencies enabled for VM insights for the tables discussed in this article to be created.
+
 ## Map records
 
-> [!IMPORTANT]
-> If your virtual machine is using VM Insights with Azure Monitor agent, then you must have [processes and dependencies enabled](vminsights-enable-portal.md#enable-vm-insights-using-the-azure-portal) for these tables to be created.
-
-One record is generated per hour for each unique computer and process, in addition to the records that are generated when a process or computer starts or is added to VM Insights. The fields and values in the [VMComputer](../reference/tables/vmcomputer.md) table map to fields of the Machine resource in the ServiceMap Azure Resource Manager API. The fields and values in the [VMProcess](../reference/tables/vmprocess.md) table map to the fields of the Process resource in the ServiceMap Azure Resource Manager API. The `_ResourceId` field matches the name field in the corresponding Resource Manager resource.
+One record is generated per hour for each unique computer and process in addition to the records that are generated when a process or computer starts or is added to VM Insights. The fields and values in the [VMComputer](../reference/tables/vmcomputer.md) table map to fields of the Machine resource in the ServiceMap Azure Resource Manager API. The fields and values in the [VMProcess](../reference/tables/vmprocess.md) table map to the fields of the Process resource in the ServiceMap Azure Resource Manager API. The `_ResourceId` field matches the name field in the corresponding Resource Manager resource.
 
 There are internally generated properties you can use to identify unique processes and computers:
 
@@ -36,7 +35,7 @@ Records in these tables are generated from data reported by the Dependency Agent
 
 To manage cost and complexity, connection records don't represent individual physical network connections. Multiple physical network connections are grouped into a logical connection, which is then reflected in the respective table. Meaning, records in `VMConnection` table represent a logical grouping and not the individual physical connections that are being observed. Physical network connection sharing the same value for the following attributes during a given one-minute interval, are aggregated into a single logical record in `VMConnection`.
 
-#### Metrics
+## Metrics
 
 [VMConnection](../reference/tables/vmconnection.md) and [VMBoundPort](../reference/tables/vmboundport.md) include metric data with  information about the volume of data sent and received on a given logical connection or network port (`BytesSent`, `BytesReceived`). Also included is the response time, which is how long caller waits for a request sent over a connection to be processed and responded to by the remote endpoint (`ResponseTimeMax`, `ResponseTimeMin`, `ResponseTimeSum`). The response time reported is an estimation of the true response time of the underlying application protocol. It's computed using heuristics based on the observation of the flow of data between the source and destination end of a physical network connection. Conceptually, it's the difference between the time the last byte of a request leaves the sender, and the time when the last byte of the response arrives back to it. These two timestamps are used to delineate request and response events on a given physical connection. The difference between them represents the response time of a single request.
 
@@ -136,12 +135,6 @@ VMComputer | where AzureResourceName in ((search in (VMProcess) "*sql*" | distin
 
 ```kusto
 VMProcess | where ExecutableName == "curl" | distinct ProductVersion
-```
-
-**Create a computer group of all computers running CentOS**
-
-```kusto
-VMComputer | where OperatingSystemFullName contains_cs "CentOS" | distinct Computer
 ```
 
 **Bytes sent and received trends**
