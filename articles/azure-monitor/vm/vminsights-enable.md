@@ -22,30 +22,39 @@ This article provides details on enabling VM Insights in Azure Monitor using dif
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
 - See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md) to verify that your operating system is supported by Dependency agent and for network requirements for the Dependency agent.
 
-## VM insights DCR
-
-[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. To enable VM Insights on a machine with Azure Monitor Agent, you associate a VM insights DCR with the agent. When you enable VM Insights using the Azure portal, a DCR can be created for you. You can either use this DCR or a downloadable template when you use other installation methods. 
-
-> [!IMPORTANT]
-> VM Insights automatically creates a DCR that includes a special data stream required for its operation. Do not modify the VM Insights data collection rule or create your own data collection rule to support VM Insights. To collect additional data, such as Windows and Syslog events, create separate data collection rules and associate them with your machines.
-
-If you associate a DCR with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you [install Dependency Agent](./vminsights-dependency-agent-maintenance.md).
-
-- RBAC permissions
-- Reasons to create other DCRs 
-
-
 ## Agents
 
 When you enable VM Insights for a machine, the following agents are installed. 
 
-> [!IMPORTANT]
-> Azure Monitor Agent has several advantages over the legacy Log Analytics agent, which will be deprecated by August 2024. After this date, Microsoft will no longer provide any support for the Log Analytics agent. [Migrate to Azure Monitor agent](../agents/azure-monitor-agent-migration.md) before August 2024 to continue ingesting data.
-
-
 - [Azure Monitor agent](../agents/azure-monitor-agent-overview.md): Collects data from the machine and delivers it to a Log Analytics workspace.
-- [Dependency agent](./vminsights-dependency-agent-maintenance.md): Collects discovered data about processes running on the virtual machine and external process dependencies, which are used by the [Map feature in VM Insights](../vm/vminsights-maps.md). The Dependency agent relies on the Azure Monitor Agent agent to deliver its data to Azure Monitor. If you don't need the map feature, you don't need to install the Dependency agent.
+- [Dependency agent](./vminsights-dependency-agent-maintenance.md): Collects discovered data about processes running on the virtual machine and external process dependencies, which are used by the [Map feature in VM Insights](../vm/vminsights-maps.md). If you don't need the map feature, you don't need to install the Dependency agent.
 
+## VM insights DCR
+
+[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. When you enable VM Insights, you create a DCR specifically for VM insights and associate it with the Azure Monitor agent on any machines to monitor.
+
+You shouldn't modify the VM insights DCR. If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCR from [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md).
+
+:::image type="content" source="media/vminsights-enable-portal/vminsights-dcr.png" lightbox="media/vminsights-enable-portal/vminsights-dcr.png" alt-text="Diagram showing the operation of VM insights DCR compared to other DCRs associated with the same agents.":::
+
+The only configuration in a VM insights DCR is the Log Analytics workspace and whether or not to collect processes and dependencies data. Instead of creating a separate DCR for each machine, you should use a single DCR for each Log Analytics workspace you use for VM insights and associate that DCR with multiple machines. You may want to create separate DCRs if you want to collect processes and dependencies from some machines but not from others. 
+
+- You require RBAC permissions to create a DCR.
+- See [Deploy templates](#deploy-templates) if you aren't familiar with methods to deploy ARM templates.
+- If you associate a DCR with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you [install Dependency Agent](./vminsights-dependency-agent-maintenance.md).
+
+### Create a VM insights DCR
+There are two methods to create a VM insights DCR. Regardless of the method you choose, the DCR is identical and can be used with any process to enable VM insights on other machines.
+
+- Create a VM insights DCR as part of the onboarding process using the Azure portal with the [process detailed below](#enable-vm-insights-using-the-azure-portal). 
+- Download and the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip). The following table describes the templates available:
+
+   | Folder | File | Description |
+   |:---|:---|:---|
+   | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. |
+   | DeployDcr\\<br>PerfOnlyDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable only Performance experience of VM Insights. |
+
+While not required, you should name the DCR `MSVMI-{WorkspaceName}` to match the naming convention used by the Azure portal.
 
 ## Enable network isolation using Private Link
 
@@ -70,40 +79,27 @@ Use the following procedure to enable VM insights on an unmonitored virtual mach
 
 1. On the **Insights Onboarding** page, select **Enable**. 
  
-2. On the **Monitoring configuration** page, select **Azure Monitor agent** and select a [DCR](vminsights-enable-overview.md#vm-insights-dcr) from the **Data collection rule** dropdown. Only rules configured for VM insights are listed. If a DCR hasn't already been created for VM insights, Azure Monitor creates one with the following settings.
+2. On the **Monitoring configuration** page, select **Azure Monitor agent** and select a [DCR](#vm-insights-dcr) from the **Data collection rule** dropdown. Only DCRs configured for VM insights are listed. If a DCR hasn't already been created for VM insights, Azure Monitor creates one with the following settings.
 
     - **Guest performance** enabled.
     - **Processes and dependencies** disabled.
  
     :::image type="content" source="media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png" lightbox="media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png" alt-text="Screenshot of VM Insights Monitoring Configuration Page.":::
  
-2.  Select **Create new** to create a new data collection rule. This lets you select a workspace and specify whether to collect processes and dependencies using the [VM insights Map feature](vminsights-maps.md).
+3.  Select **Create new** to create a new data collection rule. This lets you select a workspace and specify whether to collect processes and dependencies using the [VM insights Map feature](vminsights-maps.md).
 
     :::image type="content" source="media/vminsights-enable-portal/create-data-collection-rule.png" lightbox="media/vminsights-enable-portal/create-data-collection-rule.png" alt-text="Screenshot showing screen for creating new data collection rule.":::
 
     > [!NOTE]
     > If you select a DCR with Map enabled and your virtual machine is not [supported by the Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md), Dependency Agent will be installed and  will run in degraded mode.
 
-3. Select **Configure** to start the configuration process. It takes several minutes to install the agent and start collecting data. You'll receive status messages as the configuration is performed.
+4. Select **Configure** to start the configuration process. It takes several minutes to install the agent and start collecting data. You'll receive status messages as the configuration is performed.
  
-4. If you use a manual upgrade model for your Virtual Machine Scale Set, upgrade the instances to complete the setup. You can start the upgrades from the **Instances** page, in the **Settings** section.
+5. If you use a manual upgrade model for your Virtual Machine Scale Set, upgrade the instances to complete the setup. You can start the upgrades from the **Instances** page, in the **Settings** section.
 
 ## [ARM Template](#tab/arm)
 
 ### Enable VM insights using ARM templates
-
-The ARM templates described in this section can be deployed using any method to install an [ARM template](/azure/azure-resource-manager/templates/overview). See  [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal) for details on deploying a template from the Azure portal.
-
-The following examples show how to deploy the templates using common methods.
-
-```PowerShell
-New-AzResourceGroupDeployment -Name EnableVMinsights -ResourceGroupName <ResourceGroupName> -TemplateFile <Template.json> -TemplateParameterFile <Parameters.json>
-```
-
-```azurecli
-az deployment group create --resource-group <ResourceGroupName> --template-file <Template.json> --parameters <Parameters.json>
-```
-
 
 ### Deploy agents
 Install the required agents on your machines using guidance in the following articles. Dependency agent is only required if you want to enable the Map feature.
@@ -120,16 +116,7 @@ A [data collection rule (DCR)](../essentials/data-collection-rule-overview.md) i
 > [!NOTE]
 > Instead of creating a new DCR, you can use one that was already created for VM insights. This could be a DCR created using an ARM template as described here or by [enabling VM insights in the Azure portal](./vminsights-enable-portal.md)
 
-Download the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip). The following table describes the templates available:
 
-   | Folder | File | Description |
-   |:---|:---|:---|
-   | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. |
-   | DeployDcr\\<br>PerfOnlyDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable only Performance experience of VM Insights. |
-
-- See [Deploy templates](#deploy-templates) if you aren't familiar with methods to deploy ARM templates.
-- Deploy the template to the same resource group as your Log Analytics workspace.
-- While not required, you should name the DCR `MSVMI-{WorkspaceName}` to match the naming convention used by the Azure portal.
 
 ### Associate DCR with agents
 The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. You need to create an association between the DCR and the agent to enable using the following template which comes from [Create and edit data collection rules (DCRs) and associations in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-a-dcr). To enable on multiple machines, you need to create an association using this template for each one.
@@ -197,11 +184,24 @@ The final step in enabling VM insights is to associate the DCR with the Azure Mo
 }
 ```
 
+The ARM templates described in this section can be deployed using any method to install an [ARM template](/azure/azure-resource-manager/templates/overview). See  [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal) for details on deploying a template from the Azure portal.
+
+The following examples show how to deploy the templates using common methods.
+
+```PowerShell
+New-AzResourceGroupDeployment -Name EnableVMinsights -ResourceGroupName <ResourceGroupName> -TemplateFile <Template.json> -TemplateParameterFile <Parameters.json>
+```
+
+```azurecli
+az deployment group create --resource-group <ResourceGroupName> --template-file <Template.json> --parameters <Parameters.json>
+```
+
+
 ## [PowerShell script](#tab/powershell)
 
 ### Enable VM insights for multiple VMs using PowerShell script
 
-This section describes how to enable [VM insights](./vminsights-overview.md) using a PowerShell script that can enable multiple VMs. This process uses a script installs VM extensions for Azure Monitoring Agent (AMA) and, if necessary, the Dependency Agent to enable VM Insights. If AMA is onboarded, a Data Collection Rule (DCR) and a User Assigned Managed Identity (UAMI) is also associated with the virtual machines and virtual machine scale sets.
+This section describes how to enable [VM insights](./vminsights-overview.md) using a PowerShell script that can enable multiple VMs. This process uses a script that installs VM extensions for Azure Monitoring Agent (AMA) and, if necessary, the Dependency Agent to enable VM Insights. If AMA is onboarded, a Data Collection Rule (DCR) and a User Assigned Managed Identity (UAMI) is also associated with the virtual machines and virtual machine scale sets.
 
 ### PowerShell script
 
