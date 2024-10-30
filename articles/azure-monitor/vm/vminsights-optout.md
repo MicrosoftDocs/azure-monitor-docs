@@ -8,7 +8,10 @@ ms.date: 09/28/2023
 
 ---
 
-# Disable monitoring of your VMs in VM insights
+# Disable monitoring of your VMs in VM insights (Legacy agent)
+
+> [!IMPORTANT]
+> This article describes how to disable monitoring of your virtual machines in VM insights if you're using the Log Analytics agent. If you're using the Azure Monitor agent, see [Migrate to Azure Monitor agent in VM Insights](./vminsights-migrate-agent.md) for information about migrating to the Azure Monitor agent.
 
 After you enable monitoring of your virtual machines (VMs), you can later choose to disable monitoring in VM insights. This article shows how to disable monitoring for one or more VMs.
 
