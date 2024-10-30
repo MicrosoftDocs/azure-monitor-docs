@@ -4,7 +4,7 @@ description: Set up a logic app that schedules a chaos experiment in Azure Chaos
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: tutorial
-ms.date: 11/12/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

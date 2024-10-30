@@ -229,11 +229,13 @@ During public preview, these limitations apply:
     |                 | East US                |
     |                 | East US 2              |
     |                 | West US                |
+    |                 | West US 2              |
     |                 | South Central US       |
     |                 | North Central US       |
     | **Asia Pacific**    | Australia East         |
     |                 | Australia South East   |
-    | **Europe**          | East Asia              |
+    |                 | East Asia         |
+    | **Europe**          | West Europe        |
     |                 | North Europe           |
     |                 | UK South               |
     |                 | Germany West Central   |
