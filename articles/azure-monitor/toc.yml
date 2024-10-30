@@ -362,7 +362,7 @@ items:
         href: vm/vminsights-overview.md
       - name: Enable and configure
         items:
-        - name: Enable
+        - name: Enable VM insights
           href: vm/vminsights-enable.md
         - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
@@ -370,7 +370,7 @@ items:
           href: vm/vminsights-enable-hybrid.md
         - name: Dependency agent
           href: vm/vminsights-dependency-agent-maintenance.md
-        - name: Disable monitoring
+        - name: Disable monitoring (legacy)
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
@@ -382,10 +382,10 @@ items:
           href: vm/vminsights-migrate-deprecated-policies.md
       - name: Use VM insights
         items:
-        - name: Map dependencies
-          href: vm/vminsights-maps.md
         - name: Monitor performance
           href: vm/vminsights-performance.md
+        - name: Map dependencies
+          href: vm/vminsights-maps.md
         - name: Analyze data with log queries
           href: vm/vminsights-log-query.md
         - name: Monitor changes
