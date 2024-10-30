@@ -624,7 +624,7 @@ There are several tools available to test what TLS configuration an endpoint sup
 > [!NOTE]
 > For steps to enable the needed TLS configuration on your web server, it is best to reach out to the team that owns the hosting platform your web server runs on if the process is not known. 
 
-#### After October 31, 2024, what will the web test behavior be for impacted tests?
+#### After March 1, 2025, what will the web test behavior be for impacted tests?
 
 There's no one exception type that all TLS handshake failures impacted by this deprecation would present themselves with. However, the most common exception your web test would start failing with would be `The request was aborted: Couldn't create SSL/TLS secure channel`. You should also be able to see any TLS related failures in the TLS Transport [Troubleshooting Step](/troubleshoot/azure/azure-monitor/app-insights/availability/diagnose-ping-test-failure) for the web test result that is potentially impacted. 
 
@@ -634,7 +634,7 @@ The TLS configuration negotiated during a web test execution can't be viewed. As
 
 #### Which components does the deprecation affect in the availability test service?
 
-The TLS deprecation detailed in this document should only affect the availability test web test execution behavior after October 31, 2024. For more information about interacting with the availability test service for CRUD operations, see [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support). This resource provides more details on TLS support and deprecation timelines.
+The TLS deprecation detailed in this document should only affect the availability test web test execution behavior after March 1, 2025. For more information about interacting with the availability test service for CRUD operations, see [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support). This resource provides more details on TLS support and deprecation timelines.
 
 #### Where can I get TLS support?
 

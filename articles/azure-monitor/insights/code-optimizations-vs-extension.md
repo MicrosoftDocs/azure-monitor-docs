@@ -12,7 +12,7 @@ ms.reviewer: jkalis
 
 # Code Optimizations extensions for Visual Studio (preview)
 
-With the [Code Optimizations extension for Visual Studio](https://aka.ms/CodeOptimizations/VS/Marketplace), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps. 
+With the [Code Optimizations extension for Visual Studio](https://aka.ms/CodeOptimizations/VS/Marketplace), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running .NET apps. 
 
 This article guides you through using the extension with GitHub Copilot in Visual Studio. 
 
