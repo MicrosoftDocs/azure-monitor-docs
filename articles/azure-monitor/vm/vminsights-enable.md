@@ -181,7 +181,7 @@ The final step in enabling VM insights is to associate the DCR with the Azure Mo
    }
 }
 ```
-# Deploy ARM templates
+### Deploy ARM templates
 
 The ARM templates described in this section can be deployed using any method to install an [ARM template](/azure/azure-resource-manager/templates/overview). See  [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal) for details on deploying a template from the Azure portal.
 
