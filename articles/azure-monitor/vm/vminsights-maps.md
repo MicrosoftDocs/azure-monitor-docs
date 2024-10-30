@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.custom: linux-related-content
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
+ms.date: 10/29/2024
 ---
 
 # Use the Map feature of VM insights to understand application components
