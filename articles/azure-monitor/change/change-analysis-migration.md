@@ -76,7 +76,7 @@ At a high level, the updated Change Analysis API offers:
 | ARG query support | No | Yes |
 | Granular filtering (including Change Type and Change Actor filters) | No | Yes |
 | Grouping | No | Yes |
-| Integration with PowerBI | No | Yes |
+| Integration with Power BI | No | Yes |
 
 ## Next steps
 
