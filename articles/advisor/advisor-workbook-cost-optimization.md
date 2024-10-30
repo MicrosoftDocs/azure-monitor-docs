@@ -1,20 +1,20 @@
 ---
-title: Understand and optimize your Azure costs with the new Azure Cost Optimization workbook.
+title: Cost Optimization workbook
 description: Understand and optimize your Azure costs with the new Azure Cost Optimization workbook.
 ms.topic: article
-ms.date: 12/28/2023
-author: pedrocsousa 
-ms.author: pesousa 
+ms.date: 10/28/2024
 
 ---
 
-# Understand and optimize your Azure costs using the Cost Optimization workbook
+# Cost Optimization workbook
+
 The Azure Cost Optimization workbook is designed to provide an overview and help you optimize costs of your Azure environment. It offers a set of cost-relevant insights and recommendations aligned with the Well-Architected Framework Cost Optimization pillar.
 
-## Overview
+## Overview of workbook
+
 The Azure Cost Optimization workbook serves as a centralized hub for some of the most commonly used tools that can help you drive utilization and efficiency goals. It offers a range of recommendations, including Azure Advisor cost recommendations, identification of idle resources, and management of improperly deallocated Virtual Machines. Additionally, it provides recommendations for applying Azure Reservations and Savings Plan for Compute and insights into using Azure Hybrid Benefit options. The workbook template is available in Azure Advisor gallery.
 
-Here’s how to get started:
+Here's how to get started:
 
 1. Navigate to [Workbooks gallery](https://aka.ms/advisorworkbooks) in Azure Advisor.
 1. Open **Cost Optimization (Preview)** workbook template.
@@ -36,9 +36,9 @@ The workbook is organized into different tabs and subtabs, each focusing on a sp
     * Other popular Azure services
 
 Each tab supports the following capabilities:
-*	**Filters** - use subscription, resource group, and tag filters to focus on a specific workload.
-*	**Export** - export the recommendations to share the insights and collaborate with your team more effectively.
-*	**Quick Fix** - apply the recommended optimization directly from the workbook page, streamlining the optimization process.
+*    **Filters** - use subscription, resource group, and tag filters to focus on a specific workload.
+*    **Export** - export the recommendations to share the insights and collaborate with your team more effectively.
+*    **Quick Fix** - apply the recommended optimization directly from the workbook page, streamlining the optimization process.
 
 :::image type="content" source="./media/advisor-cost-optimization-workbook-overview.png" alt-text="Screenshot of Sample Advisor Workbook showing the different available tabs on the main screen and highlighting the goal of the workbook." lightbox="./media/advisor-cost-optimization-workbook-overview.png"::: 
 
@@ -73,7 +73,7 @@ The Rate Optimization tab focuses on reviewing potential savings related to the 
 Azure Hybrid Benefit represents an excellent opportunity to save on Virtual Machines (VMs) operating system costs. Using the workbook, you can identify the opportunities to use the Azure Hybrid Benefit for VM/VMSS (Windows and Linux), SQL (SQL Server VMs, SQL DB and SQL MI), and Azure Stack HCI (VMs and AKS).
 
 > [!NOTE]
-> If you select a Dev/Test subscription in the scope of the workbook, then you should already have discounts on Windows and SQL licenses. So, any recommendations shown on the page don’t apply to the subscription.
+> If you select a Dev/Test subscription in the scope of the workbook, then you should already have discounts on Windows and SQL licenses. So, any recommendations shown on the page don't apply to the subscription.
 
 #### Windows VM/VMSS
 
@@ -117,7 +117,7 @@ The following queries show compute resources that you can optimize to save money
 
 #### Virtual Machines in a Stopped State
 
-This query identifies Virtual Machines that aren't properly deallocated. If a virtual machine’s status is Stopped rather than Stopped (Deallocated), you're still billed for the resource as the hardware remains allocated for you. Learn more about [States and billing status of Azure Virtual Machines](/azure/virtual-machines/states-billing).
+This query identifies Virtual Machines that aren't properly deallocated. If a virtual machine's status is Stopped rather than Stopped (Deallocated), you're still billed for the resource as the hardware remains allocated for you. Learn more about [States and billing status of Azure Virtual Machines](/azure/virtual-machines/states-billing).
 
 #### Deallocated virtual machines
 
@@ -197,7 +197,7 @@ App gateways are considered idle if there isn't any backend pool with targets.
 
 #### Load Balancer with empty backend pool
 
-Review the Standard Load Balancers with empty backend pools. Load Balancers are considered idle if there isn’t any backend pool with targets.
+Review the Standard Load Balancers with empty backend pools. Load Balancers are considered idle if there isn't any backend pool with targets.
 
 #### Unattached Public IPs
 
