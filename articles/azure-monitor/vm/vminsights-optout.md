@@ -4,8 +4,7 @@ description: This article describes how to stop monitoring your virtual machines
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
-
+ms.date: 10/30/2024
 ---
 
 # Disable monitoring of your VMs in VM insights (Legacy agent)
