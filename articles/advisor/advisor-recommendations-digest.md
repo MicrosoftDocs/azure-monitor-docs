@@ -2,7 +2,7 @@
 title: Recommendation digest for Azure Advisor
 description: Get periodic summary for your active recommendations
 ms.topic: article
-ms.date: 10/14/2024
+ms.date: 11/01/2024
 
 ---
 
@@ -21,10 +21,10 @@ The recommendation digest creation experience helps you configure the summary. T
 | Parameter                  | Detail                                                                                                                                                                 |
 |:---------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Frequency                  | Frequency for the summary notification is weekly, bi-weekly, or monthly.                                                                                               |
-| Recommendation Category    | The recommendation categories include cost, high availability, performance, operational excellence, and security.                                                      |
+| Recommendation Category    | The recommendation categories include cost, operational excellence, performance, reliability, and security.                                                      |
 | Language                   | Language for the digest.                                                                                                                                               |
 | Action Groups              | Select either an existing action group or create a new action group. To learn more about action groups, see [Action groups](../azure-monitor/alerts/action-groups.md). |
-| Recommendation digest name | Use a user-friendly string to better track and monitor the digests.                                                                                                    |
+| Recommendation digest name | Use a user-friendly string to manage the digests.                                                                                                    |
 
 ## Create a recommendation digest in Advisor
 
@@ -38,7 +38,7 @@ To create a recommendation digest, complete the following actions.
 
     :::image alt-text="Screenshot of New recommendation digest." lightbox="./media/advisor-recommendation-digest-highlight-new-recommendation-digest.png" source="./media/advisor-recommendation-digest-highlight-new-recommendation-digest-preview.png" type="content":::
 
-1. On **Add an Advisor recommendation digest** > **Scope**, in the drop-down menu next to **Subscription**, select the subscription of your digest.
+1. On **Add an Advisor recommendation digest** > **Scope**, in the drop-down menu next to **Subscription**, select the subscription for your digest.
 
     :::image alt-text="Screenshot of Scope input on Add an Advisor recommendation digest." lightbox="./media/add-an-advisor-recommendation-digest-highlight-scope.png" source="./media/add-an-advisor-recommendation-digest-highlight-scope-preview.png" type="content":::
 
@@ -65,6 +65,73 @@ To create a recommendation digest, complete the following actions.
     :::image alt-text="Screenshot of Digest Details inputs on Add an Advisor recommendation digest." lightbox="./media/add-an-advisor-recommendation-digest-highlight-digest-details.png" source="./media/add-an-advisor-recommendation-digest-highlight-digest-details-preview.png" type="content":::
 
 1. Select **Create recommendation digest**.
+
+## Manage digest
+
+Your organization configures the recommendation digests. You must have access to the digest action group to modify the properties. The Subscription administrator manages your access.
+
+To manage a digest after you create it, complete the actions in the following sections.
+
+### Update digest
+
+To edit your digest, complete the following actions.
+
+On **Advisor** | **Recommendation digests**.
+
+1.  Select the text in the column under the **Digest name** heading.
+
+On **Edit Advisor recommendation digest** > **Condition**, update the following drop-down menus.
+
+*   In the drop-down menu next to **Frequency**, select how often you receive the notification for your digest.
+
+*   In the drop-down menu next to **Recommendation Category**, select the category of your digest.
+
+*   In the drop-down menu next to **Language**, select the language of your digest.
+
+On **Edit Advisor recommendation digest** >  **Action Groups**, update the following table.
+
+*   Remove an existing **Action Group Name** and either select an existing **Action Group Name** or create a new action group for your digest. To learn more, see [Action groups](/azure/azure-monitor/alerts/action-groups).
+
+On **Edit Advisor recommendation digest** > **Digest Details**, update the following toggle switch.
+
+*   Next to **Enable recommendation digest**, toggle the switch to activate or deactivate your digest.
+
+On **Edit Advisor recommendation digest**
+
+1.  Select **Save Changes**.
+
+### Activate and deactivate digest
+
+To deactivate or activate your digest, complete the following actions.
+
+On **Advisor** | **Recommendation digests**.
+
+1.  Select the checkbox next to name of the digest.
+
+1.  To deactivate an active digest, select **Disable**.
+
+    *   To activate an inactive digest, select **Enable**.
+
+### Delete digest
+
+After you delete a digest, restoration isn't an option and you must recreate the digest.
+
+> [!NOTE]
+> Unlike deactivation that is reversible; deletion is permanent.
+>
+> To reactivate an inactive digest, select **Enable**. A digest set to `Enable` restarts notification using email.
+
+To delete your digest, complete the following actions.
+
+On **Advisor** | **Recommendation digests**.
+
+1.  Select the checkbox next to name of the digest.
+
+1.  Select **Delete**.
+
+On **Delete**.
+
+1.  Select **Yes**.
 
 ## Next steps
 
