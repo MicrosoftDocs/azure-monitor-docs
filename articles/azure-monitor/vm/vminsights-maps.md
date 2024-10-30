@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.custom: linux-related-content
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
+ms.date: 10/29/2024
 ---
 
 # Use the Map feature of VM insights to understand application components
@@ -16,7 +16,7 @@ For information about configuring VM insights, see [Enable VM insights](vminsigh
 ## Limitations
 
 - If you're duplicating IP ranges either with VMs or Azure Virtual Machine Scale Sets across subnets and virtual networks, VM insights Map might display incorrect information. This issue is known. We're investigating options to improve this experience.
-- The Map feature currently only supports IPv4. We're investigating support for IPv6. We also support IPv4 that's tunnelled inside IPv6.
+- The Map feature currently only supports IPv4. We're investigating support for IPv6. We also support IPv4 that's tunneled inside IPv6.
 - A map for a resource group or other large group might be difficult to view. Although we've made improvements to Map to handle large and complex configurations, we realize a map can have many nodes, connections, and nodes working as a cluster. We're committed to continuing to enhance support to increase scalability.
 - In the Free pricing tier, the VM insights Map feature supports only five machines that are connected to a Log Analytics workspace.
 
