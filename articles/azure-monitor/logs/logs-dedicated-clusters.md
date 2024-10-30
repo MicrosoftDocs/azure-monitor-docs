@@ -1079,6 +1079,17 @@ N/A
 
 ---
 
+## Change managed identity type
+Identity type can be changed after the cluster is created with no interruption to ingestion or queries with the following considerations:
+
+- Updating SystemAssigned to UserAssigned—Grant UserAssign identity in Key Vault, then update identity type in cluster
+- Updating UserAssigned to SystemAssigned—Since System-assigned managed identity created after updating cluster identity type with SystemAssigned, the following steps must be followed
+  1. Update cluster and remove the key—set keyVaultUri, keyName, and keyVersion with value ""
+  1. Update cluster identity type to SystemAssigned
+  1. Update Key Vault and [grant permissions](./customer-managed-keys.md#grant-key-vault-permissions) to the identity
+  1. [Update key in cluster](./customer-managed-keys.md#update-cluster-with-key-identifier-details)
+
+
 ## Limits and constraints
 
 - A maximum of five active clusters can be created in each region and subscription.
@@ -1128,8 +1139,6 @@ N/A
 -  400--Missing Capacity in SKU. Set Capacity value to 100, 200, 300, 400, 500, 1000, 2000, 5000, 10000, 25000, 50000 GB per day.
 -  400--Capacity is locked for 30 days. Decreasing capacity is permitted 30 days after update.
 -  400--No SKU was set. Set the SKU name to capacityReservation and Capacity value to 100, 200, 300, 400, 500, 1000, 2000, 5000, 10000, 25000, 50000 GB per day.
--  400--Identity is null or empty. Set Identity with systemAssigned type.
--  400--KeyVaultProperties are set on creation. Update KeyVaultProperties after cluster creation.
 -  400--Operation can't be executed now. Async operation is in a state other than succeeded. Cluster must complete its operation before any update operation is performed.
 
 ### Cluster Update

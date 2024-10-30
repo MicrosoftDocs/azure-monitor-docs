@@ -1,20 +1,20 @@
 ---
-title: Troubleshoot Azure Monitor's Change Analysis
-description: Learn how to troubleshoot problems in Azure Monitor's Change Analysis.
+title: Troubleshoot Change Analysis (classic)
+description: Learn how to troubleshoot problems in Change Analysis (classic).
 ms.topic: conceptual
 ms.author: hannahhunter
 author: hhunter-ms
-ms.date: 11/17/2023 
+ms.date: 09/12/2024
 ms.subservice: change-analysis
 ---
 
-# Troubleshoot Azure Monitor's Change Analysis
+# Troubleshoot Change Analysis (classic)
 
 [!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
 
 ## Trouble registering Microsoft.ChangeAnalysis resource provider from Change history tab.
 
-If you're viewing Change history after its first integration with Azure Monitor's Change Analysis, you'll see it automatically registering the **Microsoft.ChangeAnalysis** resource provider. The resource may fail and incur the following error messages: 
+If you're viewing change history after its first integration with Change Analysis (classic), you'll see it automatically registering the **Microsoft.ChangeAnalysis** resource provider. The resource may fail and incur the following error messages: 
 
 ### You don't have enough permissions to register Microsoft.ChangeAnalysis resource provider.  
 You're receiving this error message because your role in the current subscription isn't associated with the **Microsoft.Support/register/action** scope. For example, you aren't the owner of your subscription and instead received shared access permissions through a coworker (like view access to a resource group). 
@@ -51,13 +51,13 @@ Changes should show up within a few hours of app restart. If your changes still 
 ### Failed to query Microsoft.ChangeAnalysis resource provider.
 Often, this message includes: `Azure Lighthouse subscription is not supported, the changes are only available in the subscription's home tenant`. 
 
-Azure Lighthouse allows for cross-tenant resource administration. However, cross-tenant support needs to be built for each resource provider. Currently, Change Analysis has not built this support. If you're signed into one tenant, you can't query for resource or subscription changes whose home is in another tenant.
+Azure Lighthouse allows for cross-tenant resource administration. However, cross-tenant support needs to be built for each resource provider. Currently, Change Analysis (classic) has not built this support. If you're signed into one tenant, you can't query for resource or subscription changes whose home is in another tenant.
 
-If this is a blocking issue for you, [submit an Azure support ticket](https://azure.microsoft.com/support/) to describe how you're trying to use Change Analysis.
+If this is a blocking issue for you, [submit an Azure support ticket](https://azure.microsoft.com/support/) to describe how you're trying to use Change Analysis (classic).
 
 ## An error occurred while getting changes. Please refresh this page or come back later to view changes.
 
-When changes can't be loaded, Azure Monitor's Change Analysis service presents this general error message. A few known causes are:
+When changes can't be loaded, Change Analysis service presents this general error message. A few known causes are:
 
 - Internet connectivity error from the client device.
 - Change Analysis service being temporarily unavailable.
@@ -66,7 +66,7 @@ Refreshing the page after a few minutes usually fixes this issue. If the error p
 
 ## Only partial data loaded.
 
-This error message may occur in the Azure portal when loading change data via the Change Analysis home page. Typically, the Change Analysis service calculates and returns all change data. However, in a network failure or a temporary outage of service, you may receive an error message indicating only partial data was loaded.
+This error message may occur in the Azure portal when loading change data via the Change Analysis (classic) home page. Typically, the Change Analysis service calculates and returns all change data. However, in a network failure or a temporary outage of service, you may receive an error message indicating only partial data was loaded.
 
 To load all change data, try waiting a few minutes and refreshing the page. If you are still only receiving partial data, [submit an Azure support ticket](https://azure.microsoft.com/support/).
 
@@ -93,23 +93,19 @@ To troubleshoot virtual machine issues using the troubleshooting tool in the Azu
 1. Select **Diagnose and solve problems** from the side menu.
 1. Browse and select the troubleshooting tool that fits your issue.
 
-:::image type="content" source="./media/change-analysis/vm-dnsp-troubleshootingtools.png" lightbox="./media/change-analysis/vm-dnsp-troubleshootingtools.png" alt-text="Screenshot of the Diagnose and Solve Problems tool for a Virtual Machine with Troubleshooting tools selected.":::
-<!-- convertborder later -->
-:::image type="content" source="./media/change-analysis/analyze-recent-changes.png" lightbox="./media/change-analysis/analyze-recent-changes.png" alt-text="Screenshot of the tile for the Analyze recent changes troubleshooting tool for a Virtual Machine." border="false":::
-
 ## Can't filter to your resource to view changes
 
-When filtering down to a particular resource in the Change Analysis standalone page, you may encounter a known limitation that only returns 1,000 resource results. To filter through and pinpoint changes for one of your 1,000+ resources:
+When filtering down to a particular resource in the Change Analysis (classic) standalone page, you may encounter a known limitation that only returns 1,000 resource results. To filter through and pinpoint changes for one of your 1,000+ resources:
 
 1. In the Azure portal, select **All resources**.
 1. Select the actual resource you want to view.
 1. In that resource's left side menu, select **Diagnose and solve problems**.
-1. In the Change Analysis card, select **View change details**.
+1. In the Change Analysis (classic) card, select **View change details**.
 
-   :::image type="content" source="./media/change-analysis/change-details-card.png" lightbox="./media/change-analysis/change-details-card.png" alt-text="Screenshot of viewing change details from the Change Analysis card in Diagnose and solve problems tool.":::
+   :::image type="content" source="./media/change-analysis/change-details-card.png" lightbox="./media/change-analysis/change-details-card.png" alt-text="Screenshot of viewing change details from the Change Analysis (classic) card in Diagnose and solve problems tool.":::
 
 From here, you'll be able to view all of the changes for that one resource.
 
 ## Next steps
 
-Learn more about [Azure Resource Graph](/azure/governance/resource-graph/overview), which helps power Change Analysis.
+Learn more about [Azure Resource Graph](/azure/governance/resource-graph/overview), which helps power Change Analysis (classic).
