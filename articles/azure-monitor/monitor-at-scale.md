@@ -4,7 +4,7 @@ description: Learn about solutions and recommendations for using Azure Monitor t
 ms.topic: conceptual
 author: AbbyMSFT
 ms.author: abbyweisberg
-ms.date: 09/12/2024
+ms.date: 10/30/2024
 ms.reviewer: abbyweisberg
 
 # customer-intent: As an Azure Monitor customer, I want to learn about best practices for using Azure Monitor to monitor my at-scale.
@@ -35,7 +35,7 @@ The following table describes the solutions you can use to implement monitoring 
 |Configure diagnostic settings to collect data |[Create diagnostic settings at-scale using Azure Policies and Initiatives](essentials/diagnostic-settings-policy.md)|
 |Configure agents to collect data |[Best practices for data collection rule creation and management in Azure Monitor](essentials/data-collection-rule-best-practices.md) |
 |Configure alerts and action groups  | - You can use [Azure policies](/azure/governance/policy/overview) to easily implement [alerting at-scale](alerts/alerts-overview.md#alerting-at-scale). You can see how this is implemented with [Azure Monitor baseline alerts](https://aka.ms/amba).<br> - For Virtual machines, you can use Log Analytics to set up 1 alert for each metric. This would cause each metric to be configured with an alert, and when the VM starts sending data to Log Analytics, the metric is already configured for that alert.|
-|Configure virtual machines as they're added     |Use [Azure policies](/azure/governance/policy/overview) to:<br> - [Install an Azure Monitor Agent](agents/azure-monitor-agent-manage.md)<br> - [Create a DCR](essentials/data-collection-rule-create-edit.md) to collect performance data<br> - [Add associations to the DCR][Manage data collection rules (DCRs) and associations in Azure Monitor](essentials/data-collection-rule-view.md).|
+|Configure virtual machines as they're added     |Use [Azure policies](/azure/governance/policy/overview) to:<br> - [Install an Azure Monitor Agent](agents/azure-monitor-agent-manage.md)<br> - [Create a DCR](essentials/data-collection-rule-create-edit.md) to collect performance data</br> - [Add associations to the DCR](essentials/data-collection-rule-view.md).|
 |Configure Kubernetes clusters as they're added     | Use [Azure policies](/azure/governance/policy/overview) to:</br> - [Install an Azure Monitor Agent](agents/azure-monitor-agent-manage.md)</br> - [Create a DCR](essentials/data-collection-rule-create-edit.md) to collect performance data.</br> - [Add associations to the DCR](essentials/data-collection-rule-view.md).|
 
 
