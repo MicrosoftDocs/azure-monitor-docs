@@ -4,7 +4,7 @@ description: Log Analytics workspace data export in Azure Monitor lets you conti
 ms.topic: conceptual
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell
 ms.reviewer: yossiy
-ms.date: 06/14/2024
+ms.date: 10/29/2024
 ---
 
 # Log Analytics workspace data export in Azure Monitor
@@ -41,7 +41,9 @@ Log Analytics workspace data export continuously exports data that's sent to you
 - Export to Premium Storage Account isn't supported.
 
 ## Data completeness
-Data export is optimized to move large data volume to your destinations. The export operation might fail if the destination doesn't have sufficient capacity or is unavailable. In the event of failure, the retry process continues for up to 12 hours. For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule). If the destinations are still unavailable after the retry period, the data is discarded. In certain cases, retry can cause duplication of a fraction of the exported records.
+
+Data export is optimized to move large data volume to your destinations. In the event of of destination with insufficient scale or availability, a retry process continues for up to 12 hours and may a result with a fraction of duplication of the exported records. Follow recommendations for [Storage Account](#storage-account) and [Event Hubs](#event-hubs) destinations to improve reliability.
+For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule). If the destinations are still unavailable after the retry period, the data is discarded.
 
 ## Pricing model
 Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Size calculation in workspace query can't correspond with export charges since doesn't include the JSON formatted data. You can use PowerShell to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell).
