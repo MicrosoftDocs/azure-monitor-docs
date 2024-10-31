@@ -12,9 +12,14 @@ Application Insights supports three different types of metrics: standard (preagg
 
 * **[Standard metrics](standard-metrics.md):** Standard metrics in Application Insights are predefined metrics that are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics are preaggregated during collection, which gives them better performance at query time. This makes them the best choice for dashboards and real-time alerting.
 
-* **[Log-based metrics](../essentials/app-insights-metrics.md):** Log-based metrics in Application Insights are derived from log data collected from your application. These metrics are created by aggregating and analyzing log entries to provide insights into specific aspects of your application's performance and usage. They are highly customizable and can be tailored to track specific events or conditions within your application.
+* **[Log-based metrics](../essentials/app-insights-metrics.md):** 
+
+Log-based metrics in Application Insights are a query-time concept, represented as a time-series on top of log data from your application. This means that data is not pre-aggregated and instead stored in its raw form, which allows for more flexible and dynamic analysis. You can define and refine your queries to extract the specific insights you need without being limited by predefined metrics or aggregations. However, for applications generating large volumes of telemetry, it may be impractical to collect all events, leading to the use of techniques like sampling and filtering, which can reduce the accuracy of metrics.
 
 * **[Custom metrics (preview)](../essentials/metrics-custom-overview.md):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that is not covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
+
+> [!NOTE]
+> Application Insights also provides a feature called [Live Metrics stream](./live-stream.md), which allows for near real-time monitoring of your web applications and doesn't store any telemetry data.
 
 ### Feature comparison
 
@@ -32,10 +37,6 @@ Application Insights supports three different types of metrics: standard (preagg
 | **Service limit**     | Limited to predefined metrics and dimensions.                                      | No predefined limits, but performance can degrade with high data volume.                          | Limited by the quota for free metrics and the cost for additional dimensions.                             |
 | **Use cases**         | General performance monitoring and health checks.                                  | Detailed diagnostics, troubleshooting, and in-depth analysis.                                     | Specific business metrics and custom monitoring scenarios.                                                |
 | **Examples**          | CPU usage, memory usage, request duration.                                         | Request counts, exception traces, dependency calls.                                               | Business-specific metrics like user sign-ups, transaction counts.                                         |
-
-### Why is collection of custom metrics dimensions turned off by default?
-
-The collection of custom metrics dimensions is turned off by default because in the future storing custom metrics with dimensions will be billed separately from Application Insights. Storing the nondimensional custom metrics remain free (up to a quota). You can learn about the upcoming pricing model changes on our official [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Create charts and explore log-based and standard preaggregated metrics
 

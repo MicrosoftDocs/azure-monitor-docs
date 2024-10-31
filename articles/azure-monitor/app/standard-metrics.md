@@ -24,8 +24,6 @@ For the SDKs that don't implement preaggregation (that is, older versions of App
 
 The collection endpoint preaggregates events before ingestion sampling. For this reason, [ingestion sampling](./sampling.md) never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
 
-
-
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## Standard metrics support

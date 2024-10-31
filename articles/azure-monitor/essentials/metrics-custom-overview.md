@@ -40,12 +40,6 @@ Each metric data point published contains a namespace, name, and dimension infor
 > [!NOTE]
 > Application Insights, the diagnostics extension, and the InfluxData Telegraf agent are already configured to emit metric values against the correct regional endpoint and carry all the preceding properties in each emission.
 
-## Custom metrics dimensions and preaggregation
-
-All metrics that you send using [OpenTelemetry](./../app/opentelemetry-add-modify.md), [trackMetric](./../app/api-custom-events-metrics.md), or [GetMetric and TrackValue](./../app/api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
-
-:::image type="content" source="./media/metrics-custom-overview/001-cost.png" lightbox="./media/metrics-custom-overview/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
-
 ## Using custom metrics
 
 After custom metrics are submitted to Azure Monitor, you can browse through them via the Azure portal and query them via the Azure Monitor REST APIs. You can also create alerts on them to notify you when certain conditions are met.
@@ -63,6 +57,16 @@ After custom metrics are submitted to Azure Monitor, you can browse through them
 1. Select the custom metric.
 
 For more information on viewing metrics in the Azure portal, see [Analyze metrics with Azure Monitor metrics explorer](./analyze-metrics.md).
+
+## Custom metrics dimensions and preaggregation
+
+All metrics that you send using [OpenTelemetry](./../app/opentelemetry-add-modify.md), [trackMetric](./../app/api-custom-events-metrics.md), or [GetMetric and TrackValue](./../app/api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
+
+:::image type="content" source="./media/metrics-custom-overview/001-cost.png" lightbox="./media/metrics-custom-overview/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
+
+### Why is collection of custom metrics dimensions turned off by default?
+
+The collection of custom metrics dimensions is turned off by default because in the future, storing custom metrics with dimensions will be billed separately from Application Insights. Storing the nondimensional custom metrics remain free (up to a quota). You can learn about the upcoming pricing model changes on our official [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Latency and storage retention
 
