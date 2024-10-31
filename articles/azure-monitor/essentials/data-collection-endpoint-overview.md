@@ -12,23 +12,48 @@ ms.reviwer: nikeist
 
 # Data collection endpoints in Azure Monitor
 
-A data collection endpoint (DCE) is a connection where data sources send collected data for processing and ingestion into Azure Monitor. This article provides an overview of data collection endpoints and explains how to create and set them up based on your deployment.
+A data collection endpoint (DCE) is an Azure resource that defines a unique set of endpoints related to data collection, configuration, and ingestion in Azure Monitor. This article provides an overview of data collection endpoints and explains how to create and set them up based on your deployment.
+
+> [!NOTE]
+> This article only relates to data collection scenarios in Azure Monitor that use a [data collection rule (DCR)](./data-collection-rule-overview.md). Legacy data collection scenarios such as collecting resource logs with diagnostic settings or Application insights data collection do not yet use DCEs in any way.
 
 ## When is a DCE required?
-Prior to March 31, 2024, a DCE was required for all data collection scenarios using a DCR that required an endpoint. DCRs for supported scenarios created after this date include their own endpoints for logs and metrics. The URL for these endpoints can be found in the [`logsIngestion` and `metricsIngestion`](./data-collection-rule-structure.md#properties) properties of the DCR. These endpoints can be used instead of a DCE for any direct ingestion scenarios.
 
-Endpoints cannot be added to an existing DCR, but you can keep using any existing DCRs with existing DCEs. If you want to move to a DCR endpoint, then you must create a new DCR to replace the existing one. A DCR with endpoints can also use a DCE. In this case, you can choose whether to use the DCE or the DCR endpoints for each of the clients that use the DCR.
+A DCE isn't always required for data collection since the data source may use a public endpoint or the ingestion endpoints in the DCR. This section describes those scenarios where a DCE is required.
 
-The following scenarios can currently use DCR endpoints.  A DCE required if private link is used.
+### Azure Monitor agent (AMA) 
 
-- [Logs ingestion API](../logs/logs-ingestion-api-overview.md)
-- [Container Insights](../containers/container-insights-overview.md)
+**Only required when using private link**
 
-The following data types still require creating a DCE:
+When [AMA](../agents/azure-monitor-agent-overview.md) is installed on a [VM](../agents/azure-monitor-agent-manage.md) or enabled with [VM insights](../vm/vminsights-enable-overview.md), or installed on a Kubernetes cluster as part of [Container insights](../containers/kubernetes-monitoring-enable.md), it will use a public endpoint by default to retrieve its configuration from Azure Monitor. Different DCRs associated with the agent may or may not require DCEs based on their data sources (described below).
 
-- [AMA Based Custom Logs](../agents/data-collection-text-log.md)
-- [Windows IIS Logs](../agents/data-collection-iis.md)
-- [Prometheus Metrics](../containers/container-insights-prometheus-logs.md)
+When you configure private link for either [VMs](../agents/azure-monitor-agent-private-link.md) or [Container insights](../containers/kubernetes-monitoring-private-link.md), then a DCE is required for both for the agent to retrieve its configuration and for all data sources associated with that agent.
+
+
+### AMA data sources 
+
+**Only required for certain data sources**
+
+As explained in the previous section, a DCE isn't required if AMA is using public endpoints. You can configure [data collection with the agent](../agents/azure-monitor-agent-data-collection.md) for such data as Windows event logs, Syslog, and performance data without a DCE. You can also [collect container logs](../containers/container-insights-data-collection-configure.md) from your Kubernetes cluster without a DCE.
+
+A DCE is required for the following AMA data sources. If an agent is associated with multiple DCRs with a variety of data sources, a DCE is only required for those data sources that need it. Other data sources can continue to use the public endpoint.
+
+- [IIS Logs](../agents/data-collection-iis.md)
+- [Windows Firewall Logs](../agents/data-sources-firewall-logs.md)
+- [Text Logs](../agents/data-collection-log-text.md)
+- [JSON Logs](../agents/data-collection-log-json.md)
+- [Prometheus Metrics (Container Insights)](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+
+### Logs ingestion API
+
+**Only required if not using DCR ingestion endpoint**
+
+When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#manually-create-dcr), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you want to you're sending data to a Log Analytics workspace configured for private link.
+
+> [!NOTE]
+> The `logsIngestion` property was added on March 31, 2024. Prior to this date, a DCE was required for the Logs ingestion API. Endpoints cannot be added to an existing DCR, but you can keep using any existing DCRs with existing DCEs. If you want to move to a DCR endpoint, then you must create a new DCR to replace the existing one. A DCR with endpoints can also use a DCE. In this case, you can choose whether to use the DCE or the DCR endpoints for each of the clients that use the DCR.
+
+
 
 ## Components of a DCE
 

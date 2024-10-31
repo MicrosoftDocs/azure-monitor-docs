@@ -2,7 +2,7 @@
 title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
 ms.topic: conceptual
-ms.date: 04/15/2024
+ms.date: 10/31/2024
 ---
 
 # Logs Ingestion API in Azure Monitor
@@ -29,7 +29,9 @@ The following table describes each component in Azure that you must configure be
 | Data collection rule (DCR) | Azure Monitor uses the [Data collection rule (DCR)](../essentials/data-collection-rule-overview.md) to understand the structure of the incoming data and what to do with it. If the structure of the table and the incoming data don't match, the DCR can include a [transformation](../essentials/data-collection-transformations.md) to convert the source data to match the target table. You can also use the transformation to filter source data and perform any other calculations or conversions.<br><br>If you create a custom table using the Azure portal, the DCR and the transformation are created for you based on sample data that you provide. If you use an existing table or create a custom table using another method, then you must manually create the DCR using details in the following section.<br><br>Once your DCR is created, you must grant access to it for the application that you created in the first step. From the **Monitor** menu in the Azure portal, select **Data Collection rules** and then the DCR that you created. Select **Access Control (IAM)** for the DCR and then select **Add role assignment** to add  the **Monitoring Metrics Publisher** role. |
 
 
-## **Manually create DCR**
+## Create DCR for Logs ingestion API
+When you [create a custom table](./create-custom-table.md#create-a-custom-table) in a Log Analytics workspace using the Azure portal, a DCR that can be used with the Logs ingestion API is created for you. You may need to modify this DCR based on the format of your incoming data.
+
 If you're sending data to a table that already exists, then you must create the DCR manually. Start with the [Sample DCR for Logs Ingestion API](../essentials/data-collection-rule-samples.md#logs-ingestion-api) and modify the following parameters in the template. Then use any of the methods described in [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md) to create the DCR.
 
 | Parameter | Description |
