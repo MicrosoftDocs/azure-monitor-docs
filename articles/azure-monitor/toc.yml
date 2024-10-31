@@ -26,6 +26,7 @@ items:
   - name: Plan alerts and automated actions
     href: alerts/alerts-plan.md
   - name: At-scale monitoring solutions
+    displayName: scale, at-scale, monitor at-scale, monitor at scale, enterprise monitoring
     href: monitor-at-scale.md
 - name: Monitoring scenarios
   items:
