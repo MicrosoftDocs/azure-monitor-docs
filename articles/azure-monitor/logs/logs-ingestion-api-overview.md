@@ -28,20 +28,76 @@ The following table describes each component in Azure that you must configure be
 | Table in Log Analytics workspace | The table in the Log Analytics workspace must exist before you can send data to it. You can use one of the [supported Azure tables](#supported-tables) or create a custom table using any of the available methods. If you use the Azure portal to create the table, then the DCR is created for you, including a transformation if it's required. With any other method, you need to create the DCR manually as described in the next section.<br><br>See [Create a custom table](create-custom-table.md#create-a-custom-table).  |
 | Data collection rule (DCR) | Azure Monitor uses the [Data collection rule (DCR)](../essentials/data-collection-rule-overview.md) to understand the structure of the incoming data and what to do with it. If the structure of the table and the incoming data don't match, the DCR can include a [transformation](../essentials/data-collection-transformations.md) to convert the source data to match the target table. You can also use the transformation to filter source data and perform any other calculations or conversions.<br><br>If you create a custom table using the Azure portal, the DCR and the transformation are created for you based on sample data that you provide. If you use an existing table or create a custom table using another method, then you must manually create the DCR using details in the following section.<br><br>Once your DCR is created, you must grant access to it for the application that you created in the first step. From the **Monitor** menu in the Azure portal, select **Data Collection rules** and then the DCR that you created. Select **Access Control (IAM)** for the DCR and then select **Add role assignment** to add  the **Monitoring Metrics Publisher** role. |
 
+## Endpoint
+The REST API endpoint for the Logs Ingestion API can either be a [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) or the DCR logs ingestion endpoint. 
 
-## Create DCR for Logs ingestion API
-When you [create a custom table](./create-custom-table.md#create-a-custom-table) in a Log Analytics workspace using the Azure portal, a DCR that can be used with the Logs ingestion API is created for you. You may need to modify this DCR based on the format of your incoming data.
+The DCR logs ingestion endpoint is generated when you create a DCR for direct ingestion. To retrieve this endpoint, open the DCR in the JSON view in the Azure portal. You may need to change the **API version** to the latest version for the endpoints to be displayed.
 
-If you're sending data to a table that already exists, then you must create the DCR manually. Start with the [Sample DCR for Logs Ingestion API](../essentials/data-collection-rule-samples.md#logs-ingestion-api) and modify the following parameters in the template. Then use any of the methods described in [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md) to create the DCR.
+:::image type="content" source="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png" alt-text="Screenshot that shows log ingestion endpoint in a DCR." lightbox="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png":::
+
+A DCE is only required when you're connecting to a Log Analytics workspace using [private link](../logs/private-link-security.md) or if your DCR doesn't include the logs ingestion endpoint. This may be the case if you're using an older DCR or if you created the DCR without `"kind": "Direct"`. See [Data collection rule (DCR)](#data-collection-rule-dcr) below for more details.
+
+
+## Data collection rule (DCR)
+When you [create a custom table](./create-custom-table.md#create-a-custom-table) in a Log Analytics workspace using the Azure portal, a DCR that can be used with the Logs ingestion API is created for you. If you're sending data to a table that already exists, then you must create the DCR manually. Start with the sample DCR below, replacing values for the following parameters in the template. You can also use any of the methods described in [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md) to create the DCR.
 
 | Parameter | Description |
 |:---|:---|
 | `region` | Region to create your DCR. This must match the region of the DCE and the Log Analytics workspace. |
-| `dataCollectionEndpointId` | Resource ID of your DCE. |
+| `dataCollectionEndpointId` | Resource ID of your DCE. Remove this parameter if you're going to use the [DCR ingestion point](#endpoint). |
 | `streamDeclarations` | Change the column list to the columns in your incoming data. You don't need to change the name of the stream since this just needs to match the `streams` name in `dataFlows`. |
 | `workspaceResourceId` | Resource ID of your Log Analytics workspace. You don't need to change the name since this just needs to match the `destinations` name in `dataFlows`.  |
-| `transformKql` | KQL query to be applied to the incoming data. If the schema of the incoming data matches the schema of the table, then you can use `source` for the transformation which will pass on the incoming data unchanged. Otherwise, use a query that will transform the data to match the table schema. |
+| `transformKql` | KQL query to be applied to the incoming data. If the schema of the incoming data matches the schema of the table, then you can use `source` for the transformation which will pass on the incoming data unchanged. Otherwise, use a query that will transform the data to match the destination table schema. |
 | `outputStream` | Name of the table to send the data. For a custom table, add the prefix *Custom-\<table-name\>*. For a built-in table, add the prefix *Microsoft-\<table-name\>*. |
+
+
+```json
+{
+    "location": "eastus",
+    "dataCollectionEndpointId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/dce-eastus",
+    "kind": "Direct",
+    "properties": {
+        "streamDeclarations": {
+            "Custom-MyTable": {
+                "columns": [
+                    {
+                        "name": "Time",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "Computer",
+                        "type": "string"
+                    },
+                    {
+                        "name": "AdditionalContext",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "destinations": {
+            "logAnalytics": [
+                {
+                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
+                    "name": "LogAnalyticsDest"
+                }
+            ]
+        },
+        "dataFlows": [
+            {
+                "streams": [
+                    "Custom-MyTable"
+                ],
+                "destinations": [
+                    "LogAnalyticsDest"
+                ],
+                "transformKql": "source",
+                "outputStream": "Custom-MyTable_CL"
+            }
+        ]
+    }
+}
+```
 
 ## Client libraries
 
@@ -56,16 +112,14 @@ In addition to making a REST API call, you can use the following client librarie
 ## REST API call
 To send data to Azure Monitor with a REST API call, make a POST call over HTTP. Details required for this call are described in this section.
 
-### Endpoint URI
+### URI
 
-The endpoint URI uses the following format, where the `Data Collection Endpoint` and `DCR Immutable ID` identify the DCE and DCR. The immutable ID is generated for the DCR when it's created. You can retrieve it from the [Overview page for the DCR in the Azure portal](../essentials/data-collection-rule-view.md). 
+The URI includes the region, the DCE or DCR ingestion endpoint, DCR ID, and the stream name. The stream name is the name of the stream in the DCR that should handle the incoming data. The endpoint URI also includes the API version. 
 
-:::image type="content" source="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" lightbox="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" alt-text="Screenshot of a data collection rule showing the immutable ID.":::
-
-`Stream Name` refers to the [stream](../essentials/data-collection-rule-structure.md#input-streams) in the DCR that should handle the custom data.
+The URI uses the following format.
 
 ```
-{Data Collection Endpoint URI}/dataCollectionRules/{DCR Immutable ID}/streams/{Stream Name}?api-version=2023-01-01
+{Endpoint}/dataCollectionRules/{DCR Immutable ID}/streams/{Stream Name}?api-version=2023-01-01
 ```
 
 For example:
@@ -73,6 +127,13 @@ For example:
 ```
 https://my-dce-5kyl.eastus-1.ingest.monitor.azure.com/dataCollectionRules/dcr-000a00a000a00000a000000aa000a0aa/streams/Custom-MyTable?api-version=2023-01-01
 ```
+
+The `DCR Immutable ID` is generated for the DCR when it's created. You can retrieve it from the [Overview page for the DCR in the Azure portal](../essentials/data-collection-rule-view.md). 
+
+:::image type="content" source="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" lightbox="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" alt-text="Screenshot of a data collection rule showing the immutable ID.":::
+
+`Stream Name` refers to the [stream](../essentials/data-collection-rule-structure.md#input-streams) in the DCR that should handle the custom data.
+
 
 ### Headers
 
