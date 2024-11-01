@@ -16,7 +16,7 @@ These options might be cumbersome and pose a risk because it's difficult to mana
 To enable Microsoft Entra integration for Azure Monitor Logs and remove reliance on these shared secrets:
 
 1. [Disable local authentication for Log Analytics workspaces](#disable-local-authentication-for-log-analytics-workspaces).
-1. Ensure that only authenticated telemetry is ingested in your Application Insights resources with [Microsoft Entra authentication for Application Insights (preview)](../app/azure-ad-authentication.md).
+1. Ensure that only authenticated telemetry is ingested in your Application Insights resources with [Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md).
 2. Follow [best practices for using Entra authentication](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations).
 
 ## Prerequisites
@@ -177,4 +177,4 @@ Use the following PowerShell commands to disable local authentication:
 ---
 
 ## Next steps
-See [Microsoft Entra authentication for Application Insights (preview)](../app/azure-ad-authentication.md).
+See [Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md).
