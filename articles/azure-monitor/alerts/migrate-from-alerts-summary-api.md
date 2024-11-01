@@ -120,7 +120,7 @@ Use these Azure Resource Graph queries instead of the alertsSummary API call to 
     ]
 }
 },
-"id": "/subscriptions/1a2b3c4d-123a-1234-a12b-a1b2c34d5e6f/providers/Microsoft.AlertsManagement/alertsSummary/current",
+"id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alertsSummary/current",
 "type": "Microsoft.AlertsManagement/alertsSummary",
 "name": "current"
 

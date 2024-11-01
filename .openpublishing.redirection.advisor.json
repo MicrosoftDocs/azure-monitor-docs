@@ -21,6 +21,21 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/advisor/advisor-cost-optimization-workbook.md",
+      "redirect_url": "/azure/advisor/advisor-workbook-cost-optimization",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/advisor/advisor-how-to-improve-reliability.md",
+      "redirect_url": "/azure/advisor/advisor-workbook-reliability",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/advisor/advisor-how-to-plan-migration-workloads-service-retirement.md",
+      "redirect_url": "/azure/advisor/advisor-workbook-service-retirement",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/advisor/security-baseline.md",
       "redirect_url": "/security/benchmark/azure/baselines/advisor-security-baseline",
       "redirect_document_id": false
