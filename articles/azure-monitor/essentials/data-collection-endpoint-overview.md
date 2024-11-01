@@ -19,7 +19,7 @@ A data collection endpoint (DCE) is an Azure resource that defines a unique set 
 
 ## When is a DCE required?
 
-A DCE isn't always required for data collection since the data source may use a public endpoint or the ingestion endpoints in the DCR. This section describes those scenarios where a DCE is required.
+A DCE isn't always required for data collection since the data source may use a public endpoint or the ingestion endpoints in the DCR. The sections below describes those scenarios where a DCE is required.
 
 ### Azure Monitor agent (AMA) 
 
@@ -48,7 +48,7 @@ A DCE is required for the following AMA data sources. If an agent is associated 
 
 **Only required if not using DCR ingestion endpoint**
 
-When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#manually-create-dcr), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you want to you're sending data to a Log Analytics workspace configured for private link.
+When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#create-dcr-for-logs-ingestion-api), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you want to you're sending data to a Log Analytics workspace configured for private link.
 
 > [!NOTE]
 > The `logsIngestion` property was added on March 31, 2024. Prior to this date, a DCE was required for the Logs ingestion API. Endpoints cannot be added to an existing DCR, but you can keep using any existing DCRs with existing DCEs. If you want to move to a DCR endpoint, then you must create a new DCR to replace the existing one. A DCR with endpoints can also use a DCE. In this case, you can choose whether to use the DCE or the DCR endpoints for each of the clients that use the DCR.
