@@ -16,10 +16,10 @@ There are two options for enabling Application Insights Java with Spring Boot: J
 
 ## Enabling with JVM argument 
 
-Add the JVM arg `-javaagent:"path/to/applicationinsights-agent-.jar"` somewhere before `-jar`, for example:
+Add the JVM arg `-javaagent:"path/to/applicationinsights-agent-3.6.2.jar"` somewhere before `-jar`, for example:
 
 ```console
-java -javaagent:"path/to/applicationinsights-agent-.jar" -jar <myapp.jar>
+java -javaagent:"path/to/applicationinsights-agent-3.6.2.jar" -jar <myapp.jar>
 ```
 
 ### Spring Boot via Docker entry point
