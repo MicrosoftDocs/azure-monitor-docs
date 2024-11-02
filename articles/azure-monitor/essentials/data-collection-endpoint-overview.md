@@ -29,6 +29,9 @@ A DCE isn't always required for data collection since the data source may use a 
 > Since AMPLS is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE.
 See more details  Enable network isolation for Azure Monitor Agent by using Private Link - Azure Monitor | Microsoft Learn
 
+You can view the agents associated with a DCE from the **Resources** page of the DCE. Click **Add** to add additional agents. Select one or more agents and click **Disassociate** to remove them.
+
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." border="false":::
 
 A DCE is required for certain [AMA data sources](../agents/azure-monitor-agent-data-collection.md). In this case, the DCE is specified in the DCR using that data source.If an agent is associated with multiple DCRs with a variety of data sources, a DCE is only required for those data sources that need it. Other data sources can continue to use the public endpoint.
 
@@ -39,6 +42,10 @@ The following data sources require a DCE:
 - [Text Logs](../agents/data-collection-log-text.md)
 - [JSON Logs](../agents/data-collection-log-json.md)
 - [Prometheus Metrics (Container Insights)](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+
+You can view the DCE for a DCR from the **Overview** page of the DCR. Click **Configure DCE** to modify it.
+
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." border="false":::
 
 ### Logs ingestion API
 
