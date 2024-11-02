@@ -67,7 +67,7 @@ The **Basic** page includes basic information about the DCR.
 | Resource group | Resource group to store the DCR. The resource group doesn't need to be the same resource group as the virtual machines. |
 | Region | Region to store the DCR. The region must be the same region as any Log Analytics workspace or Azure Monitor workspace used in a destination of the DCR. If you have workspaces in different regions, then create multiple DCRs associated with the same set of machines. |
 | Platform Type | Specifies the type of data sources that will be available for the DCR, either **Windows** or **Linux**. **None** allows for both. <sup>1</sup> |
-| Data Collection Endpoint | Specifies the data collection endpoint (DCE) used to collect data. The DCE is only required if you're using Azure Monitor Private Links. This DCE must be in the same region as the DCR. For more information, see [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md). |
+| Data Collection Endpoint | Specifies the data collection endpoint (DCE) used to collect data. If you're collecting data types that require a DCE. This DCE must be in the same region as the DCR. For more information, see [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md). |
 
 <sup>1</sup> This option sets the `kind` attribute in the DCR. There are other values that can be set for this attribute, but they aren't available in the portal.
 
@@ -81,7 +81,7 @@ The **Resources** page allows you to add resources to be associated with the DCR
 
 :::image type="content" source="media/data-collection-rule-create-edit/resources-tab.png" lightbox="media/data-collection-rule-create-edit/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
 
- If the machine you're monitoring isn't in the same region as your destination Log Analytics workspace and you're collecting data types that require a DCE, select **Enable Data Collection Endpoints** and select an endpoint in the region of each monitored machine. If the monitored machine is in the same region as your destination Log Analytics workspace, or if you don't require a DCE, don't select a data collection endpoint on the **Resources** tab.
+ If you're using Azure Monitor Private Links, select **Enable Data Collection Endpoints** on the **Resources** tab and select an endpoint in the region of each monitored machine.
  
 
 ## Add data sources
