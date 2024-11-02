@@ -34,7 +34,7 @@ Change Analysis (classic) detects various types of changes, from the infrastruct
 
 The following diagram illustrates the architecture of Change Analysis (classic).
 
-:::image type="content" source="./media/change-analysis/architecture-overview.png" alt-text="Architecture diagram of how Change Analysis (classic) gets change data and provides it to client tools.":::
+:::image type="content" source="./media/change-analysis/architecture-overview.png" alt-text="Architecture diagram that shows how Change Analysis (classic) gets change data and provides it to client tools.":::
 
 ## Supported resource types
 
@@ -85,7 +85,7 @@ Resource Graph doesn't capture these setting changes. Change Analysis (classic) 
 
 See the [known limitations about resource configuration change analysis](#limitations).
 
-### Changes in functions and web apps (in-guest changes)
+### Changes in Functions and Web Apps (in-guest changes)
 
 Every 30 minutes, Change Analysis captures the configuration state of a web application. For example, it can detect changes in the application environment variables, configuration files, and WebJobs. The tool computes the differences and presents the changes.
 
@@ -120,13 +120,13 @@ Changes to resource dependencies can also cause issues in a resource. For exampl
 
 As another example, if port 22 was closed in a virtual machine's network security group, it causes connectivity errors.
 
-#### Web App diagnose and solve problems navigator (preview)
+#### Web app diagnose and solve problems navigator (preview)
 
 Change Analysis (classic) checks the web app's DNS record to detect changes in dependencies and app components that could cause issues.
 
-Currently, the following dependencies are supported in **Web App Diagnose and solve problems | Navigator**:
+Currently, the following dependencies are supported in the **Web app diagnose and solve problems navigator**:
 
-- Azure Web Apps
+- Web apps
 - Azure Storage
 - Azure SQL
 
@@ -135,7 +135,7 @@ Currently, the following dependencies are supported in **Web App Diagnose and so
 - **OS environment**: For Azure function and web app in-guest changes, Change Analysis (classic) currently works with Windows environments only, not Linux.
 - **Web app deployment changes**: Code deployment change information might not be available immediately in the Change Analysis (classic) tool. To view the latest changes in Change Analysis (classic), select **Refresh**.
 - **Function and web app file changes**: File changes take up to 30 minutes to display.
-- **Function and web app configuration changes**: Because of the snapshot approach to configuration changes, timestamps of configuration changes could take up to six hours to display from the time when the change ocurred.
+- **Function and web app configuration changes**: Because of the snapshot approach to configuration changes, timestamps of configuration changes could take up to six hours to display from the time when the change occurred.
 - **Web app deployment and configuration changes**: A site extension collects these changes and stores them on disk space owned by your application. So, data collection and storage is subject to your application's behavior. Check to see if a misbehaving application is affecting the results.
 - **Snapshot retention for all changes**: Resource Graph tracks the Change Analysis data for resources. Resource Graph keeps snapshot history of tracked resources for only _14 days_.
 
@@ -153,4 +153,4 @@ You can use Change Analysis (classic) at no extra cost. Enable the `Microsoft.Ch
 - Learn about [visualizations in Change Analysis (classic)](change-analysis-visualizations.md).
 - Learn how to [troubleshoot problems in Change Analysis (classic)](change-analysis-troubleshoot.md).
 - Enable Application Insights for [Azure web apps](../../azure-monitor/app/azure-web-apps.md).
-- Enable Application Insights for [Azure VM and Azure Virtual Machine Scale Det IIS-hosted apps](../../azure-monitor/app/azure-vm-vmss-apps.md).
+- Enable Application Insights for [Azure VM and Azure Virtual Machine Scale Set IIS-hosted apps](../../azure-monitor/app/azure-vm-vmss-apps.md).
