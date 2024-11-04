@@ -5,14 +5,14 @@ ms.subservice: logs
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/23/2024
+ms.date: 10/06/2024
 ms.custom: references_regions
 
 # Customer intent: As an IT manager, I want to understand the data and service resilience benefits Azure Monitor availability zones provide to ensure my data and services are sufficiently protected in the event of datacenter failure.
 ---
 # Enhance data and service resilience in Azure Monitor Logs with availability zones
 
-[Azure availability zones](/azure/reliability/availability-zones-overview) protect applications and data from datacenter failures and can enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. This article describes the data and service resilience benefits Azure Monitor availability zones provide in supported regions.
+[Azure availability zones](/azure/reliability/availability-zones-overview) protect applications and data from datacenter failures and can enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. In some regions, availability zones protect all Log Analytics workspaces by default. In other regions, you need to link your workspace to a dedicated cluster for availability zone protection. This article describes the data and service resilience benefits Azure Monitor availability zones provide, and lists the level of support provided in each region.
 
 > [!NOTE]
 > Application Insights resources can use availability zones only if they're workspace-based. Classic Application Insights resources can't use availability zones.
