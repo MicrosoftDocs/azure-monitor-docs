@@ -55,7 +55,7 @@ When you [create a custom table](./create-custom-table.md#create-a-custom-table)
 ```json
 {
     "location": "eastus",
-    "dataCollectionEndpointId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/dce-eastus",
+    "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/dce-eastus",
     "kind": "Direct",
     "properties": {
         "streamDeclarations": {
@@ -79,7 +79,7 @@ When you [create a custom table](./create-custom-table.md#create-a-custom-table)
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
                     "name": "LogAnalyticsDest"
                 }
             ]
@@ -115,7 +115,7 @@ To send data to Azure Monitor with a REST API call, make a POST call over HTTP. 
 
 ### URI
 
-The URI includes the region, the [DCE or DCR ingestion endpoint](#endpoint), DCR ID, and the stream name.It also specifies the API version. 
+The URI includes the region, the [DCE or DCR ingestion endpoint](#endpoint), DCR ID, and the stream name. It also specifies the API version. 
 
 The URI uses the following format.
 
