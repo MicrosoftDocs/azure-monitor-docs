@@ -958,6 +958,9 @@ items:
           - name: Microsoft.NetworkCloud/clusters
             href: supported-logs/microsoft-networkcloud-clusters-logs.md
             displayName: Kubernetes Logs,Platform Operation Logs,VM Orchestration Logs
+          - name: Microsoft.NetworkCloud/kubernetesClusters
+            href: supported-logs/microsoft-networkcloud-kubernetesclusters-logs.md
+            displayName: Tenant Operation Logs
           - name: Microsoft.NetworkCloud/storageAppliances
             href: supported-logs/microsoft-networkcloud-storageappliances-logs.md
             displayName: Storage Appliance alerts,Storage Appliance audits,Storage Appliance
