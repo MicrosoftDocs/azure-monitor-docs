@@ -24,34 +24,34 @@ You can access the Change Analysis (classic) overview portal under Azure Monitor
 
 #### Via the Azure Monitor home page
 
-From the Azure portal home page, select **Monitor** on the menu.
+1. From the Azure portal home page, on the service menu, select **Monitor**.
 
-:::image type="content" source="./media/change-analysis/monitor-menu-2.png" alt-text="Screenshot that shows finding the Monitor home page from the main portal menu.":::
+   :::image type="content" source="./media/change-analysis/monitor-menu-2.png" alt-text="Screenshot that shows finding the Monitor home page from the main portal menu.":::
 
-On the Azure Monitor **Overview** page, select the **Change Analysis (classic)** card.
+1. On the **Monitor Overview** page, select the **Change Analysis (classic)** card.
 
-:::image type="content" source="./media/change-analysis/change-analysis-monitor-overview.png" alt-text="Screenshot that shows selecting the Change Analysis card on the Azure Monitor Overview page.":::
+   :::image type="content" source="./media/change-analysis/change-analysis-monitor-overview.png" alt-text="Screenshot that shows selecting the Change Analysis card on the Azure Monitor Overview page.":::
 
 #### Via search
 
-In the Azure portal, search for Change Analysis (classic) to start the experience.
+1. In the Azure portal, search for **Change Analysis (classic)** to start the experience.
 
-:::image type="content" source="./media/change-analysis/search-change-analysis.png" alt-text="Screenshot that shows searching for Change Analysis (classic) in the Azure portal.":::
+   :::image type="content" source="./media/change-analysis/search-change-analysis.png" alt-text="Screenshot that shows searching for Change Analysis (classic) in the Azure portal.":::
   
-Select one or more subscriptions to view:
+1. Select one or more subscriptions to view:
 
-- All of its resources' changes from the past 24 hours.
-- Old and new values to provide insights at one glance.
+   - All of the changes for the resources from the past 24 hours.
+   - Old and new values to provide insights at one glance.
   
-:::image type="content" source="./media/change-analysis/change-analysis-standalone-blade.png" alt-text="Screenshot that shows the Change Analysis (classic) pane in the Azure portal.":::
+   :::image type="content" source="./media/change-analysis/change-analysis-standalone-blade.png" alt-text="Screenshot that shows the Change Analysis (classic) pane in the Azure portal.":::
   
-Select a change to view the full Resource Manager snippet and other properties.
+1. Select a change to view the full Resource Manager snippet and other properties.
   
-:::image type="content" source="./media/change-analysis/change-details.png" alt-text="Screenshot that shows change details on the Changed Properties pane.":::
+   :::image type="content" source="./media/change-analysis/change-details.png" alt-text="Screenshot that shows change details on the Changed Properties pane.":::
   
-Send feedback from the Change Analysis (classic) pane.
+1. Send feedback from the Change Analysis (classic) pane.
 
-:::image type="content" source="./media/change-analysis/change-analysis-feedback.png" alt-text="Screenshot that shows the Feedback button on the Change Analysis (classic) tab.":::
+   :::image type="content" source="./media/change-analysis/change-analysis-feedback.png" alt-text="Screenshot that shows the Feedback button on the Change Analysis (classic) tab.":::
 
 ### Multiple subscription support
 
@@ -61,7 +61,7 @@ The UI supports selecting multiple subscriptions to view resource changes. Use t
 
 ### View the Activity log change history
 
-Use the [View change history](../essentials/activity-log-insights.md#view-change-history) feature to call the Change Analysis (classic) back end to view changes associated with an operation. Changes returned include:
+Use the [View change history](../essentials/activity-log-insights.md#view-change-history) feature to call the Change Analysis (classic) back end to view changes associated with an operation. Changes that are returned include:
 
 - Resource-level changes from [Resource Graph](/azure/governance/resource-graph/overview).
 - Resource properties from [Azure Resource Manager](/azure/azure-resource-manager/management/overview).
@@ -78,11 +78,11 @@ After registration, you can immediately view changes from Resource Graph from th
 
 ### View changes by using the Diagnose and solve problems tool
 
-From your resource's **Overview** page in the Azure portal, you can view change data by selecting **Diagnose and solve problems** on the service menu. As you enter the **Diagnose and solve problems** tool, the `Microsoft.ChangeAnalysis` resource provider is automatically registered.
+From the **Overview** page for your resource in the Azure portal, you can view change data by selecting **Diagnose and solve problems** on the service menu. As you enter the **Diagnose and solve problems** tool, the `Microsoft.ChangeAnalysis` resource provider is automatically registered.
 
 Learn how to use the **Diagnose and solve problems** tool for:
 
-- [Web apps](#diagnose-and-solve-problems-tool-for-web-app)
+- [Web apps](#diagnose-and-solve-problems-tool-for-web-apps)
 - [Virtual machines](#diagnose-and-solve-problems-tool-for-virtual-machines)
 - [Azure SQL Database and other resources](#diagnose-and-solve-problems-tool-for-azure-sql-database-and-other-resources)
 
@@ -141,7 +141,7 @@ If you enabled [VM Insights](../vm/vminsights-overview.md), you can view changes
 You can also drill to change logs via a chart that you created or pinned to your resource's **Monitoring** dashboard.
 
 1. Go to the resource for which you want to view change logs.
-1. On the resource's **Overview** page, select the **Monitoring** tab.
+1. On the **Overview** page for the resource, select the **Monitoring** tab.
 1. Select a chart on the **Key Metrics** dashboard.
 
    :::image type="content" source="./media/change-analysis/view-change-analysis-1.png" alt-text="Screenshot that shows a chart on the Monitoring tab of the resource.":::
@@ -152,7 +152,7 @@ You can also drill to change logs via a chart that you created or pinned to your
 
 ### Browse by using custom filters and the search bar
 
-Browsing through a long list of changes in the entire subscription is time consuming. With the Change Analysis (classic) custom filters and search capability, you can efficiently go to changes that are relevant to issues for troubleshooting.
+Browsing through a long list of changes in the entire subscription is time consuming. With the Change Analysis (classic) custom filters and search capability, you can efficiently go to changes that are relevant to issues for troubleshooting. Then select **Add Filter**.
 
 :::image type="content" source="./media/change-analysis/filters-search-bar.png" alt-text="Screenshot that shows that filters and the search bar are at the top of the Change Analysis (classic) home page.":::
 

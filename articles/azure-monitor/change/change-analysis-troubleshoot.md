@@ -12,7 +12,7 @@ ms.subservice: change-analysis
 
 [!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
 
-## Trouble registering Microsoft.ChangeAnalysis resource provider from Change history tab.
+## You have trouble registering the Microsoft.ChangeAnalysis resource provider from the Change history tab.
 
 If you view change history after its first integration with Change Analysis (classic), you see it automatically registering the `Microsoft.ChangeAnalysis` resource provider. The resource might fail and you might see the following error messages.
 
@@ -47,8 +47,8 @@ Refresh the page and check your internet connection. If the error persists, [sub
 
 You receive this error message when the registration takes longer than two minutes. Although it's unusual to get this message, it doesn't mean something went wrong.
 
-* Prepare for downtime.
-* Restart your web app to see your registration changes.
+1. Prepare for downtime.
+1. Restart your web app to see your registration changes.
 
 Changes should show up within a few hours of app restart. If your changes still don't show after six hours, [submit an Azure support ticket](https://azure.microsoft.com/support/).
 
@@ -86,7 +86,7 @@ This general unauthorized error message occurs when the current user doesn't hav
 * To view infrastructure changes returned by Azure Resource Graph and Azure Resource Manager, reader access is required.
 * For web app in-guest file changes and configuration changes, a Contributor role is required.
 
-## Can't see in-guest changes for a newly enabled web app.
+## You can't see in-guest changes for a newly enabled web app.
 
 You might not immediately see web app in-guest file changes and configuration changes.
 
@@ -95,7 +95,7 @@ You might not immediately see web app in-guest file changes and configuration ch
 
 You should be able to view changes within 30 minutes. If not, [submit an Azure support ticket](https://azure.microsoft.com/support/).
 
-## Diagnose and solve problems tool for virtual machines
+## Use the Diagnose and solve problems tool for virtual machines.
 
 To troubleshoot virtual machine issues by using the troubleshooting tool in the Azure portal:
 
@@ -103,7 +103,7 @@ To troubleshoot virtual machine issues by using the troubleshooting tool in the 
 1. On the service menu, select **Diagnose and solve problems**.
 1. Browse and select the troubleshooting tool that fits your issue.
 
-## Can't filter to your resource to view changes
+## You can't filter to your resource to view changes.
 
 When you filter down to a particular resource on the Change Analysis (classic) standalone page, you might encounter a known limitation that returns only 1,000 resource results. To filter through and pinpoint changes for one of your 1,000 resources:
 

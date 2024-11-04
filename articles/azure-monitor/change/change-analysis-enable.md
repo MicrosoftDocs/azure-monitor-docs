@@ -25,30 +25,30 @@ Register the `Microsoft.ChangeAnalysis` resource provider with an Azure Resource
 - Enter any UI entry point, like the web app **Diagnose and solve problems** tool.
 - Bring up the Change Analysis (classic) standalone tab.
 
-In this guide, you learn the two ways to enable Change Analysis (classic) for Functions and web app in-guest changes:
+In this guide, you learn the two ways to enable Change Analysis (classic) for functions and web app in-guest changes:
 
-- For one or a few Functions or web apps, [enable Change Analysis (classic) via the UI](#enable-azure-functions-and-web-app-in-guest-change-collection-via-the-change-analysis-classic-portal).
-- For a large number of web apps (for example, 50+ web apps), [enable Change Analysis (classic) by using the provided PowerShell script](#enable-change-analysis-classic-at-scale-using-powershell).
-
-> [!NOTE]
-> Slot-level enablement for Functions or web apps isn't supported at the moment.
-
-## Enable Functions and web app in-guest change collection via the Change Analysis (classic) portal
-
-For web app in-guest changes, separate enablement is required for scanning code files within a web app. For more information, see [Change Analysis (classic) in the Diagnose and solve problems tool](change-analysis-visualizations.md#view-changes-using-the-diagnose-and-solve-problems-tool) section.
+- For one or a few functions or web apps, [enable Change Analysis (classic) via the UI](#enable-functions-and-web-app-in-guest-change-collection-via-the-change-analysis-classic-portal).
+- For a large number of web apps (for example, 50+ web apps), [enable Change Analysis (classic) by using the provided PowerShell script](#enable-change-analysis-classic-at-scale-by-using-powershell).
 
 > [!NOTE]
-> You might not immediately see web app in-guest file changes and configuration changes. Prepare for downtime and restart your web app to view changes within 30 minutes. If you still can't see changes, refer to the [troubleshooting guide](./change-analysis-troubleshoot.md#cannot-see-in-guest-changes-for-newly-enabled-web-app).
+> Slot-level enablement for functions or web apps isn't supported at the moment.
 
-1. Go to Change Analysis (classic) UI in the portal.
+## Enable functions and web app in-guest change collection via the Change Analysis (classic) portal
 
-1. Enable web app in-guest change tracking by one of two options:
+For web app in-guest changes, separate enablement is required for scanning code files within a web app. For more information, see [Change Analysis (classic) in the Diagnose and solve problems tool](change-analysis-visualizations.md#view-changes-by-using-the-diagnose-and-solve-problems-tool) section.
 
-   - Select **Enable now** on the banner.
+> [!NOTE]
+> You might not immediately see web app in-guest file changes and configuration changes. Prepare for downtime and restart your web app to view changes within 30 minutes. If you still can't see changes, refer to the [troubleshooting guide](./change-analysis-troubleshoot.md#can't-see-in-guest-changes-for-newly-enabled-web-app).
+
+1. Go to the Change Analysis (classic) UI in the portal.
+
+1. Enable web app in-guest change tracking by using one of two options:
+
+   - On the banner, select **Enable now**.
 
      :::image type="content" source="./media/change-analysis/enable-changeanalysis.png" alt-text="Screenshot that shows the application change options on the banner.":::
 
-   - Select **Configure** on the top menu.
+   - On the top menu, select **Configure**.
    
      :::image type="content" source="./media/change-analysis/configure-button.png" alt-text="Screenshot that shows the application change options on the top menu.":::
 
@@ -95,7 +95,7 @@ This section provides answers to common questions.
 
 ### How can I enable Change Analysis (classic) for a web application?
 
-Enable Change Analysis (classic) for web application in guest changes by using the [Diagnose and solve problems tool](./change-analysis-visualizations.md#view-changes-using-the-diagnose-and-solve-problems-tool).
+Enable Change Analysis (classic) for web application in-guest changes by using the [Diagnose and solve problems tool](./change-analysis-visualizations.md#view-changes-by-using-the-diagnose-and-solve-problems-tool).
 
 ## Related content
 

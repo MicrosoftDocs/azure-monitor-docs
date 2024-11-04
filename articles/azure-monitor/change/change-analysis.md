@@ -14,13 +14,13 @@ ms.subservice: change-analysis
 
 Standard monitoring solutions might alert you to a live site issue, outage, or component failure, but they often don't explain the cause. Let's say your site worked five minutes ago, and now it's broken. What changed in the last five minutes?
 
-Change Analysis (classic) helps to answer that question in Azure Monitor.
+Azure Monitor Change Analysis (classic) helps to answer that question.
 
 Building on the power of [Azure Resource Graph](/azure/governance/resource-graph/overview), Change Analysis (classic):
 
 - Provides insights into your Azure application changes.
 - Increases observability.
-- Reduces mean time to repair (MTTR).
+- Reduces mean time to repair.
 
 > [!NOTE]
 > Change Analysis (classic) is currently available only in the public cloud.
@@ -85,13 +85,13 @@ Resource Graph doesn't capture these setting changes. Change Analysis (classic) 
 
 See the [known limitations about resource configuration change analysis](#limitations).
 
-### Changes in Functions and Web Apps (in-guest changes)
+### Changes in functions and web apps (in-guest changes)
 
 Every 30 minutes, Change Analysis captures the configuration state of a web application. For example, it can detect changes in the application environment variables, configuration files, and WebJobs. The tool computes the differences and presents the changes.
 
 :::image type="content" source="./media/change-analysis/scan-changes.png" alt-text="Screenshot that shows selecting Refresh to view the latest changes.":::
 
-Refer to [the troubleshooting guide](./change-analysis-troubleshoot.md#cannot-see-in-guest-changes-for-newly-enabled-web-app) if you don't see:
+Refer to [the troubleshooting guide](./change-analysis-troubleshoot.md#can't-see-in-guest-changes-for-newly-enabled-web-app) if you don't see:
 
 - File changes within 30 minutes.
 - Configuration changes within six hours.

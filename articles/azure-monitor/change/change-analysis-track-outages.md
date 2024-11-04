@@ -76,8 +76,8 @@ In the Azure portal, [go to the Change Analysis (classic) standalone UI](./chang
 
 After the Change Analysis (classic) page loads, you can see resource changes in your subscriptions. To view detailed web app in-guest change data, you have two options:
 
-- Select **Enable now** on the banner.
-- Select **Configure** on the top menu.
+- On the banner, select **Enable now**.
+- On the top menu, select **Configure**.
 
 In the web app in-guest enablement pane, select the web app you want to enable.
 
