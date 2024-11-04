@@ -38,7 +38,7 @@ In this guide, you learn the two ways to enable Change Analysis (classic) for fu
 For web app in-guest changes, separate enablement is required for scanning code files within a web app. For more information, see [Change Analysis (classic) in the Diagnose and solve problems tool](change-analysis-visualizations.md#view-changes-by-using-the-diagnose-and-solve-problems-tool) section.
 
 > [!NOTE]
-> You might not immediately see web app in-guest file changes and configuration changes. Prepare for downtime and restart your web app to view changes within 30 minutes. If you still can't see changes, refer to the [troubleshooting guide](./change-analysis-troubleshoot.md#you-can't-see-in-guest-changes-for-a-newly-enabled-web-app).
+> You might not immediately see web app in-guest file changes and configuration changes. Prepare for downtime and restart your web app to view changes within 30 minutes. If you still can't see changes, refer to the [troubleshooting guide](./change-analysis-troubleshoot.md#you-cant-see-in-guest-changes-for-a-newly-enabled-web-app).
 
 1. Go to the Change Analysis (classic) UI in the portal.
 
