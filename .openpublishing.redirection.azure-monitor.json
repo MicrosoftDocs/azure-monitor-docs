@@ -7534,6 +7534,26 @@
    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-providerhub-providerregistrations-logs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/adpaudit.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/adpdiagnostics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/adprequests.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-autonomousdevelopmentplatform_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
   }
  ]
 }
