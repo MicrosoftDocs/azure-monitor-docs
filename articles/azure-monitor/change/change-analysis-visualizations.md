@@ -164,7 +164,7 @@ Browsing through a long list of changes in the entire subscription is time consu
 | Time range | Specifies how far back the UI displays changes, up to 14 days. By default, it's set to the past 24 hours. |
 | Resource group | Select the resource group to scope the changes. By default, all resource groups are selected. |
 | Change level | Controls which levels of changes to display. Levels include important, normal, and noisy. </br> **Important**: Related to availability and security. </br> **Noisy**: Read-only properties that are unlikely to cause any issues. </br> By default, important and normal levels are selected. |
-| Resource | Select **Add filter** to use this filter. </br> Filter the changes to specific resources. It's helpful if you already know which resources to look at for changes. [If the filter returns only 1,000 resources, see the corresponding solution in the troubleshooting guide](./change-analysis-troubleshoot.md#cant-filter-to-your-resource-to-view-changes). |
+| Resource | Select **Add filter** to use this filter. </br> Filter the changes to specific resources. It's helpful if you already know which resources to look at for changes. [If the filter returns only 1,000 resources, see the corresponding solution in the troubleshooting guide](./change-analysis-troubleshoot.md#you-can't-filter-to-your-resource-to-view-changes). |
 | Resource type | Select **Add filter** to use this filter. </br> Filter the changes to specific resource types. |
 
 #### Search bar

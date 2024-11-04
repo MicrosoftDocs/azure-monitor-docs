@@ -91,7 +91,7 @@ Every 30 minutes, Change Analysis captures the configuration state of a web appl
 
 :::image type="content" source="./media/change-analysis/scan-changes.png" alt-text="Screenshot that shows selecting Refresh to view the latest changes.":::
 
-Refer to [the troubleshooting guide](./change-analysis-troubleshoot.md#can't-see-in-guest-changes-for-newly-enabled-web-app) if you don't see:
+Refer to [the troubleshooting guide](./change-analysis-troubleshoot.md#you-can't-see-in-guest-changes-for-a-newly-enabled-web-app) if you don't see:
 
 - File changes within 30 minutes.
 - Configuration changes within six hours.

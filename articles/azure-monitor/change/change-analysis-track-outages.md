@@ -66,9 +66,9 @@ Follow these steps to set up the test.
 
 1. Run the script from the `./changeanalysis-webapp-storage-sample` directory.
 
-```bash
-./Publish-WebApp.ps1
-```
+    ```bash
+    ./Publish-WebApp.ps1
+    ```
 
 ## Enable Change Analysis (classic)
 
