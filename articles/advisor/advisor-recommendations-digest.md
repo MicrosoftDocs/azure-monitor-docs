@@ -6,17 +6,13 @@ ms.date: 11/01/2024
 
 ---
 
-# Recommendation digest for Azure Advisor
+# Recommendation digests
 
 Learn how to create a recommendation digest for your Advisor recommendations.
 
-## Configure periodic summary for recommendations
-
-A recommendation digest provides an easy and proactive way to configure and schedule notifications that summarize a list of your active recommendations across multiple categories. Use one or more action groups to choose your desired channel for notifications like email, SMS, or others.
-
 ## Configure your recommendation digest
 
-The recommendation digest creation experience helps you configure the summary. To configure your recommendation digest, complete the following parameters.
+Recomendation digests provide an easy and proactive way to configure notifications that summarize a list of your active recommendations across multiple categories. Use one or more action groups to choose your desired channel for notifications like email, SMS, or others. To configure your recommendation digest, complete the following parameters.
 
 | Parameter | Detail |
 |:--- |:--- |
