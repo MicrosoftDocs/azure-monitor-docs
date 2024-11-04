@@ -19,7 +19,7 @@ The Delete Data API lets you delete entries from a specific table in your Log An
 
 The Delete Data API removes the relevant rows from the specified table in your Log Analytics workspace based on a given time range and filter. 
 
-Deleting data ensures that the data can no longer be viewed or retrieved and that doesn't affect data analysis, but it doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
+Deleting data ensures that the data can't be viewed, retrieved, and used in data analysis, but it doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
 Use the Delete Data API to remove:
 
@@ -43,7 +43,7 @@ You can:
 
 ## Call the delete data API to delete data from a specific table
 
-Use this: 
+To delete rows from a table, use this command: 
 
 ```http  
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.
@@ -74,7 +74,9 @@ The example above applies a filter on the `TimeGenerated` field, but the you can
 
 ## Check delete data operation status 
 
-Azure Monitor Logs executes data deletion operations asynchronously. To check the status of the operation, use this API call:
+Azure Monitor Logs executes data deletion operations asynchronously. 
+
+To check the status of the operation, use this command:
  
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
