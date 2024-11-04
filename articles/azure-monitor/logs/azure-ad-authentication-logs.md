@@ -35,7 +35,7 @@ Disabling local authentication might limit the availability of some functionalit
 
 - Existing Log Analytics agents will stop functioning. Only Azure Monitor Agent will be supported. Azure Monitor Agent will be missing some capabilities that are available through the Log Analytics agent. Examples include custom log collection and IIS log collection.
 - The Data Collector API (preview) won't support Microsoft Entra authentication and won't be available to ingest data.
-- VM Insights will only be supported with the Azure Monitor Agent (AMA).
+- VM Insights is supported only with Azure Monitor Agent (AMA).
 
 You can disable local authentication by using Azure Policy. Or you can disable it programmatically through an Azure Resource Manager template, PowerShell, or the Azure CLI.
 
