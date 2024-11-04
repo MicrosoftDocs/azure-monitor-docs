@@ -21,7 +21,7 @@ This article explains how the Delete Data API works and how to remove data from 
 
 The Delete Data API removes the relevant rows from the specified table in your Log Analytics workspace based on a given time range and filter. 
 
-Deleting data ensures that the data can no longer be viewed or retrieved and that doesn't affect data analysis. 
+Deleting data ensures that the data can no longer be viewed or retrieved and that doesn't affect data analysis, but it doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
 Use the Delete Data API to remove:
 
@@ -30,8 +30,6 @@ Use the Delete Data API to remove:
 - Corrupt or incorrect data
 
 The deletion process is final and irreversible.
-
-Delete data doesn't affect billing. The way to control cost remains via data retention solely.
 
 ## Permissions required
 
