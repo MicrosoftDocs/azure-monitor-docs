@@ -13,9 +13,7 @@ ms.date: 10/28/2024
 
 # Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
 
-The Delete Data API lets you delete entries from a specific table in your Log Analytics workspace.
-
-This article explains how the Delete Data API works and how to remove data from your workspace by calling the API.
+The Delete Data API lets you delete entries from a specific table in your Log Analytics workspace. This article explains how the Delete Data API works and how to remove data from your workspace by calling the API.
 
 ## How the Delete Data API works
 
@@ -29,19 +27,19 @@ Use the Delete Data API to remove:
 - Sensitive or personally identifiable information (PII)
 - Corrupt or incorrect data
 
-The deletion process is final and irreversible.
-
-## Permissions required
-
-| Action | Permissions required |
-|:-------|:---------------------|
-| Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
+The deletion process is final and irreversible. Before calling the API, run the related query in your workspace and verify that it produces the intended results. Then, translate the KQL filter used in your query to a list of column filters supported in the Delete data API.
 
 ## Limitations
 
 You can: 
 - Submit 10 delete data requests per hour. 
 - Only delete data from a table when the table plan is Analytics. If the table plan is Basic, change the plan to Analytics and then delete the data. You can't delete Auxiliary plan isn't supported.
+
+## Permissions required
+
+| Action | Permissions required |
+|:-------|:---------------------|
+| Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
 ## Call the delete data API to delete data from a specific table
 
@@ -72,14 +70,14 @@ Where:
 - `operator` - Supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. 
 - `value` - 
 
-
+The example above applies a filter on the `TimeGenerated` field, but the you can include multiple filters.
 
 ## Check delete data operation status 
 
-Operations are executed asynchronously. To check the status of operation:
+Azure Monitor Logs executes data deletion operations asynchronously. To check the status of the operation, use this API call:
  
 ```http
-https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
 OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
 ```
 
