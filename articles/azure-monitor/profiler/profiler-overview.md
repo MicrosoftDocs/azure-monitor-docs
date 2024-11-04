@@ -3,7 +3,7 @@ title: Analyze application performance traces with Azure Monitor Application Ins
 description: Identify the hot path in your web server code with a low-footprint .NET Profiler.
 ms.contributor: charles.weininger
 ms.topic: conceptual
-ms.date: 08/15/2024
+ms.date: 11/04/2024
 ms.reviewer: ryankahng
 ---
 
@@ -23,6 +23,10 @@ Enable the Profiler for .NET on all your Azure applications to gather data with 
 - **Memory trigger**: Starts Profiler when memory usage is above 80 percent.
 
 Each of these triggers can be [configured, enabled, or disabled](./profiler-settings.md#trigger-settings).
+
+## Code Optimizations
+
+By enabling the .NET Profiler on your application, you can also use [Code Optimizations](../insights/code-optimizations.md) to identify bottlenecks and optimize your code. 
 
 ## Sampling rate and overhead 
 
@@ -49,7 +53,15 @@ Profiler works with .NET applications deployed on the following Azure services. 
 > [!NOTE]
 > You can also use the [Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md), currently in preview.
 
-If you've enabled the Profiler for .NET but aren't seeing traces, see the [Troubleshooting guide](profiler-troubleshooting.md).
+## Supported regions
+
+Code Optimizations is available in the same regions as Application Insights. You can check the available regions using the following command:
+
+```sh
+az account list-locations -o table
+```
+
+You can set an explicit region using connection strings. [Learn more about connection strings with examples.](../app/connection-strings.md#connection-string-examples)
 
 ## Limitations
 
@@ -58,6 +70,8 @@ If you've enabled the Profiler for .NET but aren't seeing traces, see the [Troub
    - Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
    - You can attach only one profiler to each web app.
    - .NET Profiler on Linux is only supported on Windows-based web apps.
+
+If you've enabled the Profiler for .NET but aren't seeing traces, see the [Troubleshooting guide](profiler-troubleshooting.md).
 
 ## Next steps
 Learn how to enable the .NET Profiler on your Azure service:

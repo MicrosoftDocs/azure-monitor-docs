@@ -6,14 +6,14 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 06/25/2024
+ms.date: 11/04/2024
 ms.reviewer: ryankahng
 ms.collection: ce-skilling-ai-copilot
 ---
 
 # Monitor and analyze runtime behavior with Code Optimizations
 
-Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler to detect CPU and memory usage performance issues at a code level and provide recommendations on how to fix them. Code Optimizations identifies these CPU and memory bottlenecks by:
+Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the [Application Insights Profiler for .NET](../profiler/profiler-overview.md) to detect CPU and memory usage performance issues at a code level and provide recommendations on how to fix them. Code Optimizations identifies these CPU and memory bottlenecks by:
 
 - Analyzing the runtime behavior of your application.
 - Comparing the behavior to performance engineering best practices.
@@ -30,21 +30,21 @@ Make informed decisions and optimize your code using real-time performance data 
 
 Before you can use Code Optimizations on your application:
 
-- [Enable the Application Insights Profiler](../profiler/profiler-overview.md).
+- [Enable the Application Insights Profiler for .NET](../profiler/profiler.md).
 - Verify your application:
   - Is .NET.
   - Uses [Application Insights](../app/app-insights-overview.md).
   - Is collecting profiles.
 
-## Application Insights Profiler vs. Code Optimizations
+## Application Insights Profiler for .NET vs. Code Optimizations
 
-Application Insights Profiler and Code Optimizations work together to provide a holistic approach to performance issue detection.
+The .NET Profiler and Code Optimizations work together to provide a holistic approach to performance issue detection.
 
-### Application Insights Profiler
-[The Profiler](../profiler/profiler-overview.md) focuses on tracing specific requests, down to the millisecond. It provides an excellent "big picture" view of issues within your application and general best practices to address them.
+### Application Insights Profiler for .NET
+[The .NET Profiler](../profiler/profiler-overview.md) focuses on tracing specific requests, down to the millisecond. It provides an excellent "big picture" view of issues within your application and general best practices to address them.
 
 ### Code Optimizations
-[Code Optimizations](https://aka.ms/codeoptimizations) analyzes the profiling data collected by the Application Insights Profiler. As the Profiler uploads data to Application Insights, our machine learning model analyzes some of the data to find where the application's code can be optimized. Code Optimizations:
+[Code Optimizations](https://aka.ms/codeoptimizations) analyzes the profiling data collected by the Application Insights Profiler for .NET. As the .NET Profiler uploads data to Application Insights, our machine learning model analyzes some of the data to find where the application's code can be optimized. Code Optimizations:
 
 - Displays aggregated data gathered over time.
 - Connects data with the methods and functions in your application code.
@@ -52,7 +52,7 @@ Application Insights Profiler and Code Optimizations work together to provide a 
 
 ## Cost and overhead
 
-Code Optimizations are generated automatically after [Application Insights Profiler is enabled](../profiler/profiler-overview.md#sampling-rate-and-overhead). It incurs no extra cost to you as it analyzes performance issues and generates performance recommendations. Some features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](/azure/copilot/overview). 
+Code Optimizations are generated automatically after [Application Insights Profiler for .NET is enabled](../profiler/profiler-overview.md#sampling-rate-and-overhead). It incurs no extra cost to you as it analyzes performance issues and generates performance recommendations. Some features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](/azure/copilot/overview). 
 
 ## Supported regions
 
@@ -74,6 +74,6 @@ You can set an explicit region using connection strings. [Learn more about conne
 
 Get started with Code Optimizations by enabling the following features on your application:
 - [Application Insights](../app/create-workspace-resource.md)
-- [Application Insights Profiler](../profiler/profiler-overview.md)
+- [Application Insights Profiler for .NET](../profiler/profiler-overview.md)
 
 Running into issues? Check the [Troubleshooting guide](./code-optimizations-troubleshoot.md)
