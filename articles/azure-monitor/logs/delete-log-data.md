@@ -1,5 +1,5 @@
 ---
-title: Delete data ingested to a Log Analytics workspace (Preview) 
+title: Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
 description: Delete data ingested to a specific table in your Log Analytics workspace. 
 author: guywi-ms
 ms.author: guywild
@@ -11,16 +11,33 @@ ms.date: 10/28/2024
 # Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
 
-# Delete data ingested to a Log Analytics workspace (Preview) 
+# Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
 
+The Delete Data API lets you delete entries from a specific table in your Log Analytics workspace.
 
-- **Delete incorrect data ingestion** - service team can execute Delete data Geneva action to remove "florin" data from workspace, where Activity log event is sent to customer's subscription with notification and reference to support for more information.
-- **Remove privacy data** - customer realized that sensitive or privacy data was ingested to the workspace, and can use Delete data API to remove it.
-- **Remove corrupted data** - customer realized that corrupted data was ingested and skew query results, and can use Delete data API to remove it.
+This article explains how the Delete Data API works and how to remove data from your workspace by calling the API.
 
-## Permissions
+## How the Delete Data API works
 
-## Prerequisites
+The Delete Data API removes the relevant rows from the specified table in your Log Analytics workspace based on a given time range and filter. 
+
+Deleting data ensures that the data can no longer be viewed or retrieved and that doesn't affect data analysis. 
+
+Use the Delete Data API to remove:
+
+- Data ingested by mistake 
+- Sensitive or personally identifiable information (PII)
+- Corrupt or incorrect data
+
+The deletion process is final and irreversible.
+
+Delete data doesn't affect billing. The way to control cost remains via data retention solely.
+
+## Permissions required
+
+| Action | Permissions required |
+|:-------|:---------------------|
+| Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
 ## Limitations
 
@@ -34,7 +51,7 @@ Use this:
 
 ```http  
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.
-OperationalInsights/workspaces/{workspace}/tables/{table}/deleteData?api-version=2023-09-01
+OperationalInsights/workspaces/{workspace_name}tables/{table_name}/deleteData?api-version=2023-09-01
 ```
 
 Specify filters in the body of the API call - for example:
