@@ -44,8 +44,8 @@ When you [create a custom table](./create-custom-table.md#create-a-custom-table)
 
 | Parameter | Description |
 |:---|:---|
-| `region` | Region to create your DCR. This must match the region of the DCE and the Log Analytics workspace. |
-| `dataCollectionEndpointId` | Resource ID of your DCE. Remove this parameter if you're going to use the [DCR ingestion point](#endpoint). |
+| `region` | Region to create your DCR. This must match the region of the Log Analytics workspace and the DCE if you're using one. |
+| `dataCollectionEndpointId` | Resource ID of your DCE. Remove this parameter if you're using the [DCR ingestion point](#endpoint). |
 | `streamDeclarations` | Change the column list to the columns in your incoming data. You don't need to change the name of the stream since this just needs to match the `streams` name in `dataFlows`. |
 | `workspaceResourceId` | Resource ID of your Log Analytics workspace. You don't need to change the name since this just needs to match the `destinations` name in `dataFlows`.  |
 | `transformKql` | KQL query to be applied to the incoming data. If the schema of the incoming data matches the schema of the table, then you can use `source` for the transformation which will pass on the incoming data unchanged. Otherwise, use a query that will transform the data to match the destination table schema. |
@@ -115,7 +115,7 @@ To send data to Azure Monitor with a REST API call, make a POST call over HTTP. 
 
 ### URI
 
-The URI includes the region, the [DCE or DCR ingestion endpoint](#endpoint), DCR ID, and the stream name. The stream name is the name of the stream in the DCR that should handle the incoming data. The URI also includes the API version. 
+The URI includes the region, the [DCE or DCR ingestion endpoint](#endpoint), DCR ID, and the stream name.It also specifies the API version. 
 
 The URI uses the following format.
 

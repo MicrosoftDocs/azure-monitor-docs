@@ -23,19 +23,18 @@ A DCE isn't always required for data collection since the data source may use a 
 
 ### Azure Monitor agent (AMA) 
 
-[AMA](../agents/azure-monitor-agent-overview.md) it will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if the Log Analytics workspace is configured for private link. 
+[AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../logs/private-link-security.md). 
 
 > [!IMPORTANT]
-> Since AMPLS is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE.
-See more details  Enable network isolation for Azure Monitor Agent by using Private Link - Azure Monitor | Microsoft Learn
+> Since Azure Monitor Private Link Scope (AMPLS) is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE. Get more details at [Enable network isolation for Azure Monitor Agent by using Private Link](../logs/private-link-security.md).
 
-You can view the agents associated with a DCE from the **Resources** page of the DCE. Click **Add** to add additional agents. Select one or more agents and click **Disassociate** to remove them.
+You can view the agents associated with a DCE from its **Resources** page. Click **Add** to add additional agents. To remove them, select one or more agents and click **Disassociate** .
 
-:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." border="false":::
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." :::
 
-A DCE is required for certain [AMA data sources](../agents/azure-monitor-agent-data-collection.md). In this case, the DCE is specified in the DCR using that data source.If an agent is associated with multiple DCRs with a variety of data sources, a DCE is only required for those data sources that need it. Other data sources can continue to use the public endpoint.
+A DCE is required for certain [AMA data sources](../agents/azure-monitor-agent-data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs , a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
 
-The following data sources require a DCE:
+The following data sources currently require a DCE:
 
 - [IIS Logs](../agents/data-collection-iis.md)
 - [Windows Firewall Logs](../agents/data-sources-firewall-logs.md)
@@ -45,11 +44,11 @@ The following data sources require a DCE:
 
 You can view the DCE for a DCR from the **Overview** page of the DCR. Click **Configure DCE** to modify it.
 
-:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." border="false":::
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." :::
 
 ### Logs ingestion API
 
-When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#create-dcr-for-logs-ingestion-api), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you want to you're sending data to a Log Analytics workspace configured for private link.
+When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#data-collection-rule-dcr), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you want to you're sending data to a Log Analytics workspace configured for private link.
 
 
 ## Components of a DCE
