@@ -1052,11 +1052,27 @@ To redact URL query strings, turn off query string collection. We recommend this
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-<!-- Example provided by language owners.-->
+When using the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentaion libraries are included. 
+Our distro package sets Query String Redaction off by default.
+
+To change this behavior, you must set an environment variable to either "true" or "false".
+
+- ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is disabled by default. To enable, set this environment variable to "false".
+- Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is disabled by default. To enable, set this environment variable to "false".
 
 ### [.NET](#tab/net)
 
-<!-- Example provided by language owners.-->
+When using the [Azure.Monitor.OpenTelemetry.Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter), you must manually include either the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) or [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentaion libraries in your OpenTelemetry configuration.
+These Instrumentation libraries have QueryString Redaction enabled by default.
+
+To change this behavior, you must set an environment variable to either "true" or "false".
+
+- ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is enabled by default. To disable, set this environment variable to "true".
+- Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is enabled by default. To disable, set this environment variable to "true".
 
 ### [Java](#tab/java)
 
