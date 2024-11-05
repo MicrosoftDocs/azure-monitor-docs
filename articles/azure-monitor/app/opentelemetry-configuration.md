@@ -1108,6 +1108,7 @@ Add the following to the `applicationinsights.json` configuration file:
   }
 }
 ```
+
 ### [Java native](#tab/java-native)
 
 <!-- Example provided by language owners.-->
