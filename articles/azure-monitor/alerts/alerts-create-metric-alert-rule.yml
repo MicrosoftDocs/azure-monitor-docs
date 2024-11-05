@@ -53,6 +53,8 @@ procedureSection:
         In the [portal](https://portal.azure.com/), navigate to the resource.
       - |
         Select **Alerts** from the left pane, and then select **+ Create** > **Alert rule**.
+      - |
+        The scope of the alert rule is set to the resource you selected. Continue with setting the conditions for the alert rule.
 
         :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-new-alert-rule-2.png" alt-text="Screenshot that shows steps to create a new alert rule from a selected resource.":::
 
@@ -159,12 +161,12 @@ procedureSection:
         |Evaluation period|The time period within which the number of violations occur.|
         |Ignore data before|Use this setting to select the date from which to start using the metric historical data for calculating the dynamic thresholds. For example, if a resource was running in testing mode and is moved to production, you may want to disregard the metric behavior while the resource was in testing.|
       - |
-        Select **Done**. From this point on, you can select the **Review + create** button at any time.
+        Select **Done**. Once you have configured the alert rule conditions, you can configure the alert rule details to complete creation of the alert, or optionally, you can also add actions and tags to the alert rule.
 
   - title: |
       Configure the alert rule actions
     summary: |
-      Follow these steps:
+      (Optional) Follow these steps to add actions to your alert rule:
     steps: 
       - |
         Select the **Actions** tab.
@@ -206,12 +208,14 @@ procedureSection:
         |Automatically resolve alerts (preview) |Select to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met.<br> If you don't select this checkbox, metric alerts are stateless. Stateless alerts fire each time the condition is met, even if alert already fired.<br> The frequency of notifications for stateless metric alerts differs based on the alert rule's configured frequency:<br>**Alert frequency of less than 5 minutes**: While the condition continues to be met, a notification is sent somewhere between one and six minutes.<br>**Alert frequency of more than 5 minutes**: While the condition continues to be met, a notification is sent between the configured frequency and doubles the value of the frequency. For example, for an alert rule with a frequency of 15 minutes, a notification is sent somewhere between 15 to 30 minutes.|
       - |
         [!INCLUDE [alerts-wizard-custom=properties](../includes/alerts-wizard-custom-properties.md)]
+      - |
+        Once the scope, conditions, and details are configured, you can select the **Review + create** button at any time.
 
   - title: |
       Configure alert rule tags
 
     summary: |
-      Follow these steps:
+       (Optional) Follow these steps to add tags to your alert rule:
 
     steps:
       - |
