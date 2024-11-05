@@ -21,7 +21,7 @@ Here's an example of where you would copy and paste the Azure portal parameter i
 
 To save one of the "experiment.json" examples shown below, simply type *nano experiment.json* into your Cloud Shell, copy and paste any of the below experiment examples, save it (ctrl+o), exit nano (ctrl+x) and run the following command:
  ```AzCLI
-az rest --method put --uri https://management.azure.com/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.Chaos/experiments/exampleExperiment?api-version=2024-01-01
+az rest --method put --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/exampleRG/providers/Microsoft.Chaos/experiments/exampleExperiment?api-version=2024-01-01
 ```
 > [!NOTE]
 > This is the generic command you would use to create any experiment from the Azure CLI

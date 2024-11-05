@@ -1,16 +1,16 @@
 ---
-title: Enable Profiler for web apps on an Azure virtual machine
+title: Enable Application Insights Profiler for .NET for web apps on an Azure virtual machine
 description: Profile web apps running on an Azure virtual machine or a virtual machine scale set by using Application Insights Profiler
 ms.topic: how-to
 ms.date: 08/19/2024
 ms.reviewer: charles.weininger
 ---
 
-# Enable Profiler for web apps on an Azure virtual machine
+# Enable the .NET Profiler for web apps on an Azure virtual machine
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-In this article, you learn how to run Application Insights Profiler on your Azure virtual machine (VM) or Azure virtual machine scale set via three different methods:
+In this article, you learn how to run Application Insights Profiler for .NET on your Azure virtual machine (VM) or Azure virtual machine scale set via three different methods:
 
 - Visual Studio and Azure Resource Manager
 - PowerShell
@@ -20,7 +20,7 @@ Select your preferred method tab to:
 
 In this guide, you learn how to:
 > [!div class="checklist"]
-> - Configure the Azure Diagnostics extension to run Profiler.
+> - Configure the Azure Diagnostics extension to run the .NET Profiler.
 > - Install the Application Insights SDK on a VM.
 > - Deploy your application.
 > - View Profiler traces via the Application Insights instance in the Azure portal.
@@ -62,7 +62,7 @@ In this guide, you learn how to:
 
    :::image type="content" source="../app/media/asp-net-core/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
 
-## Enable Profiler
+## Enable the .NET Profiler
 
 You can enable Profiler by any of three ways:
 
@@ -171,7 +171,7 @@ If the intended application is running through [IIS](https://www.microsoft.com/w
 
 ### Set the Profiler sink by using Azure Resource Explorer
 
-Because the Azure portal doesn't provide a way to set the Application Insights Profiler sink, you can use [Azure Resource Explorer](https://resources.azure.com) to set the sink.
+Because the Azure portal doesn't provide a way to set the Application Insights Profiler for .NET sink, you can use [Azure Resource Explorer](https://resources.azure.com) to set the sink.
 
 > [!NOTE]
 > If you deploy the VM again, the sink will be lost. You need to update the config you use when you deploy the VM to preserve this setting.
@@ -187,7 +187,7 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
 
        :::image type="content" source="./media/profiler-vm/azure-resource-explorer.png" alt-text="Screenshot that shows going to WAD config in Azure Resource Explorer.":::
 
-1. Add the Application Insights Profiler sink to the `SinksConfig` node under `WadCfg`. If you don't already have a `SinksConfig` section, you might need to add one. To add the sink:
+1. Add the Application Insights Profiler for .NET sink to the `SinksConfig` node under `WadCfg`. If you don't already have a `SinksConfig` section, you might need to add one. To add the sink:
 
    - Specify the proper Application Insights iKey in your settings.
    - Switch the Explorer mode to **Read/Write** in the upper-right corner.
@@ -216,11 +216,11 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
 
 ---
 
-## Can Profiler run on on-premises servers?
+## Can the .NET Profiler run on on-premises servers?
 
-Currently, Application Insights Profiler isn't supported for on-premises servers.
+Currently, Application Insights Profiler for .NET isn't supported for on-premises servers.
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Generate load and view Profiler traces](./profiler-data.md)
+> [Generate load and view .NET Profiler traces](./profiler-data.md)
