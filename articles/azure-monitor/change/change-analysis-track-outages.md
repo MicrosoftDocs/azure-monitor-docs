@@ -12,7 +12,7 @@ ms.subservice: change-analysis
 
 [!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
 
-When your application runs into an issue, you need configurations and resources to triage breaking changes and discover root-cause issues. Change Analysis (classic) provides a centralized view of the changes in your subscriptions for up to 14 days previously to provide the history of changes for troubleshooting issues.
+When your application runs into an issue, you need configurations and resources to triage breaking changes and discover root-cause issues. Change Analysis (classic) provides a centralized view of the changes in your subscriptions for up to 14 days prior to provide the history of changes for troubleshooting issues.
 
 To track an outage, we:
 
@@ -97,7 +97,7 @@ Visit the web app URL to view the following error.
 
 ## Troubleshoot the outage by using Change Analysis (classic)
 
-In the Azure portal, go to the Change Analysis (classic) overview page. Because you triggered a web app outage, you can see an entry of change for `AzureStorageConnection`:
+In the Azure portal, go to the Change Analysis (classic) overview page. Because you triggered a web app outage, you can see an entry of change for `AzureStorageConnection`.
 
 Because the connection string is a secret value, we hide it on the overview page for security purposes. With sufficient permission to read the web app, you can select the change to view details around the old and new values:
 
