@@ -1060,8 +1060,38 @@ To redact URL query strings, turn off query string collection. We recommend this
 
 ### [Java](#tab/java)
 
-<!-- Example provided by language owners.-->
+Add the following to the `applicationinsights.json` configuration file:
 
+```json
+{
+  "preview": {
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "url.query",
+            "pattern": "^.*$",
+            "replace": "REDACTED",
+            "action": "mask"
+          }
+        ]
+      },
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "url.full",
+            "pattern": "[?].*$",
+            "replace": "?REDACTED",
+            "action": "mask"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
 ### [Java native](#tab/java-native)
 
 <!-- Example provided by language owners.-->
