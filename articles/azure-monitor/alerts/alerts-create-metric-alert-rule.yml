@@ -166,7 +166,7 @@ procedureSection:
   - title: |
       Configure the alert rule actions
     summary: |
-      (Optional). Follow these steps to add actions to your alert rule:
+      (Optional) Follow these steps to add actions to your alert rule:
     steps: 
       - |
         Select the **Actions** tab.
@@ -215,7 +215,7 @@ procedureSection:
       Configure alert rule tags
 
     summary: |
-       (Optional). Follow these steps to add tags to your alert rule:
+       (Optional) Follow these steps to add tags to your alert rule:
 
     steps:
       - |
