@@ -19,7 +19,7 @@ The agent can handle many thousands of events per second in the gateway event fo
 
 ## Best practices for agent as a forwarder. 
 
--Linux AMA has a limit of 20k EPS. The 20k EPS warning does not mean there was data loss unless you see the error persistently in your log files. If you reach the limit, AMA stops reading from the source. For Syslog events, this put back pressure on the TCP pipeline to allow AMA to catch up and prevent data loss in AMA. After a brief period, AMA starts reading again. 
+- Linux AMA should target 10K EPS. There is a 20k EPS warning which does not mean there was data loss unless the warning is persistent over a period of time.  
 - The forwarder should be on a dedicated system to eliminate potential interference from other workloads. 
 - The forwarder system should be monitored for CPU, memory, and disk utilization to prevent overloads from causing data loss. 
 - Where possible use a load balancer and redundant forwarder systems to improve reliability and scalability. 
