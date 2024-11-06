@@ -82,6 +82,14 @@ For example:
 arg("").<Azure-Resource-Graph-table-name>
 ```
 
+The `arg()` operator in Log Analytics can also be used in the unified Microsoft Defender platform. Note that `arg()` only works over Microsoft Sentinel data (that is, Defender XDR tables are not supported). This feature allows you to harness `arg()` and its insights natively within the advanced hunting interface saving you the need to manually open a new window for Microsoft Sentinel to use the operator.
+
+:::image type="content" source="media/azure-monitor-data-explorer-proxy/arg-function.png" alt-text="Screenshot showing use of arg() operator in advanced hunting.":::
+
+> [!TIP]
+> The `arg()` operator is now available for preview in advanced hunting to query over Microsoft Sentinel data only. Read more at [Use arg() operator for Azure Resource Graph queries (Preview)](/defender-xdr/advanced-hunting-defender-use-custom-rules#use-arg-operator-for-azure-resource-graph-queries-preview).
+
+
 Here are some sample Azure Log Analytics queries that use the new Azure Resource Graph cross-service query capabilities:
 
 - Filter a Log Analytics query based on the results of an Azure Resource Graph query:
