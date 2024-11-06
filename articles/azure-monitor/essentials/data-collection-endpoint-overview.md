@@ -30,7 +30,7 @@ A DCE isn't always required for data collection since the data source may use a 
 
 You can view the agents associated with a DCE from its **Resources** page. Click **Add** to add additional agents. To remove them, select one or more agents and click **Disassociate** .
 
-:::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/**data-collection-rule-dce.**png" alt-text="Screenshot resources for a DCE in the Azure portal." :::
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" alt-text="Screenshot resources for a DCE in the Azure portal." :::
 
 A DCE is required for certain [AMA data sources](../agents/azure-monitor-agent-data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs , a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
 
