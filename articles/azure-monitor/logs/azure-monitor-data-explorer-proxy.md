@@ -82,6 +82,9 @@ For example:
 arg("").<Azure-Resource-Graph-table-name>
 ```
 
+> [!TIP]
+> The `arg()` operator is also available for preview in advanced hunting to query over Microsoft Sentinel data only. Read more at [Use arg() operator for Azure Resource Graph queries (Preview)](defender-xdr/advanced-hunting-defender-use-custom-rules.md#use-arg-operator-for-azure-resource-graph-queries-preview).
+
 Here are some sample Azure Log Analytics queries that use the new Azure Resource Graph cross-service query capabilities:
 
 - Filter a Log Analytics query based on the results of an Azure Resource Graph query:
