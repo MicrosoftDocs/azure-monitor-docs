@@ -2,7 +2,7 @@
 title: Distributed tracing and telemetry correlation in Azure Application Insights
 description: This article provides information about distributed tracing and telemetry correlation
 ms.topic: conceptual
-ms.date: 10/14/2023
+ms.date: 12/07/2024
 ms.reviewer: rijolly
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

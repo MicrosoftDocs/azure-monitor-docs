@@ -31,7 +31,7 @@ An existing diagnostic setting logging to a storage account.
 
 > [!NOTE]   
 > + When you change your retention settings, the new settings only apply to new logs ingested after the change. Existing logs are subject to the previous retention settings.
-> + Deleting a diagnostic setting doesn't delete the logs in the storage account. The logs are deleted based on the retention settings that were applied when the logs were ingested.
+> + Deleting a diagnostic setting doesn't delete the logs in the storage account. The retention settings will continue to apply to the logs created before the diagnostic settings were deleted.
 
 
 Use the following CLI command to check if a resource has a diagnostic setting:
