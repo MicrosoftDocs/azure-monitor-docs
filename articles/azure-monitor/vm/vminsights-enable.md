@@ -205,7 +205,7 @@ Before you use this script, you must create a VM insights DCR using the details 
 
 ### PowerShell script
 
-Use the PowerShell script [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights) to enable VM insights for multiple VMs or virtual machine scale sets. This script iterates through the machines according to the parameters that you specify. The script can be used to enable VM insights for the following. Each of these parameters accept wildcards.
+Use the PowerShell script [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights) to enable VM insights for multiple VMs or virtual machine scale sets. This script iterates through the machines according to the parameters that you specify. The script can be used to enable VM insights for the following. Each of these parameters accepts wildcards.
 
 - Every virtual machine and virtual machine scale set in your subscription.
 - The scoped resource groups specified by `-ResourceGroup`.

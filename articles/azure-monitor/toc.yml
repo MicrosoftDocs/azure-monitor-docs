@@ -370,7 +370,7 @@ items:
         - name: Windows client machines
           href: vm/vminsights-enable-client.md
         - name: Dependency agent
-          href: vm/vminsights-dependency-agent-maintenance.md
+          href: vm/vminsights-dependency-agent.md
         - name: Disable monitoring
           href: vm/vminsights-optout.md
         - name: Troubleshoot
