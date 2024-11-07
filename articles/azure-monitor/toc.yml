@@ -387,7 +387,7 @@ items:
           href: vm/vminsights-performance.md
         - name: Map dependencies
           href: vm/vminsights-maps.md
-        - name: Analyze data with log queries
+        - name: Query map data
           href: vm/vminsights-log-query.md
         - name: Monitor changes
           href: vm/vminsights-change-analysis.md

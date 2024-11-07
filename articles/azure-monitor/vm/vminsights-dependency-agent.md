@@ -1,5 +1,5 @@
 ---
-title: VM Insights Dependency Agent
+title: Dependency Agent in Azure Monitor VM insights
 description: This article describes how to upgrade the VM Insights Dependency Agent using command-line, setup wizard, and other methods.
 ms.topic: conceptual
 ms.custom: linux-related-content
@@ -8,7 +8,7 @@ ms.author: guywild
 ms.date: 11/06/2024
 ---
 
-# Dependency Agent
+# Dependency Agent in Azure Monitor VM insights
 
 Dependency Agent collects data about processes running on the virtual machine and their external process dependencies. Updates include bug fixes or support of new features or functionality. This article describes Dependency Agent requirements and how to upgrade it manually or through automation.
 
