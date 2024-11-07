@@ -8,7 +8,7 @@ ms.custom: devx-track-azurecli
 ms.author: abbyweisberg
 ms.reviewer: ninallam
 author: nikhilkaul-msft
-ms.date: 10/06/2023
+ms.date: 11/07/2024
 ms.topic: how-to
 ---
  
