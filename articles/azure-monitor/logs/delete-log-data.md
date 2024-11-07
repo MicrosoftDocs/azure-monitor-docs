@@ -1,39 +1,44 @@
 ---
 title: Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
-description: Delete data ingested to a specific table in your Log Analytics workspace. 
+description: Delete data from a specific table in your Log Analytics workspace. 
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: yossiy
 ms.service: azure-monitor
 ms.topic: how-to 
-ms.date: 10/28/2024
+ms.date: 11/04/2024
 
 # Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
 
 # Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
 
-The Delete Data API lets you delete entries from a specific table in your Log Analytics workspace. This article explains how the Delete Data API works and how to remove data from your workspace by calling the API.
+This article explains how to delete log entries from a specific table in your Log Analytics workspace by calling the Delete Data API.
 
 ## How the Delete Data API works
 
-The Delete Data API removes the relevant rows from the specified table in your Log Analytics workspace based on a given time range and filter. 
+The Delete Data API removes the relevant rows from the table you specify in your Log Analytics workspace.
 
-Deleting data ensures that the data can't be viewed, retrieved, and used in data analysis, but it doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
+The body of the API call consists of filters on one or more columns using which you define which rows of the table you want to delete.
+
+The deletion process is final and irreversible. Therefore, before calling the API, check that your filters produces the intended results by writing a Kusto Query Language (KQL) query in your workspace. Then, translate the query to a list of column filters supported in the Delete Data API.
+
+so the data can't be viewed, retrieved, and used in data analysis. Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
 Use the Delete Data API to remove:
 
 - Data ingested by mistake 
-- Sensitive or personally identifiable information (PII)
+- Sensitive or personal data
 - Corrupt or incorrect data
 
-The deletion process is final and irreversible. Before calling the API, run the related query in your workspace and verify that it produces the intended results. Then, translate the KQL filter used in your query to a list of column filters supported in the Delete data API.
+
 
 ## Limitations
 
 You can: 
+
 - Submit 10 delete data requests per hour. 
-- Only delete data from a table when the table plan is Analytics. If the table plan is Basic, change the plan to Analytics and then delete the data. You can't delete Auxiliary plan isn't supported.
+- Only delete data from a table when the table plan is Analytics. If the table plan is Basic, change the plan to Analytics and then delete the data. You can't delete data from a table with the Auxiliary plan.
 
 ## Permissions required
 
@@ -41,7 +46,7 @@ You can:
 |:-------|:---------------------|
 | Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
-## Call the delete data API to delete data from a specific table
+## Call the Delete Data API to delete data from a specific table
 
 To delete rows from a table, use this command: 
 
@@ -70,7 +75,7 @@ Where:
 - `operator` - Supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. 
 - `value` - 
 
-The example above applies a filter on the `TimeGenerated` field, but the you can include multiple filters.
+The example in this section applies a filter on the `TimeGenerated` field, but you can include multiple filters.
 
 ## Check delete data operation status 
 
