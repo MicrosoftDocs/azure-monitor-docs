@@ -67,7 +67,9 @@ The incoming stream of data includes the columns in the following table.
 Before you can collect log data from a text file, you must create a custom table in your Log Analytics workspace to receive the data. The table schema must match the data you are collecting, or you must add a transformation to ensure that the output schema matches the table. 
 
 > [!Warning]
-> You shouldn’t use an existing custom log table used by MMA agents. Your MMA agents won't be able to write to the table once the first AMA agent writes to the table. You should create a new table for AMA to use to prevent MMA data loss.
+> To avoid data loss, it’s important that you do not use an existing custom log table that MMA agents are currently utilizing.
+> Once any AMA agent writes to an existing custom log table, MMA agents will no longer be able to write to that table.
+> Instead, you should create a new table specifically for AMA agents to ensure smooth transition from one agent to the next.
 
 
 For example, you can use the following PowerShell script to create a custom table with `RawData`, `FilePath`, and `Computer`. You wouldn't need a transformation for this table because the schema matches the default schema of the incoming stream. 
