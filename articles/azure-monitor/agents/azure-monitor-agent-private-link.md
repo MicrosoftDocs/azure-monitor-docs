@@ -25,7 +25,7 @@ By default, Azure Monitor Agent connects to a public endpoint to connect to your
 1. [Add the data collection endpoints to your Azure Monitor Private Link Scope](../logs/private-link-configure.md#connect-azure-monitor-resources) resource. This process adds the data collection endpoints to your private DNS zone (see [how to validate](../logs/private-link-configure.md#review-and-validate-your-private-link-setup)) and allows communication via private links. You can do this task from the AMPLS resource or on an existing data collection endpoint resource's **Network isolation** tab.
 
     > [!IMPORTANT]
-    > Other Azure Monitor resources like the Log Analytics workspaces configured in your data collection rules that you want to send data to must be part of this same AMPLS resource.
+    > Other Azure Monitor resources like the Log Analytics workspaces and data collection endpoint (DCE) configured in your data collection rules that you want to send data to must be part of this same AMPLS resource.
  
     For your data collection endpoints, ensure the **Accept access from public networks not connected through a Private Link Scope** option is set to **No** on the **Network Isolation** tab of your endpoint resource in the Azure portal. This setting ensures that public internet access is disabled and network communication only happens via private links.
      
