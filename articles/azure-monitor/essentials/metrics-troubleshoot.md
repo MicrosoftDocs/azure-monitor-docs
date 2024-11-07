@@ -46,13 +46,13 @@ You may encounter this message when querying from an Azure Kubernetes Service (A
 
 Some resources don’t constantly emit their metrics. For example, Azure doesn't collect metrics for stopped virtual machines. Other resources might emit their metrics only when some condition occurs. For example, a metric showing processing time of a transaction requires at least one transaction. If there were no transactions in the selected time range, the chart is naturally empty. Additionally, while most of the metrics in Azure are collected every minute, there are some that are collected less frequently. See the metric documentation to get more details about the metric that you're trying to explore.
 
-**Solution:** Change the time of the chart to a wider range. You may start from "Last 30 days" using a larger time granularity (or relying on the "Automatic time granularity" option).
+**Solution:** Change the time of the chart to a wider range. You may start from "Last 31 days" using a larger time granularity (or relying on the "Automatic time granularity" option).
 
-### You picked a time range greater than 30 days
+### You picked a time range greater than 31days
 
-[Most metrics in Azure are stored for 93 days](../essentials/data-platform-metrics.md#retention-of-metrics). However, you can only query for no more than 30 days worth of data on any single chart. This limitation doesn't apply to [log-based metrics](../app/pre-aggregated-metrics-log-metrics.md#log-based-metrics).
+[Most metrics in Azure are stored for 93 days](../essentials/data-platform-metrics.md#retention-of-metrics). However, you can only query for no more than 31 days worth of data on any single chart. This limitation doesn't apply to [log-based metrics](../app/pre-aggregated-metrics-log-metrics.md#log-based-metrics).
 
-**Solution:** If you see a blank chart or your chart only displays part of metric data, verify that the difference between start- and end- dates in the time picker doesn't exceed the 30-day interval. Once you select a 30 day interval, you can [pan](metrics-charts.md#pan) the chart to view the full retention window.
+**Solution:** If you see a blank chart or your chart only displays part of metric data, verify that the difference between start- and end- dates in the time picker doesn't exceed the 31-day interval. Once you select a 31 day interval, you can [pan](metrics-charts.md#pan) the chart to view the full retention window.
 
 ### All metric values were outside of the locked y-axis range
 
