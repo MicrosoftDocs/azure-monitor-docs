@@ -19,10 +19,10 @@ The agent can handle many thousands of events per second in the gateway event fo
 
 ## Best practices for agent as a forwarder. 
 
-- The Linux AMA should target 10k EPS. There's may see a 20k EPS warning which doesn't mean data lost. AMA doesn't guarantee a lossless connection. However, loss is more likely when EPS is over 10k.
+- The Linux AMA should target 10k EPS. There's a 20k EPS warning which doesn't mean data lost. AMA doesn't guarantee a lossless connection. However, loss is more likely when EPS is over 10k.
 - The forwarder should be on a dedicated system to eliminate potential interference from other workloads. 
 - The forwarder system should be monitored for CPU, memory, and disk utilization to prevent overloads from causing data loss. 
-- The load balancer and redundant forwarder systems should be used where possible to improve reliability and scalability. For other considerations for forwarders, see the Log Analytics Gateway documentation. 
+- The load balancer and redundant forwarder systems should be used to improve reliability and scalability. For other considerations for forwarders, see the Log Analytics Gateway documentation. 
 
 ## Agent Performance 
 
