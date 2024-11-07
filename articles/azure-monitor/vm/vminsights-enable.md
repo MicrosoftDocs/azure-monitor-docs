@@ -28,7 +28,7 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 When you enable VM Insights for a machine, the following agents are installed. 
 
 - [Azure Monitor agent](../agents/azure-monitor-agent-overview.md): Collects data from the machine and delivers it to a Log Analytics workspace.
-- [Dependency agent](./vminsights-dependency-agent-maintenance.md): Collects discovered data about processes running on the virtual machine and external process dependencies, which are used by the [Map feature in VM Insights](../vm/vminsights-maps.md). If you don't need the map feature, you don't need to install the Dependency agent.
+- [Dependency agent](./vminsights-dependency-agent.md): Collects discovered data about processes running on the virtual machine and external process dependencies to support the [Map feature in VM Insights](../vm/vminsights-maps.md). This agent is not required for other VM insights functionality, so you don't need to install the dependency agent if you're not going to use the Map feature.
 
 ## VM insights DCR
 

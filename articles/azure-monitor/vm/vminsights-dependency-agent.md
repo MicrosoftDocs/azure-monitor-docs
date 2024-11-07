@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.custom: linux-related-content
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
+ms.date: 11/06/2024
 ---
 
 # Dependency Agent
@@ -132,7 +132,7 @@ If Dependency Agent fails to start, check the logs for detailed error informatio
 
 1. Select **Extensions + applications** > **DependencyAgentWindows** or **DependencyAgentLinux** > **Uninstall**.
 
-    :::image type="content" source="media/vminsights-dependency-agent-maintenance/azure-monitor-uninstall-dependency-agent.png" alt-text="Screenshot showing the Extensions and applications screen for a virtual machine." lightbox="media/vminsights-dependency-agent-maintenance/azure-monitor-uninstall-dependency-agent.png":::
+    :::image type="content" source="media/vminsights-dependency-agent/azure-monitor-uninstall-dependency-agent.png" alt-text="Screenshot showing the Extensions and applications screen for a virtual machine." lightbox="media/vminsights-dependency-agent/azure-monitor-uninstall-dependency-agent.png":::
 
 ### Manually uninstall Dependency Agent on Windows
 

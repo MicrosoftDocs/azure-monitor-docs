@@ -7,14 +7,83 @@ ms.author: guywild
 ms.date: 10/30/2024
 ---
 
-# Disable monitoring of your VMs in VM insights (Legacy agent)
+# Disable monitoring of your VMs in VM insights
 
-> [!IMPORTANT]
-> This article describes how to disable monitoring of your virtual machines in VM insights if you're using the Log Analytics agent. If you're using the Azure Monitor agent, see [Migrate to Azure Monitor agent in VM Insights](./vminsights-migrate-agent.md) for information about migrating to the Azure Monitor agent.
+This article describes how to disable VM insights monitoring for your monitored virtual machines. 
 
-After you enable monitoring of your virtual machines (VMs), you can later choose to disable monitoring in VM insights. This article shows how to disable monitoring for one or more VMs.
+## VM insights components
+The following steps are completed when you enable VM insights on a virtual machine. Depending on how you onboarded the machine, you may have performed all of these steps individually or had them performed for you. Each of these steps needs to be reversed for complete removal of VM insights monitoring, but you may want to leave some in place depending on your requirements.
 
-Currently, VM insights doesn't support selective disabling of VM monitoring. Your Log Analytics workspace might support VM insights and other solutions. It might also collect other monitoring data. If your Log Analytics workspace provides these services, you need to understand the effect and methods of disabling monitoring before you start.
+1. The Azure Monitor agent is installed on the VM if it's not already installed.
+2. The Dependency agent is installed on the VM if you choose to collect processes and dependencies using the VM insights Map feature.
+3. A new VM insights DCR is created unless you specify an existing VM insights DCR.
+4. A DCR association is created between the VM and the DCR.
+
+## Remove DCR association
+You can disable VM insights by simply removing the DCR association. This leaves the agents installed on the VM and the VM insights DCR intact, but it stops the collection of all VM insights data from the VM. 
+
+### [Azure portal](#tab/portal)
+If you disable VM insights monitoring from the Azure portal, it will remove the DCR association but leave the agents and VM insights DCR intact.
+
+1. From the **Monitored** tab in VM insights, click **Enabled** next to the VM you want to disable.
+
+    :::image type="content" source="media/vminsights-optout/monitored-vms.png" lightbox="media/vminsights-optout/monitored-vms.png" alt-text="Screenshot that shows the list of VMs monitored by VM insights with the enable option.":::
+
+2. Select **Off** next to the **VM Insights** option and click **Configure**.
+
+    :::image type="content" source="media/vminsights-optout/disable-vminsights.png" lightbox="media/vminsights-optout/disable-vminsights.png" alt-text="Screenshot that shows the option to disable VM insights.":::
+
+### [CLI](#tab/cli)
+Get the DCR association name with the `Get-AzDataCollectionRuleAssociation` cmdlet and then use it with the `Remove-AzDataCollectionRuleAssociation` cmdlet as in the following example.
+
+```azurecli
+dcrName=$(az monitor data-collection rule association list --resource "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" --query "[?dataCollectionRuleId=='/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/MSVMI-DefaultWorkspace'].name" -o tsv)
+az monitor data-collection rule association delete --resource "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" --name $dcrName
+```
+
+### [PowerShell](#tab/powershell)
+Get the DCR association name with the `Get-AzDataCollectionRuleAssociation` cmdlet and then use it with the `Remove-AzDataCollectionRuleAssociation` cmdlet as in the following example.
+
+```powershell
+$dcraName = (Get-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" | where {$_.DataCollectionRuleId -eq "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/MSVMI-DefaultWorkspace"}).Name
+remove-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" -AssociationName $dcraName   
+```
+
+### Remove VM insights DCR
+If there are no associations with the VM insights DCR, then it doesn't need to be removed since it won't be affecting any VMs. Be careful to not remove this DCR if there are any existing associations, since that will cause those VMs to stop monitoring.
+
+### [Azure portal](#tab/portal)
+Select the **Delete** option from the DCR in the **Monitor** menu.
+
+:::image type="content" source="media/vminsights-optout/dcr-delete.png" lightbox="media/vminsights-optout/dcr-delete.png" alt-text="Screenshot that shows dialog box to disable VM insights for a VM.":::
+
+### [CLI](#tab/cli)
+Remove the VM insights DCR with the `az monitor data-collection rule delete` command as in the following example.
+
+```azurecli
+az monitor data-collection rule delete --name MSVI-DefaultWorkspace --resource-group my-resource-group
+```
+
+### [PowerShell](#tab/powershell)
+Remove the VM insights DCR with the `Remove-AzDataCollectionRule` command as in the following example.
+
+```powershell
+Remove-AzDataCollectionRule -Name MSVI-DefaultWorkspace -ResourceGroupName my-resource-group
+```
+
+### Remove agents
+You should remove the Dependency agent from the VM if the VM is no longer using VM insights. Only remove the Azure Monitor agent if you're no longer using it for any other monitoring purposes. 
+
+- See [Uninstall Azure Monitor Agent](../agents/azure-monitor-agent-manage.md#uninstall) for details on removing the Azure Monitor agent.
+- See [Uninstall Dependency Agent](./vminsights-dependency-agent.md#uninstall-dependency-agent) for details on removing the Dependency agent.
+
+
+
+## Log Analytics agent (legacy)
+
+This section describes how to disable monitoring of your virtual machines in VM insights if they're still using the deprecated [Log Analytics agent](../agents/log-analytics-agent.md). See [Migrate to Azure Monitor agent in VM Insights](./vminsights-migrate-agent.md) for information about migrating to the Azure Monitor agent.
+
+VM insights doesn't support selective disabling of VM monitoring with Log Analytics agent. Your Log Analytics workspace might support VM insights and other solutions. It might also collect other monitoring data. If your Log Analytics workspace provides these services, you need to understand the effect and methods of disabling monitoring before you start.
 
 VM insights relies on the following components to deliver its experience:
 

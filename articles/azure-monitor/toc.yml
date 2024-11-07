@@ -367,10 +367,10 @@ items:
         - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
         - name: Windows client machines
-          href: vm/vminsights-enable-hybrid.md
+          href: vm/vminsights-enable-client.md
         - name: Dependency agent
           href: vm/vminsights-dependency-agent-maintenance.md
-        - name: Disable monitoring (legacy)
+        - name: Disable monitoring
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
@@ -1487,8 +1487,6 @@ items:
       href: insights/resource-manager-sql-insights.md
     - name: Workbooks
       href: visualize/resource-manager-workbooks.md
-    - name: VM insights
-      href: vm/resource-manager-vminsights.md
   - name: Alerts
     items:
       - name: Alerts payloads
