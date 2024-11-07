@@ -48,7 +48,7 @@ Get the DCR association name with the `Get-AzDataCollectionRuleAssociation` cmdl
 $dcraName = (Get-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" | where {$_.DataCollectionRuleId -eq "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/MSVMI-DefaultWorkspace"}).Name
 remove-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" -AssociationName $dcraName   
 ```
-
+---
 ### Remove VM insights DCR
 If there are no associations with the VM insights DCR, then it doesn't need to be removed since it won't be affecting any VMs. Be careful to not remove this DCR if there are any existing associations, since that will cause those VMs to stop monitoring.
 
@@ -70,12 +70,12 @@ Remove the VM insights DCR with the `Remove-AzDataCollectionRule` command as in 
 ```powershell
 Remove-AzDataCollectionRule -Name MSVI-DefaultWorkspace -ResourceGroupName my-resource-group
 ```
-
+---
 ### Remove agents
 You should remove the Dependency agent from the VM if the VM is no longer using VM insights. Only remove the Azure Monitor agent if you're no longer using it for any other monitoring purposes. 
 
-- See [Uninstall Azure Monitor Agent](../agents/azure-monitor-agent-manage.md#uninstall) for details on removing the Azure Monitor agent.
-- See [Uninstall Dependency Agent](./vminsights-dependency-agent.md#uninstall-dependency-agent) for details on removing the Dependency agent.
+- See [Uninstall Azure Monitor Agent](../agents/azure-monitor-agent-manage.md#uninstall) for options to remove the Azure Monitor agent.
+- See [Uninstall Dependency Agent](./vminsights-dependency-agent.md#uninstall-dependency-agent) for options to removing the Dependency agent.
 
 
 
