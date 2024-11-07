@@ -2,7 +2,7 @@
 title: Configure Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 description: This article provides configuration guidance for .NET, Java, Node.js, and Python applications.
 ms.topic: conceptual
-ms.date: 12/27/2023
+ms.date: 12/07/2024
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
