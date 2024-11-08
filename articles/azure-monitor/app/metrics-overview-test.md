@@ -10,9 +10,9 @@ ms.reviewer: vitalyg
 
 Application Insights supports three different types of metrics: standard (preaggregated), log-based, and custom metrics. Each one brings a unique value in monitoring application health, diagnostics, and analytics. Developers who are instrumenting applications can decide which type of metric is best suited to a particular scenario. Decisions are based on the size of the application, expected volume of telemetry, and business requirements for metrics precision and alerting. This article explains the difference between all supported metrics types.
 
-* **Standard metrics:** Standard metrics in Application Insights are predefined metrics which are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics are preaggregated during collection, which gives them better performance at query time. This makes them the best choice for dashboards and real-time alerting.
+* **Standard metrics:** Standard metrics in Application Insights are predefined metrics which are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. *Standard metrics **are preaggregated** during collection*, which gives them better performance at query time. This makes them the best choice for dashboards and real-time alerting.
 
-* **Log-based metrics:** Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. The underlying logs aren't preaggregated at the collection or storage time and retain all properties of each log entry. This makes it possible to use log properties as dimensions on log-based metrics at a query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering) commonly used with monitoring large applications impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
+* **Log-based metrics:** Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. *The underlying logs **aren't preaggregated** at the collection or storage time* and retain all properties of each log entry. This makes it possible to use log properties as dimensions on log-based metrics at a query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering) commonly used with monitoring large applications impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
 
 * **Custom metrics (preview):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that isn't covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance. 
 
@@ -39,6 +39,9 @@ Application Insights supports three different types of metrics: standard (preagg
 
 ## Metrics support
 
+> [!NOTE]
+> Log-based metrics are supported for all languages and instrumentation methods.
+
 ### SDK supported preaggregated metrics table
 
 | Current production SDKs | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
@@ -62,6 +65,32 @@ Application Insights supports three different types of metrics: standard (preagg
 
 1. [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](./azure-vm-vmss-apps.md) and [on-premises](./application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. The SDK is required for all dimensions.
 2. [ASP.NET Core autoinstrumentation on App Service](./azure-web-apps-net-core.md) emits standard metrics without dimensions. SDK is required for all dimensions.
+
+## Use preaggregation with Application Insights custom metrics
+
+You can use preaggregation with custom metrics. The two main benefits are: 
+
+- Configure and alert on a dimension of a custom metric
+- Reduce the volume of data sent from the SDK to the Application Insights collection endpoint
+
+There are several [ways of sending custom metrics from the Application Insights SDK](./api-custom-events-metrics.md). If your version of the SDK offers [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), these methods are the preferred way of sending custom metrics. In this case, preaggregation happens inside the SDK. This approach reduces the volume of data stored in Azure and also the volume of data transmitted from the SDK to Application Insights. Otherwise, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method, which preaggregates metric events during data ingestion.
+
+## Custom metrics dimensions and preaggregation
+
+All metrics that you send using [OpenTelemetry](opentelemetry-add-modify.md), [trackMetric](./api-custom-events-metrics.md#trackmetric), or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
+
+:::image type="content" source="./media/pre-aggregated-metrics-log-metrics/001-cost.png" lightbox="./media/pre-aggregated-metrics-log-metrics/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
+
+## Quotas
+
+Preaggregated metrics are stored as time series in Azure Monitor. [Azure Monitor quotas on custom metrics](../essentials/metrics-custom-overview.md#quotas-and-limits) apply.
+
+> [!NOTE]
+> Going over the quota might have unintended consequences. Azure Monitor might become unreliable in your subscription or region. To learn how to avoid exceeding the quota, see [Design limitations and considerations](../essentials/metrics-custom-overview.md#design-limitations-and-considerations).
+
+## Why is collection of custom metrics dimensions turned off by default?
+
+The collection of custom metrics dimensions is turned off by default because in the future storing custom metrics with dimensions will be billed separately from Application Insights. Storing the nondimensional custom metrics remain free (up to a quota). You can learn about the upcoming pricing model changes on our official [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Create charts and explore metrics
 
