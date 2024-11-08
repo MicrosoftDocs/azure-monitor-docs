@@ -1115,7 +1115,49 @@ Add the following to the `applicationinsights.json` configuration file:
 
 ### [Node.js](#tab/nodejs)
 
-<!-- Example provided by language owners.-->
+When using the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, query strings can be redacted via creating and applying a span processor to the distro configuration.
+
+```ts
+import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
+import { Context } from "@opentelemetry/api";
+import { ReadableSpan, Span, SpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { SEMATTRS_HTTP_ROUTE, SEMATTRS_HTTP_TARGET, SEMATTRS_HTTP_URL } from "@opentelemetry/semantic-conventions";
+
+class RedactQueryStringProcessor implements SpanProcessor {
+  forceFlush(): Promise<void> {
+	return Promise.resolve();
+  }
+  onStart(span: Span, parentContext: Context): void {
+    return;
+  }
+  shutdown(): Promise<void> {
+	return Promise.resolve();
+  }
+  onEnd(span: ReadableSpan) {
+    const httpRouteIndex: number = String(span.attributes[SEMATTRS_HTTP_ROUTE]).indexOf('?');
+    const httpUrlIndex: number = String(span.attributes[SEMATTRS_HTTP_URL]).indexOf('?');
+    const httpTargetIndex: number = String(span.attributes[SEMATTRS_HTTP_TARGET]).indexOf('?');
+    if (httpRouteIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_ROUTE] = String(span.attributes[SEMATTRS_HTTP_ROUTE]).substring(0, httpRouteIndex);
+    }
+    if (httpUrlIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_URL] = String(span.attributes[SEMATTRS_HTTP_URL]).substring(0, httpUrlIndex);
+    }
+    if (httpTargetIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_TARGET] = String(span.attributes[SEMATTRS_HTTP_TARGET]).substring(0, httpTargetIndex);
+    }
+  }
+}
+
+const options: AzureMonitorOpenTelemetryOptions = {
+  azureMonitorExporterOptions: {
+      connectionString: <YOUR_CONNECTION_STRING>,
+  },
+  spanProcessors: [new RedactQueryStringProcessor()]
+};
+
+useAzureMonitor(options);
+```
 
 ### [Python](#tab/python)
 
