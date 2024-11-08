@@ -34,7 +34,7 @@ For information on how to configure resource health notification alerts by using
 
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
 
-    :::source="./media/resource-health-alert-monitor-guide/service-health-selection.png" type="content" image alt-text="Screenshot showing Service Health Selection." :::
+    :::image type="content" source="media/resource-health-alert-monitor-guide/service-health-selection.png" alt-text="Screenshot showing Service Health Selection.":::
 
 1. In the **Resource Health** section, select **Resource Health**.
 
