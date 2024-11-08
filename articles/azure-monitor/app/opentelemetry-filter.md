@@ -276,9 +276,108 @@ It's not possible to filter telemetry in Java native.
 
 ---
 
-## Filter SQL telemetry
+## SQL telemetry
 
-By default, all languages collect SQL telemetry as per the [OpenTelemetry specification]().
+### Enable SQL telemetry
+
+### [ASP.NET Core](#tab/aspnetcore)
+
+We vendor the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
+
+`dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
+
+```csharp
+builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
+{
+    builder.AddSqlClientInstrumentation(options =>
+    {
+        options.SetDbStatementForStoredProcedure = false;
+    });
+});
+```
+
+### [.NET](#tab/net)
+
+```csharp
+using var traceProvider = Sdk.CreateTracerProviderBuilder()
+   .AddSqlClientInstrumentation(
+       options=>
+       {
+           options.Filter = cmd =>
+           {
+               if (cmd is SqlCommand command)
+               {
+                   return command.CommandType == CommandType.StoredProcedure;
+               }
+
+               return false;
+           };
+       })
+   .AddAzureMonitorTraceExporter()
+   .Build();
+```
+
+### [Java](#tab/java)
+
+Java collects SQL (JDBC) telemetry by default.
+
+### [Java native](#tab/java-native)
+
+Java native collects SQL (JDBC) telemetry by default.
+
+### [Node.js](#tab/nodejs)
+
+The Azure Monitor OpenTelemetry Distro for Node.js doesn't collect SQL telemetry by default. To enable it, pass the following configuration option:
+
+```js
+import { AzureMonitorOpenTelemetryOptions, useAzureMonitor } from "@azure/monitor-opentelemetry";
+import { Resource } from "@opentelemetry/resources";
+
+const resource = new Resource({ "testAttribute": "testValue" });
+const options: AzureMonitorOpenTelemetryOptions = {
+    azureMonitorExporterOptions: {
+        // Offline storage
+        storageDirectory: "c://azureMonitor",
+        // Automatic retries
+        disableOfflineStorage: false,
+        // Application Insights Connection String
+        connectionString:
+              process.env["APPLICATIONINSIGHTS_CONNECTION_STRING"] || "<your connection string>",
+    },
+    samplingRatio: 1,
+    instrumentationOptions: {
+        // Instrumentations generating traces
+        azureSdk: { enabled: true },
+        http: { enabled: true },
+        mongoDb: { enabled: true },
+        mySql: { enabled: true },
+        postgreSql: { enabled: true },
+        redis: { enabled: true },
+        redis4: { enabled: true },
+        // Instrumentations generating logs
+        bunyan: { enabled: true },
+        winston: { enabled: true },
+    },
+    enableLiveMetrics: true,
+    enableStandardMetrics: true,
+    browserSdkLoaderOptions: {
+        enabled: false,
+        connectionString: "",
+    },
+    resource: resource,
+    logRecordProcessors: [],
+    spanProcessors: []
+};
+
+useAzureMonitor(options);
+```
+### [Python](#tab/python)
+
+The Azure Monitor OpenTelemetry Distro only collects calls to PostgreSQL database with [psycopg2](https://pypi.org/project/psycopg2/) library out of the box.
+
+---
+
+### Filter SQL telemetry
 
 If you want to filter out SQL telemetry, for example due to either security or cost concerns, follow these steps:
 
@@ -292,19 +391,25 @@ If you want to filter out SQL telemetry, for example due to either security or c
 
 ### [Java](#tab/java)
 
-...
+There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
+
+To filter SQL telemetry for cost reasons, you can disable the JDBC instrumentation, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 ### [Java native](#tab/java-native)
 
-...
+There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
+
+To filter SQL telemetry for cost reasons, you can disable the JDBC instrumentation, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 ### [Node.js](#tab/nodejs)
 
-...
+To filter SQL telemetry, you can use a custom span processor.
 
 ### [Python](#tab/python)
 
-...
+To filter SQL telemetry, you can use a custom span processor.
+
+---
 
 ## Next steps
 
