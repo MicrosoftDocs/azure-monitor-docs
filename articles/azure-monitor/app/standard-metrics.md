@@ -142,7 +142,7 @@ The number of failed dependency calls.
 
 ### Exceptions (exceptions/count)
 
-Each time when you log an exception to Application Insights, there is a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
+Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
 | Unit of measure | Supported aggregations | Supported dimensions                                    |
 |-----------------|------------------------|---------------------------------------------------------|
@@ -217,7 +217,7 @@ The metric shows how much of the total processor capacity is consumed by the pro
 
 ### Process private bytes (performanceCounters/processPrivateBytes)
 
-Amount of non-shared memory that the monitored process allocated for its data.
+Amount of nonshared memory that the monitored process allocated for its data.
 
 | Unit of measure | Supported aggregations | Supported dimensions  |
 |-----------------|------------------------|-----------------------|

@@ -92,7 +92,7 @@ Browser metrics are collected by the Application Insights JavaScript SDK from re
 
 ### Browser page load time (browserTimings/totalDuration)
 
-Time from user request until DOM, stylesheets, scripts and images are loaded.
+Time from user request until DOM, stylesheets, scripts, and images are loaded.
 
 | Unit of measure | Supported aggregations | Preaggregated dimensions |
 |-----------------|------------------------|--------------------------|
@@ -216,7 +216,7 @@ dependencies
 
 ### Exceptions (exceptions/count)
 
-Each time when you log an exception to Application Insights, there is a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
+Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
 | Unit of measure | Supported aggregations | Preaggregated dimensions                          | Notes                                      |
 |-----------------|------------------------|---------------------------------------------------|--------------------------------------------|
@@ -347,7 +347,7 @@ performanceCounters
 
 ### Process private bytes (performanceCounters/processPrivateBytes)
 
-Amount of non-shared memory that the monitored process allocated for its data.
+Amount of nonshared memory that the monitored process allocated for its data.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -504,7 +504,7 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 
 ## Access all your data directly with the Application Insights REST API
 
-The Application Insights REST API enables programmatic retrieval of log-based metrics. It also features an optional parameter “ai.include-query-payload” that when added to a query string, prompts the API to return not only the timeseries data, but also the Kusto Query Language (KQL) statement used to fetch it. This parameter can be particularly beneficial for users aiming to comprehend the connection between raw events in Log Analytics and the resulting log-based metric.
+The Application Insights REST API enables programmatic retrieval of log-based metrics. It also features an optional parameter “ai.include-query-payload” that when added to a query string, prompts the API to return not only the time series data, but also the Kusto Query Language (KQL) statement used to fetch it. This parameter can be particularly beneficial for users aiming to comprehend the connection between raw events in Log Analytics and the resulting log-based metric.
 
 To access your data directly, pass the parameter “ai.include-query-payload” to the Application Insights API in a query using KQL.
 
