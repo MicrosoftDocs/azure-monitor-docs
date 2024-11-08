@@ -242,7 +242,7 @@ Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/b
 
 > [!IMPORTANT]
 >  On 1 March 2025, in alignment with the Azure wide legacy TLS retirement, TLS 1.0/1.1 protocol versions and the listed TLS 1.2/1.3 legacy Cipher suites and Elliptical curves will be retired for Application Insights.
-To provide best-in-class encryption, all availability tests use Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. In addition, the following Cipher suites and Elliptical curves are also supported within each version.
+To provide best-in-class encryption, Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. 
 
 For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
