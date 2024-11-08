@@ -425,7 +425,7 @@ builder.Services.Configure<TelemetryConfiguration>(telemetryConfiguration =>
    // telemetryProcessorChainBuilder.UseAdaptiveSampling(maxTelemetryItemsPerSecond:5, excludedTypes: "Dependency");
 });
 
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+builder.Services.AddApplicationInsightsTelemetryWorkerService(new ApplicationInsightsServiceOptions
 {
    EnableAdaptiveSampling = false,
 });
