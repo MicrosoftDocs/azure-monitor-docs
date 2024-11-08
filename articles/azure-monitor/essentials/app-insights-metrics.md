@@ -10,21 +10,14 @@ ms.reviewer: vitalyg
 
 # Application Insights log-based metrics
 
-> [!IMPORTANT]
-> Both log-based and preaggregated metrics coexist in Application Insights. To differentiate the two, in the Application Insights user experience the preaggregated metrics are now called standard metrics. The traditional metrics from the events were renamed to log-based metrics.
+Log-based metrics in Application Insights provide a powerful way to analyze and diagnose application performance by leveraging detailed log data. Unlike [standard metrics](./../app/standard-metrics.md), which are preaggregated at collection time, log-based metrics are created at query time from stored events.
 
-Application Insights log-based metrics let you analyze the health of your monitored apps, create powerful dashboards, and configure alerts.
+Using logs to retain a complete set of events enables you to use log properties as dimensions, providing superior analytical and diagnostic value for data analysis and ad-hoc diagnostics. For example, you can get an exact count of requests to a particular URL with the number of distinct users who made these calls. Or you can get detailed diagnostic traces, including exceptions and dependency calls for any user session. Having this type of information can improve visibility into the application health and usage. It can also cut down the time necessary to diagnose issues.
 
-<!-- TO BE MOVED
+However, collecting a complete set of events can also be impractical or impossible for applications generating large volumes of telemetry. For situations when the volume of events is too high, Application Insights implements several telemetry volume reduction techniques like [sampling](./../app/sampling-classic-api.md) and [filtering](./../app/api-filtering-sampling.md#filtering). While these methods reduce the number of collected and stored events, they can also lower the accuracy of log-based metrics.
 
-There are two kinds of metrics:
-
-* [Log-based metrics](../app/pre-aggregated-metrics-log-metrics.md#log-based-metrics) behind the scene are translated into [Kusto queries](/azure/kusto/query/) from stored events.
-* [Standard metrics](../app/pre-aggregated-metrics-log-metrics.md#preaggregated-metrics) are stored as preaggregated time series.
-
-Since *standard metrics* are preaggregated during collection, they have better performance at query time. This makes them a better choice for dashboarding and in real-time alerting. The *log-based metrics* have more dimensions, which makes them the superior option for data analysis and ad-hoc diagnostics. Use the [namespace selector](./metrics-store-custom-rest-api.md#namespace) to switch between log-based and standard metrics in [metrics explorer](./analyze-metrics.md).
-
--->
+> [!TIP]
+> See [Metrics in Application Insights](./../app/metrics-overview.md) for a detailed comparison between standard metrics, log-based metrics, and custom metrics.
 
 ## Interpret and use queries from this article
 

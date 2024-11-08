@@ -14,6 +14,9 @@ Azure makes some metrics available to you out of the box. These metrics are call
 
 Azure Monitor custom metrics are currently in public preview.
 
+> [!TIP]
+> See [Metrics in Application Insights](./../app/metrics-overview.md) for a detailed comparison between standard metrics, log-based metrics, and custom metrics.
+
 ## Methods to send custom metrics
 
 Custom metrics can be sent to Azure Monitor via several methods:
@@ -26,7 +29,7 @@ Custom metrics can be sent to Azure Monitor via several methods:
 
 ## Pricing model and retention
 
-In general, there's no cost to ingest standard metrics (platform metrics) into an Azure Monitor metrics store, but custom metrics incur costs when they enter general availability. Queries to the metrics API do incur costs. For details on when billing is enabled for custom metrics and metrics queries, check the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/). 
+In general, there's no cost to ingest standard metrics (platform metrics) into an Azure Monitor metrics store, but custom metrics incur costs when they enter general availability. Queries to the metrics API do incur costs. For details on when billing is enabled for custom metrics and metrics queries, check the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 Custom metrics are retained for the [same amount of time as platform metrics](../essentials/data-platform-metrics.md#retention-of-metrics).
 

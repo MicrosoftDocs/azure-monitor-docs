@@ -9,20 +9,16 @@ ms.reviewer: vitalyg
 
 # Application Insights standard metrics
 
-Standard metrics that are stored in a specialized repository that's optimized for time series. The new metrics are no longer kept as individual events with lots of properties. Instead, they're stored as preaggregated time series, and only with key dimensions. This change makes standard metrics superior at query time. Retrieving data happens faster and requires less compute power. As a result, new scenarios are enabled, such as [near real time alerting on dimensions of metrics](../alerts/alerts-metric-near-real-time.md) and more responsive [dashboards](./overview-dashboard.md).
+Standard metrics are stored as preaggregated time series in a specialized repository with only key dimensions. This makes standard metrics superior at query time. Retrieving data happens faster and requires less compute power compared to [log-based metrics](./../essentials/app-insights-metrics.md). As a result, standard metrics allow for [near real time alerting on dimensions of metrics](../alerts/alerts-metric-near-real-time.md) and more responsive [dashboards](./overview-dashboard.md).
 
-<!-- NEW INTRO
-Standard metrics are stored in a specialized repository that's optimized for time series as preaggregated time series with only key dimensions. As a result, retrieving data happens faster and requires less compute power compared to log-based metrics, which enables new scenarios such as [near real time alerting on dimensions of metrics](../alerts/alerts-metric-near-real-time.md) and more responsive [dashboards](./overview-dashboard.md).
--->
+Newer SDKs ([Application Insights 2.7](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.7.2) SDK or later for .NET) preaggregate metrics during collection. This process applies to [standard metrics sent by default](../essentials/metrics-supported.md#microsoftinsightscomponents), so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent by using [GetMetric](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost.
 
-> [!IMPORTANT]
-> Both log-based and preaggregated metrics coexist in Application Insights. To differentiate the two, in the Application Insights user experience the preaggregated metrics are now called standard metrics. The traditional metrics from the events were renamed to log-based metrics.
-
-The newer SDKs ([Application Insights 2.7](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.7.2) SDK or later for .NET) preaggregate metrics during collection. This process applies to [standard metrics sent by default](../essentials/metrics-supported.md#microsoftinsightscomponents), so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent by using [GetMetric](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost.
-
-For the SDKs that don't implement preaggregation (that is, older versions of Application Insights SDKs or for browser instrumentation), the Application Insights back end still populates the new metrics by aggregating the events received by the Application Insights event collection endpoint. Although you don't benefit from the reduced volume of data transmitted over the wire, you can still use the preaggregated metrics and experience better performance and support of the near real time dimensional alerting with SDKs that don't preaggregate metrics during collection.
+For the SDKs that don't implement preaggregation (that is, older versions of Application Insights SDKs or for browser instrumentation), the Application Insights back end still populates standard metrics by aggregating the events received by the Application Insights event collection endpoint. Although you don't benefit from the reduced volume of data transmitted over the wire, you can still use the preaggregated metrics and experience better performance and support of the near real time dimensional alerting with SDKs that don't preaggregate metrics during collection.
 
 The collection endpoint preaggregates events before ingestion sampling. For this reason, [ingestion sampling](./sampling.md) never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
+
+> [!TIP]
+> See [Metrics in Application Insights](./../app/metrics-overview.md) for a detailed comparison between standard metrics, log-based metrics, and custom metrics.
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
 
@@ -30,12 +26,12 @@ The collection endpoint preaggregates events before ingestion sampling. For this
 
 ### SDK supported preaggregated metrics table
 
-| Current production SDKs      | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation)                           | Custom metrics (with SDK preaggregation)                                                                         |
-|------------------------------|---------------------------------------|-----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| .NET Core and .NET Framework | Supported (V2.13.1+)                  | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Supported (V2.7.2+) via [GetMetric](get-metric.md)                                                               |
-| Java                         | Not supported                         | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported                                                                                                    |
-| Node.js                      | Supported (V2.0.0+)                   | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported                                                                                                    |
-| Python                       | Not supported                         | Supported                                                             | Partially supported via [OpenCensus.stats](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
+| Current production SDKs | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
+|-------------------------|---------------------------------------|---------------------------------------------|------------------------------------------|
+| .NET Core and .NET Framework | Supported (V2.13.1+) | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Supported (V2.7.2+) via [GetMetric](get-metric.md) |
+| Java | Not supported | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported |
+| Node.js | Supported (V2.0.0+) | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported |
+| Python | Not supported | Supported | Partially supported via [OpenCensus.stats](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
 
 > [!NOTE]
 > The metrics implementation for Python by using OpenCensus.stats is different from GetMetric. For more information, see the [Python documentation on metrics](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics).

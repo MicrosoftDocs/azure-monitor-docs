@@ -10,11 +10,17 @@ ms.reviewer: vitalyg
 
 Application Insights supports three different types of metrics: standard (preaggregated), log-based, and custom metrics. Each one brings a unique value in monitoring application health, diagnostics, and analytics. Developers who are instrumenting applications can decide which type of metric is best suited to a particular scenario. Decisions are based on the size of the application, expected volume of telemetry, and business requirements for metrics precision and alerting. This article explains the difference between all supported metrics types.
 
-* **[Standard metrics](standard-metrics.md):** Standard metrics in Application Insights are predefined metrics that are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics are preaggregated during collection, which gives them better performance at query time. This makes them the best choice for dashboards and real-time alerting.
+* **Standard metrics:** Standard metrics in Application Insights are predefined metrics that are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics are preaggregated during collection, which gives them better performance at query time. This makes them the best choice for dashboards and real-time alerting.
+    
+    For more information, see [Application Insights standard metrics](standard-metrics.md)
 
-* **[Log-based metrics](../essentials/app-insights-metrics.md):** Log-based metrics in Application Insights are a query-time concept, represented as a time-series on top of the log data of your application. The underlying logs are not pre-aggregated at the collection or storage time and retain all properties of each log entry. This makes it possible to use these log properties as dimensions on log-based metrics at a query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics#apply-metric-splitting), which gives log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering) commonly used with monitoring large applications impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
+* **Log-based metrics:** Log-based metrics in Application Insights are a query-time concept, represented as a time-series on top of the log data of your application. The underlying logs are not pre-aggregated at the collection or storage time and retain all properties of each log entry. This makes it possible to use these log properties as dimensions on log-based metrics at a query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics#apply-metric-splitting), which gives log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering) commonly used with monitoring large applications impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
 
-* **[Custom metrics (preview)](../essentials/metrics-custom-overview.md):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that is not covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
+    For more information, see [Application Insights log-based metrics](../essentials/app-insights-metrics.md).
+
+* **Custom metrics (preview):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that is not covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance. 
+
+    For mor information, see [Custom metrics in Azure Monitor (preview)](../essentials/metrics-custom-overview.md).
 
 > [!NOTE]
 > Application Insights also provides a feature called [Live Metrics stream](./live-stream.md), which allows for near real-time monitoring of your web applications and doesn't store any telemetry data.
@@ -24,30 +30,20 @@ Application Insights supports three different types of metrics: standard (preagg
 | Feature | Standard metrics | Log-based metrics | Custom metrics |
 |---------|------------------|-------------------|----------------|
 | **Data source** | Preaggregated time series data collected during runtime. | Derived from log data using Kusto queries. | User-defined metrics collected via the Application Insights SDK or API. |
-| **Granularity** | Fixed intervals (1 minute) | Depends on the granularity of the log data itself. | Flexible granularity based on user-defined metrics. |
+| **Granularity** | Fixed intervals (1 minute). | Depends on the granularity of the log data itself. | Flexible granularity based on user-defined metrics. |
 | **Accuracy** | High, not affected by log sampling. | Can be affected by sampling and filtering. | High accuracy, especially when using preaggregated methods like GetMetric. |
-| **Cost** | Included in Application Insights pricing. | Based on log data ingestion and query costs. | Costs can vary; non-dimensional metrics are free up to a quota, while multi-dimensional metrics are paid. |
+| **Cost** | Included in Application Insights pricing. | Based on log data ingestion and query costs. | See [Pricing model and retention](./../essentials/metrics-custom-overview.md#pricing-model-and-retention). |
 | **Configuration** | Automatically available with minimal configuration. | Require configuration of log queries to extract the desired metrics from log data. | Requires custom implementation and configuration in code. |
-
-<!-- TO DO
 | **Query performance** | Fast, due to preaggregation. | Slower, as it involves querying log data. | Depends on data volume and query complexity. |
+| **Storage** | Stored as time series data in the Azure Monitor metrics store. | Stored as logs in Log Analytics workspace. | Stored in both Log Analytics and the Azure Monitor metrics store. |
+| **Alerting** | Supports real-time alerting. | Allows for complex alerting scenarios based on detailed log data. | Flexible alerting based on user-defined metrics. |
+| **Service limit** | Subject to [Application Insights limits](./../service-limits.md#application-insights). | Subject to [Log Analytics workspace limits](./../service-limits.md#log-analytics-workspaces). | Limited by the quota for free metrics and the cost for additional dimensions. |
+| **Use cases** | Real-time monitoring, performance dashboards, and quick insights. | Detailed diagnostics, troubleshooting, and in-depth analysis. | Tailored performance indicators and business-specific metrics. |
+| **Examples** | CPU usage, memory usage, request duration. | Request counts, exception traces, dependency calls. | Custom application-specific metrics like user engagement, feature usages. |
 
-| **Storage** | Stored as time series data in Application Insights. | Stored as logs in Log Analytics workspace. | Can be stored in Application Insights or Log Analytics. |
+## Create charts and explore metrics
 
-| **Visualization** | Standard visualizations in Application Insights dashboards. | Detailed visualizations with log analytics and custom queries. | Custom visualizations based on user-defined metrics. |
-
-| **Alerting** | Supports real-time alerting. | Supports alerting based on log queries. | Supports real-time alerting and custom alert rules. |
-
-| **Service limit** | Subject to Application Insights limits. | Subject to Log Analytics workspace limits. | Limited by the quota for free metrics and the cost for additional dimensions. |
-
-| **Use cases** | Real-time monitoring and performance tracking. | Detailed diagnostics, troubleshooting, and in-depth analysis. | Specific business metrics and custom monitoring scenarios. |
-
-| **Examples** | CPU usage, memory usage, request duration. | Request counts, exception traces, dependency calls. | Business-specific metrics like user sign-ups, transaction counts. |
--->
-
-## Create charts and explore log-based and standard preaggregated metrics
-
-Use [Azure Monitor metrics explorer](../essentials/metrics-getting-started.md) to plot charts from preaggregated and log-based metrics and to author dashboards with charts. After you select the Application Insights resource you want, use the namespace picker to switch between standard and log-based metrics. You can also select a custom metric namespace.
+Use [Azure Monitor metrics explorer](../essentials/metrics-getting-started.md) to plot charts from preaggregated,log-based, and custom metrics, and to author dashboards with charts. After you select the Application Insights resource you want, use the namespace picker to switch between metrics.
 
 :::image type="content" source="./../essentials/media/metrics-custom-overview/002-metric-namespace.png" lightbox="./../essentials/media/metrics-custom-overview/002-metric-namespace.png" alt-text="Screenshot that shows Metric namespace.":::
 
