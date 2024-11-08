@@ -1052,7 +1052,7 @@ To redact URL query strings, turn off query string collection. We recommend this
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-When using the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentaion libraries are included. 
+When using the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries are included. 
 Our distro package sets Query String Redaction off by default.
 
 To change this behavior, you must set an environment variable to either "true" or "false".
