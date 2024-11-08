@@ -2897,9 +2897,14 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/insights/vminsights-dependency-agent-maintenance.md",
-   "redirect_url": "/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-dependency-agent",
    "redirect_document_id": false
   },
+  {
+    "source_path_from_root": "/articles/azure-monitor/vm/vminsights-dependency-agent-maintenance.md",
+    "redirect_url": "/azure/azure-monitor/vm/vminsights-dependency-agent",
+    "redirect_document_id": false
+   },
   {
    "source_path_from_root": "/articles/azure-monitor/insights/vminsights-enable-overview.md",
    "redirect_url": "/azure/azure-monitor/vm/vminsights-enable-overview",
@@ -7541,6 +7546,35 @@
    "redirect_document_id": false
   },
   { 
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-overview.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-resource-manager.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-arm-templates",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-powershell.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-arm-templates",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-portal.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-the-azure-portal",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/resource-manager-vminsights.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-the-azure-portal",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-hybrid.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable-client",
+  },
+  {
    "source_path": "articles/azure-monitor/reference/tables/adpaudit.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
