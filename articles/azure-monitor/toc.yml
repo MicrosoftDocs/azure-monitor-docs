@@ -623,6 +623,9 @@ items:
         - name: KQL details
           displayName: Transformations
           href: essentials/data-collection-transformations-kql.md
+        - name: Samples
+          displayName: Transformations
+          href: essentials/data-collection-transformations-samples.md
         - name: Tutorial
           displayName: Custom text logs, transformations
           href: agents/azure-monitor-agent-transformation.md
