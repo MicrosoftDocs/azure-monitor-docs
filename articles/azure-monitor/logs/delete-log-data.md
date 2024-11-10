@@ -31,7 +31,7 @@ The deletion process is final and irreversible. Therefore, before calling the AP
 
 Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
-Delete data requests are queued and performed asynchrounsly, typically relatively quickly. In extreme cases, might be queued up to five days.
+Delete data requests are asynchronous. Typically, requests are performed quickly. In extreme cases, a request might be queued up to five days.
 
 If you enable [workspace replication](workspace-replication.md) on your Log Analytics workspace, the API call deletes data from both your primary and secondary workspaces.
 
@@ -72,13 +72,13 @@ Specify filters in the body of the API call. For example:
 ```
 The example in this section applies a filter on the `TimeGenerated` field only, but you can include multiple filters.
 
-#### Filter paramaters
+#### Filter parameters
 
 | Name | Description|
 | - | - |
 | `column` | The name of the column in the destination table on which to apply the filter. |
 | `operator` | The supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. |
-| `value` | The value to filter by, in the supported format. This can be a specific date, string, or other data type depending on the column. |
+| `value` | The value to filter by, in the supported format. The vale can be a specific date, string, or other data type depending on the column. |
  
 #### Responses
 
@@ -101,8 +101,8 @@ For more information, see [Track asynchronous Azure operations](/azure/azure-res
 
 ## Next steps
 
-Learn more about:
+Learn how to:
 
-- [Azure Monitor Logs table plans](../logs/data-platform-logs.md#table-plans)
-- [Collecting logs with the Log Ingestion API](../logs/logs-ingestion-api-overview.md)
-- [Data collection rules](../essentials/data-collection-endpoint-overview.md)
+- [Filter data during ingestion using transformations](../essentials/data-collection-transformations.md)
+- [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
+
