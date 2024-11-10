@@ -60,8 +60,8 @@ Specify filters in the body of the API call. For example:
 {
   "filters": [
     {
-      "column": "TimeGenerated",  // The name of the column to filter on
-      "operator": "<",            // The comparison operator
+      "column": "TimeGenerated",      // The name of the column to filter on
+      "operator": "<",                // The comparison operator
       "value": "2024-09-23T00:00:00"  // The value to filter by
     }
   ]
@@ -81,21 +81,20 @@ The example in this section applies a filter on the `TimeGenerated` field only, 
 
 | Response | Description| 
 | - | - |
-|202 (accepted)|Asynchronous request received successfully. To check whether your operation succeeded or failed, use the Azure-AsyncOperation URL provided in the response header. |
+|202 (accepted)|Asynchronous request received successfully. To check whether your operation succeeded or failed, use the `Azure-AsyncOperation` URL provided in the response header. |
 |Other status codes|Error response describing why the operation failed.|
 
 
 
 ## Check delete data operation status 
 
-Azure Monitor Logs executes data deletion operations asynchronously. 
-
-To check the status of the operation, use this command:
+To check the status of the operation, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
  
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
 OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
 ```
+For more information, see [Track asynchronous Azure operations](../azure/azure-resource-manager/management/async-operations).
 
 ## Next steps
 
