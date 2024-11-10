@@ -51,30 +51,40 @@ To delete rows from a table, use this command:
 
 ```http  
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.
-OperationalInsights/workspaces/{workspace_name}tables/{table_name}/deleteData?api-version=2023-09-01
+OperationalInsights/workspaces/{workspace_name}/tables/{table_name}/deleteData?api-version=2023-09-01
 ```
 
-Specify filters in the body of the API call - for example:
+Specify filters in the body of the API call. For example:
 
 ```json 
 {
   "filters": [
     {
-      "column": "TimeGenerated",
-      "operator": "<",
-      "value": "2024-09-23T00:00:00"
+      "column": "TimeGenerated",  // The name of the column to filter on
+      "operator": "<",            // The comparison operator
+      "value": "2024-09-23T00:00:00"  // The value to filter by
     }
   ]
 }
 ```
+The example in this section applies a filter on the `TimeGenerated` field only, but you can include multiple filters.
 
-Where:
+#### Filter paramaters
 
-- `column` - 
-- `operator` - Supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. 
-- `value` - 
+| Name | Description|
+| - | - |
+| `column` | The name of the column in the destination table on which to apply the filter. |
+| `operator` | The supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. |
+| `value` | The value to filter by, in the supported format. This can be a specific date, string, or other data type depending on the column. |
+ 
+#### Responses
 
-The example in this section applies a filter on the `TimeGenerated` field, but you can include multiple filters.
+| Response | Description| 
+| - | - |
+|202 (accepted)|Asynchronous request received successfully. To check whether your operation succeeded or failed, use the Azure-AsyncOperation URL provided in the response header. |
+|Other status codes|Error response describing why the operation failed.|
+
+
 
 ## Check delete data operation status 
 
@@ -86,7 +96,6 @@ To check the status of the operation, use this command:
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
 OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
 ```
-
 
 ## Next steps
 
