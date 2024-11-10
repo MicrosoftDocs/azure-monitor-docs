@@ -31,7 +31,7 @@ The deletion process is final and irreversible. Therefore, before calling the AP
 
 Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
-Delete data requests are asynchronous. Typically, requests are performed quickly. In extreme cases, a request might be queued up to five days.
+Delete data requests are asynchronous. Typically, Azure Monitor Logs handles requests quickly. In extreme cases, a request might be queued up to five days.
 
 If you enable [workspace replication](workspace-replication.md) on your Log Analytics workspace, the API call deletes data from both your primary and secondary workspaces.
 
@@ -57,20 +57,24 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/
 OperationalInsights/workspaces/{workspace_name}/tables/{table_name}/deleteData?api-version=2023-09-01
 ```
 
-Specify filters in the body of the API call. For example:
+Specify one or more filters in the body of the API call. This example filters on the `TimeGenerated` and `Resource` columns:
 
 ```json 
 {
   "filters": [
     {
-      "column": "TimeGenerated",      // The name of the column to filter on
-      "operator": "<",                // The comparison operator
-      "value": "2024-09-23T00:00:00"  // The value to filter by
+      "column": "TimeGenerated",      
+      "operator": "<",                
+      "value": "2024-09-23T00:00:00"  
+    },
+    {
+      "column": "Resource",      
+      "operator": "==",                
+      "value": "VM-1"  
     }
   ]
 }
 ```
-The example in this section applies a filter on the `TimeGenerated` field only, but you can include multiple filters.
 
 #### Filter parameters
 
@@ -78,7 +82,7 @@ The example in this section applies a filter on the `TimeGenerated` field only, 
 | - | - |
 | `column` | The name of the column in the destination table on which to apply the filter. |
 | `operator` | The supported operators are `==`, `=~`, `in`, `in~`, `>`, `>=`, `<`, `<=`, `between`. |
-| `value` | The value to filter by, in the supported format. The vale can be a specific date, string, or other data type depending on the column. |
+| `value` | The value to filter by, in the supported format. The value can be a specific date, string, or other data type depending on the column. |
  
 #### Responses
 
