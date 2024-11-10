@@ -31,12 +31,15 @@ The deletion process is final and irreversible. Therefore, before calling the AP
 
 Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
+Delete data requests are queued and performed asynchrounsly, typically relatively quickly. In extreme cases, might be queued up to five days.
+
+If you enable [workspace replication](workspace-replication.md) on your Log Analytics workspace, the API call deletes data from both your primary and secondary workspaces.
 
 ## Limitations
 
 These limitations apply:
 
-- You can submit up to 10 delete data requests per hour. 
+- You can submit up to 10 delete data requests per hour in a single Log Analytics workspace. 
 - Only the Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. You can't delete data from a table with the Auxiliary plan.
 
 ## Permissions required
