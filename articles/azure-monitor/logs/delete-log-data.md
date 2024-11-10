@@ -13,7 +13,7 @@ ms.date: 11/04/2024
 
 # Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
 
-The Delete Data API lets you make asynchronous requests to remove:
+The Delete Data API lets you make asynchronous requests to remove data for various reasons, including:
 
 - Data ingested by mistake 
 - Sensitive or personal data
