@@ -26,10 +26,19 @@ A list of Azure Monitor billing meter names is available [here](../cost-meters.m
 
 ## Data size calculation
 
-Data volume is measured as the size of the data sent to be stored and is measured in units of GB (10^9 bytes). The data size of a single record is calculated from a string representation of the columns that are stored in the Log Analytics workspace for that record. It doesn't matter whether the data is sent from an agent or added during the ingestion process. This calculation includes any custom columns added by the [logs ingestion API](logs-ingestion-api-overview.md), [transformations](../essentials/data-collection-transformations.md) or [custom fields](custom-fields.md) that are added as data is collected and then stored in the workspace.
+Azure Monitor Logs bills for the amount of data you send to a Log Analytics workspace in GB (10^9 bytes). 
 
->[!NOTE]
->The billable data volume calculation is generally substantially smaller than the size of the entire incoming JSON-packaged event. On average, across all event types, the billed size is around 25 percent less than the incoming data size. It can be up to 50 percent for small events. The percentage includes the effect of the standard columns excluded from billing. It's essential to understand this calculation of billed data size when you estimate costs and compare other pricing models.
+Azure Monitor Logs calculates the billed size of a single record based on:
+
+- A string representation of the column entries that Azure Monitor Logs needs to add in the Log Analytics workspace for that record. 
+
+    If you send columns entries that do not match the destination table schema, Azure Monitor Logs bills you for those column entries, even though the destination table can't store the data. Make sure your Data Collection Rules match the destination table schema to avoid being charged for data that your destination table can't store. 
+
+    >[!NOTE]
+    >The billable data volume calculation is generally substantially smaller than the size of the entire incoming JSON-packaged event. On average, across all event types, the billed size is around 25 percent less than the incoming data size. It can be up to 50 percent for small events. The percentage includes the effect of the standard columns excluded from billing. It's essential to understand this calculation of billed data size when you estimate costs and compare other pricing models.
+
+- All data in the record, regardless of whether the data is collected from the data source or added during the ingestion process. This calculation includes any custom columns added by the [logs ingestion API](logs-ingestion-api-overview.md), [transformations](../essentials/data-collection-transformations.md), and [custom fields](custom-fields.md).
+
 
 ### Excluded columns
 
