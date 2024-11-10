@@ -94,7 +94,7 @@ To check the status of the operation, send a GET request with the `Azure-AsyncOp
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
 OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
 ```
-For more information, see [Track asynchronous Azure operations](../azure/azure-resource-manager/management/async-operations).
+For more information, see [Track asynchronous Azure operations](/azure/azure-resource-manager/management/async-operations).
 
 ## Next steps
 
