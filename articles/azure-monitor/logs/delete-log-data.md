@@ -13,32 +13,31 @@ ms.date: 11/04/2024
 
 # Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
 
-This article explains how to delete log entries from a specific table in your Log Analytics workspace by calling the Delete Data API.
-
-## How the Delete Data API works
-
-The Delete Data API removes the relevant rows from the table you specify in your Log Analytics workspace.
-
-The body of the API call consists of filters on one or more columns using which you define which rows of the table you want to delete.
-
-The deletion process is final and irreversible. Therefore, before calling the API, check that your filters produces the intended results by writing a Kusto Query Language (KQL) query in your workspace. Then, translate the query to a list of column filters supported in the Delete Data API.
-
-so the data can't be viewed, retrieved, and used in data analysis. Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
-
 Use the Delete Data API to remove:
 
 - Data ingested by mistake 
 - Sensitive or personal data
 - Corrupt or incorrect data
 
+This article explains how to delete log entries from a specific table in your Log Analytics workspace by calling the Delete Data API.
+
+## How the Delete Data API works
+
+The Delete Data API removes rows from a table in your Log Analytics workspace.
+
+To specify which rows of the table you want to delete, you send one or more filters in the body of the API call.
+
+The deletion process is final and irreversible. Therefore, before calling the API, check that your filters produce the intended results by running a Kusto Query Language (KQL) query in your workspace. 
+
+Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
 
 ## Limitations
 
-You can: 
+These limitations apply:
 
-- Submit 10 delete data requests per hour. 
-- Only delete data from a table when the table plan is Analytics. If the table plan is Basic, change the plan to Analytics and then delete the data. You can't delete data from a table with the Auxiliary plan.
+- You can submit up to 10 delete data requests per hour. 
+- Only the Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. You can't delete data from a table with the Auxiliary plan.
 
 ## Permissions required
 
