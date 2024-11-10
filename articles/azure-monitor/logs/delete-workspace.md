@@ -140,7 +140,7 @@ az monitor log-analytics workspace recover --resource-group MyResourceGroup --wo
 The soft-delete method might not fit in some scenarios, such as development and testing, where you need to repeat deployment with the same settings and workspace name. In such cases, you can permanently delete your workspace and "override" the soft-delete wait period. The permanent workspace delete operation releases the workspace name, and you can create a new workspace with the same name.
 
 > [!IMPORTANT]
-> - The 'Delete workspace permanently' option in Azure portal, or using `force` programmatically should be done with caution since workspace is permanently purged.
+> - Selecting 'Delete workspace permanently' when deleting workspace in Azure portal, or `force` programmatically should be done with caution since non-recoverable. The workspace is deleted immediately and data is queued for purge.
 > - If the workspace you want to delete permanently is in soft-delete state, you must [recover the workspace](#recover-a-workspace-in-a-soft-delete-state) first and permanently delete it then.
 
 ### [Azure portal](#tab/azure-portal)
