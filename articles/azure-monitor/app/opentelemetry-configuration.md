@@ -1111,7 +1111,7 @@ Add the following to the `applicationinsights.json` configuration file:
 
 ### [Java native](#tab/java-native)
 
-<!-- Example provided by language owners.-->
+We're actively working in the OpenTelemetry community to support redaction.
 
 ### [Node.js](#tab/nodejs)
 
@@ -1161,4 +1161,4 @@ useAzureMonitor(options);
 
 ### [Python](#tab/python)
 
-<!-- Example provided by language owners.-->
+We're actively working in the OpenTelemetry community to support redaction.
