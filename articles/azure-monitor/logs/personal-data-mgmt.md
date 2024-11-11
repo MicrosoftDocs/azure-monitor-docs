@@ -5,7 +5,7 @@ ms.topic: conceptual
 author: guywild
 ms.author: guywild
 ms.reviewer: meirm
-ms.date: 06/28/2022
+ms.date: 11/11/2024
 # Customer intent: As an Azure Monitor admin user, I want to understand how to manage personal data in logs that Azure Monitor collects.
 
 ---
@@ -99,10 +99,16 @@ You need to implement the logic for converting the data to an appropriate format
 
 ### Delete
 
-> [!WARNING]
-> Deletes in Log Analytics are destructive and non-reversible! Please use extreme caution in their execution.
+The [Azure Monitor Logs Delete Data API](delete-log-data.md) lets you make asynchronous requests to remove data for a specific table in your Log Analytics workspace. Use the delete operation sparingly to avoid potential risks, performance impact, and the potential to skew all-up aggregations, measurements, and other aspects of your Log Analytics data. See the [Strategy for personal data handling](#strategy-for-personal-data-handling) section for alternative approaches to handling personal data.
 
-Azure Monitor's [Purge API](/rest/api/loganalytics/workspacepurge/purge) lets you delete personal data. Use the purge operation sparingly to avoid potential risks, performance impact, and the potential to skew all-up aggregations, measurements, and other aspects of your Log Analytics data. See the [Strategy for personal data handling](#strategy-for-personal-data-handling) section for alternative approaches to handling personal data.
+If you need to comply with General Data Protection Regulation (GDPR) requirements, use the [Purge API](/rest/api/loganalytics/workspacepurge/purge), which is less performant and only supports operations required for GDPR compliance.
+
+> [!WARNING]
+> Delete and purge operations are destructive and non-reversible! Use extreme caution in their execution.
+
+#### Purge
+
+Azure Monitor's [Purge API](/rest/api/loganalytics/workspacepurge/purge) lets you purge personal data, as required by GDPR. The Purge API is less performant than the Delete Data API and Azure Monitor only authorizes purge requests required for GDPR compliance.
 
 Purge is a highly privileged operation. Grant the _Data Purger_ role in Azure Resource Manager cautiously due to the potential for data loss.
 
@@ -111,7 +117,7 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
 > [!IMPORTANT]
 > Use of the Log Analytics or Application Insights Purge API does not affect your retention costs. To lower retention costs, you must decrease your data retention period.
 
-#### Log data
+##### Log data
 
 * The [Workspace Purge POST API](/rest/api/loganalytics/workspacepurge/purge) takes an object specifying parameters of data to delete and returns a reference GUID. 
 * The [Get Purge Status POST API](/rest/api/loganalytics/workspace-purge/get-purge-status) returns an 'x-ms-status-location' header that includes a URL you can call to determine the status of your purge operation. For example:
@@ -123,7 +129,7 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
 > [!NOTE]
 > You can't purge data from tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans).
 
-#### Application data
+##### Application data
 
 * The [Components - Purge POST API](/rest/api/application-insights/components/purge) takes an object specifying parameters of data to delete and returns a reference GUID.
 * The [Components - Get Purge Status GET API](/rest/api/application-insights/components/get-purge-status) returns an 'x-ms-status-location' header that includes a URL you can call to determine the status of your purge operation. For example:
