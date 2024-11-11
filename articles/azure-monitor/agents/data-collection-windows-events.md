@@ -43,6 +43,10 @@ XPath entries are written in the form `LogName!XPathQuery`. For example, you mig
 
 [!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
 
+> [!NOTE]
+> AMA uses the system API EvtSubscribe [EvtSubscribe](/windows/win32/api/winevt/nf-winevt-evtsubscribe) to subscribe to Windows Event Logs. Windows OS does not allow subscribing to Windows Event Logs of type Analytic/Debug channels. You cannot subscribe to an Analytic or Debug channel then you cannot collect or export data from those channels to be ingested in Log Analytics.
+
+
 ### Extract XPath queries from Windows Event Viewer
 
 In Windows, you can use Event Viewer to extract XPath queries as shown in the following screenshots.
