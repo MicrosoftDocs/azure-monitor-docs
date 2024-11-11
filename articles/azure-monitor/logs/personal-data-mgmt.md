@@ -25,7 +25,7 @@ While it's up to you and your company to define a strategy for handling personal
 
 * Filter out, obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal" using [data collection transformations](../essentials/data-collection-transformations.md). This is _by far_ the preferred approach, which saves you the need to create a costly and impactful data handling strategy.
 * Normalize the data to reduce negative affects on the data platform and performance. For example, instead of logging an explicit User ID, create a lookup to correlate the username and their details to an internal ID that can then be logged elsewhere. That way, if a user asks you to delete their personal information, you can delete only the row in the lookup table that corresponds to the user. 
-* If you need to collect personal data, build a process using the Delete Data or the Purge API path and the existing Query API to meet any obligations to export and delete any personal data associated with a user.
+* If you need to collect personal data, use the Delete Data or Purge API path and the Query API to export and delete any personal data associated with a user.
 
 ## Where to look for personal data in Log Analytics
 
@@ -76,7 +76,7 @@ Log Analytics prescribes a schema to your data, but allows you to override every
 
 ## Exporting, deleting, or purging personal data
 
-We __strongly__ recommend you restructure your data collection policy to stop collecting, filter out, obfuscate or anonymize personal data, or otherwise modify such data until it's no longer considered personal using [data collection transformations](../essentials/data-collection-transformations.md). In handling personal, data you'll incur costs in defining and automating a strategy, building an interface through which your customers interact with their data, and ongoing maintenance. It's also computationally costly for Log Analytics and Application Insights, and a large volume of concurrent Query, Delete Data, or Purge API calls can negatively affect all other interactions with Log Analytics functionality. However, if you have to collect personal data, follow the guidelines in this section.
+We __strongly__ recommend you restructure your data collection policy to stop collecting, filter out, obfuscate or anonymize personal data, or otherwise modify such data until it's no longer considered personal using [data collection transformations](../essentials/data-collection-transformations.md). In handling personal, data you incur costs in defining and automating a strategy, building an interface through which your customers interact with their data, and ongoing maintenance. It's also computationally costly for Log Analytics and Application Insights, and a large volume of concurrent Query, Delete Data, or Purge API calls can negatively affect all other interactions with Log Analytics functionality. However, if you have to collect personal data, follow the guidelines in this section.
 
 > [!NOTE]
 > Deleting or purging data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
@@ -101,7 +101,7 @@ If you need to comply with General Data Protection Regulation (GDPR) requirement
 
 ### Purge
 
-Azure Monitor's [Purge API](/rest/api/loganalytics/workspacepurge/purge) lets you purge personal data, as required by GDPR. The Purge API is less performant than the Delete Data API and Azure Monitor only authorizes purge requests required for GDPR compliance.
+Azure Monitor's [Purge API](/rest/api/loganalytics/workspacepurge/purge) lets you purge personal data, as required by GDPR. The Purge API is less performant than the [Delete Data API](delete-log-data.md) and Azure Monitor only authorizes purge requests required for GDPR compliance.
 
 To manage system resources, we limit purge requests to 50 requests an hour. Batch the execution of purge requests by sending a single command whose predicate includes all user identities that require purging. Use the [in operator](/azure/kusto/query/inoperator) to specify multiple identities. Run the query before executing the purge request to verify the expected results.
 
