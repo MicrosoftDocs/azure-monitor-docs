@@ -14,14 +14,14 @@ Application Insights supports three different types of metrics: standard (preagg
 
 * **Log-based metrics:** Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. *The underlying logs **aren't preaggregated** at the collection or storage time* and retain all properties of each log entry. This makes it possible to use log properties as dimensions on log-based metrics at a query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering) commonly used with monitoring large applications impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
 
-* **Custom metrics (preview):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that isn't covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance. 
+* **Custom metrics (preview):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that isn't covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
 
     For more information, see [Custom metrics in Azure Monitor (preview)](../essentials/metrics-custom-overview.md).
 
 > [!NOTE]
 > Application Insights also provides a feature called [Live Metrics stream](./live-stream.md), which allows for near real-time monitoring of your web applications and doesn't store any telemetry data.
 
-### Feature comparison
+### Metrics comparison
 
 | Feature | Standard metrics | Log-based metrics | Custom metrics |
 |---------|------------------|-------------------|----------------|
@@ -42,7 +42,7 @@ Application Insights supports three different types of metrics: standard (preagg
 > [!NOTE]
 > Log-based metrics are supported for all languages and instrumentation methods.
 
-### SDK supported preaggregated metrics table
+### SDK supported preaggregated metrics (manual instrumentation)
 
 | Current production SDKs | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
 |-------------------------|---------------------------------------|---------------------------------------------|------------------------------------------|
@@ -54,7 +54,7 @@ Application Insights supports three different types of metrics: standard (preagg
 > [!NOTE]
 > The metrics implementation for Python by using OpenCensus.stats is different from GetMetric. For more information, see the [Python documentation on metrics](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics).
 
-### Codeless supported preaggregated metrics table
+### Codeless supported preaggregated metrics (autoinstrumentation)
 
 | Current production SDKs | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation)                                                                            |
 |-------------------------|---------------------------------------|---------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
@@ -65,32 +65,6 @@ Application Insights supports three different types of metrics: standard (preagg
 
 1. [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](./azure-vm-vmss-apps.md) and [on-premises](./application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. The SDK is required for all dimensions.
 2. [ASP.NET Core autoinstrumentation on App Service](./azure-web-apps-net-core.md) emits standard metrics without dimensions. SDK is required for all dimensions.
-
-## Use preaggregation with Application Insights custom metrics
-
-You can use preaggregation with custom metrics. The two main benefits are: 
-
-- Configure and alert on a dimension of a custom metric
-- Reduce the volume of data sent from the SDK to the Application Insights collection endpoint
-
-There are several [ways of sending custom metrics from the Application Insights SDK](./api-custom-events-metrics.md). If your version of the SDK offers [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), these methods are the preferred way of sending custom metrics. In this case, preaggregation happens inside the SDK. This approach reduces the volume of data stored in Azure and also the volume of data transmitted from the SDK to Application Insights. Otherwise, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method, which preaggregates metric events during data ingestion.
-
-## Custom metrics dimensions and preaggregation
-
-All metrics that you send using [OpenTelemetry](opentelemetry-add-modify.md), [trackMetric](./api-custom-events-metrics.md#trackmetric), or [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
-
-:::image type="content" source="./media/pre-aggregated-metrics-log-metrics/001-cost.png" lightbox="./media/pre-aggregated-metrics-log-metrics/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
-
-## Quotas
-
-Preaggregated metrics are stored as time series in Azure Monitor. [Azure Monitor quotas on custom metrics](../essentials/metrics-custom-overview.md#quotas-and-limits) apply.
-
-> [!NOTE]
-> Going over the quota might have unintended consequences. Azure Monitor might become unreliable in your subscription or region. To learn how to avoid exceeding the quota, see [Design limitations and considerations](../essentials/metrics-custom-overview.md#design-limitations-and-considerations).
-
-## Why is collection of custom metrics dimensions turned off by default?
-
-The collection of custom metrics dimensions is turned off by default because in the future storing custom metrics with dimensions will be billed separately from Application Insights. Storing the nondimensional custom metrics remain free (up to a quota). You can learn about the upcoming pricing model changes on our official [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Create charts and explore metrics
 
@@ -104,13 +78,15 @@ Ingesting metrics into Application Insights, whether log-based or preaggregated,
 
 Selecting the [Enable alerting on custom metric dimensions](./../essentials/metrics-custom-overview.md#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can generate *extra costs* based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
-## Availability metrics
+## Available metrics
+
+### Availability metrics
 
 Metrics in the Availability category enable you to see the health of your web application as observed from points around the world. [Configure the availability tests](../app/availability-overview.md) to start using any metrics from this category.
 
-## [Standard](#tab/standard)
+### [Standard](#tab/standard)
 
-### Availability (availabilityResults/availabilityPercentage)
+#### Availability (availabilityResults/availabilityPercentage)
 
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
@@ -118,7 +94,7 @@ The *Availability* metric shows the percentage of the web test runs that didn't 
 |-----------------|------------------------|-----------------------------|
 | Percentage      | Average                | `Run location`, `Test name` |
 
-### Availability test duration (availabilityResults/duration)
+#### Availability test duration (availabilityResults/duration)
 
 The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
 
@@ -126,7 +102,7 @@ The *Availability test duration* metric shows how much time it took for the web 
 |-----------------|------------------------|--------------------------------------------|
 | Milliseconds    | Average, Min, Max      | `Run location`, `Test name`, `Test result` |
 
-### Availability tests (availabilityResults/count)
+#### Availability tests (availabilityResults/count)
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
 
@@ -134,9 +110,9 @@ The *Availability tests* metric reflects the count of the web tests runs by Azur
 |-----------------|------------------------|--------------------------------------------|
 | Count           | Count                  | `Run location`, `Test name`, `Test result` |
 
-## [Log-based](#tab/log-based)
+### [Log-based](#tab/log-based)
 
-### Availability (availabilityResults/availabilityPercentage)
+#### Availability (availabilityResults/availabilityPercentage)
 
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
@@ -150,7 +126,7 @@ availabilityResults
 | render timechart
 ```
 
-### Availability test duration (availabilityResults/duration)
+#### Availability test duration (availabilityResults/duration)
 
 The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
 
@@ -166,7 +142,7 @@ availabilityResults
 | render timechart
 ```
 
-### Availability tests (availabilityResults/count)
+#### Availability tests (availabilityResults/count)
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
 
@@ -182,48 +158,48 @@ availabilityResults
 
 ---
 
-## Browser metrics
+### Browser metrics
 
 Browser metrics are collected by the Application Insights JavaScript SDK from real end-user browsers. They provide great insights into your users' experience with your web app. Browser metrics are typically not sampled, which means that they provide higher precision of the usage numbers compared to server-side metrics which might be skewed by sampling.
 
 > [!NOTE]
 > To collect browser metrics, your application must be instrumented with the [Application Insights JavaScript SDK](../app/javascript.md).
 
-## [Standard](#tab/standard)
+### [Standard](#tab/standard)
 
-### Browser page load time (browserTimings/totalDuration)
-
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Milliseconds    | Average, Min, Max      | None                 |
-
-### Client processing time (browserTiming/processingDuration)
+#### Browser page load time (browserTimings/totalDuration)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
 | Milliseconds    | Average, Min, Max      | None                 |
 
-### Page load network connect time (browserTimings/networkDuration)
+#### Client processing time (browserTiming/processingDuration)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
 | Milliseconds    | Average, Min, Max      | None                 |
 
-### Receiving response time (browserTimings/receiveDuration)
+#### Page load network connect time (browserTimings/networkDuration)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
 | Milliseconds    | Average, Min, Max      | None                 |
 
-### Send request time (browserTimings/sendDuration)
+#### Receiving response time (browserTimings/receiveDuration)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
 | Milliseconds    | Average, Min, Max      | None                 |
 
-## [Log-based](#tab/log-based)
+#### Send request time (browserTimings/sendDuration)
 
-### Browser page load time (browserTimings/totalDuration)
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Milliseconds    | Average, Min, Max      | None                 |
+
+### [Log-based](#tab/log-based)
+
+#### Browser page load time (browserTimings/totalDuration)
 
 Time from user request until DOM, stylesheets, scripts, and images are loaded.
 
@@ -241,7 +217,7 @@ browserTimings
 | render timechart
 ```
 
-### Client processing time (browserTiming/processingDuration)
+#### Client processing time (browserTiming/processingDuration)
 
 Time between receiving the last byte of a document until the DOM is loaded. Async requests may still be processing.
 
@@ -259,7 +235,7 @@ browserTimings
 | render timechart
 ```
 
-### Page load network connect time (browserTimings/networkDuration)
+#### Page load network connect time (browserTimings/networkDuration)
 
 Time between user request and network connection. Includes DNS lookup and transport connection.
 
@@ -277,7 +253,7 @@ browserTimings
 | render timechart
 ```
 
-### Receiving response time (browserTimings/receiveDuration)
+#### Receiving response time (browserTimings/receiveDuration)
 
 Time between the first and last bytes, or until disconnection.
 
@@ -295,7 +271,7 @@ browserTimings
 | render timechart
 ```
 
-### Send request time (browserTimings/sendDuration)
+#### Send request time (browserTimings/sendDuration)
 
 Time between network connection and receiving the first byte.
 
@@ -315,13 +291,13 @@ browserTimings
 
 ---
 
-## Failure metrics
+### Failure metrics
 
 The metrics in **Failures** show problems with processing requests, dependency calls, and thrown exceptions.
 
-## [Standard](#tab/standard)
+### [Standard](#tab/standard)
 
-### Browser exceptions (exceptions/browser)
+#### Browser exceptions (exceptions/browser)
 
 This metric reflects the number of thrown exceptions from your application code running in browser. Only exceptions that are tracked with a ```trackException()``` Application Insights API call are included in the metric.
 
@@ -329,7 +305,7 @@ This metric reflects the number of thrown exceptions from your application code 
 |-----------------|------------------------|----------------------|
 | Count           | Count                  | `Cloud role name`    |
 
-### Dependency call failures (dependencies/failed)
+#### Dependency call failures (dependencies/failed)
 
 The number of failed dependency calls.
 
@@ -337,7 +313,7 @@ The number of failed dependency calls.
 |-----------------|------------------------|----------------------|
 | Count | Count | `Cloud role instance`, `Cloud role name`, `Dependency performance`, `Dependency type`, `Is traffic synthetic`, `Result code`, `Target of dependency call` |
 
-### Exceptions (exceptions/count)
+#### Exceptions (exceptions/count)
 
 Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
@@ -345,7 +321,7 @@ Each time when you log an exception to Application Insights, there's a call to t
 |-----------------|------------------------|---------------------------------------------------------|
 | Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Device type` |
 
-### Failed requests (requests/failed)
+#### Failed requests (requests/failed)
 
 The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](../app/api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
@@ -353,7 +329,7 @@ The count of tracked server requests that were marked as *failed*. By default, t
 |-----------------|------------------------|--------------------------------------------------------------------------------------------------------|
 | Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is synthetic traffic`, `Request performance`, `Result code` |
 
-### Server exceptions (exceptions/server)
+#### Server exceptions (exceptions/server)
 
 This metric shows the number of server exceptions.
 
@@ -361,9 +337,9 @@ This metric shows the number of server exceptions.
 |-----------------|------------------------|------------------------------------------|
 | Count           | Count                  | `Cloud role instance`, `Cloud role name` |
 
-## [Log-based](#tab/log-based)
+### [Log-based](#tab/log-based)
 
-### Browser exceptions (exceptions/browser)
+#### Browser exceptions (exceptions/browser)
 
 This metric reflects the number of thrown exceptions from your application code running in browser. Only exceptions that are tracked with a ```trackException()``` Application Insights API call are included in the metric.
 
@@ -378,7 +354,7 @@ exceptions
 | render barchart
 ```
 
-### Dependency call failures (dependencies/failed)
+#### Dependency call failures (dependencies/failed)
 
 The number of failed dependency calls.
 
@@ -393,7 +369,7 @@ dependencies
 | render barchart
 ```
 
-### Exceptions (exceptions/count)
+#### Exceptions (exceptions/count)
 
 Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
@@ -407,7 +383,7 @@ exceptions
 | render barchart
 ```
 
-### Failed requests (requests/failed)
+#### Failed requests (requests/failed)
 
 The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](../app/api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
@@ -422,7 +398,7 @@ requests
 | render barchart
 ```
 
-### Server exceptions (exceptions/server)
+#### Server exceptions (exceptions/server)
 
 This metric shows the number of server exceptions.
 
@@ -439,43 +415,43 @@ exceptions
 
 ---
 
-## Performance counters
+### Performance counters
 
 Use metrics in the **Performance counters** category to access [system performance counters collected by Application Insights](../app/performance-counters.md).
 
-## [Standard](#tab/standard)
+### [Standard](#tab/standard)
 
-### Available memory (performanceCounters/availableMemory)
+#### Available memory (performanceCounters/availableMemory)
 
 | Unit of measure                      | Supported aggregations | Supported dimensions  |
 |--------------------------------------|------------------------|-----------------------|
 | Data dependent: Megabytes, Gigabytes | Average, Max, Min      | `Cloud role instance` |
 
-### Exception rate (performanceCounters/exceptionRate)
+#### Exception rate (performanceCounters/exceptionRate)
 
 | Unit of measure | Supported aggregations | Supported dimensions  |
 |-----------------|------------------------|-----------------------|
 | Count           | Average, Max, Min      | `Cloud role instance` |
 
-### HTTP request execution time (performanceCounters/requestExecutionTime)
+#### HTTP request execution time (performanceCounters/requestExecutionTime)
 
 | Unit of measure | Supported aggregations | Supported dimensions  |
 |-----------------|------------------------|-----------------------|
 | Milliseconds    | Average, Max, Min      | `Cloud role instance` |
 
-### HTTP request rate (performanceCounters/requestsPerSecond)
+#### HTTP request rate (performanceCounters/requestsPerSecond)
 
 | Unit of measure     | Supported aggregations | Supported dimensions  |
 |---------------------|------------------------|-----------------------|
 | Requests per second | Average, Max, Min      | `Cloud role instance` |
 
-### HTTP requests in application queue (performanceCounters/requestsInQueue)
+#### HTTP requests in application queue (performanceCounters/requestsInQueue)
 
 | Unit of measure | Supported aggregations | Supported dimensions  |
 |-----------------|------------------------|-----------------------|
 | Count           | Average, Max, Min      | `Cloud role instance` |
 
-### Process CPU (performanceCounters/processCpuPercentage)
+#### Process CPU (performanceCounters/processCpuPercentage)
 
 The metric shows how much of the total processor capacity is consumed by the process that is hosting your monitored app.
 
@@ -486,13 +462,13 @@ The metric shows how much of the total processor capacity is consumed by the pro
 > [!NOTE]
 > The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of 4 CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
 
-### Process IO rate (performanceCounters/processIOBytesPerSecond)
+#### Process IO rate (performanceCounters/processIOBytesPerSecond)
 
 | Unit of measure  | Supported aggregations | Supported dimensions  |
 |------------------|------------------------|-----------------------|
 | Bytes per second | Average, Min, Max      | `Cloud role instance` |
 
-### Process private bytes (performanceCounters/processPrivateBytes)
+#### Process private bytes (performanceCounters/processPrivateBytes)
 
 Amount of nonshared memory that the monitored process allocated for its data.
 
@@ -500,7 +476,7 @@ Amount of nonshared memory that the monitored process allocated for its data.
 |-----------------|------------------------|-----------------------|
 | Bytes           | Average, Min, Max      | `Cloud role instance` |
 
-### Processor time (performanceCounters/processorCpuPercentage)
+#### Processor time (performanceCounters/processorCpuPercentage)
 
 CPU consumption by *all* processes running on the monitored server instance.
 
@@ -511,9 +487,9 @@ CPU consumption by *all* processes running on the monitored server instance.
 >[!NOTE]
 > The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
 
-## [Log-based](#tab/log-based)
+### [Log-based](#tab/log-based)
 
-### Available memory (performanceCounters/availableMemory)
+#### Available memory (performanceCounters/availableMemory)
 
 ```Kusto
 performanceCounters
@@ -523,7 +499,7 @@ performanceCounters
 | render timechart
 ```
 
-### Exception rate (performanceCounters/exceptionRate)
+#### Exception rate (performanceCounters/exceptionRate)
 
 ```Kusto
 performanceCounters
@@ -533,7 +509,7 @@ performanceCounters
 | render timechart
 ```
 
-### HTTP request execution time (performanceCounters/requestExecutionTime)
+#### HTTP request execution time (performanceCounters/requestExecutionTime)
 
 ```Kusto
 performanceCounters
@@ -543,7 +519,7 @@ performanceCounters
 | render timechart
 ```
 
-### HTTP request rate (performanceCounters/requestsPerSecond)
+#### HTTP request rate (performanceCounters/requestsPerSecond)
 
 ```Kusto
 performanceCounters
@@ -553,7 +529,7 @@ performanceCounters
 | render timechart
 ```
 
-### HTTP requests in application queue (performanceCounters/requestsInQueue)
+#### HTTP requests in application queue (performanceCounters/requestsInQueue)
 
 ```Kusto
 performanceCounters
@@ -563,7 +539,7 @@ performanceCounters
 | render timechart
 ```
 
-### Process CPU (performanceCounters/processCpuPercentage)
+#### Process CPU (performanceCounters/processCpuPercentage)
 
 The metric shows how much of the total processor capacity is consumed by the process that is hosting your monitored app.
 
@@ -582,7 +558,7 @@ performanceCounters
 > [!NOTE]
 > The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of 4 CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
 
-### Process IO rate (performanceCounters/processIOBytesPerSecond)
+#### Process IO rate (performanceCounters/processIOBytesPerSecond)
 
 | Unit of measure  | Supported aggregations | Supported dimensions |
 |------------------|------------------------|----------------------|
@@ -596,7 +572,7 @@ performanceCounters
 | render timechart
 ```
 
-### Process private bytes (performanceCounters/processPrivateBytes)
+#### Process private bytes (performanceCounters/processPrivateBytes)
 
 Amount of nonshared memory that the monitored process allocated for its data.
 
@@ -612,7 +588,7 @@ performanceCounters
 | render timechart
 ```
 
-### Processor time (performanceCounters/processorCpuPercentage)
+#### Processor time (performanceCounters/processorCpuPercentage)
 
 CPU consumption by *all* processes running on the monitored server instance.
 
@@ -633,11 +609,11 @@ performanceCounters
 
 ---
 
-## Server metrics
+### Server metrics
 
-## [Standard](#tab/standard)
+### [Standard](#tab/standard)
 
-### Dependency calls (dependencies/count)
+#### Dependency calls (dependencies/count)
 
 This metric is in relation to the number of dependency calls.
 
@@ -645,7 +621,7 @@ This metric is in relation to the number of dependency calls.
 |-----------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Dependency performance`, `Dependency type`, `Is traffic synthetic`, `Result code`, `Successful call`, `Target of a dependency call` |
 
-### Dependency duration (dependencies/duration)
+#### Dependency duration (dependencies/duration)
 
 This metric refers to duration of dependency calls.
 
@@ -653,7 +629,7 @@ This metric refers to duration of dependency calls.
 |-----------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Milliseconds    | Average, Min, Max      | `Cloud role instance`, `Cloud role name`, `Dependency performance`, `Dependency type`, `Is traffic synthetic`, `Result code`, `Successful call`, `Target of a dependency call` |
 
-### Server request rate (requests/rate)
+#### Server request rate (requests/rate)
 
 This metric reflects the number of incoming server requests that were received by your web application.
 
@@ -661,13 +637,13 @@ This metric reflects the number of incoming server requests that were received b
 |------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | Count Per Second | Average                | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Result performance` `Result code`, `Successful request` |
 
-### Server requests (requests/count)
+#### Server requests (requests/count)
 
 | Unit of measure | Supported aggregations | Supported dimensions                                                                                                       |
 |-----------------|------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Result performance` `Result code`, `Successful request` |
 
-### Server response time (requests/duration)
+#### Server response time (requests/duration)
 
 This metric reflects the time it took for the servers to process incoming requests.
 
@@ -675,9 +651,9 @@ This metric reflects the time it took for the servers to process incoming reques
 |-----------------|------------------------|----------------------------------------------------------------------------------------------------------------------------|
 | MilliSeconds    | Average, Min, Max      | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Result performance` `Result code`, `Successful request` |
 
-## [Log-based](#tab/log-based)
+### [Log-based](#tab/log-based)
 
-### Dependency calls (dependencies/count)
+#### Dependency calls (dependencies/count)
 
 This metric is in relation to the number of dependency calls.
 
@@ -687,7 +663,7 @@ dependencies
 | render barchart
 ```
 
-### Dependency duration (dependencies/duration)
+#### Dependency duration (dependencies/duration)
 
 This metric refers to duration of dependency calls.
 
@@ -702,7 +678,7 @@ dependencies
 | render timechart
 ```
 
-### Server requests (requests/count)
+#### Server requests (requests/count)
 
 This metric reflects the number of incoming server requests that were received by your web application.
 
@@ -712,7 +688,7 @@ requests
 | render barchart
 ```
 
-### Server response time (requests/duration)
+#### Server response time (requests/duration)
 
 This metric reflects the time it took for the servers to process incoming requests.
 
@@ -729,11 +705,11 @@ requests
 
 ---
 
-## Usage metrics
+### Usage metrics
 
-## [Standard](#tab/standard)
+### [Standard](#tab/standard)
 
-### Page view load time (pageViews/duration)
+#### Page view load time (pageViews/duration)
 
 This metric refers to the amount of time it took for PageView events to load.
 
@@ -741,7 +717,7 @@ This metric refers to the amount of time it took for PageView events to load.
 |-----------------|------------------------|-------------------------------------------|
 | MilliSeconds    | Average, Min, Max      | `Cloud role name`, `Is traffic synthetic` |
 
-### Page views (pageViews/count)
+#### Page views (pageViews/count)
 
 The count of PageView events logged with the TrackPageView() Application Insights API.
 
@@ -749,7 +725,7 @@ The count of PageView events logged with the TrackPageView() Application Insight
 |-----------------|------------------------|-------------------------------------------|
 | Count           | Count                  | `Cloud role name`, `Is traffic synthetic` |
 
-### Traces (traces/count)
+#### Traces (traces/count)
 
 The count of trace statements logged with the TrackTrace() Application Insights API call.
 
@@ -757,9 +733,9 @@ The count of trace statements logged with the TrackTrace() Application Insights 
 |-----------------|------------------------|-------------------------------------------------------------------------------------|
 | Count           | Count                  | `Cloud role instance`, `Cloud role name`,  `Is traffic synthetic`, `Severity level` |
 
-## [Log-based](#tab/log-based)
+### [Log-based](#tab/log-based)
 
-### Page view load time (pageViews/duration)
+#### Page view load time (pageViews/duration)
 
 This metric refers to the amount of time it took for PageView events to load.
 
@@ -774,7 +750,7 @@ pageViews
 | render barchart
 ```
 
-### Page views (pageViews/count)
+#### Page views (pageViews/count)
 
 The count of PageView events logged with the TrackPageView() Application Insights API.
 
@@ -784,7 +760,7 @@ pageViews
 | render barchart
 ```
 
-### Sessions (sessions/count)
+#### Sessions (sessions/count)
 
 This metric refers to the count of distinct session IDs.
 
@@ -795,7 +771,7 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 | render barchart
 ```
 
-### Traces (traces/count)
+#### Traces (traces/count)
 
 The count of trace statements logged with the TrackTrace() Application Insights API call.
 
@@ -805,7 +781,7 @@ traces
 | render barchart
 ```
 
-### Users (users/count)
+#### Users (users/count)
 
 The number of distinct users who accessed your application. The accuracy of this metric may be  significantly impacted by using telemetry sampling and filtering.
 
@@ -816,7 +792,7 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 | render barchart
 ```
 
-### Users, Authenticated (users/authenticated)
+#### Users, Authenticated (users/authenticated)
 
 The number of distinct users who authenticated into your application.
 

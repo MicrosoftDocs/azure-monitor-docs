@@ -61,11 +61,27 @@ After custom metrics are submitted to Azure Monitor, you can browse through them
 
 For more information on viewing metrics in the Azure portal, see [Analyze metrics with Azure Monitor metrics explorer](./analyze-metrics.md).
 
-## Custom metrics dimensions and preaggregation
+## Use preaggregation with Application Insights custom metrics
+
+You can use preaggregation with custom metrics. The two main benefits are: 
+
+- Configure and alert on a dimension of a custom metric
+- Reduce the volume of data sent from the SDK to the Application Insights collection endpoint
+
+There are several [ways of sending custom metrics from the Application Insights SDK](./api-custom-events-metrics.md). If your version of the SDK offers [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), these methods are the preferred way of sending custom metrics. In this case, preaggregation happens inside the SDK. This approach reduces the volume of data stored in Azure and also the volume of data transmitted from the SDK to Application Insights. Otherwise, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method, which preaggregates metric events during data ingestion.
+
+### Custom metrics dimensions and preaggregation
 
 All metrics that you send using [OpenTelemetry](./../app/opentelemetry-add-modify.md), [trackMetric](./../app/api-custom-events-metrics.md), or [GetMetric and TrackValue](./../app/api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
 
 :::image type="content" source="./media/metrics-custom-overview/001-cost.png" lightbox="./media/metrics-custom-overview/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
+
+### Quotas
+
+Preaggregated metrics are stored as time series in Azure Monitor. [Azure Monitor quotas on custom metrics](../essentials/metrics-custom-overview.md#quotas-and-limits) apply.
+
+> [!NOTE]
+> Going over the quota might have unintended consequences. Azure Monitor might become unreliable in your subscription or region. To learn how to avoid exceeding the quota, see [Design limitations and considerations](../essentials/metrics-custom-overview.md#design-limitations-and-considerations).
 
 ### Why is collection of custom metrics dimensions turned off by default?
 
