@@ -1550,12 +1550,6 @@ items:
       href: app/data-model-complete.md
     - name: Statsbeat
       href: app/statsbeat.md
-    - name: Metrics
-      items:
-      - name: Log-based metrics definitions
-        href: essentials/app-insights-metrics.md
-      - name: Standard metrics
-        href: app/standard-metrics.md
   - name: Azure PowerShell
     items:
     - name: Azure Monitor

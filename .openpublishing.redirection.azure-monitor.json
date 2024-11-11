@@ -7593,6 +7593,16 @@
    "source_path": "articles/azure-monitor/reference/tables/microsoft-autonomousdevelopmentplatform_workspaces.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/app/standard-metrics.md",
+    "redirect_url": "/azure/azure-monitor/app/metrics-overview",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/app/app-insights-metrics.md",
+    "redirect_url": "/azure/azure-monitor/app/metrics-overview",
+    "redirect_document_id": false
   }
  ]
 }
