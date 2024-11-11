@@ -18,13 +18,6 @@ In this article, _log data_ refers to data sent to a Log Analytics workspace, wh
 
 [!INCLUDE [gdpr-dsr-and-stp-note](~/reusable-content/ce-skilling/azure/includes/gdpr-dsr-and-stp-note.md)]
 
-## Permissions required
-
-| Action | Permissions required |
-|:-------|:---------------------|
-| Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
-| Purge data from a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/purge/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
-
 
 ## Strategy for personal data handling
 
@@ -110,12 +103,18 @@ If you need to comply with General Data Protection Regulation (GDPR) requirement
 
 Azure Monitor's [Purge API](/rest/api/loganalytics/workspacepurge/purge) lets you purge personal data, as required by GDPR. The Purge API is less performant than the Delete Data API and Azure Monitor only authorizes purge requests required for GDPR compliance.
 
-Purge is a highly privileged operation. Grant the _Data Purger_ role in Azure Resource Manager cautiously due to the potential for data loss.
-
 To manage system resources, we limit purge requests to 50 requests an hour. Batch the execution of purge requests by sending a single command whose predicate includes all user identities that require purging. Use the [in operator](/azure/kusto/query/inoperator) to specify multiple identities. Run the query before executing the purge request to verify the expected results.
 
 > [!IMPORTANT]
 >  While most purge operations complete much quicker, **the formal SLA for the completion of purge operations is set at 30 days** due to their heavy impact on the data platform. This SLA meets GDPR requirements. It's an automated process, so there's no way to expedite the operation. 
+
+#### Permissions required
+
+| Action | Permissions required |
+|:-------|:---------------------|
+| Purge data from a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/purge/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
+
+Purge is a highly privileged operation. Grant the _Data Purger_ role in Azure Resource Manager cautiously due to the potential for data loss.
 
 #### Log data
 
