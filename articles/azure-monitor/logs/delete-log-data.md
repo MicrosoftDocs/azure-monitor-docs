@@ -1,12 +1,12 @@
 ---
 title: Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
-description: Delete data from a specific table in your Log Analytics workspace. 
+description: Delete data from a table in your Log Analytics workspace. 
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: yossiy
 ms.service: azure-monitor
 ms.topic: how-to 
-ms.date: 11/04/2024
+ms.date: 11/10/2024
 
 # Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
@@ -15,11 +15,14 @@ ms.date: 11/04/2024
 
 The Delete Data API lets you make asynchronous requests to remove data for various reasons, including:
 
-- Data ingested by mistake 
+- Data you ingest by mistake 
 - Sensitive or personal data
 - Corrupt or incorrect data
 
 This article explains how to delete log entries from a specific table in your Log Analytics workspace by calling the Delete Data API.
+
+> [!IMPORTANT]
+> To ensure compliance with General Data Protection Regulation (GDPR), use the [Purge API](/rest/api/loganalytics/workspacepurge/purge), which is less performant and only supports operations required for GDPR compliance.
 
 ## How the Delete Data API works
 
@@ -95,7 +98,7 @@ Specify one or more filters in the body of the API call. This example filters on
 
 ## Check delete data operation status 
 
-To check the status of the operation, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
+To check the status of your operation, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
  
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
