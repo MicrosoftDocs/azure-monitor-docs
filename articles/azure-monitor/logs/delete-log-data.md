@@ -6,7 +6,7 @@ ms.author: guywild
 ms.reviewer: yossiy
 ms.service: azure-monitor
 ms.topic: how-to 
-ms.date: 11/10/2024
+ms.date: 11/11/2024
 
 # Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
@@ -32,11 +32,12 @@ To specify which rows of the table you want to delete, you send one or more filt
 
 The deletion process is final and irreversible. Therefore, before calling the API, check that your filters produce the intended results by running a Kusto Query Language (KQL) query in your workspace. 
 
-Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
-
 Delete data requests are asynchronous. Typically, Azure Monitor Logs handles requests quickly. In extreme cases, a request might be queued up to five days.
 
 If you enable [workspace replication](workspace-replication.md) on your Log Analytics workspace, the API call deletes data from both your primary and secondary workspaces.
+
+> [!NOTE]
+> Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
 ## Limitations
 
