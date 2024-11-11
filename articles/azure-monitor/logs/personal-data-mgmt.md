@@ -1,5 +1,5 @@
 ---
-title: Managing personal data in Azure Monitor Logs and Application Insights
+title: Manage personal data in Azure Monitor Logs and Application Insights
 description: This article describes how to manage personal data stored in Azure Monitor Log Analytics and the methods to identify and remove it.
 ms.topic: conceptual
 author: guywild
@@ -10,7 +10,7 @@ ms.date: 11/11/2024
 
 ---
 
-# Managing personal data in Azure Monitor Logs and Application Insights
+# Manage personal data in Azure Monitor Logs and Application Insights
 
 Log Analytics is a data store where personal data is likely to be found. Application Insights stores its data in a Log Analytics partition. This article explains where Log Analytics and Application Insights store personal data and how to manage this data.
 
@@ -22,6 +22,7 @@ In this article, _log data_ refers to data sent to a Log Analytics workspace, wh
 
 | Action | Permissions required |
 |:-------|:---------------------|
+| Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 | Purge data from a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/purge/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
 
@@ -29,9 +30,9 @@ In this article, _log data_ refers to data sent to a Log Analytics workspace, wh
 
 While it's up to you and your company to define a strategy for handling personal data, here are a few approaches, listed from most to least preferable from a technical point of view:
 
-* Stop collecting personal data, or obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal". This is _by far_ the preferred approach, which saves you the need to create a costly and impactful data handling strategy.
+* Filter out, obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal" using [data collection transformations](../essentials/data-collection-transformations.md). This is _by far_ the preferred approach, which saves you the need to create a costly and impactful data handling strategy.
 * Normalize the data to reduce negative affects on the data platform and performance. For example, instead of logging an explicit User ID, create a lookup to correlate the username and their details to an internal ID that can then be logged elsewhere. That way, if a user asks you to delete their personal information, you can delete only the row in the lookup table that corresponds to the user. 
-* If you need to collect personal data, build a process using the purge API path and the existing query API to meet any obligations to export and delete any personal data associated with a user.
+* If you need to collect personal data, build a process using the Delete Data or the Purge API path and the existing Query API to meet any obligations to export and delete any personal data associated with a user.
 
 ## Where to look for personal data in Log Analytics
 
@@ -80,12 +81,12 @@ Log Analytics prescribes a schema to your data, but allows you to override every
 * **In-memory and in-transit data**: Application Insights tracks exceptions, requests, dependency calls, and traces. You'll often find personal data at the code and HTTP call level. Review exceptions, requests, dependencies, and traces tables to identify any such data. Use [telemetry initializers](../app/api-filtering-sampling.md) where possible to obfuscate this data.
 * **Snapshot Debugger captures**: The [Snapshot Debugger](../app/snapshot-debugger.md) feature in Application Insights lets you collect debug snapshots when Application Insights detects an exception on the production instance of your application. Snapshots expose the full stack trace leading to the exceptions and the values for local variables at every step in the stack. Unfortunately, this feature doesn't allow selective deletion of snap points or programmatic access to data within the snapshot. Therefore, if the default snapshot retention rate doesn't satisfy your compliance requirements, we recommend you turn off the feature.
 
-## Exporting and deleting personal data
+## Exporting, deleting, or purging personal data
 
-We __strongly__ recommend you restructure your data collection policy to stop collecting personal data, obfuscate or anonymize personal data, or otherwise modify such data until it's no longer considered personal. In handling personal, data you'll incur costs in defining and automating a strategy, building an interface through which your customers interact with their data, and ongoing maintenance. It's also computationally costly for Log Analytics and Application Insights, and a large volume of concurrent Query or Purge API calls can negatively affect all other interactions with Log Analytics functionality. However, if you have to collect personal data, follow the guidelines in this section.
+We __strongly__ recommend you restructure your data collection policy to stop collecting, filter out, obfuscate or anonymize personal data, or otherwise modify such data until it's no longer considered personal using [data collection transformations](../essentials/data-collection-transformations.md). In handling personal, data you'll incur costs in defining and automating a strategy, building an interface through which your customers interact with their data, and ongoing maintenance. It's also computationally costly for Log Analytics and Application Insights, and a large volume of concurrent Query, Delete Data, or Purge API calls can negatively affect all other interactions with Log Analytics functionality. However, if you have to collect personal data, follow the guidelines in this section.
 
-> [!IMPORTANT]
->  While most purge operations complete much quicker, **the formal SLA for the completion of purge operations is set at 30 days** due to their heavy impact on the data platform. This SLA meets GDPR requirements. It's an automated process, so there's no way to expedite the operation. 
+> [!NOTE]
+> Deleting or purging data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
 
 ### View and export
 
@@ -96,7 +97,6 @@ Use the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query) or th
 
 You need to implement the logic for converting the data to an appropriate format for delivery to your users. [Azure Functions](https://azure.microsoft.com/services/functions/) is a great place to host such logic.
 
-
 ### Delete
 
 The [Azure Monitor Logs Delete Data API](delete-log-data.md) lets you make asynchronous requests to remove data for a specific table in your Log Analytics workspace. Use the delete operation sparingly to avoid potential risks, performance impact, and the potential to skew all-up aggregations, measurements, and other aspects of your Log Analytics data. See the [Strategy for personal data handling](#strategy-for-personal-data-handling) section for alternative approaches to handling personal data.
@@ -106,7 +106,7 @@ If you need to comply with General Data Protection Regulation (GDPR) requirement
 > [!WARNING]
 > Delete and purge operations are destructive and non-reversible! Use extreme caution in their execution.
 
-#### Purge
+### Purge
 
 Azure Monitor's [Purge API](/rest/api/loganalytics/workspacepurge/purge) lets you purge personal data, as required by GDPR. The Purge API is less performant than the Delete Data API and Azure Monitor only authorizes purge requests required for GDPR compliance.
 
@@ -115,9 +115,9 @@ Purge is a highly privileged operation. Grant the _Data Purger_ role in Azure Re
 To manage system resources, we limit purge requests to 50 requests an hour. Batch the execution of purge requests by sending a single command whose predicate includes all user identities that require purging. Use the [in operator](/azure/kusto/query/inoperator) to specify multiple identities. Run the query before executing the purge request to verify the expected results.
 
 > [!IMPORTANT]
-> Use of the Log Analytics or Application Insights Purge API does not affect your retention costs. To lower retention costs, you must decrease your data retention period.
+>  While most purge operations complete much quicker, **the formal SLA for the completion of purge operations is set at 30 days** due to their heavy impact on the data platform. This SLA meets GDPR requirements. It's an automated process, so there's no way to expedite the operation. 
 
-##### Log data
+#### Log data
 
 * The [Workspace Purge POST API](/rest/api/loganalytics/workspacepurge/purge) takes an object specifying parameters of data to delete and returns a reference GUID. 
 * The [Get Purge Status POST API](/rest/api/loganalytics/workspace-purge/get-purge-status) returns an 'x-ms-status-location' header that includes a URL you can call to determine the status of your purge operation. For example:
@@ -129,7 +129,7 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
 > [!NOTE]
 > You can't purge data from tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans).
 
-##### Application data
+#### Application data
 
 * The [Components - Purge POST API](/rest/api/application-insights/components/purge) takes an object specifying parameters of data to delete and returns a reference GUID.
 * The [Components - Get Purge Status GET API](/rest/api/application-insights/components/get-purge-status) returns an 'x-ms-status-location' header that includes a URL you can call to determine the status of your purge operation. For example:
