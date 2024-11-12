@@ -20,9 +20,11 @@ Azure Monitor Logs is a data store where personal data is likely to be found. Th
 
 While it's up to you and your company to define a strategy for handling personal data, here are a few approaches, listed from most to least preferable from a technical point of view:
 
-* Filter out, obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal" using [data collection transformations](../essentials/data-collection-transformations.md). This is _by far_ the preferred approach, which saves you the need to create a costly and impactful data handling strategy.
-* Normalize the data to reduce negative affects on the data platform and performance. For example, instead of logging an explicit User ID, create a lookup to correlate the username and their details to an internal ID that can then be logged elsewhere. That way, if a user asks you to delete their personal information, you can delete only the row in the lookup table that corresponds to the user. 
-* If you need to collect personal data, use the [Delete Data API](delete-log-data.md) or [Purge API](/rest/api/loganalytics/workspacepurge/purge) and the [Query API](/rest/api/loganalytics/dataaccess/query) to export and delete any personal data associated with a user.
+- Filter out, obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal" using [data collection transformations](../essentials/data-collection-transformations.md). This is _by far_ the preferred approach, which saves you the need to create a costly and impactful data handling strategy.
+- Normalize the data to reduce negative affects on the data platform and performance. For example, instead of logging an explicit User ID, create a lookup to correlate the username and their details to an internal ID that can then be logged elsewhere. That way, if a user asks you to delete their personal information, you can delete only the row in the lookup table that corresponds to the user. 
+- If you need to collect personal data, you can use: 
+    - The [Delete Data API](delete-log-data.md) or [Purge API](/rest/api/loganalytics/workspacepurge/purge) and the [Query API](/rest/api/loganalytics/dataaccess/query) to export and delete any personal data associated with a user.
+    - [Summary rules](summary-rules.md) to remove or obfuscate personal data in a new table that can be shared more widely, and give a limit access to the table with the personal data by [managing table-level read access](manage-table-access.md). 
 
 ## Where to look for personal data in Azure Monitor Logs
 
@@ -86,9 +88,8 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
 
 | Action | Permissions required |
 |:-------|:---------------------|
-| Purge data from a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/purge/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
+| Purge data from a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/purge/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor](./manage-access.md#log-analytics-contributor) and [Data Purger](/azure/role-based-access-control/built-in-roles/analytics#data-purger) built-in roles|
 
-Purge is a highly privileged operation. Grant the _Data Purger_ role in Azure Resource Manager cautiously due to the potential for data loss.
 
 #### Purge log data
 
