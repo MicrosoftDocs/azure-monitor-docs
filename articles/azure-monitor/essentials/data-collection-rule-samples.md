@@ -292,6 +292,7 @@ The sample [data collection rule](../essentials/data-collection-rule-overview.md
 ```json
 {
     "location": "eastus",
+    "kind": "Direct",
     "properties": {
         "streamDeclarations": {
             "Custom-MyTable": {

@@ -4,7 +4,7 @@ description: Monitoring .NET Core/.NET Framework non-HTTP apps with Azure Monito
 ms.topic: conceptual
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
-ms.date: 01/31/2024
+ms.date: 12/07/2024
 ms.reviewer: cithomas
 ---
 
@@ -425,7 +425,7 @@ builder.Services.Configure<TelemetryConfiguration>(telemetryConfiguration =>
    // telemetryProcessorChainBuilder.UseAdaptiveSampling(maxTelemetryItemsPerSecond:5, excludedTypes: "Dependency");
 });
 
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+builder.Services.AddApplicationInsightsTelemetryWorkerService(new ApplicationInsightsServiceOptions
 {
    EnableAdaptiveSampling = false,
 });

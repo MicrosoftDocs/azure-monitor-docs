@@ -15,6 +15,10 @@ ms.date: 07/09/2023
 
 This article explains how to enable VM insights for Azure virtual machines, virtual machine scale sets, and hybrid virtual machines connected with Azure Arc by using predefined VM insights policy initiates.
 
+## Prerequisites
+
+Before you can enable VM insights using Azure Policy, you need to have a VM insights DCR created. The DCR specifies what data to collect from the agent and how it should be processed. See [VM insights DCR](./vminsights-enable.md#vm-insights-dcr) for details on creating this DCR.
+
 
 ## VM insights initiatives
 VM insights policy initiatives install Azure Monitor Agent and the Dependency agent on new virtual machines in your Azure environment. Assign these initiatives to a management group, subscription, or resource group to install the agents on Windows or Linux Azure virtual machines in the defined scope automatically.
@@ -41,7 +45,7 @@ The initiatives apply to new machines you create and machines you modify, but no
 
 ## Support for custom images
 
-Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false`to allow onboarding Dependency Agent on custom images.  
+Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false` to allow onboarding Dependency Agent on custom images.  
 
 ## Assign a VM insights policy initiative
 
