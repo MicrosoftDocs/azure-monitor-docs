@@ -8,43 +8,119 @@ ms.reviewer: ivankh
 ms.date: 11/03/2023
 ---
 
-# Tutorial: Edit a data collection rule (DCR)
+# Edit a data collection rule (DCR)
+There are multiple methods to create a DCR in Azure Monitor. You may need to make changes to the DCR after creation though, either to modify your data collection settings or to add configuration not available during the initial creation. This article describes different methods to edit an existing DCR.
 
-This tutorial describes how to edit the definition of Data Collection Rules (DCRs) that have already been provisioned use command line tools.
+- Modify data collection settings such as the DCE associated with the DCR. 
+- Update data parsing or filtering logic for your data stream
+- Change data destination such as changing the Log Analytics workspace or adding an Event Hub.
+- Adding or testing a transformation to filter or customize the incoming data.
 
-In this tutorial, you learn how to:
 
-> [!div class="checklist"]
-> * Leverage existing portal functionality to pre-create DCRs
-> * Get the content of a Data Collection Rule using ARM API call
-> * Apply changes to a Data Collection Rule using ARM API call
-> * Automate the process of DCR update using PowerShell scripts
 
-> [!NOTE]
-> This tutorial walks through one method for editing an existing DCR. See [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md) for other methods.
+## Editing a DCR in the Azure portal
 
-## Prerequisites
+For those scenarios that allow you to create a DCR in the Azure portal, you can typically use the same method to modify settings that you made. For example, if you [create a DCR for Azure Monitor agent](../agents/azure-monitor-agent-data-collection.md), you can edit the DCR using the same dialog box to modify the settings available during creation.
 
-To complete this tutorial, you need:
+There are some limitations to editing a DCR in the Azure portal. For example, you can't add a transformation to a DCR for most scenarios. You also can't maintain JSON in source control such as GitHub or Azure DevOps.
 
-> [!div class="checklist"]
-> * Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
-> * [Permissions to create Data Collection Rule objects](data-collection-rule-create-edit.md#permissions) in the workspace.
-> * Up-to-date version of PowerShell. Using Azure Cloud Shell is recommended.
+## View the DCR in the Azure portal
+To edit the DCR directly, you need to understand its JSON structure. This is described in detail [Structure of a data collection rule in Azure Monitor](./data-collection-rule-structure.md). To view the JSON for the DCR, select **JSON view** in the Azure portal. You can't edit the JSON in this view, only view it.
 
-## Overview of tutorial
+> [!IMPORTANT]
+> You may need to select the latest version of the API view all elements of the JSON. 
 
-While going through the wizard on the portal is the simplest way to set up the ingestion of your custom data to Log Analytics, in some cases you might want to update your Data Collection Rule later to:
+:::image type="content" source="media/data-collection-rule-edit/json-view.png" lightbox="media/data-collection-rule-edit/json-view.png" alt-text="Screenshot that shows the JSON view for a data collection rule in the Azure portal.":::
 
-* Change data collection settings (for example, Data Collection Endpoint, associated with the DCR)
-* Update data parsing or filtering logic for your data stream
-* Change data destination (for example, send data to an Azure table, as this option isn't directly offered as part of the DCR-based custom log wizard)
+## Edit DCR using the command line
+Using the command line, you save the JSON for the DCR to a file, edit the file, and then update the DCR with the new content. This allows you to use an editor such as VS Code to modify the JSON. You can also use the file as your source, using such version control tools as GitHub or Azure DevOps to manage the changes.
 
-In this tutorial, you first set up ingestion of a custom log. Then, you modify the KQL transformation for your custom log to include additional filtering and apply the changes to your DCR. Finally, we're going to combine all editing operations into a single PowerShell script, which can be used to edit any DCR for any of the above mentioned reasons.
+### [PowerShell](#tab/powershell)
 
-## Set up new custom log
+**Retrieve the DCR and store in a local file**
 
-Start by setting up a new custom log. Follow [Tutorial: Send custom logs to Azure Monitor Logs using the Azure portal (preview)]( ../logs/tutorial-logs-ingestion-portal.md). Note the resource ID of the DCR created.
+```powershell
+$ResourceId = "<ResourceId>" # Resource ID of the DCR to edit
+$FilePath = "<FilePath>" # File to store DCR content
+$DCR = Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2023-03-11") -Method GET
+$DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath $FilePath
+```
+
+### [CLI](#tab/cli)
+
+**Retrieve the DCR and store in a local file**
+
+```azurecli
+resourceId="<ResourceId>" # Resource ID of the DCR to edit
+filePath="<FilePath>" # File to store DCR content
+az rest --method get --uri "$resourceId?api-version=2023-03-11" > temp.json
+cat temp.json | jq '.' > $filePath
+```
+
+---
+
+## Edit a DCR
+
+To edit a DCR, you can use any of the methods described in the previous section to create a DCR using a modified version of the JSON.
+
+If you need to retrieve the JSON for an existing DCR, you can copy it from the **JSON View** for the DCR in the Azure portal. You can also retrieve it using an API call as shown in the following PowerShell example.
+
+```powershell
+$ResourceId = "<ResourceId>" # Resource ID of the DCR to edit
+$FilePath = "<FilePath>" # Store DCR content in this file
+$DCR = Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2023-03-11") -Method GET
+$DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath $FilePath
+```
+
+For a tutorial that walks through the process of retrieving and then editing an existing DCR, see [Tutorial: Edit a data collection rule (DCR)](./data-collection-rule-edit.md).
+
+See [Create data collection rules (DCRs) in Azure Monitor](data-collection-rule-create.md) for other methods.
+
+Edit
+Test
+Troubleshoot
+
+
+## Common edits
+
+- Modify data collection settings such as the DCE associated with the DCR. 
+- Update data parsing or filtering logic for your data stream
+- Change data destination such as changing the Log Analytics workspace or adding an Event Hub.
+- Adding or testing a transformation to filter or customize the incoming data.
+
+
+
+
+
+
+
+
+
+## ARM
+Using ARM templates, you can modify the JSON of any DCR in the Azure portal. You have Azure generate an ARM template for the DCR, modify the JSON, and then redeploy the template. This allows you to perform all the changes in the Azure portal without saving the JSON to a local file.
+
+1. Select the DCR you want to modify in the Azure portal, and select **Export template**.
+2. Click **Deploy** to redeploy the same template.
+3. Click **Edit template** to open up an editable version of the JSON for the DCR.
+4. Make any required changes to the DCR and then click **Save**.
+6. If you want to save the DCR under a new name, change the DCR name parameter. Click **Review + create** to deploy the modified template and **Create** to create the new DCR.
+7. If the DCR is valid with no errors, the deployment will succeed and the DCR will be updated with the new configuration. Click **Go to resource** to open the modified DCR.
+8. If the DCR has compile errors, then you'll receive a message that your deployment failed. Click **Error details** and **Operation details** to view details of the error. 
+   1. Click **Redeploy** and then **Edit template** to make the necessary changes to the DCR and then save and deploy it again.
+
+
+## PowerShell
+Editing the DCR with PowerShell or CLI allows you to use an editor to modify the JSON of the DCR. You may retrieve the DCR content and then save it to a file before working with it. Or you may use the file as your source, using such version control tools as GitHub or Azure DevOps to manage the changes.
+
+
+
+
+is a two-step process. First, you retrieve the DCR content, save it to a file, and then edit the file. After editing, you update the DCR with the new content.
+
+
+
+
+
 
 ## Retrieve DCR content
 

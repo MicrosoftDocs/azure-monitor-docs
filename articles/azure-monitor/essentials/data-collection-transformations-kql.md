@@ -10,7 +10,7 @@ ms.reviwer: nikeist
 ---
 
 # Supported KQL features in Azure Monitor transformations
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details the KQL features that are supported in transformation queries in addition to special operators that are only available in transformations.
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you run a KQL query against incoming Azure Monitor data to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details the KQL features that are supported in transformation queries in addition to special operators that are only available in transformations.
 
 > [!IMPORTANT]
 > Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. 

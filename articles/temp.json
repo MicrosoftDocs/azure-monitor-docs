@@ -1,0 +1,104 @@
+{
+  "etag": "\"5603a027-0000-0100-0000-673282950000\"",
+  "id": "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/bwlab/providers/Microsoft.Insights/dataCollectionRules/weather-flat-01",
+  "kind": "Direct",
+  "location": "eastus",
+  "name": "weather-flat-01",
+  "properties": {
+    "dataFlows": [
+      {
+        "destinations": [
+          "01226ef7f0e84a4c9e85762ae9bb94d4"
+        ],
+        "outputStream": "Custom-WeatherDynamic_CL",
+        "streams": [
+          "Custom-WeatherDynamic_CL"
+        ],
+        "transformKql": "source | extend TimeGenerated = now() | extend weather_id = id | project-away id | project-away cod"
+      }
+    ],
+    "dataSources": {},
+    "destinations": {
+      "logAnalytics": [
+        {
+          "name": "01226ef7f0e84a4c9e85762ae9bb94d4",
+          "workspaceId": "23c42c83-be68-4ba1-8552-2569b6235074",
+          "workspaceResourceId": "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/bwlab/providers/microsoft.operationalinsights/workspaces/bwlab-eas"
+        }
+      ]
+    },
+    "endpoints": {
+      "logsIngestion": "https://weather-flat-01-h00t-eastus.logs.z1.ingest.monitor.azure.com",
+      "metricsIngestion": "https://weather-flat-01-r394-eastus.metrics.z1.ingest.monitor.azure.com"
+    },
+    "immutableId": "dcr-5f0e3528b5024851a274e66f0c2ced66",
+    "provisioningState": "Succeeded",
+    "streamDeclarations": {
+      "Custom-WeatherDynamic_CL": {
+        "columns": [
+          {
+            "name": "coord",
+            "type": "dynamic"
+          },
+          {
+            "name": "weather",
+            "type": "dynamic"
+          },
+          {
+            "name": "base",
+            "type": "string"
+          },
+          {
+            "name": "main",
+            "type": "dynamic"
+          },
+          {
+            "name": "visibility",
+            "type": "int"
+          },
+          {
+            "name": "wind",
+            "type": "dynamic"
+          },
+          {
+            "name": "clouds",
+            "type": "dynamic"
+          },
+          {
+            "name": "dt",
+            "type": "int"
+          },
+          {
+            "name": "sys",
+            "type": "dynamic"
+          },
+          {
+            "name": "timezone",
+            "type": "int"
+          },
+          {
+            "name": "id",
+            "type": "int"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "cod",
+            "type": "int"
+          }
+        ]
+      }
+    }
+  },
+  "systemData": {
+    "createdAt": "2024-10-31T19:42:44.9776798Z",
+    "createdBy": "bwren@microsoft.com",
+    "createdByType": "User",
+    "lastModifiedAt": "2024-11-11T22:17:56.1465007Z",
+    "lastModifiedBy": "bwren@microsoft.com",
+    "lastModifiedByType": "User"
+  },
+  "type": "Microsoft.Insights/dataCollectionRules"
+}

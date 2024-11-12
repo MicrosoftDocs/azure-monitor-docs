@@ -594,24 +594,25 @@ items:
       - name: Overview
         displayName: data collection rule, dcr, Azure Monitor pipeline
         href: essentials/data-collection-rule-overview.md
-      - name: Best practices
-        displayName: data collection rules, DCR
-        href: essentials/data-collection-rule-best-practices.md
-      - name: Metrics export using data collection rules
-        displayName: data collection rules, metrics
-        href: essentials/data-collection-metrics.md
-      - name: View and associate
-        displayName: data collection rules, DCR
-        href: essentials/data-collection-rule-view.md
       - name: Create and edit
-        displayName: Data collection rules, DCR
-        href: essentials/data-collection-rule-create-edit.md
-      - name: Edit DCR tutorial
-        displayName: data collection rules
-        href: essentials/data-collection-rule-edit.md
-      - name: Structure
-        displayName: Data collection rules, DCR
-        href: essentials/data-collection-rule-structure.md
+        items: 
+        - name: Create
+          displayName: Data collection rules, DCR
+          href: essentials/data-collection-rule-create-edit.md
+        - name: View and associate
+          displayName: data collection rules, DCR
+          href: essentials/data-collection-rule-view.md
+        - name: Edit and troubleshoot
+          displayName: data collection rules, DCR
+          href: essentials/data-collection-edit.md
+        - name: DCR structure
+          displayName: Data collection rules, DCR
+          href: essentials/data-collection-rule-structure.md
+        - name: Best practices
+          displayName: data collection rules, DCR
+          href: essentials/data-collection-rule-best-practices.md
+        - name: Samples
+          href: essentials/data-collection-rule-samples.md     
       - name: Transformations
         items:
         - name: Overview
@@ -620,7 +621,7 @@ items:
         - name: Create
           displayName: Transformations
           href: essentials/data-collection-transformations-create.md
-        - name: KQL details
+        - name: Supported KQL
           displayName: Transformations
           href: essentials/data-collection-transformations-kql.md
         - name: Samples
@@ -640,17 +641,20 @@ items:
           - name: Create with ARM templates
             displayName: Workspace transformations
             href: logs/tutorial-workspace-transformations-api.md
-      - name: Monitor
+      - name: Metrics export
+        items:
+        - name: Metrics export using data collection rules
+          displayName: data collection rules, metrics
+          href: essentials/data-collection-metrics.md
+        - name: Data plane batch query versus Metrics export
+          href: essentials/data-plane-versus-metrics-export.md
+      - name: Monitor DCRs
         displayName: Data collection rules
-        href: essentials/data-collection-monitor.md
-      - name: Samples
-        href: essentials/data-collection-rule-samples.md      
+        href: essentials/data-collection-monitor.md 
       - name: Data collection endpoints
         href: essentials/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration
         href: essentials/edge-pipeline-configure.md
-      - name: Data plane batch query versus Metrics export
-        href: essentials/data-plane-versus-metrics-export.md
     - name: Diagnostic Settings
       items:
       - name: Overview

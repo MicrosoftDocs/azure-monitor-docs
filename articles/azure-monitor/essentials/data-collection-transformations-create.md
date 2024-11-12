@@ -12,10 +12,17 @@ ms.reviwer: nikeist
 # Create a transformation in Azure Monitor
 [Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating a transformation with a DCR or adding one to an existing DCR.
 
-## Transformation query
-Regardless of the method you use to create the transformation, you'll need to create the KQL statement that filters or modifies the incoming data. This query is applied individually to each entry in the data source. It must understand the format of the incoming data and create output in the structure of the target table. 
+> [!NOTE]
+> When you [create a new table](../logs/create-custom-table.md) in a Log Analytics workspace using the Azure portal, you're prompted to create a transformation using sample data that you provide. This transformation is included in the DCR created as part of the table creation process. 
 
-A common method to build the log query is to collect some initial data without the transformation and use Log Analytics to write a query that filters or modifies the data as needed. An alternative method is to use the [`datatable`](/kusto/query/datatable-operator) operator in Log Analytics to create a sample data set. Either strategy allows you to test the transformation query to ensure it returns expected results before copying it to the DCR.
+## Transformation query
+Regardless of the method you use to create or edit the DCR with your transformation, you'll need to create the KQL statement that filters or modifies the incoming data. This query is applied individually to each entry in the data source. It must understand the format of the incoming data and create output in the structure of the target table. 
+
+There are multiple strategies you can use to create and test the transformation query before you add it to your DCR.
+
+- If you're already collecting the data that you want to transform, then you can use Log Analytics to write a query that filters or modifies the data as needed. Copy the query text and paste it into your DCR.
+- Use Log Analytics to write your query using the [`datatable`](/kusto/query/datatable-operator) operator to create a sample data set that represents your incoming data. Copy the query text without the `datatable` operator and paste it into your DCR.
+- Use the process to create a new table in the Azure portal, providing sample data. Use the included interface to create and test your transformation query. Either copy the query text and paste into your DCR, or complete the process and then edit the DCR to copy the transformation query. You can then delete the new table if you don't need it.
 
 
 ### Source table
@@ -81,7 +88,11 @@ source
 > [!IMPORTANT]
 > The transformation query must be on a single line the DCR. If you're creating the transformation in the Azure portal, you can use multiple lines for readability, and `\n` will be included in the query for each new line.
 
-## DCR
+## Add transformation to DCR
+
+> [!NOTE]
+> Some data sources will provide a method using the Azure portal to add a transformation to a DCR. For example, 
+
 The transformation query is specified in the `transformKql` property in the [Data Flows](./data-collection-rule-structure.md#data-flows) section of the DCR. The transformation is applied to the incoming stream of the data flow before it's sent to the destination. The transformation will only apply to that data flow even if the same stream or destination are used in other data flows. 
 
 If the `transformKql` property is omitted, or if it's value is simply `source`, then no transformation is applied, and the incoming data is sent to the destination without modification.
