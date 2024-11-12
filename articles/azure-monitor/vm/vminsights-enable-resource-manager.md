@@ -57,7 +57,7 @@ Download the [VM insights data collection rule templates](https://github.com/Azu
 - While not required, you should name the DCR `MSVMI-{WorkspaceName}` to match the naming convention used by the Azure portal.
 
 ## Associate DCR with agents
-The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. You need to create an association between the DCR and the agent to enable using the following template which comes from [Create and edit data collection rules (DCRs) and associations in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-a-dcr). To enable on multiple machines, you need to create an association using this template for each one.
+The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. You need to create an association between the DCR and the agent to enable using the following template which comes from [Create and edit data collection rules (DCRs) and associations in Azure Monitor](../essentials/data-collection-rule-create.md#create-a-dcr). To enable on multiple machines, you need to create an association using this template for each one.
 
 - See [Deploy templates](#deploy-templates) if you aren't familiar with methods to deploy ARM templates.
 

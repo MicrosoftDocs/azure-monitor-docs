@@ -61,7 +61,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Monitor your Kubernetes cluster performance with Container insights](containers/container-insights-analyze.md)|Added explanation of "Other processes" column.|
 |Essentials |[Manage data collection rules (DCRs) and associations in Azure Monitor](essentials/data-collection-rule-view.md)|Added guidance for new UI feature to manage DCR associations.|
 |Essentials|[Use Azure Policy to install and manage the Azure Monitor agent](agents/azure-monitor-agent-policy.md)|Added information on new UI feature to create associations.|
-|Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor](essentials/data-collection-rule-create-edit.md)|Removed duplicate information.|
+|Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor](essentials/data-collection-rule-create.md)|Removed duplicate information.|
 |Essentials|[Data collection rules (DCRs) in Azure Monitor](essentials/data-collection-rule-overview.md)|Added diagram.|
 |Essentials|[Monitor and troubleshoot DCR data collection in Azure Monitor](essentials/data-collection-monitor.md)|Corrected an error in KQL using InputStreamId.|
 |General|[Analyze and visualize monitoring data](best-practices-analysis.md)|We've updated our visualization recommendations to better guide customers when to use Azure Managed Grafana and when to use Azure Workbooks.|
@@ -90,7 +90,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Agents|[Collect logs from a text file with Azure Monitor Agent](agents/data-collection-log-text.md)|Rewritten for consistency with other data collection articles and to better describe configuration options.|
 |Agents|[Collect logs from a JSON file with Azure Monitor Agent](agents/data-collection-log-json.md)|Rewritten for consistency with other data collection articles and to better describe configuration options.|
 |Agents|[Collect SNMP trap data with Azure Monitor Agent](agents/data-collection-snmp-data.md)|Rewritten to better describe fundamental strategy.|
-|Agents|[Create and edit data collection rules (DCRs) in Azure Monitor](essentials/data-collection-rule-create-edit.md)|Rewritten for consistency with rewritten agent DCR articles.|
+|Agents|[Create and edit data collection rules (DCRs) in Azure Monitor](essentials/data-collection-rule-create.md)|Rewritten for consistency with rewritten agent DCR articles.|
 |Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](app/opentelemetry-dotnet-migrate.md)|Migrate .NET applications from the SDK Classic API to OpenTelemetry using our new step-by-step guide.|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](app/opentelemetry-configuration.md)|The .NET example under Set the Cloud Role Name and the Cloud Role Instance now shows how to configure all signals.|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](app/opentelemetry-configuration.md)|Node.js guidance is available for using each of the credential classes.|
@@ -211,7 +211,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Data collection rules in Azure Monitor](essentials/data-collection-rule-overview.md)|Rewritten to consolidate previous data collection article.|
 |Essentials|[Workspace transformation data collection rule (DCR) in Azure Monitor](essentials/data-collection-transformations-workspace.md)|Content moved to a new article dedicated to workspace transformation DCR.|
 |Essentials|[Data collection transformations in Azure Monitor](essentials/data-collection-transformations.md)|Rewritten to remove redundancy and make the article more consistent with related articles.|
-|Essentials|[Create and edit data collection rules (DCRs) in Azure Monitor](essentials/data-collection-rule-create-edit.md)|Updated API version in REST API calls.|
+|Essentials|[Create and edit data collection rules (DCRs) in Azure Monitor](essentials/data-collection-rule-create.md)|Updated API version in REST API calls.|
 |Essentials|[Tutorial: Edit a data collection rule (DCR)](essentials/data-collection-rule-edit.md)|Updated API version in REST API calls.|
 |Essentials|[Monitor and troubleshoot DCR data collection in Azure Monitor](essentials/data-collection-monitor.md)|New article documenting new DCR monitoring feature.|
 |Logs|[Monitor Log Analytics workspace health](logs/log-analytics-workspace-health.md)|Added new metrics for monitoring data export from a Log Analytics workspace.|

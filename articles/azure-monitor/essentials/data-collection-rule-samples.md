@@ -370,5 +370,5 @@ The sample [data collection rule](../essentials/data-collection-rule-overview.md
 ## Next steps
 
 - [Get details for the different properties in a DCR](../essentials/data-collection-rule-structure.md)
-- [See different methods for creating a DCR](../essentials/data-collection-rule-create-edit.md)
+- [See different methods for creating a DCR](../essentials/data-collection-rule-create.md)
 

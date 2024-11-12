@@ -31,7 +31,7 @@ Before you configure streaming for a data source, you need to [create an Event H
 Data can be sent to Event Hubs by using the following methods in Azure Monitor:
 
 + **Data collection rules**  
-    Data collection rules are used to stream logs and metrics to Event Hubs, Log analytics workspaces and Azure Storage. For information on how to set up data collection rules, see [Data collection rules in Azure Monitor](./data-collection-rule-overview.md) and [Create and edit data collection rules](./data-collection-rule-create-edit.md).
+    Data collection rules are used to stream logs and metrics to Event Hubs, Log analytics workspaces and Azure Storage. For information on how to set up data collection rules, see [Data collection rules in Azure Monitor](./data-collection-rule-overview.md) and [Create and edit data collection rules](./data-collection-rule-create.md).
 
 + **Diagnostic settings**  
     Use diagnostics setting to stream logs and metrics to Event Hubs. For information on how to set up diagnostic settings, see [Create diagnostic settings](./create-diagnostic-settings.md).
