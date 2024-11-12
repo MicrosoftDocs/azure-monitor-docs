@@ -12,18 +12,7 @@ Application Insights supports three different types of metrics: standard (preagg
 
 * **Standard metrics:** Standard metrics in Application Insights are predefined metrics which are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics **are preaggregated** during collection and stored as a time series in a specialized repository with only key dimensions, which gives them better performance at query time. This makes them the best choice for [near real time alerting on dimensions of metrics](../alerts/alerts-metric-near-real-time.md) and more responsive [dashboards](./overview-dashboard.md).
 
-    > [!NOTE]
-    > The collection endpoint preaggregates events before ingestion sampling. For this reason, [ingestion sampling](./sampling.md) doesn't affect the accuracy of preaggregated metrics.
-
-* **Log-based metrics:** Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. The underlying logs **aren't preaggregated** at the collection or storage time and retain all properties of each log entry. This makes it possible to use log properties as dimensions on log-based metrics at a query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering) commonly used with monitoring large applications impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
-
-    <!--
-    Log-based metrics in Application Insights provide a powerful way to analyze and diagnose application performance by leveraging detailed log data. Unlike [standard metrics](./../app/standard-metrics.md), which are preaggregated at collection time, log-based metrics are created at query time from stored events.
-    
-    Using logs to retain a complete set of events enables you to use log properties as dimensions, providing superior analytical and diagnostic value for data analysis and ad-hoc diagnostics. For example, you can get an exact count of requests to a particular URL with the number of distinct users who made these calls. Or you can get detailed diagnostic traces, including exceptions and dependency calls for any user session. Having this type of information can improve visibility into the application health and usage. It can also cut down the time necessary to diagnose issues.
-    
-    However, collecting a complete set of events can also be impractical or impossible for applications generating large volumes of telemetry. For situations when the volume of events is too high, Application Insights implements several telemetry volume reduction techniques like [sampling](./../app/sampling-classic-api.md) and [filtering](./../app/api-filtering-sampling.md#filtering). While these methods reduce the number of collected and stored events, they can also lower the accuracy of log-based metrics.
-    -->
+* **Log-based metrics:** Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. The underlying logs **aren't preaggregated** at the collection or storage time and retain all properties of each log entry. This makes it possible to use log properties as dimensions on log-based metrics at query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering), commonly used with monitoring applications generating large volumes of telemetry, impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
 
 * **Custom metrics (preview):** Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that isn't covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
 
@@ -179,9 +168,9 @@ The *Availability tests* metric reflects the count of the web tests runs by Azur
 
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
-| Unit of measure | Supported aggregations | Supported dimensions    |
-|-----------------|------------------------|-------------------------|
-| Percentage      | Average                | Run location, Test name |
+| Unit of measure | Supported aggregations | Supported dimensions        |
+|-----------------|------------------------|-----------------------------|
+| Percentage      | Average                | `Run location`, `Test name` |
 
 ```Kusto
 availabilityResults 
@@ -193,9 +182,9 @@ availabilityResults
 
 The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
 
-| Unit of measure | Supported aggregations | Supported dimensions                 |
-|-----------------|------------------------|--------------------------------------|
-| Milliseconds    | Average, Min, Max      | Run location, Test name, Test result |
+| Unit of measure | Supported aggregations | Supported dimensions                       |
+|-----------------|------------------------|--------------------------------------------|
+| Milliseconds    | Average, Min, Max      | `Run location`, `Test name`, `Test result` |
 
 ```Kusto
 availabilityResults
@@ -209,9 +198,9 @@ availabilityResults
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
 
-| Unit of measure | Supported aggregations | Supported dimensions                 |
-|-----------------|------------------------|--------------------------------------|
-| Count           | Count                  | Run location, Test name, Test result |
+| Unit of measure | Supported aggregations | Supported dimensions                       |
+|-----------------|------------------------|--------------------------------------------|
+| Count           | Count                  | `Run location`, `Test name`, `Test result` |
 
 ```Kusto
 availabilityResults
@@ -436,9 +425,9 @@ dependencies
 
 Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
-| Unit of measure | Supported aggregations | Preaggregated dimensions                          | Notes                                      |
-|-----------------|------------------------|---------------------------------------------------|--------------------------------------------|
-| Count           | Count                  | Cloud role name, Cloud role instance, Device type | Log-based version uses **Sum** aggregation |
+| Unit of measure | Supported aggregations | Preaggregated dimensions                                | Notes                                      |
+|-----------------|------------------------|---------------------------------------------------------|--------------------------------------------|
+| Count           | Count                  | `Cloud role name`, `Cloud role instance`, `Device type` | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 exceptions
@@ -450,9 +439,9 @@ exceptions
 
 The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](../app/api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
-| Unit of measure | Supported aggregations | Preaggregated dimensions                                                                            | Notes                                      |
-|-----------------|------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------|
-| Count           | Count                  | Cloud role instance, Cloud role name, Real or synthetic traffic, Request performance, Response code | Log-based version uses **Sum** aggregation |
+| Unit of measure | Supported aggregations | Preaggregated dimensions                                                                                      | Notes                                      |
+|-----------------|------------------------|---------------------------------------------------------------------------------------------------------------|--------------------------------------------|
+| Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Real or synthetic traffic`, `Request performance`, `Response code` | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 requests
@@ -465,9 +454,9 @@ requests
 
 This metric shows the number of server exceptions.
 
-| Unit of measure | Supported aggregations | Preaggregated dimensions             | Notes                                      |
-|-----------------|------------------------|--------------------------------------|--------------------------------------------|
-| Count           | Count                  | Cloud role name, Cloud role instance | Log-based version uses **Sum** aggregation |
+| Unit of measure | Supported aggregations | Preaggregated dimensions                 | Notes                                      |
+|-----------------|------------------------|------------------------------------------|--------------------------------------------|
+| Count           | Count                  | `Cloud role name`, `Cloud role instance` | Log-based version uses **Sum** aggregation |
 
 ```Kusto
 exceptions
@@ -606,9 +595,9 @@ performanceCounters
 
 The metric shows how much of the total processor capacity is consumed by the process that is hosting your monitored app.
 
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Percentage      | Average, Min, Max      | Cloud role instance  |
+| Unit of measure | Supported aggregations | Supported dimensions  |
+|-----------------|------------------------|-----------------------|
+| Percentage      | Average, Min, Max      | `Cloud role instance` |
 
 ```Kusto
 performanceCounters
@@ -623,9 +612,9 @@ performanceCounters
 
 #### Process IO rate (performanceCounters/processIOBytesPerSecond)
 
-| Unit of measure  | Supported aggregations | Supported dimensions |
-|------------------|------------------------|----------------------|
-| Bytes per second | Average, Min, Max      | Cloud role instance  |
+| Unit of measure  | Supported aggregations | Supported dimensions  |
+|------------------|------------------------|-----------------------|
+| Bytes per second | Average, Min, Max      | `Cloud role instance` |
 
 ```Kusto
 performanceCounters
@@ -639,9 +628,9 @@ performanceCounters
 
 Amount of nonshared memory that the monitored process allocated for its data.
 
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Bytes           | Average, Min, Max      | Cloud role instance  |
+| Unit of measure | Supported aggregations | Supported dimensions  |
+|-----------------|------------------------|-----------------------|
+| Bytes           | Average, Min, Max      | `Cloud role instance` |
 
 ```Kusto
 performanceCounters
@@ -655,9 +644,9 @@ performanceCounters
 
 CPU consumption by *all* processes running on the monitored server instance.
 
-| Unit of measure | Supported aggregations | Supported dimensions |
-|-----------------|------------------------|----------------------|
-| Percentage      | Average, Min, Max      | Cloud role instance  |
+| Unit of measure | Supported aggregations | Supported dimensions  |
+|-----------------|------------------------|-----------------------|
+| Percentage      | Average, Min, Max      | `Cloud role instance` |
 
 >[!NOTE]
 > The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
