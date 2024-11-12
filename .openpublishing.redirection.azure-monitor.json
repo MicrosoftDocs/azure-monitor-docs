@@ -7540,11 +7540,6 @@
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   },
-  {
-   "source_path_from_root": "/articles/azure-monitor/app/pre-aggregated-metrics-log-metrics.md",
-   "redirect_url": "/azure/azure-monitor/app/metrics-overview",
-   "redirect_document_id": false
-  },
   { 
    "source_path": "articles/azure-monitor/vm/vminsights-enable-overview.md",
    "redirect_url": "/azure/azure-monitor/vm/vminsights-enable",
@@ -7595,12 +7590,17 @@
    "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/app/standard-metrics.md",
+    "source_path_from_root": "/articles/azure-monitor/app/pre-aggregated-metrics-log-metrics.md",
     "redirect_url": "/azure/azure-monitor/app/metrics-overview",
     "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/app/app-insights-metrics.md",
+    "source_path_from_root": "/articles/azure-monitor/app/standard-metrics.md",
+    "redirect_url": "/azure/azure-monitor/app/metrics-overview",
+    "redirect_document_id": false
+  },
+  {
+    "source_path_from_root": "/articles/azure-monitor/essentials/app-insights-metrics.md",
     "redirect_url": "/azure/azure-monitor/app/metrics-overview",
     "redirect_document_id": false
   }
