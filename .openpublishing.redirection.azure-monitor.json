@@ -7568,6 +7568,7 @@
   {
    "source_path": "articles/azure-monitor/vm/vminsights-enable-hybrid.md",
    "redirect_url": "/azure/azure-monitor/vm/vminsights-enable-client",
+   "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/reference/tables/adpaudit.md",

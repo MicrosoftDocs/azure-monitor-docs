@@ -821,7 +821,7 @@ When streaming the Azure Activity log to a storage account or event hub, the dat
 | time | eventTimestamp |  |
 | resourceId | resourceId | subscriptionId, resourceType, resourceGroupName are all inferred from the resourceId. |
 | operationName | operationName.value |  |
-| category | Part of operation name | Breakout of the operation type. "Write", "Delete", or "Action". |
+| category | Part of operation name | Always "Administrative" |
 | resultType | status.value | |
 | resultSignature | substatus.value | |
 | resultDescription | description |  |
