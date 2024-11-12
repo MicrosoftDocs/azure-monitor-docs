@@ -23,7 +23,31 @@ The Delete Data API removes rows from a table in your Log Analytics workspace.
 
 To specify which rows of the table you want to delete, you send one or more filters in the body of the API call.
 
-The deletion process is final and irreversible. Therefore, before calling the API, check that your filters produce the intended results by running a Kusto Query Language (KQL) query in your workspace. 
+The deletion process is final and irreversible. Therefore, before calling the API, check that your filters produce the intended results by running a query in your workspace, using the Kusto Query Language (KQL) `where` operator instead of the API filter convention.
+
+For example, to delete data from the `AzureMetrics` table based on a `TimeGenerated` value: 
+
+- You might send this filter in the body of your API call:
+
+  ```json 
+  {
+    "filters": [
+      {
+        "column": "TimeGenerated",      
+        "operator": "==",                
+        "value": "2024-09-23T00:00:00"  
+      }
+    ]
+  }
+  ```
+
+- Check that your filter returns the entry you want to delete by running this query:
+
+  ```kusto
+  AzureMetrics
+  | where TimeGenerated == "2024-09-23T00:00:00" 
+  ```
+
 
 Delete data requests are asynchronous and typically completed within a few minutes. In extreme cases, a request might be queued up to five days.
 
@@ -58,7 +82,7 @@ Specify one or more filters in the body of the API call. This example filters on
   "filters": [
     {
       "column": "TimeGenerated",      
-      "operator": "<",                
+      "operator": "==",                
       "value": "2024-09-23T00:00:00"  
     },
     {
