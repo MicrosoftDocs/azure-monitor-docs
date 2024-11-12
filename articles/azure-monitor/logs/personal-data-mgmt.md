@@ -22,9 +22,9 @@ While it's up to you and your company to define a strategy for handling personal
 
 - Filter out, obfuscate, anonymize, or adjust collected data to exclude it from being considered "personal" using [data collection transformations](../essentials/data-collection-transformations.md). This is _by far_ the preferred approach, which saves you the need to create a costly and impactful data handling strategy.
 - Normalize the data to reduce negative affects on the data platform and performance. For example, instead of logging an explicit User ID, create a lookup to correlate the username and their details to an internal ID that can then be logged elsewhere. That way, if a user asks you to delete their personal information, you can delete only the row in the lookup table that corresponds to the user. 
-- If you need to collect personal data, use: 
-    - The [Delete Data API](delete-log-data.md) or [Purge API](/rest/api/loganalytics/workspacepurge/purge) and the [Query API](/rest/api/loganalytics/dataaccess/query) to export and delete any personal data associated with a user.
-    - [Summary rules](summary-rules.md) to remove or obfuscate personal data in a new table that can be shared more widely, and give a limit access to the table with the personal data by [managing table-level read access](manage-table-access.md). 
+- If you need to collect personal data: 
+    - Use the [Delete Data API](delete-log-data.md) or [Purge API](/rest/api/loganalytics/workspacepurge/purge) and the [Query API](/rest/api/loganalytics/dataaccess/query) to export and delete any personal data associated with a user.
+    - Use [summary rules](summary-rules.md) to remove or obfuscate personal data in a new table that can be shared more widely, and limit access to the table with the personal data by [managing table-level read access](manage-table-access.md). 
 
 ## Where to look for personal data in Azure Monitor Logs
 
