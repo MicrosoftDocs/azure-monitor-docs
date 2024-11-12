@@ -4,7 +4,7 @@ description: Autoscale patterns in the Web Apps feature of Azure App Service, Az
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: conceptual
-ms.date: 01/07/2024
+ms.date: 11/07/2024
 ms.subservice: autoscale
 ms.reviewer: akkumari
 ---
