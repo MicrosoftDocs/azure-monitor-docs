@@ -13,11 +13,7 @@ ms.date: 11/11/2024
 
 # Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
 
-The Delete Data API lets you make asynchronous requests to remove data for various reasons, such as:
-
-- Data you ingest by mistake 
-- Sensitive or personal data
-- Corrupt or incorrect data
+The Delete Data API lets you make asynchronous requests to remove data, such as sensitive, personal, corrupt, or incorrect log entries.
 
 This article explains how to delete log entries from a specific table in your Log Analytics workspace by calling the Delete Data API.
 
@@ -32,25 +28,22 @@ To specify which rows of the table you want to delete, you send one or more filt
 
 The deletion process is final and irreversible. Therefore, before calling the API, check that your filters produce the intended results by running a Kusto Query Language (KQL) query in your workspace. 
 
-Delete data requests are asynchronous. Typically, Azure Monitor Logs handles requests quickly. In extreme cases, a request might be queued up to five days.
+Delete data requests are asynchronous and typically completed within a few minutes. In extreme cases, a request might be queued up to five days.
 
 If you enable [workspace replication](workspace-replication.md) on your Log Analytics workspace, the API call deletes data from both your primary and secondary workspaces.
-
-> [!NOTE]
-> Deleting data doesn't affect billing. To control data retention costs, configure [data retention settings](data-retention-configure.md).
-
-## Limitations
-
-These limitations apply:
-
-- You can submit up to 10 delete data requests per hour in a single Log Analytics workspace. 
-- Only the Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. You can't delete data from a table with the Auxiliary plan.
 
 ## Permissions required
 
 | Action | Permissions required |
 |:-------|:---------------------|
 | Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
+
+## Limitations
+
+These limitations apply:
+
+- You can submit up to 10 Delete Data requests per hour in a single Log Analytics workspace. 
+- Only the Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. You can't delete data from a table with the Auxiliary plan.
 
 ## Call the Delete Data API to delete data from a specific table
 
