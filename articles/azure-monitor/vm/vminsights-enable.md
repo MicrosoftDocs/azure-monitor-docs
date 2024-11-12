@@ -17,7 +17,7 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 ## Prerequisites
 
 - You must have a [Log Analytics workspace](../logs/quick-create-workspace.md) to store data collected by VM insights. You can create a new workspace if you enable using the Azure portal.
-- You require permissions to create a data collection rule (DCR) and associate it with the Azure Monitor agent. See [Data Collection Rule permissions](../essentials/data-collection-rule-create-edit.md#permissions) for details.
+- You require permissions to create a data collection rule (DCR) and associate it with the Azure Monitor agent. See [Data Collection Rule permissions](../essentials/data-collection-rule-create.md#permissions) for details.
 - See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. 
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
@@ -115,7 +115,7 @@ If you don't already have a DCR for VM insights, create one using the details ab
 
 
 ### Associate DCR with agents
-The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. Use the template below which comes from [Create and edit data collection rules (DCRs) and associations in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-a-dcr). To enable on multiple machines, you need to create an association using this template for each one. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
+The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. Use the template below which comes from [Create and edit data collection rules (DCRs) and associations in Azure Monitor](../essentials/data-collection-rule-create.md#create-a-dcr). To enable on multiple machines, you need to create an association using this template for each one. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
 
 > [!NOTE]
 > If you associate a DCR with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you [install Dependency Agent](./vminsights-dependency-agent-maintenance.md).

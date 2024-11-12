@@ -9,7 +9,7 @@ ms.reviewer: jeffwo
 ---
 
 # Collect logs from a text file with Azure Monitor Agent 
-**Custom Text Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
+**Custom Text Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
 
 Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. This data can be collected with [Azure Monitor Agent](azure-monitor-agent-overview.md) and stored in a Log Analytics workspace with data collected from other sources.
 
@@ -145,7 +145,7 @@ Use the following ARM template to create or modify a DCR for collecting text log
 - `transformKql`: Modify the default transformation if you want to modify or filter the incoming stream, for example to parse the log entry into multiple columns. The output schema of the transformation must match the schema of the target table.
 
 > [!IMPORTANT]
-> If you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](../essentials/data-collection-rule-create-edit.md#add-resources). The parameters section in the DCR is optional if you replace them with strings lower down in the JSON.
+> If you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](../essentials/data-collection-rule-create.md#add-resources). The parameters section in the DCR is optional if you replace them with strings lower down in the JSON.
 
 ```json
 {

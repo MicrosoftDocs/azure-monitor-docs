@@ -14,7 +14,7 @@ By default, Azure Monitor Agent connects to a public endpoint to connect to your
 
 ## Prerequisites
 
-- A [data collection rule](../essentials/data-collection-rule-create-edit.md), which defines the data Azure Monitor Agent collects and the destination to which the agent sends data. 
+- A [data collection rule](../essentials/data-collection-rule-create.md), which defines the data Azure Monitor Agent collects and the destination to which the agent sends data. 
 
 ## Link your data collection endpoints to your Azure Monitor Private Link Scope
 

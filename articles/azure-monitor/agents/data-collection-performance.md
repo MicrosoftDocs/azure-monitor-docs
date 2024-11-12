@@ -11,7 +11,7 @@ ms.reviewer: jeffwo
 
 # Collect performance counters with Azure Monitor Agent
 
-**Performance counters** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides more details for the Windows events data source type.
+**Performance counters** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides more details for the Windows events data source type.
 
 Performance counters provide insight into the performance of hardware components, operating systems, and applications. [Azure Monitor Agent](azure-monitor-agent-overview.md) can collect performance counters from Windows and Linux machines at frequent intervals for near real time analysis.
 

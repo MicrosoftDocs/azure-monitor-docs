@@ -10,7 +10,7 @@ ms.reviewer: jeffwo
 ---
 
 # Collect IIS logs with Azure Monitor Agent
-**IIS Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the Windows events data source type.
+**IIS Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the Windows events data source type.
 
 Internet Information Services (IIS) stores user activity in log files that can be collected by Azure Monitor agent and sent to a Log Analytics workspace.
 

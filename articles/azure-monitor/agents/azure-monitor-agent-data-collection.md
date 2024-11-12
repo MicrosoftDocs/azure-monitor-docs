@@ -45,7 +45,7 @@ The table below lists the types of data you can currently collect with the Azure
 
 ## Prerequisites
 
-- [Permissions to create Data Collection Rule objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
+- [Permissions to create Data Collection Rule objects](../essentials/data-collection-rule-create.md#permissions) in the workspace.
 - See the article describing each data source for any additional prerequisites.
 
 ## Overview 
