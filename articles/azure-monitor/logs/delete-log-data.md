@@ -17,9 +17,6 @@ The Delete Data API lets you make asynchronous requests to remove data, such as 
 
 This article explains how to delete log entries from a specific table in your Log Analytics workspace by calling the Delete Data API.
 
-> [!IMPORTANT]
-> To ensure compliance with General Data Protection Regulation (GDPR), use the [Purge API](/rest/api/loganalytics/workspacepurge/purge), which is less performant and only supports operations required for GDPR compliance.
-
 ## How the Delete Data API works
 
 The Delete Data API removes rows from a table in your Log Analytics workspace.
