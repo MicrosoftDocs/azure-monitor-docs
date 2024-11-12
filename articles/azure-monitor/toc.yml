@@ -221,10 +221,6 @@ items:
         href: app/release-and-work-item-insights.md
       - name: Transaction Search and Diagnostics
         href: app/transaction-search-and-diagnostics.md
-    - name: Terms and concepts
-      items:
-      - name: Metrics
-        href: app/metrics-overview.md
     - name: Code analysis
       items:
       - name: Code Optimizations
@@ -328,6 +324,8 @@ items:
       - name: Geolocation and IP address handling
         href: app/ip-collection.md
         displayName: geolocation, IP collection, IP tracking, IP storage
+      - name: Metrics
+        href: app/metrics-overview.md
       - name: Microsoft Entra authentication
         href: app/azure-ad-authentication.md
         displayName: azure ad authentication

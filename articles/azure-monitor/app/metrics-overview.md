@@ -44,21 +44,21 @@ Application Insights supports three different types of metrics: standard (preagg
 
 ### OpenTelemetry supported preaggregated metrics (manual instrumentation)
 
-| Current production distro     | Standard metrics (with preaggregation) | Custom metrics (without preaggregation) | Custom metrics (with preaggregation) |
-|-------------------------------|----------------------------------------|-----------------------------------------|--------------------------------------|
-| .NET Core                     | ...                                    | ...                                     | ...                                  |
-| .NET Framework (via exporter) | ...                                    | ...                                     | ...                                  |
-| Java                          | ...                                    | ...                                     | ...                                  |
-| Node.js                       | ...                                    | ...                                     | ...                                  |
-| Python                        | Supported                              | ...                                     | Supported                            |
+| Current production distro     | Standard metrics (preaggregated) | Custom metrics (without preaggregation) | Custom metrics (with preaggregation)                                                |
+|-------------------------------|----------------------------------|-----------------------------------------|-------------------------------------------------------------------------------------|
+| .NET Core                     | ...                              | ...                                     | ...                                                                                 |
+| .NET Framework (via exporter) | ...                              | ...                                     | ...                                                                                 |
+| Java                          | ...                              | ...                                     | ...                                                                                 |
+| Node.js                       | ...                              | ...                                     | ...                                                                                 |
+| Python                        | Supported                        | ...                                     | Supported via [OpenTelemetry API](https://www.npmjs.com/package/@opentelemetry/api) |
 
 ### SDK supported preaggregated metrics (manual instrumentation)
 
-| Current production SDKs | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
-|-------------------------|---------------------------------------|---------------------------------------------|------------------------------------------|
+| Current production SDKs | Standard metrics (preaggregated) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
+|-------------------------|----------------------------------|---------------------------------------------|------------------------------------------|
 | .NET Core and .NET Framework | Supported (V2.13.1+) | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Supported (V2.7.2+) via [GetMetric](get-metric.md) |
 | Java | Not supported | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported |
-| Node.js | Supported (V2.0.0+) | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported |
+| Node.js | Supported | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported |
 | Python | Not supported | Supported | Partially supported via [OpenCensus.stats (deprecated)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
 
 > [!NOTE]
@@ -66,13 +66,13 @@ Application Insights supports three different types of metrics: standard (preagg
 
 ### Codeless supported preaggregated metrics (autoinstrumentation)
 
-| Current production SDKs | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation)                                                                            |
+| Current production SDKs | Standard metrics (preaggregated)      | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation)                                                                            |
 |-------------------------|---------------------------------------|---------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
 | ASP.NET                 | Supported <sup>1<sup>                 | Not supported                               | Not supported                                                                                                       |
 | ASP.NET Core            | Supported <sup>2<sup>                 | Not supported                               | Not supported                                                                                                       |
 | Java                    | Not supported                         | Not supported                               | [Supported](opentelemetry-add-modify.md?tabs=java#send-custom-telemetry-using-the-application-insights-classic-api) |
 | Node.js                 | Not supported                         | Not supported                               | Not supported                                                                                                       |
-| Python                  | ...                                   | ...                                         | ...                                                                                                                 |
+| Python                  | Supported                             | Not supported                               | Supported                                                                                                           |
 
 1. [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](./azure-vm-vmss-apps.md) and [on-premises](./application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. The SDK is required for all dimensions.
 2. [ASP.NET Core autoinstrumentation on App Service](./azure-web-apps-net-core.md) emits standard metrics without dimensions. SDK is required for all dimensions.
