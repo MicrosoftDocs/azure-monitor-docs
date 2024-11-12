@@ -13,7 +13,7 @@ Application Insights supports three different types of metrics: standard (preagg
 * **Standard metrics:** Standard metrics in Application Insights are predefined metrics which are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics **are preaggregated** during collection and stored as a time series in a specialized repository with only key dimensions, which gives them better performance at query time. This makes them the best choice for [near real time alerting on dimensions of metrics](../alerts/alerts-metric-near-real-time.md) and more responsive [dashboards](./overview-dashboard.md).
 
     > [!NOTE]
-    > The collection endpoint preaggregates events before ingestion sampling. For this reason, [ingestion sampling](./sampling.md) never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
+    > The collection endpoint preaggregates events before ingestion sampling. For this reason, [ingestion sampling](./sampling.md) doesn't affect the accuracy of preaggregated metrics.
 
 * **Log-based metrics:** Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. The underlying logs **aren't preaggregated** at the collection or storage time and retain all properties of each log entry. This makes it possible to use log properties as dimensions on log-based metrics at a query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering) commonly used with monitoring large applications impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
 
@@ -32,7 +32,7 @@ Application Insights supports three different types of metrics: standard (preagg
 > [!NOTE]
 > Application Insights also provides a feature called [Live Metrics stream](./live-stream.md), which allows for near real-time monitoring of your web applications and doesn't store any telemetry data.
 
-### Metrics comparison
+## Metrics comparison
 
 | Feature | Standard metrics | Log-based metrics | Custom metrics |
 |---------|------------------|-------------------|----------------|
@@ -53,6 +53,16 @@ Application Insights supports three different types of metrics: standard (preagg
 > [!NOTE]
 > Log-based metrics are supported for all languages and instrumentation methods.
 
+### OpenTelemetry supported preaggregated metrics (manual instrumentation)
+
+| Current production distro     | Standard metrics (with preaggregation) | Custom metrics (without preaggregation) | Custom metrics (with preaggregation) |
+|-------------------------------|----------------------------------------|-----------------------------------------|--------------------------------------|
+| .NET Core                     | ...                                    | ...                                     | ...                                  |
+| .NET Framework (via exporter) | ...                                    | ...                                     | ...                                  |
+| Java                          | ...                                    | ...                                     | ...                                  |
+| Node.js                       | ...                                    | ...                                     | ...                                  |
+| Python                        | Supported                              | ...                                     | Supported                            |
+
 ### SDK supported preaggregated metrics (manual instrumentation)
 
 | Current production SDKs | Standard metrics (SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
@@ -60,10 +70,10 @@ Application Insights supports three different types of metrics: standard (preagg
 | .NET Core and .NET Framework | Supported (V2.13.1+) | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Supported (V2.7.2+) via [GetMetric](get-metric.md) |
 | Java | Not supported | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported |
 | Node.js | Supported (V2.0.0+) | Supported via [TrackMetric](api-custom-events-metrics.md#trackmetric) | Not supported |
-| Python | Not supported | Supported | Partially supported via [OpenCensus.stats](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
+| Python | Not supported | Supported | Partially supported via [OpenCensus.stats (deprecated)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
 
 > [!NOTE]
-> The metrics implementation for Python by using OpenCensus.stats is different from GetMetric. For more information, see the [Python documentation on metrics](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics).
+> The metrics implementation for Python by using OpenCensus.stats (deprecated) is different from GetMetric. For more information, see the [Python documentation on metrics](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics).
 
 ### Codeless supported preaggregated metrics (autoinstrumentation)
 
@@ -73,16 +83,17 @@ Application Insights supports three different types of metrics: standard (preagg
 | ASP.NET Core            | Supported <sup>2<sup>                 | Not supported                               | Not supported                                                                                                       |
 | Java                    | Not supported                         | Not supported                               | [Supported](opentelemetry-add-modify.md?tabs=java#send-custom-telemetry-using-the-application-insights-classic-api) |
 | Node.js                 | Not supported                         | Not supported                               | Not supported                                                                                                       |
+| Python                  | ...                                   | ...                                         | ...                                                                                                                 |
 
 1. [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](./azure-vm-vmss-apps.md) and [on-premises](./application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. The SDK is required for all dimensions.
 2. [ASP.NET Core autoinstrumentation on App Service](./azure-web-apps-net-core.md) emits standard metrics without dimensions. SDK is required for all dimensions.
 
-## Use preaggregation with Application Insights custom metrics
+## Preaggregation with Application Insights custom metrics
 
 You can use preaggregation with custom metrics. The two main benefits are: 
 
-- Configure and alert on a dimension of a custom metric
-- Reduce the volume of data sent from the SDK to the Application Insights collection endpoint
+* Configure and alert on a dimension of a custom metric.
+* Reduce the volume of data sent from the SDK to the Application Insights collection endpoint.
 
 There are several [ways of sending custom metrics from the Application Insights SDK](./api-custom-events-metrics.md). If your version of the SDK offers [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), these methods are the preferred way of sending custom metrics. In this case, preaggregation happens inside the SDK. This approach reduces the volume of data stored in Azure and also the volume of data transmitted from the SDK to Application Insights. Otherwise, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method, which preaggregates metric events during data ingestion.
 
@@ -90,7 +101,7 @@ There are several [ways of sending custom metrics from the Application Insights 
 
 All metrics that you send using [OpenTelemetry](./../app/opentelemetry-add-modify.md), [trackMetric](./../app/api-custom-events-metrics.md), or [GetMetric and TrackValue](./../app/api-custom-events-metrics.md#getmetric) API calls are automatically stored in both logs and metrics stores. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called "azure.applicationinsights". Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
 
-:::image type="content" source="./media/metrics-custom-overview/001-cost.png" lightbox="./media/metrics-custom-overview/001-cost.png" alt-text="Screenshot that shows usage and estimated costs.":::
+:::image type="content" source="./media/metrics-overview/usage-and-costs.png" lightbox="./media/metrics-overview/usage-and-costs.png" alt-text="Screenshot that shows usage and estimated costs.":::
 
 ### Quotas
 
@@ -107,19 +118,19 @@ The collection of custom metrics dimensions is turned off by default because in 
 
 Use [Azure Monitor metrics explorer](../essentials/metrics-getting-started.md) to plot charts from preaggregated, log-based, and custom metrics, and to author dashboards with charts. After you select the Application Insights resource you want, use the namespace picker to switch between metrics.
 
-:::image type="content" source="./../essentials/media/metrics-custom-overview/002-metric-namespace.png" lightbox="./../essentials/media/metrics-custom-overview/002-metric-namespace.png" alt-text="Screenshot that shows Metric namespace.":::
+:::image type="content" source="./media/metrics-overview/metric-namespace.png" lightbox="./media/metrics-overview/metric-namespace.png" alt-text="Screenshot that shows Metric namespace.":::
 
 ## Pricing models for Application Insights metrics
 
 Ingesting metrics into Application Insights, whether log-based or preaggregated, generates costs based on the size of the ingested data. For more information, see [Azure Monitor Logs pricing details](../logs/cost-logs.md#application-insights-billing). Your custom metrics, including all its dimensions, are always stored in the Application Insights log store. Also, a preaggregated version of your custom metrics with no dimensions is forwarded to the metrics store by default.
 
-Selecting the [Enable alerting on custom metric dimensions](./../essentials/metrics-custom-overview.md#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can generate *extra costs* based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
+Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dimensions-and-preaggregation) option to store all dimensions of the preaggregated metrics in the metric store can generate *extra costs* based on [custom metrics pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Available metrics
 
 This article lists metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements. For convenience, each query uses defaults for time granularity, chart type, and sometimes splitting dimension which simplifies using the query in Log Analytics without any need for modification.
 
-When you plot the same metric in [metrics explorer](./analyze-metrics.md), there are no defaults - the query is dynamically adjusted based on your chart settings:
+When you plot the same metric in [metrics explorer](./../essentials/analyze-metrics.md), there are no defaults - the query is dynamically adjusted based on your chart settings:
 
 - The selected **Time range** is translated into an additional *where timestamp...* clause to only pick the events from selected time range. For example, a chart showing data for the most recent 24 hours, the query includes *| where timestamp > ago(24 h)*.
 

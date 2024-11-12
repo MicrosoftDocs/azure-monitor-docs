@@ -11,7 +11,7 @@ You can monitor Azure services and applications by using [Grafana](https://grafa
 
 - [Azure Monitor Metrics](../essentials/data-platform-metrics.md) for numeric time series data from Azure resources.
 - [Azure Monitor Logs](../logs/data-platform-logs.md) for log and performance data from Azure resources that enables you to query by using the powerful Kusto Query Language (KQL). You can use Application Insights log queries to retrieve Application Insights log based metrics
-    - [Application Insights log based metrics](../essentials/app-insights-metrics.md) to let you analyze the health of your monitored apps. You can use Application Insights log queries in Grafana to use the Application Insights log metrics data.
+    - [Application Insights log based metrics](../app/metrics-overview.md) to let you analyze the health of your monitored apps. You can use Application Insights log queries in Grafana to use the Application Insights log metrics data.
 - [Azure Resource Graph](/azure/governance/resource-graph/overview) to quickly query and identify Azure resources across subscriptions.
 
 
