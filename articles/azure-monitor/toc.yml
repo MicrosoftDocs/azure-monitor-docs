@@ -598,7 +598,7 @@ items:
         - name: Create
           displayName: Data collection rules, DCR
           href: essentials/data-collection-rule-create.md
-        - name: View and associate
+        - name: Manage associations
           displayName: data collection rules, DCR
           href: essentials/data-collection-rule-view.md
         - name: Edit and troubleshoot

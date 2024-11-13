@@ -17,6 +17,15 @@ Data collection rules (DCRs) are part of an [ETL](/azure/architecture/data-guide
 - Scalable configuration options supporting infrastructure as code and DevOps processes.
 - Option of edge pipeline in your own environment to provide high-end scalability, layered network configurations, and periodic connectivity.
 
+## Legacy data collection methods
+The data collection process described in this article has either replaced or is in the process of replacing other data collection methods in Azure Monitor. The following table lists the legacy methods with their replacements. Other data collection methods in Azure Monitor are expected to also be replaced by DCRs in the future.
+
+| Legacy method | Replacement method | Description |
+|:---|:---|:---|
+| [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | The Azure Monitor agent is now used to monitor VMs and Kubernetes clusters supporting VM insights and Container insights. |
+| [Diagnostic settings](../essentials/diagnostic-settings.md) | [Metrics export](./data-collection-metrics.md) (metrics only) | Diagnostic settings are still currently used to collect resource logs from Azure resources. |
+| [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. |
+
 
 ## Pipeline overview
 Data collection using the Azure Monitor pipeline is shown in the diagram below. The Cloud pipeline is a component of Azure Monitor that's automatically available in your Azure subscription. It requires no configuration, and doesn't appear in the Azure portal. It represents the processing path for data that's sent to Azure Monitor. 
@@ -43,7 +52,7 @@ Data collection rule associations (DCRAs) are used to associate a DCR with a mon
 
 For example, the following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect, which the agent uses to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, the cloud pipeline runs any transformation specified in the DCR to filter and modify the data and then sends the data to the specified workspace and table.
 
-:::image type="content" source="../media/monitoring-patterns/data-collection-virtual-machines.svg" lightbox="../media/monitoring-patterns/data-collection-virtual-machines.svg" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
+:::image type="content" source="../media/monitoring-patterns/data-collection-virtual-machine.svg" lightbox="../media/monitoring-patterns/data-collection-virtual-machine.svg" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
 
 ### Direct ingestion
 With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using [Logs ingestion API](../logs/logs-ingestion-api-overview.md). Each API call specifies the DCR that will process its data. The DCR understands the structure of the incoming data, includes a transformation that ensures that the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
