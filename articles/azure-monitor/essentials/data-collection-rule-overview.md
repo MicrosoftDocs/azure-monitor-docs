@@ -10,31 +10,29 @@ ms.custom: references_regions
 ---
 
 # Data collection rules (DCRs) in Azure Monitor
-Data collection rules (DCRs) are part of an [ETL](/azure/architecture/data-guide/relational-data/etl)-like data collection process that improves on legacy data collection methods for Azure Monitor. This process uses a common data ingestion pipeline, the Azure Monitor pipeline, for all data sources and a standard method of configuration that's more manageable and scalable than other methods. Specific advantages of DCR-based data collection include the following:
+Data collection rules (DCRs) are part of an [ETL](/azure/architecture/data-guide/relational-data/etl)-like data collection process that improves on legacy data collection methods for Azure Monitor. This process uses a common data ingestion pipeline for all data sources and a standard method of configuration that's more manageable and scalable than previous methods. Specific advantages of DCR-based data collection include the following:
 
 - Consistent method for configuration of different data sources.
 - Ability to apply a transformation to filter or modify incoming data before it's stored.
 - Scalable configuration options supporting infrastructure as code and DevOps processes.
 - Option of edge pipeline in your own environment to provide high-end scalability, layered network configurations, and periodic connectivity.
 
-## What's in a data collection rule (DCR)?
-
-
-:::image type="content" source="media/data-collection-rule-overview/data-collection-rule-functions.png" lightbox="media/data-collection-rule-overview/data-collection-rule-functions.png" alt-text="Diagram that lists the high level functions of a data collection rule." border="false":::
-
 
 ## Pipeline overview
-Data collection using the Azure Monitor pipeline is shown in the diagram below. Each collection scenario is defined in a DCR that specifies how the data should be processed and where it should be sent. The Azure Monitor pipeline itself consists of two components:
+Data collection using the Azure Monitor pipeline is shown in the diagram below. The Cloud pipeline is a component of Azure Monitor that's automatically available in your Azure subscription. It requires no configuration, and doesn't appear in the Azure portal. It represents the processing path for data that's sent to Azure Monitor. 
 
-- **Cloud pipeline** is a component of Azure Monitor that's automatically available in your Azure subscription. It requires no configuration, and doesn't appear in the Azure portal. It represents the processing path for data that's sent to Azure Monitor. The DCR provides instructions for how the cloud pipeline should process data it receives.
-- **Edge pipeline** is an optional component that extends the Azure Monitor pipeline to your own data center. It enables at-scale collection and routing of telemetry data before it's delivered to the cloud pipeline. See [Edge pipeline](#edge-pipeline) for details on the value of this component.
+:::image type="content" source="media/data-collection-rule-overview/pipeline-overview-simple.png" lightbox="media/data-collection-rule-overview/pipeline-overview-simple.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
-:::image type="content" source="media/pipeline-overview/pipeline-overview.png" lightbox="media/pipeline-overview/pipeline-overview.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
+## Data collection rules (DCR)
 
+Each data collection scenario is defined in a DCR that provides instructions for how the cloud pipeline should process data it receives. Depending on the scenario, DCRs will specify all or some of the following:
 
-## Using data collection rules
+- Data to collect and send to the pipeline.
+- Schema of the incoming data.
+- Transformations to apply to the data before it's stored.
+- Destination where the data should be sent.
 
-Data collection rules (DCRs) are stored in Azure so they can be centrally deployed and managed like any other Azure resource. They're sets of instructions supporting data collection using the Azure Monitor pipeline. They provide a consistent and centralized way to define and customize different data collection scenarios. Depending on the scenario, DCRs specify such details as what data should be collected, how to transform that data, and where to send it. 
+Data collection rules (DCRs) are stored in Azure so they can be centrally deployed and managed like any other Azure resource. They provide a consistent and centralized way to define and customize different data collection scenarios. Depending on the scenario, DCRs specify such details as what data should be collected, how to transform that data, and where to send it. 
 
 There are two fundamental ways that DCRs are specified for a particular data collection scenario as described in the following sections.
 
@@ -43,14 +41,14 @@ Data collection rule associations (DCRAs) are used to associate a DCR with a mon
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-rule-associations.png" lightbox="media/data-collection-rule-overview/data-collection-rule-associations.png" alt-text="Diagram that shows DCRAs connected to a DCR." border="false":::
 
-For example, the following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCR specifies events and performance data to collect, which the agent uses to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, the cloud pipeline runs any transformation specified in the DCR to filter and modify the data and then sends the data to the specified workspace and table.
+For example, the following diagram illustrates data collection for [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect, which the agent uses to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, the cloud pipeline runs any transformation specified in the DCR to filter and modify the data and then sends the data to the specified workspace and table.
 
-:::image type="content" source="media/data-collection-rule-overview/view-data-collection-rules.png" lightbox="media/data-collection-rule-overview/view-data-collection-rules.png" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
+:::image type="content" source="../media/monitoring-patterns/data-collection-virtual-machines.svg" lightbox="../media/monitoring-patterns/data-collection-virtual-machines.svg" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
 
 ### Direct ingestion
 With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using [Logs ingestion API](../logs/logs-ingestion-api-overview.md). Each API call specifies the DCR that will process its data. The DCR understands the structure of the incoming data, includes a transformation that ensures that the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
 
-:::image type="content" source="media/data-collection-rule-overview/overview-ingestion-api.png" lightbox="media/data-collection-rule-overview/overview-ingestion-api.png" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
+:::image type="content" source="../media/monitoring-patterns/data-collection-direct-ingestion.svg" lightbox="../media/monitoring-patterns/data-collection-direct-ingestion.svg" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
 
 ## Transformations
 [Transformations](./data-collection-transformations.md) allow you to modify incoming data before it's stored in Azure Monitor. You may filter unneeded data to reduce your ingestion costs, remove sensitive data that shouldn't be persisted in the Log Analytics workspace, or format data to ensure that it matches the schema of its destination. Transformations are [KQL queries](../logs/log-query-overview.md) defined in the DCR that run in the cloud pipeline.
@@ -66,6 +64,14 @@ Specific use cases for Azure Monitor edge pipeline are:
 - **Scalability**. The edge pipeline can handle large volumes of data from monitored resources that may be limited by other collection methods such as Azure Monitor agent.
 - **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud, or may have long unexpected periods without connection. The edge pipeline can cache data locally and sync with the cloud when connectivity is restored.
 - **Layered network**. In some environments, the network is segmented and data cannot be sent directly to the cloud. The edge pipeline can be used to collect data from monitored resources without cloud access and manage the connection to Azure Monitor in the cloud.
+
+
+
+
+The Azure Monitor pipeline itself consists of two components:
+
+- **Cloud pipeline** is a component of Azure Monitor that's automatically available in your Azure subscription. It requires no configuration, and doesn't appear in the Azure portal. It represents the processing path for data that's sent to Azure Monitor. The DCR provides instructions for how the cloud pipeline should process data it receives.
+- **Edge pipeline** is an optional component that extends the Azure Monitor pipeline to your own data center. It enables at-scale collection and routing of telemetry data before it's delivered to the cloud pipeline. See [Edge pipeline](#edge-pipeline) for details on the value of this component.
 
 
 ## Data collection scenarios
