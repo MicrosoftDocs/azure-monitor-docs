@@ -22,18 +22,18 @@ To create a data collection rule for metrics export use the Azure portal, Azure 
 1. On the Monitor menu in the Azure portal, select **Data Collection Rules** then select **Create**.
 
 1. To create a DCR to collect platform metrics data, select the link on the top of the page.
-    :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
+    :::image type="content" source="./media/metrics-export-create/create-data-collection-rule-metrics.png" lightbox="./media/metrics-export-create/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
 1. Select **Enable Managed Identity** if you want to send metrics to a Storage Account or Event Hubs. 
 1. Select **Next**
-   :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-basics.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
+   :::image type="content" source="./media/metrics-export-create/create-data-collection-rule-metrics-basics.png" lightbox="./media/metrics-export-create/create-data-collection-rule-metrics-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
 1. On the **Resources** page, select **Add resources**  to add the resources you want to collect metrics from. 
 1. Select **Next** to move to the **Collect and deliver** tab.
-   :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-resources.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
+   :::image type="content" source="./media/metrics-export-create/create-data-collection-rule-metrics-resources.png" lightbox="./media/metrics-export-create/create-data-collection-rule-metrics-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
 1. Select **Add new dataflow** 
 1. The resource type of the resource that chose in the previous step is automatically selected. Add more resource types if you want to use this rule to collect metrics from multiple resource types in the future.
 1. Select **Next Destinations** to move to the **Destinations** tab.
-   :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-source.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page."::: 
+   :::image type="content" source="./media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" lightbox="./media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page."::: 
 
 1. To send metrics to a Log Analytics workspace, select *Azure Monitor Logs* from the **Destination type** dropdown. 
     1. Select the **Subscription** and the Log Analytics workspace you want to send the metrics to.
@@ -48,7 +48,7 @@ To create a data collection rule for metrics export use the Azure portal, Azure 
     To select Storage Account or Event Hubs as the destination, you must enable managed identity for the DCR on the Basics tab.
 
 1. Select **Save** , then select **Review + create**. 
-   :::image type="content" source="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-destination.png" lightbox="./media/data-collection-rule-create-edit/create-data-collection-rule-metrics-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page."::: 
+   :::image type="content" source="./media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" lightbox="./media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page."::: 
 
 ### [CLI](#tab/CLI)
 

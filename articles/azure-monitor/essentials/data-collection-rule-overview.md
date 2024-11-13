@@ -4,20 +4,26 @@ description: Overview of data collection rules (DCRs) in Azure Monitor including
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 03/18/2024
+ms.date: 11/12/2024
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
 
 # Data collection rules (DCRs) in Azure Monitor
-*Data collection rules (DCRs)* are part of an [ETL](/azure/architecture/data-guide/relational-data/etl)-like data collection process that improves on legacy data collection methods for Azure Monitor. This process uses a common data ingestion pipeline, the Azure Monitor pipeline, for all data sources and a standard method of configuration that's more manageable and scalable than other methods. Specific advantages of DCR-based data collection include the following:
+Data collection rules (DCRs) are part of an [ETL](/azure/architecture/data-guide/relational-data/etl)-like data collection process that improves on legacy data collection methods for Azure Monitor. This process uses a common data ingestion pipeline, the Azure Monitor pipeline, for all data sources and a standard method of configuration that's more manageable and scalable than other methods. Specific advantages of DCR-based data collection include the following:
 
 - Consistent method for configuration of different data sources.
 - Ability to apply a transformation to filter or modify incoming data before it's stored.
 - Scalable configuration options supporting infrastructure as code and DevOps processes.
 - Option of edge pipeline in your own environment to provide high-end scalability, layered network configurations, and periodic connectivity.
 
+## What's in a data collection rule (DCR)?
 
+
+:::image type="content" source="media/data-collection-rule-overview/data-collection-rule-functions.png" lightbox="media/data-collection-rule-overview/data-collection-rule-functions.png" alt-text="Diagram that lists the high level functions of a data collection rule." border="false":::
+
+
+## Pipeline overview
 Data collection using the Azure Monitor pipeline is shown in the diagram below. Each collection scenario is defined in a DCR that specifies how the data should be processed and where it should be sent. The Azure Monitor pipeline itself consists of two components:
 
 - **Cloud pipeline** is a component of Azure Monitor that's automatically available in your Azure subscription. It requires no configuration, and doesn't appear in the Azure portal. It represents the processing path for data that's sent to Azure Monitor. The DCR provides instructions for how the cloud pipeline should process data it receives.
