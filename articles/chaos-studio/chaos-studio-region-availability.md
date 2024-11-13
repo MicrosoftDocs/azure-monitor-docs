@@ -7,7 +7,7 @@ ms.reviewer: prashabora
 ms.service: azure-chaos-studio
 ms.topic: conceptual
 ms.date: 11/13/2024
-ms.custom: template-concept
+ms.custom: template-concept, references_regions
 ---
 
 # Regional availability of Azure Chaos Studio
