@@ -642,6 +642,9 @@ items:
             href: logs/tutorial-workspace-transformations-api.md
       - name: Metrics export
         items:
+        - name: Create
+          displayName: metrics export
+          href: essentials/metrics-export-create.md
         - name: Metrics export using data collection rules
           displayName: data collection rules, metrics
           href: essentials/data-collection-metrics.md

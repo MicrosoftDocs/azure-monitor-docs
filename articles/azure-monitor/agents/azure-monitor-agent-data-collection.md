@@ -53,11 +53,11 @@ The Azure portal provides a simplified experience for creating a DCR for virtual
 
 On the **Monitor** menu in the Azure portal, select **Data Collection Rules** > **Create** to open the DCR creation page.
 
-:::image type="content" source="media/data-collection-rule-create/create-data-collection-rule.png" lightbox="media/data-collection-rule-create/create-data-collection-rule.png" alt-text="Screenshot that shows Create button for a new data collection rule.":::
+:::image type="content" source="media/azure-monitor-agent-data-collection/create-data-collection-rule.png" lightbox="media/azure-monitor-agent-data-collection/create-data-collection-rule.png" alt-text="Screenshot that shows Create button for a new data collection rule.":::
 
 The **Basic** page includes basic information about the DCR.
 
-:::image type="content" source="media/data-collection-rule-create/basics-tab.png" lightbox="media/data-collection-rule-create/basics-tab.png" alt-text="Screenshot that shows the Basic tab for a new data collection rule.":::
+:::image type="content" source="media/azure-monitor-agent-data-collection/basics-tab.png" lightbox="media/azure-monitor-agent-data-collection/basics-tab.png" alt-text="Screenshot that shows the Basic tab for a new data collection rule.":::
 
 | Setting | Description |
 |:---|:---|
@@ -78,7 +78,7 @@ The **Resources** page allows you to add VMs to be associated with the DCR. Sele
 > The portal enables system-assigned managed identity on the target resources, along with existing user-assigned identities, if there are any. For existing applications, unless you specify the user-assigned identity in the request, the machine defaults to using system-assigned identity instead.
 
 
-:::image type="content" source="media/data-collection-rule-create/resources-tab.png" lightbox="media/data-collection-rule-create/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
+:::image type="content" source="media/azure-monitor-agent-data-collection/resources-tab.png" lightbox="media/azure-monitor-agent-data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
 
  If the machine you're monitoring isn't in the same region as your destination Log Analytics workspace and you're collecting data types that require a DCE, select **Enable Data Collection Endpoints** and select an endpoint in the region of each monitored machine. If the monitored machine is in the same region as your destination Log Analytics workspace, or if you don't require a DCE, don't select a data collection endpoint on the **Resources** tab.
  
