@@ -145,7 +145,7 @@ In this article, you:
 You have three options to add Application Insights to your web app:
 
 - By using the **Application Insights** pane in the Azure portal.
-- By using the **Configuration** pane in the Azure portal.
+- By using the **Environment variables** pane in the Azure portal.
 - By manually adding to your web app settings.
 
 # [Application Insights pane](#tab/enablement)
@@ -165,15 +165,14 @@ You have three options to add Application Insights to your web app:
 
 1. Select **Apply** > **Yes** to apply and confirm.
 
-# [Configuration pane](#tab/config)
+# [Environment variables pane](#tab/config)
 
 1. [Create an Application Insights resource](../app/create-workspace-resource.md) in the same Azure subscription as your App Service instance.
 1. Go to the Application Insights resource.
 1. Copy the **Connection String**.
-1. In your web app in the Azure portal, select **Configuration** on the left pane.
-1. Select **New application setting**.
+1. In your web app in the Azure portal, select **Environment variables** on the left pane, then **Add**.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/new-setting-configuration.png" alt-text="Screenshot that shows adding a new application setting in the Configuration pane.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/new-setting-configuration.png" alt-text="Screenshot that shows adding a new application setting in the Environment variables pane.":::    
 
 1. Add your connection string as a new setting in the **Add/Edit application setting** pane:
 
