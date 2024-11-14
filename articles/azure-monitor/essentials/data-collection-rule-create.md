@@ -44,7 +44,7 @@ The following table lists scenarios that allow you to create a DCR using the Azu
 | Collect client data from VM | Create a DCR in the Azure portal using a guided interface to select different data sources from VM clients. The Azure Monitor agent is automatically installed if necessary, and an association is created with each VM.<br>See [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md) for details. |
 | Metrics export |  |
 | Table creation | When you create a new table in a Log Analytics workspace using the Azure portal, you upload sample data that Azure Monitor uses to create a DCR that can be used with the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md). |
-| Container insights | [Enable Container Insights](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) | When you enable Container Insights on a Kubernetes cluster, a DCR with association to the agent in the cluster is created that collects data according to the configuration you selected. You may need to modify this DCR to add a transformation. |
+| Container insights | When you enable Container Insights on a Kubernetes cluster, a DCR with association to the agent in the cluster is created that collects data according to the configuration you selected. You may need to modify this DCR to add a transformation.<br>See [Enable Container Insights](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana). |
 
 ### [CLI](#tab/CLI)
 
@@ -356,6 +356,17 @@ Using ARM templates, you can modify the JSON of any DCR in the Azure portal. You
    1. Click **Redeploy** and then **Edit template** to make the necessary changes to the DCR and then save and deploy it again.
 
 
+### [CLI](#tab/cli)
+
+**Retrieve the DCR and store in a local file**
+
+```azurecli
+resourceId="<ResourceId>" # Resource ID of the DCR to edit
+filePath="<FilePath>" # File to store DCR content
+az rest --method get --uri "$resourceId?api-version=2023-03-11" > temp.json
+cat temp.json | jq '.' > $filePath
+```
+
 ### [PowerShell](#tab/powershell)
 
 **Retrieve the DCR and store in a local file**
@@ -367,16 +378,6 @@ $DCR = Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2023-03-11") -Meth
 $DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath $FilePath
 ```
 
-### [CLI](#tab/cli)
-
-**Retrieve the DCR and store in a local file**
-
-```azurecli
-resourceId="<ResourceId>" # Resource ID of the DCR to edit
-filePath="<FilePath>" # File to store DCR content
-az rest --method get --uri "$resourceId?api-version=2023-03-11" > temp.json
-cat temp.json | jq '.' > $filePath
-```
 
 ### [API](#tab/api)
 
