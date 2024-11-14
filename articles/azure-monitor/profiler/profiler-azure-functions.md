@@ -37,7 +37,7 @@ In this article, you'll use the Azure portal to:
 
 From your Functions app overview page in the Azure portal:
 
-1. Under **Settings**, select **Configuration**, verify the `APP_INSIGHTS_CONNECTION_STRING` setting is included in the settings list.
+1. Under **Settings**, select **Environment variables**, verify the `APP_INSIGHTS_CONNECTION_STRING` setting is included in the settings list.
 
    :::image type="content" source="./media/profiler-azure-functions/app-insights-key.png" alt-text="Screenshot showing the App Insights Instrumentation Key setting in the list.":::
 
