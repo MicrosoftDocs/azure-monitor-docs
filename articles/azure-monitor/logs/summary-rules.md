@@ -30,11 +30,11 @@ Here's a video that provides an overview of some of the benefits of summary rule
 
 ## How summary rules work
 
-Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and reingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
+Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and re-ingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
 
-:::image type="content" source="media/summary-rules/ingestion-flow.png" alt-text="A diagram that shows how data is ingested into a Log Analytics workspace and is aggregated and reingested into the workspace by using a summary rule." lightbox="media/summary-rules/ingestion-flow.png":::
+:::image type="content" source="media/summary-rules/ingestion-flow.png" alt-text="A diagram that shows how data is ingested into a Log Analytics workspace and is aggregated and re-ingested into the workspace by using a summary rule." lightbox="media/summary-rules/ingestion-flow.png":::
 
-You can aggregate data from any table, regardless of whether the table has an [Analytics or Basic data plan](basic-logs-query.md). Azure Monitor creates the destination table schema based on the query you define. If the destination table already exists, Azure Monitor adds any columns required to support the query results. All destination tables also include a set of standard fields with summary rule information, including: 
+You can aggregate data from any table, regardless of whether the table has an [Analytics or Basic data plan](basic-logs-query.md). Azure Monitor creates the destination table schema based on the query you define. If the destination table already exists, Azure Monitor appends any columns required to support the query results. All destination tables also include a set of standard fields with summary rule information, including: 
 
 - `_RuleName`: The summary rule that generated the aggregated log entry.
 - `_RuleLastModifiedTime`: When the rule was last modified. 
@@ -84,7 +84,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 |:---|:---|
 | Maximum number of active rules in a workspace | 30 |
 | Maximum number of results per bin | 500,000 |
-| Maximum results set volume | 100 MB |
+| Maximum results volume per bin | 100 MB |
 | Query time-out for bin processing | 10 minutes |
 
 - Summary rules are currently only available in the public cloud. 
@@ -125,7 +125,7 @@ Before you create a rule, experiment with the query in [Log Analytics](log-analy
 > [!NOTE]
 > Summary rules are most beneficial in term of cost and results consumption when reduced significantly. For example, results volume is 0.01% or less than source.
 
-When you update a query and remove output fields from the results set, Azure Monitor doesn't automatically remove the columns from the destination table. You need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
+When you update a query and there are fewer fields in summary results, Azure Monitor doesn't automatically remove the columns from the destination table, and you need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
 
 
 ### [API](#tab/api)
@@ -490,7 +490,7 @@ The destination table schema is defined when you create or update a summary rule
 
 ### Data in removed columns remains in the workspace based on the table's retention settings
 
-When you remove columns in the query, the columns and data remain in the destination and based on the [retention period](data-retention-configure.md) defined on the table or workspace. If you don't need the removed in destination table, [delete the columns from the table schema](create-custom-table.md#add-or-delete-a-custom-column). If you then add columns with the same name, any data that's not older that the retention period appears again.
+When you remove a field in the query, the columns and data remain in the destination and based on the [retention period](data-retention-configure.md) defined on the table or workspace. If you don't need the removed in destination table, [delete the columns from the table schema](create-custom-table.md#add-or-delete-a-custom-column). If you then add columns with the same name, any data that's not older that the retention period appears again.
 
 ## Related content
 
