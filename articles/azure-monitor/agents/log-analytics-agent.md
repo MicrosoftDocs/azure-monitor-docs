@@ -8,13 +8,12 @@ ms.date: 11/14/2024
 ms.reviewer: luki
 
 ---
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
 
 # Log Analytics agent overview
 
+[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+
 This article provides a detailed overview of the Log Analytics agent and the agent's system and network requirements and deployment methods.
-
-
 
 You might also see the Log Analytics agent referred to as Microsoft Monitoring Agent (MMA).
 
