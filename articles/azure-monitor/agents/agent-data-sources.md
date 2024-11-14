@@ -4,7 +4,7 @@ description: Data sources define the log data that Azure Monitor collects from a
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 10/19/2023
+ms.date: 11/14/2024
 ms.reviewer: shseth
 
 ---
