@@ -47,7 +47,7 @@ If you provide a relative path, it will resolve relative to the directory where 
 #### JSON configuration
 
 Instead of using a configuration file, you can set the entire JSON configuration with:
-*	the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable
+*	the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable, or
 *	the applicationinsights.configuration.content system property
 
 ## Connection string
