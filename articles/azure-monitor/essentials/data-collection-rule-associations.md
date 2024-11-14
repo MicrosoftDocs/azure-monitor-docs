@@ -1,5 +1,5 @@
 ---
-title: Manage data collection rules (DCRs) and associations in Azure Monitor
+title: Manage data collection rule associations in Azure Monitor
 description: Describes different options for viewing data collection rules (DCRs) and data collection rule associations (DCRA) in Azure Monitor.
 ms.topic: conceptual
 author: bwren
@@ -8,7 +8,7 @@ ms.date: 03/18/2024
 ms.reviewer: nikeist
 ---
 
-# Manage data collection rules (DCRs) and associations in Azure Monitor
+# Manage data collection rule associations in Azure Monitor
 [Data collection rules (DCRs)](data-collection-rule-overview.md) are used to specify the data that you want to collect from your Azure resources and the configuration for how that data is collected. This article describes how to view the DCRs in your subscription and the resources that they are associated with. It also provides details on managing [data collection rule associations (DCRAs)](data-collection-rule-overview.md#data-collection-rule-associations-dcra).
 
 > [!NOTE]

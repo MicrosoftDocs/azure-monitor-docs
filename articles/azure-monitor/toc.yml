@@ -626,18 +626,15 @@ items:
         - name: Samples
           displayName: Transformations
           href: essentials/data-collection-transformations-samples.md
-        - name: Tutorial
-          displayName: Custom text logs, transformations
-          href: agents/azure-monitor-agent-transformation.md
-        - name: Workspace transformations
+        - name: Tutorials
           items:
-          - name: Overview
-            displayName: Workspace transformations
-            href: essentials/data-collection-transformations-workspace.md
-          - name: Create in Azure portal
+          - name: Transformation in text logs
+            displayName: Custom text logs, transformations
+            href: agents/azure-monitor-agent-transformation.md
+          - name: Workspace transformation in Azure portal
             displayName: Workspace transformations
             href: logs/tutorial-workspace-transformations-portal.md
-          - name: Create with ARM templates
+          - name: Workspace transformation with ARM templates
             displayName: Workspace transformations
             href: logs/tutorial-workspace-transformations-api.md
       - name: Metrics export

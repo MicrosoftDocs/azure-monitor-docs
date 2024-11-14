@@ -335,11 +335,11 @@ You can view the JSON for the DCR in the Azure portal so you can copy and paste 
 
 1. In the Azure portal, navigate to the DCR that you want to edit and click **JSON view** in the **Overview** menu.
 
-    :::image type="content" source="media/data-collection-rule-create/json-view-option.png" lightbox="media/data-collection-rule-create/json-view-option.png" alt-text="Screenshot that shows the option to view the JSON for a DCR in the Azure portal.":::
+    :::image type="content" source="media/data-collection-rule-create-edit/json-view-option.png" lightbox="media/data-collection-rule-create-edit/json-view-option.png" alt-text="Screenshot that shows the option to view the JSON for a DCR in the Azure portal.":::
 
 2. Verify that the latest version of the API is selected in the **API version** dropdown. If not, some of the JSON may not be displayed.
 
-    :::image type="content" source="media/data-collection-rule-create/json-view.png" lightbox="media/data-collection-rule-create/json-view.png" alt-text="Screenshot that shows the JSON for a DCR in the Azure portal.":::
+    :::image type="content" source="media/data-collection-rule-create-edit/json-view.png" lightbox="media/data-collection-rule-create-edit/json-view.png" alt-text="Screenshot that shows the JSON for a DCR in the Azure portal.":::
 
 ### ARM template
 You can use the [Export template](/azure/azure-resource-manager/templates/export-template-portal) feature in the Azure portal to retrieve the ARM template for a DCR. This feature generates an ARM template that you can use to deploy the DCR to another environment.
