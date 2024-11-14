@@ -5,7 +5,7 @@ services: azure-monitor
 ms.topic: conceptual
 author: rboucher
 ms.author: robb
-ms.date: 11/12/2024
+ms.date: 11/14/2024
 ms. reviewer: shseth
 ---
 # Collecting Event Tracing for Windows (ETW) Events for analysis Azure Monitor Logs
