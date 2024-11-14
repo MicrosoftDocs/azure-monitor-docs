@@ -10,7 +10,9 @@ ms.custom: references_regions
 ---
 
 # Data collection rules (DCRs) in Azure Monitor
-Data collection rules (DCRs) are part of an [ETL](/azure/architecture/data-guide/relational-data/etl)-like data collection process that improves on legacy data collection methods for Azure Monitor. This process uses a common data ingestion pipeline for all data sources and a standard method of configuration that's more manageable and scalable than previous methods. Specific advantages of DCR-based data collection include the following:
+Data collection rules (DCRs) are part of an [ETL](/azure/architecture/data-guide/relational-data/etl)-like data collection process that improves on legacy data collection methods for Azure Monitor. This process uses a common data ingestion pipeline for all data sources and a standard method of configuration that's more manageable and scalable than previous collection methods. 
+
+Specific advantages of DCR-based data collection include the following:
 
 - Consistent method for configuration of different data sources.
 - Ability to apply a transformation to filter or modify incoming data before it's stored.
@@ -18,23 +20,23 @@ Data collection rules (DCRs) are part of an [ETL](/azure/architecture/data-guide
 - Option of edge pipeline in your own environment to provide high-end scalability, layered network configurations, and periodic connectivity.
 
 ## Legacy data collection methods
-The data collection process described in this article has either replaced or is in the process of replacing other data collection methods in Azure Monitor. The following table lists the legacy methods with their replacements. Other data collection methods in Azure Monitor are expected to also be replaced by DCRs in the future.
+The data collection process described in this article has either replaced or is in the process of replacing other data collection methods in Azure Monitor. The following table lists the legacy methods with their DCR-based replacements. Other data collection methods in Azure Monitor are expected to also be replaced by DCRs in the future.
 
-| Legacy method | Replacement method | Description |
+| Legacy method | DCR method | Description |
 |:---|:---|:---|
-| [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | The Azure Monitor agent is now used to monitor VMs and Kubernetes clusters supporting VM insights and Container insights. |
-| [Diagnostic settings](../essentials/diagnostic-settings.md) | [Metrics export](./data-collection-metrics.md) (metrics only) | Diagnostic settings are still currently used to collect resource logs from Azure resources. |
-| [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. |
+| [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | The Azure Monitor agent is now used to monitor VMs and Kubernetes clusters supporting [VM insights](../vm/vminsights-overview.md) and [Container insights](../containers/container-insights-overview.md). |
+| [Diagnostic settings](../essentials/diagnostic-settings.md)<br>(metrics only) | [Metrics export](./data-collection-metrics.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
+| [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. It replaces the Data Collector API which was less secure and less functional.  |
 
 
-## Pipeline overview
+## Azure Monitor pipeline
 Data collection using the Azure Monitor pipeline is shown in the diagram below. The Cloud pipeline is a component of Azure Monitor that's automatically available in your Azure subscription. It requires no configuration, and doesn't appear in the Azure portal. It represents the processing path for data that's sent to Azure Monitor. 
 
 :::image type="content" source="media/data-collection-rule-overview/pipeline-overview-simple.png" lightbox="media/data-collection-rule-overview/pipeline-overview-simple.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
 ## Data collection rules (DCR)
 
-Each data collection scenario is defined in a DCR that provides instructions for how the cloud pipeline should process data it receives. Depending on the scenario, DCRs will specify all or some of the following:
+Each data collection scenario using the Azure Monitor pipeline is defined in a DCR that provides instructions for how the cloud pipeline should process data it receives. Depending on the scenario, DCRs will specify all or some of the following:
 
 - Data to collect and send to the pipeline.
 - Schema of the incoming data.
