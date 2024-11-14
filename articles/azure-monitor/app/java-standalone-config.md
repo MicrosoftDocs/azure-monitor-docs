@@ -36,15 +36,19 @@ By default, Application Insights Java 3  expects the configuration file to be na
  
 ### Alternative configurations
 
-1.	Custom configuration file
+#### Custom configuration file
+   
 You can specify a custom configuration file with
-o	the APPLICATIONINSIGHTS_CONFIGURATION_FILE environment variable
-o	the applicationinsights.configuration.file system property
+*	the APPLICATIONINSIGHTS_CONFIGURATION_FILE environment variable, or
+*	the applicationinsights.configuration.file system property
+
 If you provide a relative path, it will resolve relative to the directory where applicationinsights-agent-3.6.0.jar is located.
-2.	JSON configuration
+
+#### JSON configuration
+
 Instead of using a configuration file, you can set the entire JSON configuration with:
-o	the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable
-o	the applicationinsights.configuration.content system property
+*	the APPLICATIONINSIGHTS_CONFIGURATION_CONTENT environment variable, or
+*	the applicationinsights.configuration.content system property
 
 ## Connection string
 
