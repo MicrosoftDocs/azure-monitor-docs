@@ -11,7 +11,7 @@ ms.date: 09/16/2024
 
 # Event
 
-Events from Windows Event Log on Windows computers using the Log Analytics agent.
+Events from Windows Event Log on Windows computers using the Log Analytics agent and Azure Monitor agent.
 
 
 ## Table attributes
