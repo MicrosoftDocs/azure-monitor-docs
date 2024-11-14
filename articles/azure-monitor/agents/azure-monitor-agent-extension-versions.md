@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: This article describes the version details for the Azure Monitor Agent virtual machine extension.
 ms.topic: conceptual
-ms.date: 08/12/2024
+ms.date: 11/14/2024
 author: guywi-ms
 ms.author: guywild
 ms.custom: references_region

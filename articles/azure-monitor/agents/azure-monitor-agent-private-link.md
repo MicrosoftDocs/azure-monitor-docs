@@ -2,7 +2,7 @@
 title: Enable network isolation for Azure Monitor Agent by using Private Link
 description: Enable network isolation for Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 5/1/2023
+ms.date: 11/14/2024
 ms.custom: references_region
 ms.reviewer: jeffwo
 
