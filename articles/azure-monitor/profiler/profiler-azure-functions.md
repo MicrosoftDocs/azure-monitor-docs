@@ -10,17 +10,17 @@ ms.reviewer: ryankahng
 # Enable the .NET Profiler for Azure Functions apps
 
 In this article, you'll use the Azure portal to:
-- View the current app settings for your Functions app. 
-- Add two new app settings to enable the .NET Profiler on the Functions app. 
+- View the current app settings for your Functions app.
+- Add two new app settings to enable the .NET Profiler on the Functions app.
 - Navigate to the Profiler page for your Functions app to view data.
 
 > [!NOTE]
-> You can enable the Application Insights Profiler for .NET for Azure Functions apps on the **App Service** plan. 
+> You can enable the Application Insights Profiler for .NET for Azure Functions apps on the **App Service** plan.
 
 ## Prerequisites
 
-- [An Azure Functions app](/azure/azure-functions/functions-create-function-app-portal). Verify your Functions app is on the **App Service** plan. 
-     
+- [An Azure Functions app](/azure/azure-functions/functions-create-function-app-portal). Verify your Functions app is on the **App Service** plan.
+
   :::image type="content" source="./media/profiler-azure-functions/choose-plan.png" alt-text="Screenshot of where to select App Service plan from drop-down in Functions app creation.":::
 
 - Linked to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the instrumentation key.
@@ -37,11 +37,7 @@ In this article, you'll use the Azure portal to:
 
 From your Functions app overview page in the Azure portal:
 
-1. Under **Settings**, select **Configuration**.
-
-   :::image type="content" source="./media/profiler-azure-functions/configuration-menu.png" alt-text="Screenshot of selecting Configuration from under the Settings section of the left side menu.":::
-
-1. In the **Application settings** tab, verify the `APPINSIGHTS_INSTRUMENTATIONKEY` setting is included in the settings list.
+1. Under **Settings**, select **Configuration**, verify the `APP_INSIGHTS_CONNECTION_STRING` setting is included in the settings list.
 
    :::image type="content" source="./media/profiler-azure-functions/app-insights-key.png" alt-text="Screenshot showing the App Insights Instrumentation Key setting in the list.":::
 
@@ -71,7 +67,7 @@ The app settings now show up in the table:
 
 
 > [!NOTE]
-> You can also enable the .NET Profiler using:  
+> You can also enable the .NET Profiler using:
 > - [Azure Resource Manager Templates](../app/azure-web-apps-net-core.md#app-service-application-settings-with-azure-resource-manager)
 > - [Azure PowerShell](/powershell/module/az.websites/set-azwebapp)
 > - [Azure CLI](/cli/azure/webapp/config/appsettings)

@@ -62,12 +62,12 @@ In this article, you:
         {
             services.AddApplicationInsightsTelemetryWorkerService();
             services.AddServiceProfiler();
-            
+
             // Assuming Worker is your background service class.
             services.AddHostedService<Worker>();
         })
         .Build();
-    
+
     await host.RunAsync();
     ```
 
@@ -87,17 +87,17 @@ In this article, you:
 
 1. Go to your new web app resource and select **Deployment Center** > **FTPS credentials** to create the deployment credentials. Make a note of your credentials to use later.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/credentials.png" alt-text="Screenshot that shows creating the deployment credentials.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/credentials.png" alt-text="Screenshot that shows creating the deployment credentials.":::
 
 1. Select **Save**.
 1. Select the **Settings** tab.
 1. In the dropdown, select **Local Git** to set up a local Git repository in the web app.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/deployment-options.png" alt-text="Screenshot that shows view deployment options in a dropdown.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/deployment-options.png" alt-text="Screenshot that shows view deployment options in a dropdown.":::
 
 1. Select **Save** to create a Git repository with a Git clone URI.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/local-git-repo.png" alt-text="Screenshot that shows setting up the local Git repository.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/local-git-repo.png" alt-text="Screenshot that shows setting up the local Git repository.":::
 
    For more deployment options, see the [App Service documentation](/azure/app-service/deploy-best-practices).
 
@@ -150,18 +150,18 @@ You have three options to add Application Insights to your web app:
 
 # [Application Insights pane](#tab/enablement)
 
-1. In your web app on the Azure portal, select **Application Insights** on the left pane. 
+1. In your web app on the Azure portal, select **Application Insights** on the left pane.
 1. Select **Turn on Application Insights**.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/turn-on-app-insights.png" alt-text="Screenshot that shows turning on Application Insights.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/turn-on-app-insights.png" alt-text="Screenshot that shows turning on Application Insights.":::
 
 1. Under **Application Insights**, select **Enable**.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/enable-app-insights.png" alt-text="Screenshot that shows enabling Application Insights.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/enable-app-insights.png" alt-text="Screenshot that shows enabling Application Insights.":::
 
 1. Under **Link to an Application Insights resource**, either create a new resource or select an existing resource. For this example, we create a new resource.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/link-app-insights.png" alt-text="Screenshot that shows linking Application Insights to a new or existing resource.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/link-app-insights.png" alt-text="Screenshot that shows linking Application Insights to a new or existing resource.":::
 
 1. Select **Apply** > **Yes** to apply and confirm.
 
@@ -173,7 +173,7 @@ You have three options to add Application Insights to your web app:
 1. In your web app in the Azure portal, select **Configuration** on the left pane.
 1. Select **New application setting**.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/new-setting-configuration.png" alt-text="Screenshot that shows adding a new application setting in the Configuration pane.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/new-setting-configuration.png" alt-text="Screenshot that shows adding a new application setting in the Configuration pane.":::
 
 1. Add your connection string as a new setting in the **Add/Edit application setting** pane:
 
@@ -181,11 +181,11 @@ You have three options to add Application Insights to your web app:
    | ---- | ----- |
    | APPLICATIONINSIGHTS_CONNECTION_STRING | [YOUR_CONNECTION_STRING] |
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/add-ikey-settings.png" alt-text="Screenshot that shows adding the iKey to the Settings pane.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/add-connection-string-setting.png" alt-text="Screenshot that shows adding the connection string to the Settings pane.":::
 
 1. Select **OK**.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/save-app-insights-key.png" alt-text="Screenshot that shows saving the Application Insights key settings.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/save-app-insights-key.png" alt-text="Screenshot that shows saving the Application Insights key settings.":::
 
 1. Select **Save**.
 
