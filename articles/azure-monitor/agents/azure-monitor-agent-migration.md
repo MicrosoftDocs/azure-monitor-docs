@@ -5,7 +5,7 @@ author: EdB-MSFT
 ms.author: edbaynash
 ms.reviewer: guywild
 ms.topic: conceptual 
-ms.date: 08/13/2024
+ms.date: 11/14/2024
 
 # Customer intent: As an azure administrator, I want to understand the process of migrating from the MMA agent to the AMA agent.
 
