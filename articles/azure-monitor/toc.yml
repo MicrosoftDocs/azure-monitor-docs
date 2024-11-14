@@ -598,12 +598,12 @@ items:
         - name: Create and edit
           displayName: Data collection rules, DCR
           href: essentials/data-collection-rule-create-edit.md
+        - name: Edit and troubleshoot
+          displayName: data collection rules, DCR
+          href: essentials/data-collection-rule-edit.md
         - name: Manage associations
           displayName: data collection rules, DCR
           href: essentials/data-collection-rule-view.md
-        - name: Troubleshoot
-          displayName: data collection rules, DCR
-          href: essentials/data-collection-rule-edit.md
         - name: DCR structure
           displayName: Data collection rules, DCR
           href: essentials/data-collection-rule-structure.md

@@ -1,13 +1,13 @@
 ---
-title: Monitor and troubleshoot DCR data collection in Azure Monitor
-description: Configure log collection for monitoring and troubleshooting of DCR-based data collection in Azure Monitor.
+title: Monitor DCR data collection in Azure Monitor
+description: Configure log collection for monitoring of DCR-based data collection in Azure Monitor.
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
 ms.date: 03/01/2024
 ---
 
-# Monitor and troubleshoot DCR data collection in Azure Monitor
+# Monitor DCR data collection in Azure Monitor
 This article provides detailed metrics and logs that you can use to monitor performance and troubleshoot any issues related to data collection in Azure Monitor. This telemetry is currently available for data collection scenarios defined by a [data collection rules (DCR)](./data-collection-rule-overview.md) such as Azure Monitor agent and Logs ingestion API.
 
 > [!IMPORTANT]
@@ -74,16 +74,6 @@ DCR metrics are collected automatically for all DCRs, and you can analyze them u
 | Logs Rows Received per Min | Input stream | Number of log rows received for processing per minute. |
 | Logs Transformation Duration per Min | Input stream | Average KQL transformation runtime per minute. Represents KQL transformation code efficiency. Data flows with longer transformation run time can experience delays in data processing and greater data latency. |
 | Logs Transformation Errors per Min | Input stream<br>Error type | Number of processing errors encountered per minute |
-
-
-## Troubleshooting common issues
-If you're missing expected data in your Log Analytics workspace, follow these basic steps to troubleshoot the issue. This assumes that you enabled DCR logging as described above.
-
-- Check metrics such as `Logs Ingestion Bytes per Min` and `Logs Rows Received per Min` to ensure that the data is reaching Azure Monitor. If not, then check your data source to ensure that it's sending data as expected.
-- Check `Logs Rows Dropped per Min` to see if any rows are being dropped. This may not indicate an error since the rows could be dropped by a transformation. If the rows dropped is the same as `Logs Rows Dropped per Min` though, then no data will be ingested in the workspace. Examine the `Logs Transformation Errors per Min` to see if there are any transformation errors.
-- Check `Logs Transformation Errors per Min` to determine if there are any errors from transformations applied to the incoming data. This could be due to changes in the data structure or the transformation itself.
-- Check `DCRLogErrors` for any ingestion errors that may have been logged. This can provide additional detail in identifying the root cause of the issue.
-
 
 
 ## Monitoring your log ingestion

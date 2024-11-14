@@ -341,19 +341,6 @@ You can view the JSON for the DCR in the Azure portal so you can copy and paste 
 
     :::image type="content" source="media/data-collection-rule-create-edit/json-view.png" lightbox="media/data-collection-rule-create-edit/json-view.png" alt-text="Screenshot that shows the JSON for a DCR in the Azure portal.":::
 
-### ARM template
-You can use the [Export template](/azure/azure-resource-manager/templates/export-template-portal) feature in the Azure portal to retrieve the ARM template for a DCR. This feature generates an ARM template that you can use to deploy the DCR to another environment.
-
-Using ARM templates, you can modify the JSON of any DCR in the Azure portal. You have Azure generate an ARM template for the DCR, modify the JSON, and then redeploy the template. This allows you to perform all the changes in the Azure portal without saving the JSON to a local file.
-
-1. Select the DCR you want to modify in the Azure portal, and select **Export template**.
-2. Click **Deploy** to redeploy the same template.
-3. Click **Edit template** to open up an editable version of the JSON for the DCR.
-4. Make any required changes to the DCR and then click **Save**.
-6. If you want to save the DCR under a new name, change the DCR name parameter. Click **Review + create** to deploy the modified template and **Create** to create the new DCR.
-7. If the DCR is valid with no errors, the deployment will succeed and the DCR will be updated with the new configuration. Click **Go to resource** to open the modified DCR.
-8. If the DCR has compile errors, then you'll receive a message that your deployment failed. Click **Error details** and **Operation details** to view details of the error. 
-   1. Click **Redeploy** and then **Edit template** to make the necessary changes to the DCR and then save and deploy it again.
 
 
 ### [CLI](#tab/cli)
