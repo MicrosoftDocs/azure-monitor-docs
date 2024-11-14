@@ -9,18 +9,18 @@ ms.reviewer: ryankahng
 
 # Enable the .NET Profiler for Azure Functions apps
 
-In this article, you'll use the Azure portal to:
-- View the current app settings for your Functions app.
+In this article, you'll use the Azure portal to: 
+- View the current app settings for your Functions app. 
 - Add two new app settings to enable the .NET Profiler on the Functions app.
 - Navigate to the Profiler page for your Functions app to view data.
 
 > [!NOTE]
-> You can enable the Application Insights Profiler for .NET for Azure Functions apps on the **App Service** plan.
+> You can enable the Application Insights Profiler for .NET for Azure Functions apps on the **App Service** plan. 
 
 ## Prerequisites
 
-- [An Azure Functions app](/azure/azure-functions/functions-create-function-app-portal). Verify your Functions app is on the **App Service** plan.
-
+- [An Azure Functions app](/azure/azure-functions/functions-create-function-app-portal). Verify your Functions app is on the **App Service** plan. 
+     
   :::image type="content" source="./media/profiler-azure-functions/choose-plan.png" alt-text="Screenshot of where to select App Service plan from drop-down in Functions app creation.":::
 
 - Linked to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the instrumentation key.
@@ -67,7 +67,7 @@ The app settings now show up in the table:
 
 
 > [!NOTE]
-> You can also enable the .NET Profiler using:
+> You can also enable the .NET Profiler using:  
 > - [Azure Resource Manager Templates](../app/azure-web-apps-net-core.md#app-service-application-settings-with-azure-resource-manager)
 > - [Azure PowerShell](/powershell/module/az.websites/set-azwebapp)
 > - [Azure CLI](/cli/azure/webapp/config/appsettings)
