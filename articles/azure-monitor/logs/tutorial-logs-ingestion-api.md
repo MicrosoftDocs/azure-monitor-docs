@@ -29,7 +29,7 @@ The steps required to configure the Logs ingestion API are as follows:
 To complete this tutorial, you need:
 
 - A Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
-- [Permissions to create DCR objects](../essentials/data-collection-rule-create.md#permissions) in the workspace.
+- [Permissions to create DCR objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
 
 
 ## Collect workspace details

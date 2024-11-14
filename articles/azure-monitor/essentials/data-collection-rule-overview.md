@@ -106,5 +106,5 @@ See the following articles for additional information on how to work with DCRs.
 
 - [Data collection rule structure](data-collection-rule-structure.md) for a description of the JSON structure of DCRs and the different elements used for different workflows.
 - [Sample data collection rules (DCRs)](data-collection-rule-samples.md) for sample DCRs for different data collection scenarios.
-- [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create.md) for different methods to create DCRs for different data collection scenarios.
+- [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md) for different methods to create DCRs for different data collection scenarios.
 - [Azure Monitor service limits](../service-limits.md#data-collection-rules) for limits that apply to each DCR.

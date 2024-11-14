@@ -11,7 +11,7 @@ ms.reviwer: nikeist
 # Structure of a data collection rule in Azure Monitor
 [Data collection rules (DCRs)](data-collection-rule-overview.md) are sets of instructions that determine how to collect and process telemetry sent to Azure Monitor. Some DCRs will be created and managed by Azure Monitor. This article describes the JSON structure of DCRs for creating and editing them in those cases where you need to work with them directly. 
 
-- See [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create.md) for details working with the JSON described here.
+- See [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md) for details working with the JSON described here.
 - See [Sample data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-samples.md) for sample DCRs for different scenarios.
 
 ## Properties

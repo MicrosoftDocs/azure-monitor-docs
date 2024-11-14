@@ -28,7 +28,7 @@ To edit the DCR directly, you need to understand its JSON structure. This is des
 :::image type="content" source="media/data-collection-rule-edit/json-view.png" lightbox="media/data-collection-rule-edit/json-view.png" alt-text="Screenshot that shows the JSON view for a data collection rule in the Azure portal.":::
 
 
-See [Create data collection rules (DCRs) in Azure Monitor](data-collection-rule-create.md) for other methods.
+See [Create data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md) for other methods.
 
 Edit
 Test

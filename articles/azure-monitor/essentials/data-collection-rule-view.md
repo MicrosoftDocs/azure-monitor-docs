@@ -12,7 +12,7 @@ ms.reviewer: nikeist
 [Data collection rules (DCRs)](data-collection-rule-overview.md) are used to specify the data that you want to collect from your Azure resources and the configuration for how that data is collected. This article describes how to view the DCRs in your subscription and the resources that they are associated with. It also provides details on managing [data collection rule associations (DCRAs)](data-collection-rule-overview.md#data-collection-rule-associations-dcra).
 
 > [!NOTE]
-> This article describes how to manage DCRs and their associations with resources using the Azure portal. Details for creating the DCR itself are described in [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create.md). 
+> This article describes how to manage DCRs and their associations with resources using the Azure portal. Details for creating the DCR itself are described in [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md). 
 > 
 > For alternate methods of working with DCRs and associations, see the following:
 > - Azure CLI - [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule)
@@ -24,10 +24,10 @@ To view your DCRs in the Azure portal, select **Data Collection Rules** under **
 
 :::image type="content" source="media/data-collection-rule-overview/view-data-collection-rules.png" lightbox="media/data-collection-rule-overview/view-data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
 
-Select a DCR to view its details, including the resources it's associated with. For some DCRs, you may need to use the **JSON view** to view its details. See [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create.md) for details on how you can modify them.
+Select a DCR to view its details, including the resources it's associated with. For some DCRs, you may need to use the **JSON view** to view its details. See [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md) for details on how you can modify them.
 
 > [!NOTE]
-> Although this view shows all DCRs in the specified subscriptions, selecting the **Create** button will create a data collection for Azure Monitor Agent. Similarly, this page will only allow you to modify DCRs for Azure Monitor Agent. For guidance on how to create and update DCRs for other workflows, see [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create.md).
+> Although this view shows all DCRs in the specified subscriptions, selecting the **Create** button will create a data collection for Azure Monitor Agent. Similarly, this page will only allow you to modify DCRs for Azure Monitor Agent. For guidance on how to create and update DCRs for other workflows, see [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md).
 
 Click the **Resources** tab to view the resources associated with the selected DCR. Click **Add** to add an association to a new resource. You can view and add resources using this feature whether or not you created the DCR in the Azure portal. 
 
@@ -112,5 +112,5 @@ See the following articles for additional information on how to work with DCRs.
 
 - [Data collection rule structure](data-collection-rule-structure.md) for a description of the JSON structure of DCRs and the different elements used for different workflows.
 - [Sample data collection rules (DCRs)](data-collection-rule-samples.md) for sample DCRs for different data collection scenarios.
-- [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create.md) for different methods to create DCRs for different data collection scenarios.
+- [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md) for different methods to create DCRs for different data collection scenarios.
 - [Azure Monitor service limits](../service-limits.md#data-collection-rules) for limits that apply to each DCR.

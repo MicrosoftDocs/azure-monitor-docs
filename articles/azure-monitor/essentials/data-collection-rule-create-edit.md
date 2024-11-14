@@ -46,7 +46,7 @@ The following table lists scenarios that allow you to create a DCR using the Azu
 | Table creation | When you create a new table in a Log Analytics workspace using the Azure portal, you upload sample data that Azure Monitor uses to create a DCR that can be used with the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md). |
 | Container insights | When you enable Container Insights on a Kubernetes cluster, a DCR with association to the agent in the cluster is created that collects data according to the configuration you selected. You may need to modify this DCR to add a transformation.<br>See [Enable Container Insights](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana). |
 
-### [CLI](#tab/CLI)
+### [CLI](#tab/cli)
 
 ### Create with CLI
 Use the [az monitor data-collection rule create](/cli/azure/monitor/data-collection/rule) command to create a DCR from your JSON file.
