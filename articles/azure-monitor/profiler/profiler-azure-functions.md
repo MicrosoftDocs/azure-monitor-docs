@@ -10,7 +10,7 @@ ms.reviewer: ryankahng
 # Enable the .NET Profiler for Azure Functions apps
 
 In this article, you'll use the Azure portal to:
-- View the current app settings for your Functions app.
+- View the current app settings for your Functions app. 
 - Add two new app settings to enable the .NET Profiler on the Functions app. 
 - Navigate to the Profiler page for your Functions app to view data.
 
