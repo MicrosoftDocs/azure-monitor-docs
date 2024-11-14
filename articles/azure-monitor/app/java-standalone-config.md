@@ -39,7 +39,7 @@ By default, Application Insights Java 3  expects the configuration file to be na
 #### Custom configuration file
    
 You can specify a custom configuration file with
-*	the APPLICATIONINSIGHTS_CONFIGURATION_FILE environment variable
+*	the APPLICATIONINSIGHTS_CONFIGURATION_FILE environment variable, or
 *	the applicationinsights.configuration.file system property
 
 If you provide a relative path, it will resolve relative to the directory where applicationinsights-agent-3.6.0.jar is located.
