@@ -5,7 +5,7 @@ ms.topic: conceptual
 author: EdB-MSFT
 ms.author: edbaynash
 ms.subservice: autoscale
-ms.date: 04/15/2024
+ms.date: 11/12/2024
 ms.custom: references_regions, devx-track-arm-template
 ms.reviewer: akkumari
 
@@ -16,7 +16,7 @@ ms.reviewer: akkumari
 
 Predictive autoscale uses machine learning to help manage and scale Azure Virtual Machine Scale Sets with cyclical workload patterns. It forecasts the overall CPU load to your virtual machine scale set, based on your historical CPU usage patterns. It predicts the overall CPU load by observing and learning from historical usage. This process ensures that scale-out occurs in time to meet the demand.
 
-Predictive autoscale needs a minimum of seven days of history to provide predictions. The most accurate results come from 15 days of historical data.
+Predictive autoscale needs a minimum of seven days of history to provide predictions. The maximum sampling period is a rolling window of 15 days, which gives the best predictive results. For monthly or yearly workload patterns, use schedule-based autoscale or metric-based autoscale configurations. 
 
 Predictive autoscale adheres to the scaling boundaries you've set for your virtual machine scale set. When the system predicts that the percentage CPU load of your virtual machine scale set will cross your scale-out boundary, new instances are added according to your specifications. You can also configure how far in advance you want new instances to be provisioned, up to 1 hour before the predicted workload spike occurs.
 

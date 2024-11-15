@@ -2,7 +2,7 @@
 title: Enable network isolation for Azure Monitor Agent by using Private Link
 description: Enable network isolation for Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 10/25/2024
+ms.date: 11/14/2024
 ms.custom: references_region
 ms.reviewer: jeffwo
 
@@ -24,14 +24,13 @@ By default, Azure Monitor Agent connects to a public endpoint to connect to your
 
 [Configure your private link](../logs/private-link-configure.md) to connect your DCE to a set of Azure Monitor resources that define the boundaries of your monitoring network. This set is called an Azure Monitor Private Link Scope.
 
+
 ## Add DCEs to Azure Monitor Private Link Scope (AMPLS)
 
 [Add the DCEs to your AMPLS](../logs/private-link-configure.md#connect-resources-to-the-ampls) resource. This process adds the data collection endpoints to your private DNS zone (see [how to validate](../logs/private-link-configure.md#validate-communication-over-ampls)) and allows communication via private links. You can do this task from the AMPLS resource or on an existing data collection endpoint resource's **Network isolation** tab.
 
 > [!IMPORTANT]
-> Other Azure Monitor resources like the Log Analytics workspaces configured in your data collection rules that you want to send data to must be part of this same AMPLS resource.
-
-For your data collection endpoints, ensure the **Accept access from public networks not connected through a Private Link Scope** option is set to **No** on the **Network Isolation** tab of your endpoint resource in the Azure portal. This setting ensures that public internet access is disabled and network communication only happens via private links.
+> Other Azure Monitor resources like the Log Analytics workspaces and data collection endpoint (DCE) configured in your data collection rules that you want to send data to must be part of this same AMPLS resource.
     
 :::image type="content" source="media/azure-monitor-agent-dce/data-collection-endpoint-network-isolation.png" lightbox="media/azure-monitor-agent-dce/data-collection-endpoint-network-isolation.png" alt-text="Screenshot that shows configuring data collection endpoint network isolation." border="false":::
     

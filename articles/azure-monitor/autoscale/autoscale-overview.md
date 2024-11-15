@@ -6,7 +6,7 @@ ms.author: edbaynash
 ms.service: azure-monitor
 ms.subservice: autoscale
 ms.topic: conceptual
-ms.date: 04/15/2024
+ms.date: 11/01/2024
 
 # customer intent: 'I want to learn about autoscale in Azure Monitor.'
 ---

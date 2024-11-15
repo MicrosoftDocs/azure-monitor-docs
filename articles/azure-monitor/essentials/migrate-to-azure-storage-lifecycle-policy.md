@@ -6,7 +6,7 @@ ms.author: edbaynash
 ms.service: azure-monitor
 ms.topic: how-to
 ms.reviewer: lualderm
-ms.date: 09/02/2024
+ms.date: 11/07/2024
 
 #Customer intent: As a dev-ops administrator I want to migrate my retention setting from diagnostic setting retention storage to Azure Storage lifecycle management so that it continues to work after the feature has been deprecated.
 ---
@@ -28,6 +28,11 @@ For logs sent to a Log Analytics workspace, retention is set for each table on t
 An existing diagnostic setting logging to a storage account.
 
 ## Migration procedures
+
+> [!NOTE]   
+> + When you change your retention settings, the new settings only apply to new logs ingested after the change. Existing logs are subject to the previous retention settings.
+> + Deleting a diagnostic setting doesn't delete the logs in the storage account. The retention settings will continue to apply to the logs created before the diagnostic settings were deleted.
+
 
 Use the following CLI command to check if a resource has a diagnostic setting:
 
@@ -105,7 +110,7 @@ To set the rule for a specific webapp app, use *insights-activity-logs/ResourceI
 
 ## [CLI](#tab/cli)
 
-Use the [az storage account management-policy create](/cli/azure/storage/account/management-policy#az-storage-account-management-policy-create) command to create a lifecycle management policy. You must still set the retention in your diagnostic settings to *0*. For more information, see the migration procedures for the Azure Portal.
+Use the [az storage account management-policy create](/cli/azure/storage/account/management-policy#az-storage-account-management-policy-create) command to create a lifecycle management policy. You must still set the retention in your diagnostic settings to *0*. For more information, see the migration procedures for the Azure portal.
 
 
 
@@ -151,7 +156,7 @@ The sample policy definition file below sets the retention for all blobs in the 
 
 ## [Templates](#tab/templates)
 
-Apply the following template to create a lifecycle management policy. You must still set the retention in your diagnostic settings to *0*. For more information, see the migration procedures for the Azure Portal.
+Apply the following template to create a lifecycle management policy. You must still set the retention in your diagnostic settings to *0*. For more information, see the migration procedures for the Azure portal.
 
 ```azurecli
 

@@ -2,7 +2,7 @@
 title: Add, modify, and filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 description: This article provides guidance on how to add, modify, and filter OpenTelemetry for applications using Azure Monitor.
 ms.topic: conceptual
-ms.date: 12/15/2023
+ms.date: 12/07/2024
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -658,11 +658,17 @@ histogram.record(100, { "testKey2": "testValue" });
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
 
+import os
+
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
 # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
 
 # Get a meter provider and a meter with the name "otel_azure_monitor_histogram_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_histogram_demo")
@@ -864,11 +870,18 @@ counter.add(3, { "testKey": "testValue2" });
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
 
+import os
+
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
 # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
+
 # Get a meter provider and a meter with the name "otel_azure_monitor_counter_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_counter_demo")
 
@@ -1077,6 +1090,7 @@ gauge.addCallback((observableResult: ObservableResult) => {
 ```python
 # Import the necessary packages.
 from typing import Iterable
+import os
 
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
@@ -1087,6 +1101,10 @@ from opentelemetry.metrics import CallbackOptions, Observation
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
 
 # Get a meter provider and a meter with the name "otel_azure_monitor_gauge_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_gauge_demo")
@@ -1257,7 +1275,7 @@ span.recordException(e);
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
-const { trace, SpanKind } = require("@opentelemetry/api");
+const { trace } = require("@opentelemetry/api");
 
 // Enable Azure Monitor integration
 useAzureMonitor();
@@ -1266,9 +1284,7 @@ useAzureMonitor();
 const tracer = trace.getTracer("testTracer");
 
 // Start a span with the name "hello"
-let span = tracer.startSpan("hello", {
-    kind: SpanKind.SERVER
-});
+let span = tracer.startSpan("hello");
 
 // Try to throw an error
 try{

@@ -25,18 +25,9 @@ items:
     href: best-practices-analysis.md
   - name: Plan alerts and automated actions
     href: alerts/alerts-plan.md
-  - name: Best practices
-    items:
-    - name: Reliability
-      href: best-practices-reliability.md
-    - name: Security
-      href: best-practices-security.md
-    - name: Cost optimization
-      href: best-practices-cost.md    
-    - name: Operational excellence
-      href: best-practices-operation.md
-    - name: Performance efficiency
-      href: best-practices-performance.md
+  - name: At-scale monitoring solutions
+    displayName: scale, at-scale, monitor at-scale, monitor at scale, enterprise monitoring
+    href: monitor-at-scale.md
 - name: Monitoring scenarios
   items:
   - name: Monitor an Azure resource
@@ -243,6 +234,14 @@ items:
           href: insights/set-up-code-optimizations.md
         - name: View insights
           href: insights/view-code-optimizations.md
+        - name: Extensions (preview)
+          items:
+          - name: Overview
+            href: insights/code-optimizations-extensions.md
+          - name: Visual Studio
+            href: insights/code-optimizations-vs-extension.md
+          - name: Visual Studio Code
+            href: insights/code-optimizations-vscode-extension.md
         - name: Troubleshooting
           href: insights/code-optimizations-troubleshoot.md
         - name: Profiler
@@ -364,38 +363,36 @@ items:
         href: vm/vminsights-overview.md
       - name: Enable and configure
         items:
-        - name: Overview
-          href: vm/vminsights-enable-overview.md
-        - name: Azure portal
-          href: vm/vminsights-enable-portal.md
-        - name: PowerShell script
-          href: vm/vminsights-enable-powershell.md
-        - name: ARM templates
-          href: vm/vminsights-enable-resource-manager.md
-        - name: Azure Policy
+        - name: Enable VM insights
+          href: vm/vminsights-enable.md
+        - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
         - name: Windows client machines
-          href: vm/vminsights-enable-hybrid.md
-        - name: Dependency Agent
-          href: vm/vminsights-dependency-agent-maintenance.md
+          href: vm/vminsights-enable-client.md
+        - name: Dependency agent
+          href: vm/vminsights-dependency-agent.md
+        - name: Disable monitoring
+          href: vm/vminsights-optout.md
+        - name: Troubleshoot
+          href: vm/vminsights-troubleshoot.md
+      - name: Migrate
+        items:
         - name: Migrate to Azure Monitor agent
           href: vm/vminsights-migrate-agent.md
         - name: Migrate from deprecated policies
           href: vm/vminsights-migrate-deprecated-policies.md
-      - name: Map dependencies
-        href: vm/vminsights-maps.md
-      - name: Monitor performance
-        href: vm/vminsights-performance.md
-      - name: Analyze data with log queries
-        href: vm/vminsights-log-query.md
-      - name: Monitor changes
-        href: vm/vminsights-change-analysis.md
-      - name: Visualize data with workbooks
-        href: vm/vminsights-workbooks.md
-      - name: Disable monitoring
-        href: vm/vminsights-optout.md
-      - name: Troubleshoot
-        href: vm/vminsights-troubleshoot.md
+      - name: Use VM insights
+        items:
+        - name: Monitor performance
+          href: vm/vminsights-performance.md
+        - name: Map dependencies
+          href: vm/vminsights-maps.md
+        - name: Query map data
+          href: vm/vminsights-log-query.md
+        - name: Monitor changes
+          href: vm/vminsights-change-analysis.md
+        - name: Visualize data with workbooks
+          href: vm/vminsights-workbooks.md
     - name: System Center
       items:
       - name: Migrate from Operations Manager
@@ -926,8 +923,6 @@ items:
       - name: Overview
         displayName: Prometheus
         href: essentials/prometheus-metrics-overview.md
-      - name: FAQ
-        href: essentials/prometheus-metrics-overview.md#frequently-asked-questions
       - name: Prometheus remote-write from virtual-machines
         displayName: Prometheus remote-write
         href: essentials/prometheus-remote-write-virtual-machines.md
@@ -939,6 +934,9 @@ items:
         - name: Manage
           displayName: Prometheus
           href: essentials/azure-monitor-workspace-manage.md
+        - name: Monitor metrics ingestion limits
+          displayName: Prometheus Azure Monitor workspace
+          href: essentials/azure-monitor-workspace-monitor-ingest-limits.md
         - name: Best practices for scaling Azure Monitor workspaces  
           href: essentials/azure-monitor-workspace-scaling-best-practice.md
         - name: Private endpoints for Azure Monitor workspaces
@@ -1323,15 +1321,17 @@ items:
             href: logs/api/errors.md
   - name: Get the Activity log using the REST API
     href: essentials/rest-activity-log.md
-  - name: Change Analysis
+  - name: Change Analysis (classic)
     items:
     - name: Overview
       href: change/change-analysis.md
-    - name: Enable Change Analysis
+    - name: Migrate Change Analysis
+      href: change/change-analysis-migration.md
+    - name: Enable
       href: change/change-analysis-enable.md
     - name: Visualizations
       href: change/change-analysis-visualizations.md
-    - name: Track a web outage with Change Analysis
+    - name: Track a web outage
       href: change/change-analysis-track-outages.md
     - name: Troubleshoot
       href: change/change-analysis-troubleshoot.md
@@ -1515,8 +1515,6 @@ items:
       href: insights/resource-manager-sql-insights.md
     - name: Workbooks
       href: visualize/resource-manager-workbooks.md
-    - name: VM insights
-      href: vm/resource-manager-vminsights.md
   - name: Alerts
     items:
       - name: Alerts payloads

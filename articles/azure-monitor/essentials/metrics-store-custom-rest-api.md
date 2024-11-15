@@ -5,7 +5,7 @@ author: EdB-MSFT
 services: azure-monitor
 ms.reviewer: priyamishra
 ms.topic: how-to
-ms.date: 01/07/2024
+ms.date: 07/02/2024
 ms.author: edbaynash
 ---
 # Ingest custom metrics for an Azure resource using the REST API

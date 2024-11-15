@@ -1,8 +1,9 @@
 ---
 title: Sample data collection rules (DCRs) in Azure Monitor
 description: Sample data collection rule for different Azure Monitor data collection scenarios.
+author: bwren
 ms.topic: sample
-ms.date: 03/14/2024
+ms.date: 11/01/2024
 ms.custom: references_region
 ms.reviewer: jeffwo
 
@@ -292,6 +293,7 @@ The sample [data collection rule](../essentials/data-collection-rule-overview.md
 ```json
 {
     "location": "eastus",
+    "kind": "Direct",
     "properties": {
         "streamDeclarations": {
             "Custom-MyTable": {

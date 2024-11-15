@@ -1,10 +1,11 @@
 ---
 ms.service: azure-monitor
 ms.topic: include
-ms.date: 04/10/2024
+ms.date: 09/27/2024
 ms.author: hannahhunter
 author: hhunter-ms
 ---
 
 > [!IMPORTANT]
-> Change Analysis is moving to Azure Resource Graph and is currently in preview as an Azure Resource Graph offering. Learn more about [the future of Change Analysis](/azure/governance/resource-graph/changes/resource-graph-changes#change-analysis-in-azure-resource-graph-vs-azure-monitor).
+> Azure Monitor Change Analysis (classic) will be retired on October 31, 2025. The experience will be replaced by the Change Analysis API powered by Azure Resource Graph. Learn more about [the future of Change Analysis (classic) and how to migrate to Resource Graph](../../change/change-analysis-migration.md).
+
