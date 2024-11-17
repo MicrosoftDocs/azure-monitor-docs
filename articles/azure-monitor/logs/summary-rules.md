@@ -80,25 +80,12 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 
 ## Restrictions and limitations
 
-| Category | Limit |
-|:---|:---|
-| Maximum number of active rules in a workspace | 30 |
-| Maximum number of results per bin | 500,000 |
-| Maximum results volume per bin | 100 MB |
-| Query time-out for bin processing | 10 minutes |
-
+- The Maximum number of active rules in a workspace is 30. 
 - Summary rules are currently only available in the public cloud. 
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Querying a Log Analytics workspace in another tenant by using Lighthouse isn't supported.
-- KQL limits depend on the table plan of the source table. 
 
-   - Analytics: Supports all KQL commands, except for: 
-   
-      - [Cross-resource queries](cross-workspace-query.md), using the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), using the `ADX()` and `ARG()` expressions.
-      - Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin). 
-   - Basic: Supports all KQL commands on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
-   - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
 ## Pricing model
 
@@ -106,24 +93,28 @@ There's no extra cost for Summary rules. You only pay for the query and the inge
 
 | Source table plan | Query cost | Summary results ingestion cost |
 | --- | --- | --- |
-| Analytics | No cost    | Analytics ingested GB | 
-| Basic and Auxiliary    | Scanned GB | Analytics ingested GB | 
+| Analytics | No cost    | Ingestion of Analytics logs | 
+| Basic and Auxiliary    | Data scan | Ingestion of Analytics logs | 
 
 For example, the cost calculation for an hourly rule that returns 100 records per bin is:
 
 | Source table plan | Monthly price calculation
 | --- | --- |
-| Analytics  | Ingestion price x record size x number of records x 24 hours x 30 days | 
-| Basic and Auxiliary | Scanned GB price x scanned size + Ingestion price x record size x number of records x 24 hours x 30 days | 
+| Analytics  | Ingestion price x record volume x number of records x 24 hours x 30 days. | 
+| Basic and Auxiliary | Data scan price x scanned volume + Ingestion price x record volume x number of records x 24 hours x 30 days. For continuously running rule, all incoming data to source table is scanned. | 
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Create or update a summary rule
 
-Before you create a rule, experiment with the query in [Log Analytics](log-analytics-overview.md). Verify that the query doesn't reach or near the query limit. Check that the query produces the intended schema and expected results. If the query is close to the query limits, consider using a smaller `binSize` to process less data per bin. You can also modify the query to return fewer records or remove fields with higher volume. 
+The query commands that can be used depend on the table plan of the source table.
+ - Analytics: Supports all KQL commands, except for: 
+    - [Cross-resource queries](cross-workspace-query.md), using the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), using the `ADX()` and `ARG()` expressions.
+    - Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin). 
+ - Basic: Supports all KQL commands on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
+ - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
-> [!NOTE]
-> Summary rules are most beneficial in term of cost and results consumption when reduced significantly. For example, results volume is 0.01% or less than source.
+Summary rules are most beneficial in term of cost and query experiences when results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify that the query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces). Check that the query produces the intended expected results and schema. If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
 
 When you update a query and there are fewer fields in summary results, Azure Monitor doesn't automatically remove the columns from the destination table, and you need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
 
@@ -327,7 +318,7 @@ This table describes the summary rule parameters:
 
 By default, the summary rule creates the first aggregation shortly after the next whole hour. 
 
-The short delay Azure Monitor adds accounts for ingestion latency - or the time between when the data is created in the monitored system and the time that it becomes available for analysis in Azure Monitor. By default, this delay is between three and a half minutes to 10% of the `binSize` value before aggregating each chunk of data. In most cases, this delay ensures that Azure Monitor aggregates all data logged within each bin period.
+The short delay Azure Monitor adds accounts for ingestion latency - or the time between when the data is created in the monitored system and the time that it becomes available for analysis in Azure Monitor. By default, this delay is between three and a half minutes to 10% of the 'bin size' value before aggregating each bin. In most cases, this delay ensures that Azure Monitor aggregates all data logged within each bin period.
 
 For example: 
 
