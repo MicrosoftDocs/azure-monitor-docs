@@ -7,7 +7,7 @@ ms.topic: how-to
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: yossi-y
-ms.date: 04/23/2024
+ms.date: 11/17/2024
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
