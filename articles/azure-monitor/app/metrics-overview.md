@@ -60,18 +60,18 @@ Application Insights supports three different types of metrics: standard (preagg
 | .NET Core and .NET Framework | ✅ (V2.13.1+) | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ✅ (V2.7.2+) via [GetMetric](get-metric.md) |
 | Java | ❌ | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ❌ |
 | Node.js | ❌ | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ❌ |
-| Python | ❌ | ✅ | ✔️ via [OpenCensus.stats (retired)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
+| Python | ❌ | ✔️ | ✔️ via [OpenCensus.stats (retired)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
 
-[!CAUTION]
+> [!CAUTION]
 > The [OpenCensus Python SDK is retired](https://opentelemetry.io/blog/2023/sunsetting-opencensus/). We recommend the [OpenTelemetry-based Python offering](./opentelemetry-enable.md?tabs=python) and provide [migration guidance](./opentelemetry-python-opencensus-migrate.md?tabs=python).
 
 ### Autoinstrumentation
 
-| Current production SDKs | Standard metrics (preaggregated) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
-|-------------------------|----------------------------------|---------------------------------------------|------------------------------------------|
+| Current production SDKs | Standard metrics (preaggregated) | Custom metrics (without preaggregation) | Custom metrics (with preaggregation) |
+|-------------------------|----------------------------------|-----------------------------------------|--------------------------------------|
 | ASP.NET Core | ✅ <sup>1<sup> | ❌ | ❌ |
 | ASP.NET | ✅ <sup>2<sup> | ❌ | ❌ |
-| Java  | ❌ | ❌ | ✅ via [Classic API](opentelemetry-add-modify.md?tabs=java#send-custom-telemetry-using-the-application-insights-classic-api) |
+| Java | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#add-custom-metrics) |
 | Node.js | ✅ | ❌ | ❌ |
 | Python | ✅ | ❌ | ❌ |
 
