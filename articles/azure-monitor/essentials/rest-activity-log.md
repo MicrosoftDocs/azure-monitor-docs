@@ -3,7 +3,7 @@ title: Retrieve activity log data using Azure monitor REST API
 description: How to retrieve activity log data using Azure monitor REST API.
 author: EdB-MSFT
 ms.topic: conceptual
-ms.date: 03/10/2024
+ms.date: 11/01/2024
 ms.reviewer: priyamishra
 
 # customer intent: As a developer, I want to learn how to retrieve activity log data using Azure monitor REST API.
