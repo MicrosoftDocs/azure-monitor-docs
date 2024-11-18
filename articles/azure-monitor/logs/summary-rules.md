@@ -107,7 +107,7 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 
 ## Create or update a summary rule
 
-The query commands that can be used depend on the table plan of the source table.
+The query commands that can be used depend on the plan of source table used in the query.
  - Analytics: Supports all KQL commands, except for: 
     - [Cross-resource queries](cross-workspace-query.md), using the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), using the `ADX()` and `ARG()` expressions.
     - Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin). 
