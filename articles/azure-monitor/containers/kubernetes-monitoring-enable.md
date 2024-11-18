@@ -84,6 +84,8 @@ Use one of the following methods to enable scraping of Prometheus metrics from y
 
 ### [CLI](#tab/cli)
 
+### Enable with CLI
+
 If you don't specify an existing Azure Monitor workspace in the following commands, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`.
 
 #### Prerequisites
@@ -140,7 +142,7 @@ Any of the commands can use the following optional parameters:
 
 ### [Azure Resource Manager](#tab/arm)
 
-Both ARM and Bicep templates are provided in this section.
+### Enable with ARM templates
 
 #### Prerequisites
 
@@ -283,6 +285,8 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 
 ### [Terraform](#tab/terraform)
 
+### Enable with Terraform
+
 #### Prerequisites
 
 - The Azure Monitor workspace and Azure Managed Grafana workspace must already be created.
@@ -319,6 +323,8 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 > Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values gets deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
 
 ### [Azure Policy](#tab/policy)
+
+### Enable with Azure Policy
 
 1. Download Azure Policy template and parameter files.
 

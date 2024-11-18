@@ -1,70 +1,70 @@
 ---
-title: Enable Change Analysis | Microsoft Docs
-description: Use Change Analysis in Azure Monitor to track and troubleshoot issues on your live site.
+title: Enable Change Analysis (classic) | Microsoft Docs
+description: Use Change Analysis (classic) in Azure Monitor to track and troubleshoot issues on your live site.
 ms.topic: conceptual
 ms.author: hannahhunter
 author: hhunter-ms
-ms.date: 11/17/2023
+ms.date: 09/12/2024
 ms.subservice: change-analysis
 ---
 
-# Enable Change Analysis
+# Enable Change Analysis (classic)
 
 [!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
 
-The Change Analysis service:
-- Computes and aggregates change data from the data sources mentioned earlier. 
+The Change Analysis (classic) service:
+
+- Computes and aggregates change data from the data sources mentioned earlier.
 - Provides a set of analytics for users to:
-    - Easily navigate through all resource changes.
+
+    - Easily move through all resource changes.
     - Identify relevant changes in the troubleshooting or monitoring context.
 
-Register the `Microsoft.ChangeAnalysis` resource provider with an Azure Resource Manager subscription to make the resource properties and configuration change data available. The `Microsoft.ChangeAnalysis` resource provider is automatically registered as you either: 
-- Enter any UI entry point, like the Web App **Diagnose and Solve Problems** tool, or 
-- Bring up the Change Analysis standalone tab.
+Register the `Microsoft.ChangeAnalysis` resource provider with an Azure Resource Manager subscription to make the resource properties and configuration change data available. The `Microsoft.ChangeAnalysis` resource provider is automatically registered when you do one of two things:
 
-In this guide, you learn the two ways to enable Change Analysis for Azure Functions and web app in-guest changes:
-- For one or a few Azure Functions or web apps, [enable Change Analysis via the UI](#enable-azure-functions-and-web-app-in-guest-change-collection-via-the-change-analysis-portal).
-- For a large number of web apps (for example, 50+ web apps), [enable Change Analysis using the provided PowerShell script](#enable-change-analysis-at-scale-using-powershell).
+- Enter any UI entry point, like the web app **Diagnose and solve problems** tool.
+- Bring up the Change Analysis (classic) standalone tab.
 
-> [!NOTE]
-> Slot-level enablement for Azure Functions or web app is not supported at the moment.
+In this guide, you learn the two ways to enable Change Analysis (classic) for functions and web app in-guest changes:
 
-## Enable Azure Functions and web app in-guest change collection via the Change Analysis portal
-
-For web app in-guest changes, separate enablement is required for scanning code files within a web app. For more information, see [Change Analysis in the Diagnose and solve problems tool](change-analysis-visualizations.md#view-changes-using-the-diagnose-and-solve-problems-tool) section.
+- For one or a few functions or web apps, [enable Change Analysis (classic) via the UI](#enable-functions-and-web-app-in-guest-change-collection-via-the-change-analysis-classic-portal).
+- For a large number of web apps (for example, 50+ web apps), [enable Change Analysis (classic) by using the provided PowerShell script](#enable-change-analysis-classic-at-scale-by-using-powershell).
 
 > [!NOTE]
-> You may not immediately see web app in-guest file changes and configuration changes. Prepare for downtime and restart your web app to view changes within 30 minutes. If you still can't see changes, refer to [the troubleshooting guide](./change-analysis-troubleshoot.md#cannot-see-in-guest-changes-for-newly-enabled-web-app).
+> Slot-level enablement for functions or web apps isn't supported at the moment.
 
-1. Navigate to Azure Monitor's Change Analysis UI in the portal. 
+## Enable functions and web app in-guest change collection via the Change Analysis (classic) portal
 
-1. Enable web app in-guest change tracking by either:
+For web app in-guest changes, separate enablement is required for scanning code files within a web app. For more information, see [Change Analysis (classic) in the Diagnose and solve problems tool](change-analysis-visualizations.md#view-changes-by-using-the-diagnose-and-solve-problems-tool) section.
 
-   - Selecting **Enable Now** in the banner, or
+> [!NOTE]
+> You might not immediately see web app in-guest file changes and configuration changes. Prepare for downtime and restart your web app to view changes within 30 minutes. If you still can't see changes, refer to the [troubleshooting guide](./change-analysis-troubleshoot.md#you-cant-see-in-guest-changes-for-a-newly-enabled-web-app).
 
-     :::image type="content" source="./media/change-analysis/enable-changeanalysis.png" alt-text="Screenshot of the Application Changes options from the banner.":::   
+1. Go to the Change Analysis (classic) UI in the portal.
 
-   - Selecting **Configure** from the top menu.
+1. Enable web app in-guest change tracking by using one of two options:
+
+   - On the banner, select **Enable now**.
+
+     :::image type="content" source="./media/change-analysis/enable-changeanalysis.png" alt-text="Screenshot that shows the application change options on the banner.":::
+
+   - On the top menu, select **Configure**.
    
-     :::image type="content" source="./media/change-analysis/configure-button.png" alt-text="Screenshot of the Application Changes options from the top menu."::: 
+     :::image type="content" source="./media/change-analysis/configure-button.png" alt-text="Screenshot that shows the application change options on the top menu.":::
 
-1. Toggle on **Change Analysis** status and select **Save**.
+1. Toggle on **Change Analysis (classic)** status for applicable resources and select **Save**.
 
-   :::image type="content" source="./media/change-analysis/change-analysis-on.png" alt-text="Screenshot of the Enable Change Analysis user interface.":::   
+   :::image type="content" source="./media/change-analysis/change-analysis-on.png" alt-text="Screenshot that shows the Enable Change Analysis (classic) user interface.":::
   
-    - The tool displays all web apps under an App Service plan, which you can toggle on and off individually. 
-
-      :::image type="content" source="./media/change-analysis/change-analysis-on-2.png" alt-text="Screenshot of the Enable Change Analysis user interface expanded.":::   
-
-## Enable Change Analysis at scale using PowerShell
+## Enable Change Analysis (classic) at scale by using PowerShell
 
 If your subscription includes several web apps, run the following script to enable *all web apps* in your subscription.
 
 ### Prerequisites
 
-PowerShell Az Module. Follow instructions at [Install the Azure PowerShell module](/powershell/azure/install-azure-powershell)
+PowerShell Az module. Follow the instructions in [Install the Azure PowerShell module](/powershell/azure/install-azure-powershell).
 
-### Run the following script:
+### Run the following script
 
 ```PowerShell
 # Log in to your Azure subscription
@@ -93,13 +93,13 @@ foreach ($webapp in $webapp_list)
 
 This section provides answers to common questions.
 
-### How can I enable Change Analysis for a web application?
+### How can I enable Change Analysis (classic) for a web application?
 
-Enable Change Analysis for web application in guest changes by using the [Diagnose and solve problems tool](./change-analysis-visualizations.md#view-changes-using-the-diagnose-and-solve-problems-tool).
+Enable Change Analysis (classic) for web application in-guest changes by using the [Diagnose and solve problems tool](./change-analysis-visualizations.md#view-changes-by-using-the-diagnose-and-solve-problems-tool).
 
-## Next steps
+## Related content
 
-- Learn about [visualizations in Change Analysis](change-analysis-visualizations.md)
-- Learn how to [troubleshoot problems in Change Analysis](change-analysis-troubleshoot.md)
+- Learn about [visualizations in Change Analysis (classic)](change-analysis-visualizations.md).
+- Learn how to [troubleshoot problems in Change Analysis (classic)](change-analysis-troubleshoot.md).
 - Enable Application Insights for [Azure web apps](../../azure-monitor/app/azure-web-apps.md).
-- Enable Application Insights for [Azure VM and Azure virtual machine scale set IIS-hosted apps](../../azure-monitor/app/azure-vm-vmss-apps.md).
+- Enable Application Insights for [Azure Virtual Machines and Azure Virtual Machine Scale Set IIS-hosted apps](../../azure-monitor/app/azure-vm-vmss-apps.md).

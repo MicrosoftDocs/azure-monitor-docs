@@ -2,7 +2,7 @@
 title: Application Insights logging with .NET
 description: Learn how to use Application Insights with the ILogger interface in .NET.
 ms.topic: conceptual
-ms.date: 01/31/2024
+ms.date: 12/07/2024
 ms.devlang: csharp
 ms.custom: devx-track-dotnet
 ms.reviewer: mmcc
@@ -66,7 +66,7 @@ app.MapControllers();
 app.Run();
 ```
 
-With the NuGet package installed, and the provider being registered with dependency injection, the app is ready to log. With constructor injection, either <xref:Microsoft.Extensions.Logging.ILogger> or the generic-type alternative <xref:Microsoft.Extensions.Logging.ILogger%601> is required. When these implementations are resolved, `ApplicationInsightsLoggerProvider` provides them. Logged messages or exceptions are sent to Application Insights. 
+With the NuGet package installed and the provider being registered with dependency injection, the app is ready to log. With constructor injection, either <xref:Microsoft.Extensions.Logging.ILogger> or the generic-type alternative <xref:Microsoft.Extensions.Logging.ILogger%601> is required. When these implementations are resolved, `ApplicationInsightsLoggerProvider` provides them. Logged messages or exceptions are sent to Application Insights. 
 
 Consider the following example controller:
 
@@ -173,7 +173,7 @@ If any other type is used as a scope, it gets stored under the property `Scope` 
 In the Azure portal:
 
 1. Go to the Azure portal and access your Application Insights resource.
-1. Click on the **Logs** section inside Application Insights.
+1. Select the **Logs** section inside Application Insights.
 1. Use Kusto Query Language (KQL) to query ILogger messages stored in the `traces` table.
     Example Query: `traces | where message contains "YourSearchTerm"`.
 1. Refine your queries to filter ILogger data by severity, time range, or specific message content.

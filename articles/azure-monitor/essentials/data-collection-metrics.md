@@ -56,6 +56,7 @@ DCRs for metrics export have the following limitations:
 
 + Only one destination type can be specified per DCR.
 + A maximum of 5 DCRs can be associated with a single Azure Resource.
++ Metrics export by DCR doesn't support the export of hourly-grain metrics.
 
 
 ## Supported resources and regions

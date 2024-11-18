@@ -2,7 +2,7 @@
 title: Configure monitoring for ASP.NET with Azure Application Insights | Microsoft Docs
 description: Configure performance, availability, and user behavior analytics tools for your ASP.NET website hosted on-premises or in Azure.
 ms.topic: conceptual
-ms.date: 01/31/2024
+ms.date: 12/07/2024
 ms.devlang: csharp
 ---
 
@@ -478,7 +478,7 @@ The following pieces of code are automatically added:
 * *[Your project's name].csproj*
 
     ```C#
-     <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
+     <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
     ```
 
 * *Packages.config*

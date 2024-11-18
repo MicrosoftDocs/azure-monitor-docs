@@ -18,13 +18,7 @@ You create an alert rule by combining the resources to be monitored, the monitor
 
 Alerts triggered by these alert rules contain a payload that uses the [common alert schema](alerts-common-schema.md).
 
-## Prerequisites
-
-To create or edit an alert rule, you must have the following permissions:
-
-- Read permission on the target resource of the alert rule.
-- Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
-- Read permission on any action group associated to the alert rule, if applicable.
+[!INCLUDE [alerts-rule-prerequisites](../includes/alerts-rule-prerequisites.md)]
 
 [!INCLUDE [alerts-wizard-access](../includes/alerts-wizard-access.md)]
 

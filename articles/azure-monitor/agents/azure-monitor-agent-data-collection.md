@@ -2,7 +2,7 @@
 title: Collect data with Azure Monitor Agent
 description: Describes how to collect data from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 09/11/2024
+ms.date: 11/14/2024
 author: guywild
 ms.author: guywild
 ms.reviewer: jeffwo

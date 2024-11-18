@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 09/26/2024
+ms.date: 11/04/2024
 ---
 
 # MDCDetectionGatingValidationEvents
@@ -21,7 +21,7 @@ K8s Gating validation events. This table is collected by the detection team in M
 |**Resource types**|-|
 |**Categories**|Security|
 |**Solutions**| LogManagement|
-|**Basic log**|No|
+|**Basic log**|Yes|
 |**Ingestion-time transformation**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mdcdetectiongatingvalidationevents)|
 

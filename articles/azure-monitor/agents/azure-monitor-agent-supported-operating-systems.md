@@ -4,7 +4,7 @@ description: Identifies the operating systems supported by Azure Monitor Agent.
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/24/2024
+ms.date: 11/14/2024
 ms.custom: references_regions
 ms.reviewer: jeffwo
 

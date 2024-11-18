@@ -4,7 +4,7 @@ description: Guidance for troubleshooting rsyslog issues on Linux virtual machin
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 5/31/2023
+ms.date: 11/14/2024
 ms.custom: references_region, linux-related-content
 ms.reviewer: shseth
 ---

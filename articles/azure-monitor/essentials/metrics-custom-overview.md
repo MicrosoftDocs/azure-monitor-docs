@@ -5,7 +5,7 @@ author: EdB-MSFT
 ms.service: azure-monitor
 ms-author: edbaynash
 ms.topic: conceptual
-ms.date: 01/07/2024
+ms.date: 11/07/2024
 ms.reviewer: priyamishra
 ---
 # Custom metrics in Azure Monitor (preview)

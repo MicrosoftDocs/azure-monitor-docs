@@ -5,7 +5,7 @@ author: JeffreyWolford
 ms.author: jeffwo
 ms.reviewer: guywild
 ms.topic: reference
-ms.date: 06/21/2024
+ms.date: 11/14/2024
 Customer intent: As an azure administrator, I want to understand which Log Analytics Workspace queries I may need to update after AMA migration.
 ---
 

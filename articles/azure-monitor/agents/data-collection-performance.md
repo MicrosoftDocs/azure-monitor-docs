@@ -2,7 +2,7 @@
 title: Collect performance counters with Azure Monitor Agent
 description: Describes how to collect performance counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 07/12/2024
+ms.date: 11/14/2024
 author: guywild
 ms.author: guywild
 ms.reviewer: jeffwo
@@ -31,7 +31,10 @@ For performance counters, select from a predefined set of objects and their samp
 Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_syntax.asp) to collect any performance counters not available by default. Use the format `\PerfObject(ParentInstance/ObjectInstance#InstanceIndex)\Counter`. If the counter name contains an ampersand (&), replace it with `&amp;`. For example, `\Memory\Free &amp; Zero Page List Bytes`. You can view the default counters for examples.
 
 :::image type="content" source="media/data-collection-performance/data-source-performance-custom.png" lightbox="media/data-collection-performance/data-source-performance-custom.png" alt-text="Screenshot that shows the Azure portal form to select custom performance counters in a data collection rule." border="false":::
-   
+
+> [!WARNING]
+> Take care when manually defining counters for DCRs that are associated with both Windows and Linux machines, as certain Windows- and Linux-style counter names can resolve to the same metric and cause duplicative collection. For instance, specifying both `\LogicalDisk(*)\Disk Transfers/sec` and `Logical Disk(*)\Disk Transfers/sec` in the same DCR will cause the Disk Transfers metric to be reported twice per sampling period. This behavior can be avoided by not collecting performance counters in untyped DCRs; ensure Windows-style counters are only specified in Windows-type DCRs and associated solely with Windows machines, and vice-versa for Linux-style counters.
+
 > [!NOTE] 
 > At this time, Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md) (the Azure portal UX), but they can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
 

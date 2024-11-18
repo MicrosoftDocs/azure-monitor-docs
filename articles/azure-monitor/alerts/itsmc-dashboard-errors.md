@@ -15,7 +15,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## Unexpected response
 
-**Error**: "Unexpected response from ServiceNow along with success status code. Response: { "import_set": "{import_set_id}", "staging_table": "x_mioms_microsoft_oms_incident", "result": [ { "transform_map": "OMS Incident", "table": "incident", "status": "error", "error_message": "{Target record not found|Invalid table|Invalid staging table" }"
+**Error**: `Unexpected response from ServiceNow along with success status code. Response: { "import_set": "{import_set_id}", "staging_table": "x_mioms_microsoft_oms_incident", "result": [ { "transform_map": "OMS Incident", "table": "incident", "status": "error", "error_message": "{Target record not found|Invalid table|Invalid staging table" }`
 
 **Cause**: ServiceNow returns this error when:
 
@@ -26,7 +26,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## Exception update failure
 
-**Error**: "{"error":{"message":"Operation Failed","detail":"ACL Exception Update Failed due to security constraints"}"
+**Error**: `{"error":{"message":"Operation Failed","detail":"ACL Exception Update Failed due to security constraints"}`
 
 **Cause**: ServiceNow permissions are misconfigured.
 
@@ -34,7 +34,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## Problem sending a request
 
-**Error**: "An error occurred while sending the request."
+**Error**: `An error occurred while sending the request.`
 
 **Cause**: A ServiceNow instance is unavailable.
 
@@ -42,7 +42,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## ServiceNow rate problem
 
-**Error**: "ServiceDeskHttpBadRequestException: StatusCode=429"
+**Error**: `ServiceDeskHttpBadRequestException: StatusCode=429`
 
 **Cause**: ServiceNow rate limits are too high or too low.
 
@@ -55,9 +55,10 @@ The following sections describe common errors that appear in the connector statu
 
 ## Invalid refresh token
 
-**Error**: 
-  * "AccessToken and RefreshToken invalid. User needs to authenticate again."
-  * "Could not sync templates configuration for Event,Alert,Incident. See Exception Message for more details."
+**Error**:
+
+* `AccessToken and RefreshToken invalid. User needs to authenticate again.`
+* `Could not sync templates configuration for Event,Alert,Incident. See Exception Message for more details.`
 
 **Cause**: A refresh token is expired.
 
@@ -65,7 +66,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## Missing connector
 
-**Error**: "Could not create/update work item for alert {alertName}. ITSM Connector {connectionIdentifier} does not exist or was deleted."
+**Error**: `Could not create/update work item for alert {alertName}. ITSM Connector {connectionIdentifier} does not exist or was deleted.`
 
 **Cause**: ITSMC was deleted.
 
@@ -77,7 +78,7 @@ The following sections describe common errors that appear in the connector statu
 
 ## Lack of connection details
 
-**Error**:"Something went wrong. Could not get connection details." This error appears when you define an ITSM action group.
+**Error**: `Something went wrong. Could not get connection details.` This error appears when you define an ITSM action group.
 
 **Cause**: Such an error appears in either of these situations:
 
@@ -89,24 +90,28 @@ The following sections describe common errors that appear in the connector statu
 * When a new ITSMC instance is created, it starts syncing information from the ITSM system, such as work item templates and work items. [Sync ITSMC to generate a new refresh token](./itsmc-resync-servicenow.md).
 * [Review your connection details in ITSMC](./itsmc-connections-servicenow.md#create-a-connection) and check that ITSMC can successfully [sync](./itsmc-resync-servicenow.md).
 
-
 ## IP restrictions
-**Error**: 
-* "Failed to add ITSM Connection named "XXX" due to Bad Request. Error: Bad request. Invalid parameters provided for connection. Http Exception: Status Code Forbidden."
-* "Failed to update ITSM Connection credentials"
+
+**Error**:
+
+* `Failed to add ITSM Connection named "XXX" due to Bad Request. Error: Bad request. Invalid parameters provided for connection. Http Exception: Status Code Forbidden.`
+* `Failed to update ITSM Connection credentials`
 
 **Cause**: The IP address of the ITSM application doesn't allow ITSM connections from partner ITSM tools.
 
-**Resolution**: To allow ITSM connections make sure ActionGroup network tag is allowed on your network.
+**Resolution**: To allow ITSM connections, make sure ActionGroup network tag is allowed on your network.
 
 ## Authentication
-**Error**: "User Not Authenticated"
+
+**Error**: `User Not Authenticated`
 
 **Cause**: This error can occur in two cases:
-  - The token needs to be refreshed.
-  - User integration rights are missing.
+
+* The token needs to be refreshed.
+* User integration rights are missing.
 
 **Resolution**:
-- If the integration worked for you previously, the refresh token may have expired. [Sync with the ITSM Connector to generate a new refresh token](./itsmc-resync-servicenow.md). 
-- If the integration never worked, it may be missing integration user rights. See the instructions to [install the user app and create the user role](./itsmc-connections-servicenow.md#install-the-user-app-and-create-the-user-role).
+
+* If the integration worked for you previously, the refresh token may have expired. [Sync with the ITSM Connector to generate a new refresh token](./itsmc-resync-servicenow.md). 
+* If the integration never worked, it may be missing integration user rights. See the instructions to [install the user app and create the user role](./itsmc-connections-servicenow.md#install-the-user-app-and-create-the-user-role).
 

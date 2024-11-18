@@ -16,7 +16,7 @@ These options might be cumbersome and pose a risk because it's difficult to mana
 To enable Microsoft Entra integration for Azure Monitor Logs and remove reliance on these shared secrets:
 
 1. [Disable local authentication for Log Analytics workspaces](#disable-local-authentication-for-log-analytics-workspaces).
-1. Ensure that only authenticated telemetry is ingested in your Application Insights resources with [Microsoft Entra authentication for Application Insights (preview)](../app/azure-ad-authentication.md).
+1. Ensure that only authenticated telemetry is ingested in your Application Insights resources with [Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md).
 2. Follow [best practices for using Entra authentication](/entra/identity/managed-identities-azure-resources/managed-identity-best-practice-recommendations).
 
 ## Prerequisites
@@ -35,7 +35,7 @@ Disabling local authentication might limit the availability of some functionalit
 
 - Existing Log Analytics agents will stop functioning. Only Azure Monitor Agent will be supported. Azure Monitor Agent will be missing some capabilities that are available through the Log Analytics agent. Examples include custom log collection and IIS log collection.
 - The Data Collector API (preview) won't support Microsoft Entra authentication and won't be available to ingest data.
-- VM insights and Container insights will stop working. Local authorization will be the only authorization method supported by these features.
+- VM Insights is supported only with Azure Monitor Agent (AMA).
 
 You can disable local authentication by using Azure Policy. Or you can disable it programmatically through an Azure Resource Manager template, PowerShell, or the Azure CLI.
 
@@ -177,4 +177,4 @@ Use the following PowerShell commands to disable local authentication:
 ---
 
 ## Next steps
-See [Microsoft Entra authentication for Application Insights (preview)](../app/azure-ad-authentication.md).
+See [Microsoft Entra authentication for Application Insights](../app/azure-ad-authentication.md).

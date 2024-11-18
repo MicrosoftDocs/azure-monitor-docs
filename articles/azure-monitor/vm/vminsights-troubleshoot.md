@@ -4,7 +4,7 @@ description: Get troubleshooting information about agent installation and the us
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
+ms.date: 11/06/2024
 ms.custom: references_regions
 
 ---
@@ -19,7 +19,7 @@ When you onboard an Azure virtual machine (VM) from the Azure portal, the follow
 
 * A default Log Analytics workspace is created if you selected that option.
 * The Azure Monitor Agent is installed on the virtual machine through an extension, if the agent isn't already installed.
-* The Dependency Agent is installed on the virtual machine through an extension, if it's required.
+* The Dependency Agent is installed on the virtual machine through an extension, if you chose to enable processes and dependencies.
 
 During the onboarding process, each of these steps is verified and a notification status appears in the portal. Configuration of the workspace and the agent installation typically takes 5 to 10 minutes. It takes another 5 to 10 minutes for data to become available to view in the portal.
 
@@ -42,20 +42,12 @@ If you still see a message that the virtual machine needs to be onboarded, it mi
 
 | Operating system | Agents |
 |:---|:---|
-| Windows | MicrosoftMonitoringAgent<br>Microsoft.Azure.Monitoring.DependencyAgent |
-| Linux | OMSAgentForLinux<br>DependencyAgentLinux |
+| Windows | AzureMonitorWindowsAgent<br>DependencyAgentWindows |
+| Linux | AzureMonitorLinuxAgent<br>DependencyAgentLinux |
 
 If you don't see both extensions for your operating system in the list of installed extensions, you must install them. If the extensions are listed but their status doesn't appear as **Provisioning succeeded**, remove the extensions and reinstall them.
 
-### Do you have connectivity problems?
-
-For Windows machines, you can use the TestCloudConnectivity tool to identify a connectivity problem. This tool is installed by default with the agent in the folder *%SystemDrive%\Program Files\Microsoft Monitoring Agent\Agent*.
-
-Run the tool from an elevated command prompt. It returns results and highlights where the test fails.
-
-:::image type="content" source="media/vminsights-troubleshoot/test-cloud-connectivity.png" lightbox="media/vminsights-troubleshoot/test-cloud-connectivity.png" alt-text="Screenshot that shows the tool for testing cloud connectivity.":::
-
-## DCR created by the VM Insights process was modified and now data is missing
+## VM insights DCR was modified
 
 ### Identify the problem
 

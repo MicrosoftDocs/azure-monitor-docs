@@ -156,7 +156,7 @@ If you're getting started with Application Insights and don't need to migrate fr
     - `[Your project's name].csproj` might have a reference to your Application Insights resource:
 
         ```xml
-        <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
+        <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
         ```
 
 7. Clean and Build
@@ -931,7 +931,7 @@ The following scenarios are optional and apply to advanced users.
   - `[Your project's name].csproj` might have a reference to your Application Insights resource:
 
       ```xml
-      <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
+      <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
       ```
 
 ### [WorkerService](#tab/workerservice)

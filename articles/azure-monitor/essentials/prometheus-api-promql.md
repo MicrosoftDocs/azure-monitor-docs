@@ -75,7 +75,7 @@ You've created your app registration and have assigned it access to query data f
 Send the following request in the command prompt or by using a client like Insomnia or PowerShell’s Invoke-RestMethod
 
 ```shell
-curl -X POST 'https://login.microsoftonline.com/<tennant ID>/oauth2/token' \
+curl -X POST 'https://login.microsoftonline.com/<tenant ID>/oauth2/token' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=client_credentials' \
 --data-urlencode 'client_id=<your apps client ID>' \

@@ -4,7 +4,7 @@ description: Configure diagnostics extension in Azure Monitor to send data to Az
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 07/19/2023
+ms.date: 11/14/2024
 
 ---
 
