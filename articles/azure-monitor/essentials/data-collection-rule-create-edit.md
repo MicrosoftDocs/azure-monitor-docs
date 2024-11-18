@@ -138,11 +138,13 @@ When you create or edit a DCR using its JSON, you'll often need to make multiple
 ### Use local file as source of DCR
 If you use a local file as the source of the DCRs that you create and edit, you're assured that you always have access to the latest version of the DCR definition. This is ideal if you want to use version control tools such as GitHub or Azure DevOps to manage the changes. You can also use an editor such as VS Code to make changes to the DCR and then use command line tools to update the DCR in Azure Monitor as described in [Create or edit a DCR using JSON](#create-or-edit-a-dcr-using-json). 
 
+Following is a sample PowerShell script you can use to push changes to a DCR from a source file. This validates that the source file is valid JSON before sending it to Azure Monitor. This uses the API call instead of `New-AzDataCollectionRule` to get more detailed compile errors.
 
-### Script to edit a DCR
-Following is a sample PowerShell script you can use to edit a DCR in Azure Monitor. If you provide a path to a JSON file, then that file will be used to update or create the DCR. If you don't provide a path, then the script will open the DCR in VS Code for you to edit. The script will retrieve the DCR definition and save it to a file before launching VS Code. Once you edit the file using VS Code or the editor in Cloud Shell, you the DCR is updated with the new content.
+```powershell
+```
 
-1. Execute the following commands to retrieve DCR content and save it to a file. Replace `<ResourceId>` with DCR ResourceID and `<FilePath>` with the name of the file to store DCR.
+### Script to edit a DCR in place
+Following is a sample PowerShell script you can use to edit a DCR in Azure Monitor. This script will open the DCR in VS Code for you to edit. The script will retrieve the DCR definition and save it to a file before launching VS Code. Once you edit the file using VS Code or the editor in Cloud Shell, you the DCR is updated with the new content.
 
 ```PowerShell
 param ([Parameter(Mandatory=$true)] $ResourceId)
