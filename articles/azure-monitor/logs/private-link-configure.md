@@ -89,7 +89,7 @@ From the menu for your AMPLS, select **Network Isolation** to control which netw
 
 **Connected AMPLS**
 
-This screen allows you to review and configure the resource's connections to the AMPLS. Connecting to an AMPLS allows traffic from the connected virtual network connectedto reach the resource. It has the same effect as connecting it from the scope described in [Connect Azure Monitor resources](#connect-resources-to-the-ampls).
+This screen allows you to review and configure the resource's connections to the AMPLS. Connecting to an AMPLS allows traffic from the connected virtual network connected to reach the resource. It has the same effect as connecting it from the scope described in [Connect Azure Monitor resources](#connect-resources-to-the-ampls).
 
 To add a new connection, select **Add** and select the AMPLS. Your resource can connect to five AMPLS objects, as described in [AMPLS limits](./private-link-design.md#ampls-limits).
 

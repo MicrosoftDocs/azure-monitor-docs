@@ -92,7 +92,7 @@ Use the following process to add an NSP inbound access rule using the Azure port
 1.	Navigate to your Network Security Perimeter resource in the Azure portal.
 2.	Select **Profiles** and then the profile you are using with your NSP.
 
-    :::image type="content" source="./media/network-security-perimeter/profiles.png" alt-text="Screenshot of network security perimeter profile profiles in the Azure portal." lightbox="./media/network-security-perimeter/profiles.png"::: 
+    :::image type="content" source="./media/network-security-perimeter/profiles.png" alt-text="Screenshot of network security perimeter profiles in the Azure portal." lightbox="./media/network-security-perimeter/profiles.png"::: 
 
 3.	Select **Inbound access rules**.
 
