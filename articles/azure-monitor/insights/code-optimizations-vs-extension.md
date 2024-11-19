@@ -18,7 +18,9 @@ This article guides you through using the extension with GitHub Copilot in Visua
 
 ## Prerequisites
 
-- [Install versions 17.10 or 17.11 of Visual Studio](https://visualstudio.microsoft.com/downloads/). (**Note:** Version 17.12 of Visual Studio is not yet supported.)
+- [Install versions 17.10 or 17.11 of Visual Studio](https://visualstudio.microsoft.com/downloads/). 
+   > [!NOTE]
+   > Version 17.12 of Visual Studio is not yet supported.
 - Sign up for and log into a GitHub account with [a valid GitHub Copilot subscription](https://docs.github.com/en/copilot/about-github-copilot/subscription-plans-for-github-copilot).
 - Enable the following services for your .NET application:
   - [Application Insights](../app/create-workspace-resource.md)
@@ -49,7 +51,7 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 
 1. In Visual Studio, open the repo holding your .NET application with Code Optimizations enabled. 
 1. Open the GitHub Copilot chat. 
-1. Invoke the extension by executing the following command, replacing the placeholder with your own Application Insights resource name or with the Application Insights Application ID
+1. Invoke the extension by executing the following command, replacing the placeholder with your own Application Insights resource name or with the Application Insights Application ID.
 
     ```bash
     @code_optimizations /connect <YOUR_APPLICATION_INSIGHTS_RESOURCE_NAME_OR_APPLICATION_ID>
