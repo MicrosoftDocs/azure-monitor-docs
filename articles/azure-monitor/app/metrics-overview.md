@@ -37,14 +37,17 @@ Application Insights supports three different types of metrics: standard (preagg
 | **Use cases** | Real-time monitoring, performance dashboards, and quick insights. | Detailed diagnostics, troubleshooting, and in-depth analysis. | Tailored performance indicators and business-specific metrics. |
 | **Examples** | CPU usage, memory usage, request duration. | Request counts, exception traces, dependency calls. | Custom application-specific metrics like user engagement, feature usages. |
 
-## Metrics support
+## Metrics preaggregation
 
-> [!NOTE]
-> Log-based metrics are supported for all languages and instrumentation methods.
+OpenTelemetry SDKs and newer Application Insights SDKs (Classic API) preaggregate metrics during collection. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent by using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics) or [GetMetric](./api-custom-events-metrics.md#getmetric), which results in less data ingestion and lower cost.
 
-### Manuel instrumentation via Azure Monitor OpenTelemetry Distro
+For SDKs that don't implement preaggregation (that is, older versions of Application Insights SDKs or for browser instrumentation), the Application Insights back end still populates the new metrics by aggregating the events received by the Application Insights event collection endpoint. Although you don't benefit from the reduced volume of data transmitted over the wire, you can still use the preaggregated metrics and experience better performance and support of the near real time dimensional alerting with SDKs that don't preaggregate metrics during collection.
 
-| Current production distro | Standard metrics (preaggregated) | Custom metrics (without preaggregation) | Custom metrics (with preaggregation) |
+The collection endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
+
+### OpenTelemetry SDK supported preaggregated metrics
+
+| Current production SDK | Standard metrics (with SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
 |---------------------------|----------------------------------|-----------------------------------------|--------------------------------------|
 | ASP.NET Core | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=aspnetcore#add-custom-metrics) |
 | .NET (via Exporter) | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#add-custom-metrics) |
@@ -53,9 +56,9 @@ Application Insights supports three different types of metrics: standard (preagg
 | Node.js | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=nodejs#add-custom-metrics) |
 | Python | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=python#add-custom-metrics) |
 
-### Manual instrumentation via Application Insights SDK (Classic API)
+### Application Insights SDK (Classic API) supported preaggregated metrics
 
-| Current production SDKs | Standard metrics (preaggregated) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
+| Current production SDK | Standard metrics (with SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
 |-------------------------|----------------------------------|---------------------------------------------|------------------------------------------|
 | .NET Core and .NET Framework | ✅ (V2.13.1+) | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ✅ (V2.7.2+) via [GetMetric](get-metric.md) |
 | Java | ❌ | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ❌ |
@@ -65,9 +68,9 @@ Application Insights supports three different types of metrics: standard (preagg
 > [!CAUTION]
 > The [OpenCensus Python SDK is retired](https://opentelemetry.io/blog/2023/sunsetting-opencensus/). We recommend the [OpenTelemetry-based Python offering](./opentelemetry-enable.md?tabs=python) and provide [migration guidance](./opentelemetry-python-opencensus-migrate.md?tabs=python).
 
-### Autoinstrumentation
+### Codeless supported preaggregated metrics (autoinstrumentation)
 
-| Current production SDKs | Standard metrics (preaggregated) | Custom metrics (without preaggregation) | Custom metrics (with preaggregation) |
+| Current production SDK | Standard metrics (with SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
 |-------------------------|----------------------------------|-----------------------------------------|--------------------------------------|
 | ASP.NET Core | ✅ <sup>1<sup> | ❌ | ❌ |
 | ASP.NET | ✅ <sup>2<sup> | ❌ | ❌ |
@@ -120,20 +123,28 @@ Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dime
 
 ## Available metrics
 
-This article lists metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements. For convenience, each query uses defaults for time granularity, chart type, and sometimes splitting dimension which simplifies using the query in Log Analytics without any need for modification.
+### [Standard](#tab/standard)
+
+The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements. 
+
+### [Log-based](#tab/log-based)
+
+The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements. For convenience, each query uses defaults for time granularity, chart type, and sometimes splitting dimension which simplifies using the query in Log Analytics without any need for modification.
 
 When you plot the same metric in [metrics explorer](./../essentials/analyze-metrics.md), there are no defaults - the query is dynamically adjusted based on your chart settings:
 
-- The selected **Time range** is translated into an additional *where timestamp...* clause to only pick the events from selected time range. For example, a chart showing data for the most recent 24 hours, the query includes *| where timestamp > ago(24 h)*.
+* The selected **Time range** is translated into an additional `where timestamp...` clause to only pick the events from selected time range. For example, a chart showing data for the most recent 24 hours, the query includes `| where timestamp > ago(24 h)`.
 
-- The selected **Time granularity** is put into the final *summarize ... by bin(timestamp, [time grain])* clause.
+* The selected **Time granularity** is put into the final `summarize ... by bin(timestamp, [time grain])` clause.
 
-- Any selected **Filter** dimensions are translated into additional *where* clauses.
+* Any selected **Filter** dimensions are translated into additional `where` clauses.
 
-- The selected **Split chart** dimension is translated into an extra summarize property. For example, if you split your chart by *location*, and plot using a 5-minute time granularity, the *summarize* clause is summarized *... by bin(timestamp, 5 m), location*.
+* The selected **Split chart** dimension is translated into an extra summarize property. For example, if you split your chart by `location`, and plot using a 5-minute time granularity, the `summarize` clause is summarized `... by bin(timestamp, 5 m), location`.
 
 > [!NOTE]
 > If you're new to the Kusto query language, you start by copying and pasting Kusto statements into the Log Analytics query pane without making any modifications. Click **Run** to see basic chart. As you begin to understand the syntax of query language, you can start making small modifications and see the impact of your change. Exploring your own data is a great way to start realizing the full power of [Log Analytics](../logs/log-analytics-tutorial.md) and [Azure Monitor](../overview.md).
+
+---
 
 ### Availability metrics
 
@@ -860,17 +871,17 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 
 ---
 
-## Access all your data directly with the Application Insights REST API
+## Access log-based metrics directly with the Application Insights REST API
 
 The Application Insights REST API enables programmatic retrieval of log-based metrics. It also features an optional parameter `ai.include-query-payload` that when added to a query string, prompts the API to return not only the time series data, but also the Kusto Query Language (KQL) statement used to fetch it. This parameter can be particularly beneficial for users aiming to comprehend the connection between raw events in Log Analytics and the resulting log-based metric.
 
-To access your data directly, pass the parameter “ai.include-query-payload” to the Application Insights API in a query using KQL.
+To access your data directly, pass the parameter `ai.include-query-payload` to the Application Insights API in a query using KQL.
 
 ```Kusto
 api.applicationinsights.io/v1/apps/DEMO_APP/metrics/users/authenticated?api_key=DEMO_KEY&prefer=ai.include-query-payload
 ```
 
-The following is an example of a return KQL statement for the metric "Authenticated Users.” (In this example, "users/authenticated" is the metric id.) 
+The following is an example of a return KQL statement for the metric "Authenticated Users.” (In this example, `"users/authenticated"` is the metric id.) 
 
 ```Kusto
 output
