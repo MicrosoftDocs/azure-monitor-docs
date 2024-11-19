@@ -76,7 +76,7 @@ Create a network security perimeter using [Azure portal](/azure/private-link/cre
 An NSP profile specifies rules that allow or deny access through the perimeter. Within the perimeter, all resources have mutual access at the network level although still subject to authentication and authorization. For resources outside of the NSP, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
 
 > [!NOTE]
-> Any service associated with a Network Security Perimeter implicitly allows inbound and outbound access to any other service associated with the same Network Security Perimeter when that access is authenticated using [managed identities and role assignments](/azure/entra/identity/managed-identities-azure-resources/overview). Access rules only need to be created when allowing access outside of the Network Security Perimeter, or for access authenticated using API keys.
+> Any service associated with a Network Security Perimeter implicitly allows inbound and outbound access to any other service associated with the same Network Security Perimeter when that access is authenticated using [managed identities and role assignments](/entra/identity/managed-identities-azure-resources/overview). Access rules only need to be created when allowing access outside of the Network Security Perimeter, or for access authenticated using API keys.
 
 
 ## Add NSP inbound access rule
