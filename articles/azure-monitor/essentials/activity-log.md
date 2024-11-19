@@ -226,6 +226,7 @@ This sample PowerShell script creates a log profile that writes the activity log
    $subscriptionId = "<your Azure subscription Id>"
    $resourceGroupName = "<resource group name your Event Hub belongs to>"
    $eventHubNamespace = "<Event Hub namespace>"
+   $storageAccountName = "<Storage Account name>"
 
    # Build the service bus rule Id from the settings above
    $serviceBusRuleId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.EventHub/namespaces/$eventHubNamespace/authorizationrules/RootManageSharedAccessKey"
