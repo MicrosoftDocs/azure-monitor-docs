@@ -865,14 +865,6 @@ items:
           href: logs/tutorial-logs-ingestion-code.md
       - name: Data collector API
         href: logs/data-collector-api.md
-  - name: Private Link networking
-    items:
-    - name: Private Link overview
-      href: logs/private-link-security.md
-    - name: Private Link design
-      href: logs/private-link-design.md
-    - name: Private Link configuration
-      href: logs/private-link-configure.md
   - name: Collect logs from Event Hubs
     href: logs/ingest-logs-event-hub.md
   - name: Send data
@@ -1084,6 +1076,41 @@ items:
             href: logs/log-excel.md
     - name: Migrate from Splunk to Azure Monitor Logs
       href: logs/migrate-splunk-to-azure-monitor-logs.md
+- name: Security and networking
+  items:
+  - name: Data security
+    items:
+      - name: Roles permissions and security
+        href: roles-permissions-security.md
+      - name: Log data
+        displayName: Azure Customer Lockbox, Customer Lockbox, Lockbox
+        href: logs/data-security.md
+      - name: Customer-managed keys
+        href: logs/customer-managed-keys.md
+      - name: Private storage
+        href: logs/private-storage.md
+      - name: Personal log data handling
+        href: logs/personal-data-mgmt.md
+  - name: Network isolation
+    items:
+    - name: Private Link networking
+      items:
+      - name: Overview
+        displayName: Private Link
+        href: logs/private-link-security.md
+      - name: Design
+        displayName: Private Link
+        href: logs/private-link-design.md
+      - name: Configuration
+        displayName: Private Link
+        href: logs/private-link-configure.md
+    - name: Network security perimeter
+      href: essentials/network-security-perimeter.md
+  - name: Security baseline
+    href: /security/benchmark/azure/baselines/azure-monitor-security-baseline?toc=/azure/azure-monitor/toc.json
+  - name: Security controls by Azure Policy
+    displayName: regulatory, compliance, standards, domains
+    href: .//security-controls-policy.md
 - name: Visualize
   items:
   - name: Workbooks
