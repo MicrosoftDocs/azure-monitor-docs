@@ -4,20 +4,18 @@ description: Details on creating data collection rules (DCRs) in Azure Monitor.
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 09/15/2024
+ms.date: 11/19/2024
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
 
-# Create data collection rules (DCRs) and associations in Azure Monitor
+# Create data collection rules (DCRs) in Azure Monitor
 
-There are multiple methods for creating a [data collection rule (DCR)](./data-collection-rule-overview.md) in Azure Monitor. In some cases, Azure Monitor can create and manage the DCR according to settings that you configure in the Azure portal. You may not even realize that you're working with a DCR in some of these cases. For other scenarios, you may need to create your own DCRs or edit existing ones using a text editor.
-
-This article describes the different methods for creating a DCR. For the contents of the DCR itself, see [Structure of a data collection rule in Azure Monitor](./data-collection-rule-structure.md).
+There are multiple methods for creating a [data collection rule (DCR)](./data-collection-rule-overview.md) in Azure Monitor. In some cases, Azure Monitor can create and manage the DCR according to settings that you configure in the Azure portal. You may not even realize that you're working with a DCR in some of these cases. For other scenarios though, you may need to create your own DCRs or edit existing ones by directly working with their JSON definition. This article describes the different methods for creating a DCR and recommendations on editing and troubleshooting them.
 
 ## Permissions
 
- You require the following permissions to create DCRs and associations:
+ You require the following permissions to create DCRs and DCR associations:
 
 | Built-in role | Scopes | Reason |
 |:---|:---|:---|
@@ -25,13 +23,13 @@ This article describes the different methods for creating a DCR. For the content
 | [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)<br>[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator)</li></ul> | <ul><li>Virtual machines, virtual machine scale sets</li><li>Azure Arc-enabled servers</li></ul> | Deploy agent extensions on the VM (virtual machine). |
 | Any role that includes the action *Microsoft.Resources/deployments/** | <ul><li>Subscription and/or</li><li>Resource group and/or </li><li>An existing DCR</li></ul> | Deploy Azure Resource Manager templates. |
 
-## Azure regions
-Create your DCR in the same region as your destination Log Analytics workspace or Azure Monitor workspace. You can associate the DCR to machines or containers from any subscription or resource group in the tenant. To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
+> [!IMPORTANT]
+> Create your DCR in the same region as your destination Log Analytics workspace or Azure Monitor workspace. You can associate the DCR to machines or containers from any subscription or resource group in the tenant. To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 
 
 ## Create or edit a DCR using Azure portal
 
-The Azure portal provides a simplified experience for creating a DCR for particular scenarios. Using this method, you don't need to understand the structure of a DCR unless you want to later modify it to implement an advanced feature such as a transformation. The experience will vary for each scenario, so refer to the documentation for the specific scenario you're working with as described in the following table.
+The Azure portal provides a simplified experience for creating a DCR for particular scenarios. Using this method, you don't need to understand the structure of a DCR, although you may be limited in the configuration you can perform and may need to edit the DCR definition to implement an advanced feature such as a transformation. The experience will vary for each scenario, so refer to the documentation for the specific scenario you're working with as described in the following table.
 
 | Scenario | Description |
 |:---|:---|
@@ -42,7 +40,16 @@ The Azure portal provides a simplified experience for creating a DCR for particu
 | Kubernetes monitoring | To monitor a Kubernetes cluster, you enable Container Insights for logs and Prometheus for metrics. A DCR for each is created and associated with the containerized version of Azure Monitor agent in the cluster. You may need to modify the Container insights DCR to add a transformation. See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) and [Data transformations in Container insights](../containers/container-insights-transformations.md). |
 
 ## Create or edit a DCR using JSON
-To create a DCR using the CLI, PowerShell, API, or ARM templates, you need to work with the DCR definition in JSON and then deploy the DCR to Azure Monitor. You can start with one of the [sample DCRs](./data-collection-rule-samples.md) which provide the JSON for several common scenarios, or you may use a DCR that you created in the portal as a starting point. Use information in [Structure of a data collection rule in Azure Monitor](./data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
+To create a DCR using the CLI, PowerShell, API, or ARM templates, you need to work with the DCR definition in JSON and then deploy it to Azure Monitor. You can start with one of the [sample DCRs](./data-collection-rule-samples.md) which provide the JSON for several common scenarios, or you may use a DCR that you created in the portal as a starting point. Use information in [Structure of a data collection rule in Azure Monitor](./data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
+
+> [!IMPORTANT]
+> While you may choose to use the PowerShell or CLI commands to create and edit a DCR, the API and ARM methods will provide more detailed error messages if there are compile errors.
+> 
+> In the following example, the DCR specifies a table name that doesn't exist in the destination Log Analytics workspace. The PowerShell command returns a generic error message, but the API call will return a detailed error message that specifies the table that doesn't exist.
+> 
+> :::image type="content" source="media/data-collection-rule-create-edit/dcr-error-powershell.png" lightbox="media/data-collection-rule-create-edit/dcr-error-powershell.png" alt-text="Screenshot that shows an error message for a DCR when using a PowerShell command.":::
+> 
+> :::image type="content" source="media/data-collection-rule-create-edit/dcr-error-api.png" lightbox="media/data-collection-rule-create-edit/dcr-error-api.png" alt-text="Screenshot that shows an error message for a DCR when using the API.":::
 
 ### [CLI](#tab/cli)
 
@@ -53,11 +60,7 @@ Use the [az monitor data-collection rule create](/cli/azure/monitor/data-collect
 az monitor data-collection rule create --location 'eastus' --resource-group 'my-resource-group' --name 'my-dcr' --rule-file 'C:\MyNewDCR.json' --description 'This is my new DCR'
 ```
 
-Use the [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association) command to create an association between your DCR and resource.
 
-```azurecli
-az monitor data-collection rule association create --name "my-vm-dcr-association" --rule-id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr" --resource "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm"
-```
 
 ### [PowerShell](#tab/powershell)
 
@@ -127,9 +130,7 @@ Use the following template to create a DCR using information from [Structure of 
 ---
 
 ## Retrieve the JSON for a DCR
-To edit an existing DCR using using any of the methods in [Create or edit a DCR using JSON](#create-or-edit-a-dcr-using-json), you need to retrieve the JSON for the DCR unless you used it as your source.
-
-You can view the JSON for the DCR in the Azure portal so you can copy and paste it into a file for editing and deployment with a command line tool.
+To edit an existing DCR using using any of the methods in [Create or edit a DCR using JSON](#create-or-edit-a-dcr-using-json), you need to retrieve the JSON for the DCR unless you used it as your source. You can view the JSON for the DCR in the Azure portal so you can copy and paste it into a file for editing and deployment with a command line tool.
 
 1. In the Azure portal, navigate to the DCR that you want to edit and click **JSON view** in the **Overview** menu.
 
