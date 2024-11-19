@@ -23,27 +23,23 @@ In this article, you'll use the Azure portal to:
      
   :::image type="content" source="./media/profiler-azure-functions/choose-plan.png" alt-text="Screenshot of where to select App Service plan from drop-down in Functions app creation.":::
 
-- Linked to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the instrumentation key.
+- Linked to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the connection string.
 
 ## App settings for enabling the .NET Profiler
 
 |App Setting    | Value    |
 |---------------|----------|
+|APPLICATIONINSIGHTS_CONNECTION_STRING | Unique value from your App Insights resource. |
 |APPINSIGHTS_PROFILERFEATURE_VERSION | 1.0.0 |
 |DiagnosticServices_EXTENSION_VERSION | ~3 |
-|APPINSIGHTS_INSTRUMENTATIONKEY | Unique value from your App Insights resource. |
 
 ## Add app settings to your Azure Functions app
 
 From your Functions app overview page in the Azure portal:
 
-1. Under **Settings**, select **Configuration**.
+1. Under **Settings**, select **Environment variables**, verify the `APP_INSIGHTS_CONNECTION_STRING` setting is included in the settings list.
 
-   :::image type="content" source="./media/profiler-azure-functions/configuration-menu.png" alt-text="Screenshot of selecting Configuration from under the Settings section of the left side menu.":::
-
-1. In the **Application settings** tab, verify the `APPINSIGHTS_INSTRUMENTATIONKEY` setting is included in the settings list.
-
-   :::image type="content" source="./media/profiler-azure-functions/app-insights-key.png" alt-text="Screenshot showing the App Insights Instrumentation Key setting in the list.":::
+   :::image type="content" source="./media/profiler-azure-functions/app-insights-key.png" alt-text="Screenshot showing the App Insights connection string setting in the list.":::
 
 1. Select **New application setting**.
 

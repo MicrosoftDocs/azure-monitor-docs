@@ -71,7 +71,7 @@ If your Application Insights resource is in a different subscription from your i
 
 |App setting    | Value    |
 |---------------|----------|
-|APPINSIGHTS_INSTRUMENTATIONKEY         | iKey for your Application Insights resource    |
+|APPLICATIONINSIGHTS_CONNECTION_STRING | Unique value from your App Insights resource. |
 |APPINSIGHTS_PROFILERFEATURE_VERSION | 1.0.0 |
 |DiagnosticServices_EXTENSION_VERSION | ~3 |
 
