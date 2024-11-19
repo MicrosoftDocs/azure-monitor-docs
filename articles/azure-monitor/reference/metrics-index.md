@@ -7,7 +7,7 @@ services: azure-monitor
 ms.topic: reference
 ms.service: azure-monitor
 ms.custom: ignite-2022
-ms.date: 11/01/2024
+ms.date: 11/19/2024
 ms.reviewer: priyamishra
 ---
 
@@ -16,7 +16,7 @@ ms.reviewer: priyamishra
 > [!NOTE]
 > This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 
-Last updated: 11/01/2024.
+Last updated: 11/19/2024.
 
 Azure Monitor provides several ways to interact with metrics, including charting them in the Azure portal, accessing them through the REST API, or querying them by using PowerShell or the Azure CLI (Command Line Interface).  
 
@@ -200,5 +200,6 @@ Following table lists metrics and log categories available for each resource typ
 ## Next steps
 
 - [Read about metrics in Azure Monitor](/azure/azure-monitor/data-platform)
+- [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics)
 - [Create alerts on metrics](/azure/azure-monitor/alerts/alerts-overview)
 - [Export metrics to storage, Event Hub, or Log Analytics](/azure/azure-monitor/essentials/platform-logs-overview)
