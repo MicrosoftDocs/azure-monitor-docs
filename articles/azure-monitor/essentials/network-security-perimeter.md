@@ -4,7 +4,7 @@ description: Details on adding Azure Monitor resources to your network security 
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 10/15/2024
+ms.date: 11/19/2024
 ---
 
 # Configure Azure Monitor with Network Security Perimeter (Preview)
@@ -67,6 +67,9 @@ Create a network security perimeter using [Azure portal](/azure/private-link/cre
 5. Select **Associate** in the bottom left-hand section of the screen to create the association with NSP.
 
     :::image type="content" source="./media/network-security-perimeter/associated-workspace.png" alt-text="Screenshot of associating a workspace with a network security perimeter profile in the Azure portal." lightbox="./media/network-security-perimeter/associated-workspace.png"::: 
+
+> [!IMPORTANT]
+> When transferring a Log Analytics workspace between resource groups or subscriptions, link it to the Network Security Perimeter (NSP) to retain security policies. If the workspace is deleted, ensure you also remove its associations from the NSP."
 
 ## Access rules for Log Analytics Workspace
 
@@ -135,3 +138,6 @@ Use the following process to add an NSP outbound access rule using the Azure por
     :::image type="content" source="./media/network-security-perimeter/outbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new outbound access rule in the Azure portal." lightbox="./media/network-security-perimeter/outbound-access-rule-new.png"::: 
 
 
+## Next steps
+
+- Read more about [Network Security Perimeter](/azure/private-link/network-security-perimeter-concepts) in Azure.
