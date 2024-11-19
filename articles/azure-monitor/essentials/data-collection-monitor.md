@@ -43,6 +43,11 @@ Some log ingestion errors will not be logged because they can't be associated wi
 ### Enable DCR error logs
 DCR error logs are implemented as [resource logs](./resource-logs.md) in Azure Monitor. Enable log collection by creating a [diagnostic setting](./diagnostic-settings.md) for the DCR. Each DCR will require its own diagnostic setting. See [Create diagnostic settings in Azure Monitor](./create-diagnostic-settings.md) for the detailed process. Select the category **Log Errors** and **Send to Log Analytics workspace**. You may want to select the same workspace that's used by the DCR, or you may want to consolidate all of your error logs in a single workspace.
 
+:::image type="content" source="media/data-collection-monitor/diagnostic-settings.png" lightbox="media/data-collection-monitor/diagnostic-settings.png" alt-text="Screenshot that shows diagnostic settings for a DCR.":::
+
+:::image type="content" source="media/data-collection-monitor/diagnostic-settings-detail.png" lightbox="media/data-collection-monitor/diagnostic-settings-detail.png" alt-text="Screenshot that shows detail of a diagnostic setting for a DCR.":::
+
+
 ### Retrieve DCR error logs
 Error logs are written to the [DCRLogErrors](/azure/azure-monitor/reference/tables/dcrlogerrors) table in the Log Analytics workspace you specified in the diagnostic setting. Following are sample queries you can use in [Log Analytics](../logs/log-analytics-overview.md) to retrieve these logs.
 
