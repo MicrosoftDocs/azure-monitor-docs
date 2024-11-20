@@ -6,8 +6,8 @@ ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio
 ms.topic: conceptual
-ms.date: 09/05/2024
-ms.custom: template-concept
+ms.date: 11/13/2024
+ms.custom: template-concept, references_regions
 ---
 
 # Regional availability of Azure Chaos Studio
@@ -16,9 +16,30 @@ This article describes the regional availability model for Azure Chaos Studio. I
 
 Chaos Studio is a regional Azure service, which means that the service is deployed and run within an Azure region. Chaos Studio has two regional components: the region where an experiment is deployed and the region where a resource is targeted.
 
-A chaos experiment can target a resource in a different region than the experiment. This process is called cross-region targeting. To enable chaos experimentation on targets in more regions, Chaos Studio has a set of regions in which you can do *resource targeting*. This set is a superset of the regions in which you can create and manage *experiments*.
-
-To view the list of regions where Chaos Studio and resource targeting are available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
+A chaos experiment can target a resource in a different region than the experiment. This process is called cross-region targeting. To enable chaos experimentation on targets in more regions, Chaos Studio has a set of regions in which you can do *resource targeting*. This set is a superset of the regions in which you can create and manage *experiments*. Below is the list of regions in which experiments and resource targeting are currently available.
+ 
+| Region | Chaos Studio (Experiments) | Resource Targeting |
+|--|--|--|
+| East US | Available | Available |
+| East US 2 | Available | Available |
+| West Central US | Available  | Available |
+| West US | Available  | Available |
+| North Central US | Available  | Available |
+| Central US | Available  | Available |
+| West US 2 | Not Available  | Available |
+| West US 3 | Not Available  | Available |
+| Canada Central | Not Available  | Available |
+| UK South | Available  | Available |
+| Southeast Asia | Available  | Available |
+| East Asia | Not Available  | Available |
+| Japan East | Available  | Available |
+| West Europe | Available  | Available |
+| North Europe | Not Available  | Available |
+| Sweden Central | Available  | Available |
+| Germany West Central | Not Available  | Coming soon |
+| Brazil South | Available  | Available |
+ 
+You can also view the list of regions where Chaos Studio is available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
 
 ## Regional availability of chaos experiments
 A [chaos experiment](chaos-studio-chaos-experiments.md) is an Azure resource that describes the faults that should be run and the resources those faults should be run against. An experiment is deployed to a single region. The following information and operations stay in that region:

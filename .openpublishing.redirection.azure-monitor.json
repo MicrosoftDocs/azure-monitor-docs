@@ -7568,6 +7568,7 @@
   {
    "source_path": "articles/azure-monitor/vm/vminsights-enable-hybrid.md",
    "redirect_url": "/azure/azure-monitor/vm/vminsights-enable-client",
+   "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/reference/tables/adpaudit.md",
@@ -7602,6 +7603,11 @@
   {
     "source_path_from_root": "/articles/azure-monitor/essentials/app-insights-metrics.md",
     "redirect_url": "/azure/azure-monitor/app/metrics-overview",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/containers/prometheus-remote-write-azure-ad-pod-identity.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/containers/prometheus-remote-write-azure-ad-pod-identity",
     "redirect_document_id": false
   }
  ]

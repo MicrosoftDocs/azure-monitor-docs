@@ -5,7 +5,7 @@ author: aul
 ms.author: bwren
 ms.subservice: logs
 ms.topic: conceptual
-ms.date: 08/28/2023
+ms.date: 11/19/2024
 ms.reviewer: aul
 ---
 
@@ -59,6 +59,9 @@ resources
 
 ## Kubernetes metadata and logs filtering
 Kubernetes metadata and logs filtering extends the ContainerLogsV2 schema with additional Kubernetes metadata. The logs filtering feature provides filtering capabilities for both workload and platform  containers. These features give you richer context and improved visibility into your workloads.
+
+> [!NOTE]
+> The Kubernetes metadata and logs filtering Grafana dashboard does not currently support basic logs.
 
 ### Features
 

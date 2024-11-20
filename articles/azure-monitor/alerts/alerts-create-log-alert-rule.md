@@ -145,7 +145,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
    |Field  |Description  |
    |---------|---------|
-   |**Number of violations**|The number of violations that trigger the alert.|
+   |**Number of violations**|The number of violations that trigger the alert. Notice that in order to use this the query should include 'datetime' column in the query results |
    |**Evaluation period**|The time period within which the number of violations occur. |
    |**Override query time range**| If you want the alert evaluation period to be different from the query time range, enter a time range here.<br> The alert time range is limited to a maximum of two days. Even if the query contains an `ago` command with a time range of longer than two days, the two-day maximum time range is applied. For example, even if the query text contains `ago(7d)`, the query only scans up to two days of data. If the query requires more data than the alert evaluation, you can change the time range manually. If the query contains an `ago` command, it changes automatically to two days (48 hours).|
 

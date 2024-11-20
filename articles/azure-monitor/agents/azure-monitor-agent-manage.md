@@ -4,7 +4,7 @@ description: Options for installing and managing Azure Monitor Agent on Azure vi
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/11/2024
+ms.date: 11/14/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 

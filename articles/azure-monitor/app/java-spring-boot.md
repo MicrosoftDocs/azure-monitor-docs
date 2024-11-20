@@ -93,7 +93,7 @@ public static void main(String[] args) {
 > Spring's `application.properties` or `application.yaml` files are not supported as
 > as sources for Application Insights Java configuration.
 
-See [configuration file path configuration options](./java-standalone-config.md#configuration-file-path)
+See [configuration file path configuration options](./java-standalone-config.md#json-configuration-set-up)
 to change the location for a file outside the classpath.
 
 To programmatically configure a file outside the classpath:
