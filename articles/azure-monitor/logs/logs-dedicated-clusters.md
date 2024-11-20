@@ -3,15 +3,16 @@ title: Azure Monitor Logs Dedicated Clusters
 description: Customers meeting the minimum commitment tier could use dedicated clusters
 ms.topic: conceptual
 ms.reviewer: yossiy
-ms.date: 04/21/2024
+ms.date: 11/20/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
 
 # Create and manage a dedicated cluster in Azure Monitor Logs 
 
-Linking a Log Analytics workspace to a dedicated cluster in Azure Monitor provides advanced capabilities and higher query utilization. Clusters require a minimum ingestion commitment of 100 GB per day. You can link and unlink workspaces from a dedicated cluster without any data loss or service interruption. 
+Dedicated cluster in Azure Monitor enables advanced security and control capabilities, and cost optimization. You can link new, or existing workspaces to the cluster with no interruption to ingestion and query operations.
 
 ## Advanced capabilities
+
 Capabilities that require dedicated clusters:
 
 - **[Customer-managed keys](../logs/customer-managed-keys.md)** - Encrypt cluster data using keys that you provide and control.
@@ -24,12 +25,12 @@ eligible for commitment tier discount.
 - **[Ingest from Azure Event Hubs](../logs/ingest-logs-event-hub.md)** - Lets you ingest data directly from an event hub into a Log Analytics workspace. Dedicated cluster lets you use capability when ingestion from all linked workspaces combined meet commitment tier. 
 
 ## Cluster pricing model
-Log Analytics Dedicated Clusters use a commitment tier pricing model of at least 100 GB/day. Any usage above the tier level incurs charges based on the per-GB rate of that commitment tier. See [Azure Monitor Logs pricing details](cost-logs.md#dedicated-clusters) for pricing details for dedicated clusters. The commitment tiers have a 31-day commitment period from the time a commitment tier is selected.
+Log Analytics dedicated clusters use a commitment tier pricing model starting at 100 GB per day. Ingestion exceeding the commitment tier level is charged based on the per-GB rate. A commitment tier can be increased any time, but has 31 days commitment period before it can be reduced. See [Azure Monitor Logs pricing details](cost-logs.md#dedicated-clusters) for details on commitment tiers.
 
-## Prerequisites
+There are two [billing types](#change-cluster-properties) options that determine billing attribution for the cluster resource and its data. Includes on the following values:
+- Cluster (default) - The costs for your cluster are attributed to the cluster resource.
+- Workspaces - The costs for your cluster are attributed proportionately to the workspaces in the Cluster, with the cluster resource being billed some of the usage if the total ingested data for the day is under the commitment tier. See Log Analytics Dedicated Clusters to learn more about the cluster pricing model.
 
-- Dedicated clusters require a minimum ingestion commitment of 100 GB per day.
-- When creating a dedicated cluster, you can't name it with the same name as a cluster that was deleted within the past two weeks.
 
 ## Required permissions
 
@@ -58,6 +59,20 @@ This article includes sample [Azure Resource Manager (ARM) templates](/azure/azu
 ### Template references
 
 - [Microsoft.OperationalInsights clusters](/azure/templates/microsoft.operationalinsights/2020-03-01-preview/clusters)
+
+## Preparations
+
+Cluster commitment tier billing starts once created regardless data ingestion, and it's recommended to have the followings ready before you start.
+
+1. Have a subscription where cluster is created
+1. Have the list of workspaces that you intend to link to cluster. they must be at the same region as the cluster
+1. Conclude the [billing type](#cluster-pricing-model) and attribution, whether to cluster (default), or to linked workspaces proportionally. 
+1. Verify [permissions](#required-permissions) to create a cluster and to link workspaces
+
+> [!NOTE]
+> - Creating a cluster and linking workspaces are performed in asynchronous operations that can take a few hours to complete
+> - Linking or unlinking workspaces from cluster have no effect on ingestion, or queries during the operations.
+
 
 ## Create a dedicated cluster
 
