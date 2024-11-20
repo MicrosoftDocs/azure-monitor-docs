@@ -221,10 +221,10 @@ Before you manage alert processing rules with the Azure CLI, prepare your enviro
 
 ```azurecli
 # List all alert processing rules for a subscription
-az monitor alert-processing-rules list
+az monitor alert-processing-rule list
 
 # Get details of an alert processing rule
-az monitor alert-processing-rules show --resource-group RG1 --name MyRule
+az monitor alert-processing-rule show --resource-group RG1 --name MyRule
 
 # Update an alert processing rule
 az monitor alert-processing-rule update --resource-group RG1 --name MyRule --enabled true

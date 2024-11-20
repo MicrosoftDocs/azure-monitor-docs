@@ -4,7 +4,7 @@ description: Performance data for the AMA running in a gateway scenario
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 4/07/2023
+ms.date: 11/14/2024
 ms.reviewer: jeffwo
  
 # Customer intent: As a deployment engineer, I can scope the resources required to scale my gateway data colletors the use the Azure Monitor Agent. 

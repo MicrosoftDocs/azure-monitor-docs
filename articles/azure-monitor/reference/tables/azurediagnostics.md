@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 09/16/2024
+ms.date: 11/18/2024
 custom: Hardcoded description from azurediagnostics-stub.md.
 ---
 
