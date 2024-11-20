@@ -19,6 +19,11 @@ Specific advantages of DCR-based data collection include the following:
 - Scalable configuration options supporting infrastructure as code and DevOps processes.
 - Option of edge pipeline in your own environment to provide high-end scalability, layered network configurations, and periodic connectivity.
 
+## Viewing DCRs
+View all of the DCRs in your subscription from the **Data Collection Rules** option of the **Monitor** menu in the Azure portal. Regardless of the method used to create the DCR and the details of the DCR itself, all in the subscription are listed in this screen.
+
+:::image type="content" source="media/data-collection-rule-overview/data-collection-rules.png" lightbox="media/data-collection-rule-overview/data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal." border="false":::
+
 ## Replaced legacy data collection methods
 The data collection process described in this article has either replaced or is in the process of replacing other data collection methods in Azure Monitor. The following table lists the legacy methods with their DCR-based replacements. Other data collection methods in Azure Monitor are expected to also be replaced by DCRs in the future.
 

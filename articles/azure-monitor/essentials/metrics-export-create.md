@@ -2,8 +2,8 @@
 title: Create and edit data collection rules (DCRs) in Azure Monitor
 description: Details on creating and editing data collection rules (DCRs) in Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
+author: EdB-MSFT
+ms.author: edbaynash
 ms.date: 09/15/2024
 ms.reviewer: nikeist
 ms.custom: references_regions
@@ -11,7 +11,7 @@ ms.custom: references_regions
 
 # Create a data collection rule (DCR) for metrics export 
 
-To create a data collection rule for metrics export use the Azure portal, Azure CLI, PowerShell, API, or ARM templates.
+This article describes how to create a [data collection rule (DCR)](./data-collection-rule-overview.md) for metrics export using the Azure portal, Azure CLI, PowerShell, API, or ARM templates.
 
 > [!IMPORTANT]  
 > To send Platform Telemetry data to Storage Accounts or Event Hubs, the resource, data collection rule, and the destination Storage Account or the Event Hubs must all be in the same region.

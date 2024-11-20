@@ -157,7 +157,7 @@ $DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath 
 When you create or edit a DCR using its JSON, you'll often need to make multiple updates to achieve the functionality you want. You need an efficient method to update the DCR, troubleshoot it if you don't get the results you expect, and then make additional updates. Since you can't edit the JSON directly in the Azure portal, following are some strategies that you can use.
 
 ### Use local file as source of DCR
-If you use a local file as the source of the DCRs that you create and edit, you're assured that you always have access to the latest version of the DCR definition. This is ideal if you want to use version control tools such as GitHub or Azure DevOps to manage the changes. You can also use an editor such as VS Code to make changes to the DCR and then use command line tools to update the DCR in Azure Monitor as described in [Create or edit a DCR using JSON](#create-or-edit-a-dcr-using-json). 
+If you use a local file as the source of the DCRs that you create and edit, you're assured that you always have access to the latest version of the DCR definition. This is ideal if you want to use version control tools such as GitHub or Azure DevOps to manage your changes. You can also use an editor such as VS Code to make changes to the DCR and then use command line tools to update the DCR in Azure Monitor as described in [Create or edit a DCR using JSON](#create-or-edit-a-dcr-using-json). 
 
 Following is a sample PowerShell script you can use to push changes to a DCR from a source file. This validates that the source file is valid JSON before sending it to Azure Monitor. This uses the API call instead of `New-AzDataCollectionRule` to get more detailed compile errors.
 
@@ -184,8 +184,8 @@ Write-Host "Deploying DCR $ResourceId ..." -ForegroundColor Green
 Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2023-03-11") -Method PUT -Payload $DCRContent		
 ```
 
-### Script to edit a DCR in place
-Following is a sample PowerShell script you can use to edit an existing DCR in Azure Monitor. The script will retrieve the DCR definition and save it to a temporary file before launching VS Code. Once you edit the file using VS Code or the editor in Cloud Shell, the DCR is updated with the new content.
+### Save DCR content to temporary file
+Following is a sample PowerShell script you can use to edit an existing DCR in Azure Monitor. The script will retrieve the DCR definition and save it to a temporary file before launching VS Code. Once you edit the file using VS Code or the editor in Cloud Shell, the DCR is updated with the new content and the temporary file is deleted.
 
 ```PowerShell
 param ([Parameter(Mandatory=$true)] $ResourceId)
@@ -211,14 +211,14 @@ if ("Y" -eq $Output.toupper())
 Remove-Item $FilePath
 ```
 
-### ARM template
-You can use the [Export template](/azure/azure-resource-manager/templates/export-template-portal) feature in the Azure portal to retrieve the ARM template for a DCR. You can then modify the JSON of the DCR and redeploy it in the Azure portal. 
+### Use ARM template to edit a DCR in place
+You can use the [Export template](/azure/azure-resource-manager/templates/export-template-portal) feature in the Azure portal to retrieve the ARM template for a DCR. You can then modify the JSON of the DCR and redeploy it in the Azure portal. All this is performed completely in the portal without ever saving the DCR to local disk.
 
 1. Select the DCR you want to modify in the Azure portal, and select **Export template**. Click **Deploy** to redeploy the same template.
 
     :::image type="content" source="media/data-collection-rule-edit/export-template.png" lightbox="media/data-collection-rule-edit/export-template.png" alt-text="Screenshot that shows the Export template option for a data collection rule in the Azure portal.":::
 
-2. Click **Edit template** to open up an editable version of the JSON for the DCR. Don't change the parameter values since you can still modify them after you save your changes.
+2. Click **Edit template** to open up an editable version of the JSON for the DCR. Don't change the parameter values.
 
     :::image type="content" source="media/data-collection-rule-edit/edit-template-option.png" lightbox="media/data-collection-rule-edit/edit-template-option.png" alt-text="Screenshot that shows the Edit template option for a data collection rule in the Azure portal.":::
 
@@ -226,7 +226,7 @@ You can use the [Export template](/azure/azure-resource-manager/templates/export
 
     :::image type="content" source="media/data-collection-rule-edit/edit-template.png" lightbox="media/data-collection-rule-edit/edit-template.png" alt-text="Screenshot that shows the editable JSON for a data collection rule in the Azure portal.":::
 
-4. Change any parameters you want although you want to simply modify the existing DCR, leave the parameters unchanged. Click **Review + create** to deploy the modified template and **Create** to create the new DCR.
+4. If you want to create a new DCR, then change the name parameter. Otherwise, leave the parameters unchanged. Click **Review + create** to deploy the modified template and **Create** to create the new DCR.
  
     :::image type="content" source="media/data-collection-rule-edit/review-create-option.png" lightbox="media/data-collection-rule-edit/review-create-option.png" alt-text="Screenshot that shows the review + create option for a data collection rule in the Azure portal.":::
 

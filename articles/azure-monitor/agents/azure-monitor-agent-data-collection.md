@@ -48,8 +48,8 @@ The table below lists the types of data you can currently collect with the Azure
 - [Permissions to create Data Collection Rule objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
 - See the article describing each data source for any additional prerequisites.
 
-## Overview 
-The Azure portal provides a simplified experience for creating a DCR for virtual machines and virtual machine scale sets. Using this method, you don't need to understand the structure of a DCR unless you want to implement an advanced feature such as a transformation. You can also use other creation methods described in [Create data collection rules (DCRs) and associations in Azure Monitor](../essentials/data-collection-rule-create-edit.md).
+## Create data collection rule (DCR) 
+The Azure portal provides a simplified experience for creating a DCR for virtual machines and virtual machine scale sets. Using this method, you don't need to understand the structure of a DCR unless you want to implement an advanced feature such as a transformation. You can also use other creation methods described in [Create data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md).
 
 On the **Monitor** menu in the Azure portal, select **Data Collection Rules** > **Create** to open the DCR creation page.
 
