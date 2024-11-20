@@ -567,7 +567,49 @@ CPU consumption by *all* processes running on the monitored server instance.
 > The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
 
 ### [Log-based](#tab/log-based)
+<!--
+#### ASP.NET request exection time (performanceCounters/requestExecutionTime)
 
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Milliseconds    | Avg, Min, Max          | All telemetry fields |
+
+```Kusto
+performanceCounters
+| where ((category == "ASP.NET Applications" and counter == "Request Execution Time") or name == "requestExecutionTime")
+| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
+| summarize ['performanceCounters/requestExecutionTime_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
+| order by timestamp desc
+```
+
+#### ASP.NET request rate (performanceCounters/requestsPerSecond)
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Avg, Min, Max          | All telemetry fields |
+
+```Kusto
+performanceCounters
+| where ((category == "ASP.NET Applications" and counter == "Requests/Sec") or name == "requestsPerSecond")
+| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
+| summarize ['performanceCounters/requestsPerSecond_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
+| order by timestamp desc
+```
+
+#### ASP.NET request in application queue (performanceCounters/requestsInQueue)
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Avg, Min, Max          | All telemetry fields |
+
+```Kusto
+performanceCounters
+| where ((category == "ASP.NET Applications" and counter == "Requests In Application Queue") or name == "requestsInQueue")
+| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
+| summarize ['performanceCounters/requestsInQueue_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
+| order by timestamp desc
+```
+-->
 #### Available memory (performanceCounters/availableMemory)
 
 | Unit of measure                        | Supported aggregations | Supported dimensions |
@@ -726,35 +768,39 @@ This metric refers to duration of dependency calls.
 
 | Unit of measure | Supported aggregations | Supported dimensions                                                                                                                                                           |
 |-----------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Milliseconds    | Average, Min, Max      | `Cloud role instance`, `Cloud role name`, `Dependency performance`, `Dependency type`, `Is traffic synthetic`, `Result code`, `Successful call`, `Target of a dependency call` |
+| Milliseconds    | Avg, Max, Min          | `Cloud role instance`, `Cloud role name`, `Dependency performance`, `Dependency type`, `Is traffic synthetic`, `Result code`, `Successful call`, `Target of a dependency call` |
 
 #### Server request rate (requests/rate)
 
 This metric reflects the number of incoming server requests that were received by your web application.
 
-| Unit of measure  | Supported aggregations | Supported dimensions                                                                                                       |
-|------------------|------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| Count Per Second | Average                | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Result performance` `Result code`, `Successful request` |
+| Unit of measure  | Supported aggregations | Supported dimensions                                                                                                        |
+|------------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Count per second | Avg                    | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Request performance` `Result code`, `Successful request` |
 
 #### Server requests (requests/count)
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                                                       |
-|-----------------|------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Result performance` `Result code`, `Successful request` |
+| Unit of measure | Supported aggregations | Supported dimensions                                                                                                        |
+|-----------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Request performance` `Result code`, `Successful request` |
 
 #### Server response time (requests/duration)
 
 This metric reflects the time it took for the servers to process incoming requests.
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                                                       |
-|-----------------|------------------------|----------------------------------------------------------------------------------------------------------------------------|
-| MilliSeconds    | Average, Min, Max      | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Result performance` `Result code`, `Successful request` |
+| Unit of measure | Supported aggregations | Supported dimensions                                                                                                        |
+|-----------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Milliseconds    | Avg, Max, Min          | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Request performance` `Result code`, `Successful request` |
 
 ### [Log-based](#tab/log-based)
 
 #### Dependency calls (dependencies/count)
 
 This metric is in relation to the number of dependency calls.
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Sum                    | All telemetry fields |
 
 ```Kusto
 dependencies
@@ -765,6 +811,10 @@ dependencies
 #### Dependency duration (dependencies/duration)
 
 This metric refers to duration of dependency calls.
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Milliseconds    | Avg, Min, Max          | All telemetry fields |
 
 ```Kusto
 dependencies
@@ -781,6 +831,10 @@ dependencies
 
 This metric reflects the number of incoming server requests that were received by your web application.
 
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Sum                    | All telemetry fields |
+
 ```Kusto
 requests
 | summarize sum(itemCount) by bin(timestamp, 5m)
@@ -790,6 +844,10 @@ requests
 #### Server response time (requests/duration)
 
 This metric reflects the time it took for the servers to process incoming requests.
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Milliseconds    | Avg, Min, Max          | All telemetry fields |
 
 ```Kusto
 requests
@@ -814,7 +872,7 @@ This metric refers to the amount of time it took for PageView events to load.
 
 | Unit of measure | Supported aggregations | Supported dimensions                      |
 |-----------------|------------------------|-------------------------------------------|
-| MilliSeconds    | Average, Min, Max      | `Cloud role name`, `Is traffic synthetic` |
+| (Milli)seconds  | Avg, Max, Min          | `Cloud role name`, `Is traffic synthetic` |
 
 #### Page views (pageViews/count)
 
@@ -828,15 +886,53 @@ The count of PageView events logged with the TrackPageView() Application Insight
 
 The count of trace statements logged with the TrackTrace() Application Insights API call.
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                |
-|-----------------|------------------------|-------------------------------------------------------------------------------------|
-| Count           | Count                  | `Cloud role instance`, `Cloud role name`,  `Is traffic synthetic`, `Severity level` |
+| Unit of measure | Supported aggregations | Supported dimensions                                                               |
+|-----------------|------------------------|------------------------------------------------------------------------------------|
+| Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Severity level` |
 
 ### [Log-based](#tab/log-based)
 
+<!--
+
+#### Data point count
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Sum                    | All telemetry fields |
+
+```Kusto
+
+```
+
+#### Data point volume
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Sum                    | All telemetry fields |
+
+```Kusto
+
+```
+
+#### Events (customEvents/count)
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Sum                    | All telemetry fields |
+
+```Kusto
+customEvents
+| summarize sum(itemCount) by bin(timestamp, 5m)
+| render barchart
+```
+-->
 #### Page view load time (pageViews/duration)
 
 This metric refers to the amount of time it took for PageView events to load.
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| (Milli)seconds  | Avg, Min, Max          | All telemetry fields |
 
 ```Kusto
 pageViews
@@ -853,6 +949,10 @@ pageViews
 
 The count of PageView events logged with the TrackPageView() Application Insights API.
 
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Sum                    | All telemetry fields |
+
 ```Kusto
 pageViews
 | summarize sum(itemCount) by bin(timestamp, 1h)
@@ -862,6 +962,10 @@ pageViews
 #### Sessions (sessions/count)
 
 This metric refers to the count of distinct session IDs.
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Unique                 | All telemetry fields |
 
 ```Kusto
 union traces, requests, pageViews, dependencies, customEvents, availabilityResults, exceptions, customMetrics, browserTimings
@@ -874,6 +978,10 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 
 The count of trace statements logged with the TrackTrace() Application Insights API call.
 
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Sum                    | All telemetry fields |
+
 ```Kusto
 traces
 | summarize sum(itemCount) by bin(timestamp, 1h)
@@ -883,6 +991,10 @@ traces
 #### Users (users/count)
 
 The number of distinct users who accessed your application. The accuracy of this metric may be  significantly impacted by using telemetry sampling and filtering.
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Unique                 | All telemetry fields |
 
 ```Kusto
 union traces, requests, pageViews, dependencies, customEvents, availabilityResults, exceptions, customMetrics, browserTimings
@@ -894,6 +1006,10 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 #### Users, Authenticated (users/authenticated)
 
 The number of distinct users who authenticated into your application.
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Count           | Unique                 | All telemetry fields |
 
 ```Kusto
 union traces, requests, pageViews, dependencies, customEvents, availabilityResults, exceptions, customMetrics, browserTimings
