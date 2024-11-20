@@ -10,21 +10,24 @@ ms.reviwer: nikeist
 ---
 
 # Create a transformation in Azure Monitor
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating a transformation query and adding it to a DCR.
-
-> [!NOTE]
-> When you [create a new table](../logs/create-custom-table.md) in a Log Analytics workspace using the Azure portal, you're prompted to create a transformation using sample data that you provide. This transformation is included in the DCR created as part of the table creation process. 
-
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing as transformation query and adding it to a DCR.
 
 ## Basic query structure
 
-The KQL statement is applied individually to each entry sent by the data source. It must understand the format of the incoming data and create output in the structure of the target table. 
+The transformation query is applied individually to each entry sent by the data source. It must understand the format of the incoming data and create output in the structure of the target table. 
+
+All transformation queries start with `source`, which is a virtual table that represents the input stream. You can then use any supported KQL operators to filter, modify, or add columns to the data as you would with any other table. 
+
+The output of the query must match the schema of the target table wit the following considerations:
+
+- You may omit any columns that shouldn't be populated. The column will be empty for the record in the target table.
+- Make sure to exclude any columns that are not included in the output table. 
 
 > [!IMPORTANT]
-> The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. Make sure to include it in the final `extend` or `project` block! Creating or updating a DCR without `TimeGenerated` in the output of a transformation leads to an error.
+> The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, you can add it in the transformation with `extend` or `project`.
 
 
-All transformation queries start with `source`, which is a virtual table that represents the input stream. Following is a typical example of a transformation. This example includes the following functionality:
+Following is a typical example of a transformation. This example includes the following functionality:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
 * Adds a new column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator.
@@ -42,8 +45,7 @@ source
     EventId = tostring(Properties.EventId)
 ```
 
-> [!IMPORTANT]
->  See [Sample transformations in Azure Monitor](./data-collection-rule-samples.md) for a more complete set of samples for different scenarios. 
+See [Sample transformations in Azure Monitor](./data-collection-rule-samples.md) for a more complete set of samples for different scenarios. 
 
 
 
