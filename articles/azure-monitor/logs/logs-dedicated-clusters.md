@@ -15,19 +15,18 @@ Dedicated cluster in Azure Monitor enables advanced security and control capabil
 
 Capabilities that require dedicated clusters:
 
-- **[Customer-managed keys](../logs/customer-managed-keys.md)** - Encrypt cluster data using keys that you provide and control.
-- **[Lockbox](../logs/customer-managed-keys.md#customer-lockbox)** - Control Microsoft support engineer access requests to your data.
-- **[Double encryption](/azure/storage/common/storage-service-encryption#doubly-encrypt-data-with-infrastructure-encryption)** - Protect against a scenario where one of the encryption algorithms or keys may be compromised. In this case, the extra layer of encryption continues to protect your data.
-- **[Cross-query optimization](../logs/cross-workspace-query.md)** - Cross-workspace queries run faster when workspaces are on the same cluster.
-- **Cost optimization** - Link your workspaces in same region to cluster to get commitment tier discount to all workspaces, even to ones with low ingestion that 
-eligible for commitment tier discount.
-- **[Availability zones](/azure/availability-zones/az-overview)** - Protect your data from datacenter failures by relying on datacenters in different physical locations, equipped with independent power, cooling, and networking. The physical separation in zones and independent infrastructure makes an incident far less likely since the workspace can rely on the resources from any of the zones. [Azure Monitor availability zones](./availability-zones.md#supported-regions) covers broader parts of the service and when available in your region, extends your Azure Monitor resilience automatically. Azure Monitor creates dedicated clusters as availability-zone-enabled (`isAvailabilityZonesEnabled`: 'true') by default in supported regions. [Dedicated clusters Availability zones](./availability-zones.md#supported-regions) aren't supported in all regions currently.
-- **[Ingest from Azure Event Hubs](../logs/ingest-logs-event-hub.md)** - Lets you ingest data directly from an event hub into a Log Analytics workspace. Dedicated cluster lets you use capability when ingestion from all linked workspaces combined meet commitment tier. 
+- **[Customer-managed keys](../logs/customer-managed-keys.md)** - Encrypt data using a key that you provide and control.
+- **[Lockbox](../logs/customer-managed-keys.md#customer-lockbox)** - Control Microsoft support engineer access to your data.
+- **[Double encryption](/azure/storage/common/storage-service-encryption#doubly-encrypt-data-with-infrastructure-encryption)** - Extra layer of encryption for your data.
+- **[Cross-query optimization](../logs/cross-workspace-query.md)** - Cross-workspace queries run faster when on the same cluster.
+- **Cost optimization** - Link workspaces in the same region to cluster, and enjoy commitment tier discount for data ingested from all linked workspaces.
+- **[Availability zones](/azure/availability-zones/az-overview)** - Protect your data with datacenters in different physical locations, equipped with independent power, cooling, and networking. [Azure Monitor availability zones](./availability-zones.md#supported-regions) covers broader parts of the service and when available in your region, extends your Azure Monitor resilience automatically. Azure Monitor creates dedicated clusters as availability-zone-enabled (`isAvailabilityZonesEnabled`: 'true') by default in supported regions. [Dedicated clusters Availability zones](./availability-zones.md#supported-regions) aren't supported in all regions currently.
+- **[Ingest from Azure Event Hubs](../logs/ingest-logs-event-hub.md)** - Lets you ingest data directly from Event Hubs into a Log Analytics workspace.  
 
 ## Cluster pricing model
 Log Analytics dedicated clusters use a commitment tier pricing model starting at 100 GB per day. Ingestion exceeding the commitment tier level is charged based on the per-GB rate. A commitment tier can be increased any time, but has 31 days commitment period before it can be reduced. See [Azure Monitor Logs pricing details](cost-logs.md#dedicated-clusters) for details on commitment tiers.
 
-There are two [billing types](#change-cluster-properties) options that determine billing attribution for the cluster resource and its data. Includes on the following values:
+There are two [billing type](#change-cluster-properties) values that determine the billing attribution for ingested data:
 - Cluster (default) - The costs for your cluster are attributed to the cluster resource.
 - Workspaces - The costs for your cluster are attributed proportionately to the workspaces in the Cluster, with the cluster resource being billed some of the usage if the total ingested data for the day is under the commitment tier. See Log Analytics Dedicated Clusters to learn more about the cluster pricing model.
 
