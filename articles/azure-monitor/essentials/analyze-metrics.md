@@ -126,13 +126,13 @@ In addition to changing the time range with the time picker, you can pan and zoo
 
 To pan, select the left and right arrows at the edge of the chart. The arrow control moves the selected time range back and forward by one half of the chart's time span. If you're viewing the past 24 hours, selecting the left arrow causes the time range to shift to span a day and a half to 12 hours ago.
 
-:::image source="./media/analyze-metrics/metrics-pan-controls.gif" alt-text="Animated screenshot that shows left and right pan controls." :::
+:::image source="./media/analyze-metrics/metrics-pan-controls.gif" lightbox="./media/analyze-metrics/metrics-pan-controls.gif" alt-text="Animated screenshot that shows left and right pan controls." :::
 
 ### Zoom into metrics data
 
 You can configure the _time granularity_ of the chart data to support zoom in and zoom out for the time range. Use the **time brush** to investigate an interesting area of the chart like a spike or a dip in the data. Select an area on the chart and the chart zooms in to show more detail for the selected area based on your granularity settings. If the time grain is set to **Automatic**, zooming selects a smaller time grain. The new time range applies to all charts in metrics explorer.
 
-:::image source="./media/analyze-metrics/metrics-zoom-control.gif" alt-text="Animated screenshot that shows the zoom feature in metrics explorer." :::
+:::image source="./media/analyze-metrics/metrics-zoom-control.gif" lightbox="./media/analyze-metrics/metrics-zoom-control.gif" alt-text="Animated screenshot that shows the zoom feature in metrics explorer." :::
 
 ## View multiple metric lines and charts
 
