@@ -620,17 +620,6 @@ items:
         - name: Samples
           displayName: Transformations
           href: essentials/data-collection-transformations-samples.md
-        - name: Tutorials
-          items:
-          - name: Transformation in text logs
-            displayName: Custom text logs, transformations
-            href: agents/azure-monitor-agent-transformation.md
-          - name: Workspace transformation in Azure portal
-            displayName: Workspace transformations
-            href: logs/tutorial-workspace-transformations-portal.md
-          - name: Workspace transformation with ARM templates
-            displayName: Workspace transformations
-            href: logs/tutorial-workspace-transformations-api.md
       - name: Metrics export
         items:
         - name: Metrics export using DCRs
@@ -648,6 +637,17 @@ items:
         href: essentials/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration
         href: essentials/edge-pipeline-configure.md
+      - name: Tutorials
+        items:
+        - name: Transformation in text logs
+          displayName: Custom text logs, transformations
+          href: agents/azure-monitor-agent-transformation.md
+        - name: Workspace transformation in Azure portal
+          displayName: Workspace transformations
+          href: logs/tutorial-workspace-transformations-portal.md
+        - name: Workspace transformation with ARM templates
+          displayName: Workspace transformations
+          href: logs/tutorial-workspace-transformations-api.md
     - name: Diagnostic Settings
       items:
       - name: Overview

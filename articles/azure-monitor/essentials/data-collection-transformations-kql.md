@@ -17,6 +17,13 @@ ms.reviwer: nikeist
 >
 > Only the operators listed in this article are supported in transformations. Any other operators that may be used in other log queries are not supported in transformations.
 
+## Special considerations
+
+### Parse command
+
+The [parse](/kusto/query/parse-operator) command in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
+
+
 ## Special functions 
 The following functions are only available in transformations. They cannot be used in other log queries.
 

@@ -15,58 +15,20 @@ ms.reviwer: nikeist
 > [!NOTE]
 > When you [create a new table](../logs/create-custom-table.md) in a Log Analytics workspace using the Azure portal, you're prompted to create a transformation using sample data that you provide. This transformation is included in the DCR created as part of the table creation process. 
 
-## Create a transformation query
-Regardless of the method you use to create or edit the DCR with your transformation, you start by writing and testing the query. You'll need some data to work with, so you'll typically use one of the following strategies.
-
-- If you're already collecting the data that you want to transform, then you can use Log Analytics to write a query that filters or modifies the data as needed. Copy the query text and paste it into your DCR.
-- Use Log Analytics to write your query using the [`datatable`](/kusto/query/datatable-operator) operator to create a sample data set that represents your incoming data. Copy the query text without the `datatable` operator and paste it into your DCR.
-- Use the process to create a new table in the Azure portal and provide sample data. Use the included interface to create and test your transformation query. Either copy the query text and paste into your DCR, or complete the process and then edit the DCR to copy the transformation query. You can then delete the new table if you don't need it.
 
 ## Basic query structure
-The transformation query is applied individually to each entry in the data source. Since it will only have access to a single record and is required to 
 
-Not all KQL operators are supported in transformation queries, and there are special operators only available in transformations. See [Supported KQL features in Azure Monitor transformations](./data-collection-transformations-kql.md) for a complete list of supported KQL features.
-
-All transformation queries start with `source`, which is a virtual table that represents the input stream. This is the equivalent of using a table name in a log query that returns all records in the table. The following query simply returns the incoming data without modification. It's also the equivalent of not including a transformation in the DCR.
-
-```kusto
-source
-```
+The KQL statement is applied individually to each entry sent by the data source. It must understand the format of the incoming data and create output in the structure of the target table. 
 
 > [!IMPORTANT]
-> This section provides some very simple examples of common transformation queries. You can use these as a starting point to more complex queries that you may require to meet your specific requirements. See [Sample transformations in Azure Monitor](./data-collection-rule-samples.md) for a more complete set of samples for different scenarios. 
+> The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. Make sure to include it in the final `extend` or `project` block! Creating or updating a DCR without `TimeGenerated` in the output of a transformation leads to an error.
 
-**Filter data**
 
-Use a `where` statement to filter the incoming data. If the incoming record doesn't match the statement, then the record is not sent to the destination. In the following example, only records with a severity of "Critical" are collected.
+All transformation queries start with `source`, which is a virtual table that represents the input stream. Following is a typical example of a transformation. This example includes the following functionality:
 
-```kusto
-source | where severity == "Critical" 
-```
-
-**Modify schema**
-
-Use commands such as `extend` and `project` to modify the schema of the incoming data to match the target table. In the following example, a new column called `TimeGenerated` is added to outgoing data using a KQL function to return the current time.
-
-```kusto
-source | extend TimeGenerated = now()
-```
-
-**Parse data**
-
-Use the `split` or `parse` operator to parse data into multiple columns in the destination table. In the following example, the incoming data has a comma-delimited column named `RawData` that's split into individual columns for the destination table.
-
-```kusto
-source | project d = split(RawData,",") | project TimeGenerated=todatetime(d[0]), Code=toint(d[1]), Severity=tostring(d[2]), Module=tostring(d[3]), Message=tostring(d[4])
-```
-
-**Combine functions**
-
-A transformation can include multiple functions to filter, modify, and format the incoming data. The following sample query does the following:
-
-- Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement. This assumes that the incoming data has a column named `severity`.
-- Adds a new column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) and `parse_json` operators. This assumes that the incoming data has a column named `properties` that contains a JSON object.
-- Formats the output to match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator. This assumes that the incoming data has columns named `time`. `category`, `StatusDescription`, `name`, and a dynamic column named `Properties`. It also assumes that the target table has columns named `Category`, `StatusDescription`, `EventName`,  `EventId`. (All tables have a column named `TimeGenerated`.)
+* Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
+* Adds a new column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator.
+* Formats the output to match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
 
 ```kusto
 source  
@@ -81,8 +43,18 @@ source
 ```
 
 > [!IMPORTANT]
-> The transformation query must be on a single line the DCR. If you're creating the transformation in the Azure portal, you can use multiple lines for readability, and `\n` will be included in the query for each new line.
+>  See [Sample transformations in Azure Monitor](./data-collection-rule-samples.md) for a more complete set of samples for different scenarios. 
 
+
+
+## Create the transformation query
+Regardless of the method you use to create or edit the DCR with your transformation, you start by writing and testing the query. You'll typically do this by running test queries against existing data or test data. When you get the results you want, you can replace the table name with source and paste it into your DCR as explained below in [Add transformation to DCR](#add-transformation-to-dcr).
+
+You'll need some data to work with, so you'll typically use one of the following strategies.
+
+- If you're already collecting the data that you want to transform, then you can use Log Analytics to write a query that filters or modifies the data as needed. Copy the query text and paste it into your DCR.
+- Use Log Analytics to write your query using the [`datatable`](/kusto/query/datatable-operator) operator to create a sample data set that represents your incoming data. Copy the query text without the `datatable` operator and paste it into your DCR.
+- Use the process to create a new table in the Azure portal and provide sample data. Use the included interface to create and test your transformation query. Either copy the query text and paste into your DCR, or complete the process and then edit the DCR to copy the transformation query. You can then delete the new table if you don't need it.
 
 ## Add transformation to DCR
 
@@ -92,6 +64,9 @@ source
 The transformation query is specified in the `transformKql` property in the [Data Flows](./data-collection-rule-structure.md#data-flows) section of the DCR. This is the section that pairs a data source with a destination. The transformation is applied to the incoming stream of the data flow before it's sent to the destination. The transformation will only apply to that data flow even if the same stream or destination are used in other data flows. 
 
 If the `transformKql` property is omitted, or if it's value is simply `source`, then no transformation is applied, and the incoming data is sent to the destination without modification.
+
+> [!IMPORTANT]
+> The transformation query must be on a single line the DCR. If you're creating the transformation in the Azure portal, you can use multiple lines for readability, and `\n` will be included in the query for each new line.
 
 In the following example, there is no `transformKql` property, so the incoming data is sent to the destination without modification.
 
@@ -150,22 +125,6 @@ There are multiple methods to create transformations depending on the data colle
 | Kubernetes cluster with Container insights | [Data transformations in Container insights](../containers/container-insights-transformations.md) |
 | Azure Event Hubs | [Tutorial: Ingest events from Azure Event Hubs into Azure Monitor Logs (Public Preview)](../logs/ingest-logs-event-hub.md) |
 
-
-## Send data to multiple destinations
-
-With transformations, you can send data to multiple destinations in a Log Analytics workspace by using a single DCR. You provide a KQL query for each destination, and the results of each query are sent to their corresponding location. You can send different sets of data to different tables or use multiple queries to send different sets of data to the same table. To use multiple destinations, you must currently either manually create a new DCR or [edit an existing one](data-collection-rule-edit.md). 
-
-For example, you might send event data into Azure Monitor by using the Logs Ingestion API. Most of the events should be sent an analytics table where it could be queried regularly, while audit events should be sent to a custom table configured for [basic logs](../logs/logs-table-plans.md) to reduce your cost.
-
-> [!IMPORTANT]
-> Currently, the tables in the DCR must be in the same Log Analytics workspace. To send to multiple workspaces from a single data source, use multiple DCRs and configure your application to send the data to each.
-
-:::image type="content" source="media/data-collection-transformations/transformation-multiple-destinations.png" lightbox="media/data-collection-transformations/transformation-multiple-destinations.png" alt-text="Diagram that shows transformation sending data to multiple tables." border="false":::
-
-
-
-## Parse data
-A common use of transformations is to parse incoming data into multiple columns to match the schema of the destination table. For example, you may collect entries from a log file that isn't in a structured format and need to parse the data into columns for the table. 
 
 
 ## Next steps
