@@ -20,7 +20,7 @@ Network Security Perimeter allows you to control network access using network is
  
 ## Regions
 
-Azure Network Security Perimeter is currently in public preview and available in the following 6 regions:
+Azure Network Security Perimeter is currently in public preview. Network Security Perimeter features in Azure Monitor are currently available in the following 6 regions:
 
 - East US
 - East US 2
