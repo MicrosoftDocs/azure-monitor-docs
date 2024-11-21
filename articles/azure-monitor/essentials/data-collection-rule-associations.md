@@ -66,6 +66,8 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 
 :::image type="content" source="media/data-collection-rule-view/resources-view-associate.png" alt-text="Screenshot of the create association button in the resources view in  the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associate.png":::
 
+## Create new association
+
 ### [CLI](#tab/cli)
 
 ### Create with CLI
