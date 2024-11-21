@@ -38,7 +38,7 @@ The following tables support transformations:
 
 ## Transformation performance
 
-Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md). Optimal transformations should take no more than 1 second to run. See [Monitor transformations](./data-collection-transformations-best-practices.md#monitor-transformations) for guidance on monitoring the DCR metrics that measure the execution time of each transformation.
+Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md). Optimal transformations should take no more than 1 second to run. See [Monitor transformations](./data-collection-monitor.md) for guidance on monitoring the DCR metrics that measure the execution time of each transformation.
 
 > [!WARNING]
 >  You may experience data loss if a transformation takes more than 20 seconds.
@@ -101,5 +101,5 @@ See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 ## Next steps
 
 - [Read more about data collection rules (DCRs)](./data-collection-rule-overview.md).
-- [Create a workspace transformation DCRs that applies to data not collected using a DCR](./data-collection-transformations-workspace.md).
+- [Create a workspace transformation DCRs that applies to data not collected using a DCR](./data-collection-transformations.md#workspace-transformations).
 
