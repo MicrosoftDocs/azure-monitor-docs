@@ -17,10 +17,10 @@ This article describes how to implement data transformations in Container insigh
 Transformations are implemented in [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) which are used to configure data collection in Azure Monitor. [Configure data collection using DCR](./container-insights-data-collection-configure.md) describes the DCR that's automatically created when you enable Container insights on a cluster. To create a transformation, you must perform one of the following actions:
 
 - **New cluster**. Use an existing [ARM template ](https://github.com/microsoft/Docker-Provider/tree/ci_prod/scripts/onboarding/aks/onboarding-using-msi-auth) to onboard an AKS cluster to Container insights. Modify the DCR in that template with your required configuration, including a transformation similar to one of the samples below.
-- **Existing DCR**. After a cluster has been onboarded to Container insights and data collection configured, edit its DCR to include a transformation using any of the methods in [Editing Data Collection Rules](../essentials/data-collection-rule-edit.md). 
+- **Existing DCR**. After a cluster has been onboarded to Container insights and data collection configured, edit its DCR to include a transformation using any of the methods in [Editing Data Collection Rules](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). 
 
 > [!NOTE]
-> There is currently minimal UI for editing DCRs, which is required to add transformations. In most cases, you need to manually edit the the DCR. This article describes the DCR structure to implement. See [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-edit.md) for guidance on how to implement that structure.
+> There is currently minimal UI for editing DCRs, which is required to add transformations. In most cases, you need to manually edit the the DCR. This article describes the DCR structure to implement. See [Create and edit data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) for guidance on how to implement that structure.
 
 
 ## Data sources

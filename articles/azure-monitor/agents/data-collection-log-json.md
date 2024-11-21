@@ -140,7 +140,7 @@ Use the following ARM template to create a DCR for collecting text log files, ma
 | Workspace resource ID | Resource ID of the Log Analytics workspace with the target table. |
 
 > [!IMPORTANT]
-> When you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](../essentials/data-collection-rule-create-edit.md#add-resources)
+> When you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources)
 
 ```json
 {

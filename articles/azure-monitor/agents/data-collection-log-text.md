@@ -145,7 +145,7 @@ Use the following ARM template to create or modify a DCR for collecting text log
 - `transformKql`: Modify the default transformation if you want to modify or filter the incoming stream, for example to parse the log entry into multiple columns. The output schema of the transformation must match the schema of the target table.
 
 > [!IMPORTANT]
-> If you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](../essentials/data-collection-rule-create-edit.md#add-resources). The parameters section in the DCR is optional if you replace them with strings lower down in the JSON.
+> If you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources). The parameters section in the DCR is optional if you replace them with strings lower down in the JSON.
 
 ```json
 {
