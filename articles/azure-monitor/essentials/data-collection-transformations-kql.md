@@ -10,18 +10,76 @@ ms.reviwer: nikeist
 ---
 
 # Supported KQL features in Azure Monitor transformations
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you run a KQL query against incoming Azure Monitor data to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details the KQL features that are supported in transformation queries in addition to special operators that are only available in transformations.
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you run a KQL query against incoming Azure Monitor data to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details KQL considerations and and supported features in transformation queries in addition to special operators that are only available in transformations.
 
-> [!IMPORTANT]
-> Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. 
->
-> Only the operators listed in this article are supported in transformations. Any other operators that may be used in other log queries are not supported in transformations.
+Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. 
+
+Only the operators listed in this article are supported in transformations. Any other operators that may be used in other log queries are not supported in transformations.
 
 ## Special considerations
 
 ### Parse command
 
 The [parse](/kusto/query/parse-operator) command in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
+
+### Handling dynamic data
+
+Consider the following input with [dynamic data](/azure/data-explorer/kusto/query/scalar-data-types/dynamic):
+
+```json
+{
+    "TimeGenerated" : "2021-11-07T09:13:06.570354Z",
+    "Message": "Houston, we have a problem",
+    "AdditionalContext": {
+        "Level": 2,
+        "DeviceID": "apollo13"
+    }
+}
+```
+
+To access the properties in *AdditionalContext*, define it as dynamic-type column in the input stream:
+
+```json
+"columns": [
+    {
+        "name": "TimeGenerated",
+        "type": "datetime"
+    },
+    {
+        "name": "Message",
+        "type": "string"
+    }, 
+    {
+        "name": "AdditionalContext",
+        "type": "dynamic"
+    }
+]
+```
+
+The content of the *AdditionalContext* column can now be parsed and used in the KQL transformation:
+
+```kusto
+source
+| extend parsedAdditionalContext = parse_json(AdditionalContext)
+| extend Level = toint (parsedAdditionalContext.Level)
+| extend DeviceId = tostring(parsedAdditionalContext.DeviceID)
+```
+
+
+## Dynamic literals
+
+Use the [`parse_json` function](/azure/data-explorer/kusto/query/parsejsonfunction) to handle [dynamic literals](/azure/data-explorer/kusto/query/scalar-data-types/dynamic#dynamic-literals).
+
+For example, the following queries provide the same functionality:
+
+```kql
+print d=dynamic({"a":123, "b":"hello", "c":[1,2,3], "d":{}})
+```
+
+```kql
+print d=parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')
+```
+
 
 
 ## Special functions 
@@ -227,6 +285,9 @@ The only supported data sources for the KQL statement in a transformation are as
   - [`isnotnull`](/azure/data-explorer/kusto/query/isnotnullfunction)
   - [`isnull`](/azure/data-explorer/kusto/query/isnullfunction)
 
+## Identifier quoting
+
+Use [Identifier quoting](/azure/data-explorer/kusto/query/schema-entities/entity-names?q=identifier#identifier-quoting) as required.
 
 
 ## Next steps
