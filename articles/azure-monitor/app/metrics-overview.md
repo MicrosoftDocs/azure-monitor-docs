@@ -87,7 +87,7 @@ The following tables list where preaggregation are preaggregated.
 |------------------------|---------------------------------|-------------------------------|
 | .NET Core and .NET Framework | SDK (V2.13.1+) | SDK (V2.7.2+) via [GetMetric](get-metric.md)<br>Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 | Java (2.x.x) | Endpoint | Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
-| JavaScript (Browser) | Endpoint | Endpoint  via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
+| JavaScript (Web) | Endpoint | Endpoint  via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 | Node.js | Endpoint | Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 | Python | Endpoint | SDK via [OpenCensus.stats (retired)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics)<br>Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 
@@ -110,7 +110,6 @@ The following tables list where preaggregation are preaggregated.
 | ASP.NET Core | SDK <sup>1<sup> | ... |
 | ASP.NET | SDK <sup>2<sup> | ... |
 | Java | SDK | ... |
-| JavaScript (Browser) | Endpoint | ... |
 | Node.js | SDK | ... |
 | Python | SDK | ... |
 
