@@ -604,8 +604,6 @@ items:
         - name: Best practices
           displayName: data collection rules, DCR
           href: essentials/data-collection-rule-best-practices.md
-        - name: Samples
-          href: essentials/data-collection-rule-samples.md     
       - name: Transformations
         items:
         - name: Overview
@@ -630,6 +628,8 @@ items:
           href: essentials/metrics-export-create.md
         - name: Data plane batch query versus Metrics export
           href: essentials/data-plane-versus-metrics-export.md
+      - name: Samples and scenarios
+        href: essentials/data-collection-rule-samples.md     
       - name: Monitor DCRs
         displayName: Data collection rules
         href: essentials/data-collection-monitor.md 

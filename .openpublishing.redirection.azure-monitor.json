@@ -7602,7 +7602,17 @@
   },
   {
     "source_path": "articles/azure-monitor/essentials/data-collection-transformations-structure.md",
-    "redirect_url": "/previous-versions/azure/azure-monitor//essentials/data-collection-transformations-kql",
+    "redirect_url": "/previous-versions/azure/azure-monitor/essentials/data-collection-transformations-kql",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/essentials/data-collection-transformations-best-practices.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/essentials/data-collection-rule-samples",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/essentials/data-collection-transformations-workspace.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/essentials/data-collection-transformations#workspace-transformations",
     "redirect_document_id": false
   }
  ]

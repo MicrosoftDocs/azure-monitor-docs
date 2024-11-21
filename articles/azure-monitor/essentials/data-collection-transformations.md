@@ -72,8 +72,6 @@ For example, if you create a transformation in the workspace transformation DCR 
 
 A common use of the workspace transformation DCR is collection of [resource logs](./resource-logs.md) that are configured with a [diagnostic setting](./diagnostic-settings.md). You might want to apply a transformation to this data to filter out records that you don't require. Since diagnostic settings don't have transformations, you can use the workspace transformation DCR to apply a transformation to this data. Data from Application insights is another common source that relies on the workspace transformation DCR.
 
-
-
 ## Cost for transformations
 While transformations themselves don't incur direct costs, the following scenarios can result in additional charges:
 
