@@ -51,44 +51,74 @@ For SDKs that don't implement preaggregation (that is, older versions of Applica
 
 The collection endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
 
-### OpenTelemetry SDK supported preaggregated metrics
+The following tables list where preaggregation are preaggregated.
 
+### Metrics preaggregation with Azure Monitor OpenTelemetry Distro
+<!--
 | Current production SDK | Standard metrics (with SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
 |---------------------------|----------------------------------|-----------------------------------------|--------------------------------------|
 | ASP.NET Core | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=aspnetcore#add-custom-metrics) |
 | .NET (via Exporter) | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#add-custom-metrics) |
-| Java | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#add-custom-metrics) |
+| Java (3.x.x) | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#add-custom-metrics) |
 | Java native | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java-native#add-custom-metrics) |
 | Node.js | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=nodejs#add-custom-metrics) |
 | Python | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=python#add-custom-metrics) |
+-->
+| Current production SDK | Standard metrics preaggregation | Custom metrics preaggregation |
+|------------------------|---------------------------------|-------------------------------|
+| ASP.NET Core | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=aspnetcore#add-custom-metrics) |
+| .NET (via Exporter) | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#add-custom-metrics) |
+| Java (3.x.x) | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#add-custom-metrics) |
+| Java native | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java-native#add-custom-metrics) |
+| Node.js | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=nodejs#add-custom-metrics) |
+| Python | SDK | SDK via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=python#add-custom-metrics) |
 
-### Application Insights SDK (Classic API) supported preaggregated metrics
-
+### Metrics preaggregation with Application Insights SDK (Classic API)
+<!--
 | Current production SDK | Standard metrics (with SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
 |-------------------------|----------------------------------|---------------------------------------------|------------------------------------------|
 | .NET Core and .NET Framework | ✅ (V2.13.1+) | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ✅ (V2.7.2+) via [GetMetric](get-metric.md) |
-| Java | ❌ | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ❌ |
+| Java (2.x.x) | ❌ | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ❌ |
+| JavaScript (Browser) | ❌ <sup>3<sup> | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ❌ |
 | Node.js | ❌ | ✅ via [TrackMetric](api-custom-events-metrics.md#trackmetric) | ❌ |
 | Python | ❌ | ✔️ | ✔️ via [OpenCensus.stats (retired)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics) |
+-->
+| Current production SDK | Standard metrics preaggregation | Custom metrics preaggregation |
+|------------------------|---------------------------------|-------------------------------|
+| .NET Core and .NET Framework | SDK (V2.13.1+) | SDK (V2.7.2+) via [GetMetric](get-metric.md)<br>Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
+| Java (2.x.x) | Endpoint | Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
+| JavaScript (Browser) | Endpoint | Endpoint  via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
+| Node.js | Endpoint | Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
+| Python | Endpoint | SDK via [OpenCensus.stats (retired)](/previous-versions/azure/azure-monitor/app/opencensus-python#metrics)<br>Endpoint via [TrackMetric](api-custom-events-metrics.md#trackmetric) |
 
 > [!CAUTION]
 > The [OpenCensus Python SDK is retired](https://opentelemetry.io/blog/2023/sunsetting-opencensus/). We recommend the [OpenTelemetry-based Python offering](./opentelemetry-enable.md?tabs=python) and provide [migration guidance](./opentelemetry-python-opencensus-migrate.md?tabs=python).
 
-### Codeless supported preaggregated metrics (autoinstrumentation)
+### Metrics preaggregation with autoinstrumentation
 <!--
 | Current production SDK | Standard metrics (with SDK preaggregation) | Custom metrics (without SDK preaggregation) | Custom metrics (with SDK preaggregation) |
 |-------------------------|----------------------------------|-----------------------------------------|--------------------------------------|
 | ASP.NET Core | ✅ <sup>1<sup> | ❌ | ❌ |
 | ASP.NET | ✅ <sup>2<sup> | ❌ | ❌ |
 | Java | ✅ | ❌ | ✅ via [OpenTelemetry API](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=java#add-custom-metrics) |
+| JavaScript (Browser) | ❌ <sup>3<sup> | ❌ | ❌ |
 | Node.js | ✅ | ❌ | ❌ |
 | Python | ✅ | ❌ | ❌ |
+-->
+| Current production SDK | Standard metrics preaggregation | Custom metrics preaggregation |
+|------------------------|---------------------------------|-------------------------------|
+| ASP.NET Core | SDK <sup>1<sup> | ... |
+| ASP.NET | SDK <sup>2<sup> | ... |
+| Java | SDK | ... |
+| JavaScript (Browser) | Endpoint | ... |
+| Node.js | SDK | ... |
+| Python | SDK | ... |
 
 **Footnotes**
 
 * <sup>1</sup> [ASP.NET Core autoinstrumentation on App Service](./azure-web-apps-net-core.md) emits standard metrics without dimensions. SDK is required for all dimensions.<br>
 * <sup>2</sup> [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](./azure-vm-vmss-apps.md) and [on-premises](./application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. The SDK is required for all dimensions.
--->
+* <sup>3</sup> JavaScript (Browser) doesn't collect requests but outgoing AJAX and REST API calls as dependency calls.
 
 Standard metrics are supported with autoinstrumentation. However, custom metrics require user code and therefore manual instrumentation via the Application Insights SDK (Classic API) or the Azure Monitor OpenTelemetry Distro.
 
@@ -99,10 +129,7 @@ Standard metrics are supported with autoinstrumentation. However, custom metrics
 
 ## Preaggregation with Application Insights custom metrics
 
-You can use preaggregation with custom metrics. The two main benefits are: 
-
-* Configure and alert on a dimension of a custom metric.
-* Reduce the volume of data sent from the SDK to the Application Insights collection endpoint.
+You can use preaggregation with custom metrics to reduce the volume of data sent from the SDK to the Application Insights collection endpoint.
 
 There are several [ways of sending custom metrics from the Application Insights SDK](./api-custom-events-metrics.md). If your version of the SDK offers [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric), these methods are the preferred way of sending custom metrics. In this case, preaggregation happens inside the SDK. This approach reduces the volume of data stored in Azure and also the volume of data transmitted from the SDK to Application Insights. Otherwise, use the [trackMetric](./api-custom-events-metrics.md#trackmetric) method, which preaggregates metric events during data ingestion.
 
