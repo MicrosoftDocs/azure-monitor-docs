@@ -232,6 +232,13 @@ availabilityResults
 | render timechart
 ```
 
+```
+availabilityResults
+| where timestamp >= datetime(2024-11-21T16:55:39.185Z) and timestamp < datetime(2024-11-22T16:55:39.185Z)
+| summarize ['availabilityResults/availabilityPercentage_avg'] = sum(todouble(success == 1) * 100) / count() by bin(timestamp, 5m)
+| order by timestamp desc
+```
+
 #### Availability test results count (availabilityResults/count)
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
@@ -244,6 +251,13 @@ The *Availability tests* metric reflects the count of the web tests runs by Azur
 availabilityResults
 | summarize sum(itemCount) by bin(timestamp, 5m)
 | render timechart
+```
+
+```Kusto
+availabilityResults
+| where timestamp >= datetime(2024-11-21T16:55:06.319Z) and timestamp < datetime(2024-11-22T16:55:06.319Z)
+| summarize ['availabilityResults/count_sum'] = sum(itemCount) by bin(timestamp, 5m)
+| order by timestamp desc
 ```
 
 #### Test duration (availabilityResults/duration)
@@ -262,7 +276,14 @@ availabilityResults
 | render timechart
 ```
 
-
+```Kusto
+availabilityResults
+| where timestamp >= datetime(2024-11-21T16:53:50.902Z) and timestamp < datetime(2024-11-22T16:53:50.902Z)
+| where notempty(duration)
+| extend availabilityResult_duration = iif(itemType == 'availabilityResult', duration, todouble(''))
+| summarize ['availabilityResults/duration_avg'] = sum(availabilityResult_duration) / sum(itemCount) by bin(timestamp, 5m)
+| order by timestamp desc
+```
 
 ---
 
@@ -323,6 +344,10 @@ browserTimings
 | extend _sum = _sum * _count
 | summarize sum(_sum) / sum(_count) by bin(timestamp, 5m)
 | render timechart
+```
+
+```Kusto
+| order by timestamp desc
 ```
 
 #### Client processing time (browserTiming/processingDuration)
@@ -465,6 +490,12 @@ exceptions
 | render barchart
 ```
 
+<!--
+```Kusto
+| where client_Type == 'Browser'
+```
+-->
+
 #### Dependency call failures (dependencies/failed)
 
 The number of failed dependency calls.
@@ -523,6 +554,12 @@ exceptions
 | summarize sum(itemCount) by bin(timestamp, 5m)
 | render barchart
 ```
+
+<!--
+```Kusto
+| where client_Type != 'Browser'
+```
+-->
 
 ---
 
@@ -599,7 +636,7 @@ CPU consumption by *all* processes running on the monitored server instance.
 > The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
 
 ### [Log-based](#tab/log-based)
-<!--
+
 #### ASP.NET request exection time (performanceCounters/requestExecutionTime)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
@@ -610,8 +647,8 @@ CPU consumption by *all* processes running on the monitored server instance.
 performanceCounters
 | where ((category == "ASP.NET Applications" and counter == "Request Execution Time") or name == "requestExecutionTime")
 | extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/requestExecutionTime_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| order by timestamp desc
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 15m)
+| render timechart
 ```
 
 #### ASP.NET request rate (performanceCounters/requestsPerSecond)
@@ -624,8 +661,8 @@ performanceCounters
 performanceCounters
 | where ((category == "ASP.NET Applications" and counter == "Requests/Sec") or name == "requestsPerSecond")
 | extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/requestsPerSecond_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| order by timestamp desc
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 15m)
+| render barchart
 ```
 
 #### ASP.NET request in application queue (performanceCounters/requestsInQueue)
@@ -638,10 +675,10 @@ performanceCounters
 performanceCounters
 | where ((category == "ASP.NET Applications" and counter == "Requests In Application Queue") or name == "requestsInQueue")
 | extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
-| summarize ['performanceCounters/requestsInQueue_avg'] = sum(performanceCounter_value) / count() by bin(timestamp, 15m)
-| order by timestamp desc
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 15m)
+| render barchart
 ```
--->
+
 #### Available memory (performanceCounters/availableMemory)
 
 | Unit of measure                        | Supported aggregations | Supported dimensions |
@@ -655,6 +692,13 @@ performanceCounters
 | summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
 | render timechart
 ```
+
+<!--
+```Kusto
+| where ((category == "Memory" and counter == "Available Bytes") or name == "memoryAvailableBytes")
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 5m)
+```
+-->
 
 #### Exception rate (performanceCounters/exceptionRate)
 
@@ -670,6 +714,13 @@ performanceCounters
 | render timechart
 ```
 
+<!--
+```Kusto
+| where ((category == ".NET CLR Exceptions" and counter == "# of Exceps Thrown / sec") or name == "exceptionsPerSecond")
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 5m)
+```
+-->
+
 #### HTTP request execution time (performanceCounters/requestExecutionTime)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
@@ -683,6 +734,12 @@ performanceCounters
 | summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
 | render timechart
 ```
+
+<!--
+```Kusto
+
+```
+-->
 
 #### HTTP request rate (performanceCounters/requestsPerSecond)
 
@@ -698,6 +755,12 @@ performanceCounters
 | render timechart
 ```
 
+<!--
+```Kusto
+
+```
+-->
+
 #### HTTP requests in application queue (performanceCounters/requestsInQueue)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
@@ -711,6 +774,12 @@ performanceCounters
 | summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
 | render timechart
 ```
+
+<!--
+```Kusto
+
+```
+-->
 
 #### Process CPU (performanceCounters/processCpuPercentage)
 
@@ -728,8 +797,29 @@ performanceCounters
 | render timechart
 ```
 
+<!--
+```Kusto
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 5m)
+```
+-->
+
 > [!NOTE]
 > The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of 4 CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
+
+
+#### Process CPU (all cores) (performanceCounters/processCpuPercentageTotal)
+
+| Unit of measure | Supported aggregations | Supported dimensions |
+|-----------------|------------------------|----------------------|
+| Percentage      | Avg, Min, Max          | All telemetry fields |
+
+```Kusto
+performanceCounters
+| where ((category == "Process" and counter == "% Processor Time") or name == "processCpuPercentageTotal")
+| extend performanceCounter_value = iif(itemType == 'performanceCounter', value, todouble(''))
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 5m)
+| render timechart
+```
 
 #### Process IO rate (performanceCounters/processIOBytesPerSecond)
 
@@ -744,6 +834,12 @@ performanceCounters
 | summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
 | render timechart
 ```
+
+<!--
+```Kusto
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 5m)
+```
+-->
 
 #### Process private bytes (performanceCounters/processPrivateBytes)
 
@@ -760,6 +856,12 @@ performanceCounters
 | summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
 | render timechart
 ```
+
+<!--
+```Kusto
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 5m)
+```
+-->
 
 #### Processor time (performanceCounters/processorCpuPercentage)
 
@@ -779,6 +881,12 @@ performanceCounters
 | summarize sum(performanceCounter_value) / count() by bin(timestamp, 1m)
 | render timechart
 ```
+
+<!--
+```Kusto
+| summarize sum(performanceCounter_value) / count() by bin(timestamp, 15m)
+```
+-->
 
 ---
 
@@ -840,6 +948,12 @@ dependencies
 | render barchart
 ```
 
+<!--
+```Kusto
+| summarize sum(itemCount) by bin(timestamp, 15m)
+```
+-->
+
 #### Dependency duration (dependencies/duration)
 
 This metric refers to duration of dependency calls.
@@ -854,10 +968,16 @@ dependencies
 | extend dependency_duration = iif(itemType == 'dependency',duration,todouble(''))
 | extend _sum = dependency_duration
 | extend _count = itemCount
-| extend _sum = _sum*_count
+| extend _sum = _sum * _count
 | summarize sum(_sum)/sum(_count) by bin(timestamp, 1m)
 | render timechart
 ```
+
+<!--
+```Kusto
+| summarize sum(_sum) / sum(_count) by bin(timestamp, 15m)
+```
+-->
 
 #### Server requests (requests/count)
 
@@ -892,6 +1012,12 @@ requests
 | render timechart
 ```
 
+<!--
+```Kusto
+| summarize sum(_sum) / sum(_count) by bin(timestamp, 5m)
+```
+-->
+
 ---
 
 ### Usage metrics
@@ -924,8 +1050,6 @@ The count of trace statements logged with the TrackTrace() Application Insights 
 
 ### [Log-based](#tab/log-based)
 
-<!--
-
 #### Data point count
 
 | Unit of measure | Supported aggregations | Supported dimensions |
@@ -957,7 +1081,7 @@ customEvents
 | summarize sum(itemCount) by bin(timestamp, 5m)
 | render barchart
 ```
--->
+
 #### Page view load time (pageViews/duration)
 
 This metric refers to the amount of time it took for PageView events to load.
@@ -991,6 +1115,12 @@ pageViews
 | render barchart
 ```
 
+<!--
+```Kusto
+| summarize sum(itemCount) by bin(timestamp, 5m)
+```
+-->
+
 #### Sessions (sessions/count)
 
 This metric refers to the count of distinct session IDs.
@@ -1006,6 +1136,12 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 | render barchart
 ```
 
+<!--
+```Kusto
+| summarize dcount(session_Id) by bin(timestamp, 5m)
+```
+-->
+
 #### Traces (traces/count)
 
 The count of trace statements logged with the TrackTrace() Application Insights API call.
@@ -1019,6 +1155,12 @@ traces
 | summarize sum(itemCount) by bin(timestamp, 1h)
 | render barchart
 ```
+
+<!--
+```Kusto
+| summarize sum(itemCount) by bin(timestamp, 5m)
+```
+-->
 
 #### Users (users/count)
 
@@ -1035,6 +1177,12 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 | render barchart
 ```
 
+<!--
+```Kusto
+| summarize dcount(user_Id) by bin(timestamp, 5m)
+```
+-->
+
 #### Users, Authenticated (users/authenticated)
 
 The number of distinct users who authenticated into your application.
@@ -1049,6 +1197,12 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 | summarize dcount(user_AuthenticatedId) by bin(timestamp, 1h)
 | render barchart
 ```
+
+<!--
+```Kusto
+| summarize dcount(user_AuthenticatedId) by bin(timestamp, 15m)
+```
+-->
 
 ---
 
