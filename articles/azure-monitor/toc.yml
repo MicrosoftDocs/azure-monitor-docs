@@ -590,7 +590,7 @@ items:
       - name: Overview
         displayName: data collection rule, dcr, Azure Monitor pipeline
         href: essentials/data-collection-rule-overview.md
-      - name: Work with DCRs
+      - name: Create DCRs
         items: 
         - name: Create and edit
           displayName: Data collection rules, DCR

@@ -1,5 +1,5 @@
 ---
-title: Data collection transformations
+title: Transformations Azure Monitor
 description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data.
 ms.topic: conceptual
 author: bwren
@@ -8,19 +8,15 @@ ms.date: 10/02/2024
 ms.reviwer: nikeist
 ---
 
-# Data collection transformations in Azure Monitor
-With transformations in Azure Monitor, you can filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides a basic description of transformations and how they're implemented. It provides links to other content for creating a transformation.
+# Transformations in Azure Monitor
+Transformations in Azure Monitor allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations are performed in the cloud pipeline after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-structure.md) that's applied individually to each entry in the incoming data.
 
-Transformations are performed in Azure Monitor in the cloud pipeline after the data source delivers the data and before it's sent to the destination. The data source might perform its own filtering before sending data but then rely on the transformation for further manipulation.
-
-Transformations are defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-structure.md) that's applied individually to each entry in the incoming data. It must understand the format of the incoming data and create output in the structure expected by the destination.
-
-The following diagram illustrates the transformation process for incoming data and shows a sample query that might be used.
+The following diagram illustrates the transformation process for incoming data and shows a sample query that might be used. In this sample, only records where the `message` column contains the word `error` will be collected.
 
 :::image type="content" source="media/data-collection-transformations/transformation-overview.png" lightbox="media/data-collection-transformations/transformation-overview.png" alt-text="Diagram that shows ingestion-time transformation for incoming data." border="false":::
 
-## Why to use transformations
-The following table describes the different goals that you can achieve by using transformations.
+## Transformation scenarios
+Transformations can be used for a variety of scenarios to filter or modify incoming data. The following table describes the most goals that you can achieve by using transformations.
 
 | Category | Details |
 |:---|:---|
@@ -30,7 +26,7 @@ The following table describes the different goals that you can achieve by using 
 | Format data for destination | You might have a data source that sends data in a format that doesn't match the structure of the destination table. Use a transformation to reformat the data to the required schema. |
 
 ## Supported tables
-The following tables support transformations:
+The following tables in a Log Analytics workspace support transformations.
 
 - Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
 - Any custom table created for the Azure Monitor Agent. (MMA custom table can't use transformations)
@@ -59,16 +55,14 @@ The following metrics are automatically collected for transformations and should
 
 
 ## Workspace transformations
+Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](./diagnostic-settings.md) and data application collected by [Application insights](../app/app-insights-overview.md).
 
 The *workspace transformation data collection rule (DCR)* is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform [transformations](./data-collection-transformations.md) on data that does not yet use a DCR for its data collection, and thus has no means to define a transformation.
 
-The workspace transformation DCR includes transformations for one or more supported tables in the workspace. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
+There can be only one workspace DCR for each workspace, but it can include transformations for any number of tables. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
 
 :::image type="content" source="media/data-collection-transformations-workspace/transformation-workspace.png" lightbox="media/data-collection-transformations-workspace/transformation-workspace.png" alt-text="Diagram that shows operation of the workspace transformation DCR." border="false":::
 
-For example, if you create a transformation in the workspace transformation DCR for the Event table, it would be applied to events collected by virtual machines running the Log Analytics agent (deprecated) because this agent doesn't use a DCR. The transformation would be ignored though by any data sent from Azure Monitor Agent (AMA) because it uses a DCR to define its data collection. You can still use a transformation with Log Analytics agent, but you would include that transformation in the DCR used by AMA and not the workspace transformation DCR.
-
-:::image type="content" source="media/data-collection-transformations-workspace/compare-transformations.png" lightbox="media/data-collection-transformations-workspace/compare-transformations.png" alt-text="Diagram that compares standard DCR transformations with workspace transformation DCR." border="false":::
 
 A common use of the workspace transformation DCR is collection of [resource logs](./resource-logs.md) that are configured with a [diagnostic setting](./diagnostic-settings.md). You might want to apply a transformation to this data to filter out records that you don't require. Since diagnostic settings don't have transformations, you can use the workspace transformation DCR to apply a transformation to this data. Data from Application insights is another common source that relies on the workspace transformation DCR.
 
