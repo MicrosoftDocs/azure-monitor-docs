@@ -80,7 +80,7 @@ For more information, see [Regions that require endpoint modification](./create-
 
 * [Telemetry Ingestion](./app-insights-overview.md): `dc`
 * [Live Metrics](./live-stream.md): `live`
-* [Profiler](./profiler-overview.md): `profiler`
+* [Profiler for .NET](./profiler-overview.md): `profiler`
 * [Snapshot](./snapshot-debugger.md): `snapshot`
 
 ## Connection string examples
@@ -97,8 +97,8 @@ In this example, the connection string specifies the endpoint suffix and the SDK
 * Instrumentation key: 00000000-0000-0000-0000-000000000000
 * The regional service Uniform Resource Identifiers (URIs) are based on the provided endpoint suffix:
     * Ingestion: `https://dc.ai.contoso.com`
-    * Live metrics: `https://live.ai.contoso.com`
-    * Profiler: `https://profiler.ai.contoso.com`
+    * Live Metrics: `https://live.ai.contoso.com`
+    * Profiler for .NET: `https://profiler.ai.contoso.com`
     * Debugger: `https://snapshot.ai.contoso.com`
 
 ### Connection string with explicit endpoint overrides
@@ -111,8 +111,8 @@ In this example, the connection string specifies explicit overrides for every se
 * Instrumentation key: 00000000-0000-0000-0000-000000000000
 * The regional service URIs are based on the explicit override values:
     * Ingestion: `https://custom.com:111/`
-    * Live metrics: `https://custom.com:222/`
-    * Profiler: `https://custom.com:333/`
+    * Live Metrics: `https://custom.com:222/`
+    * Profiler for .NET: `https://custom.com:333/`
     * Debugger: `https://custom.com:444/`
 
 ### Connection string with an explicit region

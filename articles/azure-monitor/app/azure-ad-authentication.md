@@ -34,7 +34,7 @@ The following Software Development Kits (SDKs) and features are unsupported for 
 * [ApplicationInsights JavaScript web SDK](javascript.md).
 * [Application Insights OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) with Python version 3.4 and 3.5.
 * [AutoInstrumentation for Python on Azure App Service](azure-web-apps-python.md)
-* [Profiler](profiler-overview.md).
+* [Application Insights Profiler for .NET](profiler-overview.md).
 
 <a name='configure-and-enable-azure-ad-based-authentication'></a>
 
