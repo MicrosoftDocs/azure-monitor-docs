@@ -123,11 +123,11 @@ Availability tests in Application Insights are recurring tests that monitor the 
 
 See [Monitor the availability of any website](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) for a summary of the different kinds of tests and information on creating them.
 
-### Configure Profiler
+### Configure Application Insights profiler for .NET
 
-Profiler in Application Insights provides performance traces for .NET applications. It helps you identify the "hot" code path that takes the longest time when it's handling a particular web request. The process for configuring the profiler varies depending on the type of application.
+Application Insights profiler for .NET provides performance traces for .NET applications. It helps you identify the "hot" code path that takes the longest time when it's handling a particular web request. The process for configuring .NET profiler varies depending on the type of application.
 
-See [Profile production applications in Azure with Application Insights](app/profiler-overview.md) for information on configuring Profiler.
+See [Profile production applications in Azure with Application Insights](app/profiler-overview.md) for information on configuring .NET profiler.
 
 ### Configure Snapshot Debugger
 
