@@ -117,7 +117,7 @@ Azure Monitor also supports out-of-the-box dashboards for seamless integration w
 
 1. An empty **Time series panel** shows up on your dashboard.
 
-    <!-- CHANGE IMAGE -->:::image type="content" source="./media/grafana-plugin/grafana-new-graph-dark.png" lightbox="./media/grafana-plugin/grafana-new-graph-dark.png" alt-text="Screenshot that shows Grafana new panel dropdown list options.":::
+    :::image type="content" source="./media/grafana-plugin/grafana-new-graph-dark.png" lightbox="./media/grafana-plugin/grafana-new-graph-dark.png" alt-text="Screenshot that shows Grafana new panel dropdown list options.":::
 
 1. **Edit** the panel to configure your query.
 
