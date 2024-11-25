@@ -78,14 +78,13 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 | Use queries encrypted in a customer-managed storage account|`Microsoft.Storage/storageAccounts/*` permissions to the storage account, as provided by the [Storage Account Contributor built-in role](/azure/role-based-access-control/built-in-roles/storage#storage-account-contributor), for example|
 
 
-## Restrictions and limitations
+## Implementation considerations
 
-- The Maximum number of active rules in a workspace is 30. 
+- The maximum number of active rules in a workspace is 30. 
 - Summary rules are currently only available in the public cloud. 
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Querying a Log Analytics workspace in another tenant by using Lighthouse isn't supported.
-
 
 ## Pricing model
 
@@ -107,11 +106,11 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 
 ## Create or update a summary rule
 
-The query commands that can be used depend on the plan of source table used in the query.
- - Analytics: Supports all KQL commands, except for: 
-    - [Cross-resource queries](cross-workspace-query.md), using the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), using the `ADX()` and `ARG()` expressions.
+The operators you can use in summary rule your query depend on the plan of the source table in the query.
+ - Analytics: Supports all KQL operators and functions, except for: 
+    - [Cross-resource queries](cross-workspace-query.md), which use the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), which use the `ADX()` and `ARG()` expressions.
     - Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin). 
- - Basic: Supports all KQL commands on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
+ - Basic: Supports all KQL operators on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
  - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
 Summary rules are most beneficial in term of cost and query experiences when results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify that the query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces). Check that the query produces the intended expected results and schema. If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
