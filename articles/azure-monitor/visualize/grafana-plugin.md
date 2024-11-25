@@ -143,6 +143,39 @@ In addition to building your panels in Grafana, you can also quickly pin Azure M
 
 :::image type="content" source="media/grafana-plugin/grafana-pin-to.png" lightbox="media/grafana-plugin/grafana-pin-to.png" alt-text="Screenshot that shows the Pin to Grafana option in the Azure Monitor metrics explorer.":::
 
+## New features added with Grafana 11
+
+With the introduction of Grafana 11 (Preview), Azure Managed Grafana now supports basic logs and Prometheus exemplars.
+
+### Basic logs
+
+#### Prerequisits
+
+1. In Grafana, go to **Connections** > **Data sources**.
+1. Select **Azure Monitor**.
+1. On the **Settings** tab, toggle the **Enable Basic Logs** switch to On (blue).
+
+:::image type="content" source="media/grafana-plugin/grafana-enable-basic-logs.png" lightbox="media/grafana-plugin/grafana-enable-basic-logs.png" alt-text="Screenshot showing the toggle to turn on Basic Logs.":::
+
+#### Using basic logs
+
+1. Create a new dashboard.
+1. Below the empty graph, under **(Azure Monitor)**, switch **Service** to **Logs**.
+1. For **Resource**, select a Log Analytics workspace.
+1. You now have the option to switch from Logs from **Analytics** to **Basic**.
+
+:::image type="content" source="media/grafana-plugin/grafana-select-basic-logs.png" lightbox="media/grafana-plugin/grafana-select-basic-logs.png" alt-text="Screenshot showing the option to switch to Basic Logs.":::
+
+> [!NOTE]
+> Switching to Basic Logs comes with the following limitations:
+>
+> * Only **Dashboard** can be selected for **Time range**. **Query** is not supported.
+> * Basic logs incur per-query costs, see []().
+
+### Prometheus exemplars
+
+When you create a Grafana workspace in the Azure portal, you can now select Grafana 11 (Preview) under **Grafana Version**. The added 
+
 ## Advanced Grafana features
 
 Grafana offers advanced features:
