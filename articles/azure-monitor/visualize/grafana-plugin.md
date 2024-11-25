@@ -12,7 +12,7 @@ You can monitor Azure services and applications by using [Grafana](https://grafa
 
 * [Azure Monitor Metrics](../essentials/data-platform-metrics.md) for numeric time series data from Azure resources.
 
-* [Azure Monitor Logs](../logs/data-platform-logs.md) for log and performance data from Azure resources that enables you to query by using the powerful Kusto Query Language (KQL). You can use Application Insights log queries to retrieve Application Insights log based metrics
+* [Azure Monitor Logs](../logs/data-platform-logs.md) for log and performance data from Azure resources that enables you to query by using the powerful Kusto Query Language (KQL). You can use Application Insights log queries to retrieve Application Insights log-based metrics.
 
     * [Application Insights log based metrics](../essentials/app-insights-metrics.md) to let you analyze the health of your monitored apps. You can use Application Insights log queries in Grafana to use the Application Insights log metrics data.
 
@@ -64,7 +64,7 @@ You can expand the resources that can be viewed by your Azure Managed Grafana wo
 
 1. Pick a name for the data source and choose between managed identity or app registration for authentication.
 
-If you're hosting Grafana on your own Azure Virtual Machines or Azure App Service instance with managed identity enabled, you can use this approach for authentication. However, if your Grafana instance isn't hosted on Azure or doesn't have managed identity enabled, you'll need to use app registration with an Azure service principal to set up authentication.
+If you're hosting Grafana on your own Azure Virtual Machines or Azure App Service instance with managed identity enabled, you can use this approach for authentication. However, if your Grafana instance isn't hosted on Azure or doesn't have managed identity enabled, you need to use app registration with an Azure service principal to set up authentication.
 
 ### Use managed identity
 
@@ -72,9 +72,9 @@ If you're hosting Grafana on your own Azure Virtual Machines or Azure App Servic
 
     * The managed identity of your hosting VM or App Service instance needs to have the [Monitoring Reader role](../roles-permissions-security.md) assigned for the subscription, resource group, or resources of interest.
 
-    * You'll also need to update the setting `managed_identity_enabled = true` in the Grafana server config. For more information, see [Grafana configuration](https://grafana.com/docs/grafana/latest/administration/configuration/). After both steps are finished, you can then save and test access.
+    * You also need to update the setting `managed_identity_enabled = true` in the Grafana server config. For more information, see [Grafana configuration](https://grafana.com/docs/grafana/latest/administration/configuration/). After both steps are finished, you can then save and test access.
 
-1. Select **Save & test** and Grafana will test the credentials. You should see a message similar to the following one.
+1. Select **Save & test** and for Grafana to test the credentials. You should see a message similar to the following one.
     
    :::image type="content" source="./media/grafana-plugin/managed-identity.png" lightbox="./media/grafana-plugin/managed-identity.png" alt-text="Screenshot that shows Azure Monitor data source with config-approved managed identity.":::
 
@@ -95,7 +95,7 @@ If you're hosting Grafana on your own Azure Virtual Machines or Azure App Servic
         > * Client ID is the Microsoft Entra Application ID.
         > * Client Secret is the Microsoft Entra Application key value.
 
-1. Select **Save & test** and Grafana will test the credentials. You should see a message similar to the following one.
+1. Select **Save & test** and for Grafana to test the credentials. You should see a message similar to the following one.
     
    :::image type="content" source="./media/grafana-plugin/app-registration.png" lightbox="./media/grafana-plugin/app-registration.png" alt-text="Screenshot that shows Azure Monitor data source configuration with the approved app registration.":::
 
@@ -121,7 +121,7 @@ Azure Monitor also supports out-of-the-box dashboards for seamless integration w
 
 1. **Edit** the panel to configure your query.
 
-    1. A list of selectors shows up where you can select the service and resource to monitor in this chart. To view metrics from a VM, leave the default **Service: Metrics** selection, select **Resource** to choose a VM, use the dropdowns provided to choose the namespace, metric and aggregation. After you've selected VM and metrics, you can start viewing the data in the dashboard.
+    1. A list of selectors shows up where you can select the service and resource to monitor in this chart. To view metrics from a VM, leave the default **Service: Metrics** selection, select **Resource** to choose a VM, use the dropdowns provided to choose the namespace, metric, and aggregation. After you select VM and metrics, you can start viewing the data in the dashboard.
 
         :::image type="content" source="./media/grafana-plugin/grafana-graph-config-for-azure-monitor-dark.png" lightbox="./media/grafana-plugin/grafana-graph-config-for-azure-monitor-dark.png" alt-text="Screenshot that shows Grafana panel config for Azure Monitor metrics.":::
 
@@ -200,7 +200,7 @@ Here's an image of a full Grafana dashboard that has metrics from Azure Monitor 
 
 ## Clean up resources
 
-If you've set up a Grafana environment on Azure, you're charged when resources are running whether you're using them or not. To avoid incurring additional charges, clean up the resource group created in this article.
+If you set up a Grafana environment on Azure, you're charged when resources are running whether you're using them or not. To avoid incurring additional charges, clean up the resource group created in this article.
 
 1. On the left menu in the Azure portal, select **Resource groups** > **Grafana**.
 1. On your resource group page, select **Delete**, enter **Grafana** in the text box, and then select **Delete**.
