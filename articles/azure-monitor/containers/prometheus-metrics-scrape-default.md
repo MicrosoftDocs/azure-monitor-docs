@@ -26,12 +26,12 @@ Following targets are **enabled/ON** by default - meaning you don't have to prov
 - `kube-state-metrics` (`job=kube-state-metrics`)
 - `networkobservabilityRetina` (`job=networkobservabilityRetina`)
 
-The following targets are **enabled/ON** when you enable control plane metrics (preview) feature. For more information, see [Control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview).
+The following targets are **enabled/ON** when you enable control plane metrics (preview) feature. You can use control plane metrics to maximize overall observability and maintain operational excellence for your AKS cluster. For more information, see [Control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview).
 
 - `controlplane-apiserver` (`job=controlplane-apiserver`)
 - `controlplane-etcd` (`job=controlplane-etcd`)
 
-The following targets are **enabled/ON** when you enable Container Network Observability which is a feature of the [Advanced Container Networking Services](/azure/aks/advanced-network-observability-concepts) suite.
+The following targets are **enabled/ON** when you enable Container Network Observability which is a feature of the Advanced Container Networking Services suite and is compatible with all Linux workloads seamlessly integrating with Hubble for both Cilium or non-Cilium based data plane. This allows flexibility for your container networking needs. For more information, see [Advanced Container Networking Services](/azure/aks/advanced-network-observability-concepts).
 
 - `networkobservabilityHubble` (`job=networkobservabilityHubble`)
 - `networkobservabilityCilium` (`job=networkobservabilityCilium`)
