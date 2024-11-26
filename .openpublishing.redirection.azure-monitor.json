@@ -7607,7 +7607,7 @@
   },
   {
     "source_path": "articles/azure-monitor/essentials/data-collection-transformations-best-practices.md",
-    "redirect_url": "/azure/azure-monitor/essentials/data-collection-rule-samples",
+    "redirect_url": "/azure/azure-monitor/essentials/data-collection-transformations-samples",
     "redirect_document_id": false
   },
   {
