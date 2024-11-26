@@ -153,6 +153,8 @@ items:
             href: supported-metrics/microsoft-documentdb-cassandraclusters-metrics.md
           - name: Microsoft.DocumentDB/DatabaseAccounts
             href: supported-metrics/microsoft-documentdb-databaseaccounts-metrics.md
+          - name: Microsoft.DocumentDB/garnetClusters
+            href: supported-metrics/microsoft-documentdb-garnetclusters-metrics.md
           - name: Microsoft.DocumentDB/mongoClusters
             href: supported-metrics/microsoft-documentdb-mongoclusters-metrics.md
           - name: microsoft.edgezones/edgezones
@@ -1078,6 +1080,9 @@ items:
               operations Audit Logs,Dms Workers,Errors,Exec Requests,Query Store
               Runtime Statistics,Query Store Wait Statistics,Request Steps,SQL
               Insights,Sql Requests,SQL Security Audit Event,Timeouts,Waits
+          - name: Microsoft.StandbyPool
+            href: supported-logs/microsoft-standbypool-logs.md
+            displayName: Standbypool updates,Standbypool settings updates
           - name: Microsoft.Storage/storageAccounts/blobServices
             href: supported-logs/microsoft-storage-storageaccounts-blobservices-logs.md
             displayName: Storage Delete,Storage Read,Storage Write
