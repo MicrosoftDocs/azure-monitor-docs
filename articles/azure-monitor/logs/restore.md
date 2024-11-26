@@ -136,7 +136,7 @@ You can:
 
 The charge for restored logs is based on the volume of data you restore, and the duration for which the restore is active. Thus, the units of price are *per GB per day*. Data restores are billed on each UTC-day that the restore is active. 
 
-- Charges are subject to a minimum restored data volume of 2 TB per restore. If you restore less data, you will be charged for the 2 TB minimum each day until the [restore is dismissed](#dismiss-restored-data).
+- Charges are subject to a minimum restored data volume of 2 TB per restore since restore allocates extra compute resources for querying the restored data. If you restore less data, you will be charged for the 2 TB minimum each day until the [restore is dismissed](#dismiss-restored-data).
 - On the first and last days that the restore is active, you're only billed for the part of the day the restore was active. 
 
 - The minimum charge is for a 12-hour restore duration, even if the restore is active for less than 12-hours.
