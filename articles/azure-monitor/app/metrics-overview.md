@@ -76,6 +76,7 @@ The following tables list where preaggregation are preaggregated.
 
 > [!CAUTION]
 > * The Application Insights Java 2.x SDK is no longer recommended. Use the [OpenTelemetry-based Java offering](./opentelemetry-enable.md?tabs=java) instead.
+> 
 > * The [OpenCensus Python SDK is retired](https://opentelemetry.io/blog/2023/sunsetting-opencensus/). We recommend the [OpenTelemetry-based Python offering](./opentelemetry-enable.md?tabs=python) and provide [migration guidance](./opentelemetry-python-opencensus-migrate.md?tabs=python).
 
 ### Metrics preaggregation with autoinstrumentation
@@ -198,7 +199,7 @@ The *Availability* metric shows the percentage of the web test runs that didn't 
 
 ```Kusto
 availabilityResults 
-| summarize sum(todouble(success == 1) * 100) / count() by bin(timestamp, 5m), location
+| summarize sum(todouble(success == 1) * 100) / count() by bin(timestamp, 5m)
 | render timechart
 ```
 
@@ -455,16 +456,10 @@ This metric reflects the number of thrown exceptions from your application code 
 
 ```Kusto
 exceptions
-| where notempty(client_Browser)
+| where client_Type == 'Browser'
 | summarize sum(itemCount) by bin(timestamp, 5m)
 | render barchart
 ```
-
-<!--
-```Kusto
-| where client_Type == 'Browser'
-```
--->
 
 #### Dependency call failures (dependencies/failed)
 
@@ -520,16 +515,10 @@ This metric shows the number of server exceptions.
 
 ```Kusto
 exceptions
-| where isempty(client_Browser)
+| where client_Type != 'Browser'
 | summarize sum(itemCount) by bin(timestamp, 5m)
 | render barchart
 ```
-
-<!--
-```Kusto
-| where client_Type != 'Browser'
-```
--->
 
 ---
 
@@ -634,6 +623,12 @@ performanceCounters
 | summarize sum(performanceCounter_value) / count() by bin(timestamp, 15m)
 | render barchart
 ```
+
+ "performanceCounters 
+| where timestamp >= datetime(2024-11-26T07:59:06.640Z) and timestamp < datetime(2024-11-26T19:59:06.640Z) 
+| where ((category == \"ASP.NET Applications\" and counter == \"Requests/Sec\") or name == \"requestsPerSecond\") 
+| extend performanceCounter_value = iif(itemType == 'performanceCounter',value,todouble('')) 
+| summarize ['performanceCounters/requestsPerSecond_avg'] = sum(performanceCounter_value)/count()"
 
 #### ASP.NET request in application queue (performanceCounters/requestsInQueue)
 
@@ -1183,7 +1178,7 @@ The Application Insights REST API enables programmatic retrieval of log-based me
 To access your data directly, pass the parameter `ai.include-query-payload` to the Application Insights API in a query using KQL.
 
 > [!NOTE]
-> To retrieve the underlying logs query, `DEMO_APP` and `DEMO_KEY` ***don't*** have to replaced in the following string. You can copy and paste it directly into your browser search bar.
+> To retrieve the underlying logs query, `DEMO_APP` and `DEMO_KEY` ***don't*** have to replaced. If you just want to retrieve the KQL statement and not the time series data of your own application, you can copy and paste it directly into your browser search bar.
 
 ```Kusto
 api.applicationinsights.io/v1/apps/DEMO_APP/metrics/users/authenticated?api_key=DEMO_KEY&prefer=ai.include-query-payload
