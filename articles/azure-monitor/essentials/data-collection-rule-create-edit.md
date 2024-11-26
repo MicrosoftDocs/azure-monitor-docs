@@ -41,6 +41,7 @@ The Azure portal provides a simplified experience for creating a DCR for particu
 | Metrics export | Create a DCR in the Azure portal using a guided interface to select metrics of different resource types to collect. An association is created between the DCR and each resource you select. See [Create a data collection rule (DCR) for metrics export](./metrics-export-create.md). |
 | Table creation | When you create a new table in a Log Analytics workspace using the Azure portal, you upload sample data that Azure Monitor uses to create a DCR, including a transformation, that can be used with the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md). You can't modify this DCR in the Azure portal but can modify it using any of the methods described in this article. See [Create a custom table](../logs/create-custom-table.md?tabs=azure-portal-1%2Cazure-portal-2%2Cazure-portal-3#create-a-custom-table). |
 | Kubernetes monitoring | To monitor a Kubernetes cluster, you enable Container Insights for logs and Prometheus for metrics. A DCR for each is created and associated with the containerized version of Azure Monitor agent in the cluster. You may need to modify the Container insights DCR to add a transformation. See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) and [Data transformations in Container insights](../containers/container-insights-transformations.md). |
+| Workspace transformation DCR |  |
 
 ## DCR definition
 Regardless of how it's created, each DCR has a definition that follows a [standard JSON schema](./data-collection-rule-structure.md). To create or edit a DCR using a method other than the Azure portal, you need to work directly with its JSON definition. For some scenarios you must work with the JSON definition because the Azure portal doesn't provide a way to configure the DCR as needed.
@@ -69,15 +70,6 @@ In addition to editing a DCR, you can create a new one using one of the [sample 
 
 ## Create or edit a DCR using JSON
 Once you have the definition of a DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
-
-> [!IMPORTANT]
-> While you may choose to use the PowerShell or CLI commands to create and edit a DCR, the API and ARM methods will provide more detailed error messages if there are compile errors.
-> 
-> In the following example, the DCR specifies a table name that doesn't exist in the destination Log Analytics workspace. The PowerShell command returns a generic error message, but the API call will return a detailed error message that specifies the exact error.
-> 
-> :::image type="content" source="media/data-collection-rule-create-edit/dcr-error-powershell.png" lightbox="media/data-collection-rule-create-edit/dcr-error-powershell.png" alt-text="Screenshot that shows an error message for a DCR when using a PowerShell command.":::
-> 
-> :::image type="content" source="media/data-collection-rule-create-edit/dcr-error-api.png" lightbox="media/data-collection-rule-create-edit/dcr-error-api.png" alt-text="Screenshot that shows an error message for a DCR when using the API.":::
 
 ### [CLI](#tab/cli)
 
@@ -156,6 +148,15 @@ Use the following template to create a DCR, replacing `<dcr-properties>` with th
 ```
 
 ---
+
+> [!NOTE]
+> While you may choose to use the PowerShell or CLI commands to create and edit a DCR, the API and ARM methods will provide more detailed error messages if there are compile errors.
+> 
+> In the following example, the DCR specifies a table name that doesn't exist in the destination Log Analytics workspace. The PowerShell command returns a generic error message, but the API call will return a detailed error message that specifies the exact error.
+> 
+> :::image type="content" source="media/data-collection-rule-create-edit/dcr-error-powershell.png" lightbox="media/data-collection-rule-create-edit/dcr-error-powershell.png" alt-text="Screenshot that shows an error message for a DCR when using a PowerShell command.":::
+> 
+> :::image type="content" source="media/data-collection-rule-create-edit/dcr-error-api.png" lightbox="media/data-collection-rule-create-edit/dcr-error-api.png" alt-text="Screenshot that shows an error message for a DCR when using the API.":::
 
 
 ## Strategies to edit and test a DCR

@@ -10,7 +10,7 @@ ms.reviwer: nikeist
 ---
 
 # Create a transformation in Azure Monitor
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing as transformation query and adding it to a DCR.
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing a transformation query and adding it to a DCR.
 
 ## Basic query structure
 All transformation queries start with `source`, which is a virtual table that represents the input stream. You can then use any supported KQL operators to filter, modify, or add columns to the data as you would with any other table. The query is applied individually to each entry sent by the data source. 
@@ -21,7 +21,7 @@ The output of the query must match the schema of the target table with the follo
 - Make sure to exclude any columns that are not included in the output table. The data will be accepted without error, but you'll be charged for the ingestion of the extra data even though it's not stored.
 - The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, you can add it in the transformation with `extend` or `project`.
 
-Following is a typical example of a transformation. This example includes the following functionality:
+Following is an  example of a transformation that performs several functions:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
 * Adds a new column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator.
@@ -39,10 +39,15 @@ source
     EventId = tostring(Properties.EventId)
 ```
 
-See [Sample transformations in Azure Monitor](./data-collection-rule-samples.md) for a more complete set of samples for different scenarios. 
+See [Data collection rule (DCR) samples and scenarios in Azure Monitor](./data-collection-rule-samples.md) for various samples for different scenarios. 
 
 ## Create the transformation query
-Before you create or edit the DCR that will include your transformation, you'll need to create and test the transformation query. You'll typically do this by running test queries against existing data or test data. When you get the results you want, you can replace the table name with source and paste it into your DCR as explained below in [Add transformation to DCR](#add-transformation-to-dcr).
+Before you create or edit the DCR that will include your transformation, you'll need to create and test the transformation query. You'll typically do this by running test queries against existing data or test data. When you get the results you want, you can replace the table name with `source` and paste it into your DCR as explained below in [Add transformation to DCR](#add-transformation-to-dcr).
+
+> [!IMPORTANT]
+> Transformations do not support all KQL features. See [Supported KQL features in Azure Monitor transformations](./data-collection-transformations-kql.md) for supported features and limitations.
+
+For example, if you're creating a transformation to 
 
 You'll need some data to work with, so you'll typically use one of the following strategies.
 
@@ -51,6 +56,7 @@ You'll need some data to work with, so you'll typically use one of the following
 - Use the process to create a new table in the Azure portal and provide sample data. Use the included interface to create and test your transformation query. Either copy the query text and paste into your DCR, or complete the process and then edit the DCR to copy the transformation query. You can then delete the new table if you don't need it.
 
 ## Add transformation to DCR
+Once you have your transformation query, you can add it to a DCR. Use the guidance in [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md) to create or edit the DCR using the information in this section to include the transformation query in the DCR definition.
 
 > [!NOTE]
 > Some data sources will provide a method using the Azure portal to add a transformation to a DCR. For example, [collecting a text from a virtual machine](../agents/data-collection-log-text.md) allows you to specify a transformation query in the Azure portal. Most data collection scenarios though currently require you to work directly with the DCR definition to add a transformation. That's the process described in this section.
