@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 09/16/2024
+ms.date: 11/26/2024
 ---
 
 # AppTraces
@@ -21,7 +21,7 @@ Application Insights traces.
 |**Resource types**|microsoft.insights/components|
 |**Categories**|Applications|
 |**Solutions**| LogManagement|
-|**Basic log**|No|
+|**Basic log**|Yes|
 |**Ingestion-time transformation**|Yes|
 |**Sample Queries**|-|
 
