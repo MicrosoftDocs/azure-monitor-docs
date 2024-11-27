@@ -143,9 +143,9 @@ In addition to building your panels in Grafana, you can also quickly pin Azure M
 
 :::image type="content" source="media/grafana-plugin/grafana-pin-to.png" lightbox="media/grafana-plugin/grafana-pin-to.png" alt-text="Screenshot that shows the Pin to Grafana option in the Azure Monitor metrics explorer.":::
 
-## New features added with Grafana 11
+## Features supported with Grafana 11
 
-Azure Managed Grafana now supports Grafana 11 (preview) which adds support for basic logs and using [exemplars](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/) with Azure.
+Azure Managed Grafana includes support for Grafana 11 (preview), which introduces capabilities for basic logs and using [exemplars](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/) with Azure.
 
 ### Prerequisites
 
@@ -153,6 +153,8 @@ Azure Managed Grafana now supports Grafana 11 (preview) which adds support for b
 > * An Azure Managed Grafana resource running Grafana version 11.
 
 ### Basic logs
+
+Basic Logs provide a cost-effective way to manage data storage by allowing you to switch between different table plans based on data usage, see [Select a table plan based on data usage in a Log Analytics workspace](./../logs/logs-table-plans.md).
 
 #### Enable basic logs
 
@@ -178,7 +180,7 @@ Azure Managed Grafana now supports Grafana 11 (preview) which adds support for b
 
 ### Use exemplars with Azure
 
-With Grafana 11, you can now view traces in Application Insights.
+In Grafana 11, exemplars can link directly to trace data in Application Insights. This integration allows you to connect Prometheus metric data with detailed traces, providing a more comprehensive view of system performance and behavior.
 
 <!-- NOTES
 Grafana supports a concept of linking between Prometheus metric data sources and trace data sources called exemplars.
@@ -191,8 +193,10 @@ You have a metric time series where you get a single data point for the exemplar
 1. On the **Settings** tab under **Exemplars**, select **+ Add**.
 1. Toggle the **Internal link** switch to the right (**On** is blue).
 1. Select **Azure** from the dropdown list.
-1. Optional: Add a **URL Label**, for example *View trace in Azure*.
+1. Optional: Add a **URL Label**.
 1. **Save & test** your changes.
+
+:::image type="content" source="media/grafana-plugin/grafana-configure-exemplar.png" lightbox="media/grafana-plugin/grafana-configure-exemplar.png" alt-text="Screenshot showing the settings for exemplar.":::
 
 > [!NOTE]
 > You can **+ Add** additional exemplars, for example for open source tracing platforms like ZIPKIN or Jaeger.
@@ -204,7 +208,7 @@ You have a metric time series where you get a single data point for the exemplar
 1. **Run query** to populate the graph.
 1. In the **Options** bar, toggle the **Exemplars** switch to the right (**On** is blue). This will add data points shown as yellow squares on the x-axis of the graph.
 1. Hover over a data point to see the context menu showing details like traceID, Value, etc.
-1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar, for example *View trace in Azure*. This will open an **Azure** panel next to your current **Prometheus** panel with information like Event Type and Operation ID, as well as the [Application Insights end-to-end transaction view](./../app/failures-and-performance-views.md) using open source visualization.
+1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar. This will open an **Azure** panel next to your current **Prometheus** panel with trace information and the [Application Insights end-to-end transaction view](./../app/failures-and-performance-views.md) 
 
 :::image type="content" source="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" lightbox="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" alt-text="Screenshot showing Explore view with exemplars.":::
 
