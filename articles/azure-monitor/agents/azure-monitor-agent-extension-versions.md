@@ -16,7 +16,9 @@ ms.reviewer: JeffWo
 
 This article describes the version details for the Azure Monitor Agent virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
-We strongly recommended to always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. A version is not automatically rolled out until it meets a high quality bar which can take as long as 5 weeks after the initial release. 
+We strongly recommended that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. You can expect automatic extension roll to take as long as 5 weeks after the initial release. You can expect any bug fix to be made in a future release. You can expect no servicing of existing releases.
+
+We strongly recommended to always update to the latest version, or opt in to the  feature. A version is not automatically rolled out until it meets a high quality bar which can take as long as 5 weeks after the initial release. 
 
 [//]: # "DON'T change the format (column schema, etc.) of the table without consulting glinuxagent alias. The [Azure Monitor Linux Agent Troubleshooting Tool](https://github.com/Azure/azure-linux-extensions/blob/master/AzureMonitorAgent/ama_tst/AMA-Troubleshooting-Tool.md) parses the table at runtime to determine the latest version of AMA; altering the format could degrade some of the functions of the tool."
 
