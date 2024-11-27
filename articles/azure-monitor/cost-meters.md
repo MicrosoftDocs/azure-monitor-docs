@@ -62,6 +62,7 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 | Azure Monitor | Metrics ingestion Metric samples | yes |
 | Azure Monitor | Prometheus Metrics Queries Metric samples | yes |
 | Azure Monitor | Native Metric Queries API Calls | yes |
+| Azure Monitor | Metrics Export Metric Samples Exported | yes |
 
 ## Azure Monitor alerts meters
 
