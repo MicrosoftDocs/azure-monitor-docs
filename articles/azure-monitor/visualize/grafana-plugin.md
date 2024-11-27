@@ -14,7 +14,7 @@ You can monitor Azure services and applications by using [Grafana](https://grafa
 
 * [Azure Monitor Logs](../logs/data-platform-logs.md) for log and performance data from Azure resources that enables you to query by using the powerful Kusto Query Language (KQL). You can use Application Insights log queries to retrieve Application Insights log-based metrics.
 
-    * [Application Insights log based metrics](../essentials/app-insights-metrics.md) to let you analyze the health of your monitored apps. You can use Application Insights log queries in Grafana to use the Application Insights log metrics data.
+    * [Application Insights log-based metrics](../essentials/app-insights-metrics.md) to let you analyze the health of your monitored apps. You can use Application Insights log queries in Grafana to use the Application Insights log metrics data.
 
 * [Azure Monitor Traces](./../app/distributed-trace-data.md) to query and visualize distributed tracing data from Application Insights.
 
@@ -26,7 +26,7 @@ Use the following steps to set up a Grafana server and build dashboards for metr
 
 ## Set up Grafana
 
-Follow these steps to set up Grafana.
+To set up Grafana, follow these steps.
 
 ### Set up Azure Managed Grafana
 
@@ -159,7 +159,7 @@ Basic Logs provide a cost-effective way to manage data storage by allowing you t
 #### Enable basic logs
 
 1. In Grafana, go to **Connections** > **Data sources** > **Azure Monitor**.
-1. On the **Settings** tab, toggle the **Enable Basic Logs** switch to the right (**On** is blue).
+1. On the **Settings** tab, toggle the **Enable Basic Logs** switch to the right ( blue is **On**).
 
 :::image type="content" source="media/grafana-plugin/grafana-enable-basic-logs.png" lightbox="media/grafana-plugin/grafana-enable-basic-logs.png" alt-text="Screenshot showing the toggle to turn on Basic Logs.":::
 
@@ -180,7 +180,7 @@ Basic Logs provide a cost-effective way to manage data storage by allowing you t
 
 ### Use exemplars with Azure
 
-In Grafana 11, exemplars can link directly to trace data in Application Insights. This integration allows you to connect Prometheus metric data with detailed traces, providing a more comprehensive view of system performance and behavior.
+In Grafana 11, [exemplars](https://grafana.com/docs/mimir/latest/manage/use-exemplars/about-exemplars/) can link directly to trace data in Application Insights. This integration allows you to connect Prometheus metric data with detailed traces, providing a more comprehensive view of system performance and behavior. For more information about the trace view in Grafana, see [Traces in Explore](https://grafana.com/docs/grafana/latest/explore/trace-integration/#traces-in-explore).
 
 <!-- NOTES
 Grafana supports a concept of linking between Prometheus metric data sources and trace data sources called exemplars.
@@ -191,7 +191,7 @@ You have a metric time series where you get a single data point for the exemplar
 
 1. In Grafana, go to **Connections** > **Data sources** > **Prometheus**.
 1. On the **Settings** tab under **Exemplars**, select **+ Add**.
-1. Toggle the **Internal link** switch to the right (**On** is blue).
+1. Toggle the **Internal link** switch to the right ( blue is **On**).
 1. Select **Azure** from the dropdown list.
 1. Optional: Add a **URL Label**.
 1. **Save & test** your changes.
@@ -206,9 +206,9 @@ You have a metric time series where you get a single data point for the exemplar
 1. In Grafana, go to **Explore**.
 1. Under **Metric**, select a Prometheus data source.
 1. **Run query** to populate the graph.
-1. In the **Options** bar, toggle the **Exemplars** switch to the right (**On** is blue). This will add data points shown as yellow squares on the x-axis of the graph.
+1. In the **Options** bar, toggle the **Exemplars** switch to the right ( blue is **On**). This adds data points shown as yellow squares on the x-axis of the graph.
 1. Hover over a data point to see the context menu showing details like traceID, Value, etc.
-1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar. This will open an **Azure** panel next to your current **Prometheus** panel with trace information and the [Application Insights end-to-end transaction view](./../app/failures-and-performance-views.md) 
+1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar. This opens an **Azure** panel next to your current **Prometheus** panel with trace information and the [Application Insights end-to-end transaction view](./../app/failures-and-performance-views.md) 
 
 :::image type="content" source="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" lightbox="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" alt-text="Screenshot showing Explore view with exemplars.":::
 
