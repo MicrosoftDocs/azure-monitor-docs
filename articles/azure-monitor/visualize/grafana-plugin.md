@@ -159,7 +159,7 @@ Basic Logs provide a cost-effective way to manage data storage by allowing you t
 #### Enable basic logs
 
 1. In Grafana, go to **Connections** > **Data sources** > **Azure Monitor**.
-1. On the **Settings** tab, toggle the **Enable Basic Logs** switch to the right ( blue is **On**).
+1. On the **Settings** tab, toggle the **Enable Basic Logs** switch to the right (blue is **On**).
 
 :::image type="content" source="media/grafana-plugin/grafana-enable-basic-logs.png" lightbox="media/grafana-plugin/grafana-enable-basic-logs.png" alt-text="Screenshot showing the toggle to turn on Basic Logs.":::
 
@@ -168,7 +168,7 @@ Basic Logs provide a cost-effective way to manage data storage by allowing you t
 1. Create a new dashboard.
 1. Below the empty graph, under **(Azure Monitor)**, switch **Service** to **Logs**.
 1. For **Resource**, select a Log Analytics workspace.
-1. You now have the option to switch Logs from **Analytics** to **Basic**.
+1. You can now switch Logs from **Analytics** to **Basic**.
 
 :::image type="content" source="media/grafana-plugin/grafana-select-basic-logs.png" lightbox="media/grafana-plugin/grafana-select-basic-logs.png" alt-text="Screenshot showing the option to switch to Basic Logs.":::
 
@@ -186,7 +186,7 @@ In Grafana 11, [exemplars](https://grafana.com/docs/mimir/latest/manage/use-exem
 
 1. In Grafana, go to **Connections** > **Data sources** > **Prometheus**.
 1. On the **Settings** tab under **Exemplars**, select **+ Add**.
-1. Toggle the **Internal link** switch to the right ( blue is **On**).
+1. Toggle the **Internal link** switch to the right (blue is **On**).
 1. Select **Azure** from the dropdown list.
 1. Optional: Add a **URL Label**.
 1. **Save & test** your changes.
@@ -201,7 +201,7 @@ In Grafana 11, [exemplars](https://grafana.com/docs/mimir/latest/manage/use-exem
 1. In Grafana, go to **Explore**.
 1. Under **Metric**, select a Prometheus data source.
 1. **Run query** to populate the graph.
-1. In the **Options** bar, toggle the **Exemplars** switch to the right ( blue is **On**). This adds data points shown as yellow squares on the x-axis of the graph.
+1. In the **Options** bar, toggle the **Exemplars** switch to the right (blue is **On**). This adds data points shown as yellow squares on the x-axis of the graph.
 1. Hover over a data point to see the context menu showing details like traceID, Value, etc.
 1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar. This opens an **Azure** panel next to your current **Prometheus** panel with trace information in the Grafana viewer.
 
