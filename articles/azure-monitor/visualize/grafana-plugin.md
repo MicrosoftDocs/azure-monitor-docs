@@ -145,12 +145,12 @@ In addition to building your panels in Grafana, you can also quickly pin Azure M
 
 ## New features added with Grafana 11
 
-With the introduction of Grafana 11 (Preview), Azure Managed Grafana now supports basic logs and using [exemplars](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/) with Application Insights.
+Azure Managed Grafana now supports Grafana 11 (preview) which adds support for basic logs and using [exemplars](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/) with Azure.
 
 ### Prerequisites
 
 > [!div class="checklist"]
-> An Azure Managed Grafana resource running Grafana version 11.
+> * An Azure Managed Grafana resource running Grafana version 11.
 
 ### Basic logs
 
@@ -176,7 +176,7 @@ With the introduction of Grafana 11 (Preview), Azure Managed Grafana now support
 > * **Time range** will be **Dashboard** time. Switching **Time range** back to **Query** is not available.
 > * Basic logs incur per-query costs, see [Select a table plan based on data usage in a Log Analytics workspace](./../logs/logs-table-plans.md).
 
-### Prometheus exemplars with Application Insights
+### Use exemplars with Azure
 
 With Grafana 11, you can now view traces in Application Insights.
 
@@ -185,7 +185,7 @@ Grafana supports a concept of linking between Prometheus metric data sources and
 You have a metric time series where you get a single data point for the exemplar. If you click on that data point, it takes you to a trace in ZIPKIN, Jaeger, Tempo, or now Application Insights.
 -->
 
-#### Enable an exemplar and configure it to point to Azure
+#### Configure exemplars to point to Azure
 
 1. In Grafana, go to **Connections** > **Data sources** > **Prometheus**.
 1. On the **Settings** tab under **Exemplars**, select **+ Add**.
@@ -195,16 +195,16 @@ You have a metric time series where you get a single data point for the exemplar
 1. **Save & test** your changes.
 
 > [!NOTE]
-> You can **+ Add** additional exemplars for open source tracing stores like ZIPKIN or Jaeger.
+> You can **+ Add** additional exemplars, for example for open source tracing platforms like ZIPKIN or Jaeger.
 
-#### Use Application Insights trace view with exemplars in Grafana
+#### View exemplars with Azure
 
 1. In Grafana, go to **Explore**.
 1. Under **Metric**, select a Prometheus data source.
 1. **Run query** to populate the graph.
 1. In the **Options** bar, toggle the **Exemplars** switch to the right (**On** is blue). This will add data points shown as yellow squares on the x-axis of the graph.
 1. Hover over a data point to see the context menu showing details like traceID, Value, etc.
-1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar, for example *View trace in Azure*. This will open an **Azure** panel next to your current **Prometheus** panel with information like Event Type and Operation ID, as well as the Application Insights end-to-end transaction view using open source visualization.
+1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar, for example *View trace in Azure*. This will open an **Azure** panel next to your current **Prometheus** panel with information like Event Type and Operation ID, as well as the [Application Insights end-to-end transaction view](./../app/failures-and-performance-views.md) using open source visualization.
 
 :::image type="content" source="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" lightbox="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" alt-text="Screenshot showing Explore view with exemplars.":::
 
