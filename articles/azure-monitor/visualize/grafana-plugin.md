@@ -117,21 +117,21 @@ Azure Monitor also supports out-of-the-box dashboards for seamless integration w
 
 1. An empty **Time series panel** shows up on your dashboard.
 
-<!--    :::image type="content" source="./media/grafana-plugin/grafana-new-graph-dark.png" lightbox="./media/grafana-plugin/grafana-new-graph-dark.png" alt-text="Screenshot that shows Grafana new panel dropdown list options."::: -->
+    :::image type="content" source="./media/grafana-plugin/grafana-new-graph-dark.png" lightbox="./media/grafana-plugin/grafana-new-graph-dark.png" alt-text="Screenshot that shows Grafana new panel dropdown list options.":::
 
 1. **Edit** the panel to configure your query.
 
-    1. A list of selectors shows up where you can select the service and resource to monitor in this chart. To view metrics from a VM, leave the default **Service: Metrics** selection, select **Resource** to choose a VM, use the dropdowns provided to choose the namespace, metric, and aggregation. After you select VM and metrics, you can start viewing the data in the dashboard.
+    1. **Visualize Azure Monitor metric data**: A list of selectors shows up where you can select the service and resource to monitor in this chart. To view metrics from a VM, leave the default **Metrics** selection, select **Resource** to choose a VM, use the dropdowns provided to choose the namespace, metric, and aggregation. After you select VM and metrics, you can start viewing the data in the dashboard.
 
         :::image type="content" source="./media/grafana-plugin/grafana-graph-config-for-azure-monitor-dark.png" lightbox="./media/grafana-plugin/grafana-graph-config-for-azure-monitor-dark.png" alt-text="Screenshot that shows Grafana panel config for Azure Monitor metrics.":::
 
-    2. Visualizing Azure Monitor log data: Select **Logs** in the service dropdown list. Select the resource or workspace you want to query, toggle the **Time Range** to **Dashboard** and set the query text. You can copy here any log query you already have or create a new one. As you enter your query, IntelliSense suggests autocomplete options. Select the visualization type, **Time series** > **Table**, and run the query.
+    2. **Visualize Azure Monitor log data**: Select **Logs** in the service dropdown list. Select the resource or workspace you want to query, toggle the **Time Range** to **Dashboard** and set the query text. You can copy here any log query you already have or create a new one. As you enter your query, IntelliSense suggests autocomplete options. Select the visualization type, **Time series** > **Table**, and run the query.
     
     > [!NOTE]
     > The plugin can also use time macros such as `$__timeFilter()` and `$__interval`.
     > These macros allow Grafana to dynamically calculate the time range and time grain, when you zoom in on part of a chart. You can remove these macros and use a standard time filter, such as `TimeGenerated > ago(1h)`, but that means the graph wouldn't support the zoom-in feature.
     
-    :::image type="content" source="./media/grafana-plugin/grafana-graph-config-for-azure-log-analytics-dark.png" lightbox="./media/grafana-plugin/grafana-graph-config-for-azure-log-analytics-dark.png" alt-text="Screenshot of Grafana panel config for Azure Monitor logs.":::
+    :::image type="content" source="./media/grafana-plugin/grafana-config-for-azure-log-analytics.png" lightbox="./media/grafana-plugin/grafana-config-for-azure-log-analytics.png" alt-text="Screenshot of Grafana panel config for Azure Monitor logs.":::
 
 1. The following dashboard has two charts. The one on the left shows the CPU percentage of two VMs. The chart on the right shows the transactions in an Azure Storage account broken down by the Transaction API type.
 
@@ -150,7 +150,7 @@ Azure Managed Grafana includes support for Grafana 11 (preview), which introduce
 ### Prerequisites
 
 > [!div class="checklist"]
-> * An Azure Managed Grafana resource running Grafana version 11.
+> * An [Azure Managed Grafana](/azure/managed-grafana/overview) resource running Grafana version 11.
 
 ### Basic logs
 
@@ -182,11 +182,6 @@ Basic Logs provide a cost-effective way to manage data storage by allowing you t
 
 In Grafana 11, [exemplars](https://grafana.com/docs/mimir/latest/manage/use-exemplars/about-exemplars/) can link directly to trace data in Application Insights. This integration allows you to connect Prometheus metric data with detailed traces, providing a more comprehensive view of system performance and behavior. For more information about the trace view in Grafana, see [Traces in Explore](https://grafana.com/docs/grafana/latest/explore/trace-integration/#traces-in-explore).
 
-<!-- NOTES
-Grafana supports a concept of linking between Prometheus metric data sources and trace data sources called exemplars.
-You have a metric time series where you get a single data point for the exemplar. If you click on that data point, it takes you to a trace in ZIPKIN, Jaeger, Tempo, or now Application Insights.
--->
-
 #### Configure exemplars to point to Azure
 
 1. In Grafana, go to **Connections** > **Data sources** > **Prometheus**.
@@ -208,7 +203,7 @@ You have a metric time series where you get a single data point for the exemplar
 1. **Run query** to populate the graph.
 1. In the **Options** bar, toggle the **Exemplars** switch to the right ( blue is **On**). This adds data points shown as yellow squares on the x-axis of the graph.
 1. Hover over a data point to see the context menu showing details like traceID, Value, etc.
-1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar. This opens an **Azure** panel next to your current **Prometheus** panel with trace information and the [Application Insights end-to-end transaction view](./../app/failures-and-performance-views.md) 
+1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar. This opens an **Azure** panel next to your current **Prometheus** panel with trace information in the Grafana viewer.
 
 :::image type="content" source="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" lightbox="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" alt-text="Screenshot showing Explore view with exemplars.":::
 
