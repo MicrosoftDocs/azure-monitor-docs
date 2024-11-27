@@ -117,7 +117,7 @@ Azure Monitor also supports out-of-the-box dashboards for seamless integration w
 
 1. An empty **Time series panel** shows up on your dashboard.
 
-    :::image type="content" source="./media/grafana-plugin/grafana-new-graph-dark.png" lightbox="./media/grafana-plugin/grafana-new-graph-dark.png" alt-text="Screenshot that shows Grafana new panel dropdown list options.":::
+<!--    :::image type="content" source="./media/grafana-plugin/grafana-new-graph-dark.png" lightbox="./media/grafana-plugin/grafana-new-graph-dark.png" alt-text="Screenshot that shows Grafana new panel dropdown list options."::: -->
 
 1. **Edit** the panel to configure your query.
 
@@ -145,36 +145,68 @@ In addition to building your panels in Grafana, you can also quickly pin Azure M
 
 ## New features added with Grafana 11
 
-With the introduction of Grafana 11 (Preview), Azure Managed Grafana now supports basic logs and Prometheus exemplars.
+With the introduction of Grafana 11 (Preview), Azure Managed Grafana now supports basic logs and using [exemplars](https://grafana.com/docs/grafana/latest/fundamentals/exemplars/) with Application Insights.
+
+### Prerequisites
+
+> [!div class="checklist"]
+> An Azure Managed Grafana resource running Grafana version 11.
 
 ### Basic logs
 
-#### Prerequisits
+#### Enable basic logs
 
-1. In Grafana, go to **Connections** > **Data sources**.
-1. Select **Azure Monitor**.
-1. On the **Settings** tab, toggle the **Enable Basic Logs** switch to On (blue).
+1. In Grafana, go to **Connections** > **Data sources** > **Azure Monitor**.
+1. On the **Settings** tab, toggle the **Enable Basic Logs** switch to the right (**On** is blue).
 
 :::image type="content" source="media/grafana-plugin/grafana-enable-basic-logs.png" lightbox="media/grafana-plugin/grafana-enable-basic-logs.png" alt-text="Screenshot showing the toggle to turn on Basic Logs.":::
 
-#### Using basic logs
+#### Use basic logs
 
 1. Create a new dashboard.
 1. Below the empty graph, under **(Azure Monitor)**, switch **Service** to **Logs**.
 1. For **Resource**, select a Log Analytics workspace.
-1. You now have the option to switch from Logs from **Analytics** to **Basic**.
+1. You now have the option to switch Logs from **Analytics** to **Basic**.
 
 :::image type="content" source="media/grafana-plugin/grafana-select-basic-logs.png" lightbox="media/grafana-plugin/grafana-select-basic-logs.png" alt-text="Screenshot showing the option to switch to Basic Logs.":::
 
 > [!NOTE]
-> Switching to Basic Logs comes with the following limitations:
+> Switching to Basic Logs comes with limitations:
 >
-> * Only **Dashboard** can be selected for **Time range**. **Query** is not supported.
-> * Basic logs incur per-query costs, see []().
+> * **Time range** will be **Dashboard** time. Switching **Time range** back to **Query** is not available.
+> * Basic logs incur per-query costs, see [Select a table plan based on data usage in a Log Analytics workspace](./../logs/logs-table-plans.md).
 
-### Prometheus exemplars
+### Prometheus exemplars with Application Insights
 
-When you create a Grafana workspace in the Azure portal, you can now select Grafana 11 (Preview) under **Grafana Version**. The added 
+With Grafana 11, you can now view traces in Application Insights.
+
+<!-- NOTES
+Grafana supports a concept of linking between Prometheus metric data sources and trace data sources called exemplars.
+You have a metric time series where you get a single data point for the exemplar. If you click on that data point, it takes you to a trace in ZIPKIN, Jaeger, Tempo, or now Application Insights.
+-->
+
+#### Enable an exemplar and configure it to point to Azure
+
+1. In Grafana, go to **Connections** > **Data sources** > **Prometheus**.
+1. On the **Settings** tab under **Exemplars**, select **+ Add**.
+1. Toggle the **Internal link** switch to the right (**On** is blue).
+1. Select **Azure** from the dropdown list.
+1. Optional: Add a **URL Label**, for example *View trace in Azure*.
+1. **Save & test** your changes.
+
+> [!NOTE]
+> You can **+ Add** additional exemplars for open source tracing stores like ZIPKIN or Jaeger.
+
+#### Use Application Insights trace view with exemplars in Grafana
+
+1. In Grafana, go to **Explore**.
+1. Under **Metric**, select a Prometheus data source.
+1. **Run query** to populate the graph.
+1. In the **Options** bar, toggle the **Exemplars** switch to the right (**On** is blue). This will add data points shown as yellow squares on the x-axis of the graph.
+1. Hover over a data point to see the context menu showing details like traceID, Value, etc.
+1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar, for example *View trace in Azure*. This will open an **Azure** panel next to your current **Prometheus** panel with information like Event Type and Operation ID, as well as the Application Insights end-to-end transaction view using open source visualization.
+
+:::image type="content" source="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" lightbox="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" alt-text="Screenshot showing Explore view with exemplars.":::
 
 ## Advanced Grafana features
 
