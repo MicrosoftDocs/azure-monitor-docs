@@ -44,8 +44,9 @@ To run a cross-service query that correlates data in Azure Data Explorer or Azur
     AzureDiagnostics
     | join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
     ```
-* Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter. 
-* [Private Link](../logs/private-link-security.md) (private endpoints) and [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) don't support cross-service queries.
+
+* Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
+* Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../logs/private-link-security.md) (private endpoints) don't support cross-service queries.
     
 ### Azure Resource Graph cross-service query considerations
 
