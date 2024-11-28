@@ -41,7 +41,7 @@ The following table summarizes the sampling types available for each SDK and typ
 | Java                     | No                                                                                 | [Yes](#configuring-sampling-overrides-and-fixed-rate-sampling-for-java-applications) | Only if no other sampling is in effect |
 | JavaScript               | No                                                                                 | [Yes](#configuring-fixed-rate-sampling-for-web-pages-with-javascript)                | Only if no other sampling is in effect |
 | Node.JS                  | No                                                                                 | [Yes](./nodejs.md#sampling)                                                          | Only if no other sampling is in effect |
-| Python                   | No                                                                                 | [Yes](https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-configuration?tabs=python#enable-sampling)           | Only if no other sampling is in effect |
+| Python                   | No                                                                                 | [Yes](https://learn.microsoft.com/azure/azure-monitor/app/opentelemetry-configuration?tabs=python#enable-sampling)           | Only if no other sampling is in effect |
 | All others               | No                                                                                 | No                                                                                   | [Yes](#ingestion-sampling)             |
 
 > [!NOTE]
