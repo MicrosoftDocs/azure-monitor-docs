@@ -3,9 +3,9 @@ title: Create an Azure Monitor metric alert with dynamic thresholds
 description: Get information about creating metric alerts with dynamic thresholds that are based on machine learning.
 author: AbbyMSFT
 ms.author: abbyweisberg
-ms.reviewer: yalavi
+ms.reviewer: harelbr
 ms.topic: conceptual
-ms.date: 06/19/2024
+ms.date: 11/28/2024
 ---
 
 # Create a metric alert with dynamic thresholds
