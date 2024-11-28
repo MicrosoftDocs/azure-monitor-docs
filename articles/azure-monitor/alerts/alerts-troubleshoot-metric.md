@@ -36,7 +36,7 @@ If you believe a metric alert should have fired but it didn't, and it isn't list
 
 1. **Check the dimensions used.**
 
-    If you've selected some [dimension values for a metric](./alerts-metric-overview.md#using-dimensions), the alert rule monitors each individual metric time series (as defined by the combination of dimension values) for a threshold breach. To also monitor the aggregate metric time series, without any dimensions selected, configure another alert rule on the metric without selecting dimensions.
+    If you've selected some [dimension values for a metric](./alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions), the alert rule monitors each individual metric time series (as defined by the combination of dimension values) for a threshold breach. To also monitor the aggregate metric time series, without any dimensions selected, configure another alert rule on the metric without selecting dimensions.
 
 1. **Check the aggregation and time granularity.**
 
@@ -144,7 +144,7 @@ Currently, monitoring a guest metric for multiple virtual machines with a single
 
 ### Can't find the metric dimension to alert on
 
-If you want to alert on [specific dimension values of a metric](./alerts-metric-overview.md#using-dimensions) but you can't find these values:
+If you want to alert on [specific dimension values of a metric](./alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) but you can't find these values:
 
 - It might take a few minutes for the dimension values to appear under the **Dimension values** list.
 - The displayed dimension values are based on metric data collected in the last day.

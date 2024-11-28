@@ -259,6 +259,7 @@ procedureSection:
 
       - You can only select one value per dimension within each condition.
       - You can't use the option to **Select all current and future values**. Select the asterisk (\*).
+      - You cannot use dynamic thresholds in alert rules that monitor multiple conditions.
       - When metrics that are configured in different conditions support the same dimension, a configured dimension value must be explicitly set in the same way for all those metrics in the relevant conditions.
       
         For example:
