@@ -9,7 +9,7 @@ ms.date: 12/02/2024
 
 The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 
-:::image type="content" source="media/service-health-portal-update/services-issue-window-10.png" alt-text="A screenshot of the services issue user interface highlighting the switch to classic button." lightbox="media/service-health-portal-update/services-issue-window-10.png":::
+:::image type="content" source="media/service-health-portal-update/service-issue-window-10.png" alt-text="A screenshot of the services issue user interface highlighting the switch to classic button." lightbox="media/service-health-portal-update/service-issue-window-10.png":::
 
 ## Highlights
 
