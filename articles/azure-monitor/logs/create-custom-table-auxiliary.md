@@ -250,6 +250,7 @@ During public preview, these limitations apply:
     - Do not support columns with dynamic data.
     - Have a fixed total retention of 365 days.
     - Support ISO 8601 datetime format only.
+    - Can be edited to add new fields, but existing fields cannot be edited or modified into a different field type
 - A data collection rule that sends data to a table with an Auxiliary plan:
     - Can only send data to a single table.
     - Can't include a [transformation](../essentials/data-collection-transformations.md). 
