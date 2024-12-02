@@ -101,7 +101,7 @@ If you're hosting Grafana on your own Azure Virtual Machines or Azure App Servic
 
 ## Use out-of-the-box dashboards
 
-Azure Monitor contains out-of-the-box dashboards to use with Azure Managed Grafana and the Azure Monitor plugin.
+Azure Monitor contains out-of-the-box dashboards to use with Azure Managed Grafana and the Azure Monitor plugin. You can find a list of all available dashboards on [Grafana Labs](https://aka.ms/AzureGrafanaDashboards).
 
 :::image type="content" source="media/grafana-plugin/grafana-out-of-the-box-dashboards.png" lightbox="media/grafana-plugin/grafana-out-of-the-box-dashboards.png" alt-text="Screenshot that shows out of the box Azure Monitor grafana dashboards.":::
  
@@ -270,4 +270,5 @@ If you set up a Grafana environment on Azure, you're charged when resources are 
 1. On your resource group page, select **Delete**, enter **Grafana** in the text box, and then select **Delete**.
 
 ## Next steps
+
 [Overview of Azure Monitor metrics](../data-platform.md)
