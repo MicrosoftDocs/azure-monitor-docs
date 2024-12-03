@@ -145,6 +145,34 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 
 ### [JSON](#tab/json)
 
+You can create and edit a workspace transformation DCR using the same commands and strategies described in [Create or edit a DCR using JSON](./data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). The differences are with the JSON definition:
+
+- It must include the `kind` parameter with a value of `WorkspaceTransformation`.
+- The `dataSources` section must be empty.
+- The `destinations` section must include one and only one Log Analytics workspace destination. This is the workspace where the transformation will be applied.
+
+Following is a sample JSON definition for a workspace transformation DCR:
+
+```json
+{
+    "kind": "WorkspaceTransformation",
+    "location": "eastus",
+    "properties": {
+        "destinations": [
+            {                "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace"
+            }
+        ],
+        "dataFlows": [
+            {
+                "query": "source | where severity == \"Critical\" | extend Properties = parse_json(properties) | project TimeGenerated = todatetime([\"time\"]), Category = category, StatusDescription = StatusDescription, EventName = name, EventId = tostring(Properties.EventId)"
+            }
+        ]
+    }
+}
+```
+
+---
+
 ## Guidance
 There are multiple methods to create transformations depending on the data collection method. The following table lists guidance for different methods for creating transformations.
 
