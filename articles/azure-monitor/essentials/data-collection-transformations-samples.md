@@ -60,7 +60,7 @@ source
 ```
 
 **Send rows to basic logs**
-Send rows in your data that require basic query capabilities to basic logs tables for a lower ingestion cost. See [Send data to multiple tables](#send-data-to-multiple-tables) below for details on how to send data to multiple tables.
+Send rows in your data that require basic query capabilities to basic logs tables for a lower ingestion cost. See [Send data to multiple tables](./data-collection-rule-samples.md#send-data-to-multiple-tables) below for details on how to send data to multiple tables.
 
 
 ## Remove sensitive data
@@ -81,7 +81,7 @@ source | extend Email = replace_string(Email,substring(Email,0,indexof(Email,"@"
 ```
 
 **Send to an alternate table**
-Send sensitive records to an alternate table with different role-based access control configuration. See [Send data to multiple tables](#send-data-to-multiple-tables) below for details on how to send data to multiple tables.
+Send sensitive records to an alternate table with different role-based access control configuration. See [Send data to multiple tables](./data-collection-rule-samples.md#send-data-to-multiple-tables) below for details on how to send data to multiple tables.
 
 ## Enrich data
 Use a transformation to add information to data that provides business context or simplifies querying the data later.

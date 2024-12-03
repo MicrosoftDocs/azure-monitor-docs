@@ -12,7 +12,7 @@ ms.reviewer: nikeist
 Data collection rule associations (DCRAs) associate DCRs with monitored resources in Azure Monitor as described in [Using a DCR](./data-collection-rule-overview.md#using-a-dcr). This article describes different methods for viewing and creating DCRAs and their related resources.
 
 > [!IMPORTANT]
-> Not all data collection scenarios with DCRs use DCRAs. See [Data collection rules (DCRs)](./data-collection-rule-overview.md#data-collection-rules-dcr) for an explanation and comparison of how DCRs are specified in different data collection scenarios.
+> Not all data collection scenarios with DCRs use DCRAs. See [Using a DCRs](./data-collection-rule-overview.md#using-a-dcr) for an explanation and comparison of how DCRs are specified in different data collection scenarios.
 
 ## View and modify associations for a DCR in the Azure portal
 

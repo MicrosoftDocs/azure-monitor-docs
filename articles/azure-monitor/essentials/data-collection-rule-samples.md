@@ -22,7 +22,7 @@ Each of these samples focuses on a particular data source, although you can comb
 
 
 ## DCRs for Azure Monitor agent
-The [Azure Monitor agent](../agents/azure-monitor-agent-data-collection.md) runs on virtual machines, virtual machine scale sets, and Kubernetes clusters. It supports [VM insights](../agents/vminsights-overview.md) and [container insights](../agents/container-insights-overview.md) and supports various data collection scenarios for VMs described in [Azure Monitor agent data collection](../agents/azure-monitor-agent-data-collection.md). 
+The [Azure Monitor agent](../agents/azure-monitor-agent-data-collection.md) runs on virtual machines, virtual machine scale sets, and Kubernetes clusters. It supports [VM insights](../vm/vminsights-overview.md) and [container insights](../containers/container-insights-overview.md) and supports various data collection scenarios for VMs described in [Azure Monitor agent data collection](../agents/azure-monitor-agent-data-collection.md). 
 
 The following samples show DCRs for collecting different kinds of data using the Azure Monitor agent.
 
@@ -80,7 +80,7 @@ The following sample DCR performs the following actions:
 ```
 
 ### Syslog events
-DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog-events.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency at to avoid potential ingestion charges.
 
@@ -161,7 +161,7 @@ The following sample DCR performs the following actions:
 ### Performance counters
 DCRs for Syslog events use the `performanceCounters` data source with the incoming `Microsoft-InsightsMetrics` and `Microsoft-Perf` streams. `Microsoft-InsightsMetrics` is used to send data to Azure Monitor Metrics, while `Microsoft-Perf` is used to send data to a Log Analytics workspace. You can include both data sources in the DCR if you're sending performance data to both destinations. The schema of these streams are known, so they don't need to be defined in the `dataSources` section.
  
- The performance counters to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog-events.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+ The performance counters to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency at to avoid potential ingestion charges.
 
