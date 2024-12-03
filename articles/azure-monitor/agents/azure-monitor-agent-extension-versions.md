@@ -14,12 +14,10 @@ ms.reviewer: JeffWo
 
 This article describes the version details for the Azure Monitor Agent virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
+We strongly recommended that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. Automatic extension rollout follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to rollout the latest version.
+
 > [!Warning]
 > The product group only supports Azure Monitoring Agent versions within the last 1 year. Customers should update to an agent version within this period.
-
-We strongly recommended that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. 
-
-Automatic extension rollout follows the Azure Safe Deployment Lifecycle which can take as long as 5 weeks after initial release to complete in all data centers. 
 
 > [!CAUTION]
 > This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
