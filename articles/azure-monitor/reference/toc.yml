@@ -1080,8 +1080,8 @@ items:
               operations Audit Logs,Dms Workers,Errors,Exec Requests,Query Store
               Runtime Statistics,Query Store Wait Statistics,Request Steps,SQL
               Insights,Sql Requests,SQL Security Audit Event,Timeouts,Waits
-          - name: Microsoft.StandbyPool
-            href: supported-logs/microsoft-standbypool-logs.md
+          - name: Microsoft.StandbyPool/standbypool
+            href: supported-logs/microsoft-standbypool-standbypool-logs.md
             displayName: Standbypool updates,Standbypool settings updates
           - name: Microsoft.Storage/storageAccounts/blobServices
             href: supported-logs/microsoft-storage-storageaccounts-blobservices-logs.md
