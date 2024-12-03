@@ -8,17 +8,20 @@ ms.date: 03/12/2024
 ms.reviewer: bwren
 ---
 
-# Security guidelines for Azure Monitor
+# Azure Monitor security overview and guidelines 
 
-This article provides [Security](/azure/architecture/framework/security/) guidelines for Azure Monitor as part of the [Azure Well-Architected Framework](/azure/architecture/framework/). 
+This article provides guidelines for Azure Monitor. Azure Monitor security guidelines are: 
 
-Azure Monitor security guidelines are: 
-
-- Consistent with the the [Microsoft cloud security benchmark (MCSB)](/security/benchmark/azure/overview), which prescribes best practices to help improve the security of workloads, data, and services on Azure and your multi-cloud environment. 
 - Based on the [five pillars of the Azure Well-Architected Framework](/azure/architecture/framework/), which are designed to help you build secure, high-performing, resilient, and efficient applications.
+- Consistent with the the [Microsoft cloud security benchmark (MCSB)](/security/benchmark/azure/overview), which prescribes best practices to help improve the security of workloads, data, and services on Azure and your multi-cloud environment. 
 - Designed to help you understand the security features of Azure Monitor and how to configure them to optimize security for various aspects of monitoring.
 
-## Log collection and storage
+The guidelines provided in this article build on [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsiblity, Microsoft provides these security measures for Azure Monitor customers:
+
+- [Microsoft Entra authentication for data plane access]((/azure/azure-monitor/app/azure-ad-authentication)
+- []()
+
+## Log ingestion and storage
 
 [!INCLUDE [waf-logs-reliability](includes/waf-logs-security.md)]
 
