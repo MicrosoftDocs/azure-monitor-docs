@@ -110,10 +110,10 @@ The security profile summarizes high-impact behaviors of Azure Monitor, which ma
 |---|---|---|
 | True | True | Microsoft |
 
-**Feature notes**: The Azure Monitor Agent uses MSI\AAD by default and is documented here: 
+**Feature notes**: Azure Monitor Agent uses managed identities and Microsoft Entra authentication by default and is documented here: 
 [Azure Monitor Agent requirements](/azure/azure-monitor/agents/azure-monitor-agent-requirements#permissions)
 
-Application Insights needs to be configured to enforce AAD and is documented here [Application Insights AAD Authentication](/azure/azure-monitor/app/azure-ad-authentication)
+Application Insights needs to be configured to enforce Microsoft Entra authentication, as documented here [Microsoft Entra authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication)
 
 **Configuration Guidance**: No additional configurations are required as this is enabled on a default deployment.
 
