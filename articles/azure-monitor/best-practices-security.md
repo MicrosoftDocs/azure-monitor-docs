@@ -21,10 +21,10 @@ Azure Monitor security guidelines are:
 The guidelines in this article build on the [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsiblity, Microsoft provides these security measures for Azure Monitor customers:
 
 - [Microsoft Entra authentication for data plane access](/azure/azure-monitor/app/azure-ad-authentication)
-- [Authentication of Azure Monitor Agent and Application Insights using managed identities](/identity/managed-identities-azure-resources/overview)
-- [Priviliged access to data plane actions using Role-Based Access Control (Azure RBAC)](/azure/role-based-access-control/overview)
 - [Encryption of data in transit during data ingestion](/azure/security/fundamentals/double-encryption#data-in-transit)
 - [Protection of data at rest with Microsoft managed keys](/azure/security/fundamentals/encryption-atrest#encryption-at-rest-in-microsoft-cloud-services)
+- [Priviliged access to data plane actions using Role-Based Access Control (Azure RBAC)](/azure/role-based-access-control/overview)
+- [Authentication of Azure Monitor Agent and Application Insights using managed identities](/identity/managed-identities-azure-resources/overview)
 
 
 ## Log ingestion and storage
