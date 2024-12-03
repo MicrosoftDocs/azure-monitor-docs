@@ -31,7 +31,7 @@ The security profile summarizes high-impact behaviors of Azure Monitor, which ma
 |--|--|
 | Product Category | DevOps, Security |
 | Customer can access HOST / OS | No Access |
-| Service can be deployed into customer's virtual network | False |
+| Service can be deployed into customer's virtual network | True |
 | Stores customer content at rest | True |
 
 ## Network security
@@ -144,7 +144,7 @@ Application Insights needs to be configured to enforce AAD and is documented her
 **Feature notes**: Managed identity must be enabled on Azure virtual machines prior to installing Azure Monitor Agent.
 [Azure Monitor Agent Prerequisites](/azure/azure-monitor/agents/azure-monitor-agent-manage?tabs=azure-portal#prerequisites)
 
-**Configuration Guidance**: Use Azure managed identities instead of service principals when possible, which can authenticate to Azure services and resources that support Azure Active Directory (Azure AD) authentication. Managed identity credentials are fully managed, rotated, and protected by the platform, avoiding hard-coded credentials in source code or configuration files.
+**Configuration Guidance**: Use Azure managed identities instead of service principals when possible, which can authenticate to Azure services and resources that support Microsoft Entra authentication. Managed identity credentials are fully managed, rotated, and protected by the platform, avoiding hard-coded credentials in source code or configuration files.
 
 **Reference**: [Azure AD authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication?tabs=net)
 
@@ -174,7 +174,7 @@ Application Insights needs to be configured to enforce AAD and is documented her
 |---|---|---|
 | True | False | Customer |
 
-**Configuration Guidance**: Define the applicable conditions and criteria for Azure Active Directory (Azure AD) conditional access in the workload. Consider common use cases such as blocking or granting access from specific locations, blocking risky sign-in behavior, or requiring organization-managed devices for specific applications.
+**Configuration Guidance**: Define the applicable conditions and criteria for Microsoft Entra conditional access in the workload. Consider common use cases such as blocking or granting access from specific locations, blocking risky sign-in behavior, or requiring organization-managed devices for specific applications.
 
 **Reference**: [Azure Monitor Log Analytics API Overview](/azure/azure-monitor/logs/api/overview)
 
