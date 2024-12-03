@@ -14,11 +14,11 @@ ms.custom: subject-security-benchmark
 
 # Azure security baseline for Azure Monitor
 
-This security baseline applies guidance from the [Microsoft cloud security benchmark version 1.0](/security/benchmark/azure/overview) to Azure Monitor. The Microsoft cloud security benchmark provides recommendations on how you can secure your cloud solutions on Azure. The content is grouped by the security controls defined by the Microsoft cloud security benchmark and the related guidance applicable to Azure Monitor.
+This security baseline maps guidance from the [Microsoft cloud security benchmark version 1.0](/security/benchmark/azure/overview) to the Azure Monitor features you should use to implement the guidance. The Microsoft cloud security benchmark provides recommendations on how to secure your cloud solutions on Azure. The content is grouped by the security controls defined by the Microsoft cloud security benchmark and the related guidance applicable to Azure Monitor.
 
-You can monitor this security baseline and its recommendations using Microsoft Defender for Cloud. Azure Policy definitions will be listed in the Regulatory Compliance section of the Microsoft Defender for Cloud portal page.
+You can monitor this security baseline and its recommendations using Microsoft Defender for Cloud. The Regulatory Compliance section of the Microsoft Defender for Cloud portal page lists Azure Policy definitions.
 
-When a feature has relevant Azure Policy Definitions, they are listed in this baseline to help you measure compliance with the Microsoft cloud security benchmark controls and recommendations. Some recommendations may require a paid Microsoft Defender plan to enable certain security scenarios.
+This baseline lists Azure Policy Definitions relevant to specific features to help you measure compliance with the Microsoft cloud security benchmark controls and recommendations. You might require a paid Microsoft Defender plan to enable certain security scenarios.
 
 > [!NOTE]
 > **Features** not applicable to Azure Monitor have been excluded. To see how Azure Monitor completely maps to the Microsoft cloud security benchmark, see the **[full Azure Monitor security baseline mapping file](https://github.com/MicrosoftDocs/SecurityBenchmarks/tree/master/Azure%20Offer%20Security%20Baselines/3.0/azure-monitor-azure-security-benchmark-v3-latest-security-baseline.xlsx)**.
