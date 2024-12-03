@@ -251,8 +251,11 @@ N/A
 
 ## Update
 
-> [!NOTE]
-> The recommendation is to enable [Automatic Extension Upgrade](/azure/virtual-machines/automatic-extension-upgrade) to update installed extensions to the stable version across all regions. A version is not automatically rolled out until it meets a high quality bar which can take as long as 5 weeks after the initial release. Upgrades are issued in batches, so you may see some of your virtual machines, scale-sets or Arc-enabled servers get upgraded before others. If you need to upgrade an extension immediately, you may use the manual instructions below.
+> [!Note]
+> We strongly recommend that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature.
+> Automatic extension rollout follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to rollout the latest version.
+> Upgrades are issued in batches, so you may see some of your virtual machines, scale-sets or Arc-enabled servers get upgraded before others.
+> If you need to upgrade an extension immediately, you may use the manual instructions below. Only Agents released in the last year are supported.
 
 #### [Portal](#tab/azure-portal)
 
