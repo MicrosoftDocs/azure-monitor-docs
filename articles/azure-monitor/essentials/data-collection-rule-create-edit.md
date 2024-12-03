@@ -37,7 +37,7 @@ The Azure portal provides a simplified experience for creating a DCR for particu
 | Scenario | Description |
 |:---|:---|
 | Enable VM insights | When you enable VM Insights on a VM, the Azure Monitor agent is installed and a DCR is created and associated with the virtual machine. This DCR collects a predefined set of performance counters and shouldn't be modified. See [Enable VM Insights](../vm/vminsights-enable-overview.md). |
-| Collect client data from VM | Create a DCR in the Azure portal using a guided interface to select different data sources from the client operating system of a VM. Examples include Windows events, Syslog events, and text logs. The Azure Monitor agent is automatically installed if necessary, and an association is created between the DCR and each VM you select. See [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md) for details. |
+| Collect client data from VM | Create a DCR in the Azure portal using a guided interface to select different data sources from the client operating system of a VM. Examples include Windows events, Syslog events, and text logs. The Azure Monitor agent is automatically installed if necessary, and an association is created between the DCR and each VM you select. See [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md). |
 | Metrics export | Create a DCR in the Azure portal using a guided interface to select metrics of different resource types to collect. An association is created between the DCR and each resource you select. See [Create a data collection rule (DCR) for metrics export](./metrics-export-create.md). |
 | Table creation | When you create a new table in a Log Analytics workspace using the Azure portal, you upload sample data that Azure Monitor uses to create a DCR, including a transformation, that can be used with the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md). You can't modify this DCR in the Azure portal but can modify it using any of the methods described in this article. See [Create a custom table](../logs/create-custom-table.md?tabs=azure-portal-1%2Cazure-portal-2%2Cazure-portal-3#create-a-custom-table). |
 | Kubernetes monitoring | To monitor a Kubernetes cluster, you enable Container Insights for logs and Prometheus for metrics. A DCR for each is created and associated with the containerized version of Azure Monitor agent in the cluster. You may need to modify the Container insights DCR to add a transformation. See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) and [Data transformations in Container insights](../containers/container-insights-transformations.md). |
@@ -66,9 +66,9 @@ $DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath 
 > [!NOTE]
 > You can get the details for a DCR using `Get-AzDataCollectionRule` cmdlet in PowerShell or `az monitor data-collection rule show` command in Azure CLI, but they don't provide the JSON in the format that you require for editing. Instead, use PowerShell or CLI to call the REST API as shown in the example.
 
+## Create or edit a DCR using JSON
 In addition to editing a DCR, you can create a new one using one of the [sample DCRs](./data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](./data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
 
-## Create or edit a DCR using JSON
 Once you have the definition of a DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
 
 ### [CLI](#tab/cli)
@@ -192,7 +192,7 @@ Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2023-03-11") -Method PUT 
 ```
 
 ### Save DCR content to temporary file
-If you don't have the CR definition in a local file, you can retrieve the definition from Azure Monitor and save it to a temporary file. You can then edit the file using an editor such as VS Code before pushing the updates to Azure Monitor.
+If you don't have the DCR definition in a local file, you can retrieve the definition from Azure Monitor and save it to a temporary file. You can then edit the file using an editor such as VS Code before pushing the updates to Azure Monitor.
 
 Following is a sample PowerShell script you can use to edit an existing DCR in Azure Monitor. The script will retrieve the DCR definition and save it to a temporary file before launching VS Code. Once you indicate to the script that you've saved your changes, the DCR is updated with the new content and the temporary file is deleted.
 
@@ -249,7 +249,7 @@ If you want to perform your edits completely in the Azure portal, you can use th
 
 
 ## Verify and troubleshoot data collection
-Once you install the DCR, it may take several minutes for the changes to take effect and data to be collected with the updated DCR. If you don't see any data being collected, it can be difficult to determine the root cause of the issue. Use the [DCR monitoring](data-collection-monitor.md) features to troubleshoot the issue. This includes metrics and logs that can help you identify the root cause of the issue.
+Once you install the DCR, it may take several minutes for the changes to take effect and data to be collected with the updated DCR. If you don't see any data being collected, it can be difficult to determine the root cause of the issue. Use the [DCR monitoring](data-collection-monitor.md) features, which include metrics and logs to help troubleshoots.
 
 [DCR metrics](./data-collection-monitor.md#dcr-metrics) are collected automatically for all DCRs, and you can analyze them using metrics explorer like the platform metrics for other Azure resources. Enable [DCR error logs](./data-collection-monitor.md#enable-dcr-error-logs) to get detailed error information when data processing is not successful.
 

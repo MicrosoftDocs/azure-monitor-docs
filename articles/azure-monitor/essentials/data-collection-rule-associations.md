@@ -4,7 +4,7 @@ description: Describes different options for viewing data collection rules (DCRs
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 03/18/2024
+ms.date: 12/02/2024
 ms.reviewer: nikeist
 ---
 
@@ -20,13 +20,12 @@ To view your DCRs in the Azure portal, select **Data Collection Rules** under **
 
 :::image type="content" source="media/data-collection-rule-overview/view-data-collection-rules.png" lightbox="media/data-collection-rule-overview/view-data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
 
-> [!NOTE]
-> Although this view shows all DCRs in the specified subscriptions, selecting the **Create** button will create a data collection for Azure Monitor Agent. Similarly, this page will only allow you to modify DCRs for Azure Monitor Agent. For guidance on how to create and update DCRs for other workflows, see [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md).
-
 Click the **Resources** tab to view the resources associated with the selected DCR. Click **Add** to add an association to a new resource. You can view and add resources using this feature whether or not you created the DCR in the Azure portal. 
 
 :::image type="content" source="media/data-collection-rule-overview/view-data-collection-rules.png" lightbox="media/data-collection-rule-overview/view-data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
 
+> [!NOTE]
+> Although this view shows all DCRs in the specified subscriptions, selecting the **Create** button will create a data collection for Azure Monitor Agent. Similarly, this page will only allow you to modify DCRs for Azure Monitor Agent. For guidance on how to create and update DCRs for other workflows, see [Create and edit data collection rules (DCRs) in Azure Monitor](./data-collection-rule-create-edit.md).
 
 ## Preview DCR experience
 A preview of the new Azure portal experience for DCRs ties together DCRs and the resources they're associated with. You can either view the list by **Data collection rule**, which shows the number of resources associated with each DCR, or by **Resources**, which shows the count of DCRs associated with each resource.
@@ -67,10 +66,11 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 :::image type="content" source="media/data-collection-rule-view/resources-view-associate.png" alt-text="Screenshot of the create association button in the resources view in  the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associate.png":::
 
 ## Create new association
+You can create a new association using any of the following methods. The DCRA object that's created is a child of the target object and uses the resource ID of the DCR.
 
 ### [CLI](#tab/cli)
 
-### Create with CLI
+### Create association with CLI
 Use the [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association) command to create an association between your DCR and resource.
 
 ```azurecli
@@ -78,6 +78,8 @@ az monitor data-collection rule association create --name "my-vm-dcr-association
 ```
 
 ### [PowerShell](#tab/powershell)
+
+### Create association with PowerShell
 Use the [New-AzDataCollectionRuleAssociation](/powershell/module/az.monitor/new-azdatacollectionruleassociation) command to create an association between your DCR and resource.
 
 ```powershell
@@ -86,7 +88,11 @@ Use the [New-AzDataCollectionRuleAssociation](/powershell/module/az.monitor/new-
 
 ### [ARM template](#tab/arm)
 
-#### DCR Association -Azure VM
+### Create association with ARM templates
+
+The ARM template for associations will differ for different target objects. Following are templates you can use for different types of objects.
+
+#### Azure VM
 The following sample creates an association between an Azure virtual machine and a data collection rule.
 
 **Bicep template file**
@@ -175,7 +181,7 @@ resource association 'Microsoft.Insights/dataCollectionRuleAssociations@2021-09-
    }
 }
 ```
-### DCR Association -Arc-enabled server
+### Arc-enabled server
 The following sample creates an association between an Azure Arc-enabled server and a data collection rule.
 
 **Bicep template file**

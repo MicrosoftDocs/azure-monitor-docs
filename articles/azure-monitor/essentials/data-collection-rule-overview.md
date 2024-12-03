@@ -36,9 +36,9 @@ The DCR collection process has either replaced or is in the process of replacing
 | [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. It replaces the Data Collector API which was less secure and less functional.  |
 
 ## Azure Monitor pipeline
-The data collection process supported by DCRs is based on the Azure Monitor pipeline as shown in the diagram below. The cloud pipeline is one component of the Azure Monitor pipeline (see [Edge pipeline below](#edge-pipeline)) and is automatically available in your Azure subscription. It requires no configuration, and doesn't appear in the Azure portal. It's part of the Azure Monitor platform and provides a common processing path for incoming data. 
+The data collection process supported by DCRs is based on the Azure Monitor pipeline which provides a common processing path for incoming data. The cloud pipeline is one component of the Azure Monitor pipeline (see [Edge pipeline below](#edge-pipeline) for the other component) and is automatically available in your Azure subscription as part of the Azure Monitor platform. It requires no configuration, and doesn't appear in the Azure portal.
 
-:::image type="content" source="../media/monitoring-patterns/azure-monitor-pipeline-simple.svg" lightbox="../media/monitoring-patterns/azure-monitor-pipeline-simple.svg" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
+:::image type="content" source="../media/monitoring-patterns/azure-monitor-pipeline-simple.png" lightbox="../media/monitoring-patterns/azure-monitor-pipeline-simple.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
 Each data collection scenario using the Azure Monitor pipeline is defined in a DCR that provides instructions for how the cloud pipeline should process data it receives. Depending on the scenario, DCRs will specify all or some of the following:
 
@@ -49,7 +49,10 @@ Each data collection scenario using the Azure Monitor pipeline is defined in a D
 
 ## Using a DCR
 
-There are two fundamental ways that DCRs are specified for a particular data collection scenario as described in the following sections.
+There are two fundamental ways that DCRs are specified for a particular data collection scenario as described in the following sections. Each scenario will support one of these methods, but not both.
+
+> [!NOTE]
+> [Workspace transformation DCR](#workspace-transformation-dcr) are active as soon as they're created. They don't use either of the methods described in this section.
 
 ### Data collection rule associations (DCRA)
 Data collection rule associations (DCRAs) are used to associate a DCR with a monitored resource. This is a many-to-many relationship, where a single DCR can be associated with multiple resources, and a single resource can be associated with multiple DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
@@ -64,7 +67,11 @@ With direct ingestion, a particular DCR is specified to process the incoming dat
 :::image type="content" source="../media/monitoring-patterns/data-collection-direct-ingestion.svg" lightbox="../media/monitoring-patterns/data-collection-direct-ingestion.svg" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
 
 ## Transformations
-[Transformations](./data-collection-transformations.md) are [KQL queries](../logs/log-query-overview.md) defined in the DCR that run against each record sent to the cloud pipeline. They allow you to modify incoming data before it's stored in Azure Monitor or sent to another destination.  You may filter unneeded data to reduce your ingestion costs, remove sensitive data that shouldn't be persisted in the Log Analytics workspace, or format data to ensure that it matches the schema of its destination. Transformations also enable advanced scenarios such as sending data to multiple destinations or enriching data with additional information. The [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformations) is a special DCR that allows you to apply transformations to data collection scenarios that don't yet use a DCR for its data collection. 
+[Transformations](./data-collection-transformations.md) are [KQL queries](../logs/log-query-overview.md) included in a DCR that run against each record sent to the cloud pipeline. They allow you to modify incoming data before it's stored in Azure Monitor or sent to another destination.  You may filter unneeded data to reduce your ingestion costs, remove sensitive data that shouldn't be persisted in the Log Analytics workspace, or format data to ensure that it matches the schema of its destination. Transformations also enable advanced scenarios such as sending data to multiple destinations or enriching data with additional information. 
+
+### Workspace transformation DCR
+
+The [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformations) is a special DCR that allows you to apply transformations to data collection scenarios that don't yet use a DCR for its data collection. 
 
 For example, the [Event](../reference/tables/event.md) table is used to store events from Windows virtual machines. If you create a transformation in the workspace transformation DCR for the Event table, it would be applied to events collected by virtual machines running the Log Analytics agent<sup>1</sup> because this agent doesn't use a DCR. The transformation would be ignored though by any data sent from Azure Monitor Agent (AMA) because it uses a DCR to define its data collection. You can still use a transformation with Azure Monitor agent, but you would include that transformation in the DCR associated with the agent and not the workspace transformation DCR.
 

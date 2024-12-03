@@ -9,7 +9,7 @@ ms.reviwer: nikeist
 ---
 
 # Create a workspace transformation data collection rule (DCR) in Azure Monitor
-
+[Workspace transformation DCRs](./data-collection-rule-overview.md#transformations) are special DCRs that allow you to apply transformations to data collection scenarios that don't yet use a DCR for its data collection.
 
 ## Unique aspects of workspace transformation DCRs
 Workspace transformation DCRs are mostly like any other DCR. They use the same JSON structure for their definition, and they're created and managed in the same way. There are a few unique aspects to workspace transformation DCRs though:
