@@ -20,7 +20,7 @@ Azure Monitor security guidelines are:
 
 The guidelines in this article build on the [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsiblity, Microsoft provides these security measures for Azure Monitor customers:
 
-- [Microsoft Entra authentication for data plane access]((/azure/azure-monitor/app/azure-ad-authentication)
+- [Microsoft Entra authentication for data plane access](/azure/azure-monitor/app/azure-ad-authentication)
 - []()
 
 ## Log ingestion and storage
