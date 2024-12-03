@@ -78,4 +78,4 @@ A subset of the availability zones that support data resilience currently also s
 
 Learn more about how to:
 - [Set up a dedicated cluster](logs-dedicated-clusters.md).
-- [Migrate Log Analytics workspaces to availability zone support](/azure/availability-zones/migrate-monitor-log-analytics).
+- [Migrate Log Analytics workspaces to availability zone support](/azure/reliability/migrate-monitor-log-analytics).

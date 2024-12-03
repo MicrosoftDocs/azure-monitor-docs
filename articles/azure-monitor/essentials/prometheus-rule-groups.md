@@ -4,7 +4,7 @@ description: Description of rule groups in Azure Monitor managed service for Pro
 author: EdB-MSFT
 ms-author: edbaynash
 ms.topic: conceptual
-ms.date: 11/09/2023
+ms.date: 11/09/2024
 ---
 
 # Azure Monitor managed service for Prometheus rule groups
