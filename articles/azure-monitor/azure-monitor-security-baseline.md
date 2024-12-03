@@ -102,22 +102,22 @@ The security profile summarizes high-impact behaviors of Azure Monitor, which ma
 
 #### Features
 
-##### Azure AD Authentication Required for Data Plane Access
+##### Microsoft Entra Authentication Required for Data Plane Access
 
-**Description**: Service supports using Azure AD authentication for data plane access. [Learn more](/azure/active-directory/authentication/overview-authentication).
+**Description**: Service supports using Microsoft Entra authentication for data plane access. [Learn more](/azure/active-directory/authentication/overview-authentication).
 
 | Supported | Enabled By Default | Configuration Responsibility |
 |---|---|---|
 | True | True | Microsoft |
 
 **Feature notes**: The Azure Monitor Agent uses MSI\AAD by default and is documented here: 
-[Azure Log Analytics Agent Configuration](/azure/azure-monitor/agents/agents-overview#azure-monitor-agent)
+[Azure Monitor Agent requirements](/azure/azure-monitor/agents/azure-monitor-agent-requirements#permissions)
 
 Application Insights needs to be configured to enforce AAD and is documented here [Application Insights AAD Authentication](/azure/azure-monitor/app/azure-ad-authentication)
 
 **Configuration Guidance**: No additional configurations are required as this is enabled on a default deployment.
 
-**Reference**: [Azure AD authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication?tabs=net)
+**Reference**: [Microsoft Entra authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication?tabs=net)
 
 ##### Local Authentication Methods for Data Plane Access
 
@@ -146,7 +146,7 @@ Application Insights needs to be configured to enforce AAD and is documented her
 
 **Configuration Guidance**: Use Azure managed identities instead of service principals when possible, which can authenticate to Azure services and resources that support Microsoft Entra authentication. Managed identity credentials are fully managed, rotated, and protected by the platform, avoiding hard-coded credentials in source code or configuration files.
 
-**Reference**: [Azure AD authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication?tabs=net)
+**Reference**: [Microsoft Entra authentication for Application Insights](/azure/azure-monitor/app/azure-ad-authentication?tabs=net)
 
 ##### Service Principals
 
@@ -168,7 +168,7 @@ Application Insights needs to be configured to enforce AAD and is documented her
 
 ##### Conditional Access for Data Plane
 
-**Description**: Data plane access can be controlled using Azure AD Conditional Access Policies. [Learn more](/azure/active-directory/conditional-access/overview).
+**Description**: Data plane access can be controlled using Microsoft Entra Conditional Access Policies. [Learn more](/azure/active-directory/conditional-access/overview).
 
 | Supported | Enabled By Default | Configuration Responsibility |
 |---|---|---|
@@ -343,7 +343,7 @@ Application Insights needs to be configured to enforce AAD and is documented her
 
 ##### Azure Resource Logs
 
-**Description**: Service produces resource logs that can provide enhanced service-specific metrics and logging. The customer can configure these resource logs and send them to their own data sink like a storage account or log analytics workspace. [Learn more](/azure/azure-monitor/platform/platform-logs-overview).
+**Description**: Service produces resource logs that can provide enhanced service-specific metrics and logging. The customer can configure these resource logs and send them to their own data sink like a storage account or Log Analytics workspace. [Learn more](/azure/azure-monitor/platform/platform-logs-overview).
 
 | Supported | Enabled By Default | Configuration Responsibility |
 |---|---|---|
