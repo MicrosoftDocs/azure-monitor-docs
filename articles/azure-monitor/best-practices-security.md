@@ -10,13 +10,15 @@ ms.reviewer: bwren
 
 # Azure Monitor security overview and guidelines 
 
-This article provides guidelines for Azure Monitor. Azure Monitor security guidelines are: 
+This article provides [Security](/azure/architecture/framework/security/) guidelines for Azure Monitor as part of the [Azure Well-Architected Framework](/azure/architecture/framework/). 
+
+Azure Monitor security guidelines are: 
 
 - Based on the [five pillars of the Azure Well-Architected Framework](/azure/architecture/framework/), which are designed to help you build secure, high-performing, resilient, and efficient applications.
 - Consistent with the the [Microsoft cloud security benchmark (MCSB)](/security/benchmark/azure/overview), which prescribes best practices to help improve the security of workloads, data, and services on Azure and your multi-cloud environment. 
 - Designed to help you understand the security features of Azure Monitor and how to configure them to optimize security for various aspects of monitoring.
 
-The guidelines provided in this article build on [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsiblity, Microsoft provides these security measures for Azure Monitor customers:
+The guidelines in this article build on the [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsiblity, Microsoft provides these security measures for Azure Monitor customers:
 
 - [Microsoft Entra authentication for data plane access]((/azure/azure-monitor/app/azure-ad-authentication)
 - []()
