@@ -230,15 +230,15 @@ items:
         items:
         - name: Overview
           href: insights/code-optimizations.md
-        - name: .NET Profiler overview
-          displayName: profiling, debugging, code performance, perf
-          href: profiler/profiler-overview.md
         - name: Enable using .NET Profiler
           items:
           - name: Set up Code Optimizations
             href: insights/set-up-code-optimizations.md
           - name: Enable Profiler on specific Azure resources
             items:
+            - name: .NET Profiler overview
+              displayName: profiling, debugging, code performance, perf
+              href: profiler/profiler-overview.md
             - name: Azure App Service
               href: profiler/profiler.md
             - name: Azure Functions app
@@ -253,6 +253,14 @@ items:
               href: profiler/profiler-aspnetcore-linux.md
             - name: ASP.NET Core app running in container
               href: profiler/profiler-containers.md
+          - name: Configure Profiler
+            items:
+            - name: Configure Profiler
+              href: profiler/profiler-settings.md
+            - name: Configure BYOS (Bring Your Own Storage)
+              href: profiler/profiler-bring-your-own-storage.md
+            - name: Track Requests
+              href: profiler/profiler-trackrequests.md
         - name: View insights and data
           items:
             - name: View insights
@@ -268,14 +276,6 @@ items:
             href: insights/code-optimizations-vs-extension.md
           - name: Visual Studio Code
             href: insights/code-optimizations-vscode-extension.md
-        - name: Configure Profiler
-          items:
-          - name: Configure Profiler
-            href: profiler/profiler-settings.md
-          - name: Configure BYOS (Bring Your Own Storage)
-            href: profiler/profiler-bring-your-own-storage.md
-          - name: Track Requests
-            href: profiler/profiler-trackrequests.md
         - name: Troubleshooting
           items:
           - name: Code Optimizations
