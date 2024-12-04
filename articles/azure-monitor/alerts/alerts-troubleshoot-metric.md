@@ -32,11 +32,11 @@ If you believe a metric alert should have fired but it didn't, and it isn't list
 
 1. **Check if the alert is already active.**
 
-    Check if there's already a fired alert on the metric time series for which you expected to get an alert. Metric alerts are stateful, which means that once an alert is fired on a specific metric time series, more alerts on that time series won't be fired until the issue is no longer observed. This design choice reduces noise. The alert is resolved automatically when the alert condition isn't met for three consecutive evaluations.
+    Check if there's already a fired alert on the metric time series for which you expected to get an alert. Metric alerts are stateful by default, which means that once an alert is fired on a specific metric time series, more alerts on that time series won't be fired until the issue is no longer observed. This design choice reduces noise. The alert is resolved automatically when the alert condition isn't met for three consecutive evaluations.
 
 1. **Check the dimensions used.**
 
-    If you've selected some [dimension values for a metric](./alerts-metric-overview.md#using-dimensions), the alert rule monitors each individual metric time series (as defined by the combination of dimension values) for a threshold breach. To also monitor the aggregate metric time series, without any dimensions selected, configure another alert rule on the metric without selecting dimensions.
+    If you've selected some [dimension values for a metric](./alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions), the alert rule monitors each individual metric time series (as defined by the combination of dimension values) for a threshold breach. To also monitor the aggregate metric time series, without any dimensions selected, configure another alert rule on the metric without selecting dimensions.
 
 1. **Check the aggregation and time granularity.**
 
@@ -69,10 +69,10 @@ The frequency of notifications for stateless metric alerts differs based on the 
 ## A metric alert rule with dynamic threshold doesn't fire enough
 
 You may encounter an alert rule that uses dynamic thresholds doesn't fire or isn't sensitive enough, even though it's configured with high sensitivity. This can happen when the metric's distribution is highly irregular. Consider one of the following solutions to fix the issue:
- - Move to monitoring a complementary metric that's suitable for your scenario, if applicable. For example, check for changes in success rate rather than failure rate.
- - Try selecting a different value for **Aggregation granularity (Period)**.
- - Check if there has been a drastic change in the metric behavior in the last 10 days, such as an outage. An abrupt change can affect the upper and lower thresholds calculated for the metric and make them broader. Wait a few days until the outage is no longer taken into the thresholds calculation. You can also edit the alert rule to use the **Ignore data before** option in the **Advanced settings**.
- - If your data has weekly seasonality, but not enough history is available for the metric, the calculated thresholds can result in having broad upper and lower bounds. For example, the calculation can treat weekdays and weekends in the same way and build wide borders that don't always fit the data. This issue should resolve itself after enough metric history is available. Then, the correct seasonality is detected and the calculated thresholds update accordingly.
+- Move to monitoring a complementary metric that's suitable for your scenario, if applicable. For example, check for changes in success rate rather than failure rate.
+- Try selecting a different value for **Aggregation granularity (Period)**.
+- Check if there has been a drastic change in the metric behavior in the last 10 days, such as an outage. An abrupt change can affect the upper and lower thresholds calculated for the metric and make them broader. Wait a few days until the outage is no longer taken into the thresholds calculation. You can also edit the alert rule to use the **Ignore data before** option in the **Advanced settings**.
+- If your data has weekly seasonality, but not enough history is available for the metric, the calculated thresholds can result in having broad upper and lower bounds. For example, the calculation can treat weekdays and weekends in the same way and build wide borders that don't always fit the data. This issue should resolve itself after enough metric history is available. Then, the correct seasonality is detected and the calculated thresholds update accordingly.
 
 ## A metric alert fired when it shouldn't have
 
@@ -105,14 +105,16 @@ If you believe your metric alert shouldn't have fired but it did, the following 
 ## A metric alert rule with dynamic thresholds fires too much or is too noisy
 
 If an alert rule that uses dynamic thresholds is too noisy or fires too much, you may need to reduce the sensitivity of your dynamic thresholds alert rule. Use one of the following options:
- - **Threshold sensitivity:** Set the sensitivity to **Low** to be more tolerant for deviations.
- - **Number of violations (under Advanced settings):** Configure the alert rule to trigger only if several deviations occur within a certain period of time. This setting makes the rule less susceptible to transient deviations.
+
+- **Threshold sensitivity:** Set the sensitivity to **Low** to be more tolerant for deviations.
+- **Number of violations (under Advanced settings):** Configure the alert rule to trigger only if several deviations occur within a certain period of time. This setting makes the rule less susceptible to transient deviations.
 
 ## A metric alert rule with dynamic thresholds is showing values that aren't within the range of expected values 
 
 When a metric value exhibits large fluctuations, dynamic thresholds may build a wide model around the metric values, which can result in a lower or higher boundary than expected. This scenario can happen when:
- - The sensitivity is set to low.
- - The metric exhibits an irregular behavior with high variance, which appears as spikes or dips in the data.
+
+- The sensitivity is set to low.
+- The metric exhibits an irregular behavior with high variance, which appears as spikes or dips in the data.
 
     Consider making the model less sensitive by choosing a higher sensitivity or selecting a larger **Lookback period**. You can also use the **Ignore data before** option to exclude a recent irregularity from the historical data used to build the model.
 
@@ -133,16 +135,16 @@ To alert on guest operating system metrics of virtual machines, such as memory a
 - [Windows VMs](../essentials/collect-custom-metrics-guestos-resource-manager-vm.md)
 - [Linux VMs](../essentials/collect-custom-metrics-linux-telegraf.md)
 
-For more information about collecting data from the guest operating system of a virtual machine, see [this website](../vm/monitor-vm-azure.md#guest-operating-system).
+For more information about collecting data from the guest operating system of a virtual machine, see [Monitor Azure Virtual Machines](../vm/monitor-vm-azure.md#guest-operating-system).
 
 > [!NOTE]
 > If you configured guest metrics to be sent to a Log Analytics workspace, the metrics appear under the Log Analytics workspace resource and start showing data *only* after you create an alert rule that monitors them. To do so, follow the steps to [configure a metric alert for logs](./alerts-metric-logs.md#methods-for-creating-a-metric-alert-for-logs).
 
-Currently, monitoring a guest metric for multiple virtual machines with a single alert rule isn't supported by metric alerts. But you can use a [log alert rule](./alerts-unified-log.md). To do so, make sure the guest metrics are collected to a Log Analytics workspace and create a log alert rule on the workspace.
+Currently, monitoring a guest metric for multiple virtual machines with a single alert rule isn't supported by metric alerts. But you can use a [log alert rule](./alerts-unified-log.md#log-search-alerts). To do so, make sure the guest metrics are collected to a Log Analytics workspace and create a log alert rule on the workspace.
 
 ### Can't find the metric dimension to alert on
 
-If you want to alert on [specific dimension values of a metric](./alerts-metric-overview.md#using-dimensions) but you can't find these values:
+If you want to alert on [specific dimension values of a metric](./alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) but you can't find these values:
 
 - It might take a few minutes for the dimension values to appear under the **Dimension values** list.
 - The displayed dimension values are based on metric data collected in the last day.
@@ -154,7 +156,7 @@ If you want to alert on [specific dimension values of a metric](./alerts-metric-
 
 When you create a metric alert rule, the metric name is validated against the [Metric Definitions API](/rest/api/monitor/metricdefinitions/list) to make sure it exists. In some cases, you want to create an alert rule on a custom metric even before it's emitted. An example is when you use a Resource Manager template to create an Application Insights resource that will emit a custom metric, along with an alert rule that monitors that metric.
 
-To avoid a deployment failure when you try to validate the custom metric's definitions, use the `skipMetricValidation` parameter in the `criteria` section of the alert rule. This parameter causes the metric validation to be skipped. See the following example for how to use this parameter in a Resource Manager template. For more information, see the [complete Resource Manager template samples for creating metric alert rules](./alerts-metric-create-templates.md).
+To avoid a deployment failure when you try to validate the custom metric's definitions, use the `skipMetricValidation` parameter in the `criteria` section of the alert rule. This parameter causes the metric validation to be skipped. See the following example for how to use this parameter in a Resource Manager template. For more information, see the [complete Resource Manager template samples for creating metric alert rules](resource-manager-alerts-metric.md).
 
 ```json
 "criteria": {

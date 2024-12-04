@@ -5,7 +5,7 @@ author: AbbyMSFT
 ms.author: abbyweisberg
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-ms.date: 01/14/2024
+ms.date: 11/28/2024
 ms.reviewer: harelbr
 
 # Customer intent: As a cloud administrator, I want to manage my alert rules so that I can ensure that my resources are monitored effectively.
@@ -47,6 +47,7 @@ Manage your alert rules in the Azure portal, or using the CLI or PowerShell.
     - **Scope**. You can edit the scope for all alert rules **other than**:
         - Log search alert rules
         - Metric alert rules that monitor a custom metric
+        - Metric alert rules based on Azure Monitor Logs
         - Smart detection alert rules
     - **Condition**. Learn more about conditions for [metric alert rules](./alerts-create-new-alert-rule.md?tabs=metric#tabpanel_1_metric), [log search alert rules](./alerts-create-new-alert-rule.md?tabs=log#tabpanel_1_log), and [activity log alert rules](./alerts-create-new-alert-rule.md?tabs=activity-log#tabpanel_1_activity-log)
     - **Actions**
