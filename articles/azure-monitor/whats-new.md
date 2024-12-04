@@ -18,6 +18,21 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## [2024](#tab/2024)
 
+## November 2024
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application-Insights|[Configure Azure Monitor OpenTelemetry](app/opentelemetry-configuration.md)|Added Redact URL Query Strings|
+|General|[Monitor a Cloud Environment]()|New article to provide high level monitoring concepts and map to Azure monitoring services.|
+|Logs|[Data collection endpoints in Azure Monitor](essentials/data-collection-endpoint-overview.md)|Added clarification on when DCE is required.|
+|Logs|[Logs Ingestion API in Azure Monitor](logs/logs-ingestion-api-overview.md)|Added clarification on endpoint used with API.|
+|Logs|[Enable network isolation for Azure Monitor Agent by using Private Link](agents/azure-monitor-agent-private-link.md)|Rewritten for clarity.|
+|Logs|[Configure Azure Monitor with Network Security Perimeter (Preview)](essentials/network-security-perimeter.md)|New article for configuring Azure Monitor for Network Security Perimeter.|
+|Logs|[Configure private link for Azure Monitor](logs/private-link-configure.md)|Rewritten for clarity.|
+|Logs|[Design Azure Monitor Private Link configuration](logs/private-link-design.md)|Rewritten for clarity.|
+|Virtual-Machines|[Enable VM Insights](vm/resource-manager-vminsights.md)|Consolidated onboarding content into single article for clarity.|
+|Virtual-Machines|[Disable monitoring of your VMs in VM insights](vm/vminsights-optout.md)|Rewritten for clarity.|
+
 ## October 2024
 
 |Subservice | Article | Description |
