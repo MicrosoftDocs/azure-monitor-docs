@@ -4,7 +4,7 @@ description: Details on the structure of different kinds of data collection rule
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 07/26/2024
+ms.date: 12/04/2024
 ms.reviwer: nikeist
 ---
 
@@ -54,7 +54,7 @@ The basic flow of a DCR is shown in the following diagram. Each of the component
 The input stream section of a DCR defines the incoming data that's being collected. There are two types of incoming stream, depending on the particular data collection scenario. Most data collection scenarios use one of the input streams, while some may use both.
 
 > [!NOTE]
-> [Workspace transformation DCRs](./data-collection-transformations-workspace.md) don't have an input stream.
+> [Workspace transformation DCRs](./data-collection-transformations.md#workspace-transformation-dcr) don't have an input stream.
 
 | Input stream | Description |
 |:---|:---|

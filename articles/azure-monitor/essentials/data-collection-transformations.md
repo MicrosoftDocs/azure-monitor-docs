@@ -15,6 +15,9 @@ The following diagram illustrates the transformation process for incoming data a
 
 :::image type="content" source="media/data-collection-transformations/transformation-overview.png" lightbox="media/data-collection-transformations/transformation-overview.png" alt-text="Diagram that shows ingestion-time transformation for incoming data." border="false":::
 
+## Create a transformation
+There are some data collection scenarios that will allow you to add a transformation using the Azure portal, but most scenarios will require you to create a new DCR using its JSON definition or add a transformation to an existing DCR. See [Create a transformation in Azure Monitor](./data-collection-transformations-create.md) for different options and [Best practices and samples for transformations in Azure Monitor](./data-collection-transformations-samples.md) for sample transformation queries for common scenarios.
+
 ## Workspace transformation DCR
 Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](./diagnostic-settings.md) and application data collected by [Application insights](../app/app-insights-overview.md).
 
@@ -22,11 +25,11 @@ The *workspace transformation data collection rule (DCR)* is a special [DCR](./d
 
 There can be only one workspace DCR for each workspace, but it can include transformations for any number of tables. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
 
-:::image type="content" source="media/data-collection-transformations-workspace/transformation-workspace.png" lightbox="media/data-collection-transformations-workspace/transformation-workspace.png" alt-text="Diagram that shows operation of the workspace transformation DCR." border="false":::
+:::image type="content" source="media/data-collection-transformations/workspace-transformation-dcr.png" lightbox="media/data-collection-transformations/workspace-transformation-dcr.png" alt-text="Diagram that shows operation of the workspace transformation DCR." border="false":::
 
 For example, the [Event](../reference/tables/event.md) table is used to store events from Windows virtual machines. If you create a transformation in the workspace transformation DCR for the Event table, it would be applied to events collected by virtual machines running the Log Analytics agent<sup>1</sup> because this agent doesn't use a DCR. The transformation would be ignored though by any data sent from Azure Monitor Agent (AMA) because it uses a DCR to define its data collection. You can still use a transformation with Azure Monitor agent, but you would include that transformation in the DCR associated with the agent and not the workspace transformation DCR.
 
-:::image type="content" source="media/data-collection-transformations-workspace/compare-transformations.png" lightbox="media/data-collection-transformations-workspace/compare-transformations.png" alt-text="Diagram that compares standard DCR transformations with workspace transformation DCR." border="false":::
+:::image type="content" source="media/data-collection-transformations/transformations-comparison.png" lightbox="media/data-collection-transformations/transformations-comparison.png" alt-text="Diagram that compares standard DCR transformations with workspace transformation DCR." border="false":::
 
 <sup>1</sup> The Log Analytics agent has been deprecated, but some environments may still use it. It's only one example of a data source that doesn't use a DCR.
 
@@ -89,5 +92,5 @@ See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 ## Next steps
 
 - [Read more about data collection rules (DCRs)](./data-collection-rule-overview.md).
-- [Create a workspace transformation DCRs that applies to data not collected using a DCR](./data-collection-transformations.md#workspace-transformations).
+- [Create a workspace transformation DCRs that applies to data not collected using a DCR](./data-collection-transformations-create.md#create-workspace-transformation-dcr).
 

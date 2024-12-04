@@ -4,7 +4,7 @@ description: Best practices and recommendations for using transformations in Azu
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 10/02/2024
+ms.date: 12/04/2024
 ms.reviwer: nikeist
 ---
 
@@ -122,5 +122,5 @@ source
 ## Next steps
 
 - [Read more about data collection rules (DCRs)](./data-collection-rule-overview.md).
-- [Create a workspace transformation DCRs that applies to data not collected using a DCR](./data-collection-transformations-workspace.md).
+- [Create a workspace transformation DCRs that applies to data not collected using a DCR](./data-collection-transformations.md#workspace-transformation-dcr).
 
