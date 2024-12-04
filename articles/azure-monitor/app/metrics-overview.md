@@ -966,7 +966,7 @@ The count of trace statements logged with the TrackTrace() Application Insights 
 | Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Severity level` |
 
 ### [Log-based](#tab/log-based)
-
+<!--
 #### Data point count (pageViews/...)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
@@ -986,7 +986,7 @@ The count of trace statements logged with the TrackTrace() Application Insights 
 ```kusto
 
 ```
-
+-->
 #### Events (customEvents/count)
 
 | Unit of measure | Supported aggregations | Supported dimensions |
@@ -1097,15 +1097,15 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 
 ### [Standard](#tab/standard)
 
-Not applicable
+Not applicable to standard metrics.
 
 ### [Log-based](#tab/log-based)
 
-Custom metrics are stored in the Azure metrics store as well as in logs, which makes it possible to use Kusto queries to retrieve those metrics. For example, you can instrument your application with `_telemetryClient.GetMetric("Sales Amount").TrackValue(saleAmount);` to track the custom metric *Sales Amount*.
+Custom metrics are stored in both the metrics store and logs, which makes it possible to retrieve them using Kusto queries.
 
-The following examples show the different Kusto queries based on all available aggregations.
+For example, if you instrument your application with `_telemetryClient.GetMetric("Sales Amount").TrackValue(saleAmount);` using [GetMetric](get-metric.md) and [TrackValue](/dotnet/api/microsoft.applicationinsights.metric.trackvalue) to track the custom metric *Sales Amount*, you can use the following Kusto queries for each available aggregation.
 
-#### Average
+#### Average (avg)
 
 ```kusto
 customMetrics
@@ -1118,7 +1118,7 @@ customMetrics
 | render timechart
 ```
 
-#### Min
+#### Minimum (min)
 
 ```kusto
 customMetrics
@@ -1128,7 +1128,7 @@ customMetrics
 | render timechart
 ```
 
-#### Max
+#### Maximum (max)
 
 ```kusto
 customMetrics
@@ -1138,7 +1138,7 @@ customMetrics
 | render timechart
 ```
 
-#### Sum
+#### Sum (sum)
 
 ```kusto
 customMetrics
@@ -1148,7 +1148,7 @@ customMetrics
 | render barchart
 ```
 
-#### Count
+#### Count (count)
 
 ```kusto
 customMetrics
@@ -1158,7 +1158,7 @@ customMetrics
 | render barchart
 ```
 
-#### Unique
+#### Unique (unique)
 
 ```kusto
 customMetrics
