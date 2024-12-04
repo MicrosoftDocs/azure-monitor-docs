@@ -124,31 +124,30 @@ In the following example, `transformKql` has a query that filters data, so only 
 ] 
 ```
 ## Create workspace transformation DCR
-There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables.
+The [workspace transformation data collection rule (DCR)](./data-collection-transformations.md#workspace-transformation-dcr) is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables.
 
 ### [Azure Portal](#tab/portal)
 You can create a workspace transformation DCR in the Azure portal by adding a transformation to a supported table.
 
-1. On the Log Analytics workspaces menu in the Azure portal, select Tables. Click to the right of the table you're interested in and select Create transformation.
+1. On the Log Analytics workspaces menu in the Azure portal, select **Tables**. Click to the right of the table you're interested in and select Create transformation.
 
     :::image type="content" source="media/data-collection-transformations-create/create-transformation-select.png" lightbox="media/data-collection-transformations-create/create-transformation-select.png" alt-text="Screenshot that shows the option to create a transformation for a table in the Azure portal.":::
 
 2. If the workspace transformation DCR hasn't already been created for this workspace, select the option to create one. If it has already been created, then that DCR will already be selected. Each workspaces can only have one workspace transformation DCR.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-portal/new-data-collection-rule.png" lightbox="media/tutorial-workspace-transformations-portal/new-data-collection-rule.png" alt-text="Screenshot that shows creating a new data collection rule.":::
+    :::image type="content" source="media/data-collection-transformations-create/new-data-collection-rule.png" lightbox="media/data-collection-transformations-create/new-data-collection-rule.png" alt-text="Screenshot that shows creating a new data collection rule.":::
 
 3. Select Next to view sample data from the table. Click **Transformation editor** to define the transformation query.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-portal/sample-data.png" lightbox="media/tutorial-workspace-transformations-portal/sample-data.png" alt-text="Screenshot that shows sample data from the log table.":::
+    :::image type="content" source="media/data-collection-transformations-create/sample-data.png" lightbox="media/data-collection-transformations-create/sample-data.png" alt-text="Screenshot that shows sample data from the log table.":::
 
 4. You can then edit and run the transformation query to see the results against actual data from the table. Keep modifying and testing the query until you get the results you want.
 5. When you're satisfied with the query, click **Apply** and then **Next** and **Create** to save the DCR with your new transformation.
 
-    :::image type="content" source="media/tutorial-workspace-transformations-portal/save-transformation.png" lightbox="media/tutorial-workspace-transformations-portal/save-transformation.png" alt-text="Screenshot that shows saving the transformation.":::
+    :::image type="content" source="media/data-collection-transformations-create/save-transformation.png" lightbox="media/data-collection-transformations-create/save-transformation.png" alt-text="Screenshot that shows saving the transformation.":::
 
 ### [JSON](#tab/json)
-
-You can create and edit a workspace transformation DCR using the same commands and strategies described in [Create or edit a DCR using JSON](./data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). The differences are with the JSON definition:
+Workspace transformation DCRs are mostly like any other DCR. They use the same JSON structure for their definition, and you can create and edit them using the same commands and strategies described in [Create or edit a DCR using JSON](./data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). The differences are with the JSON definition:
 
 - It must include the `kind` parameter with a value of `WorkspaceTransformation`.
 - The `dataSources` section must be empty.

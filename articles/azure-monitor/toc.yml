@@ -686,10 +686,7 @@ items:
         items: 
         - name: Create and edit
           displayName: Data collection rules, DCR
-          href: essentials/data-collection-rule-create-edit.md
-        - name: Create workspace transformation DCR
-          displayName: Data collection rules, DCR
-          href: essentials/data-collection-transformations-workspace.md          
+          href: essentials/data-collection-rule-create-edit.md       
         - name: Manage associations
           displayName: data collection rules, DCR
           href: essentials/data-collection-rule-associations.md

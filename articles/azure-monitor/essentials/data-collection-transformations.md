@@ -15,7 +15,7 @@ The following diagram illustrates the transformation process for incoming data a
 
 :::image type="content" source="media/data-collection-transformations/transformation-overview.png" lightbox="media/data-collection-transformations/transformation-overview.png" alt-text="Diagram that shows ingestion-time transformation for incoming data." border="false":::
 
-## Workspace transformations
+## Workspace transformation DCR
 Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](./diagnostic-settings.md) and application data collected by [Application insights](../app/app-insights-overview.md).
 
 The *workspace transformation data collection rule (DCR)* is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform [transformations](./data-collection-transformations.md) on data that does not yet use a DCR for its data collection, and thus has no means to define a transformation.
@@ -23,10 +23,6 @@ The *workspace transformation data collection rule (DCR)* is a special [DCR](./d
 There can be only one workspace DCR for each workspace, but it can include transformations for any number of tables. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
 
 :::image type="content" source="media/data-collection-transformations-workspace/transformation-workspace.png" lightbox="media/data-collection-transformations-workspace/transformation-workspace.png" alt-text="Diagram that shows operation of the workspace transformation DCR." border="false":::
-
-### Workspace transformation DCR
-
-The [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformations) is a special DCR that allows you to apply transformations to data collection scenarios that don't yet use a DCR for its data collection. 
 
 For example, the [Event](../reference/tables/event.md) table is used to store events from Windows virtual machines. If you create a transformation in the workspace transformation DCR for the Event table, it would be applied to events collected by virtual machines running the Log Analytics agent<sup>1</sup> because this agent doesn't use a DCR. The transformation would be ignored though by any data sent from Azure Monitor Agent (AMA) because it uses a DCR to define its data collection. You can still use a transformation with Azure Monitor agent, but you would include that transformation in the DCR associated with the agent and not the workspace transformation DCR.
 
