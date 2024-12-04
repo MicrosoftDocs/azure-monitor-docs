@@ -50,14 +50,14 @@ Error logs are written to the [DCRLogErrors](/azure/azure-monitor/reference/tabl
 
 ```kusto
 DCRLogErrors
-| where _ResourceId == "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
+| where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
 ```
 
 **Retrieve all error logs for a particular input stream in a particular DCR**
 
 ```kusto
 DCRLogErrors
-| where _ResourceId == "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
+| where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
 | where InputStreamId == "Custom-MyTable_CL"
 ```
 
@@ -110,4 +110,3 @@ Rather than reactively troubleshooting issues, create alert rules to be proactiv
 ## Next steps
 - [Read more about data collection rules.](./data-collection-rule-overview.md)
 - [Read more about ingestion-time transformations.](./data-collection-transformations.md)
-

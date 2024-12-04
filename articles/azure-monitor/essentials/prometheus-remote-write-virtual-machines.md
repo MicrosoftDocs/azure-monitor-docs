@@ -211,7 +211,7 @@ Note the value of the `clientId` of the managed identity that you create. This I
       "resourceGroup": "rg-001",
       "systemData": null,
       "tags": {},
-      "tenantId": "ffff5f5f-aa6a-bb7b-cc8c-dddddd9d9d9d",
+      "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
       "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
     }
     ```
