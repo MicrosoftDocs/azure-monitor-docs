@@ -36,7 +36,7 @@ The destination table provides a view of the underlying source data, but doesn't
 ## Restore data
 
 > [!WARNING]
-> When restoring data, be sure to [dismiss the restore](#dismiss-restored-data) as soon as you are done using the restore. You will continue to be billed for a data restore until it is dismissed.
+> When restoring data, be sure to [dismiss the restore](#dismiss-restored-data) as soon as you are done using the restore. You will continue to be billed for a data restore until it is dismissed ([learn more](#pricing-model)). 
 
 # [API](#tab/api-1)
 To restore data from a table, call the **Tables - Create or Update** API. The name of the destination table must end with *_RST*.
