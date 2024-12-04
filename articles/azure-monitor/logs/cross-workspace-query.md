@@ -103,7 +103,7 @@ Use the `workspace()` expression to retrieve data from a specific workspace in t
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the workspace | workspace("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
+| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
 
 ### Examples
 
@@ -111,7 +111,7 @@ Use the `workspace()` expression to retrieve data from a specific workspace in t
 workspace("00000000-0000-0000-0000-000000000000").Update | count
 ```
 ```Kusto
-workspace("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail").Event | count
+workspace("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail").Event | count
 ```
 ```Kusto
 union 
@@ -139,7 +139,7 @@ Use the `app` expression to retrieve data from a specific classic Application In
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the app | app("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
+| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
 
 ### Examples
 
@@ -147,7 +147,7 @@ Use the `app` expression to retrieve data from a specific classic Application In
 app("00000000-0000-0000-0000-000000000000").requests | count
 ```
 ```Kusto
-app("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp").requests | count
+app("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp").requests | count
 ```
 ```Kusto
 union 

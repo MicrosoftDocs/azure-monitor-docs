@@ -529,7 +529,7 @@ Both ARM and Bicep templates are provided in this section.
 > [!TIP]
 > - Edit the `main.tf` file appropriately before running the terraform template
 > - Data will start flowing after 10 minutes since the cluster needs to be ready first
-> - WorkspaceID needs to match the format `/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
+> - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
 > - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
 
 ### [Azure Policy](#tab/policy)
@@ -744,7 +744,7 @@ The command will return JSON-formatted information about the solution. The `addo
 "addonProfiles": {
     "omsagent": {
         "config": {
-            "logAnalyticsWorkspaceResourceID": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
+            "logAnalyticsWorkspaceResourceID": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
             "useAADAuth": "true"
         },
         "enabled": true,
