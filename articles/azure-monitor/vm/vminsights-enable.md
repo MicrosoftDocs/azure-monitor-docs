@@ -111,7 +111,7 @@ Install the required agents on your machines using guidance in the following art
 > If your virtual machines scale sets have an upgrade policy set to manual, VM insights will not be enabled for instances by default after installing the template. You must manually upgrade the instances.
 
 ###  Create data collection rule (DCR)
-If you don't already have a DCR for VM insights, create one using the details above in [MV insights DCR](#vm-insights-dcr).
+If you don't already have a DCR for VM insights, create one using the details above in [VM insights DCR](#vm-insights-dcr).
 
 
 ### Associate DCR with agents
