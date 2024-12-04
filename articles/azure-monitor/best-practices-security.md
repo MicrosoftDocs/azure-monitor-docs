@@ -21,7 +21,7 @@ Azure Monitor security guidelines are:
 The guidelines in this article build on the [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsiblity, Microsoft provides these security measures for Azure Monitor customers:
 
 - [Azure infrastructure security](/azure/security/fundamentals/infrastructure)
-- [Azure customer data protection][(/azure/security/fundamentals/protection-customer-data)]
+- [Azure customer data protection](/azure/security/fundamentals/protection-customer-data)
 - [Microsoft Entra authentication for data plane access](/azure/azure-monitor/app/azure-ad-authentication)
 - [Encryption of data in transit during data ingestion](/azure/security/fundamentals/double-encryption#data-in-transit)
 - [Protection of data at rest with Microsoft managed keys](/azure/security/fundamentals/encryption-atrest#encryption-at-rest-in-microsoft-cloud-services)
