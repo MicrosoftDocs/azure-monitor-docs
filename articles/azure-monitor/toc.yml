@@ -955,8 +955,6 @@ items:
         - name: Sample code
           displayName: logs ingestion
           href: logs/tutorial-logs-ingestion-code.md
-      - name: Data collector API
-        href: logs/data-collector-api.md
   - name: Collect logs from Event Hubs
     href: logs/ingest-logs-event-hub.md
   - name: Send data
