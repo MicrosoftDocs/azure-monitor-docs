@@ -124,8 +124,6 @@ In the following example, `transformKql` has a query that filters data, so only 
 ] 
 ```
 ## Create workspace transformation DCR
-The workspace transformation DCR
-
 There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables.
 
 ### [Azure Portal](#tab/portal)
@@ -135,13 +133,18 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 
     :::image type="content" source="media/data-collection-transformations-create/create-transformation-select.png" lightbox="media/data-collection-transformations-create/create-transformation-select.png" alt-text="Screenshot that shows the option to create a transformation for a table in the Azure portal.":::
 
-2. If the workspace transformation DCR hasn't already been created for this workspace, select the option to create one. If it has already been created, then that DCR will already be selected.
+2. If the workspace transformation DCR hasn't already been created for this workspace, select the option to create one. If it has already been created, then that DCR will already be selected. Each workspaces can only have one workspace transformation DCR.
 
+    :::image type="content" source="media/tutorial-workspace-transformations-portal/new-data-collection-rule.png" lightbox="media/tutorial-workspace-transformations-portal/new-data-collection-rule.png" alt-text="Screenshot that shows creating a new data collection rule.":::
 
-3. Select Next to view sample data from the table. Click Transformation editor to define the transformation query.
+3. Select Next to view sample data from the table. Click **Transformation editor** to define the transformation query.
+
+    :::image type="content" source="media/tutorial-workspace-transformations-portal/sample-data.png" lightbox="media/tutorial-workspace-transformations-portal/sample-data.png" alt-text="Screenshot that shows sample data from the log table.":::
+
 4. You can then edit and run the transformation query to see the results against actual data from the table. Keep modifying and testing the query until you get the results you want.
-5. When you're satisfied with the query, click Apply and then Next and Create to save the DCR with your new transformation.
+5. When you're satisfied with the query, click **Apply** and then **Next** and **Create** to save the DCR with your new transformation.
 
+    :::image type="content" source="media/tutorial-workspace-transformations-portal/save-transformation.png" lightbox="media/tutorial-workspace-transformations-portal/save-transformation.png" alt-text="Screenshot that shows saving the transformation.":::
 
 ### [JSON](#tab/json)
 

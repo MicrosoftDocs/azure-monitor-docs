@@ -24,6 +24,15 @@ There can be only one workspace DCR for each workspace, but it can include trans
 
 :::image type="content" source="media/data-collection-transformations-workspace/transformation-workspace.png" lightbox="media/data-collection-transformations-workspace/transformation-workspace.png" alt-text="Diagram that shows operation of the workspace transformation DCR." border="false":::
 
+### Workspace transformation DCR
+
+The [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformations) is a special DCR that allows you to apply transformations to data collection scenarios that don't yet use a DCR for its data collection. 
+
+For example, the [Event](../reference/tables/event.md) table is used to store events from Windows virtual machines. If you create a transformation in the workspace transformation DCR for the Event table, it would be applied to events collected by virtual machines running the Log Analytics agent<sup>1</sup> because this agent doesn't use a DCR. The transformation would be ignored though by any data sent from Azure Monitor Agent (AMA) because it uses a DCR to define its data collection. You can still use a transformation with Azure Monitor agent, but you would include that transformation in the DCR associated with the agent and not the workspace transformation DCR.
+
+:::image type="content" source="media/data-collection-transformations-workspace/compare-transformations.png" lightbox="media/data-collection-transformations-workspace/compare-transformations.png" alt-text="Diagram that compares standard DCR transformations with workspace transformation DCR." border="false":::
+
+<sup>1</sup> The Log Analytics agent has been deprecated, but some environments may still use it. It's only one example of a data source that doesn't use a DCR.
 
 ## Supported tables
 The following tables in a Log Analytics workspace support transformations.

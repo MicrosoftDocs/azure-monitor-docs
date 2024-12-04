@@ -69,15 +69,7 @@ With direct ingestion, a particular DCR is specified to process the incoming dat
 ## Transformations
 [Transformations](./data-collection-transformations.md) are [KQL queries](../logs/log-query-overview.md) included in a DCR that run against each record sent to the cloud pipeline. They allow you to modify incoming data before it's stored in Azure Monitor or sent to another destination.  You may filter unneeded data to reduce your ingestion costs, remove sensitive data that shouldn't be persisted in the Log Analytics workspace, or format data to ensure that it matches the schema of its destination. Transformations also enable advanced scenarios such as sending data to multiple destinations or enriching data with additional information. 
 
-### Workspace transformation DCR
-
-The [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformations) is a special DCR that allows you to apply transformations to data collection scenarios that don't yet use a DCR for its data collection. 
-
-For example, the [Event](../reference/tables/event.md) table is used to store events from Windows virtual machines. If you create a transformation in the workspace transformation DCR for the Event table, it would be applied to events collected by virtual machines running the Log Analytics agent<sup>1</sup> because this agent doesn't use a DCR. The transformation would be ignored though by any data sent from Azure Monitor Agent (AMA) because it uses a DCR to define its data collection. You can still use a transformation with Azure Monitor agent, but you would include that transformation in the DCR associated with the agent and not the workspace transformation DCR.
-
-:::image type="content" source="media/data-collection-transformations-workspace/compare-transformations.png" lightbox="media/data-collection-transformations-workspace/compare-transformations.png" alt-text="Diagram that compares standard DCR transformations with workspace transformation DCR." border="false":::
-
-<sup>1</sup> The Log Analytics agent has been deprecated, but some environments may still use it. It's only one example of a data source that doesn't use a DCR.
+:::image type="content" source="media/data-collection-rule-overview/transformations.png" lightbox="media/data-collection-rule-overview/transformations.png" alt-text="Diagram that shows the basic concept of a transformation." border="false":::
 
 ## Edge pipeline
 The [edge pipeline](./edge-pipeline-configure.md) extends the Azure Monitor pipeline to your own data center. It enables at-scale collection and routing of telemetry data before it's delivered to the cloud pipeline. Unlike the cloud pipeline, the edge pipeline is optional and requires configuration.
