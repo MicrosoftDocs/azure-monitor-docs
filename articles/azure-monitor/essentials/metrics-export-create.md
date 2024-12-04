@@ -87,7 +87,7 @@ Copy the `id` and the `principalId` of the DCR to use in assigning the role to c
   "id": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/cli-dcr-001",
   "identity": {
     "principalId": "eeeeeeee-ffff-aaaa-5555-666666666666",
-    "tenantId": "0000aaaa-11bb-cccc-dd22-eeeeee333333",
+    "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
     "type": "systemAssigned"
   },
 ```
