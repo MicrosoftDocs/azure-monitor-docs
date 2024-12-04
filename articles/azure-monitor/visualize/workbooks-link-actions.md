@@ -225,7 +225,7 @@ The link action can be configured to insert parameter values or grid content int
 > [!NOTE]
 > If Microsoft Copilot in Azure (preview) is not enabled in your environment, instead of sending the prompt to Microsoft Copilot in Azure, the formatted prompt will be displayed in Cell Details side pane.
 
-Select the **Configure...** button to open the Copilot in Azure (preview) prompt settings pane. The Copilot in Azure (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax. At the curret time, the prompt content is limited to 500 characters after formatting. Any remaining content is truncated.
+Select the **Configure...** button to open the Copilot in Azure (preview) prompt settings pane. The Copilot in Azure (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax. At the current time, the prompt content is limited to 500 characters after formatting. Any remaining content is truncated.
 
 <!-- convertborder later -->
 :::image type="content" source="./media/workbooks-link-actions/copilot-link-settings.png" lightbox="./media/workbooks-link-actions/copilot-link-settings.png" alt-text="Screenshot that shows Copilot in Azure (preview) prompt text." border="false":::
