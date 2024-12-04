@@ -50,7 +50,7 @@ To find which version of the extension you're currently using, go to `https://<y
 ### Latest Version (default) - Linux
 
 #### [ASP.NET Core](#tab/asp.net)
-insert ASAP.NET Core agent version information and link to releases here
+insert ASP.NET Core agent version information and link to releases here
 
 #### [.NET](#tab/.net)
 insert .NET agent version information and link to releases here
