@@ -80,8 +80,6 @@ Use the [az monitor data-collection rule create](/cli/azure/monitor/data-collect
 az monitor data-collection rule create --location 'eastus' --resource-group 'my-resource-group' --name 'my-dcr' --rule-file 'C:\MyNewDCR.json' --description 'This is my new DCR'
 ```
 
-
-
 ### [PowerShell](#tab/powershell)
 
 ### Create or edit DCR with PowerShell
@@ -91,21 +89,20 @@ Use the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacolle
 New-AzDataCollectionRule -Name 'my-dcr' -ResourceGroupName 'my-resource-group' -JsonFilePath 'C:\MyNewDCR.json'
 ```
 
-
 ### [API](#tab/api)
 
 ### Create or edit DCR with API
 Use the [DCR create API](/rest/api/monitor/data-collection-rules/create) to create the DCR from your JSON file. You can use any method to call a REST API as shown in the following examples. You can use these same commands to update an existing DCR.
 
 ```powershell
-$ResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
+$ResourceId = "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 $FilePath = ".\my-dcr.json"
 $DCRContent = Get-Content $FilePath -Raw 
 Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2022-06-01") -Method PUT -Payload $DCRContent
 ```
 
 ```azurecli
-ResourceId="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
+ResourceId="/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 FilePath="my-dcr.json"
 az rest --method put --url $ResourceId"?api-version=2022-06-01" --body @$FilePath
 ```
@@ -207,9 +204,6 @@ $DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File $FilePath
 # Open DCR in code editor
 code $FilePath | Wait-Process
 
-#Wait for confirmation to apply changes
-$Output = Read-Host "Apply changes to DCR (Y/N)? "
-if ("Y" -eq $Output.toupper())
 { 
 	#write DCR content back from the file
 	$DCRContent = Get-Content $FilePath -Raw

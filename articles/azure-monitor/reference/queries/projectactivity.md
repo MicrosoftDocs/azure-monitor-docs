@@ -23,8 +23,7 @@ Display events from more than one day ago, filtered by organization ID and summa
 
 ```query
 ProjectActivity
-| where OrganizationId != "22223333-cccc-4444-dddd-5555eeee6666"
+| where OrganizationId != "00aa00aa-bb11-cc22-dd33-44ee44ee44ee"
 | summarize count() by UserId, ResultStatus
 
 ```
-

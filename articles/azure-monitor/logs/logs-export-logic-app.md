@@ -135,11 +135,11 @@ You can use a sample output from the **Run query and list results** step.
         "Level": "Informational",
         "ActivityStatus": "Started",
         "ResourceGroup": "monitoring",
-        "SubscriptionId": "00000000-0000-0000-0000-000000000000",
+        "SubscriptionId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
         "Category": "Administrative",
         "EventSubmissionTimestamp": "2020-09-29T23:11:02Z",
         "ClientIpAddress": "192.168.1.100",
-        "ResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/monitoring/providers/microsoft.storage/storageaccounts/my-storage-account"
+        "ResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/monitoring/providers/microsoft.storage/storageaccounts/my-storage-account"
     }
     ```
 

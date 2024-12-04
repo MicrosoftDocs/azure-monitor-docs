@@ -7619,6 +7619,11 @@
    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-standbypool-logs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/logs/data-collector-api.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/logs/data-collector-api",
+    "redirect_document_id": false
   }
  ]
 }
