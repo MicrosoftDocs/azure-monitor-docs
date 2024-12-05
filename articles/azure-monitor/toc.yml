@@ -686,7 +686,9 @@ items:
         items: 
         - name: Create and edit
           displayName: Data collection rules, DCR
-          href: essentials/data-collection-rule-create-edit.md       
+          href: essentials/data-collection-rule-create-edit.md  
+        - name: Samples and scenarios
+          href: essentials/data-collection-rule-samples.md          
         - name: Manage associations
           displayName: data collection rules, DCR
           href: essentials/data-collection-rule-associations.md
@@ -720,8 +722,6 @@ items:
           href: essentials/metrics-export-create.md
         - name: Data plane batch query versus Metrics export
           href: essentials/data-plane-versus-metrics-export.md
-      - name: Samples and scenarios
-        href: essentials/data-collection-rule-samples.md     
       - name: Monitor DCRs
         displayName: Data collection rules
         href: essentials/data-collection-monitor.md 
