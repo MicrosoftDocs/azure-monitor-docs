@@ -10,7 +10,7 @@ ms.reviwer: nikeist
 ---
 
 # Supported KQL features in Azure Monitor transformations
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you run a KQL query against incoming Azure Monitor data to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details KQL considerations and and supported features in transformation queries in addition to special operators that are only available in transformations.
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to run a KQL query against incoming Azure Monitor data to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details KQL considerations and supported features in transformation queries in addition to special operators that are only available in transformations.
 
 Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records. 
 
@@ -121,10 +121,10 @@ Given a string containing IP address (IPv4 and IPv6 are supported), `geo_locatio
 
 ## Supported statements
 
-###	let statement
+###	Let statement
 The right-hand side of [`let`](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
 
-### tabular expression statements
+### Tabular expression statements
 The only supported data sources for the KQL statement in a transformation are as follows:
 
 - **source**, which represents the source data. For example:

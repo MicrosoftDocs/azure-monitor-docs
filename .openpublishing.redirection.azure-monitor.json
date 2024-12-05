@@ -7611,7 +7611,7 @@
     "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/essentials/data-collection-transformation-workspace.md",
+    "source_path": "articles/azure-monitor/essentials/data-collection-transformations-workspace.md",
     "redirect_url": "/azure/azure-monitor/essentials/data-collection-transformations#workspace-transformation-dcr",
     "redirect_document_id": false
   },

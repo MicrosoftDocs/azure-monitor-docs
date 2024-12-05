@@ -378,7 +378,7 @@ The AgentSettings DCR currently supports configuring the following parameters:
 
 | Parameter | Description | Valid values |
 | --------- | ----------- | ----------- |
-| `MaxDiskQuotaInMB` | To provide resiliency the agent collects data in a local cache when the agent is unable to send data. The agent will send the data in the cache once the connection is restored. This paramerter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: 1025-51199<br>Windows: 4000-51199 |
+| `MaxDiskQuotaInMB` | To provide resiliency the agent collects data in a local cache when the agent is unable to send data. The agent will send the data in the cache once the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: 1025-51199<br>Windows: 4000-51199 |
 | `UseTimeReceivedForForwardedEvents` | Changes WEF column in the Sentinel WEF table to use TimeReceived instead of TimeGenerated data | 0 or 1 |
 
 ### Setting up AgentSettings DCR

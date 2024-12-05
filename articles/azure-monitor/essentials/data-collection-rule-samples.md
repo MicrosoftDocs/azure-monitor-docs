@@ -29,7 +29,7 @@ The following samples show DCRs for collecting different kinds of data using the
 ### Windows events
 DCRs for Windows events use the `windowsEventLogs` data source with the `Microsoft-Event` incoming stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `xPathQueries` property. See [Collect Windows events with Azure Monitor Agent](../agents/data-collection-windows-events.md) for further details on using XPaths to filter the specific data you want to collect. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
 
-You can add a transformation to the `dataFlows` property for calculated columns and to further filter data, but you should use XPaths to filter data at at the agent as much as possible for efficiency and to avoid potential ingestion charges.
+You can add a transformation to the `dataFlows` property for calculated columns and to further filter data, but you should use XPaths to filter data at the agent as much as possible for efficiency and to avoid potential ingestion charges.
 
 The following sample DCR performs the following actions:
 
@@ -159,7 +159,7 @@ The following sample DCR performs the following actions:
 ```
 
 ### Performance counters
-DCRs for Syslog events use the `performanceCounters` data source with the incoming `Microsoft-InsightsMetrics` and `Microsoft-Perf` streams. `Microsoft-InsightsMetrics` is used to send data to Azure Monitor Metrics, while `Microsoft-Perf` is used to send data to a Log Analytics workspace. You can include both data sources in the DCR if you're sending performance data to both destinations. The schema of these streams are known, so they don't need to be defined in the `dataSources` section.
+DCRs for Syslog events use the `performanceCounters` data source with the incoming `Microsoft-InsightsMetrics` and `Microsoft-Perf` streams. `Microsoft-InsightsMetrics` is used to send data to Azure Monitor Metrics, while `Microsoft-Perf` is used to send data to a Log Analytics workspace. You can include both data sources in the DCR if you're sending performance data to both destinations. The schemas of these streams are known, so they don't need to be defined in the `dataSources` section.
  
  The performance counters to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
 

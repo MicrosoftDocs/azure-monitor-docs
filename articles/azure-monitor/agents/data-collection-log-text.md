@@ -135,7 +135,7 @@ Use the following ARM template to create a DCR for collecting text log files, ma
 | Table name | Name of the destination table in your Log Analytics Workspace. |     
 | Record delimiter | Not currently used but reserved for future potential use allowing delimiters other than the currently supported end of line (`/r/n`). | 
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
-| timeFormat| The following times formats are supported.  Use the quotes strings in your ARM template. Do not include the sample time that is in parentheses. <br> - “yyyy-MM-ddTHH:mm:ssk”   (2024-10-29T18:28:34) <br> - “YYYY-MM-DD HH:MM:SS”   (2024-10-29 18:28:34) <br> - “M/D/YYYY HH:MM:SS AM/PM”   (10/29/2024 06:28:34 PM) <br> - “Mon DD, YYYY HH:MM:SS”   (Oct[ober] 29, 2024 18:28:34) <br> - “yyMMdd HH:mm:ss”   (241029 18:28:34) <br> - “ddMMyy HH:mm:ss”   (291024 18:28:34) <br> - “MMM d HH:mm:ss”   (Oct 29 18:28:34) <br> - “dd/MMM/yyyy:HH:mm:ss zzz”   (14/Oct/2024:18:28:34 -000) |
+| timeFormat| The following times formats are supported.  Use the quotes strings in your ARM template. Do not include the sample time that is in parentheses. <br> - “yyyy-MM-ddTHH:mm:ssk”   (2024-10-29T18:28:34) <br> - “YYYY-MM-DD HH:MM:SS”   (2024-10-29 18:28:34) <br> - “M/D/YYYY HH:MM:SS AM/PM”   (10/29/2024 06:28:34 PM) <br> - “Mon DD, YYYY HH:MM:SS”   (October 29, 2024 18:28:34) <br> - “yyMMdd HH:mm:ss”   (241029 18:28:34) <br> - “ddMMyy HH:mm:ss”   (291024 18:28:34) <br> - “MMM d HH:mm:ss”   (Oct 29 18:28:34) <br> - “dd/MMM/yyyy:HH:mm:ss zzz”   (14/Oct/2024:18:28:34 -000) |
 
 
 

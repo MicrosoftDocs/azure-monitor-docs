@@ -70,9 +70,9 @@ Once you have your transformation query, you can add it to a DCR. Use the guidan
 > [!NOTE]
 > Some data sources will provide a method using the Azure portal to add a transformation to a DCR. For example, [collecting a text from a virtual machine](../agents/data-collection-log-text.md) allows you to specify a transformation query in the Azure portal. Most data collection scenarios though currently require you to work directly with the DCR definition to add a transformation. That's the process described in this section.
 
-The transformation query is specified in the `transformKql` property in the [Data Flows](./data-collection-rule-structure.md#data-flows) section of the DCR. This is the section that pairs a data source with a destination. The transformation is applied to the incoming stream of the data flow before it's sent to the destination. It will only apply to that data flow even if the same stream or destination are used in other data flows. 
+The transformation query is specified in the `transformKql` property in the [Data Flows](./data-collection-rule-structure.md#data-flows) section of the DCR. This is the section that pairs a data source with a destination. The transformation is applied to the incoming stream of the data flow before it's sent to the destination. It will only apply to that data flow even if the same stream or destination is used in other data flows. 
 
-If the `transformKql` property is omitted, or if it's value is simply `source`, then no transformation is applied, and the incoming data is sent to the destination without modification.
+If the `transformKql` property is omitted, or if its value is simply `source`, then no transformation is applied, and the incoming data is sent to the destination without modification.
 
 > [!IMPORTANT]
 > The transformation query must be on a single line the DCR. If you're creating the transformation in the Azure portal, you can use multiple lines for readability, and `\n` will be included in the query for each new line.
@@ -92,7 +92,7 @@ In the following example, there is no `transformKql` property, so the incoming d
 ] 
 ```
 
-In the following example, `transformKql` has a simple query of `source`, so the incoming data is sent to the destination without modification. It's functionality is identical to the previous example. 
+In the following example, `transformKql` has a simple query of `source`, so the incoming data is sent to the destination without modification. Its functionality is identical to the previous example. 
 
 ```json
 "dataFlows": [ 
