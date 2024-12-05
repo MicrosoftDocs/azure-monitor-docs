@@ -198,84 +198,91 @@ It's not possible to filter telemetry in Java native.
 
 ### [Python](#tab/python)
 
-1. Exclude the URL with the `OTEL_PYTHON_EXCLUDED_URLS` environment variable:
+#### Filter telemetry based on type-specific signals
 
-    ```
-    export OTEL_PYTHON_EXCLUDED_URLS="http://localhost:8080/ignore"
-    ```
-    Doing so excludes the endpoint shown in the following Flask example:
-    
-    ```python
-    ...
-    # Import the Flask and Azure Monitor OpenTelemetry SDK libraries.
-    import flask
-    from azure.monitor.opentelemetry import configure_azure_monitor
-    
-    # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-    # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
-    configure_azure_monitor(
-        connection_string="<your-connection-string>",
-    )
-    
-    # Create a Flask application.
-    app = flask.Flask(__name__)
+> [!NOTE]
+> This example is specifically for HTTP instrumentations.
 
-    # Define a route. Requests sent to this endpoint will not be tracked due to
-    # flask_config configuration.
-    @app.route("/ignore")
-    def ignore():
-        return "Request received but not tracked."
-    ...
-    ```
+Exclude the URL with the `OTEL_PYTHON_EXCLUDED_URLS` environment variable:
 
-1. Use a custom processor. You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`:
-    
-    ```python
-    ...
-    # Import the necessary libraries.
-    from azure.monitor.opentelemetry import configure_azure_monitor
-    from opentelemetry import trace
+```
+export OTEL_PYTHON_EXCLUDED_URLS="http://localhost:8080/ignore"
+```
+Doing so excludes the endpoint shown in the following Flask example:
 
-    # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-    # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
-    configure_azure_monitor(
-        connection_string="<your-connection-string>",
-        # Configure the custom span processors to include span filter processor.
-        span_processors=[span_filter_processor],
-    )
+```python
+...
+# Import the Flask and Azure Monitor OpenTelemetry SDK libraries.
+import flask
+from azure.monitor.opentelemetry import configure_azure_monitor
 
-    ...
-    ```
+# Configure OpenTelemetry to use Azure Monitor with the specified connection string.
+# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+configure_azure_monitor(
+    connection_string="<your-connection-string>",
+)
+
+# Create a Flask application.
+app = flask.Flask(__name__)
+
+# Define a route. Requests sent to this endpoint will not be tracked due to
+# flask_config configuration.
+@app.route("/ignore")
+def ignore():
+    return "Request received but not tracked."
+...
+```
+
+#### Filter telemetry on the span level
+
+You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`:
     
-    Add `SpanFilteringProcessor` to your project with the following code:
-    
-    ```python
-    # Import the necessary libraries.
-    from opentelemetry.trace import SpanContext, SpanKind, TraceFlags
-    from opentelemetry.sdk.trace import SpanProcessor
-    
-    # Define a custom span processor called `SpanFilteringProcessor`.
-    class SpanFilteringProcessor(SpanProcessor):
-    
-        # Prevents exporting spans from internal activities.
-        def on_start(self, span, parent_context):
-            # Check if the span is an internal activity.
-            if span._kind is SpanKind.INTERNAL:
-                # Create a new span context with the following properties:
-                #   * The trace ID is the same as the trace ID of the original span.
-                #   * The span ID is the same as the span ID of the original span.
-                #   * The is_remote property is set to `False`.
-                #   * The trace flags are set to `DEFAULT`.
-                #   * The trace state is the same as the trace state of the original span.
-                span._context = SpanContext(
-                    span.context.trace_id,
-                    span.context.span_id,
-                    span.context.is_remote,
-                    TraceFlags(TraceFlags.DEFAULT),
-                    span.context.trace_state,
-                )
-    
-    ```
+```python
+...
+# Import the necessary libraries.
+from azure.monitor.opentelemetry import configure_azure_monitor
+from opentelemetry import trace
+
+# Configure OpenTelemetry to use Azure Monitor with the specified connection string.
+# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+configure_azure_monitor(
+    connection_string="<your-connection-string>",
+    # Configure the custom span processors to include span filter processor.
+    span_processors=[span_filter_processor],
+)
+
+...
+```
+
+Add `SpanFilteringProcessor` to your project with the following code:
+
+```python
+# Import the necessary libraries.
+from opentelemetry.trace import SpanContext, SpanKind, TraceFlags
+from opentelemetry.sdk.trace import SpanProcessor
+
+# Define a custom span processor called `SpanFilteringProcessor`.
+class SpanFilteringProcessor(SpanProcessor):
+
+    # Prevents exporting spans from internal activities.
+    def on_start(self, span, parent_context):
+        # Check if the span is an internal activity.
+        if span._kind is SpanKind.INTERNAL:
+            # Create a new span context with the following properties:
+            #   * The trace ID is the same as the trace ID of the original span.
+            #   * The span ID is the same as the span ID of the original span.
+            #   * The is_remote property is set to `False`.
+            #   * The trace flags are set to `DEFAULT`.
+            #   * The trace state is the same as the trace state of the original span.
+            span._context = SpanContext(
+                span.context.trace_id,
+                span.context.span_id,
+                span.context.is_remote,
+                TraceFlags(TraceFlags.DEFAULT),
+                span.context.trace_state,
+            )
+
+```
 
 ---
 
@@ -397,17 +404,11 @@ using var traceProvider = Sdk.CreateTracerProviderBuilder()
 
 #### [Java](#tab/java)
 
-> [!NOTE]
-> There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
-
-To filter SQL telemetry for cost reasons, you can disable the JDBC instrumentation, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 #### [Java native](#tab/java-native)
 
-> [!NOTE]
-> There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
-
-To filter SQL telemetry for cost reasons, you can disable the JDBC instrumentation, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 #### [Node.js](#tab/nodejs)
 
