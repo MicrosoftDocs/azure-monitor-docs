@@ -61,7 +61,7 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
 
 ## Prerequisites
 
-You will need an existing compute resource (virtual machine, virtual machine scale set, or Arc-enabled server). The machine to which Azure Monitor Agent is deployed must have system-assigned managed identity enabled or a user-assigned managed identity associated it to it. We highly recommend using [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for better scalability and performance. Azure Monitor Agent must be configured to use this managed identity for authentication as described in the [prerequisites](azure-monitor-agent-requirements.md#permissions). 
+You will need an existing compute resource (Azure virtual machine or virtual machine scale set). The machine to which Azure Monitor Agent is deployed must have system-assigned managed identity enabled or a user-assigned managed identity associated it to it. We highly recommend using [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for better scalability and performance. Azure Monitor Agent must be configured to use this managed identity for authentication as described in the [prerequisites](azure-monitor-agent-requirements.md#permissions). 
 
 You must provision the necessary [storage account(s)](/azure/storage/common/storage-account-create) and/or [Event Hubs](/azure/event-hubs/event-hubs-create) to which you wish to publish data via Azure Monitor Agent. Additionally, the proper built-in RBAC role(s) must be assigned to the chosen managed identity per your desired data destination(s):
 
