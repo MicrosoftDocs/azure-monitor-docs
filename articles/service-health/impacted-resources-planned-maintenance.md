@@ -2,20 +2,20 @@
 title: Resource impact from Azure planned maintenance events
 description: This article details where to find information from Azure Service Health about how Azure Planned Maintenance impact your resources.
 ms.topic: conceptual
-ms.date: 10/217/2024
+ms.date: 12/5/2024
 ---
 
 # Resource impact from Azure planned maintenance
 
-In support of the experience for viewing Impacted Resources, Service Health has a new feature to:
+In support of the experience for viewing Impacted Resources, Service Health has features to:
 
 - Display resources that are impacted by a planned maintenance event.
-- Provide impacted resources information for planned maintenance via the Service Health Portal. 
+- Provide impacted resources information for planned maintenance through the Service Health Portal. 
 
 This article details what is communicated to users and where they can view information about their impacted resources.
-
+<!--
 >[!Note]
->This feature will be rolled out in phases. Initially, impacted resources will only be shown for **SQL resources with advance customer notifications and rebootful updates for compute resources.** Planned maintenance impacted resources coverage will be expanded to other resource types and scenarios in the future.
+>This feature will be rolled out in phases. Initially, impacted resources will only be shown for **SQL resources with advance customer notifications and rebootful updates for compute resources.** Planned maintenance impacted resources coverage will be expanded to other resource types and scenarios in the future.-->
 
 ## Viewing Impacted Resources for Planned Maintenance Events on the Service Health Portal 
 
@@ -42,7 +42,7 @@ Service Health provides the following information on resources impacted by a pla
 
 ## Filters
 
-Customers can filter on the results using the below filters
+Customers can filter on the results using the filters shown below.
 - Region
 - Subscription ID: All Subscription IDs the user has access to 
 - Resource Type: All Resource types under the users subscriptions
