@@ -30,7 +30,7 @@ Users with [tenant admin access](admin-access-reference.md#roles-with-tenant-adm
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the services issue user interface highlighting the scope selection boxes of tenant and subscription." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
 
 ##### Filtering and Sorting
-You can filter on the scope (tenant or subscription) within the blades. The scope column indicates when an event is at the tenant or subscription level.
+You can filter by scope (tenant or subscription) within the blades. The scope column indicates when an event is at the tenant or subscription level.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-3.png" alt-text="A screenshot of the services issue user interface highlighting the scope column." lightbox="media/service-health-portal-update/services-issue-window-3.png":::
 
