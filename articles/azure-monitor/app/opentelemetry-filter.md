@@ -17,191 +17,139 @@ This article provides guidance on how to filter OpenTelemetry for applications u
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
-## Filter telemetry
-
 You might use the following ways to filter out telemetry before it leaves your application.
+
+## Filter telemetry by type
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-1. Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
+Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
 
-    * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
-    * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
+* [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
+* [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
 
-1. Use a custom processor:
-    
-    > [!TIP]
-    > Add the processor shown here *before* adding Azure Monitor.
+We vendor the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
 
-    ```csharp
-    // Create an ASP.NET Core application builder.
-    var builder = WebApplication.CreateBuilder(args);
+`dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
 
-    // Configure the OpenTelemetry tracer provider to add a new processor named ActivityFilteringProcessor.
-    builder.Services.ConfigureOpenTelemetryTracerProvider((sp, builder) => builder.AddProcessor(new ActivityFilteringProcessor()));
-    // Configure the OpenTelemetry tracer provider to add a new source named "ActivitySourceName".
-    builder.Services.ConfigureOpenTelemetryTracerProvider((sp, builder) => builder.AddSource("ActivitySourceName"));
-    // Add the Azure Monitor telemetry service to the application. This service will collect and send telemetry data to Azure Monitor.
-    builder.Services.AddOpenTelemetry().UseAzureMonitor();
-
-    // Build the ASP.NET Core application.
-    var app = builder.Build();
-
-    // Start the ASP.NET Core application.
-    app.Run();
-    ```
-    
-    Add `ActivityFilteringProcessor.cs` to your project with the following code:
-    
-    ```csharp
-    public class ActivityFilteringProcessor : BaseProcessor<Activity>
+```csharp
+builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
+{
+    builder.AddSqlClientInstrumentation(options =>
     {
-        // The OnStart method is called when an activity is started. This is the ideal place to filter activities.
-        public override void OnStart(Activity activity)
-        {
-            // prevents all exporters from exporting internal activities
-            if (activity.Kind == ActivityKind.Internal)
-            {
-                activity.IsAllDataRequested = false;
-            }
-        }
-    }
-    ```
+        options.SetDbStatementForStoredProcedure = false;
+    });
+});
+```
 
-1. If a particular source isn't explicitly added by using `AddSource("ActivitySourceName")`, then none of the activities created by using that source are exported.
+> [!NOTE]
+> The Azure Monitor OpenTelemetry Distro for ASP.NET Core includes the SqlClient instrumentation to collect SQL telemetry by default.
 
 ### [.NET](#tab/net)
 
-1. Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
+Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
 
-    * [ASP.NET](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/Instrumentation.AspNet-1.0.0-rc9.8/src/OpenTelemetry.Instrumentation.AspNet/README.md#filter)
-    * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
-    * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
+* [ASP.NET](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/Instrumentation.AspNet-1.0.0-rc9.8/src/OpenTelemetry.Instrumentation.AspNet/README.md#filter)
+* [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
 
-1. Use a custom processor:
-    
-    ```csharp
-    // Create an OpenTelemetry tracer provider builder.
-    // It is important to keep the TracerProvider instance active throughout the process lifetime.
-    using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-            .AddSource("OTel.AzureMonitor.Demo") // Add a source named "OTel.AzureMonitor.Demo".
-            .AddProcessor(new ActivityFilteringProcessor()) // Add a new processor named ActivityFilteringProcessor.
-            .AddAzureMonitorTraceExporter() // Add the Azure Monitor trace exporter.
-            .Build();
-    ```
-    
-    Add `ActivityFilteringProcessor.cs` to your project with the following code:
-    
-    ```csharp
-    public class ActivityFilteringProcessor : BaseProcessor<Activity>
-    {
-        // The OnStart method is called when an activity is started. This is the ideal place to filter activities.
-        public override void OnStart(Activity activity)
-        {
-            // prevents all exporters from exporting internal activities
-            if (activity.Kind == ActivityKind.Internal)
-            {
-                activity.IsAllDataRequested = false;
-            }
-        }
-    }
-    ```
+> [!NOTE]
+> The Azure Monitor OpenTelemetry Exporter doesn't collect SQL telemetry by default.
 
-1. If a particular source isn't explicitly added by using `AddSource("ActivitySourceName")`, then none of the activities created by using that source are exported.
+To filter out SQL telemetry, add the following code to your *program.cs* file:
+
+```csharp
+using var traceProvider = Sdk.CreateTracerProviderBuilder()
+   .AddSqlClientInstrumentation(
+       options=>
+       {
+           options.Filter = cmd =>
+           {
+               if (cmd is SqlCommand command)
+               {
+                   return command.CommandType == CommandType.StoredProcedure;
+               }
+
+               return false;
+           };
+       })
+   .AddAzureMonitorTraceExporter()
+   .Build();
+```
 
 ### [Java](#tab/java)
 
 See [sampling overrides](java-standalone-config.md#sampling-overrides) and [telemetry processors](java-standalone-telemetry-processors.md).
 
+There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+
+> [!NOTE]
+> Java collects SQL (JDBC) telemetry by default.
+
 ### [Java native](#tab/java-native)
 
 It's not possible to filter telemetry in Java native.
 
+There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+
+> [!NOTE]
+> Java native collects SQL (JDBC) telemetry by default.
+
 ### [Node.js](#tab/nodejs)
 
-1. Exclude the URL option provided by many HTTP instrumentation libraries.
+Exclude the URL option provided by many HTTP instrumentation libraries.
 
-    The following example shows how to exclude a certain URL from being tracked by using the [HTTP/HTTPS instrumentation library](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-http):
-    
-    ```typescript
-    // Import the useAzureMonitor function and the ApplicationInsightsOptions class from the @azure/monitor-opentelemetry package.
-    const { useAzureMonitor, ApplicationInsightsOptions } = require("@azure/monitor-opentelemetry");
+The following example shows how to exclude a certain URL from being tracked by using the [HTTP/HTTPS instrumentation library](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-http):
 
-    // Import the HttpInstrumentationConfig class from the @opentelemetry/instrumentation-http package.
-    const { HttpInstrumentationConfig }= require("@opentelemetry/instrumentation-http");
+```typescript
+// Import the useAzureMonitor function and the ApplicationInsightsOptions class from the @azure/monitor-opentelemetry package.
+const { useAzureMonitor, ApplicationInsightsOptions } = require("@azure/monitor-opentelemetry");
 
-    // Import the IncomingMessage and RequestOptions classes from the http and https packages, respectively.
-    const { IncomingMessage } = require("http");
-    const { RequestOptions } = require("https");
+// Import the HttpInstrumentationConfig class from the @opentelemetry/instrumentation-http package.
+const { HttpInstrumentationConfig }= require("@opentelemetry/instrumentation-http");
 
-    // Create a new HttpInstrumentationConfig object.
-    const httpInstrumentationConfig: HttpInstrumentationConfig = {
-      enabled: true,
-      ignoreIncomingRequestHook: (request: IncomingMessage) => {
-        // Ignore OPTIONS incoming requests.
-        if (request.method === 'OPTIONS') {
-          return true;
-        }
-        return false;
-      },
-      ignoreOutgoingRequestHook: (options: RequestOptions) => {
-        // Ignore outgoing requests with the /test path.
-        if (options.path === '/test') {
-          return true;
-        }
-        return false;
-      }
-    };
+// Import the IncomingMessage and RequestOptions classes from the http and https packages, respectively.
+const { IncomingMessage } = require("http");
+const { RequestOptions } = require("https");
 
-    // Create a new ApplicationInsightsOptions object.
-    const config: ApplicationInsightsOptions = {
-      instrumentationOptions: {
-        http: {
-          httpInstrumentationConfig
-        }
-      }
-    };
-
-    // Enable Azure Monitor integration using the useAzureMonitor function and the ApplicationInsightsOptions object.
-    useAzureMonitor(config);
-    ```
-
-1. Use a custom processor. You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
-
-    Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
-
-    ```typescript
-    // Import the necessary packages.
-    const { SpanKind, TraceFlags } = require("@opentelemetry/api");
-    const { ReadableSpan, Span, SpanProcessor } = require("@opentelemetry/sdk-trace-base");
-
-    // Create a new SpanEnrichingProcessor class.
-    class SpanEnrichingProcessor implements SpanProcessor {
-        forceFlush(): Promise<void> {
-            return Promise.resolve();
-        }
-
-        shutdown(): Promise<void> {
-            return Promise.resolve();
-        }
-
-        onStart(_span: Span): void {}
-
-        onEnd(span) {
-            // If the span is an internal span, set the trace flags to NONE.
-            if(span.kind == SpanKind.INTERNAL){
-            span.spanContext().traceFlags = TraceFlags.NONE;
-            }
-        }
+// Create a new HttpInstrumentationConfig object.
+const httpInstrumentationConfig: HttpInstrumentationConfig = {
+    enabled: true,
+    ignoreIncomingRequestHook: (request: IncomingMessage) => {
+    // Ignore OPTIONS incoming requests.
+    if (request.method === 'OPTIONS') {
+        return true;
     }
-    ```
+    return false;
+    },
+    ignoreOutgoingRequestHook: (options: RequestOptions) => {
+    // Ignore outgoing requests with the /test path.
+    if (options.path === '/test') {
+        return true;
+    }
+    return false;
+    }
+};
+
+// Create a new ApplicationInsightsOptions object.
+const config: ApplicationInsightsOptions = {
+    instrumentationOptions: {
+    http: {
+        httpInstrumentationConfig
+    }
+    }
+};
+
+// Enable Azure Monitor integration using the useAzureMonitor function and the ApplicationInsightsOptions object.
+useAzureMonitor(config);
+```
+
+> [!NOTE]
+> The Azure Monitor OpenTelemetry Distro for Node.js doesn't collect SQL telemetry by default. For more information on how to enable it, see []().
 
 ### [Python](#tab/python)
 
-#### Filter telemetry based on type-specific signals
-
 > [!NOTE]
-> This example is specifically for HTTP instrumentations.
+> This example is specific to HTTP instrumentations. For database (SQL) instrumentations, there's currently no specific mechanism to filter out database telemetry.
 
 Exclude the URL with the `OTEL_PYTHON_EXCLUDED_URLS` environment variable:
 
@@ -233,7 +181,127 @@ def ignore():
 ...
 ```
 
-#### Filter telemetry on the span level
+> [!NOTE]
+> The Azure Monitor OpenTelemetry Distro for Python only collects calls to PostgreSQL database with [psycopg2](https://pypi.org/project/psycopg2/) library out of the box.
+
+---
+
+### Filter telemetry using custom span processors
+
+### [ASP.NET Core](#tab/aspnetcore)
+
+Use a custom processor:
+
+> [!TIP]
+> Add the processor shown here *before* adding Azure Monitor.
+
+```csharp
+// Create an ASP.NET Core application builder.
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure the OpenTelemetry tracer provider to add a new processor named ActivityFilteringProcessor.
+builder.Services.ConfigureOpenTelemetryTracerProvider((sp, builder) => builder.AddProcessor(new ActivityFilteringProcessor()));
+// Configure the OpenTelemetry tracer provider to add a new source named "ActivitySourceName".
+builder.Services.ConfigureOpenTelemetryTracerProvider((sp, builder) => builder.AddSource("ActivitySourceName"));
+// Add the Azure Monitor telemetry service to the application. This service will collect and send telemetry data to Azure Monitor.
+builder.Services.AddOpenTelemetry().UseAzureMonitor();
+
+// Build the ASP.NET Core application.
+var app = builder.Build();
+
+// Start the ASP.NET Core application.
+app.Run();
+```
+
+Add `ActivityFilteringProcessor.cs` to your project with the following code:
+
+```csharp
+public class ActivityFilteringProcessor : BaseProcessor<Activity>
+{
+    // The OnStart method is called when an activity is started. This is the ideal place to filter activities.
+    public override void OnStart(Activity activity)
+    {
+        // prevents all exporters from exporting internal activities
+        if (activity.Kind == ActivityKind.Internal)
+        {
+            activity.IsAllDataRequested = false;
+        }
+    }
+}
+```
+
+If a particular source isn't explicitly added by using `AddSource("ActivitySourceName")`, then none of the activities created by using that source are exported.
+
+### [.NET](#tab/net)
+
+Use a custom processor:
+    
+```csharp
+// Create an OpenTelemetry tracer provider builder.
+// It is important to keep the TracerProvider instance active throughout the process lifetime.
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+        .AddSource("OTel.AzureMonitor.Demo") // Add a source named "OTel.AzureMonitor.Demo".
+        .AddProcessor(new ActivityFilteringProcessor()) // Add a new processor named ActivityFilteringProcessor.
+        .AddAzureMonitorTraceExporter() // Add the Azure Monitor trace exporter.
+        .Build();
+```
+
+Add `ActivityFilteringProcessor.cs` to your project with the following code:
+
+```csharp
+public class ActivityFilteringProcessor : BaseProcessor<Activity>
+{
+    // The OnStart method is called when an activity is started. This is the ideal place to filter activities.
+    public override void OnStart(Activity activity)
+    {
+        // prevents all exporters from exporting internal activities
+        if (activity.Kind == ActivityKind.Internal)
+        {
+            activity.IsAllDataRequested = false;
+        }
+    }
+}
+```
+
+If a particular source isn't explicitly added by using `AddSource("ActivitySourceName")`, then none of the activities created by using that source are exported.
+
+### [Java](#tab/java)
+
+### [Java native](#tab/java-native)
+
+### [Node.js](#tab/nodejs)
+
+Use a custom processor. You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
+
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+
+```typescript
+// Import the necessary packages.
+const { SpanKind, TraceFlags } = require("@opentelemetry/api");
+const { ReadableSpan, Span, SpanProcessor } = require("@opentelemetry/sdk-trace-base");
+
+// Create a new SpanEnrichingProcessor class.
+class SpanEnrichingProcessor implements SpanProcessor {
+    forceFlush(): Promise<void> {
+        return Promise.resolve();
+    }
+
+    shutdown(): Promise<void> {
+        return Promise.resolve();
+    }
+
+    onStart(_span: Span): void {}
+
+    onEnd(span) {
+        // If the span is an internal span, set the trace flags to NONE.
+        if(span.kind == SpanKind.INTERNAL){
+        span.spanContext().traceFlags = TraceFlags.NONE;
+        }
+    }
+}
+```
+
+### [Python](#tab/python)
 
 You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`:
     
@@ -283,140 +351,6 @@ class SpanFilteringProcessor(SpanProcessor):
             )
 
 ```
-
----
-
-## SQL telemetry
-
-### Enable SQL telemetry
-
-#### [ASP.NET Core](#tab/aspnetcore)
-
-The Azure Monitor OpenTelemetry Distro for ASP.NET Core includes the SqlClient instrumentation to collect SQL telemetry by default.
-
-#### [.NET](#tab/net)
-
-The Azure Monitor OpenTelemetry Exporter doesn't collect SQL telemetry by default. To enable it, you need to configure the desired instrumentation libraries.
-
-#### [Java](#tab/java)
-
-Java collects SQL (JDBC) telemetry by default.
-
-### [Java native](#tab/java-native)
-
-Java native collects SQL (JDBC) telemetry by default.
-
-### [Node.js](#tab/nodejs)
-
-The Azure Monitor OpenTelemetry Distro for Node.js doesn't collect SQL telemetry by default. To enable it, pass the following configuration option:
-
-```js
-import { AzureMonitorOpenTelemetryOptions, useAzureMonitor } from "@azure/monitor-opentelemetry";
-import { Resource } from "@opentelemetry/resources";
-
-const resource = new Resource({ "testAttribute": "testValue" });
-const options: AzureMonitorOpenTelemetryOptions = {
-    azureMonitorExporterOptions: {
-        // Offline storage
-        storageDirectory: "c://azureMonitor",
-        // Automatic retries
-        disableOfflineStorage: false,
-        // Application Insights Connection String
-        connectionString:
-              process.env["APPLICATIONINSIGHTS_CONNECTION_STRING"] || "<your connection string>",
-    },
-    samplingRatio: 1,
-    instrumentationOptions: {
-        // Instrumentations generating traces
-        azureSdk: { enabled: true },
-        http: { enabled: true },
-        mongoDb: { enabled: true },
-        mySql: { enabled: true },
-        postgreSql: { enabled: true },
-        redis: { enabled: true },
-        redis4: { enabled: true },
-        // Instrumentations generating logs
-        bunyan: { enabled: true },
-        winston: { enabled: true },
-    },
-    enableLiveMetrics: true,
-    enableStandardMetrics: true,
-    browserSdkLoaderOptions: {
-        enabled: false,
-        connectionString: "",
-    },
-    resource: resource,
-    logRecordProcessors: [],
-    spanProcessors: []
-};
-
-useAzureMonitor(options);
-```
-
-#### [Python](#tab/python)
-
-The Azure Monitor OpenTelemetry Distro for Python only collects calls to PostgreSQL database with [psycopg2](https://pypi.org/project/psycopg2/) library out of the box.
-
----
-
-### Filter SQL telemetry
-
-If you want to filter out SQL telemetry, for example due to either security or cost concerns, follow these steps:
-
-#### [ASP.NET Core](#tab/aspnetcore)
-
-We vendor the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
-
-`dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
-
-```csharp
-builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
-{
-    builder.AddSqlClientInstrumentation(options =>
-    {
-        options.SetDbStatementForStoredProcedure = false;
-    });
-});
-```
-
-#### [.NET](#tab/net)
-
-To filter out SQL telemetry, add the following code to your *program.cs* file:
-
-```csharp
-using var traceProvider = Sdk.CreateTracerProviderBuilder()
-   .AddSqlClientInstrumentation(
-       options=>
-       {
-           options.Filter = cmd =>
-           {
-               if (cmd is SqlCommand command)
-               {
-                   return command.CommandType == CommandType.StoredProcedure;
-               }
-
-               return false;
-           };
-       })
-   .AddAzureMonitorTraceExporter()
-   .Build();
-```
-
-#### [Java](#tab/java)
-
-There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
-
-#### [Java native](#tab/java-native)
-
-There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
-
-#### [Node.js](#tab/nodejs)
-
-To filter SQL telemetry, you can use a custom span processor.
-
-#### [Python](#tab/python)
-
-To filter SQL telemetry, you can use a custom span processor.
 
 ---
 
