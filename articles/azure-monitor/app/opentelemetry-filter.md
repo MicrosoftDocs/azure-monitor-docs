@@ -2,7 +2,8 @@
 title: Filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 description: This article provides guidance on how to filter OpenTelemetry for applications using Azure Monitor.
 ms.topic: conceptual
-ms.date: 10/25/2024
+ms.date: 12/06/2024
+ms.author: v-nawrothkai
 ms.service: azure-monitor
 ms.subservice: application-insights
 # ms.devlang: csharp, javascript, typescript, python
@@ -12,7 +13,9 @@ ms.reviewer: mmcc
 
 # Filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 
-...
+This article provides guidance on how to filter OpenTelemetry for applications using [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
+
+To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
 ## Filter telemetry
 
@@ -280,44 +283,15 @@ It's not possible to filter telemetry in Java native.
 
 ### Enable SQL telemetry
 
-### [ASP.NET Core](#tab/aspnetcore)
+#### [ASP.NET Core](#tab/aspnetcore)
 
-We vendor the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
+The Azure Monitor OpenTelemetry Distro for ASP.NET Core includes the SqlClient instrumentation to collect SQL telemetry by default.
 
-`dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
+#### [.NET](#tab/net)
 
-```csharp
-builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
-{
-    builder.AddSqlClientInstrumentation(options =>
-    {
-        options.SetDbStatementForStoredProcedure = false;
-    });
-});
-```
+The Azure Monitor OpenTelemetry Exporter doesn't collect SQL telemetry by default. To enable it, you need to configure the desired instrumentation libraries.
 
-### [.NET](#tab/net)
-
-```csharp
-using var traceProvider = Sdk.CreateTracerProviderBuilder()
-   .AddSqlClientInstrumentation(
-       options=>
-       {
-           options.Filter = cmd =>
-           {
-               if (cmd is SqlCommand command)
-               {
-                   return command.CommandType == CommandType.StoredProcedure;
-               }
-
-               return false;
-           };
-       })
-   .AddAzureMonitorTraceExporter()
-   .Build();
-```
-
-### [Java](#tab/java)
+#### [Java](#tab/java)
 
 Java collects SQL (JDBC) telemetry by default.
 
@@ -371,9 +345,10 @@ const options: AzureMonitorOpenTelemetryOptions = {
 
 useAzureMonitor(options);
 ```
-### [Python](#tab/python)
 
-The Azure Monitor OpenTelemetry Distro only collects calls to PostgreSQL database with [psycopg2](https://pypi.org/project/psycopg2/) library out of the box.
+#### [Python](#tab/python)
+
+The Azure Monitor OpenTelemetry Distro for Python only collects calls to PostgreSQL database with [psycopg2](https://pypi.org/project/psycopg2/) library out of the box.
 
 ---
 
@@ -381,31 +356,64 @@ The Azure Monitor OpenTelemetry Distro only collects calls to PostgreSQL databas
 
 If you want to filter out SQL telemetry, for example due to either security or cost concerns, follow these steps:
 
-### [ASP.NET Core](#tab/aspnetcore)
+#### [ASP.NET Core](#tab/aspnetcore)
 
-...
+We vendor the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
 
-### [.NET](#tab/net)
+`dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
 
-...
+```csharp
+builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
+{
+    builder.AddSqlClientInstrumentation(options =>
+    {
+        options.SetDbStatementForStoredProcedure = false;
+    });
+});
+```
 
-### [Java](#tab/java)
+#### [.NET](#tab/net)
 
-There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
+To filter out SQL telemetry, add the following code to your *program.cs* file:
+
+```csharp
+using var traceProvider = Sdk.CreateTracerProviderBuilder()
+   .AddSqlClientInstrumentation(
+       options=>
+       {
+           options.Filter = cmd =>
+           {
+               if (cmd is SqlCommand command)
+               {
+                   return command.CommandType == CommandType.StoredProcedure;
+               }
+
+               return false;
+           };
+       })
+   .AddAzureMonitorTraceExporter()
+   .Build();
+```
+
+#### [Java](#tab/java)
+
+> [!NOTE]
+> There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
 
 To filter SQL telemetry for cost reasons, you can disable the JDBC instrumentation, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
-### [Java native](#tab/java-native)
+#### [Java native](#tab/java-native)
 
-There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
+> [!NOTE]
+> There's no need to filter SQL telemetry for PII reasons because all literal values are automatically scrubbed.
 
 To filter SQL telemetry for cost reasons, you can disable the JDBC instrumentation, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
-### [Node.js](#tab/nodejs)
+#### [Node.js](#tab/nodejs)
 
 To filter SQL telemetry, you can use a custom span processor.
 
-### [Python](#tab/python)
+#### [Python](#tab/python)
 
 To filter SQL telemetry, you can use a custom span processor.
 
@@ -423,7 +431,7 @@ To filter SQL telemetry, you can use a custom span processor.
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
-#### [.NET](#tab/net)
+### [.NET](#tab/net)
 
 * To further configure the OpenTelemetry distro, see [Azure Monitor OpenTelemetry configuration](opentelemetry-configuration.md)
 * To review the source code, see the [Azure Monitor Exporter GitHub repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter).
