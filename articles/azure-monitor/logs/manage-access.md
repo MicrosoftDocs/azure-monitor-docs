@@ -182,12 +182,10 @@ Create assignments at the resource level (workspace) to assure accurate access c
 
 #### Log Analytics Reader
 
-Members of the Log Analytics Reader role can view all monitoring data and monitoring settings, including the configuration of Azure diagnostics on all Azure resources.
-
 Members of the Log Analytics Reader role can:
 
-- View and search all data related to the resources within the scope you assign. For example, if you assign a user the Log Analytics Reader role for a resource group, that user can view and search all data related to all resources within that resource group.
-- View monitoring settings, including viewing the configuration of Azure diagnostics on all Azure resources.
+- View and search all data related to the resources within the scope you assign. For example, if you assign a user the Log Analytics Reader role on a resource group, that user can view and search all data related to the resources within that resource group.
+- View monitoring settings, including Azure resources' diagnostics settings.
 
 The Log Analytics Reader role includes the following Azure actions:
 
