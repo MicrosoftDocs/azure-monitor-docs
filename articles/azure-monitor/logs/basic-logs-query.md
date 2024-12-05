@@ -14,7 +14,7 @@ Basic and Auxiliary logs tables reduce the cost of ingesting high-volume verbose
 For more information about Basic and Auxiliary table plans, see [Azure Monitor Logs Overview: Table plans](data-platform-logs.md#table-plans). 
 
 > [!NOTE]
-> Other tools that use the Azure API for querying - for example, Grafana and Power BI - cannot access data in Basic and Auxiliary tables.
+> Other tools that use the Azure API for querying - for example, Power BI - cannot access data in Basic and Auxiliary tables.
 
 [!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
 
