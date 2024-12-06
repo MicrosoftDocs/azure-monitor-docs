@@ -4,13 +4,16 @@ description: Create a transformation in Azure Monitor
 author: bwren
 ms.author: bwren
 ms.topic: conceptual
-ms.date: 10/15/2024
+ms.date: 12/06/2024
 ms.reviwer: nikeist
 
 ---
 
 # Create a transformation in Azure Monitor
 [Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing a transformation query and adding it to a DCR.
+
+> [!NOTE]
+> If you're not familiar with KQL or creating log queries for Azure Monitor data, start with [Overview of Log Analytics in Azure Monitor](../logs/log-analytics-overview.md) and [Log queries in Azure Monitor](../logs/log-query-overview.md).
 
 ## Basic query structure
 All transformation queries start with `source`, which is a virtual table that represents the input stream. You can then use any supported KQL operators to filter, modify, or add columns to the data as you would with any other table. The query is applied individually to each entry sent by the data source. 
@@ -39,7 +42,8 @@ source
     EventId = tostring(Properties.EventId)
 ```
 
-See [Data collection rule (DCR) samples and scenarios in Azure Monitor](./data-collection-rule-samples.md) for various samples for different scenarios. 
+> [!NOTE]
+> See [Data collection rule (DCR) samples and scenarios in Azure Monitor](./data-collection-rule-samples.md) for various samples for different scenarios. 
 
 ## Create the transformation query
 Before you create or edit the DCR that will include your transformation, you'll need to create and test the transformation query. You'll typically do this by running test queries against existing data or test data. When you get the results you want, you can replace the table name with `source` and paste it into your DCR as explained below in [Add transformation to DCR](#add-transformation-to-dcr).
@@ -124,7 +128,9 @@ In the following example, `transformKql` has a query that filters data, so only 
 ] 
 ```
 ## Create workspace transformation DCR
-The [workspace transformation data collection rule (DCR)](./data-collection-transformations.md#workspace-transformation-dcr) is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables.
+The [workspace transformation data collection rule (DCR)](./data-collection-transformations.md#workspace-transformation-dcr) is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables. See []
+
+Use one of the following methods to create a workspace transformation DCR for your workspace and add one or more transformations to it.
 
 ### [Azure Portal](#tab/portal)
 You can create a workspace transformation DCR in the Azure portal by adding a transformation to a supported table.
@@ -149,26 +155,38 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 ### [JSON](#tab/json)
 Workspace transformation DCRs are mostly like any other DCR. They use the same JSON structure for their definition, and you can create and edit them using the same commands and strategies described in [Create or edit a DCR using JSON](./data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). The differences are with the JSON definition:
 
-- It must include the `kind` parameter with a value of `WorkspaceTransformation`.
+- It must include the `kind` parameter with a value of `WorkspaceTransforms`.
 - The `dataSources` section must be empty.
 - The `destinations` section must include one and only one Log Analytics workspace destination. This is the workspace where the transformation will be applied.
 
-Following is a sample JSON definition for a workspace transformation DCR:
+Following is a sample JSON definition for a workspace transformation DCR. 
 
 ```json
 {
     "kind": "WorkspaceTransforms",
     "location": "eastus",
     "properties": {
-        "destinations": [
-            {                "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace"
-            }
-        ],
+        "dataSources": {},
+        "destinations": {
+            "logAnalytics": [
+                {
+                    "workspaceResourceId": "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
+                    "name": "MyWorkspace"
+                }
+            ]
+        },
         "dataFlows": [
             {
-                "query": "source | where severity == \"Critical\" | extend Properties = parse_json(properties) | project TimeGenerated = todatetime([\"time\"]), Category = category, StatusDescription = StatusDescription, EventName = name, EventId = tostring(Properties.EventId)"
+                "streams": [
+                    "Microsoft-Table-LAQueryLogs"
+                ],
+                "destinations": [
+                    "MyWorkspace"
+                ],
+                "transformKql": "source | where QueryText !contains 'LAQueryLogs'"
             }
-        ]
+        ],
+        "provisioningState": "Succeeded"
     }
 }
 ```

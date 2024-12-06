@@ -14,6 +14,10 @@ ms.reviwer: nikeist
 ## Optimize and monitor transformations
 Transformations run a KQL query against every record collected with the DCR, so it's important that they run efficiently. Transformations that take excessive time to run can impact the performance of the data collection pipeline and result in data loss. See [Optimize log queries in Azure Monitor](../logs/query-optimization.md) for guidance on testing your query before you implement it as a transformation and for recommendations on optimizing queries that don't run efficiently. 
 
+> [!IMPORTANT]
+> You may experience data loss if a transformation takes more than 20 seconds.
+
+
 Because transformations don't run interactively, it's important to continuously monitor them to ensure that they're running properly and not taking excessive time to process data. See [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) for details on logs and metrics that monitor the health and performance of transformations. This includes identifying any errors that occur in the KQL and metrics to track their running duration.
 
 The following metrics are automatically collected for transformations and should be reviewed regularly to verify that your transformations are still running as expected. Create [metric alert rules](../alerts/alerts-create-metric-alert-rule.yml) to be automatically notified when one of these metrics exceeds a threshold.
@@ -82,10 +86,7 @@ source | extend Email = replace_string(Email,substring(Email,0,indexof(Email,"@"
 Send sensitive records to an alternate table with different role-based access control configuration. See [Send data to multiple tables](./data-collection-rule-samples.md#send-data-to-multiple-tables) below for details on how to send data to multiple tables.
 
 ## Enrich data
-Use a transformation to add information to data that provides business context or simplifies querying the data later.
-
-**Add a column with more information** 
-Use [string functions](./data-collection-transformations-kql.md#scalar-functions) to extract critical information from a column and then use the `extend` statement to add a new column to the data source. The following example adds a column identifying whether an IP address in another column is internal or external.
+Use a transformation to add information to data that provides business context or simplifies querying the data later. Use [string functions](./data-collection-transformations-kql.md#scalar-functions) to extract critical information from a column and then use the `extend` statement to add a new column to the data source. The following example adds a column identifying whether an IP address in another column is internal or external.
 
 ```kusto
 source | extend IpLocation = iff(split(ClientIp,".")[0] in ("10","192"), "Internal", "External")

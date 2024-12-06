@@ -278,7 +278,6 @@ Replace the properties in the following template and save them in a json file be
                 {
                     "name": "LogAnayticsWorkspace01",
                     "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
-                    "workspaceId": "00000000-0000-0000-0000-000000000000"
                 }
             ]
         },
