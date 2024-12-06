@@ -463,6 +463,8 @@ Use the following template to create a DCR. For more information, see [Microsoft
 After creating the DCR and DCRA, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type. 
 
 
+[!INCLUDE [data-collection-rule-troubleshoot](../includes/data-collection-rule-troubleshoot.md)]
+
 
 ## Next steps
 
