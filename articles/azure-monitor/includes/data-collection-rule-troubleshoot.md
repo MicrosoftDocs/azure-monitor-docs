@@ -7,9 +7,9 @@ author: AbbyMSFT
 ---
 
 ## Verify and troubleshoot data collection
-Once you install the DCR, it may take several minutes for the changes to take effect and data to be collected with the updated DCR. If you don't see any data being collected, it can be difficult to determine the root cause of the issue. Use the [DCR monitoring](data-collection-monitor.md) features, which include metrics and logs to help troubleshoots.
+Once you install the DCR, it may take several minutes for the changes to take effect and data to be collected with the updated DCR. If you don't see any data being collected, it can be difficult to determine the root cause of the issue. Use the [DCR monitoring](../essentials/data-collection-monitor.md) features, which include metrics and logs to help troubleshoots.
 
-[DCR metrics](./data-collection-monitor.md#dcr-metrics) are collected automatically for all DCRs, and you can analyze them using metrics explorer like the platform metrics for other Azure resources. Enable [DCR error logs](./data-collection-monitor.md#enable-dcr-error-logs) to get detailed error information when data processing is not successful.
+[DCR metrics](../essentials/data-collection-monitor.md#dcr-metrics) are collected automatically for all DCRs, and you can analyze them using metrics explorer like the platform metrics for other Azure resources. Enable [DCR error logs](../essentials/data-collection-monitor.md#enable-dcr-error-logs) to get detailed error information when data processing is not successful.
 
 If you don't see data being collected, follow these basic steps to troubleshoot the issue.
 
