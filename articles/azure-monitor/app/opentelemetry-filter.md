@@ -256,7 +256,7 @@ If a particular source isn't explicitly added by using `AddSource("ActivitySourc
 
 You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
 
-Use the [custom property example](./opentelemetry-add-modify.md#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=nodejs#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```typescript
 // Import the necessary packages.
