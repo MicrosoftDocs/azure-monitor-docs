@@ -246,11 +246,11 @@ If a particular source isn't explicitly added by using `AddSource("ActivitySourc
 
 ### [Java](#tab/java)
 
-...
+For information about using telemetry processors with Java, see [Telemetry processors (preview) - Azure Monitor Application Insights for Java](./java-standalone-telemetry-processors.md).
 
 ### [Java native](#tab/java-native)
 
-...
+For information about using telemetry processors with Java, see [Telemetry processors (preview) - Azure Monitor Application Insights for Java](./java-standalone-telemetry-processors.md).
 
 ### [Node.js](#tab/nodejs)
 
