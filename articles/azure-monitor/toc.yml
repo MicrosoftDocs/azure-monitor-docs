@@ -709,7 +709,7 @@ items:
         - name: Supported KQL
           displayName: Transformations
           href: essentials/data-collection-transformations-kql.md
-        - name: Samples
+        - name: Best practices and samples
           displayName: Transformations
           href: essentials/data-collection-transformations-samples.md
       - name: Metrics export
