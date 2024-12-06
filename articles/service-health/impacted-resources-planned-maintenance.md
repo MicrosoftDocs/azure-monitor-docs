@@ -5,8 +5,6 @@ ms.topic: conceptual
 
 ms.date: 12/5/2024
 
-ms.date: 10/24/2024
-
 ---
 
 # Resource impact from Azure planned maintenance
