@@ -356,7 +356,7 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 ## Set the daily cap reset time
 
 > [!IMPORTANT]
-> The daily cap reset time can no longer be customized using the `ResetTime` attribute. The current daily cap is reset at 00:00:00 AM UTC.
+> The daily cap reset time can no longer be customized using the `ResetTime` attribute.
 
 ## Set the pricing plan
 
