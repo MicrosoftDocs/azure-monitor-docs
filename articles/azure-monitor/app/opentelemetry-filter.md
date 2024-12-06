@@ -23,12 +23,12 @@ You might use the following ways to filter out telemetry before it leaves your a
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
+Many instrumentation libraries provide a filter option. For guidance, see the corresponding readme files:
 
 * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
 
-We vendor the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
+We include the [SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
 
 `dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
 
@@ -42,20 +42,17 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
 });
 ```
 
-> [!NOTE]
-> The Azure Monitor OpenTelemetry Distro for ASP.NET Core includes the SqlClient instrumentation to collect SQL telemetry by default.
-
 ### [.NET](#tab/net)
 
-Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
+> [!NOTE]
+> The Azure Monitor Exporter doesn't include any instrumentation libraries. You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk). For more information, see [Add, modify, and filter OpenTelemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#included-instrumentation-libraries).
+
+Many instrumentation libraries provide a filter option. For guidance, see the corresponding readme files:
 
 * [ASP.NET](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/Instrumentation.AspNet-1.0.0-rc9.8/src/OpenTelemetry.Instrumentation.AspNet/README.md#filter)
-* [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
+* [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter-httpclient-api)
 
-> [!NOTE]
-> The Azure Monitor OpenTelemetry Exporter doesn't collect SQL telemetry by default.
-
-To filter out SQL telemetry, add the following code to your *program.cs* file:
+If your .NET application is instrumented with the SqlClient library and you want to filter out SQL telemetry, add the following code to your *program.cs* file:
 
 ```csharp
 using var traceProvider = Sdk.CreateTracerProviderBuilder()
@@ -78,21 +75,23 @@ using var traceProvider = Sdk.CreateTracerProviderBuilder()
 
 ### [Java](#tab/java)
 
-See [sampling overrides](java-standalone-config.md#sampling-overrides) and [telemetry processors](java-standalone-telemetry-processors.md).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed.
 
-There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+FOr example, if you want to stop collecting SQL telemetry, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
-> Java collects SQL (JDBC) telemetry by default.
+> There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
+
+<!--See [sampling overrides](java-standalone-config.md#sampling-overrides) and [telemetry processors](java-standalone-telemetry-processors.md).-->
 
 ### [Java native](#tab/java-native)
 
-It's not possible to filter telemetry in Java native.
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed.
 
-There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed. If you still want to filter SQL telemetry, for example for cost reasons, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+FOr example, if you want to stop collecting SQL telemetry, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
-> Java native collects SQL (JDBC) telemetry by default.
+> There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
 
 ### [Node.js](#tab/nodejs)
 
