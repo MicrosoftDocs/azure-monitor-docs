@@ -23,8 +23,6 @@ Reasons why you might want to filter out telemetry include:
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
-You might use the following ways to filter out telemetry before it leaves your application.
-
 ## Filter telemetry using instrumentation libraries
 
 > [!NOTE]
@@ -65,9 +63,7 @@ Many instrumentation libraries provide a filter option. For guidance, see the co
 
 ### [Java](#tab/java)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed.
-
-For example, if you want to stop collecting SQL telemetry, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
@@ -76,9 +72,7 @@ For example, if you want to stop collecting SQL telemetry, you can disable the J
 
 ### [Java native](#tab/java-native)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed.
-
-For example, if you want to stop collecting SQL telemetry, you can disable the JDBC instrumentation. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
