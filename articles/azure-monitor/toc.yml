@@ -188,8 +188,6 @@ items:
           - name: Distributed tracing and telemetry correlation
             href: app/distributed-trace-data.md
             displayName: correlation headers, w3c, distributed tracing, tracing
-          - name: Log-based & pre-aggregated metrics
-            href: app/pre-aggregated-metrics-log-metrics.md
         - name: SDK support policy
           href: app/sdk-support-guidance.md
       - name: Upgrade from classic resources and iKey
@@ -326,6 +324,8 @@ items:
       - name: Geolocation and IP address handling
         href: app/ip-collection.md
         displayName: geolocation, IP collection, IP tracking, IP storage
+      - name: Metrics
+        href: app/metrics-overview.md
       - name: Microsoft Entra authentication
         href: app/azure-ad-authentication.md
         displayName: azure ad authentication
@@ -1666,12 +1666,6 @@ items:
       href: app/data-model-complete.md
     - name: Statsbeat
       href: app/statsbeat.md
-    - name: Metrics
-      items:
-      - name: Log-based metrics definitions
-        href: essentials/app-insights-metrics.md
-      - name: Standard metrics
-        href: app/standard-metrics.md
   - name: Azure PowerShell
     items:
     - name: Azure Monitor
