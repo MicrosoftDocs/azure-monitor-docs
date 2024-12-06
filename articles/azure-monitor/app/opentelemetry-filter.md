@@ -21,6 +21,9 @@ You might use the following ways to filter out telemetry before it leaves your a
 
 ## Filter telemetry by signal type
 
+> [!NOTE]
+> For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).
+
 ### [ASP.NET Core](#tab/aspnetcore)
 
 Many instrumentation libraries provide a filter option. For guidance, see the corresponding readme files:
@@ -45,14 +48,14 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
 
 ### [.NET](#tab/net)
 
-> [!NOTE]
-> The Azure Monitor Exporter doesn't include any instrumentation libraries. You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk). For more information, see [Add, modify, and filter OpenTelemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#included-instrumentation-libraries).
-
 Many instrumentation libraries provide a filter option. For guidance, see the corresponding readme files:
 
 * [ASP.NET](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/Instrumentation.AspNet-1.0.0-rc9.8/src/OpenTelemetry.Instrumentation.AspNet/README.md#filter)
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter-httpclient-api)
 * [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter)
+
+> [!NOTE]
+> The Azure Monitor Exporter doesn't include any instrumentation libraries. You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk). For more information, see [Add, modify, and filter OpenTelemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#included-instrumentation-libraries).
 
 ### [Java](#tab/java)
 
