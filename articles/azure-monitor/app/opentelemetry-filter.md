@@ -15,11 +15,17 @@ ms.reviewer: mmcc
 
 This article provides guidance on how to filter OpenTelemetry for applications using [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
 
+Reasons why you might want to filter out telemetry include:
+
+* Filtering out health check telemetry to reduce noise.
+* Ensuring PII and credentials are not collected.
+* Filtering out low-value telemetry to optimize performance.
+
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
 You might use the following ways to filter out telemetry before it leaves your application.
 
-## Filter telemetry by signal type
+## Filter telemetry using instrumentation libraries
 
 > [!NOTE]
 > For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).
@@ -32,7 +38,7 @@ Many instrumentation libraries provide a filter option. For guidance, see the co
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
 * [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter) <sup>1</sup>
 
-<sup>1</sup> We include the [SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation in our package while our distro is still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
+<sup>1</sup> We include the [SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation in our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
 
 `dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
 
