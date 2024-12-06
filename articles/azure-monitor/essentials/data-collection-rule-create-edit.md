@@ -18,7 +18,7 @@ There are multiple methods for creating a [data collection rule (DCR)](./data-co
 
 ## Permissions
 
- You require the following permissions to create DCRs and DCR associations:
+ You require the following permissions to create DCRs and [DCR associations](./data-collection-rule-associations.md):
 
 | Built-in role | Scopes | Reason |
 |:---|:---|:---|
@@ -41,7 +41,7 @@ The Azure portal provides a simplified experience for creating a DCR for particu
 | Metrics export | Create a DCR in the Azure portal using a guided interface to select metrics of different resource types to collect. An association is created between the DCR and each resource you select. See [Create a data collection rule (DCR) for metrics export](./metrics-export-create.md). |
 | Table creation | When you create a new table in a Log Analytics workspace using the Azure portal, you upload sample data that Azure Monitor uses to create a DCR, including a transformation, that can be used with the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md). You can't modify this DCR in the Azure portal but can modify it using any of the methods described in this article. See [Create a custom table](../logs/create-custom-table.md?tabs=azure-portal-1%2Cazure-portal-2%2Cazure-portal-3#create-a-custom-table). |
 | Kubernetes monitoring | To monitor a Kubernetes cluster, you enable Container Insights for logs and Prometheus for metrics. A DCR for each is created and associated with the containerized version of Azure Monitor agent in the cluster. You may need to modify the Container insights DCR to add a transformation. See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) and [Data transformations in Container insights](../containers/container-insights-transformations.md). |
-| Workspace transformation DCR |  |
+| Workspace transformation DCR | Workspace transformation DCRs provide transformations for data collection scenarios that don't yet use DCRs. You can create this DCR by using the Azure portal to create a transformation for a particular table. See [Create workspace transformation DCR](./data-collection-transformations-create.md#create-workspace-transformation-dcr). |
 
 ## DCR definition
 Regardless of how it's created, each DCR has a definition that follows a [standard JSON schema](./data-collection-rule-structure.md). To create or edit a DCR using a method other than the Azure portal, you need to work directly with its JSON definition. For some scenarios you must work with the JSON definition because the Azure portal doesn't provide a way to configure the DCR as needed.
@@ -67,9 +67,9 @@ $DCR.Content | ConvertFrom-Json | ConvertTo-Json -Depth 20 | Out-File -FilePath 
 > You can get the details for a DCR using `Get-AzDataCollectionRule` cmdlet in PowerShell or `az monitor data-collection rule show` command in Azure CLI, but they don't provide the JSON in the format that you require for editing. Instead, use PowerShell or CLI to call the REST API as shown in the example.
 
 ## Create or edit a DCR using JSON
-In addition to editing a DCR, you can create a new one using one of the [sample DCRs](./data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](./data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
+In addition to editing an existing DCR, you can create a new one using one of the [sample DCRs](./data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](./data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
 
-Once you have the definition of a DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
+Once you have the definition of your DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
 
 ### [CLI](#tab/cli)
 

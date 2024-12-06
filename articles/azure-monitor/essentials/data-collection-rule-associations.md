@@ -12,7 +12,7 @@ ms.reviewer: nikeist
 Data collection rule associations (DCRAs) associate DCRs with monitored resources in Azure Monitor as described in [Using a DCR](./data-collection-rule-overview.md#using-a-dcr). This article describes different methods for viewing and creating DCRAs and their related resources.
 
 > [!IMPORTANT]
-> Not all data collection scenarios with DCRs use DCRAs. See [Using a DCRs](./data-collection-rule-overview.md#using-a-dcr) for an explanation and comparison of how DCRs are specified in different data collection scenarios.
+> Not all data collection scenarios with DCRs use DCRAs. See [Using a DCR](./data-collection-rule-overview.md#using-a-dcr) for an explanation and comparison of how DCRs are specified in different data collection scenarios.
 
 ## View and modify associations for a DCR in the Azure portal
 
@@ -66,7 +66,7 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 :::image type="content" source="media/data-collection-rule-view/resources-view-associate.png" alt-text="Screenshot of the create association button in the resources view in  the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associate.png":::
 
 ## Create new association
-You can create a new association using any of the following methods. The DCRA object that's created is a child of the target object and uses the resource ID of the DCR.
+In addition to the preview Azure portal experience, you can create a new association using any of the following methods. The DCRA object that's created is a child of the target object and uses the resource ID of the DCR.
 
 ### [CLI](#tab/cli)
 

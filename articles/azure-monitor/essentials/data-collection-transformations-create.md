@@ -128,7 +128,7 @@ In the following example, `transformKql` has a query that filters data, so only 
 ] 
 ```
 ## Create workspace transformation DCR
-The [workspace transformation data collection rule (DCR)](./data-collection-transformations.md#workspace-transformation-dcr) is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables. See []
+The [workspace transformation data collection rule (DCR)](./data-collection-transformations.md#workspace-transformation-dcr) is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables.
 
 Use one of the following methods to create a workspace transformation DCR for your workspace and add one or more transformations to it.
 
@@ -158,6 +158,7 @@ Workspace transformation DCRs are mostly like any other DCR. They use the same J
 - It must include the `kind` parameter with a value of `WorkspaceTransforms`.
 - The `dataSources` section must be empty.
 - The `destinations` section must include one and only one Log Analytics workspace destination. This is the workspace where the transformation will be applied.
+- The `dataFlows` section should include a separate dataflow for each table that will have a transformation. Use a `where` clause in the query if only certain records should be transformed.
 
 Following is a sample JSON definition for a workspace transformation DCR. 
 
@@ -184,6 +185,15 @@ Following is a sample JSON definition for a workspace transformation DCR.
                     "MyWorkspace"
                 ],
                 "transformKql": "source | where QueryText !contains 'LAQueryLogs'"
+            },
+            {
+                "streams": [
+                    "Microsoft-Table-Event"
+                ],
+                "destinations": [
+                    "MyWorkspace"
+                ],
+                "transformKql": "source | project-away ParameterXml"
             }
         ],
         "provisioningState": "Succeeded"

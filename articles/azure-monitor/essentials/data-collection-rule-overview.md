@@ -52,7 +52,7 @@ Each data collection scenario using the Azure Monitor pipeline is defined in a D
 There are two fundamental ways that DCRs are specified for a particular data collection scenario as described in the following sections. Each scenario will support one of these methods, but not both.
 
 > [!NOTE]
-> [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr) are active as soon as they're created. They don't use either of the methods described in this section.
+> [Workspace transformation DCRs](./data-collection-transformations.md#workspace-transformation-dcr) are active as soon as they're created. They don't use either of the methods described in this section.
 
 ### Data collection rule associations (DCRA)
 Data collection rule associations (DCRAs) are used to associate a DCR with a monitored resource. This is a many-to-many relationship, where a single DCR can be associated with multiple resources, and a single resource can be associated with multiple DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.

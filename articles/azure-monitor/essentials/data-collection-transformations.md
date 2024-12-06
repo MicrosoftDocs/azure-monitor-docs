@@ -4,7 +4,7 @@ description: Use transformations in a data collection rule in Azure Monitor to f
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 10/02/2024
+ms.date: 12/06/2024
 ms.reviwer: nikeist
 ---
 
@@ -15,6 +15,12 @@ The following diagram illustrates the transformation process for incoming data a
 
 :::image type="content" source="media/data-collection-transformations/transformation-overview.png" lightbox="media/data-collection-transformations/transformation-overview.png" alt-text="Diagram that shows ingestion-time transformation for incoming data." border="false":::
 
+## Supported tables
+The following tables in a Log Analytics workspace support transformations.
+
+- Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
+- Any custom table created for the Azure Monitor Agent.
+
 ## Create a transformation
 There are some data collection scenarios that will allow you to add a transformation using the Azure portal, but most scenarios will require you to create a new DCR using its JSON definition or add a transformation to an existing DCR. See [Create a transformation in Azure Monitor](./data-collection-transformations-create.md) for different options and [Best practices and samples for transformations in Azure Monitor](./data-collection-transformations-samples.md) for sample transformation queries for common scenarios.
 
@@ -23,7 +29,7 @@ Transformations are defined in a data collection rule (DCR), but there are still
 
 The *workspace transformation data collection rule (DCR)* is a special [DCR](./data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform [transformations](./data-collection-transformations.md) on data that does not yet use a DCR for its data collection, and thus has no means to define a transformation.
 
-There can be only one workspace DCR for each workspace, but it can include transformations for any number of tables. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
+There can be only one workspace DCR for each workspace, but it can include transformations for any number of supported tables. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
 
 :::image type="content" source="media/data-collection-transformations/workspace-transformation-dcr.png" lightbox="media/data-collection-transformations/workspace-transformation-dcr.png" alt-text="Diagram that shows operation of the workspace transformation DCR." border="false":::
 
@@ -33,22 +39,14 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 <sup>1</sup> The Log Analytics agent has been deprecated, but some environments may still use it. It's only one example of a data source that doesn't use a DCR.
 
-## Supported tables
-The following tables in a Log Analytics workspace support transformations.
-
-- Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
-- Any custom table created for the Azure Monitor Agent. (MMA custom table can't use transformations)
-
 
 ## Transformation performance
+Transformations run a KQL query against every record collected with the DCR, so it's important that they run efficiently. Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md). Transformations that take excessive time to run can impact the performance of the data collection pipeline and result in data loss
 
-Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md). Optimal transformations should take no more than 1 second to run. See [Monitor transformations](./data-collection-monitor.md) for guidance on monitoring the DCR metrics that measure the execution time of each transformation.
+Optimal transformations should take no more than 1 second to run. See [Monitor transformations](./data-collection-monitor.md) for guidance on monitoring the DCR metrics that measure the execution time of each transformation. See [Optimize log queries in Azure Monitor](../logs/query-optimization.md) for guidance on testing your query before you implement it as a transformation and for recommendations on optimizing queries that don't run efficiently. 
 
 > [!WARNING]
 >  You may experience data loss if a transformation takes more than 20 seconds.
-
-## Optimize query
-Transformations run a KQL query against every record collected with the DCR, so it's important that they run efficiently. Transformations that take excessive time to run can impact the performance of the data collection pipeline and result in data loss. See [Optimize log queries in Azure Monitor](../logs/query-optimization.md) for guidance on testing your query before you implement it as a transformation and for recommendations on optimizing queries that don't run efficiently. 
 
 ## Monitor transformations
 Because transformations don't run interactively, it's important to continuously monitor them to ensure that they're running properly and not taking excessive time to process data. See [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) for details on logs and metrics that monitor the health and performance of transformations. This includes identifying any errors that occur in the KQL and metrics to track their running duration.
