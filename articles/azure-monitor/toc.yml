@@ -229,16 +229,11 @@ items:
         displayName: opt insights, optimization insights, code optimization, perflens
         items:
         - name: Overview
-          href: insights/code-optimizations.md
+          href: insights/code-optimizations-profiler-overview.md
         - name: Enable using .NET Profiler
           items:
-          - name: Set up Code Optimizations
-            href: insights/set-up-code-optimizations.md
           - name: Enable Profiler on specific Azure resources
             items:
-            - name: .NET Profiler overview
-              displayName: profiling, debugging, code performance, perf
-              href: profiler/profiler-overview.md
             - name: Azure App Service
               href: profiler/profiler.md
             - name: Azure Functions app
