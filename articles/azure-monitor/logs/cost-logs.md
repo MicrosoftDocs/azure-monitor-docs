@@ -16,7 +16,7 @@ The most significant charges for most Azure Monitor implementations are typicall
 
 ## Pricing model
 
-The default pricing for Log Analytics is a pay-as-you-go model that's based on ingested data volume and data retention. Each Log Analytics workspace is charged as a separate service and contributes to the bill for your Azure subscription. [Pricing for Log Analytics](https://azure.microsoft.com/pricing/details/monitor/) is set regionally. The amount of data ingestion can be considerable, depending on:
+The default pricing for Log Analytics is a pay-as-you-go model that's based on ingested data volume and data retention. Each Log Analytics workspace is charged as a separate service and contributes to the bill for your Azure subscription. [Pricing for Azure Monitor Logs](https://azure.microsoft.com/pricing/details/monitor/) is set regionally. The amount of data ingestion can be considerable, depending on:
 
 - The set of management solutions enabled and their configuration.
 - The number and type of monitored resources.
@@ -26,10 +26,16 @@ A list of Azure Monitor billing meter names is available [here](../cost-meters.m
 
 ## Data size calculation
 
-Data volume is measured as the size of the data sent to be stored and is measured in units of GB (10^9 bytes). The data size of a single record is calculated from a string representation of the columns that are stored in the Log Analytics workspace for that record. It doesn't matter whether the data is sent from an agent or added during the ingestion process. This calculation includes any custom columns added by the [logs ingestion API](logs-ingestion-api-overview.md), [transformations](../essentials/data-collection-transformations.md) or [custom fields](custom-fields.md) that are added as data is collected and then stored in the workspace.
+Azure Monitor Logs bills for the amount of data you send to a Log Analytics workspace in GB (10^9 bytes). 
+
+Azure Monitor Logs calculates the billed size of a single record based on:
+
+- A string representation of the column entries that Azure Monitor Logs needs to add in the Log Analytics workspace for that record. 
 
 >[!NOTE]
 >The billable data volume calculation is generally substantially smaller than the size of the entire incoming JSON-packaged event. On average, across all event types, the billed size is around 25 percent less than the incoming data size. It can be up to 50 percent for small events. The percentage includes the effect of the standard columns excluded from billing. It's essential to understand this calculation of billed data size when you estimate costs and compare other pricing models.
+
+- The billable size includes data both data is collected from the data source or added during the ingestion process. For example, this calculation includes any custom columns added by the [logs ingestion API](logs-ingestion-api-overview.md), [transformations](../essentials/data-collection-transformations.md), and [custom fields](custom-fields.md). If you send columns entries that don't match the destination table schema, Azure Monitor Logs bills you for those column entries, even though the destination table can't store the data. Make sure your data collection rules match the destination table schema to avoid being charged for data that your destination table can't store. 
 
 ### Excluded columns
 
@@ -62,7 +68,7 @@ In addition to the pay-as-you-go model, Log Analytics has *commitment tiers*, wh
 
 Billing for the commitment tiers is done per workspace on a daily basis. If the workspace is part of a [dedicated cluster](#dedicated-clusters), the billing is done for the cluster. See the following "Dedicated clusters" section. For a list of the commitment tiers and their prices, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
-Azure Commitment Discounts, such as discounts received from [Microsoft Enterprise Agreements](https://www.microsoft.com/licensing/licensing-programs/enterprise), are applied to Azure Monitor Logs commitment-tier pricing just as they are to pay-as-you-go pricing. Discounts are applied whether the usage is being billed per workspace or per dedicated cluster.
+Azure Commitment Discounts, such as discounts received from [Microsoft Enterprise Agreements](https://www.microsoft.com/licensing/licensing-programs/enterprise), are applied to Azure Monitor Logs commitment-tier pricing just as they're to pay-as-you-go pricing. Discounts are applied whether the usage is being billed per workspace or per dedicated cluster.
 
 > [!TIP]
 > The **Usage and estimated costs** menu item for each Log Analytics workspace shows an estimate of what your data ingestion charges would be at each commitment level to help you choose the optimal commitment tier for your data ingestion patterns. Review this information periodically to determine if you can reduce your charges by moving to another tier. For information on this view, see [Usage and estimated costs](../cost-usage.md#usage-and-estimated-costs). To review your actual charges, use [Azure Cost Management = Billing](../cost-usage.md#azure-cost-management--billing).
@@ -87,7 +93,7 @@ Cluster billing starts when the cluster is created, regardless of whether worksp
 
 When you link workspaces to a cluster, the pricing tier is changed to cluster, and ingestion is billed based on the cluster's commitment tier. Workspaces associated to a cluster no longer have their own pricing tier. Workspaces can be unlinked from a cluster at any time, and the pricing tier can be changed to per GB.
 
-If your linked workspace is using the legacy Per Node pricing tier, it is billed based on data ingested against the cluster's commitment tier, and no longer Per Node. Per-node data allocations from Microsoft Defender for Cloud will continue to be applied.
+If your linked workspace is using the legacy Per Node pricing tier, it's billed based on data ingested against the cluster's commitment tier, and no longer Per Node. Per-node data allocations from Microsoft Defender for Cloud will continue to be applied.
 
 If a cluster is deleted, billing for the cluster stops even if the cluster is within its 31-day commitment period. 
 
@@ -161,7 +167,7 @@ In some scenarios, combining this data can result in cost savings. Typically, th
 - [Update](/azure/azure-monitor/reference/tables/update) and [UpdateSummary](/azure/azure-monitor/reference/tables/updatesummary) when the Update Management solution isn't running in the workspace or solution targeting is enabled.
 - [MDCFileIntegrityMonitoringEvents](/azure/azure-monitor/reference/tables/mdcfileintegritymonitoringevents)
 
-If the workspace is in the legacy Per Node pricing tier, the Defender for Cloud and Log Analytics allocations are combined and applied jointly to all billable ingested data. If the workspace has Sentinel enabled on it, if Sentinel is using a classic pricing tier, the Defender data allocation applies only for the Log Analytics data ingestion billing, but not the classic Sentinel billing. If Sentinel is using a [simplified pricing tier](/azure/sentinel/enroll-simplified-pricing-tier), the Defender data allocation applies to the unified Sentinel billing. To learn more on how Microsoft Sentinel customers can benefit, see the [Microsoft Sentinel Pricing page](https://azure.microsoft.com/pricing/details/microsoft-sentinel/).
+If the workspace is in the legacy Per Node pricing tier, the Defender for Cloud and Log Analytics allocations are combined and applied jointly to all billable ingested data. If the workspace has Microsoft Sentinel enabled on it, if Sentinel is using a classic pricing tier, the Defender data allocation applies only for the Log Analytics data ingestion billing, but not the classic Sentinel billing. If Sentinel is using a [simplified pricing tier](/azure/sentinel/enroll-simplified-pricing-tier), the Defender data allocation applies to the unified Sentinel billing. To learn more on how Microsoft Sentinel customers can benefit, see the [Microsoft Sentinel Pricing page](https://azure.microsoft.com/pricing/details/microsoft-sentinel/).
 
 The count of monitored servers is calculated on an hourly granularity. The daily data allocation contributions from each monitored server are aggregated at the workspace level. If the workspace is in the legacy Per Node pricing tier, the Microsoft Defender for Cloud and Log Analytics allocations are combined and applied jointly to all billable ingested data.  
 

@@ -4,7 +4,7 @@ description: Detailed instructions on using the Windows agent troubleshooter too
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 12/14/2023
+ms.date: 11/14/2024
 ms.custom: references_regions
 ms.reviewer: jeffwo
 

@@ -111,7 +111,7 @@ az monitor data-collection rule create --location 'eastus' --resource-group 'my-
 Use the [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association) command to create an association between your DCR and resource.
 
 ```azurecli
-az monitor data-collection rule association create --name "my-vm-dcr-association" --rule-id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr" --resource "subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm"
+az monitor data-collection rule association create --name "my-vm-dcr-association" --rule-id "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr" --resource "subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -126,7 +126,7 @@ New-AzDataCollectionRule -Name 'my-dcr' -ResourceGroupName 'my-resource-group' -
 Use the [New-AzDataCollectionRuleAssociation](/powershell/module/az.monitor/new-azdatacollectionruleassociation) command to create an association between your DCR and resource.
 
 ```powershell
- New-AzDataCollectionRuleAssociation -TargetResourceId '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm' -DataCollectionRuleId '/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr' -AssociationName 'my-vm-dcr-association'
+ New-AzDataCollectionRuleAssociation -TargetResourceId '/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm' -DataCollectionRuleId '/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr' -AssociationName 'my-vm-dcr-association'
 ```
 
 
@@ -137,14 +137,14 @@ Use the [New-AzDataCollectionRuleAssociation](/powershell/module/az.monitor/new-
 Use the [DCR create API](/rest/api/monitor/data-collection-rules/create) to create the DCR from your JSON file. You can use any method to call a REST API as shown in the following examples.
 
 ```powershell
-$ResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
+$ResourceId = "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 $FilePath = ".\my-dcr.json"
 $DCRContent = Get-Content $FilePath -Raw 
 Invoke-AzRestMethod -Path ("$ResourceId"+"?api-version=2022-06-01") -Method PUT -Payload $DCRContent
 ```
 
 ```azurecli
-ResourceId="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
+ResourceId="/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 FilePath="my-dcr.json"
 az rest --method put --url $ResourceId"?api-version=2022-06-01" --body @$FilePath
 ```
@@ -279,7 +279,7 @@ resource association 'Microsoft.Insights/dataCollectionRuleAssociations@2021-09-
       "value": "my-windows-vm-my-dcr"
     },
     "dataCollectionRuleId": {
-      "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
+      "value": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
     }
    }
 }
@@ -368,7 +368,7 @@ resource association 'Microsoft.Insights/dataCollectionRuleAssociations@2021-09-
       "value": "my-windows-vm-my-dcr"
     },
     "dataCollectionRuleId": {
-      "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
+      "value": "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
     }
    }
 }
@@ -470,7 +470,7 @@ Copy the `id` and the `principalId` of the DCR to use in assigning the role to c
   "id": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/cli-dcr-001",
   "identity": {
     "principalId": "eeeeeeee-ffff-aaaa-5555-666666666666",
-    "tenantId": "0000aaaa-11bb-cccc-dd22-eeeeee333333",
+    "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
     "type": "systemAssigned"
   },
 ```
@@ -585,7 +585,7 @@ New-AzRoleAssignment -ObjectId <objectId> -RoleDefinitionName <roleName> -Scope 
 The following example assigns the `Azure Event Hubs Data Sender` role to the managed identity of the DCR at the subscription level.
 
 ```powershell
-New-AzRoleAssignment -ObjectId eeeeeeee-ffff-aaaa-5555-666666666666 -RoleDefinitionName "Azure Event Hubs Data Sender" -Scope /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f
+New-AzRoleAssignment -ObjectId ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0 -RoleDefinitionName "Azure Event Hubs Data Sender" -Scope /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f
 ```
 
 ## Create a data collection rule association

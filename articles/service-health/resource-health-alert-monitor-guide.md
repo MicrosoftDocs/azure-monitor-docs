@@ -12,21 +12,19 @@ This article shows you how to set up activity log alerts for resource health not
 
 Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. Azure Resource Health alerts can notify you when these resources have a change in their health status. Creating Resource Health alerts programmatically allow for users to create and customize alerts in bulk.
 
-Resource health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md) Given the possibly large volume of information stored in the activity log, there is a separate user interface to make it easier to view and set up alerts on resource health notifications.
-You can receive an alert when Azure resource sends resource health notifications to your Azure subscription. You can configure the alert based on:
+Resource health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md) Given the possibly large volume of information stored in the activity log, there's a separate user interface to make it easier to view and set up alerts on resource health notifications.
+
+You can receive an alert when an Azure resource sends resource health notifications to your Azure subscription. You can configure the alert based on:
 
 * The subscription affected.
-* The resource(s) type(s) affected.
-* The resource group(s) affected.
-* The resource(s) affected.
-* The event status(s) of the resource(s) affected.
-* The resource(s) affected statuses.
-* The reason(s) type(s) of the resource(s) affected.
+* The resource types affected.
+* The resource groups affected.
+* The resources affected.
+* The event statuses of the resources affected.
+* The resources statuses affected.
+* The types of reasons of the resources affected.
 
-You also can configure who the alert should be sent to:
-
-* Select an existing action group.
-*  a new action group (that can be used for future alerts).
+You also can configure who the alert should be sent to. Select an existing action group or a new action group (that can be used for future alerts).
 
 To learn more about action groups, see [Azure Monitor action groups](../azure-monitor/alerts/action-groups.md).
 
@@ -36,9 +34,16 @@ For information on how to configure resource health notification alerts by using
 
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
 
+jocalland-patch-20
     ![Service Health Selection](./media/resource-health-alert-monitor-guide/service-health-selection-1.png)
+
+    :::image type="content" source="media/resource-health-alert-monitor-guide/service-health-selection.png" alt-text="Screenshot showing Service Health Selection.":::
+
+ main
 1. In the **Resource Health** section, select **Resource Health**.
+
 1. Select **Add resource health alert**.
+
 1. The **Create an alert rule** wizard opens to the **Conditions** tab, with the **Scope** tab already populated. Follow the steps for Resource Health alerts, starting from the **Conditions** tab, in the [new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
 
 ## Next steps

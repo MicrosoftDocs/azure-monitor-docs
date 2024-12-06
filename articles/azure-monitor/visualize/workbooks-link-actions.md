@@ -41,7 +41,7 @@ Link actions can be accessed through workbook link components or through column 
 |Metrics| Opens a metrics view. |
 |Resource Overview| Opens the resource's view in the portal based on the resource ID value in the cell. You can also optionally set a submenu value that opens a specific menu item in the resource view. |
 |Workbook (Template)| Opens a workbook template. When this item is selected, more fields appear where you can configure what template to open. [See Workbook (Template) settings](#workbook-template-link-settings). |
-|Azure Copilot (preview)| When the action is invoked, it formats and sends a prompt to Microsoft Copilot in Azure (preview). [See Azure Copilot (preview) settings](#azure-copilot-preview-settings). |
+|Copilot in Azure (preview)| When the action is invoked, it formats and sends a prompt to Microsoft Copilot in Azure (preview). [See Copilot in Azure (preview) settings](#copilot-in-azure-preview-settings). |
 
 ## Link settings
 
@@ -190,7 +190,7 @@ If the selected link type is **Workbook (Template)**, you must specify more sett
 |:------------- |:-------------|
 |Workbook owner Resource ID comes from| This value is the Resource ID of the Azure resource that "owns" the workbook. Commonly, it's an Application Insights resource or a Log Analytics workspace. Inside of Azure Monitor, this value might also be the literal string `"Azure Monitor"`. When the workbook is saved, this value is what the workbook is linked to. |
 |Workbook resources come from| An array of Azure Resource IDs that specify the default resource used in the workbook. For example, if the template being opened shows virtual machine metrics, the values here would be virtual machine resource IDs. Many times, the owner and resources are set to the same settings. |
-|Template ID comes from| Specify the ID of the template to be opened. A community template from the gallery is the most common case. Prefix the path to the template with `Community-`, like `Community-Workbooks/Performance/Apdex` for the `Workbooks/Performance/Apdex` template. If it's a link to a saved workbook or template, use the full path to the Azure resource ID of that item, for example, "/subscriptions/12345678-a1b2-1234-a1b2-c3d4e5f6/resourceGroups/rgname/providers/microsoft.insights/workbooks/1a2b3c4d-5678-abcd-xyza-1a2b3c4d5e6f. |
+|Template ID comes from| Specify the ID of the template to be opened. A community template from the gallery is the most common case. Prefix the path to the template with `Community-`, like `Community-Workbooks/Performance/Apdex` for the `Workbooks/Performance/Apdex` template. If it's a link to a saved workbook or template, use the full path to the Azure resource ID of that item, for example, "/subscriptions/12345678-a1b2-1234-a1b2-c3d4e5f6/resourceGroups/rgname/providers/microsoft.insights/workbooks/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e. |
 |Workbook Type comes from| Specify the kind of workbook template to open. The most common cases use the default or workbook option to use the value in the current workbook. |
 |Gallery Type comes from| This value specifies the gallery type that's displayed in the **Gallery** view of the template that opens. The most common cases use the default or workbook option to use the value in the current workbook. |
 |Location comes from| The location field should be specified if you're opening a specific workbook resource. If location isn't specified, finding the workbook content is slower. If you know the location, specify it. If you don't know the location or are opening a template with no specific location, leave this field as `Default`.|
@@ -217,18 +217,18 @@ When the workbook link is opened, the new workbook view is passed to all the val
 |Workbook| Use the value set in the current workbook. |
 |Default| Use the default value that would be used if no value were specified. This situation is common for **Gallery Type comes from**, where the default gallery would be set by the type of the owner resource. |
 
-## Azure Copilot (preview) settings
+## Copilot in Azure (preview) settings
 
-When an  **Azure Copilot (preview)** link is invoked, it formats the configured link and sends it as a prompt to the [Microsoft Copilot in Azure (preview)](/azure/copilot/overview). The Microsoft Copilot in Azure then responds  to the prompt to explain more about Azure concepts, services, or offerings. 
+When a **Copilot in Azure (preview)** link is invoked, it formats the configured link and sends it as a prompt to the [Microsoft Copilot in Azure (preview)](/azure/copilot/overview). The Microsoft Copilot in Azure then responds  to the prompt to explain more about Azure concepts, services, or offerings. 
 The link action can be configured to insert parameter values or grid content into the prompt text.
 
 > [!NOTE]
 > If Microsoft Copilot in Azure (preview) is not enabled in your environment, instead of sending the prompt to Microsoft Copilot in Azure, the formatted prompt will be displayed in Cell Details side pane.
 
-Select the **Configure...** button to open the Azure Copilot (preview) prompt settings pane. The Azure Copilot (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax. At the curret time, the prompt content is limited to 500 characters after formatting. Any remaining content is truncated.
+Select the **Configure...** button to open the Copilot in Azure (preview) prompt settings pane. The Copilot in Azure (preview) prompt settings shows a text area, where you can configure the prompt text and insert parameter markers with the standard `{parameter}` syntax, or references grid columns via the standard `["column name"]` syntax. At the current time, the prompt content is limited to 500 characters after formatting. Any remaining content is truncated.
 
 <!-- convertborder later -->
-:::image type="content" source="./media/workbooks-link-actions/copilot-link-settings.png" lightbox="./media/workbooks-link-actions/copilot-link-settings.png" alt-text="Screenshot that shows Azure Copilot (preview) prompt text." border="false":::
+:::image type="content" source="./media/workbooks-link-actions/copilot-link-settings.png" lightbox="./media/workbooks-link-actions/copilot-link-settings.png" alt-text="Screenshot that shows Copilot in Azure (preview) prompt text." border="false":::
 
 
 

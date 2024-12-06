@@ -54,7 +54,7 @@ The basic flow of a DCR is shown in the following diagram. Each of the component
 The input stream section of a DCR defines the incoming data that's being collected. There are two types of incoming stream, depending on the particular data collection scenario. Most data collection scenarios use one of the input streams, while some may use both.
 
 > [!NOTE]
-> Workspace transformation DCRs don't have an input stream since the 
+> [Workspace transformation DCRs](./data-collection-transformations-workspace.md) don't have an input stream.
 
 | Input stream | Description |
 |:---|:---|
@@ -90,7 +90,7 @@ The data source types currently available are listed in the following table.
 | `iisLogs` | IIS logs from Windows machines | `Microsoft-W3CIISLog` |`logDirectories` - Directory where IIS logs are stored on the client.  |
 | `logFiles` | Text or json log on a virtual machine | Custom<sup>1</sup> | `filePatterns` - Folder and file pattern for log files to be collected from client.<br>`format` - *json* or *text* |
 | `performanceCounters` | Performance counters for both Windows and Linux virtual machines | `Microsoft-Perf`<br>`Microsoft-InsightsMetrics` | `samplingFrequencyInSeconds` - Frequency that performance data should be sampled.<br>`counterSpecifiers` - Objects and counters that should be collected. |
-| `prometheusForwarder` | Prometheus data collected from  | `streams`<br>`labelIncludeFilter`
+| `prometheusForwarder` | Prometheus data collected from Kubernetes cluster. | `Microsoft-PrometheusMetrics` | `streams` - Streams to collect<br>`labelIncludeFilter` - List of label inclusion filters as name-value pairs. Currently only 'microsoft_metrics_include_label' supported. |
 | `syslog` | Syslog events on Linux virtual machines | `Microsoft-Syslog` | `facilityNames` - Facilities to collect<br>`logLevels` - Log levels to collect |
 | `windowsEventLogs` | Windows event log on virtual machines | `Microsoft-Event` | `xPathQueries` - XPaths specifying the criteria for the events that should be collected.  |
 | `extension` | Extension-based data source used by Azure Monitor agent.  | Varies by extension | `extensionName` - Name of the extension<br>`extensionSettings` - Values for each setting required by the extension |

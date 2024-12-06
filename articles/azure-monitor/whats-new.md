@@ -18,6 +18,74 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## [2024](#tab/2024)
 
+## November 2024
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application-Insights|[Configure Azure Monitor OpenTelemetry](app/opentelemetry-configuration.md)|Added Redact URL Query Strings|
+|General|[Monitor a Cloud Environment]()|New article to provide high level monitoring concepts and map to Azure monitoring services.|
+|Logs|[Data collection endpoints in Azure Monitor](essentials/data-collection-endpoint-overview.md)|Added clarification on when DCE is required.|
+|Logs|[Logs Ingestion API in Azure Monitor](logs/logs-ingestion-api-overview.md)|Added clarification on endpoint used with API.|
+|Logs|[Enable network isolation for Azure Monitor Agent by using Private Link](agents/azure-monitor-agent-private-link.md)|Rewritten for clarity.|
+|Logs|[Configure Azure Monitor with Network Security Perimeter (Preview)](essentials/network-security-perimeter.md)|New article for configuring Azure Monitor for Network Security Perimeter.|
+|Logs|[Configure private link for Azure Monitor](logs/private-link-configure.md)|Rewritten for clarity.|
+|Logs|[Design Azure Monitor Private Link configuration](logs/private-link-design.md)|Rewritten for clarity.|
+|Virtual-Machines|[Enable VM Insights](vm/resource-manager-vminsights.md)|Consolidated onboarding content into single article for clarity.|
+|Virtual-Machines|[Disable monitoring of your VMs in VM insights](vm/vminsights-optout.md)|Rewritten for clarity.|
+
+## October 2024
+
+|Subservice | Article | Description |
+|---|---|---|
+|Alerts|[Troubleshoot log search alerts in Azure Monitor](alerts/alerts-troubleshoot-log.md)|Added a workaround for when time filtering doesn't work correctly for log search alert rules that  use Azure Data Explorer (ADX) or Azure Resource Graph (ARG) queries.|
+|Application-Insights|[OpenTelemetry help, support, and feedback](app/opentelemetry-faq.md)|OpenTelemetry help, support, and feedback options are now available in one place.|
+|Application-Insights|[Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications](app/azure-web-apps-java.md)|App Service automatic instrumentation information for all languages is now available in one place.|
+|Change-Analysis|[Migrate to the Change Analysis API powered by Azure Resource Graph](change/change-analysis-migration.md)|Change Analysis (classic) migration and retirement announcement.|
+|Essentials|[Structure of a data collection rule in Azure Monitor](essentials/data-collection-rule-structure.md)|Updated DCR JSON structure|
+|General|[Best practices for monitoring at-scale with Azure Monitor](monitor-at-scale.md)|We've published a new article describing our at-scale monitoring solutions.|
+|General|[Migrate to the Change Analysis API powered by Azure Resource Graph](change/change-analysis-migration.md)|Change Analysis (classic) migration and retirement announcement.|
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](logs/create-custom-table-auxiliary.md)|Added support for the Auxiliary table plan in West EU and West US 2 regions.|
+|Logs|[Structure of transformation in Azure Monitor](essentials/data-collection-transformations-structure.md)|Added `parse` operator limitations and information about ingestion latency introduced by transformations.|
+|Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](logs/workspace-replication.md)|Added information about how Azure Monitor protects in-transit data during a regional when you enable workspace replication.|
+|Logs|[Functions in Azure Monitor log queries](logs/functions.md)|Added ARM template example of how to create a function in Azure Monitor Logs. |
+|Optimization-Insights|[Code Optimizations extensions for Visual Studio and Visual Studio Code (preview)](insights/code-optimizations-extensions.md)|Public preview announcement of the Visual Studio and Visual Studio Code extensions for Code Optimizations|
+|Optimization-Insights|[Code Optimizations extensions for Visual Studio (preview)](insights/code-optimizations-vs-extension.md)|Instructions for using the Code Optimizations extension for Visual Studio|
+|Optimization-Insights|[Code Optimizations extensions for Visual Studio Code (preview)](insights/code-optimizations-vscode-extension.md)|Instructions for using the Code Optimizations extension for Visual Studio Code|
+|Profiler|[Enable Profiler for ASP.NET Core web apps hosted in Linux](profiler/profiler-aspnetcore-linux.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Enable the .NET Profiler for Azure Functions apps](profiler/profiler-azure-functions.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Configure BYOS for Application Insights Profiler for .NET and Snapshot Debugger](profiler/profiler-bring-your-own-storage.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Enable the .NET Profiler for Azure Cloud Services](profiler/profiler-cloudservice.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Enable the .NET Profiler on Azure containers](profiler/profiler-containers.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[View Application Insights Profiler for .NET data](profiler/profiler-data.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Profile production applications in Azure with Application Insights Profiler for .NET](profiler/profiler-overview.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Enable the .NET Profiler for Azure Service Fabric applications](profiler/profiler-servicefabric.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Configure Application Insights Profiler for .NET](profiler/profiler-settings.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Write code to track requests with Application Insights Profiler for .NET](profiler/profiler-trackrequests.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Troubleshoot Application Insights Profiler for .NET](profiler/profiler-troubleshooting.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Enable the .NET Profiler for web apps on an Azure virtual machine](profiler/profiler-vm.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Enable the .NET Profiler for Azure App Service apps](profiler/profiler.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Troubleshoot Code Optimizations](insights/code-optimizations-troubleshoot.md)|Updates to the Code Optimizations documentation for GA.|
+|Profiler|[Monitor and analyze runtime behavior with Code Optimizations](insights/code-optimizations.md)|Updates to the Code Optimizations documentation for GA.|
+|Profiler|[Set up Code Optimizations](insights/set-up-code-optimizations.md)|Updates to the Code Optimizations documentation for GA.|
+|Profiler|[View Code Optimizations results](insights/view-code-optimizations.md)|Updates to the Code Optimizations documentation for GA.|
+|Profiler|[Profile production applications in Azure with Application Insights Profiler for .NET](profiler/profiler-overview.md)|Updates to the Code Optimizations documentation for GA.|
+|Profiler|[Configure Application Insights Profiler for .NET](profiler/profiler-settings.md)|Updates to the Code Optimizations documentation for GA.|
+|Virtual-Machines|[Dependency Agent](vm/vminsights-dependency-agent-maintenance.md)|Added considerations section.|
+|Virtual-Machines|[Enable VM Insights overview](vm/vminsights-enable-overview.md)|Added supported operating systems and VM insights DCR sections.|
+|Virtual-Machines|[Enable VM insights using the Azure portal](vm/vminsights-enable-portal.md)|General cleanup.|
+|Virtual-Machines|[Enable VM insights using ARM templates](vm/vminsights-enable-resource-manager.md)|Added details on VM insights DCR and associations.|
+|Virtual-Machines|[Migrate to Azure Monitor Agent from Log Analytics agent in VM Insights](vm/vminsights-migrate-agent.md)|New article.|
+|Visualizations|[Stat visualizations](visualize/workbooks-stat-visualizations.md)|Azure Workbooks now support Stat visualizations to help you create dashboards that give you instant alerts when a service is healthy or unhealthy, or when important metrics drop below a certain level.|
+|Visualizations|[Azure Workbooks dashboard preview](visualize/workbooks-dashboard-preview.md)|Azure workbooks now support a limited dashboard preview for Dashboard style workbooks. This feature is in continued development.|
+|Visualizations|[Enable Change Analysis (classic)](change/change-analysis-enable.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+|Visualizations|[Tutorial: Track a web app outage using Change Analysis (classic)](change/change-analysis-track-outages.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+|Visualizations|[Troubleshoot Change Analysis (classic)](change/change-analysis-troubleshoot.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+|Visualizations|[View and use Change Analysis (classic)](change/change-analysis-visualizations.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+|Visualizations|[Use Change Analysis (classic)](change/change-analysis.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+|Visualizations|[Azure Monitor data platform](data-platform.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+|Visualizations|[Azure Monitor overview](overview.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+|Visualizations|[Azure Workbooks data sources](visualize/workbooks-data-sources.md)|Update Change Analysis to "Change Analysis (classic)" ahead of retirement in favor of the Change Analysis API for Azure Resource Graph |
+
 ## September 2024
 
 |Subservice | Article | Description |
@@ -25,9 +93,9 @@ This article lists significant changes to Azure Monitor documentation.
 |Agents|[Azure Diagnostics extension overview](/azure/azure-monitor/agents/diagnostics-extension-overview)|Announced that Azure Diagnostics extension will be deprecated on March 31, 2026.|
 |Agents|[Azure Monitor Agent supported operating systems and environments](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems)|Added Azure Monitor Agent support for Amazon Linux 2023.|
 |Alerts|[Create a new alert rule using the CLI, PowerShell, or an ARM template](/azure/azure-monitor/alerts/alerts-create-rule-cli-powershell-arm)|Added prerequisites for all alert rule types stating that in order to create alert rules that use action groups, you must have a role with permissions for those action groups.|
-|Application-Insights|[Configure Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-configuration?tabs=aspnetcore)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which does not include live metrics.|
+|Application-Insights|[Configure Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-configuration?tabs=aspnetcore)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which doesn't include live metrics.|
 |Application-Insights|[Live metrics: Monitor and diagnose with 1-second latency](/azure/azure-monitor/app/live-stream?tabs=otel)|We revamped this article for simplicity and linked out to Microsoft Entra documentation for more information on how to secure potentially sensitive information entered into custom filters.|
-|Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-dotnet-migrate?tabs=aspnetcore)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which does not include live metrics.|
+|Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](/azure/azure-monitor/app/opentelemetry-dotnet-migrate?tabs=aspnetcore)|We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for classic ASP.NET apps (console, worker service, WinForms, etc.), which doesn't include live metrics.|
 |Application-Insights|[Statsbeat in Application Insights](/azure/azure-monitor/app/statsbeat?tabs=dotnet)|We revamped Statsbeat documentation to include OpenTelemetry scenarios.|
 |Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor](/azure/azure-monitor/essentials/data-collection-rule-create-edit?tabs=portal)|Added DCRs for metrics|
 |Essentials|[Data plane metrics batch API query versus metrics export](/azure/azure-monitor/essentials/data-plane-versus-metrics-export)|New article: Comparison of metrics retrieval methods|

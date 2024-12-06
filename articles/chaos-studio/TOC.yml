@@ -67,6 +67,10 @@
       href: chaos-studio-tutorial-aks-portal.md
     - name: CLI
       href: chaos-studio-tutorial-aks-cli.md
+    - name: Use Microsoft Entra authentication with Chaos Mesh
+      href: chaos-studio-aks-authentication.md
+    - name: Authorize Chaos Studio IP addresses for an AKS cluster
+      href: chaos-studio-aks-ip-ranges.md
   - name: Dynamic targeting
     items:
     - name: Portal

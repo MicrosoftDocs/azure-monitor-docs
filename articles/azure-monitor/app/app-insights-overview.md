@@ -2,12 +2,12 @@
 title: Application Insights overview
 description: Learn how Application Insights in Azure Monitor provides performance management and usage tracking of your live web application.
 ms.topic: overview
-ms.date: 08/12/2024
+ms.date: 11/16/2024
 ---
 
 # Application Insights overview
 
-Azure Monitor Application Insights, a feature of [Azure Monitor](..\overview.md), excels in Application Performance Management (APM) for live web applications.
+Azure Monitor Application Insights, a feature of [Azure Monitor](..\overview.md), excels in application performance monitoring (APM) for live web applications.
 
 :::image type="content" source="media/app-insights-overview/app-insights-overview-screenshot.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map." lightbox="media/app-insights-overview/app-insights-overview-screenshot.png":::
 
@@ -65,7 +65,7 @@ The logic model diagram visualizes components of Application Insights and how th
 
 This section outlines supported scenarios.
 
-For detailed information about instrumenting applications to enable Application Insights, see [data collection basics](opentelemetry-overview.md).
+For more information about instrumenting applications to enable Application Insights, see [data collection basics](opentelemetry-overview.md).
 
 ### Automatic instrumentation (enable without code changes)
 * [Autoinstrumentation supported environments and languages](codeless-overview.md#supported-environments-languages-and-resource-providers)
@@ -80,20 +80,18 @@ For detailed information about instrumenting applications to enable Application 
 * [Node.js](opentelemetry-enable.md?tabs=nodejs)
 * [Python](opentelemetry-enable.md?tabs=python)
 
-#### Application Insights SDK (Classic API)
-
-* [ASP.NET](./asp-net.md)
-* [Java](./opentelemetry-enable.md?tabs=java)
-* [Node.js](./nodejs.md)
-* [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
-* [ASP.NET Core](./asp-net-core.md)
-
 #### Client-side JavaScript SDK
 
 * [JavaScript](./javascript.md)
   * [React](./javascript-framework-extensions.md)
   * [React Native](./javascript-framework-extensions.md)
   * [Angular](./javascript-framework-extensions.md)
+
+#### Application Insights SDK (Classic API)
+
+* [ASP.NET Core](./asp-net-core.md)
+* [ASP.NET](./asp-net.md)
+* [Node.js](./nodejs.md)
 
 ### Supported platforms and frameworks
 
@@ -237,8 +235,16 @@ This answer depends on the distribution of our endpoints, *not* on where your Ap
 
 ### Do I incur network costs if my Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region?
 
-Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going. 
+Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going.
 Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+
+### What TLS versions does Application Insights support
+
+> [!IMPORTANT]
+>  On 1 March 2025, in alignment with the Azure wide legacy TLS retirement, TLS 1.0/1.1 protocol versions and the listed TLS 1.2/1.3 legacy Cipher suites and Elliptical curves will be retired for Application Insights.
+To provide best-in-class encryption, Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. 
+
+For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
 ## Help and support
 

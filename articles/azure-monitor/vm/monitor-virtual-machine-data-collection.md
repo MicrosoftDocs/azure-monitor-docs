@@ -78,7 +78,8 @@ For information on what data is collected and how to view it, see [Monitor virtu
 ### VM insights
 When you enable VM insights, it creates a DCR with the *_MSVMI-_* prefix that collects the following information. You can use this same DCR with other machines as opposed to creating a new one for each VM.
 
-- Common performance counters for the client operating system are sent to the [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table in the Log Analytics workspace. Counter names are normalized to use the same common name regardless of the operating system type. For a list of performance counters that are collected, see [How to query logs from VM insights](vminsights-log-query.md#performance-records).
+- Common performance counters for the client operating system are sent to the [InsightsMetrics](../reference/tables/insightsmetrics.md) table in the Log Analytics workspace. Counter names are normalized to use the same common name regardless of the operating system type. 
+
 - If you specified processes and dependencies to be collected, the following tables are populated:
   
   - [VMBoundPort](/azure/azure-monitor/reference/tables/vmboundport): Traffic for open server ports on the machine
@@ -141,7 +142,7 @@ For guidance on creating a DCR to collect performance counters, see [Collect eve
 | Logs | Performance data stored in Azure Monitor Logs can be stored for extended periods. The data can be analyzed along with your event data by using [log queries](../logs/log-query-overview.md) with [Log Analytics](../logs/log-analytics-overview.md) or [log search alerts](../alerts/alerts-create-new-alert-rule.md?tabs=log). You can also correlate data by using complex logic across multiple machines, regions, and subscriptions.<br><br>Performance data is sent to the following tables:<br>- VM insights: [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>- Other performance data: [Perf](/azure/azure-monitor/reference/tables/perf) |
 
 ### Sample log queries
-The following samples use the `Perf` table with custom performance data. For information on performance data collected by VM insights, see [How to query logs from VM insights](../vm/vminsights-log-query.md#performance-records).
+The following samples use the `Perf` table with custom performance data.
 
 | Query  | Description |
 |:---|:---|

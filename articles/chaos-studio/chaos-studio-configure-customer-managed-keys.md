@@ -8,7 +8,7 @@ ms.custom: devx-track-azurecli
 ms.author: abbyweisberg
 ms.reviewer: ninallam
 author: nikhilkaul-msft
-ms.date: 10/06/2023
+ms.date: 11/07/2024
 ms.topic: how-to
 ---
  
@@ -94,13 +94,13 @@ PUT https://management.azure.com/subscriptions/<yourSubscriptionID>/resourceGrou
         "targets": [
           {
             "type": "ChaosTarget",
-            "id": "/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.Compute/virtualMachines/exampleVM/providers/Microsoft.Chaos/targets/Microsoft-VirtualMachine"
+            "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/exampleRG/providers/Microsoft.Compute/virtualMachines/exampleVM/providers/Microsoft.Chaos/targets/Microsoft-VirtualMachine"
           }
         ]
       }
     ],
     "customerDataStorage": {
-      "storageAccountResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/exampleRG/providers/Microsoft.Storage/storageAccounts/exampleStorage",
+      "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/exampleRG/providers/Microsoft.Storage/storageAccounts/exampleStorage",
       "blobContainerName": "azurechaosstudioexperiments"
     }
   }

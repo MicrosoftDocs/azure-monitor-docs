@@ -4,7 +4,7 @@ description: Monitor ASP.NET Core web applications for availability, performance
 ms.topic: conceptual
 ms.devlang: csharp
 ms.custom: devx-track-csharp
-ms.date: 01/31/2024
+ms.date: 12/07/2024
 ms.reviewer: mmcc
 ---
 # Application Insights for ASP.NET Core applications
@@ -624,7 +624,7 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
     ```csharp
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4core</ApplicationInsightsResourceId>
+        <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4core</ApplicationInsightsResourceId>
     </PropertyGroup>
   
     <ItemGroup>

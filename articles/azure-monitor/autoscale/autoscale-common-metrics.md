@@ -4,7 +4,7 @@ description: Learn which metrics are commonly used for autoscaling your cloud se
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: conceptual
-ms.date: 04/15/2024
+ms.date: 11/01/2024
 ms.subservice: autoscale 
 ms.reviewer: akkumari
 

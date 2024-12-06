@@ -2,9 +2,9 @@
 title: Collect Windows events from virtual machines with Azure Monitor Agent
 description: Describes how to collect Windows events counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 07/12/2024
-author: guywild
-ms.author: guywild
+ms.date: 11/14/2024
+author: rboucher
+ms.author: robb
 ms.reviewer: jeffwo
 
 ---
@@ -42,6 +42,9 @@ You're charged for any data you collect in a Log Analytics workspace. Therefore,
 XPath entries are written in the form `LogName!XPathQuery`. For example, you might want to return only events from the Application event log with an event ID of 1035. The `XPathQuery` for these events would be `*[System[EventID=1035]]`. Because you want to retrieve the events from the Application event log, the XPath is `Application!*[System[EventID=1035]]`
 
 [!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
+
+> [!NOTE]
+> AMA uses the [EvtSubscribe](/windows/win32/api/winevt/nf-winevt-evtsubscribe) system API to subscribe to Windows Event Logs. Windows OS does not allow subscribing to Windows Event Logs of type Analytic/Debug channels. Therefore, you cannot collect or export data from Analytic and Debug channels to a Log Analytics workspace.
 
 ### Extract XPath queries from Windows Event Viewer
 

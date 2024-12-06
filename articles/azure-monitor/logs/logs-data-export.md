@@ -4,7 +4,7 @@ description: Log Analytics workspace data export in Azure Monitor lets you conti
 ms.topic: conceptual
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell
 ms.reviewer: yossiy
-ms.date: 06/14/2024
+ms.date: 10/31/2024
 ---
 
 # Log Analytics workspace data export in Azure Monitor
@@ -39,12 +39,15 @@ Log Analytics workspace data export continuously exports data that's sent to you
 - The Storage Account must be unique across rules in the workspace.
 - Table names can be 60 characters long when you're exporting to a Storage Account. They can be 47 characters when you're exporting to Event Hubs. Tables with longer names won't be exported.
 - Export to Premium Storage Account isn't supported.
+- There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
 
 ## Data completeness
-Data export is optimized to move large data volume to your destinations. The export operation might fail if the destination doesn't have sufficient capacity or is unavailable. In the event of failure, the retry process continues for up to 12 hours. For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule). If the destinations are still unavailable after the retry period, the data is discarded. In certain cases, retry can cause duplication of a fraction of the exported records.
+
+Data export is optimized to move large data volume to your destinations. In the event of of destination with insufficient scale or availability, a retry process continues for up to 12 hours and may a result with a fraction of duplication of the exported records. Follow recommendations for [Storage Account](#storage-account) and [Event Hubs](#event-hubs) destinations to improve reliability.
+For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule). If the destinations are still unavailable after the retry period, the data is discarded.
 
 ## Pricing model
-Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Size calculation in workspace query can't correspond with export charges since doesn't include the JSON formatted data. You can use PowerShell to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell).
+Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Size calculation in workspace query can't correspond with export charges since doesn't include the JSON formatted data. You can use PowerShell to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell). There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
 
 For more information, including the data export billing timeline, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/). Billing for Data Export was enabled in early October 2023. 
 
@@ -314,7 +317,7 @@ Use the following command to create a data export rule to a Storage Account by u
             "type": "string"
         },
         "storageAccountResourceId": {
-            "defaultValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.Storage/storageAccounts/storage-account-name",
+            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/resource-group-name/providers/Microsoft.Storage/storageAccounts/storage-account-name",
             "type": "String"
         }
     },
@@ -372,7 +375,7 @@ Use the following command to create a data export rule to an Event Hub by using 
             "type": "string"
         },
         "namespacesResourceId": {
-            "defaultValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
+            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
             "type": "String"
         }
     },
@@ -428,7 +431,7 @@ Use the following command to create a data export rule to a specific Event Hub b
             "type": "string"
         },
         "namespacesResourceId": {
-            "defaultValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
+            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
             "type": "String"
         },
         "eventhubName": {
@@ -1246,4 +1249,3 @@ If the data export rule includes an unsupported table, the configuration will su
 ## Next steps
 
 [Query the exported data from Azure Data Explorer](../logs/azure-data-explorer-query-storage.md)
-

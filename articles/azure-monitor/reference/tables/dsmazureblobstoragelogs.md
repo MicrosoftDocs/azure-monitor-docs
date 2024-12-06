@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 09/16/2024
+ms.date: 11/04/2024
 ---
 
 # DSMAzureBlobStorageLogs
@@ -19,7 +19,7 @@ Azure Blob Storage resource logs enriched with data sensitivity context provided
 |Attribute|Value|
 |---|---|
 |**Resource types**|-|
-|**Categories**|Security, Azure Resources|
+|**Categories**|-|
 |**Solutions**| LogManagement|
 |**Basic log**|No|
 |**Ingestion-time transformation**|No|

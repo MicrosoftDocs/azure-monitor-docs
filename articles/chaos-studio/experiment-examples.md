@@ -19,9 +19,9 @@ Here's an example of where you would copy and paste the Azure portal parameter i
 
 [![Screenshot that shows Azure portal parameter location.](images/azure-portal-parameter-examples.png)](images/azure-portal-parameter-examples.png#lightbox)
 
-To save one of the "experiment.json" examples shown below, simply type *nano experiment.json* into your cloud shell, copy and paste any of the below experiment examples, save it (ctrl+o), exit nano (ctrl+x) and run the following command:
+To save one of the "experiment.json" examples shown below, simply type *nano experiment.json* into your Cloud Shell, copy and paste any of the below experiment examples, save it (ctrl+o), exit nano (ctrl+x) and run the following command:
  ```AzCLI
-az rest --method put --uri https://management.azure.com/subscriptions/6b052e15-03d3-4f17-b2e1-be7f07588291/resourceGroups/exampleRG/providers/Microsoft.Chaos/experiments/exampleExperiment?api-version=2024-01-01
+az rest --method put --uri https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/exampleRG/providers/Microsoft.Chaos/experiments/exampleExperiment?api-version=2024-01-01
 ```
 > [!NOTE]
 > This is the generic command you would use to create any experiment from the Azure CLI
@@ -79,7 +79,7 @@ Azure Kubernetes Service (AKS) - Network Delay
                                         "value": "{\"action\":\"delay\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"delay\":{\"latency\":\"200ms\",\"correlation\":\"100\",\"jitter\":\"0ms\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }
@@ -140,7 +140,7 @@ Azure Kubernetes Service (AKS) - Pod Failure
                                         "value": "{\"action\":\"pod-failure\",\"mode\":\"all\",\"duration\":\"600s\",\"selector\":{\"namespaces\":[\"autoinstrumentationdemo\"]}}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:podChaos/2.2"
                             }
                         ]
                     }
@@ -202,7 +202,7 @@ Azure Kubernetes Service (AKS) - Memory Stress
                                         "value": "{\"mode\":\"all\",\"selector\":{\"namespaces\":[\"autoinstrumentationdemo\"]},\"stressors\":{\"memory\":{\"workers\":4,\"size\":\"95%\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.2"
                             }
                         ]
                     }
@@ -264,7 +264,7 @@ Azure Kubernetes Service (AKS) - CPU Stress
                                         "value": "{\"mode\":\"all\",\"selector\":{\"namespaces\":[\"autoinstrumentationdemo\"]},\"stressors\":{\"cpu\":{\"workers\":4,\"load\":95}}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:stressChaos/2.2"
                             }
                         ]
                     }
@@ -324,7 +324,7 @@ Azure Kubernetes Service (AKS) - Network Emulation
                                         "value": "{\"action\":\"netem\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"netem\":{\"latency\":\"100ms\",\"loss\":\"0.1\",\"correlation\":\"25\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }
@@ -385,7 +385,7 @@ Azure Kubernetes Service (AKS) - Network Partition
                                         "value": "{\"action\":\"partition\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"partition\":{\"direction\":\"to\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }
@@ -446,7 +446,7 @@ Azure Kubernetes Service (AKS) - Network Bandwidth Limitation
                                         "value": "{\"action\":\"bandwidth\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"bandwidth\":{\"rate\":\"1mbps\",\"limit\":\"50mb\",\"buffer\":\"10kb\",\"peakrate\":\"1mbps\",\"minburst\":\"0\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }
@@ -507,7 +507,7 @@ Azure Kubernetes Service (AKS) - Network Packet Re-order
                                         "value": "{\"action\":\"reorder\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"reorder\":{\"gap\":\"5\",\"reorder\":\"25\",\"correlation\":\"50\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }
@@ -568,7 +568,7 @@ Azure Kubernetes Service (AKS) - Network Packet Loss
                                         "value": "{\"action\":\"loss\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"loss\":{\"loss\":\"10\",\"correlation\":\"25\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }
@@ -629,7 +629,7 @@ Azure Kubernetes Service (AKS) - Network Packet Duplication
                                         "value": "{\"action\":\"duplicate\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"duplicate\":{\"duplicate\":\"50\",\"correlation\":\"50\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }
@@ -690,7 +690,7 @@ Azure Kubernetes Service (AKS) - Network Packet Corruption
                                         "value": "{\"action\":\"corrupt\",\"mode\":\"all\",\"selector\":{\"namespaces\":[\"default\"]},\"corrupt\":{\"corrupt\":\"50\",\"correlation\":\"50\"}}"
                                     }
                                 ],
-                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.1"
+                                "name": "urn:csci:microsoft:azureKubernetesServiceChaosMesh:networkChaos/2.2"
                             }
                         ]
                     }

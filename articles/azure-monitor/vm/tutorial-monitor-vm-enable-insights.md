@@ -4,7 +4,7 @@ description: Enable monitoring with VM insights in Azure Monitor to monitor an A
 ms.service: azure-monitor
 ms.topic: article
 ms.custom: subject-monitoring
-ms.date: 09/28/2023
+ms.date: 11/06/2024
 ms.reviewer: Xema Pathak
 ---
 

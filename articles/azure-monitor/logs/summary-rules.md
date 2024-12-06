@@ -7,7 +7,7 @@ ms.topic: how-to
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: yossi-y
-ms.date: 04/23/2024
+ms.date: 11/17/2024
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
@@ -30,16 +30,16 @@ Here's a video that provides an overview of some of the benefits of summary rule
 
 ## How summary rules work
 
-Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and reingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
+Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and re-ingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
 
-:::image type="content" source="media/summary-rules/ingestion-flow.png" alt-text="A diagram that shows how data is ingested into a Log Analytics workspace and is aggregated and reingested into the workspace by using a summary rule." lightbox="media/summary-rules/ingestion-flow.png":::
+:::image type="content" source="media/summary-rules/ingestion-flow.png" alt-text="A diagram that shows how data is ingested into a Log Analytics workspace and is aggregated and re-ingested into the workspace by using a summary rule." lightbox="media/summary-rules/ingestion-flow.png":::
 
-You can aggregate data from any table, regardless of whether the table has an [Analytics or Basic data plan](basic-logs-query.md). Azure Monitor creates the destination table schema based on the query you define. If the destination table already exists, Azure Monitor adds any columns required to support the query results. All destination tables also include a set of standard fields with summary rule information, including: 
+You can aggregate data from any table, regardless of whether the table has an [Analytics or Basic data plan](basic-logs-query.md). Azure Monitor creates the destination table schema based on the query you define. If the destination table already exists, Azure Monitor appends any columns required to support the query results. All destination tables also include a set of standard fields with summary rule information, including: 
 
 - `_RuleName`: The summary rule that generated the aggregated log entry.
 - `_RuleLastModifiedTime`: When the rule was last modified. 
 - `_BinSize`: The aggregation interval.  
-- `_BinStartTime` The aggregation start time.
+- `_BinStartTime`: The aggregation start time.
 
 You can configure up to 30 active rules to aggregate data from multiple tables and send the aggregated data to separate destination tables or the same table. 
 
@@ -71,34 +71,21 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 | --- | --- |
 | Create or update summary rule | `Microsoft.Operationalinsights/workspaces/summarylogs/write` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example |
 | Create or update destination table | `Microsoft.OperationalInsights/workspaces/tables/write` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example |
-| Enable query in workspace | `Microsoft.OperationalInsights/workspaces/query/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
-| Query all logs in workspace | `Microsoft.OperationalInsights/workspaces/query/*/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
-| Query logs in table | `Microsoft.OperationalInsights/workspaces/query/<table>/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
-| Query logs in table (table action) | `Microsoft.OperationalInsights/workspaces/tables/query/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
+| Enable query operation in workspace | `Microsoft.OperationalInsights/workspaces/query/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
+| Query all tables in workspace | `Microsoft.OperationalInsights/workspaces/query/*/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
+| Query logs in a table | `Microsoft.OperationalInsights/workspaces/query/<table>/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
+| Query logs in a table (table action) | `Microsoft.OperationalInsights/workspaces/tables/query/read` permissions to the Log Analytics workspace, as provided by the [Log Analytics Reader built-in role](manage-access.md#log-analytics-reader), for example |
 | Use queries encrypted in a customer-managed storage account|`Microsoft.Storage/storageAccounts/*` permissions to the storage account, as provided by the [Storage Account Contributor built-in role](/azure/role-based-access-control/built-in-roles/storage#storage-account-contributor), for example|
 
 
 ## Restrictions and limitations
 
-| Category | Limit |
-|:---|:---|
-| Maximum number of active rules in a workspace | 30 |
-| Maximum number of results per bin | 500,000 |
-| Maximum results set volume | 100 MB |
-| Query time-out for bin processing | 10 minutes |
-
+- The Maximum number of active rules in a workspace is 30. 
 - Summary rules are currently only available in the public cloud. 
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Querying a Log Analytics workspace in another tenant by using Lighthouse isn't supported.
-- KQL limits depend on the table plan of the source table. 
 
-   - Analytics: Supports all KQL commands, except for: 
-   
-      - [Cross-resource queries](cross-workspace-query.md), using the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), using the `ADX()` and `ARG()` expressions.
-      - Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin). 
-   - Basic: Supports all KQL commands on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
-   - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
 ## Pricing model
 
@@ -106,26 +93,30 @@ There's no extra cost for Summary rules. You only pay for the query and the inge
 
 | Source table plan | Query cost | Summary results ingestion cost |
 | --- | --- | --- |
-| Analytics | No cost    | Analytics ingested GB | 
-| Basic and Auxiliary    | Scanned GB | Analytics ingested GB | 
+| Analytics | No cost    | Ingestion of Analytics logs | 
+| Basic and Auxiliary    | Data scan | Ingestion of Analytics logs | 
 
 For example, the cost calculation for an hourly rule that returns 100 records per bin is:
 
 | Source table plan | Monthly price calculation
 | --- | --- |
-| Analytics  | Ingestion price x record size x number of records x 24 hours x 30 days | 
-| Basic and Auxiliary | Scanned GB price x scanned size + Ingestion price x record size x number of records x 24 hours x 30 days | 
+| Analytics  | Ingestion price x record volume x number of records x 24 hours x 30 days. | 
+| Basic and Auxiliary | Data scan price x scanned volume + Ingestion price x record volume x number of records x 24 hours x 30 days. For continuously running rule, all incoming data to source table is scanned. | 
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Create or update a summary rule
 
-Before you create a rule, experiment with the query in [Log Analytics](log-analytics-overview.md). Verify that the query doesn't reach or near the query limit. Check that the query produces the intended schema and expected results. If the query is close to the query limits, consider using a smaller `binSize` to process less data per bin. You can also modify the query to return fewer records or remove fields with higher volume. 
+The query commands that can be used depend on the plan of source table used in the query.
+ - Analytics: Supports all KQL commands, except for: 
+    - [Cross-resource queries](cross-workspace-query.md), using the `workspaces()`, `app()`, and `resource()` expressions, and [cross-service queries](azure-monitor-data-explorer-proxy.md), using the `ADX()` and `ARG()` expressions.
+    - Plugins that reshape the data schema, including [bag unpack](/azure/data-explorer/kusto/query/bag-unpack-plugin), [narrow](/azure/data-explorer/kusto/query/narrow-plugin), and [pivot](/azure/data-explorer/kusto/query/pivot-plugin). 
+ - Basic: Supports all KQL commands on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
+ - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
-> [!NOTE]
-> Summary rules are most beneficial in term of cost and results consumption when reduced significantly. For example, results volume is 0.01% or less than source.
+Summary rules are most beneficial in term of cost and query experiences when results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify that the query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces). Check that the query produces the intended expected results and schema. If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
 
-When you update a query and remove output fields from the results set, Azure Monitor doesn't automatically remove the columns from the destination table. You need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
+When you update a query and there are fewer fields in summary results, Azure Monitor doesn't automatically remove the columns from the destination table, and you need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
 
 
 ### [API](#tab/api)
@@ -316,19 +307,18 @@ This table describes the summary rule parameters:
 | --- | --- |
 | `ruleType` | `User` or `System` | Specifies the type of rule. <br> - `User`: Rules you define. <br> - `System`: Predefined rules managed by Azure services. |
 | `description` | String | Describes the rule and its function. This parameter is helpful when you have several rules and can help with rule management. |
-| `binSize` |`20`, `30`, `60`, `120`, `180`, `360`, `720`, or `1,440` (minutes) | Defines the aggregation interval and lookback time range. For example, if you set `"binSize": 120`, you might get entries for `02:00 to 04:00` and `04:00 to 06:00`.|
+| `binSize` |`20`, `30`, `60`, `120`, `180`, `360`, `720`, or `1440` (minutes) | Defines the aggregation interval and lookback time range. For example, if you set `"binSize": 120`, you might get entries for `02:00 to 04:00` and `04:00 to 06:00`.|
 | `query` | [Kusto Query Language (KQL) query](get-started-queries.md) | Defines the query to execute in the rule. You don't need to specify a time range because the `binSize` parameter determines the aggregation interval - for example, `02:00 to 03:00` if `"binSize": 60`. If you add a time filter in the query, the time rage used in the query is the intersection between the filter and the bin size. |
 | `destinationTable` | `tablename_CL` | Specifies the name of the destination custom log table. The name value must have the suffix `_CL`. Azure Monitor creates the table in the workspace, if it doesn't already exist, based on the query you set in the rule. If the table already exists in the workspace, Azure Monitor adds any new columns introduced in the query. <br><br> If the summary results include a reserved column name - such as `TimeGenerated`, `_IsBillable`, `_ResourceId`, `TenantId`, or `Type` - Azure Monitor appends the `_Original` prefix to the original fields to preserve their original values.|
-| `binDelay` (optional) | Integer (minutes) | Sets a time to delay before bin execution for late arriving data, also known as [ingestion latency](data-ingestion-time.md). The delay allows for most data to arrive and for service load distribution. The default delay is from three and a half minutes to 10% of the `binSize` value. <br><br> If you know that the data you query is typically ingested with delay, set the `binDelay` parameter with the known delay value or greater. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br>In some cases, Azure Monitor might begin bin execution slightly after the set bin delay to ensure service reliability and query success.|
+| `binDelay` (optional) | Integer (minutes) | Sets a time to wait before bin execution, typically useful when executed on late arriving data, also known as [ingestion latency](data-ingestion-time.md), and allows most data to arrive. The default delay is from three and a half minutes to 10% of the `binSize` value. <br><br> If you know that the data you query is typically ingested with delay, set the `binDelay` parameter with the known delay value or greater, up to 1440 minutes. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br>In some cases, Azure Monitor might begin bin execution slightly after the set bin delay to ensure service reliability and query success.|
 | `binStartTime` (optional) | Datetime in<br>`%Y-%n-%eT%H:%M %Z` format | Specifies the date and time for the initial bin execution. The value can start at rule creation datetime minus the `binSize` value, or later and in whole hours. For example, if the datetime is `2023-12-03T12:13Z` and `binSize` is 1,440, the earliest valid `binStartTime` value is `2023-12-02T13:00Z`, and the aggregation includes data logged between 02T13:00 and 03T13:00. In this scenario, the rules start aggregating a 03T13:00 plus the default or specified delay. <br><br> The `binStartTime` parameter is useful in daily summary scenarios. Suppose you're in the UTC-8 time zone and you create a daily rule at `2023-12-03T12:13Z`. You want the rule to complete before you start your day at 8:00 (00:00 UTC). Set the `binStartTime` parameter to `2023-12-02T22:00Z`. The first aggregation includes all data logged between 02T:06:00 and 03T:06:00 local time, and the rule runs at the same time daily. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br><br> When you update rules, you can either: <br> - Use the existing `binStartTime` value or remove the `binStartTime` parameter, in which case execution continues based on the initial definition.<br> - Update the rule with a new `binStartTime` value to set a new datetime value. |
 | `timeSelector` (optional) | `TimeGenerated` | Defines the timestamp field that Azure Monitor uses to aggregate data. For example, if you set `"binSize": 120`, you might get entries with a `TimeGenerated` value between `02:00` and `04:00`. |
-
 
 ### Configure the aggregation timing
 
 By default, the summary rule creates the first aggregation shortly after the next whole hour. 
 
-The short delay Azure Monitor adds accounts for ingestion latency - or the time between when the data is created in the monitored system and the time that it becomes available for analysis in Azure Monitor. By default, this delay is between three and a half minutes to 10% of the `binSize` value before aggregating each chunk of data. In most cases, this delay ensures that Azure Monitor aggregates all data logged within each bin period.
+The short delay Azure Monitor adds accounts for ingestion latency - or the time between when the data is created in the monitored system and the time that it becomes available for analysis in Azure Monitor. By default, this delay is between three and a half minutes to 10% of the 'bin size' value before aggregating each bin. In most cases, this delay ensures that Azure Monitor aggregates all data logged within each bin period.
 
 For example: 
 
@@ -491,7 +481,7 @@ The destination table schema is defined when you create or update a summary rule
 
 ### Data in removed columns remains in the workspace based on the table's retention settings
 
-When you remove columns in the query, the columns and data remain in the destination and based on the [retention period](data-retention-configure.md) defined on the table or workspace. If you don't need the removed in destination table, [delete the columns from the table schema](create-custom-table.md#add-or-delete-a-custom-column). If you then add columns with the same name, any data that's not older that the retention period appears again.
+When you remove a field in the query, the columns and data remain in the destination and based on the [retention period](data-retention-configure.md) defined on the table or workspace. If you don't need the removed in destination table, [delete the columns from the table schema](create-custom-table.md#add-or-delete-a-custom-column). If you then add columns with the same name, any data that's not older that the retention period appears again.
 
 ## Related content
 
