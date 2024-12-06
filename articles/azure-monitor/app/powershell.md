@@ -355,13 +355,8 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 
 ## Set the daily cap reset time
 
-To set the daily cap reset time, you can use [ARMClient](https://github.com/projectkudu/ARMClient). Here's an example using `ARMClient` to set the reset time to a new hour. This example shows 12:00 UTC:
-
-```PS
-armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/microsoft.insights/components/MyResourceName/CurrentBillingFeatures?api-version=2018-05-01-preview "{'CurrentBillingFeatures':['Basic'],'DataVolumeCap':{'Cap':100,'WarningThreshold':80,'ResetTime':12}}"
-```
-
-<a id="price"></a>
+> [!IMPORTANT]
+> The daily cap reset time can no longer be customized using the `ResetTime` attribute. The current daily cap is reset at 00:00:00 AM UTC.
 
 ## Set the pricing plan
 
