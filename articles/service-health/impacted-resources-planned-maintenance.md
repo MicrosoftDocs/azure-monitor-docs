@@ -2,16 +2,16 @@
 title: Resource impact from Azure planned maintenance events
 description: This article details where to find information from Azure Service Health about how Azure planned maintenance impacts your resources.
 ms.topic: conceptual
-jocalland-patch-20
+
 ms.date: 12/5/2024
 
 ms.date: 10/24/2024
- main
+
 ---
 
 # Resource impact from Azure planned maintenance
 
-jocalland-patch-20
+
 In support of the experience for viewing Impacted Resources, Service Health has features to:
 
 - Display resources that are impacted by a planned maintenance event.
@@ -22,29 +22,16 @@ This article details what is communicated to users and where they can view infor
 >[!Note]
 >This feature will be rolled out in phases. Initially, impacted resources will only be shown for **SQL resources with advance customer notifications and rebootful updates for compute resources.** Planned maintenance impacted resources coverage will be expanded to other resource types and scenarios in the future.-->
 
-In support of the experience for viewing impacted resources, Service Health has a new feature to:
 
-* Display resources impacted by a planned maintenance event.
-* Provide impacted resources information for planned maintenance via the Service Health portal.
-
-This article details what is communicated to users and where they can view information about their impacted resources.
-
-> [!NOTE]
-> This feature gets rolled out in phases. Initially, impacted resources are only shown for *SQL resources with advance customer notifications and rebootful updates for compute resources.* Planned maintenance impacted resources coverage gets expanded to other resource types and scenarios in the future.
- main
 
 ## Viewing impacted resources for planned maintenance events in the Service Health portal
 
- jocalland-patch-20
-In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned Maintenance** displays resources affected by a planned maintenance event. The following example of the Impacted Resources tab shows a planned maintenance event with impacted resources.
-=======
 In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned maintenance** displays resources that are affected by a planned maintenance event. The following example shows a planned maintenance event with impacted resources.
- main
+
 
 :::image type="content" source="./media/impacted-resource-maintenance/grid-image.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health.":::
 
 Service Health provides the following information on resources impacted by a planned maintenance event:
- jocalland-patch-20
 
 |Fields  |Description |
 |---------|---------|
@@ -59,35 +46,18 @@ Service Health provides the following information on resources impacted by a pla
 >[!Note]
 >Fields with an asterisk * are optional fields that are available depending on the resource type.
 
- main
 
-| Fields                                 | Description                                                                                                                            |
-|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
-| **Resource Name**                      | Name of the resource impacted by the planned maintenance event.                                                                        |
-| **Resource Type**                      | Type of resource impacted by the planned maintenance event.                                                                            |
-| **Resource Group**                     | Resource group which contains the impacted resource.                                                                                   |
-| **Region**                             | Region which contains the impacted resource.                                                                                           |
-| **Subscription ID**                    | Unique ID for the subscription that contains the impacted resource.                                                                    |
-| **Action**\*                           | Link to the **Apply update** page during Self-Service window (only for rebootful updates on compute resources).                        |
-| **Self-serve Maintenance Due Date**\*  | Due date for Self-Service window during which the update can be applied by the user (only for rebootful updates on compute resources). |
 
-> [!NOTE]
-> Fields with an asterisk * are optional fields that are available depending on the resource type.
+
 
 ## Filters
 
- jocalland-patch-20
-Customers can filter on the results using the filters shown below.
-- Region
-- Subscription ID: All Subscription IDs the user has access to 
-- Resource Type: All Resource types under the users subscriptions
 
 Customers can filter the results using these filters:
 
 * **Region**
 * **Subscription ID**: All subscription IDs the user has access to 
 * **Resource Type**: All resource types under the users' subscriptions
-main
 
 :::image type="content" source="./media/impacted-resource-maintenance/details-filters.PNG" alt-text="Screenshot of filters used to sort impacted resources.":::
 
