@@ -61,7 +61,7 @@ Code Optimizations are generated automatically after [Application Insights Profi
 
 [!INCLUDE [profiler-overhead](../profiler/includes/profiler-overhead.md)]
 
-Code Optimizations and .NET Profiler traces incur no extra cost to you as it analyzes performance issues and generates performance recommendations. Some Code Optimization features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](/azure/copilot/overview). 
+Some Code Optimization features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](/azure/copilot/overview). 
 
 ## Supported services
 
