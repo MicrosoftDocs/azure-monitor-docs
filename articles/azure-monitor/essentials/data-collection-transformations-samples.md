@@ -9,9 +9,7 @@ ms.reviwer: nikeist
 ---
 
 # Best practices and samples for transformations in Azure Monitor
-[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides best practices and recommendations for using transformations to ensure that they're reliable and cost effective. It also includes samples for common scenarios that you can use to get started creating your own transformation.
-
-This section provides basic strategies and sample queries for a variety of common transformation scenarios. These queries can be used in the `transformKql` property of in the `DataFlows` section of the sample DCRs in this article. You may need to modify the query to match you particular source and destination in addition to other details to achieve your desired behavior. They can be useful as a starting point though for common scenarios.
+[Transformations in Azure Monitor](./data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides best practices and recommendations for using transformations to ensure that they're reliable and cost effective. It also includes sample queries for common scenarios that you can use to get started creating your own transformations.
 
 ## Optimize and monitor transformations
 Transformations run a KQL query against every record collected with the DCR, so it's important that they run efficiently. Transformations that take excessive time to run can impact the performance of the data collection pipeline and result in data loss. See [Optimize log queries in Azure Monitor](../logs/query-optimization.md) for guidance on testing your query before you implement it as a transformation and for recommendations on optimizing queries that don't run efficiently. 

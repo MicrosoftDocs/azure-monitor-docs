@@ -157,7 +157,7 @@ Following is a sample JSON definition for a workspace transformation DCR:
 
 ```json
 {
-    "kind": "WorkspaceTransformation",
+    "kind": "WorkspaceTransforms",
     "location": "eastus",
     "properties": {
         "destinations": [

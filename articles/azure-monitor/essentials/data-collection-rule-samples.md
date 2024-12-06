@@ -10,15 +10,14 @@ ms.reviewer: jeffwo
 ---
 
 # Data collection rule (DCR) samples in Azure Monitor
-This article includes sample [data collection rules (DCRs)](./data-collection-rule-overview.md) for common data collection scenarios in Azure Monitor. You can modify these DCRs as required for your environment and create them using the guidance in [Create or edit a data collection rule](./data-collection-rule-create-edit.md). You can also use and combine the basic strategies in these samples to create DCRs for other scenarios.
+This article includes sample [data collection rules (DCRs)](./data-collection-rule-overview.md) for common data collection scenarios in Azure Monitor. You can modify these DCR definitions as required for your environment and create the DCR using the guidance in [Create or edit a data collection rule](./data-collection-rule-create-edit.md). You can also use and combine the basic strategies in these samples to create DCRs for other scenarios.
 
-These samples require knowledge of the DCR structure as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md).
-Several may be configured using the Azure portal without any detailed of the knowledge of the DCR structure. Use these samples when you need to work with the DCR definition itself to perform more advanced configurations or to automate the creation of DCRs.
+These samples require knowledge of the DCR structure as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md). Several may be configured using the Azure portal without any detailed knowledge of the DCR structure. Use these samples when you need to work with the DCR definition itself to perform more advanced configurations or to automate the creation of DCRs.
 
 Each of these samples focuses on a particular data source, although you can combine multiple data sources of different types in a single DCR. Include a data flow for each to send the data to the appropriate destination. There is no functional difference between combining multiple data sources in a single DCR or creating separate DCRs for each data source. The choice depends on your requirements for managing and monitoring the data collection.
 
 > [!NOTE]
-> These samples show in this article provide the source JSON of a DCR if you're using an ARM template or REST API to create a new DCR. After creation, the DCR will have additional properties as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md).
+> These samples show in this article provide the source JSON required to create the DCR. After creation, the DCR will have additional properties as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md).
 
 
 ## DCRs for Azure Monitor agent
@@ -58,7 +57,7 @@ The following sample DCR performs the following actions:
       "destinations": {
         "logAnalytics": [
           {
-            "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+            "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
             "name": "centralWorkspace"
           }
         ]
@@ -130,14 +129,15 @@ The following sample DCR performs the following actions:
               "Error",
               "Critical",
               "Alert",
-              "Emergency"            ]
+              "Emergency"           
+            ]
           }
         ]
       },
       "destinations": {
         "logAnalytics": [
           {
-            "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+            "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
             "name": "centralWorkspace"
           }
         ]
@@ -159,18 +159,17 @@ The following sample DCR performs the following actions:
 ```
 
 ### Performance counters
-DCRs for Syslog events use the `performanceCounters` data source with the incoming `Microsoft-InsightsMetrics` and `Microsoft-Perf` streams. `Microsoft-InsightsMetrics` is used to send data to Azure Monitor Metrics, while `Microsoft-Perf` is used to send data to a Log Analytics workspace. You can include both data sources in the DCR if you're sending performance data to both destinations. The schemas of these streams are known, so they don't need to be defined in the `dataSources` section.
+DCRs for performance data use the `performanceCounters` data source with the incoming `Microsoft-InsightsMetrics` and `Microsoft-Perf` streams. `Microsoft-InsightsMetrics` is used to send data to Azure Monitor Metrics, while `Microsoft-Perf` is used to send data to a Log Analytics workspace. You can include both data sources in the DCR if you're sending performance data to both destinations. The schemas of these streams are known, so they don't need to be defined in the `dataSources` section.
  
- The performance counters to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+ The performance counters to collect are specified in the `counterSpecifiers` property. See [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
 
-You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency at to avoid potential ingestion charges.
+You can add a transformation to the `dataFlows` property for `Microsoft-Perf` for additional functionality and to further filter data, but you should select only the counters you require in `counterSpecifiers` for efficiency at to avoid potential ingestion charges.
 
 The following sample DCR performs the following actions:
 
-- Collects all events from `cron` facility.
-- Collects `Warning` and higher events from `syslog` and `daemon` facilities.
-  - Sends data to Syslog table in the workspace.
-  - Uses a simple transformation of a `source` which makes no change to the incoming data.
+- Collects set of performance counters every 60 seconds and another set every 30 seconds.
+- Sends data to Azure Monitor Metrics and a Log Analytics workspace.
+- Uses a simple transformation of a `source` which makes no change to the incoming data.
 
 ```json
 {
@@ -179,12 +178,12 @@ The following sample DCR performs the following actions:
       "dataSources": {
         "performanceCounters": [
           {
-            "name": "cloudTeamCoreCounters",
+            "name": "perfCounterDataSource60",
             "streams": [
-              "Microsoft-Perf"
+              "Microsoft-Perf",
+              "Microsoft-InsightsMetrics"
             ],
-            "scheduledTransferPeriod": "PT1M",
-            "samplingFrequencyInSeconds": 15,
+            "samplingFrequencyInSeconds": 60,
             "counterSpecifiers": [
               "\\Processor(_Total)\\% Processor Time",
               "\\Memory\\Committed Bytes",
@@ -193,17 +192,16 @@ The following sample DCR performs the following actions:
             ]
           },
           {
-            "name": "appTeamExtraCounters",
+            "name": "perfCounterDataSource30",
             "streams": [
               "Microsoft-Perf"
             ],
-            "scheduledTransferPeriod": "PT5M",
             "samplingFrequencyInSeconds": 30,
             "counterSpecifiers": [
               "\\Process(_Total)\\Thread Count"
             ]
           }
-        ],
+        ]
       },
       "destinations": {
         "logAnalytics": [
@@ -211,24 +209,39 @@ The following sample DCR performs the following actions:
             "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
             "name": "centralWorkspace"
           }
-        ]
+        ],
+        "azureMonitorMetrics": 
+        {
+            "name": "azureMonitorMetrics-default"
+        }
       },
       "dataFlows": [
         {
-          "streams": [
-            "Microsoft-Perf"
-          ],
-          "destinations": [
-            "centralWorkspace"
-          ]
+            "streams": [
+                "Microsoft-Perf"
+            ],
+            "destinations": [
+                "centralWorkspace"
+            ],
+            "transformKql": "source",
+            "outputStream": "Microsoft-Perf"
+        },
+        {
+            "streams": [
+                "Microsoft-Perf"
+            ],
+            "destinations": [
+                "azureMonitorMetrics-default"
+            ],
+            "outputStream": "Microsoft-InsightsMetrics"
         }
       ]
     }
-  }
+}
 ```
 
 ### Text logs
-DCRs for text logs have a `logfiles` data source that has the details for the log files that should be collected by the agent. This includes the name of a stream that must be defined in `streamDeclarations` with the columns of the incoming data. This is currently as set list as described in [Collect logs from a text file with Azure Monitor Agent](../agents/data-collection-log-text.md#incoming-stream).
+DCRs for text logs have a `logfiles` data source that has the details for the log files that should be collected by the agent. This includes the name of a stream that must be defined in `streamDeclarations` with the columns of the incoming data. This is currently a set list as described in [Collect logs from a text file with Azure Monitor Agent](../agents/data-collection-log-text.md#incoming-stream).
 
 Add a transformation to the `dataFlows` property to filter out records you don't want to collect and to format the data to match the schema of the destination table. A common scenario is to parse a delimited log file into multiple columns as described in [Delimited log files](../agents/data-collection-log-text.md#delimited-log-files).
 
@@ -237,12 +250,13 @@ The following sample DCR performs the following actions:
 - Collects entries from all files with an extension of `.txt` in the `c:\logs` folder of the agent computer.
 - Uses a transformation to split the incoming data into columns based on a comma (`,`) delimiter. This transformation is specific to the format of the log file and must be adjusted for log files with other formats.
 - Sends the collected logs to a custom table called `MyTable_CL`. This table must already exist and have the columns output by the transformation.
+- Collects the `FilePath` and `Computer` for text log as described in [Incoming stream](../agents/data-collection-log-text.md#incoming-stream). These columns must also exist in the destination table.
 
 ```json
 {
     "location": "eastus",
     "properties": {
-        "dataCollectionEndpointId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
+        "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
         "streamDeclarations": {
             "Custom-MyLogFileFormat": {
                 "columns": [
@@ -317,13 +331,13 @@ Add a transformation to the `dataFlows` property to filter out records you don't
 The following sample DCR performs the following actions:
 
 - Collects entries from all files with an extension of `.json` in the `c:\logs` folder of the agent computer. The file must be formatted in json and have the columns listed in the stream declaration.
-- Sends the collected logs to a custom table called `MyTable_CL`. This table must already exist and have the same columns as the incoming stream. If the columns don't match, you must add a transformation to the `dataFlows` property to format the data for the target table.
+- Sends the collected logs to a custom table called `MyTable_CL`. This table must already exist and have the same columns as the incoming stream. If the columns don't match, you would need to modify the transformation in `transformKql` property to format the data for the target table.
 
 ```json
 {
     "location": "eastus",
     "properties": {
-        "dataCollectionEndpointId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
+        "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
         "streamDeclarations": {
             "Custom-Json-stream": {
                 "columns": [
@@ -375,7 +389,7 @@ The following sample DCR performs the following actions:
         "dataFlows": [
             {
                 "streams": [
-                    "MyJsonFile"
+                    "Custom-Json-stream"
                 ],
                 "destinations": [
                     "MyDestination"
@@ -435,35 +449,35 @@ The following sample DCR performs the following actions:
                 ],
                 "name": "eventLogsDataSource"
                 }
-            ],
+            ]
         },
         "destinations": {
             "eventHubsDirect": [
                 {
-                "eventHubResourceId": "[resourceId('Microsoft.EventHub/namespaces/eventhubs', parameters('eventHubNamespaceName'), parameters('eventHubInstanceName'))]",
+                "eventHubResourceId": "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/my-resource-group/providers/Microsoft.EventHub/namespaces/my-eventhub-namespace/eventhubs/my-eventhub",
                 "name": "myEh"
                 }
             ],
             "storageBlobsDirect": [
                 {
-                "storageAccountResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myperfblob",
                 "name": "PerfBlob"
                 },
                 {
-                "storageAccountResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myeventblob",
                 "name": "EventBlob"
                 }
             ],
             "storageTablesDirect": [
                 {
-                "storageAccountResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "myperftable",
                 "name": "PerfTable"
                 },
                 {
-                "storageAccountResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
+                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
                 "containerName": "mymyeventtable",
                 "name": "EventTable"
                 }
@@ -496,7 +510,7 @@ The following sample DCR performs the following actions:
 ```
 
 ## Logs ingestion API
-DCRs for the Logs ingestion API must define schema of the incoming stream in the `streamDeclarations` section of the DCR definition. The incoming data must be formatted in JSON with a schema matching the columns in this definition. No transformation is required if this schema matches the schema of the target table. If the schemas don't match, then you must add a transformation to the `dataFlows` property to format the data for the target table. See [Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md) for more details.
+DCRs for the Logs ingestion API must define the schema of the incoming stream in the `streamDeclarations` section of the DCR definition. The incoming data must be formatted in JSON with a schema matching the columns in this definition. No transformation is required if this schema matches the schema of the target table. If the schemas don't match, then you must add a transformation to the `dataFlows` property to format the data. See [Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md) for more details.
 
 The sample DCR below has the following details:
 
@@ -504,11 +518,11 @@ The sample DCR below has the following details:
   - TimeGenerated
   - Computer
   - AdditionalContext
-  - ExtendedColumn
+  - ExtendedColumn (defined in the transformation)
 - Applies a [transformation](../essentials/data-collection-transformations.md) to the incoming data to format the data for the target table.
 
 > [!IMPORTANT]
-> This sample doesn't include the `dataCollectionEndpointId` property since this is created automatically when the DCR is created. You need the value of this property since it's the URL that the application will send data to. The DCR must have `kind:Direct` for this property to be created. See [Properties](../essentials/data-collection-rule-structure.md#properties) for more details.
+> This sample doesn't include the [`dataCollectionEndpointId`](../logs/logs-ingestion-api-overview.md#endpoint) property since this is created automatically when the DCR is created. You need the value of this property since it's the URL that the application will send data to. The DCR must have `kind:Direct` for this property to be created. See [Properties](../essentials/data-collection-rule-structure.md#properties) for more details.
 
 ```json
 {
@@ -558,14 +572,15 @@ The sample DCR below has the following details:
 ```
 
 ## Workspace transformation DCR
-Workspace transformation DCRs have an empty `datasources` section since the transformations are applied to any data sent to supported tables in the workspace. It must include one and only entry for `workspaceResourceId` and an entry in `dataFlows` for each table with a transformation.
+Workspace transformation DCRs have an empty `datasources` section since the transformations are applied to any data sent to supported tables in the workspace. It must include one and only entry for `workspaceResourceId` and an entry in `dataFlows` for each table with a transformation. It also must have `"kind": "WorkspaceTransforms"`.
 
 The sample DCR below has the following details:
 - Transformation for the `LAQueryLogs` table that filters out queries of the table itself and adds a column with the workspace name.
-- Transformation for the `Event` table that filters out Information events and removes the `ParameterXml` column. This will only apply to data coming from the deprecated Log Analytics agent and not the Azure Monitor agent.
+- Transformation for the `Event` table that filters out Information events and removes the `ParameterXml` column. This will only apply to data coming from the deprecated Log Analytics agent and not the Azure Monitor agent as explained in [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr).
 
 ```json
 {
+    "kind": "WorkspaceTransforms",
     "location": "eastus",
     "properties": {
         "dataSources": {},
@@ -625,28 +640,23 @@ The following sample filters records sent to the Event table by the Azure Monito
     "location": "eastus",
     "properties": {
         "dataSources": {
-            "logFiles": [
-                {
-                    "streams": [
-                        "Microsoft-Event"
-                    ],
-                    "filePatterns": [
-                        "C:\\logs\\*.txt"
-                    ],
-                    "format": "text",
-                    "settings": {
-                        "text": {
-                            "recordStartTimestampFormat": "ISO 8601"
-                        }
-                    },
-                    "name": "myLogFileFormat-Windows"
-                }
+            "windowsEventLogs": [
+              {
+                "name": "eventLogsDataSource",
+                "streams": [
+                  "Microsoft-Event"
+                ],
+                "xPathQueries": [
+                  "System!*[System[(Level = 1 or Level = 2 or Level = 3)]]",
+                  "Application!*[System[(Level = 1 or Level = 2 or Level = 3)]]"
+                ]
+              }
             ]
         },
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
                     "name": "MyDestination"
                 }
             ]
@@ -659,8 +669,8 @@ The following sample filters records sent to the Event table by the Azure Monito
                 "destinations": [
                     "MyDestination"
                 ],
-                "transformKql": "source | where Level in ('Error', 'Warning')",
-                "outputStream": "Event"
+                "transformKql": "source | where EventLevelName in ('Error', 'Warning')",
+                "outputStream": "Microsoft-Event"
             },
             {
                 "streams": [
@@ -669,8 +679,8 @@ The following sample filters records sent to the Event table by the Azure Monito
                 "destinations": [
                     "MyDestination"
                 ],
-                "transformKql": "source | where Level not in ('Error', 'Warning')",
-                "outputStream": "Event_CL"
+                "transformKql": "source | where EventLevelName !in ('Error', 'Warning')",
+                "outputStream": "Custom-Event_CL"
             }
         ]
     }
