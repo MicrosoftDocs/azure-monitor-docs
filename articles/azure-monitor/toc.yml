@@ -84,6 +84,8 @@ items:
           href: app/opentelemetry-configuration.md
         - name: Add and modify OpenTelemetry
           href: app/opentelemetry-add-modify.md
+        - name: Filter OpenTelemetry
+          href: app/opentelemetry-filter.md
         - name: Help, support, and feedback
           href: app/opentelemetry-help-support-feedback.md
         - name: .NET (supplemental)
@@ -330,10 +332,6 @@ items:
       - name: Microsoft Entra authentication
         href: app/azure-ad-authentication.md
         displayName: azure ad authentication
-    - name: Management and security
-      items:
-      - name: Filter OpenTelemetry
-        href: app/opentelemetry-filter.md
     - name: Help and support
       items:
       - name: Create an Azure support ticket
