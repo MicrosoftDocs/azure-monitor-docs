@@ -1,15 +1,15 @@
 ---
-title: Structure of a data collection rule in Azure Monitor
+title: Structure of a data collection rule (DCR) in Azure Monitor
 description: Details on the structure of different kinds of data collection rule in Azure Monitor.
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 07/26/2024
+ms.date: 12/04/2024
 ms.reviwer: nikeist
 ---
 
-# Structure of a data collection rule in Azure Monitor
-[Data collection rules (DCRs)](data-collection-rule-overview.md) are sets of instructions that determine how to collect and process telemetry sent to Azure Monitor. Some DCRs will be created and managed by Azure Monitor. This article describes the JSON structure of DCRs for creating and editing them in those cases where you need to work with them directly. 
+# Structure of a data collection rule (DCR) in Azure Monitor
+This article describes the JSON structure of DCRs for those cases where you need to work directly with their definition. 
 
 - See [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md) for details working with the JSON described here.
 - See [Sample data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-samples.md) for sample DCRs for different scenarios.
@@ -54,7 +54,7 @@ The basic flow of a DCR is shown in the following diagram. Each of the component
 The input stream section of a DCR defines the incoming data that's being collected. There are two types of incoming stream, depending on the particular data collection scenario. Most data collection scenarios use one of the input streams, while some may use both.
 
 > [!NOTE]
-> [Workspace transformation DCRs](./data-collection-transformations-workspace.md) don't have an input stream.
+> [Workspace transformation DCRs](./data-collection-transformations.md#workspace-transformation-dcr) don't have an input stream.
 
 | Input stream | Description |
 |:---|:---|
