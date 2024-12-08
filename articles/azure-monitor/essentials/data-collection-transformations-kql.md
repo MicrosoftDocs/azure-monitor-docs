@@ -257,7 +257,7 @@ The only supported data sources for the KQL statement in a transformation are as
   - [`round`](/azure/data-explorer/kusto/query/roundfunction)
   - [`sign`](/azure/data-explorer/kusto/query/signfunction)
 - Conditional functions
-  - [ca`se](/azure/data-explorer/kusto/query/casefunction)
+  - [`case`](/azure/data-explorer/kusto/query/casefunction)
   - [`iif`](/azure/data-explorer/kusto/query/iiffunction)
   - [`max_of`](/azure/data-explorer/kusto/query/max-offunction)
   - [`min_of`](/azure/data-explorer/kusto/query/min-offunction)
