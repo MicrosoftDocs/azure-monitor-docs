@@ -4,7 +4,7 @@ description: Details of log query audit logs which provide telemetry about log q
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 10/20/2021
+ms.date: 12/08/2024
 
 ---
 
@@ -22,7 +22,8 @@ Access the diagnostic setting for a Log Analytics workspace in the Azure portal 
     <!-- convertborder later -->
     :::image type="content" source="media/query-audit/diagnostic-setting-monitor.png" lightbox="media/query-audit/diagnostic-setting-monitor.png" alt-text="Screenshot of diagnostic settings Azure Monitor." border="false"::: 
 
-- From the **Log Analytics workspaces** menu, select the workspace, and then select **Diagnostic settings**.
+- From the **Log Analytics workspaces** menu, select the workspace, and then select **Diagnostic settings**.![image](https://github.com/user-attachments/assets/13fd1705-b850-49a8-91e9-b0c5b50f354a)
+
 
     :::image type="content" source="media/query-audit/diagnostic-setting-workspace.png" lightbox="media/query-audit/diagnostic-setting-workspace.png" alt-text="Screenshot of diagnostic settings Log Analytics workspace."::: 
 
