@@ -40,8 +40,9 @@ The components of Azure Monitor that are supported with a network security perim
 | Log query alerts | Microsoft.Insights/ScheduledQueryRules | 2022-08-01-preview |
 | Action groups <sup>1</sup> <sup>2</sup> | Microsoft.Insights/actionGroups | 2023-05-01 |
 
-<sup>1</sup> NSP only operates with [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal). Global action groups deafult to public network access.
-<sup>2</sup> Today, Eventhub is the only supported action type for NSP, all other actions will default to public network access. 
+<sup>1</sup> NSP only operates with [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal). Global action groups default to public network access.
+
+<sup>2</sup> Today, Eventhub is the only supported action type for NSP. All other actions default to public network access. 
 
 The following components of Azure Monitor are **not** supported with a network security perimeter:
 
