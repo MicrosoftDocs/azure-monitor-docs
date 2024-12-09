@@ -3,8 +3,7 @@ title: Azure Monitor Logs cost calculations and options
 description: Cost details for data stored in a Log Analytics workspace in Azure Monitor, including commitment tiers and data size calculation.
 ms.topic: conceptual
 ms.reviewer: Dale.Koetke
-ms.date: 01/25/2024
-ms.reviwer: dalek git
+ms.date: 12/09/2024
 ---
 
 # Azure Monitor Logs cost calculations and options
