@@ -7644,6 +7644,11 @@
     "source_path": "articles/azure-monitor/logs/data-collector-api.md",
     "redirect_url": "/previous-versions/azure/azure-monitor/logs/data-collector-api",
     "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/logs/azure-ad-authentication-logs.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/logs/azure-ad-authentication-logs",
+    "redirect_document_id": false
   }
  ]
 }
