@@ -969,8 +969,6 @@ items:
       href: essentials/activity-log.md
     - name: Stream monitoring data to Event Hubs
       href: essentials/stream-monitoring-data-event-hubs.md
-  - name: Use Microsoft Entra authentication
-    href: logs/azure-ad-authentication-logs.md
   - name: Troubleshoot
     items:
      - name: Data collection
