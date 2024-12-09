@@ -2,13 +2,13 @@
 title: Template to create Resource Health alerts
 description: Create alerts programmatically that notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 9/4/2018 
+ms.date: 10/17/2024 
 ms.custom:
 ---
 
 # Configure resource health alerts using Resource Manager templates
 
-This article will show you how to create Resource Health Activity Log Alerts programmatically using Azure Resource Manager templates and Azure PowerShell.
+This article will show you how to create Resource Health Activity Log Alerts using Azure Resource Manager templates and Azure PowerShell.
 
 Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. Azure Resource Health alerts can notify you in near real-time when these resources have a change in their health status. Creating Resource Health alerts programmatically allow for users to create and customize alerts in bulk.
 
@@ -18,8 +18,8 @@ Azure Resource Health keeps you informed about the current and historical health
 
 To follow the instructions on this page, you'll need to set up a few things in advance:
 
-1. You need to install the [Azure PowerShell module](/powershell/azure/install-azure-powershell)
-2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you
+1. You need to install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
+2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 ## Instructions
 1. Using PowerShell, log in to Azure using your account, and select the subscription you want to interact with
@@ -74,7 +74,8 @@ To follow the instructions on this page, you'll need to set up a few things in a
     DeploymentDebugLogLevel :
     ```
 
-Note that if you are planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
+[!NOTE]   
+If you are planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
 
 ## Resource Manager template options for Resource Health alerts
 
@@ -168,7 +169,7 @@ For example: `"/subscriptions/d37urb3e-ed41-4670-9c19-02a1d2808ff9/resourcegroup
 
 > You can go to the Azure Portal and look at the URL when viewing your Azure resource to get this string.
 
-### Adjusting the resource types which alert you
+### Adjusting the resource types that alert you
 
 Alerts at the subscription or resource group level may have different kinds of resources. If you want to limit alerts to only come from a certain subset of resource types, you can define that in the `condition` section of the template like so:
 
