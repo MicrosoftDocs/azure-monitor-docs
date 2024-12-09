@@ -165,7 +165,7 @@ def ignore():
 
 ---
 
-### Filter telemetry using custom span processors
+## Filter telemetry using custom span processors
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
