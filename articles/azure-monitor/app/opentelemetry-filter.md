@@ -63,7 +63,7 @@ Many instrumentation libraries provide a filter option. For guidance, see the co
 
 ### [Java](#tab/java)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
@@ -72,7 +72,7 @@ Starting with Java agent version 3.0.3, specific autocollected telemetry can be 
 
 ### [Java native](#tab/java-native)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Suppress specific autocollected telemetry](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
