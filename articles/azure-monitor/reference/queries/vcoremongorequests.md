@@ -5,7 +5,7 @@ ms.topic: reference
 ms.service: azure-monitor
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 11/20/2024
+ms.date: 12/09/2024
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -24,7 +24,7 @@ Mongo vCore requests P99 runtime duration by operation name.
 ```query
 VCoreMongoRequests
 // Time range filter:  | where TimeGenerated between (StartTime .. EndTime)
-// Resource id filter: | where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
+// Resource id filter: | where _ResourceId == "/subscriptions/22223333-cccc-4444-dddd-5555eeee6666/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
 | summarize percentile(DurationMs, 99) by bin(TimeGenerated, 1h), OperationName
 
 ```
@@ -39,7 +39,7 @@ Count of Mongo vCore requests binned by total runtime duration.
 ```query
 VCoreMongoRequests
 // Time range filter:  | where TimeGenerated between (StartTime .. EndTime)
-// Resource id filter: | where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
+// Resource id filter: | where _ResourceId == "/subscriptions/22223333-cccc-4444-dddd-5555eeee6666/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
 | project TimeGenerated, DurationBin=tostring(bin(DurationMs, 5))
 | summarize count() by bin(TimeGenerated, 1m), tostring(DurationBin)
 
@@ -55,7 +55,7 @@ Count of failed Mongo vCore requests by error code.
 ```query
 VCoreMongoRequests
 // Time range filter:  | where TimeGenerated between (StartTime .. EndTime)
-// Resource id filter: | where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
+// Resource id filter: | where _ResourceId == "/subscriptions/22223333-cccc-4444-dddd-5555eeee6666/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
 | where ErrorCode != 0
 | summarize count() by bin(TimeGenerated, 5m), ErrorCode=tostring(ErrorCode)
 
@@ -71,7 +71,8 @@ Count of Mongo vCore requests by user agent.
 ```query
 VCoreMongoRequests
 // Time range filter:  | where TimeGenerated between (StartTime .. EndTime)
-// Resource id filter: | where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
+// Resource id filter: | where _ResourceId == "/subscriptions/22223333-cccc-4444-dddd-5555eeee6666/resourcegroups/my-resource-group-name/providers/microsoft.documentdb/mongoclusters/my-cluster-name"
 | summarize count() by bin(TimeGenerated, 1h), UserAgent
 
 ```
+
