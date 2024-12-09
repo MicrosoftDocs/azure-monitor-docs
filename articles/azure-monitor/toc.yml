@@ -1364,6 +1364,7 @@ items:
         href: logs/basic-logs-query.md
       - name: Audit queries
         href: logs/query-audit.md
+        displayName: LAQueryLogs
       - name: Optimize queries
         href: logs/query-optimization.md
       - name: Functions
