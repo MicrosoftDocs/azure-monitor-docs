@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 10/08/2024
+ms.date: 12/09/2024
 ---
 
 # Reliability recommendations
@@ -1940,6 +1940,18 @@ Set the DNS Servers for the VM at the Virtual Network level to ensure consistenc
 For More information, see [Name resolution for resources in Azure virtual networks](https://aka.ms/azvnetnameres)  
 
 <!--490262e8-313c-431f-a143-a9c2cadba41b_end-->
+  
+
+<!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_begin-->  
+#### Migrate to Virtual Machine Scale Sets Flex  
+  
+Migrate workloads from virtual machine (VM) to Virtual Machine Scale Sets Flex for deployment across zones or within the same zone across different fault domains. The platform plans to deprecate availability sets.  
+  
+**Potential benefits**: Availability across zones or across different fault domains
+  
+For More information, see [Migrate deployments and resources to Virtual Machine Scale Sets in Flexible orchestration](https://aka.ms/MigrateToVMSSFlex)  
+
+<!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_end-->
   
 <!--microsoft_compute_end--->
 ## Workloads
