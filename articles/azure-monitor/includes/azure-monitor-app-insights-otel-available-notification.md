@@ -6,5 +6,5 @@ ms.topic: include
 ms.date: 07/12/2024
 ---
 
-> [!NOTE]
-> The following documentation relies on the Application Insights classic API. The long-term plan for Application Insights is to collect data using OpenTelemetry. For more information, see [Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python and Java applications](../app/opentelemetry-enable.md#enable-azure-monitor-opentelemetry-for-net-nodejs-python-and-java-applications) and [our OpenTelemetry Roadmap](https://techcommunity.microsoft.com/t5/azure-observability-blog/making-azure-the-best-place-to-observe-your-apps-with/ba-p/3995896). Migration guidance is available for [.NET](../app/opentelemetry-dotnet-migrate.md), [Node.js](../app/opentelemetry-nodejs-migrate.md), and [Python](../app/opentelemetry-python-opencensus-migrate.md).
+> [!CAUTION]
+> We recommend the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md#enable-azure-monitor-opentelemetry-for-net-nodejs-python-and-java-applications) for new customers to power [Azure Monitor Application Insights](../app/app-insights-overview.md). It's possible to migrate from the Application Insights SDK using the migration guides for [.NET](../app/opentelemetry-dotnet-migrate.md), [Node.js](../app/opentelemetry-nodejs-migrate.md), and [Python](../app/opentelemetry-python-opencensus-migrate.md), but we are still working to add a [few more features](../app/opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro) for backwards compatibility.
