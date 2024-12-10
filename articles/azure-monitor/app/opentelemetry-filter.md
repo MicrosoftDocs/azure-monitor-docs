@@ -165,7 +165,7 @@ def ignore():
 
 ---
 
-## Filter telemetry using custom span processors
+## Filter telemetry using span processors
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -246,11 +246,19 @@ If a particular source isn't explicitly added by using `AddSource("ActivitySourc
 
 ### [Java](#tab/java)
 
-For information about using telemetry processors with Java, see [Telemetry processors (preview) - Azure Monitor Application Insights for Java](./java-standalone-telemetry-processors.md).
+To filter telemetry from Java applications, you can use sampling overrides (recommended) or telemetry processors. For more information, see the following documentation:
+
+* [Sampling overrides](./java-standalone-sampling-overrides.md)
+* [Telemetry processors (preview)](./java-standalone-telemetry-processors.md)
+* [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md)
 
 ### [Java native](#tab/java-native)
 
-For information about using telemetry processors with Java, see [Telemetry processors (preview) - Azure Monitor Application Insights for Java](./java-standalone-telemetry-processors.md).
+To filter telemetry from Java applications, you can use sampling overrides (recommended) or telemetry processors. For more information, see the following documentation:
+
+* [Sampling overrides](./java-standalone-sampling-overrides.md)
+* [Telemetry processors (preview)](./java-standalone-telemetry-processors.md)
+* [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md)
 
 ### [Node.js](#tab/nodejs)
 
