@@ -254,7 +254,7 @@ To filter telemetry from Java applications, you can use sampling overrides (reco
 
 ### [Java native](#tab/java-native)
 
-To filter telemetry from Java applications, you can use sampling overrides (recommended) or telemetry processors. For more information, see the following documentation:
+To filter telemetry from Java native applications, you can use sampling overrides (recommended) or telemetry processors. For more information, see the following documentation:
 
 * [Sampling overrides](./java-standalone-sampling-overrides.md)
 * [Telemetry processors (preview)](./java-standalone-telemetry-processors.md)
