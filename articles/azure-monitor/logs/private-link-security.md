@@ -17,8 +17,8 @@ Advantages of using Private Link with Azure Monitor include the following. See [
 - Securely connect your private on-premises network to Azure Monitor by using Azure ExpressRoute and Private Link.
 - Keep all traffic inside the Azure backbone network.
 
-
 ## Basic concepts
+
 Instead of creating a private link for each resource the virtual network connects to, Azure Monitor uses a single private link connection using a private endpoint from the virtual network to an Azure Monitor Private Link Scope (AMPLS). The AMPLS is a set of Azure Monitor resources that define the boundaries of your monitoring network.
 
 :::image type="content" source="./media/private-link-security/private-link-basic-topology.png" lightbox="./media/private-link-security/private-link-basic-topology.png" alt-text="Diagram that shows basic resource topology.":::
@@ -31,23 +31,26 @@ Notable aspects of the AMPLS include the following:
 * **Controls network access to your Azure Monitor resources**: Configure each of your workspaces or components to accept or block traffic from public networks, potentially using different settings for data ingestion and query requests.
 
 ## DNS zones
+
 When you create an AMPLS, your DNS zones map Azure Monitor endpoints to private IPs to send traffic through the private link. Azure Monitor uses both resource-specific endpoints and shared global/regional endpoints to reach the workspaces and components in your AMPLS.
 
 Because Azure Monitor uses some shared endpoints, configuring a private link even for a single resource changes the DNS configuration that affects traffic to *all resources*. The use of shared endpoints also means you should use a single AMPLS for all networks that share the same DNS. Creating multiple AMPLS resources will cause Azure Monitor DNS zones to override each other and break existing environments. See [Plan by network topology](./private-link-design.md#plan-by-network-topology) for further details.
 
 ### Shared global and regional endpoints
+
 When you configure Private Link even for a single resource, traffic to the following endpoints will be sent through the allocated private IPs:
 
-* **All Application Insights endpoints**: Endpoints handling ingestion, live metrics, the Profiler, and the debugger to Application Insights endpoints are global.
+* **All Application Insights endpoints**: Endpoints handling ingestion, live metrics, the .NET Profiler, and the debugger to Application Insights endpoints are global.
 * **The query endpoint**: The endpoint handling queries to both Application Insights and Log Analytics resources is global.
 
 ### Resource-specific endpoints
+
 Log Analytics endpoints are workspace specific, except for the query endpoint discussed earlier. As a result, adding a specific Log Analytics workspace to the AMPLS will send ingestion requests to this workspace over the private link. Ingestion to other workspaces will continue to use the public endpoints.
 
 [Data collection endpoints](../essentials/data-collection-endpoint-overview.md) are also resource specific. You can use them to uniquely configure ingestion settings for collecting guest OS telemetry data from your machines (or set of machines) when you use the new [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and [data collection rules](../essentials/data-collection-rule-overview.md). Configuring a data collection endpoint for a set of machines doesn't affect ingestion of guest telemetry from other machines that use the new agent.
 
-
 ## Next steps
+
 - [Design your Azure Private Link setup](private-link-design.md).
 - Learn how to [configure your private link](private-link-configure.md).
 - Learn about [private storage](private-storage.md) for custom logs and customer-managed keys.
