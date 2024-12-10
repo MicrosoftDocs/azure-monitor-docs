@@ -123,7 +123,7 @@ Configure the resource thresholds that cause a profile to be collected:
 
 1. Configure the required CPU, Memory, or Request triggers (if enabled) and select **Apply**.
 
-    :::image type="content" source="./media/java-standalone-profiler/trigger-settings.png" alt-text="Screenshot of trigger settings":::
+    :::image type="content" source="./media/java-standalone-profiler/trigger-settings.png" alt-text="Screenshot of trigger settings.":::
 
 > [!WARNING]
 > The Java Profiler does not support the "Sampling" trigger. Configuring this will have no effect.
@@ -231,7 +231,7 @@ On-demand is user triggered profiling in real-time whereas automatic profiling i
 
 Use [Profile Now](../profiler/profiler-settings.md) for the on-demand profiling option. [Profile Now](../profiler/profiler-settings.md) immediately profiles all agents that are attached to the Application Insights instance.
 
-Automated profiling is triggered a breach in a resource threshold.
+Automated profiling is triggered by reaching a resource threshold.
 
 ### Which Java profiling triggers can I configure?
 
