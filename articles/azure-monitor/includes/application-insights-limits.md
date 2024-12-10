@@ -28,8 +28,8 @@ There are some limits on the number of metrics and events per application, that 
 | Availability tests count per resource group | 800 | 800 | See [Azure Resource Manager](/azure/azure-resource-manager/management/resources-without-resource-group-limit) |
 | Availability tests maximum redirects per test | 10 | 10 | |
 | Availability tests minimum test frequency | 300 seconds | | Custom test frequencies or frequencies less than 5 minutes require [custom TrackAvailability](../app/availability-azure-functions.md) implementations. |
-| [Profiler](../app/profiler.md) and [Snapshot](../app/snapshot-debugger.md) data retention | Two weeks | [Contact support.](https://azure.microsoft.com/support/options/) Maximum retention limit is six months. | |
-| [Profiler](../app/profiler.md) data sent per day | No limit | No limit. | |
-| [Snapshot](../app/snapshot-debugger.md) data sent per day | 30 snapshots per day per monitored app | No limit. | The number of snapshots collected per application can be modified through [configuration](../app/snapshot-debugger-vm.md). |
+| [.NET Profiler](../app/profiler-overview.md) and [Snapshot Debugger](../app/snapshot-debugger.md) data retention | Two weeks | [Contact support.](https://azure.microsoft.com/support/options/) Maximum retention limit is six months. | |
+| [.NET Profiler](../app/profile-overview.md) data sent per day | No limit | No limit. | |
+| [Snapshot Debugger](../app/snapshot-debugger.md) data sent per day | 30 snapshots per day per monitored app | No limit. | The number of snapshots collected per application can be modified through [configuration](../app/snapshot-debugger-vm.md). |
 
 For more information about pricing and quotas, see [Application Insights billing](../logs/cost-logs.md#application-insights-billing).

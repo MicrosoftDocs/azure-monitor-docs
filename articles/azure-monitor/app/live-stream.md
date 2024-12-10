@@ -9,7 +9,7 @@ ms.devlang: csharp
 
 # Live metrics: Monitor and diagnose with 1-second latency
 
-Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. The live metrics experience is a powerful diagnostic tool when combined with [.NET profiler](./profiler.md) and [Snapshot Debugger](./snapshot-debugger.md).
+Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. The live metrics experience is a powerful diagnostic tool when combined with [.NET Profiler](./profiler-overview.md) and [Snapshot Debugger](./snapshot-debugger.md).
 
 With live metrics, you can:
 
@@ -193,5 +193,5 @@ If you open live metrics, the SDKs switch to a higher frequency mode and send ne
 
 * [Monitor usage with Application Insights](./usage.md)
 * [Use Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search)
-* [.NET profiler](./profiler.md)
+* [Application Insights Profiler for .NET](./profiler-overview.md)
 * [Snapshot Debugger](./snapshot-debugger.md)

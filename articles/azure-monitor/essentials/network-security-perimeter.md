@@ -44,7 +44,7 @@ The components of Azure Monitor that are supported with a network security perim
 
 The following components of Azure Monitor are **not** supported with a network security perimeter:
 
-- Application insights Profiler and Debugger
+- [Application Insights Profiler for .NET](./../profiler/profiler-overview.md) and [Snapshot Debugger](./../snapshot-debugger/snapshot-debugger.md)
 - Log Analytics customer managed key
 - Cross-resource queries that include any Log Analytics workspaces associated with an NSP
 

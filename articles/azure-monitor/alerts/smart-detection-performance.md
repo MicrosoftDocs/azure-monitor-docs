@@ -44,7 +44,7 @@ The notifications include diagnostic information. Here's an example:
 2. **Scope**. Is the problem affecting all traffic, or just some pages? Is it restricted to particular browsers or locations? This information can be obtained from the notification.
 3. **Diagnose**. Often, the diagnostic information in the notification will suggest the nature of the problem. For example, if response time slows down when request rate is high, it may indicate that your server or dependencies are beyond their capacity. 
 
-    Otherwise, open the Performance pane in Application Insights where you find [.NET profiler](../profiler/profiler.md) data. If exceptions are thrown, you can also try the [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
+    Otherwise, open the **Performance** pane in Application Insights where you find [.NET Profiler](../profiler/profiler.md) data. If exceptions are thrown, you can also try the [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
 
 ## Configure Email Notifications
 
@@ -121,7 +121,7 @@ The response time degradation notification tells you:
 * Count of this operation requests on the day of the detection and seven days before.
 * Correlation between degradation in this operation and degradations in related dependencies. 
 * Links to help you diagnose the problem.
-  * .NET profiler traces can help you view where operation time is spent. The link is available if .NET profiler trace examples exist for this operation. 
+  * .NET Profiler traces can help you view where operation time is spent. The link is available if .NET Profiler trace examples exist for this operation. 
   * Performance reports in Metric Explorer, where you can slice and dice time range/filters for this operation.
   * Search for this call to view specific call properties.
   * Failure reports - If count > 1, it means that there were failures in this operation that might have contributed to performance degradation.
@@ -169,7 +169,7 @@ Modify the time range and filters to explore the telemetry.
 ## Next steps
 These diagnostic tools help you inspect the telemetry from your app:
 
-* [.NET profiler](../profiler/profiler.md) 
+* [Enable the .NET Profiler for Azure App Service apps](../profiler/profiler.md) 
 * [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)
 * [Analytics](../logs/log-analytics-tutorial.md)
 * [Analytics smart diagnostics](../logs/log-query-overview.md)

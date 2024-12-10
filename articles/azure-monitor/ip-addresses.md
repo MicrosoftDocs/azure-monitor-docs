@@ -125,7 +125,7 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
     
     :::image type="content" source="alerts/media/action-groups/action-group-service-tag.png" alt-text="Screenshot that shows how to add a service tag." border="true":::
 
-## Application Insights profiler for .NET
+## Application Insights Profiler for .NET
 
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |
@@ -136,7 +136,7 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
 ## Snapshot Debugger
 
 > [!NOTE]
-> Application Insights profiler for .NET and Snapshot Debugger share the same set of IP addresses.
+> Application Insights Profiler for .NET and Snapshot Debugger share the same set of IP addresses.
 
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |

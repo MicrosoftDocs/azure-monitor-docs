@@ -150,7 +150,7 @@ Select the **Samples** button at the bottom right. Then select a sample to see t
 
 ### Profile your live site
 
-The [Application Insights profiler for .NET](../../azure-monitor/app/profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
+The [.NET Profiler](../../azure-monitor/app/profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
 
 ## Failed requests
 

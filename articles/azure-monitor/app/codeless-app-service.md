@@ -951,7 +951,7 @@ Release notes for Python will show here.
           
 ## Next steps
 
-* [Run Application Insights profiler for .NET](./profiler.md) on your live app.
+* [Enable the .NET Profiler for Azure App Service apps](./profiler.md) on your live app.
 * [Enable Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md) to be sent to Application Insights.
 * [Monitor service health metrics](../data-platform.md) to make sure your service is available and responsive.
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.
