@@ -22,7 +22,7 @@ Workspace-based Application Insights integrates with Azure Monitor and Log Analy
 
 - [Customer-managed key](../logs/customer-managed-keys.md) encrypts your data at rest with keys only you access.
 - [Azure Private Link](../logs/private-link-security.md) securely connects Azure PaaS services to your virtual network using private endpoints.
-- [Bring your own storage (BYOS) for Profiler and Snapshot Debugger](./profiler-bring-your-own-storage.md) lets you manage data from Application Insights [Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
+- [Bring your own storage (BYOS) for .NET Profiler and Snapshot Debugger](./profiler-bring-your-own-storage.md) lets you manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
 - [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
 - Log Analytics streaming processes data more quickly.
 

@@ -431,7 +431,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 | XDT_MicrosoftApplicationInsights_Java      | Flag to control if Java agent is included.         | `0` or `1` (only applicable in Windows). |
 
 > [!NOTE]
-> Profiler and Snapshot Debugger aren't available for Java applications.
+> Snapshot Debugger isn't available for Java applications.
 
 ## [Node.js](#tab/nodejs)
 
@@ -445,7 +445,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 | XDT_MicrosoftApplicationInsights_NodeJS    | Flag to control if Node.js agent is included.      | `0` or `1` (only applicable in Windows). |
 
 > [!NOTE]
-> Profiler and Snapshot Debugger aren't available for Node.js applications.
+> Snapshot Debugger isn't available for Node.js applications.
 
 ## [Python (Preview)](#tab/python)
 
@@ -459,7 +459,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 | ApplicationInsightsAgent_EXTENSION_VERSION | Main extension, which controls runtime monitoring.         | `~3`                                     |
 
 > [!NOTE]
-> Profiler and Snapshot Debugger aren't available for Python applications.
+> Snapshot Debugger isn't available for Python applications.
 
 ---
 
@@ -951,7 +951,7 @@ Release notes for Python will show here.
           
 ## Next steps
 
-* [Run Profiler](./profiler.md) on your live app.
+* [Enable the .NET Profiler for Azure App Service apps](./profiler.md) on your live app.
 * [Enable Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md) to be sent to Application Insights.
 * [Monitor service health metrics](../data-platform.md) to make sure your service is available and responsive.
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.

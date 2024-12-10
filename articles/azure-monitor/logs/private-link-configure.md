@@ -242,9 +242,9 @@ This zone covers the global endpoints used by Azure Monitor, which means endpoin
 * **in.ai**: Application Insights ingestion endpoint (both a global and a regional entry).
 * **api**: Application Insights and Log Analytics API endpoint.
 * **live**: Application Insights live metrics endpoint.
-* **profiler**: Application Insights profiler endpoint.
+* **profiler**: Application Insights Profiler for .NET endpoint.
 * **snapshot**: Application Insights snapshot endpoint.
-* **diagservices-query**: Application Insights Profiler and Snapshot Debugger (used when accessing profiler/debugger results in the Azure portal).
+* **diagservices-query**: Application Insights Profiler for .NET and Snapshot Debugger (used when accessing profiler/debugger results in the Azure portal).
 
 This zone also covers the resource-specific endpoints for the following DCEs:
 
