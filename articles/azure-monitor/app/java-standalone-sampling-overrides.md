@@ -191,6 +191,166 @@ with the text "exporting span".
 > Only attributes set at the start of the span are available for sampling,
 so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
 
+## Example: Exposing span attributes to suppress SQL dependency calls
+
+This example walks through the experience of finding available attributes to suppress noisy SQL calls. The query below depicts the different SQL calls and associated record counts in the last 30 days: 
+
+```kusto
+dependencies
+| where timestamp > ago(30d)
+| where name == 'SQL: DB Query'
+| summarize count() by name, operation_Name, data
+| sort by count_ desc
+```
+
+```output
+SQL: DB Query    POST /Order             DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    36712549    
+SQL: DB Query    POST /Receipt           DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    2220248    
+SQL: DB Query    POST /CheckOutForm      DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    554074    
+SQL: DB Query    GET /ClientInfo         DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    37064
+```
+
+From the results above, it can be observed that all operations share the `data` field value: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it a good candidate for a sampling override. 
+
+By setting the self-diagnostics to debug, the available attributes in these telemetry items can be found: 
+
+```json
+{
+  "timestamp": "2023-10-26T15:48:25.407-04:00",
+  "level": "DEBUG",
+  "logger": "c.m.a.a.i.exporter.AgentSpanExporter",
+  "message": "exporting span",
+  "spanData": {
+    "spanContext": {
+      "traceId": "3db3dd5188e1cb3ebf4094685b4f0fe8",
+      "spanId": "9b1b3a05f7c8467c",
+      "traceFlags": "01",
+      "traceState": {
+        "entries": []
+      },
+      "remote": false,
+      "valid": true
+    },
+    "parentSpanContext": {
+      "traceId": "00000000000000000000000000000000",
+      "spanId": "0000000000000000",
+      "traceFlags": "00",
+      "traceState": {
+        "entries": []
+      },
+      "remote": false,
+      "valid": false
+    },
+    "resource": {
+      "schemaUrl": "https://opentelemetry.io/schemas/1.20.0",
+      "attributes": {
+        "host.arch": "amd64",
+        "host.name": "host-1234",
+        "os.description": "Windows Server 2016 10.0",
+        "os.type": "windows",
+        "process.command_line": "D:\\Zulu\\zulu-8\\jre\\bin\\java.exe -Dcatalina.home=d:\\apache-tomcat-PC -Dcatalina.base=d:\\apache-tomcat-PC -Djava.io.tmpdir=d:\\apache-tomcat-PC\\temp -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Dgw.server.mode=dev -Dcitizens.env=host-1234 -Dcitizens.serverid=server1 -javaagent:D:/AppInsights/applicationinsights_agent.jar exit -Xms18432m -Xmx18432m",
+        "process.executable.path": "D:\\Zulu\\zulu-8\\jre\\bin\\java.exe",
+        "process.pid": 8760,
+        "process.runtime.description": "Azul Systems, Inc. OpenJDK 64-Bit Server VM 25.201-b10",
+        "process.runtime.name": "OpenJDK Runtime Environment",
+        "process.runtime.version": "1.8.0_201-b10",
+        "service.name": "Policy",
+        "telemetry.sdk.language": "java",
+        "telemetry.sdk.name": "opentelemetry",
+        "telemetry.sdk.version": "1.29.0"
+      }
+    },
+    "instrumentationScopeInfo": {
+      "name": "io.opentelemetry.jdbc",
+      "version": "1.29.0-alpha",
+      "schemaUrl": null,
+      "attributes": {}
+    },
+    "name": "DB Query",
+    "kind": "CLIENT",
+    "startEpochNanos": 1698349705309000000,
+    "endEpochNanos": 1698349705309582779,
+    "attributes": {
+      "data": {
+        "thread.name": "DefaultDatabaseBroadcastTransport: MessageReader thread",
+        "thread.id": 96,
+        "db.connection_string": "apache:",
+        "db.statement": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
+        "db.system": "other_sql",
+        "applicationinsights.internal.item_count": 1
+      },
+      "capacity": 128,
+      "totalAddedValues": 6
+    },
+    "totalAttributeCount": 6,
+    "events": [],
+    "totalRecordedEvents": 0,
+    "links": [],
+    "totalRecordedLinks": 0,
+    "status": {
+      "statusCode": "UNSET",
+      "description": ""
+    },
+    "hasEnded": true
+  }
+}
+```
+
+The area of interest in the output above is the "attributes" section: 
+
+```json
+{
+  "attributes": {
+    "data": {
+      "thread.name": "DefaultDatabaseBroadcastTransport: MessageReader thread",
+      "thread.id": 96,
+      "db.connection_string": "apache:",
+      "db.statement": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
+      "db.system": "other_sql",
+      "applicationinsights.internal.item_count": 1
+    }
+  }
+}
+```
+
+Using that output, one can configure a sampling override similar to the one below that will filter our noisy SQL calls: 
+
+```json
+{
+  "connectionString": "...",
+  "preview": {
+    "sampling": {
+      "overrides": [
+        {
+          "telemetryType": "dependency",
+          "attributes": [
+            {
+              "key": "db.statement",
+              "value": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
+              "matchType": "strict"
+            }
+          ],
+          "percentage": 0
+        }
+      ]
+    }
+  }
+}
+```
+
+Once the changes are applied, a query like the one below can be run to determine the last time when these dependency records ingested into Application Insights: 
+
+```kusto
+dependencies
+| where timestamp > ago(30d)
+| where data contains 'DECLARE @MyVar'
+| summarize max(timestamp) by data
+| sort by max_timestamp desc
+```
+
+```output
+DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    11/13/2023 8:52:41 PM 
+```
 
 ## Troubleshooting
 
