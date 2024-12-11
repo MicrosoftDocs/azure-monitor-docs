@@ -197,6 +197,9 @@ The following metrics are collected by default from each default target. All oth
    **networkobservabilityHubble (job=networkobservabilityHubble)**, and **networkobservabilityCilium (job=networkobservabilityCilium)** <br>
    For list of metrics collected by these targets, see [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics)
 
+   **acstor-capacity-provisioner (job=acstor-capacity-provisioner)** and **acstor-metrics-exporter (job=acstor-metrics-exporter**) <br>
+   For list of metrics collected by these targets, see [Azure Container Storage metrics](https://aka.ms/acstor-prometheus).
+
 ## Default targets scraped for Windows
 Following Windows targets are configured to scrape, but scraping isn't enabled (**disabled/OFF**) by default - meaning you don't have to provide any scrape job configuration for scraping these targets but they are disabled/OFF by default and you need to turn ON/enable scraping for these targets using [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) under `default-scrape-settings-enabled` section.
 
