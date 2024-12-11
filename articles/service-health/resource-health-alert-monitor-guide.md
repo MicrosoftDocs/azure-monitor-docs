@@ -2,12 +2,10 @@
 title: Create Resource Health Alerts using Azure portal
 description: Create alert using Azure portal that notifies you when your Azure resources become unavailable.
 ms.topic: conceptual
-
 ms.date: 12/4/2024
-
+---
 
 # Create Resource Health alerts in the Azure portal
-
 This article shows you how to set up activity log alerts for resource health notifications in the Azure portal.
 
 Azure Resource Health keeps you informed about the current and historical health status of your Azure resources. These alerts can notify you when these resources have a change in their health status. Creating Resource Health alerts allows users to create and customize alerts in bulk.
