@@ -72,8 +72,8 @@ Starting with Java agent version 3.0.3, specific autocollected telemetry can be 
 
 Surpressing autocollected telemetry isn't supported with Java native. To filter telemetry, refer to the relevent external documentation:
 
-* Spring Boot: [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
-* Quarkus: [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
+* **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
+* **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
 
 ### [Node.js](#tab/nodejs)
 
@@ -254,8 +254,8 @@ To filter telemetry from Java applications, you can use sampling overrides (reco
 
 Sampling overrides and telemetry processors aren't supported with Java native. To filter telemetry, refer to the relevent external documentation:
 
-* Spring Boot: [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
-* Quarkus: [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
+* **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
+* **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
 
 ### [Node.js](#tab/nodejs)
 
