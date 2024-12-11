@@ -2,17 +2,17 @@
 title: Elevated access for viewing Security Advisories
 description: This article details an upcoming change that requires users to obtain elevated access roles in order to view Security Advisory details
 ms.topic: conceptual
-ms.date: 10/10/2023
+ms.date: 12/11/2024
 ---
 # Elevated access for viewing Security Advisories
 
-This article details an upcoming change that requires users to obtain elevated access roles in order to view Security Advisory details on Azure Service Health.
+This article details how users are required to obtain elevated access roles in order to view Security Advisory details on Azure Service Health.
 
 ## What are Security Advisories?
 
-Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in three tabs: Summary, Impacted Resources, and Issue Updates.
+Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in three tabs: Summary, Impacted Services, Issue Updates and Impacted Resources.
 
-:::image type="content" source="./media/impacted-resource-sec/security-advisories.PNG" alt-text="Screenshot of Service Health Security Advisories Blade.":::
+:::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories Blade.":::
 
 
 ## Who can view Security Advisories?
@@ -20,23 +20,24 @@ Security Advisories are displayed to users at the subscription or tenant level. 
 
 ## What are Impacted Resources within Security Advisories?
 
-In 2023, the Impacted resources tab was introduced for Security Advisory events. Since details displayed in this tab are sensitive, role based access (RBAC) is required for customers viewing security impacted resources via UI or API. [Review this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.
+Since details displayed in this tab are sensitive, role based access (RBAC) is required for customers viewing security impacted resources via UI or API. [Review this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.
 
-:::image type="content" source="./media/impacted-resource-sec/impact-security.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health.":::
+:::image type="content" source="./media/impacted-resource-sec/impacted-resources.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health.":::
 
+<!--
 >[!Note]
-> The above screenshots reflect the RBAC experience for the Security Advisories as of today.  
+> The screenshots above reflect the RBAC experience for the Security Advisories.-->
 
-## What is changing in Security Advisories?
+## Accessing Security Advisories
 
-In the future, accessing Security Advisories will require elevated access across the Summary, Impacted Resources, and Issue Updates tabs. Users who have subscription reader access, or tenant roles at tenant scope, will not be able to view security advisory details until they get the required roles.
+Accessing Security Advisories requires elevated access across the Summary, Impacted Services, Issue Updates and Impacted Resources tabs. Users who have subscription reader access, or tenant roles at tenant scope, will not be able to view security advisory details until they get the required roles.
 
 ### 1. On the Service Health portal
-A banner will be displayed to the users until April 2024 on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
+A banner is displayed to users<!-- until April 2024--> on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
 
 :::image type="content" source="./media/impacted-resource-sec/access-banner-1.PNG" alt-text="Screenshot displaying the new role based access banner for security advisories.":::
 
-After April 2024, an error message on the Summary and Issue Updates tabs will be displayed to users who do not have one of the following required roles:
+An error message on the Summary and Issue Updates tabs is displayed to users who do not have one of the following required roles:
 
 **Subscription level**
 - Subscription Owner
@@ -49,21 +50,21 @@ After April 2024, an error message on the Summary and Issue Updates tabs will be
 - Global Admin/Tenant Admin 
 
 >[!NOTE]
-> We recommend you do not use the Global Admin role unless absolutely necessary. It's use can create security risks by exposing sensitive data or allowing unauthorized changes. It can also violate the principle of least privilege, which states that users should only have the minimum level of permissions required for their tasks. 
+> We recommend that you don't use the Global Admin role unless absolutely necessary as it's use can create security risks by exposing sensitive data or allowing unauthorized changes. It can also violate the principle of least privilege, which states that users should only have the minimum level of permissions required for their tasks. 
 
 
 ### 2. Service Health API Changes
 
-Events API users will need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive Security Advisories notification details. If users have the above-mentioned roles, they can view event details for a specific event with the new endpoint. The existing endpoint **(/events)** that returns all Service Health event types impacting a subscription or tenant, will no longer return sensitive security notification details. This update will be made to API version 2023-10-01-preview and future versions. 
+Events API users will need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive Security Advisories notification details. If users have the above-mentioned roles, they can view event details for a specific event with the new endpoint. The existing endpoint **(/events)** that returns all Service Health event types impacting a subscription or tenant, will no longer return sensitive security notification details. <!--This update will be made to API version 2023-10-01-preview and future versions.-->
 
-The new and existing endpoints listed below will return the security notification details for a specific event.
+The <!--new and existing--> endpoints listed below <!--will--> return the security notification details for a specific event.
 
 #### New API Endpoint Details
 
 - To access the new endpoint below, users need to be authorized with the above-mentioned roles. 
 - This endpoint will return the event object with all available properties for a specific event. 
 - This is like the impacted resources endpoint below.
-- Available since API version 2022-10-01
+<!--- Available since API version 2022-10-01-->
 
 **Example**
 
@@ -74,7 +75,7 @@ Operation: POST
 
 #### Impacted Resources for Security Advisories
 - Customers authorized with the above-mentioned roles can use the following endpoints to access the list of resources impacted by a Security Incident
-- Available since API version 2022-05-01
+<!--- Available since API version 2022-05-01-->
  
 **Subscription**
 ```HTTP
@@ -93,7 +94,7 @@ Operation: POST
 
 **Security Advisories Subscription List Events** 
 
-With API version 2023-10-01-preview (and future API versions), the existing Events API endpoint which returns the list of events(including security events with eventType: “Security”) will be restricted to pass only nonsensitive properties listed below for security events. 
+<!--With API version 2023-10-01-preview (and future API versions),--> The existing Events API endpoint which returns the list of events (including security events with event Type: “Security”) will be restricted to pass only nonsensitive properties listed below for security events. 
 
 ```HTTP
 https://management.azure.com/subscriptions/227b734f-e14f-4de6-b7fc-3190c21e69f6/providers/microsoft.ResourceHealth/events?api-version=2023-10-01-preview&$filter= "eventType eq SecurityAdvisory"
