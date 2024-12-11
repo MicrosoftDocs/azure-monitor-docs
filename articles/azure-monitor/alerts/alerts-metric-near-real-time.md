@@ -14,7 +14,7 @@ This article lists the subset of [Azure Monitor metrics](../essentials/metrics-s
 
 You can also use newer alerts on popular log data stored in a Log Analytics workspace extracted as metrics. For more information, see [Metric Alerts for Logs](./alerts-metric-logs.md).
 
-You can create metric alerts in the Azure portal, the [REST API](/rest/api/monitor/metricalerts/), or [Azure Resource Manager templates](./alerts-metric-create-templates.md). 
+You can create metric alerts in the Azure portal, the [REST API](/rest/api/monitor/metricalerts/), [CLI, PowerShell, or Azure Resource Manager templates](./alerts-metric-create-templates.md).
 
 ## Metrics and dimensions supported
 

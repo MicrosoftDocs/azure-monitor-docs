@@ -5,15 +5,12 @@ ms.topic: conceptual
 ms.custom: linux-related-content
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
+ms.date: 10/29/2024
 ---
 
 # Chart performance with VM insights
 
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
-
-VM insights includes a set of performance charts that target several key [performance indicators](vminsights-log-query.md#performance-records) to help you determine how well a virtual machine is performing. The charts show resource utilization over a period of time. You can use them to identify bottlenecks and anomalies. You can also switch to a perspective that lists each machine to view resource utilization based on the metric selected.
+VM insights includes a set of performance charts that target several key performance indicators to help you determine how well a virtual machine is performing. The charts show resource utilization over a period of time. You can use them to identify bottlenecks and anomalies. You can also switch to a perspective that lists each machine to view resource utilization based on the metric selected.
 
 VM insights monitors key operating system performance indicators related to processor, memory, network adapter, and disk utilization. Performance helps to:
 
@@ -28,7 +25,7 @@ VM insights monitors key operating system performance indicators related to proc
 ## Limitations
 Limitations in performance collection with VM insights:
 
-- Available memory isn't available in all Linux versions, including Red Hat Linux (RHEL) 6 and CentOS 6. It will be available in Linux versions that use [kernel version 3.14](http://www.man7.org/linux/man-pages/man1/free.1.html) or higher. It might be available in some kernel versions between 3.0 and 3.14.
+- Available memory isn't available in all Linux versions, including Red Hat Linux (RHEL) 6. It will be available in Linux versions that use [kernel version 3.14](http://www.man7.org/linux/man-pages/man1/free.1.html) or higher. It might be available in some kernel versions between 3.0 and 3.14.
 - Metrics are only available for data disks on Linux virtual machines that use XFS filesystem or EXT filesystem family (EXT2, EXT3, EXT4).
 - Collecting performance metrics from network shared drives is unsupported.
 

@@ -4,16 +4,16 @@ description: This article helps you understand how to collect data and monitor c
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/06/2023
+ms.date: 11/14/2024
 ms.reviewer: luki
 
 ---
 
 # Log Analytics agent overview
 
-This article provides a detailed overview of the Log Analytics agent and the agent's system and network requirements and deployment methods.
-
 [!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+
+This article provides a detailed overview of the Log Analytics agent and the agent's system and network requirements and deployment methods.
 
 You might also see the Log Analytics agent referred to as Microsoft Monitoring Agent (MMA).
 

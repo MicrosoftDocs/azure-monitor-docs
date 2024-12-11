@@ -24,8 +24,17 @@ Following targets are **enabled/ON** by default - meaning you don't have to prov
 - `nodeexporter` (`job=node`)
 - `kubelet` (`job=kubelet`)
 - `kube-state-metrics` (`job=kube-state-metrics`)
+- `networkobservabilityRetina` (`job=networkobservabilityRetina`)
+
+The following targets are **enabled/ON** when you enable control plane metrics (preview) feature. You can use control plane metrics to maximize overall observability and maintain operational excellence for your AKS cluster. For more information, see [Control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview).
+
 - `controlplane-apiserver` (`job=controlplane-apiserver`)
 - `controlplane-etcd` (`job=controlplane-etcd`)
+
+The following targets are **enabled/ON** when you enable Container Network Observability which is a feature of the Advanced Container Networking Services suite and is compatible with all Linux workloads seamlessly integrating with Hubble for both Cilium or non-Cilium based data plane. This allows flexibility for your container networking needs. For more information, see [Advanced Container Networking Services](/azure/aks/advanced-network-observability-concepts).
+
+- `networkobservabilityHubble` (`job=networkobservabilityHubble`)
+- `networkobservabilityCilium` (`job=networkobservabilityCilium`)
 
 ## Metrics collected from default targets
 
@@ -179,6 +188,9 @@ The following metrics are collected by default from each default target. All oth
    - `etcd_server_slow_apply_total`
    - `etcd_network_client_grpc_sent_bytes_total`
    - `etcd_server_heartbeat_send_failures_total`
+
+   **networkobservabilityHubble (job=networkobservabilityHubble)**, and **networkobservabilityCilium (job=networkobservabilityCilium)** <br>
+   For list of metrics collected by these targets, see [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics)
 
 ## Default targets scraped for Windows
 Following Windows targets are configured to scrape, but scraping isn't enabled (**disabled/OFF**) by default - meaning you don't have to provide any scrape job configuration for scraping these targets but they are disabled/OFF by default and you need to turn ON/enable scraping for these targets using [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) under `default-scrape-settings-enabled` section.

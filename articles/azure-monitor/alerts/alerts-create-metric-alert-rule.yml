@@ -20,7 +20,7 @@ introduction: |
 
   You create an alert rule by combining the resources to be monitored, the monitoring data from the resource, and the conditions that you want to trigger the alert. You can then define [action groups](./action-groups.md) and [alert processing rules](alerts-action-rules.md) to determine what happens when an alert is triggered.
 
-  Alerts triggered by these alert rules contain a payload that uses the [common alert schema](alerts-common-schema.md).
+  You can define what payload is included in alerts triggered by these alert rules. They can contain a payload that uses the [common alert schema](alerts-common-schema.md), or less-recommended [individualized schemas per alert type](alerts-non-common-schema-definitions.md).
 
 prerequisites:
   summary: |
@@ -53,6 +53,8 @@ procedureSection:
         In the [portal](https://portal.azure.com/), navigate to the resource.
       - |
         Select **Alerts** from the left pane, and then select **+ Create** > **Alert rule**.
+      - |
+        The scope of the alert rule is set to the resource you selected. Continue with setting the conditions for the alert rule.
 
         :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-new-alert-rule-2.png" alt-text="Screenshot that shows steps to create a new alert rule from a selected resource.":::
 
@@ -126,8 +128,7 @@ procedureSection:
         |Threshold value|If you selected a **static** threshold, enter the threshold value for the condition logic.|
         |Unit|If the selected metric signal supports different units, such as bytes, KB, MB, and GB, and if you selected a **static** threshold, enter the unit for the condition logic.|
         |Threshold sensitivity|If you selected a **dynamic** threshold, enter the sensitivity level. The sensitivity level affects the amount of deviation from the metric series pattern that's required to trigger an alert. <br> - **High**: Thresholds are tight and close to the metric series pattern. An alert rule is triggered on the smallest deviation, resulting in more alerts. <br> - **Medium**: Thresholds are less tight and more balanced. There are fewer alerts than with high sensitivity (default). <br> - **Low**: Thresholds are loose, allowing greater deviation from the metric series pattern. Alert rules are only triggered on large deviations, resulting in fewer alerts.|
-        |Aggregation granularity| Select the interval that's used to group the data points by using the aggregation type function. Choose an **Aggregation granularity** (period) that's greater than the **Frequency of evaluation** to reduce the likelihood of missing the first evaluation period of an added time series.|
-        |Frequency of evaluation|Select how often the alert rule is to be run. Select a frequency that's smaller than the aggregation granularity to generate a sliding window for the evaluation.|
+        
       - |
         (Optional) You can configure splitting by dimensions.
 
@@ -142,14 +143,14 @@ procedureSection:
         |Dimension values|The dimension values are based on data from the last 48 hours. Select **Add custom value** to add custom dimension values.|
         |Include all future values| Select this field to include any future values added to the selected dimension.|
       - |
-        (Optional) In the **When to evaluate** section: 
+        In the **When to evaluate** section: 
 
         |Field |Description |
         |---------|---------|
         |Check every|Select how often the alert rule checks if the condition is met.    |
         |Lookback period|Select how far back to look each time the data is checked. For example, every 1 minute, look back 5 minutes.|
       - |
-        (Optional) In the **Advanced options** section, you can specify how many failures within a specific time period trigger an alert. For example, you can specify that you only want to trigger an alert if there were three failures in the last hour. Your application business policy should determine this setting. 
+        (Optional) If you are using dynamic thresholds, in the **Advanced options** section, you can specify how many failures within a specific time period trigger an alert. For example, you can specify that you only want to trigger an alert if there were three failures in the last hour. Your application business policy should determine this setting. 
 
         Select values for these fields:
         
@@ -159,12 +160,12 @@ procedureSection:
         |Evaluation period|The time period within which the number of violations occur.|
         |Ignore data before|Use this setting to select the date from which to start using the metric historical data for calculating the dynamic thresholds. For example, if a resource was running in testing mode and is moved to production, you may want to disregard the metric behavior while the resource was in testing.|
       - |
-        Select **Done**. From this point on, you can select the **Review + create** button at any time.
+        Select **Done**. Once you have configured the alert rule conditions, you can configure the alert rule details to complete creation of the alert, or optionally, you can also add actions and tags to the alert rule.
 
   - title: |
       Configure the alert rule actions
     summary: |
-      Follow these steps:
+      (Optional) Follow these steps to add actions to your alert rule:
     steps: 
       - |
         Select the **Actions** tab.
@@ -203,15 +204,17 @@ procedureSection:
         |Field |Description |
         |---------|---------|
         |Enable upon creation| Select for the alert rule to start running as soon as you're done creating it.|
-        |Automatically resolve alerts (preview) |Select to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met.<br> If you don't select this checkbox, metric alerts are stateless. Stateless alerts fire each time the condition is met, even if alert already fired.<br> The frequency of notifications for stateless metric alerts differs based on the alert rule's configured frequency:<br>**Alert frequency of less than 5 minutes**: While the condition continues to be met, a notification is sent somewhere between one and six minutes.<br>**Alert frequency of more than 5 minutes**: While the condition continues to be met, a notification is sent between the configured frequency and doubles the value of the frequency. For example, for an alert rule with a frequency of 15 minutes, a notification is sent somewhere between 15 to 30 minutes.|
+        |Automatically resolve alerts|Select to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met.<br> If you don't select this checkbox, metric alerts are stateless. Stateless alerts fire each time the condition is met, even if alert already fired.<br> The frequency of notifications for stateless metric alerts differs based on the alert rule's configured frequency:<br>**Alert frequency of less than 5 minutes**: While the condition continues to be met, a notification is sent somewhere between one and six minutes.<br>**Alert frequency of more than 5 minutes**: While the condition continues to be met, a notification is sent between the configured frequency and doubles the value of the frequency. For example, for an alert rule with a frequency of 15 minutes, a notification is sent somewhere between 15 to 30 minutes.|
       - |
         [!INCLUDE [alerts-wizard-custom=properties](../includes/alerts-wizard-custom-properties.md)]
+      - |
+        Once the scope, conditions, and details are configured, you can select the **Review + create** button at any time.
 
   - title: |
       Configure alert rule tags
 
     summary: |
-      Follow these steps:
+       (Optional) Follow these steps to add tags to your alert rule:
 
     steps:
       - |
@@ -256,6 +259,7 @@ procedureSection:
 
       - You can only select one value per dimension within each condition.
       - You can't use the option to **Select all current and future values**. Select the asterisk (\*).
+      - You cannot use dynamic thresholds in alert rules that monitor multiple conditions.
       - When metrics that are configured in different conditions support the same dimension, a configured dimension value must be explicitly set in the same way for all those metrics in the relevant conditions.
       
         For example:

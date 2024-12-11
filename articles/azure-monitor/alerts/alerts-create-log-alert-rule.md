@@ -18,13 +18,7 @@ Alert rules combine the resources to be monitored, the monitoring data from the 
 
 Alerts triggered by these alert rules contain a payload that uses the [common alert schema](alerts-common-schema.md).
 
-## Prerequisites
-
-To create or edit an alert rule, you must have the following permissions:
-
-- Read permission on the target resource of the alert rule.
-- Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
-- Read permission on any action group associated to the alert rule, if applicable.
+[!INCLUDE [alerts-rule-prerequisites](../includes/alerts-rule-prerequisites.md)]
 
 [!INCLUDE [alerts-wizard-access](../includes/alerts-wizard-access.md)]
 
@@ -78,7 +72,7 @@ To create or edit an alert rule, you must have the following permissions:
 
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
 
-   Cross-service queries aren't supported in government clouds. For more information about limitations, see [Cross-service query limitations](../logs/azure-monitor-data-explorer-proxy.md#limitations) and [Combine Azure Resource Graph tables with a Log Analytics workspace](../logs/azure-monitor-data-explorer-proxy.md#azure-resource-graph-cross-service-query-limitations).
+   Cross-service queries aren't supported in government clouds. For more information about limitations, see [Cross-service query limitations](../logs/azure-monitor-data-explorer-proxy.md#implementation-considerations) and [Combine Azure Resource Graph tables with a Log Analytics workspace](../logs/azure-monitor-data-explorer-proxy.md#combine-azure-resource-graph-tables-with-a-log-analytics-workspace).
 
 1. Select **Run** to run the alert.
 1. The **Preview** section shows you the query results. When you finish editing your query, select **Continue Editing Alert**.
@@ -151,7 +145,7 @@ To create or edit an alert rule, you must have the following permissions:
 
    |Field  |Description  |
    |---------|---------|
-   |**Number of violations**|The number of violations that trigger the alert.|
+   |**Number of violations**|The number of violations that trigger the alert. Notice that in order to use this the query should include 'datetime' column in the query results |
    |**Evaluation period**|The time period within which the number of violations occur. |
    |**Override query time range**| If you want the alert evaluation period to be different from the query time range, enter a time range here.<br> The alert time range is limited to a maximum of two days. Even if the query contains an `ago` command with a time range of longer than two days, the two-day maximum time range is applied. For example, even if the query text contains `ago(7d)`, the query only scans up to two days of data. If the query requires more data than the alert evaluation, you can change the time range manually. If the query contains an `ago` command, it changes automatically to two days (48 hours).|
 
@@ -164,7 +158,7 @@ To create or edit an alert rule, you must have the following permissions:
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-alert-rule-preview.png" alt-text="Screenshot that shows a preview of a new alert rule.":::
 
-1. Select **Done**. From this point on, you can select the **Review + create** button at any time.
+1. Select **Done**. Once you have configured the alert rule conditions, you can configure the alert rule details to complete creation of the alert, or optionally, you can also add actions and tags to the alert rule.
 
 [!INCLUDE [alerts-wizard-actions](../includes/alerts-wizard-actions.md)]
 

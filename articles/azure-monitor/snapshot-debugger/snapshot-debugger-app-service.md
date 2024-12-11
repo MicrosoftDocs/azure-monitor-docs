@@ -54,7 +54,7 @@ To disable Snapshot Debugger for your App Services resource:
 
 # [Azure Resource Manager](#tab/arm)
 
-You can also set app settings within the Azure Resource Manager template to enable Snapshot Debugger and Profiler. For example:
+You can also set app settings within the Azure Resource Manager template to enable Snapshot Debugger and .NET Profiler. For example:
 
 ```json
 {

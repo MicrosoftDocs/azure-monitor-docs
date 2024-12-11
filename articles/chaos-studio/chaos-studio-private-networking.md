@@ -23,7 +23,7 @@ We are also now excited to share that Chaos Studio supports running **agent-base
 Currently, you can only enable certain resource types for Chaos Studio virtual network injection:
 
 * **Azure Kubernetes Service (AKS)** targets can be enabled with virtual network injection through the Azure portal and the Azure CLI. All AKS Chaos Mesh faults can be used.
-* **Azure Key Vault** targets can be enabled with virtual network injection through the Azure CLI. The faults that can be used with virtual network injection are Disable Certificate, Increment Certificate Version, and Update Certificate Policy.
+* **Azure Key Vault** targets can be enabled with virtual network injection through the Azure portal and the Azure CLI. The faults that can be used with virtual network injection are Disable Certificate, Increment Certificate Version, and Update Certificate Policy.
 
 ## Enable virtual network injection
 To use Chaos Studio with virtual network injection, you must meet the following requirements.

@@ -45,6 +45,9 @@ The connection has a maximum supported length of 4,096 characters.
 A connection string consists of a list of settings represented as key-value pairs separated by a semicolon:
 `key1=value1;key2=value2;key3=value3`
 
+> [!TIP]
+> Configurable key-value pairs are covered in this document. Some key-value pairs are not configurable and are set automatically, such as `ApplicationId`. These can be safely ignored if they're observed in your environment.
+
 ### Syntax
 
 * `InstrumentationKey` (for example, 00000000-0000-0000-0000-000000000000).
@@ -77,7 +80,7 @@ For more information, see [Regions that require endpoint modification](./create-
 
 * [Telemetry Ingestion](./app-insights-overview.md): `dc`
 * [Live Metrics](./live-stream.md): `live`
-* [Profiler](./profiler-overview.md): `profiler`
+* [Profiler for .NET](./profiler-overview.md): `profiler`
 * [Snapshot](./snapshot-debugger.md): `snapshot`
 
 ## Connection string examples
@@ -92,10 +95,10 @@ In this example, the connection string specifies the endpoint suffix and the SDK
 
 * Authorization scheme defaults to "ikey"
 * Instrumentation key: 00000000-0000-0000-0000-000000000000
-* The regional service URIs are based on the provided endpoint suffix:
+* The regional service Uniform Resource Identifiers (URIs) are based on the provided endpoint suffix:
     * Ingestion: `https://dc.ai.contoso.com`
-    * Live metrics: `https://live.ai.contoso.com`
-    * Profiler: `https://profiler.ai.contoso.com`
+    * Live Metrics: `https://live.ai.contoso.com`
+    * Profiler for .NET: `https://profiler.ai.contoso.com`
     * Debugger: `https://snapshot.ai.contoso.com`
 
 ### Connection string with explicit endpoint overrides
@@ -108,8 +111,8 @@ In this example, the connection string specifies explicit overrides for every se
 * Instrumentation key: 00000000-0000-0000-0000-000000000000
 * The regional service URIs are based on the explicit override values:
     * Ingestion: `https://custom.com:111/`
-    * Live metrics: `https://custom.com:222/`
-    * Profiler: `https://custom.com:333/`
+    * Live Metrics: `https://custom.com:222/`
+    * Profiler for .NET: `https://custom.com:333/`
     * Debugger: `https://custom.com:444/`
 
 ### Connection string with an explicit region
@@ -123,13 +126,13 @@ In this example, the connection string specifies the South Central US region:
 * The regional service URIs are based on the explicit override values:
     * Ingestion: `https://southcentralus.in.applicationinsights.azure.com/`
 
-Run the following command in the [Azure CLI](/cli/azure/account?view=azure-cli-latest#az-account-list-locations&preserve-view=true) to list available regions:
+To list available regions, run the following command in the [Azure CLI](/cli/azure/account?view=azure-cli-latest#az-account-list-locations&preserve-view=true):
 
 `az account list-locations -o table`
 
 ## Set a connection string
 
-Connection strings are supported by all our OpenTelemetry offerings and the following SDK versions onwards:
+All our OpenTelemetry offerings and the following SDK versions onwards support connection strings:
 
 * .NET v2.12.0
 * JavaScript v2.3.0
@@ -169,8 +172,8 @@ We recommend that you use connection strings instead of instrumentation keys.
 
 Get started at runtime with:
 
-* [Azure VM and Azure Virtual Machine Scale Sets IIS-hosted apps](./azure-vm-vmss-apps.md)
-* [IIS server](./application-insights-asp-net-agent.md)
+* [Azure Virtual Machine (VM) and Azure Virtual Machine Scale Sets IIS-hosted apps](./azure-vm-vmss-apps.md)
+* [Internet Information Server (IIS) server](./application-insights-asp-net-agent.md)
 * [Web Apps feature of Azure App Service](./azure-web-apps.md)
 
 Get started at development time with:

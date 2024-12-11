@@ -2,7 +2,7 @@
 title: Azure Monitor network configuration
 description: Define network settings and enable network isolation for Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 07/10/2024
+ms.date: 11/14/2024
 ms.custom: references_regions
 ms.reviewer: shseth
 
@@ -50,7 +50,7 @@ Replace the suffix in the endpoints with the suffix in the following table for d
 > The Azure Monitor Metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
 
 > [!NOTE]
-> When using AMA with AMPLS, all of your Data Collection Rules much use Data Collection Endpoints. Those DCE's must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-azure-monitor-resources)
+> When using AMA with AMPLS, all of your Data Collection Rules must use Data Collection Endpoints. Those DCE's must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls)
 
 ## Proxy configuration
 
@@ -350,4 +350,4 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 
 ## Next steps
 
-- [Add endpoint to AMPLS resource](../logs/private-link-configure.md#connect-azure-monitor-resources).
+- [Add endpoint to AMPLS resource](../logs/private-link-configure.md#connect-ampls-to-a-private-endpoint).

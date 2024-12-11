@@ -218,7 +218,7 @@ The following sample payload is for a standard webhook when it's used for log se
                 }
             ]
         },
-        "ApplicationId": "123123f0-01d3-12ab-123f-abc1ab01c0a1",
+        "ApplicationId": "00001111-aaaa-2222-bbbb-3333cccc4444",
         "AlertType": "Metric measurement"
     }
 }

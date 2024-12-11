@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/26/2024
+ms.date: 11/04/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -195,15 +195,6 @@ Microsoft.Attestation/attestationProviders
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureAttestationDiagnostics](./tables/azureattestationdiagnostics.md)
 
-### Azure Autonomous Development Platform workspace  
-
-Microsoft.AutonomousDevelopmentPlatform/workspaces  
-
-- [AzureActivity](./tables/azureactivity.md)
-- [ADPRequests](./tables/adprequests.md)
-- [ADPAudit](./tables/adpaudit.md)
-- [ADPDiagnostics](./tables/adpdiagnostics.md)
-
 ### Azure Blockchain Service  
 
 Microsoft.Blockchain/blockchainMembers  
@@ -361,6 +352,20 @@ Microsoft.Databricks/workspaces
 - [DatabricksMarketplaceConsumer](./tables/databricksmarketplaceconsumer.md)
 - [DatabricksLineageTracking](./tables/databrickslineagetracking.md)
 - [DatabricksFilesystem](./tables/databricksfilesystem.md)
+- [DatabricksApps](./tables/databricksapps.md)
+- [DatabricksClusterPolicies](./tables/databricksclusterpolicies.md)
+- [DatabricksDataRooms](./tables/databricksdatarooms.md)
+- [DatabricksGroups](./tables/databricksgroups.md)
+- [DatabricksMarketplaceProvider](./tables/databricksmarketplaceprovider.md)
+- [DatabricksOnlineTables](./tables/databricksonlinetables.md)
+- [DatabricksRBAC](./tables/databricksrbac.md)
+- [DatabricksRFA](./tables/databricksrfa.md)
+- [DatabricksVectorSearch](./tables/databricksvectorsearch.md)
+- [DatabricksWebhookNotifications](./tables/databrickswebhooknotifications.md)
+- [DatabricksWorkspaceFiles](./tables/databricksworkspacefiles.md)
+- [DatabricksLakeviewConfig](./tables/databrickslakeviewconfig.md)
+- [DatabricksFiles](./tables/databricksfiles.md)
+- [DatabricksBudgetPolicyCentral](./tables/databricksbudgetpolicycentral.md)
 - [DatabricksAccounts](./tables/databricksaccounts.md)
 - [DatabricksClusters](./tables/databricksclusters.md)
 - [DatabricksDBFS](./tables/databricksdbfs.md)
@@ -443,6 +448,7 @@ Microsoft.Dashboard/grafana
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AGSGrafanaLoginEvents](./tables/agsgrafanaloginevents.md)
+- [AGSGrafanaUsageInsightsEvents](./tables/agsgrafanausageinsightsevents.md)
 
 ### Azure Monitor autoscale settings  
 
@@ -482,6 +488,7 @@ microsoft.securityinsights
 - [SecurityAlert](./tables/securityalert.md)
 - [SecurityEvent](./tables/securityevent.md)
 - [DnsAuditEvents](./tables/dnsauditevents.md)
+- [AggregatedSecurityAlert](./tables/aggregatedsecurityalert.md)
 - [CommonSecurityLog](./tables/commonsecuritylog.md)
 - [ASimWebSessionLogs](./tables/asimwebsessionlogs.md)
 - [PurviewDataSensitivityLogs](./tables/purviewdatasensitivitylogs.md)
@@ -646,10 +653,12 @@ Microsoft.Communication/CommunicationServices
 - [ACSAuthIncomingOperations](./tables/acsauthincomingoperations.md)
 - [ACSBillingUsage](./tables/acsbillingusage.md)
 - [ACSCallDiagnostics](./tables/acscalldiagnostics.md)
+- [ACSCallDiagnosticsUpdates](./tables/acscalldiagnosticsupdates.md)
 - [ACSCallSurvey](./tables/acscallsurvey.md)
 - [ACSCallClientOperations](./tables/acscallclientoperations.md)
 - [ACSCallClientMediaStatsTimeSeries](./tables/acscallclientmediastatstimeseries.md)
 - [ACSCallSummary](./tables/acscallsummary.md)
+- [ACSCallSummaryUpdates](./tables/acscallsummaryupdates.md)
 - [ACSEmailSendMailOperational](./tables/acsemailsendmailoperational.md)
 - [ACSEmailStatusUpdateOperational](./tables/acsemailstatusupdateoperational.md)
 - [ACSEmailUserEngagementOperational](./tables/acsemailuserengagementoperational.md)
@@ -897,6 +906,9 @@ Microsoft.Experimentation/experimentWorkspaces
 - [AEWAuditLogs](./tables/aewauditlogs.md)
 - [AEWComputePipelinesLogs](./tables/aewcomputepipelineslogs.md)
 - [AEWAssignmentBlobLogs](./tables/aewassignmentbloblogs.md)
+- [AEWExperimentAssignmentSummary](./tables/aewexperimentassignmentsummary.md)
+- [AEWExperimentScorecards](./tables/aewexperimentscorecards.md)
+- [AEWExperimentScorecardMetricPairs](./tables/aewexperimentscorecardmetricpairs.md)
 
 ### ExpressRoute Circuits  
 
@@ -1095,6 +1107,12 @@ Microsoft.MachineLearningServices/registries
 - [AmlRegistryReadEventsLog](./tables/amlregistryreadeventslog.md)
 - [AmlRegistryWriteEventsLog](./tables/amlregistrywriteeventslog.md)
 
+### Managed DevOps Pools  
+
+Microsoft.DevOpsInfrastructure/pools  
+
+- [AzureActivity](./tables/azureactivity.md)
+
 ### Media Services  
 
 Microsoft.Media/mediaservices  
@@ -1258,6 +1276,7 @@ Microsoft.NetworkCloud/clusters
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [NCCKubernetesLogs](./tables/ncckuberneteslogs.md)
+- [NCCPlatformOperationsLogs](./tables/nccplatformoperationslogs.md)
 - [NCCVMOrchestrationLogs](./tables/nccvmorchestrationlogs.md)
 
 ### Nexus Storage Appliances  
