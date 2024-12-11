@@ -68,14 +68,12 @@ Starting with Java agent version 3.0.3, specific autocollected telemetry can be 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
 
-<!--See [sampling overrides](java-standalone-config.md#sampling-overrides) and [telemetry processors](java-standalone-telemetry-processors.md).-->
-
 ### [Java native](#tab/java-native)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Surpressing autocollected telemetry isn't supported with Java native. To filter telemetry, refer to the relevent external documentation:
 
-> [!NOTE]
-> There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
+* Spring Boot: [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
+* Quarkus: [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
 
 ### [Node.js](#tab/nodejs)
 
@@ -254,11 +252,10 @@ To filter telemetry from Java applications, you can use sampling overrides (reco
 
 ### [Java native](#tab/java-native)
 
-To filter telemetry from Java native applications, you can use sampling overrides (recommended) or telemetry processors. For more information, see the following documentation:
+Sampling overrides and telemetry processors aren't supported with Java native. To filter telemetry, refer to the relevent external documentation:
 
-* [Sampling overrides](./java-standalone-sampling-overrides.md)
-* [Telemetry processors (preview)](./java-standalone-telemetry-processors.md)
-* [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md)
+* Spring Boot: [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
+* Quarkus: [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
 
 ### [Node.js](#tab/nodejs)
 
