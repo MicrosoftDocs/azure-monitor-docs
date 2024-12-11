@@ -210,93 +210,13 @@ SQL: DB Query    POST /CheckOutForm      DECLARE @MyVar varbinary(20); SET @MyVa
 SQL: DB Query    GET /ClientInfo         DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    37064
 ```
 
-From the results above, it can be observed that all operations share the `data` field value: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it a good candidate for a sampling override. 
+From the results above, it can be observed that all operations share the same value in the `data` field: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it a good candidate for a sampling override. 
 
-By setting the self-diagnostics to debug, the available attributes in these telemetry items can be found: 
+By setting the self-diagnostics to debug, the following log entries will become visible in the output:
 
-```json
-{
-  "timestamp": "2023-10-26T15:48:25.407-04:00",
-  "level": "DEBUG",
-  "logger": "c.m.a.a.i.exporter.AgentSpanExporter",
-  "message": "exporting span",
-  "spanData": {
-    "spanContext": {
-      "traceId": "3db3dd5188e1cb3ebf4094685b4f0fe8",
-      "spanId": "9b1b3a05f7c8467c",
-      "traceFlags": "01",
-      "traceState": {
-        "entries": []
-      },
-      "remote": false,
-      "valid": true
-    },
-    "parentSpanContext": {
-      "traceId": "00000000000000000000000000000000",
-      "spanId": "0000000000000000",
-      "traceFlags": "00",
-      "traceState": {
-        "entries": []
-      },
-      "remote": false,
-      "valid": false
-    },
-    "resource": {
-      "schemaUrl": "https://opentelemetry.io/schemas/1.20.0",
-      "attributes": {
-        "host.arch": "amd64",
-        "host.name": "host-1234",
-        "os.description": "Windows Server 2016 10.0",
-        "os.type": "windows",
-        "process.command_line": "D:\\Zulu\\zulu-8\\jre\\bin\\java.exe -Dcatalina.home=d:\\apache-tomcat-PC -Dcatalina.base=d:\\apache-tomcat-PC -Djava.io.tmpdir=d:\\apache-tomcat-PC\\temp -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager -Dgw.server.mode=dev -Dcitizens.env=host-1234 -Dcitizens.serverid=server1 -javaagent:D:/AppInsights/applicationinsights_agent.jar exit -Xms18432m -Xmx18432m",
-        "process.executable.path": "D:\\Zulu\\zulu-8\\jre\\bin\\java.exe",
-        "process.pid": 8760,
-        "process.runtime.description": "Azul Systems, Inc. OpenJDK 64-Bit Server VM 25.201-b10",
-        "process.runtime.name": "OpenJDK Runtime Environment",
-        "process.runtime.version": "1.8.0_201-b10",
-        "service.name": "Policy",
-        "telemetry.sdk.language": "java",
-        "telemetry.sdk.name": "opentelemetry",
-        "telemetry.sdk.version": "1.29.0"
-      }
-    },
-    "instrumentationScopeInfo": {
-      "name": "io.opentelemetry.jdbc",
-      "version": "1.29.0-alpha",
-      "schemaUrl": null,
-      "attributes": {}
-    },
-    "name": "DB Query",
-    "kind": "CLIENT",
-    "startEpochNanos": 1698349705309000000,
-    "endEpochNanos": 1698349705309582779,
-    "attributes": {
-      "data": {
-        "thread.name": "DefaultDatabaseBroadcastTransport: MessageReader thread",
-        "thread.id": 96,
-        "db.connection_string": "apache:",
-        "db.statement": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
-        "db.system": "other_sql",
-        "applicationinsights.internal.item_count": 1
-      },
-      "capacity": 128,
-      "totalAddedValues": 6
-    },
-    "totalAttributeCount": 6,
-    "events": [],
-    "totalRecordedEvents": 0,
-    "links": [],
-    "totalRecordedLinks": 0,
-    "status": {
-      "statusCode": "UNSET",
-      "description": ""
-    },
-    "hasEnded": true
-  }
-}
-```
+`2023-10-26 15:48:25.407-04:00 DEBUG c.m.a.a.i.exporter.AgentSpanExporter - exporting span: SpanData{spanContext=ImmutableSpanContext...`
 
-The area of interest in the output above is the "attributes" section: 
+The area of interest from those logs is the "attributes" section: 
 
 ```json
 {
@@ -313,7 +233,7 @@ The area of interest in the output above is the "attributes" section:
 }
 ```
 
-Using that output, one can configure a sampling override similar to the one below that will filter our noisy SQL calls: 
+Using that output, you can configure a sampling override similar to the one below that will filter our noisy SQL calls: 
 
 ```json
 {
@@ -338,7 +258,7 @@ Using that output, one can configure a sampling override similar to the one belo
 }
 ```
 
-Once the changes are applied, a query like the one below can be run to determine the last time when these dependency records ingested into Application Insights: 
+Once the changes are applied, the following query allows us to determine the last time these dependencies were ingested into Application Insights:  
 
 ```kusto
 dependencies
