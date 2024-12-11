@@ -191,6 +191,86 @@ with the text "exporting span".
 > Only attributes set at the start of the span are available for sampling,
 so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
 
+## Example: Exposing span attributes to suppress SQL dependency calls
+
+This example walks through the experience of finding available attributes to suppress noisy SQL calls. The query below depicts the different SQL calls and associated record counts in the last 30 days: 
+
+```kusto
+dependencies
+| where timestamp > ago(30d)
+| where name == 'SQL: DB Query'
+| summarize count() by name, operation_Name, data
+| sort by count_ desc
+```
+
+```output
+SQL: DB Query    POST /Order             DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    36712549    
+SQL: DB Query    POST /Receipt           DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    2220248    
+SQL: DB Query    POST /CheckOutForm      DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    554074    
+SQL: DB Query    GET /ClientInfo         DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    37064
+```
+
+From the results above, it can be observed that all operations share the same value in the `data` field: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it a good candidate for a sampling override. 
+
+By setting the self-diagnostics to debug, the following log entries will become visible in the output:
+
+`2023-10-26 15:48:25.407-04:00 DEBUG c.m.a.a.i.exporter.AgentSpanExporter - exporting span: SpanData{spanContext=ImmutableSpanContext...`
+
+The area of interest from those logs is the "attributes" section: 
+
+```json
+{
+  "attributes": {
+    "data": {
+      "thread.name": "DefaultDatabaseBroadcastTransport: MessageReader thread",
+      "thread.id": 96,
+      "db.connection_string": "apache:",
+      "db.statement": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
+      "db.system": "other_sql",
+      "applicationinsights.internal.item_count": 1
+    }
+  }
+}
+```
+
+Using that output, you can configure a sampling override similar to the one below that will filter our noisy SQL calls: 
+
+```json
+{
+  "connectionString": "...",
+  "preview": {
+    "sampling": {
+      "overrides": [
+        {
+          "telemetryType": "dependency",
+          "attributes": [
+            {
+              "key": "db.statement",
+              "value": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
+              "matchType": "strict"
+            }
+          ],
+          "percentage": 0
+        }
+      ]
+    }
+  }
+}
+```
+
+Once the changes are applied, the following query allows us to determine the last time these dependencies were ingested into Application Insights:  
+
+```kusto
+dependencies
+| where timestamp > ago(30d)
+| where data contains 'DECLARE @MyVar'
+| summarize max(timestamp) by data
+| sort by max_timestamp desc
+```
+
+```output
+DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    11/13/2023 8:52:41 PM 
+```
 
 ## Troubleshooting
 
