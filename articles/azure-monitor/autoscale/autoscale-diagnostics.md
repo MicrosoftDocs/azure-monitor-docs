@@ -6,7 +6,7 @@ ms.author: edbaynash
 ms.service: azure-monitor
 ms.subservice: autoscale
 ms.topic: how-to
-ms.date: 04/15/2024
+ms.date: 11/01/2024
 ms.reviewer: akkumari
 
 # Customer intent: As a DevOps admin, I want to collect and analyze autoscale metrics and logs.

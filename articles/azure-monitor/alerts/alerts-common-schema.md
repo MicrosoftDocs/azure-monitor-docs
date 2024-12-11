@@ -654,7 +654,7 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
 ```
 ## Alert context fields for Prometheus alerts
 
-See [Azure Monitor managed service for Prometheus rule groups (preview)](../essentials/prometheus-rule-groups.md) for detailed information about the fields in Prometheus alerts.
+See [Azure Monitor managed service for Prometheus rule groups](../essentials/prometheus-rule-groups.md) for detailed information about the fields in Prometheus alerts.
 ### Sample Prometheus alert
 
 ```json

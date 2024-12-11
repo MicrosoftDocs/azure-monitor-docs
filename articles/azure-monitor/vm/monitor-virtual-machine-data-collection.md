@@ -33,7 +33,7 @@ You can view the DCRs in your Azure subscription from **Data Collection Rules** 
 ### Create data collection rules
 There are multiple methods to create DCRs depending on the data collection scenario. In some cases, the Azure portal walks you through the configuration. Other scenarios require you to edit a DCR directly. When you configure VM insights, it creates a preconfigured DCR for you automatically. The following sections identify common data to collect and how to configure data collection.
 
-In some cases, you might need to [edit an existing DCR](../essentials/data-collection-rule-edit.md) to add functionality. For example, you might use the Azure portal to create a DCR that collects Windows or Syslog events. You then want to add a transformation to that DCR to filter out columns in the events that you don't want to collect.
+In some cases, you might need to [edit an existing DCR](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to add functionality. For example, you might use the Azure portal to create a DCR that collects Windows or Syslog events. You then want to add a transformation to that DCR to filter out columns in the events that you don't want to collect.
 
 As your environment matures and grows in complexity, you should implement a strategy for organizing your DCRs to help their management. For guidance on different strategies, see [Best practices for data collection rule creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md).
 

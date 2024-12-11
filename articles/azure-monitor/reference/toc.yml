@@ -153,6 +153,8 @@ items:
             href: supported-metrics/microsoft-documentdb-cassandraclusters-metrics.md
           - name: Microsoft.DocumentDB/DatabaseAccounts
             href: supported-metrics/microsoft-documentdb-databaseaccounts-metrics.md
+          - name: Microsoft.DocumentDB/garnetClusters
+            href: supported-metrics/microsoft-documentdb-garnetclusters-metrics.md
           - name: Microsoft.DocumentDB/mongoClusters
             href: supported-metrics/microsoft-documentdb-mongoclusters-metrics.md
           - name: microsoft.edgezones/edgezones
@@ -484,8 +486,9 @@ items:
             displayName: Engine,Service
           - name: Microsoft.ApiManagement/service
             href: supported-logs/microsoft-apimanagement-service-logs.md
-            displayName: Logs related to Developer Portal usage,Logs related to
-              ApiManagement Gateway,Logs related to Websocket Connections
+            displayName: Logs related to Developer Portal usage,Logs related to generative
+              AI gateway,Logs related to ApiManagement Gateway,Logs related to
+              Websocket Connections
           - name: Microsoft.ApiManagement/service/workspaces
             href: supported-logs/microsoft-apimanagement-service-workspaces-logs.md
             displayName: Gateway logs for API Management workspaces
@@ -565,8 +568,9 @@ items:
               Automation Events Summary Logs,Operational Call Automation
               Logs,Call Client Media Stats Time Series Logs,Call Client
               Operations Logs,Call Closed Captions Logs,Call Diagnostics
-              Logs,Operational Call Recording Logs,Call Recording Summary
-              Logs,Call Summary Logs,Call Survey Logs,Operational Chat
+              Logs,Call Diagnostics Logs with versioning,Operational Call
+              Recording Logs,Call Recording Summary Logs,Call Summary Logs,Call
+              Summary Logs with versioning,Call Survey Logs,Operational Chat
               Logs,Email Service Send Mail Logs,Email Service Delivery Status
               Update Logs,Email Service User Engagement Logs,Operational Job
               Router Logs,Operational Rooms Logs,Operational SMS Logs,Usage
@@ -1076,6 +1080,9 @@ items:
               operations Audit Logs,Dms Workers,Errors,Exec Requests,Query Store
               Runtime Statistics,Query Store Wait Statistics,Request Steps,SQL
               Insights,Sql Requests,SQL Security Audit Event,Timeouts,Waits
+          - name: Microsoft.StandbyPool/standbypool
+            href: supported-logs/microsoft-standbypool-standbypool-logs.md
+            displayName: Standbypool updates,Standbypool settings updates
           - name: Microsoft.Storage/storageAccounts/blobServices
             href: supported-logs/microsoft-storage-storageaccounts-blobservices-logs.md
             displayName: Storage Delete,Storage Read,Storage Write

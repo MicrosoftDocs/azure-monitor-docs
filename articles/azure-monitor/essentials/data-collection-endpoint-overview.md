@@ -7,7 +7,6 @@ ms.author: bwren
 ms.date: 03/18/2024
 ms.custom: references_region
 ms.reviwer: nikeist
-
 ---
 
 # Data collection endpoints in Azure Monitor
@@ -30,9 +29,12 @@ A DCE isn't always required for data collection since the data source may use a 
 
 You can view the agents associated with a DCE from its **Resources** page. Click **Add** to add additional agents. To remove them, select one or more agents and click **Disassociate** .
 
-:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." :::
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" alt-text="Screenshot resources for a DCE in the Azure portal." :::
 
 A DCE is required for certain [AMA data sources](../agents/azure-monitor-agent-data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs , a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
+
+> [!IMPORTANT]
+> If the data source is sending to a destination configured for private link, the DCE configured in the DCR for that data source must be added to AMPLS.
 
 The following data sources currently require a DCE:
 
@@ -44,11 +46,11 @@ The following data sources currently require a DCE:
 
 You can view the DCE for a DCR from the **Overview** page of the DCR. Click **Configure DCE** to modify it.
 
-:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot that showing DCR overview page with DCE." :::
+:::image type="content" source="media/data-collection-endpoint-overview/data-collection-rule-dce.png" lightbox="media/data-collection-endpoint-overview/data-collection-rule-dce.png" alt-text="Screenshot showing DCR overview page with DCE." :::
 
 ### Logs ingestion API
 
-When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#data-collection-rule-dcr), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you want to you're sending data to a Log Analytics workspace configured for private link.
+When you [create a DCR for Logs ingestion API](../logs/logs-ingestion-api-overview.md#data-collection-rule-dcr), the DCR will have a `logsIngestion` property which is an endpoint that you can use to send logs using the API. If you use this endpoint, then you don't need a DCE. You can still use a DCE instead of the DCR endpoint if you prefer. You must use a DCE if you're sending data to a Log Analytics workspace configured for private link.
 
 
 ## Components of a DCE
@@ -163,4 +165,4 @@ The sample data collection endpoint (DCE) below is for virtual machines with Azu
 
 ## Next steps
 
-- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-azure-monitor-resources)
+- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-resources-to-the-ampls)

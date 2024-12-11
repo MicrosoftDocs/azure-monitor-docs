@@ -2907,7 +2907,12 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/insights/vminsights-dependency-agent-maintenance.md",
-   "redirect_url": "/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-dependency-agent",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/vm/vminsights-dependency-agent-maintenance.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-dependency-agent",
    "redirect_document_id": false
   },
   {
@@ -7545,6 +7550,36 @@
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   },
+  { 
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-overview.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-resource-manager.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-arm-templates",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-powershell.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-arm-templates",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-portal.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-the-azure-portal",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/resource-manager-vminsights.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable#enable-vm-insights-using-the-azure-portal",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable-hybrid.md",
+   "redirect_url": "/azure/azure-monitor/vm/vminsights-enable-client",
+   "redirect_document_id": false
+  },
   {
    "source_path": "articles/azure-monitor/reference/tables/adpaudit.md",
    "redirect_url": "/azure/azure-monitor/reference",
@@ -7564,6 +7599,66 @@
    "source_path": "articles/azure-monitor/reference/tables/microsoft-autonomousdevelopmentplatform_workspaces.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/essentials/data-collection-transformations-structure.md",
+    "redirect_url": "/azure/azure-monitor/essentials/data-collection-transformations-kql",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/essentials/data-collection-transformations-best-practices.md",
+    "redirect_url": "/azure/azure-monitor/essentials/data-collection-transformations-samples",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/essentials/data-collection-rule-view.md",
+    "redirect_url": "/azure/azure-monitor/essentials/data-collection-rule-overview#viewing-dcrs",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/essentials/data-collection-rule-edit.md",
+    "redirect_url": "/azure/azure-monitor/essentials/data-collection-rule-create-edit",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/essentials/data-collection-transformations-workspace.md",
+    "redirect_url": "/azure/azure-monitor/essentials/data-collection-transformations#workspace-transformation-dcr",
+    "redirect_document_id": false
+  },
+  {
+    "source_path_from_root": "/articles/azure-monitor/app/pre-aggregated-metrics-log-metrics.md",
+    "redirect_url": "/azure/azure-monitor/app/metrics-overview",
+    "redirect_document_id": false
+  },
+  {
+    "source_path_from_root": "/articles/azure-monitor/app/standard-metrics.md",
+    "redirect_url": "/azure/azure-monitor/app/metrics-overview",
+    "redirect_document_id": false
+  },
+  {
+    "source_path_from_root": "/articles/azure-monitor/essentials/app-insights-metrics.md",
+    "redirect_url": "/azure/azure-monitor/app/metrics-overview",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/containers/prometheus-remote-write-azure-ad-pod-identity.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/containers/prometheus-remote-write-azure-ad-pod-identity",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-standbypool-logs.md",
+    "redirect_url": "/azure/azure-monitor/reference",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/logs/data-collector-api.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/logs/data-collector-api",
+    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/logs/azure-ad-authentication-logs.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/logs/azure-ad-authentication-logs",
+    "redirect_document_id": false
   }
  ]
 }

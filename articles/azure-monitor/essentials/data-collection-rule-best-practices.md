@@ -2,7 +2,8 @@
 title: Best practices for data collection rule creation and management in Azure Monitor
 description: Details on the best practices to be followed to correctly create and maintain data collection rule in Azure Monitor.
 ms.topic: conceptual
-ms.date: 01/08/2024
+ms.date: 11/01/2024
+ms.author: bwren
 ms.reviewer: brunoga
 ---
 

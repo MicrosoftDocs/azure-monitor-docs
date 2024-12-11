@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: This article describes the version details for the Azure Monitor Agent virtual machine extension.
 ms.topic: conceptual
-ms.date: 08/12/2024
+ms.date: 11/14/2024
 author: guywi-ms
 ms.author: guywild
 ms.custom: references_region
@@ -11,12 +11,18 @@ ms.reviewer: JeffWo
 
 # Azure Monitor Agent extension versions
 
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 This article describes the version details for the Azure Monitor Agent virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
-We strongly recommended to always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. A version is not automatically rolled out until it meets a high quality bar which can take as long as 5 weeks after the initial release. 
+> [!Note]
+> The product group only supports Azure Monitoring Agent versions within the last 1 year. Customers should update to an agent version within this period.
+
+We strongly recommend that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. Automatic extension rollout follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to rollout the latest version. Upgrades are issued in batches, so you may see some of your virtual machines, scale-sets or Arc-enabled servers get upgraded before others.
+
+
+> [!CAUTION]
+> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
+
 
 [//]: # "DON'T change the format (column schema, etc.) of the table without consulting glinuxagent alias. The [Azure Monitor Linux Agent Troubleshooting Tool](https://github.com/Azure/azure-linux-extensions/blob/master/AzureMonitorAgent/ama_tst/AMA-Troubleshooting-Tool.md) parses the table at runtime to determine the latest version of AMA; altering the format could degrade some of the functions of the tool."
 

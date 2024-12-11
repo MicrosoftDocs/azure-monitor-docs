@@ -1,0 +1,104 @@
+{
+  "properties": {
+    "immutableId": "dcr-5f0e3528b5024851a274e66f0c2ced66",
+    "endpoints": {
+      "logsIngestion": "https://weather-flat-01-h00t-eastus.logs.z1.ingest.monitor.azure.com",
+      "metricsIngestion": "https://weather-flat-01-r394-eastus.metrics.z1.ingest.monitor.azure.com"
+    },
+    "streamDeclarations": {
+      "Custom-WeatherDynamic_CL": {
+        "columns": [
+          {
+            "name": "coord",
+            "type": "dynamic"
+          },
+          {
+            "name": "weather",
+            "type": "dynamic"
+          },
+          {
+            "name": "base",
+            "type": "string"
+          },
+          {
+            "name": "main",
+            "type": "dynamic"
+          },
+          {
+            "name": "visibility",
+            "type": "int"
+          },
+          {
+            "name": "wind",
+            "type": "dynamic"
+          },
+          {
+            "name": "clouds",
+            "type": "dynamic"
+          },
+          {
+            "name": "dt",
+            "type": "int"
+          },
+          {
+            "name": "sys",
+            "type": "dynamic"
+          },
+          {
+            "name": "timezone",
+            "type": "int"
+          },
+          {
+            "name": "id",
+            "type": "int"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "cod",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    "dataSources": {},
+    "destinations": {
+      "logAnalytics": [
+        {
+          "workspaceResourceId": "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/bwlab/providers/microsoft.operationalinsights/workspaces/bwlab-eas",
+          "workspaceId": "23c42c83-be68-4ba1-8552-2569b6235074",
+          "name": "01226ef7f0e84a4c9e85762ae9bb94d4"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": [
+          "Custom-WeatherDynamic_CL"
+        ],
+        "destinations": [
+          "01226ef7f0e84a4c9e85762ae9bb94d4"
+        ],
+        "transformKql": "source | extend TimeGenerated = now() | extend weather_id = id | project-away id | project-away cod",
+        "outputStream": "Custom-WeatherDynamic_CL"
+      }
+    ],
+    "provisioningState": "Succeeded"
+  },
+  "location": "eastus",
+  "kind": "Direct",
+  "id": "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/bwlab/providers/Microsoft.Insights/dataCollectionRules/weather-flat-01",
+  "name": "weather-flat-01",
+  "type": "Microsoft.Insights/dataCollectionRules",
+  "etag": "\"8d00cd60-0000-0100-0000-6723ddb70000\"",
+  "systemData": {
+    "createdBy": "bwren@microsoft.com",
+    "createdByType": "User",
+    "createdAt": "2024-10-31T19:42:44.9776798Z",
+    "lastModifiedBy": "bwren@microsoft.com",
+    "lastModifiedByType": "User",
+    "lastModifiedAt": "2024-10-31T19:42:44.9776798Z"
+  }
+}

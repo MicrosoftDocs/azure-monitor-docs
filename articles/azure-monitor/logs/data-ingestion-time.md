@@ -4,8 +4,8 @@ description: This article explains the different factors that affect latency in 
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.reviewer: eternovsky
-ms.date: 03/21/2022
+ms.reviewer: ivkhrul
+ms.date: 11/21/2024
 
 ---
 
@@ -108,7 +108,7 @@ Ingestion time might vary for different resources under different circumstances.
 
 | Step | Property or function | Comments |
 |:---|:---|:---|
-| Record created at data source | [TimeGenerated](./log-standard-columns.md#timegenerated) <br>If the data source doesn't set this value, it will be set to the same time as _TimeReceived. | If at processing time the Time Generated value is older than two days, the row will be dropped. |
+| Record created at data source | [TimeGenerated](./log-standard-columns.md#timegenerated) | The TimeGenerated value can't be more than two days before the received time or more than a day in the future. Otherwise, Azure Monitor Logs replaces the TimeGenerated value with the actual received time.<br>If the data source doesn't set this value, Azure Monitor Logs sets the value to the same time as _TimeReceived.  |
 | Record received by the data collection endpoint | [_TimeReceived](./log-standard-columns.md#_timereceived) | This field isn't optimized for mass processing and shouldn't be used to filter large datasets. |
 | Record stored in workspace and available for queries | [ingestion_time()](/azure/kusto/query/ingestiontimefunction) | We recommend using `ingestion_time()` if there's a need to filter only records that were ingested in a certain time window. In such cases, we recommend also adding a `TimeGenerated` filter with a larger range. |
 

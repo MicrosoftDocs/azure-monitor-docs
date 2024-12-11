@@ -21,7 +21,7 @@ This article explains the concept of Azure Log Analytics workspace soft-delete a
 
 When you delete a Log Analytics workspace into a soft-delete state, a soft-delete operation is performed to allow the recovery of the workspace, including its data and connected agents, within 14 days. This process occurs whether the deletion was accidental or intentional.
 
-After the soft-delete period, the workspace resource and its data are nonrecoverable and queued for purge completely within 30 days. The workspace name is released and you can use it to create a new workspace.
+After the soft-delete period, the workspace resource and its data are non-recoverable and queued for purge completely within 30 days. The workspace name is released and you can use it to create a new workspace.
 
 > [!NOTE]
 > If you want to override the soft-delete behavior and permanently delete your workspace, follow the steps in [Delete a workspace permanently](#delete-a-workspace-permanently), but use it with caution since non-recoverable.
@@ -137,11 +137,11 @@ az monitor log-analytics workspace recover --resource-group MyResourceGroup --wo
 ---
 
 ## Delete a workspace permanently
-The soft-delete method might not fit in some scenarios, such as development and testing, where you need to repeat deployment with the same settings and workspace name. In such cases, you can permanently delete your workspace and "override" the soft-delete wait period. The permanent workspace delete operation releases the workspace name, and you can create a new workspace with the same name.
+The soft-delete method might not fit in some scenarios, such as development and testing, where you need to repeat deployment with the same settings and workspace name. In such cases, you can permanently delete your workspace and "override" the soft-delete wait period by selecting 'Delete workspace permanently' in Azure portal, or using `force` parameter in programmatic calls. The permanent workspace delete operation releases the workspace name, and you can create a new workspace with the same name.
 
 > [!IMPORTANT]
-> - The 'Delete workspace permanently' option in Azure portal, or using `force` programmatically should be done with caution since workspace is non-recoverable and its data is permanently purged.
-> - If the workspace you want to delete permanently is in soft-delete state, you must [recover the workspace](#recover-a-workspace-in-a-soft-delete-state) first and permanently delete it then.
+> - Permanent workspace delete should be done with caution since non-recoverable.
+> - If the workspace is in soft-delete state, you must [recover the workspace](#recover-a-workspace-in-a-soft-delete-state) first and permanently delete it then.
 
 ### [Azure portal](#tab/azure-portal)
 

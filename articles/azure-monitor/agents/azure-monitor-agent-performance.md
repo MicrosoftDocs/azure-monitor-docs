@@ -4,7 +4,7 @@ description: Performance data for the AMA running in a gateway scenario
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 4/07/2023
+ms.date: 11/14/2024
 ms.reviewer: jeffwo
  
 # Customer intent: As a deployment engineer, I can scope the resources required to scale my gateway data colletors the use the Azure Monitor Agent. 
@@ -19,11 +19,10 @@ The agent can handle many thousands of events per second in the gateway event fo
 
 ## Best practices for agent as a forwarder. 
 
-- Each AMA is limited to ingesting 20k EPS, and drops any data that exceeds the limits.
+- The Linux AMA should target 10k EPS. There's a 20k EPS warning which doesn't mean data lost. AMA doesn't guarantee a lossless connection. However, loss is more likely when EPS is over 10k.
 - The forwarder should be on a dedicated system to eliminate potential interference from other workloads. 
 - The forwarder system should be monitored for CPU, memory, and disk utilization to prevent overloads from causing data loss. 
-- Where possible use a load balancer and redundant forwarder systems to improve reliability and scalability. 
-- For other considerations for forwarders, see the Log Analytics Gateway documentation. 
+- The load balancer and redundant forwarder systems should be used to improve reliability and scalability. For other considerations for forwarders, see the Log Analytics Gateway documentation. 
 
 ## Agent Performance 
 
@@ -38,7 +37,7 @@ The benchmarks are run on an Azure VM Standard_F8s_v2 system using AMA Linux ver
 - Memory: 	16 GiB 
 - Temp Storage:	64 GiB 
 - Max Disk IOPS:	6400 
-- Network:	12500 Mbp Max on all 4 physical NICs 
+- Network:	12500 Mbps Max on all 4 physical NICs 
 
 
 
@@ -47,7 +46,7 @@ The benchmarks are run on an Azure VM Standard_F8s_v2 system using AMA Linux ver
 | Perf Metric | Ave (Max) Med |
 |:---|:---:|
 | CPU %           | 51 (262)     |
-| Mem RSS MB      | 276 (1,017)  |
+| Memory RSS MB      | 276 (1,017)  |
 | Network KBps    | 338 (18,033) |
 
 

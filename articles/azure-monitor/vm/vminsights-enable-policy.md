@@ -15,6 +15,10 @@ ms.date: 07/09/2023
 
 This article explains how to enable VM insights for Azure virtual machines, virtual machine scale sets, and hybrid virtual machines connected with Azure Arc by using predefined VM insights policy initiates.
 
+## Prerequisites
+
+Before you can enable VM insights using Azure Policy, you need to have a VM insights DCR created. The DCR specifies what data to collect from the agent and how it should be processed. See [VM insights DCR](./vminsights-enable.md#vm-insights-dcr) for details on creating this DCR.
+
 
 ## VM insights initiatives
 VM insights policy initiatives install Azure Monitor Agent and the Dependency agent on new virtual machines in your Azure environment. Assign these initiatives to a management group, subscription, or resource group to install the agents on Windows or Linux Azure virtual machines in the defined scope automatically.
@@ -41,7 +45,7 @@ The initiatives apply to new machines you create and machines you modify, but no
 
 ## Support for custom images
 
-Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false`to allow onboarding Dependency Agent on custom images.  
+Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false` to allow onboarding Dependency Agent on custom images.  
 
 ## Assign a VM insights policy initiative
 
@@ -69,7 +73,7 @@ To assign a VM insights policy initiative to a subscription or management group 
    > [!NOTE]
      > If you select a workspace that's not within the scope of the assignment, grant *Log Analytics Contributor* permissions to the policy assignment's principal ID. Otherwise, you might get a deployment failure like:
      >
-     > `The client '343de0fe-e724-46b8-b1fb-97090f7054ed' with object id '343de0fe-e724-46b8-b1fb-97090f7054ed' does not have authorization to perform action 'microsoft.operationalinsights/workspaces/read' over scope ...`
+     > `The client 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' with object id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' does not have authorization to perform action 'microsoft.operationalinsights/workspaces/read' over scope ...`
 
 1. Select **Review + create** to review the initiative assignment details. Select **Create** to create the assignment.
 

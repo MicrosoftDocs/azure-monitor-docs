@@ -29,7 +29,7 @@ Here's a video that provides a quick overview of how to query logs in Log Analyt
 
 ## Try Log Analytics Simple mode
 
-Simple mode is currently an opt-in experience. To try it, select **Try the new Log Analytics** at the top right corner of the Log Analytics query editor. You can switch back to the classic Log Analytics experience at any time.
+Simple Mode is now the default view for some users. If it’s not enabled by default for you, simply select **Try the new Log Analytics** at the top-right corner of the query editor. You can switch back to the classic Log Analytics experience at any time. 
 
 :::image type="content" source="media/log-analytics-explorer/try-new-log-analytics.png" alt-text="A screenshot showing the Try the new Log Analytics button." lightbox="media/log-analytics-explorer/try-new-log-analytics.png":::
 

@@ -4,7 +4,7 @@ description: Learn how to use autoscale actions to call web URLs or send email n
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: conceptual
-ms.date: 08/25/2024
+ms.date: 11/01/2024
 ms.subservice: autoscale
 ms.reviewer: akkumari
 ---
