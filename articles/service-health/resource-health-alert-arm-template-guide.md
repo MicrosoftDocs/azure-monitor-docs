@@ -45,7 +45,7 @@ To follow the instructions on this page, you need to set up a few things in adva
     New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName <resourceGroup> -TemplateFile <path\to\resourcehealthalert.json>
     ```
 
-5. You;re prompted to type in the Alert Name and Action Group Resource ID you copied earlier:
+5. You're prompted to type in the Alert Name and Action Group Resource ID you copied earlier:
 
     ```azurepowershell
     Supply values for the following parameters:
