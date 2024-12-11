@@ -36,6 +36,11 @@ The following targets are **enabled/ON** when you enable Container Network Obser
 - `networkobservabilityHubble` (`job=networkobservabilityHubble`)
 - `networkobservabilityCilium` (`job=networkobservabilityCilium`)
 
+The following targets are **enabled/ON** when you enable Azure Container Storage which is a cloud-based volume management, deployment, and orchestration service built natively for containers and natively integrates with AKS. For more information, see [Azure Container Storage](/azure/storage/container-storage).
+
+- `acstor-capacity-provisioner` (`job=acstor-capacity-provisioner`)
+- `acstor-metrics-exporter` (`job=acstor-metrics-exporter`)
+
 ## Metrics collected from default targets
 
 The following metrics are collected by default from each default target. All other metrics are dropped through relabeling rules.
