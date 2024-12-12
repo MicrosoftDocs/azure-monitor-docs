@@ -69,7 +69,7 @@ There are four types of availability tests:
    | **Standard test info** | | |
    | | **HTTP request verb** | Indicate what action you want to take with your request. |
    | | **Request body** | Custom data associated with your HTTP request. You can upload your own files, enter your content, or disable this feature. |
-   | | **Add custom headers** | Key value pairs that define the operating parameters. The "Host" and "User-Agent" headers are reserved in Availability Tests and cannot be modified or overridden. |
+   | | **Add custom headers** | Key value pairs that define the operating parameters. The "Host" and "User-Agent" headers are reserved in Availability Tests and cannot be modified or overwritten.|
    | **Success criteria** | | |
    | | **Test Timeout** | Decrease this value to be alerted about slow responses. The test is counted as a failure if the responses from your site aren't received within this period. If you selected **Parse dependent requests**, all the images, style files, scripts, and other dependent resources must be received within this period. |
    | | **HTTP response** | The returned status code counted as a success. The number 200 is the code that indicates that a normal webpage is returned. |
