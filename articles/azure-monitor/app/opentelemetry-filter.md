@@ -25,8 +25,7 @@ To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](ope
 
 ## Filter telemetry using instrumentation libraries
 
-> [!NOTE]
-> For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).
+For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
