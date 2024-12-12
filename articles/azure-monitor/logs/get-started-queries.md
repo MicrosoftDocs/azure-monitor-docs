@@ -84,27 +84,13 @@ Use the [`take` operator](/azure/data-explorer/kusto/query/takeoperator) to view
 
 ## [Simple](#tab/simple)
 
-## Configure query result limit
+To return up to a specific number of records in Simple Mode, you can limit the results:
 
 1. Select **Limit** to open the **Limit results** window.
 
+1. Select one of the preset limits, or enter a custom limit, then hit **Apply**.
+
     :::image type="content" source="media/log-analytics-explorer/log-analytics-result-limits.png" alt-text="Screenshot that shows the limit results window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-result-limits.png":::
-
-1. Select one of the preset limits, or enter a custom limit. 
- 
-    The maximum number of results that you can retrieve in the Log Analytics portal experience, in both Simple mode and KQL mode, is 30,000. However, when you [share a Log Analytics query](#more-tools) with an integrated tool, or use the query in a [search job](search-jobs.md), the query limit is set based on the tools you choose.
-
-    Select **Max. limit** to return the maximum number of results provided by any of the tools available on the **Share** window or using a search job.
-
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-share-query.png" alt-text="Screenshot that shows the Share window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-share-query.png":::
-
-    This table lists the maximum result limits of Azure Monitor log queries using the various tools:
-
-    |Tool|Description|Max. limit|
-    |---|---|---|
-    |Log Analytics|Queries you run in the Azure portal.|30,000|
-    |[Excel](../logs/log-excel.md), [Power BI](../logs/log-powerbi.md), [Log Analytics Query API](../logs/api/overview.md)|Queries you use in Excel and Power BI, which are integrated with Log Analytics, and queries you run using the API.|500,000|
-    |[Search job](search-jobs.md)|Azure Monitor reingests the results of a query your run in search job mode into a new table in your Log Analytics.|1,000,000|
 
 ---
 
@@ -166,25 +152,28 @@ The output looks like this example.
 
 ## [Simple](#tab/simple)
 
-### Sort by column
+To sort in Simple Mode:
 
 1. Select **Sort**.
 1. Select a column to sort by.
-1. Select **Ascending** or **Descending**, then select **Apply**.  
+1. Select **Ascending** or **Descending**, then select **Apply**.
 
     :::image type="content" source="media/log-analytics-explorer/log-analytics-sort.png" alt-text="Screenshot that shows the Sort by column window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sort.png":::
 
 1. Select **Sort** again to sort by another column.
 
+> [!NOTE]
+> In Simple Mode, there's no direct equivalent to the Top operator. Instead, you can sort a column as described in this section, and then limit the results.
+
 ---
 
 ## Filter
 
+Filters, as indicated by their name, filter the data by a specific condition. Filtering is the most common way to limit query results to relevant information.
+
 ## [KQL](#tab/kql)
 
 ### The where operator: Filter on a condition
-
-Filters, as indicated by their name, filter the data by a specific condition. Filtering is the most common way to limit query results to relevant information.
 
 To add a filter to a query, use the [`where` operator](/azure/data-explorer/kusto/query/whereoperator) followed by one or more conditions. For example, the following query returns only `SecurityEvent` records where `Level equals _8`:
 
@@ -225,30 +214,23 @@ SecurityEvent
 
 ## [Simple](#tab/simple)
 
-#### Filter by column
+Instead of using the [`where` operator](/azure/data-explorer/kusto/query/whereoperator), in Simple Mode you can add filters using the UI. For example,  followed by one or more conditions.
 
-1. Select **Add** and choose a column.
+For example, to filter results in the `SecurityEvent` table to only show records where the `Level` equals `8`:
+
+1. Select **Add** and choose the column `Level`.
 
     :::image type="content" source="media/log-analytics-explorer/log-analytics-add-filter.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-add-filter.png":::
 
-1. Select a value to filter by, or enter text or numbers in the **Search** box.
-
-    If you filter by selecting values from a list, you can select multiple values. If the list is long, you'll see a **Not all results are shown** message. Scroll to the bottom of the list and select **Load more results** to retrieve more values.  
+1. In the **Operator** dropdown list, select **Equals**. Enter the number `8` in the field below, then hit **Apply**.
     
     :::image type="content" source="media/log-analytics-explorer/log-analytics-filter.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-filter.png":::
 
-#### Search for entries that have a specific value in the table
+To filter by multiple conditions, you can add additional filters.
 
-1. Select **Search**.
+1. Select **Add** and choose the column `EventID`.
 
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-search.png" alt-text="Screenshot that shows the Search option in Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-search.png":::
-
-1. Enter a string in the **Search this table** box and select **Apply**.
-
-    Log Analytics filters the table to show only entries that contain the string you entered.
-
-> [!IMPORTANT]
-> We recommend using **Filter** if you know which column holds the data you're searching for. The [search operator is substantially less performant](../logs/query-optimization.md#avoid-unnecessary-use-of-search-and-union-operators) than filtering, and might not function well on large volumes of data.
+1.  In the **Operator** dropdown list, select **Equals**. Enter the number `4672` in the field below, then hit **Apply**.
 
 ---
 
@@ -280,13 +262,9 @@ In the preceding time filter, `ago(30m)` means "30 minutes ago." This query retu
 
 ## [Simple](#tab/simple)
 
-#### Change time range and number of records displayed
-
-By default, Simple mode lists the latest 1,000 entries in the table from the last 24 hours.
-
-To change the time range and number of records displayed, use the **Time range** and **Limit** selectors. For more information about result limit, see [Configure query result limit](#configure-query-result-limit).
-    
-:::image type="content" source="media/log-analytics-explorer/log-analytics-time-range-limit.png" alt-text="Screenshot that shows the time range and limit selectors in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-time-range-limit.png":::
+The time picker is displayed next to the **Run** button and indicates that you're querying records from only the last 24 hours. This default time range is applied to all queries. To get records from only the last hour, select **Last hour** and then run the query again.
+<!-- convertborder later -->
+:::image type="content" source="media/get-started-queries/timepicker.png" lightbox="media/get-started-queries/timepicker.png" alt-text="Screenshot that shows the time picker and its list of time-range commands." border="false":::
 
 ---
 
