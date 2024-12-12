@@ -26,6 +26,11 @@
    "redirect_document_id": false
   },
   {
+    "source_path": "articles/azure-monitor/reference/alerts-metric-near-real-time.md",
+    "redirect_url": "/azure/azure-monitor/reference/metrics-index",
+    "redirect_document_id": false
+   },
+  {
    "source_path": "articles/azure-monitor/reference/queries/requests.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
