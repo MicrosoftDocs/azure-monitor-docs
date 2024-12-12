@@ -29,7 +29,7 @@ The following table lists the proxy and firewall configuration information requi
 > If you use private links, you must **only** add the [private data collection endpoints (DCEs)](../essentials/data-collection-endpoint-overview.md#components-of-a-dce). The containerized agent does not use the non-private endpoints listed above when using private links/data collection endpoints.
 
 > [!NOTE]
-> When using AMA with AMPLS, all of your Data Collection Rules must use Data Collection Endpoints. Those DCE's must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls)
+> When using AMA with AMPLS, all of your Data Collection Rules must use Data Collection Endpoints. Those DCEs must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls)
 
 ## Microsoft Azure operated by 21Vianet cloud
 
