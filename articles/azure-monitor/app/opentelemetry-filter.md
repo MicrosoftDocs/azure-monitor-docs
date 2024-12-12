@@ -62,14 +62,14 @@ Many instrumentation libraries provide a filter option. For guidance, see the co
 
 ### [Java](#tab/java)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be supressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be suppressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
 
 ### [Java native](#tab/java-native)
 
-Supressing autocollected telemetry isn't supported with Java native. To filter telemetry, refer to the relevant external documentation:
+Suppressing autocollected telemetry isn't supported with Java native. To filter telemetry, refer to the relevant external documentation:
 
 * **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 * **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
