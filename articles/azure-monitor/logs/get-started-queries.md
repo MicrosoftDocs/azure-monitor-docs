@@ -45,6 +45,8 @@ Queries can start with either a table name or the `search` command. It's a good 
 
 ### Table-based queries
 
+### [KQL](#tab/kql)
+
 Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Analytics portal. Identify a table that you're interested in, and then take a look at a bit of data:
 
 ```Kusto
@@ -60,7 +62,22 @@ The preceding query returns 10 results from the `SecurityEvent` table, in no spe
 
    We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 30,000 results.
 
+### [Simple](#tab/simple)
+
+To show only 10 records of the `SecurityEvent` table in Simple Mode:
+
+1. Click **Select a table** and select `SecurityEvent`. Alternatively, select **Tables** from the left pane to view the list of tables in the workspace.
+
+    > [!NOTE]
+    > In Simple Mode, once you select a table, it shows up to 1000 records by default.
+
+1. Open **Show**, select **Custom**, enter the custom value `10`, then hit **Apply**.
+
+---
+
 ### Search queries
+
+### [KQL](#tab/kql)
 
 Search queries are less structured. They're better suited for finding records that include a specific value in any of their columns:
 
@@ -73,6 +90,19 @@ This query searches the `SecurityEvent` table for records that contain the phras
 
 > [!IMPORTANT]
 > Search queries are ordinarily slower than table-based queries because they have to process more data.
+
+### [Simple](#tab/simple)
+
+To show 10 records that include a specific value in any of their columns:
+
+1. Click **Select a table** and chose `SecurityEvent`.
+1. Select **Add**, chose **search in table**, enter "Cryptographic" and hit **Apply**.
+1. Open **Show**, select **Custom**, enter the custom value `10`, then hit **Apply**.
+
+> [!IMPORTANT]
+> We recommend using **Filter** if you know which column holds the data you're searching for. The [search operator is substantially less performant](../logs/query-optimization.md#avoid-unnecessary-use-of-search-and-union-operators) than filtering, and might not function well on large volumes of data.
+
+---
 
 ## Limit results
 
@@ -108,21 +138,23 @@ Use the `desc` argument to sort records in descending order. Descending is the d
 
 For example, the data returned by both of the following queries is sorted by the [TimeGenerated column](./log-standard-columns.md#timegenerated), in descending order:
 
-- ```Kusto
+* ```Kusto
   SecurityEvent	
   | sort by TimeGenerated desc
   ```
 
-- ```Kusto
-   SecurityEvent	
-   | sort by TimeGenerated
-   ```
+* ```Kusto
+  SecurityEvent	
+  | sort by TimeGenerated
+  ```
    
 #### Asc
 
 To sort in ascending order, specify `asc`.
 
 ### Sort
+
+### [KQL](#tab/kql)
 
 You can use the [`sort` operator](/azure/data-explorer/kusto/query/sort-operator). `sort` sorts the query results by the column you specify. However, `sort` doesn't limit the number of records that are returned by the query.
 
@@ -135,7 +167,23 @@ SecurityEvent
 
 The preceding query could return too many results. Also, it might also take some time to return the results. The query sorts the entire `SecurityEvent` table by the `TimeGenerated` column. The Analytics portal then limits the display to only 30,000 records. This approach isn't optimal. The best way to only get the latest records is to use the [`top` operator](#top).
 
+### [Simple](#tab/simple)
+
+To sort in Simple Mode:
+
+1. Select **Sort**.
+1. Select a column to sort by.
+1. Select **Ascending** or **Descending**, then select **Apply**.
+
+    :::image type="content" source="media/log-analytics-explorer/log-analytics-sort.png" alt-text="Screenshot that shows the Sort by column window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sort.png":::
+
+1. Select **Sort** again to sort by another column.
+
+---
+
 ### Top
+
+### [KQL](#tab/kql)
 
 Use the [`top` operator](/azure/data-explorer/kusto/query/topoperator) to sort the entire table on the server side and then only return the top records. 
 
@@ -150,20 +198,9 @@ The output looks like this example.
 <!-- convertborder later -->
 :::image type="content" source="media/get-started-queries/top10.png" lightbox="media/get-started-queries/top10.png" alt-text="Screenshot that shows the top 10 records sorted in descending order." border="false":::
 
-## [Simple](#tab/simple)
+### [Simple](#tab/simple)
 
-To sort in Simple Mode:
-
-1. Select **Sort**.
-1. Select a column to sort by.
-1. Select **Ascending** or **Descending**, then select **Apply**.
-
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-sort.png" alt-text="Screenshot that shows the Sort by column window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sort.png":::
-
-1. Select **Sort** again to sort by another column.
-
-> [!NOTE]
-> In Simple Mode, there's no direct equivalent to the Top operator. Instead, you can sort a column as described in this section, and then limit the results.
+In Simple Mode, there's no direct equivalent to the Top operator. Instead, you can sort a column and then limit the results.
 
 ---
 
