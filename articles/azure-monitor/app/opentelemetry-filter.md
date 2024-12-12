@@ -18,7 +18,7 @@ This article provides guidance on how to filter OpenTelemetry for applications u
 Reasons why you might want to filter out telemetry include:
 
 * Filtering out health check telemetry to reduce noise.
-* Ensuring PII and credentials are not collected.
+* Ensuring PII and credentials aren't collected.
 * Filtering out low-value telemetry to optimize performance.
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
@@ -62,14 +62,14 @@ Many instrumentation libraries provide a filter option. For guidance, see the co
 
 ### [Java](#tab/java)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be surpressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be supressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
 
 ### [Java native](#tab/java-native)
 
-Surpressing autocollected telemetry isn't supported with Java native. To filter telemetry, refer to the relevent external documentation:
+Supressing autocollected telemetry isn't supported with Java native. To filter telemetry, refer to the relevant external documentation:
 
 * **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 * **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
@@ -251,7 +251,7 @@ To filter telemetry from Java applications, you can use sampling overrides (reco
 
 ### [Java native](#tab/java-native)
 
-Sampling overrides and telemetry processors aren't supported with Java native. To filter telemetry, refer to the relevent external documentation:
+Sampling overrides and telemetry processors aren't supported with Java native. To filter telemetry, refer to the relevant external documentation:
 
 * **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 * **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
