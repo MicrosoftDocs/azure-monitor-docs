@@ -45,7 +45,7 @@ Queries can start with either a table name or the `search` command. It's a good 
 
 ### Table-based queries
 
-### [KQL](#tab/kql)
+### [KQL mode](#tab/kql)
 
 Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Analytics portal. Identify a table that you're interested in, and then take a look at a bit of data:
 
@@ -62,7 +62,7 @@ The preceding query returns 10 results from the `SecurityEvent` table, in no spe
 
    We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 30,000 results.
 
-### [Simple](#tab/simple)
+### [Simple mode](#tab/simple)
 
 To show only 10 records of the `SecurityEvent` table in Simple Mode:
 
@@ -77,7 +77,7 @@ To show only 10 records of the `SecurityEvent` table in Simple Mode:
 
 ### Search queries
 
-### [KQL](#tab/kql)
+### [KQL mode](#tab/kql)
 
 Search queries are less structured. They're better suited for finding records that include a specific value in any of their columns:
 
@@ -91,7 +91,7 @@ This query searches the `SecurityEvent` table for records that contain the phras
 > [!IMPORTANT]
 > Search queries are ordinarily slower than table-based queries because they have to process more data.
 
-### [Simple](#tab/simple)
+### [Simple mode](#tab/simple)
 
 To show 10 records that include a specific value in any of their columns:
 
@@ -106,13 +106,13 @@ To show 10 records that include a specific value in any of their columns:
 
 ## Limit results
 
-## [KQL](#tab/kql)
+## [KQL mode](#tab/kql)
 
 #### Take
 
 Use the [`take` operator](/azure/data-explorer/kusto/query/takeoperator) to view a small sample of records by returning up to the specified number of records. The selected results are arbitrary and displayed in no particular order. If you need to return results in a particular order, use the [`sort` and `top` operators](#sort-and-top).
 
-## [Simple](#tab/simple)
+## [Simple mode](#tab/simple)
 
 To return up to a specific number of records in Simple Mode, you can limit the results:
 
@@ -125,8 +125,6 @@ To return up to a specific number of records in Simple Mode, you can limit the r
 ---
 
 ## Sort and top
-
-## [KQL](#tab/kql)
 
 This section describes the `sort` and `top` operators and their `desc` and `asc` arguments. Although [`take`](#take) is useful for getting a few records, you can't select or sort the results in any particular order. To get an ordered view, use `sort` and `top`.
 
@@ -154,7 +152,7 @@ To sort in ascending order, specify `asc`.
 
 ### Sort
 
-### [KQL](#tab/kql)
+### [KQL mode](#tab/kql)
 
 You can use the [`sort` operator](/azure/data-explorer/kusto/query/sort-operator). `sort` sorts the query results by the column you specify. However, `sort` doesn't limit the number of records that are returned by the query.
 
@@ -167,7 +165,7 @@ SecurityEvent
 
 The preceding query could return too many results. Also, it might also take some time to return the results. The query sorts the entire `SecurityEvent` table by the `TimeGenerated` column. The Analytics portal then limits the display to only 30,000 records. This approach isn't optimal. The best way to only get the latest records is to use the [`top` operator](#top).
 
-### [Simple](#tab/simple)
+### [Simple mode](#tab/simple)
 
 To sort in Simple Mode:
 
@@ -183,7 +181,7 @@ To sort in Simple Mode:
 
 ### Top
 
-### [KQL](#tab/kql)
+### [KQL mode](#tab/kql)
 
 Use the [`top` operator](/azure/data-explorer/kusto/query/topoperator) to sort the entire table on the server side and then only return the top records. 
 
@@ -198,7 +196,7 @@ The output looks like this example.
 <!-- convertborder later -->
 :::image type="content" source="media/get-started-queries/top10.png" lightbox="media/get-started-queries/top10.png" alt-text="Screenshot that shows the top 10 records sorted in descending order." border="false":::
 
-### [Simple](#tab/simple)
+### [Simple mode](#tab/simple)
 
 In Simple Mode, there's no direct equivalent to the Top operator. Instead, you can sort a column and then limit the results.
 
@@ -208,7 +206,7 @@ In Simple Mode, there's no direct equivalent to the Top operator. Instead, you c
 
 Filters, as indicated by their name, filter the data by a specific condition. Filtering is the most common way to limit query results to relevant information.
 
-## [KQL](#tab/kql)
+## [KQL mode](#tab/kql)
 
 ### The where operator: Filter on a condition
 
@@ -249,7 +247,7 @@ SecurityEvent
 > Values can have different types, so you might need to cast them to perform comparisons on the correct type. For example, the `SecurityEvent Level` column is of type String, so you must cast it to a numerical type, such as `int` or `long`, before you can use numerical operators on it, as shown here:
 > `SecurityEvent | where toint(Level) >= 10`
 
-## [Simple](#tab/simple)
+## [Simple mode](#tab/simple)
 
 Instead of using the [`where` operator](/azure/data-explorer/kusto/query/whereoperator), in Simple Mode you can add filters using the UI. For example,  followed by one or more conditions.
 
@@ -273,7 +271,7 @@ To filter by multiple conditions, you can add additional filters.
 
 ## Specify a time range
 
-## [KQL](#tab/kql)
+## [KQL mode](#tab/kql)
 
 You can specify a time range by using the time picker or a time filter.
 
@@ -297,7 +295,7 @@ SecurityEvent
 
 In the preceding time filter, `ago(30m)` means "30 minutes ago." This query returns records from only the last 30 minutes, which is expressed as, for example, 30m. Other units of time include days (for example, 2d) and seconds (for example, 10s).
 
-## [Simple](#tab/simple)
+## [Simple mode](#tab/simple)
 
 The time picker is displayed next to the **Run** button and indicates that you're querying records from only the last 24 hours. This default time range is applied to all queries. To get records from only the last hour, select **Last hour** and then run the query again.
 <!-- convertborder later -->
@@ -343,7 +341,7 @@ SecurityEvent
 
 ## Aggregation
 
-## [KQL](#tab/kql)
+## [KQL mode](#tab/kql)
 
 ### Use summarize to aggregate groups of rows
 
@@ -399,7 +397,7 @@ To make the output clearer, you can select to display it as a time chart, which 
 <!-- convertborder later -->
 :::image type="content" source="media/get-started-queries/chart.png" lightbox="media/get-started-queries/chart.png" alt-text="Screenshot that shows the values of a query memory over time." border="false":::
 
-## [Simple](#tab/simple)
+## [Simple mode](#tab/simple)
 
 ### Aggregate data
 
