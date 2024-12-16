@@ -1,6 +1,6 @@
 ---
-title: Security in Azure Monitor
-description: Guidelines for configuring Azure Monitor to optimize security.
+title: Azure Monitor security overview and guidelines
+description: Describes .
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
@@ -27,6 +27,7 @@ The guidelines in this article build on the [Microsoft security responsibility m
 - [Encryption of data at rest with Microsoft managed keys](/azure/security/fundamentals/encryption-atrest#encryption-at-rest-in-microsoft-cloud-services)
 - [Privileged access to data plane actions using Role-Based Access Control (Azure RBAC)](/azure/role-based-access-control/overview)
 - [Authentication of Azure Monitor Agent and Application Insights using managed identities](/entra/identity/managed-identities-azure-resources/overview)
+- [Compliance with industry standards and regulations](/azure/compliance/offerings)
 
 
 ## Log ingestion and storage
