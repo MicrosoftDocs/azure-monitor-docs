@@ -111,7 +111,7 @@ Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourc
 ### Incoming stream schema
 
 > [!NOTE]
-> Multiline support that uses an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) time stamp to delimited events is expected mid-October 2024
+> Multiline support that uses a time stamp to delimited events is now available
 
 JSON files include a property name with each value, and the incoming stream in the DCR needs to include a column matching the name of each property. You need to modify the `columns` section of the ARM template with the columns from your log.
 
@@ -128,7 +128,7 @@ The [transformation](../essentials/data-collection-transformations.md) potential
 
 ### ARM template
 
-Use the following ARM template to create a DCR for collecting text log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template.
+Use the following ARM template to create a DCR for collecting JSON log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template.
 
 | Setting | Description |
 |:---|:---|
@@ -138,6 +138,7 @@ Use the following ARM template to create a DCR for collecting text log files, ma
 | File patterns | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas (AMA version 1.26 or higher required for multiple file patterns on Linux).<br><br>Examples:<br>- C:\Logs\MyLog.json<br>- C:\Logs\MyLog*.json<br>- C:\App01\AppLog.json, C:\App02\AppLog.json<br>- /var/mylog.json<br>- /var/mylog*.json |
 | Table name | Name of the destination table in your Log Analytics Workspace. |     
 | Workspace resource ID | Resource ID of the Log Analytics workspace with the target table. |
+| timeFormat| The following times formats are supported.  Use the quotes strings in your ARM template. Do not include the sample time that is in parentheses. <br> - “yyyy-MM-ddTHH:mm:ssk”   (2024-10-29T18:28:34) <br> - “YYYY-MM-DD HH:MM:SS”   (2024-10-29 18:28:34) <br> - “M/D/YYYY HH:MM:SS AM/PM”   (10/29/2024 06:28:34 PM) <br> - “Mon DD, YYYY HH:MM:SS”   (Oct[ober] 29, 2024 18:28:34) <br> - “yyMMdd HH:mm:ss”   (241029 18:28:34) <br> - “ddMMyy HH:mm:ss”   (291024 18:28:34) <br> - “MMM d HH:mm:ss”   (Oct 29 18:28:34) <br> - “dd/MMM/yyyy:HH:mm:ss zzz”   (14/Oct/2024:18:28:34 -00) |
 
 > [!IMPORTANT]
 > When you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources)
@@ -182,7 +183,13 @@ Use the following ARM template to create a DCR for collecting text log files, ma
             "metadata": {
                 "description": "Resource ID of the Log Analytics workspace with the target table."
             }
-        }
+        },
+        "timeFormat": {
+            "type": "string"
+            "metadata": {
+                "discription": "The time format that you would like to use to split multi line imput"
+            }
+      }
     },
     "variables": {
         "tableOutputStream": "[concat('Custom-', parameters('tableName'))]"
@@ -235,7 +242,12 @@ Use the following ARM template to create a DCR for collecting text log files, ma
                                 "[parameters('filePatterns')]"
                             ],
                             "format": "json",
-                            "name": "Custom-Json-stream"
+                            "name": "Custom-Json-stream",
+                            "settings": {
+                               "text": {
+                                   "recordStartTimestampFormat": "[parameters('timeFormat')]"
+                               }
+                            }
                         }
                     ]
                 },
