@@ -15,7 +15,7 @@ ms.reviewer: JeffWo
 This article describes the version details for the Azure Monitor Agent virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
 > [!Note]
-> The product group only supports Azure Monitoring Agent versions within the last 1 year. Customers should update to an agent version within this period.
+> Microsoft only supports Azure Monitoring Agent versions within the last 1 year. Customers should update to a version within this period. Microsoft will release all bug fixes in the latest version only.
 
 We strongly recommend that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. Automatic extension rollout follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to rollout the latest version. Upgrades are issued in batches, so you may see some of your virtual machines, scale-sets or Arc-enabled servers get upgraded before others.
 
