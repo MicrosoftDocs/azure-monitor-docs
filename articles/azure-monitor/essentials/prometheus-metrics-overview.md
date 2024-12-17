@@ -23,7 +23,7 @@ Prometheus metrics are stored in an Azure Monitor workspace. You can analyze and
 
 Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md) that provides a fully managed and scalable environment for running Prometheus. It simplifies the deployment, management, and scaling of Prometheus in AKS, so you can focus on monitoring your applications and infrastructure.
 
-As a fully managed service, Azure Monitor managed service for Prometheus automatically deploys Prometheus in AKS or Azure Arc-enabled Kubernetes. The service provides high availability, service-level agreement (SLA) guarantees, and automatic software updates. The service provides a highly scalable metrics store that retains data for up to 18 months.
+As a fully managed service, Azure Monitor managed service for Prometheus automatically deploys Prometheus in AKS or Azure Arc-enabled Kubernetes. The service provides high availability, service-level agreement (SLA) guarantees, and automatic software updates. It provides a highly scalable metrics store that retains data for up to 18 months.
 
 Azure Monitor managed service for Prometheus provides preconfigured alerts, rules, and dashboards. With recommended dashboards from the Prometheus community and native Grafana integration, you can achieve comprehensive monitoring immediately. Azure Monitor managed service for Prometheus integrates with Azure Managed Grafana, and it also works with self-managed Grafana.
 
@@ -33,9 +33,7 @@ Pricing is based on ingestion and query with no additional storage cost. For mor
 
 Azure Monitor managed service for Prometheus collects data from Azure Kubernetes services: AKS and Azure Arc-enabled Kubernetes.
 
-To enable Azure Monitor managed service for Prometheus, you must create an [Azure Monitor workspace](azure-monitor-workspace-overview.md) to store the metrics. You can then onboard services that collect Prometheus metrics.
-
-Here are links to more information:
+To enable Azure Monitor managed service for Prometheus, you must create an [Azure Monitor workspace](azure-monitor-workspace-overview.md) to store the metrics. You can then onboard services that collect Prometheus metrics:
 
 - To collect Prometheus metrics from your Kubernetes cluster, see [Enable Prometheus and Grafana](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
 - To configure remote write to collect data from a self-managed Prometheus server, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](./remote-write-prometheus.md).
@@ -79,13 +77,13 @@ Prometheus data is retrieved via PromQL. You can write your own queries, use que
 The following Azure services support querying Prometheus metrics from an Azure Monitor workspace:
 
 - [Azure Monitor metrics explorer with PromQL](./metrics-explorer.md)
+- [Azure Monitor workbooks](../visualize/workbooks-overview.md)
 - [Azure Managed Grafana](/azure/managed-grafana/overview)
-- [Azure Monitor Workbooks](../visualize/workbooks-overview.md)
 - [Prometheus query APIs](prometheus-api-promql.md)
 
 ### Azure Monitor metrics explorer with PromQL
 
-Use metrics explorer with PromQL to analyze and visualize platform and Prometheus metrics. Metrics explorer supports PromQL for Prometheus metrics. Metrics explorer with PromQL (preview) is available from the **Metrics** pane in the Azure Monitor workspace where your Prometheus metrics are stored. For more information, see [Azure Monitor metrics explorer with PromQL](./metrics-explorer.md).  
+Use metrics explorer with PromQL (preview) to analyze and visualize platform and Prometheus metrics. Metrics explorer with PromQL is available from the **Metrics** pane in the Azure Monitor workspace where your Prometheus metrics are stored. For more information, see [Azure Monitor metrics explorer with PromQL](./metrics-explorer.md).  
   
 :::image type="content" source="./media/prometheus-metrics-overview/metrics-explorer.png" alt-text="Screenshot of a PromQL query in Azure Monitor metrics explorer." lightbox="./media/prometheus-metrics-overview/metrics-explorer.png":::
 
@@ -111,7 +109,7 @@ Alerts that alert rules fire can trigger actions or notifications, as defined in
 
 ## Service limits and quotas
 
-Azure Monitor managed service for Prometheus has default limits and quotas for ingestion. When you reach the ingestion limits, throttling can occur. You can request an increase in these limits. For information on Prometheus metric limits, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics).
+Azure Monitor managed service for Prometheus has default limits and quotas for ingestion. When you reach the ingestion limits, throttling can occur. You can request an increase in these limits. For more information, see [Azure Monitor service limits](../service-limits.md#prometheus-metrics).
 
 To monitor and alert on your ingestion metrics, see [Monitor Azure Monitor workspace metrics ingestion](./azure-monitor-workspace-monitor-ingest-limits.md).
 
@@ -133,11 +131,11 @@ Following are links to Prometheus documentation:
 - [Grafana support for Prometheus](https://aka.ms/azureprometheus-promio-grafana)
 - [Defining recording rules](https://aka.ms/azureprometheus-promio-recrules)
 - [Alerting rules](https://aka.ms/azureprometheus-promio-alertrules)
-- [Writing Exporters](https://aka.ms/azureprometheus-promio-exporters)
+- [Writing exporters](https://aka.ms/azureprometheus-promio-exporters)
 
 ## Related content
 
-- [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md).
+- [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md)
 - [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](./prometheus-remote-write-virtual-machines.md)
 - [Enable Windows metrics collection (preview)](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview)
 - [Configure Azure Monitor managed service for Prometheus rule groups](./prometheus-rule-groups.md)

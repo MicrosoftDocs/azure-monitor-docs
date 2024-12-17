@@ -81,7 +81,7 @@ On the workspace's data collection rule, assign the Monitoring Metrics Publisher
 
     :::image type="content" source="media/prometheus-remote-write-virtual-machines/select-data-collection-rule.png" lightbox="media/prometheus-remote-write-virtual-machines/select-data-collection-rule.png" alt-text="Screenshot that shows the link to a data collection rule on an Azure Monitor workspace pane.":::
 
-1. On the pane for the data collection rule, select **Access control (IAM)**.
+1. On the page for the data collection rule, select **Access control (IAM)**.
 
 1. Select **Add** > **Add role assignment**.
 
@@ -143,7 +143,7 @@ After you create your Microsoft Entra application, get the client ID and generat
     :::image type="content" source="media/prometheus-remote-write-virtual-machines/find-clinet-id.png" alt-text="Screenshot that shows the application or client ID of a Microsoft Entra application." lightbox="media/prometheus-remote-write-virtual-machines/find-clinet-id.png":::
 
 1. Select **Certificates & secrets**.
-1. Select **Client secrets**, and then select **New client secret** to create a new secret.
+1. Select **Client secrets**, and then select **New client secret** to create a secret.
 1. Enter a description, set the expiration date, and then select **Add**.
 
     :::image type="content" source="media/prometheus-remote-write-virtual-machines/create-client-secret.png" alt-text="Screenshot that shows the pane for adding a client secret." lightbox="media/prometheus-remote-write-virtual-machines/create-client-secret.png":::
@@ -160,7 +160,7 @@ Assign the Monitoring Metrics Publisher role on the workspace's data collection 
 
     :::image type="content" source="media/prometheus-remote-write-virtual-machines/select-data-collection-rule.png" alt-text="Screenshot that shows the link to a data collection rule for an Azure Monitor workspace." lightbox="media/prometheus-remote-write-virtual-machines/select-data-collection-rule.png":::
 
-1. On the pane for the data collection rule, select **Access control (IAM)**.
+1. On the page for the data collection rule, select **Access control (IAM)**.
 
 1. Select **Add**, and then select **Add role assignment**.
 
@@ -172,13 +172,13 @@ Assign the Monitoring Metrics Publisher role on the workspace's data collection 
 
 1. Select **User, group, or service principal**, and then choose **Select members**. Select the application that you created, and then choose **Select**.
 
-    :::image type="content" source="media/prometheus-remote-write-virtual-machines/select-members-apps.png" alt-text="Screenshot that shows selecting an application to assign to a role." lightbox="media/prometheus-remote-write-virtual-machines/select-members-apps.png":::
-
 1. To complete the role assignment, select **Review + assign**.
+
+    :::image type="content" source="media/prometheus-remote-write-virtual-machines/select-members-apps.png" alt-text="Screenshot that shows selecting an application to assign to a role." lightbox="media/prometheus-remote-write-virtual-machines/select-members-apps.png":::
 
 ### [Azure CLI](#tab/CLI)
 
-### Create user-assigned identities and Microsoft Entra ID apps by using the Azure CLI
+### Creation of user-assigned identities and Microsoft Entra ID apps via the Azure CLI
 
 #### Create a user-assigned managed identity
 
@@ -326,8 +326,6 @@ remote_write:
 
 ### [Configure remote write on Kubernetes for Prometheus Operator](#tab/prom-operator)
 
-### Prometheus Operator
-
 If you're on a Kubernetes cluster that's running Prometheus Operator, use the following steps to send data to your Azure Monitor workspace:
 
 1. If you're using Microsoft Entra authentication, convert the secret by using Base64 encoding, and then apply the secret in your Kubernetes cluster. Save the following code into a YAML file. Skip this step if you're using managed identity authentication.
@@ -347,13 +345,13 @@ If you're on a Kubernetes cluster that's running Prometheus Operator, use the fo
    Apply the secret:
 
    ```azurecli
-   # set context to your cluster 
+   # Set context to your cluster 
    az aks get-credentials -g <aks-rg-name> -n <aks-cluster-name> 
 
    kubectl apply -f <remote-write-secret.yaml>
    ```
 
-2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more details on the Azure Monitor workspace specification for remote write in Prometheus Operator, refer to the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#azuread).
+2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#azuread).
 
    ```yaml
    prometheus:
