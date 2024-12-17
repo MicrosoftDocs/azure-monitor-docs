@@ -107,9 +107,11 @@ For more information on how to create a dedicated cluster and specify its billin
 
 ## Basic and Auxiliary table plans
 
-You can configure certain tables in a Log Analytics workspace to use [Basic and Auxiliary table plans](logs-table-plans.md). Data in these tables has a significantly reduced ingestion charge. There's a charge to query data in these tables.
+You can configure certain tables in a Log Analytics workspace to use [Basic and Auxiliary table plans](logs-table-plans.md). Data in these tables has a significantly reduced ingestion charge. There's a charge to interactively query data in these tables (unlike tables which are in the Analytics table plan).
 
 The charge for querying data in Basic and Auxiliary tables is based on the GB of data scanned in performing the search.
+
+Charges for other features such as [long-term data retention](#log-data-retention) and [search jobs](#search-jobs) are the same for all table plans (Analytics, Basic and Auxiliary).  
 
 For more information about the Basic and Auxiliary table plans, see [Azure Monitor Logs overview: Table plans](data-platform-logs.md#table-plans).
 
