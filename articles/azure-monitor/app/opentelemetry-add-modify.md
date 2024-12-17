@@ -1272,6 +1272,9 @@ span.recordException(e);
 
 #### [Node.js](#tab/nodejs)
 
+The Node.js SDK will only export these manually recorded span-based exceptions to Application Insights as exceptions if they are recorded on the children of
+remote, internal spans, or if the exception is recorded on a top level span.
+
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
@@ -1287,7 +1290,7 @@ const tracer = trace.getTracer("testTracer");
 let span = tracer.startSpan("hello");
 
 // Try to throw an error
-try{
+try {
     throw new Error("Test Error");
 }
 
