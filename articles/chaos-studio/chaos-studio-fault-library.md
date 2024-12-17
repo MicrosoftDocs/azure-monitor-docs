@@ -274,6 +274,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 * The agent-based network faults currently only support IPv4 addresses.
 * This fault currently only affects new connections. Existing active connections are unaffected. You can restart the service or process to force connections to break.
+* This fault only affects **outbound** traffic at this time.
 
 ### Network Latency
 
