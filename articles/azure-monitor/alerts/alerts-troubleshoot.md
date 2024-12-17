@@ -218,7 +218,7 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
 ### The dimensions list is empty or alert title doesn't contain a dimension name
 
-   When you have a log search alert rule that returns no results, the alert can fire as expected (If the threshold is 0), but the dimensions list is empty or alert title doesn't contain a dimension name. When a query does not return any rows, the resource ID field (which is the basis for populating dimension and title fields) is empty.
+   When a query does not return any rows, the resource ID field (which is the basis for populating dimension and title fields) is empty. For example, when you have a log search alert rule that returns no results, if the threshold is 0, the alert fires as expected, but the dimensions list is empty or alert title doesn't contain a dimension name. 
  
 ### Information is missing in an activity log alert
 
