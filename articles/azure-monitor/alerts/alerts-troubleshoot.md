@@ -259,7 +259,9 @@ If you can see a fired alert in the portal, but a related alert processing rule 
 1. **Do the alert processing rule scope and filter match the fired alert?** 
 
     If you think the alert processing rule should have fired but didn't, or that it shouldn't have fired but it did, carefully examine the alert processing rule scope and filter conditions and compare them to the properties of the fired alert.
-    In Azure alerts, the target resource refers to the specific resource that the alert is monitoring. This could be an individual virtual machine, a database, or any other Azure resource. When an alert is triggered, it is because a condition has been met on this particular resource.
+    In Azure alerts:
+    - The **scope** defines the range of resources that the alert rule applies to. This could be a single resource, a resource group, or even an entire subscription. The scope determines which resources are included in the evaluation of the alert rule.
+    - The **target resource** refers to the specific resource that triggered the alert. This could be an individual virtual machine, a database, or any other Azure resource. When an alert is triggered, it is because a condition has been met on this particular resource.
     On the other hand, the scope of an alert defines the range of resources that the alert rule applies to. This could be a single resource, a resource group, or even an entire subscription. The scope determines which resources are included in the evaluation of the alert rule.
     For example, if you have an alert rule with a scope that includes multiple virtual machines, the alert will monitor all those virtual machines. If any of them meet the alert condition, the alert will be triggered. However, the target resource will be the specific virtual machine that caused the alert to fire.
     Additionally, in the case of log search alerts, if the alert is scoped to a Log Analytics workspace but the _ResourceId column is selected, it can change the target resource, This means that the alert might be triggered based on a different resource than initially intended, leading to potential confusion.
