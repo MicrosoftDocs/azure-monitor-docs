@@ -10,7 +10,7 @@ This article details how users are required to obtain elevated access roles in o
 
 ## What are Security Advisories?
 
-Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in three tabs: Summary, Impacted Services, Issue Updates and Impacted Resources.
+Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in four tabs: Summary, Impacted Services, Issue Updates and Impacted Resources.
 
 :::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories Blade.":::
 
