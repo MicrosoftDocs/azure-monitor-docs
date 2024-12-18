@@ -31,7 +31,7 @@ Pricing is based on ingestion and query with no additional storage cost. For mor
 
 ### Enable Azure Monitor managed service for Prometheus
 
-Azure Monitor managed service for Prometheus collects data from Azure Kubernetes services: AKS and Azure Arc-enabled Kubernetes.
+Azure Monitor managed service for Prometheus collects data from AKS and Azure Arc-enabled Kubernetes.
 
 To enable Azure Monitor managed service for Prometheus, you must create an [Azure Monitor workspace](azure-monitor-workspace-overview.md) to store the metrics. You can then onboard services that collect Prometheus metrics:
 
