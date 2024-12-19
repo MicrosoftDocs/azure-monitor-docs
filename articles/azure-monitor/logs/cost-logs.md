@@ -109,7 +109,7 @@ For more information on how to create a dedicated cluster and specify its billin
 
 You can configure certain tables in a Log Analytics workspace to use [Basic and Auxiliary table plans](logs-table-plans.md). Data in these tables has a significantly reduced ingestion charge. There's a charge to interactively query data in these tables (unlike tables which are in the Analytics table plan).
 
-The charge for querying data in Basic and Auxiliary tables is based on the GB of data scanned in performing the search.
+The charge for querying data in Basic and Auxiliary tables is based on the GB of data scanned in performing the search. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. 
 
 Charges for other features such as [long-term data retention](#log-data-retention) and [search jobs](#search-jobs) are the same for all table plans (Analytics, Basic and Auxiliary).  
 
@@ -128,7 +128,7 @@ For more information on data retention, including how to configure these setting
 
 ## Search jobs
 
-Retrieve data from long-term retention by running [search jobs](search-jobs.md). Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. Search jobs are billed by the number of GB of data scanned on each day that's accessed to perform the search.
+Retrieve data from long-term retention by running [search jobs](search-jobs.md). Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. Search jobs are billed by the number of GB of data scanned on each day that's accessed to perform the search. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. 
 
 ## Log data restore
 
