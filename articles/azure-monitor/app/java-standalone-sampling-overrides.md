@@ -329,7 +329,7 @@ You can then remove the log having the added attribute:
 }
 ```
 
-### Suppress collecting telemetry for some Java methods
+### Suppress collecting telemetry for a Java method
 
 We are going to add a span to a Java method and remove this span with sampling override. 
 
