@@ -114,7 +114,26 @@ This example also suppresses collecting any downstream spans (dependencies) that
 }
 ```
 
-## Example: Suppress collecting telemetry for a noisy dependency call
+## Span attributes available for sampling
+
+OpenTelemetry span attributes are auto-collected and based on the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
+
+You can also programmaitcally add span attributes and use them for sampling.
+
+>[!Note]
+> To see the exact set of attributes captured by Application Insights Java for your application, set the
+[self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting
+with the text "exporting span".
+
+>[!Note]
+> Only attributes set at the start of the span are available for sampling,
+so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
+
+>[!Note] The attributes added with a [telemetry processor](./java-standalone-telemetry-processors) are not available for sampling.
+
+## Use cases
+
+### Suppress collecting telemetry for a noisy dependency call
 
 This example suppresses collecting telemetry for all `GET my-noisy-key` redis calls.
 
@@ -144,7 +163,7 @@ This example suppresses collecting telemetry for all `GET my-noisy-key` redis ca
 }
 ```
 
-## Example: Collect 100% of telemetry for an important request type
+### Collect 100% of telemetry for an important request type
 
 This example collects 100% of telemetry for `/login`.
 
@@ -176,22 +195,8 @@ they're also collected for all '/login' requests.
 }
 ```
 
-## Span attributes available for sampling
 
-Span attribute names are based on the OpenTelemetry semantic conventions. (HTTP, Messaging, Database, RPC)
-
-https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md
-
->[!Note]
-> To see the exact set of attributes captured by Application Insights Java for your application, set the
-[self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting
-with the text "exporting span".
-
->[!Note]
-> Only attributes set at the start of the span are available for sampling,
-so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
-
-## Example: Exposing span attributes to suppress SQL dependency calls
+### Exposing span attributes to suppress SQL dependency calls
 
 This example walks through the experience of finding available attributes to suppress noisy SQL calls. The query below depicts the different SQL calls and associated record counts in the last 30 days: 
 
@@ -270,6 +275,142 @@ dependencies
 
 ```output
 DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    11/13/2023 8:52:41 PM 
+```
+
+### Suppress collecting telemetry for log
+
+Remove application (not frameworks/libs) logs with MDC attribute and sampling override
+
+With SL4J you can add log attributes:
+
+```java
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
+
+public class MdcClass {
+
+  private static final Logger logger = LoggerFactory.getLogger(MdcClass.class);
+
+  void method {
+	
+    MDC.put("key", "value");
+    try {
+       logger.info(...); // Application log to remove
+    finally {
+       MDC.remove("key"); // In a finally block in case an exception happens with logger.info
+    }
+	
+  }
+  
+}
+```
+
+You can then remove the log having the added attribute:
+
+```json
+{
+  "sampling": {
+    "overrides": [
+      {
+        "telemetryType": "trace",
+        "percentage": 0,
+        "attributes": [
+          {
+            "key": "key",
+            "value": "value",
+            "matchType": "strict"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Suppress collecting telemetry for some Java methods
+
+We are going to add a span to a Java method and remove this span with sampling override. 
+
+Let's first add the `opentelemetry-instrumentation-annotations` dependency:
+```xml
+    <dependency>
+      <groupId>io.opentelemetry.instrumentation</groupId>
+      <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+    </dependency>
+```
+
+We can now add the `WithSpan` annotation to a Java method executing SQL requests:
+
+```java
+package org.springframework.samples.petclinic.vet;
+
+@Controller
+class VetController {
+
+	private final VetRepository vetRepository;
+
+	public VetController(VetRepository vetRepository) {
+		this.vetRepository = vetRepository;
+	}
+
+	@GetMapping("/vets.html")
+	public String showVetList(@RequestParam(defaultValue = "1") int page, Model model) {
+		Vets vets = new Vets();
+		Page<Vet> paginated = findPaginated(page);
+		vets.getVetList().addAll(paginated.toList());
+		return addPaginationModel(page, paginated, model);
+	}
+
+	@WithSpan
+	private Page<Vet> findPaginated(int page) {
+		int pageSize = 5;
+		Pageable pageable = PageRequest.of(page - 1, pageSize);
+		return vetRepository.findAll(pageable);  // Execution of SQL requests
+	}
+```
+
+The following sampling override configuration allow you to remove the span added by the `WithSpan` annotation:
+```json
+  "sampling": {
+    "overrides": [
+      {
+        "telemetryType": "dependency",
+        "attributes": [
+          {
+            "key": "code.function",
+            "value": "findPaginated",
+            "matchType": "strict"
+          }
+        ],
+        "percentage": 0
+      }
+    ]
+  }
+```
+
+The attribute value is the name of the Java method.
+
+This configuration will remove all the telemetry data created from the `findPaginated` method. SQL dependencies won't be created for the SQL executions coming from the `findPaginated` method.
+
+The following configuration will remove all telemetry data emitted from methods of the `VetController` class having the `WithSpan` annotation:
+
+```json
+ "sampling": {
+    "overrides": [
+      {
+        "telemetryType": "dependency",
+        "attributes": [
+          {
+            "key": "code.namespace",
+            "value": "org.springframework.samples.petclinic.vet.VetController",
+            "matchType": "strict"
+          }
+        ],
+        "percentage": 0
+      }
+    ]
+  }
 ```
 
 ## Troubleshooting
