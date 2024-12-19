@@ -41,25 +41,31 @@ The solution to this issue is to clean up the existing resources of the Containe
 #### AKS clusters
 Run the following commands and look for the Azure Monitor Agent add-on profile to verify whether the AKS Monitoring Add-on is enabled:
 
-    ```
-    az  account set -s <clusterSubscriptionId>
-    az aks show -g <clusterResourceGroup> -n <clusterName>
-    ```
+```
+az  account set -s <clusterSubscriptionId>
+az aks show -g <clusterResourceGroup> -n <clusterName>
+```
 
 If the output includes an Azure Monitor Agent add-on profile config with a Log Analytics workspace resource ID, the AKS Monitoring Add-on is enabled and must be disabled with the following command.
 
-    `az aks disable-addons -a monitoring -g <clusterResourceGroup> -n <clusterName>`
+```
+az aks disable-addons -a monitoring -g <clusterResourceGroup> -n <clusterName>
+```
 
 If the preceding steps didn't resolve the installation of Azure Monitor Containers Extension issues, create a support ticket with Microsoft for further investigation.
 
 #### Non-AKS clusters
 Run the following command against the cluster to verify whether the `azmon-containers-release-1` Helm chart release exists.
 
-    `helm list  -A`
+```
+helm list  -A`
+```
 
 If the output of the preceding command indicates that the `azmon-containers-release-1` exists, delete the Helm chart release with the following command.
 
-    `helm del azmon-containers-release-1`
+```
+helm del azmon-containers-release-1
+```
 
 
 ## Data unavailable
@@ -184,17 +190,17 @@ Container insights agent pods use the cAdvisor endpoint on the node agent to gat
     ```bash
     # verify if kube context being set for right cluster
     kubectl cluster-info
-    
+
     # get the ama-logs pods and status
     kubectl get pods -n kube-system -o custom-columns=NAME:.metadata.name | grep -E ama-logs-[a-z0-9]{5}
-    
+
     # from the result of above command, find out which ama-logs pod instance getting OOM killed
     kubectl describe pod <ama-logs-pod> -n kube-system
-    
+
     # review the output of the above command to findout which ama-logs container is getting OOM killed
     ```
-    
-2.Check if there are network errors in `mdsd.err` log file using the following commands.
+
+2. Check if there are network errors in `mdsd.err` log file using the following commands.
   
     ```bash
     mkdir log
