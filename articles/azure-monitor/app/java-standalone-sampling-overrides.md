@@ -102,7 +102,7 @@ with the text "exporting span".
 so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
 
 >[!Note]
-> The attributes added with a [telemetry processor](./java-standalone-telemetry-processors) are not available for sampling.
+> The attributes added with a [telemetry processor](./java-standalone-telemetry-processors.md) are not available for sampling.
 
 ## Use cases
 
