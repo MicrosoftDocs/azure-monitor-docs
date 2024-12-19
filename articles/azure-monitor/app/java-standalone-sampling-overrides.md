@@ -86,7 +86,27 @@ If no sampling overrides match:
   [top-level sampling configuration](./java-standalone-config.md#sampling) is used.
 * If it isn't the first span in the trace, then the parent sampling decision is used.
 
-## Example: Suppress collecting telemetry for health checks
+## Span attributes available for sampling
+
+OpenTelemetry span attributes are auto-collected and based on the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
+
+You can also programmaitcally add span attributes and use them for sampling.
+
+>[!Note]
+> To see the exact set of attributes captured by Application Insights Java for your application, set the
+[self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting
+with the text "exporting span".
+
+>[!Note]
+> Only attributes set at the start of the span are available for sampling,
+so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
+
+>[!Note]
+> The attributes added with a [telemetry processor](./java-standalone-telemetry-processors) are not available for sampling.
+
+## Use cases
+
+### Suppress collecting telemetry for health checks
 
 This example suppresses collecting telemetry for all requests to `/health-checks`.
 
@@ -113,25 +133,6 @@ This example also suppresses collecting any downstream spans (dependencies) that
   }
 }
 ```
-
-## Span attributes available for sampling
-
-OpenTelemetry span attributes are auto-collected and based on the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
-
-You can also programmaitcally add span attributes and use them for sampling.
-
->[!Note]
-> To see the exact set of attributes captured by Application Insights Java for your application, set the
-[self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting
-with the text "exporting span".
-
->[!Note]
-> Only attributes set at the start of the span are available for sampling,
-so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
-
->[!Note] The attributes added with a [telemetry processor](./java-standalone-telemetry-processors) are not available for sampling.
-
-## Use cases
 
 ### Suppress collecting telemetry for a noisy dependency call
 
