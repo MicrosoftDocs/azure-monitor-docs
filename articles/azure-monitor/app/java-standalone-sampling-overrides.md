@@ -280,8 +280,6 @@ DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World')
 
 ### Suppress collecting telemetry for log
 
-Remove application (not frameworks/libs) logs with MDC attribute and sampling override
-
 With SL4J you can add log attributes:
 
 ```java
