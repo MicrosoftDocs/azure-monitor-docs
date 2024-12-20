@@ -261,6 +261,8 @@ items:
             href: supported-metrics/microsoft-monitor-accounts-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-metrics.md
+          - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
+            href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md
           - name: Microsoft.Network/applicationgateways
             href: supported-metrics/microsoft-network-applicationgateways-metrics.md
           - name: Microsoft.Network/azureFirewalls
