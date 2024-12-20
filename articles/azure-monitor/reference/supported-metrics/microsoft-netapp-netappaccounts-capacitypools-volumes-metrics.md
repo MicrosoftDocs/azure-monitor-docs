@@ -20,10 +20,6 @@ The following table lists the metrics available for the Microsoft.NetApp/netAppA
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.NetApp/netAppAccounts/capacityPools/volumes](../supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md)  
-  
  
 
 [!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools/volumes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics-include.md)]  
