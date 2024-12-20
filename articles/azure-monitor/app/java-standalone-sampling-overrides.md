@@ -90,7 +90,7 @@ If no sampling overrides match:
 
 OpenTelemetry span attributes are auto-collected and based on the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
-You can also programmaitcally add span attributes and use them for sampling.
+You can also programmatically add span attributes and use them for sampling.
 
 >[!Note]
 > To see the exact set of attributes captured by Application Insights Java for your application, set the
@@ -371,7 +371,7 @@ class VetController {
 	}
 ```
 
-The following sampling override configuration allow you to remove the span added by the `WithSpan` annotation:
+The following sampling override configuration allows you to remove the span added by the `WithSpan` annotation:
 ```json
   "sampling": {
     "overrides": [
