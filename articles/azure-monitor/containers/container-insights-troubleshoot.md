@@ -31,51 +31,46 @@ When you enable Container insights or update a cluster, you might receive an err
 During the onboarding or update process, an attempt is made to assign the **Monitoring Metrics Publisher** role to the cluster resource. The user initiating the process must have access to the **Microsoft.Authorization/roleAssignments/write** permission on the AKS cluster resource scope. Only members of the Owner and User Access Administrator built-in roles are granted access to this permission. If your security policies require you to assign granular-level permissions, see [Azure custom roles](/azure/role-based-access-control/custom-roles) and assign permission to the users who require it. Assign the **Publisher** role to the **Monitoring Metrics** with the Azure portal using the guidance at [Assign Azure roles by using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Can't upgrade a cluster
-If you can't upgrade Container insights on an AKS cluster after it's been installed, the Log Analytics workspace where the cluster was sending its data may have been deleted. [Disable](kubernetes-monitoring-disable.md) monitoring for the cluster and [enable](kubernetes-monitoring-enable.md) Container insights again using another workspace.
+If you can't upgrade Container insights on an AKS cluster after it's been installed, the Log Analytics workspace where the cluster was sending its data may have been deleted. [Disable monitoring](kubernetes-monitoring-disable.md) for the cluster and [enable Container insights](kubernetes-monitoring-enable.md) again using another workspace.
 
-## Installation of Azure Monitor Containers extension fails
-The error `manifests contain a resource that already exists` indicates that resources of the Container insights agent already exist on the Azure Arc-enabled Kubernetes cluster, which means that the Container insights agent is already installed. It's installed either through an azuremonitor-containers Helm chart or the Monitoring Add-on if it's an AKS cluster that's connected via Azure Arc. 
+### Installation of Azure Monitor Containers extension fails
+The error `manifests contain a resource that already exists` indicates that resources of the Container insights agent already exist on an Azure Arc-enabled Kubernetes cluster, which means that the Container insights agent is already installed. Solve this issue by cleaning up the existing resources of the Container insights agent and then enable the Azure Monitor Containers Extension.
 
-The solution to this issue is to clean up the existing resources of the Container insights agent if it exists. Then enable the Azure Monitor Containers Extension.
-
-#### AKS clusters
+##### AKS clusters
 Run the following commands and look for the Azure Monitor Agent add-on profile to verify whether the AKS Monitoring Add-on is enabled:
 
-```
+```azurecli
 az  account set -s <clusterSubscriptionId>
 az aks show -g <clusterResourceGroup> -n <clusterName>
 ```
-
 If the output includes an Azure Monitor Agent add-on profile config with a Log Analytics workspace resource ID, the AKS Monitoring Add-on is enabled and must be disabled with the following command.
 
-```
+```azurecli
 az aks disable-addons -a monitoring -g <clusterResourceGroup> -n <clusterName>
 ```
 
-If the preceding steps didn't resolve the installation of Azure Monitor Containers Extension issues, create a support ticket with Microsoft for further investigation.
-
-#### Non-AKS clusters
+##### Non-AKS clusters
 Run the following command against the cluster to verify whether the `azmon-containers-release-1` Helm chart release exists.
 
-```
-helm list  -A`
+```bash
+helm list  -A
 ```
 
-If the output of the preceding command indicates that the `azmon-containers-release-1` exists, delete the Helm chart release with the following command.
+If the output indicates that the `azmon-containers-release-1` exists, delete the Helm chart release with the following command.
 
-```
+```bash
 helm del azmon-containers-release-1
 ```
 
 
 ## Data unavailable
 
-### Receive an error message retrieving data 
+### Error message retrieving data 
 The error message `Error retrieving data` might occur if the Log Analytics workspace where the cluster was sending its data may have been deleted. If this is the case, [disable](kubernetes-monitoring-disable.md) monitoring for the cluster and [enable](kubernetes-monitoring-enable.md) Container insights again using another workspace. 
 
 
 ### Container insights not reporting any information
-Use the following steps to diagnose the problem if you can't view status information or no results are returned from a log query.
+Use the following steps if you can't view status information or no results are returned from a log query.
 
 1. Check the status of the agent with the following command:
 
@@ -180,7 +175,56 @@ Container insights agent pods use the cAdvisor endpoint on the node agent to gat
         kubernetes.azure.com/managedby: aks
         ```
 
+### Not collecting logs on Azure Stack HCI cluster
+If you registered your cluster and/or configured HCI Insights before November 2023, features that use the Azure Monitor agent on HCI, such as Arc for Servers Insights, VM Insights, Container Insights, Defender for Cloud, or Microsoft Sentinel might not be collecting logs and event data properly. See [Repair AMA agent for HCI](/azure-stack/hci/manage/monitor-hci-single?tabs=22h2-and-later#repair-ama-for-azure-stack-hci) for steps to reconfigure the agent and HCI Insights.
 
+### Missing data on large clusters
+If data is missing from any of the following tables, the likely issue is related to parsing of the large payloads because of a large number of pods or nodes. This is known issue in the ruby plugin to parse the large JSON payload  because of the default PODS_CHUNK_SIZE, which is 1000.
+There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to address this issue.
+
+- KubePodInventory
+- KubeNodeInventory
+- KubeEvents
+- KubePVInventory
+- KubeServices 
+
+1. Verify whether you've configured smaller `PODS_CHUNK_SIZE` value on your cluster using the following commands.
+   
+    ```bash
+    # verify if kube context being set for right cluster
+    kubectl cluster-info
+    
+    # check if the configmap configured with smaller PODS_CHUNK_SIZE chunksize already
+    kubectl logs <ama-logs-rs pod name> -n kube-system -c ama-logs | grep PODS_CHUNK_SIZE
+
+    # If it's configured, the output will be similar to "Using config map value: PODS_CHUNK_SIZE = 10"
+    ```
+2. If the cluster is already configured for a smaller `PODS_CHUNK_SIZE` value, then you need to enabled the fluster for large cluster.
+
+3. If the cluster is using the default `PODS_CHUNK_SIZE=1000`, then check if the cluster has a large number of pods or nodes.
+
+    ```bash
+    # check the total number of PODS
+    kubectl get pods -A -o wide | wc -l
+
+    # check the total number of NODES
+    kubectl get nodes -o wide | wc -l
+    ```
+
+4. After confirming the number of pods and nodes is reasonably high, and the cluster is using the default `PODS_CHUNK_SIZE=1000` then use the following commands to configure the configmap.
+
+    ```bash
+    # Check if the cluster has container-azm-ms-agentconfig configmap in kube-system namespace
+    kubectl get cm -n kube-system | grep container-azm-ms-agentconfig
+    
+    # If there is no existing container-azm-ms-agentconfig configmap, then configmap needs to be downloaded  and applied
+    curl -L https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/kubernetes/container-azm-ms-agentconfig.yaml -o container-azm-ms-agentconfig
+    kubectl apply -f container-azm-ms-agentconfig
+    
+    # Edit the configmap and uncomment agent_settings.chunk_config and PODS_CHUNK_SIZE lines under agent-settings: |- in the configmap
+    kubectl edit cm -n kube-system  container-azm-ms-agentconfig -o yaml
+    ```
+    
 ## Agent OOM killed
 
 ### Daemonset container getting OOM killed
@@ -250,20 +294,20 @@ Container insights agent pods use the cAdvisor endpoint on the node agent to gat
 5. If there are no network errors, check if the cluster level prometheus scraping is enabled by reviewing the  [prometheus_data_collection_settings.cluster] settings in configmap.
 
     ```bash
-        # Check if the cluster has container-azm-ms-agentconfig configmap in kube-system namespace
-        kubectl get cm -n kube-system | grep container-azm-ms-agentconfig
-        # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection not enabled
+    # Check if the cluster has container-azm-ms-agentconfig configmap in kube-system namespace
+    kubectl get cm -n kube-system | grep container-azm-ms-agentconfig
+    # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection not enabled
     ```
 6. Check the cluster size in terms of the nodes and pods count.
 
     ```bash
-        # Check if the cluster has container-azm-ms-agentconfig configmap in kube-system namespace
-        NodeCount=$(kubectl get nodes | wc -l)
-        echo "Total number of nodes: ${NodeCount}"
-        PodCount=$(kubectl get pods -A -o wide | wc -l)
-        echo "Total number of pods: ${PodCount}"
-        
-        # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection is not enabled.
+    # Check if the cluster has container-azm-ms-agentconfig configmap in kube-system namespace
+    NodeCount=$(kubectl get nodes | wc -l)
+    echo "Total number of nodes: ${NodeCount}"
+    PodCount=$(kubectl get pods -A -o wide | wc -l)
+    echo "Total number of pods: ${PodCount}"
+    
+    # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection is not enabled.
     ```
 
 7. If this related to scale of the cluster, then ama-logs-rs memory limits needs to be bumped. Refer to [CI-Agent-Increase-Resource-Limits-ask](CI-Agent-Increase-Resource-Limits-ask.md)
@@ -334,8 +378,73 @@ To enable collection of these fields so you don't have to modify your queries, e
 
 
 
-## Not collecting logs on Azure Stack HCI cluster
-If you registered your cluster and/or configured HCI Insights before November 2023, features that use the Azure Monitor agent on HCI, such as Arc for Servers Insights, VM Insights, Container Insights, Defender for Cloud, or Microsoft Sentinel might not be collecting logs and event data properly. See [Repair AMA agent for HCI](/azure-stack/hci/manage/monitor-hci-single?tabs=22h2-and-later#repair-ama-for-azure-stack-hci) for steps to reconfigure the agent and HCI Insights.
+## Latency issues
+See [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md) for detailed information on latency and expected ingestion times in a Log Analytics workspace.
+
+By default Container insights collects monitoring data every 60 seconds unless you configure data collection settings or add a [transformation](../essentials/data-collection-transformations.md).
+
+
+1. Check the  latencies for the reported table and time window in the log analytics workspace associated to the clusters using the following query.
+
+```kusto
+let clusterResourceId = "/subscriptions/<subscriptionId>/resourceGroups/<rgName>/providers/Microsoft.ContainerService/managedClusters/<clusterName>";
+let startTime = todatetime('2024-11-20T20:34:11.9117523Z');
+let endTime = todatetime('2024-11-21T20:34:11.9117523Z');
+KubePodInventory # Update this table name to the one you want to check
+| where _ResourceId =~ clusterResourceId
+| where TimeGenerated >= startTime and TimeGenerated <= endTime
+| extend E2EIngestionLatency = ingestion_time() - TimeGenerated
+| extend AgentLatency = _TimeReceived - TimeGenerated
+| summarize max(E2EIngestionLatency), max(AgentLatency) by Computer
+| project Computer, max_AgentLatency, max_ingestionLatency = (max_E2EIngestionLatency -  max_AgentLatency),max_E2EIngestionLatency
+```
+
+3. If are seeing high agent latencies, check if you configured a different log collection interval than default(60 seconds) in Container Insights DCR.
+
+    ``` sh
+     # set the subscriptionId of the cluster
+     az account set -s "<subscriptionId>"
+     # check if ContainerInsightsExtension  data collection rule association exists
+     az monitor data-collection rule association list --resource <clusterResourceId>
+     # get the data collection rule resource id associated to ContainerInsightsExtension from above step
+     az monitor data-collection rule show  --ids  <dataCollectionRuleResourceIdFromAboveStep>
+     # check if there are any data collection settings related to interval from the output of the above step
+    ```
+
+## Multiline logging issues
+[Multi-line log feature](./container-insights-logs-schema.md#multi-line-logging) can be enabled with configmap and it supports following scenarios.
+
+- Supports log messages up to 64KB instead of the default limit of 16KB.
+- Stitches exception call stack traces for supported languages .NET, Go, Python and Java.
+
+1.  Verify that the multiline feature and ContainerLogV2 schema are enabled with the following commands.
+
+    ``` bash
+      # get the list of ama-logs and these pods should be in Running state
+      # If these are not in Running state, then this needs to be investigated
+      kubectl get po -n kube-system | grep ama-logs
+
+      # exec into any one of the ama-logs daemonset pod and check for the environment variables
+      kubectl exec -it  ama-logs-xxxxx -n kube-system -c ama-logs -- bash
+
+      # after exec into the container run this command
+       env | grep AZMON_MULTILINE
+
+      # result should have environment variables which indicates the multiline and languages enabled
+      AZMON_MULTILINE_LANGUAGES=java,go
+      AZMON_MULTILINE_ENABLED=true
+
+      # check if the containerlog v2 schema enabled or not
+      env | grep AZMON_CONTAINER_LOG_SCHEMA_VERSION
+
+      # output should be v2. If not v2, then check whether this is being enabled through DCR
+      AZMON_CONTAINER_LOG_SCHEMA_VERSION=v2
+    ```
+
+2. Identify the whether the customer reported multiline issue related to exception call stack trace or log message getting truncated to 16KB or both.
+3. If reported issue doesnt belong to one of the supported scenario, then you can mitigate this ICM indicating not supported scenario.
+4. If the reported issue related to exception call stack and check if its one of the supported language exception stack trace. If its not supported language then mitigate the incident.
+5. If the reported issue related to the supported scenario, check Fluent-bit release notes and issues if there is any issue in Fluent-bit itself.
 
 
 ## Next steps
@@ -356,3 +465,8 @@ nodeSelector:
 ```
 
 If your worker nodes don’t have node labels attached, agent ReplicaSet Pods won't get scheduled. For instructions on how to attach the label, see [Kubernetes assign label selectors](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/).
+
+
+
+
+## Remove
