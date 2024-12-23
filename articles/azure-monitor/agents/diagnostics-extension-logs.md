@@ -13,7 +13,7 @@ ms.reviewer: luki
 
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article describes how to collect data collected by the diagnostics extension from Azure Storage to Azure Monitor Logs.
 
-[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
+[!INCLUDE [diagnostics-extension-deprecation](../includes/diagnostics-extension-deprecation.md)]
 
 ## Supported data types
 
