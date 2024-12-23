@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 12/09/2024
+ms.date: 12/23/2024
 ---
 
 # Reliability recommendations
@@ -1471,6 +1471,18 @@ Validate domain ownership by adding the DNS TXT record to your DNS provider. Val
 For More information, see [Configure a custom domain on Azure Front Door by using the Azure portal](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
+  
+
+<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_begin-->  
+#### Migrate away from Azure CDN from Edgio by January 15, 2025  
+  
+Migrate from Azure CDN Standard/Premium by Edgio before 15 January 2025 when the Edgio platform is scheduled to shut down. It's recommended to move to Azure Front Door for compatibility. Alternatively, consider using Azure Traffic Manager or Akamai CDN available in the Azure Marketplace.  
+  
+**Potential benefits**: Avoid downtime and ensure business continuity.
+  
+For More information, see [Azure updates ](https://azure.microsoft.com/updates?id=467688)  
+
+<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_end-->
   
 <!--microsoft_cdn_end--->
 ## Data Factory
