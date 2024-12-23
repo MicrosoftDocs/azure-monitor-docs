@@ -12,11 +12,12 @@ ms.reviewer: bwren
 
 This article provides [Security](/azure/architecture/framework/security/) guidelines for Azure Monitor as part of the [Azure Well-Architected Framework](/azure/architecture/framework/). 
 
-Azure Monitor security guidelines are: 
+Azure Monitor security guidelines help you understand the security features of Azure Monitor and how to configure them to optimize security based on: 
 
-- Based on the [five pillars of the Azure Well-Architected Framework](/azure/architecture/framework/), which are designed to help you build secure, high-performing, resilient, and efficient applications.
-- Consistent with the [Microsoft cloud security benchmark (MCSB)](/security/benchmark/azure/overview), which prescribes best practices to help improve the security of workloads, data, and services on Azure and your multicloud environment. 
-- Designed to help you understand the security features of Azure Monitor and how to configure them to optimize security for various aspects of monitoring.
+- [Cloud Adoption Framework](/azure/cloud-adoption-framework/secure/overview), which provides security guidance for teams that manage the technology infrastructure.
+- [Azure Well-Architected Framework](/azure/architecture/framework/), which provides architectural best practices for building secure applications.
+- [Microsoft cloud security benchmark (MCSB)](/security/benchmark/azure/overview), which describes the available security features and recommended optimal configurations. 
+- [Zero Trust security principles](/security/zero-trust/zero-trust-overview), which provides guidance for security teams to implement technical capabilities to support a Zero Trust modernization initiative.
 
 The guidelines in this article build on the [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsibility, Microsoft provides these security measures for Azure Monitor customers:
 
