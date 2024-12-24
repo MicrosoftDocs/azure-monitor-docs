@@ -78,4 +78,4 @@ If your Log Analytics workspace isn't in one of the [regions that support availa
 
 ## Next steps
 
-Learn more about [Azure Monitor Logs features that enhance resilience and reliability](best-practices-logs.md#reliability).
+Learn more about [Azure Monitor Logs features that enhance resilience and reliability](../best-practices-logs.md#reliability).
