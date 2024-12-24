@@ -77,7 +77,7 @@ To determine the current workspace link status for your workspace, use [CLI, Pow
 
 ## Migrate a Log Analytics workspace to availability zone support
 
-If your Log Analytics workspace is not in one of the [regions that support availability zones](#supported-regions) for shared clusters, [move your workspace to another region] that supports availability zones.
+If your Log Analytics workspace is not in one of the [regions that support availability zones](#supported-regions) for shared clusters, [move your workspace to another region](/azure/operational-excellence/relocation-log-analytics) that supports availability zones.
 
 If you can't move your Log Analytics workspace to a regions that support availability zones for shared clusters region for business reasons, [link your workspace to a dedicated cluster]((logs-dedicated-clusters.md). 
 
