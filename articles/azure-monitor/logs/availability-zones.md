@@ -21,8 +21,6 @@ ms.custom: references_regions
 
 - A Log Analytics workspace linked to a shared or [dedicated cluster](logs-dedicated-clusters.md).  Azure Monitor creates Log Analytics workspaces in a shared cluster, unless you set up a dedicated cluster for your workspaces.
 
-
-
 ## How availability zones enhance data and service resilience in Azure Monitor Logs
 
 Each Azure region that supports availability zones is made of one or more datacenters, or zones, equipped with independent power, cooling, and networking infrastructure. 
@@ -73,9 +71,17 @@ A subset of the availability zones that support data resilience currently also s
 |	Qatar Central	|		|	:white_check_mark:	|		|
 |	UAE North	|	:white_check_mark:	|	:white_check_mark:	|		|
 
+## Check whether your Log Analytics workspace is availability zone enabled  
+
+To determine the current workspace link status for your workspace, use [CLI, PowerShell, or REST](/azure/azure-monitor/logs/logs-dedicated-clusters#check-workspace-link-status) to retrieve the [cluster details](/azure/azure-monitor/logs/logs-dedicated-clusters#check-cluster-provisioning-status). If the cluster uses an availability zone, then it has a property called `isAvailabilityZonesEnabled` with a value of `true`. Once a cluster is created, this property cannot be altered.
+
+## Migrate a Log Analytics workspace to availability zone support
+
+If your Log Analytics workspace is not in one of the [regions that support availability zones](#supported-regions) for shared clusters, [move your workspace to another region] that supports availability zones.
+
+If you can't move your Log Analytics workspace to a regions that support availability zones for shared clusters region for business reasons, [link your workspace to a dedicated cluster]((logs-dedicated-clusters.md). 
 
 ## Next steps
 
 Learn more about how to:
 - [Set up a dedicated cluster](logs-dedicated-clusters.md).
-- [Migrate Log Analytics workspaces to availability zone support](/azure/reliability/migrate-monitor-log-analytics).
