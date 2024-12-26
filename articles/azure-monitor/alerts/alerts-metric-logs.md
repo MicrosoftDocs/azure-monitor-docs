@@ -58,7 +58,7 @@ Before you create a metric alert for logs, make sure that the following items ar
 
 You can create and manage metric alerts by using the Azure portal, Azure Resource Manager templates, the REST API, Azure PowerShell, and the Azure CLI.
 
-After you create metric alerts for logs for a specified Log Analytics workspace, they have all characteristics and functionalities of [metric alerts](./alerts-metric-near-real-time.md), including payload schema, applicable quota limits, and billed price.
+After you create metric alerts for logs for a specified Log Analytics workspace, they have all characteristics and functionalities of [metric alerts](./alerts-types#metric-alerts.md), including payload schema, applicable quota limits, and billed price.
 
 For step-by-step details and samples, see [Create or edit a metric alert rule](./alerts-create-metric-alert-rule.yml). Follow the instructions for managing metric alerts and note the following considerations:
 
