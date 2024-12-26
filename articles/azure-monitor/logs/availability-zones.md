@@ -76,6 +76,11 @@ A subset of the availability zones that support data resilience currently also s
 
 If your Log Analytics workspace isn't in one of the [regions that support availability zones](#supported-regions) for shared clusters, [link your workspace to a dedicated cluster](logs-dedicated-clusters.md). 
 
+Linking your workspace to a dedicated cluster:
+
+- Requires a commitment tier starting at 100 GB a day.
+- Protects new data you ingest to your Log Analytics workspace. Data you ingest before you link your workspace to a dedicated cluster remains in the shared cluster.
+
 ## Next steps
 
 Learn more about [Azure Monitor Logs features that enhance resilience and reliability](../best-practices-logs.md#reliability).
