@@ -38,14 +38,21 @@ Azure Monitor Logs calculates the billed size of a single record based on:
 
 ### Excluded columns
 
-The following [standard columns](log-standard-columns.md) are common to all tables and are excluded in the calculation of the record size. All other columns stored in Log Analytics are included in the calculation of the record size. The standard columns are:
+The following [standard columns](log-standard-columns.md) are common to all tables and are excluded in the calculation of the record size for Analytics and Basic Logs. All other columns stored in Log Analytics are included in the calculation of the record size. The standard columns are:
 
 - `_ResourceId`
+
 - `_SubscriptionId`
+
 - `_ItemId`
+
 - `_IsBillable`
+
 - `_BilledSize`
+
 - `Type`
+
+For Auxiliary Logs, `_ItemId`, `_IsBillable` and `_BilledSize` are excluded from the size calculation. 
 
 ### Excluded tables
 
@@ -59,7 +66,7 @@ See the documentation for different services and solutions for any unique billin
 
 ## Commitment tiers
 
-In addition to the pay-as-you-go model, Log Analytics has *commitment tiers*, which can save you as much as 30 percent compared to the pay-as-you-go price. With commitment tier pricing, you can commit to buy data ingestion for a workspace, starting at 100 GB per day, at a lower price than pay-as-you-go pricing. Any usage above the commitment level (overage) is billed at that same price per GB as provided by the current commitment tier. (Overage is billed using the same commitment tier billing meter. For example if a workspace is in the 200 GB/day commitment tier and ingests 300 GB in a day, that usage is billed as 1.5 units of the 200 GB/day commitment tier.) The commitment tiers have a 31-day commitment period from the time a commitment tier is selected or changed.
+In addition to the pay-as-you-go model, Log Analytics has *commitment tiers*, which can save you as much as 30 percent compared to the pay-as-you-go price for Analytics Logs. With commitment tier pricing, you can commit to buy data ingestion for a workspace, starting at 100 GB per day, at a lower price than pay-as-you-go pricing. Any usage above the commitment level (overage) is billed at that same price per GB as provided by the current commitment tier. (Overage is billed using the same commitment tier billing meter. For example if a workspace is in the 200 GB/day commitment tier and ingests 300 GB in a day, that usage is billed as 1.5 units of the 200 GB/day commitment tier.) The commitment tiers have a 31-day commitment period from the time a commitment tier is selected or changed.
 
 - During the commitment period, you can change to a higher commitment tier, which restarts the 31-day commitment period. You can't move back to pay-as-you-go or to a lower commitment tier until after you finish the commitment period.
 - At the end of the commitment period, the workspace retains the selected commitment tier, and the workspace can be moved to pay-as-you-go or to a lower commitment tier at any time.
@@ -86,7 +93,7 @@ There are two modes of billing for a cluster that you specify when you create th
 
 Examples of how cluster billing works in each of these modes can be found [here](/azure/sentinel/enroll-simplified-pricing-tier?tabs=microsoft-sentinel#dedicated-cluster-billing-examples). 
 
-Data retention is billed for each workspace, the same as for workspaces not joined to a cluster. 
+Data ingestion for Basic and Auxiliary Logs, and data retention are billed for each workspace, the same as for workspaces not joined to a cluster
 
 Cluster billing starts when the cluster is created, regardless of whether workspaces are associated with the cluster.
 
@@ -100,9 +107,11 @@ For more information on how to create a dedicated cluster and specify its billin
 
 ## Basic and Auxiliary table plans
 
-You can configure certain tables in a Log Analytics workspace to use [Basic and Auxiliary table plans](logs-table-plans.md). Data in these tables has a significantly reduced ingestion charge. There's a charge to query data in these tables.
+You can configure certain tables in a Log Analytics workspace to use [Basic and Auxiliary table plans](logs-table-plans.md). Data in these tables has a significantly reduced ingestion charge. There's a charge to interactively query data in these tables (unlike tables which are in the Analytics table plan).
 
-The charge for querying data in Basic and Auxiliary tables is based on the GB of data scanned in performing the search.
+The charge for querying data in Basic and Auxiliary tables is based on the GB of data scanned in performing the search. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. 
+
+Charges for other features such as [long-term data retention](#log-data-retention) and [search jobs](#search-jobs) are the same for all table plans (Analytics, Basic and Auxiliary).  
 
 For more information about the Basic and Auxiliary table plans, see [Azure Monitor Logs overview: Table plans](data-platform-logs.md#table-plans).
 
@@ -119,7 +128,7 @@ For more information on data retention, including how to configure these setting
 
 ## Search jobs
 
-Retrieve data from long-term retention by running [search jobs](search-jobs.md). Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. Search jobs are billed by the number of GB of data scanned on each day that's accessed to perform the search.
+Retrieve data from long-term retention by running [search jobs](search-jobs.md). Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. Search jobs are billed by the number of GB of data scanned on each day that's accessed to perform the search. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. 
 
 ## Log data restore
 
@@ -205,8 +214,8 @@ On your bill, the service is **Insight and Analytics** for Log Analytics usage i
 - **Data Overage per Node**: The number of GB of data ingested in excess of the aggregated data allocation.
 - **Data Included per Node**: The amount of ingested data that was covered by the aggregated data allocation. This meter is also used when the workspace is in all pricing tiers to show the amount of data covered by Microsoft Defender for Cloud.
 
-> [!TIP]
-> If your workspace has access to the **Per Node** pricing tier but you're wondering whether it would cost less in a pay-as-you-go tier, [use the following query](#evaluate-the-legacy-per-node-pricing-tier) for a recommendation.
+> [!NOTE]
+> To use the entitlements that come from purchasing OMS E1 Suite, OMS E2 Suite, or OMS Add-On for System Center, choose the Log Analytics Per Node pricing tier. If you do not own OMS licenses, you should not be using the Per Node pricing tier. 
 
 ### Standard and Premium pricing tiers
 
@@ -224,105 +233,12 @@ More information on pricing tier limitations is available at [Azure subscription
 
 None of the legacy pricing tiers have regional-based pricing.
 
-> [!NOTE]
-> To use the entitlements that come from purchasing OMS E1 Suite, OMS E2 Suite, or OMS Add-On for System Center, choose the Log Analytics Per Node pricing tier.
-
 ## Evaluate the legacy Per Node pricing tier
 
-It's often difficult to determine whether workspaces with access to the legacy Per Node pricing tier are better off in that tier or in a current pay-as-you-go or commitment tier. You need to understand the trade-off between the fixed cost per monitored node in the Per Node pricing tier and its included data allocation of 500 MB per node per day and the cost of paying for ingested data in the pay-as-you-go (per GB) tier.
+The legacy Per Node has very complex pricing calculations. It is recommended to use one of the modern pricing tiers (Pay-as-you-go or a Commitment Tier) unless you own OMS licenses. 
 
-Use the following query to make a recommendation for the optimal pricing tier based on a workspace's usage patterns. This query looks at the monitored nodes and data ingested into a workspace in the last seven days. For each day, it evaluates which pricing tier would have been optimal. To use the query, you must specify:
+If you have a workspace in the legacy Per Node tier, you can compare your costs from operating in this pricing tier by [exporting your detailed usage](../cost-usage.md#export-usage-details) with the monthly cost estimates provided for the Pay-as-you-go or a Commitment Tiers in your workspace's [Usage and estimated cost](change-pricing-tier.md) page. 
 
-- Whether the workspace is using Microsoft Defender for Cloud by setting `workspaceHasSecurityCenter` to `true` or `false`.
-- Update the prices if you have specific discounts.
-- Specify the number of days to look back and analyze by setting `daysToEvaluate`. This option is useful if the query is taking too long trying to look at seven days of data.
-
-```kusto
-// Set these parameters before running query
-// For pay-as-you-go (per-GB) and commitment tier pricing details, see https://azure.microsoft.com/pricing/details/monitor/.
-// You can see your per-node costs in your Azure usage and charge data. For more information, see https://learn.microsoft.com/azure/cost-management-billing/understand/download-azure-daily-usage.  
-let workspaceHasSecurityCenter = true;
-let daysToEvaluate = 7;
-let PerNodePrice = 15.; // Monthly price per monitored node
-let PerNodeOveragePrice = 2.30; // Price per GB for data overage in the Per Node pricing tier
-let PerGBPrice = 2.30; // Enter the pay-as-you-go price for your workspace's region (from https://azure.microsoft.com/pricing/details/monitor/)
-let CommitmentTier100Price = 196.; // Enter your price for the 100 GB/day commitment tier
-let CommitmentTier200Price = 368.; // Enter your price for the 200 GB/day commitment tier
-let CommitmentTier300Price = 540.; // Enter your price for the 300 GB/day commitment tier
-let CommitmentTier400Price = 704.; // Enter your price for the 400 GB/day commitment tier
-let CommitmentTier500Price = 865.; // Enter your price for the 500 GB/day commitment tier
-let CommitmentTier1000Price = 1700.; // Enter your price for the 1000 GB/day commitment tier
-let CommitmentTier2000Price = 3320.; // Enter your price for the 2000 GB/day commitment tier
-let CommitmentTier5000Price = 8050.; // Enter your price for the 5000 GB/day commitment tier
-// ---------------------------------------
-let SecurityDataTypes=dynamic(["SecurityAlert", "SecurityBaseline", "SecurityBaselineSummary", "SecurityDetection", "SecurityEvent", "WindowsFirewall", "MaliciousIPCommunication", "LinuxAuditLog", "SysmonEvent", "ProtectionStatus", "WindowsEvent", "Update", "UpdateSummary"]);
-let StartDate = startofday(datetime_add("Day",-1*daysToEvaluate,now()));
-let EndDate = startofday(now());
-union * 
-| where TimeGenerated >= StartDate and TimeGenerated < EndDate
-| extend computerName = tolower(tostring(split(Computer, '.')[0]))
-| where computerName != ""
-| summarize nodesPerHour = dcount(computerName) by bin(TimeGenerated, 1h)  
-| summarize nodesPerDay = sum(nodesPerHour)/24.  by day=bin(TimeGenerated, 1d)  
-| join kind=leftouter (
-    Heartbeat 
-    | where TimeGenerated >= StartDate and TimeGenerated < EndDate
-    | where Computer != ""
-    | summarize ASCnodesPerHour = dcount(Computer) by bin(TimeGenerated, 1h) 
-    | extend ASCnodesPerHour = iff(workspaceHasSecurityCenter, ASCnodesPerHour, 0)
-    | summarize ASCnodesPerDay = sum(ASCnodesPerHour)/24.  by day=bin(TimeGenerated, 1d)   
-) on day
-| join (
-    Usage 
-    | where TimeGenerated >= StartDate and TimeGenerated < EndDate
-    | where IsBillable == true
-    | extend NonSecurityData = iff(DataType !in (SecurityDataTypes), Quantity, 0.)
-    | extend SecurityData = iff(DataType in (SecurityDataTypes), Quantity, 0.)
-    | summarize DataGB=sum(Quantity)/1000., NonSecurityDataGB=sum(NonSecurityData)/1000., SecurityDataGB=sum(SecurityData)/1000. by day=bin(StartTime, 1d)  
-) on day
-| extend AvgGbPerNode =  NonSecurityDataGB / nodesPerDay
-| extend OverageGB = iff(workspaceHasSecurityCenter, 
-             max_of(DataGB - 0.5*nodesPerDay - 0.5*ASCnodesPerDay, 0.), 
-             max_of(DataGB - 0.5*nodesPerDay, 0.))
-| extend PerNodeDailyCost = nodesPerDay * PerNodePrice / 31. + OverageGB * PerNodeOveragePrice
-| extend billableGB = iff(workspaceHasSecurityCenter,
-             (NonSecurityDataGB + max_of(SecurityDataGB - 0.5*ASCnodesPerDay, 0.)), DataGB )
-| extend PerGBDailyCost = billableGB * PerGBPrice
-| extend CommitmentTier100DailyCost = CommitmentTier100Price + max_of(billableGB - 100, 0.)* CommitmentTier100Price/100.
-| extend CommitmentTier200DailyCost = CommitmentTier200Price + max_of(billableGB - 200, 0.)* CommitmentTier200Price/200.
-| extend CommitmentTier300DailyCost = CommitmentTier300Price + max_of(billableGB - 300, 0.)* CommitmentTier300Price/300.
-| extend CommitmentTier400DailyCost = CommitmentTier400Price + max_of(billableGB - 400, 0.)* CommitmentTier400Price/400.
-| extend CommitmentTier500DailyCost = CommitmentTier500Price + max_of(billableGB - 500, 0.)* CommitmentTier500Price/500.
-| extend CommitmentTier1000DailyCost = CommitmentTier1000Price + max_of(billableGB - 1000, 0.)* CommitmentTier1000Price/1000.
-| extend CommitmentTier2000DailyCost = CommitmentTier2000Price + max_of(billableGB - 2000, 0.)* CommitmentTier2000Price/2000.
-| extend CommitmentTier5000DailyCost = CommitmentTier5000Price + max_of(billableGB - 5000, 0.)* CommitmentTier5000Price/5000.
-| extend MinCost = min_of(
-    PerNodeDailyCost,PerGBDailyCost,CommitmentTier100DailyCost,CommitmentTier200DailyCost,
-    CommitmentTier300DailyCost, CommitmentTier400DailyCost, CommitmentTier500DailyCost, CommitmentTier1000DailyCost, CommitmentTier2000DailyCost, CommitmentTier5000DailyCost)
-| extend Recommendation = case(
-    MinCost == PerNodeDailyCost, "Per node tier",
-    MinCost == PerGBDailyCost, "Pay-as-you-go tier",
-    MinCost == CommitmentTier100DailyCost, "Commitment tier (100 GB/day)",
-    MinCost == CommitmentTier200DailyCost, "Commitment tier (200 GB/day)",
-    MinCost == CommitmentTier300DailyCost, "Commitment tier (300 GB/day)",
-    MinCost == CommitmentTier400DailyCost, "Commitment tier (400 GB/day)",
-    MinCost == CommitmentTier500DailyCost, "Commitment tier (500 GB/day)",
-    MinCost == CommitmentTier1000DailyCost, "Commitment tier (1000 GB/day)",
-    MinCost == CommitmentTier2000DailyCost, "Commitment tier (2000 GB/day)",
-    MinCost == CommitmentTier5000DailyCost, "Commitment tier (5000 GB/day)",
-    "Error"
-)
-| project day, nodesPerDay, ASCnodesPerDay, NonSecurityDataGB, SecurityDataGB, OverageGB, AvgGbPerNode, PerGBDailyCost, PerNodeDailyCost, 
-    CommitmentTier100DailyCost, CommitmentTier200DailyCost, CommitmentTier300DailyCost, CommitmentTier400DailyCost, CommitmentTier500DailyCost, CommitmentTier1000DailyCost, CommitmentTier2000DailyCost, CommitmentTier5000DailyCost, Recommendation 
-| sort by day asc
-//| project day, Recommendation // Comment this line to see details
-| sort by day asc
-```
-
-This query isn't an exact replication of how usage is calculated, but it provides pricing tier recommendations in most cases.
-
-> [!NOTE]
-> To use the entitlements that come from purchasing OMS E1 Suite, OMS E2 Suite, or OMS Add-On for System Center, choose the Log Analytics Per Node pricing tier.
 
 ## Next steps
 

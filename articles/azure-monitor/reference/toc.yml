@@ -857,9 +857,6 @@ items:
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-logs.md
             displayName: Capacity Pool Autoscaled
-          - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
-            href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md
-            displayName: ANF File Access
           - name: Microsoft.Network/applicationgateways
             href: supported-logs/microsoft-network-applicationgateways-logs.md
             displayName: Application Gateway Access Log,Application Gateway Firewall
@@ -1080,9 +1077,14 @@ items:
               operations Audit Logs,Dms Workers,Errors,Exec Requests,Query Store
               Runtime Statistics,Query Store Wait Statistics,Request Steps,SQL
               Insights,Sql Requests,SQL Security Audit Event,Timeouts,Waits
-          - name: Microsoft.StandbyPool/standbypool
-            href: supported-logs/microsoft-standbypool-standbypool-logs.md
-            displayName: Standbypool updates,Standbypool settings updates
+          - name: Microsoft.StandbyPool/standbycontainergrouppools
+            href: supported-logs/microsoft-standbypool-standbycontainergrouppools-logs.md
+            displayName: Standby container group pool updates,Standby container group pool
+              settings updates
+          - name: Microsoft.StandbyPool/standbyvirtualmachinepools
+            href: supported-logs/microsoft-standbypool-standbyvirtualmachinepools-logs.md
+            displayName: Standby virtual machine pool updates,Standby virtual machine pool
+              settings updates
           - name: Microsoft.Storage/storageAccounts/blobServices
             href: supported-logs/microsoft-storage-storageaccounts-blobservices-logs.md
             displayName: Storage Delete,Storage Read,Storage Write

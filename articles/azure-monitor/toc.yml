@@ -75,6 +75,8 @@ items:
           href: app/opentelemetry-configuration.md
         - name: Add and modify OpenTelemetry
           href: app/opentelemetry-add-modify.md
+        - name: Filter OpenTelemetry
+          href: app/opentelemetry-filter.md
         - name: Help, support, and feedback
           href: app/opentelemetry-help-support-feedback.md
         - name: .NET (supplemental)
@@ -1012,7 +1014,7 @@ items:
       - name: Overview
         displayName: Prometheus
         href: essentials/prometheus-metrics-overview.md
-      - name: Prometheus remote-write from virtual-machines
+      - name: Prometheus remote-write from virtual machines
         displayName: Prometheus remote-write
         href: essentials/prometheus-remote-write-virtual-machines.md
       - name: Azure Monitor workspace
