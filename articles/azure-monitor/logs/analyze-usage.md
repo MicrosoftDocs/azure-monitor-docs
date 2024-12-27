@@ -346,42 +346,6 @@ find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(n
 > [!NOTE]
 > Some complexity in the actual billing algorithm when solution targeting is used isn't represented in the preceding query.
 
-## Security and automation node counts
-
-**Count of distinct security nodes**
-
-```kusto
-union
-(
-    Heartbeat
-    | where (Solutions has 'security' or Solutions has 'antimalware' or Solutions has 'securitycenter')
-    | project Computer
-),
-(
-    ProtectionStatus
-    | where Computer !in (Heartbeat | project Computer)
-    | project Computer
-)
-| distinct Computer
-| project lowComputer = tolower(Computer)
-| distinct lowComputer
-| count
-```
-
-**Number of distinct automation nodes**
-
-```kusto
- ConfigurationData 
- | where (ConfigDataType == "WindowsServices" or ConfigDataType == "Software" or ConfigDataType =="Daemons") 
- | extend lowComputer = tolower(Computer) | summarize by lowComputer 
- | join (
-     Heartbeat 
-       | where SCAgentChannel == "Direct"
-       | extend lowComputer = tolower(Computer) | summarize by lowComputer, ComputerEnvironment
- ) on lowComputer
- | summarize count() by ComputerEnvironment | sort by ComputerEnvironment asc
-```
-
 ## Late-arriving data
 If you observe high data ingestion reported by using `Usage` records, but you don't observe the same results summing `_BilledSize` directly on the data type, it's possible that you have late-arriving data. This situation occurs when data is ingested with old timestamps.
 
