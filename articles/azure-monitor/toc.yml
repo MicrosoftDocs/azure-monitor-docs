@@ -1636,11 +1636,7 @@ items:
   - name: Self-monitoring data reference
     href: monitor-azure-monitor-reference.md
   - name: Supported metrics
-    items:
-    - name: Resource metrics
-      href: /azure/azure-monitor/reference/metrics-index
-    - name: Metrics in alerts
-      href: alerts/alerts-metric-near-real-time.md
+    href: /azure/azure-monitor/reference/metrics-index
   - name: Log sources
     items:
     - name: Supported resource log categories
