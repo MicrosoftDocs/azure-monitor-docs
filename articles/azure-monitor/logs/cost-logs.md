@@ -215,7 +215,7 @@ On your bill, the service is **Insight and Analytics** for Log Analytics usage i
 - **Data Included per Node**: The amount of ingested data that was covered by the aggregated data allocation. This meter is also used when the workspace is in all pricing tiers to show the amount of data covered by Microsoft Defender for Cloud.
 
 > [!NOTE]
-> To use the entitlements that come from purchasing OMS E1 Suite, OMS E2 Suite, or OMS Add-On for System Center, choose the Log Analytics Per Node pricing tier. If you do not own OMS licenses, you should not be using the Per Node pricing tier. 
+> To use the entitlements that come from purchasing OMS E1 Suite, OMS E2 Suite, or OMS Add-On for System Center, choose the Log Analytics Per Node pricing tier. **If you do not own OMS licenses, you should not be using the Per Node pricing tier**.
 
 ### Standard and Premium pricing tiers
 
