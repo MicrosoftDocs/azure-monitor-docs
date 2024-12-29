@@ -41,15 +41,10 @@ Azure Monitor Logs calculates the billed size of a single record based on:
 The following [standard columns](log-standard-columns.md) are common to all tables and are excluded in the calculation of the record size for Analytics and Basic Logs. All other columns stored in Log Analytics are included in the calculation of the record size. The standard columns are:
 
 - `_ResourceId`
-
 - `_SubscriptionId`
-
 - `_ItemId`
-
 - `_IsBillable`
-
 - `_BilledSize`
-
 - `Type`
 
 For Auxiliary Logs, `_ItemId`, `_IsBillable` and `_BilledSize` are excluded from the size calculation. 
