@@ -62,9 +62,11 @@ To limit the view to Azure Monitor charges, [create a filter](/azure/cost-manage
 - Insight and Analytics
 - Application Insights
 
-See [Azure Monitor billing meter names](cost-meters.md) for a list of all Azure Monitor billing meters that are included in each of these services.
+Usage incurred on a Log Analytics workspace can be billed on any of the first three services (Azure Monitor, Log Analytics or Insight and Analytics) depending on the feature. See [Azure Monitor billing meter names](cost-meters.md) for a list of the Azure Monitor billing meters for all Azure Monitor features.
 
-Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also bill their usage against Log Analytics workspace resources. See [Common cost analysis uses](/azure/cost-management-billing/costs/cost-analysis-common-uses) for details on using this view.
+Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also bill their usage against Log Analytics workspace resources. See [Common cost analysis uses](/azure/cost-management-billing/costs/cost-analysis-common-uses) for details on using this view. If you are using Microsoft Sentinel's [simplified pricing tiers](/azure/sentinel/enroll-simplified-pricing-tier), log data ingestion will be billed entirely on Sentinel meters.
+
+If using an Azure Monitor Logs dedicated cluster, data ingestion usage may be billed against the cluster resource or each workspace that is joined to the cluster [learn more](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/cost-logs#dedicated-clusters). 
 
 
 > [!NOTE]
