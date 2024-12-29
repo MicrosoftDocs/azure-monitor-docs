@@ -66,7 +66,7 @@ Usage incurred on a Log Analytics workspace can be billed on any of the first th
 
 Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also bill their usage against Log Analytics workspace resources. See [Common cost analysis uses](/azure/cost-management-billing/costs/cost-analysis-common-uses) for details on using this view. If you are using Microsoft Sentinel's [simplified pricing tiers](/azure/sentinel/enroll-simplified-pricing-tier), log data ingestion will be billed entirely on Sentinel meters.
 
-If using an Azure Monitor Logs dedicated cluster, data ingestion usage may be billed against the cluster resource or each workspace that is joined to the cluster [learn more](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/cost-logs#dedicated-clusters). 
+If using an Azure Monitor Logs dedicated cluster, data ingestion usage may be billed against the cluster resource or each workspace that is joined to the cluster [learn more](/azure/azure-monitor/logs/cost-logs#dedicated-clusters). 
 
 
 > [!NOTE]
