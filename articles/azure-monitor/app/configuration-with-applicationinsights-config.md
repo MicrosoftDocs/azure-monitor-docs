@@ -266,7 +266,7 @@ TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApp
 
 ### DictionaryApplicationIdProvider
 
-This static provider relies on your configured connection string/application ID pairs.
+This static provider relies on your configured instrumentation key/application ID pairs.
 
 This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
 
