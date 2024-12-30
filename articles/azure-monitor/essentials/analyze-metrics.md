@@ -235,8 +235,6 @@ You can apply filters to charts whose metrics have dimensions. Consider a *Trans
 
 1. Repeat these steps to apply multiple filters to the same charts.
 
-
-
 ### Apply metric splitting
 
 You can split a metric by dimension to visualize how different segments of the metric compare. Splitting can also help you identify the outlying segments of a dimension.
