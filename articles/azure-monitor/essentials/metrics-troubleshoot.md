@@ -58,7 +58,7 @@ Some resources don’t constantly emit their metrics. For example, Azure doesn't
 ### You specified a time range greater than more than 93 days ago
 [Most metrics in Azure are stored for 93 days](../essentials/data-platform-metrics.md#retention-of-metrics) so you can't query more than 93 days back. 
 
-**Solution:** Export your metrics data to a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview) and query from there. You can [manage data retention](/azure/azure-monitor/logs/data-retention-configure) in your Log analytics workspace. For more information on metrics export, see [Diagnostic settings in Azure Monitor](./diagnostic-settings.md) and [Metrics export through data collection rules (Preview)](./data-collection-metrics) .
+**Solution:** Export your metrics data to a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview) and query from there. You can [manage data retention](/azure/azure-monitor/logs/data-retention-configure) in your Log analytics workspace. For more information on metrics export, see [Diagnostic settings in Azure Monitor](./diagnostic-settings.md) and [Metrics export through data collection rules (Preview)](./data-collection-metrics.md) .
 
 ### All metric values were outside of the locked y-axis range
 
