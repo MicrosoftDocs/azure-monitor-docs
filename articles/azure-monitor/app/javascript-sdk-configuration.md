@@ -307,7 +307,7 @@ Service notifications is a feature built into the SDK to provide actionable reco
 
 Currently, no active notifications are being sent.
 
-Service notifications are managed by the JavaScript SDK, which regularly polls a public JSON file to control and update these notifications. To disable the polling made by the JavaScript SDK disable the [featureOptIn mode](https://github.com/microsoft/ApplicationInsights-JS/blob/main/docs/WebConfig.md#basic-usage).
+Service notifications are managed by the JavaScript SDK, which regularly polls a public JSON file to control and update these notifications. To disable the polling made by the JavaScript SDK, disable the [featureOptIn mode](https://github.com/microsoft/ApplicationInsights-JS/blob/main/docs/WebConfig.md#basic-usage).
 
 ## Troubleshooting
 
