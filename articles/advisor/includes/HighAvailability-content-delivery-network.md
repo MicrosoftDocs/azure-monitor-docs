@@ -76,12 +76,13 @@ For more information, see [Configure a custom domain on Azure Front Door by usin
 
 #### Migrate away from Azure CDN from Edgio by January 15, 2025  
   
-Migrate from Azure CDN Standard/Premium by Edgio before 15 January 2025 as the Edgio platform is scheduled to shut down. It's recommended to move to Azure Front Door for compatibility. Alternatively, consider using Azure Traffic Manager or Akamai CDN available in the Azure Marketplace.  
+Migrate from Azure CDN Standard/Premium by Edgio before 15 January 2025 when the Edgio platform is scheduled to shut down. It's recommended to move to Azure Front Door for compatibility. Alternatively, consider using Azure Traffic Manager or Akamai CDN available in the Azure Marketplace.  
   
 **Potential benefits**: Avoid downtime and ensure business continuity.  
 
 For more information, see [Azure updates ](https://azure.microsoft.com/updates?id=467688)  
 
 <!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_end-->
+
 
 <!--articleBody-->
