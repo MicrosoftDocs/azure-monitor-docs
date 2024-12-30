@@ -225,14 +225,16 @@ The purpose of this provider is to look up an application ID based on a connecti
 
 This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider` either in code or in the config file.
 
+<!--
 ### Interface: IApplicationIdProvider
 
 ```csharp
 public interface IApplicationIdProvider
 {
-    bool TryGetApplicationId(string connectionString, out string applicationId);
+    bool TryGetApplicationId(string instrumentationKey, out string applicationId);
 }
 ```
+-->
 
 We provide two implementations in the [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) SDK: `ApplicationInsightsApplicationIdProvider` and `DictionaryApplicationIdProvider`.
 
@@ -242,7 +244,7 @@ This wrapper is for our Profile API. It will throttle requests and cache results
 
 This provider is added to your config file when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
 
-This class has an optional property `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`. If you need to configure a proxy for this configuration, we recommend that you proxy the base address and include `"/api/profiles/{0}/appId"`. A `{0}` is substituted at runtime per request with the connection string.
+This class has an optional property `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`. If you need to configure a proxy for this configuration, we recommend that you proxy the base address and include `"/api/profiles/{0}/appId"`. A `{0}` is substituted at runtime per request with the instrumentation key.
 
 #### Example configuration via ApplicationInsights.config
 
@@ -266,7 +268,7 @@ TelemetryConfiguration.Active.ApplicationIdProvider = new ApplicationInsightsApp
 
 This static provider relies on your configured connection string/application ID pairs.
 
-This class has the `Defined` property, which is a `Dictionary<string,string>` of connection string/application ID pairs.
+This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
 
 This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
 
@@ -277,8 +279,8 @@ This class has the optional property `Next`, which can be used to configure anot
     ...
     <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.DictionaryApplicationIdProvider, Microsoft.ApplicationInsights">
         <Defined>
-            <Type key="ConnectionString_1" value="ApplicationId_1"/>
-            <Type key="ConnectionString_2" value="ApplicationId_2"/>
+            <Type key="InstrumentationKey_1" value="ApplicationId_1"/>
+            <Type key="InstrumentationKey_2" value="ApplicationId_2"/>
         </Defined>
         <Next Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights" />
     </ApplicationIdProvider>
@@ -292,8 +294,8 @@ This class has the optional property `Next`, which can be used to configure anot
 TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationIdProvider{
  Defined = new Dictionary<string, string>
     {
-        {"ConnectionString_1", "ApplicationId_1"},
-        {"ConnectionString_2", "ApplicationId_2"}
+        {"InstrumentationKey_1", "ApplicationId_1"},
+        {"InstrumentationKey_2", "ApplicationId_2"}
     }
 };
 ```
