@@ -226,6 +226,9 @@ You can apply filters to charts whose metrics have dimensions. Consider a *Trans
 
    :::image type="content" source="./media/analyze-metrics/filter-values.png" lightbox="./media/analyze-metrics/filter-values.png" alt-text="Screenshot that shows the dropdown list for filter values in metrics explorer.":::
 
+   > [!NOTE]
+   > If a dimension value isn't in the result set for the selected time range, it won't be available in the filter values dropdown list.
+
 1. After you select the filter values, click outside the **filter picker** to complete the action. The chart shows how many storage transactions have failed.
 
    :::image type="content" source="./media/analyze-metrics/filtered-chart.png" lightbox="./media/analyze-metrics/filtered-chart.png" alt-text="Screenshot that shows the successful filtered storage transactions in the updated chart in metrics explorer." :::
