@@ -44,6 +44,7 @@ A subset of the availability zones that support data resilience currently also s
 |	Central US	|		|	:white_check_mark:	|		|
 |	East US	|		|	:white_check_mark:	|		|
 |	East US 2	|		|	:white_check_mark:	|	:white_check_mark:	|
+|	Mexico Central	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
 |	South Central US	|	:white_check_mark:	|	:white_check_mark:	|		|
 |	West US 2	|		|	:white_check_mark:	|	:white_check_mark:	|
 |	West US 3	|	:white_check_mark:	|	:white_check_mark:	|		|
