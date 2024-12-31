@@ -53,7 +53,7 @@ The performance collector [collects system performance counters](./performance-c
 The `DiagnosticsTelemetryModule` class reports errors in the Application Insights instrumentation code itself. Examples are if the code can't access performance counters or if `ITelemetryInitializer` throws an exception. Trace telemetry tracked by this module appears in the [Diagnostic Search][diagnostic].
 
 * `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`
-* [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you only install this package, the ApplicationInsights.config file is not automatically created.
+* [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you only install this package, the ApplicationInsights.config file isn't automatically created.
 
 ### Developer mode
 
@@ -188,9 +188,9 @@ This setting determines the Application Insights resource in which your data app
 
 See [Connection strings in Application Insights](connection-strings.md#code-samples) for code samples.
 
-If you want to set the connection string dynamically, for example, if you want to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
+If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
 
-To set the conection string for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
+To set the connection string for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
 
 ```csharp
 using Microsoft.ApplicationInsights.Extensibility;
@@ -225,7 +225,6 @@ The purpose of this provider is to look up an application ID based on a connecti
 
 This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider` either in code or in the config file.
 
-<!--
 ### Interface: IApplicationIdProvider
 
 ```csharp
@@ -234,13 +233,12 @@ public interface IApplicationIdProvider
     bool TryGetApplicationId(string instrumentationKey, out string applicationId);
 }
 ```
--->
 
 We provide two implementations in the [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) SDK: `ApplicationInsightsApplicationIdProvider` and `DictionaryApplicationIdProvider`.
 
 ### ApplicationInsightsApplicationIdProvider
 
-This wrapper is for our Profile API. It will throttle requests and cache results.
+This wrapper is for our Profile API. It throttles requests and cache results.
 
 This provider is added to your config file when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
 
