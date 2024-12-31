@@ -19,15 +19,15 @@ Azure Monitor security guidelines help you understand the security features of A
 - [Microsoft cloud security benchmark (MCSB)](/security/benchmark/azure/overview), which describes the available security features and recommended optimal configurations. 
 - [Zero Trust security principles](/security/zero-trust/zero-trust-overview), which provides guidance for security teams to implement technical capabilities to support a Zero Trust modernization initiative.
 
-The guidelines in this article build on the [Microsoft security responsibility model](https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsibility, Microsoft provides these security measures for Azure Monitor customers:
+The guidelines in this article build on the [Microsoft security responsibility model](/azure/security/fundamentals/shared-responsibility). As part of this model of shared responsibility, Microsoft provides these security measures for Azure Monitor customers:
 
 - [Azure infrastructure security](/azure/security/fundamentals/infrastructure)
 - [Azure customer data protection](/azure/security/fundamentals/protection-customer-data)
-- [Microsoft Entra authentication for data plane access](/azure/azure-monitor/app/azure-ad-authentication)
 - [Encryption of data in transit during data ingestion](/azure/security/fundamentals/double-encryption#data-in-transit)
 - [Encryption of data at rest with Microsoft managed keys](/azure/security/fundamentals/encryption-atrest#encryption-at-rest-in-microsoft-cloud-services)
-- [Privileged access to data plane actions using Role-Based Access Control (Azure RBAC)](/azure/role-based-access-control/overview)
+- [Microsoft Entra authentication for data plane access](/azure/azure-monitor/app/azure-ad-authentication)
 - [Authentication of Azure Monitor Agent and Application Insights using managed identities](/entra/identity/managed-identities-azure-resources/overview)
+- [Privileged access to data plane actions using Role-Based Access Control (Azure RBAC)](/azure/role-based-access-control/overview)
 - [Compliance with industry standards and regulations](/azure/compliance/offerings)
 
 
