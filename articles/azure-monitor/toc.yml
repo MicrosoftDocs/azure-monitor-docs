@@ -1172,6 +1172,8 @@ items:
       href: logs/migrate-splunk-to-azure-monitor-logs.md
 - name: Security and networking
   items:
+  - name: Security best practices in Azure Monitor
+    href: .//best-practices-security.md
   - name: Data security
     items:
       - name: Roles permissions and security
