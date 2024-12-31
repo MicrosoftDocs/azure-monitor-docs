@@ -1109,7 +1109,7 @@ items:
     - name: Network security perimeter
       href: essentials/network-security-perimeter.md
   - name: Security baseline
-    href: .//azure-monitor-security-baseline.md
+    href: /security/benchmark/azure/baselines/azure-monitor-security-baseline?toc=/azure/azure-monitor/toc.json
   - name: Security controls by Azure Policy
     displayName: regulatory, compliance, standards, domains
     href: .//security-controls-policy.md
