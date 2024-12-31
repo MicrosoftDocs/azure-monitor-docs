@@ -162,22 +162,6 @@ Application Insights needs to be configured to enforce Microsoft Entra authentic
 
 **Reference**: [Create and manage action groups in the Azure portal](/azure/azure-monitor/alerts/action-groups#secure-webhook)
 
-### IM-7: Restrict resource access based on conditions
-
-#### Features
-
-##### Conditional Access for Data Plane
-
-**Description**: Data plane access can be controlled using Microsoft Entra Conditional Access Policies. [Learn more](/azure/active-directory/conditional-access/overview).
-
-| Supported | Enabled By Default | Configuration Responsibility |
-|---|---|---|
-| True | False | Customer |
-
-**Configuration Guidance**: Define the applicable conditions and criteria for Microsoft Entra conditional access in the workload. Consider common use cases such as blocking or granting access from specific locations, blocking risky sign-in behavior, or requiring organization-managed devices for specific applications.
-
-**Reference**: [Azure Monitor Log Analytics API Overview](/azure/azure-monitor/logs/api/overview)
-
 ## Privileged access
 
 *For more information, see the [Microsoft cloud security benchmark: Privileged access](../mcsb-privileged-access.md).*
@@ -302,22 +286,6 @@ Application Insights needs to be configured to enforce Microsoft Entra authentic
 ## Asset management
 
 *For more information, see the [Microsoft cloud security benchmark: Asset management](../mcsb-asset-management.md).*
-
-### AM-2: Use only approved services
-
-#### Features
-
-##### Azure Policy Support
-
-**Description**: Service configurations can be monitored and enforced via Azure Policy. [Learn more](/azure/governance/policy/tutorials/create-and-manage).
-
-| Supported | Enabled By Default | Configuration Responsibility |
-|---|---|---|
-| True | False | Customer |
-
-**Configuration Guidance**: Use Microsoft Defender for Cloud to configure Azure Policy to audit and enforce configurations of your Azure resources. Use Azure Monitor to create alerts when there is a configuration deviation detected on the resources. Use Azure Policy [deny] and [deploy if not exists] effects to enforce secure configuration across Azure resources.
-
-**Reference**: [Create diagnostic settings at scale using Azure Policy](/azure/azure-monitor/essentials/diagnostic-settings-policy)
 
 ## Logging and threat detection
 
