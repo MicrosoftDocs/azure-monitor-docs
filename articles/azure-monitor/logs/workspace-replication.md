@@ -97,8 +97,40 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 
 You enable and disable workspace replication by using a REST command. The command triggers a long running operation, which means that it can take a few minutes for the new settings to apply. After you enable replication, it can take up to one hour for all tables (data types) to begin replicating, and some data types might start replicating before others. Changes you make to table schemas after you enable workspace replication - for example, new custom log tables or custom fields you create, or diagnostic logs set up for new resource types - can take up to one hour to start replicating.
 
+### Using a dedicated cluster?
+If your workspace is linked to a dedicated cluster, you must first enable replication on the cluster, and only then on the workspace. This operation creates a second cluster on your secondary region (no extra charge beyond replication charges), in order to allow your workspace to keep using a dedicated cluster even if you failover. This also means features like cluster managed keys (CMK) continue to work (with the same key) during failover.
+Once replication is enabled, you can proceed to enable replication for one or more of the workspaces linked to this cluster.
+To enable replication on your dedicated cluster, use the following PUT command. This call returns 201. It's a long running operation which may take time to complete, and you can track its exact state as explained later.
+
+To enable cluster replication, use this `PUT` command: 
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2023-01-01-preview
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": true,
+            "location": "<secondary_region>"
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+- `<subscription_id>`: The subscription ID related to your cluster.
+- `<resourcegroup_name>` : The resource group that contains your Log Analytics cluster resource.
+- `<cluster_name>`: The name of your dedicated cluster.
+- `<primary_region>`: The primary region for your Log Analytics dedicated cluster.
+- `<secondary_region>`: The region in which Azure Monitor creates the secondary dedicated cluster.
+
 > [!IMPORTANT]
-> Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
+> The secondary location of the workspaces linked to this cluster must be identical to the cluster's secondary location.
 
 ### Enable workspace replication
 
@@ -201,6 +233,40 @@ Where:
 - `<primary_region>`: The primary region for your workspace.
 
 The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+
+> [!IMPORTANT]
+> If you're using a dedicated cluster, you should disable cluster replication after disabling replication for each workspace linked to this cluster.
+
+### Disable cluster replication
+
+Disabling cluster replication can be done only after disabling replication for all workspaces linked to this cluster (if previously enabled).
+To disable replication for a workspace, use this `PUT` command:
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2023-01-01-preview
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": false
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+- `<subscription_id>`: The subscription ID related to your cluster.
+- `<resourcegroup_name>` : The resource group that contains your cluster resource.
+- `<workspace_name>`: The name of your cluster.
+- `<primary_region>`: The primary region for your cluster.
+
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+
 
 ## Monitor workspace and service health
 
