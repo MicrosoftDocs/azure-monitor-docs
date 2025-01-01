@@ -116,8 +116,10 @@ For information on deleting resources and Azure Resource Manager, see [Azure Res
 ## Link a Grafana workspace  
 Connect an Azure Monitor workspace to an [Azure Managed Grafana](/azure/managed-grafana/overview) workspace to allow Grafana to use the Azure Monitor workspace data in a Grafana dashboard. An Azure Monitor workspace can be connected to multiple Grafana workspaces, and a Grafana workspace can be connected to multiple Azure Monitor workspaces. Azure Managed Grafana and your Azure Monitor workspace can be in different regions. 
 
+To link your self-managed Grafana instance to an Azure Monitor workspace, see [Link self-managed Grafana to Prometheus data in an Azure Monitor workspace](./prometheus-self-managed-grafana-azure-active-directory.md)
+
 > [!NOTE]
-> When you add the Azure Monitor workspace as a data source to Grafana, it islisted in as `Prometheus_<azure monitor workspace query endpoint>`.
+> When you add the Azure Monitor workspace as a data source to Grafana, it's listed in as `Prometheus_<azure monitor workspace query endpoint>`.
   
 ### [Azure portal](#tab/azure-portal)
 
@@ -161,8 +163,6 @@ Output
 To set up an Azure monitor workspace as a data source for Grafana using a Resource Manager template, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md?tabs=arm#enable-prometheus-and-grafana)
 
 ---
-
-If your Grafana instance is self managed, see [Use Azure Monitor managed service for Prometheus as data source for self-managed Grafana using managed system identity](./prometheus-self-managed-grafana-azure-active-directory.md)
 
 
 ## Next steps
