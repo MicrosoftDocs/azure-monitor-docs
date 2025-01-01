@@ -1,6 +1,6 @@
 ---
-title: Create and share dashboards of Azure Log Analytics data | Microsoft Docs
-description: This tutorial helps you understand how Log Analytics dashboards can visualize all of your saved log queries, giving you a single lens to view your environment.
+title: Create and share dashboards that visualize data in Azure Monitor Logs
+description: This tutorial explains how to create a dashboard that visualizes data based on a query that you run in Azure Monitor Logs.
 ms.topic: tutorial
 author: AbbyMSFT
 ms.author: abbyweisberg
@@ -9,9 +9,9 @@ ms.date: 11/07/2023
 ms.custom: mvc
 ---
 
-# Create and share dashboards of Log Analytics data
+# Create and share dashboards that visualize data in Azure Monitor Logs
 
-Log Analytics dashboards can visualize all of your saved log queries. Visualizations give you the ability to find, correlate, and share IT operational data in your organization. This tutorial covers creating a log query that will be used to support a shared dashboard that can be accessed by your IT operations support team. You learn how to:
+Log Analytics dashboards can visualize all of your saved log queries. Visualizations let you find, correlate, and share IT operational data in your organization. This tutorial shows how to create a shared dashboard, based on log query, which can to be accessed by your IT operations support team. You learn how to:
 
 > [!div class="checklist"]
 > * Create a shared dashboard in the Azure portal.
@@ -20,6 +20,9 @@ Log Analytics dashboards can visualize all of your saved log queries. Visualizat
 > * Customize a tile in a shared dashboard.
 
 To complete the example in this tutorial, you must have an existing virtual machine [connected to the Log Analytics workspace](../vm/monitor-virtual-machine.md).
+
+> [!TIP]
+> In this tutorial, you create a dashboard based on a simple query on the `Perf` table. For more complex queries on large data sets or long time ranges, we recommend that you [create summary rules](../logs/summary-rules.md) to aggregate data you want to visualize. Summary rules aggregate the data you need from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
 
 ## Sign in to the Azure portal
 Sign in to the [Azure portal](https://portal.azure.com).
