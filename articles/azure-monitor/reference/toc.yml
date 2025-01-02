@@ -857,6 +857,9 @@ items:
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-logs.md
             displayName: Capacity Pool Autoscaled
+          - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
+            href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md
+            displayName: ANF File Access
           - name: Microsoft.Network/applicationgateways
             href: supported-logs/microsoft-network-applicationgateways-logs.md
             displayName: Application Gateway Access Log,Application Gateway Firewall
