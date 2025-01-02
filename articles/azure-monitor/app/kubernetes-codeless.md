@@ -190,12 +190,12 @@ The following annotations disable autoinstrumentation for the language indicated
 - Node.js: `instrumentation.opentelemetry.io/inject-nodejs`
 
   ```yml
-  instrumentation.opentelemetry.io/inject-java="false"
+  instrumentation.opentelemetry.io/inject-java:"false"
   ```
 To turn autoinstrumentation back on after disabling.
 
   ```yml
-  instrumentation.opentelemetry.io/inject-java="true"
+  instrumentation.opentelemetry.io/inject-java:"true"
   ```
 
 ### Enabling logs in Application Insights
@@ -221,7 +221,7 @@ Use the following annotation to enable logs in Application Insights
 > Always add annotations at the `spec.template.metadata.annotations` level of your deployment to avoid mistakenly adding them to the deployment’s own annotations.
 
   ```yml
-  monitor.azure.com/enable-application-logs="true"
+  monitor.azure.com/enable-application-logs:"true"
   ```
 
 ## Prepare a cluster during AKS cluster create
