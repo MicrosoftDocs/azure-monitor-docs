@@ -129,8 +129,8 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
         autoInstrumentationPlatforms: # required
           - Java
           - NodeJs
-        destination: # required
-          applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
+      destination: # required
+        applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
     ```
     
     At a minimum, the following configuration is required:
