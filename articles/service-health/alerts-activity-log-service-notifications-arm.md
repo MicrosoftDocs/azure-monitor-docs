@@ -1,14 +1,14 @@
 ---
-title: Receive activity log alerts on Azure service notifications using Resource Manager template
+title: Receive Service health alerts on Azure service notifications using Resource Manager template
 description: Get notified via SMS, email, or webhook when Azure service occurs using a Resource Manager template.
 ms.date: 05/13/2022
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-arm-template
 ---
 
-# Quickstart: Create activity log alerts on service notifications using an ARM template
+# Quickstart: Create Service health alerts on service notifications using an ARM template
 
-This article shows you how to set up activity log alerts for service health notifications by using an Azure Resource Manager template (ARM template).
+This article shows you how to set up service health alerts for service health notifications by using an Azure Resource Manager template (ARM template).
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
@@ -187,6 +187,6 @@ Remove-AzResourceGroup -Name my-resource-group
 - Learn how to [configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md).
 - Learn about [service health notifications](service-notifications.md).
 - Learn about [notification rate limiting](../azure-monitor/alerts/alerts-rate-limiting.md).
-- Review the [activity log alert webhook schema](../azure-monitor/alerts/activity-log-alerts-webhook.md).
-- Get an [overview of activity log alerts](../azure-monitor/alerts/alerts-overview.md), and learn how to receive alerts.
+- Review the [Service health alert webhook schema](../azure-monitor/alerts/activity-log-alerts-webhook.md).
+- Get an [overview of Service health alerts](../azure-monitor/alerts/alerts-overview.md), and learn how to receive alerts.
 - Learn more about [action groups](../azure-monitor/alerts/action-groups.md).

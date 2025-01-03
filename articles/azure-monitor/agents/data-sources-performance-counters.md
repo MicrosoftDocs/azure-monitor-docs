@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.custom: linux-related-content
 author: guywi-ms
 ms.author: guywild
-ms.date: 10/19/2023
+ms.date: 11/14/2024
 ---
 
 # Collect Windows and Linux performance data sources with the Log Analytics agent

@@ -2,7 +2,7 @@
 title: Configure Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 description: This article provides configuration guidance for .NET, Java, Node.js, and Python applications.
 ms.topic: conceptual
-ms.date: 12/27/2023
+ms.date: 12/07/2024
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -68,10 +68,11 @@ Use one of the following two ways to configure the connection string:
     // Create a new OpenTelemetry tracer provider.
     // It is important to keep the TracerProvider instance active throughout the process lifetime.
     var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddAzureMonitorTraceExporter(options =>
-    {
-        options.ConnectionString = "<Your Connection String>";
-    });
+        .AddAzureMonitorTraceExporter(options =>
+        {
+            options.ConnectionString = "<Your Connection String>";
+        })
+        .Build();
 
     // Create a new OpenTelemetry meter provider.
     // It is important to keep the MetricsProvider instance active throughout the process lifetime.
@@ -79,15 +80,16 @@ Use one of the following two ways to configure the connection string:
         .AddAzureMonitorMetricExporter(options =>
         {
             options.ConnectionString = "<Your Connection String>";
-        });
+        })
+        .Build();
 
     // Create a new logger factory.
     // It is important to keep the LoggerFactory instance active throughout the process lifetime.
     var loggerFactory = LoggerFactory.Create(builder =>
     {
-        builder.AddOpenTelemetry(options =>
+        builder.AddOpenTelemetry(logging =>
         {
-            options.AddAzureMonitorLogExporter(options =>
+            logging.AddAzureMonitorLogExporter(options =>
             {
                 options.ConnectionString = "<Your Connection String>";
             });
@@ -178,7 +180,7 @@ configure_azure_monitor(
 
 ## Set the Cloud Role Name and the Cloud Role Instance
 
-For [supported languages](opentelemetry-enable.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro), the Azure Monitor OpenTelemetry Distro automatically detects the resource context and provides default values for the [Cloud Role Name](app-map.md#understand-the-cloud-role-name-within-the-context-of-an-application-map) and the Cloud Role Instance properties of your component. However, you might want to override the default values to something that makes sense to your team. The cloud role name value appears on the Application Map as the name underneath a node.
+For [supported languages](opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro), the Azure Monitor OpenTelemetry Distro automatically detects the resource context and provides default values for the [Cloud Role Name](app-map.md#understand-the-cloud-role-name-within-the-context-of-an-application-map) and the Cloud Role Instance properties of your component. However, you might want to override the default values to something that makes sense to your team. The cloud role name value appears on the Application Map as the name underneath a node.
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
@@ -232,24 +234,26 @@ var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttr
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
     // Set ResourceBuilder on the TracerProvider.
     .SetResourceBuilder(resourceBuilder)
-    .AddAzureMonitorTraceExporter();
+    .AddAzureMonitorTraceExporter()
+    .Build();
 
 // Create a new OpenTelemetry meter provider and set the resource builder.
 // It is important to keep the MetricsProvider instance active throughout the process lifetime.
 var metricsProvider = Sdk.CreateMeterProviderBuilder()
     // Set ResourceBuilder on the MeterProvider.
     .SetResourceBuilder(resourceBuilder)
-    .AddAzureMonitorMetricExporter();
+    .AddAzureMonitorMetricExporter()
+    .Build();
 
 // Create a new logger factory and add the OpenTelemetry logger provider with the resource builder.
 // It is important to keep the LoggerFactory instance active throughout the process lifetime.
 var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.AddOpenTelemetry(options =>
+    builder.AddOpenTelemetry(logging =>
     {
         // Set ResourceBuilder on the Logging config.
-        options.SetResourceBuilder(resourceBuilder);
-        options.AddAzureMonitorLogExporter();
+        logging.SetResourceBuilder(resourceBuilder);
+        logging.AddAzureMonitorLogExporter();
     });
 });
 ```
@@ -333,10 +337,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add the OpenTelemetry telemetry service to the application.
 // This service will collect and send telemetry data to Azure Monitor.
-builder.Services.AddOpenTelemetry().UseAzureMonitor(o =>
+builder.Services.AddOpenTelemetry().UseAzureMonitor(options =>
 {
     // Set the sampling ratio to 10%. This means that 10% of all traces will be sampled and sent to Azure Monitor.
-    o.SamplingRatio = 0.1F;
+    options.SamplingRatio = 0.1F;
 });
 
 // Build the ASP.NET Core web application.
@@ -358,7 +362,8 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
     {   
         // Set the sampling ratio to 10%. This means that 10% of all traces will be sampled and sent to Azure Monitor.
         options.SamplingRatio = 0.1F;
-    });
+    })
+    .Build();
 ```
 
 ### [Java](#tab/java)
@@ -369,7 +374,7 @@ Starting from 3.4.0, rate-limited sampling is available and is now the default. 
 
 For Spring Boot native applications, the [sampling configurations of the OpenTelemetry Java SDK are applicable](https://opentelemetry.io/docs/languages/java/configuration/#sampler).
 
-For Quarkus native applications, please look at the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#sampler).
+For Quarkus native applications, review the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#sampler).
 
 ### [Node.js](#tab/nodejs)
 
@@ -431,6 +436,9 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
 
 This feature isn't available in the Azure Monitor .NET Exporter.
 
+> [!NOTE]
+> We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for console and worker service applications, which does not include live metrics.
+
 ### [Java](#tab/java)
 
 The Live Metrics experience is enabled by default.
@@ -439,7 +447,7 @@ For more information on Java configuration, see [Configuration options: Azure Mo
 
 ### [Java native](#tab/java-native)
 
-The Live Metrics are not available today for GraalVM native applications.
+The Live Metrics aren't available today for GraalVM native applications.
 
 ### [Node.js](#tab/nodejs)
 
@@ -564,7 +572,8 @@ We support the credential classes provided by [Azure Identity](https://github.co
         .AddAzureMonitorTraceExporter(options =>
         {
             options.Credential = credential;
-        });
+        })
+        .Build();
 
     // Create a new OpenTelemetry meter provider and set the credential.
     // It is important to keep the MetricsProvider instance active throughout the process lifetime.
@@ -572,15 +581,16 @@ We support the credential classes provided by [Azure Identity](https://github.co
         .AddAzureMonitorMetricExporter(options =>
         {
             options.Credential = credential;
-        });
+        })
+        .Build();
 
     // Create a new logger factory and add the OpenTelemetry logger provider with the credential.
     // It is important to keep the LoggerFactory instance active throughout the process lifetime.
     var loggerFactory = LoggerFactory.Create(builder =>
     {
-        builder.AddOpenTelemetry(options =>
+        builder.AddOpenTelemetry(logging =>
         {
-            options.AddAzureMonitorLogExporter(options =>
+            logging.AddAzureMonitorLogExporter(options =>
             {
                 options.Credential = credential;
             });
@@ -594,7 +604,7 @@ For more information about Java, see the [Java supplemental documentation](java-
 
 ### [Java native](#tab/java-native)
 
-Microsoft Entra ID authentication is not available for GraalVM Native applications.
+Microsoft Entra ID authentication isn't available for GraalVM Native applications.
 
 ### [Node.js](#tab/nodejs)
 
@@ -742,7 +752,8 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
         // This is the directory where the OpenTelemetry SDK will store any trace data that cannot be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
-    });
+        })
+        .Build();
 
 // Create a new OpenTelemetry meter provider and set the storage directory.
 // It is important to keep the MetricsProvider instance active throughout the process lifetime.
@@ -752,15 +763,16 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
         // This is the directory where the OpenTelemetry SDK will store any metric data that cannot be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
-    });
+        })
+        .Build();
 
 // Create a new logger factory and add the OpenTelemetry logger provider with the storage directory.
 // It is important to keep the LoggerFactory instance active throughout the process lifetime.
 var loggerFactory = LoggerFactory.Create(builder =>
 {
-    builder.AddOpenTelemetry(options =>
+    builder.AddOpenTelemetry(logging =>
     {
-        options.AddAzureMonitorLogExporter(options =>
+        logging.AddAzureMonitorLogExporter(options =>
         {
             // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
             // This is the directory where the OpenTelemetry SDK will store any log data that cannot be sent to Azure Monitor immediately.
@@ -911,13 +923,15 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
     // It is important to keep the TracerProvider instance active throughout the process lifetime.
     var tracerProvider = Sdk.CreateTracerProviderBuilder()
         .AddAzureMonitorTraceExporter()
-        .AddOtlpExporter();
+        .AddOtlpExporter()
+        .Build();
 
     // Create a new OpenTelemetry meter provider and add the Azure Monitor metric exporter and the OTLP metric exporter.
     // It is important to keep the MetricsProvider instance active throughout the process lifetime.
     var metricsProvider = Sdk.CreateMeterProviderBuilder()
         .AddAzureMonitorMetricExporter()
-        .AddOtlpExporter();
+        .AddOtlpExporter()
+        .Build();
     ```
 
 ### [Java](#tab/java)
@@ -1031,7 +1045,7 @@ For more information about Java, see the [Java supplemental documentation](java-
 
 For Spring Boot native applications, the [OpenTelemetry Java SDK configurations](https://opentelemetry.io/docs/languages/java/configuration/) are available.
 
-For Quarkus native applications, please look at the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#configuration).
+For Quarkus native applications, review the [Quarkus OpenTelemetry documentation](https://quarkus.io/guides/opentelemetry#configuration).
 
 ### [Node.js](#tab/nodejs)
 
@@ -1043,6 +1057,119 @@ For more information about OpenTelemetry SDK configuration, see the [OpenTelemet
 
 ---
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-faqs](../includes/azure-monitor-app-insights-opentelemetry-faqs.md)]
+## Redact URL Query Strings
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](../includes/azure-monitor-app-insights-opentelemetry-support.md)]
+To redact URL query strings, turn off query string collection. We recommend this setting if you call Azure storage using a SAS token.
+
+### [ASP.NET Core](#tab/aspnetcore)
+
+When using the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries are included. 
+Our distro package sets Query String Redaction off by default.
+
+To change this behavior, you must set an environment variable to either "true" or "false".
+
+- ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is disabled by default. To enable, set this environment variable to "false".
+- Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is disabled by default. To enable, set this environment variable to "false".
+
+### [.NET](#tab/net)
+
+When using the [Azure.Monitor.OpenTelemetry.Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter), you must manually include either the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) or [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentaion libraries in your OpenTelemetry configuration.
+These Instrumentation libraries have QueryString Redaction enabled by default.
+
+To change this behavior, you must set an environment variable to either "true" or "false".
+
+- ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is enabled by default. To disable, set this environment variable to "true".
+- Http Client Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_HTTPCLIENT_DISABLE_URL_QUERY_REDACTION`
+    Query String Redaction is enabled by default. To disable, set this environment variable to "true".
+
+### [Java](#tab/java)
+
+Add the following to the `applicationinsights.json` configuration file:
+
+```json
+{
+  "preview": {
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "url.query",
+            "pattern": "^.*$",
+            "replace": "REDACTED",
+            "action": "mask"
+          }
+        ]
+      },
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "url.full",
+            "pattern": "[?].*$",
+            "replace": "?REDACTED",
+            "action": "mask"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### [Java native](#tab/java-native)
+
+We're actively working in the OpenTelemetry community to support redaction.
+
+### [Node.js](#tab/nodejs)
+
+When using the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, query strings can be redacted via creating and applying a span processor to the distro configuration.
+
+```ts
+import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
+import { Context } from "@opentelemetry/api";
+import { ReadableSpan, Span, SpanProcessor } from "@opentelemetry/sdk-trace-base";
+import { SEMATTRS_HTTP_ROUTE, SEMATTRS_HTTP_TARGET, SEMATTRS_HTTP_URL } from "@opentelemetry/semantic-conventions";
+
+class RedactQueryStringProcessor implements SpanProcessor {
+  forceFlush(): Promise<void> {
+	return Promise.resolve();
+  }
+  onStart(span: Span, parentContext: Context): void {
+    return;
+  }
+  shutdown(): Promise<void> {
+	return Promise.resolve();
+  }
+  onEnd(span: ReadableSpan) {
+    const httpRouteIndex: number = String(span.attributes[SEMATTRS_HTTP_ROUTE]).indexOf('?');
+    const httpUrlIndex: number = String(span.attributes[SEMATTRS_HTTP_URL]).indexOf('?');
+    const httpTargetIndex: number = String(span.attributes[SEMATTRS_HTTP_TARGET]).indexOf('?');
+    if (httpRouteIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_ROUTE] = String(span.attributes[SEMATTRS_HTTP_ROUTE]).substring(0, httpRouteIndex);
+    }
+    if (httpUrlIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_URL] = String(span.attributes[SEMATTRS_HTTP_URL]).substring(0, httpUrlIndex);
+    }
+    if (httpTargetIndex !== -1) {
+      span.attributes[SEMATTRS_HTTP_TARGET] = String(span.attributes[SEMATTRS_HTTP_TARGET]).substring(0, httpTargetIndex);
+    }
+  }
+}
+
+const options: AzureMonitorOpenTelemetryOptions = {
+  azureMonitorExporterOptions: {
+      connectionString: <YOUR_CONNECTION_STRING>,
+  },
+  spanProcessors: [new RedactQueryStringProcessor()]
+};
+
+useAzureMonitor(options);
+```
+
+### [Python](#tab/python)
+
+We're actively working in the OpenTelemetry community to support redaction.

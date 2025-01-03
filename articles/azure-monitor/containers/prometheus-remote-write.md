@@ -3,7 +3,7 @@ title: Remote-write in Azure Monitor Managed Service for Prometheus
 description: Describes how to configure remote-write to send data from self-managed Prometheus running in your AKS cluster or Azure Arc-enabled Kubernetes cluster 
 author: bwren 
 ms.topic: conceptual
-ms.date: 4/18/2024
+ms.date: 09/16/2024
 ---
 
 # Azure Monitor managed service for Prometheus remote write
@@ -31,13 +31,13 @@ Configuring remote write depends on your cluster configuration and the type of a
 - Managed identity is recommended for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster. 
 - Microsoft Entra ID can be used for Azure Kubernetes service (AKS) and Azure Arc-enabled Kubernetes cluster and is required for Kubernetes cluster running in another cloud or on-premises.
 
-See the following articles for more information on how to configure remote write for Kubernetes clusters:
+For more information on configuring remote write for either user-assigned managed identity and Microsoft Entra ID application, see [Configure remote-write on Kubernetes for Prometheus Operator](../essentials/prometheus-remote-write-virtual-machines.md#prometheus-operator). This option can be used for self-managed Prometheus running in any environment.
 
-- (**Recommended**) [Send Prometheus data to Azure Monitor by directly configuring Prometheus remote-write](../essentials/prometheus-remote-write-virtual-machines.md#set-up-authentication-for-remote-write). This option can be used for self-managed Prometheus running in any environment. The supported authentication options are user-assigned managed identity and Microsoft Entra ID application.
+Remote write for Prometheus on Kubernetes clusters can also be configured using a side car container. See the following articles for more information on how to configure remote write for Kubernetes clusters using a side car container.
+
 - [Send Prometheus data from AKS to Azure Monitor using side car container with managed identity authentication](/azure/azure-monitor/containers/prometheus-remote-write-managed-identity)
 - [Send Prometheus data from AKS to Azure Monitor using side car container with Microsoft Entra ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-active-directory)
-- [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID pod-managed identity (preview) authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-ad-pod-identity)
-- [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID Workload ID (preview) authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-workload-identity)
+- [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID Workload ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-workload-identity)
 
 ## Remote write from Virtual Machines and Virtual Machine Scale sets 
 

@@ -5,7 +5,7 @@ author: EdB-MSFT
 ms.author: edbaynash
 ms.reviewer: guywild
 ms.topic: conceptual 
-ms.date: 08/13/2024
+ms.date: 11/14/2024
 
 # Customer intent: As an azure administrator, I want to understand the process of migrating from the MMA agent to the AMA agent.
 
@@ -18,10 +18,10 @@ ms.date: 08/13/2024
 Migration is a complex task. Start planning your migration to Azure Monitor Agent using the information in this article as a guide.
 
 > [!IMPORTANT]
-> The Log Analytics agent will be [retired on **August 31, 2024**](https://azure.microsoft.com/updates/were-retiring-the-log-analytics-agent-in-azure-monitor-on-31-august-2024/). The depreciation does not apply to MMA agent connected exclusively to an On-Prem SCOM installation.
+> The Log Analytics agent was [retired on **August 31, 2024**](https://azure.microsoft.com/updates/were-retiring-the-log-analytics-agent-in-azure-monitor-on-31-august-2024/). This deprecation does not apply to MMA agent connected exclusively to an on-premises SCOM installation.
 > 
 > You can expect the following when you use the MMA or OMS agent after August 31, 2024.
-> - **Data upload:** Cloud ingestion services will gradually reduce support for MMA agents, which may result in decreased support and potential compatibility issues for MMA agents over time.  Ingestion for MMA will be unchanged until February 1 2025.
+> - **Data upload:** Ingestion for MMA will be unchanged until February 1, 2025. After this date, cloud ingestion services will gradually reduce support for MMA agents, which may result in decreased support and potential compatibility issues for MMA agents over time. 
 > - **Installation:** The ability to install the legacy agents will be removed from the Azure Portal and installation policies for legacy agents will be removed. You can still install the MMA agents extension as well as perform offline installations.
 > - **Customer Support:** You will not be able to get support for legacy agent issues.
 > - **OS Support:** Support for new Linux or Windows distros, including service packs, won't be added after the deprecation of the legacy agents.
@@ -142,8 +142,8 @@ A SCOM Admin Management Pack exists and can help you remove the workspace config
 ## Known Migration Issues
 - IIS Logs: When IIS log collection is enabled, AMA might not populate the `sSiteName` column of the `W3CIISLog` table. This field gets collected by default when IIS log collection is enabled for the legacy agent. If you need to collect the `sSiteName` field using AMA, enable the `Service Name (s-sitename)` field in W3C logging of IIS. For steps to enable this field, see [Select W3C Fields to Log](/iis/manage/provisioning-and-managing-iis/configure-logging-in-iis#select-w3c-fields-to-log).
 - SQL Assessment Solution: This is now part of SQL best practice assessment. The deployment policies require one Log Analytics Workspace per subscription, which isn't the best practice recommended by the AMA team.
-- Microsoft Defender for cloud: is moving to an agent-less solution. Some features will not be ready by the deprecation date. Customers should stay on MMA for machines that use File Integrity Monitoring (FIM), Endpoint protection discovery recommendations, OS Misconfigurations (Azure Security Benchmark (ASB) recommendations) and Adaptive Application controls.
-- Update management is moving to an agent-less solution but will not be ready by the MMA depreciation date. Customers that use Update Management should stay on MMA until the new service Automated Update Manager is ready.
+- Microsoft Defender for cloud: is moving to an agent-less solution. Some features won't be ready by the deprecation date. Customers should stay on MMA for machines that use File Integrity Monitoring (FIM), Endpoint protection discovery recommendations, OS Misconfigurations (Azure Security Benchmark (ASB) recommendations) and Adaptive Application controls.
+- Update management is moving to an agent-less solution but won't be ready by the MMA depreciation date. Customers that use Update Management should stay on MMA until the new service Automated Update Manager is ready.
 
 
 

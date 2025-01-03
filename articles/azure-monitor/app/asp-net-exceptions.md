@@ -50,8 +50,6 @@ Open the app solution in Visual Studio. Run the app, either on your server or on
 
 Open the **Application Insights Search** telemetry window in Visual Studio. While debugging, select the **Application Insights** dropdown box.
 
-:::image type="content" source="./media/asp-net-exceptions/34.png" lightbox="./media/asp-net-exceptions/34.png" alt-text="Screenshot that shows right-clicking the project and choosing Application Insights.":::
-
 Select an exception report to show its stack trace. To open the relevant code file, select a line reference in the stack trace.
 
 If CodeLens is enabled, you'll see data about the exceptions:

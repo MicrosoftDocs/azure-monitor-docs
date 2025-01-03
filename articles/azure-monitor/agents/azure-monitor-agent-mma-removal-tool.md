@@ -5,7 +5,7 @@ ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: jeffwo
-ms.date: 07/30/2024
+ms.date: 11/14/2024
 ms.custom:
 # Customer intent: As an Azure account administrator, I want to use the available Azure Monitor tools to migrate from the Log Analytics Agent to the Azure Monitor Agent and track the status of the migration in my account.
 ---
@@ -19,7 +19,7 @@ The utility works in two steps:
 
 2. *Removal*: The utility removes the legacy agent from machines listed in the CSV file. You should edit the list of machine in the CSV file to ensure that only machines you want the agent removed from are present.
 
->!Note
+>[!NOTE]
 > The removal does not work on MMA agents that were installed using the MSI installer. It only works on the VM extensions.
 >
 
@@ -127,6 +127,7 @@ function GetArcServersWithLogAnalyticsAgentExtensionInstalled {
             foreach ($ext in $extensions) {
                 $extensionMap[$ext.type] = $ext.name
             }
+            $extensionName = ""
             if ($extensionMap.ContainsKey("MicrosoftMonitoringAgent")) {
                 $extensionName = $extensionMap["MicrosoftMonitoringAgent"]
             }
@@ -212,6 +213,7 @@ function GetVmsWithLogAnalyticsAgentExtensionInstalled
             foreach ($ext in $extensions) {
                 $extensionMap[$ext.type] = $ext.name
             }
+            $extensionName = ""
             if ($extensionMap.ContainsKey("MicrosoftMonitoringAgent")) {
                 $extensionName = $extensionMap["MicrosoftMonitoringAgent"]
             }
@@ -272,6 +274,7 @@ function GetVmssWithLogAnalyticsAgentExtensionInstalled
         foreach ($ext in $extensions) {
             $extensionMap[$ext.type] = $ext.name
         }
+        $extensionName = ""
         if ($extensionMap.ContainsKey("MicrosoftMonitoringAgent")) {
             $extensionName = $extensionMap["MicrosoftMonitoringAgent"]
         }

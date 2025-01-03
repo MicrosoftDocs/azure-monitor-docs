@@ -3,13 +3,14 @@
     {
       "docset_name": "azure-monitor",
       "build_source_folder": ".",
+      "build_output_subfolder": "azure-monitor",
+      "locale": "en-us",
+      "monikers": [],
+      "moniker_ranges": [],
       "xref_query_tags": [
         "/dotnet",
         "/python"
       ],
-      "build_output_subfolder": "azure-monitor",
-      "locale": "en-us",
-      "monikers": [],
       "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content"
@@ -43,20 +44,12 @@
       "branch_mapping": {}
     },
     {
-      "path_to_root": "azure-reference-other-repo",
-      "url": "https://github.com/MicrosoftDocs/azure-reference-other-pr",
-      "branch": "main",
-      "branch_mapping": {}
-    },
-    {
       "path_to_root": "azure-docs-pr",
       "url": "https://github.com/MicrosoftDocs/azure-docs-pr",
       "branch": "main",
       "branch_mapping": {}
     }
   ],
-  "git_repository_url_open_to_public_contributors": "https://github.com/MicrosoftDocs/azure-monitor-docs",
-  "git_repository_branch_open_to_public_contributors": "main",
   "branch_target_mapping": {},
   "targets": {}
 }

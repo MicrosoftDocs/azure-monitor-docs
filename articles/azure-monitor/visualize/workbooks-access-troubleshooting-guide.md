@@ -4,7 +4,7 @@ description: Learn how to access the deprecated troubleshooting guides in Azure 
 services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 09/17/2024
 ---
 
 # Access deprecated Troubleshooting guides in Azure Workbooks

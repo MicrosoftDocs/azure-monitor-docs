@@ -4,7 +4,7 @@ description: Learn about all the Azure Monitor workbook tile visualizations.
 services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 09/17/2024
 ---
 
 # Tile visualizations

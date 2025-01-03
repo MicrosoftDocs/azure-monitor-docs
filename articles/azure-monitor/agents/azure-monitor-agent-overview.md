@@ -4,7 +4,7 @@ description: Overview of the Azure Monitor Agent, which collects monitoring data
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/10/2024
+ms.date: 11/14/2024
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -19,7 +19,7 @@ Azure Monitor Agent (AMA) collects monitoring data from the guest operating syst
 See a short video introduction to Azure Monitor agent, which includes a demo of how to deploy the agent from the Azure portal:  [ITOps Talk: Azure Monitor Agent](https://www.youtube.com/watch?v=f8bIrFU8tCs)
 
 > [!NOTE]
-> Azure Monitor Agent replaces the [Legacy Agent](./log-analytics-agent.md) for Azure Monitor. The Log Analytics agent is on a **deprecation path** and won't be supported after **August 31, 2024**. Any new data centers brought online after January 1 2024 will not support the Log Analytics agent. If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate to the new Azure Monitor agent](./azure-monitor-agent-migration.md) prior to that date. 
+> Azure Monitor Agent replaces the [legacy Log Analytics agent](./log-analytics-agent.md) for Azure Monitor. The Log Analytics agent has been **deprecated** and has no support as of **August 31, 2024**. If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate now to the new Azure Monitor agent](./azure-monitor-agent-migration.md).
 
 ## Installation
 The Azure Monitor agent is one method of [data collection for Azure Monitor](../data-sources.md). It's installed on virtual machines running in Azure, in other clouds, or on-premises where it has access to local logs and performance data. Without the agent, you could only collect data from the host machine since you would have no access to the client operating system and running processes.

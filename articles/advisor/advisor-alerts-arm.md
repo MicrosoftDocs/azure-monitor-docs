@@ -5,7 +5,6 @@ ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-arm-template
 ms.date: 06/29/2020
 ---
-
 # Quickstart: Create Advisor alerts on new recommendations by using an ARM template
 
 This article shows you how to set up an alert for new recommendations from Azure Advisor by using an Azure Resource Manager template (ARM template).

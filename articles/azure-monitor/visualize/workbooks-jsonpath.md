@@ -4,7 +4,7 @@ description: Use JSONPath in Azure Monitor workbooks to transform the JSON data 
 services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 09/17/2024
 ---
 
 # Use JSONPath to transform JSON data in workbooks

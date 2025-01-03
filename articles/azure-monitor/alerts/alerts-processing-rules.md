@@ -28,7 +28,7 @@ Many customers set up a planned maintenance time for their resources, either on 
 
 You could suppress alert notifications by disabling the alert rules themselves at the beginning of the maintenance window, and reenable them after the maintenance is over. In that case, the alerts won't fire in the first place. That approach has several limitations:
 
-   * This approach is only practical if the scope of the alert rule is exactly the scope of the resources under maintenance. For example, a single alert rule might cover multiple resources, but only a few of those resources are going through maintenance. So, if you disable the alert rule, you won't be alerted when the remaining resources covered by that rule run into issues.
+* This approach is only practical if the scope of the alert rule is exactly the scope of the resources under maintenance. For example, a single alert rule might cover multiple resources, but only a few of those resources are going through maintenance. So, if you disable the alert rule, you won't be alerted when the remaining resources covered by that rule run into issues.
    * You might have many alert rules that cover the resource. Updating all of them is time consuming and error prone.
    * You might have some alerts that aren't created by an alert rule at all, like alerts from Azure Backup.  
 
@@ -42,7 +42,7 @@ Alert processing rules allow you to specify that logic in a single rule, instead
 
 ## Add action groups to all alert types
 
-Azure Monitor alert rules let you select which action groups will be triggered when their alerts are fired. However, not all Azure alert sources let you specify action groups. Some examples of such alerts include [Azure Backup alerts](/azure/backup/backup-azure-monitoring-built-in-monitor), [VM Insights guest health alerts](../vm/vminsights-health-alerts.md), [Azure Stack Edge](/azure/databox-online/azure-stack-edge-gpu-manage-device-event-alert-notifications), and Azure Stack Hub.
+Azure Monitor alert rules let you select which action groups will be triggered when their alerts are fired. However, not all Azure alert sources let you specify action groups. Some examples of such alerts include [Azure Backup alerts](/azure/backup/backup-azure-monitoring-built-in-monitor), [VM Insights guest health alerts](../vm/vminsights-health-alerts.md), [Azure Stack Edge](/azure/databox-online/azure-stack-edge-gpu-manage-device-event-alert-notifications), and [Azure Stack Hub](/azure-stack/operator/azure-stack-monitor-health?view=azs-2408).
 
 For those alert types, you can use alert processing rules to add action groups.
 
@@ -221,10 +221,10 @@ Before you manage alert processing rules with the Azure CLI, prepare your enviro
 
 ```azurecli
 # List all alert processing rules for a subscription
-az monitor alert-processing-rules list
+az monitor alert-processing-rule list
 
 # Get details of an alert processing rule
-az monitor alert-processing-rules show --resource-group RG1 --name MyRule
+az monitor alert-processing-rule show --resource-group RG1 --name MyRule
 
 # Update an alert processing rule
 az monitor alert-processing-rule update --resource-group RG1 --name MyRule --enabled true

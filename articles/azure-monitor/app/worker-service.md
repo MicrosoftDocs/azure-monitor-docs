@@ -4,7 +4,7 @@ description: Monitoring .NET Core/.NET Framework non-HTTP apps with Azure Monito
 ms.topic: conceptual
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
-ms.date: 01/31/2024
+ms.date: 12/07/2024
 ms.reviewer: cithomas
 ---
 
@@ -22,7 +22,7 @@ The [Application Insights SDK for Worker Service](https://www.nuget.org/packages
 
 ## Prerequisites
 
-You must have a valid Application Insights connection string. This string is required to send any telemetry to Application Insights. If you need to create a new Application Insights resource to get a connection string, see [Connection Strings](./sdk-connection-string.md).
+You must have a valid Application Insights connection string. This string is required to send any telemetry to Application Insights. If you need to create a new Application Insights resource to get a connection string, see [Connection Strings](./connection-strings.md).
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
@@ -41,7 +41,7 @@ You must have a valid Application Insights connection string. This string is req
 
    :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot displaying Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
-1. Retrieve an `ILogger` instance or `TelemetryClient` instance from the Dependency Injection (DI) container by calling `serviceProvider.GetRequiredService<TelemetryClient>();` or by using Constructor Injection. This step will trigger setting up of `TelemetryConfiguration` and auto-collection modules.
+1. Retrieve an `ILogger` instance or `TelemetryClient` instance from the Dependency Injection (DI) container by calling `serviceProvider.GetRequiredService<TelemetryClient>();` or by using Constructor Injection. This step triggers setting up of `TelemetryConfiguration` and autocollection modules.
 
 Specific instructions for each type of application are described in the following sections.
 
@@ -307,7 +307,7 @@ Application Insights collects these ILogger logs, with a severity of Warning or 
 
 This custom operation of `RequestTelemetry` can be thought of as the equivalent of an incoming web request in a typical web application. It isn't necessary to use an operation, but it fits best with the [Application Insights correlation data model](distributed-trace-data.md). `RequestTelemetry` acts as the parent operation and every telemetry generated inside the worker iteration is treated as logically belonging to the same operation.
 
-This approach also ensures all the telemetry generated, both automatic and manual, will have the same `operation_id`. Because sampling is based on `operation_id`, the sampling algorithm either keeps or drops all the telemetry from a single iteration.
+This approach also ensures all the telemetry generated, both automatic and manual, has the same `operation_id`. Because sampling is based on `operation_id`, the sampling algorithm either keeps or drops all the telemetry from a single iteration.
 
 The following sections list the full telemetry automatically collected by Application Insights.
 
@@ -354,11 +354,11 @@ Dependency collection is enabled by default. The article [Dependency tracking in
 
 ### EventCounter
 
-`EventCounterCollectionModule` is enabled by default, and it will collect a default set of counters from [.NET](/dotnet/fundamentals/) apps. The [EventCounter](eventcounters.md) tutorial lists the default set of counters collected. It also has instructions on how to customize the list.
+`EventCounterCollectionModule` is enabled by default, and it collects a default set of counters from [.NET](/dotnet/fundamentals/) apps. The [EventCounter](eventcounters.md) tutorial lists the default set of counters collected. It also has instructions on how to customize the list.
 
 ### Manually track other telemetry
 
-Although the SDK automatically collects telemetry as explained, in most cases, you'll need to send other telemetry to Application Insights. The recommended way to track other telemetry is by obtaining an instance of `TelemetryClient` from Dependency Injection and then calling one of the supported `TrackXXX()` [API](api-custom-events-metrics.md) methods on it. Another typical use case is [custom tracking of operations](custom-operations-tracking.md). This approach is demonstrated in the preceding worker examples.
+Although the SDK automatically collects telemetry as explained, in most cases, you need to send other telemetry to Application Insights. The recommended way to track other telemetry is by obtaining an instance of `TelemetryClient` from Dependency Injection and then calling one of the supported `TrackXXX()` [API](api-custom-events-metrics.md) methods on it. Another typical use case is [custom tracking of operations](custom-operations-tracking.md). This approach is demonstrated in the preceding worker examples.
 
 ## Configure the Application Insights SDK
 
@@ -398,7 +398,7 @@ The following table lists commonly used settings in `ApplicationInsightsServiceO
 |EnableAdaptiveSampling | Enable/Disable Adaptive Sampling. | True
 |EnableHeartbeat | Enable/Disable the Heartbeats feature, which periodically (15-min default) sends a custom metric named "HeartBeatState" with information about the runtime like .NET version and Azure environment, if applicable. | True
 |AddAutoCollectedMetricExtractor | Enable/Disable the AutoCollectedMetrics extractor, which is a telemetry processor that sends preaggregated metrics about Requests/Dependencies before sampling takes place. | True
-|EnableDiagnosticsTelemetryModule | Enable/Disable `DiagnosticsTelemetryModule`. Disabling this setting will cause the following settings to be ignored: `EnableHeartbeat`, `EnableAzureInstanceMetadataTelemetryModule`, and `EnableAppServicesHeartbeatTelemetryModule`. | True
+|EnableDiagnosticsTelemetryModule | Enable/Disable `DiagnosticsTelemetryModule`. Disabling this setting causes the following settings to be ignored: `EnableHeartbeat`, `EnableAzureInstanceMetadataTelemetryModule`, and `EnableAppServicesHeartbeatTelemetryModule`. | True
 
 For the most up-to-date list, see the [configurable settings in `ApplicationInsightsServiceOptions`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs).
 
@@ -425,7 +425,7 @@ builder.Services.Configure<TelemetryConfiguration>(telemetryConfiguration =>
    // telemetryProcessorChainBuilder.UseAdaptiveSampling(maxTelemetryItemsPerSecond:5, excludedTypes: "Dependency");
 });
 
-builder.Services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+builder.Services.AddApplicationInsightsTelemetryWorkerService(new ApplicationInsightsServiceOptions
 {
    EnableAdaptiveSampling = false,
 });
@@ -491,7 +491,7 @@ You can add custom telemetry processors to `TelemetryConfiguration` by using the
 
 Application Insights uses telemetry modules to automatically collect telemetry about specific workloads without requiring manual tracking.
 
-The following auto-collection modules are enabled by default. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
+The following autocollection modules are enabled by default. These modules are responsible for automatically collecting telemetry. You can disable or configure them to alter their default behavior.
 
 * `DependencyTrackingTelemetryModule`
 * `PerformanceCollectorModule`
@@ -575,7 +575,7 @@ This section provides answers to common questions.
 
 ### Can HostedServices inside a .NET Core app using the AspNetCore package have TelemetryClient injected to it?
 
-Yes. The configuration will be shared with the rest of the web application.
+Yes, the configuration is shared with the rest of the web application.
 
 ### How can I track telemetry that's not automatically collected?
 
@@ -583,7 +583,7 @@ Get an instance of `TelemetryClient` by using constructor injection and call the
 
 ### Can I use Visual Studio IDE to onboard Application Insights to a Worker Service project?
 
-Visual Studio IDE onboarding is currently supported only for ASP.NET/ASP.NET Core applications. This document will be updated when Visual Studio ships support for onboarding Worker Service applications.
+Visual Studio IDE onboarding is currently supported only for ASP.NET/ASP.NET Core applications. This document is updated when Visual Studio ships support for onboarding Worker Service applications.
 
 ### Can I enable Application Insights monitoring by using tools like Azure Monitor Application Insights Agent (formerly Status Monitor v2)?
 
@@ -632,6 +632,6 @@ For the latest updates and bug fixes, [see the Release Notes](./release-notes.md
 ## Next steps
 
 * [Use the API](./api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
-* [Track more dependencies not automatically tracked](asp-net-dependencies.md#dependency-auto-collection).
-* [Enrich or filter auto-collected telemetry](./api-filtering-sampling.md).
+* [Track more dependencies not automatically tracked](asp-net-dependencies.md#dependency-autocollection).
+* [Enrich or filter autocollected telemetry](./api-filtering-sampling.md).
 * [Dependency Injection in ASP.NET Core](/aspnet/core/fundamentals/dependency-injection).

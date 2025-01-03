@@ -4,7 +4,7 @@ description: Learn how to secure your workbook by saving the workbook content to
 services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 09/17/2024
 ---
 
 # Bring your own storage to save workbooks
@@ -34,6 +34,8 @@ There are times when you might have a query or some business logic that you want
 1. After you've selected your storage options, select **Save** to save your workbook.
 
 ## Limitations
+
+- The storage account cannot be a Page Blob Premium Storage Account as this is not supported. It must be a standard storage account, or a premium Block Blob Storage Account. 
 
 - When you save to custom storage, you can't pin individual parts of the workbook to a dashboard because the individual pins would contain protected information in the dashboard itself. When you use custom storage, you can only pin links to the workbook itself to dashboards.
 - After a workbook has been saved to custom storage, it will always be saved to custom storage, and this feature can't be turned off. To save elsewhere, you can use **Save As** and elect to not save the copy to custom storage.

@@ -6,7 +6,7 @@ ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio
 ms.topic: how-to
-ms.date: 11/10/2021
+ms.date: 10/14/2024
 ms.custom: template-how-to, devx-track-azurecli
 ms.devlang: azurecli
 ---
@@ -107,7 +107,7 @@ Now you can create your experiment. A chaos experiment defines the actions you w
             "targets": [
               {
                 "type": "ChaosTarget",
-                "id": "/subscriptions/b65f2fec-d6b2-4edd-817e-9339d8c01dc4/resourceGroups/chaosstudiodemo/providers/Microsoft.DocumentDB/databaseAccounts/myDB/providers/Microsoft.Chaos/targets/Microsoft-CosmosDB"
+                "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/chaosstudiodemo/providers/Microsoft.DocumentDB/databaseAccounts/myDB/providers/Microsoft.Chaos/targets/Microsoft-CosmosDB"
               }
             ]
           }

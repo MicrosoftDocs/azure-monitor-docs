@@ -1,19 +1,19 @@
 ---
-title: Add, modify, and filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
-description: This article provides guidance on how to add, modify, and filter OpenTelemetry for applications using Azure Monitor.
+title: Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
+description: This article provides guidance on how to add and modify OpenTelemetry for applications using Azure Monitor.
 ms.topic: conceptual
-ms.date: 12/15/2023
+ms.date: 12/07/2024
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 ms.reviewer: mmcc
 ---
 
-# Add, modify, and filter OpenTelemetry
+# Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 
-This article provides guidance on how to add, modify, and filter OpenTelemetry for applications using [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
+This article provides guidance on how to add and modify OpenTelemetry for applications using [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
 
-To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](#frequently-asked-questions).
+To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
 
@@ -34,6 +34,7 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md) ¹²
 * [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.SqlClient/README.md) ¹
+* [Azure SDK](https://github.com/Azure/azure-sdk)
 
 **Logging**
 
@@ -44,6 +45,32 @@ For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/
 #### [.NET](#tab/net)
 
 The Azure Monitor Exporter doesn't include any instrumentation libraries.
+
+You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk) using the following code sample to manually subscribe to the source.
+
+```csharp
+// Create an OpenTelemetry tracer provider builder.
+// It is important to keep the TracerProvider instance active throughout the process lifetime.
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+	// The following line subscribes to dependencies emitted from Azure SDKs
+    .AddSource("Azure.*")
+    .AddAzureMonitorTraceExporter()
+    .AddHttpClientInstrumentation(o => o.FilterHttpRequestMessage = (_) =>
+	{
+    	// Azure SDKs create their own client span before calling the service using HttpClient
+		// In this case, we would see two spans corresponding to the same operation
+		// 1) created by Azure SDK 2) created by HttpClient
+		// To prevent this duplication we are filtering the span from HttpClient
+		// as span from Azure SDK contains all relevant information needed.
+		var parentActivity = Activity.Current?.Parent;
+		if (parentActivity != null && parentActivity.Source.Name.Equals("Azure.Core.Http"))
+		{
+		    return false;
+		}
+		return true;
+	})
+    .Build();
+```
 
 #### [Java](#tab/java)
 
@@ -127,8 +154,8 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * [Azure Storage - Queues](/java/api/overview/azure/storage-queue-readme) 12.9.0+
 * [Azure Text Analytics](/java/api/overview/azure/ai-textanalytics-readme) 5.0.4+
 
+```
 [//]: # "Azure Cosmos DB 4.22.0+ due to https://github.com/Azure/azure-sdk-for-java/pull/25571"
-
 [//]: # "the remaining above names and links scraped from https://azure.github.io/azure-sdk/releases/latest/java.html"
 [//]: # "and version synched manually against the oldest version in maven central built on azure-core 1.14.0"
 [//]: # ""
@@ -146,6 +173,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 [//]: # "  str += '* [' + name + '](' + link + ') ' + version + '\n'"
 [//]: # "}"
 [//]: # "console.log(str)"
+```
 
 #### [Java native](#tab/java-native)
 
@@ -161,6 +189,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * R2DBC
 * MongoDB
 * Kafka
+* [Azure SDK](https://github.com/Azure/azure-sdk)
 
 **Metrics**
 
@@ -428,7 +457,7 @@ The following table represents the currently supported custom telemetry types:
 
 ### Add custom metrics
 
-In this context, custom metrics refers to manually instrumenting your code to collect additional metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
+In this context, the custom metrics term refers to manually instrumenting your code to collect additional metrics beyond what the OpenTelemetry Instrumentation Libraries automatically collect.
 
 The OpenTelemetry API offers six metric "instruments" to cover various metric scenarios and you need to pick the correct "Aggregation Type" when visualizing metrics in Metrics Explorer. This requirement is true when using the OpenTelemetry Metric API to send metrics and when using an instrumentation library.
 
@@ -629,11 +658,17 @@ histogram.record(100, { "testKey2": "testValue" });
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
 
+import os
+
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
 # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
 
 # Get a meter provider and a meter with the name "otel_azure_monitor_histogram_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_histogram_demo")
@@ -835,11 +870,18 @@ counter.add(3, { "testKey": "testValue2" });
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
 
+import os
+
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
 # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
+
 # Get a meter provider and a meter with the name "otel_azure_monitor_counter_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_counter_demo")
 
@@ -1048,6 +1090,7 @@ gauge.addCallback((observableResult: ObservableResult) => {
 ```python
 # Import the necessary packages.
 from typing import Iterable
+import os
 
 from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import metrics
@@ -1058,6 +1101,10 @@ from opentelemetry.metrics import CallbackOptions, Observation
 configure_azure_monitor(
     connection_string="<your-connection-string>",
 )
+
+# Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
+# Specify the namespace name using get_meter("namespace-name")
+os.environ["APPLICATIONINSIGHTS_METRIC_NAMESPACE_OPT_IN"] = "true"
 
 # Get a meter provider and a meter with the name "otel_azure_monitor_gauge_demo".
 meter = metrics.get_meter_provider().get_meter("otel_azure_monitor_gauge_demo")
@@ -1225,6 +1272,9 @@ span.recordException(e);
 
 #### [Node.js](#tab/nodejs)
 
+The Node.js SDK will only export these manually recorded span-based exceptions to Application Insights as exceptions if they are recorded on the children of
+remote, internal spans, or if the exception is recorded on a top level span.
+
 ```javascript
 // Import the Azure Monitor OpenTelemetry plugin and OpenTelemetry API
 const { useAzureMonitor } = require("@azure/monitor-opentelemetry");
@@ -1240,7 +1290,7 @@ const tracer = trace.getTracer("testTracer");
 let span = tracer.startSpan("hello");
 
 // Try to throw an error
-try{
+try {
     throw new Error("Test Error");
 }
 
@@ -2058,7 +2108,7 @@ You can populate the _client_IP_ field for requests by setting an attribute on t
 
 ##### [ASP.NET Core](#tab/aspnetcore)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
 
 ```C#
 // Add the client IP address to the activity as a tag.
@@ -2068,7 +2118,7 @@ activity.SetTag("client.address", "<IP Address>");
 
 ##### [.NET](#tab/net)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `ActivityEnrichingProcessor.cs`:
 
 ```C#
 // Add the client IP address to the activity as a tag.
@@ -2086,7 +2136,7 @@ This field is automatically populated.
 
 ##### [Node.js](#tab/nodejs)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```typescript
 ...
@@ -2105,7 +2155,7 @@ class SpanEnrichingProcessor implements SpanProcessor {
 
 ##### [Python](#tab/python)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `SpanEnrichingProcessor.py`:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `SpanEnrichingProcessor.py`:
 
 ```python
 # Set the `http.client_ip` attribute of the span to the specified IP address.
@@ -2123,7 +2173,7 @@ You can populate the _user_Id_ or _user_AuthenticatedId_ field for requests by u
 
 ##### [ASP.NET Core](#tab/aspnetcore)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span):
+Use the [custom property example](#add-a-custom-property-to-a-span):
 
 ```csharp
 // Add the user ID to the activity as a tag, but only if the activity is not null.
@@ -2132,7 +2182,7 @@ activity?.SetTag("enduser.id", "<User Id>");
 
 ##### [.NET](#tab/net)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span):
+Use the [custom property example](#add-a-custom-property-to-a-span):
 
 ```csharp
 // Add the user ID to the activity as a tag, but only if the activity is not null.
@@ -2175,7 +2225,7 @@ Span.current().setAttribute("enduser.id", "myuser");
 
 ##### [Node.js](#tab/nodejs)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```typescript
 ...
@@ -2194,7 +2244,7 @@ class SpanEnrichingProcessor implements SpanProcessor {
 
 ##### [Python](#tab/python)
 
-Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
+Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
 
 ```python
 # Set the `enduser.id` attribute of the span to the specified user ID.
@@ -2266,269 +2316,7 @@ logger.warning("WARNING: Warning log with properties", extra={"key1": "value1"})
 
 ---
 
-## Filter telemetry
 
-You might use the following ways to filter out telemetry before it leaves your application.
-
-### [ASP.NET Core](#tab/aspnetcore)
-
-1. Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
-
-    * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
-    * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
-
-1. Use a custom processor:
-    
-    > [!TIP]
-    > Add the processor shown here *before* adding Azure Monitor.
-
-    ```csharp
-    // Create an ASP.NET Core application builder.
-    var builder = WebApplication.CreateBuilder(args);
-
-    // Configure the OpenTelemetry tracer provider to add a new processor named ActivityFilteringProcessor.
-    builder.Services.ConfigureOpenTelemetryTracerProvider((sp, builder) => builder.AddProcessor(new ActivityFilteringProcessor()));
-    // Configure the OpenTelemetry tracer provider to add a new source named "ActivitySourceName".
-    builder.Services.ConfigureOpenTelemetryTracerProvider((sp, builder) => builder.AddSource("ActivitySourceName"));
-    // Add the Azure Monitor telemetry service to the application. This service will collect and send telemetry data to Azure Monitor.
-    builder.Services.AddOpenTelemetry().UseAzureMonitor();
-
-    // Build the ASP.NET Core application.
-    var app = builder.Build();
-
-    // Start the ASP.NET Core application.
-    app.Run();
-    ```
-    
-    Add `ActivityFilteringProcessor.cs` to your project with the following code:
-    
-    ```csharp
-    public class ActivityFilteringProcessor : BaseProcessor<Activity>
-    {
-        // The OnStart method is called when an activity is started. This is the ideal place to filter activities.
-        public override void OnStart(Activity activity)
-        {
-            // prevents all exporters from exporting internal activities
-            if (activity.Kind == ActivityKind.Internal)
-            {
-                activity.IsAllDataRequested = false;
-            }
-        }
-    }
-    ```
-
-1. If a particular source isn't explicitly added by using `AddSource("ActivitySourceName")`, then none of the activities created by using that source are exported.
-
-### [.NET](#tab/net)
-
-1. Many instrumentation libraries provide a filter option. For guidance, see the readme files of individual instrumentation libraries:
-
-    * [ASP.NET](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/Instrumentation.AspNet-1.0.0-rc9.8/src/OpenTelemetry.Instrumentation.AspNet/README.md#filter)
-    * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
-    * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
-
-1. Use a custom processor:
-    
-    ```csharp
-    // Create an OpenTelemetry tracer provider builder.
-    // It is important to keep the TracerProvider instance active throughout the process lifetime.
-    using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-            .AddSource("OTel.AzureMonitor.Demo") // Add a source named "OTel.AzureMonitor.Demo".
-            .AddProcessor(new ActivityFilteringProcessor()) // Add a new processor named ActivityFilteringProcessor.
-            .AddAzureMonitorTraceExporter() // Add the Azure Monitor trace exporter.
-            .Build();
-    ```
-    
-    Add `ActivityFilteringProcessor.cs` to your project with the following code:
-    
-    ```csharp
-    public class ActivityFilteringProcessor : BaseProcessor<Activity>
-    {
-        // The OnStart method is called when an activity is started. This is the ideal place to filter activities.
-        public override void OnStart(Activity activity)
-        {
-            // prevents all exporters from exporting internal activities
-            if (activity.Kind == ActivityKind.Internal)
-            {
-                activity.IsAllDataRequested = false;
-            }
-        }
-    }
-    ```
-
-1. If a particular source isn't explicitly added by using `AddSource("ActivitySourceName")`, then none of the activities created by using that source are exported.
-
-### [Java](#tab/java)
-
-See [sampling overrides](java-standalone-config.md#sampling-overrides) and [telemetry processors](java-standalone-telemetry-processors.md).
-
-### [Java native](#tab/java-native)
-
-It's not possible to filter telemetry in Java native.
-
-### [Node.js](#tab/nodejs)
-
-1. Exclude the URL option provided by many HTTP instrumentation libraries.
-
-    The following example shows how to exclude a certain URL from being tracked by using the [HTTP/HTTPS instrumentation library](https://github.com/open-telemetry/opentelemetry-js/tree/main/experimental/packages/opentelemetry-instrumentation-http):
-    
-    ```typescript
-    // Import the useAzureMonitor function and the ApplicationInsightsOptions class from the @azure/monitor-opentelemetry package.
-    const { useAzureMonitor, ApplicationInsightsOptions } = require("@azure/monitor-opentelemetry");
-
-    // Import the HttpInstrumentationConfig class from the @opentelemetry/instrumentation-http package.
-    const { HttpInstrumentationConfig }= require("@opentelemetry/instrumentation-http");
-
-    // Import the IncomingMessage and RequestOptions classes from the http and https packages, respectively.
-    const { IncomingMessage } = require("http");
-    const { RequestOptions } = require("https");
-
-    // Create a new HttpInstrumentationConfig object.
-    const httpInstrumentationConfig: HttpInstrumentationConfig = {
-      enabled: true,
-      ignoreIncomingRequestHook: (request: IncomingMessage) => {
-        // Ignore OPTIONS incoming requests.
-        if (request.method === 'OPTIONS') {
-          return true;
-        }
-        return false;
-      },
-      ignoreOutgoingRequestHook: (options: RequestOptions) => {
-        // Ignore outgoing requests with the /test path.
-        if (options.path === '/test') {
-          return true;
-        }
-        return false;
-      }
-    };
-
-    // Create a new ApplicationInsightsOptions object.
-    const config: ApplicationInsightsOptions = {
-      instrumentationOptions: {
-        http: {
-          httpInstrumentationConfig
-        }
-      }
-    };
-
-    // Enable Azure Monitor integration using the useAzureMonitor function and the ApplicationInsightsOptions object.
-    useAzureMonitor(config);
-    ```
-
-1. Use a custom processor. You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
-
-    Use the add [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
-
-    ```typescript
-    // Import the necessary packages.
-    const { SpanKind, TraceFlags } = require("@opentelemetry/api");
-    const { ReadableSpan, Span, SpanProcessor } = require("@opentelemetry/sdk-trace-base");
-
-    // Create a new SpanEnrichingProcessor class.
-    class SpanEnrichingProcessor implements SpanProcessor {
-        forceFlush(): Promise<void> {
-            return Promise.resolve();
-        }
-
-        shutdown(): Promise<void> {
-            return Promise.resolve();
-        }
-
-        onStart(_span: Span): void {}
-
-        onEnd(span) {
-            // If the span is an internal span, set the trace flags to NONE.
-            if(span.kind == SpanKind.INTERNAL){
-            span.spanContext().traceFlags = TraceFlags.NONE;
-            }
-        }
-    }
-    ```
-
-### [Python](#tab/python)
-
-1. Exclude the URL with the `OTEL_PYTHON_EXCLUDED_URLS` environment variable:
-
-    ```
-    export OTEL_PYTHON_EXCLUDED_URLS="http://localhost:8080/ignore"
-    ```
-    Doing so excludes the endpoint shown in the following Flask example:
-    
-    ```python
-    ...
-    # Import the Flask and Azure Monitor OpenTelemetry SDK libraries.
-    import flask
-    from azure.monitor.opentelemetry import configure_azure_monitor
-    
-    # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-    # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
-    configure_azure_monitor(
-        connection_string="<your-connection-string>",
-    )
-    
-    # Create a Flask application.
-    app = flask.Flask(__name__)
-
-    # Define a route. Requests sent to this endpoint will not be tracked due to
-    # flask_config configuration.
-    @app.route("/ignore")
-    def ignore():
-        return "Request received but not tracked."
-    ...
-    ```
-
-1. Use a custom processor. You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`:
-    
-    ```python
-    ...
-    # Import the necessary libraries.
-    from azure.monitor.opentelemetry import configure_azure_monitor
-    from opentelemetry import trace
-
-    # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-    # Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
-    configure_azure_monitor(
-        connection_string="<your-connection-string>",
-        # Configure the custom span processors to include span filter processor.
-        span_processors=[span_filter_processor],
-    )
-
-    ...
-    ```
-    
-    Add `SpanFilteringProcessor` to your project with the following code:
-    
-    ```python
-    # Import the necessary libraries.
-    from opentelemetry.trace import SpanContext, SpanKind, TraceFlags
-    from opentelemetry.sdk.trace import SpanProcessor
-    
-    # Define a custom span processor called `SpanFilteringProcessor`.
-    class SpanFilteringProcessor(SpanProcessor):
-    
-        # Prevents exporting spans from internal activities.
-        def on_start(self, span, parent_context):
-            # Check if the span is an internal activity.
-            if span._kind is SpanKind.INTERNAL:
-                # Create a new span context with the following properties:
-                #   * The trace ID is the same as the trace ID of the original span.
-                #   * The span ID is the same as the span ID of the original span.
-                #   * The is_remote property is set to `False`.
-                #   * The trace flags are set to `DEFAULT`.
-                #   * The trace state is the same as the trace state of the original span.
-                span._context = SpanContext(
-                    span.context.trace_id,
-                    span.context.span_id,
-                    span.context.is_remote,
-                    TraceFlags(TraceFlags.DEFAULT),
-                    span.context.trace_state,
-                )
-    
-    ```
-
----
-    
-<!-- For more information, see [GitHub Repo](link). -->
 
 ## Get the trace ID or span ID
     
@@ -2636,6 +2424,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 #### [.NET](#tab/net)
 
@@ -2645,6 +2434,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/tests/Azure.Monitor.OpenTelemetry.Exporter.Demo).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Java](#tab/java)
 
@@ -2653,6 +2443,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * To enable usage experiences, see [Enable web or browser user monitoring](javascript.md).
 * See the [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Java native](#tab/java-native)
 
@@ -2660,6 +2451,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To review the source code, see [Azure Monitor OpenTelemetry Distro in Spring Boot native image Java application](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-monitor) and [Quarkus OpenTelemetry Exporter for Azure](https://github.com/quarkiverse/quarkus-opentelemetry-exporter/tree/main/quarkus-opentelemetry-exporter-azure).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * See the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Node.js](#tab/nodejs)
 
@@ -2668,6 +2460,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To become more familiar with Azure Monitor Application Insights and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-node.js).
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry JavaScript GitHub repository](https://github.com/open-telemetry/opentelemetry-js).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Python](#tab/python)
 
@@ -2679,9 +2472,6 @@ span_id = trace.get_current_span().get_span_context().span_id
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python).
 * To see available OpenTelemetry instrumentations and components, see the [OpenTelemetry Contributor Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python-contrib).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ---
-
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-faqs](../includes/azure-monitor-app-insights-opentelemetry-faqs.md)]
-
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](../includes/azure-monitor-app-insights-opentelemetry-support.md)]

@@ -7,7 +7,9 @@ ms.date: 10/23/2023
 ---
 
 # Set daily cap on Log Analytics workspace
-A daily cap on a Log Analytics workspace allows you to avoid unexpected increases in charges for data ingestion by stopping collection of billable data for the rest of the day whenever a specified threshold is reached. This article describes how the daily cap works and how to configure one in your workspace.
+A daily cap on a Log Analytics workspace allows you to reduce unexpected increases in charges for data ingestion by stopping collection of billable log data for tables in the Analytics or Basic [table plans](/azure/azure-monitor/logs/manage-logs-tables#table-plan) for the rest a 24-hour period whenever your specified threshold is reached.  Tables in the Auxiliary table plan are not subject to any daily cap. 
+
+This article describes how the daily cap works and how to configure one in your workspace.
 
 > [!IMPORTANT]
 > You should use care when setting a daily cap because when data collection stops, your ability to observe and receive alerts when the health conditions of your resources will be impacted. It can also impact other Azure services and solutions whose functionality may depend on up-to-date data being available in the workspace. Your goal shouldn't be to regularly hit the daily limit but rather use it as an infrequent method to avoid unplanned charges resulting from an unexpected increase in the volume of data collected.

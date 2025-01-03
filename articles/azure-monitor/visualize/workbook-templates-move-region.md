@@ -6,7 +6,7 @@ manager: acearun
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
 ms.custom: subject-moving-resources
-ms.date: 06/21/2023
+ms.date: 09/17/2024
 ms.reviewer: jgardner
 
 #Customer intent: As an Azure service administrator, I want to move my resources to another Azure region

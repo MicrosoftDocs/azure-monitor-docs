@@ -4,7 +4,7 @@ description: Learn how to use virtual network injection with Azure Chaos Studio.
 services: chaos-studio
 author: prashabora
 ms.topic: conceptual
-ms.date: 10/26/2022
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.service: azure-chaos-studio
@@ -23,7 +23,7 @@ We are also now excited to share that Chaos Studio supports running **agent-base
 Currently, you can only enable certain resource types for Chaos Studio virtual network injection:
 
 * **Azure Kubernetes Service (AKS)** targets can be enabled with virtual network injection through the Azure portal and the Azure CLI. All AKS Chaos Mesh faults can be used.
-* **Azure Key Vault** targets can be enabled with virtual network injection through the Azure CLI. The faults that can be used with virtual network injection are Disable Certificate, Increment Certificate Version, and Update Certificate Policy.
+* **Azure Key Vault** targets can be enabled with virtual network injection through the Azure portal and the Azure CLI. The faults that can be used with virtual network injection are Disable Certificate, Increment Certificate Version, and Update Certificate Policy.
 
 ## Enable virtual network injection
 To use Chaos Studio with virtual network injection, you must meet the following requirements.
@@ -128,7 +128,7 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 
 1. When you enable targets for the AKS cluster so that you can use it in chaos experiments, set the `properties.subnets.containerSubnetId` and `properties.subnets.relaySubnetId` properties by using the new subnets you created in step 3.
 
-    Replace `$SUBSCRIPTION_ID` with your Azure subscription ID. Replace `$RESOURCE_GROUP` and `$AKS_CLUSTER` with the resource group name and your AKS cluster resource name. Also, replace `$AKS_INFRA_RESOURCE_GROUP` and `$AKS_VNET` with your AKS infrastructure resource group name and virtual network name. Replace `$URL` with the corresponding `https://management.azure.com/` URL used for onboarding the target.
+    Replace `$SUBSCRIPTION_ID` with your Azure subscription ID. Replace `$RESOURCE_GROUP` and `$AKS_CLUSTER` with the resource group name and your AKS cluster resource name. Also, replace `$AKS_INFRA_RESOURCE_GROUP` and `$AKS_VNET` with your AKS infrastructure resource group name and virtual network name. Replace `$URL` with the corresponding URL used for onboarding the target resource. To find this URL, reference [Onboarding a resource as a Chaos Studio target](./chaos-studio-targets-capabilities.md).
 
     ```azurecli
     CONTAINER_SUBNET_ID=/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$AKS_INFRA_RESOURCE_GROUP/providers/Microsoft.Network/virtualNetworks/$AKS_VNET/subnets/ChaosStudioContainerSubnet
@@ -158,7 +158,7 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 ## Limitations
 * Virtual network injection is currently only possible in subscriptions/regions where Azure Container Instances and Azure Relay are available.
 * When you create a Target resource that you enable with virtual network injection, you need `Microsoft.Network/virtualNetworks/subnets/write` access to the virtual network. For example, if the AKS cluster is deployed to virtual network_A, then you must have permissions to create subnets in virtual network_A to enable virtual network injection for the AKS cluster.
-
+* If your organization has a policy requiring resource tags, this will fail when using Chaos Studio with Private Networking. You will need to disable this policy for the time being until our fix for this issue is rolled out. 
 <!--
 ![Target resource with virtual network injection](images/chaos-studio-rp-vnet-injection.png)
 -->

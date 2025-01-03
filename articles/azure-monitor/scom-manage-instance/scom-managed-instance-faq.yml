@@ -2,7 +2,7 @@
 metadata:
   title: Azure Monitor SCOM Managed Instance - FAQ
   description: This article answers frequently asked questions about Azure Monitor SCOM Managed Instance.
-  ms.date: 06/17/2024
+  ms.date: 09/12/2024
   ms.topic: faq
   ms.service: azure-monitor
   ms.subservice: operations-manager-managed-instance
@@ -60,32 +60,6 @@ sections:
           3. Select **Enter details**. **Quota details** page opens on the right pane. In *Region*, choose the desired region and change the limits as desired (10 subnets and 500 vCores should suffice). Select **Save and continue** and then select **Next: Review + create >>** to raise the ticket. It might take 24 hours for the ticket to get resolved. Wait for it to get resolved before proceeding to create the SQL MI instance.
           <br>
           For more information, see [Which Azure regions are supported?](/azure/azure-sql/managed-instance/frequently-asked-questions-faq?view=azuresql#which-azure-regions-are-supported).
-  - name: Azure role-based access control (RBAC)
-    questions:
-      - question: |
-          What is Azure RBAC?
-        answer: |
-          Azure RBAC is the role-based access control system that Azure follows while granting permissions. For more information, see [Azure role-based access control](/azure/role-based-access-control/overview).
-          <br>
-          Azure RBAC is divided into Azure roles and Microsoft Entra ID roles. At a high level, Azure roles control permissions to manage Azure resources, while Microsoft Entra ID roles control permissions to manage Microsoft Entra ID Directory resources. The following table compares some of the differences.
-           |**Azure roles**|**Microsoft Entra ID roles**|
-           |---|---|
-           |Manage access to Azure resources|Manage access to Microsoft Entra ID resources|
-           |Supports custom roles|Supports custom roles|
-           |Scope can be specified at multiple levels (management group, subscription, resource group, resource)|Scope can be specified at the tenant level (organization-wide), administrative unit, or on an individual object (for example, a specific application)|
-           |Role information can be accessed in Azure portal, Azure CLI, Azure PowerShell, Azure Resource Manager templates, REST API|Role information can be accessed in Azure admin portal, Microsoft 365, admin center, Microsoft Graph, Microsoft Entra ID PowerShell|
-          <br>
-          Below is the high-level view of how the classic subscription administrator roles, Azure roles, and Azure AD roles are related.
-           :::image type="Microsoft Entra ID roles" source="media/scom-managed-instance-faq/azure-active-directory-roles.png" alt-text="Screenshot of Microsoft Entra ID roles.":::
-      - question: |
-          What is a Global Administrator role?
-        answer: |
-          Users with the Global administrator role have access to all administrative features in Microsoft Entra ID and services that use Microsoft Entra ID identities, such as:
-             - Microsoft 365 Defender portal
-             - Compliance portal
-             - Exchange Online
-             - SharePoint Online
-             - Skype for Business Online
   - name: Other queries
     questions:
       - question: |

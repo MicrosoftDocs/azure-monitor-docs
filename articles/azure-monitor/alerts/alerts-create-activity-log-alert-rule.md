@@ -18,6 +18,8 @@ You create an alert rule by combining the resources to be monitored, the monitor
 
 Alerts triggered by these alert rules contain a payload that uses the [common alert schema](alerts-common-schema.md).
 
+[!INCLUDE [alerts-rule-prerequisites](../includes/alerts-rule-prerequisites.md)]
+
 [!INCLUDE [alerts-wizard-access](../includes/alerts-wizard-access.md)]
 
 ### Edit an existing alert rule

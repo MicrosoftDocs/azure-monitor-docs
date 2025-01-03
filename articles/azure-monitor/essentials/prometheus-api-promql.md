@@ -4,7 +4,7 @@ description: Describes how to use the API to Query metrics in an Azure Monitor w
 ms.topic: how-to
 author: EdB-MSFT
 ms.author: edbaynash
-ms.date: 05/31/2024
+ms.date: 09/17/2024
 ms.reviewer: aul
 ---
 
@@ -72,10 +72,10 @@ You've created your app registration and have assigned it access to query data f
 
 
 ### Request a token
-Send the following request in the command prompt or by using a client like Postman.
+Send the following request in the command prompt or by using a client like Insomnia or PowerShell’s Invoke-RestMethod
 
 ```shell
-curl -X POST 'https://login.microsoftonline.com/<tennant ID>/oauth2/token' \
+curl -X POST 'https://login.microsoftonline.com/<tenant ID>/oauth2/token' \
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=client_credentials' \
 --data-urlencode 'client_id=<your apps client ID>' \

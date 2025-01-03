@@ -1,7 +1,7 @@
 ---
 title: Overview
 description: This article describes the REST API that makes the data collected by Azure Log Analytics easily available.
-ms.date: 05/26/2024
+ms.date: 09/17/2024
 author: guywi-ms
 ms.author: guywild
 ms.topic: article
@@ -43,7 +43,7 @@ For information about query limits, see the [Query API section of this webpage](
 ## Try the Log Analytics API
 
 To try the API without writing any code, you can use:
-  - Your favorite client such as [Fiddler](https://www.telerik.com/fiddler) or [Postman](https://www.getpostman.com/) to manually generate queries with a user interface.
+  - Your favorite client such as [Bruno](https://www.usebruno.com/) or [Insomnia](https://insomnia.rest/) to manually generate queries with a user interface.
   - [cURL](https://curl.haxx.se/) from the command line. Then pipe the output into [jsonlint](https://github.com/zaach/jsonlint) to get readable JSON.
 
 Instead of calling the REST API directly, you can use the idiomatic Azure Monitor Query client libraries:

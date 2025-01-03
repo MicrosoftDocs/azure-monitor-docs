@@ -4,7 +4,7 @@ description: Requirements for Azure Monitor Agent on Azure virtual machines and 
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 7/18/2023
+ms.date: 11/14/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -46,7 +46,7 @@ Azure Monitor Agent is implemented as an [Azure VM extension](/azure/virtual-mac
         }
     }
     ```
-You should use `mi_res_id` as the `identifier-name`. The following sample commands only show usage with `mi_res_id` for the sake of brevity. For more information on `mi_res_id`, `object_id`, and `client_id`, see the [Managed identity documentation](/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-http).
+You should use `mi_res_id`, `object_id`, or `client_id` as the `identifier-name`. For more information on `mi_res_id`, `object_id`, and `client_id`, see the [Managed identity documentation](/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-http).
 - **System-assigned**: This managed identity is suited for initial testing or small deployments. When used at scale, for all VMs in a subscription for example, it results in a substantial number of identities created and deleted in Microsoft Entra ID. To avoid this churn of identities, use user-assigned managed identities instead. 
 
 > [!IMPORTANT]
@@ -54,7 +54,7 @@ You should use `mi_res_id` as the `identifier-name`. The following sample comman
 
 
 ## Disk space
- Required disk space can vary significantly depending on how an agent is configured or if the agent is unable to communicate with the destinations and must cache data. By default the agent requires 10Gb of disk space to run. The following table provides guidance for capacity planning:
+ Required disk space can vary significantly depending on how an agent is configured or if the agent is unable to communicate with the destinations and must cache data. By default the agent requires 10 GB of disk space to run. The following table provides guidance for capacity planning:
 
 | Purpose | Environment | Path | Suggested Space |
 |:---|:---|:---|:---|

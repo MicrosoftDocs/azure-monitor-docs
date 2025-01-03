@@ -13,6 +13,14 @@ ms.reviewer: harelbr
 
 You can create a new alert rule using the [the CLI](#create-a-new-alert-rule-using-the-cli), [PowerShell](#create-a-new-alert-rule-using-powershell), or an [Azure Resource Manager template](#create-a-new-alert-rule-using-an-arm-template).
 
+## Prerequisites
+
+To create or edit an alert rule, you must have the following permissions:
+
+- Read permission on the target resource of the alert rule.
+- Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+- Read permission on any action group associated to the alert rule, if applicable.
+
 ## Create a new alert rule using the CLI
 
 You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-with-azure-cli). The following code examples use [Azure Cloud Shell](/azure/cloud-shell/overview). You can see the full list of the [Azure CLI commands for Azure Monitor](/cli/azure/azure-cli-reference-for-monitor#azure-monitor-references).

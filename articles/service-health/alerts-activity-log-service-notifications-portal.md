@@ -1,13 +1,13 @@
 ---
-title: Receive activity log alerts on Azure service notifications using Azure portal
-description: Learn how to use the Azure portal to set up activity log alerts for service health notifications by using the Azure portal.
+title: Receive Service health alerts on Azure service notifications using Azure portal
+description: Learn how to use the Azure portal to set up Service health alerts for service health notifications by using the Azure portal.
 ms.topic: quickstart
 ms.date: 07/31/2024
 ---
 
-# Create activity log alerts on service notifications using the Azure portal
+# Create Service health alerts on service notifications using the Azure portal
 
-This article shows you how to use the Azure portal to set up activity log alerts for service health notifications by using the Azure portal.  
+This article shows you how to use the Azure portal to set up Service health alerts for service health notifications by using the Azure portal.  
 
 Service health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the large volume of information stored in the activity log, there is a separate user interface to make it easier to view and set up alerts on service health notifications. 
 

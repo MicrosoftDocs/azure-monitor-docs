@@ -6,7 +6,7 @@ ms.author: edbaynash
 ms.service: azure-monitor
 ms.subservice: autoscale
 ms.topic: how-to
-ms.date: 04/15/2024
+ms.date: 11/01/2024
 ms.reviewer: akkumari
 
 # Customer intent: As a DevOps admin, I want to collect and analyze autoscale metrics and logs.
@@ -58,12 +58,12 @@ Logged when autoscale first looks at an autoscale profile:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": ["FixedDateProfileEvaluation", "RecurrentProfileEvaluation", "DefaultProfileEvaluation"],
   "category": "AutoscaleEvaluations",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "profile": "defaultProfile",
     "profileSelected": [true, false]
   }
@@ -77,12 +77,12 @@ Logged when autoscale evaluates if it shouldn't scale because of a cool-down per
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "ScaleRuleCooldownEvaluation",
   "category": "AutoscaleEvaluations",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "selectedProfile": "defaultProfile",
     "scaleDirection": ["Increase", "Decrease"]
     "lastScaleActionTime": "2018-09-10 18:08:00.6132593",
@@ -100,12 +100,12 @@ Logged when autoscale first starts evaluating a particular scale rule:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "ScaleRuleEvaluation",
   "category": "AutoscaleEvaluations",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "metricName": "Percentage CPU",
     "metricNamespace": "",
     "timeGrain": "00:01:00",
@@ -127,12 +127,12 @@ Logged when autoscale evaluates the metric being used to trigger a scale action:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "MetricEvaluation",
   "category": "AutoscaleEvaluations",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "metricName": "Percentage CPU",
     "metricNamespace": "",
     "timeGrain": "00:01:00",
@@ -151,12 +151,12 @@ Logged when autoscale evaluates the number of instances already running in prepa
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceCountEvaluation",
   "category": "AutoscaleEvaluations",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "currentInstanceCount": 20,
     "minimumInstanceCount": 15,
     "maximumInstanceCount": 30,
@@ -172,13 +172,13 @@ Logged when autoscale starts evaluation if a scale action should take place:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "ScaleActionOperationEvaluation",
   "category": "AutoscaleEvaluations",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
-    "lastScaleActionOperationId": "378ejr-7yye-892d-17dd-92ndijfe1738",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "lastScaleActionOperationId": "2222cccc-33dd-eeee-ff44-aaaaaa555555",
     "lastScaleActionOperationStatus": ["InProgress", "Timeout"]
 	"skipCurrentAutoscaleEvaluation": [true, false]
   }
@@ -192,12 +192,12 @@ Logged when autoscale updates the number of compute instances running, either up
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceUpdateEvaluation",
   "category": "AutoscaleEvaluations",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "currentInstanceCount": 20,
     "newInstanceCount": 21,
     "shouldUpdateInstance": [true, false],
@@ -217,14 +217,14 @@ Logged when autoscale initiates a scale action, either up or down:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceScaleAction",
   "category": "AutoscaleScaleActions",
   "resultType": ["Succeeded", "InProgress", "Failed"],
   "resultDescription": ["Create async operation job failed", ...]
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "currentInstanceCount": 20,
     "newInstanceCount": 21,
     "scaleDirection": ["Increase", "Decrease"],
@@ -241,12 +241,12 @@ Logged at different intervals of an instance scale action:
 ```JSON
 {
   "time": "2018-09-10 18:12:00.6132593",
-  "resourceId": "/SUBSCRIPTIONS/BA13C41D-C957-4774-8A37-092D62ACFC85/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
+  "resourceId": "/SUBSCRIPTIONS/AAAA0A0A-BB1B-CC2C-DD3D-EEEEEE4E4E4E/RESOURCEGROUPS/AUTOSCALETRACKING12042017/PROVIDERS/MICROSOFT.INSIGHTS/AUTOSCALESETTINGS/DEFAULTSETTING",
   "operationName": "InstanceScaleAction",
   "category": "AutoscaleScaleActions",
-  "correlationId": "e8f67045-f381-445d-bc2d-eeff81ec0d77",
+  "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
   "property": {
-    "targetResourceId": "/subscriptions/d45c994a-809b-4cb3-a952-e75f8c488d23/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
+    "targetResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RingAhoy/providers/Microsoft.Web/serverfarms/ringahoy",
     "scaleActionOperationId": "378ejr-7yye-892d-17dd-92ndijfe1738",
     "scaleActionOperationStatus": ["InProgress", "Timeout", "Canceled", ...],
     "scaleActionMessage": ["Scale action is inprogress", ...]
@@ -280,8 +280,8 @@ Logged when autoscale attempts to scale in or out:
     "eventName": "AutoscaleAction",
     ...
     "eventProperties": "{
-        "Description": "The autoscale engine attempting to scale resource '/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourcegroups/ed-rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan' from 2 instances count to 1 instancescount.",
-        "ResourceName": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourcegroups/ed-rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
+        "Description": "The autoscale engine attempting to scale resource '/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan' from 2 instances count to 1 instancescount.",
+        "ResourceName": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
         "OldInstancesCount": 2,
         "NewInstancesCount": 1,
         "ActiveAutoscaleProfile": {
@@ -296,7 +296,7 @@ Logged when autoscale attempts to scale in or out:
                     "MetricTrigger": {
                         "Name": "CpuPercentage",
                         "Namespace": "microsoft.web/serverfarms",
-                        "Resource": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/ed-rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
+                        "Resource": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
                         "ResourceLocation": "West Central US",
                         "TimeGrain": "PT1M",
                         "Statistic": "Average",
@@ -304,7 +304,7 @@ Logged when autoscale attempts to scale in or out:
                         "TimeAggregation": "Average",
                         "Operator": "GreaterThan",
                         "Threshold": 40.0,
-                        "Source": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/ed-rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
+                        "Source": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
                         "MetricType": "MDM",
                         "Dimensions": [],
                         "DividePerInstance": false
@@ -320,7 +320,7 @@ Logged when autoscale attempts to scale in or out:
                     "MetricTrigger": {
                         "Name": "CpuPercentage",
                         "Namespace": "microsoft.web/serverfarms",
-                        "Resource": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/ed-rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
+                        "Resource": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
                         "ResourceLocation": "West Central US",
                         "TimeGrain": "PT1M",
                         "Statistic": "Average",
@@ -328,7 +328,7 @@ Logged when autoscale attempts to scale in or out:
                         "TimeAggregation": "Average",
                         "Operator": "LessThanOrEqual",
                         "Threshold": 30.0,
-                        "Source": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/ed-rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
+                        "Source": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
                         "MetricType": "MDM",
                         "Dimensions": [],
                         "DividePerInstance": false
@@ -426,16 +426,16 @@ Logged when autoscale detects flapping could occur and scales differently to avo
     ...
     "eventProperties": 
         "{"Description":"Scale down will occur with updated instance count to avoid flapping. 
-         Resource: '/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourcegroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan'.
+         Resource: '/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan'.
          Current instance count: '6', 
          Intended new instance count: '1'.
          Actual new instance count: '4'",
-        "ResourceName":"/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourcegroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
+        "ResourceName":"/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/rg-001/providers/Microsoft.Web/serverFarms/ScaleableAppServicePlan",
         "OldInstancesCount":6,
         "NewInstancesCount":4,
         "ActiveAutoscaleProfile":{"Name":"Auto created scale condition",
         "Capacity":{"Minimum":"1","Maximum":"30","Default":"1"},
-        "Rules":[{"MetricTrigger":{"Name":"Requests","Namespace":"microsoft.web/sites","Resource":"/subscriptions/    d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/rg-001/providers/Microsoft.Web/sites/ScaleableWebApp1",    "ResourceLocation":"West Central US","TimeGrain":"PT1M","Statistic":"Average","TimeWindow":"PT1M","TimeAggregation":"Maximum",    "Operator":"GreaterThanOrEqual","Threshold":3.0,"Source":"/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/    rg-001/providers/Microsoft.Web/sites/ScaleableWebApp1","MetricType":"MDM","Dimensions":[],"DividePerInstance":true},    "ScaleAction":{"Direction":"Increase","Type":"ChangeCount","Value":"10","Cooldown":"PT1M"}},{"MetricTrigger":{"Name":"Requests",    "Namespace":"microsoft.web/sites","Resource":"/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/rg-001/    providers/Microsoft.Web/sites/ScaleableWebApp1","ResourceLocation":"West Central US","TimeGrain":"PT1M","Statistic":"Max",    "TimeWindow":"PT1M","TimeAggregation":"Maximum","Operator":"LessThan","Threshold":3.0,"Source":"/subscriptions/    d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/rg-001/providers/Microsoft.Web/sites/ScaleableWebApp1","MetricType":"MDM",    "Dimensions":[],"DividePerInstance":true},"ScaleAction":{"Direction":"Decrease","Type":"ChangeCount","Value":"5",    "Cooldown":"PT1M"}}]}}",
+        "Rules":[{"MetricTrigger":{"Name":"Requests","Namespace":"microsoft.web/sites","Resource":"/subscriptions/    bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Web/sites/ScaleableWebApp1",    "ResourceLocation":"West Central US","TimeGrain":"PT1M","Statistic":"Average","TimeWindow":"PT1M","TimeAggregation":"Maximum",    "Operator":"GreaterThanOrEqual","Threshold":3.0,"Source":"/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/    rg-001/providers/Microsoft.Web/sites/ScaleableWebApp1","MetricType":"MDM","Dimensions":[],"DividePerInstance":true},    "ScaleAction":{"Direction":"Increase","Type":"ChangeCount","Value":"10","Cooldown":"PT1M"}},{"MetricTrigger":{"Name":"Requests",    "Namespace":"microsoft.web/sites","Resource":"/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/    providers/Microsoft.Web/sites/ScaleableWebApp1","ResourceLocation":"West Central US","TimeGrain":"PT1M","Statistic":"Max",    "TimeWindow":"PT1M","TimeAggregation":"Maximum","Operator":"LessThan","Threshold":3.0,"Source":"/subscriptions/    bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Web/sites/ScaleableWebApp1","MetricType":"MDM",    "Dimensions":[],"DividePerInstance":true},"ScaleAction":{"Direction":"Decrease","Type":"ChangeCount","Value":"5",    "Cooldown":"PT1M"}}]}}",
     ...
     "activityStatusValue": "Succeeded"
 }
@@ -449,8 +449,8 @@ Logged when autoscale detects flapping could occur and defers scaling in to avoi
 "Properties": {
     "eventCategory": "Autoscale",
     "eventName": "Flapping",
-    "Description": "{"Cannot scale down due to flapping observed. Resource: '/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourcegroups/rg-001/providers/Microsoft.Compute/virtualMachineScaleSets/mac2'. Current instance count: '2', Intended new instance count '1'",
-    "ResourceName": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourcegroups/rg-001/providers/Microsoft.Compute/virtualMachineScaleSets/mac2",
+    "Description": "{"Cannot scale down due to flapping observed. Resource: '/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/rg-001/providers/Microsoft.Compute/virtualMachineScaleSets/mac2'. Current instance count: '2', Intended new instance count '1'",
+    "ResourceName": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/rg-001/providers/Microsoft.Compute/virtualMachineScaleSets/mac2",
     "OldInstancesCount": "2",
     "NewInstancesCount": "2",
     "ActiveAutoscaleProfile": "ActiveAutoscaleProfile": {
@@ -465,7 +465,7 @@ Logged when autoscale detects flapping could occur and defers scaling in to avoi
                 "MetricTrigger": {
                     "Name": "StorageSuccesses",
                     "Namespace": "monitoringbackgroundjob",
-                    "Resource": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/rg-001/providers/microsoft.monitor/accounts/MACAzureInsightsPROD",
+                    "Resource": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/microsoft.monitor/accounts/MACAzureInsightsPROD",
                     "ResourceLocation": "EastUS2",
                     "TimeGrain": "PT1M",
                     "Statistic": "Average",
@@ -473,7 +473,7 @@ Logged when autoscale detects flapping could occur and defers scaling in to avoi
                     "TimeAggregation": "Average",
                     "Operator": "LessThan",
                     "Threshold": 600.0,
-                    "Source": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/rg-001/providers/microsoft.monitor/accounts/MACAzureInsightsPROD",
+                    "Source": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/microsoft.monitor/accounts/MACAzureInsightsPROD",
                     "MetricType": "MDM",
                     "Dimensions": [],
                     "DividePerInstance": false
@@ -489,7 +489,7 @@ Logged when autoscale detects flapping could occur and defers scaling in to avoi
                 "MetricTrigger": {
                     "Name": "TimeToStartupInMs",
                     "Namespace": "armrpclient",
-                    "Resource": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/rg-123/providers/microsoft.monitor/accounts/MACMetricsRP",
+                    "Resource": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-123/providers/microsoft.monitor/accounts/MACMetricsRP",
                     "ResourceLocation": "eastus2",
                     "TimeGrain": "PT1M",
                     "Statistic": "Percentile99th",
@@ -497,7 +497,7 @@ Logged when autoscale detects flapping could occur and defers scaling in to avoi
                     "TimeAggregation": "Average",
                     "Operator": "GreaterThan",
                     "Threshold": 70.0,
-                    "Source": "/subscriptions/d1234567-9876-a1b2-a2b1-123a567b9f8767/resourceGroups/rg-123/providers/microsoft.monitor/accounts/MACMetricsRP",
+                    "Source": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-123/providers/microsoft.monitor/accounts/MACMetricsRP",
                     "MetricType": "MDM",
                     "Dimensions": [],
                     "DividePerInstance": false

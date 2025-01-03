@@ -1,20 +1,20 @@
 ---
-title: Enable Profiler for Azure App Service apps | Microsoft Docs
-description: Profile live apps on Azure App Service with Application Insights Profiler.
+title: Enable Application Insights Profiler for .NET for Azure App Service apps | Microsoft Docs
+description: Profile live apps on Azure App Service with Application Insights Profiler for .NET.
 ms.topic: how-to
 ms.date: 08/15/2024
 ms.reviewer: ryankahng
 ---
 
-# Enable Profiler for Azure App Service apps
+# Enable the .NET Profiler for Azure App Service apps
 
-[Application Insights Profiler](./profiler-overview.md) is preinstalled as part of the Azure App Service runtime. You can run Profiler on ASP.NET and ASP.NET Core apps running on App Service by using the Basic service tier or higher.
+[Application Insights Profiler for .NET](./profiler-overview.md) is preinstalled as part of the Azure App Service runtime. You can run Profiler on ASP.NET and ASP.NET Core apps running on App Service by using the Basic service tier or higher.
 
-Codeless installation of Application Insights Profiler:
+Codeless installation of Application Insights Profiler for .NET:
 - Follows [the .NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 - Is only supported on *Windows-based* web apps.
 
-To enable Profiler on Linux, walk through the [ASP.NET Core Azure Linux web apps instructions](profiler-aspnetcore-linux.md).
+To enable .NET Profiler on Linux, walk through the [ASP.NET Core Azure Linux web apps instructions](profiler-aspnetcore-linux.md).
 
 ## Prerequisites
 
@@ -24,18 +24,21 @@ To enable Profiler on Linux, walk through the [ASP.NET Core Azure Linux web apps
 ## Verify the "Always on" setting is enabled
 
 1. In the Azure portal, go to your App Service instance.
-1. Under **Settings** on the left pane, select **Configuration**.
+1. In the left menu, select **Settings** > **Configuration**.
 
    :::image type="content" source="./media/profiler/configuration-menu.png" alt-text="Screenshot that shows selecting Configuration on the left pane.":::
 
 1. Select the **General settings** tab.
 1. Verify that **Always on** > **On** is selected.
 
+   > [!NOTE]
+   > If the **Always on** toggle is disabled, upgrade your App Service web app to run on Basic tier or higher. 
+
    :::image type="content" source="./media/profiler/always-on.png" alt-text="Screenshot that shows the General tab on the Configuration pane showing that Always On is enabled.":::
 
 1. Select **Save** if you made changes.
 
-## Enable Application Insights and Profiler
+## Enable Application Insights and the .NET Profiler
 
 You can enable Profiler either when:
 - [Your Application Insights resource and App Service resource are in the same subscription](#for-application-insights-and-app-service-in-the-same-subscription), or
@@ -45,11 +48,10 @@ You can enable Profiler either when:
 
 If your Application Insights resource is in the same subscription as your instance of App Service:
 
-1. Under **Settings** on the left pane, select **Application Insights**.
-
-   :::image type="content" source="./media/profiler/app-insights-menu.png" alt-text="Screenshot that shows selecting Application Insights on the left pane.":::
+1. In the left menu, select **Monitoring** > **Application Insights**.
 
 1. Under **Application Insights**, select **Enable**.
+
 1. Verify that you connected an Application Insights resource to your app.
 
    :::image type="content" source="./media/profiler/enable-app-insights.png" alt-text="Screenshot that shows enabling Application Insights on your app.":::
@@ -65,11 +67,11 @@ If your Application Insights resource is in the same subscription as your instan
 
 ### For Application Insights and App Service in different subscriptions
 
-If your Application Insights resource is in a different subscription from your instance of App Service, you need to enable Profiler manually by creating app settings for your App Service instance. You can automate the creation of these settings by using a template or other means. Here are the settings you need to enable Profiler.
+If your Application Insights resource is in a different subscription from your instance of App Service, you need to enable the Profiler for .NET manually by creating app settings for your App Service instance. You can automate the creation of these settings by using a template or other means. Here are the settings you need to enable Profiler.
 
 |App setting    | Value    |
 |---------------|----------|
-|APPINSIGHTS_INSTRUMENTATIONKEY         | iKey for your Application Insights resource    |
+|APPLICATIONINSIGHTS_CONNECTION_STRING | Unique value from your App Insights resource. |
 |APPINSIGHTS_PROFILERFEATURE_VERSION | 1.0.0 |
 |DiagnosticServices_EXTENSION_VERSION | ~3 |
 
@@ -78,7 +80,7 @@ Set these values by using:
 - [Azure PowerShell](/powershell/module/az.websites/set-azwebapp)
 - [Azure CLI](/cli/azure/webapp/config/appsettings)
 
-## Enable Profiler for regional clouds
+## Enable .NET Profiler for regional clouds
 
 Currently, the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
 
@@ -91,7 +93,7 @@ Currently, the only regions that require endpoint modifications are [Azure Gover
 
 ## Enable Microsoft Entra authentication for profile ingestion
 
-Application Insights Profiler supports Microsoft Entra authentication for profile ingestion. For all profiles of your application to be ingested, your application must be authenticated and provide the required application settings to the Profiler agent.
+Application Insights Profiler for .NET supports Microsoft Entra authentication for profile ingestion. For all profiles of your application to be ingested, your application must be authenticated and provide the required application settings to the Profiler agent.
 
 Profiler only supports Microsoft Entra authentication when you reference and configure Microsoft Entra ID by using the [Application Insights SDK](../app/asp-net-core.md#configure-the-application-insights-sdk) in your application.
 
@@ -119,7 +121,7 @@ To enable Microsoft Entra ID for profile ingestion:
        | ------------- | -------- |
        | APPLICATIONINSIGHTS_AUTHENTICATION_STRING         | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}`    |
 
-## Disable Profiler
+## Disable the .NET Profiler
 
 To stop or restart Profiler for an individual app's instance:
 
@@ -140,5 +142,5 @@ We recommend that you have Profiler enabled on all your apps to discover any per
 You can delete Profiler's files when you use WebDeploy to deploy changes to your web application. You can prevent the deletion by excluding the *App_Data* folder from being deleted during deployment.
 
 ## Next steps
-- Learn how to [generate load and view Profiler traces](./profiler-data.md)
-- Learn how to use the [Code Optimizations feature](../insights/code-optimizations.md) alongside the Application Insights Profiler
+- Learn how to [generate load and view the .NET Profiler traces](./profiler-data.md)
+- Learn how to use the [Code Optimizations feature](../insights/code-optimizations.md) alongside the Application Insights Profiler for .NET

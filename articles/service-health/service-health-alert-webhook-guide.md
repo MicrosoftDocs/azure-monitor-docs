@@ -44,7 +44,7 @@ You can create a direct link to your Service Health dashboard on a desktop or mo
 
 https<i></i>://app.azure.com/h/*&lt;trackingId&gt;*/*&lt;first three and last three digits of subscriptionId&gt;*
 
-For example, if your *subscriptionId* is bba14129-e895-429b-8809-278e836ecdb3 and your *trackingId* is 0DET-URB, your Service Health URL is:
+For example, if your *subscriptionId* is aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e and your *trackingId* is 0DET-URB, your Service Health URL is:
 
 https<i></i>://app.azure.com/h/0DET-URB/bbadb3
 

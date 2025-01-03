@@ -12,7 +12,7 @@ ms.reviewer: adi.biran
 
 # Run search jobs in Azure Monitor
 
-Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. The search job uses parallel processing and can run for hours across large datasets. This article describes how to create a search job and how to query its resulting data.
+A search job is an asynchronous query you run on any data in your Log Analytics - in both [interactive and long-term retention](data-retention-configure.md) - that makes the query results available for interactive queries in a new search table within your workspace. The search job uses parallel processing and can run for hours across large datasets. This article describes how to create a search job and how to query its resulting data.
 
 This video explains when and how to use search jobs:
  
@@ -29,14 +29,10 @@ This video explains when and how to use search jobs:
 
 ## When to use search jobs
 
-Use a search job when the log query timeout of 10 minutes isn't sufficient to search through large volumes of data or if you're running a slow query.
+Use search jobs to: 
 
-Search jobs also let you retrieve records from [long-term retention](data-retention-configure.md) and [tables with the Basic and Auxiliary plans](data-platform-logs.md#table-plans) into a new Analytics table where you can take advantage of Azure Monitor Log's full analytics capabilities. In this way, running a search job can be an alternative to:
-
-- [Restoring data from long-term retention](restore.md) for a specific time range. 
-
-- Querying Basic and Auxiliary tables directly and paying for each query.<br/>
-    To determine which alternative is more cost-effective, compare the cost of querying Basic and Auxiliary tables with the cost of running a search job and storing the search job results.
+- Retrieve records from [long-term retention](data-retention-configure.md) and [tables with the Basic and Auxiliary plans](data-platform-logs.md#table-plans) into a new Analytics table where you can take advantage of Azure Monitor Log's full analytics capabilities. 
+- Scan through large volumes of data, if the log query timeout of 10 minutes isn't sufficient.
 
 ## What does a search job do?
 
@@ -285,7 +281,7 @@ Search jobs are subject to the following limitations:
 * Limited to 100 search results tables per workspace.
 * Limited to 100 search job executions per day per workspace. 
 
-When you reach the record limit, Azure aborts the job with a status of *partial success*, and the table will contain only records ingested up to that point. 
+When you reach the record limit, Azure aborts the job with a status of *partial success*, and the table contains only records ingested up to that point. 
 
 ### KQL query limitations
 
@@ -304,18 +300,23 @@ Search jobs are intended to scan large volumes of data in a specific table. Ther
 You can use all functions and binary operators within these operators.
 
 ## Pricing model
-The charge for a search job is based on: 
 
-* Search job execution - the amount of data the search job scans.
-* Search job results - the amount of data the search job finds and is ingested into the results table, based on the regular log data ingestion prices.
+The search job charge is based on:
 
-For example, if your table holds 500 GB per day, for a search over 30 days, you'll be charged for 15,000 GB of scanned data. 
-If the search job finds 1,000 records that match the search query, you'll be charged for ingesting these 1,000 records into the results table. 
+* Search job execution: 
+
+  - **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in interactive retention in Analytics tables.
+  - **Basic or Auxiliary plans** - All data the search job scans in both interactive and long-term retention. 
+    
+    The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried.   For more information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
+  
+* Search job results - The amount of data the search job finds and is ingested into the results table, based on the data ingestion rate for Analytics tables.
+
+For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Next steps
 
-- [Learn more about data retention and archiving data.](data-retention-configure.md)
-- [Learn about restoring data, which is another method for retrieving data from long-term retention.](restore.md)
+- [Learn more about managing data retention in a Log Analytics worksapce.](data-retention-configure.md)
 - [Learn about directly querying Basic and Auxiliary tables.](basic-logs-query.md)

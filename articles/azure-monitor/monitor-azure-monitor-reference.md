@@ -1,7 +1,7 @@
 ---
 title: Monitoring data reference for Azure Monitor
 description: This article contains important reference material you need when you monitor Azure Monitor.
-ms.date: 03/31/2024
+ms.date: 09/16/2024
 ms.custom: horz-monitor
 ms.topic: reference
 author: rboucher
@@ -25,29 +25,30 @@ To add the table #include, find the table(s) for the resource type in the Metric
 ### Supported metrics for Microsoft.Monitor/accounts
 The following table lists the metrics available for the Microsoft.Monitor/accounts resource type.
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [Microsoft.Monitor/accounts](~/azure-reference-other-repo/azure-monitor-ref/supported-metrics/includes/microsoft-monitor-accounts-metrics-include.md)]
+[!INCLUDE [Microsoft.Monitor/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-monitor-accounts-metrics-include.md)]
+
 
 ### Supported metrics for microsoft.insights/autoscalesettings
 The following table lists the metrics available for the microsoft.insights/autoscalesettings resource type.
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [microsoft.insights/autoscalesettings](~/azure-reference-other-repo/azure-monitor-ref/supported-metrics/includes/microsoft-insights-autoscalesettings-metrics-include.md)]
+[!INCLUDE [microsoft.insights/autoscalesettings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-insights-autoscalesettings-metrics-include.md)]
 
 ### Supported metrics for microsoft.insights/components
 The following table lists the metrics available for the microsoft.insights/components resource type.
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [microsoft.insights/components](~/azure-reference-other-repo/azure-monitor-ref/supported-metrics/includes/microsoft-insights-components-metrics-include.md)]
+[!INCLUDE [microsoft.insights/components](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-insights-components-metrics-include.md)]
 
 ### Supported metrics for Microsoft.Insights/datacollectionrules
 The following table lists the metrics available for the Microsoft.Insights/datacollectionrules resource type.
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [Microsoft.Insights/datacollectionrules](~/azure-reference-other-repo/azure-monitor-ref/supported-metrics/includes/microsoft-insights-datacollectionrules-metrics-include.md)]
+[!INCLUDE [Microsoft.Insights/datacollectionrules](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics//microsoft-insights-datacollectionrules-metrics-include.md)]
 
 ### Supported metrics for Microsoft.operationalinsight/workspaces
 
 Azure Monitor Logs / Log Analytics workspaces
 
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [Microsoft.Insights/datacollectionrules](~/azure-reference-other-repo/azure-monitor-ref/supported-metrics/includes/microsoft-operationalinsights-workspaces-metrics-include.md)] 
+[!INCLUDE [Microsoft.Insights/datacollectionrules](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-operationalinsights-workspaces-metrics-include.md)] 
 
 <!-- ## Metric dimensions. Required section. -->
 [!INCLUDE [horz-monitor-ref-metrics-dimensions-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-dimensions-intro.md)]
@@ -89,16 +90,16 @@ Microsoft.Insights/datacollectionrules:
 [!INCLUDE [horz-monitor-ref-resource-logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-resource-logs.md)]
 
 ### Supported resource logs for Microsoft.Monitor/accounts
-[!INCLUDE [Microsoft.Monitor/accounts](~/azure-reference-other-repo/azure-monitor-ref/supported-logs/includes/microsoft-monitor-accounts-logs-include.md)]
+[!INCLUDE [Microsoft.Monitor/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-monitor-accounts-logs-include.md)] 
 
 ### Supported resource logs for microsoft.insights/autoscalesettings
-[!INCLUDE [microsoft.insights/autoscalesettings](~/azure-reference-other-repo/azure-monitor-ref/supported-logs/includes/microsoft-insights-autoscalesettings-logs-include.md)]
+[!INCLUDE [microsoft.insights/autoscalesettings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-insights-autoscalesettings-logs-include.md)]
 
 ### Supported resource logs for microsoft.insights/components
-[!INCLUDE [microsoft.insights/components](~/azure-reference-other-repo/azure-monitor-ref/supported-logs/includes/microsoft-insights-components-logs-include.md)]
+[!INCLUDE [microsoft.insights/components](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-insights-components-logs-include.md)]
 
 ### Supported resource logs for Microsoft.Insights/datacollectionrules
-[!INCLUDE [Microsoft.Insights/datacollectionrules](~/azure-reference-other-repo/azure-monitor-ref/supported-logs/includes/microsoft-insights-datacollectionrules-logs-include.md)]
+[!INCLUDE [Microsoft.Insights/datacollectionrules](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-insights-datacollectionrules-logs-include.md)]
 
 [!INCLUDE [horz-monitor-ref-logs-tables](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-logs-tables.md)]
 

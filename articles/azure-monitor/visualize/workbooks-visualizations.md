@@ -5,10 +5,9 @@ services: azure-monitor
 author: AbbyMSFT
 ms.author: abbyweisberg
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 10/10/2024
 ms.reviewer: gardnerjr
 ---
-
 
 # Workbook visualizations
 
@@ -23,6 +22,7 @@ Workbooks support these kinds of visual components:
     * [Tiles](#tiles)
     * [Trees](#trees)
     * [Honeycomb](#honeycomb)
+    * [Stat](#stat)
     * [Graphs](#graphs)
     * [Maps](#maps)
     * [Text visualization](#text-visualizations)
@@ -55,6 +55,10 @@ Workbooks support these kinds of visual components:
 ### [Honeycomb](workbooks-honey-comb.md)
 
 :::image type="content" source="media/workbooks-visualizations/workbooks-honeycomb-cpu-example.png" alt-text="Screenshot that shows an example of an Azure Workbooks honeycomb visualization.":::
+
+### [Stat](workbooks-stat-visualizations.md)
+
+:::image type="content" source="media/workbooks-visualizations/workbooks-stat-example.png" alt-text="Screenshot that shows an example of an Azure Workbooks stat visualization.":::
 
 ### [Graphs](workbooks-graph-visualizations.md)
 

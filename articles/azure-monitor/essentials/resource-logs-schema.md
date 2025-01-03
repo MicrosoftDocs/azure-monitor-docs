@@ -69,13 +69,14 @@ The schema for resource logs varies depending on the resource and log category. 
 | Azure Database for PostgreSQL | [Azure Database for PostgreSQL logs](/azure/postgresql/concepts-server-logs#resource-logs) |
 | Azure Databricks | [Diagnostic logging in Azure Databricks](/azure/databricks/administration-guide/account-settings/azure-diagnostic-logs) |
 | Azure DDoS Protection | [Logging for Azure DDoS Protection](/azure/ddos-protection/ddos-view-diagnostic-logs#example-log-queries) |
-| Azure Digital Twins | [Set up Azure Digital Twins diagnostics](/azure/digital-twins/troubleshoot-diagnostics#log-schemas)
+| Azure Digital Twins | [Set up Azure Digital Twins diagnostics](/azure/digital-twins/troubleshoot-diagnostics#log-schemas) |
 | Azure Event Hubs |[Azure Event Hubs logs](/azure/event-hubs/event-hubs-diagnostic-logs) |
 | Azure ExpressRoute | [Monitoring Azure ExpressRoute](/azure/expressroute/monitor-expressroute#collection-and-routing) |
 | Azure Firewall | [Logging for Azure Firewall](/azure/firewall/diagnostic-logs) |
 | Azure Front Door | [Logging for Azure Front Door](/azure/frontdoor/front-door-diagnostics) |
 | Azure Functions | [Monitoring Azure Functions Data Reference Resource Logs](/azure/azure-functions/monitor-functions-reference#resource-logs) |
 | Application Insights | [Application Insights Data Reference Resource Logs](../monitor-azure-monitor-reference.md#supported-resource-logs-for-microsoftinsightscomponents) |
+| Azure Health Data Services | [Logging for Azure Health Data Services](/azure/healthcare-apis/logging) |
 | Azure IoT Hub | [IoT Hub operations](/azure/iot-hub/monitor-iot-hub-reference#resource-logs) |
 | Azure IoT Hub Device Provisioning Service| [Device Provisioning Service operations](/azure/iot-dps/monitor-iot-dps-reference#resource-logs) |
 | Azure Key Vault |[Azure Key Vault logging](/azure/key-vault/general/logging) |

@@ -5,7 +5,7 @@ description: This article describes how to create a user-assigned identity, prov
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 05/22/2024
+ms.date: 09/12/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: how-to
@@ -59,7 +59,7 @@ Your deployment is now created on Azure. You can access the resource and view it
 To set the Microsoft Entra admin value in the SQL managed instance that you created in [step 3](create-sql-managed-instance.md), follow these steps:
 
 >[!NOTE]
->You must have Global Administrator or Privileged Role Administrator permissions for the subscription to perform the following operations.
+>You must have Privileged Role Administrator permissions for the subscription to perform the following operations.
 
 >[!Important]
 >Using Groups as Microsoft Entra admin is currently not supported.

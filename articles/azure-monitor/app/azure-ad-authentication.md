@@ -34,7 +34,7 @@ The following Software Development Kits (SDKs) and features are unsupported for 
 * [ApplicationInsights JavaScript web SDK](javascript.md).
 * [Application Insights OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) with Python version 3.4 and 3.5.
 * [AutoInstrumentation for Python on Azure App Service](azure-web-apps-python.md)
-* [Profiler](profiler-overview.md).
+* [Application Insights Profiler for .NET](profiler-overview.md).
 
 <a name='configure-and-enable-azure-ad-based-authentication'></a>
 
@@ -330,7 +330,7 @@ A successful request receives an access token in the response:
         token_type": "Bearer",
         "expires_in": "86399",
         "ext_expires_in": "86399",
-        "access_token": ""eyJ0eXAiOiJKV1QiLCJ.....Ax"
+        "access_token": "eyJ0eXAiOiJKV1QiLCJ.....Ax"
     }
 ```
 
@@ -715,7 +715,7 @@ You can disable local authentication by using the Azure portal or Azure Policy o
 
 ### Azure Policy
 
-Azure Policy for `DisableLocalAuth` denies users the ability to create a new Application Insights resource without this property set to `true`. The policy name is `Application Insights components should block non-AAD auth ingestion`.
+Azure Policy for `DisableLocalAuth` denies users the ability to create a new Application Insights resource without this property set to `true`. The policy name is `Application Insights components should block non-Azure Active Directory based ingestion`.
 
 To apply this policy definition to your subscription, [create a new policy assignment and assign the policy](/azure/governance/policy/assign-policy-portal).
 
@@ -724,7 +724,7 @@ The following example shows the policy template definition:
 ```JSON
 {
     "properties": {
-        "displayName": "Application Insights components should block non-AAD auth ingestion",
+        "displayName": "Application Insights components should block non-Azure Active Directory based ingestion",
         "policyType": "BuiltIn",
         "mode": "Indexed",
         "description": "Improve Application Insights security by disabling log ingestion that are not AAD-based.",

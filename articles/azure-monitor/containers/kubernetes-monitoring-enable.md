@@ -2,9 +2,11 @@
 title: Enable monitoring for Azure Kubernetes Service (AKS) cluster
 description: Learn how to enable Container insights and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster.
 ms.topic: conceptual
-ms.date: 03/11/2024
 ms.custom: devx-track-azurecli, linux-related-content
+author: bwren
+ms.author: bwren
 ms.reviewer: aul
+ms.date: 03/11/2024
 ---
 
 # Enable monitoring for Kubernetes clusters
@@ -57,7 +59,7 @@ This article provides onboarding guidance for the following types of clusters. A
   - If you previously installed monitoring on a cluster using a script without cluster extensions, follow the instructions at [Disable monitoring of your Kubernetes cluster](kubernetes-monitoring-disable.md) to delete this Helm chart.
 
 > [!NOTE]
-> The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations:
+> The Managed Prometheus Arc-Enabled Kubernetes (preview) extension does not support the following configurations:
 > * Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
 > * Windows nodes
 
@@ -83,6 +85,8 @@ Use one of the following methods to enable scraping of Prometheus metrics from y
 > For full instructions on how to configure the DCEs associated with your Azure Monitor workspace to use a Private Link for data ingestion, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
 
 ### [CLI](#tab/cli)
+
+### Enable with CLI
 
 If you don't specify an existing Azure Monitor workspace in the following commands, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`.
 
@@ -113,7 +117,7 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
 ```
 
-#### Arc-enabled cluster
+#### Arc-enabled cluster (preview)
 
 
 ```azurecli
@@ -140,7 +144,7 @@ Any of the commands can use the following optional parameters:
 
 ### [Azure Resource Manager](#tab/arm)
 
-Both ARM and Bicep templates are provided in this section.
+### Enable with ARM templates
 
 #### Prerequisites
 
@@ -190,7 +194,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     - Profile module: [https://aka.ms/nested_azuremonitormetrics_profile_clusterResourceId](https://aka.ms/nested_azuremonitormetrics_profile_clusterResourceId)
     - Azure Managed Grafana Role Assignment module: [https://aka.ms/nested_grafana_amw_role_assignment](https://aka.ms/nested_grafana_amw_role_assignment)
 
-    **Arc-Enabled cluster ARM**
+    **Arc-Enabled cluster (preview) ARM**
 
     - Template file: [https://aka.ms/azureprometheus-arc-arm-template](https://aka.ms/azureprometheus-arc-arm-template)
     - Parameter file: [https://aka.ms/azureprometheus-arc-arm-template-parameters](https://aka.ms/azureprometheus-arc-arm-template-parameters)
@@ -283,6 +287,8 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 
 ### [Terraform](#tab/terraform)
 
+### Enable with Terraform
+
 #### Prerequisites
 
 - The Azure Monitor workspace and Azure Managed Grafana workspace must already be created.
@@ -319,6 +325,8 @@ Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in 
 > Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values gets deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
 
 ### [Azure Policy](#tab/policy)
+
+### Enable with Azure Policy
 
 1. Download Azure Policy template and parameter files.
 
@@ -365,6 +373,9 @@ az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <
 
 ### Use existing Log Analytics workspace
 az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id>
+
+### Use legacy authentication
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --enable-msi-auth-for-monitoring false
 ```
 
 **Example**
@@ -520,7 +531,7 @@ Both ARM and Bicep templates are provided in this section.
 > [!TIP]
 > - Edit the `main.tf` file appropriately before running the terraform template
 > - Data will start flowing after 10 minutes since the cluster needs to be ready first
-> - WorkspaceID needs to match the format `/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
+> - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
 > - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
 
 ### [Azure Policy](#tab/policy)
@@ -735,7 +746,7 @@ The command will return JSON-formatted information about the solution. The `addo
 "addonProfiles": {
     "omsagent": {
         "config": {
-            "logAnalyticsWorkspaceResourceID": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
+            "logAnalyticsWorkspaceResourceID": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
             "useAADAuth": "true"
         },
         "enabled": true,

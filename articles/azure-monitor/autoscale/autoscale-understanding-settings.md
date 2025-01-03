@@ -4,7 +4,7 @@ description: This article explains autoscale settings, how they work, and how th
 author: EdB-MSFT
 ms.service: azure-monitor
 ms.topic: conceptual
-ms.date: 11/29/2023
+ms.date: 11/01/2024
 ms.subservice: autoscale
 ms.author: edbaynash
 ms.reviewer: akkumari
@@ -60,7 +60,8 @@ The following example shows an autoscale setting with these attributes:
               "timeWindow": "PT10M",
               "timeAggregation": "Average",
               "operator": "GreaterThan",
-              "threshold": 85
+              "threshold": 85,
+              "dividePerInstance": false
             },
             "scaleAction": {
               "direction": "Increase",
@@ -78,7 +79,8 @@ The following example shows an autoscale setting with these attributes:
               "timeWindow": "PT10M",
               "timeAggregation": "Average",
               "operator": "LessThan",
-              "threshold": 60
+              "threshold": 60,
+              "dividePerInstance": false
             },
             "scaleAction": {
               "direction": "Decrease",
@@ -115,6 +117,7 @@ The following table describes the elements in the preceding autoscale setting's 
 | metricTrigger | statistic | Time grain statistic |The aggregation method within the timeGrain period. For example, **statistic = "Average"** and **timeGrain = "PT1M"** means that the metrics should be aggregated every 1 minute, by taking the average. This property dictates how the metric is sampled. |
 | metricTrigger | timeWindow | Duration |The amount of time to look back for metrics. For example, **timeWindow = "PT10M"** means that every time autoscale runs, it queries metrics for the past 10 minutes. The time window allows your metrics to be normalized and avoids reacting to transient spikes. |
 | metricTrigger | timeAggregation |Time aggregation |The aggregation method used to aggregate the sampled metrics. For example, **timeAggregation = "Average"** should aggregate the sampled metrics by taking the average. In the preceding case, take the ten 1-minute samples, and average them. |
+| metricTrigger| dividePerInstance | Divide the value by the instance count. |If **dividePerInstance = true**, the metric is divided by the number of instances in the resource. This option is useful when for metrics that are best aggregated using `Sum` or `Count` and need to be normalized based on the number of active instances. For example, if the metric is a queue length and the aggregation is Sum, when **dividePerInstance = true**, the metric is divided by the number of instances in the virtual machine scale set, giving the average queue length across all virtual machines. `dividePerInstance` is useful for metrics aggregated by `Sum` and `Count` but not for `Average` aggregations |
 | rule | scaleAction | Action |The action to take when the metricTrigger of the rule is triggered. |
 | scaleAction | direction | Operation |"Increase" to scale out, or "Decrease" to scale in.|
 | scaleAction | value |Instance count |How much to increase or decrease the capacity of the resource. |

@@ -12,7 +12,7 @@ ms.reviewer: mmcc
 
 This guide provides step-by-step instructions to migrate various .NET applications from using Application Insights software development kits (SDKs) to Azure Monitor OpenTelemetry.
 
-Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](opentelemetry-enable.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
 
 > [!div class="checklist"]
 > - ASP.NET Core migration to the [Azure Monitor OpenTelemetry Distro](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore). (`Azure.Monitor.OpenTelemetry.AspNetCore` NuGet package)
@@ -156,7 +156,7 @@ If you're getting started with Application Insights and don't need to migrate fr
     - `[Your project's name].csproj` might have a reference to your Application Insights resource:
 
         ```xml
-        <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
+        <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
         ```
 
 7. Clean and Build
@@ -253,7 +253,7 @@ If you're getting started with Application Insights and don't need to migrate fr
 
 ## Enable OpenTelemetry
 
-We recommended creating a development [resource](./create-workspace-resource.md) and using its [connection string](./sdk-connection-string.md) when following these instructions.
+We recommended creating a development [resource](./create-workspace-resource.md) and using its [connection string](./connection-strings.md) when following these instructions.
 
 :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
@@ -536,7 +536,7 @@ builder.Services.Configure<HttpClientTraceInstrumentationOptions>(options =>
 
 ##### Customizing SqlClientInstrumentationOptions
 
-We vendor the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
+We provide the [SQLClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation within our package while it's still in beta. When it reaches a stable release, we'll include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
 
 ```
 dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient
@@ -846,7 +846,7 @@ public class Global : System.Web.HttpApplication
 
         loggerFactory = LoggerFactory.Create(builder =>
         {
-            builder.AddOpenTelemetry(o => o.AddAzureMonitorLogExporter());
+            builder.AddOpenTelemetry(logging => logging.AddAzureMonitorLogExporter());
         });
     }
 
@@ -897,7 +897,7 @@ internal class Program
 
         ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
         {
-            builder.AddOpenTelemetry(o => o.AddAzureMonitorLogExporter());
+            builder.AddOpenTelemetry(logging => logging.AddAzureMonitorLogExporter());
         });
 
         Console.WriteLine("Hello, World!");
@@ -931,7 +931,7 @@ The following scenarios are optional and apply to advanced users.
   - `[Your project's name].csproj` might have a reference to your Application Insights resource:
 
       ```xml
-      <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
+      <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
       ```
 
 ### [WorkerService](#tab/workerservice)
@@ -968,7 +968,7 @@ public class Program
                 builder.AddAzureMonitorMetricExporter();
             });
 
-        builder.Logging.AddOpenTelemetry(builder => builder.AddAzureMonitorLogExporter());
+        builder.Logging.AddOpenTelemetry(logging => logging.AddAzureMonitorLogExporter());
 
         var host = builder.Build();
         host.Run();
@@ -1387,16 +1387,16 @@ var resourceAttributes = new Dictionary<string, object>
 var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
 
 using var loggerFactory = LoggerFactory.Create(builder => builder
-   .AddOpenTelemetry(loggerOptions =>
+   .AddOpenTelemetry(logging =>
    {
-       loggerOptions.SetResourceBuilder(resourceBuilder);
-       loggerOptions.AddAzureMonitorLogExporter();
+       logging.SetResourceBuilder(resourceBuilder);
+       logging.AddAzureMonitorLogExporter();
    }));
 
 // Create a new instance `ILogger` from the above LoggerFactory
 var logger = loggerFactory.CreateLogger<Program>();
 
-// Use the logger instance to write a new log
+// Emit log: This uses the logger instance to write a new log
 logger.FoodPrice("tomato", 2.99);
 
 internal static partial class LoggerExtensions
@@ -1436,10 +1436,10 @@ var resourceAttributes = new Dictionary<string, object>
 var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
 
 using var loggerFactory = LoggerFactory.Create(builder => builder
-   .AddOpenTelemetry(loggerOptions =>
+   .AddOpenTelemetry(logging =>
    {
-       loggerOptions.SetResourceBuilder(resourceBuilder);
-       loggerOptions.AddAzureMonitorLogExporter();
+       logging.SetResourceBuilder(resourceBuilder);
+       logging.AddAzureMonitorLogExporter();
    }));
 
 // Create a new instance `ILogger` from the above LoggerFactory.
@@ -1452,6 +1452,7 @@ try
 }
 catch (Exception ex)
 {
+    // Emit exception: This uses the logger instance to write a new exception
     logger?.LogError(ex, "An error occurred");
 }
 ```
@@ -1504,6 +1505,10 @@ Not supported in OpenTelemetry.
 ```csharp
 TelemetryClient.TrackPageView()
 ```
+
+#### Can I get live metrics for console and worker service applications?
+
+We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for console and worker service applications, which does not include live metrics.
 
 ## Next steps
 

@@ -4,7 +4,7 @@ description: Use dropdown parameters to simplify complex reporting with prebuilt
 services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 08/14/2024
+ms.date: 09/17/2024
 ---
 
 # Workbook dropdown parameters
