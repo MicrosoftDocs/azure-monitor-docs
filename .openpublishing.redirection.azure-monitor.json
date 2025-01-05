@@ -7672,7 +7672,7 @@
    },
    {
     "source_path_from_root": "/articles/azure-monitor/essentials/prometheus-self-managed-grafana-azure-active-directory.md",
-    "redirect_url": "/articles/azure-monitor/essentials/prometheus-grafana",
+    "redirect_url": "/azure/azure-monitor/essentials/prometheus-grafana",
     "redirect_document_id": false
   }
  ]
