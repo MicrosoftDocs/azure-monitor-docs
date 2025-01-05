@@ -18,6 +18,15 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## [2024](#tab/2024)
 
+## December 2024
+
+|Subservice | Article | Description |
+|---|---|---|
+|General|[Azure Monitor security overview and guidelines](best-practices-security.md)|Refreshed Azure Monitor security overview and guidelines.|
+|Application-Insights|[Configure the Application Insights SDK with ApplicationInsights.config or .xml](app/configuration-with-applicationinsights-config.md)|Instrumentation key examples have been replaced with connection strings.|
+|Application-Insights|[Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](app/opentelemetry-add-modify.md)|OpenTelemetry filtering documentation now has its own dedicated page with more information on using span processors where applicable.|
+
+
 ## November 2024
 
 |Subservice | Article | Description |
