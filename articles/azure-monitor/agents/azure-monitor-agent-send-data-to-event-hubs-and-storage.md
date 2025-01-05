@@ -4,7 +4,7 @@ description: This article describes how to use Azure Monitor Agent to upload dat
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 11/14/2024
+ms.date: 01/05/2025
 ms.reviewer: luki
 ---
 
