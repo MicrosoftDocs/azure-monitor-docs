@@ -13,7 +13,7 @@ The most common way to analyze and present Prometheus data is with a Grafana das
 + [Azure Monitor managed service for Prometheus](./prometheus-metrics-overview.md) 
 + [Self-managed Prometheus on Kubernetes clusters](./prometheus-metrics-overview.md#self-managed-kubernetes-services)
 + [Self-managed Prometheus on Azure virtual machines](./prometheus-metrics-overview.md#virtual-machines-and-virtual-machine-scale-sets)
-+ [Self-managed Prometheus hosted outside of Azure](./prometheus-remote-write-virtual-machines?tabs=entra-application%2Cprom-vm#remote-write-using-microsoft-entra-application-authentication)
++ [Self-managed Prometheus hosted outside of Azure](./prometheus-remote-write-virtual-machines.md?tabs=entra-application%2Cprom-vm#remote-write-using-microsoft-entra-application-authentication)
 
 This article explains how to configure Azure-hosted Prometheus metrics as a data source for [Azure Managed Grafana](/azure/managed-grafana/overview), self-hosted Grafana running on an Azure virtual machine, or a Grafana instance running outside of Azure.
 
