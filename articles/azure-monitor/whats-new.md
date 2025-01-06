@@ -29,7 +29,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Monitor DCR data collection in Azure Monitor](essentials/data-collection-monitor.md)|Rewritten for clarity.|
 |Essentials|[Manage data collection rule associations in Azure Monitor](essentials/data-collection-rule-associations.md)|Rewritten for clarity. Section added for creating new association.|
 |Essentials|[Data collection rules (DCRs) in Azure Monitor](essentials/data-collection-rule-overview.md)|Rewritten to consolidate all high level concepts for DCRs.|
-|Essentials|[Data collection rule (DCR) samples in Azure Monitor](data-collection-rule-samples.md)|Added several samples and modified article to improve consistency between samples.|
+|Essentials|[Data collection rule (DCR) samples in Azure Monitor](essentials/data-collection-rule-samples.md)|Added several samples and modified article to improve consistency between samples.|
 |Essentials|[Create a transformation in Azure Monitor](essentials/data-collection-transformations-create.md)|New article to consolidate guidance on creating transformations and added section on optimizing and monitoring.|
 |Essentials|[Supported KQL features in Azure Monitor transformations](essentials/data-collection-transformations-kql.md)|Rewritten to better describe KQL features that are and aren't supported in transformations.|
 |Essentials|[Sample transformations in Azure Monitor](essentials/data-collection-transformations-samples.md)|New article that describes different common transformation scenarios and provides sample queries.|
