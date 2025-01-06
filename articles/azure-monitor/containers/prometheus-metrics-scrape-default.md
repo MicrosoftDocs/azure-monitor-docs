@@ -36,7 +36,7 @@ The following targets are **enabled/ON** when you enable Container Network Obser
 - `networkobservabilityHubble` (`job=networkobservabilityHubble`)
 - `networkobservabilityCilium` (`job=networkobservabilityCilium`)
 
-The following targets are **enabled/ON** when you enable Azure Container Storage which is a cloud-based volume management, deployment, and orchestration service built natively for containers and natively integrates with AKS. For more information, see [Azure Container Storage](/azure/storage/container-storage).
+The following targets are **enabled/ON** when you enable Azure Container Storage which is a cloud-based volume management, deployment, and orchestration service built natively for containers and natively integrates with AKS. For more information, see [Azure Container Storage](/azure/storage/container-storage/enable-monitoring).
 
 - `acstor-capacity-provisioner` (`job=acstor-capacity-provisioner`)
 - `acstor-metrics-exporter` (`job=acstor-metrics-exporter`)
@@ -198,7 +198,7 @@ The following metrics are collected by default from each default target. All oth
    For list of metrics collected by these targets, see [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics)
 
    **acstor-capacity-provisioner (job=acstor-capacity-provisioner)** and **acstor-metrics-exporter (job=acstor-metrics-exporter**) <br>
-   For list of metrics collected by these targets, see [Azure Container Storage metrics](https://aka.ms/acstor-prometheus).
+   For list of metrics collected by these targets, see [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
 
 ## Default targets scraped for Windows
 Following Windows targets are configured to scrape, but scraping isn't enabled (**disabled/OFF**) by default - meaning you don't have to provide any scrape job configuration for scraping these targets but they are disabled/OFF by default and you need to turn ON/enable scraping for these targets using [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) under `default-scrape-settings-enabled` section.
