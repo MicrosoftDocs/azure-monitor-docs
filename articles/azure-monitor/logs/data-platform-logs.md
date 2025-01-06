@@ -120,7 +120,7 @@ Many of Azure Monitor's [ready-to-use, curated Insights experiences](../insights
 You can also [create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) using workbooks, dashboards, and Power BI.  
 
 > [!TIP]
-> Instead of running complex queries on large data sets or long time ranges, use [summary rules](../logs/summary-rules.md) to aggregate data for custom dashboards, workbooks, and reports. Summary rules aggregate data from one or more tables as the data arrives to your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
+> Instead of running complex queries on large data sets or long time ranges, use [summary rules](../logs/summary-rules.md) to aggregate data for custom dashboards, workbooks, and reports. Summary rules aggregate data from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
 
 ## Use cases 
 

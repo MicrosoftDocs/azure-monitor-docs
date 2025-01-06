@@ -22,7 +22,7 @@ Log Analytics dashboards can visualize all of your saved log queries. Visualizat
 To complete the example in this tutorial, you must have an existing virtual machine [connected to the Log Analytics workspace](../vm/monitor-virtual-machine.md).
 
 > [!TIP]
-> In this tutorial, you create a dashboard based on a simple query on the `Perf` table. For more complex queries on large data sets or long time ranges, use [summary rules](../logs/summary-rules.md) to aggregate the data you want to visualize. Summary rules aggregate data from one or more tables as the data arrives to your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
+> In this tutorial, you create a dashboard based on a simple query on the `Perf` table. For more complex queries on large data sets or long time ranges, use [summary rules](../logs/summary-rules.md) to aggregate the data you want to visualize. Summary rules aggregate data from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
 
 ## Sign in to the Azure portal
 Sign in to the [Azure portal](https://portal.azure.com).
