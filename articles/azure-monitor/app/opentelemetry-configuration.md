@@ -68,10 +68,11 @@ Use one of the following two ways to configure the connection string:
     // Create a new OpenTelemetry tracer provider.
     // It is important to keep the TracerProvider instance active throughout the process lifetime.
     var tracerProvider = Sdk.CreateTracerProviderBuilder()
-    .AddAzureMonitorTraceExporter(options =>
-    {
-        options.ConnectionString = "<Your Connection String>";
-    });
+        .AddAzureMonitorTraceExporter(options =>
+        {
+            options.ConnectionString = "<Your Connection String>";
+        })
+        .Build();
 
     // Create a new OpenTelemetry meter provider.
     // It is important to keep the MetricsProvider instance active throughout the process lifetime.
@@ -79,7 +80,8 @@ Use one of the following two ways to configure the connection string:
         .AddAzureMonitorMetricExporter(options =>
         {
             options.ConnectionString = "<Your Connection String>";
-        });
+        })
+        .Build();
 
     // Create a new logger factory.
     // It is important to keep the LoggerFactory instance active throughout the process lifetime.
@@ -232,14 +234,16 @@ var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttr
 var tracerProvider = Sdk.CreateTracerProviderBuilder()
     // Set ResourceBuilder on the TracerProvider.
     .SetResourceBuilder(resourceBuilder)
-    .AddAzureMonitorTraceExporter();
+    .AddAzureMonitorTraceExporter()
+    .Build();
 
 // Create a new OpenTelemetry meter provider and set the resource builder.
 // It is important to keep the MetricsProvider instance active throughout the process lifetime.
 var metricsProvider = Sdk.CreateMeterProviderBuilder()
     // Set ResourceBuilder on the MeterProvider.
     .SetResourceBuilder(resourceBuilder)
-    .AddAzureMonitorMetricExporter();
+    .AddAzureMonitorMetricExporter()
+    .Build();
 
 // Create a new logger factory and add the OpenTelemetry logger provider with the resource builder.
 // It is important to keep the LoggerFactory instance active throughout the process lifetime.
@@ -358,7 +362,8 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
     {   
         // Set the sampling ratio to 10%. This means that 10% of all traces will be sampled and sent to Azure Monitor.
         options.SamplingRatio = 0.1F;
-    });
+    })
+    .Build();
 ```
 
 ### [Java](#tab/java)
@@ -567,7 +572,8 @@ We support the credential classes provided by [Azure Identity](https://github.co
         .AddAzureMonitorTraceExporter(options =>
         {
             options.Credential = credential;
-        });
+        })
+        .Build();
 
     // Create a new OpenTelemetry meter provider and set the credential.
     // It is important to keep the MetricsProvider instance active throughout the process lifetime.
@@ -575,7 +581,8 @@ We support the credential classes provided by [Azure Identity](https://github.co
         .AddAzureMonitorMetricExporter(options =>
         {
             options.Credential = credential;
-        });
+        })
+        .Build();
 
     // Create a new logger factory and add the OpenTelemetry logger provider with the credential.
     // It is important to keep the LoggerFactory instance active throughout the process lifetime.
@@ -745,7 +752,8 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
         // This is the directory where the OpenTelemetry SDK will store any trace data that cannot be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
-    });
+        })
+        .Build();
 
 // Create a new OpenTelemetry meter provider and set the storage directory.
 // It is important to keep the MetricsProvider instance active throughout the process lifetime.
@@ -755,7 +763,8 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
         // Set the Azure Monitor storage directory to "C:\\SomeDirectory".
         // This is the directory where the OpenTelemetry SDK will store any metric data that cannot be sent to Azure Monitor immediately.
         options.StorageDirectory = "C:\\SomeDirectory";
-    });
+        })
+        .Build();
 
 // Create a new logger factory and add the OpenTelemetry logger provider with the storage directory.
 // It is important to keep the LoggerFactory instance active throughout the process lifetime.
@@ -914,13 +923,15 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
     // It is important to keep the TracerProvider instance active throughout the process lifetime.
     var tracerProvider = Sdk.CreateTracerProviderBuilder()
         .AddAzureMonitorTraceExporter()
-        .AddOtlpExporter();
+        .AddOtlpExporter()
+        .Build();
 
     // Create a new OpenTelemetry meter provider and add the Azure Monitor metric exporter and the OTLP metric exporter.
     // It is important to keep the MetricsProvider instance active throughout the process lifetime.
     var metricsProvider = Sdk.CreateMeterProviderBuilder()
         .AddAzureMonitorMetricExporter()
-        .AddOtlpExporter();
+        .AddOtlpExporter()
+        .Build();
     ```
 
 ### [Java](#tab/java)

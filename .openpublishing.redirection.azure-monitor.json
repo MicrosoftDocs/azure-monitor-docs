@@ -7660,15 +7660,15 @@
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   },
-  {
-    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md",
-    "redirect_url": "/azure/azure-monitor/reference",
-    "redirect_document_id": false
-   },
    {
     "source_path": "articles/azure/azure-monitor/reference/supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md",
     "redirect_url": "/azure/azure-monitor/reference",
     "redirect_document_id": false
-   }
+   },
+   {
+    "source_path_from_root": "/articles/azure-monitor/essentials/prometheus-self-managed-grafana-azure-active-directory.md",
+    "redirect_url": "/azure/azure-monitor/essentials/prometheus-grafana",
+    "redirect_document_id": false
+  }
  ]
 }

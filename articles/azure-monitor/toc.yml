@@ -1017,6 +1017,9 @@ items:
       - name: Prometheus remote-write from virtual machines
         displayName: Prometheus remote-write
         href: essentials/prometheus-remote-write-virtual-machines.md
+      - name: Connect Grafana to Azure Monitor Prometheus metrics
+        displayName: Prometheus Grafana
+        href: essentials/prometheus-grafana.md
       - name: Azure Monitor workspace
         items:
         - name: Overview
@@ -1041,14 +1044,6 @@ items:
         href: essentials/prometheus-rule-groups.md
       - name: Query Prometheus metrics
         items:
-        - name: Query using Grafana
-          items:
-          - name: Configure Grafana with managed system identity
-            displayName: Prometheus
-            href: essentials/prometheus-grafana.md
-          - name: Configure Grafana with Microsoft Entra ID
-            displayName: Prometheus
-            href: essentials/prometheus-self-managed-grafana-azure-active-directory.md
         - name: Query using Azure workbooks
           displayName: Prometheus
           href: essentials/prometheus-workbooks.md
@@ -1172,6 +1167,8 @@ items:
       href: logs/migrate-splunk-to-azure-monitor-logs.md
 - name: Security and networking
   items:
+  - name: Security best practices in Azure Monitor
+    href: .//best-practices-security.md
   - name: Data security
     items:
       - name: Roles permissions and security

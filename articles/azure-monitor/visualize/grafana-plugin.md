@@ -2,7 +2,7 @@
 title: Monitor Azure services and applications by using Grafana
 description: Route Azure Monitor and Application Insights data so that you can view it in Grafana.
 ms.topic: conceptual
-ms.date: 06/21/2023
+ms.date: 01/05/2025
 
 ---
 
@@ -19,6 +19,8 @@ You can monitor Azure services and applications by using [Grafana](https://grafa
 * [Azure Monitor Traces](./../app/distributed-trace-data.md) to query and visualize distributed tracing data from Application Insights.
 
 * [Azure Resource Graph](/azure/governance/resource-graph/overview) to quickly query and identify Azure resources across subscriptions.
+
+You can also use the plug-in to query and visualize data from Azure Monitor managed service for Prometheus. For more information, see [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
 
 You can then display this performance and availability data on your Grafana dashboard.
 
@@ -178,9 +180,11 @@ Basic Logs provide a cost-effective way to manage data storage by allowing you t
 > * **Time range** will be **Dashboard** time. Switching **Time range** back to **Query** is not available.
 > * Basic logs incur per-query costs, see [Select a table plan based on data usage in a Log Analytics workspace](./../logs/logs-table-plans.md).
 
+<!--
 ### Use exemplars with Azure
 
 In Grafana 11, [exemplars](https://grafana.com/docs/mimir/latest/manage/use-exemplars/about-exemplars/) can link directly to trace data in Application Insights. This integration allows you to connect Prometheus metric data with detailed traces, providing a more comprehensive view of system performance and behavior. For more information about the trace view in Grafana, see [Traces in Explore](https://grafana.com/docs/grafana/latest/explore/trace-integration/#traces-in-explore).
+
 
 #### Configure exemplars to point to Azure
 
@@ -206,6 +210,7 @@ In Grafana 11, [exemplars](https://grafana.com/docs/mimir/latest/manage/use-exem
 1. In the context menu, select **Azure** or the **URL Label** you gave the exemplar. This opens an **Azure** panel next to your current **Prometheus** panel with trace information in the Grafana viewer.
 
 :::image type="content" source="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" lightbox="media/grafana-plugin/grafana-exemplar-application-insights-with-numbers.png" alt-text="Screenshot showing Explore view with exemplars.":::
+-->
 
 ## Advanced Grafana features
 
