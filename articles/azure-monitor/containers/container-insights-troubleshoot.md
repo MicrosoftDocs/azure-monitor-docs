@@ -2,14 +2,33 @@
 title: Troubleshoot Container insights | Microsoft Docs
 description: This article describes how you can troubleshoot and resolve issues with Container insights.
 ms.topic: conceptual
-ms.date: 02/15/2024
+ms.date: 01/06/2025
 ms.reviewer: aul
 
 ---
 
 # Troubleshoot Container insights
 
-This article discusses some common issues and troubleshooting steps regarding monitoring of your Azure Kubernetes Service (AKS) cluster with Container insights. 
+This article discusses some common issues and troubleshooting steps when using Container insights to monitor your Kubernetes cluster. 
+
+## Duplicate alerts are being created
+You might have enabled Prometheus alert rules without disabling Container insights recommended alerts. See [Migrate from Container insights recommended alerts to Prometheus recommended alert rules (preview)](container-insights-metric-alerts.md#migrate-from-metric-rules-to-prometheus-rules-preview).
+
+## Cluster permissions
+
+If you don't have required permissions to the cluster, you may see the error message, `You do not have the right cluster permissions which will restrict your access to Container Insights features. Please reach out to your cluster admin to get the right permission.`
+
+Container Insights previously allowed users to access the Azure portal experience based on the access permission of the Log Analytics workspace. It now checks cluster-level permission to provide access to the Azure portal experience. You might need your cluster admin to assign this permission.
+
+For basic read-only cluster level access, assign the **Monitoring Reader** role for the following types of clusters.
+
+- AKS without Kubernetes role-based access control (RBAC) authorization enabled
+- AKS enabled with Microsoft Entra SAML-based single sign-on
+- AKS enabled with Kubernetes RBAC authorization
+- AKS configured with the cluster role binding clusterMonitoringUser
+- [Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview)
+
+See [Assign role permissions to a user or group](/azure/aks/control-kubeconfig-access#assign-role-permissions-to-a-user-or-group) for details on how to assign these roles for AKS and [Access and identity options for Azure Kubernetes Service (AKS)](/azure/aks/concepts-identity) to learn more about role assignments.
 
 
 ## Onboarding and update issues
@@ -59,10 +78,10 @@ helm del azmon-containers-release-1
 
 
 ## Missing data
-It may take up to 15 minutes for data to appear after you enable Container insights on a cluster. If you don't see data after 15 minutes, use the following sections to identify and resolve the issue.
+It may take up to 15 minutes for data to appear after you enable Container insights on a cluster. If you don't see data after 15 minutes, see the following sections for potential issues and solutions.
 
 ### Error message retrieving data 
-The error message `Error retrieving data` might occur if the Log Analytics workspace where the cluster was sending its data may have been deleted. If this is the case, [disable](kubernetes-monitoring-disable.md) monitoring for the cluster and [enable](kubernetes-monitoring-enable.md) Container insights again using another workspace. 
+The error message `Error retrieving data` might occur if the Log Analytics workspace where the cluster was sending its data has been deleted. If this is the case, [disable](kubernetes-monitoring-disable.md) monitoring for the cluster and [enable](kubernetes-monitoring-enable.md) Container insights again using another workspace. 
 
 ### Local authentication disabled
 Check if the Log Analytics workspace is configured for local authentication with the following CLI command.<br><br> `az resource show  --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]"`<br><br>If `disableLocalAuth = true`, then run the following command.<br><br>`az resource update --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]" --api-version "2021-06-01" --set properties.features.disableLocalAuth=False` |
@@ -72,12 +91,6 @@ When the daily cap is limit is met for a Log Analytics workspace, it will stop c
 
 ### DCR not deployed with Terraform
 If Containter insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights](./kubernetes-monitoring-enable.md?tabs=terraform#enable-container-insights).
-
-### 
-
-Container insights agent pods use the `cAdvisor` endpoint on the node agent to gather performance metrics. Performance charts don't show CPU or memory of nodes and containers on a non-Azure cluster
-
-Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` or  `cAdvisor unsecure port: 10255` to be opened on all nodes in the cluster to collect performance metrics. See [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites).
 
 ### Container insights not reporting any information
 Use the following steps if you can't view status information or no results are returned from a log query.
@@ -180,11 +193,51 @@ Use the following steps if you can't view status information or no results are r
         kubernetes.azure.com/managedby: aks
         ```
 
-### Not collecting logs on Azure Stack HCI cluster
+### Performance charts don't show CPU or memory of nodes and containers on a non-Azure cluster
+
+Container insights agent pods use the `cAdvisor` endpoint on the node agent to gather performance metrics. Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` or  `cAdvisor unsecure port: 10255` to be opened on all nodes in the cluster to collect performance metrics. See [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites).
+
+### Image and Name values notpopulated in the ContainerLog table
+
+For agent version `ciprod12042019` and later, these two properties aren't populated by default for every log line to minimize cost incurred on log data collected. You can either enable collection of these properties or modify your queries to include these properties from other tables.
+
+Modify your queries to include `Image` and `ImageTag` properties from the `ContainerInventory` table by joining on `ContainerID` property. You can include the `Name` property (as it previously appeared in the `ContainerLog` table) from the `KubepodInventory` table's `ContainerName` field by joining on the `ContainerID` property. 
+          
+The following sample query shows how to get use joins to retrieve these values.
+
+```
+//Set the time window for the query
+let startTime = ago(1h);
+let endTime = now();
+//
+//Get the latest Image & ImageTag for every containerID
+let ContainerInv = ContainerInventory | where TimeGenerated >= startTime and TimeGenerated < endTime | summarize arg_max(TimeGenerated, *)  by ContainerID, Image, ImageTag | project-away TimeGenerated | project ContainerID1=ContainerID, Image1=Image ,ImageTag1=ImageTag;
+//
+//Get the latest Name for every containerID
+let KubePodInv  = KubePodInventory | where ContainerID != "" | where TimeGenerated >= startTime | where TimeGenerated < endTime | summarize arg_max(TimeGenerated, *)  by ContainerID2 = ContainerID, Name1=ContainerName | project ContainerID2 , Name1;
+//
+//Join the above to get a jointed table that has name, image & imagetag. Outer left is used in case there are no kubepod records or if they're latent
+let ContainerData = ContainerInv | join kind=leftouter (KubePodInv) on $left.ContainerID1 == $right.ContainerID2;
+//
+//Join ContainerLog table with the jointed table above, project-away redundant fields/columns, and rename columns that were rewritten. Outer left is used so logs aren't lost even if no container metadata for loglines is found.
+ContainerLog
+| where TimeGenerated >= startTime and TimeGenerated < endTime
+| join kind= leftouter (
+  ContainerData
+) on $left.ContainerID == $right.ContainerID2 | project-away ContainerID1, ContainerID2, Name, Image, ImageTag | project-rename Name = Name1, Image=Image1, ImageTag=ImageTag1
+```
+
+> [!WARNING]
+> Enabling the properties isn't recommended for large clusters that have more than 50 nodes. It generates API server calls from every node in the cluster and also increases data size for every log line collected.
+
+To enable collection of these fields so you don't have to modify your queries, enable the setting `log_collection_settings.enrich_container_logs` in the agent config map as described in the [data collection configuration settings](./container-insights-data-collection-configmap.md).
+
+### Logs not being collected on Azure Stack HCI cluster
 If you registered your cluster and/or configured HCI Insights before November 2023, features that use the Azure Monitor agent on HCI, such as Arc for Servers Insights, VM Insights, Container Insights, Defender for Cloud, or Microsoft Sentinel might not be collecting logs and event data properly. See [Repair AMA agent for HCI](/azure-stack/hci/manage/monitor-hci-single?tabs=22h2-and-later#repair-ama-for-azure-stack-hci) for steps to reconfigure the agent and HCI Insights.
 
 ### Missing data on large clusters
 If data is missing from any of the following tables, the likely issue is related to parsing of the large payloads because of a large number of pods or nodes. This is known issue in the ruby plugin to parse the large JSON payload  because of the default PODS_CHUNK_SIZE, which is 1000.
+
 There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to address this issue.
 
 - KubePodInventory
@@ -318,84 +371,16 @@ There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to 
 7. If this related to scale of the cluster, then ama-logs-rs memory limits needs to be bumped. Refer to [CI-Agent-Increase-Resource-Limits-ask](CI-Agent-Increase-Resource-Limits-ask.md)
 
 
-## Container logs missing
-
-1. Verify that you're querying the correct table.
-
-
-## Non-AKS clusters aren't showing
-
-To view the non-AKS cluster in Container insights, read access is required on the Log Analytics workspace that supports this insight and on the Container insights solution resource **ContainerInsights (*workspace*)**.
-
-## Duplicate alerts are being created
-You might have enabled Prometheus alert rules without disabling Container insights recommended alerts. See [Migrate from Container insights recommended alerts to Prometheus recommended alert rules (preview)](container-insights-metric-alerts.md#migrate-from-metric-rules-to-prometheus-rules-preview).
-
-## Cluster permissions
-
-If you don't have required permissions to the cluster, you may see the error message, `You do not have the right cluster permissions which will restrict your access to Container Insights features. Please reach out to your cluster admin to get the right permission.`
-
-Container Insights previously allowed users to access the Azure portal experience based on the access permission of the Log Analytics workspace. It now checks cluster-level permission to provide access to the Azure portal experience. You might need your cluster admin to assign this permission.
-
-For basic read-only cluster level access, assign the **Monitoring Reader** role for the following types of clusters.
-
-- AKS without Kubernetes role-based access control (RBAC) authorization enabled
-- AKS enabled with Microsoft Entra SAML-based single sign-on
-- AKS enabled with Kubernetes RBAC authorization
-- AKS configured with the cluster role binding clusterMonitoringUser
-- [Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview)
-
-See [Assign role permissions to a user or group](/azure/aks/control-kubeconfig-access#assign-role-permissions-to-a-user-or-group) for details on how to assign these roles for AKS and [Access and identity options for Azure Kubernetes Service (AKS)](/azure/aks/concepts-identity) to learn more about role assignments.
-
-## Image and Name values aren't populated in the ContainerLog table
-
-For agent version `ciprod12042019` and later, these two properties aren't populated by default for every log line to minimize cost incurred on log data collected. You can either enable collection of these properties or modify your queries to include these properties from other tables.
-
-Modify your queries to include `Image` and `ImageTag` properties from the `ContainerInventory` table by joining on `ContainerID` property. You can include the `Name` property (as it previously appeared in the `ContainerLog` table) from the `KubepodInventory` table's `ContainerName` field by joining on the `ContainerID` property. 
-          
-The following sample query shows how to get use joins to retrieve these values.
-
-```
-//Set the time window for the query
-let startTime = ago(1h);
-let endTime = now();
-//
-//Get the latest Image & ImageTag for every containerID
-let ContainerInv = ContainerInventory | where TimeGenerated >= startTime and TimeGenerated < endTime | summarize arg_max(TimeGenerated, *)  by ContainerID, Image, ImageTag | project-away TimeGenerated | project ContainerID1=ContainerID, Image1=Image ,ImageTag1=ImageTag;
-//
-//Get the latest Name for every containerID
-let KubePodInv  = KubePodInventory | where ContainerID != "" | where TimeGenerated >= startTime | where TimeGenerated < endTime | summarize arg_max(TimeGenerated, *)  by ContainerID2 = ContainerID, Name1=ContainerName | project ContainerID2 , Name1;
-//
-//Join the above to get a jointed table that has name, image & imagetag. Outer left is used in case there are no kubepod records or if they're latent
-let ContainerData = ContainerInv | join kind=leftouter (KubePodInv) on $left.ContainerID1 == $right.ContainerID2;
-//
-//Join ContainerLog table with the jointed table above, project-away redundant fields/columns, and rename columns that were rewritten. Outer left is used so logs aren't lost even if no container metadata for loglines is found.
-ContainerLog
-| where TimeGenerated >= startTime and TimeGenerated < endTime
-| join kind= leftouter (
-  ContainerData
-) on $left.ContainerID == $right.ContainerID2 | project-away ContainerID1, ContainerID2, Name, Image, ImageTag | project-rename Name = Name1, Image=Image1, ImageTag=ImageTag1
-```
-
-> [!WARNING]
-> Enabling the properties isn't recommended for large clusters that have more than 50 nodes. It generates API server calls from every node in the cluster and also increases data size for every log line collected.
-
-To enable collection of these fields so you don't have to modify your queries, enable the setting `log_collection_settings.enrich_container_logs` in the agent config map as described in the [data collection configuration settings](./container-insights-data-collection-configmap.md).
-
-
-
 ## Latency issues
-See [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md) for detailed information on latency and expected ingestion times in a Log Analytics workspace.
+By default Container insights collects monitoring data every 60 seconds unless you configure data collection settings or add a [transformation](../essentials/data-collection-transformations.md). See [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md) for detailed information on latency and expected ingestion times in a Log Analytics workspace.
 
-By default Container insights collects monitoring data every 60 seconds unless you configure data collection settings or add a [transformation](../essentials/data-collection-transformations.md).
-
-
-1. Check the  latencies for the reported table and time window in the log analytics workspace associated to the clusters using the following query.
+Check the  latencies for the reported table and time window in the log analytics workspace associated to the clusters using the following query.
 
 ```kusto
 let clusterResourceId = "/subscriptions/<subscriptionId>/resourceGroups/<rgName>/providers/Microsoft.ContainerService/managedClusters/<clusterName>";
 let startTime = todatetime('2024-11-20T20:34:11.9117523Z');
 let endTime = todatetime('2024-11-21T20:34:11.9117523Z');
-KubePodInventory # Update this table name to the one you want to check
+KubePodInventory #Update this table name to the one you want to check
 | where _ResourceId =~ clusterResourceId
 | where TimeGenerated >= startTime and TimeGenerated <= endTime
 | extend E2EIngestionLatency = ingestion_time() - TimeGenerated
@@ -404,75 +389,46 @@ KubePodInventory # Update this table name to the one you want to check
 | project Computer, max_AgentLatency, max_ingestionLatency = (max_E2EIngestionLatency -  max_AgentLatency),max_E2EIngestionLatency
 ```
 
-3. If are seeing high agent latencies, check if you configured a different log collection interval than default(60 seconds) in Container Insights DCR.
+If are seeing high agent latencies, check if you configured a different log collection interval than default of 60 seconds in the Container Insights DCR.
 
-    ``` sh
-     # set the subscriptionId of the cluster
-     az account set -s "<subscriptionId>"
-     # check if ContainerInsightsExtension  data collection rule association exists
-     az monitor data-collection rule association list --resource <clusterResourceId>
-     # get the data collection rule resource id associated to ContainerInsightsExtension from above step
-     az monitor data-collection rule show  --ids  <dataCollectionRuleResourceIdFromAboveStep>
-     # check if there are any data collection settings related to interval from the output of the above step
-    ```
+``` sh
+# set the subscriptionId of the cluster
+az account set -s "<subscriptionId>"
+# check if ContainerInsightsExtension  data collection rule association exists
+az monitor data-collection rule association list --resource <clusterResourceId>
+# get the data collection rule resource id associated to ContainerInsightsExtension from above step
+az monitor data-collection rule show  --ids  <dataCollectionRuleResourceIdFromAboveStep>
+# check if there are any data collection settings related to interval from the output of the above step
+```
 
 ## Multiline logging issues
-[Multi-line log feature](./container-insights-logs-schema.md#multi-line-logging) can be enabled with configmap and it supports following scenarios.
+[Multi-line log feature](./container-insights-logs-schema.md#multi-line-logging) can be enabled with configmap and supports the following scenarios.
 
 - Supports log messages up to 64KB instead of the default limit of 16KB.
 - Stitches exception call stack traces for supported languages .NET, Go, Python and Java.
 
-1.  Verify that the multiline feature and ContainerLogV2 schema are enabled with the following commands.
+Verify that the multiline feature and ContainerLogV2 schema are enabled with the following commands.
 
-    ``` bash
-      # get the list of ama-logs and these pods should be in Running state
-      # If these are not in Running state, then this needs to be investigated
-      kubectl get po -n kube-system | grep ama-logs
+``` bash
+    # get the list of ama-logs and these pods should be in Running state
+    # If these are not in Running state, then this needs to be investigated
+    kubectl get po -n kube-system | grep ama-logs
 
-      # exec into any one of the ama-logs daemonset pod and check for the environment variables
-      kubectl exec -it  ama-logs-xxxxx -n kube-system -c ama-logs -- bash
+    # exec into any one of the ama-logs daemonset pod and check for the environment variables
+    kubectl exec -it  ama-logs-xxxxx -n kube-system -c ama-logs -- bash
 
-      # after exec into the container run this command
-       env | grep AZMON_MULTILINE
+    # after exec into the container run this command
+    env | grep AZMON_MULTILINE
 
-      # result should have environment variables which indicates the multiline and languages enabled
-      AZMON_MULTILINE_LANGUAGES=java,go
-      AZMON_MULTILINE_ENABLED=true
+    # result should have environment variables which indicates the multiline and languages enabled
+    AZMON_MULTILINE_LANGUAGES=java,go
+    AZMON_MULTILINE_ENABLED=true
 
-      # check if the containerlog v2 schema enabled or not
-      env | grep AZMON_CONTAINER_LOG_SCHEMA_VERSION
+    # check if the containerlog v2 schema enabled or not
+    env | grep AZMON_CONTAINER_LOG_SCHEMA_VERSION
 
-      # output should be v2. If not v2, then check whether this is being enabled through DCR
-      AZMON_CONTAINER_LOG_SCHEMA_VERSION=v2
-    ```
-
-2. Identify the whether the customer reported multiline issue related to exception call stack trace or log message getting truncated to 16KB or both.
-3. If reported issue doesnt belong to one of the supported scenario, then you can mitigate this ICM indicating not supported scenario.
-4. If the reported issue related to exception call stack and check if its one of the supported language exception stack trace. If its not supported language then mitigate the incident.
-5. If the reported issue related to the supported scenario, check Fluent-bit release notes and issues if there is any issue in Fluent-bit itself.
-
-
-## Next steps
-
-When monitoring is enabled to capture health metrics for the AKS cluster nodes and pods, these health metrics are available in the Azure portal. To learn how to use Container insights, see [View Azure Kubernetes Service health](container-insights-analyze.md).
-
-
-
-
-## Container insights agent ReplicaSet Pods aren't scheduled on a non-AKS cluster
-
-Container insights agent ReplicaSet Pods have a dependency on the following node selectors on the worker (or agent) nodes for the scheduling:
-
-```
-nodeSelector:
-  beta.kubernetes.io/os: Linux
-  kubernetes.io/role: agent
+    # output should be v2. If not v2, then check whether this is being enabled through DCR
+    AZMON_CONTAINER_LOG_SCHEMA_VERSION=v2
 ```
 
-If your worker nodes don’t have node labels attached, agent ReplicaSet Pods won't get scheduled. For instructions on how to attach the label, see [Kubernetes assign label selectors](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/).
 
-
-
-| Error messages  | Action |
-| ---- | --- |
-| `The reply url specified in the request doesn't match the reply urls configured for the application` | You might see this error message when you enable live logs. See [View container data in real time with Container insights](./container-insights-livedata-setup.md#configure-azure-ad-integrated-authentication). |
