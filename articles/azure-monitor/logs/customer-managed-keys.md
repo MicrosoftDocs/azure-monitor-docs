@@ -3,7 +3,7 @@ title: Azure Monitor customer-managed keys
 description: Information and steps to configure Customer-managed key to encrypt data in your Log Analytics workspaces using an Azure Key Vault key.
 ms.topic: conceptual
 ms.reviewer: yossiy
-ms.date: 01/06/2024 
+ms.date: 10/30/2024 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 ---
@@ -22,7 +22,7 @@ Azure Monitor ensures that all data and saved queries are encrypted at rest usin
 
 To manage the key lifecycle and be able to revoke access to your data, you can encrypt data with your own key using [Azure Key Vault](/azure/key-vault/general/overview). 
 
-Customer-managed keys are available on [dedicated clusters](./logs-dedicated-clusters.md) and provide you with a higher level of protection and control. Data is encrypted in storage twice - at the service level using Microsoft-managed keys or customer-managed keys, and at the infrastructure level, using two different [encryption algorithms](/azure/storage/common/storage-service-encryption#about-azure-storage-service-side-encryption) and two different keys. [Double encryption](/azure/storage/common/storage-service-encryption#doubly-encrypt-data-with-infrastructure-encryption) protects against a scenario where one of the encryption algorithms or keys might be compromised. Dedicated clusters also let you protect data with [Lockbox](#customer-lockbox).
+Customer-managed keys are available on [dedicated clusters](./logs-dedicated-clusters.md) and provide you with a higher level of protection and control. Data is encrypted in storage twice - at the service level using Microsoft-managed keys or customer-managed keys, and at the infrastructure level, using two different [encryption algorithms](/azure/storage/common/storage-service-encryption#about-azure-storage-service-side-encryption) and two different keys. [Double encryption](/azure/security/fundamentals/double-encryption) protects against a scenario where one of the encryption algorithms or keys might be compromised. Dedicated clusters also let you protect data with [Lockbox](#customer-lockbox).
 
 Data ingested in the last 14 days, or recently used in queries, is kept in hot-cache (SSD-backed) for query efficiency. SSD data is encrypted with Microsoft keys regardless of whether you configure customer-managed keys, but your control over SSD access adheres to [key revocation](#key-revocation).
 
@@ -35,8 +35,8 @@ Azure Monitor uses managed identity to grant access to your Azure Key Vault. The
 
 Clusters support two [managed identity types](/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types): System-assigned and User-assigned, while a single identity can be defined in a cluster depending on your scenario. 
 
-- System-assigned managed identity is simpler and gets generated automatically when you create a cluster if the identity `type` is set to `SystemAssigned`. This identity can be used later to grant storage access to your Key Vault for wrap and unwrap operations.
-- User-assigned managed identity lets you configure customer-managed keys at cluster creation, when granting it permissions in your Key Vault before cluster creation.
+- System-assigned managed identity is simpler and generated automatically with cluster when `identity` `type` is set to `SystemAssigned`. This identity is used later to grant storage access to your Key Vault for data encryption and decryption.
+- User-assigned managed identity lets you configure customer-managed keys at cluster creation, when `identity` `type` is set to `UserAssigned`, and granting it permissions in your Key Vault before cluster creation.
 
 You can configure customer-managed keys on a new cluster, or an existing cluster that's linked to workspaces and is already ingesting data. New data ingested to linked workspaces gets encrypted with your key, and older data ingested before the configuration remains encrypted with Microsoft keys. Customer-managed key configuration doesn't affect your queries, which continue to run on old and new data seamlessly. You can unlink workspaces from a cluster at any time. New data you ingest after the unlink gets encrypted with Microsoft keys, and queries are performed across old, and new data seamlessly.
 
@@ -91,7 +91,7 @@ These settings can be updated in Key Vault via CLI and PowerShell:
 
 ## Create cluster
 
-Clusters use managed identity for data encryption with your Key Vault. Configure identity `type` property to `SystemAssigned` when creating your cluster to allow access to your Key Vault for "wrap" and "unwrap" operations. 
+Clusters use managed identity for data encryption with your Key Vault. Configure `identity` `type` property to `SystemAssigned` or `UserAssigned` when creating your cluster to allow access to your Key Vault for data encryption and decryption operations. 
   
   Identity settings in cluster for System-assigned managed identity
   ```json
@@ -101,6 +101,16 @@ Clusters use managed identity for data encryption with your Key Vault. Configure
       }
   }
   ```
+
+> [!NOTE]
+> Identity type can be changed after the cluster is created with no interruption to ingestion or queries with the following considerations
+> - Updating `SystemAssigned` to `UserAssigned`—[Grant UserAssign identity](#grant-key-vault-permissions) in Key Vault, then update `identity` `type` in cluster
+> - Updating `UserAssigned` to `SystemAssigned`—Since System-assigned managed identity created  after updating cluster `identity` `type` with `SystemAssigned`, the following steps must be followed
+>   1. Update cluster and remove the key—set `keyVaultUri`, `keyName`, and `keyVersion` with value ""   
+>   1. Update cluster `identity` `type` to `SystemAssigned`
+>   1. Update Key Vault and [grant permissions](#grant-key-vault-permissions) to the identity
+>   1. [Update key in cluster](#update-cluster-with-key-identifier-details)
+
 
 Follow the procedure illustrated in [Dedicated Clusters article](./logs-dedicated-clusters.md#create-a-dedicated-cluster). 
 
@@ -112,11 +122,13 @@ There are two permission models in Key Vault to grant access to your cluster and
       
    To add role assignments, you must have a role with `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions, such as [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator) or [Owner](/azure/role-based-access-control/built-in-roles#owner).
 
-   Open your Key Vault in Azure portal and select **Settings** > **Access configuration** > **Azure role-based access control**. Then enter **Access control (IAM)** and add **Key Vault Crypto Service Encryption User** role assignment.
+   1. Open your Key Vault in Azure portal and select **Settings** > **Access configuration** > **Azure role-based access control** and **Apply**
+   2. Click **Go to access control(IAM)** button and add **Key Vault Crypto Service Encryption User** role assignment. 
+   3. Select **Managed identity** in Members tab and select the subscription for identity and the identity as member
 
    :::image type="content" source="media/customer-managed-keys/grant-key-vault-permissions-rbac-8bit.png" lightbox="media/customer-managed-keys/grant-key-vault-permissions-rbac-8bit.png" alt-text="Screenshot of Grant Key Vault RBAC permissions." border="false":::
 
-1. Assign vault access policy (legacy)
+2. Assign vault access policy (legacy)
 
     Open your Key Vault in Azure portal and select **Access Policies** > **Vault access policy** > **+ Add Access Policy** to create a policy with these settings:
 
@@ -136,7 +148,7 @@ All operations on the cluster require the `Microsoft.OperationalInsights/cluster
 This step updates dedicated cluster storage with the key and version to use for "AEK" wrap and unwrap.
 
 >[!IMPORTANT]
->- Key rotation can be automatic or require explicit key update, see [Key rotation](#key-rotation) to determine approach that is suitable for you before updating the key identifier details in cluster.
+>- Key rotation can be automatic or per explicit key version, see [Key rotation](#key-rotation) to determine approach that is suitable for you before updating the key identifier details in cluster.
 >- Cluster update should not include both identity and key identifier details in the same operation. If you need to update both, the update should be in two consecutive operations.
 
 :::image type="content" source="media/customer-managed-keys/key-identifier-8bit.png" lightbox="media/customer-managed-keys/key-identifier-8bit.png" alt-text="Screenshot of Grant Key Vault permissions.":::
@@ -186,7 +198,7 @@ Content-type: application/json
     "keyVaultProperties": {
       "keyVaultUri": "https://key-vault-name.vault.azure.net",
       "keyName": "key-name",
-      "keyVersion": "current-version"
+      "keyVersion": ""
   },
   "sku": {
     "name": "CapacityReservation",
@@ -216,7 +228,7 @@ Response to GET request when key update is completed:
     "keyVaultProperties": {
       "keyVaultUri": "https://key-vault-name.vault.azure.net",
       "keyName": "key-name",
-      "keyVersion": "current-version"
+      "keyVersion": ""
       },
     "provisioningState": "Succeeded",
     "clusterId": "cluster-id",
@@ -260,10 +272,10 @@ The cluster storage always respects changes in key permissions within an hour or
 
 Key rotation has two modes: 
 
-- Autorotation—update your cluster with ```"keyVaultProperties"``` but omit ```"keyVersion"``` property, or set it to ```""```. Storage automatically uses the latest key version.
-- Explicit key version update—update your cluster with key version in ```"keyVersion"``` property. Rotation of keys requires an explicit ```"keyVaultProperties"``` update in cluster. For more information, see [Update cluster with Key identifier details](#update-cluster-with-key-identifier-details). If you generate a new key version in Key Vault but don't update the key in the cluster, the cluster storage keeps using your previous key. If you disable or delete the old key before updating a new one in the cluster, you get into [key revocation](#key-revocation) state.
+- Autorotation—update ```"keyVaultProperties"``` properties in cluster and omit ```"keyVersion"``` property, or set it to ```""```. Storage automatically uses the latest key version.
+- Explicit key version update—update ```"keyVaultProperties"``` properties and update the key version in ```"keyVersion"``` property. Key rotation requires explicit update of ```"keyVersion"``` property in cluster. For more information, see [Update cluster with Key identifier details](#update-cluster-with-key-identifier-details). If you generate a new key version in Key Vault but don't update the key in the cluster, the cluster storage keeps using your previous key. If you disable or delete the old key before updating a new one in the cluster, you get into [key revocation](#key-revocation) state.
 
-All your data remains accessible after the key rotation operation. Data always encrypted with the Account Encryption Key ("AEK"), which is encrypted with your new Key Encryption Key ("KEK") version in Key Vault.
+All your data remains accessible during and after the key rotation operation. Data always encrypted with the Account Encryption Key ("AEK"), which is encrypted with your new Key Encryption Key ("KEK") version in Key Vault.
 
 ## Customer-managed key for saved queries and log search alerts
 

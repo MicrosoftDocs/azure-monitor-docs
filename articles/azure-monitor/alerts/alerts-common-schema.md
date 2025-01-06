@@ -41,7 +41,7 @@ The common schema includes information about the affected resource and the cause
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/<subscription ID>/providers/Microsoft.AlertsManagement/alerts/b9569717-bc32-442f-add5-83a997729330",
+      "alertId": "/subscriptions/<subscription ID>/providers/Microsoft.AlertsManagement/alerts/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
       "alertRule": "WCUS-R2-Gen2",
       "severity": "Sev3",
       "signalType": "Metric",
@@ -336,7 +336,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/a5ea55e2-7482-49ba-90b3-60e7496dd873/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]
@@ -365,7 +365,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
     "SearchIntervalInMinutes": "15",
     "Threshold": 10000.0,
     "Operator": "Less Than",
-    "ApplicationId": "8e20151d-75b2-4d66-b965-153fb69d65a6",
+    "ApplicationId": "00001111-aaaa-2222-bbbb-3333cccc4444",
     "Dimensions": [
       {
         "name": "IP",
@@ -406,7 +406,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
       ],
       "dataSources": [
         {
-          "resourceId": "/subscriptions/a5ea27e2-7482-49ba-90b3-52e7496dd873/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
+          "resourceId": "/subscriptions/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/resourcegroups/test/providers/microsoft.operationalinsights/workspaces/test",
           "tables": [
             "Heartbeat"
           ]
@@ -478,9 +478,9 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
         "scope": "/subscriptions/<subscription ID>/resourceGroups/PipeLineAlertRG/providers/Microsoft.Compute/virtualMachines/WCUS-R2-ActLog"
       },
       "channels": "Operation",
-      "claims": "{\"aud\":\"https://management.core.windows.net/\",\"iss\":\"https://sts.windows.net/12345a-1234b-123c-123d-12345678e/\",\"iat\":\"1553260826\",\"nbf\":\"1553260826\",\"exp\":\"1553264726\",\"aio\":\"42JgYNjdt+rr+3j/dx68v018XhuFAwA=\",\"appid\":\"e9a02282-074f-45cf-93b0-50568e0e7e50\",\"appidacr\":\"2\",\"http://schemas.microsoft.com/identity/claims/identityprovider\":\"https://sts.windows.net/12345a-1234b-123c-123d-12345678e/\",\"http://schemas.microsoft.com/identity/claims/objectidentifier\":\"9778283b-b94c-4ac6-8a41-d5b493d03aa3\",\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier\":\"9778283b-b94c-4ac6-8a41-d5b493d03aa3\",\"http://schemas.microsoft.com/identity/claims/tenantid\":\"12345a-1234b-123c-123d-12345678e\",\"uti\":\"v5wYC9t9ekuA2rkZSVZbAA\",\"ver\":\"1.0\"}",
-      "caller": "9778283b-b94c-4ac6-8a41-d5b493d03aa3",
-      "correlationId": "8ee9c32a-92a1-4a8f-989c-b0ba09292a91",
+      "claims": "{\"aud\":\"https://management.core.windows.net/\",\"iss\":\"https://sts.windows.net/12345a-1234b-123c-123d-12345678e/\",\"iat\":\"1553260826\",\"nbf\":\"1553260826\",\"exp\":\"1553264726\",\"aio\":\"42JgYNjdt+rr+3j/dx68v018XhuFAwA=\",\"appid\":\"11112222-bbbb-3333-cccc-4444dddd5555\",\"appidacr\":\"2\",\"http://schemas.microsoft.com/identity/claims/identityprovider\":\"https://sts.windows.net/12345a-1234b-123c-123d-12345678e/\",\"http://schemas.microsoft.com/identity/claims/objectidentifier\":\"22223333-cccc-4444-dddd-5555eeee6666\",\"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier\":\"22223333-cccc-4444-dddd-5555eeee6666\",\"http://schemas.microsoft.com/identity/claims/tenantid\":\"12345a-1234b-123c-123d-12345678e\",\"uti\":\"v5wYC9t9ekuA2rkZSVZbAA\",\"ver\":\"1.0\"}",
+      "caller": "22223333-cccc-4444-dddd-5555eeee6666",
+      "correlationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
       "eventSource": "Administrative",
       "eventTimestamp": "2019-03-22T13:56:31.2917159+00:00",
       "eventDataId": "161fda7e-1cb4-4bc5-9c90-857c55a8f57b",
@@ -592,7 +592,7 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
     "channels": 1,
     "claims": null,
     "caller": null,
-    "correlationId": "f3cf2430-1ee3-4158-8e35-7a1d615acfc7",
+    "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee",
     "eventSource": 2,
     "eventTimestamp": "2019-06-24T11:31:19.0312699+00:00",
     "httpRequest": null,
@@ -654,7 +654,7 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
 ```
 ## Alert context fields for Prometheus alerts
 
-See [Azure Monitor managed service for Prometheus rule groups (preview)](../essentials/prometheus-rule-groups.md) for detailed information about the fields in Prometheus alerts.
+See [Azure Monitor managed service for Prometheus rule groups](../essentials/prometheus-rule-groups.md) for detailed information about the fields in Prometheus alerts.
 ### Sample Prometheus alert
 
 ```json

@@ -2,7 +2,7 @@
 title: Collect logs from a text file with Azure Monitor Agent 
 description: Configure a data collection rule to collect log data from a text file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 09/11/2024
+ms.date: 11/14/2024
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: jeffwo
@@ -51,7 +51,7 @@ Adhere to the following recommendations to ensure that you don't experience data
 ## Incoming stream
 
 > [!NOTE]
-> Multiline support that uses an [ISO 8601](https://wikipedia.org/wiki/ISO_8601) time stamp to delimited events is expected mid-October 2024
+> Multiline support that uses a time stamp to delimited events is now available.  You must use a resource management template deployment until support is added in the Portal UI.
 
 The incoming stream of data includes the columns in the following table. 
 
@@ -67,7 +67,9 @@ The incoming stream of data includes the columns in the following table.
 Before you can collect log data from a text file, you must create a custom table in your Log Analytics workspace to receive the data. The table schema must match the data you are collecting, or you must add a transformation to ensure that the output schema matches the table. 
 
 > [!Warning]
-> You shouldn’t use an existing custom log table used by MMA agents. Your MMA agents won't be able to write to the table once the first AMA agent writes to the table. You should create a new table for AMA to use to prevent MMA data loss.
+> To avoid data loss, it’s important that you do not use an existing custom log table that MMA agents are currently utilizing.
+> Once any AMA agent writes to an existing custom log table, MMA agents will no longer be able to write to that table.
+> Instead, you should create a new table specifically for AMA agents to ensure smooth transition from one agent to the next.
 
 
 For example, you can use the following PowerShell script to create a custom table with `RawData`, `FilePath`, and `Computer`. You wouldn't need a transformation for this table because the schema matches the default schema of the incoming stream. 
@@ -124,13 +126,26 @@ Create a data collection rule, as described in [Collect data with Azure Monitor 
 
 ### [Resource Manager template](#tab/arm)
 
+Use the following ARM template to create a DCR for collecting text log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template. 
+ 
+
+| Setting | Description |
+|:---|:---|
+| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
+| Table name | Name of the destination table in your Log Analytics Workspace. |     
+| Record delimiter | Not currently used but reserved for future potential use allowing delimiters other than the currently supported end of line (`/r/n`). | 
+| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
+| timeFormat| The following times formats are supported.  Use the quotes strings in your ARM template. Do not include the sample time that is in parentheses. <br> - “yyyy-MM-ddTHH:mm:ssk”   (2024-10-29T18:28:34) <br> - “YYYY-MM-DD HH:MM:SS”   (2024-10-29 18:28:34) <br> - “M/D/YYYY HH:MM:SS AM/PM”   (10/29/2024 06:28:34 PM) <br> - “Mon DD, YYYY HH:MM:SS”   (October 29, 2024 18:28:34) <br> - “yyMMdd HH:mm:ss”   (241029 18:28:34) <br> - “ddMMyy HH:mm:ss”   (291024 18:28:34) <br> - “MMM d HH:mm:ss”   (Oct 29 18:28:34) <br> - “dd/MMM/yyyy:HH:mm:ss zzz”   (14/Oct/2024:18:28:34 -000) |
+
+
+
 Use the following ARM template to create or modify a DCR for collecting text log files. In addition to the parameter values, you may need to modify the following values in the template:
 
 - `columns`: Remove the `FilePath` column if you don't want to collect it.
 - `transformKql`: Modify the default transformation if you want to modify or filter the incoming stream, for example to parse the log entry into multiple columns. The output schema of the transformation must match the schema of the target table.
 
 > [!IMPORTANT]
-> If you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](../essentials/data-collection-rule-create-edit.md#add-resources)
+> If you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources). The parameters section in the DCR is optional if you replace them with strings lower down in the JSON.
 
 ```json
 {
@@ -172,7 +187,13 @@ Use the following ARM template to create or modify a DCR for collecting text log
             "metadata": {
               "description": "Resource ID of the Log Analytics workspace with the target table."
             }
-        }
+        },
+        "timeFormat": {
+            "type": "string"
+            "metadata": {
+                "discription": "The time format that you would like to use to split multi line imput"
+            }
+      }
     },
     "variables": {
       "tableOutputStream": "[concat('Custom-', parameters('tableName'))]"
@@ -217,7 +238,12 @@ Use the following ARM template to create or modify a DCR for collecting text log
                                 "[parameters('filePatterns')]"
                             ],
                             "format": "text",
-                            "name": "Custom-Text-dataSource"
+                            "name": "Custom-Text-dataSource",
+                            "settings": {
+                               "text": {
+                                      "recordStartTimestampFormat": "[parameters('timeFormat')]"
+                               }
+                            }
                         }
                     ]
                 },

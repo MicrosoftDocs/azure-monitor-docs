@@ -311,8 +311,8 @@ Following are common scenarios for monitoring your application.
 
 **Application performance**<br>
 - Use the **Performance** view in Application insights to view the performance of different operations in your application.
-- Use [Profiler](../profiler/profiler-overview.md) to capture and view performance traces for your application.
-- Use [Application Map](../app/app-map.md) to view the dependencies between your application components and identify any bottlenecks.
+- Use the [.NET Profiler](../profiler/profiler-overview.md) to capture and view performance traces for your application.
+- Use the [Application Map](../app/app-map.md) to view the dependencies between your application components and identify any bottlenecks.
 - Enable [distributed tracing](../app/distributed-trace-data.md), which provides a performance profiler that works like call stacks for cloud and microservices architectures, to gain better observability into the interaction between services.
 
 **Application failures**<br>
@@ -325,7 +325,7 @@ Following are common scenarios for monitoring your application.
 - Use [annotations](../app/release-and-work-item-insights.md?tabs=release-annotations) to identify when a new build is deployed so that you can visually inspect any change in performance after the update.
 
 **Application logs**<br>
-- Container insights sends stdout/stderr logs to a Log Analytics workspace. See [Resource logs](/azure/aks/monitor-aks-reference#resource-logs) for a description of the different logs and [Kubernetes Services](/azure/azure-monitor/reference/tables/tables-resourcetype#kubernetes-services) for a list of the tables each is sent to.
+- Container insights sends stdout/stderr logs to a Log Analytics workspace. See [Resource logs](/azure/aks/monitor-aks-reference#resource-logs) for a description of the different logs and [Kubernetes Services](/azure/azure-monitor/logs/manage-logs-tables) for a list of the tables each is sent to.
 
 **Service mesh**
 

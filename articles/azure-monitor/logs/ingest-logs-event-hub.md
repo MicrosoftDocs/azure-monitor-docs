@@ -52,7 +52,7 @@ Azure Monitor currently supports ingestion from Event Hubs in these regions:
 |	West US	|	West Europe	|		|		|	Korea Central	|
 |	West US 3	 |		|		|		|	Southeast Asia	|
 
-Event Hub should be located in one of the supported regions, with the DCRA (Data Collection Rule Association) in the same region as the Event Hub. The Log Analytics Workspace can be in any region, but the **DCR** (Data Collection Rule) and **DCE** (Data Collection Endpoint) should be in the same region as the Log Analytics Workspace.
+You need to create your Data Collection Rule Association (DCRA) in the same region as the Event Hub. The Log Analytics workspace can be in any region, but the Data Collection Rule (DCR) and Data Collection Endpoint (DCE) must be in the same region as the Log Analytics workspace.
 
 For minimum latency, we recommend placing all resources in the same region.
 
@@ -419,7 +419,7 @@ To create a data collection rule association in the Azure portal:
 
 ## Check your destination table for ingested events
 
-Once you create your data collection rule association (DCRA) with your event hub, Azure Monitor Logs will ingest all existing events since the DCRA creation, provided their retention period hasn't expired, as well as new events.
+Azure Monitor Logs ingests all events that exist in the Event Hub at the time of the DCRA creation, provided their retention period hasn't expired, and all new events.
 
 To check your destination table for ingested events:
 
@@ -457,4 +457,4 @@ Learn more about to:
 
 - [Create a custom table](../logs/create-custom-table.md#create-a-custom-table).
 - [Create a data collection endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint).
-- [Update an existing data collection rule](../essentials/data-collection-rule-edit.md).
+- [Update an existing data collection rule](../essentials/data-collection-rule-create-edit.md).

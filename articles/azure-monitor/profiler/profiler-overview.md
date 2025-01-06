@@ -1,22 +1,22 @@
 ---
-title: Analyze application performance traces with Application Insights Profiler
-description: Identify the hot path in your web server code with a low-footprint profiler.
+title: Analyze application performance traces with Azure Monitor Application Insights Profiler for .NET
+description: Identify the hot path in your web server code with a low-footprint .NET Profiler.
 ms.contributor: charles.weininger
 ms.topic: conceptual
 ms.date: 08/15/2024
 ms.reviewer: ryankahng
 ---
 
-# Profile production applications in Azure with Application Insights Profiler
+# Profile production applications in Azure with Application Insights Profiler for .NET
 
 Diagnosing your application's performance issues can be difficult, especially when running on a production environment in the dynamic cloud. Slow responses in your application could be caused by infrastructure, framework, or application code handling the request in the pipeline. 
 
-With Application Insights Profiler, you can capture, identify, and view performance traces for your application running in Azure, regardless of the scenario. The Profiler trace process occurs automatically, at scale, and doesn't negatively affect your users. The Profiler identifies:
+With Application Insights Profiler for .NET, you can capture, identify, and view performance traces for your application running in Azure, regardless of the scenario. The .NET Profiler trace process occurs automatically, at scale, and doesn't negatively affect your users. The .NET Profiler identifies:
 
 - The median, fastest, and slowest response times for each web request made by your customers.
 - The "hot" code path spending the most time handling a particular web request.
 
-Enable the Profiler on all your Azure applications to gather data with the following triggers:
+Enable the Profiler for .NET on all your Azure applications to gather data with the following triggers:
 
 - **Sampling trigger**: Starts Profiler randomly about once an hour for two minutes.
 - **CPU trigger**: Starts Profiler when the CPU usage percentage is over 80 percent.
@@ -26,11 +26,11 @@ Each of these triggers can be [configured, enabled, or disabled](./profiler-sett
 
 ## Sampling rate and overhead 
 
-Profiler randomly runs two minutes per hour on each virtual machine hosting applications with Profiler enabled.
+By default, Profiler actively collects traces every hour for 30 seconds or during periods of high CPU or memory usage for 30 seconds. The hourly traces (called sampling) are great for proactive tuning, while the high CPU and memory traces (called triggers) are useful for reactive troubleshooting.
 
 [!INCLUDE [profiler-overhead](./includes/profiler-overhead.md)]
 
-## Supported in Profiler
+## Supported in the .NET Profiler
 
 Profiler works with .NET applications deployed on the following Azure services. View specific instructions for enabling Profiler for each service type in the following links.
 
@@ -49,18 +49,18 @@ Profiler works with .NET applications deployed on the following Azure services. 
 > [!NOTE]
 > You can also use the [Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md), currently in preview.
 
-If you've enabled Profiler but aren't seeing traces, see the [Troubleshooting guide](profiler-troubleshooting.md).
+If you've enabled the Profiler for .NET but aren't seeing traces, see the [Troubleshooting guide](profiler-troubleshooting.md).
 
 ## Limitations
 
 - **Data retention**: The default data retention period is five days.
 - **Profiling web apps**:
-   - Although you can use Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
+   - Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
    - You can attach only one profiler to each web app.
-   - Profiler on Linux is only supported on Windows-based web apps.
+   - .NET Profiler on Linux is only supported on Windows-based web apps.
 
 ## Next steps
-Learn how to enable Profiler on your Azure service:
+Learn how to enable the .NET Profiler on your Azure service:
 - [Azure App Service](./profiler.md)
 - [Azure Functions app](./profiler-azure-functions.md)
 - [Azure Cloud Services](./profiler-cloudservice.md)

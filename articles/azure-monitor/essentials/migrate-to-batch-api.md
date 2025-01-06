@@ -4,7 +4,7 @@ description: How to migrate from the metrics API to the getBatch API
 author: EdB-MSFT
 services: azure-monitor
 ms.topic: how-to
-ms.date: 06/27/2024
+ms.date: 12/23/2024
 ms.author: edbaynash
 ms.reviewer: priyamishra
 
@@ -29,13 +29,13 @@ Authorization: Bearer <token>
 
 For example,
 ```http
-POST /subscriptions/12345678-1234-1234-1234-123456789abc/metrics:getBatch?metricNamespace=microsoft.compute/virtualMachines&api-version=2023-10-01
+POST /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/metrics:getBatch?metricNamespace=microsoft.compute/virtualMachines&api-version=2023-10-01
 Host: eastus.metrics.monitor.azure.com
 Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhb...TaXzf6tmC4jhog
 {
-    "resourceids":["/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/rg-vms-01/providers/Microsoft.Compute/virtualMachines/vmss-001_41df4bb9",
-    "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/rg-vms-02/providers/Microsoft.Compute/virtualMachines/vmss-001_c1187e2f"
+    "resourceids":["/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vms-01/providers/Microsoft.Compute/virtualMachines/vmss-001_41df4bb9",
+    "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vms-02/providers/Microsoft.Compute/virtualMachines/vmss-001_c1187e2f"
 ]
 }
  ```
@@ -63,7 +63,7 @@ To convert an existing metrics API call to a metric:getBatch API call, follow th
 Assume the following API call is being used to request metrics:
 
 ```http
-GET https://management.azure.com/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/microsoft.Insights/metrics?timespan=2023-04-20T12:00:00.000Z/2023-04-22T12:00:00.000Z&interval=PT6H&metricNamespace=microsoft.storage%2Fstorageaccounts&metricnames=Ingress,Egress&aggregation=total,average,minimum,maximum&top=10&orderby=total desc&$filter=ApiName eq '*'&api-version=2019-07-01
+GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/microsoft.Insights/metrics?timespan=2023-04-20T12:00:00.000Z/2023-04-22T12:00:00.000Z&interval=PT6H&metricNamespace=microsoft.storage%2Fstorageaccounts&metricnames=Ingress,Egress&aggregation=total,average,minimum,maximum&top=10&orderby=total desc&$filter=ApiName eq '*'&api-version=2019-07-01
 ```
 
 1. Change the hostname.  
@@ -72,8 +72,8 @@ GET https://management.azure.com/subscriptions/12345678-1234-1234-1234-123456789
 1. Change the API name and path.  
  The `metrics:getBatch` API is a subscription level POST API. The resources for which the metrics are requested, are specified in the request body rather than in the URL path.  
  Change the url path as follows:  
-    from `/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/microsoft.Insights/metrics`  
-     to `/subscriptions/12345678-1234-1234-1234-123456789abc/metrics:getBatch`
+    from `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/microsoft.Insights/metrics`  
+     to `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/metrics:getBatch`
 
 1. The `metricNamespace` query param is required for metrics:getBatch. For Azure standard metrics, the namespace name is usually the resource type of the resources you specified. To check the namespace value to use, see the [metrics namespaces API](/rest/api/monitor/metric-namespaces/list?tabs=HTTP)
 1. Switch from using the `timespan` query param to using `starttime` and `endtime`.  For example, `?timespan=2023-04-20T12:00:00.000Z/2023-04-22T12:00:00.000Z` becomes `?startime=2023-04-20T12:00:00.000Z&endtime=2023-04-22T12:00:00.000Z`.
@@ -93,7 +93,7 @@ GET https://management.azure.com/subscriptions/12345678-1234-1234-1234-123456789
     ```json
     {
       "resourceids": [
-        "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount"
       ]
     }
     ```
@@ -108,16 +108,16 @@ GET https://management.azure.com/subscriptions/12345678-1234-1234-1234-123456789
 
 The following example shows the converted batch request.
 ```http
-    POST https://westus2.metrics.monitor.azure.com/subscriptions/12345678-1234-1234-1234-123456789abc/metrics:getBatch?starttime=2023-04-20T12:00:00.000Z&endtime=2023-04-22T12:00:00.000Z&interval=PT6H&metricNamespace=microsoft.storage%2Fstorageaccounts&metricnames=Ingress,Egress&aggregation=total,average,minimum,maximum&top=10&orderby=total desc&filter=ApiName eq '*'&api-version=2023-10-01
+    POST https://westus2.metrics.monitor.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/metrics:getBatch?starttime=2023-04-20T12:00:00.000Z&endtime=2023-04-22T12:00:00.000Z&interval=PT6H&metricNamespace=microsoft.storage%2Fstorageaccounts&metricnames=Ingress,Egress&aggregation=total,average,minimum,maximum&top=10&orderby=total desc&filter=ApiName eq '*'&api-version=2023-10-01
         
     {
       "resourceids": [
-        "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount",
-        "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample2-test-rg/providers/Microsoft.Storage/storageAccounts/eax252qtemplate",
-        "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag",
-        "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3prefile",
-        "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3tipstorage",
-        "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample3backups/providers/Microsoft.Storage/storageAccounts/pod01account1"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount",
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample2-test-rg/providers/Microsoft.Storage/storageAccounts/eax252qtemplate",
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag",
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3prefile",
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3tipstorage",
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3backups/providers/Microsoft.Storage/storageAccounts/pod01account1"
       ]
     }
 ```
@@ -148,7 +148,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
   "interval": "P1D",
   "value": [
     {
-      "id": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Ingress",
+      "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Ingress",
       "type": "Microsoft.Insights/metrics",
       "name": {
         "value": "Ingress",
@@ -215,7 +215,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
       "errorCode": "Success"
     },
     {
-      "id": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Egress",
+      "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Egress",
       "type": "Microsoft.Insights/metrics",
       "name": {
         "value": "Egress",
@@ -298,7 +298,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
       "interval": "P1D",
       "value": [
         {
-          "id": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Ingress",
+          "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Ingress",
           "type": "Microsoft.Insights/metrics",
           "name": {
             "value": "Ingress",
@@ -365,7 +365,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
           "errorCode": "Success"
         },
         {
-          "id": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Egress",
+          "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/Microsoft.Insights/metrics/Egress",
           "type": "Microsoft.Insights/metrics",
           "name": {
             "value": "Egress",
@@ -434,7 +434,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
       ],
       "namespace": "microsoft.storage/storageaccounts",
       "resourceregion": "westus2",
-      "resourceid": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount"
+      "resourceid": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount"
     },
     {
       "cost": 11516,
@@ -443,7 +443,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
       "interval": "P1D",
       "value": [
         {
-          "id": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag/providers/Microsoft.Insights/metrics/Ingress",
+          "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag/providers/Microsoft.Insights/metrics/Ingress",
           "type": "Microsoft.Insights/metrics",
           "name": {
             "value": "Ingress",
@@ -510,7 +510,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
           "errorCode": "Success"
         },
         {
-          "id": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag/providers/Microsoft.Insights/metrics/Egress",
+          "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag/providers/Microsoft.Insights/metrics/Egress",
           "type": "Microsoft.Insights/metrics",
           "name": {
             "value": "Egress",
@@ -579,7 +579,7 @@ A `resourceid` property was added to each resources' metrics list in the `metric
       ],
       "namespace": "microsoft.storage/storageaccounts",
       "resourceregion": "westus2",
-      "resourceid": "/subscriptions/12345678-1234-1234-1234-123456789abc/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag"
+      "resourceid": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample3/providers/Microsoft.Storage/storageAccounts/sample3diag"
     }
   ]
 }

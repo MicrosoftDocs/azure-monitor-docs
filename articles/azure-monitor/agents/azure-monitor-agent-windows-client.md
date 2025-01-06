@@ -2,7 +2,7 @@
 title: Set up the Azure Monitor agent on Windows client devices
 description: This article describes the instructions to install the agent on Windows 10, 11 client OS devices, configure data collection, manage and troubleshoot the agent.
 ms.topic: conceptual
-ms.date: 7/19/2023
+ms.date: 11/14/2024
 ms.custom: references_region, devx-track-azurepowershell
 ms.reviewer: jeffwo
 ---
@@ -239,11 +239,11 @@ GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{
 {
   "value": [
     {
-      "id": "/subscriptions/703362b3-f278-4e4b-9179-c76eaf41ffc2/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVm/providers/Microsoft.Insights/dataCollectionRuleAssociations/myRuleAssociation",
+      "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVm/providers/Microsoft.Insights/dataCollectionRuleAssociations/myRuleAssociation",
       "name": "myRuleAssociation",
       "type": "Microsoft.Insights/dataCollectionRuleAssociations",
       "properties": {
-        "dataCollectionRuleId": "/subscriptions/703362b3-f278-4e4b-9179-c76eaf41ffc2/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myCollectionRule",
+        "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myCollectionRule",
         "provisioningState": "Succeeded"
       },
       "systemData": {

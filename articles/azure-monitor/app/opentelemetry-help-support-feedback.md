@@ -109,7 +109,7 @@ The following chart breaks out OpenTelemetry feature support for each language.
 | Filter requests, dependencies, logs, and exceptions by anonymous user ID and synthetic source                        | :x:                | :x:                | :x:                | :white_check_mark: |
 | Filter dependencies, logs, and exceptions by operation name                                                          | :x:                | :x:                | :x:                | :white_check_mark: |
 | [Adaptive sampling](../app/sampling.md#adaptive-sampling)                                                            | :x:                | :x:                | :x:                | :white_check_mark: |
-| [Profiler](../profiler/profiler-overview.md)                                                                         | :x:                | :x:                | :x:                | :warning:          |
+| [.NET Profiler](../profiler/profiler-overview.md)                                                                    | :x:                | :x:                | :x:                | :warning:          |
 | [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)                                                       | :x:                | :x:                | :x:                | :x:                |
 
 **Key**
@@ -210,11 +210,11 @@ Application Insights SDKs and agents send telemetry to get ingested as REST call
 - If you [download the Application Insights client library for installation](/azure/azure-monitor/app/opentelemetry-enable?tabs=java#install-the-client-libraries) from a browser, sometimes the downloaded JAR file is corrupted and is about half the size of the source file. If you experience this problem, download the JAR file by running the [curl](https://curl.se) or [wget](https://www.gnu.org/software/wget/) command, as shown in the following example command calls:
 
   ```bash
-  curl --location --output applicationinsights-agent-.jar https://github.com/microsoft/ApplicationInsights-Java/releases/download//applicationinsights-agent-.jar
+  curl --location --output applicationinsights-agent-3.6.2.jar https://github.com/microsoft/ApplicationInsights-Java/releases/download//applicationinsights-agent-3.6.2.jar
   ```
 
   ```bash
-  wget --output-document=applicationinsights-agent-.jar https://github.com/microsoft/ApplicationInsights-Java/releases/download//applicationinsights-agent-.jar
+  wget --output-document=applicationinsights-agent-3.6.2.jar https://github.com/microsoft/ApplicationInsights-Java/releases/download//applicationinsights-agent-3.6.2.jar
   ```
 
   > [!NOTE]  
@@ -284,7 +284,7 @@ The following items are known issues for the Azure Monitor OpenTelemetry Exporte
 
 ### [Python](#tab/python)
 
-#### Step 1: Enable diagnostic logging
+#### Enable diagnostic logging
 
 The Microsoft Azure Monitor Exporter uses the [Python standard logging library](https://docs.python.org/3/library/logging.html) for its internal logging. OpenTelemetry API and Azure Monitor Exporter logs are assigned a severity level of `WARNING` or `ERROR` for irregular activity. The `INFO` severity level is used for regular or successful activity.
 
@@ -304,11 +304,11 @@ logger.addHandler(stream)
 ...
 ```
 
-#### Step 2: Test connectivity between your application host and the ingestion service
+#### Test connectivity between your application host and the ingestion service
 
 Application Insights SDKs and agents send telemetry to get ingested as REST calls at our ingestion endpoints. To test connectivity from your web server or application host computer to the ingestion service endpoints, use cURL commands or raw REST requests from PowerShell. For more information, see [Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry).
 
-#### Step 3: Avoid duplicate telemetry
+#### Avoid duplicate telemetry
 
 Duplicate telemetry is often caused if you create multiple instances of processors or exporters. Make sure that you run only one exporter and processor at a time for each telemetry pillar (logs, metrics, and distributed tracing).
 
@@ -339,11 +339,25 @@ get_logger_provider().shutdown()
 
 Azure Workbooks and Jupyter Notebooks might keep exporter processes running in the background. To prevent duplicate telemetry, clear the cache before you make more calls to `configure_azure_monitor`.
 
-#### Step 4: Make sure that Flask request data is collected
+#### Missing Requests telemetry from FastAPI or Flask apps
 
-If you implement a Flask application, you might find that you can't collect Requests table data from Application Insights while you use the [Azure Monitor OpenTelemetry Distro client library for Python](/python/api/overview/azure/monitor-opentelemetry-readme). This issue could occur if you don't structure your `import` declarations correctly. You might be importing the `flask.Flask` web application framework before you call the `configure_azure_monitor` function to instrument the Flask library. For example, the following code doesn't successfully instrument the Flask app:
+If you are missing Requests table data but not other categories, it is likely that your http framework is not being instrumented. This can occur in FastAPI and Flask apps using the [Azure Monitor OpenTelemetry Distro client library for Python](/python/api/overview/azure/monitor-opentelemetry-readme)
+if you don't structure your `import` declarations correctly. You might be importing the `fastapi.FastAPI` or `flask.Flask` respectively before you call the `configure_azure_monitor` function to instrument the FastAPI and Flask libraries. For example, the following code doesn't successfully instrument the FastAPI and Flask apps:
 
 ```python
+# FastAPI
+
+from azure.monitor.opentelemetry import configure_azure_monitor
+from fastapi import FastAPI
+
+configure_azure_monitor()
+
+app = FastAPI()
+```
+
+```python
+# Flask
+
 from azure.monitor.opentelemetry import configure_azure_monitor
 from flask import Flask
 
@@ -352,9 +366,22 @@ configure_azure_monitor()
 app = Flask(__name__)
 ```
 
-Instead, we recommend that you import the `flask` module as a whole, and then call `configure_azure_monitor` to configure OpenTelemetry to use Azure Monitor before you access `flask.Flask`:
+Instead, we recommend that you import the `fastapi` or `flask` modules as a whole, and then call `configure_azure_monitor` to configure OpenTelemetry to use Azure Monitor before you access `fastapi.FastAPI` or `flask.Flask`:
 
 ```python
+# FastAPI
+
+from azure.monitor.opentelemetry import configure_azure_monitor
+import fastapi
+
+configure_azure_monitor()
+
+app = fastapi.FastAPI(__name__)
+```
+
+```python
+# Flask
+
 from azure.monitor.opentelemetry import configure_azure_monitor
 import flask
 
@@ -363,9 +390,23 @@ configure_azure_monitor()
 app = flask.Flask(__name__)
 ```
 
-Alternatively, you can call `configure_azure_monitor` before you import `flask.Flask`:
+Alternatively, you can call `configure_azure_monitor` before you import `fastapi.FastAPI` or `flask.Flask`:
 
 ```python
+# FastAPI
+
+from azure.monitor.opentelemetry import configure_azure_monitor
+
+configure_azure_monitor()
+
+from fastapi import FastAPI
+
+app = FastAPI(__name__)
+```
+
+```python
+# Flask
+
 from azure.monitor.opentelemetry import configure_azure_monitor
 
 configure_azure_monitor()

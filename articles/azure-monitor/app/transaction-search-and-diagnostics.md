@@ -210,15 +210,15 @@ This collapsible pane shows the other results that meet the filter criteria. Sel
 
 :::image type="content" source="media/search-and-transaction-diagnostics/searchResults.png" lightbox="media/search-and-transaction-diagnostics/searchResults.png" alt-text="Screenshot that shows search results.":::
 
-## Profiler and Snapshot Debugger
+## .NET Profiler and Snapshot Debugger
 
-[Application Insights Profiler](./profiler.md) or [Snapshot Debugger](snapshot-debugger.md) help with code-level diagnostics of performance and failure issues. With this experience, you can see Profiler traces or snapshots from any component with a single selection.
+[.NET Profiler](./profiler-overview.md) or [Snapshot Debugger](snapshot-debugger.md) help with code-level diagnostics of performance and failure issues. With this experience, you can see .NET Profiler traces or snapshots from any component with a single selection.
 
-If you can't get Profiler working, contact serviceprofilerhelp\@microsoft.com.
+If you can't get the .NET Profiler working, contact serviceprofilerhelp\@microsoft.com.
 
 If you can't get Snapshot Debugger working, contact snapshothelp\@microsoft.com.
 
-:::image type="content" source="media/search-and-transaction-diagnostics/profilerTraces.png" lightbox="media/search-and-transaction-diagnostics/profilerTraces.png" alt-text="Screenshot that shows Profiler integration.":::
+:::image type="content" source="media/search-and-transaction-diagnostics/profilerTraces.png" lightbox="media/search-and-transaction-diagnostics/profilerTraces.png" alt-text="Screenshot that shows .NET Profiler integration.":::
 
 ## Frequently asked questions
 
@@ -255,7 +255,7 @@ In these scenarios, you can use Automatic Route Tracking to automatically create
 
 Time not explained in the Gantt chart is time that isn't covered by a tracked dependency. This issue can occur because external calls weren't instrumented, either automatically or manually. It can also occur because the time taken was in process rather than because of an external call.
 
-If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [Application Insights profiler](./profiler.md).
+If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](./profiler-overview.md).
 
 ### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal? 
 

@@ -80,15 +80,15 @@ This article walks you through the steps to integrate KEDA into your AKS cluster
     
     ```json
     {
-      "clientId": "abcd1234-abcd-abcd-abcd-9876543210ab",
-      "id": "/subscriptions/abcdef01-2345-6789-0abc-def012345678/resourcegroups/rg-keda-integration/providers/Microsoft.    ManagedIdentity/userAssignedIdentities/keda-int-identity",
+      "clientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+      "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-keda-integration/providers/Microsoft.    ManagedIdentity/userAssignedIdentities/keda-int-identity",
       "location": "eastus",
       "name": "keda-int-identity",
-      "principalId": "12345678-abcd-abcd-abcd-1234567890ab",
+      "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
       "resourceGroup": "rg-keda-integration",
       "systemData": null,
       "tags": {},
-      "tenantId": "1234abcd-9876-9876-9876-abcdef012345",
+      "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
       "type": "Microsoft.ManagedIdentity/userAssignedIdentities"
     }
     ```
@@ -207,10 +207,10 @@ kubectl logs -n keda keda-operator-5d9f7d975-mgv7r
 Assertion Issuer: 'https://eastus.oic.prod-aks.azure.com/abcdef01-2345-6789-0abc-def012345678/12345678-abcd-abcd-abcd-1234567890ab/'.
 Assertion Subject: 'system:serviceaccount:keda:keda-operator'. 
 Assertion Audience: 'api://AzureADTokenExchange'. https://docs.microsoft.com/azure/active-directory/develop/workload-identity-federation
-Trace ID: 12dd9ea0-3a65-408f-a41f-5d0403a25100\\r\\nCorrelation ID: 8a2dce68-17f1-4f11-bed2-4bcf9577f2af\\r\\nTimestamp: 2023-05-30 11:11:53Z\",
+Trace ID: 0000aaaa-11bb-cccc-dd22-eeeeee333333\\r\\nCorrelation ID: 1111bbbb-22cc-dddd-ee33-ffffff444444\\r\\nTimestamp: 2023-05-30 11:11:53Z\",
 \"error_codes\": [\n    70021\n  ],\n  \"timestamp\": \"2023-05-30 11:11:53Z\",
-\"trace_id\": \"12345678-3a65-408f-a41f-5d0403a25100\",
-\"correlation_id\": \"12345678-17f1-4f11-bed2-4bcf9577f2af\",
+\"trace_id\": \"2222cccc-33dd-eeee-ff44-aaaaaa555555\",
+\"correlation_id\": \"aaaa0000-bb11-2222-33cc-444444dddddd\",
 \"error_uri\": \"https://login.microsoftonline.com/error?code=70021\"\n}
 \n--------------------------------------------------------------------------------\n"}
 ```
@@ -231,7 +231,7 @@ kubectl logs -n keda keda-operator-5d9f7d975-mgv7r
 \"errorType\":\"Forbidden\",\"error\":\"User \\u0027abc123ab-1234-1234-abcd-abcdef123456
 \\u0027 does not have access to perform any of the following actions 
 \\u0027microsoft.monitor/accounts/data/metrics/read, microsoft.monitor/accounts/data/metrics/read
-\\u0027 on resource \\u0027/subscriptions/abcdef01-2345-6789-0abc-def012345678/resourcegroups/rg-azmon-ws-01/providers/microsoft.monitor/accounts/azmon-ws-01\\u0027. RequestId: 123456c427f348258f3e5aeeefef834a\"}"}
+\\u0027 on resource \\u0027/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-azmon-ws-01/providers/microsoft.monitor/accounts/azmon-ws-01\\u0027. RequestId: 123456c427f348258f3e5aeeefef834a\"}"}
 ```
 
 Ensure the identity has the `Monitoring Data Reader` role on the Azure Monitor workspace.
