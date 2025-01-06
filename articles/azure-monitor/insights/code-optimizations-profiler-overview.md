@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 12/06/2024
+ms.date: 12/17/2024
 ms.reviewer: ryankahng
 ms.collection: ce-skilling-ai-copilot
 ---
@@ -69,9 +69,9 @@ The Profiler and Code Optimizations work with .NET applications deployed on the 
 
 | Compute platform | .NET (>= 4.6) | .NET Core |
 | ---------------- | ------------- | --------- |
-| [Azure App Service](../profiler/profiler.md) | Yes | Yes |
+| [Azure App Service - .NET app on Windows](../profiler/profiler.md) | Yes | Yes |
+| [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md) | No | Yes |
 | [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md) | Yes | Yes |
-| [Azure Virtual Machines and Virtual Machine Scale Sets for Linux](../profiler/profiler-aspnetcore-linux.md) | No | Yes |
 | [Azure Cloud Services](../profiler/profiler-cloudservice.md) | Yes | Yes |
 | [Azure Container Instances for Windows](../profiler/profiler-containers.md) | No | Yes |
 | [Azure Container Instances for Linux](../profiler/profiler-containers.md) | No | Yes |
@@ -110,10 +110,10 @@ You can set an explicit region using connection strings. [Learn more about conne
 ## Next steps
 
 Learn how to enable the .NET Profiler with Code Optimizations on your Azure service:
-- [Azure App Service](../profiler/profiler.md)
+- [ASP.NET Core application hosted in Windows on Azure App Service](../profiler/profiler.md)
+- [ASP.NET Core application hosted in Linux on Azure App Service](../profiler/profiler-aspnetcore-linux.md)
 - [Azure Functions app](../profiler/profiler-azure-functions.md)
 - [Azure Cloud Services](../profiler/profiler-cloudservice.md)
 - [Azure Service Fabric app](../profiler/profiler-servicefabric.md)
 - [Azure Virtual Machines](../profiler/profiler-vm.md)
-- [ASP.NET Core application hosted in Linux on Azure App Service](../profiler/profiler-aspnetcore-linux.md)
 - [ASP.NET Core application running in containers](../profiler/profiler-containers.md)

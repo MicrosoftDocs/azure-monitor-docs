@@ -232,8 +232,10 @@ items:
           items:
           - name: Enable Profiler on specific Azure resources
             items:
-            - name: Azure App Service
+            - name: Azure App Service in Windows
               href: profiler/profiler.md
+            - name: Azure App Service in Linux
+              href: profiler/profiler-aspnetcore-linux.md
             - name: Azure Functions app
               href: profiler/profiler-azure-functions.md
             - name: Azure Cloud Service
@@ -242,8 +244,6 @@ items:
               href: profiler/profiler-servicefabric.md
             - name: Azure Virtual Machines
               href: profiler/profiler-vm.md
-            - name: ASP.NET Core app hosted in Linux on App Service
-              href: profiler/profiler-aspnetcore-linux.md
             - name: ASP.NET Core app running in container
               href: profiler/profiler-containers.md
           - name: Configure Profiler
