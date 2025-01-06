@@ -45,9 +45,9 @@ Queries can start with either a table name or the `search` command. It's a good 
 
 ### Table-based queries
 
-### [KQL mode](#tab/kql)
+Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Analytics portal. 
 
-Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Analytics portal. Identify a table that you're interested in, and then take a look at a bit of data:
+Identify a table that you're interested in, then take a look at a bit of data:
 
 ```Kusto
 SecurityEvent
@@ -61,19 +61,6 @@ The preceding query returns 10 results from the `SecurityEvent` table, in no spe
 * Following the pipe is the [`take` operator](#take).
 
    We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 30,000 results.
-
-### [Simple mode](#tab/simple)
-
-To show only 10 records of the `SecurityEvent` table in Simple Mode:
-
-1. Click **Select a table** and select `SecurityEvent`. Alternatively, select **Tables** from the left pane to view the list of tables in the workspace.
-
-    > [!NOTE]
-    > In Simple Mode, once you select a table, it shows up to 1000 records by default.
-
-1. Open **Show**, select **Custom**, enter the custom value `10`, then hit **Apply**.
-
----
 
 ### Search queries
 
@@ -96,7 +83,15 @@ This query searches the `SecurityEvent` table for records that contain the phras
 To show 10 records that include a specific value in any of their columns:
 
 1. Click **Select a table** and chose `SecurityEvent`.
-1. Select **Add**, chose **search in table**, enter "Cryptographic" and hit **Apply**.
+
+1. Select **Add** and chose **search in table**.
+
+    :::image type="content" source="media/get-started-queries/logs-simple-search-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Search in table' highlighted." lightbox="media/get-started-queries/logs-simple-search-1.png":::
+
+1. Enter "Cryptographic" and hit **Apply**.
+
+    :::image type="content" source="media/get-started-queries/logs-simple-search-2.png" alt-text="Screenshot shows the Search field in simple mode." lightbox="media/get-started-queries/logs-simple-search-2.png":::
+
 1. Open **Show**, select **Custom**, enter the custom value `10`, then hit **Apply**.
 
 > [!IMPORTANT]
@@ -110,7 +105,14 @@ To show 10 records that include a specific value in any of their columns:
 
 #### Take
 
-Use the [`take` operator](/azure/data-explorer/kusto/query/takeoperator) to view a small sample of records by returning up to the specified number of records. The selected results are arbitrary and displayed in no particular order. If you need to return results in a particular order, use the [`sort` and `top` operators](#sort-and-top).
+Use the [`take` operator](/azure/data-explorer/kusto/query/takeoperator) to view a small sample of records by returning up to the specified number of records. For example:
+
+```Kusto
+SecurityEvent
+| take 10
+```
+
+The selected results are arbitrary and displayed in no particular order. If you need to return results in a particular order, use the [`sort` and `top` operators](#sort-and-top).
 
 ## [Simple mode](#tab/simple)
 
@@ -120,7 +122,7 @@ To return up to a specific number of records in Simple Mode, you can limit the r
 
 1. Select one of the preset limits, or enter a custom limit, then hit **Apply**.
 
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-result-limits.png" alt-text="Screenshot that shows the limit results window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-result-limits.png":::
+:::image type="content" source="media/get-started-queries/logs-simple-limit.png" alt-text="Screenshot shows the Show dropdown in simple mode." lightbox="media/get-started-queries/logs-simple-limit.png":::
 
 ---
 
@@ -169,11 +171,15 @@ The preceding query could return too many results. Also, it might also take some
 
 To sort in Simple Mode:
 
-1. Select **Sort**.
+1. Select **Add**, then chose **Sort**.
+
+    :::image type="content" source="media/get-started-queries/logs-simple-sort-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with Sort highlighted." lightbox="media/get-started-queries/logs-simple-sort-1.png":::
+
 1. Select a column to sort by.
+
 1. Select **Ascending** or **Descending**, then select **Apply**.
 
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-sort.png" alt-text="Screenshot that shows the Sort by column window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sort.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-sort-2.png" alt-text="Screenshot shows the Sort field in simple mode." lightbox="media/get-started-queries/logs-simple-sort-2.png":::
 
 1. Select **Sort** again to sort by another column.
 
