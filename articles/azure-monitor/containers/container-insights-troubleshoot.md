@@ -11,18 +11,13 @@ ms.reviewer: aul
 
 This article discusses some common issues and troubleshooting steps regarding monitoring of your Azure Kubernetes Service (AKS) cluster with Container insights. 
 
-## Known error messages
-
-The following table summarizes known errors you might encounter when you use Container insights.
-
-| Error messages  | Action |
-| ---- | --- |
-| `No data for selected filters`  | Allow at least 10 to 15 minutes for data to appear for your cluster. If you still don't see data, check if the Log Analytics workspace is configured for local authentication with the following CLI command.<br><br> `az resource show  --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]"`<br><br>If `disableLocalAuth = true`, then run the following command.<br><br>`az resource update --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]" --api-version "2021-06-01" --set properties.features.disableLocalAuth=False` |
-| `Missing Subscription registration` | Register the resource provider **Microsoft.OperationsManagement** in the subscription of your Log Analytics workspace. See [Resolve errors for resource provider registration](/azure/azure-resource-manager/templates/error-register-resource-provider). |
-| `The reply url specified in the request doesn't match the reply urls configured for the application` | You might see this error message when you enable live logs. See [View container data in real time with Container insights](./container-insights-livedata-setup.md#configure-azure-ad-integrated-authentication). |
-
 
 ## Onboarding and update issues
+The following sections describe issues you might encounter when you onboard or update Container insights on your cluster.
+
+### Missing subscription registration
+
+If you see the error `Missing Subscription registration`, register the resource provider **Microsoft.OperationsManagement** in the subscription of your Log Analytics workspace. See [Resolve errors for resource provider registration](/azure/azure-resource-manager/templates/error-register-resource-provider).
 
 ### Authorization error
 
@@ -63,11 +58,26 @@ helm del azmon-containers-release-1
 ```
 
 
-## Data unavailable
+## Missing data
+It may take up to 15 minutes for data to appear after you enable Container insights on a cluster. If you don't see data after 15 minutes, use the following sections to identify and resolve the issue.
 
 ### Error message retrieving data 
 The error message `Error retrieving data` might occur if the Log Analytics workspace where the cluster was sending its data may have been deleted. If this is the case, [disable](kubernetes-monitoring-disable.md) monitoring for the cluster and [enable](kubernetes-monitoring-enable.md) Container insights again using another workspace. 
 
+### Local authentication disabled
+Check if the Log Analytics workspace is configured for local authentication with the following CLI command.<br><br> `az resource show  --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]"`<br><br>If `disableLocalAuth = true`, then run the following command.<br><br>`az resource update --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]" --api-version "2021-06-01" --set properties.features.disableLocalAuth=False` |
+
+### Daily cap met
+When the daily cap is limit is met for a Log Analytics workspace, it will stop collecting data until the reset time. See [Log Analytics Daily Cap](../logs/daily-cap.md).
+
+### DCR not deployed with Terraform
+If Containter insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights](./kubernetes-monitoring-enable.md?tabs=terraform#enable-container-insights).
+
+### 
+
+Container insights agent pods use the `cAdvisor` endpoint on the node agent to gather performance metrics. Performance charts don't show CPU or memory of nodes and containers on a non-Azure cluster
+
+Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` or  `cAdvisor unsecure port: 10255` to be opened on all nodes in the cluster to collect performance metrics. See [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites).
 
 ### Container insights not reporting any information
 Use the following steps if you can't view status information or no results are returned from a log query.
@@ -125,11 +135,6 @@ Use the following steps if you can't view status information or no results are r
 
 1. If the pods are in a running state, but there is no data in Log Analytics or data appears to only send during a certain part of the day, it might be an indication that the daily cap has been met. When this limit is met each day, data stops ingesting into the Log Analytics Workspace and resets at the reset time. For more information, see [Log Analytics Daily Cap](../../azure-monitor/logs/daily-cap.md#determine-your-daily-cap).
 
-1. If Containter insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. For detailed steps, see [enable Container insights](./kubernetes-monitoring-enable.md?tabs=terraform#enable-container-insights).
-
-### Performance charts don't show CPU or memory of nodes and containers on a non-Azure cluster
-
-Container insights agent pods use the cAdvisor endpoint on the node agent to gather performance metrics. Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` or  `cAdvisor unsecure port: 10255` to be opened on all nodes in the cluster to collect performance metrics. See the [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites) for more information.
 
 ### Metrics aren't being collected
 
@@ -468,5 +473,6 @@ If your worker nodes don’t have node labels attached, agent ReplicaSet Pods wo
 
 
 
-
-## Remove
+| Error messages  | Action |
+| ---- | --- |
+| `The reply url specified in the request doesn't match the reply urls configured for the application` | You might see this error message when you enable live logs. See [View container data in real time with Container insights](./container-insights-livedata-setup.md#configure-azure-ad-integrated-authentication). |
