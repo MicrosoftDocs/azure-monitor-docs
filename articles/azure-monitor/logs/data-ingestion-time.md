@@ -52,13 +52,13 @@ Network conditions might negatively affect the latency of this data to reach a d
 
 ### Azure metrics, resource logs, activity log
 
-**30 seconds to 15 minutes**
+**30 seconds to 20 minutes**
 
 Azure data adds more time to become available at a data collection endpoint for processing:
 
 - **Azure platform metrics** are available in under a minute in the metrics database, but they take another 3 minutes to be exported to the data collection endpoint.
 - **Resource logs** typically add 30 to 90 seconds, depending on the Azure service. Some Azure services (specifically, Azure SQL Database and Azure Virtual Network) currently report their logs at 5-minute intervals. Work is in progress to improve this time further. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
-- **Activity logs** are available for analysis in 3 to 20 minutes.
+- **Activity logs** are available for analysis and alerting in 3 to 20 minutes.
 
 ### Management solutions collection
 

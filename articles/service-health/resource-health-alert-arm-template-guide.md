@@ -2,12 +2,11 @@
 title: Template to create Resource Health alerts
 description: Create alerts programmatically that notify you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 12/5/2024 
-ms.custom:
+ms.date: 1/07/2025 
+
 ---
 
 # Configure resource health alerts using Resource Manager templates
-
 
 This article shows you how to create Resource Health Activity Log Alerts using Azure Resource Manager templates and Azure PowerShell.
 
@@ -19,9 +18,9 @@ Azure Resource Health keeps you informed about the current and historical health
 
 To follow the instructions on this page, you need to set up a few things in advance:
 
+1. You need to install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
+2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
-1. Install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
-1. [Create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 ## Instructions
 
@@ -81,9 +80,11 @@ To follow the instructions on this page, you need to set up a few things in adva
     ```
 
 
-[!NOTE]   
 
+[!NOTE]   
 If you're planning on fully automating this process, you simply need to edit the Resource Manager template to not prompt for the values in Step 5.
+main
+
 
 ## Resource Manager template options for Resource Health alerts
 

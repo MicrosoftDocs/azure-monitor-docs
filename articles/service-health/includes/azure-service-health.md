@@ -14,6 +14,7 @@ Returns all active Service Health events - including service issues, planned mai
 [!NOTE:]
 This does not include emerging issues. For more information open "https://learn.microsoft.com/en-us/rest/api/resourcehealth/emerging-issues".
 
+
 ```kusto
 ServiceHealthResources
 | where type =~ 'Microsoft.ResourceHealth/events'
