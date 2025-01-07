@@ -127,7 +127,7 @@ items:
         - name: Enable Click Analytics
           href: app/javascript-feature-extensions.md
         - name: Upgrade
-          href: app/javascript-sdk-upgrade.md
+          href: /previous-versions/azure/azure-monitor/app/javascript-sdk-upgrade
         - name: Troubleshooting
           href: /troubleshoot/azure/azure-monitor/app-insights/javascript-sdk-troubleshooting
       - name: Application Insights SDK (Classic API)
