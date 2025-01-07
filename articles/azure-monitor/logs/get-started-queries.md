@@ -16,7 +16,7 @@ ms.date: 10/31/2023
 >
 > If you already know how to query in Kusto Query Language (KQL) but need to quickly create useful queries based on resource types, see the saved example queries pane in [Use queries in Azure Monitor Log Analytics](../logs/queries.md).
 
-In this tutorial, you learn to write log queries in Azure Monitor. The article shows you how to:
+This tutorial shows you how to:
 
 * Understand query structure.
 * Sort query results.
@@ -30,7 +30,10 @@ For a tutorial on using Log Analytics in the Azure portal, see [Get started with
 
 For more information about log queries in Azure Monitor, see [Overview of log queries in Azure Monitor](../logs/log-query-overview.md).
 
-Here's a video version of this tutorial:
+## Tutorial video
+
+> [!NOTE]
+> The video below shows an old user interface, but the screenshots throughout this article are up to date and reflect the current UI. 
 
 > [!VIDEO https://www.microsoft.com/videoplayer/embed/RE42pGX]
 
@@ -58,9 +61,7 @@ The preceding query returns 10 results from the `SecurityEvent` table, in no spe
 
 * The query starts with the table name `SecurityEvent`, which defines the scope of the query.
 * The pipe (|) character separates commands, so the output of the first command is the input of the next. You can add any number of piped elements.
-* Following the pipe is the [`take` operator](#take).
-
-   We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 30,000 results.
+* Following the pipe is the [`take` operator](#take). We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 30,000 results.
 
 ### Search queries
 
@@ -80,7 +81,7 @@ This query searches the `SecurityEvent` table for records that contain the phras
 
 ### [Simple mode](#tab/simple)
 
-To show 10 records that include a specific value in any of their columns:
+To search for records that include a specific value in any of their columns in simple mode:
 
 1. Click **Select a table** and chose `SecurityEvent`.
 
@@ -116,7 +117,7 @@ The selected results are arbitrary and displayed in no particular order. If you 
 
 ## [Simple mode](#tab/simple)
 
-To return up to a specific number of records in Simple Mode, you can limit the results:
+To return up to a specific number of records in simple mode, you can limit the results following these steps:
 
 1. Select **Limit** to open the **Limit results** window.
 
@@ -132,8 +133,6 @@ This section describes the `sort` and `top` operators and their `desc` and `asc`
 
 ### Desc and asc
 
-#### Desc
-
 Use the `desc` argument to sort records in descending order. Descending is the default sorting order for `sort` and `top`, so you can usually omit the `desc` argument. 
 
 For example, the data returned by both of the following queries is sorted by the [TimeGenerated column](./log-standard-columns.md#timegenerated), in descending order:
@@ -147,8 +146,6 @@ For example, the data returned by both of the following queries is sorted by the
   SecurityEvent	
   | sort by TimeGenerated
   ```
-   
-#### Asc
 
 To sort in ascending order, specify `asc`.
 
@@ -169,7 +166,7 @@ The preceding query could return too many results. Also, it might also take some
 
 ### [Simple mode](#tab/simple)
 
-To sort in Simple Mode:
+To sort in simple mode:
 
 1. Select **Add**, then chose **Sort**.
 
@@ -204,7 +201,7 @@ The output looks like this example:
 
 ### [Simple mode](#tab/simple)
 
-In Simple Mode, there's no direct equivalent to the Top operator. Instead, you can sort a column and then limit the results.
+In Simple Mode, there's no direct equivalent to the `top` operator. Instead, you can sort a column and then limit the results.
 
 ---
 
@@ -309,7 +306,7 @@ The time picker is displayed next to the **Run** button and indicates that you'r
 
 ---
 
-## Use project and extend to select and compute columns
+## Use project to select and compute columns
 
 ## [KQL mode](#tab/kql)
 
@@ -337,14 +334,6 @@ SecurityEvent
 | project Computer, TimeGenerated, EventDetails=Activity, EventCode=substring(Activity, 0, 4)
 ```
 
-You can use `extend` to keep all original columns in the result set and define other ones. The following query uses `extend` to add the `EventCode` column. This column might not be displayed at the end of the table results. You would need to expand the details of a record to view it.
-
-```Kusto
-SecurityEvent
-| top 10 by TimeGenerated
-| extend EventCode=substring(Activity, 0, 4)
-```
-
 ## [Simple mode](#tab/simple)
 
 in Simple Mode, you can manually select the columns you want to show in your results.
@@ -356,6 +345,24 @@ in Simple Mode, you can manually select the columns you want to show in your res
     :::image type="content" source="media/get-started-queries/logs-simple-columns-2.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot that shows the 'Show columns' selector." border="false":::
 
 1. Hit **Apply**.
+
+---
+
+## Use extend to compute columns
+
+## [KQL mode](#tab/kql)
+
+You can use `extend` to keep all original columns in the result set and define other ones. The following query uses `extend` to add the `EventCode` column. This column might not be displayed at the end of the table results. You would need to expand the details of a record to view it.
+
+```Kusto
+SecurityEvent
+| top 10 by TimeGenerated
+| extend EventCode=substring(Activity, 0, 4)
+```
+
+## [Simple mode](#tab/simple)
+
+In Simple Mode, there's no direct equivalent to the `extend` operator.
 
 ---
 
