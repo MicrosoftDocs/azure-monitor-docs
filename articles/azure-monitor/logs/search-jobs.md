@@ -305,11 +305,11 @@ The search job charge is based on:
 
 * Search job execution: 
 
-    - **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in interactive retention in Analytics tables.
-    - **Basic or Auxiliary plans** - All data the search job scans in both interactive and long-term retention. 
-
-    For more information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
-
+  - **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in interactive retention in Analytics tables.
+  - **Basic or Auxiliary plans** - All data the search job scans in both interactive and long-term retention. 
+    
+    The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried.   For more information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
+  
 * Search job results - The amount of data the search job finds and is ingested into the results table, based on the data ingestion rate for Analytics tables.
 
 For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 

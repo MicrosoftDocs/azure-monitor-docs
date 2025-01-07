@@ -1,0 +1,63 @@
+---
+ms.service: azure-monitor
+ms.topic: include
+ms.date: 12/30/2024
+author: kanika1894
+ms.author: kapasrij
+ms.custom: HighAvailability AgFood Platform
+  
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+  
+---
+  
+## AgFood Platform  
+  
+<!--77f976ab-59e3-474d-ba04-32a7d41c9cb1_begin-->
+
+#### Upgrade to the latest ADMA DotNet SDK version  
+  
+We identified calls to an ADMA DotNet SDK version that is scheduled for deprecation. To ensure uninterrupted access to ADMA, latest features, and performance improvements, switch to the latest SDK version.  
+  
+**Potential benefits**: Ensure uninterrupted access to ADMA  
+
+For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+<!--77f976ab-59e3-474d-ba04-32a7d41c9cb1_end-->
+
+<!--1233e513-ac1c-402d-be94-7133dc37cac6_begin-->
+
+#### Upgrade to the latest FarmBeats API version  
+  
+We identified calls to an ADMA API version that is scheduled for deprecation. To ensure uninterrupted access to ADMA, latest features, and performance improvements, switch to the latest ADMA API version.  
+  
+**Potential benefits**: Ensure uninterrupted access to FarmBeats  
+
+For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+<!--1233e513-ac1c-402d-be94-7133dc37cac6_end-->
+
+<!--c4ec2fa1-19f4-491f-9311-ca023ee32c38_begin-->
+
+#### Upgrade to the latest ADMA Python SDK version  
+  
+We identified calls to an ADMA Python SDK version that is scheduled for deprecation. To ensure uninterrupted access to ADMA, latest features, and performance improvements, switch to the latest SDK version.  
+  
+**Potential benefits**: Ensure uninterrupted access to ADMA  
+
+For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+<!--c4ec2fa1-19f4-491f-9311-ca023ee32c38_end-->
+
+<!--9e49a43a-dbe2-477d-9d34-a4f209617fdb_begin-->
+
+#### Upgrade to the latest ADMA JavaScript SDK version  
+  
+We identified calls to an ADMA JavaScript SDK version that is scheduled for deprecation. To ensure uninterrupted access to ADMA, latest features, and performance improvements,  switch to the latest SDK version.  
+  
+**Potential benefits**: Ensure uninterrupted access to ADMA  
+
+For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+<!--9e49a43a-dbe2-477d-9d34-a4f209617fdb_end-->
+
+<!--articleBody-->

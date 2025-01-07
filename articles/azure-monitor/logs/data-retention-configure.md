@@ -192,7 +192,7 @@ The request body includes the values in the following table.
 
 |Name | Type | Description |
 | --- | --- | --- |
-|properties.retentionInDays | integer  | The table's data retention in days. This value can be between 4 and 730. <br/>Setting this property to null applies the workspace retention period. For a Basic Logs table, the value is always 8. |
+|properties.retentionInDays | integer  | The table's data retention in days. This value can be between 4 and 730. <br/>Setting this property to null applies the workspace retention period. For a Basic and Auxiliary Logs table, the value is always 30. |
 |properties.totalRetentionInDays | integer  | The table's total data retention including long-term retention. This value can be between 4 and 730; or 1095, 1460, 1826, 2191, 2556, 2922, 3288, 3653, 4018, or 4383. Set this property to null if you don't want long-term retention.  |
 
 **Example**

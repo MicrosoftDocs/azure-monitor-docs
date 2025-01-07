@@ -2,7 +2,8 @@
 title: Create Resource Health Alerts using Azure portal
 description: Create alert using Azure portal that notifies you when your Azure resources become unavailable.
 ms.topic: conceptual
-ms.date: 12/4/2024
+ms.date: 1/07/2025
+
 ---
 
 # Create Resource Health alerts in the Azure portal
@@ -24,6 +25,9 @@ You can receive an alert when Azure resource sends resource health notifications
 * The reasons and types of the resources affected.
 
 
+You can receive an alert when an Azure resource sends resource health notifications to your Azure subscription. You can configure the alert based on:
+
+
 
 * Select an existing action group.
 * Select a new action group that can be used for future alerts.
@@ -38,12 +42,10 @@ For information on how to configure resource health notification alerts by using
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
 
 
-
     ![Service Health Selection](./media/resource-health-alert-monitor-guide/service-health-selection.png)
 1. In the **Resource Health** section, select **Resource Health**.
 1. Select **Add resource health alert**, to open the **Create an alert rule** wizard, and then the **Conditions** tab is displayed with the **Scope** tab already populated.
 1. Follow the steps for Resource Health alerts, starting from the **Conditions** tab, in the [new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
-
 
 
 ## Next steps

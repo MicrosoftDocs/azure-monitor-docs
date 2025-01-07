@@ -204,7 +204,7 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
     Check if the format specified at the action level is what you expect. For example, you might have developed code that responds to alerts (webhook, function, logic app, etc.), expecting one format, but later in the action you or another person specified a different format.
 
-    Also, check the payload format (JSON) for [activity log alerts](../alerts/activity-log-alerts-webhook.md), for [log search alerts](../alerts/alerts-log-webhook.md) (both Application Insights and log analytics), for [metric alerts](alerts-metric-near-real-time.md#payload-schema), for the [common alert schema](../alerts/alerts-common-schema.md), and for the deprecated [classic metric alerts](./alerts-webhooks.md).
+    Also, check the [payload format (JSON)](../alerts/alerts-payload-samples.md) for and for the [common alert schema](../alerts/alerts-common-schema.md).
 
 ### **The search results are not included in the log search alert notifications.**
 
