@@ -38,13 +38,15 @@ The components of Azure Monitor that are supported with a network security perim
 | Data collection endpoint (DCE) | Microsoft.Insights/dataCollectionEndpoints	| 2023-03-11 |
 | Log Analytics workspace | Microsoft.OperationalInsights/workspaces | 2023-09-01 |
 | Log query alerts | Microsoft.Insights/ScheduledQueryRules | 2022-08-01-preview |
-| Action groups <sup>1</sup> | Microsoft.Insights/actionGroups | 2023-05-01 |
+| Action groups <sup>1</sup> <sup>2</sup> | Microsoft.Insights/actionGroups | 2023-05-01 |
 
-<sup>1</sup> Only [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal) are support, not global action groups.
+<sup>1</sup> NSP only operates with [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal). Global action groups default to public network access.
+
+<sup>2</sup> Today, Eventhub is the only supported action type for NSP. All other actions default to public network access. 
 
 The following components of Azure Monitor are **not** supported with a network security perimeter:
 
-- Application insights Profiler and Debugger
+- [Application Insights Profiler for .NET](./../profiler/profiler-overview.md) and [Snapshot Debugger](./../snapshot-debugger/snapshot-debugger.md)
 - Log Analytics customer managed key
 - Cross-resource queries that include any Log Analytics workspaces associated with an NSP
 

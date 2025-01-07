@@ -4,7 +4,7 @@ description: Tutorial to create a log search alert for an Azure resource.
 ms.author: abbyweisberg
 ms.reviewer: nolavime
 ms.topic: tutorial
-ms.date: 11/07/2023
+ms.date: 12/11/2024
 ---
 
 # Tutorial: Create a log search alert for an Azure resource

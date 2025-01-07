@@ -44,7 +44,7 @@ Application Insights provides many experiences to enhance the performance, relia
 
 ### Code analysis
 
-* [Profiler](../profiler/profiler-overview.md): Capture, identify, and view performance traces for your application.
+* [.NET Profiler](../profiler/profiler-overview.md): Capture, identify, and view performance traces for your application.
 * [Code optimizations](../insights/code-optimizations.md): Harness AI to create better and more efficient applications.
 * [Snapshot debugger](../snapshot-debugger/snapshot-debugger.md): Automatically collect debug snapshots when exceptions occur in .NET application
 

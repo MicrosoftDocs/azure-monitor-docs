@@ -13,7 +13,7 @@ ms.reviewer: harelbr
 
 # Manage your alert rules
 
-Manage your alert rules in the Azure portal, or using the CLI or PowerShell.
+Manage your alert rules in the Azure portal, or using the [Azure Command-Line Interface (CLI)](/cli/azure/get-started-with-azure-cli) or PowerShell.
 
 ## Manage alert rules in the Azure portal
 
@@ -38,7 +38,7 @@ Manage your alert rules in the Azure portal, or using the CLI or PowerShell.
     > If you filter on a `target resource type` scope, the alerts rules list doesn’t include resource health alert rules. To see the resource health alert rules, remove the `Target resource type` filter, or filter the rules based on the `Resource group` or `Subscription`.
 
 1. Select an alert rule or use the checkboxes on the left to select multiple alert rules. 
-1. If you select multiple alert rules, you can enable or disable the selected rules. Selecting multiple rules can be useful when you want to perform maintenance on specific resources. 
+1. If you select multiple alert rules, you can enable or disable the selected rules. Selecting multiple rules can be useful when you want to perform maintenance on specific alert rule resources. 
 1. If you select a single alert rule, you can edit, disable, duplicate, or delete the rule in the alert rule pane.
 
     :::image type="content" source="media/alerts-managing-alert-instances/alerts-rules-pane.png" alt-text="Screenshot that shows the alerts rules pane.":::
@@ -49,7 +49,7 @@ Manage your alert rules in the Azure portal, or using the CLI or PowerShell.
         - Metric alert rules that monitor a custom metric
         - Metric alert rules based on Azure Monitor Logs
         - Smart detection alert rules
-    - **Condition**. Learn more about conditions for [metric alert rules](./alerts-create-new-alert-rule.md?tabs=metric#tabpanel_1_metric), [log search alert rules](./alerts-create-new-alert-rule.md?tabs=log#tabpanel_1_log), and [activity log alert rules](./alerts-create-new-alert-rule.md?tabs=activity-log#tabpanel_1_activity-log)
+    - **Condition**. Learn more about conditions for [metric alert rules](./alerts-create-new-alert-rule.md?tabs=metric#tabpanel_1_metric), [log search alert rules](./alerts-create-log-alert-rule.md), and [activity log alert rules](./alerts-create-activity-log-alert-rule.md?tabs=activity-log)
     - **Actions**
     - **Alert rule details**
 1. Select **Save** on the top command bar.
@@ -151,7 +151,7 @@ When you delete an Azure resource, associated metric alert rules aren't deleted 
 To check the current number of metric alert rules in use, follow the next steps.
 ### From the Azure portal
 
-   1. Open the **Alerts** screen and select **Manage alert rules**.
+1. Open the **Alerts** screen and select **Manage alert rules**.
    1. Filter to the relevant subscription by using the **Subscription** dropdown box.
    1. Make sure *not* to filter to a specific resource group, resource type, or resource.
    1. In the **Signal type** dropdown box, select **Metrics**.
@@ -160,7 +160,7 @@ To check the current number of metric alert rules in use, follow the next steps.
     
 ### Using the API
 
-   - **PowerShell**: [Get-AzMetricAlertRuleV2](/powershell/module/az.monitor/get-azmetricalertrulev2)
+- **PowerShell**: [Get-AzMetricAlertRuleV2](/powershell/module/az.monitor/get-azmetricalertrulev2)
    - **REST API**: [List by subscription](/rest/api/monitor/metricalerts/listbysubscription)
    - **Azure CLI**: [az monitor metrics alert list](/cli/azure/monitor/metrics/alert#az-monitor-metrics-alert-list)
 

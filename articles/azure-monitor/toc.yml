@@ -75,6 +75,8 @@ items:
           href: app/opentelemetry-configuration.md
         - name: Add and modify OpenTelemetry
           href: app/opentelemetry-add-modify.md
+        - name: Filter OpenTelemetry
+          href: app/opentelemetry-filter.md
         - name: Help, support, and feedback
           href: app/opentelemetry-help-support-feedback.md
         - name: .NET (supplemental)
@@ -682,60 +684,64 @@ items:
       - name: Overview
         displayName: data collection rule, dcr, Azure Monitor pipeline
         href: essentials/data-collection-rule-overview.md
-      - name: Best practices
-        displayName: data collection rules, DCR
-        href: essentials/data-collection-rule-best-practices.md
-      - name: Metrics export using data collection rules
-        displayName: data collection rules, metrics
-        href: essentials/data-collection-metrics.md
-      - name: View and associate
-        displayName: data collection rules, DCR
-        href: essentials/data-collection-rule-view.md
-      - name: Create and edit
-        displayName: Data collection rules, DCR
-        href: essentials/data-collection-rule-create-edit.md
-      - name: Edit DCR tutorial
-        displayName: data collection rules
-        href: essentials/data-collection-rule-edit.md
-      - name: Structure
-        displayName: Data collection rules, DCR
-        href: essentials/data-collection-rule-structure.md
+      - name: Create DCRs
+        items: 
+        - name: Create and edit
+          displayName: Data collection rules, DCR
+          href: essentials/data-collection-rule-create-edit.md  
+        - name: Samples and scenarios
+          href: essentials/data-collection-rule-samples.md          
+        - name: Manage associations
+          displayName: data collection rules, DCR
+          href: essentials/data-collection-rule-associations.md
+        - name: DCR structure
+          displayName: Data collection rules, DCR
+          href: essentials/data-collection-rule-structure.md
+        - name: Best practices
+          displayName: data collection rules, DCR
+          href: essentials/data-collection-rule-best-practices.md
       - name: Transformations
         items:
         - name: Overview
           displayName: Transformations
           href: essentials/data-collection-transformations.md
-        - name: Structure
+        - name: Create
           displayName: Transformations
-          href: essentials/data-collection-transformations-structure.md
+          href: essentials/data-collection-transformations-create.md
+        - name: Supported KQL
+          displayName: Transformations
+          href: essentials/data-collection-transformations-kql.md
         - name: Best practices and samples
           displayName: Transformations
-          href: essentials/data-collection-transformations-best-practices.md
-        - name: Tutorial
-          displayName: Custom text logs, transformations
-          href: agents/azure-monitor-agent-transformation.md
-        - name: Workspace transformations
-          items:
-          - name: Overview
-            displayName: Workspace transformations
-            href: essentials/data-collection-transformations-workspace.md
-          - name: Create in Azure portal
-            displayName: Workspace transformations
-            href: logs/tutorial-workspace-transformations-portal.md
-          - name: Create with ARM templates
-            displayName: Workspace transformations
-            href: logs/tutorial-workspace-transformations-api.md
-      - name: Monitor
+          href: essentials/data-collection-transformations-samples.md
+      - name: Metrics export
+        items:
+        - name: Metrics export using DCRs
+          displayName: data collection rules, metrics
+          href: essentials/data-collection-metrics.md
+        - name: Create metrics export DCR
+          displayName: metrics export
+          href: essentials/metrics-export-create.md
+        - name: Data plane batch query versus Metrics export
+          href: essentials/data-plane-versus-metrics-export.md
+      - name: Monitor DCRs
         displayName: Data collection rules
-        href: essentials/data-collection-monitor.md
-      - name: Samples
-        href: essentials/data-collection-rule-samples.md      
+        href: essentials/data-collection-monitor.md 
       - name: Data collection endpoints
         href: essentials/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration
         href: essentials/edge-pipeline-configure.md
-      - name: Data plane batch query versus Metrics export
-        href: essentials/data-plane-versus-metrics-export.md
+      - name: Tutorials
+        items:
+        - name: Transformation in text logs
+          displayName: Custom text logs, transformations
+          href: agents/azure-monitor-agent-transformation.md
+        - name: Workspace transformation in Azure portal
+          displayName: Workspace transformations
+          href: logs/tutorial-workspace-transformations-portal.md
+        - name: Workspace transformation with ARM templates
+          displayName: Workspace transformations
+          href: logs/tutorial-workspace-transformations-api.md
     - name: Diagnostic Settings
       items:
       - name: Overview
@@ -965,8 +971,6 @@ items:
       href: essentials/activity-log.md
     - name: Stream monitoring data to Event Hubs
       href: essentials/stream-monitoring-data-event-hubs.md
-  - name: Use Microsoft Entra authentication
-    href: logs/azure-ad-authentication-logs.md
   - name: Troubleshoot
     items:
      - name: Data collection
@@ -1010,9 +1014,12 @@ items:
       - name: Overview
         displayName: Prometheus
         href: essentials/prometheus-metrics-overview.md
-      - name: Prometheus remote-write from virtual-machines
+      - name: Prometheus remote-write from virtual machines
         displayName: Prometheus remote-write
         href: essentials/prometheus-remote-write-virtual-machines.md
+      - name: Connect Grafana to Azure Monitor Prometheus metrics
+        displayName: Prometheus Grafana
+        href: essentials/prometheus-grafana.md
       - name: Azure Monitor workspace
         items:
         - name: Overview
@@ -1037,14 +1044,6 @@ items:
         href: essentials/prometheus-rule-groups.md
       - name: Query Prometheus metrics
         items:
-        - name: Query using Grafana
-          items:
-          - name: Configure Grafana with managed system identity
-            displayName: Prometheus
-            href: essentials/prometheus-grafana.md
-          - name: Configure Grafana with Microsoft Entra ID
-            displayName: Prometheus
-            href: essentials/prometheus-self-managed-grafana-azure-active-directory.md
         - name: Query using Azure workbooks
           displayName: Prometheus
           href: essentials/prometheus-workbooks.md
@@ -1168,6 +1167,8 @@ items:
       href: logs/migrate-splunk-to-azure-monitor-logs.md
 - name: Security and networking
   items:
+  - name: Security best practices in Azure Monitor
+    href: .//best-practices-security.md
   - name: Data security
     items:
       - name: Roles permissions and security
@@ -1360,6 +1361,7 @@ items:
         href: logs/basic-logs-query.md
       - name: Audit queries
         href: logs/query-audit.md
+        displayName: LAQueryLogs
       - name: Optimize queries
         href: logs/query-optimization.md
       - name: Functions
@@ -1631,11 +1633,7 @@ items:
   - name: Self-monitoring data reference
     href: monitor-azure-monitor-reference.md
   - name: Supported metrics
-    items:
-    - name: Resource metrics
-      href: /azure/azure-monitor/reference/metrics-index
-    - name: Metrics in alerts
-      href: alerts/alerts-metric-near-real-time.md
+    href: /azure/azure-monitor/reference/metrics-index
   - name: Log sources
     items:
     - name: Supported resource log categories

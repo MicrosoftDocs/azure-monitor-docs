@@ -12,7 +12,7 @@ Application Insights supports three different types of metrics: standard (preagg
 
 #### Standard metrics
 
-Standard metrics in Application Insights are predefined metrics which are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics **are preaggregated** during collection and stored as a time series in a specialized repository with only key dimensions, which gives them better performance at query time. This makes standard metrics the best choice for [near real time alerting on dimensions of metrics](../alerts/alerts-metric-near-real-time.md) and more responsive [dashboards](./overview-dashboard.md).
+Standard metrics in Application Insights are predefined metrics which are automatically collected and monitored by the service. These metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. Standard metrics provide a comprehensive overview of your application's health and performance without requiring any additional configuration. Standard metrics **are preaggregated** during collection and stored as a time series in a specialized repository with only key dimensions, which gives them better performance at query time. This makes standard metrics the best choice for near real time alerting on dimensions of metrics and more responsive [dashboards](./overview-dashboard.md).
 
 #### Log-based metrics
 
@@ -1197,5 +1197,4 @@ output
 
 * [Metrics - Get - REST API](/rest/api/application-insights/metrics/get)
 * [Application Insights API for custom events and metrics](api-custom-events-metrics.md)
-* [Near real time alerting](../alerts/alerts-metric-near-real-time.md)
 * [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric)

@@ -76,6 +76,8 @@ Once resources are connected to your AMPLS, you can create a private endpoint to
 
     > [!NOTE]
     > If you select **No** and prefer to manage DNS records manually, first finish setting up your private link. Include this private endpoint and the AMPLS configuration then configure your DNS according to the instructions in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). Make sure not to create empty records as preparation for your private link setup. The DNS records you create can override existing settings and affect your connectivity with Azure Monitor.
+    >
+    > Whether you select **Yes** or **No** and you're using your own custom DNS servers, you need to set up conditional forwarders for the Public DNS zone forwarders mentioned in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). The conditional forwarders need to forward the DNS queries to [Azure DNS](/azure/virtual-network/what-is-ip-address-168-63-129-16).
 
     :::image type="content" source="./media/private-link-security/create-private-endpoint-dns.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the DNS tab selected." lightbox="./media/private-link-security/create-private-endpoint-dns.png":::
 
@@ -242,9 +244,9 @@ This zone covers the global endpoints used by Azure Monitor, which means endpoin
 * **in.ai**: Application Insights ingestion endpoint (both a global and a regional entry).
 * **api**: Application Insights and Log Analytics API endpoint.
 * **live**: Application Insights live metrics endpoint.
-* **profiler**: Application Insights profiler endpoint.
+* **profiler**: Application Insights Profiler for .NET endpoint.
 * **snapshot**: Application Insights snapshot endpoint.
-* **diagservices-query**: Application Insights Profiler and Snapshot Debugger (used when accessing profiler/debugger results in the Azure portal).
+* **diagservices-query**: Application Insights Profiler for .NET and Snapshot Debugger (used when accessing profiler/debugger results in the Azure portal).
 
 This zone also covers the resource-specific endpoints for the following DCEs:
 

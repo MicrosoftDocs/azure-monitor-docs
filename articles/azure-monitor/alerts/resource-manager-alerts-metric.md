@@ -12,11 +12,11 @@ ms.reviewer: harelbr
 
 # Resource Manager template samples for metric alert rules in Azure Monitor
 
-This article provides samples of using [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to configure [metric alert rules](../alerts/alerts-metric-near-real-time.md) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
+This article provides samples of using [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to configure [metric alert rules](../alerts/alerts-types.md#metric-alerts) in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
 [!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
 
-See [Supported resources for metric alerts in Azure Monitor](../alerts/alerts-metric-near-real-time.md) for a list of resources that can be used with metric alert rules. An explanation of the schema and properties for an alert rule is available at [Metric Alerts - Create Or Update](/rest/api/monitor/metricalerts/createorupdate).
+See the schema and properties for an alert rule at [Create Or Update Metric Alerts](/rest/api/monitor/metricalerts/createorupdate).
 
 > [!NOTE]
 > Resource template for creating metric alerts for resource type: Azure Log Analytics Workspace (i.e.) `Microsoft.OperationalInsights/workspaces`, requires additional steps. For details, see [Metric Alert for Logs - Resource Template](../alerts/alerts-metric-logs.md#resource-manager-templates).
