@@ -2,20 +2,23 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 ms.topic: overview
-ms.date: 06/10/2022
+ms.date: 1/07/2025
 ---
 
 # Azure Service Health Portal
 
+
 The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the services issue user interface highlighting the switch to classic button." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
+
 
 ## Highlights
 
 ##### Health Alerts Blade
 The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
+
 
 You can click directly on any alert rule for additional details and see the alert firing history. 
 
@@ -27,9 +30,10 @@ You can click directly on any alert rule for additional details and see the aler
 ##### Tenant Level View
 Users with [tenant admin access](admin-access-reference.md#roles-with-tenant-admin-access), can view events at the tenant scope. The Service Issues, Health Advisories, Security Advisories, and Health History blades show events both at tenant and subscription levels. 
 
-:::image type="content" source="media/service-health-portal-update/services-issue-window-2.png" alt-text="A screenshot of the services issue user interface highlighting the scope selection boxes of tenant and subscription." lightbox="media/service-health-portal-update/services-issue-window-2.png":::
+:::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the services issue user interface highlighting the scope selection boxes of tenant and subscription." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
 
 ##### Filtering and Sorting
+
 You can filter on the scope (tenant or subscription) within the blades. The scope column indicates when an event is at the tenant or subscription level.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-3.png" alt-text="A screenshot of the services issue user interface highlighting the scope column." lightbox="media/service-health-portal-update/services-issue-window-3.png":::
@@ -41,7 +45,9 @@ The Service Issues blade shows an enhanced version of the map with all the user 
 The issues details look and feel has been updated, for better readability. 
 
 ## Planned Maintenance
+
 You can view all planned maintenance.
+
 
 ## Health Advisories
 The following user interface(s) will be updated to the new experience.

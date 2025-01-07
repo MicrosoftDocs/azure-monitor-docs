@@ -10,6 +10,7 @@ ms.date: 1/07/2025
 
 In support of the experience for viewing Impacted Resources, Service Health has a new feature to:
 
+
 * Display resources impacted by a planned maintenance event.
 * Provide impacted resources information for planned maintenance via the Service Health portal.
 
