@@ -378,9 +378,9 @@ In simple mode, there's no direct equivalent to the `extend` operator.
 
 ## Aggregation
 
-## [KQL mode](#tab/kql)
+### Aggregate groups of rows
 
-### Use summarize to aggregate groups of rows
+### [KQL mode](#tab/kql)
 
 Use `summarize` to identify groups of records according to one or more columns and apply aggregations to them. The most common use of `summarize` is `count`, which returns the number of results in each group.
 
@@ -416,7 +416,36 @@ Perf
 | summarize avg(CounterValue) by Computer, CounterName
 ```
 
-#### Summarize by a time column
+### [Simple mode](#tab/simple)
+
+To aggregate data in simple mode:
+
+1. Select **Aggregate**.
+
+1. Select a column to aggregate by and select an operator to aggregate by, as described in [Use aggregation operators](#use-aggregation-operators).
+
+    :::image type="content" source="media/log-analytics-explorer/log-analytics-aggregate.png" alt-text="Screenshot that shows the aggregation operators in the Aggregate table window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-aggregate.png":::
+
+---
+
+#### Use aggregation operators
+
+Use aggregation operators to summarize data from multiple rows, as described in this table.
+
+| Operator | Description |
+|:---------|:------------|
+| [count](/azure/data-explorer/kusto/query/count-operator) | Counts the number of times each distinct value exists in the column. |
+| [dcount](/azure/data-explorer/kusto/query/dcount-aggfunction) | For the `dcount` operator, you select two columns. The operator counts the total number of distinct values in the second column correlated to each value in the first column.<br><br>For example, this shows the distinct number of result codes for successful and failed operations:<br><br>:::image type="content" source="media/log-analytics-explorer/log-analytics-dcount.png" alt-text="Screenshot that shows the result of an aggregation using the dcount operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-dcount.png"::: |
+| [sum](/azure/data-explorer/kusto/query/sum-aggregation-function)<br>[avg](/azure/data-explorer/kusto/query/avg-aggregation-function)<br>[max](/azure/data-explorer/kusto/query/max-aggregation-function)<br>[min](/azure/data-explorer/kusto/query/min-aggregation-function) | For these operators, you select two columns. The operators calculate the sum, average, maximum, or minimum of all values in the second column for each value in the first column.<br><br>For example, this shows the total duration of each operation in milliseconds for the past 24 hours:<br><br>:::image type="content" source="media/log-analytics-explorer/log-analytics-sum.png" alt-text="Screenshot that shows the results of an aggregation using the sum operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sum.png"::: |
+
+> [!IMPORTANT]
+> Basic logs tables don't support aggregation using the `avg` and `sum` operators. 
+
+---
+
+### Summarize by a time column
+
+### [KQL mode](#tab/kql)
 
 Grouping results can also be based on a time column or another continuous value. Simply summarizing `by TimeGenerated`, though, would create groups for every single millisecond over the time range because these values are unique.
 
@@ -434,28 +463,9 @@ To make the output clearer, you can select to display it as a time chart, which 
 
 :::image type="content" source="media/get-started-queries/logs-kql-graph.png" lightbox="media/get-started-queries/logs-kql-graph.png" alt-text="Screenshot that shows the values of a query memory over time." border="false":::
 
-## [Simple mode](#tab/simple)
+### [Simple mode](#tab/simple)
 
-To aggregate data in simple mode:
-
-1. Select **Aggregate**.
-
-1. Select a column to aggregate by and select an operator to aggregate by, as described in [Use aggregation operators](#use-aggregation-operators).
-
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-aggregate.png" alt-text="Screenshot that shows the aggregation operators in the Aggregate table window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-aggregate.png":::
-
-### Use aggregation operators
-
-Use aggregation operators to summarize data from multiple rows, as described in this table.
-
-| Operator | Description |
-|:---------|:------------|
-|[count](/azure/data-explorer/kusto/query/count-operator)|Counts the number of times each distinct value exists in the column.|
-|[dcount](/azure/data-explorer/kusto/query/dcount-aggfunction)|For the `dcount` operator, you select two columns. The operator counts the total number of distinct values in the second column correlated to each value in the first column. For example, this shows the distinct number of result codes for successful and failed operations:<br/> :::image type="content" source="media/log-analytics-explorer/log-analytics-dcount.png" alt-text="Screenshot that shows the result of an aggregation using the dcount operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-dcount.png":::  |
-|[sum](/azure/data-explorer/kusto/query/sum-aggregation-function)<br/>[avg](/azure/data-explorer/kusto/query/avg-aggregation-function)<br/>[max](/azure/data-explorer/kusto/query/max-aggregation-function)<br/>[min](/azure/data-explorer/kusto/query/min-aggregation-function)|For these operators, you select two columns. The operators calculate the sum, average, maximum, or minimum of all values in the second column for each value in the first column. For example, this shows the total duration of each operation in milliseconds for the past 24 hours:<br/>:::image type="content" source="media/log-analytics-explorer/log-analytics-sum.png" alt-text="Screenshot that shows the results of an aggregation using the sum operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sum.png":::  |
-
-> [!IMPORTANT]
-> Basic logs tables don't support aggregation using the `avg` and `sum` operators. 
+...
 
 ---
 
