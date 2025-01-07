@@ -3,26 +3,28 @@ title: Resource impact from Azure planned maintenance events
 description: This article details where to find information from Azure Service Health about how Azure planned maintenance impacts your resources.
 ms.topic: conceptual
 ms.date: 1/07/2025
+
 ---
 
 # Resource impact from Azure planned maintenance
 
+In support of the experience for viewing Impacted Resources, Service Health has features to:
 
-In support of the experience for viewing Impacted Resources, Service Health has a new feature to:
-
-
-* Display resources impacted by a planned maintenance event.
-* Provide impacted resources information for planned maintenance via the Service Health portal.
+- Display resources that are impacted by a planned maintenance event.
+- Provide impacted resources information for planned maintenance through the Service Health Portal. 
 
 This article details what is communicated to users and where they can view information about their impacted resources.
+<!--
+>[!Note]
+>This feature will be rolled out in phases. Initially, impacted resources will only be shown for **SQL resources with advance customer notifications and rebootful updates for compute resources.** Planned maintenance impacted resources coverage will be expanded to other resource types and scenarios in the future.-->
 
-> [!NOTE]
-> This feature gets rolled out in phases. Initially, impacted resources are only shown for *SQL resources with advance customer notifications and rebootful updates for compute resources.* Planned maintenance impacted resources coverage gets expanded to other resource types and scenarios in the future.
+
 
 ## Viewing impacted resources for planned maintenance events in the Service Health portal
 
 
 In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned Maintenance** displays resources affected by a planned maintenance event. The following example of the Impacted Resources tab shows a planned maintenance event with impacted resources.
+
 
 :::image type="content" source="./media/impacted-resource-maintenance/grid-image.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health.":::
 
@@ -44,6 +46,7 @@ Service Health provides the following information on resources impacted by a pla
 
 
 ## Filters
+
 
 Customers can filter the results using these filters:
 

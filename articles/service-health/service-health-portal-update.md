@@ -7,7 +7,6 @@ ms.date: 1/07/2025
 
 # Azure Service Health Portal
 
-
 The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the services issue user interface highlighting the switch to classic button." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
@@ -18,7 +17,6 @@ The Azure Service Health portal experience lets users engage with service events
 ##### Health Alerts Blade
 The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
-
 
 You can click directly on any alert rule for additional details and see the alert firing history. 
 
@@ -47,7 +45,6 @@ The issues details look and feel has been updated, for better readability.
 ## Planned Maintenance
 
 You can view all planned maintenance.
-
 
 ## Health Advisories
 The following user interface(s) will be updated to the new experience.

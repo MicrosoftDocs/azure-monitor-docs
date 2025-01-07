@@ -42,10 +42,18 @@ For information on how to configure resource health notification alerts by using
 1. In the Azure [portal](https://portal.azure.com/), select **Service Health**.
 
 
-    ![Service Health Selection](./media/resource-health-alert-monitor-guide/service-health-selection.png)
-1. In the **Resource Health** section, select **Resource Health**.
-1. Select **Add resource health alert**, to open the **Create an alert rule** wizard, and then the **Conditions** tab is displayed with the **Scope** tab already populated.
-1. Follow the steps for Resource Health alerts, starting from the **Conditions** tab, in the [new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
+
+    ![Service Health Selection](./media/resource-health-alert-monitor-guide/service-health-selection-1.png)
+
+ 
+1. Select **Resource Health**.
+
+     ![Resource Health Selection](./media/alerts-activity-log-service-notifications/resource-health-select.png)
+   
+1. Select **Add resource health alert**.
+   
+
+1. The **Create an alert rule** wizard opens to the **Conditions** tab, with the **Scope** tab already populated. Follow the steps for Resource Health alerts, starting from the **Conditions** tab, in the [new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
 
 
 ## Next steps
