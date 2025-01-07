@@ -12,7 +12,7 @@ This article details how users are required to obtain elevated access roles in o
 
 ## What are Security Advisories?
 
-Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in four tabs: Summary, Impacted Services, Issue Updates and Impacted Resources.
+Azure customers use [Service Health](service-health-overview.md) to stay informed about security events that are impacting their critical and noncritical business applications. Security event notifications are displayed on Azure Service Health within the Security Advisories blade. Important security advisory details are displayed in four tabs: Summary, Impacted Services, Issue Updates, and Impacted Resources.
 
 
 :::image type="content" source="./media/impacted-resource-sec/security-advisories-tab.PNG" alt-text="Screenshot of Service Health Security Advisories Blade.":::
@@ -29,17 +29,11 @@ Since details displayed in this tab are sensitive, role based access (RBAC) is r
 
 ## Accessing Security Advisories
 
-Accessing Security Advisories requires elevated access across the Summary, Impacted Services, Issue Updates and Impacted Resources tabs. Users who have subscription reader access, or tenant roles at tenant scope, will not be able to view security advisory details until they get the required roles.
+Accessing Security Advisories requires elevated access across the Summary, Impacted Services, Issue Updates, and Impacted Resources tabs. Users who have subscription reader access, or tenant roles at tenant scope won't be able to view security advisory details until they get the required roles.
 
 ### 1. On the Service Health portal
 A banner is displayed to users<!-- until April 2024--> on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
 
-:::image type="content" source="./media/impacted-resource-sec/access-banner-1.PNG" alt-text="Screenshot displaying the new role based access banner for security advisories.":::
-
-An error message on the Summary and Issue Updates tabs is displayed to users who do not have one of the following required roles:
-
->[!NOTE]
-> The above screenshots reflect the RBAC experience for the Security Advisories as of today.
 
 ## What changed in Security Advisories?
 
@@ -51,16 +45,15 @@ An error message on the **Summary** and **Issue Updates** tabs is displayed to u
 
 ### 2. Service Health API Changes
 
+Events API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive Security Advisories notification details. If users have the above-mentioned roles, they can view event details for a specific event with the new endpoint. The existing endpoint **(/events)** that returns all Service Health event types impacting a subscription or tenant, do not return sensitive security notification details. <!--This update will be made to API version 2023-10-01-preview and future versions.-->
 
-Events API users will need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive Security Advisories notification details. If users have the above-mentioned roles, they can view event details for a specific event with the new endpoint. The existing endpoint **(/events)** that returns all Service Health event types impacting a subscription or tenant, will no longer return sensitive security notification details. <!--This update will be made to API version 2023-10-01-preview and future versions.-->
-
-The <!--new and existing--> endpoints listed below <!--will--> return the security notification details for a specific event.
+The <!--new and existing--> endpoints listed here <!--will--> return the security notification details for a specific event.
 
 #### New API Endpoint Details
 
-- To access the new endpoint below, users need to be authorized with the above-mentioned roles. 
-- This endpoint will return the event object with all available properties for a specific event. 
-- This is like the impacted resources endpoint below.
+- To access the new endpoint, users need to be authorized with the above-mentioned roles. 
+- This endpoint returns the event object with all available properties for a specific event. 
+
 <!--- Available since API version 2022-10-01-->
 
 
