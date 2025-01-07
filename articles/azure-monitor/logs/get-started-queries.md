@@ -33,7 +33,9 @@ For more information about log queries in Azure Monitor, see [Overview of log qu
 ## Tutorial video
 
 > [!NOTE]
-> The video below shows an old user interface, but the screenshots throughout this article are up to date and reflect the current UI. 
+> The video below shows an old user interface, but the screenshots throughout this article are up to date and reflect the current UI.
+
+<br>
 
 > [!VIDEO https://www.microsoft.com/videoplayer/embed/RE42pGX]
 
@@ -168,7 +170,7 @@ The preceding query could return too many results. Also, it might also take some
 
 To sort in simple mode:
 
-1. Select **Add**, then chose **Sort**.
+1. Select **Add**, then choose **Sort**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-sort-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with Sort highlighted." lightbox="media/get-started-queries/logs-simple-sort-1.png":::
 
@@ -201,7 +203,7 @@ The output looks like this example:
 
 ### [Simple mode](#tab/simple)
 
-In Simple Mode, there's no direct equivalent to the `top` operator. Instead, you can sort a column and then limit the results.
+In simple mode, there's no direct equivalent to the `top` operator. Instead, you can sort a column and then limit the results.
 
 ---
 
@@ -211,7 +213,7 @@ Filters, as indicated by their name, filter the data by a specific condition. Fi
 
 ## [KQL mode](#tab/kql)
 
-### The where operator: Filter on a condition
+### The where operator
 
 To add a filter to a query, use the [`where` operator](/azure/data-explorer/kusto/query/whereoperator) followed by one or more conditions. For example, the following query returns only `SecurityEvent` records where `Level equals _8`:
 
@@ -223,11 +225,35 @@ SecurityEvent
 When you write filter conditions, you can use the following expressions:
 
 | Expression | Description | Example |
-|:---|:---|:---|
+|:-----------|:------------|:--------|
 | == | Check equality<br>(case-sensitive) | `Level == 8` |
 | =~ | Check equality<br>(case-insensitive) | `EventSourceName =~ "microsoft-windows-security-auditing"` |
 | !=, <> | Check inequality<br>(both expressions are identical) | `Level != 4` |
 | `and`, `or` | Required between conditions| `Level == 16 or CommandLine != ""` |
+
+## [Simple mode](#tab/simple)
+
+In simple mode, you can add filters using the UI. To filter results in the `SecurityEvent` table to only show records where the `Level` equals `8`:
+
+1. Select **Add** and choose the column `Level`.
+
+    :::image type="content" source="media/get-started-queries/logs-simple-filter-1.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-1.png":::
+
+1. In the **Operator** dropdown list, select **Equals**. Enter the number `8` in the field below, then hit **Apply**.
+    
+    :::image type="content" source="media/get-started-queries/logs-simple-filter-2.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-2.png":::
+
+To filter by multiple conditions, you can add additional filters:
+
+1. Select **Add** and choose the column `EventID`.
+
+1.  In the **Operator** dropdown list, select **Equals**. Enter the number `4672` in the field below, then hit **Apply**.
+
+---
+
+### Filter by multiple conditions
+
+## [KQL mode](#tab/kql)
 
 To filter by multiple conditions, you can use either of the following approaches:
 
@@ -252,23 +278,13 @@ SecurityEvent
 
 ## [Simple mode](#tab/simple)
 
-Instead of using the [`where` operator](/azure/data-explorer/kusto/query/whereoperator), in Simple Mode you can add filters using the UI.
-
-For example, to filter results in the `SecurityEvent` table to only show records where the `Level` equals `8`:
-
-1. Select **Add** and choose the column `Level`.
-
-    :::image type="content" source="media/get-started-queries/logs-simple-filter-1.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics Simple mode." lightbox="media/get-started-queries/logs-simple-filter-1.png":::
-
-1. In the **Operator** dropdown list, select **Equals**. Enter the number `8` in the field below, then hit **Apply**.
-    
-    :::image type="content" source="media/get-started-queries/logs-simple-filter-2.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics Simple mode." lightbox="media/get-started-queries/logs-simple-filter-2.png":::
-
-To filter by multiple conditions, you can add additional filters.
+To filter by multiple conditions, you can add additional filters:
 
 1. Select **Add** and choose the column `EventID`.
 
 1.  In the **Operator** dropdown list, select **Equals**. Enter the number `4672` in the field below, then hit **Apply**.
+
+---
 
 ---
 
@@ -336,12 +352,14 @@ SecurityEvent
 
 ## [Simple mode](#tab/simple)
 
-in Simple Mode, you can manually select the columns you want to show in your results.
+In simple mode, you can manually select the columns you want to show in your results:
 
 1. Select **Add** and choose **Select columns**.
+
     :::image type="content" source="media/get-started-queries/logs-simple-columns-1.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Show columns' highlighted." border="false":::
 
 1. Deselect `All`, then select the columns `TimeGenerated`, `Computer`, and `Activity`.
+
     :::image type="content" source="media/get-started-queries/logs-simple-columns-2.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot that shows the 'Show columns' selector." border="false":::
 
 1. Hit **Apply**.
@@ -362,7 +380,7 @@ SecurityEvent
 
 ## [Simple mode](#tab/simple)
 
-In Simple Mode, there's no direct equivalent to the `extend` operator.
+In simple mode, there's no direct equivalent to the `extend` operator.
 
 ---
 
@@ -429,6 +447,7 @@ To make the output clearer, you can select to display it as a time chart, which 
 ### Aggregate data
 
 1. Select **Aggregate**.
+
 1. Select a column to aggregate by and select an operator to aggregate by, as described in [Use aggregation operators](#use-aggregation-operators).
 
     :::image type="content" source="media/log-analytics-explorer/log-analytics-aggregate.png" alt-text="Screenshot that shows the aggregation operators in the Aggregate table window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-aggregate.png":::
@@ -438,7 +457,7 @@ To make the output clearer, you can select to display it as a time chart, which 
 Use aggregation operators to summarize data from multiple rows, as described in this table.
 
 | Operator | Description |
-|:---|:---|
+|:---------|:------------|
 |[count](/azure/data-explorer/kusto/query/count-operator)|Counts the number of times each distinct value exists in the column.|
 |[dcount](/azure/data-explorer/kusto/query/dcount-aggfunction)|For the `dcount` operator, you select two columns. The operator counts the total number of distinct values in the second column correlated to each value in the first column. For example, this shows the distinct number of result codes for successful and failed operations:<br/> :::image type="content" source="media/log-analytics-explorer/log-analytics-dcount.png" alt-text="Screenshot that shows the result of an aggregation using the dcount operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-dcount.png":::  |
 |[sum](/azure/data-explorer/kusto/query/sum-aggregation-function)<br/>[avg](/azure/data-explorer/kusto/query/avg-aggregation-function)<br/>[max](/azure/data-explorer/kusto/query/max-aggregation-function)<br/>[min](/azure/data-explorer/kusto/query/min-aggregation-function)|For these operators, you select two columns. The operators calculate the sum, average, maximum, or minimum of all values in the second column for each value in the first column. For example, this shows the total duration of each operation in milliseconds for the past 24 hours:<br/>:::image type="content" source="media/log-analytics-explorer/log-analytics-sum.png" alt-text="Screenshot that shows the results of an aggregation using the sum operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sum.png":::  |
