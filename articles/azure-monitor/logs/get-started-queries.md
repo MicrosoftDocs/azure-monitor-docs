@@ -311,6 +311,8 @@ The time picker is displayed next to the **Run** button and indicates that you'r
 
 ## Use project and extend to select and compute columns
 
+## [KQL mode](#tab/kql)
+
 Use `project` to select specific columns to include in the results:
 
 ```Kusto
@@ -342,6 +344,18 @@ SecurityEvent
 | top 10 by TimeGenerated
 | extend EventCode=substring(Activity, 0, 4)
 ```
+
+## [Simple mode](#tab/simple)
+
+in Simple Mode, you can manually select the columns you want to show in your results.
+
+1. Select **Add** and choose **Select columns**.
+    :::image type="content" source="media/get-started-queries/logs-simple-columns-1.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Show columns' highlighted." border="false":::
+
+1. Deselect `All`, then select the columns `TimeGenerated`, `Computer`, and `Activity`.
+    :::image type="content" source="media/get-started-queries/logs-simple-columns-2.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot that shows the 'Show columns' selector." border="false":::
+
+1. Hit **Apply**.
 
 ---
 
