@@ -92,7 +92,7 @@ To show 10 records that include a specific value in any of their columns:
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-2.png" alt-text="Screenshot shows the Search field in simple mode." lightbox="media/get-started-queries/logs-simple-search-2.png":::
 
-1. Open **Show**, select **Custom**, enter the custom value `10`, then hit **Apply**.
+1. To only show 10 results, see [Limit results in simple mode](/azure/azure-monitor/logs/get-started-queries&tabs=simple#limit-results).
 
 > [!IMPORTANT]
 > We recommend using **Filter** if you know which column holds the data you're searching for. The [search operator is substantially less performant](../logs/query-optimization.md#avoid-unnecessary-use-of-search-and-union-operators) than filtering, and might not function well on large volumes of data.
@@ -198,9 +198,9 @@ SecurityEvent
 | top 10 by TimeGenerated
 ```
 
-The output looks like this example.
-<!-- convertborder later -->
-:::image type="content" source="media/get-started-queries/top10.png" lightbox="media/get-started-queries/top10.png" alt-text="Screenshot that shows the top 10 records sorted in descending order." border="false":::
+The output looks like this example:
+
+:::image type="content" source="media/get-started-queries/logs-kql-top.png" lightbox="media/get-started-queries/logs-kql-top.png" alt-text="Screenshot that shows the top 10 records sorted in descending order." border="false":::
 
 ### [Simple mode](#tab/simple)
 
@@ -255,17 +255,17 @@ SecurityEvent
 
 ## [Simple mode](#tab/simple)
 
-Instead of using the [`where` operator](/azure/data-explorer/kusto/query/whereoperator), in Simple Mode you can add filters using the UI. For example,  followed by one or more conditions.
+Instead of using the [`where` operator](/azure/data-explorer/kusto/query/whereoperator), in Simple Mode you can add filters using the UI.
 
 For example, to filter results in the `SecurityEvent` table to only show records where the `Level` equals `8`:
 
 1. Select **Add** and choose the column `Level`.
 
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-add-filter.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-add-filter.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-filter-1.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics Simple mode." lightbox="media/get-started-queries/logs-simple-filter-1.png":::
 
 1. In the **Operator** dropdown list, select **Equals**. Enter the number `8` in the field below, then hit **Apply**.
     
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-filter.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-filter.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-filter-2.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics Simple mode." lightbox="media/get-started-queries/logs-simple-filter-2.png":::
 
 To filter by multiple conditions, you can add additional filters.
 
@@ -284,8 +284,8 @@ You can specify a time range by using the time picker or a time filter.
 ### Use the time picker
 
 The time picker is displayed next to the **Run** button and indicates that you're querying records from only the last 24 hours. This default time range is applied to all queries. To get records from only the last hour, select **Last hour** and then run the query again.
-<!-- convertborder later -->
-:::image type="content" source="media/get-started-queries/timepicker.png" lightbox="media/get-started-queries/timepicker.png" alt-text="Screenshot that shows the time picker and its list of time-range commands." border="false":::
+
+:::image type="content" source="media/get-started-queries/logs-kql-time.png" lightbox="media/get-started-queries/logs-kql-time.png" alt-text="Screenshot that shows the time picker and its list of time-range commands in KQL mode." border="false":::
 
 ### Add a time filter to the query
 
@@ -304,8 +304,8 @@ In the preceding time filter, `ago(30m)` means "30 minutes ago." This query retu
 ## [Simple mode](#tab/simple)
 
 The time picker is displayed next to the **Run** button and indicates that you're querying records from only the last 24 hours. This default time range is applied to all queries. To get records from only the last hour, select **Last hour** and then run the query again.
-<!-- convertborder later -->
-:::image type="content" source="media/get-started-queries/timepicker.png" lightbox="media/get-started-queries/timepicker.png" alt-text="Screenshot that shows the time picker and its list of time-range commands." border="false":::
+
+:::image type="content" source="media/get-started-queries/logs-simple-time.png" lightbox="media/get-started-queries/logs-simple-time.png" alt-text="Screenshot that shows the time picker and its list of time-range commands in simple mode." border="false":::
 
 ---
 
@@ -320,8 +320,8 @@ SecurityEvent
 ```
 
 The preceding example generates the following output:
-<!-- convertborder later -->
-:::image type="content" source="media/get-started-queries/project.png" lightbox="media/get-started-queries/project.png" alt-text="Screenshot that shows the query 'project' results list." border="false":::
+
+:::image type="content" source="media/get-started-queries/logs-kql-project.png" lightbox="media/get-started-queries/logs-kql-project.png" alt-text="Screenshot that shows the query 'project' results list." border="false":::
 
 You can also use `project` to rename columns and define new ones. The next example uses `project` to do the following:
 
@@ -394,14 +394,14 @@ To create groups based on continuous values, it's best to break the range into m
 ```Kusto
 Perf 
 | where TimeGenerated > ago(7d)
-| where Computer == "ContosoAzADDS2" 
+| where Computer == "DC01.na.contosohotels.com" 
 | where CounterName == "Available MBytes" 
 | summarize avg(CounterValue) by bin(TimeGenerated, 1h)
 ```
 
 To make the output clearer, you can select to display it as a time chart, which shows the available memory over time.
-<!-- convertborder later -->
-:::image type="content" source="media/get-started-queries/chart.png" lightbox="media/get-started-queries/chart.png" alt-text="Screenshot that shows the values of a query memory over time." border="false":::
+
+:::image type="content" source="media/get-started-queries/logs-kql-graph.png" lightbox="media/get-started-queries/logs-kql-graph.png" alt-text="Screenshot that shows the values of a query memory over time." border="false":::
 
 ## [Simple mode](#tab/simple)
 
