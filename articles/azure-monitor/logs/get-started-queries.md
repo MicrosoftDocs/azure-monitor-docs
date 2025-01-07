@@ -106,8 +106,6 @@ To search for records that include a specific value in any of their columns in s
 
 ## [KQL mode](#tab/kql)
 
-#### Take
-
 Use the [`take` operator](/azure/data-explorer/kusto/query/takeoperator) to view a small sample of records by returning up to the specified number of records. For example:
 
 ```Kusto
@@ -155,7 +153,7 @@ To sort in ascending order, specify `asc`.
 
 ### [KQL mode](#tab/kql)
 
-You can use the [`sort` operator](/azure/data-explorer/kusto/query/sort-operator). `sort` sorts the query results by the column you specify. However, `sort` doesn't limit the number of records that are returned by the query.
+You can use the [`sort` operator](/azure/data-explorer/kusto/query/sort-operator) to sort the query results by the column you specify. However, `sort` doesn't limit the number of records that are returned by the query.
 
 For example, the following query returns all available records for the `SecurityEvent` table, which is up to a maximum of 30,000 records, and sorts them by the TimeGenerated column.
 
@@ -243,12 +241,6 @@ In simple mode, you can add filters using the UI. To filter results in the `Secu
     
     :::image type="content" source="media/get-started-queries/logs-simple-filter-2.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-2.png":::
 
-To filter by multiple conditions, you can add additional filters:
-
-1. Select **Add** and choose the column `EventID`.
-
-1.  In the **Operator** dropdown list, select **Equals**. Enter the number `4672` in the field below, then hit **Apply**.
-
 ---
 
 ### Filter by multiple conditions
@@ -322,7 +314,7 @@ The time picker is displayed next to the **Run** button and indicates that you'r
 
 ---
 
-## Use project to select and compute columns
+## Use project to select columns
 
 ## [KQL mode](#tab/kql)
 
@@ -444,7 +436,7 @@ To make the output clearer, you can select to display it as a time chart, which 
 
 ## [Simple mode](#tab/simple)
 
-### Aggregate data
+To aggregate data in simple mode:
 
 1. Select **Aggregate**.
 
