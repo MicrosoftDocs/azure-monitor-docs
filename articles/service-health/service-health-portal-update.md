@@ -2,12 +2,12 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 ms.topic: overview
-ms.date: 2/07/2025
+ms.date: 1/07/2025
 ---
 
 # Azure Service Health Portal
 
-The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
+The Azure Service Health portal experience lets users engage with service events, and manage actions to maintain the business continuity of their impacted applications.
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-10.png" alt-text="A screenshot of the services issue user interface highlighting the switch to classic button." lightbox="media/service-health-portal-update/service-issue-window-10.png":::
 
@@ -17,7 +17,7 @@ The Azure Service Health portal experience lets users engage with service events
 The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 
-You can click directly on any alert rule for additional details and see the alert firing history. 
+Click directly on any alert rule for additional details and see the alert firing history. 
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-history.png" alt-text="A screenshot highlighting alerts history" lightbox="media/service-health-portal-update/health-alerts-history.png":::
 
@@ -41,7 +41,7 @@ The Service Issues blade shows an enhanced version of the map with all the user 
 The issues details look and feel has been updated, for better readability. 
 
 ## Planned Maintenance
-You can view all planned maintenance.
+You can view all planned maintenance here.
 
 ## Health Advisories
 The following user interface(s) will be updated to the new experience.
