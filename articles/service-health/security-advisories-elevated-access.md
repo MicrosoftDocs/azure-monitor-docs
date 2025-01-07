@@ -23,7 +23,6 @@ Security Advisories are displayed to users at the subscription or tenant level. 
 
 ## What are Impacted Resources within Security Advisories?
 
-
 Since details displayed in this tab are sensitive, role based access (RBAC) is required for customers viewing security impacted resources via UI or API. [Review this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.
 
 
