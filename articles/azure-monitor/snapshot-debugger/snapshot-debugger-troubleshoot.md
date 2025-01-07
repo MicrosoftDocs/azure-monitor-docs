@@ -157,7 +157,7 @@ You can check the Status Page of this extension by going to the following url:
 > [!NOTE]
 > The domain of the Status Page link will vary depending on the cloud.
 
-This domain is the same as the Kudu management site for App Service. The status page shows the installation state of the Profiler and Snapshot Collector agents. If there was an unexpected error, it shows how to fix it.
+This domain is the same as the Kudu management site for App Service. The status page shows the installation state of the [.NET Profiler](./../profiler/profiler.md) and Snapshot Collector agents. If there was an unexpected error, it shows how to fix it.
 
 You can use the Kudu management site for App Service to get the base url of this Status Page:
 

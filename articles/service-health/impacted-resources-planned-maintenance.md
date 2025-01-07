@@ -2,13 +2,11 @@
 title: Resource impact from Azure planned maintenance events
 description: This article details where to find information from Azure Service Health about how Azure planned maintenance impacts your resources.
 ms.topic: conceptual
-
-ms.date: 12/5/2024
+ms.date: 1/07/2025
 
 ---
 
 # Resource impact from Azure planned maintenance
-
 
 In support of the experience for viewing Impacted Resources, Service Health has features to:
 
@@ -24,12 +22,14 @@ This article details what is communicated to users and where they can view infor
 
 ## Viewing impacted resources for planned maintenance events in the Service Health portal
 
-In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned maintenance** displays resources that are affected by a planned maintenance event. The following example shows a planned maintenance event with impacted resources.
+
+In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned Maintenance** displays resources affected by a planned maintenance event. The following example of the Impacted Resources tab shows a planned maintenance event with impacted resources.
 
 
 :::image type="content" source="./media/impacted-resource-maintenance/grid-image.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health.":::
 
 Service Health provides the following information on resources impacted by a planned maintenance event:
+
 
 |Fields  |Description |
 |---------|---------|
@@ -43,9 +43,6 @@ Service Health provides the following information on resources impacted by a pla
 
 >[!Note]
 >Fields with an asterisk * are optional fields that are available depending on the resource type.
-
-
-
 
 
 ## Filters
