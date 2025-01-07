@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 ms.topic: overview
-ms.date: 1/03/2025
+ms.date: 1/07/2025
 ---
 
 # Azure Service Health Portal
