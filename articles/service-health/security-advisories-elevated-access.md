@@ -2,7 +2,7 @@
 title: Elevated access for viewing Security Advisories
 description: This article details a change that requires users to obtain elevated access roles in order to view Security Advisory details
 ms.topic: conceptual
-ms.date: 12/11/2024
+ms.date: 1/07/2025
 ---
 
 # Elevated access for viewing Security Advisories
@@ -27,13 +27,6 @@ Security Advisories are displayed to users at the subscription or tenant level. 
 Since details displayed in this tab are sensitive, role based access (RBAC) is required for customers viewing security impacted resources via UI or API. [Review this article](impacted-resources-security.md) for more information on the current RBAC requirements for accessing security impacted resources.
 
 
-:::image type="content" source="./media/impacted-resource-sec/impacted-resources.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health.":::
-
-
-<!--
->[!Note]
-> The screenshots above reflect the RBAC experience for the Security Advisories.-->
-
 ## Accessing Security Advisories
 
 Accessing Security Advisories requires elevated access across the Summary, Impacted Services, Issue Updates and Impacted Resources tabs. Users who have subscription reader access, or tenant roles at tenant scope, will not be able to view security advisory details until they get the required roles.
@@ -44,7 +37,7 @@ A banner is displayed to users<!-- until April 2024--> on the Summary and Issue 
 :::image type="content" source="./media/impacted-resource-sec/access-banner-1.PNG" alt-text="Screenshot displaying the new role based access banner for security advisories.":::
 
 An error message on the Summary and Issue Updates tabs is displayed to users who do not have one of the following required roles:
-=======
+
 >[!NOTE]
 > The above screenshots reflect the RBAC experience for the Security Advisories as of today.
 
