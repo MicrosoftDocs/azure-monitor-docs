@@ -4,7 +4,7 @@ description: "include file"
 services: azure-monitor
 author: rboucher
 ms.topic: "include"
-ms.date: 04/23/2024
+ms.date: 01/07/2025
 ms.author: robb
 ms.custom: "include file"
 ---
@@ -86,13 +86,13 @@ ms.custom: "include file"
 
 Azure Monitor is a high-scale data service that serves thousands of customers sending Terabytes of data each daily and at a growing pace. A soft volume rate limit intends to isolate Azure Monitor customers from sudden ingestion spikes in a multitenancy environment. The default ingestion volume rate threshold in workspaces is 500 MB (compressed), which is translated to approximately 6 GB/min uncompressed.
 
-The volume rate limit applies to data ingested from Azure resources via [Diagnostic settings](../articles/azure-monitor/essentials/diagnostic-settings.md) and [Data Collector API](../articles/azure-monitor/logs/data-collector-api.md). When the volume rate limit is reached, a retry mechanism attempts to ingest the data four times in a period of 12 hours and drop it if operation fails. The limit doesn't apply to data ingested from [agents](../articles/azure-monitor/agents/agents-overview.md), or via DCR.
+The volume rate limit applies to data ingested from [workspace-based Application Insights](../articles/azure-monitor/app/create-workspace-resource.md), Azure resources via [Diagnostic settings](../articles/azure-monitor/essentials/diagnostic-settings.md), and [Data Collector API](../articles/azure-monitor/logs/data-collector-api.md). When the volume rate limit is reached, a retry mechanism attempts to ingest the data four times in a period of 12 hours and drop it if operation fails. The limit doesn't apply to data ingested from [agents](../articles/azure-monitor/agents/agents-overview.md), or via [Data Collector Rule (DCR)](../articles/azure-monitor/essentials/data-collection-rule-overview.md).
 
-When data sent to your workspace is at a volume rate higher than 80% of the threshold configured in your workspace, an event is sent to the `Operation` table in your workspace every 6 hours while the threshold continues to be exceeded. When the ingested volume rate is higher than the threshold, some data is dropped, an event is sent to the `Operation` table in your workspace every 6 hours while the threshold continues to be exceeded. 
+When volume rate is higher than 80% of the threshold in your workspace, an event is sent to the `Operation` table in your workspace every 6 hours while the threshold exceeds. When the ingested volume rate is higher than the threshold, some data is dropped, an event is sent to the `Operation` table in your workspace every 6 hours while the threshold exceeds. 
 
-If your ingestion volume rate continues to exceed the threshold or you're expecting to reach it sometime soon, **you can request to increase this limit by opening a support request**.
+If your ingestion volume rate exceeds threshold or you're plan to increase ingestion that reach threshold, **contact support to request increasing the rate limit in your workspace**.
 
-It's also recommended to create an alert rule to proactively notify when you reach any ingestion limits. See [Monitor health of Log Analytics workspace in Azure Monitor](../articles/azure-monitor/logs/monitor-workspace.md).
+It's recommended Creating an alert rule to get notify when nearing or reaching ingestion rate limits. See [Monitor health of Log Analytics workspace in Azure Monitor](../articles/azure-monitor/logs/monitor-workspace.md).
 
 >[!NOTE]
 >Depending on how long you've been using Log Analytics, you might have access to legacy pricing tiers. Learn more about [Log Analytics legacy pricing tiers](../articles/azure-monitor/logs/cost-logs.md#legacy-pricing-tiers).
