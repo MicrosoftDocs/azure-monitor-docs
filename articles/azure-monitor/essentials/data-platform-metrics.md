@@ -33,7 +33,7 @@ The differences between each of the metrics are summarized in the following tabl
 | Sources | Azure resources | Azure Monitor agent<br>Application insights<br>REST API | Azure Kubernetes service (AKS) cluster<br>Any Kubernetes cluster through remote-write |
 | Configuration | None | Varies by source | Enable Azure Monitor managed service for Prometheus |
 | Stored | Subscription | Subscription | [Azure Monitor workspace](azure-monitor-workspace-overview.md) |
-| Cost | No | Yes | Yes (free during preview) |
+| Cost | No | Yes (free during preview) | Yes (free during preview) |
 | Aggregation | preaggregated | preaggregated | raw data |
 | Analyze | [Metrics Explorer](metrics-charts.md) | [Metrics Explorer](metrics-charts.md) | PromQL<br>Grafana dashboards |
 | Alert  | [metrics alert rule](../alerts/tutorial-metric-alert.md) | [metrics alert rule](../alerts/tutorial-metric-alert.md) | [Prometheus alert rule](../essentials/prometheus-rule-groups.md) |
