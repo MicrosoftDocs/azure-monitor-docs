@@ -5,7 +5,7 @@ ms.topic: tutorial
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: ilanawaitser
-ms.date: 10/31/2023
+ms.date: 01/08/2025
 
 ---
 
@@ -50,7 +50,7 @@ Queries can start with either a table name or the `search` command. It's a good 
 
 ### Table-based queries
 
-Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Analytics portal. 
+Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Analytics portal.
 
 Identify a table that you're interested in, then take a look at a bit of data:
 
@@ -63,7 +63,7 @@ The preceding query returns 10 results from the `SecurityEvent` table, in no spe
 
 * The query starts with the table name `SecurityEvent`, which defines the scope of the query.
 * The pipe (|) character separates commands, so the output of the first command is the input of the next. You can add any number of piped elements.
-* Following the pipe is the [`take` operator](#take). We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 30,000 results.
+* Following the pipe is the `take` operator. We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 30,000 results.
 
 ### Search queries
 
@@ -106,7 +106,7 @@ To search for records that include a specific value in any of their columns in s
 
 ## [KQL mode](#tab/kql)
 
-Use the [`take` operator](/azure/data-explorer/kusto/query/takeoperator) to view a small sample of records by returning up to the specified number of records. For example:
+Use the `take` operator to view a small sample of records by returning up to the specified number of records. For example:
 
 ```Kusto
 SecurityEvent
@@ -312,7 +312,7 @@ The time picker is displayed next to the **Run** button and indicates that you'r
 
 ---
 
-## Use project to select columns
+## Select columns
 
 ## [KQL mode](#tab/kql)
 
@@ -356,7 +356,7 @@ In simple mode, you can manually select the columns you want to show in your res
 
 ---
 
-## Use extend to compute columns
+## Compute columns
 
 ## [KQL mode](#tab/kql)
 
@@ -453,7 +453,9 @@ To calculate the average `CounterValue` for each computer in simple mode:
     **Operator:** avg
     **Average:** CounterValue
 
-Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`. However, it's currently not possible to define groups by multiple dimensions in simple mode. Switch to the KQL mode tab to see how this can be done outside of simple mode.
+Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
+
+However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](/azure/azure-monitor/logs/get-started-queries&tabs=kql#perform-mathematical-or-statistical-calculations) to see how this can be done using a kusto query.
 
 ---
 
@@ -490,13 +492,11 @@ To make the output clearer, you can select to display it as a time chart, which 
 
 1. Select **Add** > `CounterName`, then check `Available MBytes` and hit **Apply**.
 
-1. Select **Add** > **Aggregate** and make the following selection:
+1. Select **Add** > **Aggregate** and make the following selection, then  hit **Apply**.
 
     * **Select column:** TimeGenerated
     * **Operator:** avg
     * **Average:** CounterValue
-
-    Then hit **Apply**.
 
 1. Switch to **Chart** view, open the **Chart formatting** sidebar to the right and select **Line** for **Chart type**:
 
