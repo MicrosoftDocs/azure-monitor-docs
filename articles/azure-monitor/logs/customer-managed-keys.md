@@ -20,7 +20,7 @@ Azure Monitor ensures that all data and saved queries are encrypted at rest usin
 
 To control the key lifecycle with ability to revoke access data, encrypt data with your own key in [Azure Key Vault](/azure/key-vault/general/overview), or [Azure Key Vault Managed "HSM"](/azure/key-vault/managed-hsm/overview). Customer-managed keys capability is available on [dedicated clusters](./logs-dedicated-clusters.md) and provide you with higher-level of protection and control. 
 
-Data ingested to dedicated clusters includes [double encryption](/azure/security/fundamentals/double-encryption) - at the service level using Microsoft-managed keys or customer-managed keys, and at the infrastructure level, using two different [encryption algorithms](/azure/storage/common/storage-service-encryption#about-azure-storage-service-side-encryption) and two different keys. Double encryption protects against a scenario where one of the encryption algorithms or keys is compromised. Dedicated clusters also let you protect data with [Lockbox](#customer-lockbox).
+Data ingested to dedicated clusters is [encrypted twice](/azure/security/fundamentals/double-encryption) - at the service level using Microsoft-managed keys or customer-managed keys, and at the infrastructure level, using two different [encryption algorithms](/azure/storage/common/storage-service-encryption#about-azure-storage-service-side-encryption) and two different keys. Double encryption protects against a scenario where one of the encryption algorithms or keys is compromised. Dedicated clusters also let you protect data with [Lockbox](#customer-lockbox).
 
 Data ingested in the last 14 days, or recently used in queries, is kept in hot-cache (SSD-backed) for query efficiency. SSD data is encrypted with Microsoft-managed keys regardless of whether you configure customer-managed keys, but your control over SSD access adheres to [key revocation](#key-revocation).
 
@@ -29,12 +29,12 @@ Data ingested in the last 14 days, or recently used in queries, is kept in hot-c
 
 ## How customer-managed keys work in Azure Monitor
 
-Azure Monitor uses managed identity to grant access to your key in Azure Key Vault. The identity of the Log Analytics cluster is supported at the cluster level. To provide customer-managed keys on multiple workspaces, a Log Analytics cluster resource serves as an intermediate identity connection between your Key Vault and your Log Analytics workspaces. The cluster's storage uses the managed identity associated with the cluster to authenticate to your Azure Key Vault through Microsoft Entra ID.
+Azure Monitor uses managed identity to grant access to your key in Azure Key Vault. The identity of the Log Analytics clusters is supported at the cluster level. To provide customer-managed keys on multiple workspaces, a Log Analytics cluster resource serves as an intermediate identity connection between your Key Vault and your Log Analytics workspaces. The cluster's storage uses the managed identity associated with the cluster to authenticate to your Azure Key Vault through Microsoft Entra ID.
 
 Clusters support two [managed identity types](/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types): System-assigned and User-assigned, while a single identity can be defined in a cluster depending on your scenario. 
 
 - System-assigned managed identity is simpler and generated automatically with cluster when `identity` `type` is set to `SystemAssigned`. This identity is used later to grant storage access to your Key Vault for data encryption and decryption.
-- User-assigned managed identity lets you configure customer-managed keys at cluster creation, when `identity` `type` is set to `UserAssigned`, and granting it permissions in your Key Vault before cluster creation.
+- User-assigned managed identity lets you configure customer-managed keys at cluster creation, when `identity` `type` is set to `UserAssigned`, and granting it permissions in your Key Vault prior to cluster creation.
 
 You can configure customer-managed keys on a new cluster, or an existing dedicated cluster with linked workspaces ingesting data. Similarly, you can unlink workspaces from a cluster at any time. New data ingested to linked workspaces is encrypted with your key, and older data remains encrypted with Microsoft-managed keys. The configuration doesn't interrupt ingestion or queries, where queries are performed across old and new data seamlessly. When you unlink workspaces from a cluster. New data ingested is encrypted with Microsoft-managed keys.
 
@@ -67,9 +67,9 @@ The following rules apply:
 ### Customer-Managed key provisioning steps
 
 1. Creating Azure Key Vault and storing key
-1. Creating cluster
+1. Creating a dedicated cluster
 1. Granting permissions to your Key Vault
-2. Updating cluster with key identifier details
+2. Updating a dedicated cluster with key identifier details
 3. Linking workspaces
 
 Customer-managed key configuration isn't complete supported in Azure portal currently and provisioning can be performed via [PowerShell](/powershell/module/az.operationalinsights/), [CLI](/cli/azure/monitor/log-analytics), or [REST](/rest/api/loganalytics/) requests.
@@ -86,6 +86,22 @@ These settings can be updated in Key Vault via CLI and PowerShell:
 
 - [Soft Delete](/azure/key-vault/general/soft-delete-overview)
 - [Purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) guards against force deletion of the secret, vault even after soft delete
+
+## Required permissions
+
+To perform cluster-related actions, you need these permissions:
+
+| Action | Permissions or role needed |
+|-|-|
+| Create a dedicated cluster |`Microsoft.Resources/deployments/*`and `Microsoft.OperationalInsights/clusters/write` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example | 
+| Change cluster properties |`Microsoft.OperationalInsights/clusters/write` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example | 
+| Link workspaces to a cluster | `Microsoft.OperationalInsights/clusters/write`, `Microsoft.OperationalInsights/workspaces/write`, and `Microsoft.OperationalInsights/workspaces/linkedservices/write` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example | 
+| Check workspace link status | `Microsoft.OperationalInsights/workspaces/read` permissions to the workspace, as provided by the [Log Analytics Reader built-in role](./manage-access.md#log-analytics-reader), for example |
+| Get clusters or check a cluster's provisioning status | `Microsoft.OperationalInsights/clusters/read` permissions, as provided by the [Log Analytics Reader built-in role](./manage-access.md#log-analytics-reader), for example | 
+| Update commitment tier or billingType in a cluster | `Microsoft.OperationalInsights/clusters/write` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
+| Grant the required permissions | Owner or Contributor role that has `*/write` permissions, or the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), which has `Microsoft.OperationalInsights/*` permissions | 
+| Unlink a workspace from cluster | `Microsoft.OperationalInsights/workspaces/linkedServices/delete` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
+| Delete a dedicated cluster | `Microsoft.OperationalInsights/clusters/delete` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
 ## Create cluster
 
@@ -106,7 +122,7 @@ Clusters use managed identity for data encryption with your Key Vault. Configure
 > - Updating `SystemAssigned` to `UserAssigned`—[Grant `UserAssign` identity](#grant-key-vault-permissions) in Key Vault, then update `identity` in cluster
 > - Updating `UserAssigned` to `SystemAssigned`—[Grant `SystemAssigned` identity](#grant-key-vault-permissions) in Key Vault, then update `identity` in cluster
 
-Follow the procedure illustrated in [dDedicated clusters article](./logs-dedicated-clusters.md#create-a-dedicated-cluster). 
+Follow the procedure illustrated in [dedicated cluster article](./logs-dedicated-clusters.md#create-a-dedicated-cluster). 
 
 ## Grant Key Vault permissions
 
@@ -250,9 +266,11 @@ Response to GET request when key update is completed:
 > [!IMPORTANT]
 > This step should be performed only after the cluster provisioning. If you link workspaces and ingest data prior to the provisioning, ingested data will be dropped and won't be recoverable.
 
-You need to have "write" permissions on your workspace and cluster to perform this operation. It includes `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.OperationalInsights/clusters/write`.
-
 Follow the procedure illustrated in [Dedicated Clusters article](./logs-dedicated-clusters.md#link-a-workspace-to-a-cluster).
+
+## Unlink workspace from cluster
+
+Follow the procedure illustrated in [Dedicated Clusters article](./logs-dedicated-clusters.md#unlink-a-workspace-from-cluster).
 
 ## Key revocation
 
@@ -260,7 +278,7 @@ Follow the procedure illustrated in [Dedicated Clusters article](./logs-dedicate
 > - The recommended way to revoke access to your data is by disabling your key, or deleting Access Policy in your Key Vault.
 > - Setting the cluster's `identity` `type` to `None` also revokes access to your data, but this approach isn't recommended since you can't revert it without contacting support.
 
-The cluster storage always respects changes in key permissions within an hour or sooner, and storage become unavailable. New data ingested to linked workspaces is dropped and unrecoverable. Data is inaccessible on these workspaces and queries fail. Previously ingested data remains in storage as long as your cluster and your workspaces aren't deleted. Inaccessible data is governed by the data-retention policy and purged when retention is reached. Data ingested in the last 14 days and data recently used in queries is also kept in hot-cache (SSD-backed) for query efficiency. The data on SSD gets deleted on key revocation operation and becomes inaccessible. The cluster storage attempts to reach Key Vault for wrap and unwrap periodically, and once key is enabled, unwrap succeeds, SSD data is reloaded from storage, and data ingestion and query are resumed within 30 minutes.
+The cluster's storage always respects changes in key permissions within an hour or sooner, and storage become unavailable. New data ingested to linked workspaces is dropped and unrecoverable. Data is inaccessible on these workspaces and queries fail. Previously ingested data remains in storage as long as your cluster and your workspaces aren't deleted. Inaccessible data is governed by the data-retention policy and purged when retention is reached. Data ingested in the last 14 days and data recently used in queries is also kept in hot-cache (SSD-backed) for query efficiency. The data on SSD gets deleted on key revocation operation and becomes inaccessible. The cluster storage attempts to reach Key Vault for wrap and unwrap periodically, and once key is enabled, unwrap succeeds, SSD data is reloaded from storage, and data ingestion and query are resumed within 30 minutes.
 
 ## Key rotation
 
