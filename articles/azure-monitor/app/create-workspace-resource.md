@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.date: 12/15/2023
 ms.reviewer: cogoodson
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
-zone_pivot_groups: articles/azure-monitor/app/resource-zone-pivot-groups.json
+zone_pivot_groups: manual-creation-and-at-scale-automation
 ---
 
 # Workspace-based Application Insights resources
