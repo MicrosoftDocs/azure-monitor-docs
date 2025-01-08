@@ -13,8 +13,9 @@
       ],
       "open_to_public_contributors": true,
       "type_mapping": {
-        "Conceptual": "Content",
-        "ZonePivotGroups": "Toc"
+        "ZonePivotGroups": "Toc",
+        "Conceptual": "Content"
+
       },
       "build_entry_point": "docs"
     }
