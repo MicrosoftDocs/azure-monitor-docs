@@ -1,0 +1,10 @@
+# YamlMime:ZonePivotGroups
+groups:
+- id: manual-creation-and-at-scale-automation
+  title: Manual creation and at-scale automation
+  prompt: Choose how you want to create and manage Application Insights resources
+  pivots:
+  - id: manual
+    title: Azure portal (manually)
+  - id: auto
+    title: At-scale automation

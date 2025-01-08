@@ -5,9 +5,12 @@ ms.topic: conceptual
 ms.date: 12/15/2023
 ms.reviewer: cogoodson
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+zone_pivot_group_filename: articles/azure-monitor/app/resource-zone-pivot-groups.json
 ---
 
 # Workspace-based Application Insights resources
+
+:::zone pivot="manual"
 
 [Azure Monitor](../overview.md) [Application Insights](app-insights-overview.md#application-insights-overview) workspace-based resources integrate [Application Insights](app-insights-overview.md#application-insights-overview) and [Log Analytics](../logs/log-analytics-overview.md#overview-of-log-analytics-in-azure-monitor).
 
@@ -16,15 +19,33 @@ With workspace-based resources, [Application Insights](app-insights-overview.md#
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
+:::zone-end
+
+:::zone pivot="auto"
+
 ## New capabilities
 
 Workspace-based Application Insights integrates with Azure Monitor and Log Analytics to enhance capabilities:
 
-- [Customer-managed key](../logs/customer-managed-keys.md) encrypts your data at rest with keys only you access.
-- [Azure Private Link](../logs/private-link-security.md) securely connects Azure PaaS services to your virtual network using private endpoints.
-- [Bring your own storage (BYOS) for .NET Profiler and Snapshot Debugger](./profiler-bring-your-own-storage.md) lets you manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
-- [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
-- Log Analytics streaming processes data more quickly.
+* [Customer-managed key](../logs/customer-managed-keys.md) encrypts your data at rest with keys only you access.
+* [Azure Private Link](../logs/private-link-security.md) securely connects Azure PaaS services to your virtual network using private endpoints.
+* [Bring your own storage (BYOS) for .NET Profiler and Snapshot Debugger](./profiler-bring-your-own-storage.md) lets you manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
+* [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
+* Log Analytics streaming processes data more quickly.
+
+[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
+
+This article shows you how to automate the creation and update of [Application Insights](./app-insights-overview.md) resources automatically by using Azure Resource Manager. You might, for example, do so as part of a build process. Along with the basic Application Insights resource, you can create [availability web tests](./availability-overview.md), set up [alerts](../alerts/alerts-log.md), set the [pricing scheme](../logs/cost-logs.md#application-insights-billing), and create other Azure resources.
+
+The key to creating these resources is JSON templates for [Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
+
+- Download the JSON definitions of existing resources.
+- Parameterize certain values, such as names.
+- Run the template whenever you want to create a new resource.
+
+You can package several resources together to create them all in one go. For example, you can create an app monitor with availability tests, alerts, and storage for continuous export. There are some subtleties to some of the parameterizations, which we explain here.
+
+:::zone-end
 
 ## Create a workspace-based resource
 
@@ -60,14 +81,14 @@ For code-based application monitoring, you install the appropriate Application I
 
 For information on how to set up an Application Insights SDK for code-based monitoring, see the following documentation specific to the language or framework:
 
-- [ASP.NET](./asp-net.md)
-- [ASP.NET Core](./asp-net-core.md)
-- [Background tasks and modern console applications (.NET/.NET Core)](./worker-service.md)
-- [Classic console applications (.NET)](./console.md)
-- [Java](./opentelemetry-enable.md?tabs=java)
-- [JavaScript](./javascript.md)
-- [Node.js](./nodejs.md)
-- [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
+* [ASP.NET](./asp-net.md)
+* [ASP.NET Core](./asp-net-core.md)
+* [Background tasks and modern console applications (.NET/.NET Core)](./worker-service.md)
+* [Classic console applications (.NET)](./console.md)
+* [Java](./opentelemetry-enable.md?tabs=java)
+* [JavaScript](./javascript.md)
+* [Node.js](./nodejs.md)
+* [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
 
 ### Codeless monitoring
 
@@ -312,12 +333,12 @@ Each Application Insights resource comes with metrics that are available out of 
 
 Use a single Application Insights resource for:
 
-- Streamlining DevOps/ITOps management for applications deployed together, typically developed and managed by the same team.
-- Centralizing key performance indicators, such as response times and failure rates, in a dashboard by default. Segment by role name in the metrics explorer if necessary.
-- When there's no need for different Azure role-based access control management between application components.
-- When identical metrics alert criteria, continuous exports, and billing/quotas management across components suffice.
-- When it's acceptable for an API key to access data from all components equally, and 10 API keys meet the needs across all components.
-- When the same smart detection and work item integration settings are suitable across all roles.
+* Streamlining DevOps/ITOps management for applications deployed together, typically developed and managed by the same team.
+* Centralizing key performance indicators, such as response times and failure rates, in a dashboard by default. Segment by role name in the metrics explorer if necessary.
+* When there's no need for different Azure role-based access control management between application components.
+* When identical metrics alert criteria, continuous exports, and billing/quotas management across components suffice.
+* When it's acceptable for an API key to access data from all components equally, and 10 API keys meet the needs across all components.
+* When the same smart detection and work item integration settings are suitable across all roles.
 
 > [!NOTE]
 > If you want to consolidate multiple Application Insights resources, you can point your existing application components to a new, consolidated Application Insights resource. The telemetry stored in your old resource won't be transferred to the new resource. Only delete the old resource when you have enough telemetry in the new resource for business continuity.
@@ -408,23 +429,23 @@ This section provides answers to common questions.
 
 Transferring existing Application Insights resources between regions isn't supported, and you can't migrate historical data to a new region. The workaround involves:
 
-- Creating a new workspace-based Application Insights resource in the desired region.
-- Re-creating any unique customizations from the original resource in the new one.
-- Updating your application with the new region resource's [connection string](./connection-strings.md).
-- Testing to ensure everything works as expected with the new Application Insights resource.
-- Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means to lose all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
+* Creating a new workspace-based Application Insights resource in the desired region.
+* Re-creating any unique customizations from the original resource in the new one.
+* Updating your application with the new region resource's [connection string](./connection-strings.md).
+* Testing to ensure everything works as expected with the new Application Insights resource.
+* Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means to lose all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
 
           
 Unique customizations that commonly need to be manually re-created or updated for the resource in the new region include but aren't limited to:
           
-- Re-create custom dashboards and workbooks.
-- Re-create or update the scope of any custom log/metric alerts.
-- Re-create availability alerts.
-- Re-create any custom Azure role-based access control settings that are required for your users to access the new resource.
-- Replicate settings involving ingestion sampling, data retention, daily cap, and custom metrics enablement. These settings are controlled via the **Usage and estimated costs** pane.
-- Any integration that relies on API keys, such as [release annotations](./release-and-work-item-insights.md?tabs=release-annotations) and [live metrics secure control channel](./live-stream.md#secure-the-control-channel). You need to generate new API keys and update the associated integration.
-- Continuous export in classic resources must be configured again.
-- Diagnostic settings in workspace-based resources must be configured again.
+* Re-create custom dashboards and workbooks.
+* Re-create or update the scope of any custom log/metric alerts.
+* Re-create availability alerts.
+* Re-create any custom Azure role-based access control settings that are required for your users to access the new resource.
+* Replicate settings involving ingestion sampling, data retention, daily cap, and custom metrics enablement. These settings are controlled via the **Usage and estimated costs** pane.
+* Any integration that relies on API keys, such as [release annotations](./release-and-work-item-insights.md?tabs=release-annotations) and [live metrics secure control channel](./live-stream.md#secure-the-control-channel). You need to generate new API keys and update the associated integration.
+* Continuous export in classic resources must be configured again.
+* Diagnostic settings in workspace-based resources must be configured again.
 
 ### Can I use providers('Microsoft.Insights', 'components').apiVersions[0] in my Azure Resource Manager deployments?
 
