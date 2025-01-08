@@ -390,6 +390,23 @@ Perf
 | summarize count() by ObjectName
 ```
 
+### [Simple mode](#tab/simple)
+
+To reviews all `Perf` records from the last, group them by `ObjectName`, and count the records in each group:
+
+1. Change **Time range** to **Last hour**.
+
+1. Select **Add** > **Aggregate**, then make the following selection and hit **Apply**:
+
+    **Select column:** ObjectName
+    **Operator:** count
+
+---
+
+### Define groups by multiple dimensions
+
+### [KQL mode](#tab/kql)
+
 Sometimes it makes sense to define groups by multiple dimensions. Each unique combination of these values defines a separate group:
 
 ```Kusto
@@ -397,6 +414,16 @@ Perf
 | where TimeGenerated > ago(1h)
 | summarize count() by ObjectName, CounterName
 ```
+
+### [Simple mode](#tab/simple)
+
+Currently, it's not possible to define groups by multiple dimensions in simple mode.
+
+---
+
+### Perform mathematical or statistical calculations
+
+### [KQL mode](#tab/kql)
 
 Another common use is to perform mathematical or statistical calculations on each group. The following example calculates the average `CounterValue` for each computer:
 
@@ -416,26 +443,17 @@ Perf
 
 ### [Simple mode](#tab/simple)
 
-To aggregate data in simple mode:
+To calculate the average `CounterValue` for each computer in simple mode:
 
-1. Select **Aggregate**.
+1. Change **Time range** to **Last hour**.
 
-1. Select a column to aggregate by and select an operator to aggregate by, as described in [Use aggregation operators](#use-aggregation-operators).
+1. Select **Add** > **Aggregate**, then make the following selection and hit **Apply**:
 
-    :::image type="content" source="media/log-analytics-explorer/log-analytics-aggregate.png" alt-text="Screenshot that shows the aggregation operators in the Aggregate table window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-aggregate.png":::
+    **Select column:** Computer
+    **Operator:** avg
+    **Average:** CounterValue
 
-#### Use aggregation operators
-
-Use aggregation operators to summarize data from multiple rows, as described in this table.
-
-| Operator | Description |
-|:---------|:------------|
-| [count](/azure/data-explorer/kusto/query/count-operator) | Counts the number of times each distinct value exists in the column.<br> |
-| [dcount](/azure/data-explorer/kusto/query/dcount-aggfunction) | For the `dcount` operator, you select two columns. The operator counts the total number of distinct values in the second column correlated to each value in the first column.<br><br>For example, this shows the distinct number of result codes for successful and failed operations:<br>:::image type="content" source="media/log-analytics-explorer/log-analytics-dcount.png" alt-text="Screenshot that shows the result of an aggregation using the dcount operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-dcount.png":::<br> |
-| [sum](/azure/data-explorer/kusto/query/sum-aggregation-function)<br>[avg](/azure/data-explorer/kusto/query/avg-aggregation-function)<br>[max](/azure/data-explorer/kusto/query/max-aggregation-function)<br>[min](/azure/data-explorer/kusto/query/min-aggregation-function) | For these operators, you select two columns. The operators calculate the sum, average, maximum, or minimum of all values in the second column for each value in the first column.<br><br>For example, this shows the total duration of each operation in milliseconds for the past 24 hours:<br>:::image type="content" source="media/log-analytics-explorer/log-analytics-sum.png" alt-text="Screenshot that shows the results of an aggregation using the sum operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sum.png":::<br> |
-
-> [!IMPORTANT]
-> Basic logs tables don't support aggregation using the `avg` and `sum` operators. 
+Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`. However, it's currently not possible to define groups by multiple dimensions in simple mode. Switch to the KQL mode tab to see how this can be done outside of simple mode.
 
 ---
 
