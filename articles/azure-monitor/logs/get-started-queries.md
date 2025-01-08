@@ -441,9 +441,9 @@ Use aggregation operators to summarize data from multiple rows, as described in 
 
 ### Summarize by a time column
 
-### [KQL mode](#tab/kql)
-
 Grouping results can also be based on a time column or another continuous value. Simply summarizing `by TimeGenerated`, though, would create groups for every single millisecond over the time range because these values are unique.
+
+### [KQL mode](#tab/kql)
 
 To create groups based on continuous values, it's best to break the range into manageable units by using `bin`. The following query analyzes `Perf` records that measure free memory (`Available MBytes`) on a specific computer. It calculates the average value of each 1-hour period over the last 7 days:
 
@@ -455,13 +455,34 @@ Perf
 | summarize avg(CounterValue) by bin(TimeGenerated, 1h)
 ```
 
-To make the output clearer, you can select to display it as a time chart, which shows the available memory over time.
+To make the output clearer, you can select to display it as a time chart, which shows the available memory over time. To do so, switch to **Chart** view, open the **Chart formatting** sidebar to the right and select **Line** for **Chart type**:
 
-:::image type="content" source="media/get-started-queries/logs-kql-graph.png" lightbox="media/get-started-queries/logs-kql-graph.png" alt-text="Screenshot that shows the values of a query memory over time." border="false":::
+:::image type="content" source="media/get-started-queries/logs-kql-graph.png" lightbox="media/get-started-queries/logs-kql-graph.png" alt-text="Screenshot that shows the values of a query memory over time in KQL mode." border="false":::
 
 ### [Simple mode](#tab/simple)
 
-...
+1. Select the `Perf` table.
+
+1. Change **Time range** to **Last 7 days**.
+
+1. Select **Add** > `Computer`, then check `DC01.na.contosohotels.com` and hit **Apply**.
+
+    > [!NOTE]
+    > If `DC01.na.contosohotels.com` doesn't show, increase the shown results from 1000 (standard) to a higher number.
+
+1. Select **Add** > `CounterName`, then check `Available MBytes` and hit **Apply**.
+
+1. Select **Add** > **Aggregate** and make the following selection:
+
+    * **Select column:** TimeGenerated
+    * **Operator:** avg
+    * **Average:** CounterValue
+
+    Then hit **Apply**.
+
+1. Switch to **Chart** view, open the **Chart formatting** sidebar to the right and select **Line** for **Chart type**:
+
+    :::image type="content" source="media/get-started-queries/logs-simple-graph.png" lightbox="media/get-started-queries/logs-simple-graph.png" alt-text="Screenshot that shows the values of a query memory over time in simple mode." border="false":::
 
 ---
 
