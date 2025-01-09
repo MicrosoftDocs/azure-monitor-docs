@@ -1044,7 +1044,7 @@ If you delete a cluster that has linked workspaces, the workspaces get automatic
 
 > [!NOTE] 
 > - There is a limit of seven clusters per subscription and region, five active, plus two that were deleted in past two weeks.
-> - A cluster's name remain reserved two weeks after deletion, and can't be used for creating a new cluster.
+> - A cluster's name remains reserved two weeks after deletion, and can't be used for creating a new cluster.
 
 Use the following commands to delete a cluster:
 
