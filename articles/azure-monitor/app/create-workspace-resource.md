@@ -19,10 +19,6 @@ With workspace-based resources, [Application Insights](app-insights-overview.md#
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
-:::zone-end
-
-:::zone pivot="auto"
-
 ## New capabilities
 
 Workspace-based Application Insights integrates with Azure Monitor and Log Analytics to enhance capabilities:
@@ -32,6 +28,10 @@ Workspace-based Application Insights integrates with Azure Monitor and Log Analy
 * [Bring your own storage (BYOS) for .NET Profiler and Snapshot Debugger](./profiler-bring-your-own-storage.md) lets you manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
 * [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
 * Log Analytics streaming processes data more quickly.
+
+:::zone-end
+
+:::zone pivot="auto"
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
@@ -47,9 +47,9 @@ You can package several resources together to create them all in one go. For exa
 
 :::zone-end
 
-## Create a workspace-based resource
-
 :::zone pivot="manual"
+
+## Create a workspace-based resource
 
 Sign in to the [Azure portal](https://portal.azure.com), and create an Application Insights resource.
 
@@ -73,6 +73,8 @@ Select the blue link text to go to the associated Log Analytics workspace where 
 
 :::zone pivot="auto"
 
+## Prerequisites
+
 ### [Azure CLI](#tab/cli)
 
 To access the preview Application Insights Azure CLI commands, you first need to run:
@@ -83,7 +85,27 @@ To access the preview Application Insights Azure CLI commands, you first need to
 
 If you don't run the `az extension add` command, you see an error message that states `az : ERROR: az monitor: 'app-insights' is not in the 'az monitor' command group. See 'az monitor --help'`.
 
-Now you can run the following code to create your Application Insights resource:
+### [Azure PowerShell](#tab/powershell)
+
+If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
+
+1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
+1. Use it to install Azure PowerShell.
+
+### [ARM templates](#tab/arm)
+
+If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
+
+1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
+1. Use it to install Azure PowerShell.
+
+---
+
+## Create a workspace-based resource
+
+### [Azure CLI](#tab/cli)
+
+Run the following code to create your Application Insights resource:
 
 ```azurecli
 az monitor app-insights component create --app
@@ -108,7 +130,7 @@ For the full Azure CLI documentation for this command, see the [Azure CLI docume
 
 ### [Azure PowerShell](#tab/powershell)
 
-Create a new workspace-based Application Insights resource.
+Create a new Application Insights resource by using the [New-AzApplicationInsights](/powershell/module/az.applicationinsights/new-azapplicationinsights) cmdlet:
 
 ```powershell
 New-AzApplicationInsights -Name <String> -ResourceGroupName <String> -Location <String> -WorkspaceResourceId <String>
@@ -145,103 +167,109 @@ For the full PowerShell documentation for this cmdlet, and to learn how to retri
 
 ### [ARM templates](#tab/arm)
 
-#### Bicep
+Here's how to create a new Application Insights resource by using an ARM template.
 
-```bicep
-@description('Name of Application Insights resource.')
-param name string
+### Create a template
 
-@description('Type of app you are deploying. This field is for legacy reasons and will not impact the type of App Insights resource you deploy.')
-param type string
+* **Option 1: Bicep**
 
-@description('Which Azure Region to deploy the resource to. This must be a valid Azure regionId.')
-param regionId string
-
-@description('See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources.')
-param tagsArray object
-
-@description('Source of Azure Resource Manager deployment')
-param requestSource string
-
-@description('Log Analytics workspace ID to associate with your Application Insights resource.')
-param workspaceResourceId string
-
-resource component 'Microsoft.Insights/components@2020-02-02' = {
-  name: name
-  location: regionId
-  tags: tagsArray
-  kind: 'other'
-  properties: {
-    Application_Type: type
-    Flow_Type: 'Bluefield'
-    Request_Source: requestSource
-    WorkspaceResourceId: workspaceResourceId
-  }
-}
-```
-
-#### JSON
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "name": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of Application Insights resource."
-      }
-    },
-    "type": {
-      "type": "string",
-      "metadata": {
-        "description": "Type of app you are deploying. This field is for legacy reasons and will not impact the type of App Insights resource you deploy."
-      }
-    },
-    "regionId": {
-      "type": "string",
-      "metadata": {
-        "description": "Which Azure Region to deploy the resource to. This must be a valid Azure regionId."
-      }
-    },
-    "tagsArray": {
-      "type": "object",
-      "metadata": {
-        "description": "See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources."
-      }
-    },
-    "requestSource": {
-      "type": "string",
-      "metadata": {
-        "description": "Source of Azure Resource Manager deployment"
-      }
-    },
-    "workspaceResourceId": {
-      "type": "string",
-      "metadata": {
-        "description": "Log Analytics workspace ID to associate with your Application Insights resource."
+    ```bicep
+    @description('Name of Application Insights resource.')
+    param name string
+    
+    @description('Type of app you are deploying. This field is for legacy reasons and will not impact the type of App Insights resource you deploy.')
+    param type string
+    
+    @description('Which Azure Region to deploy the resource to. This must be a valid Azure regionId.')
+    param regionId string
+    
+    @description('See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources.')
+    param tagsArray object
+    
+    @description('Source of Azure Resource Manager deployment')
+    param requestSource string
+    
+    @description('Log Analytics workspace ID to associate with your Application Insights resource.')
+    param workspaceResourceId string
+    
+    resource component 'Microsoft.Insights/components@2020-02-02' = {
+      name: name
+      location: regionId
+      tags: tagsArray
+      kind: 'other'
+      properties: {
+        Application_Type: type
+        Flow_Type: 'Bluefield'
+        Request_Source: requestSource
+        WorkspaceResourceId: workspaceResourceId
       }
     }
-  },
-  "resources": [
+    ```
+
+* **Option 2: JSON**
+
+    Create a new .json file (for example, `template1.json`) and copy the following content into it:
+
+    ```json
     {
-      "type": "Microsoft.Insights/components",
-      "apiVersion": "2020-02-02",
-      "name": "[parameters('name')]",
-      "location": "[parameters('regionId')]",
-      "tags": "[parameters('tagsArray')]",
-      "kind": "other",
-      "properties": {
-        "Application_Type": "[parameters('type')]",
-        "Flow_Type": "Bluefield",
-        "Request_Source": "[parameters('requestSource')]",
-        "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
-      }
+      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "name": {
+          "type": "string",
+          "metadata": {
+            "description": "Name of Application Insights resource."
+          }
+        },
+        "type": {
+          "type": "string",
+          "metadata": {
+            "description": "Type of app you are deploying. This field is for legacy reasons and will not impact the type of Application Insights resource you deploy."
+          }
+        },
+        "regionId": {
+          "type": "string",
+          "metadata": {
+            "description": "Which Azure region to deploy the resource to. This must be a valid Azure regionId."
+          }
+        },
+        "tagsArray": {
+          "type": "object",
+          "metadata": {
+            "description": "See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources."
+          }
+        },
+        "requestSource": {
+          "type": "string",
+          "metadata": {
+            "description": "Source of Azure Resource Manager deployment"
+          }
+        },
+        "workspaceResourceId": {
+          "type": "string",
+          "metadata": {
+            "description": "Log Analytics workspace ID to associate with your Application Insights resource."
+          }
+        }
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Insights/components",
+          "apiVersion": "2020-02-02",
+          "name": "[parameters('name')]",
+          "location": "[parameters('regionId')]",
+          "tags": "[parameters('tagsArray')]",
+          "kind": "other",
+          "properties": {
+            "Application_Type": "[parameters('type')]",
+            "Flow_Type": "Bluefield",
+            "Request_Source": "[parameters('requestSource')]",
+            "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
+          }
+        }
+      ]
     }
-  ]
-}
-```
+    ```
 
 > [!NOTE]
 > For more information on resource properties, see [Property values](/azure/templates/microsoft.insights/components?tabs=bicep#property-values).
@@ -276,6 +304,25 @@ resource component 'Microsoft.Insights/components@2020-02-02' = {
 }
 ```
 
+### Use the template to create a new Application Insights resource
+
+1. In PowerShell, sign in to Azure by using `$Connect-AzAccount`.
+1. Set your context to a subscription with `Set-AzContext "<subscription ID>"`.
+1. Run a new deployment to create a new Application Insights resource:
+
+    ```PS
+        New-AzResourceGroupDeployment -ResourceGroupName Fabrikam `
+               -TemplateFile .\template1.json `
+               -appName myNewApp
+
+    ``` 
+
+   * `-ResourceGroupName` is the group where you want to create the new resources.
+   * `-TemplateFile` must occur before the custom parameters.
+   * `-appName` is the name of the resource to create.
+
+You can add other parameters. You find their descriptions in the parameters section of the template.
+
 ---
 
 :::zone-end
@@ -284,9 +331,43 @@ resource component 'Microsoft.Insights/components@2020-02-02' = {
 
 After creating a workspace-based Application Insights resource, you configure monitoring.
 
-### Copy the connection string
+### Get the connection string
+
+:::zone pivot="manual"
 
 The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+
+:::zone-end
+
+:::zone pivot="auto"
+
+After you create an application resource, you want the instrumentation key:
+
+1. Sign in to Azure by using `$Connect-AzAccount`.
+1. Set your context to a subscription with `Set-AzContext "<subscription ID>"`.
+1. Then use:
+   1. `$resource = Get-AzResource -Name "<resource name>" -ResourceType "Microsoft.Insights/components"`
+   1. `$details = Get-AzResource -ResourceId $resource.ResourceId`
+   1. `$details.Properties.InstrumentationKey`
+
+To see a list of many other properties of your Application Insights resource, use:
+
+```PS
+Get-AzApplicationInsights -ResourceGroupName Fabrikam -Name FabrikamProd | Format-List
+```
+
+More properties are available via the cmdlets:
+
+* `Set-AzApplicationInsightsDailyCap`
+* `Set-AzApplicationInsightsPricingPlan`
+* `Get-AzApplicationInsightsApiKey`
+* `Get-AzApplicationInsightsContinuousExport`
+
+See the [detailed documentation](/powershell/module/az.applicationinsights) for the parameters for these cmdlets.  
+
+[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+
+:::zone-end
 
 ### Code-based application monitoring
 
@@ -365,11 +446,13 @@ To create an Applications Insights resource, see [Create an Application Insights
 > You might incur additional network costs if your Application Insights resource is monitoring an Azure resource (i.e., telemetry producer) in a different region. Costs will vary depending on the region the telemetry is coming from and where it is going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
 
 #### Get the connection string
+
 The connection string identifies the resource that you created.
 
 You need the connection strings of all the resources to which your app sends data.
 
 ### Filter on the build number
+
 When you publish a new version of your app, you want to be able to separate the telemetry from different builds.
 
 You can set the **Application Version** property so that you can filter [search](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
@@ -410,6 +493,7 @@ There are several different methods of setting the **Application Version** prope
     To allow the Microsoft Build Engine to generate version numbers, set the version like `1.0.*` in `AssemblyReference.cs`.
 
 ### Version and release tracking
+
 To track the application version, make sure your Microsoft Build Engine process generates `buildinfo.config`. In your `.csproj` file, add:
 
 ```xml
@@ -441,7 +525,6 @@ Transferring existing Application Insights resources between regions isn't suppo
 * Testing to ensure everything works as expected with the new Application Insights resource.
 * Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means to lose all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
 
-          
 Unique customizations that commonly need to be manually re-created or updated for the resource in the new region include but aren't limited to:
           
 * Re-create custom dashboards and workbooks.
@@ -459,7 +542,22 @@ We don't recommend using this method of populating the API version. The newest v
 
 ## Next steps
 
+:::zone pivot="manual"
+
 * [Explore metrics](../essentials/metrics-charts.md)
 * [Write Log Analytics queries](../logs/log-query-overview.md)
 * [Shared resources for multiple roles](./app-map.md)
 * [Create a Telemetry Initializer to distinguish A|B variants](./api-filtering-sampling.md#add-properties)
+
+:::zone-end
+
+:::zone pivot="auto"
+
+See these other automation articles:
+
+* [Create an Application Insights resource](./create-workspace-resource.md)
+* [Create web tests](../alerts/resource-manager-alerts-metric.md#availability-test-with-metric-alert).
+* [Send Azure Diagnostics to Application Insights](../agents/diagnostics-extension-to-application-insights.md).
+* [Create release annotations](release-and-work-item-insights.md?tabs=release-annotations).
+
+:::zone-end
