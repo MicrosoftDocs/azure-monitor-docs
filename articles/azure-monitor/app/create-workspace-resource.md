@@ -8,7 +8,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 zone_pivot_groups: manual-creation-and-at-scale-automation
 ---
 
-# Workspace-based Application Insights resources
+# Create and manage Application Insights resources
 
 :::zone pivot="manual"
 
@@ -49,6 +49,8 @@ You can package several resources together to create them all in one go. For exa
 
 ## Create a workspace-based resource
 
+:::zone pivot="manual"
+
 Sign in to the [Azure portal](https://portal.azure.com), and create an Application Insights resource.
 
 > [!div class="mx-imgBorder"]
@@ -67,36 +69,11 @@ Select the blue link text to go to the associated Log Analytics workspace where 
 > [!NOTE]
 > We still provide full backward compatibility for your Application Insights classic resource queries, workbooks, and log-based alerts. To query or view the [new workspace-based table structure or schema](/previous-versions/azure/azure-monitor/app/convert-classic-resource#workspace-based-resource-changes), you must first go to your Log Analytics workspace. Select **Logs (Analytics)** in the **Application Insights** panes for access to the classic Application Insights query experience.
 
-## Copy the connection string
+:::zone-end
 
-The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+:::zone pivot="auto"
 
-## Configure monitoring
-
-After creating a workspace-based Application Insights resource, you configure monitoring.
-
-### Code-based application monitoring
-
-For code-based application monitoring, you install the appropriate Application Insights SDK and point the connection string to your newly created resource.
-
-For information on how to set up an Application Insights SDK for code-based monitoring, see the following documentation specific to the language or framework:
-
-* [ASP.NET](./asp-net.md)
-* [ASP.NET Core](./asp-net-core.md)
-* [Background tasks and modern console applications (.NET/.NET Core)](./worker-service.md)
-* [Classic console applications (.NET)](./console.md)
-* [Java](./opentelemetry-enable.md?tabs=java)
-* [JavaScript](./javascript.md)
-* [Node.js](./nodejs.md)
-* [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
-
-### Codeless monitoring
-
-For codeless monitoring of services like Azure Functions and Azure App Services, you can first create your workspace-based Application Insights resource. Then you point to that resource when you configure monitoring. Alternatively, you can create a new Application Insights resource as part of Application Insights enablement.
-
-## Create a resource automatically
-
-### Azure CLI
+### [Azure CLI](#tab/cli)
 
 To access the preview Application Insights Azure CLI commands, you first need to run:
 
@@ -129,7 +106,7 @@ az monitor app-insights component create --app demoApp --location eastus --kind 
 
 For the full Azure CLI documentation for this command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create).
 
-### Azure PowerShell
+### [Azure PowerShell](#tab/powershell)
 
 Create a new workspace-based Application Insights resource.
 
@@ -166,9 +143,9 @@ New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027
 
 For the full PowerShell documentation for this cmdlet, and to learn how to retrieve the connection string, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
 
-### Azure Resource Manager templates
+### [ARM templates](#tab/arm)
 
-# [Bicep](#tab/bicep)
+#### Bicep
 
 ```bicep
 @description('Name of Application Insights resource.')
@@ -203,7 +180,7 @@ resource component 'Microsoft.Insights/components@2020-02-02' = {
 }
 ```
 
-# [JSON](#tab/json)
+#### JSON
 
 ```json
 {
@@ -270,9 +247,7 @@ resource component 'Microsoft.Insights/components@2020-02-02' = {
 > For more information on resource properties, see [Property values](/azure/templates/microsoft.insights/components?tabs=bicep#property-values).
 > `Flow_Type` and `Request_Source` aren't used but are included in this sample for completeness.
 
----
-
-### Parameter file
+#### Parameter file
 
 ```json
 {
@@ -300,6 +275,37 @@ resource component 'Microsoft.Insights/components@2020-02-02' = {
   }
 }
 ```
+
+---
+
+:::zone-end
+
+## Configure monitoring
+
+After creating a workspace-based Application Insights resource, you configure monitoring.
+
+### Copy the connection string
+
+The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+
+### Code-based application monitoring
+
+For code-based application monitoring, you install the appropriate Application Insights SDK and point the connection string to your newly created resource.
+
+For information on how to set up an Application Insights SDK for code-based monitoring, see the following documentation specific to the language or framework:
+
+* [ASP.NET](./asp-net.md)
+* [ASP.NET Core](./asp-net-core.md)
+* [Background tasks and modern console applications (.NET/.NET Core)](./worker-service.md)
+* [Classic console applications (.NET)](./console.md)
+* [Java](./opentelemetry-enable.md?tabs=java)
+* [JavaScript](./javascript.md)
+* [Node.js](./nodejs.md)
+* [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
+
+### Codeless monitoring
+
+For codeless monitoring of services like Azure Functions and Azure App Services, you can first create your workspace-based Application Insights resource. Then you point to that resource when you configure monitoring. Alternatively, you can create a new Application Insights resource as part of Application Insights enablement.
 
 ## Modify the associated workspace
 
