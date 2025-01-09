@@ -137,9 +137,6 @@ To identify the current policy setting mode, run the following update-crypto-pol
 sudo update-crypto-policies --show
 ```
 
-
-NOTE: Be sure that the show parameter in the command is a dash-dash, not the long dash
-
 ## On-premises and other clouds
 Azure Monitor agent is supported on machines in other clouds and on-premises with [Azure Arc-enabled servers](/azure/azure-arc/servers/overview). Azure Monitor agent authenticates to your workspace with managed identity, which is created when you install the [Connected Machine agent](/azure/azure-arc/servers/agent-overview), which is part of Azure Arc. The legacy Log Analytics agent authenticated using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution. 
 
