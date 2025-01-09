@@ -69,7 +69,7 @@ You should use `mi_res_id`, `object_id`, or `client_id` as the `identifier-name`
 | Event Cache | Linux | /var/lib/rsyslog | 1 GB |
 
 ## Cryptography
-The Azure Monitor Agent does not work on Linux Machines when the system-wide crypto policy set in FUTURE mode. For more information, see notes in [Linux Hardening](azure-monitor-agent-supported-operating-systems#linux-hardening)
+The Azure Monitor Agent does not work on Linux Machines when the system-wide crypto policy set in FUTURE mode. For more information, see notes in [Linux Hardening](azure-monitor-agent-supported-operating-systems.md#linux-hardening)
 
 ## Next steps
 
