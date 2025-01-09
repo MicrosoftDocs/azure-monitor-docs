@@ -1,57 +1,62 @@
 ---
-title: Set up the Azure Monitor agent on Windows client devices
-description: This article describes the instructions to install the agent on Windows 10, 11 client OS devices, configure data collection, manage and troubleshoot the agent.
+title: Set Up the Azure Monitor Agent on Windows Client Devices
+description: This article describes the instructions to install the agent on Windows 11 and 10 client OS devices, configure data collection, manage and troubleshoot the agent.
 ms.topic: conceptual
 ms.date: 11/14/2024
 ms.custom: references_region, devx-track-azurepowershell
 ms.reviewer: jeffwo
 ---
 
-# Install Azure Monitor agent on Windows client devices using the client installer
+# Install the Azure Monitor agent on Windows client devices by using the client installer
 
-Use the client installer to install Azure Monitor Agent on Windows client devices and send monitoring data to your Log Analytics workspace.
-The [Azure Monitor Agent extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the **same underlying agent** and use data collection rules to configure data collection. This article explains how to install Azure Monitor Agent on Windows client devices using the client installer and how to associate data collection rules to your Windows client devices.
+Use the client installer to install the Azure Monitor agent on Windows client devices and send monitoring data to your Log Analytics workspace.
+
+The [Azure Monitor agent extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
+
+This article explains how to install the Azure Monitor agent on Windows client devices by using the client installer, and how to associate DCRs to your Windows client devices.
 
 > [!NOTE]
-> This article provides specific guidance for installing the Azure Monitor agent on Windows client devices, subject to the [limitations](#limitations). For standard installation and management guidance for the agent, refer [the agent extension management guidance here](./azure-monitor-agent-manage.md)
+> This article provides specific guidance for installing the Azure Monitor agent on Windows client devices, subject to [limitations](#limitations). For standard installation and management guidance for the agent, see the [agent extension management guidance](./azure-monitor-agent-manage.md).
 
 ## Comparison with virtual machine extension
 
-Here is a comparison between client installer and VM extension for Azure Monitor Agent:
+Here is a comparison between using the client installer and using the virtual machine (VM) extension for the Azure Monitor agent:
 
-| Functional component | For VMs/servers via extension | For clients via installer|
+| Functional component | Method for VMs or servers via the extension | Method for clients via the installer|
 |:---|:---|:---|
-| Agent installation method | Via VM extension | Via client installer |
-| Agent installed | Azure Monitor Agent | Same |
-| Authentication | Using Managed Identity | Using Microsoft Entra device token |
-| Central configuration | Via Data collection rules | Same |
-| Associating config rules to agents | DCRs associates directly to individual VM resources | DCRs associate to a monitored object (MO), which maps to all devices within the Microsoft Entra tenant |
-| Data upload to Log Analytics | Via Log Analytics endpoints | Same |
-| Feature support | All features documented [here](./azure-monitor-agent-overview.md) | Features dependent on AMA agent extension that don't require more extensions. This includes support for Microsoft Sentinel Windows Event filtering |
-| [Networking options](./azure-monitor-agent-network-configuration.md) | Proxy support, Private link support | Proxy support only |
+| Agent installation method | VM extension | Client installer |
+| Agent installed | Azure Monitor agent | Azure Monitor agent |
+| Authentication | Managed identity | Microsoft Entra device token |
+| Central configuration | DCRs | DCRs |
+| Associating config rules to agents | DCRs associate directly to individual VM resources | DCRs associate to a monitored object, which maps to all devices in the Microsoft Entra tenant |
+| Data upload to Log Analytics | Log Analytics endpoints | Log Analytics endpoints |
+| Feature support | All [documented features](./azure-monitor-agent-overview.md) | Features dependent on the Azure Monitor agent extension that don't require more extensions (includes support for Microsoft Sentinel Windows Event filtering) |
+| [Networking options](./azure-monitor-agent-network-configuration.md) | Proxy support, private link support | Proxy support only |
 
 ## Supported device types
 
 | Device type | Supported? | Installation method | Additional information |
 |:---|:---|:---|:---|
-| Windows 10, 11 desktops, workstations | Yes | Client installer | Installs the agent using a Windows MSI installer |
-| Windows 10, 11 laptops | Yes |  Client installer | Installs the agent using a Windows MSI installer. The installs works on laptops but the agent is **not optimized yet** for battery, network consumption |
-| Virtual machines, scale sets | No | [Virtual machine extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent using Azure extension framework |
-| On-premises servers | No | [Virtual machine extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent using Azure extension framework, provided for on-premises by installing Arc agent |
+| Windows 11, 10 desktops, workstations | Yes | Client installer | Installs the agent by using a Windows MSI installer |
+| Windows 11, 10 laptops | Yes |  Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent is *not yet optimized* for battery or network consumption) |
+| VMs, VM scale sets | No | [VM extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent by using the Azure extension framework |
+| On-premises servers | No | [VM extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent |
 
 ## Prerequisites
 
-- The machine must be running Windows client OS version 10 RS4 or higher.
-- To download the installer, the machine should have [C++ Redistributable version 2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) or higher
-- The machine must be domain joined to a Microsoft Entra tenant (AADj or Hybrid AADj machines), which enables the agent to fetch Microsoft Entra device tokens used to authenticate and fetch data collection rules from Azure.
-- You might need tenant admin permissions on the Microsoft Entra tenant.
+- The machine must be running Windows client OS version 10 RS4 or later.
+- To download the installer, the machine should have [C++ Redistributable version 2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) or later.
+- The machine must be domain joined to a Microsoft Entra tenant (Azure AD Join or Hybrid Azure AD Join machines). When the machine is domain joined, the agent can fetch Microsoft Entra device tokens to authenticate and fetch DCRs from Azure.
+- Check to see if you need tenant admin permissions on the Microsoft Entra tenant.
 - The device must have access to the following HTTPS endpoints:
-  - global.handler.control.monitor.azure.com
-  - `<virtual-machine-region-name>`.handler.control.monitor.azure.com (example: westus.handler.control.azure.com)
-  - `<log-analytics-workspace-id>`.ods.opinsights.azure.com (example: 12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com)
-    (If using private links on the agent, you must also add the [data collection endpoints](../essentials/data-collection-endpoint-overview.md#components-of-a-dce))
-- A data collection rule you want to associate with the devices. If it doesn't exist already, [create a data collection rule](./azure-monitor-agent-data-collection.md). **Do not associate the rule to any resources yet**.
-- Before using any PowerShell cmdlet, ensure cmdlet related PowerShell module is installed and imported.
+
+  - `global.handler.control.monitor.azure.com`
+  - `<virtual-machine-region-name>.handler.control.monitor.azure.com` (example: `westus.handler.control.azure.com`)
+  - `<log-analytics-workspace-id>.ods.opinsights.azure.com` (example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`)
+
+    If you use private links on the agent, you must also add the [data collection endpoints](../essentials/data-collection-endpoint-overview.md#components-of-a-dce).
+- A DCR that you want to associate with the devices. If it doesn't exist already, [create a data collection rule](./azure-monitor-agent-data-collection.md). *Do not associate the rule to any resources yet*.
+- Before you use any PowerShell cmdlet, ensure that the cmdlet-related PowerShell module is installed and imported.
 
 ## Limitations
 
@@ -59,17 +64,20 @@ Here is a comparison between client installer and VM extension for Azure Monitor
 
 ## Install the agent
 
-1. Download the Windows MSI installer for the agent using [this link](https://go.microsoft.com/fwlink/?linkid=2192409). You can also download it from **Monitor** > **Data Collection Rules** > **Create** experience on Azure portal (shown in the following screenshot):
-    <!-- convertborder later -->
-    :::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-client-installer-portal.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-client-installer-portal.png" alt-text="Diagram shows download agent link on Azure portal." border="false":::
-1. Open an elevated admin command prompt window and change directory to the location where you downloaded the installer.
-1. To install with **default settings**, run the following command:
+1. Download the [agent Windows MSI installer](https://go.microsoft.com/fwlink/?linkid=2192409).
+
+   You can also download it in the Azure portal. In the portal menu, go to **Monitor** > **Data Collection Rules** > **Create** as shown in the following screenshot:
+
+    :::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-client-installer-portal.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-client-installer-portal.png" alt-text="Screenshot that shows the download agent link in the Azure portal.":::
+
+1. Open an elevated admin Command Prompt window and change directory to the location where you downloaded the installer.
+1. To install with the *default settings*, run the following command:
 
     ```cli
     msiexec /i AzureMonitorAgentClientSetup.msi /qn
     ```
 
-1. To install with custom file paths, [network proxy settings](./azure-monitor-agent-network-configuration.md, or on a Non-Public Cloud use the following command with the values from the following table:
+1. To install with custom file paths, [network proxy settings](./azure-monitor-agent-network-configuration.md), or on a non-public cloud, use the following command. Use the values from the next table.
 
     ```cli
     msiexec /i AzureMonitorAgentClientSetup.msi /qn DATASTOREDIR="C:\example\folder"
@@ -83,11 +91,12 @@ Here is a comparison between client installer and VM extension for Azure Monitor
     | PROXYADDRESS | Set to Proxy Address. PROXYUSE must be set to "true" to be correctly applied |
     | PROXYUSEAUTH | Set to "true" if proxy requires authentication |
     | PROXYUSERNAME | Set to Proxy username. PROXYUSE and PROXYUSEAUTH must be set to "true" |
-    | PROXYPASSWORD | Set to Proxy password. PROXYUSE and PROXYUSEAUTH must be set to "true" |
+    | PROXYPASSWORD | Set to Proxy password. PROXYUSE and PROXYUSEAUTH must be set to `true` |
     | CLOUDENV | Set to Cloud. "Azure Commercial", "Azure China", "Azure US Gov", "Azure USNat", or "Azure USSec
 
 1. Verify successful installation:
-    - Open **Control Panel** -> **Programs and Features** OR **Settings** -> **Apps** -> **Apps & Features** and ensure you see ‘Azure Monitor Agent’ listed
+
+     1. Open **Control Panel** -> **Programs and Features** OR **Settings** -> **Apps** -> **Apps & Features** and ensure you see ‘Azure Monitor Agent’ listed
     - Open **Services** and confirm ‘Azure Monitor Agent’ is listed and shows as **Running**.
 1. Proceed to create the monitored object that you'll associate data collection rules to, for the agent to actually start operating.
 
@@ -520,12 +529,12 @@ Make sure to start the installer on administrator command prompt. Silent install
 #### Uninstallation fails due to the uninstaller being unable to stop the service
 
 - If There's an option to try again, do try it again
-- If retry from uninstaller doesn't work, cancel the uninstall and stop Azure Monitor Agent service from Services (Desktop Application)
+- If retry from uninstaller doesn't work, cancel the uninstall and stop the Azure Monitor agent service from Services (Desktop Application)
 - Retry uninstall
 
 #### Force uninstall manually when uninstaller doesn't work
 
-- Stop Azure Monitor Agent service. Then try uninstalling again. If it fails, then proceed with the following steps
+- Stop the Azure Monitor agent service. Then try uninstalling again. If it fails, then proceed with the following steps
 - Delete AMA service with "sc delete AzureMonitorAgent" from admin cmd
 - Download [this tool](https://support.microsoft.com/topic/fix-problems-that-block-programs-from-being-installed-or-removed-cca7d1b6-65a9-3d98-426b-e9f927e1eb4d) and uninstall AMA
 - Delete AMA binaries. They're stored in `Program Files\Azure Monitor Agent` by default
@@ -542,7 +551,7 @@ This section provides answers to common questions.
 
 ### Is Azure Arc required for Microsoft Entra joined machines?
 
-No. Microsoft Entra joined (or Microsoft Entra hybrid joined) machines running Windows 10 or 11 (client OS) **do not require Azure Arc** to be installed. Instead, you can use the Windows MSI installer for Azure Monitor Agent.
+No. Microsoft Entra joined (or Microsoft Entra hybrid joined) machines running Windows 10 or 11 (client OS) **do not require Azure Arc** to be installed. Instead, you can use the Windows MSI installer for the Azure Monitor agent.
 
 ## Questions and feedback
 
