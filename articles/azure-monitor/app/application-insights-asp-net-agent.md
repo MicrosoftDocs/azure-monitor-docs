@@ -17,6 +17,11 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 > [!NOTE]
 > The module currently supports codeless instrumentation of ASP.NET and ASP.NET Core web apps hosted with IIS. Use an SDK to instrument Java and Node.js applications.
 
+> [!NOTE]
+> Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information:
+> - **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
+> - **Value:** `false`
+
 ## PowerShell Gallery
 
 Application Insights Agent is located in the [PowerShell Gallery](https://www.powershellgallery.com/packages/Az.ApplicationMonitor).
