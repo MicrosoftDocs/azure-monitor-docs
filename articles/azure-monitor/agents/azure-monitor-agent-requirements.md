@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor Agent Requirements
-description: Learn about the requirements for the Azure Monitor agent on Azure virtual machines and Azure Arc-enabled servers and prerequisites for installation.
+description: Learn the requirements for the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers and prerequisites for installation.
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
@@ -10,19 +10,19 @@ ms.reviewer: jeffwo
 
 ---
 
-# Azure Monitor agent requirements
+# Azure Monitor Agent requirements
 
-This article provides requirements and prerequisites for using the Azure Monitor agent. Before you follow guidance to install the agent in [Install and manage the Azure Monitor agent](./azure-monitor-agent-manage.md), review the information in this article.
+This article provides requirements and prerequisites for using the Azure Monitor Agent. Before you follow guidance to install the agent in [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md), review the information in this article.
 
 ## Virtual machine extension details
 
-The Azure Monitor agent is implemented as an [Azure VM extension](/azure/virtual-machines/extensions/overview). Extension details are listed in the following table. You can install the extension by using any of the methods you use to install virtual machine extensions. For version information, see [Azure Monitor agent extension versions](./azure-monitor-agent-extension-versions.md).
+The Azure Monitor Agent is implemented as an [Azure VM extension](/azure/virtual-machines/extensions/overview). Extension details are listed in the following table. You can install the extension by using any of the methods you use to install virtual machine extensions. For version information, see [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md).
 
 | Property | Windows | Linux |
 |:---|:---|:---|
 | `Publisher` | Microsoft.Azure.Monitor  | Microsoft.Azure.Monitor |
 | `Type`      | AzureMonitorWindowsAgent | AzureMonitorLinuxAgent  |
-| `TypeHandlerVersion`  | See [Azure Monitor agent extension versions](./azure-monitor-agent-extension-versions.md) | [Azure Monitor agent extension versions](./azure-monitor-agent-extension-versions.md) |
+| `TypeHandlerVersion`  | See [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md) | [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md) |
 
 ## Permissions
 
@@ -35,7 +35,7 @@ For methods other than using the Azure portal, you must have the following role 
 
 [Managed identity](/azure/active-directory/managed-identities-azure-resources/overview) must be enabled on Azure virtual machines. Both user-assigned and system-assigned managed identities are supported.
 
-- **User-assigned**: This managed identity should be used for large-scale deployments and can be configured by using [built-in Azure policies](./azure-monitor-agent-policy.md). You can create a user-assigned managed identity once and share it across multiple VMs. It's more scalable than a system-assigned managed identity. If you use a user-assigned managed identity, you must pass the managed identity details to the Azure Monitor agent via extension settings:
+- **User-assigned**: This managed identity should be used for large-scale deployments and can be configured by using [built-in Azure policies](./azure-monitor-agent-policy.md). You can create a user-assigned managed identity once and share it across multiple VMs. It's more scalable than a system-assigned managed identity. If you use a user-assigned managed identity, you must pass the managed identity details to the Azure Monitor Agent via extension settings:
 
     ```json
     {

@@ -1,6 +1,6 @@
 ---
 title: Collect data with Azure Monitor Agent
-description: Describes how to collect data from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using the Azure Monitor agent.
+description: Describes how to collect data from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using the Azure Monitor Agent.
 ms.topic: conceptual
 ms.date: 11/14/2024
 author: guywild
@@ -9,9 +9,9 @@ ms.reviewer: jeffwo
 
 ---
 
-# Collect data with the Azure Monitor agent
+# Collect data with the Azure Monitor Agent
 
-The [Azure Monitor agent](azure-monitor-agent-overview.md) is used to collect data from Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. [Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) define the data to collect from the agent and where that data should be sent. This article describes how to use the Azure portal to create a DCR to collect different types of data and install the agent on any machines that require it.
+The [Azure Monitor Agent](azure-monitor-agent-overview.md) is used to collect data from Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. [Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) define the data to collect from the agent and where that data should be sent. This article describes how to use the Azure portal to create a DCR to collect different types of data and install the agent on any machines that require it.
 
 If you're new to Azure Monitor or have basic data collection requirements, then you might be able to meet all of your requirements by using the Azure portal and the guidance in this article. If you want to take advantage of more DCR features such as [transformations](../essentials/data-collection-transformations.md), then you might need to create a DCR by using other methods or edit it after creating it in the portal. You can also use different methods to manage DCRs and create associations if you want to deploy by using the Azure CLI, Azure PowerShell, ARM templates, or Azure Policy.
 
@@ -23,11 +23,11 @@ If you're new to Azure Monitor or have basic data collection requirements, then 
 >
 > - Creating multiple DCRs with the same data source and associating them to the same agent. Ensure that you're filtering data in the DCRs such that each collects unique data.
 > - Creating a DCR that collects security logs and enabling Microsoft Sentinel for the same agents. In this case, you can collect the same events in the Event table and the SecurityEvent table.
-> - Using both the Azure Monitor agent and the legacy Log Analytics agent on the same machine. Limit duplicate events to only the time when you transition from one agent to the other.
+> - Using both the Azure Monitor Agent and the legacy Log Analytics agent on the same machine. Limit duplicate events to only the time when you transition from one agent to the other.
 
 ## Data sources
 
-The following table lists the types of data you can currently collect with the Azure Monitor agent and where you can send that data. The link for each is to an article describing the details of how to configure that data source. Follow this article to create the DCR and assign it to resources, and then follow the linked article to configure the data source.
+The following table lists the types of data you can currently collect with the Azure Monitor Agent and where you can send that data. The link for each is to an article describing the details of how to configure that data source. Follow this article to create the DCR and assign it to resources, and then follow the linked article to configure the data source.
 
 | Data source | Description | Client OS | Destinations |
 |:---|:---|:---|:---|
@@ -39,7 +39,7 @@ The following table lists the types of data you can currently collect with the A
 | [IIS logs](./data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
 
 > [!NOTE]
-> The Azure Monitor agent also supports Azure service [SQL Best Practices Assessment](/sql/sql-server/azure-arc/assess/) which is currently in general availability. For more information, see [Configure best practices assessment by using the Azure Monitor agent](/sql/sql-server/azure-arc/assess#enable-best-practices-assessment).
+> The Azure Monitor Agent also supports Azure service [SQL Best Practices Assessment](/sql/sql-server/azure-arc/assess/) which is currently in general availability. For more information, see [Configure best practices assessment by using the Azure Monitor Agent](/sql/sql-server/azure-arc/assess#enable-best-practices-assessment).
 
 ## Prerequisites
 
@@ -71,7 +71,7 @@ The **Basic** pane includes basic information about the DCR.
 
 ## Add resources
 
-On the **Resources** pane, you can add VMs to be associated with the DCR. To choose resources to add, select **Add resources**. The Azure Monitor agent is automatically installed on any resources that don't already have it. A [data collection rule association (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra) is created between the machine and the DCR.
+On the **Resources** pane, you can add VMs to be associated with the DCR. To choose resources to add, select **Add resources**. The Azure Monitor Agent is automatically installed on any resources that don't already have it. A [data collection rule association (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra) is created between the machine and the DCR.
 
 > [!IMPORTANT]
 > The portal enables system assigned managed identity on the target resources, and existing user assigned identities, if there are any. For existing applications, unless you specify the user assigned identity in the request, the machine defaults to using system assigned identity instead.
@@ -135,6 +135,6 @@ If data that you're expecting isn't being collected, complete the following step
 
 ## Related content
 
-- [Collect text logs by using the Azure Monitor agent](data-collection-log-text.md).
-- Learn more about the [Azure Monitor agent](azure-monitor-agent-overview.md).
+- [Collect text logs by using the Azure Monitor Agent](data-collection-log-text.md).
+- Learn more about the [Azure Monitor Agent](azure-monitor-agent-overview.md).
 - Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).

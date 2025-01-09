@@ -7,30 +7,30 @@ ms.custom: references_region, devx-track-azurepowershell
 ms.reviewer: jeffwo
 ---
 
-# Install the Azure Monitor agent on Windows client devices by using the client installer
+# Install the Azure Monitor Agent on Windows client devices by using the client installer
 
-Use the client installer to install the Azure Monitor agent on Windows client devices and send monitoring data to your Log Analytics workspace.
+Use the client installer to install the Azure Monitor Agent on Windows client devices and send monitoring data to your Log Analytics workspace.
 
-The [Azure Monitor agent extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
+The [Azure Monitor Agent extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
 
-This article explains how to install the Azure Monitor agent on Windows client devices by using the client installer, and how to associate DCRs to your Windows client devices.
+This article explains how to install the Azure Monitor Agent on Windows client devices by using the client installer, and how to associate DCRs to your Windows client devices.
 
 > [!NOTE]
-> This article provides specific guidance for installing the Azure Monitor agent on Windows client devices, subject to [limitations](#limitations). For standard installation and management guidance for the agent, see the [agent extension management guidance](./azure-monitor-agent-manage.md).
+> This article provides specific guidance for installing the Azure Monitor Agent on Windows client devices, subject to [limitations](#limitations). For standard installation and management guidance for the agent, see the [agent extension management guidance](./azure-monitor-agent-manage.md).
 
 ## Comparison with virtual machine extension
 
-Here is a comparison between using the client installer and using the virtual machine (VM) extension for the Azure Monitor agent:
+Here is a comparison between using the client installer and using the virtual machine (VM) extension for the Azure Monitor Agent:
 
 | Functional component | Method for VMs or servers via the extension | Method for clients via the installer|
 |:---|:---|:---|
 | Agent installation method | VM extension | Client installer |
-| Agent installed | Azure Monitor agent | Azure Monitor agent |
+| Agent installed | Azure Monitor Agent | Azure Monitor Agent |
 | Authentication | Managed identity | Microsoft Entra device token |
 | Central configuration | DCRs | DCRs |
 | Associating config rules to agents | DCRs associate directly to individual VM resources | DCRs associate to a monitored object, which maps to all devices in the Microsoft Entra tenant |
 | Data upload to Log Analytics | Log Analytics endpoints | Log Analytics endpoints |
-| Feature support | All [documented features](./azure-monitor-agent-overview.md) | Features dependent on the Azure Monitor agent extension that don't require more extensions (includes support for Microsoft Sentinel Windows Event filtering) |
+| Feature support | All [documented features](./azure-monitor-agent-overview.md) | Features dependent on the Azure Monitor Agent extension that don't require more extensions (includes support for Microsoft Sentinel Windows Event filtering) |
 | [Networking options](./azure-monitor-agent-network-configuration.md) | Proxy support, private link support | Proxy support only |
 
 ## Supported device types
@@ -85,44 +85,57 @@ Here is a comparison between using the client installer and using the virtual ma
 
     | Parameter | Description |
     |:---|:---|
-    | INSTALLDIR | Directory path where the agent binaries are installed |
-    | DATASTOREDIR | Directory path where the agent stores its operational logs and data |
-    | PROXYUSE | Must be set to "true" to use proxy |
-    | PROXYADDRESS | Set to Proxy Address. PROXYUSE must be set to "true" to be correctly applied |
-    | PROXYUSEAUTH | Set to "true" if proxy requires authentication |
-    | PROXYUSERNAME | Set to Proxy username. PROXYUSE and PROXYUSEAUTH must be set to "true" |
-    | PROXYPASSWORD | Set to Proxy password. PROXYUSE and PROXYUSEAUTH must be set to `true` |
-    | CLOUDENV | Set to Cloud. "Azure Commercial", "Azure China", "Azure US Gov", "Azure USNat", or "Azure USSec
+    | `INSTALLDIR` | Directory path where the agent binaries are installed. |
+    | `DATASTOREDIR` | Directory path where the agent stores its operational logs and data. |
+    | `PROXYUSE` | Must be set to `true` to use a proxy. |
+    | `PROXYADDRESS` | Set to the proxy address. `PROXYUSE` must be set to `true` to be correctly applied. |
+    | `PROXYUSEAUTH` | Set to `true` if a proxy requires authentication. |
+    | `PROXYUSERNAME` | Set to the proxy username. `PROXYUSE` and `PROXYUSEAUTH` must be set to `true`. |
+    | `PROXYPASSWORD` | Set to the proxy password. `PROXYUSE` and `PROXYUSEAUTH` must be set to `true`. |
+    | `CLOUDENV` | Set to the cloud name: `Azure Commercial`, `Azure China`, `Azure US Gov`, `Azure USNat`, or `Azure USSec`. |
 
 1. Verify successful installation:
 
-     1. Open **Control Panel** -> **Programs and Features** OR **Settings** -> **Apps** -> **Apps & Features** and ensure you see ‘Azure Monitor Agent’ listed
-    - Open **Services** and confirm ‘Azure Monitor Agent’ is listed and shows as **Running**.
-1. Proceed to create the monitored object that you'll associate data collection rules to, for the agent to actually start operating.
+   1. Open **Control Panel** > **Programs and Features**. Ensure that **Azure Monitor Agent** appears in the list of programs.
+   1. Open **Services** and confirm that **Azure Monitor Agent** appears and **Status** is **Running**.
+
+Go to the next section to create the monitored object to associate with DCRs to start the agent.
 
 > [!NOTE]
-> The agent installed with the client installer currently doesn't support updating local agent settings once it is installed. Uninstall and reinstall AMA to update above settings.
+> If you install the agent by using the client installer, currently, you can't update local agent settings after the agent is installed. To update these settings, uninstall and then reinstall the Azure Monitor Agent.
 
 ## Create and associate a monitored object
 
-You need to create a monitored object (MO), which represents the Microsoft Entra tenant within Azure Resource Manager (ARM). This ARM entity is what Data Collection Rules are then associated with. **Azure associates a monitored object to all Windows client machines in the same Microsoft Entra tenant**.
+Next, create a monitored object, which represents the Microsoft Entra tenant within Azure Resource Manager (ARM). DCRs are then associated with the ARM entity. *Azure associates a monitored object to all Windows client machines in the same Microsoft Entra tenant*.
 
-Currently this association is only **limited** to the Microsoft Entra tenant scope, which means configuration applied to the Microsoft Entra tenant will be applied to all devices that are part of the tenant and running the agent installed via the client installer. Agents installed as virtual machine extension will not be impacted by this.
-The following image demonstrates how this works:
-<!-- convertborder later -->
-:::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-monitored-object.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-monitored-object.png" alt-text="Diagram shows monitored object purpose and association." border="false":::
+Currently, the scope of this association is *limited* to the Microsoft Entra tenant. Configuration applied to the Microsoft Entra tenant is applied to all devices that are part of the tenant and running the agent that installed via the client installer. Agents installed via the VM extension are not in the scope and are not affected.
+
+The following image demonstrates how the monitor object association works:
+
+:::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-monitored-object.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-monitored-object.png" alt-text="Diagram that shows the monitored object purpose and association." border="false":::
 
 Then, proceed with the following instructions to create and associate them to a monitored object, using REST APIs or PowerShell commands.
 
 ### Permissions required
 
-Since MO is a tenant level resource, the scope of the permission would be higher than a subscription scope. Therefore, an Azure tenant admin might be needed to perform this step. [Follow these steps to elevate Microsoft Entra tenant admin as Azure Tenant Admin](/azure/role-based-access-control/elevate-access-global-admin). It gives the Microsoft Entra admin 'owner' permissions at the root scope. This is needed for all methods described in the following section.
+Because a monitored object is a tenant-level resource, the scope of the permission is great than the scope of a subscription. Therefore, an Azure tenant admin might be required to perform this step. Complete the [steps to elevate a Microsoft Entra tenant admin as Azure Tenant Admin](/azure/role-based-access-control/elevate-access-global-admin). It gives the Microsoft Entra admin Owner permissions at the root scope. This scope of permissions is required for all methods described in the following section.
 
-### Using REST APIs
+### Use REST APIs
 
-#### 1. Assign the Monitored Objects Contributor role to the operator
+The following sections describe the steps to create a DCR and associate it to a monitored object by using the REST API:
 
-This step grants the ability to create and link a monitored object to a user or group.
+1.  Assign the Monitored Objects Contributor role to the operator.
+1. Create a monitored object.
+1. Associate the DCR to the monitored object.
+
+These tasks are also described:
+
+- List associations to the monitored object.
+- Disassociate the DCR from the monitored object.
+
+#### Assign the Monitored Objects Contributor role to the operator
+
+This step grants permissions to create and link a monitored object to a user or group.
 
 **Request URI**
 
@@ -130,18 +143,18 @@ This step grants the ability to create and link a monitored object to a user or 
 PUT https://management.azure.com/providers/microsoft.insights/providers/microsoft.authorization/roleassignments/{roleAssignmentGUID}?api-version=2021-04-01-preview
 ```
 
-**URI Parameters**
+**URI parameters**
 
 | Name | In | Type | Description |
 |:---|:---|:---|:---|:---|
-| `roleAssignmentGUID` | path | string | Provide any valid guid (you can generate one using <https://guidgenerator.com/>) |
+| `roleAssignmentGUID` | path | string | Provide any valid globally unique identifier (GUID). You can generate a GUID by using a [GUID generator](https://guidgenerator.com/). |
 
 **Headers**
 
-- Authorization: ARM Bearer Token (using ‘Get-AzAccessToken’ or other method)
+- Authorization: ARM Bearer Token (use Get-AzAccessToken or another method)
 - Content-Type: Application/json
 
-**Request Body**
+**Request body**
 
 ```JSON
 {
@@ -157,16 +170,16 @@ PUT https://management.azure.com/providers/microsoft.insights/providers/microsof
 
 | Name | Description |
 |:---|:---|
-| roleDefinitionId | Fixed value: Role definition ID of the Monitored Objects Contributor role: `/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b` |
-| principalId | Provide the `Object Id` of the identity of the user to which the role needs to be assigned. It might be the user who elevated at the beginning of step 1, or another user or group who will perform later steps. |
+| `roleDefinitionId` | Fixed value: Role definition ID of the Monitored Objects Contributor role: `/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b` |
+| `principalId` | Provide the `Object Id` value of the identity of the user to which the role needs to be assigned. It might be the user who elevated at the beginning of step 1 or another user or group who will perform later steps. |
 
-After this step is complete, **reauthenticate** your session and **reacquire** your ARM bearer token.
+After this step is complete, *reauthenticate* your session and *reacquire* your ARM bearer token.
 
-#### 2. Create monitored object
+#### Create a monitored object
 
 This step creates the monitored object for the Microsoft Entra tenant scope. It's used to represent client devices that are signed with that Microsoft Entra tenant identity.
 
-**Permissions required**: Anyone who has 'Monitored Object Contributor' at an appropriate scope can perform this operation, as assigned in step 1.
+**Permissions required**: Anyone who has the Monitored Object Contributor role at an appropriate scope can perform this operation, as assigned in step 1.
 
 **Request URI**
 
@@ -174,18 +187,18 @@ This step creates the monitored object for the Microsoft Entra tenant scope. It'
 PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{AADTenantId}?api-version=2021-09-01-preview
 ```
 
-**URI Parameters**
+**URI parameters**
 
 | Name | In | Type | Description |
 |:---|:---|:---|:---|:---|
-| `AADTenantId` | path | string | ID of the Microsoft Entra tenant that the device(s) belong to. The MO is created with the same ID |
+| `AADTenantId` | path | string | The ID of the Microsoft Entra tenant that the device(s) belong to. The monitored object is created by using the same ID. |
 
 **Headers**
 
 - Authorization: ARM Bearer Token
 - Content-Type: Application/json
 
-**Request Body**
+**Request body**
 
 ```JSON
 {
@@ -200,13 +213,13 @@ PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{
 
 | Name | Description |
 |:---|:---|
-| `location` | The Azure region where the MO object would be stored. It should be the **same region** where you created the Data Collection Rule. This region is the location where agent communications would happen. |
+| `location` | The Azure region where the monitored object is stored. It should be the *same region* where you created the DCR. This region is the location where agent communications occur. |
 
-#### 3. Associate DCR to monitored object
+#### Associate the DCR to the monitored object
 
-Now we associate the Data Collection Rules (DCR) to the monitored object by creating Data Collection Rule Associations.
+Now you associate the DCR to the monitored object by creating data collection rule associations (DCRAs).
 
-**Permissions required**: Anyone who has ‘Monitored Object Contributor’ at an appropriate scope can perform this operation, as assigned in step 1.
+**Permissions required**: Anyone who has the Monitored Object Contributor role at an appropriate scope can perform this operation, as assigned in step 1.
 
 **Request URI**
 
@@ -214,24 +227,24 @@ Now we associate the Data Collection Rules (DCR) to the monitored object by crea
 PUT https://management.azure.com/{MOResourceId}/providers/microsoft.insights/datacollectionruleassociations/{associationName}?api-version=2021-09-01-preview
 ```
 
-**Sample Request URI**
+**Sample request URI**
 
 ```HTTP
 PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{AADTenantId}/providers/microsoft.insights/datacollectionruleassociations/{associationName}?api-version=2021-09-01-preview
 ```
 
-**URI Parameters**
+**URI parameters**
 
 | Name | In | Type | Description |
 |:---|:---|:---|:---|:---|
-| ``MOResourceId` | path | string | Full resource ID of the MO created in step 2. Example: 'providers/Microsoft.Insights/monitoredObjects/{AADTenantId}' |
+| `MOResourceId` | path | string | The full resource ID of the monitored object created in step 2. Example: `providers/Microsoft.Insights/monitoredObjects/{AADTenantId}` |
 
 **Headers**
 
 - Authorization: ARM Bearer Token
 - Content-Type: Application/json
 
-**Request Body**
+**Request body**
 
 ```JSON
 {
@@ -246,13 +259,13 @@ PUT https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{
 
 | Name | Description |
 |:---|:---|
-| `dataCollectionRuleID` | The resource ID of an existing Data Collection Rule that you created in the **same region** as the monitored object. |
+| `dataCollectionRuleID` | The resource ID of an existing DCR that you created in the *same region* as the monitored object. |
 
-#### 4. List associations to the monitored object
+#### List associations to the monitored object
 
-If you need to view the associations, you can list them for the monitored object.
+If you need to view the associations, you can list the associations for the monitored object.
 
-**Permissions required**: Anyone who has ‘Reader’ at an appropriate scope can perform this operation, similar to that assigned in step 1.
+**Permissions required**: Anyone who has the Reader role at an appropriate scope can perform this operation, similar to that assigned in step 1.
 
 **Request URI**
 
@@ -260,7 +273,7 @@ If you need to view the associations, you can list them for the monitored object
 GET https://management.azure.com/{MOResourceId}/providers/microsoft.insights/datacollectionruleassociations/?api-version=2021-09-01-preview
 ```
 
-**Sample Request URI**
+**Sample request URI**
 
 ```HTTP
 GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{AADTenantId}/providers/microsoft.insights/datacollectionruleassociations/?api-version=2021-09-01-preview
@@ -292,11 +305,11 @@ GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{
 }
 ```
 
-#### 5. Disassociate DCR from the monitored object
+#### Disassociate the DCR from the monitored object
 
-If you need to remove an association of a Data Collection Rule (DCR) to the monitored object.
+If you need to remove an association of a DCR from the monitored object.
 
-**Permissions required**: Anyone who has ‘Monitored Object Contributor’ at an appropriate scope can perform this operation, as assigned in step 1.
+**Permissions required**: Anyone who has the Monitored Object Contributor role at an appropriate scope can perform this operation, as assigned in step 1.
 
 **Request URI**
 
@@ -304,44 +317,47 @@ If you need to remove an association of a Data Collection Rule (DCR) to the moni
 DELETE https://management.azure.com/{MOResourceId}/providers/microsoft.insights/datacollectionruleassociations/{associationName}?api-version=2021-09-01-preview
 ```
 
-**Sample Request URI**
+**Sample request URI**
 
 ```HTTP
 DELETE https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{AADTenantId}/providers/microsoft.insights/datacollectionruleassociations/{associationName}?api-version=2021-09-01-preview
 ```
 
-**URI Parameters**
+**URI parameters**
 
 | Name | In | Type | Description |
 |---|---|---|---|
-| `MOResourceId` | path | string | Full resource ID of the MO created in step 2. Example: 'providers/Microsoft.Insights/monitoredObjects/{AADTenantId}' |
-| `associationName` | path | string | The name of the association. The name is case insensitive. Example: 'assoc01' |
+| `MOResourceId` | path | string | The full resource ID of the monitored object created in step 2. Example: `providers/Microsoft.Insights/monitoredObjects/{AADTenantId}` |
+| `associationName` | path | string | The name of the association. The name is case insensitive. Example: `assoc01` |
 
 **Headers**
 
 - Authorization: ARM Bearer Token
 - Content-Type: Application/json
 
-### Using PowerShell for onboarding
+### Use Azure PowerShell for onboarding
 
-```PowerShell
-$TenantID = "xxxxxxxxx-xxxx-xxx"  #Your Tenant ID
-$SubscriptionID = "xxxxxx-xxxx-xxxxx" #Your Subscription ID
-$ResourceGroup = "rg-yourResourceGroup" #Your resourcegroup
+The following Azure PowerShell script creates a DCR and associates it to a monitored object, and then lists the associations.
 
-#If cmdlet below produces an error stating 'Interactive authentication is not supported in this session, please run cmdlet 'Connect-AzAccount -UseDeviceAuthentication
-#uncomment next to -UseDeviceAuthentication below
+```azure-powershell
+$TenantID = "xxxxxxxxx-xxxx-xxx"  #Your tenant ID
+$SubscriptionID = "xxxxxx-xxxx-xxxxx" #Your subscription ID
+$ResourceGroup = "rg-yourResourceGroup" #Your resource group
+
+#If the following cmdlet produces the error 'Interactive authentication is not supported in this session,' run
+#cmdlet Connect-AzAccount -UseDeviceAuthentication
+#uncomment -UseDeviceAuthentication on next line
 Connect-AzAccount -Tenant $TenantID #-UseDeviceAuthentication
 
 #Select the subscription
 Select-AzSubscription -SubscriptionId $SubscriptionID
 
-#Grant Access to User at root scope "/"
+#Grant access to the user at root scope "/"
 $user = Get-AzADUser -SignedIn
 
 New-AzRoleAssignment -Scope '/' -RoleDefinitionName 'Owner' -ObjectId $user.Id
 
-#Create Auth Token
+#Create the auth token
 $auth = Get-AzAccessToken
 
 $AuthenticationHeader = @{
@@ -350,7 +366,7 @@ $AuthenticationHeader = @{
     }
 
 
-#1. Assign the Monitored Object Contributor role to the operator
+#Assign the Monitored Object Contributor role to the operator
 $newguid = (New-Guid).Guid
 $UserObjectID = $user.Id
 
@@ -371,9 +387,8 @@ Invoke-RestMethod -Uri $requestURL -Headers $AuthenticationHeader -Method PUT -B
 
 ##########################
 
-#2. Create a monitored object
-
-# "location" property value under the "body" section should be the Azure region where the MO object would be stored. It should be the "same region" where you created the Data Collection Rule. This is the location of the region from where agent communications would happen.
+#Create a monitored object
+#The 'location' property value in the 'body' section should be the Azure region where the monitored object is stored. It should be the same region where you created the data collection rule. This is the region where agent communications occurs.
 $Location = "eastus" #Use your own location
 $requestURL = "https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/$TenantID`?api-version=2021-09-01-preview"
 $body = @"
@@ -389,10 +404,10 @@ $RespondID = $Respond.id
 
 ##########################
 
-#3. Associate DCR to monitored object
-#See reference documentation https://learn.microsoft.com/en-us/rest/api/monitor/data-collection-rule-associations/create?tabs=HTTP
-$associationName = "assoc01" #You can define your custom associationname, must change the association name to a unique name, if you want to associate multiple DCR to monitored object
-$DCRName = "dcr-WindowsClientOS" #Your Data collection rule name
+#Associate a DCR to the monitored object
+#See reference documentation https://learn.microsoft.com/rest/api/monitor/data-collection-rule-associations/create?tabs=HTTP
+$associationName = "assoc01" #You can define your custom association name, but you must change the association name to a unique name if you want to associate multiple DCRs to a monitored object.
+$DCRName = "dcr-WindowsClientOS" #Your data collection rule name
 
 $requestURL = "https://management.azure.com$RespondId/providers/microsoft.insights/datacollectionruleassociations/$associationName`?api-version=2021-09-01-preview"
 $body = @"
@@ -406,10 +421,10 @@ $body = @"
 
 Invoke-RestMethod -Uri $requestURL -Headers $AuthenticationHeader -Method PUT -Body $body
 
-#(Optional example). Associate another DCR to monitored object. Remove comments around text below to use.
+#(Optional example) Associate another DCR to a monitored object. Remove comments around the following text to use it as a sample.
 #See reference documentation https://learn.microsoft.com/en-us/rest/api/monitor/data-collection-rule-associations/create?tabs=HTTP
 <#
-$associationName = "assoc02" #You must change the association name to a unique name, if you want to associate multiple DCR to monitored object
+$associationName = "assoc02" #You must change the association name to a unique name if you want to associate multiple DCRs to a monitored object.
 $DCRName = "dcr-PAW-WindowsClientOS" #Your Data collection rule name
 
 $requestURL = "https://management.azure.com$RespondId/providers/microsoft.insights/datacollectionruleassociations/$associationName`?api-version=2021-09-01-preview"
@@ -424,7 +439,7 @@ $body = @"
 
 Invoke-RestMethod -Uri $requestURL -Headers $AuthenticationHeader -Method PUT -Body $body
 
-#4. (Optional) Get all the associatation.
+#(Optional) Get all the associations.
 $requestURL = "https://management.azure.com$RespondId/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview"
 (Invoke-RestMethod -Uri $requestURL -Headers $AuthenticationHeader -Method get).value
 #>
@@ -433,20 +448,23 @@ $requestURL = "https://management.azure.com$RespondId/providers/microsoft.insigh
 
 ## Verify successful setup
 
-Check the ‘Heartbeat’ table (and other tables you configured in the rules) in the Log Analytics workspace that you specified as a destination in the data collection rule(s).
-The `SourceComputerId`, `Computer`, `ComputerIP` columns should all reflect the client device information respectively, and the `Category` column should say 'Azure Monitor Agent'. See the following example:
-<!-- convertborder later -->
-:::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" alt-text="Diagram shows agent heartbeat logs on Azure portal." border="false":::
+In the Log Analytics workspace that you specified as a destination in the DCRs, check the **Heartbeat** table and other tables you configured in the rules.
 
-### Using PowerShell for offboarding
+The **SourceComputerId**, **Computer**, and **ComputerIP** columns should all reflect the client device information respectively, and the **Category** column should say **Azure Monitor Agent**. See the following example.
 
-```PowerShell
-#This will remove the monitor object
+:::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" alt-text="Screenshot that shows agent heartbeat logs in the Azure portal.":::
+
+### Use PowerShell for offboarding
+
+The following PowerShell script disassociates a DCR from a monitored object.
+
+```azure-powershell
+#Remove the monitor object
 $TenantID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  #Your Tenant ID
 
 Connect-AzAccount -Tenant $TenantID
 
-#Create Auth Token
+#Create the auth token
 $auth = Get-AzAccessToken
 
 $AuthenticationHeader = @{
@@ -454,21 +472,21 @@ $AuthenticationHeader = @{
     "Authorization" = "Bearer " + $auth.Token
 }
 
-#Get monitored object
+#Get the monitored object
 $requestURL = "https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/$TenantID`?api-version=2021-09-01-preview"
 $MonitoredObject =  Invoke-RestMethod -Uri $requestURL -Headers $AuthenticationHeader -Method Get
 
-#Get data collection rule associations to monitored object 
+#Get DCRs associated to the monitored object 
 $requestURL = "https://management.azure.com$($MonitoredObject.id)/providers/microsoft.insights/datacollectionruleassociations?api-version=2021-09-01-preview"
 $MonitoredObjectAssociations = Invoke-RestMethod -Uri $requestURL -Headers $AuthenticationHeader -Method Get
 
-#Disassociate from all Data Collection Rule
+#Disassociate the monitored object from all DCRs
 foreach ($Association in $MonitoredObjectAssociations.value){
     $requestURL = "https://management.azure.com$($Association.id)?api-version=2022-06-01"
     Invoke-RestMethod -Uri $requestURL -Headers $AuthenticationHeader -Method Delete
 }
 
-#Delete monitored object
+#Delete the monitored object
 $requestURL = "https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/$TenantID`?api-version=2021-09-01-preview"
 Invoke-AzRestMethod -Uri $requestURL -Method Delete
 
@@ -476,83 +494,94 @@ Invoke-AzRestMethod -Uri $requestURL -Method Delete
 
 ## Manage the agent
 
+The next sections show you how to manage the agent:
+
+- Check the agent version
+- Uninstall the agent
+- Update the agent
+
 ### Check the agent version
 
-You can use any of the following options to check the installed version of the agent:
+1. Open **Control Panel** > **Programs and Features**.
+1. In the list of programs, select **Azure Monitor Agent**.
+1. Check the value for **Version**.
 
-- Open **Control Panel** > **Programs and Features** > **Azure Monitor Agent** and see the 'Version' listed
-- Open **Settings** > **Apps** > **Apps and Features** > **Azure Monitor Agent** and see the 'Version' listed
+You also can check the agent version in **Settings**.
 
 ### Uninstall the agent
 
-You can use any of the following options to check the installed version of the agent:
+1. Open **Control Panel** > **Programs and Features**.
+1. In the list of programs, select **Azure Monitor Agent**.
+1. In the menu bar, select **Uninstall**.
 
-- Open **Control Panel** > **Programs and Features** > **Azure Monitor Agent** and click 'Uninstall'
-- Open **Settings** > **Apps** > **Apps and Features** > **Azure Monitor Agent** and click 'Uninstall'
+You also can uninstall the agent in **Settings**.
 
-If you face issues during 'Uninstall', refer to the [troubleshooting guidance](#troubleshoot).
+If you have problems when you uninstall the agent, see [Troubleshoot](#troubleshoot).
 
 ### Update the agent
 
-In order to update the version, install the new version you wish to update to.
+To update the version, install the new version you want to update to.
 
 ## Troubleshoot
 
 ### View agent diagnostic logs
 
-1. Rerun the installation with logging turned on and specify the log file name:
-    `Msiexec /I AzureMonitorAgentClientSetup.msi /L*V <log file name>`
-2. Runtime logs are collected automatically either at the default location `C:\Resources\Azure Monitor Agent\` or at the file path mentioned during installation.
-    - If you can't locate the path, the exact location can be found on the registry as `AMADataRootDirPath` on `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\AzureMonitorAgent`.
-3. The 'ServiceLogs' folder contains log from AMA Windows Service, which launches and manages AMA processes
-4. 'AzureMonitorAgent.MonitoringDataStore' contains data/logs from AMA processes.
+1. Rerun the installation with logging turned on and specify the log file name `Msiexec /I AzureMonitorAgentClientSetup.msi /L*V <log file name>`.
+1. Runtime logs are collected automatically either at the default location *C:\Resources\Azure Monitor Agent\* or at the file path specified during installation.
 
-### Common installation issues
+    - If you can't locate the path, the exact location is indicated on the registry as `AMADataRootDirPath` on `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\AzureMonitorAgent`.
+1. The *ServiceLogs* folder contains log from the Azure Monitor Agent Windows service, which launches and manages Azure Monitor Agent processes.
+1. `AzureMonitorAgent.MonitoringDataStore` contains data and logs from Azure Monitor Agent processes.
+
+### Resolve install and uninstall issues
+
+The following sections describe how to resolve installation and uninstallation issues.
 
 #### Missing DLL
 
-- Error message: "There's a problem with this Windows Installer package. A DLL required for this installer to complete could not be run. …"
-- Ensure you have installed [C++ Redistributable (>2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) before installing AMA:
+**Error message**: "There's a problem with this Windows Installer package. A DLL required for this installer to complete could not be run . . . ."
 
-<a name='not-aad-joined'></a>
+**Resolution**: Ensure that you installed [C++ Redistributable (>2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) before you installed the Azure Monitor Agent. If you did not, install the relevant redistributable file, and then try installation again.
+
+<a name="not-aad-joined"></a>
 
 #### Not Microsoft Entra joined
 
-Error message: "Tenant and device IDs retrieval failed"
+**Error message**: "Tenant and device IDs retrieval failed"
 
-1. Run the command `dsregcmd /status`. This should produce the output as `AzureAdJoined : YES` in the 'Device State' section. If not, join the device with a Microsoft Entra tenant and try installation again.
+**Resolution**: Run the command `dsregcmd /status`. This should display the output `AzureAdJoined : YES` in the `Device State` section. If it does not, join the device with a Microsoft Entra tenant and try installation again.
 
-#### Silent install from command prompt fails
+#### Silent install from the command prompt fails
 
-Make sure to start the installer on administrator command prompt. Silent install can only be initiated from the administrator command prompt.
+Make sure that you start the installer by selecting the **Run as administrator** option. Silent install can be initiated only at an administrator command prompt.
 
-#### Uninstallation fails due to the uninstaller being unable to stop the service
+#### Uninstallation fails because the uninstaller can't stop the service
 
-- If There's an option to try again, do try it again
-- If retry from uninstaller doesn't work, cancel the uninstall and stop the Azure Monitor agent service from Services (Desktop Application)
-- Retry uninstall
+1. If there's an option to try again, try it again.
+1. If retrying from the uninstaller doesn't work, cancel the uninstall and stop the Azure Monitor Agent service at **Services** > **Desktop Applications**.
+1. Retry the uninstall.
 
-#### Force uninstall manually when uninstaller doesn't work
+#### Force uninstall manually when the uninstaller doesn't work
 
-- Stop the Azure Monitor agent service. Then try uninstalling again. If it fails, then proceed with the following steps
-- Delete AMA service with "sc delete AzureMonitorAgent" from admin cmd
-- Download [this tool](https://support.microsoft.com/topic/fix-problems-that-block-programs-from-being-installed-or-removed-cca7d1b6-65a9-3d98-426b-e9f927e1eb4d) and uninstall AMA
-- Delete AMA binaries. They're stored in `Program Files\Azure Monitor Agent` by default
-- Delete AMA data/logs. They're stored in `C:\Resources\Azure Monitor Agent` by default
-- Open Registry. Check `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Azure Monitor Agent`. If it exists, delete the key.
+1. Stop the Azure Monitor Agent service. Then try uninstalling again. If it fails, proceed with the following steps.
+1. Delete the Azure Monitor Agent service by running `sc delete AzureMonitorAgent` at an administrator command prompt.
+1. Download a targeted [tool](https://support.microsoft.com/topic/fix-problems-that-block-programs-from-being-installed-or-removed-cca7d1b6-65a9-3d98-426b-e9f927e1eb4d) and uninstall the Azure Monitor Agent.
+1. Delete Azure Monitor Agent binaries. By default, the agent binaries are stored in *Program Files\Azure Monitor Agent*.
+1. Delete Azure Monitor Agent data and logs. By default, the agent data and logs are stored in *C:\Resources\Azure Monitor Agent*.
+1. Open Registry. Check `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Azure Monitor Agent`. If it exists, delete the key.
 
-### Post installation/Operational issues
+### Post-installation and operational issues
 
-Once the agent is installed successfully (i.e. you see the agent service running but don't see data as expected), you can follow standard troubleshooting steps listed here for [Windows VM](./azure-monitor-agent-troubleshoot-windows-vm.md) and [Windows Arc-enabled server](azure-monitor-agent-troubleshoot-windows-arc.md) respectively.
+After the agent is installed successfully (that is, you see the agent service running but don't see data as expected), you can follow standard troubleshooting steps listed for a [Windows VM](./azure-monitor-agent-troubleshoot-windows-vm.md) and a [Windows Arc-enabled server](azure-monitor-agent-troubleshoot-windows-arc.md) respectively.
 
-## Frequently asked questions
+## FAQs
 
-This section provides answers to common questions.
+Get answers to common questions.
 
 ### Is Azure Arc required for Microsoft Entra joined machines?
 
-No. Microsoft Entra joined (or Microsoft Entra hybrid joined) machines running Windows 10 or 11 (client OS) **do not require Azure Arc** to be installed. Instead, you can use the Windows MSI installer for the Azure Monitor agent.
+No. Microsoft Entra joined (or Microsoft Entra hybrid joined) machines running Windows 11 or 10 (client OS) *do not require Azure Arc* to be installed. Instead, you can use the Windows MSI installer for the Azure Monitor Agent.
 
 ## Questions and feedback
 
-Take this [quick survey](https://forms.microsoft.com/r/CBhWuT1rmM) or share your feedback/questions regarding the client installer.
+Take this [quick survey](https://forms.microsoft.com/r/CBhWuT1rmM) or share your feedback or questions about the client installer.

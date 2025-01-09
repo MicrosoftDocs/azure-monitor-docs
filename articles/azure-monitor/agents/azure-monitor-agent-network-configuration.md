@@ -1,15 +1,15 @@
 ---
 title: Azure Monitor Agent Network Configuration
-description: Learn how to define network settings and enable network isolation for the Azure Monitor agent.
+description: Learn how to define network settings and enable network isolation for the Azure Monitor Agent.
 ms.topic: conceptual
 ms.date: 11/14/2024
 ms.custom: references_regions
 ms.reviewer: shseth
 
 ---
-# Azure Monitor agent network configuration
+# Azure Monitor Agent network configuration
 
-The Azure Monitor agent supports connection by using direct proxies, a Log Analytics gateway, and private links. This article explains how to define network settings and enable network isolation for the Azure Monitor agent.
+The Azure Monitor Agent supports connection by using direct proxies, a Log Analytics gateway, and private links. This article explains how to define network settings and enable network isolation for the Azure Monitor Agent.
 
 ## Virtual network service tags
 
@@ -50,17 +50,17 @@ Replace the suffix in the endpoints with the suffix in the following table for r
 >
 > - The Azure Monitor metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
 >
-> - When you use the Azure Monitor agent with Azure Monitor Private Link Scope, all of your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
+> - When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all of your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
 
 ## Proxy configuration
 
-The Azure Monitor agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](./gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure virtual machines, Azure virtual machine scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous and basic authentication by using a username and password are supported.
+The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](./gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure virtual machines, Azure virtual machine scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous and basic authentication by using a username and password are supported.
 
 > [!IMPORTANT]
 > Proxy configuration isn't supported for [Azure Monitor Metrics (public preview)](../essentials/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
 
 > [!NOTE]
-> Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you have proxy configuration, use the following ARM template as an example of how to declare the proxy setting inside the ARM template. Also, a user can set global environment variables that are picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
+> Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you have proxy configuration, use the following ARM template as an example of how to declare the proxy setting inside the ARM template. Also, a user can set global environment variables that are picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
 
 Use PowerShell commands in the following examples based on your environment and configuration.
 
@@ -165,10 +165,10 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 ```powershell
 {
   "properties": {
-    "displayName": "Configure Windows Arc-enabled machines to run the Azure Monitor agent",
+    "displayName": "Configure Windows Arc-enabled machines to run the Azure Monitor Agent",
     "policyType": "BuiltIn",
     "mode": "Indexed",
-    "description": "Automate the deployment of the Azure Monitor agent extension on your Windows Arc-enabled machines for collecting telemetry data from the guest OS. This policy installs the extension if the OS and region are supported and system-assigned managed identity is enabled, and skips install otherwise. Learn more at https://aka.ms/AMAOverview.",
+    "description": "Automate the deployment of the Azure Monitor Agent extension on your Windows Arc-enabled machines for collecting telemetry data from the guest OS. This policy installs the extension if the OS and region are supported and system-assigned managed identity is enabled, and skips install otherwise. Learn more at https://aka.ms/AMAOverview.",
     "metadata": {
       "version": "2.3.0",
       "category": "Monitoring"
