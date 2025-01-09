@@ -62,27 +62,27 @@ The Azure Monitor Agent extensions for Windows and Linux can communicate either 
 > [!NOTE]
 > Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you have proxy configuration, use the following ARM template as an example of how to declare the proxy setting inside the ARM template. Also, a user can set global environment variables that are picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
 
-Use PowerShell commands in the following examples based on your environment and configuration.
+Use Azure PowerShell commands in the following examples based on your environment and configuration.
 
 # [Windows VM](#tab/PowerShellWindows)
 
 **No proxy**
 
-```powershell
+```azurepowershell
 $settingsString = '{"proxy":{"mode":"none"}}';
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString
 ```
 
 **Proxy with no authentication**
 
-```powershell
+```azurepowershell
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "false"}}';
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString
 ```
 
 **Proxy with authentication**
 
-```powershell
+```azurepowershell
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "true"}}';
 $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[password]"}}';
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
@@ -92,21 +92,21 @@ Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMo
 
 **No proxy**
 
-```powershell
+```azurepowershell
 $settingsString = '{"proxy":{"mode":"none"}}';
 Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString
 ```
 
 **Proxy with no authentication**
 
-```powershell
+```azurepowershell
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "false"}}';
 Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
 ```
 
 **Proxy with authentication**
 
-```powershell
+```azurepowershell
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "true"}}';
 $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[password]"}}';
 Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
@@ -116,21 +116,21 @@ Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMoni
 
 **No proxy**
 
-```powershell
+```azurepowershell
 $settings = @{"proxy" = @{mode = "none"}}
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
 **Proxy with no authentication**
 
-```powershell
+```azurepowershell
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "false"}}
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings 
 ```
 
 **Proxy with authentication**
 
-```powershell
+```azurepowershell
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "true"}}
 $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[password]"}}
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
@@ -140,21 +140,21 @@ New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType Az
 
 **No proxy**
 
-```powershell
+```azurepowershell
 $settings = @{"proxy" = @{mode = "none"}}
 New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
 **Proxy with no authentication**
 
-```powershell
+```azurepowershell
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "false"}}
 New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings 
 ```
 
 **Proxy with authentication**
 
-```powershell
+```azurepowershell
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "true"}}
 $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[password]"}}
 New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
@@ -162,7 +162,7 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 
 # [ARM policy template example](#tab/ArmPolicy)
 
-```powershell
+```json
 {
   "properties": {
     "displayName": "Configure Windows Arc-enabled machines to run the Azure Monitor Agent",
@@ -348,4 +348,4 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 
 ## Related content
 
-- [Add an endpoint to a Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-ampls-to-a-private-endpoint)
+- Learn how to [add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-ampls-to-a-private-endpoint).

@@ -11,14 +11,14 @@ ms.reviewer: jeffwo
 
 Use the client installer to install the Azure Monitor Agent on Windows client devices and send monitoring data to your Log Analytics workspace.
 
-The [Azure Monitor Agent extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
+Both the [Azure Monitor Agent extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
 
 This article explains how to install the Azure Monitor Agent on Windows client devices by using the client installer, and how to associate DCRs to your Windows client devices.
 
 > [!NOTE]
 > This article provides specific guidance for installing the Azure Monitor Agent on Windows client devices, subject to [limitations](#limitations). For standard installation and management guidance for the agent, see the [agent extension management guidance](./azure-monitor-agent-manage.md).
 
-## Comparison with virtual machine extension
+## Comparison with the virtual machine extension
 
 Here is a comparison between using the client installer and using the virtual machine (VM) extension for the Azure Monitor Agent:
 
@@ -118,7 +118,7 @@ Then, proceed with the following instructions to create and associate them to a 
 
 ### Permissions required
 
-Because a monitored object is a tenant-level resource, the scope of the permission is great than the scope of a subscription. Therefore, an Azure tenant admin might be required to perform this step. Complete the [steps to elevate a Microsoft Entra tenant admin as Azure Tenant Admin](/azure/role-based-access-control/elevate-access-global-admin). It gives the Microsoft Entra admin Owner permissions at the root scope. This scope of permissions is required for all methods described in the following section.
+Because a monitored object is a tenant-level resource, the scope of the permission is great than required for a subscription. An Azure tenant admin might be required to perform this step. Complete the [steps to elevate a Microsoft Entra tenant admin as Azure Tenant Admin](/azure/role-based-access-control/elevate-access-global-admin). It gives the Microsoft Entra admin Owner permissions at the root scope. This scope of permissions is required for all methods described in the following section.
 
 ### Use REST APIs
 

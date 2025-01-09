@@ -65,7 +65,7 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
 
 * Windows
 
-    ```powershell
+    ```azurepowershell
     ## User-assigned managed identity
     Set-AzVMExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true -SettingString '{"authentication":{"managedIdentity":{"identifier-name":"mi_res_id","identifier-value":"/subscriptions/<my-subscription-id>/resourceGroups/<my-resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<my-user-assigned-identity>"}}}'
     
@@ -75,7 +75,7 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
 
 * Linux
 
-    ```powershell
+    ```azurepowershell
     ## User-assigned managed identity
     Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true -SettingString '{"authentication":{"managedIdentity":{"identifier-name":"mi_res_id","identifier-value":/subscriptions/<my-subscription-id>/resourceGroups/<my-resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<my-user-assigned-identity>"}}}'
     
@@ -93,13 +93,13 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
 
 * Windows
 
-    ```powershell
+    ```azurepowershell
     New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -EnableAutomaticUpgrade
     ```
 
 * Linux
 
-    ```powershell
+    ```azurepowershell
     New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -EnableAutomaticUpgrade
     ```
 
@@ -172,7 +172,7 @@ Install the templates by using [any deployment method for Resource Manager templ
 
 * PowerShell
 
-    ```powershell
+    ```azurepowershell
     New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>" -TemplateParameterFile "<parameter-filename.json>"
     ```
 
@@ -198,13 +198,13 @@ Use the following PowerShell commands to uninstall the Azure Monitor Agent on an
 
 * Windows
 
-    ```powershell
+    ```azurepowershell
     Remove-AzVMExtension -Name AzureMonitorWindowsAgent -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> 
     ```
 
 * Linux
 
-    ```powershell
+    ```azurepowershell
     Remove-AzVMExtension -Name AzureMonitorLinuxAgent -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> 
     ```
 
@@ -218,13 +218,13 @@ Use the following PowerShell commands to uninstall the Azure Monitor Agent on an
 
 * Windows
 
-    ```powershell
+    ```azurepowershell
     Remove-AzConnectedMachineExtension -MachineName <arc-server-name> -ResourceGroupName <resource-group-name> -Name AzureMonitorWindowsAgent
     ```
 
 * Linux
 
-    ```powershell
+    ```azurepowershell
     Remove-AzConnectedMachineExtension -MachineName <arc-server-name> -ResourceGroupName <resource-group-name> -Name AzureMonitorLinuxAgent
     ```
 
@@ -299,13 +299,13 @@ We recommend that you enable automatic update of the agent by enabling [automati
 
 * Windows
 
-    ```powershell
+    ```azurepowershell
     Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Publisher Microsoft.Azure.Monitor -ExtensionType AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Location <location> -EnableAutomaticUpgrade $true
     ```
 
 * Linux
 
-    ```powershell
+    ```azurepowershell
     Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Publisher Microsoft.Azure.Monitor -ExtensionType AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Location <location> -EnableAutomaticUpgrade $true
     ```
 
@@ -315,14 +315,14 @@ To do a one-time upgrade of the agent, use the following PowerShell commands.
 
 * Windows
 
-    ```powershell
+    ```azurepowershell
     $target = @{"Microsoft.Azure.Monitor.AzureMonitorWindowsAgent" = @{"targetVersion"=<target-version-number>}}
     Update-AzConnectedExtension -ResourceGroupName $env.ResourceGroupName -MachineName <arc-server-name> -ExtensionTarget $target
     ```
 
 * Linux
 
-    ```powershell
+    ```azurepowershell
     $target = @{"Microsoft.Azure.Monitor.AzureMonitorLinuxAgent" = @{"targetVersion"=<target-version-number>}}
     Update-AzConnectedExtension -ResourceGroupName $env.ResourceGroupName -MachineName <arc-server-name> -ExtensionTarget $target
     ```
@@ -331,13 +331,13 @@ We recommend that you enable automatic update of the agent by enabling the [auto
 
 * Windows
 
-    ```powershell
+    ```azurepowershell
     Update-AzConnectedMachineExtension -ResourceGroup <resource-group-name> -MachineName <arc-server-name> -Name AzureMonitorWindowsAgent -EnableAutomaticUpgrade
     ```
 
 * Linux
 
-    ```powershell
+    ```azurepowershell
     Update-AzConnectedMachineExtension -ResourceGroup <resource-group-name> -MachineName <arc-server-name> -Name AzureMonitorLinuxAgent -EnableAutomaticUpgrade
     ```
 
@@ -423,7 +423,7 @@ The AgentSettings DCR currently supports setting the following parameters:
 
 Currently not supported.
 
-#### Azure PowerShell](#tab/azure-powershell)
+#### [Azure PowerShell](#tab/azure-powershell)
 
 Currently not supported.
 
