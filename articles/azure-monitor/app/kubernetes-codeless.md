@@ -147,7 +147,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     Example:
     
     ```yml
-    instrumentation.opentelemetry.io/inject-java="cr1"
+    instrumentation.opentelemetry.io/inject-java:"cr1"
     ```
 > [!TIP]
 > [Resart deployments](#restart-deployment) for settings to take effect.
