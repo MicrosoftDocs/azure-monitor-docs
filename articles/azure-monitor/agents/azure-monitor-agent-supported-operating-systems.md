@@ -2,9 +2,9 @@
 title: Azure Monitor Agent supported operating systems
 description: Identifies the operating systems supported by Azure Monitor Agent.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
-ms.date: 11/14/2024
+author: rboucher
+ms.author: robb
+ms.date: 01/08/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -125,6 +125,18 @@ Currently supported hardening standards:
 | Red Hat Enterprise Linux Server 7 | ✓ |
 | Red Hat Enterprise Linux Server 8 | ✓ |
 | Red Hat Enterprise Linux Server 9 | ✓ |
+
+> [!IMPORTANT]  Configuring your Linux Machine system-wide crypto policy as FUTURE mode is currently not supported.
+The FUTURE policy disables some algorithms that use less than 3072 bits keys, such as SHA-1, RSA, and Diffie-Hellman.
+
+To identify the current policy setting mode, run the following update-crypto-policies command:
+
+```cmd
+sudo update-crypto-policies --show
+```
+
+
+NOTE: Be sure that the show parameter in the command is a dash-dash, not the long dash
 
 ## On-premises and other clouds
 Azure Monitor agent is supported on machines in other clouds and on-premises with [Azure Arc-enabled servers](/azure/azure-arc/servers/overview). Azure Monitor agent authenticates to your workspace with managed identity, which is created when you install the [Connected Machine agent](/azure/azure-arc/servers/agent-overview), which is part of Azure Arc. The legacy Log Analytics agent authenticated using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution. 
