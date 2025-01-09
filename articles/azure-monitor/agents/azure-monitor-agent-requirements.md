@@ -56,6 +56,12 @@ You should use `mi_res_id`, `object_id`, or `client_id` as the `identifier-name`
 ## Disk space
  Required disk space can vary significantly depending on how an agent is configured or if the agent is unable to communicate with the destinations and must cache data. By default the agent requires 10 GB of disk space to run. The following table provides guidance for capacity planning:
 
+> [!NOTE]
+> Azure Monitor Agent installation requires 500MB in each of the following paths:
+> * /var 
+> * /etc 
+> * /opt
+
 | Purpose | Environment | Path | Suggested Space |
 |:---|:---|:---|:---|
 | Download and install packages | Linux | /var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{Version}/ | 500 MB |
