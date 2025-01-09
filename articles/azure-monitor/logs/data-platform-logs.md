@@ -47,7 +47,7 @@ To address the data storage and consumption needs of various personas who use a 
 - [Define table plans](#table-plans) based on your data consumption and cost management needs.
 - [Manage low-cost long-term retention and interactive retention](../logs/data-retention-configure.md) for each table.
 - [Manage access](../logs/manage-access.md) to the workspace and to specific tables.
-- [Use summary rules to aggregate critical data](../logs/summary-rules.md) in summary tables. This lets you optimize data for ease of use and actionable insights, and store raw data in a table with a low-cost table plan for however long you need it.
+- [Use summary rules to aggregate data](../logs/summary-rules.md) to summarized tables. This lets you optimize data collected over time for actionable insights and use in ongoing analysis, dashboards, and business reports.
 - Create ready-to-run [saved queries](../logs/save-query.md), [visualizations](../best-practices-analysis.md#built-in-visualization-tools), and [alerts](../alerts/alerts-create-log-alert-rule.md) tailored to specific personas.  
 
 :::image type="content" source="media/data-platform-logs/log-analytics-workspace-for-all-log-data.png" lightbox="media/data-platform-logs/log-analytics-workspace-for-all-log-data.png" alt-text="A screenshot of a Log Analytics workspace in the Azure portal.":::
