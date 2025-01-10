@@ -16,7 +16,7 @@ This article provides requirements and prerequisites for using the Azure Monitor
 
 ## Virtual machine extension details
 
-The Azure Monitor Agent is implemented as an [Azure VM extension](/azure/virtual-machines/extensions/overview). Extension details are listed in the following table. You can install the extension by using any of the methods you use to install virtual machine extensions. For version information, see [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md).
+The Azure Monitor Agent is implemented as an [Azure virtual machine (VM) extension](/azure/virtual-machines/extensions/overview). Extension details are listed in the following table. You can install the extension by using any of the methods you use to install VM extensions. For version information, see [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md).
 
 | Property | Windows | Linux |
 |:---|:---|:---|
@@ -61,18 +61,18 @@ Required disk space can vary significantly depending on how an agent is configur
 
 | Purpose | Environment | Path | Suggested directory location |
 |:---|:---|:---|:---|
-| Download and install packages | Linux | /var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{Version}/ | 500 MB |
-| Download and install packages | Windows | C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent | 500 MB |
-| Extension logs | Linux (Azure VM) | /var/log/azure/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent/ | 100 MB |
-| Extension logs | Linux (Azure Arc) | /var/lib/GuestConfig/extension_logs/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{version}/ | 100 MB |
-| Extension logs | Windows (Azure VM) | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent | 100 MB |
-| Extension logs | Windows (Azure Arc) | C:\ProgramData\GuestConfig\extension_logs\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent | 100 MB |
-| Agent cache | Linux | /etc/opt/microsoft/azuremonitoragent, /var/opt/microsoft/azuremonitoragent | 500 MB |
-| Agent cache | Windows (Azure VM) | C:\WindowsAzure\Resources\AMADataStore.{DataStoreName} | 10.5 GB |
-| Agent cache | Windows (Azure Arc) | C:\Resources\Directory\AMADataStore.{DataStoreName} | 10.5 GB |
-| Event cache | Linux | /var/opt/microsoft/azuremonitoragent/events | 10 GB |
-| Event cache | Linux | /var/lib/rsyslog | 1 GB |
+| Download and install packages | Linux | */var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{Version}/* | 500 MB |
+| Download and install packages | Windows | *C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 500 MB |
+| Extension logs | Linux (Azure VM) | */var/log/azure/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent/* | 100 MB |
+| Extension logs | Linux (Azure Arc) | */var/lib/GuestConfig/extension_logs/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{version}/* | 100 MB |
+| Extension logs | Windows (Azure VM) | *C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 100 MB |
+| Extension logs | Windows (Azure Arc) | *C:\ProgramData\GuestConfig\extension_logs\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 100 MB |
+| Agent cache | Linux | */etc/opt/microsoft/azuremonitoragent*, */var/opt/microsoft/azuremonitoragent* | 500 MB |
+| Agent cache | Windows (Azure VM) | *C:\WindowsAzure\Resources\AMADataStore.{DataStoreName}* | 10.5 GB |
+| Agent cache | Windows (Azure Arc) | *C:\Resources\Directory\AMADataStore.{DataStoreName}* | 10.5 GB |
+| Event cache | Linux | */var/opt/microsoft/azuremonitoragent/events* | 10 GB |
+| Event cache | Linux | */var/lib/rsyslog* | 1 GB |
 
 ## Related content
 
-[Create a data collection rule](azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.
+- [Create a data collection rule](azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.

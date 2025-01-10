@@ -1,6 +1,6 @@
 ---
 title: Performance in Gateway Forwarding 
-description: Describes performance data for the Azure Monitor Agent running in a gateway event forwarding scenario.
+description: Learn about performance benchmark data for the Azure Monitor Agent running in a gateway event forwarding scenario.
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
@@ -17,7 +17,7 @@ The Azure Monitor Agent can handle many thousands of events per second (EPS) in 
 This article describes the Microsoft internal benchmark that's used for testing the agent throughput of 10,0000 (10K) syslog events in the gateway forwarder scenario. The benchmark results should provide a guide to size the resources that you need in your environment.
 
 > [!NOTE]
-> The results in this article are informational about the performance of Azure Monitor Agent in the forwarding scenario only. They do not constitute any service agreement on the part of Microsoft.
+> The results in this article are only informational related to the performance of Azure Monitor Agent in a gateway forwarding scenario. The results and the information in the article don't constitute any service agreement on the part of Microsoft.
 
 ## Best practices for agent as a forwarder
 
@@ -31,15 +31,15 @@ This article describes the Microsoft internal benchmark that's used for testing 
 The benchmark is run in a controlled environment to get repeatable, accurate, and statistically significant results. The resources consumed by the agent are measured under a load of 10,000 simulated syslog events per second. The simulated load is run on the same physical hardware that the agent being tested is on. Test trials run for seven days. For each trial, performance metrics are sampled every second to collect CPU, memory, and network maximum and average usage. This approach provides the right information to help you estimate the resources needed for your environment.
 
 > [!NOTE]
-> Performance testing results do not measure the end-to-end throughput ingested by a Log Analytics workspace (or other telemetry sinks). End-to-end variability might occur due to network and back-end pipeline performance.
+> Performance testing results don't measure the end-to-end throughput ingested by a Log Analytics workspace (or other telemetry sinks). End-to-end variability might occur due to network and back-end pipeline performance.
 
-The benchmarks are run on an Azure VM Standard_F8s_v2 system using Azure Monitor Agent Linux version 1.25.2 and 10 GB of disk space for the event cache.
+The benchmarks are run on an Azure virtual machine Standard_F8s_v2 system using Azure Monitor Agent Linux version 1.25.2 and 10 GB of disk space for the event cache.
 
-- vCPUs: 8 with Hyper-Threading (800% CPU is possible)
+- vCPUs: Eight with Hyper-Threading (800% CPU is possible)
 - Memory: 16 GiB
 - Temp storage: 64 GiB
 - Max disk IOPS: 6,400
-- Network: 12,500 Mbps max on all 4 physical NICs
+- Network: 12,500 Mbps max on all four physical NICs
 
 ## Results
 
@@ -57,8 +57,8 @@ Get answers to common questions.
 
 The amount of data sent per agent depends on:
 
-- The solutions you've enabled
-- The number of logs and performance counters being collected
+- The solutions you enabled
+- The number of logs and performance counters that are collected
 - The volume of data in the logs
 
 For more information, see [Analyze usage in a Log Analytics workspace](../logs/analyze-usage.md).

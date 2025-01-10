@@ -21,7 +21,7 @@ For a short introduction to the Azure Monitor Agent, including a demo of how to 
 (https://www.youtube.com/watch?v=f8bIrFU8tCs)
 
 > [!NOTE]
-> The Azure Monitor Agent replaces the [legacy Log Analytics agent](./log-analytics-agent.md) for Azure Monitor. The Log Analytics agent has been *deprecated* and is not supported as of *August 31, 2024*. If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate now to the Azure Monitor Agent](./azure-monitor-agent-migration.md).
+> The Azure Monitor Agent replaces the [legacy Log Analytics agent](./log-analytics-agent.md) for Azure Monitor. The Log Analytics agent is *deprecated* and isn't supported as of *August 31, 2024*. If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate now to the Azure Monitor Agent](./azure-monitor-agent-migration.md).
 
 ## Installation
 
@@ -37,7 +37,7 @@ The Azure Monitor Agent collects all data by using a [data collection rule (DCR)
 - How to transform the data, including filtering, aggregating, and shaping
 - The destination for collected data
 
-A single DCR can contain multiple data sources of different types. Depending on your requirements, you can choose whether to include several data sources in a few DCRs or to create separate DCRs for each data source. This allows you to centrally define the logic for different data collection scenarios and to apply them to different sets of machines. For recommendations on how to organize your DCRs, see [Best practices for data collection rule creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md).
+A single DCR can contain multiple data sources of different types. Depending on your requirements, you can choose whether to include several data sources in a few DCRs or to create separate DCRs for each data source. This approach allows you to centrally define the logic for different data collection scenarios and to apply them to different sets of machines. For recommendations on how to organize your DCRs, see [Best practices for data collection rule creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md).
 
 The DCR is applied to a particular agent by creating a [data collection rule association (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra) between the DCR and the agent. One DCR can be associated with multiple agents, and each agent can be associated with multiple DCRs. When an agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. The agent periodically checks back with Azure Monitor to determine if there are any changes to existing DCRs or associations with new ones.
 
@@ -49,17 +49,17 @@ There's no cost to use the Azure Monitor Agent, but you might incur charges for 
 
 ## Supported regions
 
-The Azure Monitor Agent is available for general availability features in all public Azure regions, Azure Government, and Azure operated by 21Vianet. It's not yet supported in air-gapped clouds. For more information, see [Product availability by region](https://azure.microsoft.com/global-infrastructure/services/?products=monitor&rar=true&regions=all).
+The Azure Monitor Agent is available for general availability features in all global Azure regions, Azure Government, and Azure operated by 21Vianet. It's not yet supported in air-gapped clouds. For more information, see [Product availability by region](https://azure.microsoft.com/global-infrastructure/services/?products=monitor&rar=true&regions=all).
 
 ## Supported services and features
 
-The following tables identify the different environments and features that are currently supported by the Azure Monitor Agent and those supported by the legacy agent. This information can help you determine whether the Azure Monitor Agent supports your current requirements. For guidance about migrating specific features, see [Migrate to the Azure Monitor Agent from the Log Analytics agent](../agents/azure-monitor-agent-migration.md).
+The following tables identify the different environments and features that are currently supported by the Azure Monitor Agent and the environments and features that are supported by the legacy agent. This information can help you determine whether the Azure Monitor Agent supports your current requirements. For guidance about migrating specific features, see [Migrate to the Azure Monitor Agent from the Log Analytics agent](../agents/azure-monitor-agent-migration.md).
 
 ### Windows agents
 
 | Category | Area | Azure Monitor Agent | Legacy agent |
 |:---|:---|:---|:---|
-| **Environments supported** |  |  |  |
+| **Support environments** |  |  |  |
 |  | Azure | ✓ | ✓ |
 |  | Other cloud (Azure Arc) | ✓ | ✓ |
 |  | On-premises (Azure Arc) | ✓ | ✓ |
@@ -68,11 +68,11 @@ The following tables identify the different environments and features that are c
 |  | Event Logs | ✓ | ✓ |
 |  | Performance | ✓ | ✓ |
 |  | File-based logs | ✓  | ✓ |
-|  | IIS logs | ✓  | ✓ |
+|  | Internet Information Services (IIS) logs | ✓  | ✓ |
 | **Data sent to** |  |  |  |
 |  | Azure Monitor logs | ✓ | ✓ |
-| **Services and features supported** |  |  |  |
-|  | Microsoft Sentinel  | ✓ ([View scope](./azure-monitor-agent-migration.md#understand-additional-dependencies-and-services)) | ✓ |
+| **Supported services and features** |  |  |  |
+|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#understand-additional-dependencies-and-services)) | ✓ |
 |  | VM insights | ✓ | ✓ |
 |  | Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) |  |  |
 |  | Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |
@@ -85,7 +85,7 @@ The following tables identify the different environments and features that are c
 
 | Category | Area | Azure Monitor Agent | Legacy agent |
 |:---|:---|:---|:---|
-| **Environments supported** |  |  |  |
+| **Supported environments** |  |  |  |
 |  | Azure | ✓ | ✓ |
 |  | Other cloud (Azure Arc) | ✓ | ✓ |
 |  | On-premises (Azure Arc) | ✓ | ✓ |
@@ -95,8 +95,8 @@ The following tables identify the different environments and features that are c
 |  | File-based logs | ✓ |  |
 | **Data sent to** |  |  |  |
 |  | Azure Monitor logs | ✓ | ✓ |
-| **Services and features supported** |  |  |  |
-|  | Microsoft Sentinel  | ✓ ([View scope](./azure-monitor-agent-migration.md#understand-additional-dependencies-and-services)) | ✓ |
+| **Supported services and features** |  |  |  |
+|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#understand-additional-dependencies-and-services)) | ✓ |
 |  | VM insights | ✓ | ✓ |
 |  | Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) | | |
 |  | Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |

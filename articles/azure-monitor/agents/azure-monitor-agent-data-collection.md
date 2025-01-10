@@ -1,6 +1,6 @@
 ---
-title: Collect Data by Using the Azure Monitor Agent
-description: Describes how to collect data from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using the Azure Monitor Agent.
+title: Collect Data via the Azure Monitor Agent
+description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
 ms.topic: conceptual
 ms.date: 11/14/2024
 author: guywild
@@ -19,7 +19,7 @@ If you're new to Azure Monitor or have basic data collection requirements, you m
 > To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 
 > [!WARNING]
-> The following cases might collect duplicate data, which might result in additional billing charges.
+> The following cases might collect duplicate data, which might result in added billing charges.
 >
 > - Creating multiple DCRs with the same data source and associating them to the same agent. Ensure that you're filtering data in the DCRs so that each collects unique data.
 > - Creating a DCR that collects security logs and enabling Microsoft Sentinel for the same agents. In this case, you can collect the same events in the **Event** table and in the **SecurityEvent** table.
