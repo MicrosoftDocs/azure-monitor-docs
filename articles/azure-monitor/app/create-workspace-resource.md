@@ -17,8 +17,6 @@ With workspace-based resources, [Application Insights](app-insights-overview.md#
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
-## New capabilities
-
 Workspace-based Application Insights integrates with Azure Monitor and Log Analytics to enhance capabilities:
 
 * [Customer-managed key](../logs/customer-managed-keys.md) encrypts your data at rest with keys only you access.
@@ -427,7 +425,7 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 :::zone pivot="manual"
 
-...
+Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Configure the default interactive retention period of Analytics tables](./../logs/data-retention-configure.md#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 :::zone-end
 
@@ -536,7 +534,7 @@ Set-ApplicationInsightsRetention `
 
 :::zone pivot="manual"
 
-...
+For workspace-based Application Insights resource, the daily caps must be set independently for both Application Insights and the underlying Log Analytics workspace. For more information, see [Set daily cap on Log Analytics workspace](./../logs/daily-cap.md#application-insights).
 
 :::zone-end
 
@@ -567,11 +565,11 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 
 :::zone-end
 
-## Set the pricing plan
+### Set the pricing plan
 
 :::zone pivot="manual"
 
-...
+The pricing plan for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).
 
 :::zone-end
 
@@ -622,7 +620,7 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 :::zone-end
 
-## Add a metric alert
+### Add a metric alert
 
 :::zone pivot="manual"
 
@@ -636,7 +634,7 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 
 :::zone-end
 
-## Add an availability test
+### Add an availability test
 
 :::zone pivot="manual"
 
