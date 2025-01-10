@@ -231,15 +231,11 @@ TelemetryConfiguration.Active.SetAzureTokenCredential(credential);
 
 The `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable lets Application Insights authenticate to Microsoft Entra ID and send telemetry.
 
-* For system-assigned identity:
-
-| App setting                               | Value               |
+| App setting for system-assigned identity  | Value               |
 |-------------------------------------------|---------------------|
 | APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD` |
 
-* For user-assigned identity:
-
-| App setting                               | Value                                                                  |
+| App setting for user-assigned identity    | Value                                                                  |
 |-------------------------------------------|------------------------------------------------------------------------|
 | APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
 
