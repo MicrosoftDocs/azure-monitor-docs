@@ -62,8 +62,8 @@ The following Software Development Kits (SDKs) and features are unsupported for 
 ### [ASP.NET Core](#tab/aspnetcore)
 
 > [!NOTE]
-> Support for Microsoft Entra ID in the Application Insights .NET SDK is included starting with [version 2.18-Beta3](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.18.0-beta3).
-> We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
+> * Support for Microsoft Entra ID in the Application Insights .NET SDK is included starting with [version 2.18-Beta3](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.18.0-beta3).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
 
 * We recommend `DefaultAzureCredential` for local development.
 * Authenticate on Visual Studio with the expected Azure user account. For more information, see [Authenticate via Visual Studio](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#authenticate-via-visual-studio).
@@ -135,8 +135,8 @@ services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
 ### [.NET](#tab/net)
 
 > [!NOTE]
-> Support for Microsoft Entra ID in the Application Insights .NET SDK is included starting with [version 2.18-Beta3](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.18.0-beta3).
-> We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
+> * Support for Microsoft Entra ID in the Application Insights .NET SDK is included starting with [version 2.18-Beta3](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.18.0-beta3).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
 
 * We recommend `DefaultAzureCredential` for local development.
 * Authenticate on Visual Studio with the expected Azure user account. For more information, see [Authenticate via Visual Studio](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#authenticate-via-visual-studio).
@@ -217,8 +217,8 @@ TelemetryConfiguration.Active.SetAzureTokenCredential(credential);
 ### [Java](#tab/java)
 
 > [!NOTE]
-> Support for Microsoft Entra ID in the Application Insights Java agent is included starting with [Java 3.2.0-BETA](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0-BETA).
-> We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
+> * Support for Microsoft Entra ID in the Application Insights Java agent is included starting with [Java 3.2.0-BETA](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0-BETA).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
 
 1. [Configure your application with the Java agent.](opentelemetry-enable.md?tabs=java#enable-opentelemetry-with-application-insights)
 
@@ -304,8 +304,8 @@ Microsoft Entra ID authentication isn't available for GraalVM Native application
 ### [Node.js](#tab/nodejs)
 
 > [!NOTE]
-> Support for Microsoft Entra ID in the Application Insights Node.JS is included starting with [version 2.1.0-beta.1](https://www.npmjs.com/package/applicationinsights/v/2.1.0-beta.1).
-> We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credential-classes).
+> * Support for Microsoft Entra ID in the Application Insights Node.JS is included starting with [version 2.1.0-beta.1](https://www.npmjs.com/package/applicationinsights/v/2.1.0-beta.1).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credential-classes).
 
 * We recommend `DefaultAzureCredential` for local development.
 * We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
@@ -375,8 +375,8 @@ appInsights.defaultClient.config.aadTokenCredential = credential;
 ### [Python](#tab/python)
 
 > [!NOTE]
-> We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
-> To configure using OpenCensus (deprecated), see [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
+> * To configure using OpenCensus (deprecated), see [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
 
 - We recommend `DefaultAzureCredential` for local development.
 - We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
