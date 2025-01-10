@@ -42,7 +42,7 @@ For methods other than using the Azure portal, you must have the following role 
         "authentication": {
         "managedIdentity": {
             "identifier-name": "mi_res_id" or "object_id" or "client_id",
-            "identifier-value": "<resource-id-of-uai>" or "<guid-object-or-client-id>"
+            "identifier-value": "resource-id-of-uai" or "guid-object-or-client-id"
         }
         }
     }
