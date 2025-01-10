@@ -39,8 +39,8 @@ For methods other than using the Azure portal, you must have the following role 
     {
         "authentication": {
         "managedIdentity": {
-            "identifier-name": "mi_res_id" or "object_id" or "client_id",
-            "identifier-value": "resource-id-of-uai" or "guid-object-or-client-id"
+            "identifier-name": "//mi_res_id OR object_id OR client_id",
+            "identifier-value": "//<resource-id-of-uai> OR <guid-object-or-client-id>"
         }
         }
     }
@@ -57,9 +57,9 @@ For methods other than using the Azure portal, you must have the following role 
 
 > [!NOTE]
 > Azure Monitor Agent installation requires 500 MB in each of the following paths:
-> * /var 
-> * /etc 
-> * /opt
+> - */var* 
+> - */etc* 
+> - */opt*
 
 | Purpose | Environment | Path | Suggested space |
 |:---|:---|:---|:---|
