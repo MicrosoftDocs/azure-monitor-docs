@@ -10,20 +10,18 @@ zone_pivot_groups: manual-creation-and-at-scale-automation
 
 # Create and manage Application Insights resources
 
-Workspace-based [Application Insights](app-insights-overview.md#application-insights-overview) resources integrate [Application Insights](app-insights-overview.md#application-insights-overview) and [Log Analytics](../logs/log-analytics-overview.md#overview-of-log-analytics-in-azure-monitor).
+Workspace-based [Application Insights](app-insights-overview.md#application-insights-overview) integrates with [Log Analytics](../logs/log-analytics-overview.md#overview-of-log-analytics-in-azure-monitor) and sends telemetry to a common Log Analytics workspace. This setup provides full access to Log Analytics features, consolidates logs in one location, and allows for unified [Azure role-based access control](../roles-permissions-security.md) which eliminates the need for cross-app/workspace queries.
 
-With workspace-based resources, [Application Insights](app-insights-overview.md#application-insights-overview) sends telemetry to a common [Log Analytics](../logs/log-analytics-overview.md#overview-of-log-analytics-in-azure-monitor) workspace, providing full access to all the features of [Log Analytics](../logs/log-analytics-overview.md#overview-of-log-analytics-in-azure-monitor) while keeping your application, infrastructure, and platform logs in a single consolidated location. This integration allows for common [Azure role-based access control](../roles-permissions-security.md) across your resources and eliminates the need for cross-app/workspace queries.
+Enhanced capabilities include:
+
+* [Customer-managed keys](../logs/customer-managed-keys.md) encrypt your data at rest with keys only accessible to you.
+* [Azure Private Link](../logs/private-link-security.md) securely connects Azure PaaS services to your virtual network using private endpoints.
+* [Bring your own storage (BYOS)](./profiler-bring-your-own-storage.md) lets you manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
+* [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
+* Log Analytics streaming processes data more quickly.
 
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
-
-Workspace-based Application Insights integrates with Azure Monitor and Log Analytics to enhance capabilities:
-
-* [Customer-managed key](../logs/customer-managed-keys.md) encrypts your data at rest with keys only you access.
-* [Azure Private Link](../logs/private-link-security.md) securely connects Azure PaaS services to your virtual network using private endpoints.
-* [Bring your own storage (BYOS) for .NET Profiler and Snapshot Debugger](./profiler-bring-your-own-storage.md) lets you manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
-* [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
-* Log Analytics streaming processes data more quickly.
 
 :::zone pivot="auto"
 
@@ -31,13 +29,13 @@ Workspace-based Application Insights integrates with Azure Monitor and Log Analy
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-This article shows you how to automate creating and updating [Application Insights](./app-insights-overview.md) resources by using Azure Resource Manager. Along with the basic Application Insights resource, you can create [availability web tests](./availability-overview.md), set up [alerts](../alerts/alerts-log.md), set the [pricing scheme](../logs/cost-logs.md#application-insights-billing), and create other Azure resources.
+This article shows you how to automate creating and updating [Application Insights](./app-insights-overview.md) resources. Along with the basic Application Insights resource, you can create [availability web tests](./availability-overview.md), set up [alerts](../alerts/alerts-log.md), set the [pricing scheme](../logs/cost-logs.md#application-insights-billing), and create other Azure resources.
 
 ### ARM templates
 
-The key to creating these resources is JSON templates for [Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
+The key to creating these resources is Bicep or JSON templates for [Azure Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
 
-* Download the JSON definitions of existing resources.
+* Download the Bicep pr JSON definitions of existing resources.
 * Parameterize certain values, such as names.
 * Run the template whenever you want to create a new resource.
 
@@ -340,27 +338,40 @@ After creating a workspace-based Application Insights resource, you configure mo
 
 ### Get the connection string
 
+The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+
 :::zone pivot="manual"
 
-The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+To get the connection string of your Application Insights resource:
+
+1. Open your Application Insights resource in the Azure portal.
+1. On the Overview pane, look for the connection string under **Essentials**.
+1. If you hover over the connection string, an icon will apear which allows you to copy it to your clipboard.
 
 :::zone-end
 
 :::zone pivot="auto"
 
-After you create an application resource, you want the instrumentation key:
+### [Azure CLI](#tab/cli)
 
-1. Sign in to Azure by using `$Connect-AzAccount`.
-1. Set your context to a subscription with `Set-AzContext "<subscription ID>"`.
-1. Then use:
-   1. `$resource = Get-AzResource -Name "<resource name>" -ResourceType "Microsoft.Insights/components"`
-   1. `$details = Get-AzResource -ResourceId $resource.ResourceId`
-   1. `$details.Properties.InstrumentationKey`
+Run the following code in your terminal to get the connection string:
+
+```azurecli
+az monitor app-insights component show --app <your-app-name> --resource-group <your-resource-group> --query connectionString --output tsv
+```
+
+### [Azure PowerShell](#tab/powershell)
+
+Run the following code in your terminal to get the connection string:
+
+```powershell
+Get-AzApplicationInsights -ResourceGroupName <your-resource-group> -Name <your-app-name> | Select-Object -ExpandProperty ConnectionString`
+```
 
 To see a list of many other properties of your Application Insights resource, use:
 
-```PS
-Get-AzApplicationInsights -ResourceGroupName Fabrikam -Name FabrikamProd | Format-List
+```powershell
+Get-AzApplicationInsights -ResourceGroupName <your-resource-group> -Name <your-app-name> | Format-List
 ```
 
 More properties are available via the cmdlets:
@@ -372,7 +383,11 @@ More properties are available via the cmdlets:
 
 See the [detailed documentation](/powershell/module/az.applicationinsights) for the parameters for these cmdlets.  
 
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+### [ARM templates](#tab/arm)
+
+Not applicable to ARM templates.
+
+---
 
 :::zone-end
 
@@ -407,7 +422,61 @@ In the Application Insights resource pane, select **Properties** > **Change Work
 
 :::zone pivot="auto"
 
-...
+### [Azure CLI](#tab/cli)
+
+Run the following code in your terminal to change the Log Analytics workspace:
+
+```azurecli
+az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --workspace <new-workspace-resource-id>
+```
+
+### [Azure PowerShell](#tab/powershell)
+
+Run the following code in your terminal to change the Log Analytics workspace:
+
+```powershell
+$resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
+$resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
+Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
+```
+
+### [ARM templates](#tab/arm)
+
+#### Option 1: Bicep
+
+```bicep
+resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
+  name: '<your-app-name>'
+  location: '<your-location>'
+  properties: {
+    Application_Type: 'web'
+    WorkspaceResourceId: '<new-workspace-resource-id>'
+  }
+}
+```
+
+#### Option 2: JSON
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "name": "<your-app-name>",
+      "location": "<your-location>",
+      "properties": {
+        "Application_Type": "web",
+        "WorkspaceResourceId": "<new-workspace-resource-id>"
+      }
+    }
+  ]
+}
+```
+
+---
 
 :::zone-end
 
@@ -430,7 +499,7 @@ Data retention for workspace-based Application Insights resources can be set in 
 :::zone-end
 
 :::zone pivot="auto"
-
+<!--
 You can use the following three methods to programmatically set the data retention on an Application Insights resource.
 
 #### Set data retention by using PowerShell commands
@@ -527,6 +596,59 @@ Set-ApplicationInsightsRetention `
         [-Name] <String> `
         [-RetentionInDays <Int>]
 ```
+-->
+### [Azure CLI](#tab/cli)
+
+```azurecli
+az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --set retentionInDays=<retention-period-in-days>
+```
+
+
+### [Azure PowerShell](#tab/powershell)
+
+```powershell
+$Resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
+$Resource.Properties.RetentionInDays = <retention-period-in-days>
+Set-AzResource -ResourceId $Resource.ResourceId -Properties $Resource.Properties -Force
+```
+
+### [ARM templates](#tab/arm)
+
+#### Option 1: Bicep
+
+```bicep
+resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
+  name: '<your-app-name>'
+  location: '<your-location>'
+  properties: {
+    Application_Type: 'web'
+    RetentionInDays: <retention-period-in-days>
+  }
+}
+```
+
+#### Option 2: JSON
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "name": "<your-app-name>",
+      "location": "<your-location>",
+      "properties": {
+        "Application_Type": "web",
+        "RetentionInDays": <retention-period-in-days>
+      }
+    }
+  ]
+}
+```
+
+---
 
 :::zone-end
 
@@ -539,7 +661,7 @@ For workspace-based Application Insights resource, the daily caps must be set in
 :::zone-end
 
 :::zone pivot="auto"
-
+<!--
 To get the daily cap properties, use the [Set-AzApplicationInsightsPricingPlan](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan) cmdlet:
 
 ```PS
@@ -562,6 +684,56 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 
 > [!IMPORTANT]
 > The daily cap reset time can no longer be customized using the `ResetTime` attribute.
+-->
+### [Azure CLI](#tab/cli)
+
+```azurecli
+az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --set dailyCapGB=<daily-cap-in-gb>
+```
+
+### [Azure PowerShell](#tab/powershell)
+
+```powershell
+Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name <your-app-name> -DailyCapGB <daily-cap-in-gb>
+```
+
+### [ARM templates](#tab/arm)
+
+#### Option 1: Bicep
+
+```bicep
+resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
+  name: '<your-app-name>'
+  location: '<your-location>'
+  properties: {
+    Application_Type: 'web'
+    DailyQuotaGb: <daily-cap-in-gb>
+  }
+}
+```
+
+#### Option 2: JSON
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02-preview",
+      "name": "<your-app-name>",
+      "location": "<your-location>",
+      "properties": {
+        "Application_Type": "web",
+        "DailyQuotaGb": <daily-cap-in-gb>
+      }
+    }
+  ]
+}
+```
+
+---
 
 :::zone-end
 
