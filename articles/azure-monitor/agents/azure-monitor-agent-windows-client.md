@@ -38,21 +38,25 @@ Here's a comparison between using the client installer and using the virtual mac
 | Device type | Supported? | Installation method | Additional information |
 |:---|:---|:---|:---|
 | Windows 11, 10 desktops, workstations | Yes | Client installer | Installs the agent by using a Windows MSI installer. |
-| Windows 11, 10 laptops | Yes |  Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent isn't yet optimized* for battery or network consumption). |
+| Windows 11, 10 laptops | Yes |  Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent *isn't yet optimized* for battery or network consumption). |
 | VMs, scale sets | No | [VM extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent by using the Azure extension framework. |
 | On-premises servers | No | [VM extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
 
 ## Prerequisites
 
 - The machine must be running Windows client OS version 10 RS4 or later.
-- To download the installer, the machine should have [C++ Redistributable version 2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) or later.
+- To download the installer, the machine should have [C++ Redistributable version 2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) or later installed.
 - The machine must be domain joined to a Microsoft Entra tenant (joined or hybrid joined machines). When the machine is domain joined, the agent can fetch Microsoft Entra device tokens to authenticate and fetch DCRs from Azure.
 - Check to see if you need tenant admin permissions on the Microsoft Entra tenant.
 - The device must have access to the following HTTPS endpoints:
 
   - `global.handler.control.monitor.azure.com`
-  - `<virtual-machine-region-name>.handler.control.monitor.azure.com` (example: `westus.handler.control.azure.com`)
-  - `<log-analytics-workspace-id>.ods.opinsights.azure.com` (example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`)
+  - `<virtual-machine-region-name>.handler.control.monitor.azure.com`
+  
+    (Example: `westus.handler.control.azure.com`)
+  - `<log-analytics-workspace-id>.ods.opinsights.azure.com`
+  
+    (Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`)
 
     If you use private links on the agent, you must also add the [data collection endpoints](../essentials/data-collection-endpoint-overview.md#components-of-a-dce).
 - A DCR that you want to associate with the devices. If it doesn't exist already, [create a data collection rule](./azure-monitor-agent-data-collection.md). *Don't associate the rule to any resources yet*.
@@ -99,7 +103,7 @@ Here's a comparison between using the client installer and using the virtual mac
    1. Open **Control Panel** > **Programs and Features**. Ensure that **Azure Monitor Agent** appears in the list of programs.
    1. Open **Services** and confirm that **Azure Monitor Agent** appears and **Status** is **Running**.
 
-Go to the next section to create the monitored object to associate with DCRs to start the agent.
+Go to the next section to create a monitored object to associate with DCRs to start the agent.
 
 > [!NOTE]
 > If you install the agent by using the client installer, currently, you can't update local agent settings after the agent is installed. To update these settings, uninstall and then reinstall the Azure Monitor Agent.
@@ -108,17 +112,17 @@ Go to the next section to create the monitored object to associate with DCRs to 
 
 Next, create a monitored object, which represents the Microsoft Entra tenant within Azure Resource Manager. DCRs are then associated with the Azure Resource Manager entity. *Azure associates a monitored object to all Windows client machines in the same Microsoft Entra tenant*.
 
-Currently, the scope of this association is *limited* to the Microsoft Entra tenant. Configuration applied to the Microsoft Entra tenant is applied to all devices that are part of the tenant and running the agent that installed via the client installer. Agents installed via the VM extension aren't in the scope and aren't affected.
+Currently, the scope of this association is *limited* to the Microsoft Entra tenant. Configuration that's applied to the Microsoft Entra tenant is applied to all devices that are part of the tenant and running the agent that installed via the client installer. Agents installed via the VM extension aren't in the scope and aren't affected.
 
-The following image demonstrates how the monitor object association works:
+The following image demonstrates how the monitored object association works:
 
 :::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-monitored-object.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-monitored-object.png" alt-text="Diagram that shows the monitored object purpose and association." border="false":::
 
-Then, proceed with the following instructions to create and associate them to a monitored object, using REST APIs or PowerShell commands.
+Then, continue in the next section to create and associate DCRs to a monitored object by using REST APIs or Azure PowerShell commands.
 
 ### Permissions required
 
-Because a monitored object is a tenant-level resource, the scope of the permissions is greater than the scope of the permissions required for a subscription. An Azure tenant admin might be required to perform this step. Complete the [steps to elevate a Microsoft Entra tenant admin as Azure Tenant Admin](/azure/role-based-access-control/elevate-access-global-admin). It gives the Microsoft Entra admin Owner permissions at the root scope. This scope of permissions is required for all methods described in the following section.
+Because a monitored object is a tenant-level resource, the scope of permissions is greater than the scope of the permissions required for a subscription. An Azure tenant admin might be required to perform this step. Complete the [steps to elevate a Microsoft Entra tenant admin as Azure Tenant Admin](/azure/role-based-access-control/elevate-access-global-admin). It gives the Microsoft Entra admin Owner permissions at the root scope. This scope of permissions is required for all methods described in the following section.
 
 ### Use REST APIs
 
@@ -450,7 +454,7 @@ $requestURL = "https://management.azure.com$RespondId/providers/microsoft.insigh
 
 In the Log Analytics workspace that you specified as a destination in the DCRs, check the **Heartbeat** table and other tables you configured in the rules.
 
-The **SourceComputerId**, **Computer**, and **ComputerIP** columns should all reflect the client device information respectively, and the **Category** column should say **Azure Monitor Agent**. See the following example.
+The **SourceComputerId**, **Computer**, and **ComputerIP** columns should all reflect the client device information respectively, and the **Category** column should say **Azure Monitor Agent**.
 
 :::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-heartbeat-logs.png" alt-text="Screenshot that shows agent heartbeat logs in the Azure portal.":::
 
@@ -527,7 +531,7 @@ To update the version, install the new version you want to update to.
 ### View agent diagnostic logs
 
 1. Rerun the installation with logging turned on and specify the log file name `Msiexec /I AzureMonitorAgentClientSetup.msi /L*V <log file name>`.
-1. Runtime logs are collected automatically either at the default location *C:\Resources\Azure Monitor Agent\* or at the file path specified during installation.
+1. Runtime logs are collected automatically either at the default location *C:\Resources\Azure Monitor Agent\\* or at the file path specified during installation.
 
     - If you can't locate the path, the exact location is indicated on the registry as `AMADataRootDirPath` on `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\AzureMonitorAgent`.
 1. The *ServiceLogs* folder contains log from the Azure Monitor Agent Windows service, which launches and manages Azure Monitor Agent processes.
@@ -539,9 +543,9 @@ The following sections describe how to resolve installation and uninstallation i
 
 #### Missing DLL
 
-**Error message**: "There's a problem with this Windows Installer package. A DLL required for this installer to complete couldn't be run . . . ."
+**Error message**: "There's a problem with this Windows Installer package. A DLL required for this installer to complete couldn't be run..."
 
-**Resolution**: Ensure that you installed [C++ Redistributable (>2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) before you installed the Azure Monitor Agent. If you didn't, install the relevant redistributable file, and then try installation again.
+**Resolution**: Ensure that you installed [C++ Redistributable (>2015)](/cpp/windows/latest-supported-vc-redist?view=msvc-170&preserve-view=true) before you installed the Azure Monitor Agent. Install the relevant redistributable file, and then try installation again.
 
 <a name="not-aad-joined"></a>
 
@@ -553,11 +557,11 @@ The following sections describe how to resolve installation and uninstallation i
 
 #### Silent install from the command prompt fails
 
-Make sure that you start the installer by selecting the **Run as administrator** option. Silent install can be initiated only at an administrator command prompt.
+Make sure that you start the installer by using the **Run as administrator** option. Silent install can be initiated only at an administrator command prompt.
 
 #### Uninstallation fails because the uninstaller can't stop the service
 
-1. If there's an option to try again, try it again.
+1. If there's an option to try uninstallation again, try it again.
 1. If retrying from the uninstaller doesn't work, cancel the uninstall and stop the Azure Monitor Agent service at **Services** > **Desktop Applications**.
 1. Retry the uninstall.
 
@@ -572,7 +576,7 @@ Make sure that you start the installer by selecting the **Run as administrator**
 
 ### Post-installation and operational issues
 
-After the agent is installed successfully (that is, you see the agent service running but don't see data as expected), you can follow standard troubleshooting steps listed for a [Windows VM](./azure-monitor-agent-troubleshoot-windows-vm.md) and a [Windows Arc-enabled server](azure-monitor-agent-troubleshoot-windows-arc.md) respectively.
+After the agent is installed successfully (that is, you see the agent service running, but you don't see the data you expect), follow standard troubleshooting steps listed for a [Windows VM](./azure-monitor-agent-troubleshoot-windows-vm.md) and a [Windows Arc-enabled server](azure-monitor-agent-troubleshoot-windows-arc.md) respectively.
 
 ## FAQs
 

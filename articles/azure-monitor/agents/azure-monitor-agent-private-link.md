@@ -14,22 +14,22 @@ By default, Azure Monitor Agent connects to a public endpoint to connect to your
 
 ## Prerequisites
 
-- A [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md), which defines the data Azure Monitor Agent collects and the destination to which the agent sends data.
+- A [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md), which defines the data Azure Monitor Agent collects and where the agent sends the data.
 
 ## Create a data collection endpoint
 
-[Create a data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for each of your regions for agents to connect to instead of using the public endpoint. An agent can connect only to a DCE that's in the same region. If you have agents in multiple regions, create a DCE in each of the relevant regions.
+[Create a data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for each of your regions for agents to connect to instead of using the public endpoint. An agent can connect only to a DCE that's in the same region as the agent. If you have agents in multiple regions, create a DCE in each of the relevant regions.
 
 ## Configure a private link
 
-[Configure your private link](../logs/private-link-configure.md) to connect your DCE to a set of Azure Monitor resources that define the boundaries of your monitoring network. This set is called an Azure Monitor Private Link Scope.
+[Configure your private link](../logs/private-link-configure.md) to connect your DCE to a set of Azure Monitor resources that define the boundaries of your monitoring network. This set is an instance of Azure Monitor Private Link Scope.
 
 ## Add DCEs to Azure Monitor Private Link Scope
 
 [Add the DCEs to Azure Monitor Private Link Scope](../logs/private-link-configure.md#connect-resources-to-the-ampls) resource. This process adds the DCEs to your private Domain Name System (DNS) zone (see [how to validate](../logs/private-link-configure.md#validate-communication-over-ampls)) and allows communication via private links. You can do this task from the Azure Monitor Private Link Scope resource or on an existing DCE resource's **Network isolation** tab.
 
 > [!IMPORTANT]
-> Other Azure Monitor resources like Log Analytics workspaces and DCEs configured in your DCRs that you want to send data to must be part of this same Azure Monitor Private Link Scope resource.
+> Other Azure Monitor resources like Log Analytics workspaces and DCEs in your DCRs that you send data to must be included in this Azure Monitor Private Link Scope resource.
 
 :::image type="content" source="media/azure-monitor-agent-dce/data-collection-endpoint-network-isolation.png" lightbox="media/azure-monitor-agent-dce/data-collection-endpoint-network-isolation.png" alt-text="Screenshot that shows configuring data collection endpoint network isolation.":::
 
@@ -41,4 +41,4 @@ Associate the DCEs to the target resources by editing the DCR in the Azure porta
 
 ## Related content
 
-- Learn more about [Best practices for monitoring virtual machines in Azure Monitor](../best-practices-vm.md).
+- Learn more about [best practices for monitoring virtual machines in Azure Monitor](../best-practices-vm.md).

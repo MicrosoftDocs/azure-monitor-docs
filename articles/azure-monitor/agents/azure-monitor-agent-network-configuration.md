@@ -9,18 +9,18 @@ ms.reviewer: shseth
 ---
 # Azure Monitor Agent network configuration
 
-The Azure Monitor Agent supports connection by using direct proxies, a Log Analytics gateway, and private links. This article describes how to define network settings and enable network isolation for the Azure Monitor Agent.
+The Azure Monitor Agent supports connections by using direct proxies, a Log Analytics gateway, and private links. This article describes how to define network settings and enable network isolation for the Azure Monitor Agent.
 
 ## Virtual network service tags
 
-The [Azure virtual network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine (VM). Both *AzureMonitor* and *AzureResourceManager* tags are required.
+[Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine (VM). Both *AzureMonitor* and *AzureResourceManager* tags are required.
 
-You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where Azure Virtual Network service tags can't be used, the Azure Firewall requirements are described later in this article.
+You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where Azure Virtual Network service tags can't be used, the firewall requirements are described later in this article.
 
 > [!NOTE]
-> Data collection endpoint (DCE) public IP addresses aren't in the network service tags you can use to define network access controls for Azure Monitor. If you have custom logs or Internet Information Services (IIS) log data collection rules (DCRs), consider allowing the DCE's public IP addresses for these scenarios to work until these scenarios are supported via network service tags.
+> Data collection endpoint (DCE) public IP addresses aren't included in the network service tags you can use to define network access controls for Azure Monitor. If you have custom logs or Internet Information Services (IIS) log data collection rules (DCRs), consider allowing the DCE's public IP addresses for these scenarios to work until these scenarios are supported via network service tags.
 
-## Azure Firewall endpoints
+## Firewall endpoints
 
 The following table provides the endpoints that firewalls must provide access to for different clouds. Each endpoint is an outbound connection to port 443.
 
@@ -40,27 +40,27 @@ Replace the suffix in the endpoints with the suffix in the following table for r
 
 | Cloud | Suffix |
 |:---|:---|
-| Azure Commercial | .com |
-| Azure Government | .us |
-| Microsoft Azure operated by 21Vianet | .cn |
+| Azure Commercial | `.com` |
+| Azure Government | `.us` |
+| Microsoft Azure operated by 21Vianet | `.cn` |
 
 > [!NOTE]
 >
-> - If you use private links on the agent, you must add *only* the [private DCEs](../essentials/data-collection-endpoint-overview.md#components-of-a-dce). The agent doesn't use the nonprivate endpoints listed in the preceding table when you use private links or private DCEs.
+> - If you use private links on the agent, you must add *only* [private DCEs](../essentials/data-collection-endpoint-overview.md#components-of-a-dce). The agent doesn't use the nonprivate endpoints listed in the preceding table when you use private links or private DCEs.
 >
 > - The Azure Monitor metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
 >
-> - When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all of your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via a [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
+> - When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via a [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
 
 ## Proxy configuration
 
-The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](./gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure VMs, Azure VM scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
+The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](./gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
 
 > [!IMPORTANT]
 > Proxy configuration isn't supported for [Azure Monitor Metrics (preview)](../essentials/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
 
 > [!NOTE]
-> Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the following ARM template as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that are picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
+> Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the ARM template shown here as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that are picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
 
 Use Azure PowerShell commands in the following examples based on your environment and configuration.
 

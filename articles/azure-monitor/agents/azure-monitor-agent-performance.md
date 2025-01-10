@@ -1,5 +1,5 @@
 ---
-title: Performance in Gateway Forwarding 
+title: Performance in Forwarding to Azure Monitor Agent
 description: Learn about performance benchmark data for the Azure Monitor Agent running in a gateway event forwarding scenario.
 ms.topic: conceptual
 author: guywi-ms
@@ -24,7 +24,7 @@ This article describes the Microsoft internal benchmark that's used for testing 
 - The Linux Azure Monitor Agent should target 10K EPS. A 20K EPS warning might occur, but it doesn't mean that data is lost. The Azure Monitor Agent doesn't guarantee a lossless connection. Loss is more likely when EPS is over 10K.
 - The forwarder should be on a dedicated system to eliminate potential interference from other workloads.
 - The forwarder system should be monitored for CPU, memory, and disk utilization to prevent overloads from causing data loss.
-- The load balancer and redundant forwarder systems should be used to improve reliability and scalability. For other considerations for forwarders, see the Log Analytics Gateway documentation.
+- The load balancer and redundant forwarder systems should be used to improve reliability and scalability. For other considerations for forwarders, see the Log Analytics gateway documentation.
 
 ## Agent performance
 
@@ -63,7 +63,7 @@ The amount of data sent per agent depends on:
 
 For more information, see [Analyze usage in a Log Analytics workspace](../logs/analyze-usage.md).
 
-For computers that are able to run the WireData agent, use the following query to see how much data is sent:
+For computers that are able to run the WireData Agent, use the following query to see how much data is sent:
 
 ```kusto
 WireData

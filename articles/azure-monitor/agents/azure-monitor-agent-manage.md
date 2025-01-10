@@ -12,10 +12,10 @@ ms.reviewer: jeffwo
 
 # Install and manage the Azure Monitor Agent
 
-This article describes the different methods you can use to install, configure, update, and uninstall the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers.
+This article describes the different methods you can use to install, uninstall, update, and configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers.
 
 > [!IMPORTANT]
-> The Azure Monitor Agent requires at least one data collection rule (DCR) to begin collecting data after it's installed on a client machine. Your installation method determines whether a DCR is created automatically. If a DCR isn't automatically created, you must configure data collection by following the guidance in [Collect data with the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+> The Azure Monitor Agent requires at least one data collection rule (DCR) to begin collecting data after it's installed on a client machine. Your installation method determines whether a DCR is created automatically. If a DCR isn't created automatically during installation, you must configure data collection by following the guidance in [Collect data with the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
 
 ## Prerequisites
 
@@ -30,14 +30,16 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 
 ## Installation options
 
-The following table lists the different options for installing the Azure Monitor Agent on Azure VMs and Azure Arc-enabled servers. The [Azure Arc agent](/azure/azure-arc/servers/deployment-options) must be installed on any machines that *aren't* in Azure before the Azure Monitor Agent can be installed.
+The following table lists the options for installing the Azure Monitor Agent on Azure VMs and Azure Arc-enabled servers.
+
+For any machine that isn't in Azure, the [Azure Arc agent](/azure/azure-arc/servers/deployment-options) must be installed on the machine before the Azure Monitor Agent can be installed.
 
 | Installation method | Description |
 |:---|:---|
 | Virtual machine (VM) extension | Use any of the methods described in this article to install the agent via the Azure extension framework. This method doesn't create a DCR, so you must create at least one DCR and associate it with the agent before data collection begins. |
-| [Create a DCR](./azure-monitor-agent-data-collection.md) | When you create a DCR in the Azure portal, the Azure Monitor Agent is installed on any machines that are added as resources for the DCR. The agent immediately begins to collect data as defined in the DCR.
+| [Create a DCR](./azure-monitor-agent-data-collection.md) | When you create a DCR in the Azure portal, the Azure Monitor Agent is installed on any machine that's added as a resource for the DCR. The agent immediately begins to collect data as defined in the DCR.
 | [VM insights](../vm/vminsights-enable-overview.md) | When you enable VM insights on a machine, the Azure Monitor Agent is installed and a DCR is created to collect a predefined set of data. You shouldn't modify this DCR, but you can create more DCRs to collect more data. |
-| [Container insights](../containers/kubernetes-monitoring-enable.md#container-insights) | When you enable Container insights on a Kubernetes cluster, a containerized version of the Azure Monitor Agent is installed in the cluster, and a DCR is created to immediately begin collecting data. You can modify this DCR by using the guidance in [Configure data collection and cost optimization in Container insights by using DCRs](../containers/container-insights-data-collection-dcr.md).
+| [Container insights](../containers/kubernetes-monitoring-enable.md#container-insights) | When you enable Container insights on a Kubernetes cluster, a containerized version of the Azure Monitor Agent is installed in the cluster and a DCR is created to immediately begin collecting data. You can modify the DCR by using the guidance in [Configure data collection and cost optimization in Container insights by using DCRs](../containers/container-insights-data-collection-dcr.md).
 | [Client installer](./azure-monitor-agent-windows-client.md) | Install the agent by using a Windows MSI installer for Windows 11 and Windows 10 clients. |
 | [Azure Policy](./azure-monitor-agent-policy.md) | Use Azure Policy to automatically install the agent on Azure virtual machines and Azure Arc-enabled servers, and to automatically associate them with required DCRs. |
 
@@ -49,11 +51,9 @@ The following table lists the different options for installing the Azure Monitor
 
 ## Install the agent extension
 
-This section describes how to install the Azure Monitor Agent by using the VM extension.
-
 ### [Azure portal](#tab/azure-portal)
 
-To install the agent by using the Azure portal and create a DCR to collect data, use the guidance in [Collect data by using the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+To install the agent and create a DCR to collect data by using the Azure portal, use the guidance in [Collect data by using the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
@@ -83,13 +83,13 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
     Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true
     ```
 
-### Azure virtual machines scale set
+### Azure virtual machine scale set
 
-Use the [Add-AzVmssExtension](/powershell/module/az.compute/add-azvmssextension) PowerShell cmdlet to install the Azure Monitor Agent on an Azure virtual machines scale set.
+Use the [Add-AzVmssExtension](/powershell/module/az.compute/add-azvmssextension) PowerShell cmdlet to install the Azure Monitor Agent on an Azure virtual machine scale set.
 
 ### Azure Arc-enabled servers
 
-Use the following PowerShell commands to install the Azure Monitor Agent on an Azure Arc-enabled server.
+Use the following PowerShell commands to install the Azure Monitor Agent on an Azure Arc-enabled server:
 
 * Windows
 
@@ -145,7 +145,7 @@ Use the [az vmss extension set](/cli/azure/vmss/extension) Azure CLI cmdlet to i
 
 ### Azure Arc-enabled servers
 
-Use the following CLI commands to install the Azure Monitor Agent on an Azure Arc-enabled server.
+Use the following Azure CLI commands to install the Azure Monitor Agent on an Azure Arc-enabled server:
 
 * Windows
 
@@ -161,7 +161,7 @@ Use the following CLI commands to install the Azure Monitor Agent on an Azure Ar
 
 #### [Resource Manager template](#tab/azure-resource-manager)
 
-You can use Azure Resource Manager templates to install the Azure Monitor Agent on an Azure virtual machines or on an Azure Arc-enabled server, and to create an association with DCRs. You must create any DCR before you create the association for the DCR.
+You can use an Azure Resource Manager template to install the Azure Monitor Agent on an Azure virtual machine or on an Azure Arc-enabled server, and to create an association with DCRs. You must create any DCR before you create the association for the DCR.
 
 Get sample templates to install the agent and to create the association from the following resources:
 
@@ -188,7 +188,7 @@ Install the templates by using [any deployment method for Resource Manager templ
 
 #### [Azure portal](#tab/azure-portal)
 
-To uninstall the Azure Monitor Agent by using the Azure portal, go to your virtual machine, virtual machine scale set, or Azure Arc-enabled server. Select the **Extensions** tab, and then select **AzureMonitorWindowsAgent** or **AzureMonitorLinuxAgent**. In the dialog that opens, select **Uninstall**.
+To uninstall the Azure Monitor Agent by using the Azure portal, go to your virtual machine, scale set, or Azure Arc-enabled server. Select the **Extensions** tab, and then select **AzureMonitorWindowsAgent** or **AzureMonitorLinuxAgent**. In the dialog that opens, select **Uninstall**.
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
@@ -214,7 +214,7 @@ Use the [Remove-AzVmssExtension](/powershell/module/az.compute/remove-azvmssexte
 
 ### Uninstall on an Azure Arc-enabled server
 
-Use the following PowerShell commands to uninstall the Azure Monitor Agent on an Azure Arc-enabled server.
+Use the following PowerShell commands to uninstall the Azure Monitor Agent on an Azure Arc-enabled server:
 
 * Windows
 
@@ -232,7 +232,7 @@ Use the following PowerShell commands to uninstall the Azure Monitor Agent on an
 
 ### Uninstall on an Azure virtual machine
 
-Use the following Azure CLI commands to uninstall the Azure Monitor Agent on an Azure virtual machine.
+Use the following Azure CLI commands to uninstall the Azure Monitor Agent on an Azure virtual machine:
 
 * Windows
 
@@ -275,13 +275,13 @@ N/A
 ## Update
 
 > [!NOTE]
-> We strongly recommend that you always update to the latest version or opt in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade).
+> We strongly recommend that you always update to the latest version of the agent or opt in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade).
 >
 > Automatic extension rollout follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to roll out the latest version.
 >
-> Upgrades are issued in batches, so some of your virtual machines, virtual machine scale sets, or Azure Arc-enabled servers might be upgraded before others.
+> Upgrades are issued in batches, so some of your virtual machines, scale sets, or Azure Arc-enabled servers might be upgraded before others.
 >
-> If you need to upgrade an extension immediately, you can use the manual instructions that are described in this article. Only agents released in the last year are supported.
+> If you need to upgrade an extension immediately, you can use the manual instructions that are described in this article. Only agents released in the past year are supported.
 
 #### [Azure portal](#tab/azure-portal)
 
@@ -295,7 +295,7 @@ We recommend that you enable automatic update of the agent by enabling [automati
 
 To do a one-time update of the agent, you must first uninstall the existing agent version. Then install the new version as described.
 
-We recommend that you enable automatic update of the agent by enabling [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). 
+We recommend that you enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). 
 
 Use the following PowerShell commands:
 
@@ -329,7 +329,9 @@ To do a one-time upgrade of the agent, use the following PowerShell commands:
     Update-AzConnectedExtension -ResourceGroupName $env.ResourceGroupName -MachineName <arc-server-name> -ExtensionTarget $target
     ```
 
-We recommend that you enable automatic update of the agent by enabling the [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade). Use the following PowerShell commands.
+We recommend that you enable automatic update of the agent by opting in to the [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade).
+
+Use the following PowerShell commands:
 
 * Windows
 
@@ -349,7 +351,7 @@ We recommend that you enable automatic update of the agent by enabling the [auto
 
 To do a one-time update of the agent, you must first uninstall the existing agent version. Then install the new version as described in this article.
   
-We recommend that you enable automatic update of the agent by enabling the [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) feature by using the following Azure CLI commands:
+We recommend that you enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) feature by using the following Azure CLI commands:
 
 * Windows
 
@@ -379,7 +381,9 @@ To do a one-time upgrade of the agent, use the following Azure CLI commands:
     az connectedmachine upgrade-extension --extension-targets "{\"Microsoft.Azure.Monitor.AzureMonitorLinuxAgent\":{\"targetVersion\":\"<target-version-number>\"}}" --machine-name <arc-server-name> --resource-group <resource-group-name>
     ```
   
- We recommend that you enable automatic update of the agent by enabling the [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade). Use the following PowerShell commands.
+We recommend that you enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade).
+
+Use the following Azure CLI commands:
 
 * Windows
 
@@ -404,11 +408,11 @@ N/A
 [Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) serve as a management tool for the Azure Monitor Agent on your machine. The AgentSettings DCR can be used to configure certain Azure Monitor Agent parameters to configure the agent to your specific monitoring needs.
 
 > [!NOTE]
-> Important considerations to keep in mind when you work with the AgentSettings DCR:
+> Important considerations when you work with the AgentSettings DCR:
 >
-> * The AgentSettings DCR can currently be configured only by using ARM templates.
+> * Currently, the AgentSettings DCR can be configured only by using an Azure Resource Manager template.
 > * AgentSettings must be a single DCR with no other settings.
-> * The virtual machine and the AgentSettings DCR must be located in the same region.
+> * The virtual machine and the AgentSettings DCR must be in the same region.
 
 ### Supported parameters
 
@@ -475,9 +479,9 @@ Currently not supported.
 
 1. **Associate the DCR with your machine**.
 
-   Use these ARM template and parameter files.
+   Use these Resource Manager template and parameter files.
 
-    *ARM template file*
+    *Resource Manager template file*
 
     ```json
     {
