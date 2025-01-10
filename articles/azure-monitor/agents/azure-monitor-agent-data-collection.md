@@ -94,7 +94,7 @@ A DCR can contain multiple different data sources. A maximum of 10 data sources 
 > [!NOTE]
 > It can take up to 5 minutes for data to be sent to the destinations when you create a DCR by using the data collection rule wizard.
 
-## Verify
+## Verify operation
 
 After you create a DCR and associate it with a machine, you can verify that the agent is operational and that data is being collected by running queries in the Log Analytics workspace.
 
