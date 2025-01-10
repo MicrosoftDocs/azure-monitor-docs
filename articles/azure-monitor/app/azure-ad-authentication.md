@@ -229,15 +229,23 @@ TelemetryConfiguration.Active.SetAzureTokenCredential(credential);
 
 #### Environment variable configuration
 
-The `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable lets Application Insights authenticate to Microsoft Entra ID and send telemetry.
+The `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable allows Application Insights to authenticate with Microsoft Entra ID and send telemetry. Configure it based on the type of identity you're using:
 
-| App setting for system-assigned identity  | Value               |
-|-------------------------------------------|---------------------|
-| APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD` |
+- **System-assigned identity**  
+  Set the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to:
 
-| App setting for user-assigned identity    | Value                                                                  |
-|-------------------------------------------|------------------------------------------------------------------------|
-| APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
+  ```plaintext
+  Authorization=AAD
+  ```
+
+- **User-assigned identity**  
+  Set the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to:
+
+  ```plaintext
+  Authorization=AAD;ClientId={Client id of the User-Assigned Identity}
+  ```
+
+  Replace `{Client id of the User-Assigned Identity}` with the actual client ID of your user-assigned identity.
 
 Set the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable using this string.
 
@@ -372,7 +380,7 @@ appInsights.defaultClient.config.aadTokenCredential = credential;
 
 > [!NOTE]
 > * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
-> * To configure using OpenCensus (deprecated), see [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
+> * We provide information on configuring OpenCensus (deprecated) separately. See [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
 
 - We recommend `DefaultAzureCredential` for local development.
 - We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
