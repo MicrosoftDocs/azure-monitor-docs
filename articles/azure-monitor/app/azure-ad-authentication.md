@@ -33,14 +33,14 @@ The following Software Development Kits (SDKs) and features are unsupported for 
  Microsoft Entra authentication is only available for Application Insights Java Agent greater than or equal to 3.2.0.
 * [ApplicationInsights JavaScript web SDK](javascript.md).
 * [Application Insights OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) with Python version 3.4 and 3.5.
-* [AutoInstrumentation for Python on Azure App Service](azure-web-apps-python.md)
+* [Automatic instrumentation for Python on Azure App Service](azure-web-apps-python.md)
 * [Application Insights Profiler for .NET](profiler-overview.md).
 
 <a name='configure-and-enable-azure-ad-based-authentication'></a>
 
 ## Configure and enable Microsoft Entra ID-based authentication
 
-1. If you don't already have an identity, create one by using either a managed identity or a service principal.
+1. Create an identity using a managed identity or a service principal if you don't already have one.
 
     * We recommend using a managed identity:
 
@@ -55,7 +55,7 @@ The following Software Development Kits (SDKs) and features are unsupported for 
     Follow the steps in [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal) to add the Monitoring Metrics Publisher role to the expected identity, service principal, or Azure user account by setting the target Application Insights resource as the role scope.
 
     > [!NOTE]
-    > Although the Monitoring Metrics Publisher role says "metrics," it will publish all telemetry to the Application Insights resource.
+    > Although the Monitoring Metrics Publisher role says "metrics," it publishes all telemetry to the Application Insights resource.
 
 1. Follow the configuration guidance in accordance with the language that follows.
 
@@ -1031,7 +1031,7 @@ The ingestion service returns specific errors, regardless of the SDK language. N
 This error shows the resource is set for Microsoft Entra-only. You need to correctly configure the SDK because it's sending to the wrong API.
 
 > [!NOTE]
-> "v2/track" doesn't support Microsoft Entra ID. When the SDK is correctly configured, telemetry will be sent to "v2.1/track".
+> "v2/track" doesn't support Microsoft Entra ID. When the SDK is correctly configured, telemetry is sent to `v2.1/track`.
 
 Next, you should review the SDK configuration.
 
