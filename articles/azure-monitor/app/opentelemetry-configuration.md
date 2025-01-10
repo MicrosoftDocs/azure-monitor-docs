@@ -2,7 +2,7 @@
 title: Configure Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 description: This article provides configuration guidance for .NET, Java, Node.js, and Python applications.
 ms.topic: conceptual
-ms.date: 12/07/2024
+ms.date: 01/31/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
@@ -503,104 +503,19 @@ configure_azure_monitor(
 
 You might want to enable Microsoft Entra authentication for a more secure connection to Azure, which prevents unauthorized telemetry from being ingested into your subscription.
 
+For more information, see our dedicated Microsoft Entra authentication for Application Insights page linked for each supported language.
+
 ### [ASP.NET Core](#tab/aspnetcore)
 
-We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
-
-- We recommend `DefaultAzureCredential` for local development.
-- We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
-  - For system-assigned, use the default constructor without parameters.
-  - For user-assigned, provide the client ID to the constructor.
-- We recommend `ClientSecretCredential` for service principals.
-  - Provide the tenant ID, client ID, and client secret to the constructor.
-
-1. Install the latest [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package:
-
-    ```dotnetcli
-    dotnet add package Azure.Identity
-    ```
-
-1. Provide the desired credential class:
-
-    ```csharp
-    // Create a new ASP.NET Core web application builder.    
-    var builder = WebApplication.CreateBuilder(args);
-
-    // Add the OpenTelemetry telemetry service to the application.
-    // This service will collect and send telemetry data to Azure Monitor.
-    builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
-        // Set the Azure Monitor credential to the DefaultAzureCredential.
-        // This credential will use the Azure identity of the current user or
-        // the service principal that the application is running as to authenticate
-        // to Azure Monitor.
-        options.Credential = new DefaultAzureCredential();
-    });
-
-    // Build the ASP.NET Core web application.
-    var app = builder.Build();
-
-    // Start the ASP.NET Core web application.
-    app.Run();
-    ```
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=aspnetcore)
 
 ### [.NET](#tab/net)
 
-We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
-
-- We recommend `DefaultAzureCredential` for local development.
-- We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
-  - For system-assigned, use the default constructor without parameters.
-  - For user-assigned, provide the client ID to the constructor.
-- We recommend `ClientSecretCredential` for service principals.
-  - Provide the tenant ID, client ID, and client secret to the constructor.
-
-1. Install the latest [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package:
-
-    ```dotnetcli
-    dotnet add package Azure.Identity
-    ```
-
-1. Provide the desired credential class:
-
-    ```csharp
-    // Create a DefaultAzureCredential.
-    var credential = new DefaultAzureCredential();
-
-    // Create a new OpenTelemetry tracer provider and set the credential.
-    // It is important to keep the TracerProvider instance active throughout the process lifetime.
-    var tracerProvider = Sdk.CreateTracerProviderBuilder()
-        .AddAzureMonitorTraceExporter(options =>
-        {
-            options.Credential = credential;
-        })
-        .Build();
-
-    // Create a new OpenTelemetry meter provider and set the credential.
-    // It is important to keep the MetricsProvider instance active throughout the process lifetime.
-    var metricsProvider = Sdk.CreateMeterProviderBuilder()
-        .AddAzureMonitorMetricExporter(options =>
-        {
-            options.Credential = credential;
-        })
-        .Build();
-
-    // Create a new logger factory and add the OpenTelemetry logger provider with the credential.
-    // It is important to keep the LoggerFactory instance active throughout the process lifetime.
-    var loggerFactory = LoggerFactory.Create(builder =>
-    {
-        builder.AddOpenTelemetry(logging =>
-        {
-            logging.AddAzureMonitorLogExporter(options =>
-            {
-                options.Credential = credential;
-            });
-        });
-    });
-    ```
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=net)
 
 ### [Java](#tab/java)
 
-For more information about Java, see the [Java supplemental documentation](java-standalone-config.md).
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=java)
 
 ### [Java native](#tab/java-native)
 
@@ -608,85 +523,12 @@ Microsoft Entra ID authentication isn't available for GraalVM Native application
 
 ### [Node.js](#tab/nodejs)
 
-We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credential-classes).
-
-```typescript
-// Import the useAzureMonitor function, the AzureMonitorOpenTelemetryOptions class, and the ManagedIdentityCredential class from the @azure/monitor-opentelemetry and @azure/identity packages, respectively.
-const { useAzureMonitor, AzureMonitorOpenTelemetryOptions } = require("@azure/monitor-opentelemetry");
-const { ManagedIdentityCredential } = require("@azure/identity");
-
-// Create a new ManagedIdentityCredential object.
-const credential = new ManagedIdentityCredential();
-
-// Create a new AzureMonitorOpenTelemetryOptions object and set the credential property to the credential object.
-const options: AzureMonitorOpenTelemetryOptions = {
-    azureMonitorExporterOptions: {
-        connectionString:
-            process.env["APPLICATIONINSIGHTS_CONNECTION_STRING"] || "<your connection string>",
-        credential: credential
-    }
-};
-
-// Enable Azure Monitor integration using the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions object.
-useAzureMonitor(options);
-```
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=nodejs)
 
 ### [Python](#tab/python)
 
-Azure Monitor OpenTelemetry Distro for Python support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#credential-classes).
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=python)
 
-- We recommend `DefaultAzureCredential` for local development.
-- We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
-  - For system-assigned, use the default constructor without parameters.
-  - For user-assigned, provide the `client_id` to the constructor.
-- We recommend `ClientSecretCredential` for service principals.
-  - Provide the tenant ID, client ID, and client secret to the constructor.
-
-If using `ManagedIdentityCredential`
-```python
-# Import the `ManagedIdentityCredential` class from the `azure.identity` package.
-from azure.identity import ManagedIdentityCredential
-# Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
-from azure.monitor.opentelemetry import configure_azure_monitor
-from opentelemetry import trace
-
-# Configure the Distro to authenticate with Azure Monitor using a managed identity credential.
-credential = ManagedIdentityCredential(client_id="<client_id>")
-configure_azure_monitor(
-    connection_string="your-connection-string",
-    credential=credential,
-)
-
-tracer = trace.get_tracer(__name__)
-
-with tracer.start_as_current_span("hello with aad managed identity"):
-    print("Hello, World!")
-
-```
-
-If using `ClientSecretCredential`
-```python
-# Import the `ClientSecretCredential` class from the `azure.identity` package.
-from azure.identity import ClientSecretCredential
-# Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
-from azure.monitor.opentelemetry import configure_azure_monitor
-from opentelemetry import trace
-
-# Configure the Distro to authenticate with Azure Monitor using a client secret credential.
-credential = ClientSecretCredential(
-    tenant_id="<tenant_id",
-    client_id="<client_id>",
-    client_secret="<client_secret>",
-)
-configure_azure_monitor(
-    connection_string="your-connection-string",
-    credential=credential,
-)
-
-with tracer.start_as_current_span("hello with aad client secret identity"):
-    print("Hello, World!")
-
-```
 ---
 
 ## Offline Storage and Automatic Retries
