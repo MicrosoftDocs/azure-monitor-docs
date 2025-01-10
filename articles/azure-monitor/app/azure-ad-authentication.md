@@ -265,10 +265,9 @@ After setting it, restart your application. It now sends telemetry to Applicatio
 
 #### Manual configuration
 
-For more information about Java, see the [Java supplemental documentation](java-standalone-config.md).
-
 > [!NOTE]
-> For more information about migrating from the `2.X` SDK to the `3.X` Java agent, see [Upgrading from Application Insights Java 2.x SDK](java-standalone-upgrade-from-2x.md).
+> * For more information about migrating from the `2.X` SDK to the `3.X` Java agent, see [Upgrading from Application Insights Java 2.x SDK](java-standalone-upgrade-from-2x.md).
+> * For more information about Java, see the [Java supplemental documentation](java-standalone-config.md).
 
 ##### System-assigned managed identity
 

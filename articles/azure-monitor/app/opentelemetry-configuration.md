@@ -503,7 +503,7 @@ configure_azure_monitor(
 
 You might want to enable Microsoft Entra authentication for a more secure connection to Azure, which prevents unauthorized telemetry from being ingested into your subscription.
 
-For more information, see our dedicated Microsoft Entra authentication for Application Insights page linked for each supported language.
+For more information, see our dedicated Microsoft Entra authentication page linked for each supported language.
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
