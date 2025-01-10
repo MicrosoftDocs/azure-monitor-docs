@@ -2,9 +2,7 @@
 title: Azure Monitor Agent Requirements
 description: Learn the requirements for the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers and prerequisites for installation.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
-ms.date: 11/14/2024
+ms.date: 01/08/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -57,9 +55,13 @@ For methods other than using the Azure portal, you must have the following role 
 
 ## Disk space
 
-Required disk space can vary significantly depending on how an agent is configured or if the agent is unable to communicate with the destinations and must cache data. By default, the agent requires 10 GB of disk space to run. The following table provides guidance for capacity planning:
+> [!NOTE]
+> Azure Monitor Agent installation requires 500 MB in each of the following paths:
+> * /var 
+> * /etc 
+> * /opt
 
-| Purpose | Environment | Path | Suggested directory location |
+| Purpose | Environment | Path | Suggested space |
 |:---|:---|:---|:---|
 | Download and install packages | Linux | */var/lib/waagent/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{Version}/* | 500 MB |
 | Download and install packages | Windows | *C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 500 MB |
@@ -72,6 +74,10 @@ Required disk space can vary significantly depending on how an agent is configur
 | Agent cache | Windows (Azure Arc) | *C:\Resources\Directory\AMADataStore.{DataStoreName}* | 10.5 GB |
 | Event cache | Linux | */var/opt/microsoft/azuremonitoragent/events* | 10 GB |
 | Event cache | Linux | */var/lib/rsyslog* | 1 GB |
+
+## Cryptography
+
+The Azure Monitor Agent does not work on Linux virtu machines when the systemwide crypto policy set in FUTURE mode. For more information, see notes in [Linux hardening](azure-monitor-agent-supported-operating-systems.md#linux-hardening).
 
 ## Related content
 

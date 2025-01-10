@@ -2,9 +2,9 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
-ms.date: 11/14/2024
+author: rboucher
+ms.author: robb
+ms.date: 01/08/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -85,14 +85,14 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Ubuntu 16.04 LTS                                            | ✓ |
 
 <sup>1</sup> Requires Python (2 or 3) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
-<sup>2</sup> Also supported on ARM64-based machines.<br>
-<sup>3</sup> Doesn't include the required least 4 GB of disk space by default. See the notes that appear after the table.
+<sup>2</sup> Also supported on Arm64-based machines.<br>
+<sup>3</sup> Does not include the required least 4GB of disk space by default. See the following note. 
 
 > [!NOTE]
->
-> - Machines and appliances that run heavily customized or stripped-down versions of the distributions listed in the table and hosted solutions that disallow customization by the user aren't supported. Azure Monitor relies on various packages and other baseline functionality that often are removed from these types of systems. Their installations might require some environment modifications that the appliance vendor doesn't allow. For example, [GitHub Enterprise Server](https://docs.github.com/en/enterprise-server/admin/overview/about-github-enterprise-server) isn't supported due to heavy customization and for [documented, license-level disallowance](https://docs.github.com/en/enterprise-server/admin/overview/system-overview#operating-system-software-and-patches) of operating system modification.
->
-> - Disk size in Azure Linux (previously known as CBL-Mariner) is by default lower compared to other Azure VMs, which are about 30 GB. The Azure Monitor Agent requires at least a 4-GB disk size to install and run successfully. For more information and for instructions on how to increase disk size before installing the agent, see the [Azure Linux documentation](https://eng.ms/docs/products/mariner-linux/gettingstarted/azurevm/azurevm#disk-size).
+> Machines and appliances that run heavily customized or stripped-down versions of the above distributions and hosted solutions that disallow customization by the user are not supported. Azure Monitor relies on various packages and other baseline functionality that is often removed from such systems. Installation may require some environmental modifications that the appliance vendor normally disallows. For example, [GitHub Enterprise Server](https://docs.github.com/en/enterprise-server/admin/overview/about-github-enterprise-server) is not supported due to heavy customization as well as [documented, license-level disallowance](https://docs.github.com/en/enterprise-server/admin/overview/system-overview#operating-system-software-and-patches) of operating system modification.
+
+> [!NOTE]
+> Disk size in Azure Linux (previously known as CBL-Mariner) is by default lower compared to other Azure VMs, which are about 30 GB. The Azure Monitor Agent requires at least 4 GB disk size in order to install and run successfully. See the [Azure Linux documentation](https://eng.ms/docs/products/mariner-linux/gettingstarted/azurevm/azurevm#disk-size) for more information and instructions on how to increase disk size before installing the agent.
 
 ## Hardening standards
 

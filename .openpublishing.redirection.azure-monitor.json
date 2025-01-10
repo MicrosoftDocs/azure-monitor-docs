@@ -521,6 +521,11 @@
    "redirect_document_id": false
   },
   {
+    "source_path_from_root": "/articles/azure-monitor/app/javascript-sdk-upgrade.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/app/javascript-sdk-upgrade",
+    "redirect_document_id": false
+   },
+  {
    "source_path_from_root": "/articles/azure-monitor/app/tutorial-performance.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/tutorial-performance",
    "redirect_document_id": false
