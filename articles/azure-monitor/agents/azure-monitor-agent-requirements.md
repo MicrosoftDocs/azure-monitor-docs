@@ -14,17 +14,19 @@ This article provides requirements and prerequisites for using the Azure Monitor
 
 ## Virtual machine extension details
 
-The Azure Monitor Agent is implemented as an [Azure virtual machine (VM) extension](/azure/virtual-machines/extensions/overview). Extension details are listed in the following table. You can install the extension by using any of the methods you use to install VM extensions. For version information, see [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md).
+The Azure Monitor Agent is implemented as an [Azure virtual machine (VM) extension](/azure/virtual-machines/extensions/overview). Extension details are listed in the following table. You can install the extension by using any of the methods that you use to install a VM extension in Azure. For version information, see [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md).
+
+The following table lists property values to use per operating system for extension installation:
 
 | Property | Windows | Linux |
 |:---|:---|:---|
-| `Publisher` | Microsoft.Azure.Monitor  | Microsoft.Azure.Monitor |
-| `Type`      | AzureMonitorWindowsAgent | AzureMonitorLinuxAgent  |
-| `TypeHandlerVersion`  | See [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md) | [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md) |
+| `Publisher` | `Microsoft.Azure.Monitor`  | `Microsoft.Azure.Monitor` |
+| `Type`      | `AzureMonitorWindowsAgent` | `AzureMonitorLinuxAgent`  |
+| `TypeHandlerVersion`  | See [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md). | See [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md). |
 
 ## Permissions
 
-For methods other than using the Azure portal, you must have the following role assignments to install the agent:  
+For methods other than installing by using the Azure portal, you must have the following role assignments to install the agent:  
 
 | Built-in role | Scopes | Reason |  
 |:---|:---|:---|  
@@ -48,7 +50,7 @@ For methods other than using the Azure portal, you must have the following role 
 
    For `identifier-name`, use `mi_res_id`, `object_id`, or `client_id`. For more information on `mi_res_id`, `object_id`, and `client_id`, see the [Managed identity documentation](/azure/active-directory/managed-identities-azure-resources/how-to-use-vm-token#get-a-token-using-http).
 
-- **System-assigned**: This managed identity is suited for initial testing and for small deployments. When used at scale, like for all VMs in a subscription, it results in a substantial number of identities created and deleted in Microsoft Entra ID. To avoid this churn of identities, use user-assigned managed identities instead.
+- **System-assigned**: This managed identity is suited for initial testing and for small deployments. When used at scale, such as for all VMs in a subscription, it results in a substantial number of identities created and deleted in Microsoft Entra ID. To avoid this churn of identities, use user-assigned managed identities instead.
 
 > [!IMPORTANT]
 > System-assigned managed identity is the only supported authentication for Azure Arc-enabled servers. It's enabled automatically when you install the Azure Arc agent.
@@ -77,7 +79,7 @@ For methods other than using the Azure portal, you must have the following role 
 
 ## Cryptography
 
-The Azure Monitor Agent does not work on Linux virtu machines when the systemwide crypto policy set in FUTURE mode. For more information, see notes in [Linux hardening](azure-monitor-agent-supported-operating-systems.md#linux-hardening).
+The Azure Monitor Agent does not work on Linux virtual machines when the systemwide crypto policy set in FUTURE mode. For more information, see the notes in [Linux hardening](azure-monitor-agent-supported-operating-systems.md#linux-hardening).
 
 ## Related content
 

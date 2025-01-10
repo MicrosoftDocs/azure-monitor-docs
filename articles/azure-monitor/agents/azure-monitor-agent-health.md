@@ -17,7 +17,7 @@ The workbook gives you the following information:
 - The distribution of your agents across environments and resource types.
 - Health trends and details for agents, including last heartbeat.
 - Agent process footprints for both processor and memory for a selected agent.
-- Summary of data collection rules and associated agents.
+- A summary of data collection rules and associated agents.
 
 :::image type="content" source="media/azure-monitor-agent/azure-monitor-agent-health.png" lightbox="media/azure-monitor-agent/azure-monitor-agent-health.png" alt-text="Screenshot of the Azure Monitor Agent Health workbook. The screenshot highlights the various default charts and scope of information.":::
 
