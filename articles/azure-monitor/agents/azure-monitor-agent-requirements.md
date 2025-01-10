@@ -2,9 +2,7 @@
 title: Azure Monitor agent requirements
 description: Requirements for Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers and prerequisites for installation.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
-ms.date: 11/14/2024
+ms.date: 01/08/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -76,6 +74,8 @@ You should use `mi_res_id`, `object_id`, or `client_id` as the `identifier-name`
 | Event Cache | Linux | /var/opt/microsoft/azuremonitoragent/events | 10 GB |
 | Event Cache | Linux | /var/lib/rsyslog | 1 GB |
 
+## Cryptography
+The Azure Monitor Agent does not work on Linux Machines when the system-wide crypto policy set in FUTURE mode. For more information, see notes in [Linux Hardening](azure-monitor-agent-supported-operating-systems.md#linux-hardening)
 
 ## Next steps
 
