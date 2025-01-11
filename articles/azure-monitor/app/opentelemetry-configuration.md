@@ -511,7 +511,7 @@ For information on configuring Entra ID authentication, see [Microsoft Entra aut
 
 ### [.NET](#tab/net)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md.md?tabs=net)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=net)
 
 ### [Java](#tab/java)
 
