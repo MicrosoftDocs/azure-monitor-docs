@@ -11,24 +11,24 @@ ms.date: 01/08/2025
 
 # Get started with log queries in Azure Monitor
 
-> [!NOTE]
-> If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
->
-> If you already know how to query in Kusto Query Language (KQL) but need to quickly create useful queries based on resource types, see the saved example queries pane in [Use queries in Azure Monitor Log Analytics](../logs/queries.md).
-
 This tutorial shows you how to:
 
-* Understand query structure.
-* Sort query results.
-* Filter query results.
-* Specify a time range.
-* Select which fields to include in the results.
-* Define and use custom fields.
-* Aggregate and group results.
+* [Structure a query](#write-a-new-query).
+* [Sort query results]().
+* [Filter query results]().
+* [Specify a time range]().
+* [Select which fields to include in the results]().
+* [Define and use custom fields]().
+* [Aggregate and group results]().
 
 For a tutorial on using Log Analytics in the Azure portal, see [Get started with Azure Monitor Log Analytics](./log-analytics-tutorial.md).
 
 For more information about log queries in Azure Monitor, see [Overview of log queries in Azure Monitor](../logs/log-query-overview.md).
+
+> [!NOTE]
+> If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
+>
+> If you already know how to query in Kusto Query Language (KQL) but need to quickly create useful queries based on resource types, see the saved example queries pane in [Use queries in Azure Monitor Log Analytics](../logs/queries.md).
 
 ## Tutorial video
 
@@ -50,7 +50,7 @@ Queries can start with either a table name or the `search` command. It's a good 
 
 ### Table-based queries
 
-Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Analytics portal.
+Azure Monitor organizes log data in tables, each composed of multiple columns. All tables and columns are shown on the schema pane in Log Analytics in the Azure portal.
 
 Identify a table that you're interested in, then take a look at a bit of data:
 
@@ -67,16 +67,18 @@ The preceding query returns 10 results from the `SecurityEvent` table, in no spe
 
 ### Search queries
 
+Search queries are less structured. They're best suited for finding records that include a specific value in any of the columns of a certain table.
+
 ### [KQL mode](#tab/kql)
 
-Search queries are less structured. They're better suited for finding records that include a specific value in any of their columns:
+This query searches the `SecurityEvent` table for records that contain the phrase "Cryptographic." Of those records, 10 records are returned and displayed:
 
 ```Kusto
 search in (SecurityEvent) "Cryptographic"
 | take 10
 ```
 
-This query searches the `SecurityEvent` table for records that contain the phrase "Cryptographic." Of those records, 10 records are returned and displayed. If you omit the `in (SecurityEvent)` part and run only `search "Cryptographic"`, the search goes over *all* tables. The process would then take longer and be less efficient.
+If you omit the `in (SecurityEvent)` part and run only `search "Cryptographic"`, the search goes over *all* tables. The process would then take longer and be less efficient.
 
 > [!IMPORTANT]
 > Search queries are ordinarily slower than table-based queries because they have to process more data.
@@ -87,11 +89,11 @@ To search for records that include a specific value in any of their columns in s
 
 1. Click **Select a table** and chose `SecurityEvent`.
 
-1. Select **Add** and chose **search in table**.
+1. Select **Add** > **Search in table**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Search in table' highlighted." lightbox="media/get-started-queries/logs-simple-search-1.png":::
 
-1. Enter "Cryptographic" and hit **Apply**.
+1. Enter "Cryptographic" and select **Apply**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-2.png" alt-text="Screenshot shows the Search field in simple mode." lightbox="media/get-started-queries/logs-simple-search-2.png":::
 
@@ -207,7 +209,7 @@ In simple mode, there's no direct equivalent to the `top` operator. Instead, you
 
 ## Filter
 
-Filters, as indicated by their name, filter the data by a specific condition. Filtering is the most common way to limit query results to relevant information.
+Filtering is the most common way to limit query results to relevant information.
 
 ## [KQL mode](#tab/kql)
 
@@ -229,13 +231,13 @@ When you write filter conditions, you can use the following expressions:
 
 ## [Simple mode](#tab/simple)
 
-In simple mode, you can add filters using the UI. To filter results in the `SecurityEvent` table to only show records where the `Level` equals `8`:
+To filter results in the `SecurityEvent` table to only show records where the `Level` equals `8`:
 
 1. Select **Add** and choose the column `Level`.
 
     :::image type="content" source="media/get-started-queries/logs-simple-filter-1.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-1.png":::
 
-1. In the **Operator** dropdown list, select **Equals**. Enter the number `8` in the field below, then hit **Apply**.
+1. In the **Operator** dropdown list, select **Equals**. Enter the number `8` in the field below, then select **Apply**.
     
     :::image type="content" source="media/get-started-queries/logs-simple-filter-2.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-2.png":::
 
@@ -272,7 +274,7 @@ To filter by multiple conditions, you can add additional filters:
 
 1. Select **Add** and choose the column `EventID`.
 
-1.  In the **Operator** dropdown list, select **Equals**. Enter the number `4672` in the field below, then hit **Apply**.
+1.  In the **Operator** dropdown list, select **Equals**. Enter the number `4672` in the field below, then select **Apply**.
 
 ---
 
@@ -312,7 +314,7 @@ The time picker is displayed next to the **Run** button and indicates that you'r
 
 ---
 
-## Select columns
+## Include or exclude columns in query results
 
 ## [KQL mode](#tab/kql)
 
@@ -403,7 +405,7 @@ To reviews all `Perf` records from the last, group them by `ObjectName`, and cou
 
 ---
 
-### Define groups by multiple dimensions
+### Group unique combinations of values in multiple columns
 
 ### [KQL mode](#tab/kql)
 
