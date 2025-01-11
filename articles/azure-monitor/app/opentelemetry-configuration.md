@@ -507,15 +507,15 @@ For more information, see our dedicated Microsoft Entra authentication page link
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=aspnetcore)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=aspnetcore)
 
 ### [.NET](#tab/net)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=net)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=net)
 
 ### [Java](#tab/java)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=java)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=java)
 
 ### [Java native](#tab/java-native)
 
@@ -523,11 +523,11 @@ Microsoft Entra ID authentication isn't available for GraalVM Native application
 
 ### [Node.js](#tab/nodejs)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=nodejs)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=nodejs)
 
 ### [Python](#tab/python)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](opentelemetry-configuration.md?tabs=python)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=python)
 
 ---
 
