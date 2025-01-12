@@ -101,6 +101,9 @@ Query Cost = (Number of time series requested * (queried time duration in second
 
 *Inferred time resolution of queried data* = Number of data points stored in any one randomly selected time series keys of queried metric / queried time duration in seconds
 
+>[!Note]
+>A single query has a limit on max size of 64MB in bytes for the result of time series keys requested in the query.
+
 #### Alert and recording rules 
 Prometheus alert rules and recording rules are defined in PromQL. They're performed on the managed Ruler service as part of Azure Monitor managed service for Prometheus.
 
