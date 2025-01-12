@@ -17,7 +17,7 @@ The following image shows the CPU utilization of virtual machines across two sub
 
 Watch this video to learn how to build a hive cluster.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE5ah5O]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=cb4948be-9135-48ec-b217-407b2a7a9b8b]
 
 ## Add a honeycomb
 

@@ -33,7 +33,7 @@ The following video walks you through routing resource platform logs with diagno
 
 Information on these newer features is included in this article.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE4AvVO]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
 
 ## Sources
 
