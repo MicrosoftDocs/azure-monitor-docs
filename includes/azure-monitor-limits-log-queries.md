@@ -27,7 +27,8 @@ Azure Monitor has several throttling limits to protect against users sending an 
 | Time in concurrency queue | 3 minutes | If a query sits in the queue for more than 3 minutes without being started, it's terminated with an HTTP error response with code 429. |
 | Total queries in concurrency queue | 200 | When the number of queries in the queue reaches 200, the next query is rejected with an HTTP error code 429. This number is in addition to the five queries that can be running simultaneously. |
 | Query rate | 200 queries per 30 seconds | Overall rate of queries that can be submitted by a single user to all workspaces. This limit applies to programmatic queries or queries initiated by visualization parts such as Azure dashboards and the Log Analytics workspace summary (deprecated) page. |
-
+ 
+- The [activity logs API](../articles/azure-monitor/essentials/rest-activity-log.md) has a separate rate limit of 50 queries per 30 seconds. 
 - Optimize your queries as described in [Optimize log queries in Azure Monitor](../articles/azure-monitor/logs/query-optimization.md).
 - Dashboards and workbooks can contain multiple queries in a single view that generate a burst of queries every time they load or refresh. Consider breaking them up into multiple views that load on demand.
-- In Power BI, consider extracting only aggregated results rather than raw logs.
+- In Power BI, consider extracting only aggregated results rather than raw logs. 

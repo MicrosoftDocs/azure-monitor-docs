@@ -4,7 +4,7 @@ description: This article describes how to use Azure Monitor Agent to upload dat
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 10/09/2023
+ms.date: 01/05/2025
 ms.reviewer: luki
 ---
 
@@ -58,13 +58,17 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
    - Windows Crash Dumps (not planned nor will be supported)
    - Application Logs (not planned nor will be supported)
    - .NET event source logs (not planned nor will be supported)
+
 ## Prerequisites
 
-A managed identity (either system or user) associated with the resources below. We highly recommend using [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for better scalability and performance.
-
-- [Storage account](/azure/storage/common/storage-account-create)
-- [Event Hubs namespace and event hub](/azure/event-hubs/event-hubs-create)
-- [Virtual machine](/azure/virtual-machines/overview)
++ An existing compute resource, such as a virtual machine or virtual machine scale set. 
++ The machine to which Azure Monitor Agent is deployed must have system-assigned managed identity enabled or a user-assigned managed identity associated it to it. [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities)  is recommended for better scalability and performance. 
++ Azure Monitor Agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](azure-monitor-agent-requirements.md#permissions). 
++ You must provision the necessary [storage account(s)](/azure/storage/common/storage-account-create) and/or [Event Hubs](/azure/event-hubs/event-hubs-create) to which you wish to publish data via Azure Monitor Agent. 
++ The appropriate built-in RBAC role(s) must be assigned to the chosen managed identity according to your desired data destination(s).
+    - Storage table: `Storage Table Data Contributor` role
+    - Storage blob: `Storage Blob Data Contributor` role
+    - Event hub: `Azure Event Hubs Data Sender` role
 
 ## Create a data collection rule
 

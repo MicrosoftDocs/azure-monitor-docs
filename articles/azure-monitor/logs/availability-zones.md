@@ -5,29 +5,27 @@ ms.subservice: logs
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/23/2024
+ms.date: 10/06/2024
 ms.custom: references_regions
 
 # Customer intent: As an IT manager, I want to understand the data and service resilience benefits Azure Monitor availability zones provide to ensure my data and services are sufficiently protected in the event of datacenter failure.
 ---
 # Enhance data and service resilience in Azure Monitor Logs with availability zones
 
-[Azure availability zones](/azure/reliability/availability-zones-overview) protect applications and data from datacenter failures and can enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. This article describes the data and service resilience benefits Azure Monitor availability zones provide in supported regions.
+[Azure availability zones](/azure/reliability/availability-zones-overview) protect applications and data from datacenter failures and can enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. In some regions, availability zones protect all Log Analytics workspaces by default. In other regions, you need to link your workspace to a dedicated cluster for availability zone protection. This article describes the data and service resilience benefits Azure Monitor availability zones provide, and lists the level of support provided in each region.
 
 > [!NOTE]
 > Application Insights resources can use availability zones only if they're workspace-based. Classic Application Insights resources can't use availability zones.
 
 ## Prerequisites
 
-- A Log Analytics workspace linked to a shared or [dedicated cluster](logs-dedicated-clusters.md).  Azure Monitor creates Log Analytics workspaces in a shared cluster, unless you set up a dedicated cluster for your workspaces.
-
-
+- A Log Analytics workspace linked to a shared or [dedicated cluster](logs-dedicated-clusters.md). Azure Monitor creates Log Analytics workspaces in a shared cluster, unless you set up a dedicated cluster for your workspaces.
 
 ## How availability zones enhance data and service resilience in Azure Monitor Logs
 
 Each Azure region that supports availability zones is made of one or more datacenters, or zones, equipped with independent power, cooling, and networking infrastructure. 
 
-Azure Monitor Logs availability zones are [zone-redundant](/azure/reliability/availability-zones-overview#zonal-and-zone-redundant-services), which means that Microsoft manages spreading service requests and replicating data across different zones in supported regions. If one zone is affected by an incident, Microsoft manages failover to a different availability zone in the region automatically. You don't need to take any action because switching between zones is seamless. 
+Azure Monitor Logs availability zones are [zone-redundant](/azure/reliability/availability-zones-overview#zonal-and-zone-redundant-services), which means that Microsoft manages spreading service requests and replicating data across different zones in supported regions. If an incident affects one zone, Microsoft manages failover to a different availability zone in the region automatically. You don't need to take any action because switching between zones is seamless. 
 
 A subset of the availability zones that support data resilience currently also support service resilience for Azure Monitor Logs. In regions that support **service resilience**, Azure Monitor Logs service operations - for example, log ingestion, queries, and alerts - can continue in the event of a zone failure. In regions that only support **data resilience**, your stored data is protected against zonal failures, but service operations might be impacted by regional incidents.
 
@@ -46,6 +44,7 @@ A subset of the availability zones that support data resilience currently also s
 |	Central US	|		|	:white_check_mark:	|		|
 |	East US	|		|	:white_check_mark:	|		|
 |	East US 2	|		|	:white_check_mark:	|	:white_check_mark:	|
+|	Mexico Central	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
 |	South Central US	|	:white_check_mark:	|	:white_check_mark:	|		|
 |	West US 2	|		|	:white_check_mark:	|	:white_check_mark:	|
 |	West US 3	|	:white_check_mark:	|	:white_check_mark:	|		|
@@ -74,8 +73,15 @@ A subset of the availability zones that support data resilience currently also s
 |	UAE North	|	:white_check_mark:	|	:white_check_mark:	|		|
 
 
+## Migrate a Log Analytics workspace to availability zone support
+
+If your Log Analytics workspace isn't in one of the [regions that support availability zones](#supported-regions) for shared clusters, [link your workspace to a dedicated cluster](logs-dedicated-clusters.md). 
+
+Linking your workspace to a dedicated cluster:
+
+- Requires a commitment tier starting at 100 GB a day.
+- Protects new data you ingest to your Log Analytics workspace. Data you ingest before you link your workspace to a dedicated cluster remains in the shared cluster.
+
 ## Next steps
 
-Learn more about how to:
-- [Set up a dedicated cluster](logs-dedicated-clusters.md).
-- [Migrate Log Analytics workspaces to availability zone support](/azure/availability-zones/migrate-monitor-log-analytics).
+Learn more about [Azure Monitor Logs features that enhance resilience and reliability](../best-practices-logs.md#reliability).

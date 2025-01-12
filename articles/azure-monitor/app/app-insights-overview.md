@@ -44,7 +44,7 @@ Application Insights provides many experiences to enhance the performance, relia
 
 ### Code analysis
 
-* [Profiler](../profiler/profiler-overview.md): Capture, identify, and view performance traces for your application.
+* [.NET Profiler](../profiler/profiler-overview.md): Capture, identify, and view performance traces for your application.
 * [Code optimizations](../insights/code-optimizations.md): Harness AI to create better and more efficient applications.
 * [Snapshot debugger](../snapshot-debugger/snapshot-debugger.md): Automatically collect debug snapshots when exceptions occur in .NET application
 
@@ -235,8 +235,16 @@ This answer depends on the distribution of our endpoints, *not* on where your Ap
 
 ### Do I incur network costs if my Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region?
 
-Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going. 
+Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going.
 Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+
+### What TLS versions does Application Insights support
+
+> [!IMPORTANT]
+>  On 1 March 2025, in alignment with the Azure wide legacy TLS retirement, TLS 1.0/1.1 protocol versions and the listed TLS 1.2/1.3 legacy Cipher suites and Elliptical curves will be retired for Application Insights.
+To provide best-in-class encryption, Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. 
+
+For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
 ## Help and support
 

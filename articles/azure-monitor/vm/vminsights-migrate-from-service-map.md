@@ -4,7 +4,7 @@ description: Migrate from Service Map to Azure Monitor VM insights to monitor th
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 09/28/2023
+ms.date: 10/29/2024
 ms.reviewer: xpathak
 
 ---

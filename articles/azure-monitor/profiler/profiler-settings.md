@@ -66,10 +66,10 @@ You can set up a trigger to start profiling when the percentage of CPU or memory
 
 | Setting | Description |
 |-|-|
-On/Off button | On: Starts the Profiler. Off: Doesn't start the Profiler.
-Memory threshold | When this percentage of memory is in use, the Profiler is started.
-Duration | Sets the length of time the Profiler runs when triggered.
-Cooldown | Sets the length of time the Profiler waits before checking for the memory or CPU usage again after it's triggered.
+On/Off button | On: Starts Profiler. Off: Doesn't start Profiler.
+Memory threshold | When this percentage of memory is in use, Profiler is started.
+Duration | Sets the length of time Profiler runs when triggered. Default is 30 seconds.
+Cooldown | Sets the length of time Profiler waits before checking for the memory or CPU usage again after it's triggered.
 
 ### Sampling trigger
 
@@ -82,9 +82,9 @@ You can:
 
 | Setting | Description |
 |-|-|
-On/Off button | On: Starts the Profiler. Off: Doesn't start the Profiler.
-Sample rate | The rate at which the Profiler can occur. </br> <ul><li>The **Normal** setting collects data 5% of the time, which is about 2 minutes per hour.</li><li>The **High** setting profiles 50% of the time.</li><li>The **Maximum** setting profiles 75% of the time.</li></ul> </br> We recommend the **Normal** setting for production environments.
-Duration | Sets the length of time the Profiler runs when triggered.
+On/Off button | On: Starts Profiler. Off: Doesn't start Profiler.
+Sample rate | The rate at which Profiler can occur. </br> <ul><li>The **Normal** setting collects data 5% of the time, which is about 2 minutes per hour.</li><li>The **High** setting profiles 50% of the time.</li><li>The **Maximum** setting profiles 75% of the time.</li></ul> </br> We recommend the **Normal** setting for production environments.
+Duration | Sets the length of time Profiler runs when triggered. Default is 30 seconds.
 
 ## Recent profiling sessions
 This section of the **Profiler** page displays recent profiling session information. A profiling session represents the time taken by the Profiler agent while profiling one of the machines that hosts your application. Open the profiles from a session by selecting one of the rows. For each session, we show the following settings.

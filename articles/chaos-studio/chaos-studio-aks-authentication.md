@@ -24,6 +24,9 @@ Azure Chaos Studio integrates with Chaos Mesh to run faults on Azure Kubernetes 
 
 Chaos Studio previously only supported using Chaos Mesh with local accounts, but Version 2.2 of all AKS faults now support both local accounts and Microsoft Entra authentication.
 
+> [!WARNING]
+> If you see a runtime error `Object reference not set to an instance of an object`, this is a known bug with the version 2.2 faults. A fix is expected to finish deploying in early January 2025. This happens when using the new AKS Chaos Mesh fault version (2.2) on a cluster with local accounts enabled. The workaround is to use the v2.1 faults, which are marked "(deprecated)" in the UI, or use an AKS cluster with Entra authentication enabled.
+
 
 ## Update targets
 

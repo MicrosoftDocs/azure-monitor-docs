@@ -7,7 +7,7 @@ ms.service: azure-monitor
 ms.subservice: autoscale
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.topic: conceptual
-ms.date: 08/25/2024
+ms.date: 11/01/2024
 ms.reviewer: akkumari
 
 # Customer intent: As a user or dev ops administrator, I want to understand how set up autoscale with more than one profile so I can scale my resources with more flexibility.
@@ -85,7 +85,7 @@ where *VMSS1-autoscale.json* is the file containing the following JSON object.
 
                 "name": "VMSS1-Autoscale-607",
                 "enabled": true,
-                "targetResourceUri": "/subscriptions/0000aaaa-11BB-cccc-dd22-eeeeee333333/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1",
+                "targetResourceUri": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1",
                 "profiles": [
                     {
                         "name": "Weekday profile",
@@ -105,7 +105,7 @@ where *VMSS1-autoscale.json* is the file containing the following JSON object.
                                 "metricTrigger": {
                                     "metricName": "Inbound Flows",
                                     "metricNamespace": "microsoft.compute/virtualmachinescalesets",
-                                    "metricResourceUri": "/subscriptions/0000aaaa-11BB-cccc-dd22-eeeeee333333/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1",
+                                    "metricResourceUri": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1",
                                     "operator": "GreaterThan",
                                     "statistic": "Average",
                                     "threshold": 100,
@@ -126,7 +126,7 @@ where *VMSS1-autoscale.json* is the file containing the following JSON object.
                                 "metricTrigger": {
                                     "metricName": "Inbound Flows",
                                     "metricNamespace": "microsoft.compute/virtualmachinescalesets",
-                                    "metricResourceUri": "/subscriptions/0000aaaa-11BB-cccc-dd22-eeeeee333333/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1",
+                                    "metricResourceUri": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1",
                                     "operator": "LessThan",
                                     "statistic": "Average",
                                     "threshold": 60,
@@ -283,9 +283,9 @@ The default profile uses the  `CpuIn` and `CpuOut` Rules. The recurring profile 
 
 ```azurepowershell
 
-Set-AzureSubscription -SubscriptionId "0000aaaa-11BB-cccc-dd22-eeeeee333333"
+Set-AzureSubscription -SubscriptionId "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 $ResourceGroupName="rg-vmss-001"
-$TargetResourceId="/subscriptions/0000aaaa-11BB-cccc-dd22-eeeeee333333/resourceGroups/rg-vmss-001/providers/Microsoft.Compute/virtualMachineScaleSets/vmss-001"
+$TargetResourceId="/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss-001/providers/Microsoft.Compute/virtualMachineScaleSets/vmss-001"
 $ScaleSettingName="vmss-autoscalesetting=001"
 
 $CpuOut=New-AzAutoscaleScaleRuleObject `

@@ -3,7 +3,7 @@ title: Get started with autoscale in Azure
 description: "Learn how to scale your resource web app, cloud service, virtual machine, or Virtual Machine Scale Set in Azure."
 ms.author: edbaynash
 ms.topic: conceptual
-ms.date: 08/26/2024
+ms.date: 11/01/2024
 ---
 # Get started with autoscale in Azure
 
@@ -15,7 +15,7 @@ Azure autoscale supports many resource types. For more information about support
 
 ## Discover the autoscale settings in your subscription
   
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE4u7ts]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=125ecef8-c287-4a81-9001-69c01558398c]
 
 To discover the resources that you can autoscale, follow these steps.
 

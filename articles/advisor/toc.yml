@@ -26,6 +26,8 @@
     - name: ARM template
       displayName: Resource Manager
       href: advisor-alerts-arm.md
+  - name: Configure recommendation digest
+    href: advisor-recommendations-digest.md      
 - name: How-to guides
   items:
   - name: Use Azure Well Architected Framework Assessments
@@ -34,20 +36,12 @@
     href: advisor-resiliency-reviews.md
   - name: Optimize virtual machine spend by resizing or shutting down underutilized instances
     href: advisor-cost-recommendations.md
-  - name: Optimize your Azure costs using the cost optimization workbook 
-    href: advisor-cost-optimization-workbook.md
   - name: Improve security
     href: advisor-security-recommendations.md
-  - name: Improve reliability  
-    href: advisor-how-to-improve-reliability.md
-  - name: Plan migration of workloads impacted by service retirement
-    href: advisor-how-to-plan-migration-workloads-service-retirement.md
   - name: Improve the performance of highly used VMs
     href: advisor-how-to-performance-resize-high-usage-vm-recommendations.md
   - name: Use tags to filter recommendations and score
     href: advisor-tag-filtering.md
-  - name: Configure recommendations summary
-    href: advisor-recommendations-digest.md
   - name: Bulk remediation for recommendations
     href: advisor-quick-fix.md
   - name: Advisor data in Azure Resource Graph
@@ -66,6 +60,16 @@
     href: advisor-reference-reliability-recommendations.md    
   - name: Sovereign clouds
     href: advisor-sovereign-clouds.md
+- name: Workbooks
+  items:
+  - name: Overview for workbooks
+    href: ./advisor-workbooks.md
+  - name: Cost Optimization workbook
+    href: ./advisor-workbook-cost-optimization.md
+  - name: Reliability workbook
+    href: ./advisor-workbook-reliability.md
+  - name: Service Retirement workbook
+    href: ./advisor-workbook-service-retirement.md
 - name: Samples 
   items:
   - name: Azure Resource Graph queries
