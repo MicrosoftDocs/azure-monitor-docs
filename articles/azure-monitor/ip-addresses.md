@@ -66,7 +66,6 @@ For more information on availability tests, see [Private availability testing](.
 
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |
-| Analytics portal | `analytics.applicationinsights.io` | dynamic | 80,443 |
 | CDN | `applicationanalytics.azureedge.net` | dynamic | 80,443 |
 | Media CDN | `applicationanalyticsmedia.azureedge.net` | dynamic | 80,443 |
 
@@ -77,7 +76,6 @@ The *.applicationinsights.io domain is owned by the Application Insights team.
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |
 | Portal | `portal.loganalytics.io` | dynamic | 80,443 |
-| CDN | `applicationanalytics.azureedge.net` | dynamic | 80,443 |
 
 The *.loganalytics.io domain is owned by the Log Analytics team.
 
