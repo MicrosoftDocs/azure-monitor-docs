@@ -59,12 +59,10 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 |:-------|:---------------------|
 | Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
-## Limitations
-
-These limitations apply:
+## Implementation considerations
 
 - You can submit up to 10 Delete Data requests per hour in a single Log Analytics workspace. 
-- Only the Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. You can't delete data from a table with the Auxiliary plan.
+- The Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. The Auxiliary plan doesn't support data deletion.
 
 ## Call the Delete Data API to delete data from a specific table
 
