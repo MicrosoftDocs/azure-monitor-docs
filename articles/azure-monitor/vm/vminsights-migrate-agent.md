@@ -38,7 +38,7 @@ Enable the Azure Monitor agent using any of the [available methods](./vminsights
 > [!WARNING]
 > Collecting duplicate data from a single machine with both the Azure Monitor agent and Log Analytics agent can result in:
 > - Additional cost of ingestion duplicate data to the Log Analytics workspace.
-> - The map feature of VM insights may be inaccurate since it does not check for duplicate data. For more information about 
+> - The map feature of VM insights may be inaccurate since it does not check for duplicate data.
 
 Once you've verified that the Azure Monitor agent has been enabled, remove the Log Analytics agent from the machine to prevent duplicate data collection. See [MMA/OMS Discovery and Removal Utility](../agents/azure-monitor-agent-mma-removal-tool.md) for details on the tool for removing multiple agents.
 
