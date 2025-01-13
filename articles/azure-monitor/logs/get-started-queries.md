@@ -33,7 +33,7 @@ For more information about log queries in Azure Monitor, see [Overview of log qu
 ## Tutorial video
 
 > [!NOTE]
-> The video below shows an old user interface, but the screenshots throughout this article are up to date and reflect the current UI.
+> This video shows an earlier version of the user interface, but the screenshots throughout this article are up to date and reflect the current UI.
 
 <br>
 
@@ -115,7 +115,7 @@ SecurityEvent
 | take 10
 ```
 
-The selected results are arbitrary and displayed in no particular order. If you need to return results in a particular order, use the [`sort` and `top` operators](#sort-and-top).
+The selected results are arbitrary and displayed in no particular order. If you need to return results in a particular order, use the `sort` and `top` operators.
 
 ## [Simple mode](#tab/simple)
 
@@ -400,7 +400,7 @@ Perf
 
 ### [Simple mode](#tab/simple)
 
-To reviews all `Perf` records from the last, group them by `ObjectName`, and count the records in each group:
+To review all `Perf` records from the last, group them by `ObjectName`, and count the records in each group:
 
 1. Open **Time range** and change it to **Last hour**.
 
@@ -467,7 +467,7 @@ To calculate the average `CounterValue` for each computer:
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
-However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](/azure/azure-monitor/logs/get-started-queries&tabs=kql#perform-mathematical-or-statistical-calculations) to see how this can be done using a kusto query.
+However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](/azure/azure-monitor/logs/get-started-queries&tabs=kql#perform-mathematical-or-statistical-calculations) to see how this can be done using a Kusto query.
 
 ---
 
