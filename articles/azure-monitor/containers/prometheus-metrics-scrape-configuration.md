@@ -82,13 +82,6 @@ pod-annotation-based-scraping: |-
     podannotationnamespaceregex = "kube-system|my-namespace"
 ```
 
-To enable scraping for pods with annotations in all namespaces, use:
-
-```yaml
-pod-annotation-based-scraping: |-
-    podannotationnamespaceregex = ".*"
-```
-
 > [!WARNING]
 > Scraping the pod annotations from many namespaces can generate a very large volume of metrics depending on the number of pods that have annotations.
 
