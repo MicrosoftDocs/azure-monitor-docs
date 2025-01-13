@@ -127,8 +127,8 @@ Currently supported hardening standards:
 | Red Hat Enterprise Linux Server 9 | ✓ |
 
 > [!IMPORTANT]  
-> Configuring your Linux Machine system-wide crypto policy to FUTURE mode disables certain cryptographic algorithms and is not recommended. 
-> This policy can prevent communication with backend Azure Monitor services that use best practice crypto policies. 
+> Configuring your Linux Machine system-wide crypto policy to "FUTURE" does not work with the Azure Monitor Agent.
+> This policy disables certain cryptographic algorithms and thus prevents communication with backend Azure Monitor services that use best practice crypto policies.
 > Specifically, the FUTURE policy disables some algorithms that use less than 3072 bits keys, such as SHA-1, RSA, and Diffie-Hellman.
 
 To identify the current policy setting mode, run the following update-crypto-policies command:
