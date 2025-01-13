@@ -1,7 +1,7 @@
 ---
 ms.service: azure-monitor
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/13/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -251,5 +251,29 @@ Optimize resource utilization, reduce costs, and enhance application performance
 For more information, see [Overview of autoscale with Azure Virtual Machine Scale Sets](https://aka.ms/VMSSCustomAutoscaleMetric)  
 
 <!--ce8bb934-ce5c-44b3-a94c-1836fa7a269a_end-->
+
+<!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_begin-->
+
+#### Convert Standard to Premium disk for higher uptime  
+  
+Use a Premium SSD managed disk in a Single Instance virtual machine for the highest uptime. Conversion is allowed from a Standard managed disk to a Premium managed disk.  
+  
+**Potential benefits**: Enhanced performance, configurability, and uptime  
+
+For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
+
+<!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
+
+<!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_begin-->
+
+#### Add additional VM or use Premium disks for higher uptime  
+  
+Add a second instance VM to Availability Set or upgrade to Premium SSD managed disks for highest uptime.  
+  
+**Potential benefits**: Enhanced performance, configurability, and uptime  
+
+For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
+
+<!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_end-->
 
 <!--articleBody-->
