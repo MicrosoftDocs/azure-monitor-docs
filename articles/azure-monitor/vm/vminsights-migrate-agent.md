@@ -40,7 +40,7 @@ Enable the Azure Monitor agent using any of the [available methods](./vminsights
 > - Additional cost of ingestion duplicate data to the Log Analytics workspace.
 > - The map feature of VM insights may be inaccurate since it does not check for duplicate data. For more information about 
 
-Once you've verified that the Azure Monitor agent has been enabled, remove the Log Analytics agent from the machine to prevent duplicate data collection. See [Uninstall agent](../agents/azure-monitor-agent-mma-removal-tool.md) for details on removing a single agent or [MMA/OMS Discovery and Removal Utility](../agents/azure-monitor-agent-mma-removal-tool.md) for details on the tool for removing multiple agents.
+Once you've verified that the Azure Monitor agent has been enabled, remove the Log Analytics agent from the machine to prevent duplicate data collection. See [MMA/OMS Discovery and Removal Utility](../agents/azure-monitor-agent-mma-removal-tool.md) for details on the tool for removing multiple agents.
 
 ## Migrate with Azure portal
 Use the following procedure to enable VM insights using the Azure Monitor agent on a machine that was previously enabled using Log Analytics agent. This method creates the required DCR or lets you select an existing one. It doesn't remove the Log Analytics agent from the machine though, so you still must perform this task after enabling the machine.
