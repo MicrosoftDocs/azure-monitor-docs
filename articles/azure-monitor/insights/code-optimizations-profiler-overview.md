@@ -94,11 +94,10 @@ You can set an explicit region using connection strings. [Learn more about conne
 
 ## Limitations
 
-- **Data retention**: The default data retention period is five days.
-- **Profiling web apps**:
-   - Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
-   - You can attach only one profiler to each web app.
-   - .NET Profiler on Linux is only supported on Windows-based web apps.
+**Profiling web apps**:
+- Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
+- You can attach only one profiler to each web app.
+- .NET Profiler on Linux is only supported on Windows-based web apps.
 
 ## Troubleshooting
 
