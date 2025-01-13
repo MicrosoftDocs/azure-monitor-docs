@@ -15,11 +15,11 @@ This tutorial shows you how to:
 
 * [Structure a query](#structure-a-query).
 * [Sort query results](#sort-results).
-* [Filter query results]().
-* [Specify a time range]().
-* [Select which fields to include in the results]().
-* [Define and use custom fields]().
-* [Aggregate and group results]().
+* [Filter query results](#filter-results).
+* [Specify a time range](#specify-a-time-range).
+* [Include or exclude columns in query results](#include-or-exclude-columns-in-query-results).
+* [Define and use custom fields](#define-and-use-custom-fields).
+* [Aggregate and group results](#aggregate-and-group-results).
 
 For a tutorial on using Log Analytics in the Azure portal, see [Get started with Azure Monitor Log Analytics](./log-analytics-tutorial.md).
 
@@ -207,7 +207,7 @@ In simple mode, there's no direct equivalent to the `top` operator. Instead, you
 
 ---
 
-## Filter
+## Filter results
 
 Filtering is the most common way to limit query results to relevant information.
 
@@ -286,6 +286,9 @@ To filter by multiple conditions, you can add additional filters:
 
 You can specify a time range by using the time picker or a time filter.
 
+> [!NOTE]
+> If you select a time range using the time picker and also include a time filter in the query, Log Analytics applies the smaller of the two time ranges.
+
 ### Use the time picker
 
 The time picker is displayed next to the **Run** button and indicates that you're querying records from only the last 24 hours. This default time range is applied to all queries. To get records from only the last hour, select **Last hour** and then run the query again.
@@ -294,7 +297,7 @@ The time picker is displayed next to the **Run** button and indicates that you'r
 
 ### Add a time filter to the query
 
-You can also define your own time range by adding a time filter to the query. Adding a time filter overrides the time range selected in the [time picker](#use-the-time-picker).
+You can also define your own time range by adding a time filter to the query.
 
 It's best to place the time filter immediately after the table name:
 
@@ -358,7 +361,7 @@ You can manually select the columns you want to show in your results:
 
 ---
 
-## Compute columns
+## Define and use custom fields
 
 ## [KQL mode](#tab/kql)
 
@@ -370,13 +373,16 @@ SecurityEvent
 | extend EventCode=substring(Activity, 0, 4)
 ```
 
+> [!NOTE]
+> Use the `extend` operator for ad hoc computations in queries. Use [ingestion-time transformations](./../essentials/data-collection-transformations.md) or [summary rules](./summary-rules.md) to transform or aggregate data at ingestion time for more efficient queries.
+
 ## [Simple mode](#tab/simple)
 
 In simple mode, there's no direct equivalent to the `extend` operator.
 
 ---
 
-## Aggregation
+## Aggregate and group results
 
 ### Aggregate groups of rows
 
