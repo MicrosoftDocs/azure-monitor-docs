@@ -475,9 +475,7 @@ For using the `basic_auth` or `bearer_token` settings in your prometheus configu
 
 1. Create a secret in the `kube-system` namespace named `ama-metrics-mtls-secret`.
    
-   The value for password1 is `base64encoded`.
-   
-   The name of the key `password1` can be anything as long as it matches the file name in the `password_file` filepath in the Prometheus scrape config in the next step.
+   The name of the key `password1` can be anything as long as it matches the file name in the `password_file` filepath in the Prometheus scrape config in the next step. The value for the key needs to be base64-encoded.
    
    ```yaml
    apiVersion: v1
@@ -489,6 +487,7 @@ For using the `basic_auth` or `bearer_token` settings in your prometheus configu
    data:
      password1: <base64-encoded-string>
    ```
+   
    The `ama-metrics-mtls-secret` secret is mounted on to the `ama-metrics` pods at the path `/etc/prometheus/certs/` and is made available to the Prometheus scraper. The key (`password1` in the above example) will be the file name. The value is base64 decoded and added as the contents of the file within the container.
    
 2. Then, in the custom scrape config in the configmap, provide the filepath:
