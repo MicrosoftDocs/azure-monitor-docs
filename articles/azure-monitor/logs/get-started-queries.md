@@ -131,7 +131,7 @@ To return up to a specific number of records in simple mode, you can limit the r
 
 ## Sort and top
 
-This section describes the `sort` and `top` operators and their `desc` and `asc` arguments. Although [`take`](#take) is useful for getting a few records, you can't select or sort the results in any particular order. To get an ordered view, use `sort` and `top`.
+This section describes the `sort` and `top` operators and their `desc` and `asc` arguments. Although `take` is useful for getting a few records, you can't select or sort the results in any particular order. To get an ordered view, use `sort` and `top`.
 
 ### Desc and asc
 
@@ -400,8 +400,10 @@ To reviews all `Perf` records from the last, group them by `ObjectName`, and cou
 
 1. Select **Add** > **Aggregate**, then make the following selection and hit **Apply**:
 
-    **Select column:** ObjectName
+    **Select column:** ObjectName<br>
     **Operator:** count
+
+:::image type="content" source="media/get-started-queries/logs-simple-aggregate.png" lightbox="media/get-started-queries/logs-simple-aggregate.png" alt-text="Screenshot that shows the selected values for aggregations in simple mode." border="false":::
 
 ---
 
@@ -452,8 +454,10 @@ To calculate the average `CounterValue` for each computer in simple mode:
 1. Select **Add** > **Aggregate**, then make the following selection and hit **Apply**:
 
     **Select column:** Computer
-    **Operator:** avg
-    **Average:** CounterValue
+    **Operator:** avg<br>
+    **Average:** CounterValue<br>
+
+:::image type="content" source="media/get-started-queries/logs-simple-stat-calc.png" lightbox="media/get-started-queries/logs-simple-stat-calc.png" alt-text="Screenshot that shows the selected values for statistical calculations in simple mode." border="false":::
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
