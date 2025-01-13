@@ -13,8 +13,8 @@ ms.date: 01/08/2025
 
 This tutorial shows you how to:
 
-* [Structure a query](#write-a-new-query).
-* [Sort query results]().
+* [Structure a query](#structure-a-query).
+* [Sort query results](#sort-results).
 * [Filter query results]().
 * [Specify a time range]().
 * [Select which fields to include in the results]().
@@ -41,7 +41,7 @@ For more information about log queries in Azure Monitor, see [Overview of log qu
 
 [!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
 
-## Write a new query
+## Structure a query
 
 Queries can start with either a table name or the `search` command. It's a good idea to start with a table name because it defines a clear scope for the query. It also improves query performance and the relevance of the results.
 
@@ -85,15 +85,15 @@ If you omit the `in (SecurityEvent)` part and run only `search "Cryptographic"`,
 
 ### [Simple mode](#tab/simple)
 
-To search for records that include a specific value in any of their columns in simple mode:
+To search for records that include a specific value in any of their columns:
 
-1. Click **Select a table** and chose `SecurityEvent`.
+1. **Select a table** and chose `SecurityEvent`. 
 
-1. Select **Add** > **Search in table**.
+1. Open **Add** > **Search in table**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Search in table' highlighted." lightbox="media/get-started-queries/logs-simple-search-1.png":::
 
-1. Enter "Cryptographic" and select **Apply**.
+1. Enter *Cryptographic*, then select **Apply**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-2.png" alt-text="Screenshot shows the Search field in simple mode." lightbox="media/get-started-queries/logs-simple-search-2.png":::
 
@@ -119,37 +119,19 @@ The selected results are arbitrary and displayed in no particular order. If you 
 
 ## [Simple mode](#tab/simple)
 
-To return up to a specific number of records in simple mode, you can limit the results following these steps:
+To return up to a specific number of records, you can limit the results:
 
 1. Select **Limit** to open the **Limit results** window.
 
-1. Select one of the preset limits, or enter a custom limit, then hit **Apply**.
+1. Pick one of the preset limits or enter a custom limit, then select **Apply**.
 
 :::image type="content" source="media/get-started-queries/logs-simple-limit.png" alt-text="Screenshot shows the Show dropdown in simple mode." lightbox="media/get-started-queries/logs-simple-limit.png":::
 
 ---
 
-## Sort and top
+## Sort results
 
 This section describes the `sort` and `top` operators and their `desc` and `asc` arguments. Although `take` is useful for getting a few records, you can't select or sort the results in any particular order. To get an ordered view, use `sort` and `top`.
-
-### Desc and asc
-
-Use the `desc` argument to sort records in descending order. Descending is the default sorting order for `sort` and `top`, so you can usually omit the `desc` argument. 
-
-For example, the data returned by both of the following queries is sorted by the [TimeGenerated column](./log-standard-columns.md#timegenerated), in descending order:
-
-* ```Kusto
-  SecurityEvent	
-  | sort by TimeGenerated desc
-  ```
-
-* ```Kusto
-  SecurityEvent	
-  | sort by TimeGenerated
-  ```
-
-To sort in ascending order, specify `asc`.
 
 ### Sort
 
@@ -166,17 +148,35 @@ SecurityEvent
 
 The preceding query could return too many results. Also, it might also take some time to return the results. The query sorts the entire `SecurityEvent` table by the `TimeGenerated` column. The Analytics portal then limits the display to only 30,000 records. This approach isn't optimal. The best way to only get the latest records is to use the [`top` operator](#top).
 
+#### Desc and asc
+
+Use the `desc` argument to sort records in descending order. Descending is the default sorting order for `sort` and `top`, so you can usually omit the `desc` argument.
+
+For example, the data returned by both of the following queries is sorted by the [TimeGenerated column](./log-standard-columns.md#timegenerated), in descending order:
+
+* ```Kusto
+  SecurityEvent	
+  | sort by TimeGenerated desc
+  ```
+
+* ```Kusto
+  SecurityEvent	
+  | sort by TimeGenerated
+  ```
+
+To sort in ascending order, specify `asc`.
+
 ### [Simple mode](#tab/simple)
 
-To sort in simple mode:
+To sort your results:
 
-1. Select **Add**, then choose **Sort**.
+1. Open **Add** > **Sort**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-sort-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with Sort highlighted." lightbox="media/get-started-queries/logs-simple-sort-1.png":::
 
-1. Select a column to sort by.
+1. Pick a column to sort by.
 
-1. Select **Ascending** or **Descending**, then select **Apply**.
+1. Choose **Ascending** or **Descending**, then select **Apply**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-sort-2.png" alt-text="Screenshot shows the Sort field in simple mode." lightbox="media/get-started-queries/logs-simple-sort-2.png":::
 
@@ -222,22 +222,22 @@ SecurityEvent
 
 When you write filter conditions, you can use the following expressions:
 
-| Expression | Description | Example |
-|:-----------|:------------|:--------|
-| == | Check equality<br>(case-sensitive) | `Level == 8` |
-| =~ | Check equality<br>(case-insensitive) | `EventSourceName =~ "microsoft-windows-security-auditing"` |
-| !=, <> | Check inequality<br>(both expressions are identical) | `Level != 4` |
-| `and`, `or` | Required between conditions| `Level == 16 or CommandLine != ""` |
+| Expression  | Description                                          | Example                                                    |
+|:------------|:-----------------------------------------------------|:-----------------------------------------------------------|
+| ==          | Check equality<br>(case-sensitive)                   | `Level == 8`                                               |
+| =~          | Check equality<br>(case-insensitive)                 | `EventSourceName =~ "microsoft-windows-security-auditing"` |
+| !=, <>      | Check inequality<br>(both expressions are identical) | `Level != 4`                                               |
+| `and`, `or` | Required between conditions                          | `Level == 16 or CommandLine != ""`                         |
 
 ## [Simple mode](#tab/simple)
 
 To filter results in the `SecurityEvent` table to only show records where the `Level` equals `8`:
 
-1. Select **Add** and choose the column `Level`.
+1. Open **Add** and choose the column `Level`.
 
     :::image type="content" source="media/get-started-queries/logs-simple-filter-1.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-1.png":::
 
-1. In the **Operator** dropdown list, select **Equals**. Enter the number `8` in the field below, then select **Apply**.
+1. In the **Operator** dropdown list, choose **Equals**. Enter the number `8` in the field below, then select **Apply**.
     
     :::image type="content" source="media/get-started-queries/logs-simple-filter-2.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-2.png":::
 
@@ -272,9 +272,9 @@ SecurityEvent
 
 To filter by multiple conditions, you can add additional filters:
 
-1. Select **Add** and choose the column `EventID`.
+1. Open **Add** and choose the column `EventID`.
 
-1.  In the **Operator** dropdown list, select **Equals**. Enter the number `4672` in the field below, then select **Apply**.
+1. In the **Operator** dropdown list, choose **Equals**. Enter the number `4672` in the field below, then select **Apply**.
 
 ---
 
@@ -344,9 +344,9 @@ SecurityEvent
 
 ## [Simple mode](#tab/simple)
 
-In simple mode, you can manually select the columns you want to show in your results:
+You can manually select the columns you want to show in your results:
 
-1. Select **Add** and choose **Select columns**.
+1. Open **Add** > **Select columns**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-columns-1.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Show columns' highlighted." border="false":::
 
@@ -354,7 +354,7 @@ In simple mode, you can manually select the columns you want to show in your res
 
     :::image type="content" source="media/get-started-queries/logs-simple-columns-2.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot that shows the 'Show columns' selector." border="false":::
 
-1. Hit **Apply**.
+1. Select **Apply**.
 
 ---
 
@@ -396,9 +396,9 @@ Perf
 
 To reviews all `Perf` records from the last, group them by `ObjectName`, and count the records in each group:
 
-1. Change **Time range** to **Last hour**.
+1. Open **Time range** and change it to **Last hour**.
 
-1. Select **Add** > **Aggregate**, then make the following selection and hit **Apply**:
+1. Open **Add** > **Aggregate**, then make the following selection and select **Apply**:
 
     **Select column:** ObjectName<br>
     **Operator:** count
@@ -447,11 +447,11 @@ Perf
 
 ### [Simple mode](#tab/simple)
 
-To calculate the average `CounterValue` for each computer in simple mode:
+To calculate the average `CounterValue` for each computer:
 
-1. Change **Time range** to **Last hour**.
+1. Open **Time range** and change it to **Last hour**.
 
-1. Select **Add** > **Aggregate**, then make the following selection and hit **Apply**:
+1. Open **Add** > **Aggregate**, then make the following selection and select **Apply**:
 
     **Select column:** Computer
     **Operator:** avg<br>
@@ -489,19 +489,19 @@ To make the output clearer, you can select to display it as a time chart, which 
 
 1. Select the `Perf` table.
 
-1. Change **Time range** to **Last 7 days**.
+1. Open **Time range** and change it to **Last 7 days**.
 
-1. Select **Add** > `Computer`, then check `DC01.na.contosohotels.com` and hit **Apply**.
+1. Open **Add**, select `Computer`, then check `DC01.na.contosohotels.com` and select **Apply**.
 
     > [!NOTE]
     > If `DC01.na.contosohotels.com` doesn't show, increase the shown results from 1000 (standard) to a higher number.
 
-1. Select **Add** > `CounterName`, then check `Available MBytes` and hit **Apply**.
+1. Open **Add** and select `CounterName`, then check `Available MBytes` and select **Apply**.
 
-1. Select **Add** > **Aggregate** and make the following selection, then  hit **Apply**.
+1. Open **Add** > **Aggregate** and make the following selection, then select **Apply**.
 
-    * **Select column:** TimeGenerated
-    * **Operator:** avg
+    * **Select column:** TimeGenerated<br>
+    * **Operator:** avg<br>
     * **Average:** CounterValue
 
 1. Switch to **Chart** view, open the **Chart formatting** sidebar to the right and select **Line** for **Chart type**:
