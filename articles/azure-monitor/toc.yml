@@ -601,6 +601,8 @@ items:
         href: scom-manage-instance/monitor-health-scom-managed-instance.md
       - name: Customizations on Azure Monitor SCOM Managed Instance management servers
         href: scom-manage-instance/customizations-on-scom-managed-instance-management-servers.md
+      - name: Disaster Recovery guidance
+        href: scom-manage-instance/disaster-recovery-guidance.md
     - name: How-to guides
       items:
       - name: Create SCOM Managed Instance
