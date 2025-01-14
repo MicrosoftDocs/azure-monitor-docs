@@ -14,6 +14,9 @@ ms.custom: references_regions
 
 This article provides details on enabling [VM Insights](./vminsights-overview.md) in Azure Monitor using different methods including the Azure portal, ARM templates, and PowerShell script.
 
+> [!WARNING]
+> If your virtual machine already has VM insights enabled using the deprecated Log Analytics agent, see [Migrate to Azure Monitor Agent from Log Analytics agent in VM Insights](./vminsights-migrate-agent.md) for guidance on migrating to the Azure Monitor agent. Ensure that you remove the Log Analytics agent in order to prevent duplicate data collection with both agents installed. 
+
 ## Prerequisites
 
 - You must have a [Log Analytics workspace](../logs/quick-create-workspace.md) to store data collected by VM insights. You can create a new workspace if you enable using the Azure portal.
