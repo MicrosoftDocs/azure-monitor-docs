@@ -71,7 +71,18 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
 1. Use it to install Azure PowerShell.
 
-### [ARM templates](#tab/arm)
+### [REST API](#tab/rest)
+
+Not applicable to REST API.
+
+### [Bicep](#tab/bicep)
+
+If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
+
+1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
+1. Use it to install Azure PowerShell.
+
+### [JSON (ARM)](#tab/arm)
 
 If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
 
@@ -170,111 +181,119 @@ New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027
 
 For the full PowerShell documentation for this cmdlet, and to learn how to retrieve the connection string, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
 
-### [ARM templates](#tab/arm)
+### [REST API](#tab/rest)
+
+...
+
+### [Bicep](#tab/bicep)
+
+### Create a template
+
+Here's how to create a new Application Insights resource by using a Bicep template.
+
+### Create a template
+
+```bicep
+@description('Name of Application Insights resource.')
+param name string
+
+@description('Type of app you are deploying. This field is for legacy reasons and will not impact the type of App Insights resource you deploy.')
+param type string
+
+@description('Which Azure Region to deploy the resource to. This must be a valid Azure regionId.')
+param regionId string
+
+@description('See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources.')
+param tagsArray object
+
+@description('Source of Azure Resource Manager deployment')
+param requestSource string
+
+@description('Log Analytics workspace ID to associate with your Application Insights resource.')
+param workspaceResourceId string
+
+resource component 'Microsoft.Insights/components@2020-02-02' = {
+  name: name
+  location: regionId
+  tags: tagsArray
+  kind: 'other'
+  properties: {
+    Application_Type: type
+    Flow_Type: 'Bluefield'
+    Request_Source: requestSource
+    WorkspaceResourceId: workspaceResourceId
+  }
+}
+```
+
+### [JSON (ARM)](#tab/arm)
 
 Here's how to create a new Application Insights resource by using an ARM template.
 
 ### Create a template
 
-* **Option 1: Bicep**
+Create a new .json file (for example, `template1.json`) and copy the following content into it:
 
-    ```bicep
-    @description('Name of Application Insights resource.')
-    param name string
-    
-    @description('Type of app you are deploying. This field is for legacy reasons and will not impact the type of App Insights resource you deploy.')
-    param type string
-    
-    @description('Which Azure Region to deploy the resource to. This must be a valid Azure regionId.')
-    param regionId string
-    
-    @description('See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources.')
-    param tagsArray object
-    
-    @description('Source of Azure Resource Manager deployment')
-    param requestSource string
-    
-    @description('Log Analytics workspace ID to associate with your Application Insights resource.')
-    param workspaceResourceId string
-    
-    resource component 'Microsoft.Insights/components@2020-02-02' = {
-      name: name
-      location: regionId
-      tags: tagsArray
-      kind: 'other'
-      properties: {
-        Application_Type: type
-        Flow_Type: 'Bluefield'
-        Request_Source: requestSource
-        WorkspaceResourceId: workspaceResourceId
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of Application Insights resource."
+      }
+    },
+    "type": {
+      "type": "string",
+      "metadata": {
+        "description": "Type of app you are deploying. This field is for legacy reasons and will not impact the type of Application Insights resource you deploy."
+      }
+    },
+    "regionId": {
+      "type": "string",
+      "metadata": {
+        "description": "Which Azure region to deploy the resource to. This must be a valid Azure regionId."
+      }
+    },
+    "tagsArray": {
+      "type": "object",
+      "metadata": {
+        "description": "See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources."
+      }
+    },
+    "requestSource": {
+      "type": "string",
+      "metadata": {
+        "description": "Source of Azure Resource Manager deployment"
+      }
+    },
+    "workspaceResourceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Log Analytics workspace ID to associate with your Application Insights resource."
       }
     }
-    ```
-
-* **Option 2: JSON**
-
-    Create a new .json file (for example, `template1.json`) and copy the following content into it:
-
-    ```json
+  },
+  "resources": [
     {
-      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {
-        "name": {
-          "type": "string",
-          "metadata": {
-            "description": "Name of Application Insights resource."
-          }
-        },
-        "type": {
-          "type": "string",
-          "metadata": {
-            "description": "Type of app you are deploying. This field is for legacy reasons and will not impact the type of Application Insights resource you deploy."
-          }
-        },
-        "regionId": {
-          "type": "string",
-          "metadata": {
-            "description": "Which Azure region to deploy the resource to. This must be a valid Azure regionId."
-          }
-        },
-        "tagsArray": {
-          "type": "object",
-          "metadata": {
-            "description": "See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources."
-          }
-        },
-        "requestSource": {
-          "type": "string",
-          "metadata": {
-            "description": "Source of Azure Resource Manager deployment"
-          }
-        },
-        "workspaceResourceId": {
-          "type": "string",
-          "metadata": {
-            "description": "Log Analytics workspace ID to associate with your Application Insights resource."
-          }
-        }
-      },
-      "resources": [
-        {
-          "type": "Microsoft.Insights/components",
-          "apiVersion": "2020-02-02",
-          "name": "[parameters('name')]",
-          "location": "[parameters('regionId')]",
-          "tags": "[parameters('tagsArray')]",
-          "kind": "other",
-          "properties": {
-            "Application_Type": "[parameters('type')]",
-            "Flow_Type": "Bluefield",
-            "Request_Source": "[parameters('requestSource')]",
-            "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
-          }
-        }
-      ]
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02",
+      "name": "[parameters('name')]",
+      "location": "[parameters('regionId')]",
+      "tags": "[parameters('tagsArray')]",
+      "kind": "other",
+      "properties": {
+        "Application_Type": "[parameters('type')]",
+        "Flow_Type": "Bluefield",
+        "Request_Source": "[parameters('requestSource')]",
+        "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
+      }
     }
-    ```
+  ]
+}
+```
 
 > [!NOTE]
 > For more information on resource properties, see [Property values](/azure/templates/microsoft.insights/components?tabs=bicep#property-values).
@@ -383,7 +402,15 @@ More properties are available via the cmdlets:
 
 See the [detailed documentation](/powershell/module/az.applicationinsights) for the parameters for these cmdlets.  
 
-### [ARM templates](#tab/arm)
+### [REST API](#tab/rest)
+
+...
+
+### [Bicep](#tab/bicep)
+
+...
+
+### [JSON (ARM)](#tab/arm)
 
 Not applicable to ARM templates.
 
@@ -440,9 +467,11 @@ $resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
 Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
 ```
 
-### [ARM templates](#tab/arm)
+### [REST API](#tab/rest)
 
-#### Option 1: Bicep
+...
+
+### [Bicep](#tab/bicep)
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
@@ -455,7 +484,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-#### Option 2: JSON
+### [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -612,9 +641,11 @@ $Resource.Properties.RetentionInDays = <retention-period-in-days>
 Set-AzResource -ResourceId $Resource.ResourceId -Properties $Resource.Properties -Force
 ```
 
-### [ARM templates](#tab/arm)
+### [REST API](#tab/rest)
 
-#### Option 1: Bicep
+...
+
+### [Bicep](#tab/bicep)
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
@@ -627,7 +658,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-#### Option 2: JSON
+### [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -685,6 +716,7 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 > [!IMPORTANT]
 > The daily cap reset time can no longer be customized using the `ResetTime` attribute.
 -->
+
 ### [Azure CLI](#tab/cli)
 
 ```azurecli
@@ -697,9 +729,11 @@ az monitor app-insights component update --app <your-app-name> --resource-group 
 Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name <your-app-name> -DailyCapGB <daily-cap-in-gb>
 ```
 
-### [ARM templates](#tab/arm)
+### [REST API](#tab/rest)
 
-#### Option 1: Bicep
+...
+
+### [Bicep](#tab/bicep)
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
@@ -712,7 +746,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-#### Option 2: JSON
+### [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -747,6 +781,28 @@ The pricing plan for workspace-based Application Insights resources can be set i
 
 :::zone pivot="auto"
 
+### [Azure CLI](#tab/cli)
+
+...
+
+### [Azure PowerShell](#tab/powershell)
+
+...
+
+### [REST API](#tab/rest)
+
+...
+
+### [Bicep](#tab/bicep)
+
+...
+
+### [JSON (ARM)](#tab/arm)
+
+...
+
+---
+
 To get the current pricing plan, use the [Set-AzApplicationInsightsPricingPlan](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan) cmdlet:
 
 ```PS
@@ -770,10 +826,10 @@ You can also set the pricing plan on an existing Application Insights resource b
 
 The `priceCode` is defined as:
 
-|priceCode|Plan|
-|---|---|
-|1|Per GB (formerly named the Basic plan)|
-|2|Per Node (formerly name the Enterprise plan)|
+| priceCode | Plan                                         |
+|-----------|----------------------------------------------|
+| 1         | Per GB (formerly named the Basic plan)       |
+| 2         | Per Node (formerly name the Enterprise plan) |
 
 Finally, you can use [ARMClient](https://github.com/projectkudu/ARMClient) to get and set pricing plans and daily cap parameters. To get the current values, use:
 
@@ -802,6 +858,28 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 :::zone pivot="auto"
 
+### [Azure CLI](#tab/cli)
+
+...
+
+### [Azure PowerShell](#tab/powershell)
+
+...
+
+### [REST API](#tab/rest)
+
+...
+
+### [Bicep](#tab/bicep)
+
+...
+
+### [JSON (ARM)](#tab/arm)
+
+...
+
+---
+
 To automate the creation of metric alerts, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-a-simple-static-threshold-metric-alert) article.
 
 :::zone-end
@@ -815,6 +893,28 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 :::zone-end
 
 :::zone pivot="auto"
+
+### [Azure CLI](#tab/cli)
+
+...
+
+### [Azure PowerShell](#tab/powershell)
+
+...
+
+### [REST API](#tab/rest)
+
+...
+
+### [Bicep](#tab/bicep)
+
+...
+
+### [JSON (ARM)](#tab/arm)
+
+...
+
+---
 
 To automate availability tests, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-an-availability-test-along-with-a-metric-alert) article.
 
