@@ -406,8 +406,8 @@ To review all `Perf` records from the last, group them by `ObjectName`, and coun
 
 1. Open **Add** > **Aggregate**, then make the following selection and select **Apply**:
 
-    **Select column:** ObjectName<br>
-    **Operator:** count
+    * **Select column:** ObjectName
+    * **Operator:** count
 
 :::image type="content" source="media/get-started-queries/logs-simple-aggregate.png" lightbox="media/get-started-queries/logs-simple-aggregate.png" alt-text="Screenshot that shows the selected values for aggregations in simple mode." border="false":::
 
@@ -459,9 +459,9 @@ To calculate the average `CounterValue` for each computer:
 
 1. Open **Add** > **Aggregate**, then make the following selection and select **Apply**:
 
-    **Select column:** Computer
-    **Operator:** avg<br>
-    **Average:** CounterValue<br>
+    * **Select column:** Computer
+    * **Operator:** avg
+    * **Average:** CounterValue
 
 :::image type="content" source="media/get-started-queries/logs-simple-stat-calc.png" lightbox="media/get-started-queries/logs-simple-stat-calc.png" alt-text="Screenshot that shows the selected values for statistical calculations in simple mode." border="false":::
 
@@ -506,8 +506,8 @@ To make the output clearer, you can select to display it as a time chart, which 
 
 1. Open **Add** > **Aggregate** and make the following selection, then select **Apply**.
 
-    * **Select column:** TimeGenerated<br>
-    * **Operator:** avg<br>
+    * **Select column:** TimeGenerated
+    * **Operator:** avg
     * **Average:** CounterValue
 
 1. Switch to **Chart** view, open the **Chart formatting** sidebar to the right and select **Line** for **Chart type**:
