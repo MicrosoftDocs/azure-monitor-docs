@@ -172,7 +172,7 @@ Disadvantages to this strategy:
 - If customers aren't onboarded for Azure delegated resource management, service provider administrators must be provisioned in the customer directory. This requirement makes it more difficult for the service provider to manage many customer tenants at once.
 
 ### Centralized
-A single workspace is created in the service provider's subscription. This option can only collect data from customer virtual machines. Agents installed on the virtual machines are configured to send their logs to this central workspace.
+A single workspace is created in the service provider's subscription. This option can collect data from customer virtual machines and Azure PaaS services based on diagnostics settings. Agents installed on the virtual machines and PaaS services can be configured to send their logs to this central workspace.
 
 Advantages to this strategy:
 
@@ -182,7 +182,7 @@ Advantages to this strategy:
 
 Disadvantages to this strategy:
 
-- Logs can only be collected from virtual machines with an agent. It won't work with PaaS, SaaS, or Azure Service Fabric data sources.
+- Logs can only be collected from virtual machines with an agent or Azure PaaS services (via Azure Lighthouse delegation). It won't work with SaaS connectors, or Azure Service Fabric data sources.
 - It might be difficult to separate data between customers because their data shares a single workspace. Queries need to use the computer's fully qualified domain name or the Azure subscription ID.
 - All data from all customers will be stored in the same region with a single bill and the same retention and configuration settings.
 
