@@ -40,8 +40,7 @@ You can also use a [command line tool](https://github.com/microsoft/ApplicationI
 
 ## Configuration example
 
-Knowing what metrics are available, you can configure the agent to collect them. The first one is an example of a nested metric - `LastGcInfo` that has several properties, and we want to capture the `GcThreadCount`.
-
+In the following Java 8 configuration examples, the first one is a nested metric - `LastGcInfo` that has several properties, and we want to capture the `GcThreadCount`:
 ```json
 "jmxMetrics": [
       {
@@ -59,7 +58,28 @@ Knowing what metrics are available, you can configure the agent to collect them.
         "objectName": "java.lang:type=Threading",
         "attribute": "ThreadCount"
       }
-],
+]
+```
+
+Other configuration examples for Java 17:
+```json
+ "jmxMetrics": [
+    {
+      "name": "Demo - G1 Collection Count Young",
+      "objectName": "java.lang:name=G1 Young Generation,type=GarbageCollector",
+      "attribute": "CollectionCount"
+    },
+    {
+      "name": "Demo - G1 Collection Count Old",
+      "objectName": "java.lang:name=G1 Old Generation,type=GarbageCollector",
+      "attribute": "CollectionCount"
+    },
+    {
+      "name": "Demo - Thread Count",
+      "objectName": "java.lang:type=Threading",
+      "attribute": "ThreadCount"
+    }
+  ]
 ```
 
 ## Where do I find the JMX Metrics in application insights?
