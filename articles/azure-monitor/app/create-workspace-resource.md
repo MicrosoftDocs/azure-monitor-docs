@@ -35,7 +35,7 @@ This article shows you how to create and configure [Application Insights](./app-
 
 ...
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 There's a rich set of [Application Insights PowerShell cmdlets](/powershell/module/az.applicationinsights). These cmdlets make it easy to configure Application Insights resources programatically. You can use the capabilities enabled by the cmdlets to:
 
@@ -46,7 +46,7 @@ There's a rich set of [Application Insights PowerShell cmdlets](/powershell/modu
 * Set the daily cap.
 * Set the pricing plan.
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 To use the REST API with Application Insights, you need an Microsoft Entra ID token.
 
@@ -56,7 +56,7 @@ For more information, see ...
 
 ...
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 The key to creating these resources is Bicep or JSON templates for [Azure Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
 
@@ -84,14 +84,14 @@ To access the preview Application Insights Azure CLI commands, you first need to
 
 If you don't run the `az extension add` command, you see an error message that states `az : ERROR: az monitor: 'app-insights' is not in the 'az monitor' command group. See 'az monitor --help'`.
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
 
 1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
 1. Use it to install Azure PowerShell.
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 To use the REST API with Application Insights, you need an Microsoft Entra ID token.
 
@@ -104,7 +104,7 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
 1. Use it to install Azure PowerShell.
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
 
@@ -160,7 +160,7 @@ az monitor app-insights component create --app demoApp --location eastus --kind 
 
 For the full Azure CLI documentation for this command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create).
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 Create a new Application Insights resource by using the [New-AzApplicationInsights](/powershell/module/az.applicationinsights/new-azapplicationinsights) cmdlet:
 
@@ -197,7 +197,7 @@ New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027
 
 For the full PowerShell documentation for this cmdlet and to learn how to retrieve the connection string, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 1. Prepare the request. Replace {subscriptionId}, {resourceGroupName}, {resourceName}, and {EntraToken} with your actual values.
 
@@ -241,7 +241,7 @@ Here's how to create a new Application Insights resource by using a Bicep templa
     az deployment group create --resource-group <your-resource-group> --template-file <your-bicep-file>.bicep
     ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 Here's how to create a new Application Insights resource by using an ARM template.
 
@@ -388,7 +388,7 @@ Run the following code in your terminal to get the connection string:
 az monitor app-insights component show --app <your-app-name> --resource-group <your-resource-group> --query connectionString --output tsv
 ```
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 Run the following code in your terminal to get the connection string:
 
@@ -411,7 +411,7 @@ More properties are available via the cmdlets:
 
 See the [detailed documentation](/powershell/module/az.applicationinsights) for the parameters for these cmdlets.  
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 ...
 
@@ -419,7 +419,7 @@ See the [detailed documentation](/powershell/module/az.applicationinsights) for 
 
 ...
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 Not applicable to ARM templates.
 
@@ -460,7 +460,7 @@ Run the following code in your terminal to change the Log Analytics workspace:
 az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --workspace <new-workspace-resource-id>
 ```
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 Run the following code in your terminal to change the Log Analytics workspace:
 
@@ -470,7 +470,7 @@ $resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
 Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
 ```
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 ...
 
@@ -487,7 +487,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 ```json
 {
@@ -631,7 +631,7 @@ az monitor app-insights component update --app <your-app-name> --resource-group 
 ```
 
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 $Resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
@@ -639,7 +639,7 @@ $Resource.Properties.RetentionInDays = <retention-period-in-days>
 Set-AzResource -ResourceId $Resource.ResourceId -Properties $Resource.Properties -Force
 ```
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 ...
 
@@ -656,7 +656,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 ```json
 {
@@ -716,13 +716,13 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --set dailyCapGB=<daily-cap-in-gb>
 ```
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name <your-app-name> -DailyCapGB <daily-cap-in-gb>
 ```
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 ...
 
@@ -739,7 +739,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 ```json
 {
@@ -772,11 +772,11 @@ The pricing plan for workspace-based Application Insights resources can be set i
 
 ...
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ...
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 ...
 
@@ -784,7 +784,7 @@ The pricing plan for workspace-based Application Insights resources can be set i
 
 ...
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 ...
 
@@ -843,11 +843,11 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 ...
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ...
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 ...
 
@@ -855,7 +855,7 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 ...
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 ...
 
@@ -873,11 +873,11 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 
 ...
 
-### [Azure PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ...
 
-### [REST API](#tab/rest)
+### [REST](#tab/rest)
 
 ...
 
@@ -885,7 +885,7 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 
 ...
 
-### [JSON (ARM)](#tab/arm)
+### [ARM](#tab/arm)
 
 ...
 
