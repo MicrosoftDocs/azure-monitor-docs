@@ -23,25 +23,19 @@ Enhanced capabilities include:
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
-:::zone pivot="auto"
-
-## At-scale automation
+This article shows you how to create and configure [Application Insights](./app-insights-overview.md) resources. Along with the Application Insights resource itself and various configurations like setting the [daily]() cap and [pricing plan](), you can create [availability web tests](./availability-overview.md), set up [alerts](../alerts/alerts-log.md), and create other Azure resources.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-This article shows you how to automate creating and updating [Application Insights](./app-insights-overview.md) resources. Along with the basic Application Insights resource, you can create [availability web tests](./availability-overview.md), set up [alerts](../alerts/alerts-log.md), set the [pricing scheme](../logs/cost-logs.md#application-insights-billing), and create other Azure resources.
+### [Portal](#tab/portal)
 
-### ARM templates
+...
 
-The key to creating these resources is Bicep or JSON templates for [Azure Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
+### [Azure CLI](#tab/cli)
 
-* Download the Bicep pr JSON definitions of existing resources.
-* Parameterize certain values, such as names.
-* Run the template whenever you want to create a new resource.
+...
 
-You can package several resources together to create them all in one go. For example, you can create an app monitor with availability tests, alerts, and storage for continuous export. There are some subtleties to some of the parameterizations, which we explain here.
-
-### PowerShell cmdlets
+### [Azure PowerShell](#tab/powershell)
 
 There's a rich set of [Application Insights PowerShell cmdlets](/powershell/module/az.applicationinsights). These cmdlets make it easy to configure Application Insights resources programatically. You can use the capabilities enabled by the cmdlets to:
 
@@ -52,7 +46,33 @@ There's a rich set of [Application Insights PowerShell cmdlets](/powershell/modu
 * Set the daily cap.
 * Set the pricing plan.
 
+### [REST API](#tab/rest)
+
+To use the REST API with Application Insights, you need an Microsoft Entra ID token.
+
+For more information, see ...
+
+### [Bicep](#tab/bicep)
+
+...
+
+### [JSON (ARM)](#tab/arm)
+
+The key to creating these resources is Bicep or JSON templates for [Azure Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
+
+* Download the Bicep pr JSON definitions of existing resources.
+* Parameterize certain values, such as names.
+* Run the template whenever you want to create a new resource.
+
+You can package several resources together to create them all in one go. For example, you can create an app monitor with availability tests, alerts, and storage for continuous export. There are some subtleties to some of the parameterizations, which we explain here.
+
+---
+
 ## Prerequisites
+
+### [Portal](#tab/portal)
+
+...
 
 ### [Azure CLI](#tab/cli)
 
@@ -73,7 +93,9 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 
 ### [REST API](#tab/rest)
 
-Not applicable to REST API.
+To use the REST API with Application Insights, you need an Microsoft Entra ID token.
+
+For more information, see 
 
 ### [Bicep](#tab/bicep)
 
@@ -91,11 +113,9 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 
 ---
 
-:::zone-end
-
 ## Create a workspace-based resource
 
-:::zone pivot="manual"
+### [Portal](#tab/portal)
 
 Sign in to the [Azure portal](https://portal.azure.com), and create an Application Insights resource.
 
@@ -115,13 +135,9 @@ Select the blue link text to go to the associated Log Analytics workspace where 
 > [!NOTE]
 > We still provide full backward compatibility for your Application Insights classic resource queries, workbooks, and log-based alerts. To query or view the [new workspace-based table structure or schema](/previous-versions/azure/azure-monitor/app/convert-classic-resource#workspace-based-resource-changes), you must first go to your Log Analytics workspace. Select **Logs (Analytics)** in the **Application Insights** panes for access to the classic Application Insights query experience.
 
-:::zone-end
-
-:::zone pivot="auto"
-
 ### [Azure CLI](#tab/cli)
 
-Run the following code to create your Application Insights resource:
+To create an Application Insights resource, run the following code in your terminal:
 
 ```azurecli
 az monitor app-insights component create --app
@@ -179,52 +195,51 @@ New-AzApplicationInsights -Name <String> -ResourceGroupName <String> -Location <
 New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027 -location eastus -WorkspaceResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test1234/providers/microsoft.operationalinsights/workspaces/test1234555"
 ```
 
-For the full PowerShell documentation for this cmdlet, and to learn how to retrieve the connection string, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
+For the full PowerShell documentation for this cmdlet and to learn how to retrieve the connection string, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
 
 ### [REST API](#tab/rest)
 
-...
+1. Prepare the request. Replace {subscriptionId}, {resourceGroupName}, {resourceName}, and {EntraToken} with your actual values.
+
+    ```rest
+    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}?api-version=2015-05-01
+    Authorization: Bearer {EntraToken}
+    Content-Type: application/json
+    
+    {
+      "location": "East US",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web"
+      }
+    }
+    ```
+
+1. Send the HTTP PUT request to the Azure Management endpoint. If the request is successful, the Application Insights resource will be created in the specified resource group.
+
 
 ### [Bicep](#tab/bicep)
 
-### Create a template
-
 Here's how to create a new Application Insights resource by using a Bicep template.
 
-### Create a template
+1. Create a *.bicep* file with the following content and replace 'myAppInsights' with your desired resource name and 'East US' with your preferred location:
 
-```bicep
-@description('Name of Application Insights resource.')
-param name string
+    ```bicep
+    resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+      name: 'myAppInsights'
+      location: 'East US'
+      kind: 'web'
+      properties: {
+        Application_Type: 'web'
+      }
+    }
+    ```
 
-@description('Type of app you are deploying. This field is for legacy reasons and will not impact the type of App Insights resource you deploy.')
-param type string
+1. Deploy your Bicep file using the Azure CLI with the following command:
 
-@description('Which Azure Region to deploy the resource to. This must be a valid Azure regionId.')
-param regionId string
-
-@description('See documentation on tags: https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources.')
-param tagsArray object
-
-@description('Source of Azure Resource Manager deployment')
-param requestSource string
-
-@description('Log Analytics workspace ID to associate with your Application Insights resource.')
-param workspaceResourceId string
-
-resource component 'Microsoft.Insights/components@2020-02-02' = {
-  name: name
-  location: regionId
-  tags: tagsArray
-  kind: 'other'
-  properties: {
-    Application_Type: type
-    Flow_Type: 'Bluefield'
-    Request_Source: requestSource
-    WorkspaceResourceId: workspaceResourceId
-  }
-}
-```
+    ```azurecli
+    az deployment group create --resource-group <your-resource-group> --template-file <your-bicep-file>.bicep
+    ```
 
 ### [JSON (ARM)](#tab/arm)
 
@@ -349,27 +364,21 @@ You can add other parameters. You find their descriptions in the parameters sect
 
 ---
 
-:::zone-end
-
 ## Configure monitoring
 
 After creating a workspace-based Application Insights resource, you configure monitoring.
 
 ### Get the connection string
 
-The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+### [Portal](#tab/portal)
 
-:::zone pivot="manual"
+The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
 
 To get the connection string of your Application Insights resource:
 
 1. Open your Application Insights resource in the Azure portal.
 1. On the Overview pane, look for the connection string under **Essentials**.
 1. If you hover over the connection string, an icon will apear which allows you to copy it to your clipboard.
-
-:::zone-end
-
-:::zone pivot="auto"
 
 ### [Azure CLI](#tab/cli)
 
@@ -416,8 +425,6 @@ Not applicable to ARM templates.
 
 ---
 
-:::zone-end
-
 ### Code-based application monitoring
 
 For code-based application monitoring, you install the appropriate Application Insights SDK and point the connection string to your newly created resource.
@@ -439,15 +446,11 @@ For codeless monitoring of services like Azure Functions and Azure App Services,
 
 ## Modify the associated workspace
 
-:::zone pivot="manual"
-
 After creating a workspace-based Application Insights resource, you can modify the associated Log Analytics workspace.
 
+### [Portal](#tab/portal)
+
 In the Application Insights resource pane, select **Properties** > **Change Workspace** > **Log Analytics Workspaces**.
-
-:::zone-end
-
-:::zone pivot="auto"
 
 ### [Azure CLI](#tab/cli)
 
@@ -507,8 +510,6 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ---
 
-:::zone-end
-
 ## Export telemetry
 
 The legacy continuous export functionality isn't supported for workspace-based resources. Instead, select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource. You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an Azure event hub.
@@ -521,13 +522,10 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 ### Set the data retention
 
-:::zone pivot="manual"
+### [Portal](#tab/portal)
 
 Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Configure the default interactive retention period of Analytics tables](./../logs/data-retention-configure.md#configure-the-default-interactive-retention-period-of-analytics-tables).
 
-:::zone-end
-
-:::zone pivot="auto"
 <!--
 You can use the following three methods to programmatically set the data retention on an Application Insights resource.
 
@@ -681,17 +679,12 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ---
 
-:::zone-end
-
 ### Set the daily cap
 
-:::zone pivot="manual"
+### [Portal](#tab/portal)
 
 For workspace-based Application Insights resource, the daily caps must be set independently for both Application Insights and the underlying Log Analytics workspace. For more information, see [Set daily cap on Log Analytics workspace](./../logs/daily-cap.md#application-insights).
 
-:::zone-end
-
-:::zone pivot="auto"
 <!--
 To get the daily cap properties, use the [Set-AzApplicationInsightsPricingPlan](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan) cmdlet:
 
@@ -769,17 +762,11 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ---
 
-:::zone-end
-
 ### Set the pricing plan
 
-:::zone pivot="manual"
+### [Portal](#tab/portal)
 
 The pricing plan for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).
-
-:::zone-end
-
-:::zone pivot="auto"
 
 ### [Azure CLI](#tab/cli)
 
@@ -846,17 +833,11 @@ armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 
 This code sets the daily cap to 200 GB per day, configure the daily cap reset time to 12:00 UTC, send emails both when the cap is hit and the warning level is met, and set the warning threshold to 90% of the cap.
 
-:::zone-end
-
 ### Add a metric alert
 
-:::zone pivot="manual"
+### [Portal](#tab/portal)
 
 ...
-
-:::zone-end
-
-:::zone pivot="auto"
 
 ### [Azure CLI](#tab/cli)
 
@@ -882,17 +863,11 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 To automate the creation of metric alerts, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-a-simple-static-threshold-metric-alert) article.
 
-:::zone-end
-
 ### Add an availability test
 
-:::zone pivot="manual"
+### [Portal](#tab/portal)
 
 ...
-
-:::zone-end
-
-:::zone pivot="auto"
 
 ### [Azure CLI](#tab/cli)
 
@@ -917,8 +892,6 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 ---
 
 To automate availability tests, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-an-availability-test-along-with-a-metric-alert) article.
-
-:::zone-end
 
 ## Additional Application Insights resources
 
@@ -961,13 +934,7 @@ Live Metrics can't split data by role name.
 > [!WARNING]
 > You might incur additional network costs if your Application Insights resource is monitoring an Azure resource (i.e., telemetry producer) in a different region. Costs will vary depending on the region the telemetry is coming from and where it is going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
 
-:::zone pivot="manual"
-
 To create an Applications Insights resource, see [Create an Application Insights resource](/azure/azure-monitor/app/create-workspace-resource&tabs=arm&pivots=manual#create-a-workspace-based-resource).
-
-:::zone-end
-
-:::zone pivot="auto"
 
 To automate the creation of any other resource of any kind, create an example manually and then copy and parameterize its code from [Azure Resource Manager](https://resources.azure.com/).
 
@@ -1020,8 +987,6 @@ Azure should set up the resources in strict order. To make sure one setup comple
 * In the alert resource for an availability test:
   
     `"dependsOn": ["[resourceId('Microsoft.Insights/webtests', variables('testName'))]"],`
-
-:::zone-end
 
 #### Get the connection string
 
@@ -1120,16 +1085,10 @@ We don't recommend using this method of populating the API version. The newest v
 
 ## Next steps
 
-:::zone pivot="manual"
-
 * [Explore metrics](../essentials/metrics-charts.md)
 * [Write Log Analytics queries](../logs/log-query-overview.md)
 * [Shared resources for multiple roles](./app-map.md)
 * [Create a Telemetry Initializer to distinguish A|B variants](./api-filtering-sampling.md#add-properties)
-
-:::zone-end
-
-:::zone pivot="auto"
 
 See these other automation articles:
 
@@ -1137,5 +1096,3 @@ See these other automation articles:
 * [Create web tests](../alerts/resource-manager-alerts-metric.md#availability-test-with-metric-alert).
 * [Send Azure Diagnostics to Application Insights](../agents/diagnostics-extension-to-application-insights.md).
 * [Create release annotations](release-and-work-item-insights.md?tabs=release-annotations).
-
-:::zone-end

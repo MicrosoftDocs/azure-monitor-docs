@@ -256,9 +256,6 @@
         "articles/advisor/**/*": "Azure Advisor",
         "articles/azure-monitor/**/*": "Azure Monitor",
         "articles/service-health/**/*": "Azure Service Health"
-      },
-    "zone_pivot_group_filename": {
-        "articles/azure-monitor/**/*.md": "azure-monitor/zone-pivot-groups.json"
       }     
     },
     "overwrite": [],
