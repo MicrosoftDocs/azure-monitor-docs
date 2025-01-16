@@ -228,6 +228,15 @@ There are multiple methods to create transformations depending on the data colle
 | Kubernetes cluster with Container insights | [Data transformations in Container insights](../containers/container-insights-transformations.md) |
 | Azure Event Hubs | [Tutorial: Ingest events from Azure Event Hubs into Azure Monitor Logs (Public Preview)](../logs/ingest-logs-event-hub.md) |
 
+## Limitations and considerations
+
+- Not all tables in a Log Analytics workspace support transformations. See [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md) for a list of supported tables.
+- Not all KQL operators are supported in transformation queries. See [Supported KQL features in Azure Monitor transformations](/azure/azure-monitor/essentials/data-collection-transformations-kql).
+- While a transformation can send a single data source to multiple tables, it can't send data to multiple workspaces. To send data from a single data source to multiple workspaces, create multiple DCRs.
+- It may take up to 60 minutes for a new transformation query to apply.
+- The workspace transformation DCR can't send a single data source to multiple tables since the transformation is applied to the table itself.
+- Transformations in the workspace transformation DCR are applied to all data sent to the table, regardless of the data source. If you need to apply different transformations to different data sources, use a `where` statement in the transformation query to apply different logic to data from different sources.
+
 
 
 ## Next steps
