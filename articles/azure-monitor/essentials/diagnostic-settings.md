@@ -122,7 +122,7 @@ There are certain limitations with exporting metrics:
 To get around these limitations for specific metrics, you can manually extract them by using the [Metrics REST API](/rest/api/monitor/metrics/list). Then you can import them into Azure Monitor Logs by using the [Azure Monitor Data Collector API](../logs/data-collector-api.md).
 
 > [!IMPORTANT]
-> Diagnostic settings don't support resourceIDs with non-ASCII characters (for example, Preproduccón). For more information, see [Troubleshooting](#setting-disappears-due-to-non-ascii-characters-in-resourceid)
+> Diagnostic settings don't support resourceIDs with non-ASCII characters (for example, Preproduccón). For more information, see [Troubleshooting](#setting-disappears-due-to-non-ascii-characters-in-resourceid).
 
 ### Destination limitations
 
