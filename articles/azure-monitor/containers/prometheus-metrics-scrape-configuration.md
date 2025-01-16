@@ -195,7 +195,7 @@ scrape_configs:
   - <job-x>
   - <job-y>
 ```
-The settings provided in the global section apply to all scrape jobs (both jobs in Configmap and Custom resources). 
+The settings provided in the global section apply to all scrape jobs (both jobs in Configmap and Custom resources) but are overridden if they are specified in the individual jobs.
 
 > [!NOTE]
 > If you want to use global settings that apply to all the scrape jobs, and only have [Custom Resources](prometheus-metrics-scrape-crd.md) you would still need to create a configmap with just the global settings(Settings for each of these in the custom resources will override the ones in the global section)
