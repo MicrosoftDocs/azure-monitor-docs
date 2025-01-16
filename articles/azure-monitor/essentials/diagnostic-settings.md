@@ -6,7 +6,7 @@ ms.author: robb
 services: azure-monitor
 ms.topic: conceptual
 ms.custom:
-ms.date: 06/13/2024
+ms.date: 01/16/2025
 ms.reviewer: lualderm
 ---
 
@@ -149,6 +149,8 @@ There's a cost for collecting data in a Log Analytics workspace, so only collect
 You might also not want to collect platform metrics from Azure resources because this data is already being collected in Metrics. Only configure your diagnostic data to collect metrics if you need metric data in the workspace for more complex analysis with log queries. Diagnostic settings don't allow granular filtering of resource logs.
 
 [!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
+
+[!INCLUDE [diagnostics-settings-troubleshooting](../includes/diagnostics-settings-troubleshooting.md)]
 
 ## Next steps
 
