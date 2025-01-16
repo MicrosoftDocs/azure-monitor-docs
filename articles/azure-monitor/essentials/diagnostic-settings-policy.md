@@ -105,4 +105,4 @@ When you create the assignment by using the Azure portal, you have the option of
 
 - [Read more about Azure platform Logs](./platform-logs-overview.md)
 - [Read more about diagnostic settings](./diagnostic-settings.md)
-- [Export metics using data collection rules](./data-collection-metrics.md)
+- [Export metrics using data collection rules](./data-collection-metrics.md)
