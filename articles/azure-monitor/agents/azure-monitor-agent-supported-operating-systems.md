@@ -37,7 +37,7 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 | Azure Stack HCI                                          | ✓ |
 | Windows IoT Enterprise                                   | ✓ |
 
-<sup>1</sup> Requires Azure Monitor agent [client installer](./azure-monitor-agent-windows-client.md).<br>
+<sup>1</sup> Requires Azure Monitor agent [client installer](./azure-monitor-agent-windows-client.md) for Windows client devices.<br>
 <sup>2</sup> Also supported on Arm64-based machines.
 
 ## Linux operating systems
