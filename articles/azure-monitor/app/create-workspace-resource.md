@@ -23,19 +23,10 @@ Enhanced capabilities include:
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
-This article shows you how to create and configure [Application Insights](./app-insights-overview.md) resources. Along with the Application Insights resource itself and various configurations like setting the [daily]() cap and [pricing plan](), you can create [availability web tests](./availability-overview.md), set up [alerts](../alerts/alerts-log.md), and create other Azure resources.
+This article shows you how to create and configure workspace-based [Application Insights](./app-insights-overview.md) resources. Along with the Application Insights resource itself and various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan), you can create [availability web tests](#add-an-availability-test), set up [alerts](#add-a-metric-alert), and create other Azure resources.
 
-[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
-
-### [Portal](#tab/portal)
-
-...
-
-### [Azure CLI](#tab/cli)
-
-...
-
-### [PowerShell](#tab/powershell)
+<!--
+### PowerShell
 
 There's a rich set of [Application Insights PowerShell cmdlets](/powershell/module/az.applicationinsights). These cmdlets make it easy to configure Application Insights resources programatically. You can use the capabilities enabled by the cmdlets to:
 
@@ -46,17 +37,7 @@ There's a rich set of [Application Insights PowerShell cmdlets](/powershell/modu
 * Set the daily cap.
 * Set the pricing plan.
 
-### [REST](#tab/rest)
-
-To use the REST API with Application Insights, you need an Microsoft Entra ID token.
-
-For more information, see ...
-
-### [Bicep](#tab/bicep)
-
-...
-
-### [ARM](#tab/arm)
+### ARM
 
 The key to creating these resources is Bicep or JSON templates for [Azure Resource Manager](/azure/azure-resource-manager/management/manage-resources-powershell). The basic procedure is:
 
@@ -65,14 +46,19 @@ The key to creating these resources is Bicep or JSON templates for [Azure Resour
 * Run the template whenever you want to create a new resource.
 
 You can package several resources together to create them all in one go. For example, you can create an app monitor with availability tests, alerts, and storage for continuous export. There are some subtleties to some of the parameterizations, which we explain here.
-
----
+-->
 
 ## Prerequisites
 
+> [!div class="checklist"]
+> * An active Azure subscription.
+> * The necessary permissions to create resources.
+
+### Additional requirements
+
 ### [Portal](#tab/portal)
 
-...
+No additional prerequisites for the Azure portal.
 
 ### [Azure CLI](#tab/cli)
 
@@ -91,25 +77,26 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
 1. Use it to install Azure PowerShell.
 
+[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
+
 ### [REST](#tab/rest)
 
-To use the REST API with Application Insights, you need an Microsoft Entra ID token.
+To use the REST API with Application Insights, you need a Microsoft Entra ID token to authenticate your requests.
 
-For more information, see 
+For more information, see [Microsoft Entra authentication for Application Insights](./azure-ad-authentication.md).
+
+> [!NOTE]
+> All REST API examples in this document use the OSS tool [ARMClient](https://github.com/projectkudu/ARMClient), but you can also use other tools like cURL and Postman.
+>
+> Learn more about ARMClient from articles by [David Ebbo](http://blog.davidebbo.com/2015/01/azure-resource-manager-client.html) and Daniel Bowbyes.
 
 ### [Bicep](#tab/bicep)
 
-If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
+You can deploy Bicep templates via Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional prerequisites.
 
-1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
-1. Use it to install Azure PowerShell.
+### [JSON (ARM)](#tab/arm)
 
-### [ARM](#tab/arm)
-
-If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
-
-1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
-1. Use it to install Azure PowerShell.
+You can deploy JSON templates via Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional prerequisites.
 
 ---
 
@@ -164,7 +151,7 @@ For the full Azure CLI documentation for this command, see the [Azure CLI docume
 
 Create a new Application Insights resource by using the [New-AzApplicationInsights](/powershell/module/az.applicationinsights/new-azapplicationinsights) cmdlet:
 
-```powershell
+```azurepowershell
 New-AzApplicationInsights -Name <String> -ResourceGroupName <String> -Location <String> -WorkspaceResourceId <String>
    [-SubscriptionId <String>]
    [-ApplicationType <ApplicationType>]
@@ -191,7 +178,7 @@ New-AzApplicationInsights -Name <String> -ResourceGroupName <String> -Location <
 
 #### Example
 
-```powershell
+```azurepowershell
 New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027 -location eastus -WorkspaceResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test1234/providers/microsoft.operationalinsights/workspaces/test1234555"
 ```
 
@@ -217,37 +204,64 @@ For the full PowerShell documentation for this cmdlet and to learn how to retrie
 
 1. Send the HTTP PUT request to the Azure Management endpoint. If the request is successful, the Application Insights resource will be created in the specified resource group.
 
-
 ### [Bicep](#tab/bicep)
 
-Here's how to create a new Application Insights resource by using a Bicep template.
-
-1. Create a *.bicep* file with the following content and replace 'myAppInsights' with your desired resource name and 'East US' with your preferred location:
-
-    ```bicep
-    resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-      name: 'myAppInsights'
-      location: 'East US'
-      kind: 'web'
-      properties: {
-        Application_Type: 'web'
-      }
-    }
-    ```
-
-1. Deploy your Bicep file using the Azure CLI with the following command:
-
-    ```azurecli
-    az deployment group create --resource-group <your-resource-group> --template-file <your-bicep-file>.bicep
-    ```
-
-### [ARM](#tab/arm)
-
-Here's how to create a new Application Insights resource by using an ARM template.
+Here's how to create a new Application Insights resource using a Bicep (ARM) template.
 
 ### Create a template
 
-Create a new .json file (for example, `template1.json`) and copy the following content into it:
+Create a new *.bicep* file (for example, *template1.bicep*) and copy the following content into it:
+
+```bicep
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: name
+  location: regionId
+  tags: tagsArray
+  kind: 'other'
+  properties: {
+    Application_Type: type
+    Flow_Type: 'Bluefield'
+    Request_Source: requestSource
+    WorkspaceResourceId: workspaceResourceId
+  }
+}
+```
+
+### Create a parameter file
+
+Create a new *.bicepparam* file (for example, *parameters1.bicepparam*), copy the following content into it, and replace all placeholders with your own values:
+
+```bicep
+param name string = 'my_workspace_based_resource'
+param type string = 'web'
+param regionId string = 'westus2'
+param requestSource string = 'CustomDeployment'
+param workspaceResourceId string = '/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/testxxxx/providers/microsoft.operationalinsights/workspaces/testworkspace'
+```
+
+### Use the template to create a new Application Insights resource
+
+1. In PowerShell, sign in to Azure by using `$Connect-AzAccount`.
+1. Set your context to a subscription with `Set-AzContext "<subscription ID>"`.
+1. Run a new deployment to create a new Application Insights resource:
+
+    ```azurepowershell
+    New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile template1.bicep -TemplateParameterFile parameters1.bicepparam
+    ``` 
+
+   * `-ResourceGroupName` is the group where you want to create the new resources.
+   * `-TemplateFile` must occur before the custom parameters.
+   * `-TemplateParameterFile` is the name of the parameter file.
+
+You can add other parameters. You find their descriptions in the parameters section of the template.
+
+### [JSON (ARM)](#tab/arm)
+
+Here's how to create a new Application Insights resource using a JSON ARM template.
+
+### Create a template
+
+1. Create a new *.json* file (for example, *template1.json*) and copy the following content into it:
 
 ```json
 {
@@ -314,7 +328,9 @@ Create a new .json file (for example, `template1.json`) and copy the following c
 > For more information on resource properties, see [Property values](/azure/templates/microsoft.insights/components?tabs=bicep#property-values).
 > `Flow_Type` and `Request_Source` aren't used but are included in this sample for completeness.
 
-#### Parameter file
+### Create a parameter file
+
+Create a new *.json* file (for example, *parameters1.json*), copy the following content into it, and replace all placeholders with your own values:
 
 ```json
 {
@@ -349,18 +365,13 @@ Create a new .json file (for example, `template1.json`) and copy the following c
 1. Set your context to a subscription with `Set-AzContext "<subscription ID>"`.
 1. Run a new deployment to create a new Application Insights resource:
 
-    ```PS
-        New-AzResourceGroupDeployment -ResourceGroupName Fabrikam `
-               -TemplateFile .\template1.json `
-               -appName myNewApp
-
-    ``` 
+    ```azurepowershell
+    New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile template1.json -TemplateParameterFile parameters1.json
+    ```
 
    * `-ResourceGroupName` is the group where you want to create the new resources.
    * `-TemplateFile` must occur before the custom parameters.
-   * `-appName` is the name of the resource to create.
-
-You can add other parameters. You find their descriptions in the parameters section of the template.
+   * `-TemplateParameterFile` is the name of the parameter file.
 
 ---
 
@@ -382,7 +393,7 @@ To get the connection string of your Application Insights resource:
 
 ### [Azure CLI](#tab/cli)
 
-Run the following code in your terminal to get the connection string:
+To get the connection string, run the following code in your terminal:
 
 ```azurecli
 az monitor app-insights component show --app <your-app-name> --resource-group <your-resource-group> --query connectionString --output tsv
@@ -390,36 +401,35 @@ az monitor app-insights component show --app <your-app-name> --resource-group <y
 
 ### [PowerShell](#tab/powershell)
 
-Run the following code in your terminal to get the connection string:
+To get the connection string, run the following code in your terminal:
 
-```powershell
+```azurepowershell
 Get-AzApplicationInsights -ResourceGroupName <your-resource-group> -Name <your-app-name> | Select-Object -ExpandProperty ConnectionString`
 ```
 
 To see a list of many other properties of your Application Insights resource, use:
 
-```powershell
+```azurepowershell
 Get-AzApplicationInsights -ResourceGroupName <your-resource-group> -Name <your-app-name> | Format-List
 ```
 
-More properties are available via the cmdlets:
-
-* `Set-AzApplicationInsightsDailyCap`
-* `Set-AzApplicationInsightsPricingPlan`
-* `Get-AzApplicationInsightsApiKey`
-* `Get-AzApplicationInsightsContinuousExport`
-
-See the [detailed documentation](/powershell/module/az.applicationinsights) for the parameters for these cmdlets.  
+See the [detailed documentation](/powershell/module/az.applicationinsights) for the parameters for these cmdlets.
 
 ### [REST](#tab/rest)
 
-...
+To retrieve the details of your Application Insights resource, send the following request:
+
+```rest
+armclient GET https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{resource-name}?api-version=2020-02-02-preview
+```
+
+Look for the `properties.connectionString` field in the JSON response.
 
 ### [Bicep](#tab/bicep)
 
-...
+Not applicable to Bicep templates.
 
-### [ARM](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 Not applicable to ARM templates.
 
@@ -454,7 +464,7 @@ In the Application Insights resource pane, select **Properties** > **Change Work
 
 ### [Azure CLI](#tab/cli)
 
-Run the following code in your terminal to change the Log Analytics workspace:
+To change the Log Analytics workspace, run the following code in your terminal:
 
 ```azurecli
 az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --workspace <new-workspace-resource-id>
@@ -462,9 +472,9 @@ az monitor app-insights component update --app <your-app-name> --resource-group 
 
 ### [PowerShell](#tab/powershell)
 
-Run the following code in your terminal to change the Log Analytics workspace:
+To change the Log Analytics workspace, run the following code in your terminal:
 
-```powershell
+```azurepowershell
 $resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
 $resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
 Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
@@ -472,7 +482,21 @@ Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties
 
 ### [REST](#tab/rest)
 
-...
+1. Create a JSON file with the new Log Analytics workspace resource ID. For example, save the following JSON content to a file named *updateWorkspace.json*:
+
+    ```json
+    {
+      "properties": {
+        "WorkspaceResourceId": "/subscriptions/your-subscription-id/resourceGroups/new-resource-group-name/providers/Microsoft.OperationalInsights/workspaces/new-workspace-name"
+      }
+    }
+    ```
+
+1. Use armclient to send a PATCH request to update the Application Insights resource. Run the following command in PowerShell:
+
+    ```azurepowershell
+    armclient patch https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{resource-name}?api-version=2020-02-02-preview @updateWorkspace.json
+    ```
 
 ### [Bicep](#tab/bicep)
 
@@ -487,7 +511,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [ARM](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -512,13 +536,47 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ## Export telemetry
 
-The legacy continuous export functionality isn't supported for workspace-based resources. Instead, select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource. You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an Azure event hub.
+The legacy continuous export functionality isn't supported for workspace-based resources. Instead, use [Diagnostic settings]().
 
 > [!NOTE]
 > Diagnostic settings export might increase costs. For more information, see [Export telemetry from Application Insights](export-telemetry.md#diagnostic-settings-based-export).
 > For pricing information for this feature, see the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/). Prior to the start of billing, notifications will be sent. If you continue to use telemetry export after the notice period, you'll be billed at the applicable rate.
 
-## Update Application Insights resources
+### [Portal](#tab/portal)
+
+Select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource. You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an Azure event hub.
+
+### [Azure CLI](#tab/cli)
+
+To export telemetry using diagnostic settings, run the following code in your terminal:
+
+```azurecli
+
+```
+
+### [PowerShell](#tab/powershell)
+
+To export telemetry using diagnostic settings, run the following code in your terminal:
+
+```azurepowershell
+
+```
+
+### [REST](#tab/rest)
+
+...
+
+### [Bicep](#tab/bicep)
+
+...
+
+### [JSON (ARM)](#tab/arm)
+
+...
+
+---
+
+## Configure Application Insights resources
 
 ### Set the data retention
 
@@ -526,114 +584,19 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Configure the default interactive retention period of Analytics tables](./../logs/data-retention-configure.md#configure-the-default-interactive-retention-period-of-analytics-tables).
 
-<!--
-You can use the following three methods to programmatically set the data retention on an Application Insights resource.
-
-#### Set data retention by using PowerShell commands
-
-Here's a simple set of PowerShell commands to set the data retention for your Application Insights resource:
-
-```PS
-$Resource = Get-AzResource -ResourceType Microsoft.Insights/components -ResourceGroupName MyResourceGroupName -ResourceName MyResourceName
-$Resource.Properties.RetentionInDays = 365
-$Resource | Set-AzResource -Force
-```
-
-#### Set data retention by using REST
-
-To get the current data retention for your Application Insights resource, you can use the OSS tool [ARMClient](https://github.com/projectkudu/ARMClient). Learn more about ARMClient from articles by [David Ebbo](http://blog.davidebbo.com/2015/01/azure-resource-manager-client.html) and Daniel Bowbyes. Here's an example that uses `ARMClient` to get the current retention:
-
-```PS
-armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/microsoft.insights/components/MyResourceName?api-version=2018-05-01-preview
-```
-
-To set the retention, the command is a similar PUT:
-
-```PS
-armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/microsoft.insights/components/MyResourceName?api-version=2018-05-01-preview "{location: 'eastus', properties: {'retentionInDays': 365}}"
-```
-
-To set the data retention to 365 days by using the preceding template, run:
-
-```PS
-New-AzResourceGroupDeployment -ResourceGroupName "<resource group>" `
-       -TemplateFile .\template1.json `
-       -retentionInDays 365 `
-       -appName myApp
-```
-
-#### Set data retention by using a PowerShell script
-
-The following script can also be used to change retention. Copy this script to save it as `Set-ApplicationInsightsRetention.ps1`.
-
-```PS
-Param(
-    [Parameter(Mandatory = $True)]
-    [string]$SubscriptionId,
-
-    [Parameter(Mandatory = $True)]
-    [string]$ResourceGroupName,
-
-    [Parameter(Mandatory = $True)]
-    [string]$Name,
-
-    [Parameter(Mandatory = $True)]
-    [string]$RetentionInDays
-)
-$ErrorActionPreference = 'Stop'
-if (-not (Get-Module Az.Accounts)) {
-    Import-Module Az.Accounts
-}
-$azProfile = [Microsoft.Azure.Commands.Common.Authentication.Abstractions.AzureRmProfileProvider]::Instance.Profile
-if (-not $azProfile.Accounts.Count) {
-    Write-Error "Ensure you have logged in before calling this function."    
-}
-$currentAzureContext = Get-AzContext
-$profileClient = New-Object Microsoft.Azure.Commands.ResourceManager.Common.RMProfileClient($azProfile)
-$token = $profileClient.AcquireAccessToken($currentAzureContext.Tenant.TenantId)
-$UserToken = $token.AccessToken
-$RequestUri = "https://management.azure.com/subscriptions/$($SubscriptionId)/resourceGroups/$($ResourceGroupName)/providers/Microsoft.Insights/components/$($Name)?api-version=2015-05-01"
-$Headers = @{
-    "Authorization"         = "Bearer $UserToken"
-    "x-ms-client-tenant-id" = $currentAzureContext.Tenant.TenantId
-}
-## Get Component object via ARM
-$GetResponse = Invoke-RestMethod -Method "GET" -Uri $RequestUri -Headers $Headers 
-
-## Update RetentionInDays property
-if($($GetResponse.properties | Get-Member "RetentionInDays"))
-{
-    $GetResponse.properties.RetentionInDays = $RetentionInDays
-}
-else
-{
-    $GetResponse.properties | Add-Member -Type NoteProperty -Name "RetentionInDays" -Value $RetentionInDays
-}
-## Upsert Component object via ARM
-$PutResponse = Invoke-RestMethod -Method "PUT" -Uri "$($RequestUri)" -Headers $Headers -Body $($GetResponse | ConvertTo-Json) -ContentType "application/json"
-$PutResponse
-```
-
-This script can then be used as:
-
-```PS
-Set-ApplicationInsightsRetention `
-        [-SubscriptionId] <String> `
-        [-ResourceGroupName] <String> `
-        [-Name] <String> `
-        [-RetentionInDays <Int>]
-```
--->
 ### [Azure CLI](#tab/cli)
+
+To change the data retention period, run the following code in your terminal:
 
 ```azurecli
 az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --set retentionInDays=<retention-period-in-days>
 ```
 
-
 ### [PowerShell](#tab/powershell)
 
-```powershell
+To change the data retention period, run the following code in your terminal:
+
+```azurepowershell
 $Resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
 $Resource.Properties.RetentionInDays = <retention-period-in-days>
 Set-AzResource -ResourceId $Resource.ResourceId -Properties $Resource.Properties -Force
@@ -641,7 +604,17 @@ Set-AzResource -ResourceId $Resource.ResourceId -Properties $Resource.Properties
 
 ### [REST](#tab/rest)
 
-...
+Here's an example that uses `ARMClient` to get the current retention:
+
+```azurepowershell
+armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/microsoft.insights/components/MyResourceName?api-version=2018-05-01-preview
+```
+
+To set the retention, the command is a similar PUT:
+
+```azurepowershell
+armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/microsoft.insights/components/MyResourceName?api-version=2018-05-01-preview "{location: 'eastus', properties: {'retentionInDays': 365}}"
+```
 
 ### [Bicep](#tab/bicep)
 
@@ -656,7 +629,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [ARM](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -712,13 +685,17 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 
 ### [Azure CLI](#tab/cli)
 
+To change the daily cap, run the following code in your terminal:
+
 ```azurecli
 az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --set dailyCapGB=<daily-cap-in-gb>
 ```
 
 ### [PowerShell](#tab/powershell)
 
-```powershell
+To change the daily cap, run the following code in your terminal:
+
+```azurepowershell
 Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name <your-app-name> -DailyCapGB <daily-cap-in-gb>
 ```
 
@@ -739,7 +716,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [ARM](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -770,11 +747,19 @@ The pricing plan for workspace-based Application Insights resources can be set i
 
 ### [Azure CLI](#tab/cli)
 
-...
+To set the pricing plan, run the following code in your terminal:
+
+```azurecli
+
+```
 
 ### [PowerShell](#tab/powershell)
 
-...
+To set the pricing plan, run the following code in your terminal:
+
+```azurepowershell
+
+```
 
 ### [REST](#tab/rest)
 
@@ -784,7 +769,7 @@ The pricing plan for workspace-based Application Insights resources can be set i
 
 ...
 
-### [ARM](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 ...
 
@@ -837,15 +822,23 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 ### [Portal](#tab/portal)
 
-...
+For more information on how to create a metric alert in the Azure portal, see [Application Insights availability tests](./../alerts/tutorial-metric-alert.md).
 
 ### [Azure CLI](#tab/cli)
 
-...
+To create a metric alert, run the following code in your terminal:
+
+```azurecli
+
+```
 
 ### [PowerShell](#tab/powershell)
 
-...
+To create a metric alert, run the following code in your terminal:
+
+```azurepowershell
+
+```
 
 ### [REST](#tab/rest)
 
@@ -855,7 +848,7 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 ...
 
-### [ARM](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 ...
 
@@ -867,15 +860,23 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 
 ### [Portal](#tab/portal)
 
-...
+For more information on how to create an availability test in the Azure portal, see [Application Insights availability tests](./availability.md#create-an-availability-test).
 
 ### [Azure CLI](#tab/cli)
 
-...
+To add an availability test, run the following code in your terminal:
+
+```azurecli
+
+```
 
 ### [PowerShell](#tab/powershell)
 
-...
+To add an availability test, run the following code in your terminal:
+
+```azurepowershell
+
+```
 
 ### [REST](#tab/rest)
 
@@ -885,7 +886,7 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 
 ...
 
-### [ARM](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 ...
 
@@ -934,7 +935,7 @@ Live Metrics can't split data by role name.
 > [!WARNING]
 > You might incur additional network costs if your Application Insights resource is monitoring an Azure resource (i.e., telemetry producer) in a different region. Costs will vary depending on the region the telemetry is coming from and where it is going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
 
-To create an Applications Insights resource, see [Create an Application Insights resource](/azure/azure-monitor/app/create-workspace-resource&tabs=arm&pivots=manual#create-a-workspace-based-resource).
+To create an Applications Insights resource, see [Create an Application Insights resource](#create-a-workspace-based-resource).
 
 To automate the creation of any other resource of any kind, create an example manually and then copy and parameterize its code from [Azure Resource Manager](https://resources.azure.com/).
 
@@ -944,12 +945,14 @@ To automate the creation of any other resource of any kind, create an example ma
 
     *Components* are the basic Application Insights resources for displaying applications. There are separate resources for the associated alert rules and availability web tests.
 1. Copy the JSON of the component into the appropriate place in `template1.json`.
+
 1. Delete these properties:
 
    * `id`
    * `InstrumentationKey`
    * `CreationDate`
    * `TenantId`
+
 1. Open the `webtests` and `alertrules` sections and copy the JSON for individual items into your template. Don't copy from the `webtests` or `alertrules` nodes. Go into the items under them.
 
     Each web test has an associated alert rule, so you have to copy both of them.
@@ -960,22 +963,22 @@ To automate the creation of any other resource of any kind, create an example ma
 
 ### Parameterize the template
 
-Now you have to replace the specific names with parameters. To [parameterize a template](/azure/azure-resource-manager/templates/syntax), you write expressions using a [set of helper functions](/azure/azure-resource-manager/templates/template-functions).
+Replace the specific names with parameters. To [parameterize a template](/azure/azure-resource-manager/templates/syntax), you write expressions using a [set of helper functions](/azure/azure-resource-manager/templates/template-functions).
 
 You can't parameterize only part of a string, so use `concat()` to build strings.
 
 Here are examples of the substitutions you want to make. There are several occurrences of each substitution. You might need others in your template. These examples use the parameters and variables we defined at the top of the template.
 
-| Find | Replace with |
-| --- | --- |
-| `"hidden-link:/subscriptions/.../../components/MyAppName"` |`"[concat('hidden-link:',`<br/>`resourceId('microsoft.insights/components',` <br/> `parameters('appName')))]"` |
-| `"/subscriptions/.../../alertrules/myAlertName-myAppName-subsId",` |`"[resourceId('Microsoft.Insights/alertrules', variables('alertRuleName'))]",` |
-| `"/subscriptions/.../../webtests/myTestName-myAppName",` |`"[resourceId('Microsoft.Insights/webtests', parameters('webTestName'))]",` |
-| `"myWebTest-myAppName"` |`"[variables(testName)]"'` |
-| `"myTestName-myAppName-subsId"` |`"[variables('alertRuleName')]"` |
-| `"myAppName"` |`"[parameters('appName')]"` |
-| `"myappname"` (lower case) |`"[toLower(parameters('appName'))]"` |
-| `"<WebTest Name=\"myWebTest\" ...`<br/>`Url=\"http://fabrikam.com/home\" ...>"` |`[concat('<WebTest Name=\"',` <br/> `parameters('webTestName'),` <br/> `'\" ... Url=\"', parameters('Url'),` <br/> `'\"...>')]"`|
+| Find                                                                            | Replace with                                                                                                                     |
+|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `"hidden-link:/subscriptions/.../../components/MyAppName"`                      | `"[concat('hidden-link:',`<br/>`resourceId('microsoft.insights/components',` <br/> `parameters('appName')))]"`                   |
+| `"/subscriptions/.../../alertrules/myAlertName-myAppName-subsId",`              | `"[resourceId('Microsoft.Insights/alertrules', variables('alertRuleName'))]",`                                                   |
+| `"/subscriptions/.../../webtests/myTestName-myAppName",`                        | `"[resourceId('Microsoft.Insights/webtests', parameters('webTestName'))]",`                                                      |
+| `"myWebTest-myAppName"`                                                         | `"[variables(testName)]"'`                                                                                                       |
+| `"myTestName-myAppName-subsId"`                                                 | `"[variables('alertRuleName')]"`                                                                                                 |
+| `"myAppName"`                                                                   | `"[parameters('appName')]"`                                                                                                      |
+| `"myappname"` (lower case)                                                      | `"[toLower(parameters('appName'))]"`                                                                                             |
+| `"<WebTest Name=\"myWebTest\" ...`<br/>`Url=\"http://fabrikam.com/home\" ...>"` | `[concat('<WebTest Name=\"',` <br/> `parameters('webTestName'),` <br/> `'\" ... Url=\"', parameters('Url'),` <br/> `'\"...>')]"` |
 
 ### Set dependencies between the resources
 
@@ -984,6 +987,7 @@ Azure should set up the resources in strict order. To make sure one setup comple
 * In the availability test resource:
   
     `"dependsOn": ["[resourceId('Microsoft.Insights/components', parameters('appName'))]"],`
+
 * In the alert resource for an availability test:
   
     `"dependsOn": ["[resourceId('Microsoft.Insights/webtests', variables('testName'))]"],`
@@ -1005,7 +1009,9 @@ There are several different methods of setting the **Application Version** prope
 * Set directly:
 
     `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;`
+
 * Wrap that line in a [telemetry initializer](../../azure-monitor/app/api-custom-events-metrics.md#defaults) to ensure that all `TelemetryClient` instances are set consistently.
+
 * ASP.NET: Set the version in `BuildInfo.config`. The web module picks up the version from the `BuildLabel` node. Include this file in your project and remember to set the **Copy Always** property in Solution Explorer.
 
     ```xml
