@@ -5,7 +5,7 @@ ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: MeirMen
-ms.date: 03/20/2024
+ms.date: 01/14/2025
 ms.custom: devx-track-azurepowershell
 
 ---
@@ -166,6 +166,7 @@ Each workspace can have multiple accounts associated with it. Each account can h
 | View data in the **Backup** and **Site Recovery** solution tiles. | Administrator/Co-administrator<br><br>Accesses resources deployed by using the classic deployment model. |
 | Run a search job. | `Microsoft.OperationalInsights/workspaces/tables/write` <br> `Microsoft.OperationalInsights/workspaces/searchJobs/write`|
 | Restore data from long-term retention. | `Microsoft.OperationalInsights/workspaces/tables/write` <br> `Microsoft.OperationalInsights/workspaces/restoreLogs/write`|
+| Create or edit Summary rule | Microsoft.Operationalinsights/workspaces/summarylogs/write |
 
 ### Built-in roles
 

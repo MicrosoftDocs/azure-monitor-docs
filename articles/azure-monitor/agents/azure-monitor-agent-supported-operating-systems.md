@@ -38,7 +38,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Azure Stack HCI                                          | ✓ |
 | Windows IoT Enterprise                                   | ✓ |
 
-<sup>1</sup> Requires the Azure Monitor Agent [client installer](./azure-monitor-agent-windows-client.md).<br>
+<sup>1</sup> Requires the Azure Monitor Agent [client installer](./azure-monitor-agent-windows-client.md) for Windows client devices.<br>
 <sup>2</sup> Also supported on ARM64-based machines.
 
 ## Linux operating systems
@@ -128,15 +128,14 @@ Currently supported hardening standards:
 | Red Hat Enterprise Linux Server 8 | ✓ |
 | Red Hat Enterprise Linux Server 9 | ✓ |
 
-> [!IMPORTANT] 
-> Configuring your Linux Machine system-wide crypto policy to FUTURE mode disables certain cryptographic algorithms and is not recommended. The policy can prevent communication with back-end Azure Monitor services that use best-practices crypto policies. Specifically, the FUTURE policy disables some algorithms that use less than 3,072-bit keys, such as SHA-1, RSA, and Diffie-Hellman.
+> [!IMPORTANT]  
+> Configuring your Linux machine system-wide crypto policy to "FUTURE" does not work with the Azure Monitor Agent. This policy disables certain cryptographic algorithms and prevents communication with back-end Azure Monitor services that use best-practice crypto policies. Specifically, the FUTURE policy disables some algorithms that use less than 3,072-bit keys, such as SHA-1, RSA, and Diffie-Hellman.
 >
-> To identify the current policy setting mode, run the following update-crypto-policies command:
+> To identify the current policy setting mode, run the following `update-crypto-policies` command:
 >
 > ```cmd
 > sudo update-crypto-policies --show
 > ```
->
 
 ## On-premises and in other clouds
 
