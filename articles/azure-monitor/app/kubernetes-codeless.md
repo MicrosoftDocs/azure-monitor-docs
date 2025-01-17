@@ -23,7 +23,7 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 * [A workspace-based Application Insights resource](create-workspace-resource.md#workspace-based-application-insights-resources).
 
 > [!WARNING]
-> - This feature is incompatible with both Windows (any architecture) and Linux ARM64 node pools.
+> - This feature is incompatible with both Windows (any architecture) and Linux Arm64 node pools.
 
 ## Install the aks-preview Azure CLI extension
 
@@ -137,12 +137,13 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource.
 
     > [!TIP]
-    > `spec.settings.autoInstrumentationPlatforms` is ignored in non-default _Instrumentation_ custom resources. The language is determined by the annotation used to associate a deployment to the custom resource.
+    > `spec.settings.autoInstrumentationPlatforms` is ignored in nondefault _Instrumentation_ custom resources. The annotation that links a deployment to the custom resource determines the language.
+
 
 3. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
 
     > [!IMPORTANT]
-    > Always add annotations at the `spec.template.metadata.annotations` level of your deployment to avoid mistakenly adding them to the deployment’s own annotations.
+    > To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.
 
     Example:
     
@@ -150,7 +151,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     instrumentation.opentelemetry.io/inject-java:"cr1"
     ```
 > [!TIP]
-> [Resart deployments](#restart-deployment) for settings to take effect.
+> [Restart deployments](#restart-deployment) for settings to take effect.
 
 ### Mixed mode onboarding
 
@@ -178,7 +179,7 @@ az aks update --resource-group={resource_group} --name={cluster_name} --disable-
 ```
 
  > [!NOTE]
- > If you have instrumented deployments remaining after the feature is disabled they will continue to be instrumented unitl they are redeployed to their original uninstrumented state or deleted.
+ > If instrumented deployments remain after the feature is disabled, they continue to be instrumented until redeployed to their original uninstrumented state or deleted.
 
 ## Annotations
 
@@ -211,14 +212,14 @@ You can also choose to enable both sources for logs if you have multiple observa
 Review the console logging configurations in your application's code to determine whether you want to enable Application Insights Logs, Container Insights Logs, or both. If you disable Container Insights logs, see [Container Insights settings](../containers/container-insights-data-collection-configure.md?tabs=portal#configure-data-collection-using-configmap).
 
 > [!IMPORTANT]
-> This feature will not collect application logs from standard logging frameworks and send them to Application Insights unless you enable logs in Application Insights. This is to avoid unnecessary duplication and increased cost.
+> To avoid unnecessary duplication and increased cost, enable logs in Application Insights to allow the feature to collect application logs from standard logging frameworks and send them to Application Insights.
 
 Use the following annotation to enable logs in Application Insights
 
 - monitor.azure.com/enable-application-logs
 
 > [!IMPORTANT]
-> Always add annotations at the `spec.template.metadata.annotations` level of your deployment to avoid mistakenly adding them to the deployment’s own annotations.
+> To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.
 
   ```yml
   monitor.azure.com/enable-application-logs:"true"
