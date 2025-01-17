@@ -8,7 +8,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 zone_pivot_groups: manual-creation-and-at-scale-automation
 ---
 
-# Create and manage Application Insights resources
+# Create and configure Application Insights resources
 
 Workspace-based [Application Insights](app-insights-overview.md#application-insights-overview) integrates with [Log Analytics](../logs/log-analytics-overview.md#overview-of-log-analytics-in-azure-monitor) and sends telemetry to a common Log Analytics workspace. This setup provides full access to Log Analytics features, consolidates logs in one location, and allows for unified [Azure role-based access control](../roles-permissions-security.md) which eliminates the need for cross-app/workspace queries.
 
@@ -464,7 +464,7 @@ In the Application Insights resource pane, select **Properties** > **Change Work
 
 ### [Azure CLI](#tab/cli)
 
-To change the Log Analytics workspace, run the following code in your terminal:
+To change the Log Analytics workspace, run the following command in your Azure CLI terminal:
 
 ```azurecli
 az monitor app-insights component update --app <your-app-name> --resource-group <your-resource-group> --workspace <new-workspace-resource-id>
@@ -472,7 +472,7 @@ az monitor app-insights component update --app <your-app-name> --resource-group 
 
 ### [PowerShell](#tab/powershell)
 
-To change the Log Analytics workspace, run the following code in your terminal:
+To change the Log Analytics workspace, run the following command in your PowerShell terminal:
 
 ```azurepowershell
 $resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
@@ -534,9 +534,11 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ---
 
-## Export telemetry
+## Configure Application Insights resources
 
-The legacy continuous export functionality isn't supported for workspace-based resources. Instead, use [Diagnostic settings]().
+### Export telemetry
+
+The legacy continuous export functionality isn't supported for workspace-based resources. Instead, use [Diagnostic settings](./../essentials/diagnostic-settings.md).
 
 > [!NOTE]
 > Diagnostic settings export might increase costs. For more information, see [Export telemetry from Application Insights](export-telemetry.md#diagnostic-settings-based-export).
@@ -544,23 +546,31 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 ### [Portal](#tab/portal)
 
-Select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource. You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an Azure event hub.
+Select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource. You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an [Azure Event Hub](/azure/event-hubs/event-hubs-about).
 
 ### [Azure CLI](#tab/cli)
 
-To export telemetry using diagnostic settings, run the following code in your terminal:
+To export telemetry using diagnostic settings, run the following Azure CLI command in your terminal:
 
 ```azurecli
-
+az monitor diagnostic-settings create --name <diagnostic-setting-name> --resource <application-insights-resource-name> --resource-group <resource-group-name> --storage-account <storage-account-name>
 ```
+
+This example code enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
+
+For more information about enabling diagnostic settings using Azure CLI, see the [Azure CLI documentation](/azure/monitor/diagnostic-settings).
 
 ### [PowerShell](#tab/powershell)
 
-To export telemetry using diagnostic settings, run the following code in your terminal:
+To export telemetry using diagnostic settings, run the following PowerShell command in your terminal:
 
 ```azurepowershell
-
+Set-AzDiagnosticSetting -ResourceId <application-insights-resource-id> -Name <diagnostic-setting-name> -StorageAccountId <storage-account-id> -Enabled $True
 ```
+
+This example code enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
+
+For more information about enabling diagnostic settings using PowerShell, see the [Azure PowerShell documentation](/powershell/module/az.monitor/set-azdiagnosticsetting).
 
 ### [REST](#tab/rest)
 
@@ -568,15 +578,112 @@ To export telemetry using diagnostic settings, run the following code in your te
 
 ### [Bicep](#tab/bicep)
 
-...
+```bicep
+param location string = resourceGroup().location
+param appInsightsName string = 'myAppInsights'
+param storageAccountId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account-name>'
+
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: appInsightsName
+  location: location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+  }
+}
+
+resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+  name: 'myDiagnosticSetting'
+  scope: appInsights
+  properties: {
+    storageAccountId: storageAccountId
+    logs: [
+      {
+        category: 'Request'
+        enabled: true
+        retentionPolicy: {
+          days: 30
+          enabled: true
+        }
+      }
+    ]
+    metrics: [
+      {
+        category: 'AllMetrics'
+        enabled: true
+        retentionPolicy: {
+          days: 30
+          enabled: true
+        }
+      }
+    ]
+  }
+}
+```
 
 ### [JSON (ARM)](#tab/arm)
 
-...
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appInsightsName": {
+      "type": "string",
+      "defaultValue": "myAppInsights"
+    },
+    "storageAccountId": {
+      "type": "string",
+      "defaultValue": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account-name>"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02",
+      "name": "[parameters('appInsightsName')]",
+      "location": "[resourceGroup().location]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/diagnosticSettings",
+      "apiVersion": "2021-05-01-preview",
+      "name": "myDiagnosticSetting",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]"
+      ],
+      "properties": {
+        "storageAccountId": "[parameters('storageAccountId')]",
+        "logs": [
+          {
+            "category": "Request",
+            "enabled": true,
+            "retentionPolicy": {
+              "days": 30,
+              "enabled": true
+            }
+          }
+        ],
+        "metrics": [
+          {
+            "category": "AllMetrics",
+            "enabled": true,
+            "retentionPolicy": {
+              "days": 30,
+              "enabled": true
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
+```
 
 ---
-
-## Configure Application Insights resources
 
 ### Set the data retention
 
@@ -747,31 +854,113 @@ The pricing plan for workspace-based Application Insights resources can be set i
 
 ### [Azure CLI](#tab/cli)
 
-To set the pricing plan, run the following code in your terminal:
+To set the pricing plan, run the following Azure CLI command in your terminal and replace the placeholders \<resource-group-name\>, \<resource-name\>, and \<pricing-plan\> with your specific values:
 
 ```azurecli
-
+az monitor app-insights component billing update \
+  --resource-group <resource-group-name> \
+  --resource-name <resource-name> \
+  --pricing-plan <pricing-plan>
 ```
+
+For more information about setting the pricing placing using Azure CLI, see our [Azure CLI documentation]().
 
 ### [PowerShell](#tab/powershell)
 
-To set the pricing plan, run the following code in your terminal:
+To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders \<resource-group-name\>, \<resource-name\>, and \<pricing-plan\> with your specific values:
 
 ```azurepowershell
-
+Set-AzApplicationInsightsPricingPlan -ResourceGroupName <resource-group-name> -Name <resource-name> -PricingPlan <pricing-plan>
 ```
+
+For more information about setting the pricing placing using Azure PowerShell, see our [Azure PowerShell documentation]().
 
 ### [REST](#tab/rest)
 
-...
+To set the pricing plan using REST API, use the following request and replace the placeholders {subscriptionId}, {resourceGroupName}, {resourceName}, {access-token}, and \<pricing-plan\> with your specific values:
+
+```rest
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}/pricingPlans/current?api-version=2017-10-01
+Content-Type: application/json
+Authorization: Bearer {access-token}
+
+{
+  "properties": {
+    "planType": "<pricing-plan>"
+  }
+}
+```
 
 ### [Bicep](#tab/bicep)
 
-...
+```bicep
+param location string = resourceGroup().location
+param appInsightsName string = 'myAppInsights'
+param pricingPlan string = 'Basic'
+
+resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: appInsightsName
+  location: location
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+  }
+}
+
+resource pricingPlan 'Microsoft.Insights/components/pricingPlans@2017-10-01' = {
+  name: 'current'
+  parent: appInsights
+  properties: {
+    planType: pricingPlan
+  }
+}
+```
+
+For more information on setting the pricing plan using a Bicep template, see []().
 
 ### [JSON (ARM)](#tab/arm)
 
-...
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appInsightsName": {
+      "type": "string",
+      "defaultValue": "myAppInsights"
+    },
+    "pricingPlan": {
+      "type": "string",
+      "defaultValue": "Basic"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02",
+      "name": "[parameters('appInsightsName')]",
+      "location": "[resourceGroup().location]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web"
+      }
+    },
+    {
+      "type": "Microsoft.Insights/components/pricingPlans",
+      "apiVersion": "2017-10-01",
+      "name": "current",
+      "dependsOn": [
+        "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]"
+      ],
+      "properties": {
+        "planType": "[parameters('pricingPlan')]"
+      }
+    }
+  ]
+}
+```
+
+For more information on setting the pricing plan using a JSON (ARM) template, see []().
 
 ---
 
@@ -781,7 +970,7 @@ To get the current pricing plan, use the [Set-AzApplicationInsightsPricingPlan](
 Set-AzApplicationInsightsPricingPlan -ResourceGroupName <resource group> -Name <resource name> | Format-List
 ```
 
-To set the pricing plan, use the same cmdlet with the `-PricingPlan` specified:  
+To set the pricing plan, use the same cmdlet with the `-PricingPlan` specified:
 
 ```PS
 Set-AzApplicationInsightsPricingPlan -ResourceGroupName <resource group> -Name <resource name> -PricingPlan Basic
@@ -826,31 +1015,175 @@ For more information on how to create a metric alert in the Azure portal, see [A
 
 ### [Azure CLI](#tab/cli)
 
-To create a metric alert, run the following code in your terminal:
+To create a metric alert, run the following Azure CLI command in your terminal and replace the placeholders \<alert-name\>, \<resource-group-name\>, \<resource-id\>, \<metric-name\>, \<threshold\>, and \<action-group-id\> with your specific values:
 
 ```azurecli
-
+az monitor metrics alert create \
+  --name <alert-name> \
+  --resource-group <resource-group-name> \
+  --scopes <resource-id> \
+  --condition "avg <metric-name> > <threshold>" \
+  --description "Alert when <metric-name> exceeds <threshold>" \
+  --action <action-group-id>
 ```
 
 ### [PowerShell](#tab/powershell)
 
-To create a metric alert, run the following code in your terminal:
+To create a metric alert, run the following PowerShell command in your terminal and replace the placeholders \<alert-name\>, \<resource-group-name\>, \<resource-id\>, \<metric-name\>, \<threshold\>, and \<action-group-id\> with your specific values:
 
 ```azurepowershell
+$resourceGroupName = "<resource-group-name>"
+$alertName = "<alert-name>"
+$resourceId = "<resource-id>"
+$metricName = "<metric-name>"
+$threshold = <threshold>
+$actionGroupId = "<action-group-id>"
 
+Add-AzMetricAlertRuleV2 -ResourceGroupName $resourceGroupName -Name $alertName -TargetResourceId $resourceId -MetricName $metricName -Operator GreaterThan -Threshold $threshold -WindowSize 5 -Frequency 1 -ActionGroupId $actionGroupId
 ```
 
 ### [REST](#tab/rest)
 
-...
+To create a metric alert using the REST API, use the following request and replace the placeholders {subscriptionId}, {resourceGroupName}, {alertName}, {access-token}, \<metric-name\>, \<threshold\>, \<resource-id\>, and \<action-group-id\> with your specific values:
+
+```rest
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{alertName}?api-version=2018-03-01
+Content-Type: application/json
+Authorization: Bearer {access-token}
+
+{
+  "location": "global",
+  "properties": {
+    "enabled": true,
+    "description": "Alert when <metric-name> exceeds <threshold>",
+    "severity": 2,
+    "scopes": [
+      "<resource-id>"
+    ],
+    "evaluationFrequency": "PT1M",
+    "windowSize": "PT5M",
+    "criteria": {
+      "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
+      "allOf": [
+        {
+          "metricName": "<metric-name>",
+          "metricNamespace": "Microsoft.Insights/components",
+          "operator": "GreaterThan",
+          "threshold": <threshold>,
+          "timeAggregation": "Average"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "actionGroupId": "<action-group-id>"
+      }
+    ]
+  }
+}
+```
 
 ### [Bicep](#tab/bicep)
 
-...
+To create a metric alert using a Bicep template, paste the following code into your template file and replace the placeholders \<subscription-id\>, \<resource-group\>, \<app-insights-name\>, \<action-group-name\>, \<metric-name\>, and \<threshold\> with your specific values:
 
+```bicep
+param location string = resourceGroup().location
+param alertName string = 'myMetricAlert'
+param resourceId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/components/<app-insights-name>'
+param actionGroupId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/actionGroups/<action-group-name>'
+
+resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
+  name: alertName
+  location: location
+  properties: {
+    enabled: true
+    description: 'Alert when <metric-name> exceeds <threshold>'
+    severity: 2
+    scopes: [
+      resourceId
+    ]
+    evaluationFrequency: 'PT1M'
+    windowSize: 'PT5M'
+    criteria: {
+      odata.type: 'Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria'
+      allOf: [
+        {
+          metricName: '<metric-name>'
+          metricNamespace: 'Microsoft.Insights/components'
+          operator: 'GreaterThan'
+          threshold: <threshold>
+          timeAggregation: 'Average'
+        }
+      ]
+    }
+    actions: [
+      {
+        actionGroupId: actionGroupId
+      }
+    ]
+  }
+}
+```
 ### [JSON (ARM)](#tab/arm)
 
-...
+To create a metric alert using a JSON (ARM) template, paste the following code into your template file and replace the placeholders \<subscription-id\>, \<resource-group\>, \<app-insights-name\>, \<action-group-name\>, \<metric-name\>, and \<threshold\> with your specific values:
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "alertName": {
+      "type": "string",
+      "defaultValue": "myMetricAlert"
+    },
+    "resourceId": {
+      "type": "string",
+      "defaultValue": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/components/<app-insights-name>"
+    },
+    "actionGroupId": {
+      "type": "string",
+      "defaultValue": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/actionGroups/<action-group-name>"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/metricAlerts",
+      "apiVersion": "2018-03-01",
+      "name": "[parameters('alertName')]",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "enabled": true,
+        "description": "Alert when <metric-name> exceeds <threshold>",
+        "severity": 2,
+        "scopes": [
+          "[parameters('resourceId')]"
+        ],
+        "evaluationFrequency": "PT1M",
+        "windowSize": "PT5M",
+        "criteria": {
+          "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
+          "allOf": [
+            {
+              "metricName": "<metric-name>",
+              "metricNamespace": "Microsoft.Insights/components",
+              "operator": "GreaterThan",
+              "threshold": <threshold>,
+              "timeAggregation": "Average"
+            }
+          ]
+        },
+        "actions": [
+          {
+            "actionGroupId": "[parameters('actionGroupId')]"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
 
 ---
 
@@ -864,31 +1197,61 @@ For more information on how to create an availability test in the Azure portal, 
 
 ### [Azure CLI](#tab/cli)
 
-To add an availability test, run the following code in your terminal:
-
-```azurecli
-
-```
+To learn how to create an availability test using Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
 
 ### [PowerShell](#tab/powershell)
 
-To add an availability test, run the following code in your terminal:
-
-```azurepowershell
-
-```
+To learn how to create an availability test using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-powershell).
 
 ### [REST](#tab/rest)
 
-...
+To create an availability test using REST API, use the following request and replace the placeholders {subscriptionId}, {resourceGroupName}, {webTestName}, {access-token}, and {your-app-url}:
+
+```rest
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/webtests/{webTestName}?api-version=2022-06-15
+Content-Type: application/json
+Authorization: Bearer {access-token}
+
+{
+  "location": "West US",
+  "tags": {},
+  "properties": {
+    "SyntheticMonitorId": "{webTestName}",
+    "Name": "{webTestName}",
+    "Description": "Ping web test alert for mytestwebapp",
+    "Enabled": true,
+    "Frequency": 300,
+    "Timeout": 30,
+    "WebTestKind": "ping",
+    "RetryEnabled": true,
+    "Locations": [
+      {
+        "Location": "us-fl-mia-edge"
+      }
+    ],
+    "Configuration": {
+      "WebTest": {
+        "ValidationRules": {
+          "ExpectedHttpStatusCode": 200
+        },
+        "Request": {
+          "Url": "{your-app-url}"
+        }
+      }
+    }
+  }
+}
+```
+
+For more information on creating and updating web tests using REST API, see our [REST documentation](/rest/api/application-insights/web-tests/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
-...
+To learn how to create an availability test using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
 
 ### [JSON (ARM)](#tab/arm)
 
-...
+To learn how to create an availability test using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
 
 ---
 

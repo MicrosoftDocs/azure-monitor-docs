@@ -52,7 +52,7 @@ items:
       items:
       - name: Data Collection Basics
         href: app/opentelemetry-overview.md
-      - name: Create a resource
+      - name: Create and configure a resource
         href: app/create-workspace-resource.md
       - name: Automatic instrumentation
         items:
