@@ -121,7 +121,7 @@ The selected results are arbitrary and displayed in no particular order. If you 
 
 To return up to a specific number of records, you can limit the results:
 
-1. Select **Limit** to open the **Limit results** window.
+1. Select **Show** to open the **Show results** window.
 
 1. Pick one of the preset limits or enter a custom limit, then select **Apply**.
 
@@ -180,7 +180,7 @@ To sort your results:
 
     :::image type="content" source="media/get-started-queries/logs-simple-sort-2.png" alt-text="Screenshot shows the Sort field in simple mode." lightbox="media/get-started-queries/logs-simple-sort-2.png":::
 
-1. Select **Sort** again to sort by another column.
+1. Open **Add** > **Sort** again to sort by another column.
 
 ---
 
@@ -287,7 +287,7 @@ To filter by multiple conditions, you can add additional filters:
 You can specify a time range by using the time picker or a time filter.
 
 > [!NOTE]
-> If you select a time range using the time picker and also include a time filter in the query, Log Analytics applies the smaller of the two time ranges.
+> If you include a time range in the query, the time picker automatically changes to **Set in query**. If you manually change the time picker to a different value, Log Analytics applies the smaller of the two time ranges.
 
 ### Use the time picker
 
@@ -349,7 +349,7 @@ SecurityEvent
 
 You can manually select the columns you want to show in your results:
 
-1. Open **Add** > **Select columns**.
+1. Open **Add** > **Show columns**.
 
     :::image type="content" source="media/get-started-queries/logs-simple-columns-1.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Show columns' highlighted." border="false":::
 
