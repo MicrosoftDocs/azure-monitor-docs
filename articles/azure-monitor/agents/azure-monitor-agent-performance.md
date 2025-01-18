@@ -14,7 +14,7 @@ ms.reviewer: jeffwo
 
 The Azure Monitor Agent can handle many thousands of events per second (EPS) in the gateway event forwarding scenario. The exact throughput rate depends on various factors like the size of each event, the specific data type, and physical hardware resources.
 
-This article describes the Microsoft internal benchmark that's used for testing the agent throughput of 10,0000 (10K) syslog events in the gateway forwarder scenario. The benchmark results should provide a guide to size the resources that you need in your environment.
+This article describes the Microsoft internal benchmark that's used for testing the agent throughput of 10,000 (10K) syslog events in the gateway forwarder scenario. The benchmark results should provide a guide to size the resources that you need in your environment.
 
 > [!NOTE]
 > The results in this article are only informational related to the performance of Azure Monitor Agent in a gateway forwarding scenario. The results and the information in the article don't constitute any service agreement on the part of Microsoft.
