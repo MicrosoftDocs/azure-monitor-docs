@@ -268,7 +268,7 @@ Use the following Azure CLI commands to uninstall the Azure Monitor Agent on an 
 
 #### [Resource Manager template](#tab/azure-resource-manager)
 
-N/A
+Not applicable.
 
 ---
 
@@ -399,7 +399,7 @@ Use the following Azure CLI commands:
 
 #### [Resource Manager template](#tab/azure-resource-manager)
 
-N/A
+Not applicable.
 
 ---
 
@@ -439,11 +439,9 @@ Currently not supported.
 
 #### [Resource Manager template](#tab/azure-resource-manager)
 
-1. **Prepare the environment**.
+1. Prepare the environment by [installing the Azure Monitor Agent](#installation-options) on your VM.
 
-    [Install the Azure Monitor Agent](#installation-options) on your VM.
-
-1. **Create a DCR**.
+1. Create a DCR.
 
     This example sets the maximum amount of disk space used by the Azure Monitor Agent cache to 5,000 MB.
 
@@ -477,11 +475,9 @@ Currently not supported.
     }
     ```
 
-1. **Associate the DCR with your machine**.
+1. Associate the DCR with your machine. Use the following Resource Manager files.
 
-   Use these Resource Manager template and parameter files.
-
-    *Resource Manager template file*
+   Template file:
 
     ```json
     {
@@ -516,7 +512,7 @@ Currently not supported.
     }
     ```
 
-    *Parameter file*
+    Parameter file:
 
     ```json
     {
@@ -533,9 +529,7 @@ Currently not supported.
     }
     ```
 
-1. **Activate the settings**.
-
-    To apply the changes, restart the Azure Monitor Agent.
+1. To apply the changes, restart the Azure Monitor Agent.
 
 ---
 
