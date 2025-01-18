@@ -81,9 +81,9 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 
 ### [REST](#tab/rest)
 
-To use the REST API with Application Insights, you need a Microsoft Entra ID token to authenticate your requests.
+To make a REST API call to Azure, you first need to obtain an access token. 
 
-For more information, see [Microsoft Entra authentication for Application Insights](./azure-ad-authentication.md).
+For more information, see [Manage Azure resources by using the REST API](/azure/azure-resource-manager/management/manage-resources-rest#obtain-an-access-token).
 
 > [!NOTE]
 > All REST API examples in this document use the OSS tool [ARMClient](https://github.com/projectkudu/ARMClient), but you can also use other tools like cURL and Postman.
@@ -145,7 +145,7 @@ az monitor app-insights component create --app
 az monitor app-insights component create --app demoApp --location eastus --kind web -g my_resource_group --workspace "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test1234/providers/microsoft.operationalinsights/workspaces/test1234555"
 ```
 
-For the full Azure CLI documentation for this command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create).
+For more information about this command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create).
 
 ### [PowerShell](#tab/powershell)
 
@@ -182,7 +182,7 @@ New-AzApplicationInsights -Name <String> -ResourceGroupName <String> -Location <
 New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027 -location eastus -WorkspaceResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test1234/providers/microsoft.operationalinsights/workspaces/test1234555"
 ```
 
-For the full PowerShell documentation for this cmdlet and to learn how to retrieve the connection string, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
+For more information about this command, [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
 
 ### [REST](#tab/rest)
 
@@ -916,7 +916,7 @@ resource pricingPlan 'Microsoft.Insights/components/pricingPlans@2017-10-01' = {
 }
 ```
 
-For more information on setting the pricing plan using a Bicep template, see []().
+For more information on setting the pricing plan using a Bicep template, see [Placeholder]().
 
 ### [JSON (ARM)](#tab/arm)
 
@@ -960,10 +960,10 @@ For more information on setting the pricing plan using a Bicep template, see [](
 }
 ```
 
-For more information on setting the pricing plan using a JSON (ARM) template, see []().
+For more information on setting the pricing plan using a JSON (ARM) template, see [Placeholder]().
 
 ---
-
+<!--
 To get the current pricing plan, use the [Set-AzApplicationInsightsPricingPlan](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan) cmdlet:
 
 ```PS
@@ -1006,7 +1006,7 @@ armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 ```
 
 This code sets the daily cap to 200 GB per day, configure the daily cap reset time to 12:00 UTC, send emails both when the cap is hit and the warning level is met, and set the warning threshold to 90% of the cap.
-
+-->
 ### Add a metric alert
 
 ### [Portal](#tab/portal)
@@ -1015,7 +1015,7 @@ For more information on how to create a metric alert in the Azure portal, see [A
 
 ### [Azure CLI](#tab/cli)
 
-To create a metric alert, run the following Azure CLI command in your terminal and replace the placeholders \<alert-name\>, \<resource-group-name\>, \<resource-id\>, \<metric-name\>, \<threshold\>, and \<action-group-id\> with your specific values:
+To create a metric alert, run the following Azure CLI command in your terminal and replace the placeholders `<alert-name>`, `<resource-group-name>`, `<resource-id>`, `<metric-name>`, `<threshold>`, and `<action-group-id>` with your specific values:
 
 ```azurecli
 az monitor metrics alert create \
@@ -1029,7 +1029,7 @@ az monitor metrics alert create \
 
 ### [PowerShell](#tab/powershell)
 
-To create a metric alert, run the following PowerShell command in your terminal and replace the placeholders \<alert-name\>, \<resource-group-name\>, \<resource-id\>, \<metric-name\>, \<threshold\>, and \<action-group-id\> with your specific values:
+To create a metric alert, run the following PowerShell command in your terminal and replace the placeholders `<alert-name>`, `<resource-group-name>`, `<resource-id>`, `<metric-name>`, `<threshold>`, and `<action-group-id>` with your specific values:
 
 ```azurepowershell
 $resourceGroupName = "<resource-group-name>"
@@ -1044,7 +1044,7 @@ Add-AzMetricAlertRuleV2 -ResourceGroupName $resourceGroupName -Name $alertName -
 
 ### [REST](#tab/rest)
 
-To create a metric alert using the REST API, use the following request and replace the placeholders {subscriptionId}, {resourceGroupName}, {alertName}, {access-token}, \<metric-name\>, \<threshold\>, \<resource-id\>, and \<action-group-id\> with your specific values:
+To create a metric alert using the REST API, use the following request and replace the placeholders `{subscriptionId}`, `{resourceGroupName}`, `{alertName}`, `{access-token}`, `<metric-name>`, `<threshold>`, `<resource-id>`, and `<action-group-id>` with your specific values:
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{alertName}?api-version=2018-03-01
@@ -1085,7 +1085,7 @@ Authorization: Bearer {access-token}
 
 ### [Bicep](#tab/bicep)
 
-To create a metric alert using a Bicep template, paste the following code into your template file and replace the placeholders \<subscription-id\>, \<resource-group\>, \<app-insights-name\>, \<action-group-name\>, \<metric-name\>, and \<threshold\> with your specific values:
+To create a metric alert using a Bicep template, paste the following code into your template file and replace the placeholders `<subscription-id>`, `<resource-group>`, `<app-insights-name>`, `<action-group-name>`, `<metric-name>`, and `<threshold>` with your specific values:
 
 ```bicep
 param location string = resourceGroup().location
@@ -1125,9 +1125,10 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
   }
 }
 ```
+
 ### [JSON (ARM)](#tab/arm)
 
-To create a metric alert using a JSON (ARM) template, paste the following code into your template file and replace the placeholders \<subscription-id\>, \<resource-group\>, \<app-insights-name\>, \<action-group-name\>, \<metric-name\>, and \<threshold\> with your specific values:
+To create a metric alert using a JSON (ARM) template, paste the following code into your template file and replace the placeholders `<subscription-id>`, `<resource-group>`, `<app-insights-name>`, `<action-group-name>`, `<metric-name>`, and `<threshold>` with your specific values:
 
 ```json
 {
@@ -1193,7 +1194,7 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 
 ### [Portal](#tab/portal)
 
-For more information on how to create an availability test in the Azure portal, see [Application Insights availability tests](./availability.md#create-an-availability-test).
+To learn how to create an availability test using the Azure portal, see [Application Insights availability tests](./availability.md#create-an-availability-test).
 
 ### [Azure CLI](#tab/cli)
 
@@ -1243,7 +1244,7 @@ Authorization: Bearer {access-token}
 }
 ```
 
-For more information on creating and updating web tests using REST API, see our [REST documentation](/rest/api/application-insights/web-tests/create-or-update).
+For more information about creating and updating web tests using the REST API, see our [REST API documentation](/rest/api/application-insights/web-tests/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
