@@ -1140,9 +1140,6 @@ items:
       items:
         - name: Roles permissions and security
           href: roles-permissions-security.md
-        - name: Log data
-          displayName: Azure Customer Lockbox, Customer Lockbox, Lockbox
-          href: logs/data-security.md
         - name: Customer-managed keys
           href: logs/customer-managed-keys.md
         - name: Private storage
@@ -1169,15 +1166,13 @@ items:
       href: logs/migrate-splunk-to-azure-monitor-logs.md
 - name: Security and networking
   items:
-  - name: Security best practices in Azure Monitor
+  - name: Azure Monitor security overview and guidelines 
     href: .//best-practices-security.md
+    displayName: Azure Customer Lockbox, Customer Lockbox, Lockbox
   - name: Data security
     items:
       - name: Roles permissions and security
         href: roles-permissions-security.md
-      - name: Log data
-        displayName: Azure Customer Lockbox, Customer Lockbox, Lockbox
-        href: logs/data-security.md
       - name: Customer-managed keys
         href: logs/customer-managed-keys.md
       - name: Private storage
