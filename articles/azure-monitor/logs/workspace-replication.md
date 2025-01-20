@@ -97,8 +97,41 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 
 You enable and disable workspace replication by using a REST command. The command triggers a long running operation, which means that it can take a few minutes for the new settings to apply. After you enable replication, it can take up to one hour for all tables (data types) to begin replicating, and some data types might start replicating before others. Changes you make to table schemas after you enable workspace replication - for example, new custom log tables or custom fields you create, or diagnostic logs set up for new resource types - can take up to one hour to start replicating.
 
+### Using a dedicated cluster?
+If your workspace is linked to a dedicated cluster, you must first enable replication on the cluster, and only then on the workspace. This operation creates a second cluster on your secondary region (no extra charge beyond replication charges), in order to allow your workspace to keep using a dedicated cluster even if you failover. This also means features like cluster managed keys (CMK) continue to work (with the same key) during failover.
+Once replication is enabled, you can proceed to enable replication for one or more of the workspaces linked to this cluster. You can chose to enable replication only for some of the workspaces linked to this cluster.
+
 > [!IMPORTANT]
-> Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
+> Once cluster replication is enabled, changing the replication destination requires disabling replication and re-enabling it against a different location.
+
+To enable replication on your dedicated cluster, use the following PUT command. This call returns 201. It's a long running operation which may take time to complete, and you can track its exact state as explained later.
+
+To enable cluster replication, use this `PUT` command: 
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2023-01-01-preview
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": true,
+            "location": "<secondary_region>"
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+- `<subscription_id>`: The subscription ID related to your cluster.
+- `<resourcegroup_name>` : The resource group that contains your Log Analytics cluster resource.
+- `<cluster_name>`: The name of your dedicated cluster.
+- `<primary_region>`: The primary region for your Log Analytics dedicated cluster.
+- `<secondary_region>`: The region in which Azure Monitor creates the secondary dedicated cluster.
 
 ### Enable workspace replication
 
@@ -132,6 +165,9 @@ Where:
 For the supported `location` values, see [Supported regions](#supported-regions).
 
 The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+
+> [!IMPORTANT]
+> If your workspace is linked to a dedicated cluster, first enable replication on the cluster. Also note that the secondary location of your workspace must be identical to the secondary location of its dedicated cluster.
 
 ### Check request provisioning state
 
@@ -202,6 +238,45 @@ Where:
 
 The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
 
+> [!IMPORTANT]
+> If you're using a dedicated cluster, you should disable cluster replication after disabling replication for each workspace linked to this cluster.
+
+### Disable cluster replication
+
+Disabling cluster replication can be done only after disabling replication for all workspaces linked to this cluster (if previously enabled).
+To disable replication for a workspace, use this `PUT` command:
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2023-01-01-preview
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": false
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+- `<subscription_id>`: The subscription ID related to your cluster.
+- `<resourcegroup_name>` : The resource group that contains your cluster resource.
+- `<workspace_name>`: The name of your cluster.
+- `<primary_region>`: The primary region for your cluster.
+
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+
+> [!NOTE]
+> Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and you won't be able to access them again. Their original copy on your primary location isn't changed in this process.
+
+> [!IMPORTANT]
+> The process of removing cluster replication takes 14 days. If you require an immediate handling of this process, please create an [Azure support request](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/how-to-create-azure-support-request).
+> 
 ## Monitor workspace and service health
 
 Ingestion latency or query failures are examples of issues that can often be handled by failing over to your secondary region. Such issues can be detected by using Service Health notifications and log queries.
@@ -554,7 +629,6 @@ LAQueryLogs
 ```
 ## Restrictions and limitations
 
-- Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
 - The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
 - Replication of alert rules across regions is currently not supported. Since Azure Monitor supports querying the inactive region, query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available.
 - When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
@@ -574,6 +648,7 @@ LAQueryLogs
     | VM Insights | Not supported |
     | Container Insights | Not supported |
     | Private links | Not supported during failover |
+    | NSP | Not supported during failover |
 
 ## Related content
 
