@@ -168,7 +168,7 @@ Advantages to this strategy:
 
 Disadvantages to this strategy:
 
-- Running a query over large number of workspaces is slow and can't scale above 100 workspaces. This means that you can create a central visualization and data analytics it will be slow if there are more than few dozens of workspaces. This situation is less accute if all workspaces are co-located on the same [dedicated cluster](logs-dedicated-clusters.md). See [here](cross-workspace-query.md) more details on running queries across workspaces
+- Running a query over a large number of workspaces is slow and can't scale above 100 workspaces. This means that you can create a central visualization and data analytics but it will be slow if there are more than a few dozen workspaces. This situation is less acute if all workspaces are co-located on the same [dedicated cluster](logs-dedicated-clusters.md). See [here](cross-workspace-query.md) for more details on running queries across workspaces.
 - If customers aren't onboarded for Azure delegated resource management, service provider administrators must be provisioned in the customer directory. This requirement makes it more difficult for the service provider to manage many customer tenants at once.
 - When running a query on a workspace, the workspace admins might have visibility to the full text of the query via [query audit](query-audit.md).
 
@@ -192,10 +192,10 @@ In a hybrid model, each tenant has its own workspace. A mechanism is used to pul
 
 There are several options to implement logs in a central location:
 
-- **Central workspace**: The service provider creates a workspace in its tenant and uses various techniques to pull data from the various workspaces:
-    - Script that utilizes the [Query API](api/overview.md) with the [logs ingestion API](logs-ingestion-api-overview.md) to bring the data from the tenant workspaces to this central location.
-    - Using [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to copy data to the central workspace.
-    - [Exporting data](logs-data-export.md) from the source workspace and re-ingest to the central workspae. When used together with [Summary Rules](summary-rules.md), it allows exporting aggregation of the original workspaces in the central workspaces.
+- **Central workspace**: The service provider creates a workspace in its tenant and pulls data from the various workspaces using:
+    - A script that uses the [Query API](api/overview.md) with the [logs ingestion API](logs-ingestion-api-overview.md) to send the data from the tenant workspaces to the central workspace.
+    - [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to copy data to the central workspace.
+    - [Data export](logs-data-export.md) from the source workspace and re-ingestion to the central workspace. You can also create [summary rules](summary-rules.md) to export an aggregation of key data from the original workspaces into the central workspace.
 - **Power BI**: The tenant workspaces export data to Power BI by using the integration between the [Log Analytics workspace and Power BI](log-powerbi.md).
 
 ## Next steps
