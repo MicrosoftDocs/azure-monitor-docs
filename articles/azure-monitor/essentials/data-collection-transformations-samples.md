@@ -75,6 +75,17 @@ Use a transformation to add information to data that provides business context o
 source | extend IpLocation = iff(split(ClientIp,".")[0] in ("10","192"), "Internal", "External")
 ```
 
+## Normalize data
+Normalize data to a common schema to simplify querying and reporting, such as the [Advanced Security Information Model (ASIM)](/sentinel/normalization) used by Microsoft Sentinel. Use a transformation to normalize data at ingestion time as described in [Ingest time normalization](/sentinel/normalization-ingest-time).
+
+In the following example, the incoming data is transformed to the normalized schema of the [ASimAuditEventLogs](/azure/azure-monitor/reference/tables/asimauditeventlogs) table.
+
+```kusto
+source
+| project TimeGenerated = timestamp, EventOwner=owner, EventMessage=message, EventResult=result, EventSeverity=severity
+```
+
+
 ## Format data for destination
 You might have a data source that sends data in a format that doesn't match the structure of the destination table. Use a transformation to reformat the data to the required schema.
 
