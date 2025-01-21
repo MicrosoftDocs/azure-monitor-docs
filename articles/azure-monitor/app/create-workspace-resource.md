@@ -464,11 +464,11 @@ For codeless monitoring of services like Azure Functions and Azure App Services,
 
 After creating a workspace-based Application Insights resource, you can modify the associated Log Analytics workspace.
 
-### [Portal](#tab/portal)
+## [Portal](#tab/portal)
 
 In the Application Insights resource pane, select **Properties** > **Change Workspace** > **Log Analytics Workspaces**.
 
-### [Azure CLI](#tab/cli)
+## [Azure CLI](#tab/cli)
 
 To change the Log Analytics workspace, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<new-workspace-resource-id>` with your specific values:
 
@@ -476,7 +476,7 @@ To change the Log Analytics workspace, run the following Azure CLI command in yo
 az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --workspace <new-workspace-resource-id>
 ```
 
-### [PowerShell](#tab/powershell)
+## [PowerShell](#tab/powershell)
 
 To change the Log Analytics workspace, run the following command in your PowerShell terminal:
 
@@ -486,7 +486,7 @@ $resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
 Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
 ```
 
-### [REST](#tab/rest)
+## [REST](#tab/rest)
 
 1. Create a JSON file with the new Log Analytics workspace resource ID. For example, save the following JSON content to a file named *updateWorkspace.json*:
 
@@ -504,7 +504,7 @@ Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties
     armclient patch https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{resource-name}?api-version=2020-02-02-preview @updateWorkspace.json
     ```
 
-### [Bicep](#tab/bicep)
+## [Bicep](#tab/bicep)
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
@@ -517,7 +517,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+## [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -552,7 +552,9 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 ### [Portal](#tab/portal)
 
-Select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource. You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an [Azure Event Hub](/azure/event-hubs/event-hubs-about).
+Select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource.
+
+You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an [Azure Event Hub](/azure/event-hubs/event-hubs-about).
 
 ### [Azure CLI](#tab/cli)
 
@@ -695,19 +697,27 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
 
 ### [Portal](#tab/portal)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=portal#configure-the-default-interactive-retention-period-of-analytics-tables).
+Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+
+For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=portal#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ### [Azure CLI](#tab/cli)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=cli#configure-the-default-interactive-retention-period-of-analytics-tables).
+Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+
+For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=cli#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ### [PowerShell](#tab/powershell)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=PowerShell#configure-the-default-interactive-retention-period-of-analytics-tables).
+Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+
+For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=PowerShell#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ### [REST](#tab/rest)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=api#configure-the-default-interactive-retention-period-of-analytics-tables).
+Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+
+For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=api#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ### [Bicep](#tab/bicep)
 
@@ -753,31 +763,6 @@ For workspace-based Application Insights resource, the daily caps must be set in
 
 For more information about setting the data cap in the Azure portal, see [Set daily cap on Log Analytics workspace](./../logs/daily-cap.md#application-insights).
 
-<!--
-To get the daily cap properties, use the [Set-AzApplicationInsightsPricingPlan](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan) cmdlet:
-
-```PS
-Set-AzApplicationInsightsDailyCap -ResourceGroupName <resource group> -Name <resource name> | Format-List
-```
-
-To set the daily cap properties, use the same cmdlet. For instance, to set the cap to 300 GB per day:
-
-```PS
-Set-AzApplicationInsightsDailyCap -ResourceGroupName <resource group> -Name <resource name> -DailyCapGB 300
-```
-
-You can also use [ARMClient](https://github.com/projectkudu/ARMClient) to get and set daily cap parameters.  To get the current values, use:
-
-```PS
-armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/microsoft.insights/components/MyResourceName/CurrentBillingFeatures?api-version=2018-05-01-preview
-```
-
-#### Set the daily cap reset time
-
-> [!IMPORTANT]
-> The daily cap reset time can no longer be customized using the `ResetTime` attribute.
--->
-
 ### [Azure CLI](#tab/cli)
 
 To change the daily cap, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<daily-cap-in-gb>` with your specific values:
@@ -801,6 +786,8 @@ Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name
 ...
 
 ### [Bicep](#tab/bicep)
+
+
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
@@ -1001,38 +988,15 @@ This code sets the daily cap to 200 GB per day, configure the daily cap reset ti
 
 ### [Portal](#tab/portal)
 
-For more information on how to create a metric alert in the Azure portal, see [Application Insights availability tests](./../alerts/tutorial-metric-alert.md).
+To learn how to create a metric alert in the Azure portal, see [Tutorial: Create a metric alert for an Azure resource](./../alerts/tutorial-metric-alert.md).
 
 ### [Azure CLI](#tab/cli)
 
-To create a metric alert, run the following Azure CLI command in your terminal and replace the placeholders `<alert-name>`, `<resource-group-name>`, `<resource-id>`, `<metric-name>`, `<threshold>`, and `<action-group-id>` with your specific values:
-
-```azurecli
-az monitor metrics alert create \
-  --name <alert-name> \
-  --resource-group <resource-group-name> \
-  --scopes <resource-id> \
-  --condition "avg <metric-name> > <threshold>" \
-  --description "Alert when <metric-name> exceeds <threshold>" \
-  --action <action-group-id>
-```
-
-For more information about adding a metric alert using Azure CLI, see the [Azure CLI documentation](/azure/monitor/app-insights/component/billing#az-monitor-app-insights-component-billing-update).
+To learn how to add a metric alert using Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
 
 ### [PowerShell](#tab/powershell)
 
-To create a metric alert, run the following PowerShell command in your terminal and replace the placeholders `<alert-name>`, `<resource-group-name>`, `<resource-id>`, `<metric-name>`, `<threshold>`, and `<action-group-id>` with your specific values:
-
-```azurepowershell
-$resourceGroupName = "<resource-group-name>"
-$alertName = "<alert-name>"
-$resourceId = "<resource-id>"
-$metricName = "<metric-name>"
-$threshold = <threshold>
-$actionGroupId = "<action-group-id>"
-
-Add-AzMetricAlertRuleV2 -ResourceGroupName $resourceGroupName -Name $alertName -TargetResourceId $resourceId -MetricName $metricName -Operator GreaterThan -Threshold $threshold -WindowSize 5 -Frequency 1 -ActionGroupId $actionGroupId
-```
+To learn how to add a metric alert using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-powershell).
 
 ### [REST](#tab/rest)
 
@@ -1077,106 +1041,11 @@ Authorization: Bearer {access-token}
 
 ### [Bicep](#tab/bicep)
 
-To create a metric alert using a Bicep template, paste the following code into your template file and replace the placeholders `<subscription-id>`, `<resource-group>`, `<app-insights-name>`, `<action-group-name>`, `<metric-name>`, and `<threshold>` with your specific values:
-
-```bicep
-param location string = resourceGroup().location
-param alertName string = 'myMetricAlert'
-param resourceId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/components/<app-insights-name>'
-param actionGroupId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/actionGroups/<action-group-name>'
-
-resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
-  name: alertName
-  location: location
-  properties: {
-    enabled: true
-    description: 'Alert when <metric-name> exceeds <threshold>'
-    severity: 2
-    scopes: [
-      resourceId
-    ]
-    evaluationFrequency: 'PT1M'
-    windowSize: 'PT5M'
-    criteria: {
-      odata.type: 'Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria'
-      allOf: [
-        {
-          metricName: '<metric-name>'
-          metricNamespace: 'Microsoft.Insights/components'
-          operator: 'GreaterThan'
-          threshold: <threshold>
-          timeAggregation: 'Average'
-        }
-      ]
-    }
-    actions: [
-      {
-        actionGroupId: actionGroupId
-      }
-    ]
-  }
-}
-```
+To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
 
 ### [JSON (ARM)](#tab/arm)
 
-To create a metric alert using a JSON (ARM) template, paste the following code into your template file and replace the placeholders `<subscription-id>`, `<resource-group>`, `<app-insights-name>`, `<action-group-name>`, `<metric-name>`, and `<threshold>` with your specific values:
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "alertName": {
-      "type": "string",
-      "defaultValue": "myMetricAlert"
-    },
-    "resourceId": {
-      "type": "string",
-      "defaultValue": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/components/<app-insights-name>"
-    },
-    "actionGroupId": {
-      "type": "string",
-      "defaultValue": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/actionGroups/<action-group-name>"
-    }
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Insights/metricAlerts",
-      "apiVersion": "2018-03-01",
-      "name": "[parameters('alertName')]",
-      "location": "[resourceGroup().location]",
-      "properties": {
-        "enabled": true,
-        "description": "Alert when <metric-name> exceeds <threshold>",
-        "severity": 2,
-        "scopes": [
-          "[parameters('resourceId')]"
-        ],
-        "evaluationFrequency": "PT1M",
-        "windowSize": "PT5M",
-        "criteria": {
-          "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
-          "allOf": [
-            {
-              "metricName": "<metric-name>",
-              "metricNamespace": "Microsoft.Insights/components",
-              "operator": "GreaterThan",
-              "threshold": <threshold>,
-              "timeAggregation": "Average"
-            }
-          ]
-        },
-        "actions": [
-          {
-            "actionGroupId": "[parameters('actionGroupId')]"
-          }
-        ]
-      }
-    }
-  ]
-}
-```
+To learn how to add a metric alert using using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
 
 ---
 
@@ -1186,19 +1055,47 @@ To automate the creation of metric alerts, see the [Metric alerts template](../a
 
 ### [Portal](#tab/portal)
 
-To learn how to create an availability test using the Azure portal, see [Application Insights availability tests](./availability.md#create-an-availability-test).
+To learn how to create an availability test in the Azure portal, see [Application Insights availability tests](./availability.md#create-an-availability-test).
 
 ### [Azure CLI](#tab/cli)
 
-To learn how to create an availability test using Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
+To create an availability test, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
+
+```azurecli
+az monitor app-insights web-test create --resource-group <resource-group-name> \
+                                        --name <web-test-name> \
+                                        --location <azure-region-name> \
+                                        --kind ping \
+                                        --frequency 300 \
+                                        --timeout 30 \
+                                        --enabled true \
+                                        --configuration "{\"WebTest\": \"<web-test-configuration>\"}" \
+                                        --tags Environment=Production
+```
+
+For more information about creating an availability test using Azure CLI, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/web-test#az-monitor-app-insights-web-test-create).
 
 ### [PowerShell](#tab/powershell)
 
-To learn how to create an availability test using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-powershell).
+To create an availability test, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
+
+```azurepowershell
+New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name> `
+                                 -Name <web-test-name> `
+                                 -Location <azure-region-name> `
+                                 -Kind ping `
+                                 -Frequency 300 `
+                                 -Timeout 30 `
+                                 -Enabled $true `
+                                 -Configuration "<web-test-configuration>" `
+                                 -Tags @{ Environment = "Production" }
+```
+
+For more information about creating an availability test using Azure CLI, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsightswebtest).
 
 ### [REST](#tab/rest)
 
-To create an availability test using REST API, use the following request and replace the placeholders `{subscriptionId}`, `{resourceGroupName}`, `{webTestName}`, `{accessToken}`, and `{your-app-url}`:
+To create an availability test using the REST API, use the following request and replace the placeholders `{subscriptionId}`, `{resourceGroupName}`, `{webTestName}`, `{accessToken}`, and `{your-app-url}`:
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/webtests/{webTestName}?api-version=2022-06-15
@@ -1240,11 +1137,57 @@ For more information about creating and updating web tests using the REST API, s
 
 ### [Bicep](#tab/bicep)
 
-To learn how to create an availability test using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
+
+
+```bicep
+resource availabilityTest 'Microsoft.Insights/webtests@2022-06-15' = {
+  name: '<your-web-test-name>'
+  location: '<your-location>'
+  kind: 'ping'
+  properties: {
+    Configuration: {
+      WebTest: '<your-web-test-configuration>'
+    }
+    Description: 'Availability Test for API'
+    Enabled: true
+    Frequency: 300
+    Timeout: 30
+  }
+  tags: {
+    Environment: 'Production'
+  }
+}
+```
 
 ### [JSON (ARM)](#tab/arm)
 
-To learn how to create an availability test using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Insights/webtests",
+      "apiVersion": "2022-06-15",
+      "name": "<your-web-test-name>",
+      "location": "<your-location>",
+      "kind": "ping",
+      "properties": {
+        "Configuration": {
+          "WebTest": "<your-web-test-configuration>"
+        },
+        "Description": "Availability Test for API",
+        "Enabled": true,
+        "Frequency": 300,
+        "Timeout": 30
+      },
+      "tags": {
+        "Environment": "Production"
+      }
+    }
+  ]
+}
+```
 
 ---
 
