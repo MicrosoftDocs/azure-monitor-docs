@@ -32,7 +32,7 @@ For more information about log queries in Azure Monitor, see [Overview of log qu
 
 Here's a video version of this tutorial:
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE42pGX]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=ea873b8b-3e6e-4459-989b-26a2b664acae]
 
 [!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
 

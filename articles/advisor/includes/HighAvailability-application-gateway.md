@@ -1,7 +1,7 @@
 ---
 ms.service: azure-monitor
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/13/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -290,5 +290,17 @@ Prevent connectivity failures due to source network address translation (SNAT) p
 For more information, see [Use Source Network Address Translation (SNAT) for outbound connections](/azure/load-balancer/load-balancer-outbound-connections#2-associate-a-nat-gateway-to-the-subnet)  
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
+
+<!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_begin-->
+
+#### Resolve issues for private endpoint not in succeeded state  
+  
+Private Endpoint not in a succeeded state potentially influences application availability and reliability. Healthy state of connectivity over private endpoints is crucial to reliably and securely access resources. Troubleshoot and resolve issues that cause a failed state.  
+  
+**Potential benefits**: Resume private connectivity and availability of application  
+
+For more information, see [Troubleshoot Azure Private Link Service connectivity problems](https://aka.ms/pe-troubleshooting)  
+
+<!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
 
 <!--articleBody-->

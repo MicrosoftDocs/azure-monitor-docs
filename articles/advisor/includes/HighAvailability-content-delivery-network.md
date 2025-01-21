@@ -1,7 +1,7 @@
 ---
 ms.service: azure-monitor
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/13/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network

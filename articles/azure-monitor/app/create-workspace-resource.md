@@ -2,7 +2,7 @@
 title: Create and configure workspace-based Application Insights resources
 description: Learn how to create and configure workspace-based Application Insights resources programmatically and in the Azure portal
 ms.topic: conceptual
-ms.date: 01/23/2025
+ms.date: 01/31/2025
 ms.reviewer: cogoodson
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---

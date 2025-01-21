@@ -14,7 +14,7 @@ This article describes how to create a new workbook and how to add elements to y
 
 This video walks you through creating workbooks.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE4B4Ap]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=2f0cb666-b303-456e-ba8e-a1ec16faa7fc]
 
 ## Create a new Azure Workbook
 
@@ -104,8 +104,9 @@ To add a query to an Azure Workbook:
 
 
 ### Best practices for querying logs
+ - **Predefine summary rules to aggregate data you want to visualize.** Instead of executing queries on large data sets or long time ranges, [create summary rules](../logs/summary-rules.md) to aggregate the data you need from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
  - **Use the smallest possible time ranges.** The longer the time ranges, the slower the queries, and the more data returned. For longer time ranges, the query might have to go to slower "cold" storage, making the query even slower. Default to the shortest useful time range, but allow the user to pick a larger time range that may be slower.
- - **Use the "All" special value in dropdowns.** You can add an **All** special item in the dropdown parameter settings. You can use a special value. Using an **All** special item correctly can dramatically simplify queries.
+  - **Use the "All" special value in dropdowns.** You can add an **All** special item in the dropdown parameter settings. You can use a special value. Using an **All** special item correctly can dramatically simplify queries.
  - **Protect against missing columns.** If you're using a custom table or custom columns, design your template so that it works if the column is missing in a workspace. See the [column_ifexists](/azure/kusto/query/columnifexists) function.
  - **Protect against a missing table.** If your template is installed as part of a solution, or in other cases where the tables are guaranteed to exist, checking for missing columns is unnecessary. If you're creating generic templates that could be visible on any resource or workspace, it's a good idea to protect for tables that don't exist.
    The log analytics query language doesn't have a **table_ifexists** function like the function for testing for columns. However, there are some ways to check if a table exists. For example, you can use a [fuzzy union](/azure/kusto/query/unionoperator?pivots=azuredataexplorer).  When doing a union, you can use the **isfuzzy=true** setting to let the union continue if some of the tables don't exist.  You can add a parameter query in your workbook that checks for existence of the table, and hides some content if it doesn't.  Items that aren't visible aren't run, so you can design your template so that other queries in the workbook that would fail if the table doesn't exist, don't run until after the test verifies that the table exists.
@@ -182,7 +183,7 @@ You can collect input from consumers and reference it in other parts of the work
 Workbooks allow you to control how your parameter controls are presented to consumers – text box vs. drop down, single- vs. multi-select, values from text, JSON, KQL, or Azure Resource Graph, etc.
 
 Watch this video to learn how to use parameters and log data in Azure Workbooks.
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE59Wee]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=5c9a5049-dddd-4819-90d9-9209d7736338]
 
 To add a parameter to an Azure Workbook:
 
@@ -258,7 +259,7 @@ You can use links to create links to other views, workbooks, other items inside 
   :::image type="content" source="media/workbooks-create-workbook/workbooks-empty-links.png" lightbox="media/workbooks-create-workbook/workbooks-empty-links.png" alt-text="Screenshot of adding a link to a workbook." border="false":::
 
 Watch this video to learn how to use tabs, groups, and contextual links in Azure Workbooks:
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE59YTe]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=cec26cb0-4912-42d3-b006-d49ee70c2f3c]
 ### Link styles
 You can apply styles to the link element itself and to individual links.
 
@@ -449,5 +450,3 @@ To turn a larger template into multiple subtemplates:
 1. If the individual steps moved in step 3 had conditional visibilities, that becomes the visibility of the outer group (like used in tabs). Remove them from the items inside the group and add that visibility setting to the group itself. Save here to avoid losing changes and/or export and save a copy of the json content.
 1. If you want that group to be loaded from a template, you can use the **Edit** toolbar button in the group. This opens just the content of that group as a workbook in a new window. You can then save it as appropriate and close this workbook view (don't close the browser, just that view to go back to the previous workbook you were editing).
 1. You can then change the group step to load from template and set the template ID field to the workbook/template you created in step 5. To work with workbooks IDs, the source needs to be the full Azure Resource ID of a shared workbook. Press *Load* and the content of that group will now be loaded from that subtemplate instead of saved inside this outer workbook.
-
-

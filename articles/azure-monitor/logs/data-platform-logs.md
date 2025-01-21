@@ -47,7 +47,7 @@ To address the data storage and consumption needs of various personas who use a 
 - [Define table plans](#table-plans) based on your data consumption and cost management needs.
 - [Manage low-cost long-term retention and interactive retention](../logs/data-retention-configure.md) for each table.
 - [Manage access](../logs/manage-access.md) to the workspace and to specific tables.
-- [Use summary rules to aggregate critical data](../logs/summary-rules.md) in summary tables. This lets you optimize data for ease of use and actionable insights, and store raw data in a table with a low-cost table plan for however long you need it.
+- [Use summary rules to aggregate data](../logs/summary-rules.md) to summarized tables. This lets you optimize data collected over time for actionable insights and use in ongoing analysis, dashboards, and business reports.
 - Create ready-to-run [saved queries](../logs/save-query.md), [visualizations](../best-practices-analysis.md#built-in-visualization-tools), and [alerts](../alerts/alerts-create-log-alert-rule.md) tailored to specific personas.  
 
 :::image type="content" source="media/data-platform-logs/log-analytics-workspace-for-all-log-data.png" lightbox="media/data-platform-logs/log-analytics-workspace-for-all-log-data.png" alt-text="A screenshot of a Log Analytics workspace in the Azure portal.":::
@@ -118,6 +118,9 @@ Many of Azure Monitor's [ready-to-use, curated Insights experiences](../insights
 :::image type="content" source="../containers/media/container-insights-overview/azmon-containers-experience.png" lightbox="../containers/media/container-insights-overview/azmon-containers-experience.png" alt-text="A screenshot that shows the built-in Container Insights monitoring experience in Azure Monitor.":::
 
 You can also [create your own visualizations and reports](../best-practices-analysis.md#built-in-visualization-tools) using workbooks, dashboards, and Power BI.  
+
+> [!TIP]
+> Instead of running complex queries on large data sets or long time ranges, use [summary rules](../logs/summary-rules.md) to aggregate data for custom dashboards, workbooks, and reports. Summary rules aggregate data from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
 
 ## Use cases 
 
