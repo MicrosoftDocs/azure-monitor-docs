@@ -137,7 +137,7 @@ az monitor app-insights component create --app
 ```
 
 > [!NOTE]
-> Parameters in brakets are optional.
+> Parameters in brackets are optional.
 
 ### Example
 
@@ -178,7 +178,7 @@ New-AzApplicationInsights -ResourceGroupName <String> -Name <String> -Location <
 ```
 
 > [!NOTE]
-> Parameters in brakets are optional.
+> Parameters in brackets are optional.
 
 ### Example
 
@@ -208,7 +208,7 @@ To create an Application Insights resource using the REST API:
     }
     ```
 
-1. Send the HTTP PUT request to the Azure Management endpoint. If the request is successful, the Application Insights resource will be created in the specified resource group.
+1. Send the HTTP PUT request to the Azure Management endpoint. If the request is successful, the Application Insights resource is created in the specified resource group.
 
 ## [Bicep](#tab/bicep)
 
@@ -395,7 +395,7 @@ To get the connection string of your Application Insights resource:
 
 1. Open your Application Insights resource in the Azure portal.
 1. On the Overview pane, look for the connection string under **Essentials**.
-1. If you hover over the connection string, an icon will apear which allows you to copy it to your clipboard.
+1. If you hover over the connection string, an icon will appear which allows you to copy it to your clipboard.
 
 ### [Azure CLI](#tab/cli)
 
@@ -548,7 +548,7 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 > [!NOTE]
 > Diagnostic settings export might increase costs. For more information, see [Export telemetry from Application Insights](export-telemetry.md#diagnostic-settings-based-export).
-> For pricing information for this feature, see the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/). Prior to the start of billing, notifications will be sent. If you continue to use telemetry export after the notice period, you'll be billed at the applicable rate.
+> For pricing information for this feature, see the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/). Before the start of billing, notifications are sent. If you continue to use telemetry export after the notice period, you'll be billed at the applicable rate.
 
 ### [Portal](#tab/portal)
 
@@ -747,9 +747,11 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ### Set the daily cap
 
+For workspace-based Application Insights resource, the daily caps must be set independently for both Application Insights and the underlying Log Analytics workspace. 
+
 ### [Portal](#tab/portal)
 
-For workspace-based Application Insights resource, the daily caps must be set independently for both Application Insights and the underlying Log Analytics workspace. For more information, see [Set daily cap on Log Analytics workspace](./../logs/daily-cap.md#application-insights).
+For more information about setting the data cap in the Azure portal, see [Set daily cap on Log Analytics workspace](./../logs/daily-cap.md#application-insights).
 
 <!--
 To get the daily cap properties, use the [Set-AzApplicationInsightsPricingPlan](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan) cmdlet:
@@ -1287,7 +1289,7 @@ Live Metrics can't split data by role name.
 ### Create more Application Insights resources
 
 > [!WARNING]
-> You might incur additional network costs if your Application Insights resource is monitoring an Azure resource (i.e., telemetry producer) in a different region. Costs will vary depending on the region the telemetry is coming from and where it is going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+> You might incur additional network costs if your Application Insights resource is monitoring an Azure resource (i.e., telemetry producer) in a different region. Costs vary depending on the region the telemetry is coming from and where it's going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
 
 To create an Applications Insights resource, see [Create an Application Insights resource](#create-a-workspace-based-resource).
 
