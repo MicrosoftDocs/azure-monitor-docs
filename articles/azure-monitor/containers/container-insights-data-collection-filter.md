@@ -34,7 +34,7 @@ Using [ConfigMap](./container-insights-data-collection-configure.md#configure-da
 ```
 
 > [!NOTE]
-> You can also configure namespace filtering using the [Data collection rule (DCR)](./container-insights-data-collection-configure.md#configure-data-collection-using-dcr) for the cluster, but this doesn't apply to data sent to ContainerLogV2. This data can only be filtered using the ConfigMap.e
+> You can also configure namespace filtering using the [Data collection rule (DCR)](./container-insights-data-collection-configure.md#configure-data-collection-using-dcr) for the cluster, but this doesn't apply to data sent to ContainerLogV2. This data can only be filtered using the ConfigMap.
 
 ## Platform log filtering (System Kubernetes namespaces)
 By default, container logs from the system namespace are excluded from collection to minimize the Log Analytics cost. Container logs of system containers can be critical though in specific troubleshooting scenarios. This feature is restricted to the following system namespaces:  `kube-system`, `gatekeeper-system`, `calico-system`, `azure-arc`, `kube-public`, and `kube-node-lease`.
