@@ -57,7 +57,7 @@ az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/A
 az provider register --namespace Microsoft.ContainerService
 
 # Check the registration state of the Microsoft.ContainerService provider
-az feature show --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview" --query "properties.state"
+az provider show --namespace "Microsoft.ContainerService" --query "registrationState"
 ```
 
 ## Prepare a cluster
