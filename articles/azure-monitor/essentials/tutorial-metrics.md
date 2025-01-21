@@ -23,7 +23,7 @@ In this tutorial, you learn how to:
 
 The following video shows a more extensive scenario than the procedure outlined in this tutorial. If you're new to metrics, read this article first and then view the video to see more specifics.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4qO59]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=01a767db-97ae-4ddf-b842-7fa5390bcf0d]
 
 ## Prerequisites
 To complete the steps in this tutorial, you need an Azure resource to monitor. You can use any resource in your Azure subscription that supports metrics. To determine whether a resource supports metrics, go to its menu in the Azure portal. Then verify that a **Metrics** option is in the **Monitoring** section of the menu.
