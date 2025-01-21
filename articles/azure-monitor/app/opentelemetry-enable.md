@@ -258,6 +258,7 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 
 # Configure OpenTelemetry to use Azure Monitor with the 
 # APPLICATIONINSIGHTS_CONNECTION_STRING environment variable.
+configure_azure_monitor(
     logger_name="<your_logger_namespace>",  # Set the namespace for the logger in which you would like to collect telemetry for if you are collecting logging telemetry. This is imperative so you do not collect logging telemetry from the SDK itself.
 )
 logger = logging.getLogger("<your_logger_namespace>")  # Logging telemetry will be collected from logging calls made with this logger and all of it's children loggers.
