@@ -186,27 +186,28 @@ New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027
 
 For more information about this command, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
 
-### [REST](#tab/rest)
+## [REST](#tab/rest)
 
-To create an Application Insights resource using the REST API:
+To create an Application Insights resource using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{access-token}`, and `{azure-region-name}` with your specific values:
 
-1. Prepare the request. Replace `{subscriptionId}`, `{resourceGroupName}`, `{resourceName}`, and `{AccessToken}` with your actual values.
+```http
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
+Authorization: Bearer {access-token}
+Content-Type: application/json
 
-    ```rest
-    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}?api-version=2015-05-01
-    Authorization: Bearer {AccessToken}
-    Content-Type: application/json
-    
-    {
-      "location": "East US",
-      "kind": "web",
-      "properties": {
-        "Application_Type": "web"
-      }
-    }
-    ```
 
-1. Send the HTTP PUT request to the Azure Management endpoint. If the request is successful, the Application Insights resource is created in the specified resource group.
+{
+  "location": "{azure-region-name}",
+  "kind": "web",
+  "properties": {
+    "Application_Type": "web",
+    "Flow_Type": "Bluefield",
+    "Request_Source": "rest"
+  }
+}
+```
+
+To learn more about creating and updating Application Insights resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/create-or-update).
 
 ## [Bicep](#tab/bicep)
 
@@ -411,20 +412,13 @@ To get the connection string, run the following code in your terminal:
 Get-AzApplicationInsights -ResourceGroupName <your-resource-group> -Name <your-app-name> | Select-Object -ExpandProperty ConnectionString`
 ```
 
-To see a list of many other properties of your Application Insights resource, use:
-
-```azurepowershell
-Get-AzApplicationInsights -ResourceGroupName <your-resource-group> -Name <your-app-name> | Format-List
-```
-
-See the [detailed documentation](/powershell/module/az.applicationinsights) for the parameters for these cmdlets.
-
 ### [REST](#tab/rest)
 
-To retrieve the details of your Application Insights resource, send the following request:
+To retrieve the details of your Application Insights resource, use armclient to send the following request and replace the placeholders `{subscription-id}`, and `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
 
-```rest
-armclient GET https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{resource-name}?api-version=2020-02-02-preview
+```http
+GET https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
+Authorization: Bearer {access-token}
 ```
 
 Look for the `properties.connectionString` field in the JSON response.
@@ -490,36 +484,38 @@ Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties
 
 ### [REST](#tab/rest)
 
-1. Create a JSON file with the new Log Analytics workspace resource ID. For example, save the following JSON content to a file named *updateWorkspace.json*:
+To change the Log Analytics workspace using REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, and `{new-workspace-name}` with your specific values:
 
-    ```json
-    {
-      "properties": {
-        "WorkspaceResourceId": "/subscriptions/your-subscription-id/resourceGroups/new-resource-group-name/providers/Microsoft.OperationalInsights/workspaces/new-workspace-name"
-      }
-    }
-    ```
+```http
+PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
+Authorization: Bearer {access-token}
+Content-Type: application/json
 
-1. Use armclient to send a PATCH request to update the Application Insights resource. Run the following command in PowerShell:
-
-    ```azurepowershell
-    armclient patch https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{resource-name}?api-version=2020-02-02-preview @updateWorkspace.json
-    ```
+{
+  "properties": {
+    "WorkspaceResourceId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.OperationalInsights/workspaces/{new-workspace-name}"
+  }
+}
+```
 
 ### [Bicep](#tab/bicep)
 
+To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
+
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
-  name: '<your-app-name>'
-  location: '<your-location>'
+  name: '<application-insights-resource-name>'
+  location: '<azure-region-name>'
   properties: {
-    Application_Type: 'web'
+    Application_Type: '<application-type>'
     WorkspaceResourceId: '<new-workspace-resource-id>'
   }
 }
 ```
 
 ### [JSON (ARM)](#tab/arm)
+
+To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
 
 ```json
 {
@@ -529,10 +525,10 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
     {
       "type": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02-preview",
-      "name": "<your-app-name>",
-      "location": "<your-location>",
+      "name": "<application-insights-resource-name>",
+      "location": "<azure-region-name>",
       "properties": {
-        "Application_Type": "web",
+        "Application_Type": "<application-type>",
         "WorkspaceResourceId": "<new-workspace-resource-id>"
       }
     }
@@ -582,9 +578,33 @@ For more information about enabling diagnostic settings using PowerShell, see th
 
 ### [REST](#tab/rest)
 
-...
+To export telemetry to an Azure storage account using a diagnostic setting, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{setting-name}`, `{access-token}`, and `{storage-account-name}` with your specific values:
+
+```http
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/microsoft.insights/components/{application-insights-resource-name}/diagnosticSettings/{setting-name}?api-version=2017-05-01-preview
+Authorization: Bearer {access-token}
+Content-Type: application/json
+
+{
+  "properties": {
+    "storageAccountId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/{storage-account-name}",
+    "logs": [
+      {
+        "category": "Request",
+        "enabled": true,
+        "retentionPolicy": {
+          "enabled": true,
+          "days": 30
+        }
+      }
+    ]
+  }
+}
+```
 
 ### [Bicep](#tab/bicep)
+
+To export telemetry using diagnostic settings, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
 
 ```bicep
 param location string = resourceGroup().location
@@ -630,6 +650,8 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
 ```
 
 ### [JSON (ARM)](#tab/arm)
+
+To export telemetry using diagnostic settings, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
 
 ```json
 {
@@ -757,7 +779,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ### Set the daily cap
 
-For workspace-based Application Insights resource, the daily caps must be set independently for both Application Insights and the underlying Log Analytics workspace.
+For workspace-based Application Insights resource, the daily cap must be set independently for both Application Insights and the underlying Log Analytics workspace.
 
 ### [Portal](#tab/portal)
 
@@ -795,7 +817,41 @@ Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name
 
 ### [REST](#tab/rest)
 
-...
+To set the daily cap for both Application Insights and Log Analytics, use the following request and replace the placeholders with your specific values:
+
+**Application Insights**
+
+Placeholders: `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{access-token}`
+
+```http
+PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
+Authorization: Bearer {access-token}
+Content-Type: application/json
+
+{
+  "properties": {
+    "DailyCap": 100
+  }
+}
+```
+
+**Log Analytics**
+
+Placeholders: `{subscription-id}`, `{resource-group-name}`, `{log-analytics-workspace-name}`, `{access-token}`
+
+```http
+PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.OperationalInsights/workspaces/{log-analytics-workspace-name}?api-version=2020-08-01
+Authorization: Bearer {access-token}
+Content-Type: application/json
+
+{
+  "properties": {
+    "dailyQuotaGb": 100
+  }
+}
+```
+
+
 
 ### [Bicep](#tab/bicep)
 
@@ -866,16 +922,16 @@ For more information about setting the pricing placing using Azure PowerShell, s
 
 ### [REST](#tab/rest)
 
-To set the pricing plan using REST API, use the following request and replace the placeholders {subscriptionId}, {resourceGroupName}, {resourceName}, {access-token}, and \<pricing-plan\> with your specific values:
+To set the pricing plan using REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
 
-```rest
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/components/{resourceName}/pricingPlans/current?api-version=2017-10-01
-Content-Type: application/json
+```http
+PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
 Authorization: Bearer {access-token}
+Content-Type: application/json
 
 {
   "properties": {
-    "planType": "<pricing-plan>"
+    "PricingPlan": "Basic"
   }
 }
 ```
@@ -1012,39 +1068,37 @@ To learn how to add a metric alert using PowerShell, see [Create a new alert rul
 
 ### [REST](#tab/rest)
 
-To create a metric alert using the REST API, use the following request and replace the placeholders `{subscriptionId}`, `{resourceGroupName}`, `{alertName}`, `{access-token}`, `<metric-name>`, `<threshold>`, `<resource-id>`, and `<action-group-id>` with your specific values:
+To create a metric alert using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{alert-name}`, `{access-token}`, `{application-insights-resource-name}`, and `{action-group-name}`, with your specific values:
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{alertName}?api-version=2018-03-01
-Content-Type: application/json
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/metricAlerts/{alert-name}?api-version=2018-03-01
 Authorization: Bearer {access-token}
+Content-Type: application/json
 
 {
-  "location": "global",
   "properties": {
+    "description": "Metric alert for high CPU usage",
+    "severity": 3,
     "enabled": true,
-    "description": "Alert when <metric-name> exceeds <threshold>",
-    "severity": 2,
     "scopes": [
-      "<resource-id>"
+      "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}"
     ],
-    "evaluationFrequency": "PT1M",
-    "windowSize": "PT5M",
     "criteria": {
-      "odata.type": "Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria",
       "allOf": [
         {
-          "metricName": "<metric-name>",
+          "metricName": "cpuPercentage",
           "metricNamespace": "Microsoft.Insights/components",
           "operator": "GreaterThan",
-          "threshold": <threshold>,
-          "timeAggregation": "Average"
+          "threshold": 80,
+          "timeAggregation": "Average",
+          "dimensions": [],
+          "metricAlertCriteriaType": "StaticThresholdCriterion"
         }
       ]
     },
     "actions": [
       {
-        "actionGroupId": "<action-group-id>"
+        "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/actionGroups/{action-group-name}"
       }
     ]
   }
@@ -1107,45 +1161,40 @@ For more information about creating an availability test using Azure CLI, see th
 
 ### [REST](#tab/rest)
 
-To create an availability test using the REST API, use the following request and replace the placeholders `{subscriptionId}`, `{resourceGroupName}`, `{webTestName}`, `{accessToken}`, and `{your-app-url}` with your specific values:
+To create an availability test using the REST API, use the following request and replace the placeholder s `{subscription-id}`, `{resource-group-name}`, `{webtest-name}`, `{access-token}`, `{azure-location-name}`, and `{website}` with your specific values:
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/webtests/{webTestName}?api-version=2022-06-15
-Content-Type: application/json
-Authorization: Bearer {accessToken}
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/webtests/{webtest-name}?api-version=2022-06-15
+Authorization: Bearer {access-token}
 
 {
-  "location": "West US",
-  "tags": {},
+  "location": "{azure-location-name}",
   "properties": {
-    "SyntheticMonitorId": "{webTestName}",
-    "Name": "{webTestName}",
-    "Description": "Ping web test alert for mytestwebapp",
+    "Name": "{webtest-name}",
+    "SyntheticMonitorId": "{webtest-name}",
+    "Description": "Simple availability test for {website}",
     "Enabled": true,
     "Frequency": 300,
-    "Timeout": 30,
-    "WebTestKind": "ping",
+    "Timeout": 120,
+    "Kind": "standard",
     "RetryEnabled": true,
+    "Request": {
+      "RequestUrl": "https://{website}.com",
+      "HttpVerb": "GET"
+    },
+    "ValidationRules": {
+      "SSLCheck": true
+    },
     "Locations": [
       {
-        "Location": "us-fl-mia-edge"
+        "Id": "us-fl-mia-edge"
       }
-    ],
-    "Configuration": {
-      "WebTest": {
-        "ValidationRules": {
-          "ExpectedHttpStatusCode": 200
-        },
-        "Request": {
-          "Url": "{https://your-app-url}"
-        }
-      }
-    }
+    ]
   }
 }
 ```
 
-For more information about creating and updating web tests using the REST API, see our [REST API documentation](/rest/api/application-insights/web-tests/create-or-update).
+To learn more about creating and configuring web tests using the REST API, see our [REST API documentation](/rest/api/application-insights/web-tests/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
