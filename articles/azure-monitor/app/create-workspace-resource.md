@@ -817,11 +817,11 @@ Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name
 
 ### [REST](#tab/rest)
 
-To set the daily cap for both Application Insights and Log Analytics, use the following request and replace the placeholders with your specific values:
+To set the daily cap for both Application Insights and Log Analytics, use the following requests and replace the placeholders with your specific values:
 
 **Application Insights**
 
-Placeholders: `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{access-token}`
+Placeholders: `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{access-token}`, `<daily-cap-in-gb>`
 
 ```http
 PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
@@ -830,14 +830,14 @@ Content-Type: application/json
 
 {
   "properties": {
-    "DailyCap": 100
+    "DailyCap": <daily-cap-in-gb>
   }
 }
 ```
 
 **Log Analytics**
 
-Placeholders: `{subscription-id}`, `{resource-group-name}`, `{log-analytics-workspace-name}`, `{access-token}`
+Placeholders: `{subscription-id}`, `{resource-group-name}`, `{log-analytics-workspace-name}`, `{access-token}`, `<daily-cap-in-gb>`
 
 ```http
 PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.OperationalInsights/workspaces/{log-analytics-workspace-name}?api-version=2020-08-01
@@ -846,29 +846,51 @@ Content-Type: application/json
 
 {
   "properties": {
-    "dailyQuotaGb": 100
+    "dailyQuotaGb": <daily-cap-in-gb>
   }
 }
 ```
 
-
-
 ### [Bicep](#tab/bicep)
 
+To set the daily cap for both Application Insights and Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
 
+**Application Insights**
+
+Placeholders: `{application-insights-resource-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
 
 ```bicep
-resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
-  name: '<your-app-name>'
-  location: '<your-location>'
+resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
+  name: '{application-insights-resource-name}'
+  location: '{azure-region-name}'
   properties: {
     Application_Type: 'web'
-    DailyQuotaGb: <daily-cap-in-gb>
+    DailyCap: <daily-cap-in-gb>
+  }
+}
+```
+
+**Log Analytics**
+
+Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
+
+```bicep
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
+  name: '{log-analytics-workspace-name}'
+  location: '{azure-region-name}'
+  properties: {
+    dailyQuotaGb: <daily-cap-in-gb>
   }
 }
 ```
 
 ### [JSON (ARM)](#tab/arm)
+
+To set the daily cap for both Application Insights and Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
+
+**Application Insights**
+
+Placeholders: `{application-insights-resource-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
 
 ```json
 {
@@ -877,12 +899,34 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   "resources": [
     {
       "type": "Microsoft.Insights/components",
-      "apiVersion": "2020-02-02-preview",
-      "name": "<your-app-name>",
-      "location": "<your-location>",
+      "apiVersion": "2020-02-02",
+      "name": "{application-insights-resource-name}",
+      "location": "{azure-region-name}",
       "properties": {
         "Application_Type": "web",
-        "DailyQuotaGb": <daily-cap-in-gb>
+        "DailyCap": <daily-cap-in-gb>
+      }
+    }
+  ]
+}
+```
+
+**Log Analytics**
+
+Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2020-08-01",
+      "name": "{log-analytics-workspace-name}",
+      "location": "{azure-region-name}",
+      "properties": {
+        "dailyQuotaGb": <daily-cap-in-gb>
       }
     }
   ]
@@ -961,8 +1005,6 @@ resource pricingPlan 'Microsoft.Insights/components/pricingPlans@2017-10-01' = {
 }
 ```
 
-For more information on setting the pricing plan using a Bicep template, see [Placeholder]().
-
 ### [JSON (ARM)](#tab/arm)
 
 ```json
@@ -1004,8 +1046,6 @@ For more information on setting the pricing plan using a Bicep template, see [Pl
   ]
 }
 ```
-
-For more information on setting the pricing plan using a JSON (ARM) template, see [Placeholder]().
 
 ---
 <!--
