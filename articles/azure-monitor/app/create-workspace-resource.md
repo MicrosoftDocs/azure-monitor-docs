@@ -108,8 +108,6 @@ Sign in to the [Azure portal](https://portal.azure.com), and create an Applicati
 
 If you don't have an existing Log Analytics workspace, see the [Log Analytics workspace creation documentation](../logs/quick-create-workspace.md).
 
-*Workspace-based resources are currently available in all commercial regions and Azure Government. Having Application Insights and Log Analytics in two different regions can impact latency and reduce overall reliability of the monitoring solution.*
-
 After you create your resource, you'll see corresponding workspace information in the **Overview** pane.
 
 :::image type="content" source="./media/create-workspace-resource/workspace-name.png" lightbox="./media/create-workspace-resource/workspace-name.png" alt-text="Screenshot that shows a workspace name.":::
@@ -387,9 +385,9 @@ After creating a workspace-based Application Insights resource, you configure mo
 
 ### Get the connection string
 
-### [Portal](#tab/portal)
-
 The [connection string](./connection-strings.md?tabs=net) identifies the resource that you want to associate your telemetry data with. You can also use it to modify the endpoints your resource uses as a destination for your telemetry. You must copy the connection string and add it to your application's code or to an environment variable.
+
+### [Portal](#tab/portal)
 
 To get the connection string of your Application Insights resource:
 
@@ -460,15 +458,19 @@ For information on how to set up an Application Insights SDK for code-based moni
 
 For codeless monitoring of services like Azure Functions and Azure App Services, you can first create your workspace-based Application Insights resource. Then you point to that resource when you configure monitoring. Alternatively, you can create a new Application Insights resource as part of Application Insights enablement.
 
-## Modify the associated workspace
+
+
+## Configure Application Insights resources
+
+### Modify the associated workspace
 
 After creating a workspace-based Application Insights resource, you can modify the associated Log Analytics workspace.
 
-## [Portal](#tab/portal)
+### [Portal](#tab/portal)
 
 In the Application Insights resource pane, select **Properties** > **Change Workspace** > **Log Analytics Workspaces**.
 
-## [Azure CLI](#tab/cli)
+### [Azure CLI](#tab/cli)
 
 To change the Log Analytics workspace, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<new-workspace-resource-id>` with your specific values:
 
@@ -476,9 +478,9 @@ To change the Log Analytics workspace, run the following Azure CLI command in yo
 az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --workspace <new-workspace-resource-id>
 ```
 
-## [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
-To change the Log Analytics workspace, run the following command in your PowerShell terminal:
+To change the Log Analytics workspace, run the following PowerShell command in your terminal:
 
 ```azurepowershell
 $resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
@@ -486,7 +488,7 @@ $resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
 Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
 ```
 
-## [REST](#tab/rest)
+### [REST](#tab/rest)
 
 1. Create a JSON file with the new Log Analytics workspace resource ID. For example, save the following JSON content to a file named *updateWorkspace.json*:
 
@@ -504,7 +506,7 @@ Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties
     armclient patch https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{resource-name}?api-version=2020-02-02-preview @updateWorkspace.json
     ```
 
-## [Bicep](#tab/bicep)
+### [Bicep](#tab/bicep)
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
@@ -517,7 +519,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-## [JSON (ARM)](#tab/arm)
+### [JSON (ARM)](#tab/arm)
 
 ```json
 {
@@ -540,8 +542,6 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ---
 
-## Configure Application Insights resources
-
 ### Export telemetry
 
 The legacy continuous export functionality isn't supported for workspace-based resources. Instead, use [Diagnostic settings](./../essentials/diagnostic-settings.md).
@@ -554,7 +554,7 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 Select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource.
 
-You can select all tables, or a subset of tables, to archive to a storage account. You can also stream to an [Azure Event Hub](/azure/event-hubs/event-hubs-about).
+You can select all tables or a subset of tables to archive to a storage account. You can also stream to an [Azure Event Hub](/azure/event-hubs/event-hubs-about).
 
 ### [Azure CLI](#tab/cli)
 
@@ -757,15 +757,17 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ### Set the daily cap
 
-For workspace-based Application Insights resource, the daily caps must be set independently for both Application Insights and the underlying Log Analytics workspace. 
+For workspace-based Application Insights resource, the daily caps must be set independently for both Application Insights and the underlying Log Analytics workspace.
 
 ### [Portal](#tab/portal)
 
-For more information about setting the data cap in the Azure portal, see [Set daily cap on Log Analytics workspace](./../logs/daily-cap.md#application-insights).
+To learn how to set the daily cap in the Azure portal, see [Set daily cap on Log Analytics workspace](./../logs/daily-cap.md#application-insights).
 
 ### [Azure CLI](#tab/cli)
 
-To change the daily cap, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<daily-cap-in-gb>` with your specific values:
+#### Setting the daily cap for Application Insights
+
+To change the daily cap for Application Insights, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<daily-cap-in-gb>` with your specific values:
 
 ```azurecli
 az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --set dailyCapGB=<daily-cap-in-gb>
@@ -773,13 +775,23 @@ az monitor app-insights component update --app <application-insights-resource-na
 
 For more information about setting the daily cap using Azure CLI, see the [Azure CLI documentation](/azure/monitor/app-insights/component/billing#az-monitor-app-insights-component-billing-update).
 
+#### Setting the daily cap for Log Analytics
+
+...
+
 ### [PowerShell](#tab/powershell)
 
-To change the daily cap, run the following code in your terminal:
+#### Setting the daily cap for Application Insights
+
+To change the daily cap for Application Insights, run the following code in your terminal:
 
 ```azurepowershell
 Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name <your-app-name> -DailyCapGB <daily-cap-in-gb>
 ```
+
+#### Setting the daily cap for Log Analytics
+
+...
 
 ### [REST](#tab/rest)
 
@@ -1095,7 +1107,7 @@ For more information about creating an availability test using Azure CLI, see th
 
 ### [REST](#tab/rest)
 
-To create an availability test using the REST API, use the following request and replace the placeholders `{subscriptionId}`, `{resourceGroupName}`, `{webTestName}`, `{accessToken}`, and `{your-app-url}`:
+To create an availability test using the REST API, use the following request and replace the placeholders `{subscriptionId}`, `{resourceGroupName}`, `{webTestName}`, `{accessToken}`, and `{your-app-url}` with your specific values:
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/webtests/{webTestName}?api-version=2022-06-15
@@ -1193,7 +1205,7 @@ To create an availability test using JSON (ARM), add the following code to your 
 }
 ```
 
-For more information about about creating availability tests using JSON (ARM), see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
+For more information about creating availability tests using JSON (ARM), see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
 
 ---
 
