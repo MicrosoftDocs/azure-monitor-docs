@@ -38,6 +38,7 @@ A chaos experiment can target a resource in a different region than the experime
 | Sweden Central | Available  | Available |
 | Germany West Central | Not Available  | Coming soon |
 | Brazil South | Available  | Available |
+| Australia East | Available  | Available |
  
 You can also view the list of regions where Chaos Studio is available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
 
