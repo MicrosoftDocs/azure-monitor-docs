@@ -406,15 +406,15 @@ az monitor app-insights component show --app <application-insights-resource-name
 
 ### [PowerShell](#tab/powershell)
 
-To get the connection string, run the following code in your terminal:
+To get the connection string, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>` and `<application-insights-resource-name>` with your specific values:
 
 ```azurepowershell
-Get-AzApplicationInsights -ResourceGroupName <your-resource-group> -Name <your-app-name> | Select-Object -ExpandProperty ConnectionString`
+Get-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> | Select-Object -ExpandProperty ConnectionString`
 ```
 
 ### [REST](#tab/rest)
 
-To retrieve the details of your Application Insights resource, use armclient to send the following request and replace the placeholders `{subscription-id}`, and `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
+To retrieve the details of your Application Insights resource, use the following request and replace the placeholders `{subscription-id}`, and `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
 
 ```http
 GET https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
@@ -474,10 +474,10 @@ az monitor app-insights component update --app <application-insights-resource-na
 
 ### [PowerShell](#tab/powershell)
 
-To change the Log Analytics workspace, run the following PowerShell command in your terminal:
+To change the Log Analytics workspace, run the following Azure PowerShell command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<new-workspace-resource-id>` with your specific values:
 
 ```azurepowershell
-$resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<your-resource-group>" -ResourceName "<your-app-name>"
+$resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<resource-group-name>" -ResourceName "<application-insights-resource-name>"
 $resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
 Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
 ```
@@ -566,7 +566,7 @@ For more information about enabling diagnostic settings using Azure CLI, see the
 
 ### [PowerShell](#tab/powershell)
 
-To export telemetry using diagnostic settings, run the following PowerShell command in your terminal:
+To export telemetry using diagnostic settings, run the following Azure PowerShell command in your terminal and replace the placeholders `<application-insights-resource-id>`, `<diagnostic-setting-name>`, and `<storage-account-id>` with your specific values:
 
 ```azurepowershell
 Set-AzDiagnosticSetting -ResourceId <application-insights-resource-id> -Name <diagnostic-setting-name> -StorageAccountId <storage-account-id> -Enabled $True
@@ -574,7 +574,7 @@ Set-AzDiagnosticSetting -ResourceId <application-insights-resource-id> -Name <di
 
 This example code enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
 
-For more information about enabling diagnostic settings using PowerShell, see the [Azure PowerShell documentation](/powershell/module/az.monitor/set-azdiagnosticsetting).
+For more information about enabling diagnostic settings using Azure PowerShell, see the [Azure PowerShell documentation](/powershell/module/az.monitor/set-azdiagnosticsetting).
 
 ### [REST](#tab/rest)
 
@@ -743,18 +743,21 @@ For more information, see [Configure the default interactive retention period of
 
 ### [Bicep](#tab/bicep)
 
+To set the data retention for the associated Log Analytics workspace, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, `<retention-period-in-days>` with your specific values:
+
 ```bicep
-resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
-  name: '<your-app-name>'
-  location: '<your-location>'
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
+  name: '<log-analytics-workspace-name>'
+  location: '<azure-region-name>'
   properties: {
-    Application_Type: 'web'
-    RetentionInDays: <retention-period-in-days>
+    retentionInDays: <retention-period-in-days>
   }
 }
 ```
 
 ### [JSON (ARM)](#tab/arm)
+
+To set the data retention for the associated Log Analytics workspace, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, `<retention-period-in-days>` with your specific values:
 
 ```json
 {
@@ -762,13 +765,12 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   "contentVersion": "1.0.0.0",
   "resources": [
     {
-      "type": "Microsoft.Insights/components",
-      "apiVersion": "2020-02-02-preview",
-      "name": "<your-app-name>",
-      "location": "<your-location>",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2020-08-01",
+      "name": "<log-analytics-workspace-name>",
+      "location": "<azure-region-name>",
       "properties": {
-        "Application_Type": "web",
-        "RetentionInDays": <retention-period-in-days>
+        "retentionInDays": <retention-period-in-days>
       }
     }
   ]
@@ -787,31 +789,44 @@ To learn how to set the daily cap in the Azure portal, see [Set daily cap on Log
 
 ### [Azure CLI](#tab/cli)
 
-#### Setting the daily cap for Application Insights
+To change the daily cap for Application Insights and Log Analytics, run the following Azure CLI commands in your terminal and replace the placeholders with your specific values.
 
-To change the daily cap for Application Insights, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<daily-cap-in-gb>` with your specific values:
+**Application Insights**
+
+Placeholders: `<application-insights-resource-name>`, `<resource-group-name>`, `<daily-cap-in-gb>` 
 
 ```azurecli
 az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --set dailyCapGB=<daily-cap-in-gb>
 ```
-
 For more information about setting the daily cap using Azure CLI, see the [Azure CLI documentation](/azure/monitor/app-insights/component/billing#az-monitor-app-insights-component-billing-update).
 
-#### Setting the daily cap for Log Analytics
+**Log Analytics**
 
-...
+Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<daily-cap-in-gb>` 
+
+```azurecli
+az monitor log-analytics workspace update --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --set dailyQuotaGb=<daily-cap-in-gb>
+```
 
 ### [PowerShell](#tab/powershell)
 
-#### Setting the daily cap for Application Insights
+To change the daily cap for Application Insights and Log Analytics, run the following Azure PowerShell commands in your terminal and replace the placeholders with your specific values.
 
-To change the daily cap for Application Insights, run the following code in your terminal:
+**Application Insights**
+
+Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `<daily-cap-in-gb>` 
 
 ```azurepowershell
-Set-AzApplicationInsightsDailyCap -ResourceGroupName <your-resource-group> -Name <your-app-name> -DailyCapGB <daily-cap-in-gb>
+Set-AzApplicationInsightsDailyCap -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -DailyCapGB <daily-cap-in-gb>
 ```
 
-#### Setting the daily cap for Log Analytics
+**Log Analytics**
+
+Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<daily-cap-in-gb>` 
+
+```azurepowershell
+Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -DailyQuotaGb <daily-cap-in-gb>
+```
 
 ...
 
@@ -982,6 +997,8 @@ Content-Type: application/json
 
 ### [Bicep](#tab/bicep)
 
+To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders with your specific values:
+
 ```bicep
 param location string = resourceGroup().location
 param appInsightsName string = 'myAppInsights'
@@ -1006,6 +1023,8 @@ resource pricingPlan 'Microsoft.Insights/components/pricingPlans@2017-10-01' = {
 ```
 
 ### [JSON (ARM)](#tab/arm)
+
+To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders with your specific values:
 
 ```json
 {
