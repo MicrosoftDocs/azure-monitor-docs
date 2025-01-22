@@ -2,9 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
-ms.date: 11/14/2024
+ms.date: 01/22/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -293,7 +291,7 @@ We recommend that you enable automatic update of the agent by enabling [automati
 
 ### Update on Azure virtual machines
 
-To do a one-time update of the agent, you must first uninstall the existing agent version. Then install the new version as described.
+To do a one-time update of the agent, install the new version as described.
 
 We recommend that you enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). 
 
