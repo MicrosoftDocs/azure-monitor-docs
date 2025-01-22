@@ -1051,7 +1051,7 @@ To learn how to add a metric alert using using an ARM template, see [Create a ne
 
 To automate the creation of metric alerts, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-a-simple-static-threshold-metric-alert) article.
 
-### Add an availability test
+### Create an availability test
 
 ### [Portal](#tab/portal)
 
@@ -1137,16 +1137,16 @@ For more information about creating and updating web tests using the REST API, s
 
 ### [Bicep](#tab/bicep)
 
-
+To create an availability test using Bicep, add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
 
 ```bicep
 resource availabilityTest 'Microsoft.Insights/webtests@2022-06-15' = {
-  name: '<your-web-test-name>'
-  location: '<your-location>'
+  name: '<web-test-name>'
+  location: '<azure-region-name>'
   kind: 'ping'
   properties: {
     Configuration: {
-      WebTest: '<your-web-test-configuration>'
+      WebTest: '<web-test-configuration>'
     }
     Description: 'Availability Test for API'
     Enabled: true
@@ -1159,7 +1159,11 @@ resource availabilityTest 'Microsoft.Insights/webtests@2022-06-15' = {
 }
 ```
 
+For more information about creating availability tests using Bicep, see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-bicep).
+
 ### [JSON (ARM)](#tab/arm)
+
+To create an availability test using JSON (ARM), add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
 
 ```json
 {
@@ -1169,12 +1173,12 @@ resource availabilityTest 'Microsoft.Insights/webtests@2022-06-15' = {
     {
       "type": "Microsoft.Insights/webtests",
       "apiVersion": "2022-06-15",
-      "name": "<your-web-test-name>",
-      "location": "<your-location>",
+      "name": "<web-test-name>",
+      "location": "<azure-region-name>",
       "kind": "ping",
       "properties": {
         "Configuration": {
-          "WebTest": "<your-web-test-configuration>"
+          "WebTest": "<web-test-configuration>"
         },
         "Description": "Availability Test for API",
         "Enabled": true,
@@ -1189,9 +1193,9 @@ resource availabilityTest 'Microsoft.Insights/webtests@2022-06-15' = {
 }
 ```
 
----
+For more information about about creating availability tests using JSON (ARM), see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
 
-To automate availability tests, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-an-availability-test-along-with-a-metric-alert) article.
+---
 
 ## How many Application Insights resources should I deploy?
 
