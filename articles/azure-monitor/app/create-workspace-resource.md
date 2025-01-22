@@ -22,7 +22,7 @@ Enhanced capabilities include:
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
-This article shows you how to create and configure workspace-based [Application Insights](./app-insights-overview.md) resources. Along with the Application Insights resource itself and various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan), you can create [availability web tests](#add-an-availability-test) and set up [alerts](#add-a-metric-alert), and automate the process using [Azure Resource Manager](https://resources.azure.com/).
+This article shows you how to create and configure workspace-based [Application Insights](./app-insights-overview.md) resources. Along with the Application Insights resource itself, you can add various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan). You can also create [availability web tests](#create-an-availability-test), set up [alerts](#add-a-metric-alert), and automate the process using [Azure Resource Manager](https://resources.azure.com/).
 
 <!--
 ### PowerShell
@@ -57,7 +57,7 @@ You can package several resources together to create them all in one go. For exa
 
 ### [Portal](#tab/portal)
 
-No additional prerequisites for the Azure portal.
+No additional requirements for the Azure portal.
 
 ### [Azure CLI](#tab/cli)
 
@@ -83,9 +83,6 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 To make a REST API call to Azure, you first need to obtain an access token. 
 
 For more information, see [Manage Azure resources by using the REST API](/azure/azure-resource-manager/management/manage-resources-rest#obtain-an-access-token).
-
-> [!NOTE]
-> All REST API examples in this document use the OSS tool [ARMClient](https://github.com/projectkudu/ARMClient), but you can also use other tools like cURL and Postman.
 
 ### [Bicep](#tab/bicep)
 
@@ -394,7 +391,7 @@ To get the connection string of your Application Insights resource:
 
 1. Open your Application Insights resource in the Azure portal.
 1. On the Overview pane, look for the connection string under **Essentials**.
-1. If you hover over the connection string, an icon will appear which allows you to copy it to your clipboard.
+1. If you hover over the connection string, an icon appears which allows you to copy it to your clipboard.
 
 ### [Azure CLI](#tab/cli)
 
@@ -971,7 +968,7 @@ For more information about setting the pricing placing using Azure CLI, see the 
 
 ### [PowerShell](#tab/powershell)
 
-To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders \<resource-group-name\>, \<resource-name\>, and \<pricing-plan\> with your specific values:
+To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<resource-name>, and \<pricing-plan\> with your specific values:
 
 ```azurepowershell
 Set-AzApplicationInsightsPricingPlan -ResourceGroupName <resource-group-name> -Name <resource-name> -PricingPlan <pricing-plan>
@@ -1170,7 +1167,7 @@ To learn how to add a metric alert using an ARM template, see [Create a new aler
 
 ### [JSON (ARM)](#tab/arm)
 
-To learn how to add a metric alert using using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
+To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
 
 ---
 
@@ -1356,7 +1353,7 @@ Live Metrics can't split data by role name.
 ### Create more Application Insights resources
 
 > [!WARNING]
-> You might incur additional network costs if your Application Insights resource is monitoring an Azure resource (i.e., telemetry producer) in a different region. Costs vary depending on the region the telemetry is coming from and where it's going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+> You might incur additional network costs if your Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region. Costs vary depending on the region the telemetry is coming from and where it's going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
 
 To create an Applications Insights resource, see [Create an Application Insights resource](#create-a-workspace-based-resource).
 
