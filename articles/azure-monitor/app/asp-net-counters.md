@@ -1,5 +1,5 @@
 ---
-title: ASP .NET performance and event counters
+title: ASP.NET performance and event counters
 description: Monitor .NET system and event counters in Application Insights.
 ms.topic: conceptual
 ms.date: 01/31/2025
@@ -18,11 +18,11 @@ ms.reviewer: rijolly
 
 ### [Performance counters](#tab/performancecounters)
 
-Performance counters are available on Windows platforms and provide pre-defined system and application-level metrics, such as CPU usage, memory consumption, and disk activity. These counters are built into the Windows operating system and are ideal for monitoring standard performance metrics with minimal setup. They are best suited for tracking resource utilization or troubleshooting system-level bottlenecks in Windows-based applications. However, they do not support custom application-specific metrics.
+Performance counters are available on Windows platforms and provide predefined system and application-level metrics, such as CPU usage, memory consumption, and disk activity. These counters are built into the Windows operating system and are ideal for monitoring standard performance metrics with minimal setup. They're best suited for tracking resource utilization or troubleshooting system-level bottlenecks in Windows-based applications. However, they don't support custom application-specific metrics.
 
 ### [Event counters](#tab/eventcounters)
 
-Event counters are supported on across many platforms, including Windows, Linux, and macOS. They enable developers to define and monitor lightweight, customizable application-specific metrics, offering greater flexibility than performance counters. Event counters are ideal for scenarios where system metrics are insufficient, or detailed telemetry is required in cross-platform applications. However, they require explicit implementation and configuration, making them more effort-intensive to set up.
+Event counters are supported across many platforms, including Windows, Linux, and macOS. They enable developers to define and monitor lightweight, customizable application-specific metrics, offering greater flexibility than performance counters. Event counters are ideal for scenarios where system metrics are insufficient, or detailed telemetry is required in cross-platform applications. However, they require explicit implementation and configuration, making them more effort-intensive to set up.
 
 ---
 
@@ -30,9 +30,9 @@ Event counters are supported on across many platforms, including Windows, Linux,
 
 ### [Performance counters](#tab/performancecounters)
 
-Windows provides a variety of [performance counters](/windows/desktop/perfctrs/about-performance-counters), such as those used to gather processor, memory, and disk usage statistics. You can also define your own performance counters. 
+Windows provides various [performance counters](/windows/desktop/perfctrs/about-performance-counters), such as those used to gather processor, memory, and disk usage statistics. You can also define your own performance counters. 
 
-Performance counters collection is supported if your application is running under IIS on an on-premises host or is a virtual machine to which you have administrative access. Although applications running as Azure Web Apps don't have direct access to performance counters, a subset of available counters is collected by Application Insights.
+Your application supports performance counter collection if it runs under Internet Information Server (IIS) on an on-premises host or a virtual machine with administrative access. Applications running as Azure Web Apps can't directly access performance counters, but Application Insights collects a subset of available counters.
 
 ### Prerequisites
 
@@ -48,20 +48,20 @@ The **Metrics** pane shows the default set of performance counters.
 
 :::image type="content" source="./media/performance-counters/performance-counters.png" lightbox="./media/performance-counters/performance-counters.png" alt-text="Screenshot that shows performance counters reported in Application Insights.":::
 
-Current default counters for ASP.NET web applications:
+Default counters for ASP.NET web applications:
 
 - % Process\\Processor Time
 - % Process\\Processor Time Normalized
 - Memory\\Available Bytes
 - ASP.NET Requests/Sec
-- .NET CLR Exceptions Thrown / sec
+- .NET Common Language Runtime (CLR) Exceptions Thrown / sec
 - ASP.NET ApplicationsRequest Execution Time
 - Process\\Private Bytes
 - Process\\IO Data Bytes/sec
 - ASP.NET Applications\\Requests In Application Queue
 - Processor(_Total)\\% Processor Time
 
-Current default counters collected for ASP.NET Core web applications:
+Default counters for ASP.NET Core web applications:
 
 - % Process\\Processor Time
 - % Process\\Processor Time Normalized
@@ -103,13 +103,13 @@ If the performance counter you want isn't included in the list of metrics, you c
 > [!NOTE]
 > ASP.NET Core applications don't have `ApplicationInsights.config`, so the preceding method isn't valid for ASP.NET Core applications.
 
-You can capture both standard counters and counters you've implemented yourself. `\Objects\Processes` is an example of a standard counter that's available on all Windows systems. `\Sales(photo)\# Items Sold` is an example of a custom counter that might be implemented in a web service.
+You capture both standard counters and counters you implement yourself. `\Objects\Processes` is an example of a standard counter that's available on all Windows systems. `\Sales(photo)\# Items Sold` is an example of a custom counter that might be implemented in a web service.
 
 The format is `\Category(instance)\Counter`, or for categories that don't have instances, just `\Category\Counter`.
 
-The `ReportAs` parameter is required for counter names that don't match `[a-zA-Z()/-_ \.]+`. That is, they contain characters that aren't in the following sets: letters, round brackets, forward slash, hyphen, underscore, space, and dot.
+The `ReportAs` parameter is required for counter names that don't match `[a-zA-Z()/-_ \.]+`.
 
-If you specify an instance, it will be collected as a dimension `CounterInstanceName` of the reported metric.
+If you specify an instance, it becomes a dimension `CounterInstanceName` of the reported metric.
 
 ### Collect performance counters in code for ASP.NET web applications or .NET/.NET Core console applications
 To collect system performance counters and send them to Application Insights, you can adapt the following snippet:
@@ -155,11 +155,11 @@ var app = builder.Build();
 ### Performance counters in Log Analytics
 You can search and display performance counter reports in [Log Analytics](../logs/log-query-overview.md).
 
-The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter. In the telemetry for each application, you'll see only the counters for that application. For example, to see what counters are available:
+The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter. In the telemetry for each application, you see only the counters for that application. For example, to see what counters are available:
 
 :::image type="content" source="./media/performance-counters/analytics-performance-counters.png" lightbox="./media/performance-counters/analytics-performance-counters.png" alt-text="Screenshot that shows performance counters in Application Insights analytics.":::
 
-Here, `Instance` refers to the performance counter instance, not the role or server machine instance. The performance counter instance name typically segments counters, such as processor time, by the name of the process or application.
+Here, `Instance` refers to the performance counter instance, not the role, or server machine instance. The performance counter instance name typically segments counters, such as processor time, by the name of the process or application.
 
 To get a chart of available memory over the recent period:
 
@@ -194,9 +194,7 @@ Support for performance counters in ASP.NET Core is limited:
 
 [`EventCounter`](/dotnet/core/diagnostics/event-counters) is .NET/.NET Core mechanism to publish and consume counters or statistics. EventCounters are supported in all OS platforms - Windows, Linux, and macOS. It can be thought of as a cross-platform equivalent for the [PerformanceCounters](/dotnet/api/system.diagnostics.performancecounter) that is only supported in Windows systems.
 
-While users can publish any custom `EventCounters` to meet their needs, [.NET](/dotnet/fundamentals/) publishes a set of these counters by default. This document walks through the steps required to collect and view `EventCounters` (system defined or user defined) in Azure Application Insights.
-
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+While users can publish any custom event counters to meet their needs, [.NET](/dotnet/fundamentals/) publishes a set of these counters by default. This document walks through the steps required to collect and view event counters (system defined or user defined) in Azure Application Insights.
 
 ### Using Application Insights to collect EventCounters
 
@@ -296,7 +294,7 @@ customMetrics
 > [!div class="mx-imgBorder"]
 > :::image type="content" source="./media/event-counters/analytics-completeditems-counters.png" lightbox="./media/event-counters/analytics-completeditems-counters.png" alt-text="Chat of a single counter in Application Insights":::
 
-Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. The above query shows the counter value per instance, and can be used to compare performance of different server instances.
+Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. The prior query shows the counter value per instance, and can be used to compare performance of different server instances.
 
 ---
 
@@ -319,7 +317,7 @@ Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you 
 #### What's the difference between the Exception rate and Exceptions metrics?
 
 * `Exception rate`: The Exception rate is a system performance counter. The CLR counts all the handled and unhandled exceptions that are thrown and divides the total in a sampling interval by the length of the interval. The Application Insights SDK collects this result and sends it to the portal.
-* `Exceptions`: The Exceptions metric is a count of the `TrackException` reports received by the portal in the sampling interval of the chart. It includes only the handled exceptions where you've written `TrackException` calls in your code. It doesn't include all [unhandled exceptions](./asp-net-exceptions.md).
+* `Exceptions`: The Exceptions metric counts the `TrackException` reports received by the portal in the sampling interval of the chart. It includes only the handled exceptions where you write `TrackException` calls in your code. It doesn't include all [unhandled exceptions](./asp-net-exceptions.md).
 
 ### [Event counters](#tab/eventcounters)
 
@@ -327,7 +325,7 @@ Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you 
 
 Live Metrics don't show EventCounters. Use Metric Explorer or Analytics to see the telemetry.
 
-#### I have enabled Application Insights from Azure Web App Portal. Why can't I see EventCounters?
+#### After I enabled Application Insights from the Azure Web App Portal, why can't I see event counters?
 
  [Application Insights extension](./azure-web-apps.md) for ASP.NET Core doesn't yet support this feature.
 
