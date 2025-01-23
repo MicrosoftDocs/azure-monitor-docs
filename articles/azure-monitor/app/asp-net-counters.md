@@ -46,8 +46,6 @@ net localgroup "Performance Monitor Users" /add "IIS APPPOOL\NameOfYourPool"
 
 The **Metrics** pane shows the default set of performance counters.
 
-:::image type="content" source="./media/performance-counters/performance-counters.png" lightbox="./media/performance-counters/performance-counters.png" alt-text="Screenshot that shows performance counters reported in Application Insights.":::
-
 Default counters for ASP.NET web applications:
 
 - % Process\\Processor Time
@@ -157,17 +155,23 @@ You can search and display performance counter reports in [Log Analytics](../log
 
 The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter. In the telemetry for each application, you see only the counters for that application. For example, to see what counters are available:
 
-:::image type="content" source="./media/performance-counters/analytics-performance-counters.png" lightbox="./media/performance-counters/analytics-performance-counters.png" alt-text="Screenshot that shows performance counters in Application Insights analytics.":::
+```kusto
+performanceCounters | summarize count(), avg(value) by category, instance, counter
+```
 
 Here, `Instance` refers to the performance counter instance, not the role, or server machine instance. The performance counter instance name typically segments counters, such as processor time, by the name of the process or application.
 
 To get a chart of available memory over the recent period:
 
-:::image type="content" source="./media/performance-counters/analytics-available-memory.png" lightbox="./media/performance-counters/analytics-available-memory.png" alt-text="Screenshot that shows a memory time chart in Application Insights analytics.":::
+```kusto
+performanceCounters | where counter == "Available Bytes" | summarize avg(value), min(value) by bin(timestamp, 1h) | render timechart
+```
 
 Like other telemetry, **performanceCounters** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. For example, to compare the performance of your app on the different machines:
 
-:::image type="content" source="./media/performance-counters/analytics-metrics-role-instance.png" lightbox="./media/performance-counters/analytics-metrics-role-instance.png" alt-text="Screenshot that shows performance segmented by role instance in Application Insights analytics.":::
+```kusto
+performanceCounters | where counter == "% Processor Time" and instance == "SendMetrics" | summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1d)
+```
 
 ### ASP.NET and Application Insights counts
 
@@ -266,9 +270,6 @@ builder.Services.AddApplicationInsightsTelemetry(applicationInsightsServiceOptio
 
 To view EventCounter metrics in [Metric Explorer](../essentials/metrics-charts.md), select Application Insights resource, and chose Log-based metrics as metric namespace. Then EventCounter metrics get displayed under Custom category.
 
-> [!div class="mx-imgBorder"]
-> :::image type="content" source="./media/event-counters/metrics-explorer-counter-list.png" lightbox="./media/event-counters/metrics-explorer-counter-list.png" alt-text="Event counters reported in Application Insights Metric Explorer":::
-
 ### Event counters in Log Analytics
 
 You can also search and display event counter reports in [Log Analytics](../logs/log-query-overview.md), in the **customMetrics** table.
@@ -279,9 +280,6 @@ For example, run the following query to see what counters are collected and avai
 customMetrics | summarize avg(value) by name
 ```
 
-> [!div class="mx-imgBorder"]
-> :::image type="content" source="./media/event-counters/analytics-event-counters.png" lightbox="./media/event-counters/analytics-event-counters.png" alt-text="Event counters reported in Application Insights Analytics":::
-
 To get a chart of a specific counter (for example: `ThreadPool Completed Work Item Count`) over the recent period, run the following query.
 
 ```Kusto
@@ -291,8 +289,6 @@ customMetrics
 | summarize  avg(value) by cloud_RoleInstance, bin(timestamp, 1m)
 | render timechart
 ```
-> [!div class="mx-imgBorder"]
-> :::image type="content" source="./media/event-counters/analytics-completeditems-counters.png" lightbox="./media/event-counters/analytics-completeditems-counters.png" alt-text="Chat of a single counter in Application Insights":::
 
 Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. The prior query shows the counter value per instance, and can be used to compare performance of different server instances.
 
