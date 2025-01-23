@@ -32,7 +32,7 @@ Here's a video that provides an overview of some of the benefits of summary rule
 
 Summary rules perform batch processing directly in your Log Analytics workspace. The summary rule aggregates chunks of data, defined by bin size, based on a KQL query, and re-ingests the summarized results into a custom table with an [Analytics log plan](logs-table-plans.md) in your Log Analytics workspace. 
 
-:::image type="content" source="media/summary-rules/ingestion-flow.png" alt-text="A diagram that shows how data is ingested into a Log Analytics workspace and is aggregated and re-ingested into the workspace by using a summary rule." lightbox="media/summary-rules/ingestion-flow.png":::
+:::image type="content" source="media/summary-rules/summary-rule-azure-monitor.png" alt-text="A diagram that shows how data is ingested into a Log Analytics workspace and is aggregated and re-ingested into the workspace by using a summary rule." lightbox="media/summary-rules/summary-rule-azure-monitor.png":::
 
 You can aggregate data from any table, regardless of whether the table has an [Analytics or Basic data plan](basic-logs-query.md). Azure Monitor creates the destination table schema based on the query you define. If the destination table already exists, Azure Monitor appends any columns required to support the query results. All destination tables also include a set of standard fields with summary rule information, including: 
 

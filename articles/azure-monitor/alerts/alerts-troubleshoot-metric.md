@@ -124,8 +124,7 @@ When a metric value exhibits large fluctuations, dynamic thresholds may build a 
 
 If you want to alert on a specific metric but you can't see it when you create an alert rule, check to determine:
 
-- If you can't see any metrics for the resource, [check if the resource type is supported for metric alerts](./alerts-metric-near-real-time.md).
-- If you can see some metrics for the resource but can't find a specific metric, [check if that metric is available](/azure/azure-monitor/reference/supported-metrics/metrics-index). If so, see the metric description to check if it's only available in specific versions or editions of the resource.
+- If you can see some metrics for the resource but can't find a specific metric, [check if that metric is supported](/azure/azure-monitor/reference/supported-metrics/metrics-index). If so, see the metric description to check if it's only available in specific versions or editions of the resource.
 - If the metric isn't available for the resource, it might be available in the resource logs and can be monitored by using log alerts. For more information, see how to [collect and analyze resource logs from an Azure resource](../essentials/tutorial-resource-logs.md).
 
 ### Can't find the metric to alert on: Virtual machines guest metrics

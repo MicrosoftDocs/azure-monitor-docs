@@ -4,7 +4,7 @@ description: How to migrate from the metrics API to the getBatch API
 author: EdB-MSFT
 services: azure-monitor
 ms.topic: how-to
-ms.date: 06/27/2024
+ms.date: 01/23/2025
 ms.author: edbaynash
 ms.reviewer: priyamishra
 
@@ -12,7 +12,9 @@ ms.reviewer: priyamishra
 ---
 # How to migrate from the metrics API to the getBatch API
 
-Heavy use of the [metrics API](/rest/api/monitor/metrics/list?tabs=HTTP) can result in throttling or performance problems. Migrating to the [`metrics:getBatch`](/rest/api/monitor/metrics-batch/batch?tabs=HTTP) API allows you to query multiple resources in a single REST request. The two APIs share a common set of query parameter and response formats that make migration easy.
+Heavy use of the [metrics API](/rest/api/monitor/metrics/list?tabs=HTTP) can result in throttling or performance problems. Migrating to the [`metrics:getBatch`](/rest/api/monitor/metrics-batch/batch?tabs=HTTP) API allows you to query multiple resources in a single REST request. The two APIs share a common set of query parameter and response formats that make migration easy. 
+
+This article provides guidance on how to convert an existing metrics API call to a metrics:getBatch API call. For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
 
 ## Request format 
  The `metrics:getBatch` API request has the following format:
@@ -631,7 +633,7 @@ The individual metrics API requires a user have the [Monitoring Reader](/azure/r
 
 ### 529 throttling errors
 
-While the data plane batch API is designed to help mitigate throttling problems, 529 error codes can still occur which indicates that the metrics backend is currently throttling some customers. The recommended action is to implement an exponential backoff retry scheme.
+While the data plane batch API is designed to help mitigate throttling problems, 529 error codes can still occur. This error indicates that the metrics backend is currently throttling your requests. The recommended action is to implement an exponential backoff retry scheme.  For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
 
 ## Paging 
 Paging isn't supported by the metrics:getBatch API. The most common use-case for this API is frequently calling every few minutes for the same metrics and resources for the latest timeframe. Low latency is an important consideration so many customers parallelize their queries as much as possible. Paging forces customers into a sequential calling pattern that introduces additional query latency. In scenarios where requests return volumes of metric data where paging would be beneficial, it's recommended to split the query into multiple parallel queries.

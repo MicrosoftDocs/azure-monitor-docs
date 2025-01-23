@@ -41,15 +41,10 @@ Azure Monitor Logs calculates the billed size of a single record based on:
 The following [standard columns](log-standard-columns.md) are common to all tables and are excluded in the calculation of the record size for Analytics and Basic Logs. All other columns stored in Log Analytics are included in the calculation of the record size. The standard columns are:
 
 - `_ResourceId`
-
 - `_SubscriptionId`
-
 - `_ItemId`
-
 - `_IsBillable`
-
 - `_BilledSize`
-
 - `Type`
 
 For Auxiliary Logs, `_ItemId`, `_IsBillable` and `_BilledSize` are excluded from the size calculation. 
@@ -109,7 +104,7 @@ For more information on how to create a dedicated cluster and specify its billin
 
 You can configure certain tables in a Log Analytics workspace to use [Basic and Auxiliary table plans](logs-table-plans.md). Data in these tables has a significantly reduced ingestion charge. There's a charge to interactively query data in these tables (unlike tables which are in the Analytics table plan).
 
-The charge for querying data in Basic and Auxiliary tables is based on the GB of data scanned in performing the search.
+The charge for querying data in Basic and Auxiliary tables is based on the GB of data scanned in performing the search. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. 
 
 Charges for other features such as [long-term data retention](#log-data-retention) and [search jobs](#search-jobs) are the same for all table plans (Analytics, Basic and Auxiliary).  
 
@@ -128,7 +123,7 @@ For more information on data retention, including how to configure these setting
 
 ## Search jobs
 
-Retrieve data from long-term retention by running [search jobs](search-jobs.md). Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. Search jobs are billed by the number of GB of data scanned on each day that's accessed to perform the search.
+Retrieve data from long-term retention by running [search jobs](search-jobs.md). Search jobs are asynchronous queries that fetch records into a new search table within your workspace for further analytics. Search jobs are billed by the number of GB of data scanned on each day that's accessed to perform the search. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. 
 
 ## Log data restore
 
@@ -215,7 +210,7 @@ On your bill, the service is **Insight and Analytics** for Log Analytics usage i
 - **Data Included per Node**: The amount of ingested data that was covered by the aggregated data allocation. This meter is also used when the workspace is in all pricing tiers to show the amount of data covered by Microsoft Defender for Cloud.
 
 > [!NOTE]
-> To use the entitlements that come from purchasing OMS E1 Suite, OMS E2 Suite, or OMS Add-On for System Center, choose the Log Analytics Per Node pricing tier. If you do not own OMS licenses, you should not be using the Per Node pricing tier. 
+> To use the entitlements that come from purchasing OMS E1 Suite, OMS E2 Suite, or OMS Add-On for System Center, choose the Log Analytics Per Node pricing tier. **If you do not own OMS licenses, you should not be using the Per Node pricing tier**.
 
 ### Standard and Premium pricing tiers
 

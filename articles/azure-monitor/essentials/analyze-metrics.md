@@ -19,7 +19,7 @@ Azure Monitor metrics explorer is a component of the Azure portal that helps you
 
 Watch the following video for an overview of creating and working with metrics charts in Azure Monitor metrics explorer.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4qO59]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=01a767db-97ae-4ddf-b842-7fa5390bcf0d]
 
 ## Create a metric chart using PromQL
 
@@ -225,6 +225,9 @@ You can apply filters to charts whose metrics have dimensions. Consider a *Trans
 1. Select which dimension values you want to apply to the filter when you're plotting the chart. This example shows filtering out the successful storage transactions.
 
    :::image type="content" source="./media/analyze-metrics/filter-values.png" lightbox="./media/analyze-metrics/filter-values.png" alt-text="Screenshot that shows the dropdown list for filter values in metrics explorer.":::
+
+   > [!NOTE]
+   > If a dimension value isn't in the result set for the selected time range, it won't be available in the filter values dropdown list.
 
 1. After you select the filter values, click outside the **filter picker** to complete the action. The chart shows how many storage transactions have failed.
 
