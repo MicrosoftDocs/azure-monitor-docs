@@ -2,7 +2,7 @@
 title: Troubleshoot Container insights | Microsoft Docs
 description: This article describes how you can troubleshoot and resolve issues with Container insights.
 ms.topic: conceptual
-ms.date: 01/06/2025
+ms.date: 01/23/2025
 ms.reviewer: aul
 
 ---
@@ -368,7 +368,7 @@ There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to 
     # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection is not enabled.
     ```
 
-7. If this related to scale of the cluster, then ama-logs-rs memory limits needs to be bumped. Refer to [CI-Agent-Increase-Resource-Limits-ask](CI-Agent-Increase-Resource-Limits-ask.md)
+7. If you determine the issue is related to scale of the cluster, then ama-logs-rs memory limits needs to be increased. Open a support case with Microsoft to make this request.
 
 
 ## Latency issues
