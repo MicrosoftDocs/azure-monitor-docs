@@ -26,7 +26,7 @@ Event counters are supported across many platforms, including Windows, Linux, an
 
 ---
 
-## Using counters
+## Configuring counters
 
 ### [Performance counters](#tab/performancecounters)
 
@@ -297,15 +297,9 @@ Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` t
 
 ## Alerts
 
-### [Performance counters](#tab/performancecounters)
+Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you if a counter goes outside a limit you specify.
 
-Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you if a performance counter goes outside a limit you specify. To set an alert, open the **Alerts** pane and select **Add Alert**.
-
-### [Event counters](#tab/eventcounters)
-
-Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you if an event counter goes outside a limit you specify. Open the Ale**Alerts**rts pane and select **Add Alert**.
-
----
+To set an alert, open the **Alerts** pane and select **Add Alert**.
 
 ## Frequently asked questions
 
