@@ -18,19 +18,17 @@ ms.reviewer: rijolly
 
 ### [Performance counters](#tab/performancecounters)
 
-Performance counters provide pre-defined system and application-level metrics, such as CPU usage, memory consumption, and disk activity, which are native to Windows. These counters are ideal for monitoring standard performance metrics with minimal setup. They are most useful when tracking resource utilization or troubleshooting system-level bottlenecks. However, they lack flexibility for capturing custom application-specific metrics.
+Performance counters are available on Windows platforms and provide pre-defined system and application-level metrics, such as CPU usage, memory consumption, and disk activity. These counters are built into the Windows operating system and are ideal for monitoring standard performance metrics with minimal setup. They are best suited for tracking resource utilization or troubleshooting system-level bottlenecks in Windows-based applications. However, they do not support custom application-specific metrics.
 
 ### [Event counters](#tab/eventcounters)
 
-Event counters are lightweight, customizable metrics designed for modern .NET applications. They enable developers to define and monitor application-specific metrics, offering greater flexibility than performance counters. Event counters are suitable for scenarios where system metrics are insufficient, and custom telemetry is needed. However, they require explicit implementation and configuration, making them more effort-intensive to set up.
+Event counters are supported on across many platforms, including Windows, Linux, and macOS. They enable developers to define and monitor lightweight, customizable application-specific metrics, offering greater flexibility than performance counters. Event counters are ideal for scenarios where system metrics are insufficient, or detailed telemetry is required in cross-platform applications. However, they require explicit implementation and configuration, making them more effort-intensive to set up.
 
 ---
 
 ## Using counters
 
 ### [Performance counters](#tab/performancecounters)
-
-### System performance counters in Application Insights
 
 Windows provides a variety of [performance counters](/windows/desktop/perfctrs/about-performance-counters), such as those used to gather processor, memory, and disk usage statistics. You can also define your own performance counters. 
 
@@ -190,7 +188,7 @@ Support for performance counters in ASP.NET Core is limited:
 * [SDK](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) versions 2.4.1 and later collect performance counters if the application is running in Azure Web Apps (Windows).
 * SDK versions 2.7.1 and later collect performance counters if the application is running in Windows and targets `NETSTANDARD2.0` or later.
 * For applications that target the .NET Framework, all versions of the SDK support performance counters.
-* SDK versions 2.8.0 and later support the CPU/Memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux (and other non-Windows environments), use [EventCounters](eventcounters.md).
+* SDK versions 2.8.0 and later support the CPU/Memory counter in Linux. No other counter is supported in Linux. To get system counters in Linux (and other non-Windows environments), use event counters.
 
 ### [Event counters](#tab/eventcounters)
 
@@ -318,7 +316,7 @@ Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you 
 
 ### [Performance counters](#tab/performancecounters)
 
-### What's the difference between the Exception rate and Exceptions metrics?
+#### What's the difference between the Exception rate and Exceptions metrics?
 
 * `Exception rate`: The Exception rate is a system performance counter. The CLR counts all the handled and unhandled exceptions that are thrown and divides the total in a sampling interval by the length of the interval. The Application Insights SDK collects this result and sends it to the portal.
 * `Exceptions`: The Exceptions metric is a count of the `TrackException` reports received by the portal in the sampling interval of the chart. It includes only the handled exceptions where you've written `TrackException` calls in your code. It doesn't include all [unhandled exceptions](./asp-net-exceptions.md).
@@ -329,7 +327,7 @@ Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you 
 
 Live Metrics don't show EventCounters. Use Metric Explorer or Analytics to see the telemetry.
 
-### I have enabled Application Insights from Azure Web App Portal. Why can't I see EventCounters?
+#### I have enabled Application Insights from Azure Web App Portal. Why can't I see EventCounters?
 
  [Application Insights extension](./azure-web-apps.md) for ASP.NET Core doesn't yet support this feature.
 
