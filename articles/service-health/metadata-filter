@@ -1,0 +1,32 @@
+---
+title: Use Service Health to filter event notifications
+description: Information on how use the metadata to filter event notifications 
+ms.topic: overview
+ms.date: 01/23/2025
+---
+# Use Service Health to filter event notifications
+
+## Overview
+Given the volume of Service Health event communications, the Event Level field now includes metadata that offers supplementary details. This improvement enables users to quickly assess the importance of each alert. With this new feature, clients can filter, and sort events based on this metadata, allowing them to prioritize their responses more efficiently.
+
+## Who can see the Metadata fields
+Anyone who has access to the subscription as a reader can view and filter by Event Level.
+
+## Event Level Alert definitions
+### Outage
+|title|Definition|
+|-----|-----|
+|**Informational**|No current service availability impact, but possible future issues in a specific region.|
+|**Warning**|Potential service issues in a region that could impact availability or performance if high availability or disaster recovery is not used, or the issue persists.|
+|**Critical**|Immediate attention recommended. Widespread issues affecting multiple regions or services, risking failure of high availability or disaster recovery measures.|
+ 
+ 
+## EvenLevel for Service Issues
+|title|Definition|
+|-----|-----|
+|**Informational**|Awareness only for security or privacy-related matters as part of our commitment to transparency. No action is required.|
+|**Warning**|Security or privacy event with recommended actions that can be taken if desired.|
+|**Critical**|Immediate attention is recommended. This is a security or privacy event with significant risk where action is needed.|
+ 
+ You can filter by Metadata to see specific types using the 'Event Level' field.
+ ![A view of the filter options](../images/metada-screen.png "Service Issues")
