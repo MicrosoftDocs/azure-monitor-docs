@@ -4,7 +4,7 @@ description: This tutorial explains how to create a dashboard that visualizes da
 ms.topic: tutorial
 author: AbbyMSFT
 ms.author: abbyweisberg
-ms.date: 11/07/2023
+ms.date: 01/23/2025
 
 ms.custom: mvc
 ---
