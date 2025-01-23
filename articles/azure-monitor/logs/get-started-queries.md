@@ -91,11 +91,11 @@ To search for records that include a specific value in any of their columns:
 
 1. Open **Add** > **Search in table**.
 
-    :::image type="content" source="media/get-started-queries/logs-simple-search-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Search in table' highlighted." lightbox="media/get-started-queries/logs-simple-search-1.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-search-add.png" lightbox="media/get-started-queries/logs-simple-search-add.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Search in table' highlighted.":::
 
 1. Enter *Cryptographic*, then select **Apply**.
 
-    :::image type="content" source="media/get-started-queries/logs-simple-search-2.png" alt-text="Screenshot shows the Search field in simple mode." lightbox="media/get-started-queries/logs-simple-search-2.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-search-select.png" lightbox="media/get-started-queries/logs-simple-search-select.png" alt-text="Screenshot shows the Search field in simple mode.":::
 
 1. To only show 10 results, see [Limit results in simple mode](/azure/azure-monitor/logs/get-started-queries&tabs=simple#limit-results).
 
@@ -125,7 +125,7 @@ To return up to a specific number of records, you can limit the results:
 
 1. Pick one of the preset limits or enter a custom limit, then select **Apply**.
 
-:::image type="content" source="media/get-started-queries/logs-simple-limit.png" alt-text="Screenshot shows the Show dropdown in simple mode." lightbox="media/get-started-queries/logs-simple-limit.png":::
+:::image type="content" source="media/get-started-queries/logs-simple-limit.png" lightbox="media/get-started-queries/logs-simple-limit.png" alt-text="Screenshot shows the Show dropdown in simple mode.":::
 
 ---
 
@@ -172,13 +172,13 @@ To sort your results:
 
 1. Open **Add** > **Sort**.
 
-    :::image type="content" source="media/get-started-queries/logs-simple-sort-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with Sort highlighted." lightbox="media/get-started-queries/logs-simple-sort-1.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-sort-add.png" lightbox="media/get-started-queries/logs-simple-sort-add.png" alt-text="Screenshot shows the Add dropdown in simple mode with Sort highlighted.":::
 
 1. Pick a column to sort by.
 
 1. Choose **Ascending** or **Descending**, then select **Apply**.
 
-    :::image type="content" source="media/get-started-queries/logs-simple-sort-2.png" alt-text="Screenshot shows the Sort field in simple mode." lightbox="media/get-started-queries/logs-simple-sort-2.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-sort-select.png" lightbox="media/get-started-queries/logs-simple-sort-select.png" alt-text="Screenshot shows the Sort field in simple mode.":::
 
 1. Open **Add** > **Sort** again to sort by another column.
 
@@ -199,7 +199,7 @@ SecurityEvent
 
 The output looks like this example:
 
-:::image type="content" source="media/get-started-queries/logs-kql-top.png" lightbox="media/get-started-queries/logs-kql-top.png" alt-text="Screenshot that shows the top 10 records sorted in descending order." border="false":::
+:::image type="content" source="media/get-started-queries/logs-kql-top.png" lightbox="media/get-started-queries/logs-kql-top.png" alt-text="Screenshot that shows the top 10 records sorted in descending order.":::
 
 ### [Simple mode](#tab/simple)
 
@@ -235,11 +235,11 @@ To filter results in the `SecurityEvent` table to only show records where the `L
 
 1. Open **Add** and choose the column `Level`.
 
-    :::image type="content" source="media/get-started-queries/logs-simple-filter-1.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-1.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-filter-add.png" lightbox="media/get-started-queries/logs-simple-filter-add.png" alt-text="Screenshot that shows the Add filters menu that opens when you select Add in Log Analytics simple mode.":::
 
 1. In the **Operator** dropdown list, choose **Equals**. Enter the number `8` in the field below, then select **Apply**.
     
-    :::image type="content" source="media/get-started-queries/logs-simple-filter-2.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics simple mode." lightbox="media/get-started-queries/logs-simple-filter-2.png":::
+    :::image type="content" source="media/get-started-queries/logs-simple-filter-select.png" lightbox="media/get-started-queries/logs-simple-filter-select.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics simple mode.":::
 
 ---
 
@@ -293,7 +293,7 @@ You can specify a time range by using the time picker or a time filter.
 
 The time picker is displayed next to the **Run** button and indicates that you're querying records from only the last 24 hours. This default time range is applied to all queries. To get records from only the last hour, select **Last hour** and then run the query again.
 
-:::image type="content" source="media/get-started-queries/logs-kql-time.png" lightbox="media/get-started-queries/logs-kql-time.png" alt-text="Screenshot that shows the time picker and its list of time-range commands in KQL mode." border="false":::
+:::image type="content" source="media/get-started-queries/logs-kql-time.png" lightbox="media/get-started-queries/logs-kql-time.png" alt-text="Screenshot that shows the time picker and its list of time-range commands in KQL mode.":::
 
 ### Add a time filter to the query
 
@@ -313,7 +313,7 @@ In the preceding time filter, `ago(30m)` means "30 minutes ago." This query retu
 
 The time picker is displayed next to the **Run** button and indicates that you're querying records from only the last 24 hours. This default time range is applied to all queries. To get records from only the last hour, select **Last hour** and then run the query again.
 
-:::image type="content" source="media/get-started-queries/logs-simple-time.png" lightbox="media/get-started-queries/logs-simple-time.png" alt-text="Screenshot that shows the time picker and its list of time-range commands in simple mode." border="false":::
+:::image type="content" source="media/get-started-queries/logs-simple-time.png" lightbox="media/get-started-queries/logs-simple-time.png" alt-text="Screenshot that shows the time picker and its list of time-range commands in simple mode.":::
 
 ---
 
@@ -331,7 +331,7 @@ SecurityEvent
 
 The preceding example generates the following output:
 
-:::image type="content" source="media/get-started-queries/logs-kql-project.png" lightbox="media/get-started-queries/logs-kql-project.png" alt-text="Screenshot that shows the query 'project' results list." border="false":::
+:::image type="content" source="media/get-started-queries/logs-kql-project.png" lightbox="media/get-started-queries/logs-kql-project.png" alt-text="Screenshot that shows the query 'project' results list.":::
 
 You can also use `project` to rename columns and define new ones. The next example uses `project` to do the following:
 
@@ -351,11 +351,11 @@ You can manually select the columns you want to show in your results:
 
 1. Open **Add** > **Show columns**.
 
-    :::image type="content" source="media/get-started-queries/logs-simple-columns-1.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Show columns' highlighted." border="false":::
+    :::image type="content" source="media/get-started-queries/logs-simple-columns-add.png" lightbox="media/get-started-queries/logs-simple-columns-add.png" alt-text="Screenshot shows the Add dropdown in simple mode with 'Show columns' highlighted.":::
 
 1. Deselect `All`, then select the columns `TimeGenerated`, `Computer`, and `Activity`.
 
-    :::image type="content" source="media/get-started-queries/logs-simple-columns-2.png" lightbox="media/get-started-queries/logs-simple-columns-1.png" alt-text="Screenshot that shows the 'Show columns' selector." border="false":::
+    :::image type="content" source="media/get-started-queries/logs-simple-columns-select.png" lightbox="media/get-started-queries/logs-simple-columns-select.png" alt-text="Screenshot that shows the 'Show columns' selector.":::
 
 1. Select **Apply**.
 
@@ -409,7 +409,7 @@ To review all `Perf` records from the last, group them by `ObjectName`, and coun
     * **Select column:** ObjectName
     * **Operator:** count
 
-:::image type="content" source="media/get-started-queries/logs-simple-aggregate.png" lightbox="media/get-started-queries/logs-simple-aggregate.png" alt-text="Screenshot that shows the selected values for aggregations in simple mode." border="false":::
+:::image type="content" source="media/get-started-queries/logs-simple-aggregate.png" lightbox="media/get-started-queries/logs-simple-aggregate.png" alt-text="Screenshot that shows the selected values for aggregations in simple mode.":::
 
 ---
 
@@ -463,7 +463,7 @@ To calculate the average `CounterValue` for each computer:
     * **Operator:** avg
     * **Average:** CounterValue
 
-:::image type="content" source="media/get-started-queries/logs-simple-stat-calc.png" lightbox="media/get-started-queries/logs-simple-stat-calc.png" alt-text="Screenshot that shows the selected values for statistical calculations in simple mode." border="false":::
+:::image type="content" source="media/get-started-queries/logs-simple-stat-calc.png" lightbox="media/get-started-queries/logs-simple-stat-calc.png" alt-text="Screenshot that shows the selected values for statistical calculations in simple mode.":::
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
@@ -489,7 +489,7 @@ Perf
 
 To make the output clearer, you can select to display it as a time chart, which shows the available memory over time. To do so, switch to **Chart** view, open the **Chart formatting** sidebar to the right and select **Line** for **Chart type**:
 
-:::image type="content" source="media/get-started-queries/logs-kql-graph.png" lightbox="media/get-started-queries/logs-kql-graph.png" alt-text="Screenshot that shows the values of a query memory over time in KQL mode." border="false":::
+:::image type="content" source="media/get-started-queries/logs-kql-graph.png" lightbox="media/get-started-queries/logs-kql-graph.png" alt-text="Screenshot that shows the values of a query memory over time in KQL mode.":::
 
 ### [Simple mode](#tab/simple)
 
@@ -512,7 +512,7 @@ To make the output clearer, you can select to display it as a time chart, which 
 
 1. Switch to **Chart** view, open the **Chart formatting** sidebar to the right and select **Line** for **Chart type**:
 
-    :::image type="content" source="media/get-started-queries/logs-simple-graph.png" lightbox="media/get-started-queries/logs-simple-graph.png" alt-text="Screenshot that shows the values of a query memory over time in simple mode." border="false":::
+    :::image type="content" source="media/get-started-queries/logs-simple-graph.png" lightbox="media/get-started-queries/logs-simple-graph.png" alt-text="Screenshot that shows the values of a query memory over time in simple mode.":::
 
 ---
 
