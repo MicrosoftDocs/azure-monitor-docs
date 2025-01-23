@@ -113,7 +113,7 @@ GRANT SELECT ON mysql.* TO ‘monuser’@’localhost’;
 
 ### Define performance counters
 
-Once you configure the Log Analytics agent for Linux to send data to Azure Monitor, you must configure the performance counters to collect. Use the procedure in [Windows and Linux performance data sources in Azure Monitor](data-sources-performance-counters.md) with the counters in the following table.
+Once you configure the Log Analytics agent for Linux to send data to Azure Monitor, you must configure the performance counters to collect. Use the procedure in [Windows and Linux performance data sources in Azure Monitor](data-sources-asp-net-counters.md) with the counters in the following table.
 
 | Object Name    | Counter Name               |
 |:---------------|:---------------------------|
@@ -152,7 +152,7 @@ sudo /opt/microsoft/apache-cimprov/bin/apache_config.sh -u
 
 ### Define performance counters
 
-Once you configure the Log Analytics agent for Linux to send data to Azure Monitor, you must configure the performance counters to collect. Use the procedure in [Windows and Linux performance data sources in Azure Monitor](data-sources-performance-counters.md) with the counters in the following table.
+Once you configure the Log Analytics agent for Linux to send data to Azure Monitor, you must configure the performance counters to collect. Use the procedure in [Windows and Linux performance data sources in Azure Monitor](data-sources-asp-net-counters.md) with the counters in the following table.
 
 | Object Name         | Counter Name               |
 |:--------------------|:---------------------------|
@@ -168,5 +168,5 @@ Once you configure the Log Analytics agent for Linux to send data to Azure Monit
 
 ## Next steps
 
-* [Collect performance counters](data-sources-performance-counters.md) from Linux agents.
+* [Collect performance counters](data-sources-asp-net-counters.md) from Linux agents.
 * Learn about [log queries](../logs/log-query-overview.md) to analyze the data collected from data sources and solutions.

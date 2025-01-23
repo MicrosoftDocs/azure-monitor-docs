@@ -16,7 +16,7 @@ ms.reviewer: yagil
 
 Smart detection automatically analyzes the memory consumption of each process in your application. It can warn you about potential memory leaks or increased memory consumption.
 
-This feature requires no special setup other than [configuring performance counters](../app/performance-counters.md) for your app. It's active when your app generates enough memory performance counters telemetry (for example, Private Bytes).
+This feature requires no special setup other than [configuring performance counters](../app/asp-net-counters.md) for your app. It's active when your app generates enough memory performance counters telemetry (for example, Private Bytes).
 
 ## When would I get this type of smart detection notification?
 A typical notification follows a consistent increase:
