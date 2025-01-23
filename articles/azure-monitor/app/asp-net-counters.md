@@ -150,29 +150,6 @@ builder.Services.ConfigureTelemetryModule<PerformanceCollectorModule>((module, o
 var app = builder.Build();
 ```
 
-### Performance counters in Log Analytics
-You can search and display performance counter reports in [Log Analytics](../logs/log-query-overview.md).
-
-The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter. In the telemetry for each application, you see only the counters for that application. For example, to see what counters are available:
-
-```kusto
-performanceCounters | summarize count(), avg(value) by category, instance, counter
-```
-
-Here, `Instance` refers to the performance counter instance, not the role, or server machine instance. The performance counter instance name typically segments counters, such as processor time, by the name of the process or application.
-
-To get a chart of available memory over the recent period:
-
-```kusto
-performanceCounters | where counter == "Available Bytes" | summarize avg(value), min(value) by bin(timestamp, 1h) | render timechart
-```
-
-Like other telemetry, **performanceCounters** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. For example, to compare the performance of your app on the different machines:
-
-```kusto
-performanceCounters | where counter == "% Processor Time" and instance == "SendMetrics" | summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1d)
-```
-
 ### ASP.NET and Application Insights counts
 
 The next sections discuss ASP.NET and Application Insights counts.
@@ -266,13 +243,37 @@ applicationInsightsServiceOptions.EnableEventCounterCollectionModule = false;
 builder.Services.AddApplicationInsightsTelemetry(applicationInsightsServiceOptions);
 ```
 
-### Event counters in Metric Explorer
+---
 
-To view EventCounter metrics in [Metric Explorer](../essentials/metrics-charts.md), select Application Insights resource, and chose Log-based metrics as metric namespace. Then EventCounter metrics get displayed under Custom category.
+## Log Analytics queries
 
-### Event counters in Log Analytics
+### [Performance counters](#tab/performancecounters)
 
-You can also search and display event counter reports in [Log Analytics](../logs/log-query-overview.md), in the **customMetrics** table.
+You can search and display performance counter reports in [Log Analytics](../logs/log-query-overview.md).
+
+The **performanceCounters** schema exposes the `category`, `counter` name, and `instance` name of each performance counter. In the telemetry for each application, you see only the counters for that application. For example, to see what counters are available:
+
+```kusto
+performanceCounters | summarize count(), avg(value) by category, instance, counter
+```
+
+Here, `Instance` refers to the performance counter instance, not the role, or server machine instance. The performance counter instance name typically segments counters, such as processor time, by the name of the process or application.
+
+To get a chart of available memory over the recent period:
+
+```kusto
+performanceCounters | where counter == "Available Bytes" | summarize avg(value), min(value) by bin(timestamp, 1h) | render timechart
+```
+
+Like other telemetry, **performanceCounters** also has a column `cloud_RoleInstance` that indicates the identity of the host server instance on which your app is running. For example, to compare the performance of your app on the different machines:
+
+```kusto
+performanceCounters | where counter == "% Processor Time" and instance == "SendMetrics" | summarize avg(value) by cloud_RoleInstance, bin(timestamp, 1d)
+```
+
+### [Event counters](#tab/eventcounters)
+
+You can search and display event counter reports in [Log Analytics](../logs/log-query-overview.md), in the **customMetrics** table.
 
 For example, run the following query to see what counters are collected and available to query:
 
