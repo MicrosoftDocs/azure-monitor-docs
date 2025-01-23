@@ -7,7 +7,8 @@ ms.date: 01/23/2025
 # Use Service Health to filter event notifications
 
 ## Overview
-Given the volume of Service Health event communications, the Event Level field now includes metadata that offers supplementary details. This improvement enables users to quickly assess the importance of each alert. With this new feature, clients can filter, and sort events based on this metadata, allowing them to prioritize their responses more efficiently.
+Given the volume of Service Health event communications, the Event Level field now includes metadata that offers supplementary details. 
+This improvement enables users to quickly assess the importance of each alert. With this new feature, clients can filter, and sort events based on this metadata, allowing them to prioritize their responses more efficiently.
 
 ## Who can see the Metadata fields
 Anyone who has access to the subscription as a reader can view and filter by Event Level.
