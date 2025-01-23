@@ -297,7 +297,7 @@ Like other telemetry, **customMetrics** also has a column `cloud_RoleInstance` t
 
 ## Alerts
 
-Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn you if a counter goes outside a limit you specify.
+Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a counter goes outside a specified limit.
 
 To set an alert, open the **Alerts** pane and select **Add Alert**.
 
