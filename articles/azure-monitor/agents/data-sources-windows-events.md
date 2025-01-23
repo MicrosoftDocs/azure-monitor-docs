@@ -74,4 +74,4 @@ The following table provides different examples of log queries that retrieve Win
 
 * Configure Log Analytics to collect other [data sources](../agents/agent-data-sources.md) for analysis.
 * Learn about [log queries](../logs/log-query-overview.md) to analyze the data collected from data sources and solutions.
-* Configure [collection of performance counters](data-sources-asp-net-counters.md) from your Windows agents.
+* Configure [collection of performance counters](data-sources-performance-counters.md) from your Windows agents.

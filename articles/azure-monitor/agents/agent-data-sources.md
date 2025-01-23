@@ -29,8 +29,8 @@ The following table lists the agent data sources that are currently available wi
 | [Custom logs](data-sources-custom-logs.md) | Windows |&#8226; |  | |  |  | On arrival. |
 | [Custom logs](data-sources-custom-logs.md) | Linux   |&#8226; |  | |  |  | On arrival. |
 | [IIS logs](data-sources-iis-logs.md) | Windows |&#8226; |&#8226; |&#8226; |  |  |Depends on the Log File Rollover setting. |
-| [Performance counters](data-sources-asp-net-counters.md) | Windows |&#8226; |&#8226; |  |  |  |As scheduled, minimum of 10 seconds. |
-| [Performance counters](data-sources-asp-net-counters.md) | Linux |&#8226; |  |  |  |  |As scheduled, minimum of 10 seconds. |
+| [Performance counters](data-sources-performance-counters.md) | Windows |&#8226; |&#8226; |  |  |  |As scheduled, minimum of 10 seconds. |
+| [Performance counters](data-sources-performance-counters.md) | Linux |&#8226; |  |  |  |  |As scheduled, minimum of 10 seconds. |
 | [Syslog](data-sources-syslog.md) | Linux |&#8226; |  |  |  |  |From Azure Storage is 10 minutes. From agent is on arrival. |
 | [Windows Event logs](data-sources-windows-events.md) |Windows |&#8226; |&#8226; |&#8226; |  |&#8226; | On arrival. |
 
