@@ -80,7 +80,7 @@ The following table lists the types of data you can configure a Log Analytics wo
 | --- | --- |
 | [Windows Event logs](../agents/data-sources-windows-events.md) | Information sent to the Windows event logging system |
 | [Syslog](../agents/data-sources-syslog.md)                     | Information sent to the Linux event logging system |
-| [Performance](../data-sources-performance-counters.md)  | Numerical values measuring performance of different aspects of operating system and workloads |
+| [Performance](data-sources-performance-counters.md)  | Numerical values measuring performance of different aspects of operating system and workloads |
 | [IIS logs](../agents/data-sources-iis-logs.md)                 | Usage information for IIS websites running on the guest operating system |
 | [Custom logs](../agents/data-sources-custom-logs.md)           | Events from text files on both Windows and Linux computers |
 
