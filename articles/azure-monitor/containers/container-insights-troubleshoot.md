@@ -90,7 +90,7 @@ Check if the Log Analytics workspace is configured for local authentication with
 When the daily cap is limit is met for a Log Analytics workspace, it will stop collecting data until the reset time. See [Log Analytics Daily Cap](../logs/daily-cap.md).
 
 ### DCR not deployed with Terraform
-If Containter insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights](./kubernetes-monitoring-enable.md?tabs=terraform#enable-container-insights).
+If Container insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights](./kubernetes-monitoring-enable.md?tabs=terraform#enable-container-insights).
 
 ### Container insights not reporting any information
 Use the following steps if you can't view status information or no results are returned from a log query.
@@ -197,7 +197,7 @@ Use the following steps if you can't view status information or no results are r
 
 Container insights agent pods use the `cAdvisor` endpoint on the node agent to gather performance metrics. Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` or  `cAdvisor unsecure port: 10255` to be opened on all nodes in the cluster to collect performance metrics. See [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites).
 
-### Image and Name values notpopulated in the ContainerLog table
+### Image and Name values not populated in the ContainerLog table
 
 For agent version `ciprod12042019` and later, these two properties aren't populated by default for every log line to minimize cost incurred on log data collected. You can either enable collection of these properties or modify your queries to include these properties from other tables.
 
@@ -257,7 +257,7 @@ There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to 
 
     # If it's configured, the output will be similar to "Using config map value: PODS_CHUNK_SIZE = 10"
     ```
-2. If the cluster is already configured for a smaller `PODS_CHUNK_SIZE` value, then you need to enabled the fluster for large cluster.
+2. If the cluster is already configured for a smaller `PODS_CHUNK_SIZE` value, then you need to enable the cluster for large cluster.
 
 3. If the cluster is using the default `PODS_CHUNK_SIZE=1000`, then check if the cluster has a large number of pods or nodes.
 
@@ -368,7 +368,7 @@ There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to 
     # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection is not enabled.
     ```
 
-7. If you determine the issue is related to scale of the cluster, then ama-logs-rs memory limits needs to be increased. Open a support case with Microsoft to make this request.
+7. If you determine the issue is related to scale of the cluster, then ama-logs-rs memory limit needs to be increased. Open a support case with Microsoft to make this request.
 
 
 ## Latency issues
@@ -389,7 +389,7 @@ KubePodInventory #Update this table name to the one you want to check
 | project Computer, max_AgentLatency, max_ingestionLatency = (max_E2EIngestionLatency -  max_AgentLatency),max_E2EIngestionLatency
 ```
 
-If are seeing high agent latencies, check if you configured a different log collection interval than default of 60 seconds in the Container Insights DCR.
+If you're seeing high agent latencies, check if you configured a different log collection interval than default of 60 seconds in the Container Insights DCR.
 
 ``` sh
 # set the subscriptionId of the cluster
