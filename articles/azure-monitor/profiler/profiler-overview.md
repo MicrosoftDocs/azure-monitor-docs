@@ -3,7 +3,7 @@ title: Analyze application performance traces with Azure Monitor Application Ins
 description: Identify the hot path in your web server code with a low-footprint .NET Profiler.
 ms.contributor: charles.weininger
 ms.topic: conceptual
-ms.date: 08/15/2024
+ms.date: 01/24/2025
 ms.reviewer: ryankahng
 ---
 
@@ -57,7 +57,6 @@ If you've enabled the Profiler for .NET but aren't seeing traces, see the [Troub
 - **Profiling web apps**:
    - Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
    - You can attach only one profiler to each web app.
-   - .NET Profiler on Linux is only supported on Windows-based web apps.
 
 ## Next steps
 Learn how to enable the .NET Profiler on your Azure service:
