@@ -112,8 +112,9 @@ In addition to identifying server processes to optimize, Application Insights ca
 > [!NOTE]
 > Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
 
-
 ---
+
+## End-to-end transaction details
 
 1. The details of the failed request show the Gantt chart which shows two exceptions in this transaction. Selecting an exception shows additional information like **Exception Properties** and the **Call Stack**.
 
