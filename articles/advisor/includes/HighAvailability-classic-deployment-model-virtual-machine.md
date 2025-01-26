@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Classic deployment model virtual machine
@@ -20,7 +20,13 @@ Cloud Services (classic) is retiring. To avoid any loss of data or business cont
   
 **Potential benefits**: Continuity of your service  
 
-For more information, see [Migrate Azure Cloud Services (classic) to Azure Cloud Services (extended support)](https://aka.ms/ExternalRetirementEmailMay2022)  
+**Impact:** Medium
+  
+For more information, see [Migrate Azure Cloud Services (classic) to Azure Cloud Services (extended support) ](https://aka.ms/ExternalRetirementEmailMay2022)  
+
+ResourceType: microsoft.classiccompute/domainnames  
+Recommendation ID: 13ff4efb-6c84-4684-8838-52c123e3e3a2  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--13ff4efb-6c84-4684-8838-52c123e3e3a2_end-->
 

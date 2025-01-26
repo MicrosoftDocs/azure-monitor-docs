@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Data Explorer
@@ -20,7 +20,13 @@ Service failed to install or resume due to virtual network (VNet) issues. To res
   
 **Potential benefits**: Improve reliability, availability, performance, and new feature capabilities  
 
-For more information, see [Troubleshoot access, ingestion, and operation of your Azure Data Explorer cluster in your virtual network](/azure/data-explorer/vnet-deploy-troubleshoot)  
+**Impact:** High
+  
+For more information, see [Troubleshoot access, ingestion, and operation of your Azure Data Explorer cluster in your virtual network - Azure Data Explorer ](/azure/data-explorer/vnet-deploy-troubleshoot)  
+
+ResourceType: microsoft.kusto/clusters  
+Recommendation ID: fa2649e9-e1a5-4d07-9b26-51c080d9a9ba  
+Subcategory: Other
 
 <!--fa2649e9-e1a5-4d07-9b26-51c080d9a9ba_end-->
 
@@ -32,7 +38,13 @@ If a subnet isn’t delegated, the associated Azure service won’t be able to o
   
 **Potential benefits**: Improve reliability, availability, performance, and new feature capabilities  
 
-For more information, see [What is subnet delegation?](/azure/virtual-network/subnet-delegation-overview)  
+**Impact:** High
+  
+For more information, see [What is subnet delegation in Azure virtual network? ](/azure/virtual-network/subnet-delegation-overview)  
+
+ResourceType: microsoft.kusto/clusters  
+Recommendation ID: f2bcadd1-713b-4acc-9810-4170a5d01dea  
+Subcategory: Other
 
 <!--f2bcadd1-713b-4acc-9810-4170a5d01dea_end-->
 

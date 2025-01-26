@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Workloads
@@ -20,7 +20,13 @@ We have observed that your Hyperspace Web servers in the Virtual Machine Scale S
   
 **Potential benefits**: High availability and on-demand large scale for Hyperspace web servers in Epic DB  
 
-For more information, see [Create a Virtual Machine Scale Set that uses Availability Zones](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones?tabs=cli-1%2Cportal-2)  
+**Impact:** Medium
+  
+For more information, see [Create an Azure scale set that uses Availability Zones - Azure Virtual Machine Scale Sets ](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones?tabs=cli-1%2Cportal-2)  
+
+ResourceType: microsoft.workloads/epicvirtualinstances/hyperspacewebinstances  
+Recommendation ID: dfa50c39-104a-418b-873a-c145fe521c9b  
+Subcategory: HighAvailability
 
 <!--dfa50c39-104a-418b-873a-c145fe521c9b_end-->
 
@@ -32,7 +38,13 @@ We have observed that your Citrix VDI servers aren't configured Local host Cache
   
 **Potential benefits**: Seamless connection brokering operations  
 
+**Impact:** Medium
   
+  
+
+ResourceType: microsoft.workloads/epicvirtualinstances/presentationinstances  
+Recommendation ID: f3d23f88-aee2-4b5a-bfd6-65b22bd70fc0  
+Subcategory: HighAvailability
 
 <!--f3d23f88-aee2-4b5a-bfd6-65b22bd70fc0_end-->
 
@@ -44,7 +56,13 @@ MPSQL servers with an Always On availability group have better availability. You
   
 **Potential benefits**: Improved Database availability and resource use  
 
-For more information, see [What is an Always On availability group?](/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server?view=sql-server-ver16#Benefits)  
+**Impact:** Medium
+  
+For more information, see [What is an Always On availability group? - SQL Server Always On ](/sql/database-engine/availability-groups/windows/overview-of-always-on-availability-groups-sql-server?view=sql-server-ver16#Benefits)  
+
+ResourceType: microsoft.workloads/epicvirtualinstances/sharedinstances  
+Recommendation ID: 3ca22452-0f8f-4701-a313-a2d83334e3cc  
+Subcategory: HighAvailability
 
 <!--3ca22452-0f8f-4701-a313-a2d83334e3cc_end-->
 
@@ -56,7 +74,13 @@ Verify high availability configuration for SAP application server of production 
   
 **Potential benefits**: Minimize downtime to enhance system availability  
 
-For more information, see [High-availability architecture and scenarios for SAP NetWeaver](/azure/sap/workloads/sap-high-availability-architecture-scenarios#overview-of-high-availability)  
+**Impact:** High
+  
+For more information, see [Azure VMs HA architecture and scenarios for SAP NetWeaver ](/azure/sap/workloads/sap-high-availability-architecture-scenarios#overview-of-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/applicationinstances  
+Recommendation ID: 90a86c8e-efab-47a1-bb4d-63f231b15292  
+Subcategory: HighAvailability
 
 <!--90a86c8e-efab-47a1-bb4d-63f231b15292_end-->
 
@@ -68,7 +92,13 @@ Verify high availability configuration across multiple availability zones within
   
 **Potential benefits**: Minimize downtime to enhance system availability  
 
-For more information, see [SAP workload configurations with Azure Availability Zones](/azure/sap/workloads/high-availability-zones)  
+**Impact:** High
+  
+For more information, see [SAP workload configurations with Azure Availability Zones ](/azure/sap/workloads/high-availability-zones)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/applicationinstances  
+Recommendation ID: b914567c-cfc4-42a5-8d16-939b77b6b4d0  
+Subcategory: HighAvailability
 
 <!--b914567c-cfc4-42a5-8d16-939b77b6b4d0_end-->
 
@@ -80,7 +110,13 @@ Use Premium Storage or Ultra Disks for SAP application server.
   
 **Potential benefits**: Maximize the Azure single VM SLA  
 
-For more information, see [High-availability architecture and scenarios for SAP NetWeaver](/azure/sap/workloads/sap-high-availability-architecture-scenarios)  
+**Impact:** High
+  
+For more information, see [Azure VMs HA architecture and scenarios for SAP NetWeaver ](/azure/sap/workloads/sap-high-availability-architecture-scenarios)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/applicationinstances  
+Recommendation ID: a7202ec4-8a6e-45ef-9b6e-df2486bcaa86  
+Subcategory: HighAvailability
 
 <!--a7202ec4-8a6e-45ef-9b6e-df2486bcaa86_end-->
 
@@ -92,7 +128,13 @@ To prevent load balancer timeout, make sure that all Azure Load Balancing Rules 
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 45c2994f-a01d-4024-843e-a2a84dae48b4  
+Subcategory: HighAvailability
 
 <!--45c2994f-a01d-4024-843e-a2a84dae48b4_end-->
 
@@ -104,7 +146,13 @@ For port resuse and better high availability, enable floating IP in the load bal
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: aec9b9fb-145f-4af8-94f3-7fdc69762b72  
+Subcategory: HighAvailability
 
 <!--aec9b9fb-145f-4af8-94f3-7fdc69762b72_end-->
 
@@ -116,7 +164,13 @@ For port resuse and better high availability, enable HA ports in the load balanc
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: c3811f93-a1a5-4a84-8fba-dd700043cc42  
+Subcategory: HighAvailability
 
 <!--c3811f93-a1a5-4a84-8fba-dd700043cc42_end-->
 
@@ -128,7 +182,13 @@ Disable TCP timestamps on VMs placed behind AzurEnabling TCP timestamps will cau
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [https://launchpad.support.sap.com/#/notes/2382421](https://launchpad.support.sap.com/#/notes/2382421)  
+**Impact:** Medium
+  
+  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 27899d14-ac62-41f4-a65d-e6c2a5af101b  
+Subcategory: Other
 
 <!--27899d14-ac62-41f4-a65d-e6c2a5af101b_end-->
 
@@ -140,7 +200,13 @@ In a Pacemaker cluster, the implementation of node level fencing is done using a
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 28a00e1e-d0ad-452f-ad58-95e6c584e594  
+Subcategory: HighAvailability
 
 <!--28a00e1e-d0ad-452f-ad58-95e6c584e594_end-->
 
@@ -152,7 +218,13 @@ The corosync token setting determines the timeout that is used directly, or as a
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: deede7ea-68c5-4fb9-8f08-5e706f88ac67  
+Subcategory: Other
 
 <!--deede7ea-68c5-4fb9-8f08-5e706f88ac67_end-->
 
@@ -164,7 +236,13 @@ For a two node HA cluster, set the quorum 'expected-votes' parameter to '2' as r
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 35ef8bba-923e-44f3-8f06-691deb679468  
+Subcategory: HighAvailability
 
 <!--35ef8bba-923e-44f3-8f06-691deb679468_end-->
 
@@ -176,7 +254,13 @@ Concurrent fencing enables the fencing operations to be performed in parallel, w
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 0fffcdb4-87db-44f2-956f-dc9638248659  
+Subcategory: Other
 
 <!--0fffcdb4-87db-44f2-956f-dc9638248659_end-->
 
@@ -188,7 +272,13 @@ In a Pacemaker cluster, the implementation of node level fencing is done using a
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 6921340e-baa1-424f-80d5-c07bbac3cf7c  
+Subcategory: HighAvailability
 
 <!--6921340e-baa1-424f-80d5-c07bbac3cf7c_end-->
 
@@ -200,7 +290,13 @@ The ‘stonith-timeout’ specifies how long the cluster waits for a STONITH act
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 4eb10096-942e-402d-b4a6-e4e271c87a02  
+Subcategory: Other
 
 <!--4eb10096-942e-402d-b4a6-e4e271c87a02_end-->
 
@@ -212,7 +308,13 @@ The corosync token setting determines the timeout that is used directly, or as a
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 9f30eb2b-6a6f-4fa8-89dc-85a395c31233  
+Subcategory: Other
 
 <!--9f30eb2b-6a6f-4fa8-89dc-85a395c31233_end-->
 
@@ -224,7 +326,13 @@ The corosync token_retransmits_before_loss_const determines how many token retra
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: f32b8f89-fb3c-4030-bd4a-0a16247db408  
+Subcategory: Other
 
 <!--f32b8f89-fb3c-4030-bd4a-0a16247db408_end-->
 
@@ -236,7 +344,13 @@ For more information, see [High availability for SAP HANA on Azure VMs on SUSE L
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: fed84141-4942-49b3-8b0c-73a8b352f754  
+Subcategory: Other
 
 <!--fed84141-4942-49b3-8b0c-73a8b352f754_end-->
 
@@ -248,7 +362,13 @@ The corosync 'consensus' parameter specifies in milliseconds how long to wait fo
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 73227428-640d-4410-aec4-bac229a2b7bd  
+Subcategory: Other
 
 <!--73227428-640d-4410-aec4-bac229a2b7bd_end-->
 
@@ -260,7 +380,13 @@ The corosync 'max_messages' constant specifies the maximum number of messages th
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 14a889a6-374f-4bd4-8add-f644e3fe277d  
+Subcategory: Other
 
 <!--14a889a6-374f-4bd4-8add-f644e3fe277d_end-->
 
@@ -272,7 +398,13 @@ For a two node HA cluster, set the quorum 'expected_votes' parameter to 2 as rec
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 89a9ddd9-f9bf-47e4-b5f7-a0a4edfa0cdb  
+Subcategory: HighAvailability
 
 <!--89a9ddd9-f9bf-47e4-b5f7-a0a4edfa0cdb_end-->
 
@@ -284,7 +416,13 @@ For a two node HA cluster, set the quorum parameter 'two_node' to 1 as recommend
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 2030a15b-ff0b-47c3-b934-60072ccda75e  
+Subcategory: HighAvailability
 
 <!--2030a15b-ff0b-47c3-b934-60072ccda75e_end-->
 
@@ -296,7 +434,13 @@ Concurrent fencing enables the fencing operations to be performed in parallel, w
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: dc19b2c9-0770-4929-8f63-81c07fe7b6f3  
+Subcategory: Other
 
 <!--dc19b2c9-0770-4929-8f63-81c07fe7b6f3_end-->
 
@@ -308,7 +452,13 @@ If you're using Azure fence agent for fencing with either managed identity or se
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: cb56170a-0ecb-420a-b2c9-5c4878a0132a  
+Subcategory: HighAvailability
 
 <!--cb56170a-0ecb-420a-b2c9-5c4878a0132a_end-->
 
@@ -320,7 +470,13 @@ For reliable function of the Pacemaker for ASCS HA set the 'stonith-timeout' to 
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 05747c68-715f-4c8f-b027-f57a931cc07a  
+Subcategory: HighAvailability
 
 <!--05747c68-715f-4c8f-b027-f57a931cc07a_end-->
 
@@ -332,7 +488,13 @@ The softdog timer is loaded as a kernel module in linux OS. This timer  triggers
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 88261a1a-6a32-4fb6-8bbd-fcd60fdfcab6  
+Subcategory: HighAvailability
 
 <!--88261a1a-6a32-4fb6-8bbd-fcd60fdfcab6_end-->
 
@@ -344,7 +506,13 @@ The softdog timer is loaded as a kernel module in linux OS. This timer  triggers
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 3730bc11-c81c-43eb-896a-8fce0bac139d  
+Subcategory: HighAvailability
 
 <!--3730bc11-c81c-43eb-896a-8fce0bac139d_end-->
 
@@ -356,7 +524,13 @@ Verify high availability configuration for SAP central services instance of prod
   
 **Potential benefits**: Minimize downtime to enhance system availability  
 
-For more information, see [High-availability architecture and scenarios for SAP NetWeaver](/azure/sap/workloads/sap-high-availability-architecture-scenarios#overview-of-high-availability)  
+**Impact:** High
+  
+For more information, see [Azure VMs HA architecture and scenarios for SAP NetWeaver ](/azure/sap/workloads/sap-high-availability-architecture-scenarios#overview-of-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: d2c08f71-906b-4915-a08e-c56215913fb2  
+Subcategory: HighAvailability
 
 <!--d2c08f71-906b-4915-a08e-c56215913fb2_end-->
 
@@ -368,7 +542,13 @@ Verify high availability configuration across multiple availability zones within
   
 **Potential benefits**: Minimize downtime to enhance availability  
 
-For more information, see [SAP workload configurations with Azure Availability Zones](/azure/sap/workloads/high-availability-zones)  
+**Impact:** High
+  
+For more information, see [SAP workload configurations with Azure Availability Zones ](/azure/sap/workloads/high-availability-zones)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: 9db6dd7f-af0e-45aa-89df-d35062baaefb  
+Subcategory: HighAvailability
 
 <!--9db6dd7f-af0e-45aa-89df-d35062baaefb_end-->
 
@@ -380,7 +560,13 @@ Use Premium Storage or Ultra Disks for the SAP central services instance.
   
 **Potential benefits**: Maximize the Azure single VM SLA  
 
-For more information, see [High-availability architecture and scenarios for SAP NetWeaver](/azure/sap/workloads/sap-high-availability-architecture-scenarios)  
+**Impact:** High
+  
+For more information, see [Azure VMs HA architecture and scenarios for SAP NetWeaver ](/azure/sap/workloads/sap-high-availability-architecture-scenarios)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/centralinstances  
+Recommendation ID: bbdfaf94-719f-4cb2-897a-9e237007328a  
+Subcategory: HighAvailability
 
 <!--bbdfaf94-719f-4cb2-897a-9e237007328a_end-->
 
@@ -392,7 +578,13 @@ To prevent load balancer timeout, ensure that all Azure Load Balancing Rules 'Id
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 1c1deb1c-ae1b-49a7-88d3-201285ad63b6  
+Subcategory: HighAvailability
 
 <!--1c1deb1c-ae1b-49a7-88d3-201285ad63b6_end-->
 
@@ -404,7 +596,13 @@ For more flexible routing, enable floating IP in the load balancing rules for th
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: cca36756-d938-4f3a-aebf-75358c7c0622  
+Subcategory: HighAvailability
 
 <!--cca36756-d938-4f3a-aebf-75358c7c0622_end-->
 
@@ -416,7 +614,13 @@ For enhanced scalability, enable HA ports in the Load balancing rules for HA set
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+**Impact:** Medium
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability#:~:text=To%20set%20up%20standard%20load%20balancer%2C%20follow%20these%20configuration%20steps)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: a5ac35c2-a299-4864-bfeb-09d2348bda68  
+Subcategory: HighAvailability
 
 <!--a5ac35c2-a299-4864-bfeb-09d2348bda68_end-->
 
@@ -428,7 +632,13 @@ Disable TCP timestamps on VMs placed behind Azure Load Balancer. Enabling TCP ti
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [Azure Load Balancer health probes](/azure/load-balancer/load-balancer-custom-probe-overview#:~:text=Don%27t%20enable%20TCP,must%20be%20disabled)  
+**Impact:** Medium
+  
+For more information, see [Azure Load Balancer health probes ](/azure/load-balancer/load-balancer-custom-probe-overview#:~:text=Don%27t%20enable%20TCP,must%20be%20disabled)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 760ba688-69ea-431b-afeb-13683a03f0c2  
+Subcategory: Other
 
 <!--760ba688-69ea-431b-afeb-13683a03f0c2_end-->
 
@@ -440,7 +650,13 @@ Ensure high availability configuration for SAP database instance of production S
   
 **Potential benefits**: Minimize downtime to enhance system availability  
 
-For more information, see [High-availability architecture and scenarios for SAP NetWeaver](/azure/sap/workloads/sap-high-availability-architecture-scenarios#overview-of-high-availability)  
+**Impact:** High
+  
+For more information, see [Azure VMs HA architecture and scenarios for SAP NetWeaver ](/azure/sap/workloads/sap-high-availability-architecture-scenarios#overview-of-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: c16626fe-2b55-4e01-9ddf-7d25f694f2ef  
+Subcategory: HighAvailability
 
 <!--c16626fe-2b55-4e01-9ddf-7d25f694f2ef_end-->
 
@@ -452,7 +668,13 @@ Verify high availability configuration across multiple availability zones within
   
 **Potential benefits**: Minimize downtime to enhance system availability  
 
-For more information, see [SAP workload configurations with Azure Availability Zones](/azure/sap/workloads/high-availability-zones)  
+**Impact:** High
+  
+For more information, see [SAP workload configurations with Azure Availability Zones ](/azure/sap/workloads/high-availability-zones)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: ab3fc753-4f6e-481f-a42a-7d9a85c56b43  
+Subcategory: HighAvailability
 
 <!--ab3fc753-4f6e-481f-a42a-7d9a85c56b43_end-->
 
@@ -464,7 +686,13 @@ Use Premium Storage or Ultra Disks for the SAP database instance
   
 **Potential benefits**: Maximize the Azure single VM SLA  
 
-For more information, see [High-availability architecture and scenarios for SAP NetWeaver](/azure/sap/workloads/sap-high-availability-architecture-scenarios)  
+**Impact:** High
+  
+For more information, see [Azure VMs HA architecture and scenarios for SAP NetWeaver ](/azure/sap/workloads/sap-high-availability-architecture-scenarios)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 4a047f75-39f1-4ec7-a5e7-2261d1741b0c  
+Subcategory: HighAvailability
 
 <!--4a047f75-39f1-4ec7-a5e7-2261d1741b0c_end-->
 
@@ -476,7 +704,13 @@ The PREFER_SITE_TAKEOVER parameter in SAP HANA defines if the HANA system replic
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 255e9f7b-db3a-4a67-b87e-6fdc36ea070d  
+Subcategory: HighAvailability
 
 <!--255e9f7b-db3a-4a67-b87e-6fdc36ea070d_end-->
 
@@ -488,7 +722,13 @@ In a Pacemaker cluster, the implementation of node level fencing is done using S
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 4594198b-b114-4865-8ed8-be06db945408  
+Subcategory: HighAvailability
 
 <!--4594198b-b114-4865-8ed8-be06db945408_end-->
 
@@ -500,7 +740,13 @@ The corosync token setting determines the timeout that is used directly, or as a
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 604f3822-6a28-47db-b31c-4b0dbe317625  
+Subcategory: Other
 
 <!--604f3822-6a28-47db-b31c-4b0dbe317625_end-->
 
@@ -512,7 +758,13 @@ For a two node HA cluster, set the quorum votes to '2' as recommended for SAP on
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 937a1997-fc2d-4a3a-a9f6-e858a80921fd  
+Subcategory: HighAvailability
 
 <!--937a1997-fc2d-4a3a-a9f6-e858a80921fd_end-->
 
@@ -524,7 +776,13 @@ Concurrent fencing enables the fencing operations to be performed in parallel, w
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability of SAP HANA on Azure VMs on Red Hat Enterprise Linux](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+**Impact:** High
+  
+For more information, see [High availability of SAP HANA on Azure VMs on RHEL ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability-rhel)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 6cc63594-c89f-4535-b878-cdd13659cfc5  
+Subcategory: Other
 
 <!--6cc63594-c89f-4535-b878-cdd13659cfc5_end-->
 
@@ -536,7 +794,13 @@ The PREFER_SITE_TAKEOVER parameter in SAP HANA topology defines if the HANA SR r
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 230fddab-0864-4c5e-bb27-037bec7c46c6  
+Subcategory: HighAvailability
 
 <!--230fddab-0864-4c5e-bb27-037bec7c46c6_end-->
 
@@ -548,7 +812,13 @@ In a Pacemaker cluster, the implementation of node level fencing is done using S
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 210d0895-074c-4cc7-88de-b0a9e00820c6  
+Subcategory: HighAvailability
 
 <!--210d0895-074c-4cc7-88de-b0a9e00820c6_end-->
 
@@ -560,7 +830,13 @@ The ‘stonith-timeout’ specifies how long the cluster waits for a STONITH act
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 64e5e17e-640e-430f-987a-721f133dbd5c  
+Subcategory: HighAvailability
 
 <!--64e5e17e-640e-430f-987a-721f133dbd5c_end-->
 
@@ -572,7 +848,13 @@ The corosync token setting determines the timeout that is used directly, or as a
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: a563e3ad-b6b5-4ec2-a444-c4e30800b8cf  
+Subcategory: Other
 
 <!--a563e3ad-b6b5-4ec2-a444-c4e30800b8cf_end-->
 
@@ -584,7 +866,13 @@ The corosync token_retransmits_before_loss_const determines how many token retra
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 99681175-0124-44de-93ae-edc08f9dc0a8  
+Subcategory: Other
 
 <!--99681175-0124-44de-93ae-edc08f9dc0a8_end-->
 
@@ -596,7 +884,13 @@ The 'corosync join' timeout specifies in milliseconds how long to wait for join 
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: b8ac170f-433e-4d9c-8b75-f7070a2a5c92  
+Subcategory: Other
 
 <!--b8ac170f-433e-4d9c-8b75-f7070a2a5c92_end-->
 
@@ -608,7 +902,13 @@ The corosync 'consensus' parameter specifies in milliseconds how long to wait fo
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 63e27ad9-1804-405a-97eb-d784686ffbe3  
+Subcategory: Other
 
 <!--63e27ad9-1804-405a-97eb-d784686ffbe3_end-->
 
@@ -620,7 +920,13 @@ The corosync 'max_messages' constant specifies the maximum number of messages th
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 7ce9ff70-f684-47a2-b26f-781f80b1bccc  
+Subcategory: Other
 
 <!--7ce9ff70-f684-47a2-b26f-781f80b1bccc_end-->
 
@@ -632,7 +938,13 @@ Set the expected votes parameter to '2' in the cluster configuration in HA enabl
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 37240e75-9493-433a-8671-2e2582584875  
+Subcategory: HighAvailability
 
 <!--37240e75-9493-433a-8671-2e2582584875_end-->
 
@@ -644,7 +956,13 @@ For a two node HA cluster, set the quorum parameter 'two_node' to 1 as recommend
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 41cd63e2-69a4-4a4f-bb69-1d3f832001f9  
+Subcategory: HighAvailability
 
 <!--41cd63e2-69a4-4a4f-bb69-1d3f832001f9_end-->
 
@@ -656,7 +974,13 @@ Concurrent fencing enables the fencing operations to be performed in parallel, w
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: d763b894-7641-4c5d-9bc3-6f2515a6eb67  
+Subcategory: Other
 
 <!--d763b894-7641-4c5d-9bc3-6f2515a6eb67_end-->
 
@@ -668,7 +992,13 @@ If you're using Azure fence agent for fencing with either managed identity or se
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 1f4b5e87-69e9-470a-8245-f337fd0d5528  
+Subcategory: HighAvailability
 
 <!--1f4b5e87-69e9-470a-8245-f337fd0d5528_end-->
 
@@ -680,7 +1010,13 @@ If you're using the Azure fence agent for fencing with either managed identity o
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 943f7572-1884-4120-808d-ac2a3e70e33a  
+Subcategory: HighAvailability
 
 <!--943f7572-1884-4120-808d-ac2a3e70e33a_end-->
 
@@ -692,7 +1028,13 @@ The softdog timer is loaded as a kernel module in Linux OS. This timer  triggers
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: 63233341-73a2-4180-b57f-6f83395161b9  
+Subcategory: HighAvailability
 
 <!--63233341-73a2-4180-b57f-6f83395161b9_end-->
 
@@ -704,7 +1046,13 @@ The softdog timer is loaded as a kernel module in Linux OS. This timer  triggers
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
-For more information, see [High availability for SAP HANA on Azure VMs on SUSE Linux Enterprise Server](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+**Impact:** High
+  
+For more information, see [High availability for SAP HANA on Azure VMs on SLES ](/azure/virtual-machines/workloads/sap/sap-hana-high-availability)  
+
+ResourceType: microsoft.workloads/sapvirtualinstances/databaseinstances  
+Recommendation ID: b27248cd-67dc-4824-b162-4563adaa6d70  
+Subcategory: HighAvailability
 
 <!--b27248cd-67dc-4824-b162-4563adaa6d70_end-->
 

@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure AI Search
@@ -20,7 +20,13 @@ When you exceed your storage quota, indexing operations stop working. You're clo
   
 **Potential benefits**: capability to handle more data  
 
-For more information, see [Service limits in Azure AI Search](https://aka.ms/azs/search-limits-quotas-capacity)  
+**Impact:** Medium
+  
+For more information, see [Service limits for tiers and skus - Azure AI Search ](https://aka.ms/azs/search-limits-quotas-capacity)  
+
+ResourceType: microsoft.search/searchservices  
+Recommendation ID: 97b38421-f88c-4db0-b397-b2d81eff6630  
+Subcategory: Scalability
 
 <!--97b38421-f88c-4db0-b397-b2d81eff6630_end-->
 
@@ -32,7 +38,13 @@ When you exceed your storage quota, indexing operations stop working. You're clo
   
 **Potential benefits**: capability to handle more data  
 
-For more information, see [Service limits in Azure AI Search](https://aka.ms/azs/search-limits-quotas-capacity)  
+**Impact:** Medium
+  
+For more information, see [Service limits for tiers and skus - Azure AI Search ](https://aka.ms/azs/search-limits-quotas-capacity)  
+
+ResourceType: microsoft.search/searchservices  
+Recommendation ID: 8d31f25f-31a9-4267-b817-20ee44f88069  
+Subcategory: Scalability
 
 <!--8d31f25f-31a9-4267-b817-20ee44f88069_end-->
 
@@ -44,7 +56,13 @@ When you exceed your storage quota, you can still query, but indexing operations
   
 **Potential benefits**: Able to index additional data  
 
-For more information, see [Service limits in Azure AI Search](https://aka.ms/azs/search-limits-quotas-capacity)  
+**Impact:** Medium
+  
+For more information, see [Service limits for tiers and skus - Azure AI Search ](https://aka.ms/azs/search-limits-quotas-capacity)  
+
+ResourceType: microsoft.search/searchservices  
+Recommendation ID: b3efb46f-6d30-4201-98de-6492c1f8f10d  
+Subcategory: Scalability
 
 <!--b3efb46f-6d30-4201-98de-6492c1f8f10d_end-->
 
