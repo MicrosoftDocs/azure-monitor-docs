@@ -6,7 +6,7 @@ author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
-ms.date: 11/17/2023
+ms.date: 01/21/2025
 ms.custom: devdivchpfy22, devx-track-dotnet
 ---
 
@@ -65,19 +65,19 @@ Snapshot Collector's default configuration looks similar to the following exampl
 </TelemetryProcessors>
 ```
 
-Snapshots are collected _only_ on exceptions reported to Application Insights. In some cases (for example, older versions of the .NET platform), you might need to [configure exception collection](../app/asp-net-exceptions.md#exceptions) to see exceptions with snapshots in the portal.
+Snapshots are collected _only_ on exceptions reported to Application Insights. In some cases (like on older versions of the .NET platform), you might need to [configure exception collection](../app/asp-net-exceptions.md#exceptions) to see exceptions with snapshots in the portal.
 
 ## Configure snapshot collection for ASP.NET Core applications or Worker Services
 
 ### Prerequisites
 
 Your application should already reference one of the following Application Insights NuGet packages:
-- [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore)
-- [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService)
+- [`Microsoft.ApplicationInsights.AspNetCore`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore)
+- [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService)
 
 ### Add the NuGet package
 
-Add the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package to your app.
+Add the [`Microsoft.ApplicationInsights.SnapshotCollector`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package to your app.
 
 ### Update the services collection
 
@@ -103,7 +103,7 @@ builder.Services.Configure<SnapshotCollectorConfiguration>(builder.Configuration
 
 Next, add a `SnapshotCollector` section to _`appsettings.json`_ where you can override the defaults. 
 
-Snapshot Collector's default `appsettings.json` configuration looks similar to the following example:
+Snapshot Collector's default *appsettings.json* configuration looks similar to the following example:
 
 ```json
 {

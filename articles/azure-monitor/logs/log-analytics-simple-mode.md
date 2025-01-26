@@ -20,6 +20,9 @@ Log Analytics now offers two modes that make log data simpler to explore and ana
 
 You can switch seamlessly between Simple and KQL modes, and advanced users can share complex queries that anyone can continue working with in Simple mode.
 
+> [!NOTE]
+> Configure [Log Analytics settings](#more-tools) to open Log Analytics in Simple or KQL mode by default.
+
 This article explains how to use Log Analytics Simple mode to explore and analyze data in Azure Monitor Logs.    
 
 Here's a video that provides a quick overview of how to query logs in Log Analytics using both Simple and KQL modes:
@@ -82,7 +85,7 @@ This section describes more tools available above the query area of the screen, 
 | **Share** | Copy a link to your query, the query text, or query results, or [export data to Excel](../logs/log-excel.md), CSV, or [Power BI](../logs/log-powerbi.md). |
 | **New alert rule** | [Create a new alert rule](../alerts/alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). |
 | **Search job mode** | [Run a search job](../logs/search-jobs.md). |
-| **Log Analytics settings**| Define default Log Analytics settings, including time zone, whether Log Analytics first opens in Simple or KQL mode, and whether to display tables with no data.|
+| **Log Analytics settings**| Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data.|
 | **Switch back to classic Logs** | Switch back to the [classic Log Analytics user interface](../logs/log-analytics-overview.md). |
 | **Queries Hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 

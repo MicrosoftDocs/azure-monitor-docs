@@ -2,7 +2,7 @@
 title: Filtering and preprocessing in the Application Insights SDK | Microsoft Docs
 description: Write telemetry processors and telemetry initializers for the SDK to filter or add properties to the data before the telemetry is sent to the Application Insights portal.
 ms.topic: conceptual
-ms.date: 11/15/2023
+ms.date: 01/31/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, python
 ms.custom: "devx-track-js, devx-track-csharp"
@@ -10,6 +10,8 @@ ms.reviewer: cithomas
 ---
 
 # Filter and preprocess telemetry in the Application Insights SDK
+
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 You can write code to filter, modify, or enrich your telemetry before it's sent from the SDK. The processing includes data that's sent from the standard telemetry modules, such as HTTP request collection and dependency collection.
 
@@ -96,10 +98,12 @@ To filter telemetry, you write a telemetry processor and register it with `Telem
     
     > [!WARNING]
     > Take care to match the type name and any property names in the .config file to the class and property names in the code. If the .config file references a nonexistent type or property, the SDK may silently fail to send any telemetry.
-    >
     
     Alternatively, you can initialize the filter in code. In a suitable initialization class, for example, AppStart in `Global.asax.cs`, insert your processor into the chain:
     
+    > [!NOTE]
+    > The following code sample is obsolete, but is made available here for posterity. Consider [getting started with OpenTelemetry](opentelemetry-enable.md) or [migrating to OpenTelemetry](opentelemetry-dotnet-migrate.md).
+
     ```csharp
     var builder = TelemetryConfiguration.Active.DefaultTelemetrySink.TelemetryProcessorChainBuilder;
     builder.Use((next) => new SuccessfulDependencyFilter(next));
