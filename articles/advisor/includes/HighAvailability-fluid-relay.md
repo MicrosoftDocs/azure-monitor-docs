@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Fluid Relay
@@ -20,7 +20,13 @@ If the Azure Fluid Relay service is invoked with an old client library, it might
   
 **Potential benefits**: Improved reliability  
 
-For more information, see [Version compatibility with Fluid Framework releases](/azure/azure-fluid-relay/concepts/version-compatibility)  
+**Impact:** Medium
+  
+For more information, see [Version compatibility with Fluid Framework releases - Azure Fluid Relay ](/azure/azure-fluid-relay/concepts/version-compatibility)  
+
+ResourceType: microsoft.fluidrelay/fluidrelayservers  
+Recommendation ID: a5e8a0f8-2c84-407a-b3d8-f371d684363b  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--a5e8a0f8-2c84-407a-b3d8-f371d684363b_end-->
 

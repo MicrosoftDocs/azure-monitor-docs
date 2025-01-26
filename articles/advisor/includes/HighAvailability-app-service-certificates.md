@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service Certificates
@@ -20,7 +20,13 @@ You have an App Service Certificate that's currently in a Pending Issuance statu
   
 **Potential benefits**: Ensure successful issuance of App Service Certificate.  
 
-For more information, see [Add and manage TLS/SSL certificates in Azure App Service](https://aka.ms/ASCDomainVerificationRequired)  
+**Impact:** High
+  
+For more information, see [Add and manage TLS/SSL certificates - Azure App Service ](https://aka.ms/ASCDomainVerificationRequired)  
+
+ResourceType: microsoft.certificateregistration/certificateorders  
+Recommendation ID: a2385343-200c-4eba-bbe2-9252d3f1d6ea  
+Subcategory: Other
 
 <!--a2385343-200c-4eba-bbe2-9252d3f1d6ea_end-->
 

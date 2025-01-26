@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -20,7 +20,13 @@ Inactive logical replication slots can result in degraded server performance and
   
 **Potential benefits**: Improve PostgreSQL availability by removing inactive logical replication slots  
 
-For more information, see [Logical replication and logical decoding in Azure Database for PostgreSQL - Flexible Server](https://aka.ms/azure_postgresql_flexible_server_logical_decoding)  
+**Impact:** High
+  
+For more information, see [Logical replication and logical decoding - Azure Database for PostgreSQL - Flexible Server ](https://aka.ms/azure_postgresql_flexible_server_logical_decoding)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 33f26810-57d0-4612-85ff-a83ee9be884a  
+Subcategory: Other
 
 <!--33f26810-57d0-4612-85ff-a83ee9be884a_end-->
 
@@ -32,7 +38,13 @@ Configure GRS to ensure that your database meets its availability and durability
   
 **Potential benefits**: Ensures recovery from regional failure or disaster.  
 
-For more information, see [Backup and restore in Azure Database for PostgreSQL - Flexible Server](https://aka.ms/PGGeoBackup)  
+**Impact:** Medium
+  
+For more information, see [Backup and restore - Azure Database for PostgreSQL - Flexible Server ](https://aka.ms/PGGeoBackup)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 5295ed8a-f7a1-48d3-b4a9-e5e472cf1685  
+Subcategory: DisasterRecovery
 
 <!--5295ed8a-f7a1-48d3-b4a9-e5e472cf1685_end-->
 
@@ -44,7 +56,13 @@ When an Orcas PostgreSQL flexible server has inactive logical replication slots,
   
 **Potential benefits**: Improve PostgreSQL availability by removing inactive logical replication slots  
 
-For more information, see [Logical decoding](https://aka.ms/azure_postgresql_logical_decoding)  
+**Impact:** High
+  
+For more information, see [Logical decoding - Azure Database for PostgreSQL - Single Server ](https://aka.ms/azure_postgresql_logical_decoding)  
+
+ResourceType: microsoft.dbforpostgresql/servers  
+Recommendation ID: 6f33a917-418c-4608-b34f-4ff0e7be8637  
+Subcategory: Other
 
 <!--6f33a917-418c-4608-b34f-4ff0e7be8637_end-->
 

@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Container Registry
@@ -20,7 +20,13 @@ Premium registries provide the highest amount of included storage, concurrent op
   
 **Potential benefits**: The Premium tier provides the highest amount of performance, scale and resiliency options  
 
-For more information, see [Azure Container Registry service tiers](https://aka.ms/AAqwyv6)  
+**Impact:** High
+  
+For more information, see [Registry Service Tiers and Features - Azure Container Registry ](https://aka.ms/AAqwyv6)  
+
+ResourceType: microsoft.containerregistry/registries  
+Recommendation ID: af0cdbce-c610-499b-9bd7-b169cdb1bb2e  
+Subcategory: HighAvailability
 
 <!--af0cdbce-c610-499b-9bd7-b169cdb1bb2e_end-->
 
@@ -32,7 +38,13 @@ Geo-replication enables workloads to use a single image, tag and registry name a
   
 **Potential benefits**: Improved resilience and pull performance, simplified registry management and reduced data transfer costs  
 
-For more information, see [Geo-replication in Azure Container Registry](https://aka.ms/AAqwx90)  
+**Impact:** High
+  
+For more information, see [Geo-replicate Azure Container Registry to Multiple Regions - Azure Container Registry ](https://aka.ms/AAqwx90)  
+
+ResourceType: microsoft.containerregistry/registries  
+Recommendation ID: dcfa2602-227e-4b6c-a60d-7b1f6514e690  
+Subcategory: HighAvailability
 
 <!--dcfa2602-227e-4b6c-a60d-7b1f6514e690_end-->
 
