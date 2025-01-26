@@ -143,7 +143,7 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 
     1. **Is the source IP address blocked?**
     
-       Webhooks only support public networks and firewalls, [IP addresses](../ip-addresses.md) for all regions need to be whitelisted.Add the [IP addresses](../ip-addresses.md) that the webhook is called from to your allowlist.
+       Webhooks only support public networks and firewalls, [IP addresses](../ip-addresses.md) for all regions need to be in the allowlist.Add the [IP addresses](../ip-addresses.md) that the webhook is called from to your allowlist.
 
     1. **Does your webhook endpoint work correctly?**
 
