@@ -1,12 +1,12 @@
 ---
-title: Supported log categories - Microsoft.NetApp/netAppAccounts/capacityPools/volumes
-description: Reference for Microsoft.NetApp/netAppAccounts/capacityPools/volumes in Azure Monitor Logs.
+title: Supported log categories - Oracle.Database/cloudVmClusters
+description: Reference for Oracle.Database/cloudVmClusters in Azure Monitor Logs.
 ms.topic: reference
 ms.service: azure-monitor
 ms.author: orens
 author: osalzberg
-ms.date: 01/02/2025
-ms.custom: Microsoft.NetApp/netAppAccounts/capacityPools/volumes, naam
+ms.date: 01/26/2025
+ms.custom: Oracle.Database/cloudVmClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -15,16 +15,16 @@ ms.custom: Microsoft.NetApp/netAppAccounts/capacityPools/volumes, naam
 
 
 
-# Supported logs for Microsoft.NetApp/netAppAccounts/capacityPools/volumes  
-The following table lists the types of logs available for the Microsoft.NetApp/netAppAccounts/capacityPools/volumes resource type.
+# Supported logs for Oracle.Database/cloudVmClusters  
+The following table lists the types of logs available for the Oracle.Database/cloudVmClusters resource type.
   
   
   
-For a list of supported metrics, see [Supported metrics - Microsoft.NetApp/netAppAccounts/capacityPools/volumes](../supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md)  
+For a list of supported metrics, see [Supported metrics - Oracle.Database/cloudVmClusters](../supported-metrics/oracle-database-cloudvmclusters-metrics.md)  
   
 
   
-[!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools/volumes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs-include.md)]  
+[!INCLUDE [Oracle.Database/cloudVmClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/oracle-database-cloudvmclusters-logs-include.md)]  
   
 
 ## Next Steps
