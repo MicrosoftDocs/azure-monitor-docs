@@ -9,7 +9,7 @@ ms.date: 3/27/2018
 
 # Use a webhook to configure health notifications for problem management systems
 
-This article shows you how to configure Azure Service Health alerts to send data through webhooks to your existing notification system. new stuff
+This article shows you how to configure Azure Service Health alerts to send data through webhooks to your existing notification system.
 
 You can configure Service Health alerts to notify you by text message or email when an Azure service incident affects you.
 
