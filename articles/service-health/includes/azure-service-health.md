@@ -12,7 +12,7 @@ ms.author: robb
 Returns all active Service Health events - including service issues, planned maintenance, health advisories, and security advisories – grouped by event type and including count of impacted subscriptions.
 
 [!NOTE:]
-This does not include emerging issues. For more information open "https://learn.microsoft.com/en-us/rest/api/resourcehealth/emerging-issues".
+This does not include emerging issues. For more information open "https://rest/api/resourcehealth/emerging-issues".
 
 
 ```kusto
