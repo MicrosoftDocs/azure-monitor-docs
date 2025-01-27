@@ -76,7 +76,7 @@ source | extend IpLocation = iff(split(ClientIp,".")[0] in ("10","192"), "Intern
 ```
 
 ## Normalize data
-Normalize data to a common schema to simplify querying and reporting, such as the [Advanced Security Information Model (ASIM)](/sentinel/normalization) used by Microsoft Sentinel. Use a transformation to normalize data at ingestion time as described in [Ingest time normalization](/sentinel/normalization-ingest-time).
+Normalize data to a common schema to simplify querying and reporting, such as the [Advanced Security Information Model (ASIM)](/azure/sentinel/normalization) used by Microsoft Sentinel. Use a transformation to normalize data at ingestion time as described in [Ingest time normalization](/azure/sentinel/normalization-ingest-time).
 
 In the following example, the incoming data is transformed to the normalized schema of the [ASimAuditEventLogs](/azure/azure-monitor/reference/tables/asimauditeventlogs) table.
 
