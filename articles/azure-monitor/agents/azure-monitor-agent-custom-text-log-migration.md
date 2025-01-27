@@ -2,16 +2,11 @@
 title: Migrate from custom text log version 1 to DCR agent custom text logs.
 description: Steps that you must perform when migrating from custom text log v1 to DCR based AMA custom text logs.
 ms.topic: conceptual
-ms.date: 05/09/2023
+ms.date: 1/22/2025
 ---
 
 # Migrate from MMA custom text table to AMA DCR based custom text table
 This article describes the steps to migrate a [MMA Custom text log](data-sources-custom-logs.md) table so you can use it as a destination for a new [AMA custom text logs](data-collection-log-text.md) DCR. If you're creating a new AMA custom text table, then this article doesn't pertain to you.
-
-
-> [!Warning]
-> Your MMA agents won't be able to write to existing custom tables after migration. If your AMA agent writes to an existing custom table, it is implicitly migrated.
-
 
 ## Background
 You must configure MMA custom text logs to support new DCR features that allow AMA agents to write to it. Take the following actions:

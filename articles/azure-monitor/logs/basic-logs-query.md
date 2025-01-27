@@ -14,7 +14,7 @@ Basic and Auxiliary logs tables reduce the cost of ingesting high-volume verbose
 For more information about Basic and Auxiliary table plans, see [Azure Monitor Logs Overview: Table plans](data-platform-logs.md#table-plans). 
 
 > [!NOTE]
-> Other tools that use the Azure API for querying - for example, Grafana and Power BI - cannot access data in Basic and Auxiliary tables.
+> Other tools that use the Azure API for querying - for example, Power BI - cannot access data in Basic and Auxiliary tables.
 
 [!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
 
@@ -93,7 +93,7 @@ https://api.loganalytics.io/v1/workspaces/{workspaceId}/search?timespan=P1D
 
 ---
 ## Pricing model
-The charge for a query on Basic and Auxiliary tables is based on the amount of data the query scans, which depends on the size of the table and the query's time range. For example, a query that scans three days of data in a table that ingests 100 GB each day, would be charged for 300 GB. 
+The charge for a query on Basic and Auxiliary tables is based on the amount of data the query scans, which depends on the size of the table and the query's time range. The data scanned is defined as the volume of data that was ingested within the time range specified by the query for the table which is being queried. For example, a query that scans three days of data in a table that ingests 100 GB each day, would be charged for 300 GB. 
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 

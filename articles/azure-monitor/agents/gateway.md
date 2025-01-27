@@ -2,7 +2,7 @@
 title: Connect computers by using the Log Analytics gateway | Microsoft Docs
 description: Connect your devices and Operations Manager-monitored computers by using the Log Analytics gateway to send data to the Azure Automation and Log Analytics service when they do not have internet access.
 ms.topic: conceptual
-ms.date: 07/06/2023
+ms.date: 11/14/2024
 ms.reviewer: luki
 
 ---
@@ -82,9 +82,6 @@ The Log Analytics gateway is available in these languages:
 ### Supported encryption protocols
 
 The Log Analytics gateway supports only Transport Layer Security (TLS) 1.0, 1.1, 1.2 and 1.3.  It doesn't support Secure Sockets Layer (SSL). To ensure the security of data in transit to Log Analytics, configure the gateway to use at least TLS 1.3. Although they currently allow for backward compatibility, avoid using older versions because they are vulnerable.  
-
-For additional information, review [Sending data securely using TLS](../logs/data-security.md#sending-data-securely-using-tls). 
-
 
 >[!NOTE]
 >The gateway is a forwarding proxy that doesn’t store any data. Once the agent establishes connection with Azure Monitor, it follows the same encryption flow with or without the gateway. The data is encrypted between the client and the endpoint. Since the gateway is just a tunnel, it doesn’t have the ability the inspect what is being sent.

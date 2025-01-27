@@ -24,9 +24,9 @@ Using DCRs to export metrics provides the following advantages over diagnostic s
 
 Use metrics export through DCRs for continuous export of metrics data. For querying historical data, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). For a comparison of the two services, see [Data plane Metrics Batch API query versus Metrics export](./data-plane-versus-metrics-export.md).
 
-Create DCRs for metrics using the REST API, Azure CLI, or Azure PowerShell. For information on how to create DCRs for metrics export, see [Create data collection rules for metrics](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
+Create DCRs for metrics using the REST API, Azure CLI, or Azure PowerShell. For information on how to create DCRs for metrics export, see [Create data collection rules for metrics](./metrics-export-create.md).
 
-When you create a DCR, you must create a Data collection rule association (DCRA) to associate the DCR with the resource to be monitored. You can create a single DCR for many resource types. For information on how to create a DCRA see [Create data collection rule associations](./data-collection-rule-create-edit.md#create-a-data-collection-rule-association). When using the Azure portal, the DCRA is created automatically.
+When you create a DCR, you must create a Data collection rule association (DCRA) to associate the DCR with the resource to be monitored. You can create a single DCR for many resource types. For information on how to create a DCRA see [Create data collection rule associations](./data-collection-rule-associations.md). When using the Azure portal, the DCRA is created automatically.
 
 > [!NOTE]
 > It is possible to use DCRs and diagnostic settings at the same time. We recommend that you disable diagnostic settings for metrics when using DCRs to avoid duplicate data collection.
@@ -56,6 +56,7 @@ DCRs for metrics export have the following limitations:
 
 + Only one destination type can be specified per DCR.
 + A maximum of 5 DCRs can be associated with a single Azure Resource.
++ Metrics export by DCR doesn't support the export of hourly-grain metrics.
 
 
 ## Supported resources and regions
@@ -100,7 +101,7 @@ Data collection rules are defined in a JSON object. The following properties are
 
 |Property|Description| 
 |---|---|
-|`dataSources.platformTelemetry.streams`| Lists the resource types to collect metrics from in the format: `<resource type>:Metrics-Group-All |<metric name>` <br> For example,	`Microsoft.Compute/virtualMachines:Percentage CPU`|
+|`dataSources.platformTelemetry.streams`| Lists the resource types and the metrics. Specify `Metrics-Group-All` to collect all metrics for the resource or specify individual metrics. Format: `<resource type>:Metrics-Group-All | <metric name>` <br> For example,	`Microsoft.Compute/virtualMachines:Percentage CPU`|
 |`dataSources.platformTelemetry.name`| The name of the data source.|
 |`destinations`| The destination for the metrics. Only one destination is supported per DCR. <br>Valid Destinations types:<br>`storageAccounts`<br> `logAnalytics`<br> `eventHubs` |
 |`dataflows.streams`| A list of streams to pass to the destination in the format: `<resource type>:Metrics-Group-All |<metric name>` <br> For example,	Microsoft.Compute/virtualMachines:Percentage CPU"|
@@ -109,8 +110,13 @@ Data collection rules are defined in a JSON object. The following properties are
 |`kind`| The kind of data collection rule. Set to `PlatformTelemetry` for metrics export.|
 |`location`| The location of the DCR.|
 
-Only one destination type can be specified per DCR. Remove the unwanted destinations when copying the following example. 
+> [!NOTE] 
+> Only one destination type can be specified per DCR. 
 
+
+### JSON format for metrics export DCR
+
+Use the format in the following generic JSON object to create a DCR for metrics export. Remove the unwanted destinations when copying the example. 
 
 ```JSON
 {
@@ -172,7 +178,7 @@ Only one destination type can be specified per DCR. Remove the unwanted destinat
     "location": "eastus"
 }
 ```
-
+ 
 > [!NOTE]
 > When creating a DCR for metrics export using the CLI, `kind`, `location`, and `identity` are passed as arguments and must be removed from the JSON object.
 
@@ -206,6 +212,8 @@ To use a user assigned identity, add the `identity` object as follows:
 
 When specifying the metrics to export, you can filter the metrics by name or request all metrics by using `Metrics-Group-All`. For a list of supported metrics, see [Supported metrics and log categories by resource type](/azure/azure-monitor/reference/supported-metrics/metrics-index#supported-metrics-and-log-categories-by-resource-type).
 
+To specify more than one metric from the same resource type, create a separate stream item for each metric.
+
 The following example shows how to filter metrics by name.
 
 ```JSON
@@ -216,6 +224,8 @@ The following example shows how to filter metrics by name.
                 {
                     "streams": [
                         "Microsoft.Compute/virtualMachines:Percentage CPU",
+                        "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                        "Microsoft.Compute/virtualMachines:Inbound Flows",  
                         "Microsoft.Compute/virtualMachineScaleSets:Percentage CPU",
                         "Microsoft.Cache/redis:Cache Hits"
                     ],
@@ -235,6 +245,8 @@ The following example shows how to filter metrics by name.
             {
                 "streams": [
                     "Microsoft.Compute/virtualMachines:Percentage CPU",
+                    "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                    "Microsoft.Compute/virtualMachines:Inbound Flows",
                     "Microsoft.Compute/virtualMachineScaleSets:Percentage CPU",
                     "Microsoft.Cache/redis:Cache Hits"
                 ],
@@ -253,6 +265,8 @@ The following example shows how to filter metrics by name.
 
 The following examples show sample DCR JSON objects for metrics export to each destination type.
 
+### [Log Analytics workspaces](#tab/log-analytics-workspaces)
+
 ### Log Analytics workspaces
 
 The following example shows a data collection rule for metrics that sends specific metrics from virtual machines, virtual machine scale sets, and all key vault metrics to a Log Analytics workspace:
@@ -265,6 +279,8 @@ The following example shows a data collection rule for metrics that sends specif
                 {
                     "streams": [
                         "Microsoft.Compute/virtualMachines:Percentage CPU",
+                        "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                        "Microsoft.Compute/virtualMachines:Inbound Flows",
                         "Microsoft.Compute/virtualMachineScaleSets:Available Memory Bytes",
                          "Microsoft.KeyVault/vaults:Metrics-Group-All"
                     ],
@@ -284,6 +300,8 @@ The following example shows a data collection rule for metrics that sends specif
             {
                 "streams": [
                         "Microsoft.Compute/virtualMachines:Percentage CPU",
+                        "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                        "Microsoft.Compute/virtualMachines:Inbound Flows",
                         "Microsoft.Compute/virtualMachineScaleSets:Available Memory Bytes",
                         "Microsoft.KeyVault/vaults:Metrics-Group-All"
                         ],    
@@ -299,10 +317,11 @@ The following example shows a data collection rule for metrics that sends specif
     "location": "centralus"
 }
 ```
+### [Storage accounts](#tab/storage-accounts)
 
 ### Storage accounts
 
-The following example shows a data collection rule for metrics that sends all metrics from virtual machines, virtual machine scale sets, Redis cache, and Key Vaults to a storage account.
+The following example shows a data collection rule for metrics that sends`Percentage CPU`, `Disk Read Bytes`, and `Inbound Flows` metrics from virtual machines, and all metrics for virtual machine scale sets, Redis cache, and Key Vaults to a storage account.
 
 ```json
 {
@@ -311,7 +330,9 @@ The following example shows a data collection rule for metrics that sends all me
             "platformTelemetry": [
                 {
                     "streams": [
-                        "Microsoft.Compute/virtualMachines:Metrics-Group-All",
+                        "Microsoft.Compute/virtualMachines:Percentage CPU",
+                        "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                        "Microsoft.Compute/virtualMachines:Inbound Flows"
                         "Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All",
                         "Microsoft.Cache/redis:Metrics-Group-All",
                         "Microsoft.keyvault/vaults:Metrics-Group-All"
@@ -332,7 +353,9 @@ The following example shows a data collection rule for metrics that sends all me
         "dataFlows": [
             {
                 "streams": [
-                    "Microsoft.Compute/virtualMachines:Metrics-Group-All",
+                    "Microsoft.Compute/virtualMachines:Percentage CPU",
+                    "Microsoft.Compute/virtualMachines:Disk Read Bytes",
+                    "Microsoft.Compute/virtualMachines:Inbound Flows"
                     "Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All",
                     "Microsoft.Cache/redis:Metrics-Group-All",
                     "Microsoft.keyvault/vaults:Metrics-Group-All"
@@ -351,10 +374,11 @@ The following example shows a data collection rule for metrics that sends all me
 }
 ```
 
+### [Event Hubs](#tab/event-hubs)
 
 ### Event Hubs
 
-The following example shows a data collection rule for metrics export that sends all metrics from virtual machines, and the `ServiceApiHit` metric from Key Vaults to Event Hubs.
+The following example shows a data collection rule for metrics export that sends all metrics from virtual machines, and the `ServiceApiHit` and `Availability` metrics from Key Vaults to Event Hubs.
 
 ```json
 {
@@ -364,7 +388,9 @@ The following example shows a data collection rule for metrics export that sends
                 {
                     "streams": [
                         "Microsoft.Compute/virtualMachines:Metrics-Group-All",
-                        "Microsoft.keyvault/vaults:ServiceApiHit"
+                        "Microsoft.keyvault/vaults:ServiceApiHit",
+                        "Microsoft.keyvault/vaults:Availability"
+
                     ],
                     "name": "myPlatformTelemetryDataSource"
                 }
@@ -382,7 +408,8 @@ The following example shows a data collection rule for metrics export that sends
             {
                 "streams": [
                     "Microsoft.Compute/virtualMachines:Metrics-Group-All",
-                    "Microsoft.keyvault/vaults:ServiceApiHit"
+                        "Microsoft.keyvault/vaults:ServiceApiHit",
+                        "Microsoft.keyvault/vaults:Availability"
                 ],
                 "destinations": [
                     "hub1"
@@ -398,10 +425,11 @@ The following example shows a data collection rule for metrics export that sends
 }
 
 ```
+---
 
 ## Create DCRs for metrics export
 
-Create DCRs for metrics export using the Azure portal, CLI, PowerShell, REST API, or ARM template. For more information, see [Create and edit data collection rules (DCRs) and associations in Azure Monitor](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
+Create DCRs for metrics export using the Azure portal, CLI, PowerShell, REST API, or ARM template. For more information, see [Create a data collection rule (DCR) for metrics export](./metrics-export-create.md).
 
 
 ## Exported data

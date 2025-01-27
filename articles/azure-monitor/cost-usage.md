@@ -21,7 +21,7 @@ Several other features don't have a direct cost, but you instead pay for the ing
 
 | Type | Description |
 |:---|:---|
-| Logs |Ingestion, retention, and export of data in [Log Analytics workspaces](logs/log-analytics-workspace-overview.md) and [legacy Application insights resources](app/convert-classic-resource.md). Log data ingestion is the largest component of Azure Monitor charges for most customers. There's no charge for querying this data except in the case of [Basic and Auxiliary logs](../azure-monitor/logs/data-platform-logs.md#table-plans) or [data in long-term retention](logs/data-retention-configure.md).<br><br>Charges for Logs can vary significantly on the configuration that you choose. See [Azure Monitor Logs pricing details](logs/cost-logs.md) for details on how charges for Logs data are calculated and the different pricing tiers available. |
+| Logs |Ingestion, retention, and export of data in [Log Analytics workspaces](logs/log-analytics-workspace-overview.md) and [legacy Application insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource). Log data ingestion is the largest component of Azure Monitor charges for most customers. There's no charge for querying this data except in the case of [Basic and Auxiliary logs](../azure-monitor/logs/data-platform-logs.md#table-plans) or [data in long-term retention](logs/data-retention-configure.md).<br><br>Charges for Logs can vary significantly on the configuration that you choose. See [Azure Monitor Logs pricing details](logs/cost-logs.md) for details on how charges for Logs data are calculated and the different pricing tiers available. |
 | Platform Logs | Processing of [diagnostic and auditing information](essentials/resource-logs.md) is charged for [certain services](essentials/resource-logs-categories.md#costs) when sent to destinations other than a Log Analytics workspace. There's no direct charge when this data is sent to a Log Analytics workspace, but there's a charge for the workspace data ingestion and collection. |
 | Metrics | There's no charge for [standard metrics](essentials/metrics-supported.md) collected from Azure resources. There's a cost for collecting [custom metrics](essentials/metrics-custom-overview.md) and for retrieving metrics from the [REST API](essentials/rest-api-walkthrough.md#retrieve-metric-values). |
 | Prometheus Metrics | Pricing for [Azure Monitor managed service for Prometheus](essentials/prometheus-metrics-overview.md) is based on [data samples ingested](containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)  and [query samples processed](essentials/azure-monitor-workspace-manage.md#link-a-grafana-workspace). Data is retained for 18 months at no extra charge. |
@@ -62,9 +62,11 @@ To limit the view to Azure Monitor charges, [create a filter](/azure/cost-manage
 - Insight and Analytics
 - Application Insights
 
-See [Azure Monitor billing meter names](cost-meters.md) for a list of all Azure Monitor billing meters that are included in each of these services.
+Usage incurred on a Log Analytics workspace can be billed on any of the first three services (Azure Monitor, Log Analytics or Insight and Analytics) depending on the feature. See [Azure Monitor billing meter names](cost-meters.md) for a list of the Azure Monitor billing meters for all Azure Monitor features.
 
-Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also bill their usage against Log Analytics workspace resources. See [Common cost analysis uses](/azure/cost-management-billing/costs/cost-analysis-common-uses) for details on using this view.
+Other services such as Microsoft Defender for Cloud and Microsoft Sentinel also bill their usage against Log Analytics workspace resources. See [Common cost analysis uses](/azure/cost-management-billing/costs/cost-analysis-common-uses) for details on using this view. If you are using Microsoft Sentinel's [simplified pricing tiers](/azure/sentinel/enroll-simplified-pricing-tier), log data ingestion will be billed entirely on Sentinel meters.
+
+If using an Azure Monitor Logs dedicated cluster, data ingestion usage may be billed against the cluster resource or each workspace that is joined to the cluster [learn more](/azure/azure-monitor/logs/cost-logs#dedicated-clusters). 
 
 
 > [!NOTE]

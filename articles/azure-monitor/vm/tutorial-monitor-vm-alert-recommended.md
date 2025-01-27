@@ -18,7 +18,7 @@ In this article, you learn how to:
 
 > [!div class="checklist"]
 > * Enable recommended alerts for a new Azure virtual machine.
-> * Specify an email address to be notified when an alert files.
+> * Specify an email address to be notified when an alert fires.
 > * View the resulting alert rules.
 
 ## Prerequisites

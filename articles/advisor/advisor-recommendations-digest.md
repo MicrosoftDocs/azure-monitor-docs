@@ -2,57 +2,139 @@
 title: Recommendation digest for Azure Advisor
 description: Get periodic summary for your active recommendations
 ms.topic: article
-ms.date: 03/16/2020
+ms.date: 11/01/2024
+
 ---
 
-# Configure periodic summary for recommendations
+# Recommendation digests
 
-Advisor **recommendation digests** provide an easy and proactive way to stay on top of your active recommendations, across different categories. The feature provides the ability to configure periodic notifications for the summary of all your active recommendations, across different categories. You can choose your desired channel for notifications like email, sms or others, using action groups. 
-This article shows you how to set-up a **recommendation digests** for your Advisor recommendations.
+Learn how to create a recommendation digest for your Advisor recommendations.
 
+## Configure your recommendation digest
 
-## Setting-up your recommendation digest 
+Recomendation digests provide an easy and proactive way to configure notifications that summarize a list of your active recommendations across multiple categories. Use one or more action groups to choose your desired channel for notifications like email, SMS, or others. To configure your recommendation digest, complete the following parameters.
 
-The **recommendation digest** creation experience helps you configure the summary. You can select below parameters for configurations:
-1. Category: We have recommendation categories like cost, high availability, performance and operational excellence. The capability is not available for security recommendations yet.
-2. Frequency of digest: Frequency for the summary notifications can be weekly, bi-weekly and monthly.
-3. Action group: You can either select an existing action group or create a new action group. To learn more about action groups, see [create and manage action groups](../azure-monitor/alerts/action-groups.md).
-4. Language for the digest
-5. Recommendation digest name: You can use a user-friendly string to better track and monitor the digests.
+| Parameter | Detail |
+|:--- |:--- |
+| Frequency | Frequency for the summary notification is weekly, bi-weekly, or monthly. |
+| Recommendation Category | The recommendation categories include cost, operational excellence, performance, reliability, and security. |
+| Language | Language for the digest. |
+| Action Groups | Select either an existing action group or create a new action group. To learn more about action groups, see [Action groups](/azure/azure-monitor/alerts/action-groups "Action groups | Azure Monitor |  Microsoft Learn"). |
+| Recommendation digest name | Use a user-friendly string to manage the digest. |
 
-## Steps to create recommendation digest in Azure portal
+## Create a recommendation digest in Advisor
 
-Here are the steps to create **recommendation digest:**
-* **Step 1:** In the Azure portal, go to **Advisor** and under **Monitoring** section, select **Recommendation digest** 
+To create a recommendation digest, complete the following actions.
 
-   ![Recommendation digest entry-point](./media/digest-0.png)
+1.  On **Advisor** | **Overview**, on the menu for Advisor, select **Monitoring** > **Recommendation digests**.
 
-* **Step 2:** Select **New recommendation digest** from the top bar as below:
+    :::image alt-text="Screenshot of entry-point of a recommendation digest." lightbox="./media/advisor-overview-highlight-recommendation-digest.png" source="./media/advisor-overview-highlight-recommendation-digest-preview.png" type="content":::
 
-   ![Create recommendation digest](./media/digest-5.png)
+1.  Select **Create recommendation digest**.
 
-* **Step 3:** In the **scope** section, select the **subscription** for your digest
+    :::image alt-text="Screenshot of New recommendation digest." lightbox="./media/advisor-recommendation-digest-highlight-new-recommendation-digest.png" source="./media/advisor-recommendation-digest-highlight-new-recommendation-digest-preview.png" type="content":::
 
-   ![Provide recommendation digest inputs](./media/digest-1.png)
+1.  On **Add an Advisor recommendation digest** > **Scope**, in the drop-down menu next to **Subscription**, select the subscription for your digest.
 
-* **Step 4:** In the **condition** section, select the configurations like **category**, **frequency** and **language**
+    :::image alt-text="Screenshot of Scope input on Add an Advisor recommendation digest." lightbox="./media/add-an-advisor-recommendation-digest-highlight-scope.png" source="./media/add-an-advisor-recommendation-digest-highlight-scope-preview.png" type="content":::
 
-   ![Provide recommendation digest input conditions](./media/digest-2.png)
+1.  On **Add an Advisor recommendation digest** > **Condition**, complete the following actions.
 
-* **Step 5:** In the **action group** section, select the **action group** for the digest. You can learn more here - [Create and manage action groups](../azure-monitor/alerts/action-groups.md)
+    1.  In the drop-down menu next to **Frequency**, select how often you receive the notification for your digest.
 
-   ![Provide recommendation digest input action group](./media/digest-3.png)
+    1.  In the drop-down menu next to **Recommendation Category**, select the category of your digest.
 
-* **Step 6:** In this final section for **digest details**, you can assign name and state to your recommendation digest. Press **create recommendation digest** to complete the set-up.
-   ![Complete recommendation digest creation](./media/digest-4.png)
+    1.  In the drop-down menu next to **Language**, select the language of your digest.
 
-## Next steps
+    :::image alt-text="Screenshot of Condition inputs on Add an Advisor recommendation digest." lightbox="./media/add-an-advisor-recommendation-digest-highlight-condition.png" source="./media/add-an-advisor-recommendation-digest-highlight-condition-preview.png" type="content":::
 
-For more information about Advisor recommendations, see:
-* [Introduction to Azure Advisor](advisor-overview.md)
-* [Get started with Advisor](advisor-get-started.md)
-* [Advisor Cost recommendations](advisor-cost-recommendations.md)
-* [Advisor Performance recommendations](advisor-performance-recommendations.md)
-* [Advisor Security recommendations](advisor-security-recommendations.md)
-* [Advisor Operational Excellence recommendations](advisor-operational-excellence-recommendations.md)
-* [Advisor REST API](/rest/api/advisor/)
+1.  On **Add an Advisor recommendation digest** >  **Action Groups**, select an existing **Action Group Name** or create a new action group for your digest. To learn more, see [Action groups](/azure/azure-monitor/alerts/action-groups "Action groups | Azure Monitor |  Microsoft Learn").
+
+    :::image alt-text="Screenshot of Action Groups inputs on Add an Advisor recommendation digest." lightbox="./media/add-an-advisor-recommendation-digest-highlight-action-groups.png" source="./media/add-an-advisor-recommendation-digest-highlight-action-groups-preview.png" type="content":::
+
+1.  On **Add an Advisor recommendation digest** > **Digest Details**, complete the following actions.
+
+    1.  In the text box next to **Recommendation digest name**, enter the name of your digest.
+
+    1.  Next to **Enable recommendation digest**, toggle the switch to activate your digest.
+
+    :::image alt-text="Screenshot of Digest Details inputs on Add an Advisor recommendation digest." lightbox="./media/add-an-advisor-recommendation-digest-highlight-digest-details.png" source="./media/add-an-advisor-recommendation-digest-highlight-digest-details-preview.png" type="content":::
+
+1.  Select **Create recommendation digest**.
+
+## Manage digest
+
+Your organization configures the recommendation digests. You must have access to the digest action group to modify the properties. The Subscription administrator manages your access.
+
+To manage a digest after you create it, complete the actions in the following sections.
+
+### Update digest
+
+To edit your digest, complete the following actions.
+
+On **Advisor** | **Recommendation digests**.
+
+1.  Select the text in the column under the **Digest name** heading.
+
+On **Edit Advisor recommendation digest** > **Condition**, update the following drop-down menus.
+
+*   In the drop-down menu next to **Frequency**, select how often you receive the notification for your digest.
+
+*   In the drop-down menu next to **Recommendation Category**, select the category of your digest.
+
+*   In the drop-down menu next to **Language**, select the language of your digest.
+
+On **Edit Advisor recommendation digest** >  **Action Groups**, update the following table.
+
+*   Remove an existing **Action Group Name** and either select an existing **Action Group Name** or create a new action group for your digest. To learn more, see [Action groups](/azure/azure-monitor/alerts/action-groups "Action groups | Azure Monitor |  Microsoft Learn").
+
+On **Edit Advisor recommendation digest** > **Digest Details**, update the following toggle switch.
+
+*   Next to **Enable recommendation digest**, toggle the switch to activate or deactivate your digest.
+
+On **Edit Advisor recommendation digest**
+
+1.  Select **Save Changes**.
+
+### Activate and deactivate digest
+
+To deactivate or activate your digest, complete the following actions.
+
+On **Advisor** | **Recommendation digests**.
+
+1.  Select the checkbox next to name of the digest.
+
+1.  To deactivate an active digest, select **Disable**.
+
+    *   To activate an inactive digest, select **Enable**.
+
+### Delete digest
+
+After you delete a digest, restoration isn't an option and you must recreate the digest.
+
+> [!NOTE]
+> Unlike deactivation that is reversible; deletion is permanent.
+>
+> To reactivate an inactive digest, select **Enable**. A digest set to `Enable` restarts notification using email.
+
+To delete your digest, complete the following actions.
+
+On **Advisor** | **Recommendation digests**.
+
+1.  Select the checkbox next to name of the digest.
+
+1.  Select **Delete**.
+
+On **Delete**.
+
+1.  Select **Yes**.
+
+## Related articles
+
+For more information about Advisor recommendations, see the following articles.
+
+*   [Introduction to Azure Advisor](./advisor-overview.md)
+
+*   [Azure Advisor portal basics](./advisor-get-started.md)
+
+*   [Azure Advisor REST API](/rest/api/advisor "Azure Advisor REST API | Microsoft Learn")

@@ -5,7 +5,7 @@ ms.author: abbyweisberg
 ms.reviewer: yalavi
 ms.topic: sample
 ms.custom: devx-track-arm-template
-ms.date: 11/07/2023
+ms.date: 11/12/2024
 ---
 
 # Resource Manager template samples for log search alert rules in Azure Monitor

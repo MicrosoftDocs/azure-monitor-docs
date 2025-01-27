@@ -2,72 +2,75 @@
 title: Configure monitoring for ASP.NET with Azure Application Insights | Microsoft Docs
 description: Configure performance, availability, and user behavior analytics tools for your ASP.NET website hosted on-premises or in Azure.
 ms.topic: conceptual
-ms.date: 01/31/2024
+ms.date: 12/07/2024
 ms.devlang: csharp
 ---
 
 # Configure Application Insights for your ASP.NET website
 
-This procedure configures your ASP.NET web app to send telemetry to the [Application Insights](./app-insights-overview.md) feature of the Azure Monitor service. It works for ASP.NET apps that are hosted either in your own Internet Information Servers (IIS) on-premises or in the cloud.
+This procedure configures your ASP.NET web app to send telemetry to [Application Insights](./app-insights-overview.md). It works for ASP.NET apps hosted either in your own Internet Information Servers (IIS) on-premises or in the cloud.
 
 [!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## Prerequisites
+
 To add Application Insights to your ASP.NET website, you need to:
 
-- Install the latest version of [Visual Studio 2019 for Windows](https://www.visualstudio.com/downloads/) with the following workloads:
-	- ASP.NET and web development
-	- Azure development
-
-- Create a [free Azure account](https://azure.microsoft.com/free/) if you don't already have an Azure subscription.
-
-- Create an [Application Insights workspace-based resource](create-workspace-resource.md).
+> [!div class="checklist"]
+> * Install the latest version of [Visual Studio for Windows](https://www.visualstudio.com/downloads/) with the following workloads:
+>     * ASP.NET and web development
+>     * Azure development
+> * Create a [free Azure account](https://azure.microsoft.com/free/) if you don't already have an Azure subscription.
+> * Create an [Application Insights workspace-based resource](create-workspace-resource.md).
 
 > [!IMPORTANT]
-> We recommend [connection strings](./sdk-connection-string.md?tabs=net) over instrumentation keys. New Azure regions *require* the use of connection strings instead of instrumentation keys.
+> We recommend [connection strings](./connection-strings.md?tabs=net) over instrumentation keys. New Azure regions *require* the use of connection strings instead of instrumentation keys.
 >
-> A connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints that your resource will use as a destination for your telemetry. You'll need to copy the connection string and add it to your application's code or to the “APPLICATIONINSIGHTS_CONNECTION_STRING” environment variable.
+> A connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints that your resource will use as a destination for your telemetry. You'll need to copy the connection string and add it to your application's code or to the `APPLICATIONINSIGHTS_CONNECTION_STRING` environment variable.
 
 ## Create a basic ASP.NET web app
 
-1. Open Visual Studio 2019.
-2. Select **File** > **New** > **Project**.
-3. Select **ASP.NET Web Application(.NET Framework) C#**.
-4. Enter a project name, and then select **Create**.
-5. Select **MVC** > **Create**. 
+1. Open Visual Studio.
+1. Select **File** > **New** > **Project**.
+1. Select **ASP.NET Web Application (.NET Framework) C#**.
+1. Enter a project name, and then select **Create**.
+1. Select **MVC** > **Create**. 
 
-## Add Application Insights automatically
+## Add Application Insights automatically (Visual Studio)
 
 This section guides you through automatically adding Application Insights to a template-based ASP.NET web app. From within your ASP.NET web app project in Visual Studio:
 
 1. Select **Project** > **Add Application Insights Telemetry** > **Application Insights Sdk (local)** > **Next** > **Finish** > **Close**.
-2. Open the *ApplicationInsights.config* file. 
-3. Before the closing `</ApplicationInsights>` tag, add a line that contains the connection string for your Application Insights resource. Find your connection string on the overview pane of the newly created Application Insights resource.
+
+1. Open the *ApplicationInsights.config* file.
+
+1. Before the closing `</ApplicationInsights>` tag, add a line that contains the connection string for your Application Insights resource. Find your connection string on the overview pane of the newly created Application Insights resource.
 
     ```xml
     <ConnectionString>Copy connection string from Application Insights Resource Overview</ConnectionString>
     ```
 
-4. Select **Project** > **Manage NuGet Packages** > **Updates**. Then update each `Microsoft.ApplicationInsights` NuGet package to the latest stable release.   
-5. Run your application by selecting **IIS Express**. A basic ASP.NET app opens. As you browse through the pages on the site, telemetry is sent to Application Insights.
+1. Select **Project** > **Manage NuGet Packages** > **Updates**. Then update each `Microsoft.ApplicationInsights` NuGet package to the latest stable release.
 
-## Add Application Insights manually
+1. Run your application by selecting **IIS Express**. A basic ASP.NET app opens. As you browse through the pages on the site, telemetry is sent to Application Insights.
+
+## Add Application Insights manually (no Visual Studio)
 
 This section guides you through manually adding Application Insights to a template-based ASP.NET web app. This section assumes that you're using a web app based on the standard Model, View, and Controller (MVC) web app template for the ASP.NET Framework.
 
 1. Add the following NuGet packages and their dependencies to your project:
 
-    - [`Microsoft.ApplicationInsights.WindowsServer`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer)
-    - [`Microsoft.ApplicationInsights.Web`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)
-    - [`Microsoft.AspNet.TelemetryCorrelation`](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation)
+    * [`Microsoft.ApplicationInsights.WindowsServer`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer)
+    * [`Microsoft.ApplicationInsights.Web`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)
+    * [`Microsoft.AspNet.TelemetryCorrelation`](https://www.nuget.org/packages/Microsoft.AspNet.TelemetryCorrelation)
 
-2. In some cases, the *ApplicationInsights.config* file is created for you automatically. If the file is already present, skip to step 4. 
+1. In some cases, the *ApplicationInsights.config* file is created for you automatically. If the file is already present, skip to step 4. 
 
-Create it yourself if it's missing. In the root directory of an ASP.NET application, create a new file called *ApplicationInsights.config*.
+    Create it yourself if it's missing. In the root directory of an ASP.NET application, create a new file called *ApplicationInsights.config*.
 
-3. Copy the following XML configuration into your newly created file:
+1. Copy the following XML configuration into your newly created file:
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -210,17 +213,32 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
         Learn more about Application Insights configuration with ApplicationInsights.config here: 
         http://go.microsoft.com/fwlink/?LinkID=513840
       -->
-      <ConnectionString>Copy connection string from Application Insights Resource Overview</ConnectionString>
+      <ConnectionString>Copy the connection string from your Application Insights resource</ConnectionString>
     </ApplicationInsights>
     ```
 
-4. Before the closing `</ApplicationInsights>` tag, add the connection string for your Application Insights resource. You can find your connection string on the overview pane of the newly created Application Insights resource.
+1. Add the connection string, which can be done in two ways:
 
-    ```xml
-    <ConnectionString>Copy connection string from Application Insights Resource Overview</ConnectionString>
-    ```
+    * **(Recommended)** Set the connection string in configuration.
 
-5. At the same level of your project as the *ApplicationInsights.config* file, create a folder called *ErrorHandler* with a new C# file called *AiHandleErrorAttribute.cs*. The contents of the file look like this:
+        Before the closing `</ApplicationInsights>` tag in *ApplicationInsights.config*, add the connection string for your Application Insights resource. You can find your connection string on the overview pane of the newly created Application Insights resource.
+
+        ```xml
+        <ConnectionString>Copy the connection string from your Application Insights resource</ConnectionString>
+        ```
+
+    * Set the connection string in code.
+
+        Provide a connection string in your *program.cs* class.
+
+        ```csharp
+        var configuration = new TelemetryConfiguration
+        {
+            ConnectionString = "Copy the connection string from your Application Insights resource"
+        };
+        ```
+
+1. At the same level of your project as the *ApplicationInsights.config* file, create a folder called *ErrorHandler* with a new C# file called *AiHandleErrorAttribute.cs*. The contents of the file look like this:
 
     ```csharp
     using System;
@@ -249,7 +267,7 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
     }
     ```
 
-6. In the *App_Start* folder, open the *FilterConfig.cs* file and change it to match the sample:
+1. In the *App_Start* folder, open the *FilterConfig.cs* file and change it to match the sample:
 
     ```csharp
     using System.Web;
@@ -267,7 +285,7 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
     }
     ```
 
-7. If *Web.config* is already updated, skip this step. Otherwise, update the file as follows:
+1. If *Web.config* is already updated, skip this step. Otherwise, update the file as follows:
     
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -348,14 +366,13 @@ Create it yourself if it's missing. In the root directory of an ASP.NET applicat
         <!-- Code added for Application Insights end -->
       </system.webServer>
     </configuration>
-    
     ```
 
 At this point, you successfully configured server-side application monitoring. If you run your web app, you see telemetry begin to appear in Application Insights.
 
 ## Add client-side monitoring
 
-The previous sections provided guidance on methods to automatically and manually configure server-side monitoring. To add client-side monitoring, use the [client-side JavaScript SDK](javascript.md). You can monitor any web page's client-side transactions by adding a [JavaScript JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) before the closing `</head>` tag of the page's HTML. 
+The previous sections provided guidance on methods to automatically and manually configure server-side monitoring. To add client-side monitoring, use the [client-side JavaScript SDK](javascript.md). You can monitor any web page's client-side transactions by adding a [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#get-started) before the closing `</head>` tag of the page's HTML. 
 
 Although it's possible to manually add the JavaScript (Web) SDK Loader Script to the header of each HTML page, we recommend that you instead add the JavaScript (Web) SDK Loader Script to a primary page. That action injects the JavaScript (Web) SDK Loader Script into all pages of a site. 
 
@@ -451,20 +468,20 @@ When you add Application Insights to your project, it automatically creates file
 
 When you add Application Insights Telemetry to a Visual Studio ASP.NET project, it adds the following files:
 
-- ApplicationInsights.config
-- AiHandleErrorAttribute.cs
+* *ApplicationInsights.config*
+* *AiHandleErrorAttribute.cs*
 
 The following pieces of code are automatically added:
 
 
 
-- [Your project's name].csproj
+* *[Your project's name].csproj*
 
     ```C#
-     <ApplicationInsightsResourceId>/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
+     <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
     ```
 
-- Packages.config
+* *Packages.config*
 
     ```xml
     <packages>
@@ -489,9 +506,9 @@ The following pieces of code are automatically added:
     </packages>
     ```
 
-- Layout.cshtml
+* *Layout.cshtml*
 
-    If your project has a Layout.cshtml file, the following code is added.
+    If your project has a *Layout.cshtml* file, the following code is added.
     
     ```html
     <head>
@@ -512,7 +529,7 @@ The following pieces of code are automatically added:
     </head>
     ```
 
-- ConnectedService.json
+* *ConnectedService.json*
 
     ```json
     {
@@ -524,7 +541,7 @@ The following pieces of code are automatically added:
     }
     ```
 
-- FilterConfig.cs
+* *FilterConfig.cs*
 
     ```csharp
             public static void RegisterGlobalFilters(GlobalFilterCollection filters)
@@ -541,7 +558,7 @@ To disable telemetry correlation in configuration, see `<ExcludeComponentCorrela
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
 
-There's a known issue in the current version of Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
+There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
 

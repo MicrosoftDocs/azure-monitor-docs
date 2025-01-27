@@ -3,7 +3,7 @@ title: Create an experiment using a Chaos Mesh fault with the Azure portal
 description: Create an experiment that uses an AKS Chaos Mesh fault by using Azure Chaos Studio with the Azure portal.
 author: prasha-microsoft
 ms.topic: how-to
-ms.date: 04/21/2022
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio
@@ -25,7 +25,6 @@ Chaos Studio uses [Chaos Mesh](https://chaos-mesh.org/), a free, open-source cha
 
 * You can use Chaos Mesh faults with private clusters by configuring [VNet Injection in Chaos Studio](chaos-studio-private-networking.md). Any commands issued to the private cluster, including the steps in this article to set up Chaos Mesh, need to follow the [private cluster guidance](/azure/aks/private-clusters). Recommended methods include connecting from a VM in the same virtual network or using the [AKS command invoke](/azure/aks/access-private-cluster) feature.
 * AKS Chaos Mesh faults are only supported on Linux node pools.
-* Currently, Chaos Mesh faults don't work if the AKS cluster has [local accounts disabled](/azure/aks/manage-local-accounts-managed-azure-ad).
 * If your AKS cluster is configured to only allow authorized IP ranges, you need to allow Chaos Studio's IP ranges. You can find them by querying the `ChaosStudio` [service tag with the Service Tag Discovery API or downloadable JSON files](/azure/virtual-network/service-tags-overview). 
 
 ## Set up Chaos Mesh on your AKS cluster

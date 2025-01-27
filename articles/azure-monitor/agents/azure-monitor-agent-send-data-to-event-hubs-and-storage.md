@@ -4,7 +4,7 @@ description: This article describes how to use Azure Monitor Agent to upload dat
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 10/09/2023
+ms.date: 01/05/2025
 ms.reviewer: luki
 ---
 
@@ -15,11 +15,19 @@ This article describes how to use the Azure Monitor Agent (AMA) to upload data t
 The Azure Monitor Agent is the new, consolidated telemetry agent for collecting data from IaaS resources like virtual machines. By using the upload capability in this preview, you can upload the logs<sup>[1](#FN1)</sup> you send to Log Analytics workspaces to Event Hubs and Storage. Both data destinations use data collection rules to configure collection setup for the agents.
 
 > [!NOTE]
-> This functionality replaces the Windows diagnostics extension (WAD) and Linux diagnostics extension (LAD). For more information, see [Compare Azure Monitor Agent to legacy agents](./agents-overview.md#compare-to-legacy-agents).
+> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.
 
 **Footnotes**
 
 <a name="FN1">1</a>: Not all data types are supported; refer to [What's supported](#whats-supported) for specifics.
+
+## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
+
+- Azure Monitor Agent can collect and send data to multiple destinations, including Log Analytics workspaces, Azure Event Hubs, and Azure Storage.
+- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
+- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
+- As an alternative to storage, we highly recommend you set up a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
+
 
 ## What's supported
 
@@ -46,18 +54,21 @@ The Azure Monitor Agent is the new, consolidated telemetry agent for collecting 
 ### Data types
 
 - Windows:
-   - ETW Logs
+   - ETW Logs (Coming in a later released)
    - Windows Crash Dumps (not planned nor will be supported)
    - Application Logs (not planned nor will be supported)
    - .NET event source logs (not planned nor will be supported)
 
 ## Prerequisites
 
-A managed identity (either system or user) associated with the resources below. We highly recommend using [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for better scalability and performance.
-
-- [Storage account](/azure/storage/common/storage-account-create)
-- [Event Hubs namespace and event hub](/azure/event-hubs/event-hubs-create)
-- [Virtual machine](/azure/virtual-machines/overview)
++ An existing compute resource, such as a virtual machine or virtual machine scale set. 
++ The machine to which Azure Monitor Agent is deployed must have system-assigned managed identity enabled or a user-assigned managed identity associated it to it. [User-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities)  is recommended for better scalability and performance. 
++ Azure Monitor Agent must be configured to use the managed identity for authentication as described in [Azure Monitor agent requirements](azure-monitor-agent-requirements.md#permissions). 
++ You must provision the necessary [storage account(s)](/azure/storage/common/storage-account-create) and/or [Event Hubs](/azure/event-hubs/event-hubs-create) to which you wish to publish data via Azure Monitor Agent. 
++ The appropriate built-in RBAC role(s) must be assigned to the chosen managed identity according to your desired data destination(s).
+    - Storage table: `Storage Table Data Contributor` role
+    - Storage blob: `Storage Blob Data Contributor` role
+    - Event hub: `Azure Event Hubs Data Sender` role
 
 ## Create a data collection rule
 
@@ -727,7 +738,7 @@ No, this support isn't a part of the roadmap. The Azure Monitoring Agent is mean
 
 ### Does this mean the Linux (LAD) and Windows (WAD) Diagnostic Extensions are no longer supported/retired?
 
-No, not until Azure formally announces the deprecation of these agents, which would start a three-year clock until they're no longer supported.
+LAD and WAD will be retired on March 31, 2026. Beyond required security patches and bug/regression fixes there are no enhancements nor feature development planned for WAD/LAD. We highly recommend you move to the Azure Monitor Agent as soon as possible.
 
 ### How to configure AMA for event hubs and storage data destinations
 

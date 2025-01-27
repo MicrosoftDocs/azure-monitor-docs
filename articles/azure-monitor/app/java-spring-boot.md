@@ -2,7 +2,7 @@
 title: Configure Azure Monitor Application Insights for Spring Boot
 description: How to configure Azure Monitor Application Insights for Spring Boot applications
 ms.topic: conceptual
-ms.date: 07/29/2024
+ms.date: 10/14/2024
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
 ---
@@ -16,10 +16,10 @@ There are two options for enabling Application Insights Java with Spring Boot: J
 
 ## Enabling with JVM argument 
 
-Add the JVM arg `-javaagent:"path/to/applicationinsights-agent-3.5.4.jar"` somewhere before `-jar`, for example:
+Add the JVM arg `-javaagent:"path/to/applicationinsights-agent-3.6.2.jar"` somewhere before `-jar`, for example:
 
 ```console
-java -javaagent:"path/to/applicationinsights-agent-3.5.4.jar" -jar <myapp.jar>
+java -javaagent:"path/to/applicationinsights-agent-3.6.2.jar" -jar <myapp.jar>
 ```
 
 ### Spring Boot via Docker entry point
@@ -38,7 +38,7 @@ To enable Application Insights Java programmatically, you must add the following
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>applicationinsights-runtime-attach</artifactId>
-    <version>3.5.4</version>
+    <version></version>
 </dependency>
 ```
 
@@ -93,7 +93,7 @@ public static void main(String[] args) {
 > Spring's `application.properties` or `application.yaml` files are not supported as
 > as sources for Application Insights Java configuration.
 
-See [configuration file path configuration options](./java-standalone-config.md#configuration-file-path)
+See [configuration file path configuration options](./java-standalone-config.md#json-configuration-set-up)
 to change the location for a file outside the classpath.
 
 To programmatically configure a file outside the classpath:
@@ -113,7 +113,7 @@ First, add the `applicationinsights-core` dependency:
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>applicationinsights-core</artifactId>
-    <version>3.5.4</version>
+    <version></version>
 </dependency>
 ```
 
@@ -121,8 +121,8 @@ Then, call the `ConnectionString.configure` method after `ApplicationInsights.at
 
 ```java
 public static void main(String[] args) {
-    System.setProperty("applicationinsights.configuration.file", "{path}/applicationinsights-dev.json");
     ApplicationInsights.attach();
+    ConnectionString.configure("<Your Connection String>");
     SpringApplication.run(PetClinicApplication.class, args);
 }
 ```

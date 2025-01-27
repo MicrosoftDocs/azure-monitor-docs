@@ -63,16 +63,19 @@ Chaos Studio has the following operations:
 | Microsoft.Chaos/experiments/executions/Read | Get the execution status for a run of a chaos experiment. |
 | Microsoft.Chaos/experiments/executions/getExecutionDetails/action | Get the execution details (status and errors for each action) for a run of a chaos experiment. |
 
-To assign these permissions granularly, you can [create a custom role](/azure/role-based-access-control/custom-roles).
+To assign these permissions granularly, you can [create a custom role](/azure/role-based-access-control/custom-roles). You may also use the following Azure built-in roles to manage access to Chaos Studio:
+* **Chaos Studio Experiment Contributor**: Can create, run, and see details for experiments, onboard targets, and manage capabilities.
+* **Chaos Studio Operator**: Can run and see details for experiments but cannot create experiments or manage targets and capabilities.
+* **Chaos Studio Reader**: Can view targets, capabilities, experiments, and experiment details.
+
+For more detailed information on these built-in roles for Chaos Studio operations, see [RBAC DevOps Roles](/azure/role-based-access-control/built-in-roles#devops).
 
 ## Network security
 
 All user interactions with Chaos Studio happen through Azure Resource Manager. If a user starts an experiment, the experiment might interact with endpoints other than Resource Manager, depending on the fault:
 
 * **Service-direct faults**: Most service-direct faults are executed through Azure Resource Manager and don't require any allowlisted network endpoints.
-* **Service-direct AKS Chaos Mesh faults:** Service-direct faults for Azure Kubernetes Service that use Chaos Mesh require access to the AKS cluster's Kubernetes API server. 
-    * [Learn how to limit AKS network access to a set of IP ranges here](/azure/aks/api-server-authorized-ip-ranges). You can obtain Chaos Studio's IP ranges by querying the `ChaosStudio` [service tag with the Service Tag Discovery API or downloadable JSON files](/azure/virtual-network/service-tags-overview).
-    * Currently, Chaos Studio can't execute Chaos Mesh faults if the AKS cluster has [local accounts disabled](/azure/aks/manage-local-accounts-managed-azure-ad).
+* **Service-direct AKS Chaos Mesh faults:** Service-direct faults for Azure Kubernetes Service that use Chaos Mesh require access to the AKS cluster's Kubernetes API server. Several methods to add the necessary IPs are included on [Authorize Chaos Studio IP addresses for an AKS cluster](chaos-studio-aks-ip-ranges.md).
 * **Agent-based faults**: To use agent-based faults, the agent needs access to the Chaos Studio agent service. A VM or virtual machine scale set must have outbound access to the agent service endpoint for the agent to connect successfully. The agent service endpoint is `https://acs-prod-<region>.chaosagent.trafficmanager.net`. You must replace the `<region>` placeholder with the region where your VM is deployed. An example is `https://acs-prod-eastus.chaosagent.trafficmanager.net` for a VM in East US.
 * **Agent-based private networking**: The Chaos Studio agent now supports private networking. Please see [Private networking for Chaos Agent](chaos-studio-private-link-agent-service.md). 
 

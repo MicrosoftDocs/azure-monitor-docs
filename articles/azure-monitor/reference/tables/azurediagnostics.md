@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 09/16/2024
+ms.date: 11/20/2024
 custom: Hardcoded description from azurediagnostics-stub.md.
 ---
 
@@ -16,7 +16,7 @@ Stores resource logs for Azure services that use Azure Diagnostics mode. Resourc
 
 The resource log for each Azure service has a unique set of columns. The AzureDiagnostics table includes the most common columns used by Azure services. If a resource log includes a column that doesn't already exist in the AzureDiagnostics table, that column is added the first time that data is collected. If the maximum number of 500 columns is reached, data for any additional columns is added to a dynamic column.
 
-Azure services that use resource-specific mode store data in a table specific to that service and do not use the AzureDiagnostics table. See [Resource Types](#resource-types) below for the services that use each method. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs#send-to-log-analytics-workspace) for details on the differences.
+Azure services that use resource-specific mode store data in a table specific to that service and don't use the AzureDiagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs#send-to-log-analytics-workspace) for details on the differences. See [Resources using Azure Diagnostics mode](#resources-using-azure-diagnostics-mode) for the services that use Azure Diagnostics.
 
 > [!NOTE]
 > The AzureDiagnostics table is a custom log table created exclusively by the Azure Monitor pipeline the first time an Azure resource begins sending logs in Azure Diagnostics mode. Unlike other tables, the AzureDiagnostics table can't be created via an ARM template or tables API. Consequently, it's not possible to modifying the table's default retention values before its creation.
@@ -25,21 +25,21 @@ Azure services that use resource-specific mode store data in a table specific to
 
 Unlike other tables, **AzureDiagnostics** is much more susceptible to exceeding the 500 column limit imposed for any table in a Log Analytics workspace due to the wide assortment of Azure Resources capable of sending data to this table. To ensure that no data is lost due to the number of active columns exceeding this 500 column limit, AzureDiagnostics column creation is handled in a different manner to other tables.
 
-The AzureDiagnostics table in every workspace contains at a minimum, the same [200 columns](#columns). For workspaces created before January 19, 2021, the table also contain any columns that were already in place prior to this date. When data is sent to a column not already in place:
+The AzureDiagnostics table in every workspace contains at a minimum, the same [200 columns](#azurediagnostics-table-columns). For workspaces created before January 19, 2021, the table also contains any columns that were already in place before this date. When data is sent to a column not already in place:
 
-- If the total number of columns in **AzureDiagnostics** in the current workspace does not exceed 500, a new column is created just like with any other table.
+- If the total number of columns in **AzureDiagnostics** in the current workspace doesn't exceed 500, a new column is created just like with any other table.
 - If the total number of columns is at or above 500, the excess data is added to a dynamic property bag column called **AdditionalFields** as a property.
 
 ### Example
 
-To illustrate this behavior, imagine that as of (deployment date) the AzureDiagnostics table in our workpsace looks as follows:
+To illustrate this behavior, imagine that as of (deployment date) the AzureDiagnostics table in our workspace looks as follows:
 
 | Column 1 | Column 2 | Column 3 | ... | Column 498 |
 |:---|:---|:---|:---|:---|
 | abc | def | 123 | ... | 456 |
 | ... | ... | ... | ... | ... |
 
-A resource that sends data to **AzureDiagnostics** then adds a new dimension to their data that they call **NewInfo1**. Since the table still has less than 500 columns, the first time an event occurs that contains data for this new dimension adds a new column to the table:
+A resource that sends data to **AzureDiagnostics** then adds a new dimension to their data that they call **NewInfo1**. Since the table still has fewer than 500 columns, the first time an event occurs that contains data for this new dimension adds a new column to the table:
 
 | Column 1 | Column 2 | Column 3 | ... | Column 498 | NewInfo1_s |
 |:---|:---|:---|:---|:---|:---|
@@ -59,7 +59,7 @@ At a later date, another resource sends data to **AzureDiagnostics** that adds n
 | abc | def | 123 | ... | 456 | xyz | {"NewInfo2":"789","NewInfo3":"qwerty"} |
 | ... | ... | ... | ... | ... | ... | ... |
 
-You can still query for this data,but you must extract it from the property bag using any of the dynamic property operators in KQL:
+You can still query for this data, but you must extract it from the property bag using any of the dynamic property operators in KQL:
 
 ```kusto
 AzureDiagnostics
@@ -68,130 +68,85 @@ AzureDiagnostics
 
 ### Tips on using the `AdditionalFields` column
 
-While general query best practices such as always filtering by time as the first clause in the query should be followed, there are some other recommendations you should consider when working with AdditionalFields:
+While query best practices such as always filtering by time as the first clause in the query should be followed, there are some other recommendations you should consider when working with AdditionalFields:
 
-- You must to typecast data prior to performing further operations on it. For example, if a column exists called **Perf1Sec_i** as well as a property in **AdditionalFields** called **Perf2Sec**, and you want to calculate total perf by adding both values, use something like: `AzureDiagnostics | extend TotalPerfSec = Perf1Sec_i + toint(AdditionalFields.Perf2Sec) | ....`.
-- Use [where](/azure/data-explorer/kusto/query/whereoperator) clauses to reduce the data volume to the smallest possible prior to writing any complex logic to significantly improve performance. **TimeGenerated** is one column that should always be reduced to the smallest possible window. In the case of **AzureDiagnostics**, an additional filter should also always be included at the top of the query around the resource types that are being queried using the **ResourceType** column.
-- When querying very large volumes of data, it is sometimes more efficient to do a filter on **AdditionalFields** as a whole rather than parsing it. For example, for large volumes of data `AzureDiagnostics | where AdditionalFields has "Perf2Sec"` is often more efficient than `AzureDiagnostics | where isnotnull(toint(AdditionalFields.Perf2Sec))`.
+- You must typecast data before performing further operations on it. For example, if you have a column  called **Perf1Sec_i** and a property in **AdditionalFields** called **Perf2Sec**, and you want to calculate total perf by adding both values, you can use the following: `AzureDiagnostics | extend TotalPerfSec = Perf1Sec_i + toint(AdditionalFields.Perf2Sec) | ....`.
+- Use [where](/azure/data-explorer/kusto/query/whereoperator) clauses to reduce the data volume to the smallest possible before writing any complex logic to significantly improve performance. **TimeGenerated** is one column that should always be reduced to the smallest possible window. In the case of **AzureDiagnostics**, an additional filter should always be included at the top of the query around the resource types that are being queried using the **ResourceType** column.
+- When querying large volumes of data, it's sometimes more efficient to do a filter on **AdditionalFields** as a whole rather than parsing it. For example, for large volumes of data, `AzureDiagnostics | where AdditionalFields has "Perf2Sec"` is often more efficient than `AzureDiagnostics | where isnotnull(toint(AdditionalFields.Perf2Sec))`.
 
-### Azure Diagnostics mode
 
-The following services use Azure diagnostics mode for their resource logs and send data to the Azure Diagnostics table.
+## Resources using Azure Diagnostics mode
 
-- Analysis Services
-- Application Gateways
-- Automation Accounts
-- Azure Database for MariaDB servers
-- Azure Database for MySQL servers
-- Azure Database for PostgreSQL servers
-- Azure Database for PostgreSQL servers v2
-- Batch accounts
-- CDN profiles
-- Cognitive Services
-- Data Lake Analytics
-- DataLake Storage Gen1
-- Device Provisioning Services
-- Digital Twins
-- Event Grid Topics
-- Event Hubs
-- ExpressRoute circuits
-- Front Doors
-- Integration accounts
-- Key Vault
-- Kubernetes services
-- Load balancers
-- Logic Apps
-- Media services
-- Network interfaces
-- Network Security Groups
-- P2S VPN Gateways
-- Power BI Embedded
-- Public IP addresses
-- Recovery Services vaults(Site Recovery)
-- Search services
-- Service Bus
-- SQL databases
-- SQL managed Instances
-- SQL servers
-- Stream Analytics jobs
-- Traffic Manager profiles
-- Virtual networks
-- Virtual network gateways
-- VPN Gateways
+The following services use Azure diagnostics mode for their resource logs and send data to the Azure Diagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs) for details on this configuration.
+> [!NOTE]
+> All other resources send data to resource-specific tables.
+
+|Service name | resourceType|
+|---|---|
+|MicrosoftSqlAzureTelemetryv3 | microsoft.sql/servers/databases|
+|MicrosoftAzureCosmosDB | microsoft.documentdb/databaseaccounts|
+|AzureFirewall | microsoft.network/azurefirewalls|
+|AzureApplicationGatewayService | microsoft.network/applicationgateways |
+|AKSCustomerData | microsoft.containerservice/managedclusters |
+|AzureFrontdoor | microsoft.cdn/profiles |
+|LNMAgentService | microsoft.network/networksecuritygroups |
+|MicrosoftOrcasBreadthServers | microsoft.dbforpostgresql/flexibleservers |
+|servicebus | microsoft.eventhub/namespaces |
+|AzureFrontdoor | microsoft.network/frontdoors |
+|AzureKeyVault | microsoft.keyvault/vaults |
+|AzureDataLake | microsoft.datalakestore/accounts |
+|ApiManagement | microsoft.apimanagement/service |
+|MicrosoftSqlAzureTelemetryv3 | microsoft.sql/managedinstances |
+|ASAzureRP | microsoft.analysisservices/servers |
+|MicrosoftOrcasBreadthServers | microsoft.dbformysql/flexibleservers |
+|servicebus | microsoft.servicebus/namespaces |
+|AzureIotHub | microsoft.devices/iothubs |
+|MicrosoftSqlAzureTelemetryv2 | microsoft.dbforpostgresql/servers |
+|MicrosoftSqlAzureTelemetryv2 | microsoft.dbformariadb/servers |
+|MicrosoftAutomation | microsoft.automation/automationaccounts |
+|TrafficManager | microsoft.network/trafficmanagerprofiles |
+|MicrosoftOrcasBreadthServers | microsoft.dbforpostgresql/servergroupsv2 |
+|AzureSearch | microsoft.search/searchservices |
+|AzureHybrid | microsoft.network/virtualnetworkgateways |
+|MicrosoftSqlAzureTelemetryv3 | microsoft.sql/managedinstances/databases |
+|PBIDedicatedRP | microsoft.powerbidedicated/capacities |
+|AzureHybrid | microsoft.network/vpngateways |
+|MicrosoftDatafactory | microsoft.datafactory/factories |
+|MicrosoftCognitiveServices | microsoft.cognitiveservices/accounts |
+|AzureRecoveryServices | microsoft.recoveryservices/vaults |
+|AzureBatch | microsoft.batch/batchaccounts |
+|AzureHybrid | microsoft.network/p2svpngateways |
+|MicrosoftSqlAzureTelemetryv2 | microsoft.dbformysql/servers |
+|AzureKeyVault | microsoft.keyvault/managedhsms |
+|NetMon | microsoft.network/publicipaddresses |
+|AzureDataLake | microsoft.datalakeanalytics/accounts |
+|MicrosoftStreamanalytics | microsoft.streamanalytics/streamingjobs |
+|servicebus | microsoft.relay/namespaces |
+|AzureIotDps | microsoft.devices/provisioningservices |
+|MicrosoftAzureCosmosDB | microsoft.documentdb/cassandraclusters |
+|MicrosoftAzureCosmosDB | microsoft.documentdb/mongoclusters |
+|AKSCustomerData | microsoft.containerservice/fleets |
+|PBIDedicatedRP | microsoft.powerbi/tenants/workspaces |
+|AzureFrontdoor | microsoft.cdn/cdnwebapplicationfirewallpolicies |
+|AzureHybrid | microsoft.network/expressroutecircuits |
+|MicrosoftAzureCosmosDB | microsoft.dbforpostgresql/flexibleservers |
+|NetMon | microsoft.network/publicipprefixes |
+|AzureCdn | microsoft.cdn/profiles/endpoints |
+
 
 ### Azure Diagnostics mode or resource-specific mode
 
-The following services use either Azure diagnostics mode or resource-specific mode for their resource logs depending on their configuration. When they use resource-specific mode, they do not send data to the AzureDiagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs) for details on this configuration.
+The following services use either Azure diagnostics mode or resource-specific mode for their resource logs depending on the diagnostics settings configuration. When using resource-specific mode, these resources don't send data to the AzureDiagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs) for details on this configuration.
 
-- API Management Services
-- Azure Cosmos DB
-- Data factories (V2)
-- IoT Hub
-- Recovery Services vaults(Backup)
-- Firewalls
+|Service name | resourceType|
+|---|---|
+| API Management Services |Microsoft.ApiManagement|
+| Azure Cosmos DB |Microsoft.DocumentDB/databaseAccounts|
+| Data factories (V2) |Microsoft.DataFactory|
+| Recovery Services vaults(Backup)| Microsoft.RecoveryServices/vaults|
+| Firewalls|Microsoft.Network/azureFirewalls|
 
-## Categories
-
-- Azure Resources
-- Security
-- Network
-
-## Solutions
-
-- LogManagement
-
-## Resource types
-
-- Application Gateways
-- CDN Profiles
-- Azure Cosmos DB
-- Event Grid Topics
-- Event Hubs
-- Firewalls
-- Key Vaults
-- Kubernetes Services
-- Recovery Services Vaults
-- Service Bus
-- Azure Database for MySQL Flexible Servers
-- Azure Database for PostgreSQL Flexible Servers
-- Media Services
-- Analysis Services
-- Batch Accounts
-- Cognitive Services
-- Event Grid Partner Namespaces
-- Event Grid Partner Topics
-- Event Grid System Topics
-- Azure Arc Enabled Kubernetes
-- Azure Arc Provisioned Clusters
-- IoT Hub
-- Logic Apps
-- API Management services
-- Automation account
-- Data factories
-- Data Lake Storage Gen1
-- Data Lake Analytics
-- Power BI Embedded
-- SQL Managed Instances
-- SQL Servers
-- SQL Databases
-- Azure Database for MySQL Servers
-- Azure Database for PostgreSQL Servers
-- Azure Database for PostgreSQL Servers V2
-- Azure Database for MariaDB Servers
-- Device Provisioning Services
-- ExpressRoute Circuits
-- Front Doors
-- Network Interfaces
-- Network Security Groups
-- Public IP Addresses
-- Traffic Manager Profiles
-- Virtual Network Gateways
-- Virtual Private Network Gateways
-- Virtual Networks
-- Search Services
-- Stream Analytics jobs
-
-## Columns
+## AzureDiagnostics table columns
 
 |Column|Type|Description|
 |---|---|---|

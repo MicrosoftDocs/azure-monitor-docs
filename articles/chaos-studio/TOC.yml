@@ -42,6 +42,9 @@
     href: chaos-studio-permissions-security.md
   - name: Private networking
     href: chaos-studio-private-networking.md
+    items:
+    - name: Accessing container image details
+      href: azure-container-instance-details.md
   - name: Reliability 
     href: /azure/reliability/reliability-chaos-studio?toc=/azure/chaos-studio/toc.json&bc=/azure/chaos-studio/breadcrumb/toc.json
 - name: Create and run experiments
@@ -64,6 +67,10 @@
       href: chaos-studio-tutorial-aks-portal.md
     - name: CLI
       href: chaos-studio-tutorial-aks-cli.md
+    - name: Use Microsoft Entra authentication with Chaos Mesh
+      href: chaos-studio-aks-authentication.md
+    - name: Authorize Chaos Studio IP addresses for an AKS cluster
+      href: chaos-studio-aks-ip-ranges.md
   - name: Dynamic targeting
     items:
     - name: Portal

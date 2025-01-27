@@ -22,7 +22,7 @@ If you want to use a preconfigured integration, see:
 
 **Watch an introductory video:**
 
->[!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2OtUV]
+>[!VIDEO https://learn-video.azurefd.net/vod/player?id=4f25cc06-5873-4521-8c35-f4e9f0add183]
 
 ## Configure a custom notification by using the Service Health webhook payload
 To set up your own custom webhook integration, you need to parse the JSON payload that's sent via Service Health notification.
@@ -44,7 +44,7 @@ You can create a direct link to your Service Health dashboard on a desktop or mo
 
 https<i></i>://app.azure.com/h/*&lt;trackingId&gt;*/*&lt;first three and last three digits of subscriptionId&gt;*
 
-For example, if your *subscriptionId* is bba14129-e895-429b-8809-278e836ecdb3 and your *trackingId* is 0DET-URB, your Service Health URL is:
+For example, if your *subscriptionId* is aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e and your *trackingId* is 0DET-URB, your Service Health URL is:
 
 https<i></i>://app.azure.com/h/0DET-URB/bbadb3
 

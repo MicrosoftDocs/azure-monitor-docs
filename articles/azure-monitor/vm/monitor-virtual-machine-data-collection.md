@@ -33,7 +33,7 @@ You can view the DCRs in your Azure subscription from **Data Collection Rules** 
 ### Create data collection rules
 There are multiple methods to create DCRs depending on the data collection scenario. In some cases, the Azure portal walks you through the configuration. Other scenarios require you to edit a DCR directly. When you configure VM insights, it creates a preconfigured DCR for you automatically. The following sections identify common data to collect and how to configure data collection.
 
-In some cases, you might need to [edit an existing DCR](../essentials/data-collection-rule-edit.md) to add functionality. For example, you might use the Azure portal to create a DCR that collects Windows or Syslog events. You then want to add a transformation to that DCR to filter out columns in the events that you don't want to collect.
+In some cases, you might need to [edit an existing DCR](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to add functionality. For example, you might use the Azure portal to create a DCR that collects Windows or Syslog events. You then want to add a transformation to that DCR to filter out columns in the events that you don't want to collect.
 
 As your environment matures and grows in complexity, you should implement a strategy for organizing your DCRs to help their management. For guidance on different strategies, see [Best practices for data collection rule creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md).
 
@@ -78,7 +78,8 @@ For information on what data is collected and how to view it, see [Monitor virtu
 ### VM insights
 When you enable VM insights, it creates a DCR with the *_MSVMI-_* prefix that collects the following information. You can use this same DCR with other machines as opposed to creating a new one for each VM.
 
-- Common performance counters for the client operating system are sent to the [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table in the Log Analytics workspace. Counter names are normalized to use the same common name regardless of the operating system type. For a list of performance counters that are collected, see [How to query logs from VM insights](vminsights-log-query.md#performance-records).
+- Common performance counters for the client operating system are sent to the [InsightsMetrics](../reference/tables/insightsmetrics.md) table in the Log Analytics workspace. Counter names are normalized to use the same common name regardless of the operating system type. 
+
 - If you specified processes and dependencies to be collected, the following tables are populated:
   
   - [VMBoundPort](/azure/azure-monitor/reference/tables/vmboundport): Traffic for open server ports on the machine
@@ -86,7 +87,7 @@ When you enable VM insights, it creates a DCR with the *_MSVMI-_* prefix that co
   - [VMConnection](/azure/azure-monitor/reference/tables/vmconnection): Traffic for inbound and outbound connections to and from the machine
   - [VMProcess](/azure/azure-monitor/reference/tables/vmprocess): Processes running on the machine
 
-By default, [VM insights](../vm/vminsights-overview.md) won't enable collection of processes and dependencies to save data ingestion costs. This data is required for the Map feature and also deploys the dependency agent to the machine. [Enable this collection](vminsights-enable-portal.md#enable-vm-insights-for-azure-monitor-agent) if you want to use this feature.
+By default, [VM insights](../vm/vminsights-overview.md) won't enable collection of processes and dependencies to save data ingestion costs. This data is required for the Map feature and also deploys the dependency agent to the machine. [Enable this collection](vminsights-enable-portal.md#enable-vm-insights) if you want to use this feature.
 
 ## Collect Windows and Syslog events
 The operating system and applications in virtual machines often write to the Windows event log or Syslog. You might create an alert as soon as a single event is found or wait for a series of matching events within a particular time window. You might also collect events for later analysis, such as identifying particular trends over time, or for performing troubleshooting after a problem occurs.
@@ -141,7 +142,7 @@ For guidance on creating a DCR to collect performance counters, see [Collect eve
 | Logs | Performance data stored in Azure Monitor Logs can be stored for extended periods. The data can be analyzed along with your event data by using [log queries](../logs/log-query-overview.md) with [Log Analytics](../logs/log-analytics-overview.md) or [log search alerts](../alerts/alerts-create-new-alert-rule.md?tabs=log). You can also correlate data by using complex logic across multiple machines, regions, and subscriptions.<br><br>Performance data is sent to the following tables:<br>- VM insights: [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>- Other performance data: [Perf](/azure/azure-monitor/reference/tables/perf) |
 
 ### Sample log queries
-The following samples use the `Perf` table with custom performance data. For information on performance data collected by VM insights, see [How to query logs from VM insights](../vm/vminsights-log-query.md#performance-records).
+The following samples use the `Perf` table with custom performance data.
 
 | Query  | Description |
 |:---|:---|

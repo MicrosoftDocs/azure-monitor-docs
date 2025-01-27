@@ -2,7 +2,7 @@
 title: Microsoft Entra authentication for Application Insights
 description: Learn how to enable Microsoft Entra authentication to ensure that only authenticated telemetry is ingested in your Application Insights resources.
 ms.topic: conceptual
-ms.date: 04/01/2024
+ms.date: 01/31/2025
 ms.devlang: csharp
 ms.reviewer: rijolly
 ---
@@ -33,14 +33,14 @@ The following Software Development Kits (SDKs) and features are unsupported for 
  Microsoft Entra authentication is only available for Application Insights Java Agent greater than or equal to 3.2.0.
 * [ApplicationInsights JavaScript web SDK](javascript.md).
 * [Application Insights OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) with Python version 3.4 and 3.5.
-* [AutoInstrumentation for Python on Azure App Service](azure-web-apps-python.md)
-* [Profiler](profiler-overview.md).
+* [Automatic instrumentation for Python on Azure App Service](azure-web-apps-python.md)
+* [Application Insights Profiler for .NET](profiler-overview.md).
 
 <a name='configure-and-enable-azure-ad-based-authentication'></a>
 
 ## Configure and enable Microsoft Entra ID-based authentication
 
-1. If you don't already have an identity, create one by using either a managed identity or a service principal.
+1. Create an identity using a managed identity or a service principal if you don't already have one.
 
     * We recommend using a managed identity:
 
@@ -55,16 +55,15 @@ The following Software Development Kits (SDKs) and features are unsupported for 
     Follow the steps in [Assign Azure roles](/azure/role-based-access-control/role-assignments-portal) to add the Monitoring Metrics Publisher role to the expected identity, service principal, or Azure user account by setting the target Application Insights resource as the role scope.
 
     > [!NOTE]
-    > Although the Monitoring Metrics Publisher role says "metrics," it will publish all telemetry to the Application Insights resource.
+    > Although the Monitoring Metrics Publisher role says "metrics," it publishes all telemetry to the Application Insights resource.
 
 1. Follow the configuration guidance in accordance with the language that follows.
 
-### [.NET](#tab/net)
+### [ASP.NET Core](#tab/aspnetcore)
 
 > [!NOTE]
-> Support for Microsoft Entra ID in the Application Insights .NET SDK is included starting with [version 2.18-Beta3](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.18.0-beta3).
-
-Application Insights .NET SDK supports the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/identity/Azure.Identity#credential-classes).
+> * Support for Microsoft Entra ID in the Application Insights .NET SDK is included starting with [version 2.18-Beta3](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.18.0-beta3).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
 
 * We recommend `DefaultAzureCredential` for local development.
 * Authenticate on Visual Studio with the expected Azure user account. For more information, see [Authenticate via Visual Studio](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#authenticate-via-visual-studio).
@@ -72,27 +71,35 @@ Application Insights .NET SDK supports the credential classes provided by [Azure
     * For system-assigned, use the default constructor without parameters.
     * For user-assigned, provide the client ID to the constructor.
 
-The following example shows how to manually create and configure `TelemetryConfiguration` by using .NET:
+1. Install the latest [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package:
 
-```csharp
-TelemetryConfiguration.Active.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/";
-var credential = new DefaultAzureCredential();
-TelemetryConfiguration.Active.SetAzureTokenCredential(credential);
-```
+    ```dotnetcli
+    dotnet add package Azure.Identity
+    ```
 
-The following example shows how to configure `TelemetryConfiguration` by using .NET Core:
+1. Provide the desired credential class:
 
-```csharp
-services.Configure<TelemetryConfiguration>(config =>
-{
-    var credential = new DefaultAzureCredential();
-    config.SetAzureTokenCredential(credential);
-});
-services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
-{
-    ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/"
-});
-```
+    ```csharp
+    // Create a new ASP.NET Core web application builder.    
+    var builder = WebApplication.CreateBuilder(args);
+
+    // Add the OpenTelemetry telemetry service to the application.
+    // This service will collect and send telemetry data to Azure Monitor.
+    builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
+        // Set the Azure Monitor credential to the DefaultAzureCredential.
+        // This credential will use the Azure identity of the current user or
+        // the service principal that the application is running as to authenticate
+        // to Azure Monitor.
+        options.Credential = new DefaultAzureCredential();
+    });
+
+    // Build the ASP.NET Core web application.
+    var app = builder.Build();
+
+    // Start the ASP.NET Core web application.
+    app.Run();
+    ```
+
 #### Environment variable configuration
 
 Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let Application Insights authenticate to Microsoft Entra ID and send telemetry when using [Azure App Services autoinstrumentation](./azure-web-apps-net-core.md).
@@ -109,52 +116,81 @@ Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let 
 |-------------------------------------------|------------------------------------------------------------------------|
 | APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
 
+#### Manual configuration
 
-### [Node.js](#tab/nodejs)
+The following example shows how to configure `TelemetryConfiguration` by using .NET Core:
 
-Azure Monitor OpenTelemetry and Application Insights Node.JS supports the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-js/tree/master/sdk/identity/identity#credential-classes).
+```csharp
+services.Configure<TelemetryConfiguration>(config =>
+{
+    var credential = new DefaultAzureCredential();
+    config.SetAzureTokenCredential(credential);
+});
+services.AddApplicationInsightsTelemetry(new ApplicationInsightsServiceOptions
+{
+    ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/"
+});
+```
+
+### [.NET](#tab/net)
+
+> [!NOTE]
+> * Support for Microsoft Entra ID in the Application Insights .NET SDK is included starting with [version 2.18-Beta3](https://www.nuget.org/packages/Microsoft.ApplicationInsights/2.18.0-beta3).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
 
 * We recommend `DefaultAzureCredential` for local development.
+* Authenticate on Visual Studio with the expected Azure user account. For more information, see [Authenticate via Visual Studio](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#authenticate-via-visual-studio).
 * We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
     * For system-assigned, use the default constructor without parameters.
     * For user-assigned, provide the client ID to the constructor.
-* We recommend `ClientSecretCredential` for service principals.
-    * Provide the tenant ID, client ID, and client secret to the constructor.
 
-If using @azure/monitor-opentelemetry
-```typescript
-const { useAzureMonitor, AzureMonitorOpenTelemetryOptions } = require("@azure/monitor-opentelemetry");
-const { ManagedIdentityCredential } = require("@azure/identity");
+1. Install the latest [Azure.Identity](https://www.nuget.org/packages/Azure.Identity) package:
 
-const credential = new ManagedIdentityCredential();
-const options: AzureMonitorOpenTelemetryOptions = {
-    azureMonitorExporterOptions: {
-        connectionString:
-            process.env["APPLICATIONINSIGHTS_CONNECTION_STRING"] || "<your connection string>",
-        credential: credential
-    }
-};
-useAzureMonitor(options);
-```
+    ```dotnetcli
+    dotnet add package Azure.Identity
+    ```
 
-> [!NOTE]
-> Support for Microsoft Entra ID in the Application Insights Node.JS is included starting with [version 2.1.0-beta.1](https://www.npmjs.com/package/applicationinsights/v/2.1.0-beta.1).
+1. Provide the desired credential class:
 
-If using `applicationinsights` npm package.
+    ```csharp
+    // Create a DefaultAzureCredential.
+    var credential = new DefaultAzureCredential();
 
-```typescript
-const appInsights = require("applicationinsights");
-const { DefaultAzureCredential } = require("@azure/identity");
- 
-const credential = new DefaultAzureCredential();
-appInsights.setup("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/").start();
-appInsights.defaultClient.config.aadTokenCredential = credential;
+    // Create a new OpenTelemetry tracer provider and set the credential.
+    // It is important to keep the TracerProvider instance active throughout the process lifetime.
+    var tracerProvider = Sdk.CreateTracerProviderBuilder()
+        .AddAzureMonitorTraceExporter(options =>
+        {
+            options.Credential = credential;
+        })
+        .Build();
 
-```
+    // Create a new OpenTelemetry meter provider and set the credential.
+    // It is important to keep the MetricsProvider instance active throughout the process lifetime.
+    var metricsProvider = Sdk.CreateMeterProviderBuilder()
+        .AddAzureMonitorMetricExporter(options =>
+        {
+            options.Credential = credential;
+        })
+        .Build();
+
+    // Create a new logger factory and add the OpenTelemetry logger provider with the credential.
+    // It is important to keep the LoggerFactory instance active throughout the process lifetime.
+    var loggerFactory = LoggerFactory.Create(builder =>
+    {
+        builder.AddOpenTelemetry(logging =>
+        {
+            logging.AddAzureMonitorLogExporter(options =>
+            {
+                options.Credential = credential;
+            });
+        });
+    });
+    ```
 
 #### Environment variable configuration
 
-Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let Application Insights authenticate to Microsoft Entra ID and send telemetry when using [Azure App Services autoinstrumentation](./azure-web-apps-nodejs.md).
+Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let Application Insights authenticate to Microsoft Entra ID and send telemetry when using [Azure App Services autoinstrumentation](./azure-web-apps-net-core.md).
 
 * For system-assigned identity:
 
@@ -168,10 +204,21 @@ Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let 
 |-------------------------------------------|------------------------------------------------------------------------|
 | APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
 
+#### Manual configuration
+
+The following example shows how to manually create and configure `TelemetryConfiguration` by using .NET:
+
+```csharp
+TelemetryConfiguration.Active.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/";
+var credential = new DefaultAzureCredential();
+TelemetryConfiguration.Active.SetAzureTokenCredential(credential);
+```
+
 ### [Java](#tab/java)
 
 > [!NOTE]
-> Support for Microsoft Entra ID in the Application Insights Java agent is included starting with [Java 3.2.0-BETA](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0-BETA).
+> * Support for Microsoft Entra ID in the Application Insights Java agent is included starting with [Java 3.2.0-BETA](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.2.0-BETA).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
 
 1. [Configure your application with the Java agent.](opentelemetry-enable.md?tabs=java#enable-opentelemetry-with-application-insights)
 
@@ -180,55 +227,25 @@ Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let 
 
 1. Add the JSON configuration to the *ApplicationInsights.json* configuration file depending on the authentication you're using. We recommend using managed identities.
 
-> [!NOTE]
-> For more information about migrating from the `2.X` SDK to the `3.X` Java agent, see [Upgrading from Application Insights Java 2.x SDK](java-standalone-upgrade-from-2x.md).
-
-#### System-assigned managed identity
-
-The following example shows how to configure the Java agent to use system-assigned managed identity for authentication with Microsoft Entra ID.
-
-```JSON
-{ 
-  "connectionString": "App Insights Connection String with IngestionEndpoint", 
-  "authentication": { 
-    "enabled": true, 
-    "type": "SAMI" 
-  } 
-} 
-```
-
-#### User-assigned managed identity
-
-The following example shows how to configure the Java agent to use user-assigned managed identity for authentication with Microsoft Entra ID.
-
-```JSON
-{ 
-  "connectionString": "App Insights Connection String with IngestionEndpoint", 
-  "authentication": { 
-    "enabled": true, 
-    "type": "UAMI", 
-    "clientId":"<USER-ASSIGNED MANAGED IDENTITY CLIENT ID>" 
-  } 
-} 
-```
-
-:::image type="content" source="media/azure-ad-authentication/user-assigned-managed-identity.png" alt-text="Screenshot that shows user-assigned managed identity." lightbox="media/azure-ad-authentication/user-assigned-managed-identity.png":::
-
 #### Environment variable configuration
 
-The `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable lets Application Insights authenticate to Microsoft Entra ID and send telemetry.
+The `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable allows Application Insights to authenticate with Microsoft Entra ID and send telemetry. Configure it based on the type of identity you're using:
 
-* For system-assigned identity:
+- **System-assigned identity**  
+  Set the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to:
 
-| App setting                               | Value               |
-|-------------------------------------------|---------------------|
-| APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD` |
+  ```plaintext
+  Authorization=AAD
+  ```
 
-* For user-assigned identity:
+- **User-assigned identity**  
+  Set the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to:
 
-| App setting                               | Value                                                                  |
-|-------------------------------------------|------------------------------------------------------------------------|
-| APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
+  ```plaintext
+  Authorization=AAD;ClientId={Client id of the User-Assigned Identity}
+  ```
+
+  Replace `{Client id of the User-Assigned Identity}` with the actual client ID of your user-assigned identity.
 
 Set the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable using this string.
 
@@ -246,11 +263,176 @@ set APPLICATIONINSIGHTS_AUTHENTICATION_STRING="Authorization=AAD"
 
 After setting it, restart your application. It now sends telemetry to Application Insights using Microsoft Entra authentication.
 
+#### Manual configuration
+
+> [!NOTE]
+> * For more information about migrating from the `2.X` SDK to the `3.X` Java agent, see [Upgrading from Application Insights Java 2.x SDK](java-standalone-upgrade-from-2x.md).
+> * For more information about Java, see the [Java supplemental documentation](java-standalone-config.md).
+
+##### System-assigned managed identity
+
+The following example shows how to configure the Java agent to use system-assigned managed identity for authentication with Microsoft Entra ID.
+
+```JSON
+{ 
+  "connectionString": "App Insights Connection String with IngestionEndpoint", 
+  "authentication": { 
+    "enabled": true, 
+    "type": "SAMI" 
+  } 
+} 
+```
+
+##### User-assigned managed identity
+
+The following example shows how to configure the Java agent to use user-assigned managed identity for authentication with Microsoft Entra ID.
+
+```JSON
+{ 
+  "connectionString": "App Insights Connection String with IngestionEndpoint", 
+  "authentication": { 
+    "enabled": true, 
+    "type": "UAMI", 
+    "clientId":"<USER-ASSIGNED MANAGED IDENTITY CLIENT ID>" 
+  } 
+} 
+```
+
+:::image type="content" source="media/azure-ad-authentication/user-assigned-managed-identity.png" alt-text="Screenshot that shows user-assigned managed identity." lightbox="media/azure-ad-authentication/user-assigned-managed-identity.png":::
+
+### [Java native](#tab/java-native)
+
+Microsoft Entra ID authentication isn't available for GraalVM Native applications.
+
+### [Node.js](#tab/nodejs)
+
+> [!NOTE]
+> * Support for Microsoft Entra ID in the Application Insights Node.JS is included starting with [version 2.1.0-beta.1](https://www.npmjs.com/package/applicationinsights/v/2.1.0-beta.1).
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/identity/identity#credential-classes).
+
+* We recommend `DefaultAzureCredential` for local development.
+* We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
+    * For system-assigned, use the default constructor without parameters.
+    * For user-assigned, provide the client ID to the constructor.
+* We recommend `ClientSecretCredential` for service principals.
+    * Provide the tenant ID, client ID, and client secret to the constructor.
+
+#### Environment variable configuration
+
+Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let Application Insights authenticate to Microsoft Entra ID and send telemetry when using [Azure App Services autoinstrumentation](./azure-web-apps-nodejs.md).
+
+* For system-assigned identity:
+
+| App setting                               | Value               |
+|-------------------------------------------|---------------------|
+| APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD` |
+
+* For user-assigned identity:
+
+| App setting                               | Value                                                                  |
+|-------------------------------------------|------------------------------------------------------------------------|
+| APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
+
+#### Manual configuration
+
+The following sample applies when using @azure/monitor-opentelemetry:
+
+```typescript
+// Import the useAzureMonitor function, the AzureMonitorOpenTelemetryOptions class, and the ManagedIdentityCredential class from the @azure/monitor-opentelemetry and @azure/identity packages, respectively.
+const { useAzureMonitor, AzureMonitorOpenTelemetryOptions } = require("@azure/monitor-opentelemetry");
+const { ManagedIdentityCredential } = require("@azure/identity");
+
+// Create a new ManagedIdentityCredential object.
+const credential = new ManagedIdentityCredential();
+
+// Create a new AzureMonitorOpenTelemetryOptions object and set the credential property to the credential object.
+const options: AzureMonitorOpenTelemetryOptions = {
+    azureMonitorExporterOptions: {
+        connectionString:
+            process.env["APPLICATIONINSIGHTS_CONNECTION_STRING"] || "<your connection string>",
+        credential: credential
+    }
+};
+
+// Enable Azure Monitor integration using the useAzureMonitor function and the AzureMonitorOpenTelemetryOptions object.
+useAzureMonitor(options);
+```
+
+The following sample applies when using `applicationinsights` npm package.
+
+```typescript
+// Import the applicationinsights module and the DefaultAzureCredential class from the @azure/identity package.
+const appInsights = require("applicationinsights");
+const { DefaultAzureCredential } = require("@azure/identity");
+
+// Create a new DefaultAzureCredential object to authenticate with Azure Active Directory.
+const credential = new DefaultAzureCredential();
+
+// Set up Application Insights with an instrumentation key and ingestion endpoint, then start the Application Insights client.
+appInsights.setup("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/").start();
+
+// Assign the DefaultAzureCredential object to the aadTokenCredential property of the default Application Insights client configuration for authentication.
+appInsights.defaultClient.config.aadTokenCredential = credential;
+```
+
 ### [Python](#tab/python)
 
-To configure a secure connection to Azure using OpenTelemetry, see [Enable Microsoft Entra ID (formerly Azure AD) authentication](./opentelemetry-configuration.md?tabs=python#enable-microsoft-entra-id-formerly-azure-ad-authentication).
+> [!NOTE]
+> * We support the credential classes provided by [Azure Identity](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity#credential-classes).
+> * We provide information on configuring OpenCensus (deprecated) separately. See [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
 
-To configure using OpenCensus (deprecated), see [Configure and enable Microsoft Entra ID-based authentication](/previous-versions/azure/azure-monitor/app/opencensus-python#configure-and-enable-microsoft-entra-id-based-authentication).
+- We recommend `DefaultAzureCredential` for local development.
+- We recommend `ManagedIdentityCredential` for system-assigned and user-assigned managed identities.
+  - For system-assigned, use the default constructor without parameters.
+  - For user-assigned, provide the `client_id` to the constructor.
+- We recommend `ClientSecretCredential` for service principals.
+  - Provide the tenant ID, client ID, and client secret to the constructor.
+
+If using `ManagedIdentityCredential`
+```python
+# Import the `ManagedIdentityCredential` class from the `azure.identity` package.
+from azure.identity import ManagedIdentityCredential
+# Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
+from azure.monitor.opentelemetry import configure_azure_monitor
+from opentelemetry import trace
+
+# Configure the Distro to authenticate with Azure Monitor using a managed identity credential.
+credential = ManagedIdentityCredential(client_id="<client_id>")
+configure_azure_monitor(
+    connection_string="your-connection-string",
+    credential=credential,
+)
+
+tracer = trace.get_tracer(__name__)
+
+with tracer.start_as_current_span("hello with aad managed identity"):
+    print("Hello, World!")
+
+```
+
+If using `ClientSecretCredential`
+```python
+# Import the `ClientSecretCredential` class from the `azure.identity` package.
+from azure.identity import ClientSecretCredential
+# Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
+from azure.monitor.opentelemetry import configure_azure_monitor
+from opentelemetry import trace
+
+# Configure the Distro to authenticate with Azure Monitor using a client secret credential.
+credential = ClientSecretCredential(
+    tenant_id="<tenant_id",
+    client_id="<client_id>",
+    client_secret="<client_secret>",
+)
+configure_azure_monitor(
+    connection_string="your-connection-string",
+    credential=credential,
+)
+
+with tracer.start_as_current_span("hello with aad client secret identity"):
+    print("Hello, World!")
+
+```
 
 ---
 
@@ -715,7 +897,7 @@ You can disable local authentication by using the Azure portal or Azure Policy o
 
 ### Azure Policy
 
-Azure Policy for `DisableLocalAuth` denies users the ability to create a new Application Insights resource without this property set to `true`. The policy name is `Application Insights components should block non-AAD auth ingestion`.
+Azure Policy for `DisableLocalAuth` denies users the ability to create a new Application Insights resource without this property set to `true`. The policy name is `Application Insights components should block non-Azure Active Directory based ingestion`.
 
 To apply this policy definition to your subscription, [create a new policy assignment and assign the policy](/azure/governance/policy/assign-policy-portal).
 
@@ -724,7 +906,7 @@ The following example shows the policy template definition:
 ```JSON
 {
     "properties": {
-        "displayName": "Application Insights components should block non-AAD auth ingestion",
+        "displayName": "Application Insights components should block non-Azure Active Directory based ingestion",
         "policyType": "BuiltIn",
         "mode": "Indexed",
         "description": "Improve Application Insights security by disabling log ingestion that are not AAD-based.",
@@ -852,7 +1034,7 @@ The ingestion service returns specific errors, regardless of the SDK language. N
 This error shows the resource is set for Microsoft Entra-only. You need to correctly configure the SDK because it's sending to the wrong API.
 
 > [!NOTE]
-> "v2/track" doesn't support Microsoft Entra ID. When the SDK is correctly configured, telemetry will be sent to "v2.1/track".
+> "v2/track" doesn't support Microsoft Entra ID. When the SDK is correctly configured, telemetry is sent to `v2.1/track`.
 
 Next, you should review the SDK configuration.
 
@@ -870,6 +1052,13 @@ First, check the Application Insights resource's access control. You must config
 
 ### Language-specific troubleshooting
 
+### [ASP.NET Core](#tab/aspnetcore)
+
+The Application Insights .NET SDK emits error logs by using the event source. To learn more about collecting event source logs, see [Troubleshooting no data - collect logs with PerfView](asp-net-troubleshoot-no-data.md#PerfView).
+
+If the SDK fails to get a token, the exception message is logged as
+`Failed to get AAD Token. Error message:`.
+
 ### [.NET](#tab/net)
 
 #### Event source
@@ -878,15 +1067,6 @@ The Application Insights .NET SDK emits error logs by using the event source. To
 
 If the SDK fails to get a token, the exception message is logged as
 `Failed to get AAD Token. Error message:`.
-
-### [Node.js](#tab/nodejs)
-
-Turn on internal logs by using the following setup. After you enable them, the console shows error logs, including any error related to Microsoft Entra integration. Examples include failing to generate the token with the wrong credentials or errors when the ingestion endpoint fails to authenticate using the provided credentials.
-
-```javascript
-let appInsights = require("applicationinsights");
-appInsights.setup("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/").setInternalLogging(true, true);
-```
 
 ### [Java](#tab/java)
 
@@ -931,6 +1111,19 @@ The issue could be due to:
 If the exception, `com.microsoft.aad.msal4j.MsalServiceException: Application with identifier <CLIENT_ID> was not found in the directory` in the log, it means the agent failed to get the access token. This exception likely happens because the client ID in your client secret configuration is invalid or incorrect.
 
 This issue occurs if the administrator doesn't install the application or no tenant user consents to it. It also happens if you send your authentication request to the wrong tenant.
+
+### [Java native](#tab/java-native)
+
+Microsoft Entra ID authentication isn't available for GraalVM Native applications.
+
+### [Node.js](#tab/nodejs)
+
+Turn on internal logs by using the following setup. After you enable them, the console shows error logs, including any error related to Microsoft Entra integration. Examples include failing to generate the token with the wrong credentials or errors when the ingestion endpoint fails to authenticate using the provided credentials.
+
+```javascript
+let appInsights = require("applicationinsights");
+appInsights.setup("InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/").setInternalLogging(true, true);
+```
 
 ### [Python](#tab/python)
 

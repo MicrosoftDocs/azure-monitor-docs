@@ -33,8 +33,6 @@ The basic structure of the application settings JSON for an App Service resource
       ]
 ```
 
-For an example of a Resource Manager template with application settings configured for Application Insights, this [template](https://github.com/Andrew-MSFT/BasicImageGallery) can be helpful. Specifically, see the section that starts on [line 238](https://github.com/Andrew-MSFT/BasicImageGallery/blob/c55ada54519e13ce2559823c16ca4f97ddc5c7a4/CoreImageGallery/Deploy/CoreImageGalleryARM/azuredeploy.json#L238).
-
 ### Automate the creation of an Application Insights resource and link to your newly created App Service resource
 
 To create a Resource Manager template with the default Application Insights settings, begin the process as if you were going to create a new web app with Application Insights enabled.
@@ -43,11 +41,11 @@ To create a Resource Manager template with the default Application Insights sett
 
 1. Select **Review + create**. Then select **Download a template for automation**.
 
-    :::image type="content" source="../app/media/azure-web-apps/create-web-app.png" alt-text="Screenshot that shows the App Service web app creation menu." lightbox="../app/media/azure-web-apps/create-web-app.png":::
+    :::image type="content" source="../app/media/codeless-app-service/create-web-app.png" alt-text="Screenshot that shows the App Service web app creation menu." lightbox="../app/media/codeless-app-service/create-web-app.png":::
 
     This option generates the latest Resource Manager template with all required settings configured.
     
-    :::image type="content" source="../app/media/azure-web-apps/arm-template.png" alt-text="Screenshot that shows an App Service web app template." border="false" lightbox="../app/media/azure-web-apps/arm-template.png":::
+    :::image type="content" source="../app/media/codeless-app-service/arm-template.png" alt-text="Screenshot that shows an App Service web app template." border="false" lightbox="../app/media/codeless-app-service/arm-template.png":::
 
 In the following sample, replace all instances of `AppMonitoredSite` with your site name:
 

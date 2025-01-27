@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 09/16/2024
+ms.date: 11/04/2024
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -88,6 +88,11 @@ ms.reviewer: lualderm
 
 - [Recent user risk events](./queries/AADUserRiskEvents.md#recent-user-risk-events)
 - [Active user risk detections](./queries/AADUserRiskEvents.md#active-user-risk-detections)
+
+## [ABAPAuditLog](./queries/ABAPAuditLog.md)
+
+- [ABAP audit log multiple IP logons](./queries/ABAPAuditLog.md#abap-audit-log-multiple-ip-logons)
+- [ABAP audit log file downloads](./queries/ABAPAuditLog.md#abap-audit-log-file-downloads)
 
 ## [ABSBotRequests](./queries/ABSBotRequests.md)
 
@@ -235,6 +240,10 @@ ms.reviewer: lualderm
 - [Search all participants in a call](./queries/ACSCallSummary.md#search-all-participants-in-a-call)
 - [Search all client operations in a call](./queries/ACSCallSummary.md#search-all-client-operations-in-a-call)
 
+## [ACSCallSummaryUpdates](./queries/ACSCallSummaryUpdates.md)
+
+- [Call duration percentiles](./queries/ACSCallSummaryUpdates.md#call-duration-percentiles)
+
 ## [ACSCallSurvey](./queries/ACSCallSurvey.md)
 
 - [Overall call rating](./queries/ACSCallSurvey.md#overall-call-rating)
@@ -360,6 +369,21 @@ ms.reviewer: lualderm
 - [AEWComputePipelinesLogs get failed tasks detail](./queries/AEWComputePipelinesLogs.md#aewcomputepipelineslogs-get-failed-tasks-detail)
 - [AEWComputePipelinesLogs get long running jobs](./queries/AEWComputePipelinesLogs.md#aewcomputepipelineslogs-get-long-running-jobs)
 - [AEWComputePipelinesLogs get task E2E latency time](./queries/AEWComputePipelinesLogs.md#aewcomputepipelineslogs-get-task-e2e-latency-time)
+
+## [AEWExperimentAssignmentSummary](./queries/AEWExperimentAssignmentSummary.md)
+
+- [Variant assignment counts by features](./queries/AEWExperimentAssignmentSummary.md#variant-assignment-counts-by-features)
+- [Latest scorecard metadata for a given feature](./queries/AEWExperimentAssignmentSummary.md#latest-scorecard-metadata-for-a-given-feature)
+- [Latest scorecard results for a given feature](./queries/AEWExperimentAssignmentSummary.md#latest-scorecard-results-for-a-given-feature)
+
+## [AEWExperimentScorecardMetricPairs](./queries/AEWExperimentScorecardMetricPairs.md)
+
+- [Latest scorecard results for a given feature](./queries/AEWExperimentScorecardMetricPairs.md#latest-scorecard-results-for-a-given-feature)
+
+## [AEWExperimentScorecards](./queries/AEWExperimentScorecards.md)
+
+- [Latest scorecard metadata for a given feature](./queries/AEWExperimentScorecards.md#latest-scorecard-metadata-for-a-given-feature)
+- [Latest scorecard results for a given feature](./queries/AEWExperimentScorecards.md#latest-scorecard-results-for-a-given-feature)
 
 ## [AFSAuditLogs](./queries/AFSAuditLogs.md)
 
@@ -644,6 +668,10 @@ ms.reviewer: lualderm
 - [Publish failures by topic and error](./queries/AegPublishFailureLogs.md#publish-failures-by-topic-and-error)
 - [Publish failures by topic and error](./queries/AegPublishFailureLogs.md#publish-failures-by-topic-and-error)
 - [Publish failures by domain and error](./queries/AegPublishFailureLogs.md#publish-failures-by-domain-and-error)
+
+## [AggregatedSecurityAlert](./queries/AggregatedSecurityAlert.md)
+
+- [Group Aggregated Security Alerts by Sector](./queries/AggregatedSecurityAlert.md#group-aggregated-security-alerts-by-sector)
 
 ## [AgriFoodApplicationAuditLogs](./queries/AgriFoodApplicationAuditLogs.md)
 
@@ -1036,19 +1064,6 @@ ms.reviewer: lualderm
 
 - [CCF application errors](./queries/CCFApplicationLogs.md#ccf-application-errors)
 
-## [CHSMManagementAuditLogs](./queries/CHSMManagementAuditLogs.md)
-
-- [Aggregate operations query](./queries/CHSMManagementAuditLogs.md#aggregate-operations-query)
-- [Failed operations count](./queries/CHSMManagementAuditLogs.md#failed-operations-count)
-- [Operations per user](./queries/CHSMManagementAuditLogs.md#operations-per-user)
-
-## [CHSMServiceOperationAuditLogs](./queries/CHSMServiceOperationAuditLogs.md)
-
-- [Are there any slow requests?](./queries/CHSMServiceOperationAuditLogs.md#are-there-any-slow-requests)
-- [How active has this Cloud HSM been?](./queries/CHSMServiceOperationAuditLogs.md#how-active-has-this-cloud-hsm-been)
-- [Are there any failures?](./queries/CHSMServiceOperationAuditLogs.md#are-there-any-failures)
-- [Who is calling this Cloud HSM?](./queries/CHSMServiceOperationAuditLogs.md#who-is-calling-this-cloud-hsm)
-
 ## [CIEventsAudit](./queries/CIEventsAudit.md)
 
 - [CIEventsAudit - API response codes line chart](./queries/CIEventsAudit.md#cieventsaudit---api-response-codes-line-chart)
@@ -1078,11 +1093,21 @@ ms.reviewer: lualderm
 
 - [File name extension change](./queries/CloudAppEvents.md#file-name-extension-change)
 
+## [CloudHsmServiceOperationAuditLogs](./queries/CloudHsmServiceOperationAuditLogs.md)
+
+- [Are there any slow requests?](./queries/CloudHsmServiceOperationAuditLogs.md#are-there-any-slow-requests)
+- [How active has this Cloud HSM been?](./queries/CloudHsmServiceOperationAuditLogs.md#how-active-has-this-cloud-hsm-been)
+- [Are there any failures?](./queries/CloudHsmServiceOperationAuditLogs.md#are-there-any-failures)
+
 ## [CommonSecurityLog](./queries/CommonSecurityLog.md)
 
 - [Palo Alto collector machine usage](./queries/CommonSecurityLog.md#palo-alto-collector-machine-usage)
 - [Cisco ASA events type usage](./queries/CommonSecurityLog.md#cisco-asa-events-type-usage)
 - [Device events volume statistics](./queries/CommonSecurityLog.md#device-events-volume-statistics)
+
+## [CommunicationComplianceActivity](./queries/CommunicationComplianceActivity.md)
+
+- [Office Communication Compliance events filtered by organization ID](./queries/CommunicationComplianceActivity.md#office-communication-compliance-events-filtered-by-organization-id)
 
 ## [ConfidentialWatchlist](./queries/ConfidentialWatchlist.md)
 
@@ -1386,11 +1411,14 @@ ms.reviewer: lualderm
 ## [MDCDetectionDNSEvents](./queries/MDCDetectionDNSEvents.md)
 
 - [All DNS events where the domain queried was 'www.google.com' ordered by time](./queries/MDCDetectionDNSEvents.md#all-dns-events-where-the-domain-queried-was-wwwgooglecom-ordered-by-time)
-- [All recent Gating validation events](./queries/MDCDetectionDNSEvents.md#all-recent-gating-validation-events)
 
 ## [MDCDetectionFimEvents](./queries/MDCDetectionFimEvents.md)
 
 - [All FIM events for directories](./queries/MDCDetectionFimEvents.md#all-fim-events-for-directories)
+
+## [MDCDetectionGatingValidationEvents](./queries/MDCDetectionGatingValidationEvents.md)
+
+- [All recent Gating validation events](./queries/MDCDetectionGatingValidationEvents.md#all-recent-gating-validation-events)
 
 ## [MNFDeviceUpdates](./queries/MNFDeviceUpdates.md)
 

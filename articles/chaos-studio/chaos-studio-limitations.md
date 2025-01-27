@@ -4,7 +4,7 @@ description: Understand current limitations and known issues when you use Azure 
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: overview
-ms.date: 11/02/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: carlsonr
 ms.service: azure-chaos-studio
@@ -25,19 +25,21 @@ The following are known limitations in Chaos Studio.
 - **Version support** - Review the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page for more information on operating system, browser, and integration version compatibility.
 - **PowerShell modules** - Chaos Studio doesn't have dedicated PowerShell modules at this time. For PowerShell, use our REST API
 - **Azure CLI** - Chaos Studio doesn't have dedicated AzCLI modules at this time. Use our REST API from AzCLI
+- **Terraform** - Chaos Studio doesn't officially support the available preview modules for Terraform. If you're using these modules and encounter an issue with the Terraform module itself, please file a Github issue on the Terraform page found [here] (https://github.com/hashicorp/terraform-provider-azurerm/issues).
 - **Azure Policy** - Chaos Studio doesn't support the applicable built-in policies for our service (audit policy for customer-managed keys and Private Link) at this time. 
 - **Private Link** - We don't support Azure portal UI experiments for Agent-based experiments using Private Link. These restrictions do NOT apply to our Service-direct faults
 - **Customer-Managed Keys** You need to use our 2023-10-27-preview REST API via a CLI to create CMK-enabled experiments. We don't support portal UI experiments using CMK at this time. Experiment info will appear in ARG within the subscription - this is a known issue today, but is limited to only ARG and only viewable by the subscription. 
 - **Java SDK** At present, we don't have a dedicated Java SDK. If this is something you would use, reach out to us with your feature request. 
-- **Built-in roles** - Chaos Studio doesn't currently have its own built-in roles. Permissions can be attained to run a chaos experiment by either assigning an [Azure built-in role](chaos-studio-fault-providers.md) or a created custom role to the experiment's identity.
+- **Built-in roles** - While Chaos Studio does have [built-in roles to manage access to Chaos Studio operations](chaos-studio-permissions-security.md#azure-resource-manager-operations-and-roles), we do not have least-privileged built-in roles to grant access to fault injection on Azure resources. Permissions can be attained to run a chaos experiment by either assigning an existing [Azure built-in role](chaos-studio-fault-providers.md) or a created custom role to the experiment's identity.
 - **Agent Service Tags** Currently we don't have service tags available for our Agent-based faults.
-- **Chaos Studio Private Accesses (CSPA)** - For the CSPA resource type, there is a **strict 1:1 mapping of Chaos Target:CSPA Resource (abstraction for private endpoint).** We only allow **5 CSPA resources to be created per Subscription** to maintain the expected experience for all of our customers.  
+- **Chaos Studio Private Accesses (CSPA)** - For the CSPA resource type, there's a **strict 1:1 mapping of Chaos Target:CSPA Resource (abstraction for private endpoint).** We only allow **5 CSPA resources to be created per Subscription** to maintain the expected experience for all of our customers.  
 
 ## Known issues
 - When selecting target resources for an agent-based fault in the experiment designer, it's possible to select virtual machines or virtual machine scale sets with an operating system not supported by the fault selected.
 - When running in a Linux environment, the agent-based network latency fault (NetworkLatency-1.1) can only affect **outbound** traffic, not inbound traffic. The fault can affect **both inbound and outbound** traffic on Windows environments (via the `inboundDestinationFilters` and `destinationFilters` parameters).
 - When filtering by Azure subscriptions from the Targets and/or Experiments page, you may experience long load times if you have many subscriptions with large numbers of Azure resources. As a workaround, filter down to the single specific subscription in question to quickly find your desired Targets and/or Experiments.
 - The NSG Security Rule **version 1.1** fault supports an additional `flushConnection` parameter. This functionality has an **active known issue**: if `flushConnection` is enabled, the fault may result in a "FlushingNetworkSecurityGroupConnectionIsNotEnabled" error. To avoid this error temporarily, disable the `flushConnection` parameter or use the NSG Security Rule version **1.0** fault.
+- If you're using query-based dynamic targeting to select targets and receive the following error: **The selector='{0}' resolved to an empty list of target resources.**, even though you have selected target resources in the experiment designer, then you're seeing the wrong error message. The real reason for failure is most likely that none of the resources returned by the query have had permissions set to enable experiment execution. We're actively working to fix this incorrect error message.  
 
 
 ## Next steps

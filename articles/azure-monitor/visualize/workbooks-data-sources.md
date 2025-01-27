@@ -26,7 +26,7 @@ Workbooks can extract data from these data sources:
  - [Workload health](#workload-health)
  - [Azure resource health](#azure-resource-health)
  - [Azure RBAC](#azure-rbac)
- - [Change Analysis](#change-analysis)
+ - [Change Analysis (classic)](#change-analysis-classic)
  - [Prometheus](#prometheus)
 
 ## Logs (Analytics Tables, Application Insights)
@@ -195,12 +195,12 @@ Simple JSON arrays or objects are converted into grid rows and columns or text w
    ["Microsoft.Resources/deployments/read","Microsoft.Resources/deployments/write","Microsoft.Resources/deployments/validate/action","Microsoft.Resources/operations/read"]
    ```
 
-## Change Analysis
+## Change Analysis (classic)
 
-To make a query control that uses [Application Change Analysis](../app/change-analysis.md) as the data source, use the **Data source** dropdown and select **Change Analysis**. Then select a single resource. Changes for up to the last 14 days can be shown. Use the **Level** dropdown to filter between **Important**, **Normal**, and **Noisy** changes. This dropdown supports workbook parameters of the type [drop down](workbooks-dropdowns.md).
+To make a query control that uses [Change Analysis (classic)](../change/change-analysis.md) as the data source, use the **Data source** dropdown and select **Change Analysis (classic)**. Then select a single resource. Changes for up to the last 14 days can be shown. Use the **Level** dropdown to filter between **Important**, **Normal**, and **Noisy** changes. This dropdown supports workbook parameters of the type [drop down](workbooks-dropdowns.md).
 <!-- convertborder later -->
 > [!div class="mx-imgBorder"]
-> :::image type="content" source="./media/workbooks-data-sources/change-analysis-data-source.png" lightbox="./media/workbooks-data-sources/change-analysis-data-source.png" alt-text="A screenshot that shows a workbook with Change Analysis." border="false":::
+> :::image type="content" source="./media/workbooks-data-sources/change-analysis-data-source.png" lightbox="./media/workbooks-data-sources/change-analysis-data-source.png" alt-text="A screenshot that shows a workbook with Change Analysis (classic)." border="false":::
 
 
 ## Prometheus

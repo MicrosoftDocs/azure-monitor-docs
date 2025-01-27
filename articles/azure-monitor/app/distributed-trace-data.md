@@ -2,7 +2,7 @@
 title: Distributed tracing and telemetry correlation in Azure Application Insights
 description: This article provides information about distributed tracing and telemetry correlation
 ms.topic: conceptual
-ms.date: 10/14/2023
+ms.date: 12/07/2024
 ms.reviewer: rijolly
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
@@ -34,7 +34,7 @@ The Application Insights agents and SDKs for .NET, .NET Core, Java, Node.js, and
 * [JavaScript](./javascript.md#enable-distributed-tracing)
 * [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
 
-With the proper Application Insights SDK installed and configured, tracing information is automatically collected for popular frameworks, libraries, and technologies by SDK dependency autocollectors. The full list of supported technologies is available in the [Dependency autocollection documentation](asp-net-dependencies.md#dependency-auto-collection).
+With the proper Application Insights SDK installed and configured, tracing information is automatically collected for popular frameworks, libraries, and technologies by SDK dependency autocollectors. The full list of supported technologies is available in the [Dependency autocollection documentation](asp-net-dependencies.md#dependency-autocollection).
 
  Any technology also can be tracked manually with a call to [TrackDependency](./api-custom-events-metrics.md) on the [TelemetryClient](./api-custom-events-metrics.md).
 

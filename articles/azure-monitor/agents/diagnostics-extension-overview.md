@@ -2,7 +2,7 @@
 title: Azure Diagnostics extension overview
 description: Use Azure Diagnostics for debugging, measuring performance, monitoring, and performing traffic analysis in cloud services, virtual machines, and service fabric.
 ms.topic: conceptual
-ms.date: 07/06/2023
+ms.date: 11/14/2024
 ms.reviewer: luki
 
 ---
@@ -12,7 +12,14 @@ ms.reviewer: luki
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article provides an overview of Azure Diagnostics extension, the specific functionality that it supports, and options for installation and configuration.
 
 > [!NOTE]
-> Azure Diagnostics extension is one of the agents available to collect monitoring data from the guest operating system of compute resources. For a description of the different agents and guidance on selecting the appropriate agents for your requirements, see [Overview of the Azure Monitor agents](../agents/agents-overview.md).
+> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.
+
+## Migrate from Azure Diagnostic extensions for Linux (LAD) and Windows (WAD) to Azure Monitor Agent
+
+- Azure Monitor Agent can collect and send data to multiple destinations, including Log Analytics workspaces, Azure Event Hubs, and Azure Storage.
+- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
+- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
+- As an alternative to storage, we highly recommend you set up a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
 
 ## Primary scenarios
 

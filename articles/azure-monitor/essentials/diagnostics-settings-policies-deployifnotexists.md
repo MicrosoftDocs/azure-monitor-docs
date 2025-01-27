@@ -6,7 +6,7 @@ ms.author: edbaynash
 services: azure-monitor
 ms.topic: conceptual
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
-ms.date: 02/25/2024
+ms.date: 11/12/2024
 ms.reviewer: lualderm
 --- 
 
@@ -55,7 +55,7 @@ To apply a policy using the CLI, use the following commands:
     For example, to apply the policy to send audit logs to a log analytics workspace
 
     ```azurecli
-      az policy assignment create --name "policy-assignment-1"  --policy "6b359d8f-f88d-4052-aa7c-32015963ecc1"  --scope /subscriptions/12345678-aaaa-bbbb-cccc-1234567890ab/resourceGroups/rg-001 --params "{\"logAnalytics\": {\"value\": \"/subscriptions/12345678-aaaa-bbbb-cccc-1234567890ab/resourcegroups/rg-001/providers/microsoft.operationalinsights/workspaces/workspace-001\"}}" --mi-system-assigned --location eastus
+      az policy assignment create --name "policy-assignment-1"  --policy "6b359d8f-f88d-4052-aa7c-32015963ecc1"  --scope /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001 --params "{\"logAnalytics\": {\"value\": \"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-001/providers/microsoft.operationalinsights/workspaces/workspace-001\"}}" --mi-system-assigned --location eastus
     ```
 
 1. Assign the required role to the identity created for the policy assignment.
@@ -75,7 +75,7 @@ Find the role in the policy definition by searching for *roleDefinitionIds*
     ```
     For example:
     ```azurecli
-    az policy assignment identity assign --system-assigned --resource-group rg-001  --role 92aaf0da-9dab-42b6-94a3-d43ce8d16293 --identity-scope /subscriptions/12345678-aaaa-bbbb-cccc-1234567890ab/resourceGroups/rg001 --name policy-assignment-1
+    az policy assignment identity assign --system-assigned --resource-group rg-001  --role 92aaf0da-9dab-42b6-94a3-d43ce8d16293 --identity-scope /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg001 --name policy-assignment-1
     ```
 
 1. Trigger a scan to find existing resources using [`az policy state trigger-scan`](/cli/azure/policy/state#az-policy-state-trigger-scan).
@@ -235,9 +235,9 @@ Change the default name in the **Parameters** tab of the **Assign initiative** o
     ```    
 
 1. Get the initiative definition. In this example, we'll use Initiative *Enable audit category group resource logging for supported resources to `
-Log Analytics*,  ResourceID "/providers/Microsoft.Authorization/policySetDefinitions/f5b29bc4-feca-4cc6-a58a-772dd5e290a5"
+Log Analytics*,  ResourceID "/providers/Microsoft.Authorization/policySetDefinitions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
     ```azurepowershell
-    $definition = Get-AzPolicySetDefinition |Where-Object ResourceID -eq /providers/Microsoft.Authorization/policySetDefinitions/f5b29bc4-feca-4cc6-a58a-772dd5e290a5;
+    $definition = Get-AzPolicySetDefinition |Where-Object ResourceID -eq /providers/Microsoft.Authorization/policySetDefinitions/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1;
     ```
 
 1. Set an assignment name and configure parameters. For this initiative, the parameters include the Log Analytics workspace ID.
@@ -300,7 +300,7 @@ You can get your policy assignment details using the following command:
     For example:
 
     ```azurecli
-    az policy assignment create --name "assign-cli-example-01" --resource-group "cli-example-01" --policy-set-definition 'f5b29bc4-feca-4cc6-a58a-772dd5e290a5' --params '{"logAnalytics":{"value":"/subscriptions/12345678-aaaa-bbbb-cccc-1234567890ab/resourcegroups/cli-example-01/providers/microsoft.operationalinsights/workspaces/cli-example-01-ws"}, "diagnosticSettingName":{"value":"AssignedBy-cli-example-01"}}' --mi-system-assigned --location eastus
+    az policy assignment create --name "assign-cli-example-01" --resource-group "cli-example-01" --policy-set-definition 'a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1' --params '{"logAnalytics":{"value":"/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/cli-example-01/providers/microsoft.operationalinsights/workspaces/cli-example-01-ws"}, "diagnosticSettingName":{"value":"AssignedBy-cli-example-01"}}' --mi-system-assigned --location eastus
     ```
 1. Assign the required role to the system managed identity
 
@@ -321,14 +321,14 @@ You can get your policy assignment details using the following command:
 
     For example:
     ```azurecli
-    az policy assignment identity assign --system-assigned --resource-group "cli-example-01" --role 92aaf0da-9dab-42b6-94a3-d43ce8d16293 --identity-scope "/subscriptions/12345678-aaaa-bbbb-cccc-1234567890ab/resourcegroups/cli-example-01" --name assign-cli-example-01
+    az policy assignment identity assign --system-assigned --resource-group "cli-example-01" --role 92aaf0da-9dab-42b6-94a3-d43ce8d16293 --identity-scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/cli-example-01" --name assign-cli-example-01
     ```
 
 1. Create remediation tasks for the policies in the initiative.
 
     Remediation tasks are created per-policy. Each task is for a specific `definition-reference-id`, specified in the initiative as `policyDefinitionReferenceId`. To find the `definition-reference-id` parameter, use the following command:
     ```azurecli
-    az policy set-definition show --name f5b29bc4-feca-4cc6-a58a-772dd5e290a5 |grep policyDefinitionReferenceId
+    az policy set-definition show --name a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 |grep policyDefinitionReferenceId
     ```
     Remediate the resources using [`az policy remediation create`](/cli/azure/policy/remediation#az-policy-remediation-create)
 
@@ -341,7 +341,7 @@ You can get your policy assignment details using the following command:
     ```
     To create a remediation task for all of the policies in the initiative, use the following example:
     ```bash
-    for policyDefinitionReferenceId in $(az policy set-definition show --name f5b29bc4-feca-4cc6-a58a-772dd5e290a5 |grep policyDefinitionReferenceId |cut -d":" -f2|sed s/\"//g) 
+    for policyDefinitionReferenceId in $(az policy set-definition show --name a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 |grep policyDefinitionReferenceId |cut -d":" -f2|sed s/\"//g) 
     do 
         az policy remediation create --resource-group "cli-example-01" --policy-assignment assign-cli-example-01 --name remediate-$policyDefinitionReferenceId --definition-reference-id $policyDefinitionReferenceId; 
     done 

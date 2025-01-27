@@ -4,17 +4,16 @@ description: This article helps you understand how to collect data and monitor c
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 07/06/2023
+ms.date: 11/14/2024
 ms.reviewer: luki
 
 ---
 
 # Log Analytics agent overview
 
-This article provides a detailed overview of the Log Analytics agent and the agent's system and network requirements and deployment methods.
+[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
 
->[!IMPORTANT]
->The Log Analytics agent is on a **deprecation path** and won't be supported after **August 31, 2024**. Any new data centers brought online after January 1 2024 will not support the Log Analytics agent. If you use the Log Analytics agent to ingest data to Azure Monitor, [migrate to the new Azure Monitor agent](./azure-monitor-agent-migration.md) prior to that date.
+This article provides a detailed overview of the Log Analytics agent and the agent's system and network requirements and deployment methods.
 
 You might also see the Log Analytics agent referred to as Microsoft Monitoring Agent (MMA).
 
@@ -102,7 +101,7 @@ The Windows and Linux agents support the [FIPS 140 standard](/windows/security/t
 
 ## TLS protocol
 
-To ensure the security of data in transit to Azure Monitor logs, we strongly encourage you to configure the agent to use at least Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable. Although they still currently work to allow backward compatibility, they are *not recommended*. For more information, see [Sending data securely using TLS](../logs/data-security.md#sending-data-securely-using-tls).
+To ensure the security of data in transit to Azure Monitor logs, we strongly encourage you to configure the agent to use at least Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable. Although they still currently work to allow backward compatibility, they are *not recommended*. 
 
 ## Network requirements
 

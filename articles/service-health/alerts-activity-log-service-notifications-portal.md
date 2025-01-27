@@ -1,13 +1,13 @@
 ---
-title: Receive activity log alerts on Azure service notifications using Azure portal
-description: Learn how to use the Azure portal to set up activity log alerts for service health notifications by using the Azure portal.
+title: Receive Service health alerts on Azure service notifications using Azure portal
+description: Learn how to use the Azure portal to set up Service health alerts for service health notifications by using the Azure portal.
 ms.topic: quickstart
 ms.date: 07/31/2024
 ---
 
-# Create activity log alerts on service notifications using the Azure portal
+# Create Service health alerts on service notifications using the Azure portal
 
-This article shows you how to use the Azure portal to set up activity log alerts for service health notifications by using the Azure portal.  
+This article shows you how to use the Azure portal to set up Service health alerts for service health notifications by using the Azure portal.  
 
 Service health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the large volume of information stored in the activity log, there is a separate user interface to make it easier to view and set up alerts on service health notifications. 
 
@@ -52,8 +52,8 @@ Learn how to [Configure webhook notifications for existing problem management sy
 
 
 ## Next steps
-- Learn about [best practices for setting up Azure Service Health alerts](https://www.microsoft.com/en-us/videoplayer/embed/RE2OtUa).
-- Learn how to [setup mobile push notifications for Azure Service Health](https://www.microsoft.com/en-us/videoplayer/embed/RE2OtUw).
+- Learn about [best practices for setting up Azure Service Health alerts](https://learn-video.azurefd.net/vod/player?id=771688cf-0348-44c4-ba48-f36bcd0aba3f).
+- Learn how to [setup mobile push notifications for Azure Service Health](https://learn-video.azurefd.net/vod/player?id=4a3171ca-2104-4447-8f4b-c4d27f6dfe96).
 - Learn how to [configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md).
 - Learn about [service health notifications](service-notifications.md).
 - Learn about [notification rate limiting](../azure-monitor/alerts/alerts-rate-limiting.md).
