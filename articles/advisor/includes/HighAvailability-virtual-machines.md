@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 01/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -200,15 +200,10 @@ Use a Premium SSD managed disk in a Single Instance virtual machine for the high
   
 **Potential benefits**: Enhanced performance, configurability, and uptime  
 
-**Impact:** Low
-  
-For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines ](https://aka.ms/disks-high-availability)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 2b5cf6e5-2792-49b2-9ec0-0e901be6488b  
-Subcategory: BusinessContinuity
+For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
+
 
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_begin-->
 
@@ -228,23 +223,18 @@ Subcategory: HighAvailability
 
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_end-->
 
-<!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_begin-->
+<!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_begin-->
 
-#### Upgrade to Standard SSD OS disk  
+#### Convert Standard to Premium disk for higher uptime  
   
-Upgrade the operating system (OS) disk from Standard HDD to Standard SSD for increased uptime of single-instance virtual machine and improved input/output operations and throughput.  
+Use a Premium SSD managed disk in a Single Instance virtual machine for the highest uptime. Conversion is allowed from a Standard managed disk to a Premium managed disk.  
   
-**Potential benefits**: Boost single-instance VM uptime from 95% to 99.5%.  
+**Potential benefits**: Enhanced performance, configurability, and uptime  
 
-**Impact:** Medium
-  
-For more information, see [Azure Disks Standard SSD billable transaction cap blog](https://aka.ms/billedcapsblog)  
+For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
 
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
-Subcategory: HighAvailability
+<!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
 
-<!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
 
 <!--490262e8-313c-431f-a143-a9c2cadba41b_begin-->
 
@@ -290,15 +280,10 @@ Add a second instance VM to Availability Set or upgrade to Premium SSD managed d
   
 **Potential benefits**: Enhanced performance, configurability, and uptime  
 
-**Impact:** Medium
-  
-For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines ](https://aka.ms/disks-high-availability)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: e5e707f2-f41f-4aa6-bccf-3fb9748e5b66  
-Subcategory: BusinessContinuity
+For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
 
 <!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_end-->
+
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_begin-->
 
