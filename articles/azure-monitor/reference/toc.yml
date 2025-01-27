@@ -1748,6 +1748,8 @@ items:
             href: tables/asimwebsessionlogs.md
           - name: ATCExpressRouteCircuitIpfix
             href: tables/atcexpressroutecircuitipfix.md
+          - name: ATCMicrosoftPeeringMetadata
+            href: tables/atcmicrosoftpeeringmetadata.md
           - name: ATCPrivatePeeringMetadata
             href: tables/atcprivatepeeringmetadata.md
           - name: AUIEventsAudit
@@ -2588,6 +2590,8 @@ items:
             href: tables/nwconnectionmonitortestresult.md
           - name: NetworkAccessAlerts
             href: tables/networkaccessalerts.md
+          - name: NetworkAccessConnectionEvents
+            href: tables/networkaccessconnectionevents.md
           - name: NetworkAccessTraffic
             href: tables/networkaccesstraffic.md
           - name: NetworkSessions
@@ -2792,6 +2796,10 @@ items:
             href: tables/synapsesqlpoolwaits.md
           - name: Syslog
             href: tables/syslog.md
+          - name: TOUserAudits
+            href: tables/touseraudits.md
+          - name: TOUserDiagnostics
+            href: tables/touserdiagnostics.md
           - name: TSIIngress
             href: tables/tsiingress.md
           - name: ThreatIntelIndicators
@@ -3438,6 +3446,10 @@ items:
             href: queries/SynapseLinkEvent.md
           - name: Syslog
             href: queries/Syslog.md
+          - name: TOUserAudits
+            href: queries/TOUserAudits.md
+          - name: TOUserDiagnostics
+            href: queries/TOUserDiagnostics.md
           - name: TSIIngress
             href: queries/TSIIngress.md
           - name: UCDOAggregatedStatus
