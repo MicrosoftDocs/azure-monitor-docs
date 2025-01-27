@@ -121,8 +121,8 @@ Then, call the `ConnectionString.configure` method after `ApplicationInsights.at
 
 ```java
 public static void main(String[] args) {
-    System.setProperty("applicationinsights.configuration.file", "{path}/applicationinsights-dev.json");
     ApplicationInsights.attach();
+    ConnectionString.configure("<Your Connection String>");
     SpringApplication.run(PetClinicApplication.class, args);
 }
 ```

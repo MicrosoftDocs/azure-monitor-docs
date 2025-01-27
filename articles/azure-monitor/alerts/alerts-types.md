@@ -37,7 +37,7 @@ The types of alerts are:
 A metric alert rule monitors a resource by evaluating conditions on the resource metrics at regular intervals. If the conditions are met, an alert is fired. A metric time-series is a series of metric values captured over a period of time.
 
 You can create rules by using these metrics:
-- [Platform metrics](alerts-metric-near-real-time.md#metrics-and-dimensions-supported)
+- [Platform metrics](../reference/metrics-index.md)
 - [Custom metrics](../essentials/metrics-custom-overview.md)
 - [Application Insights custom metrics](../app/api-custom-events-metrics.md)
 - [Selected logs from a Log Analytics workspace converted to metrics](alerts-metric-logs.md)
@@ -49,7 +49,7 @@ Metric alert rules include these features:
 - You can configure if metric alerts are [stateful or stateless](alerts-overview.md#alerts-and-state). Metric alerts are stateful by default.
 
 The target of the metric alert rule can be:
-- A single resource, such as a virtual machine (VM). For supported resource types, see [Supported resources for metric alerts in Azure Monitor](alerts-metric-near-real-time.md).
+- A single resource, such as a virtual machine (VM). For supported resource types, see [Supported resources](../reference/metrics-index.md).
 - [Multiple resources](#monitor-multiple-resources-with-one-alert-rule) of the same type in the same Azure region, such as a resource group.
 
 ### Applying multiple conditions to a metric alert rule

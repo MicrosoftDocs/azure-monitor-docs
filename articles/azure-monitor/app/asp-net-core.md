@@ -117,7 +117,7 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
             },
             "AllowedHosts": "*",
             "ApplicationInsights": {
-                "ConnectionString": "Copy connection string from Application Insights Resource Overview"
+                "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
             }
         }
         ```
@@ -171,7 +171,7 @@ using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPuls
 
 // Create a TelemetryConfiguration instance.
 TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-config.InstrumentationKey = "INSTRUMENTATION-KEY-HERE";
+config.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
 QuickPulseTelemetryProcessor quickPulseProcessor = null;
 config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
     .Use((next) =>
@@ -322,7 +322,7 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 ```json
 {
     "ApplicationInsights": {
-    "ConnectionString": "Copy connection string from Application Insights Resource Overview",
+    "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
     "EnableAdaptiveSampling": false,
     "EnablePerformanceCounterCollectionModule": false
     }
@@ -640,7 +640,7 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
 
     ```json
     "ApplicationInsights": {
-        "InstrumentationKey": "00000000-0000-0000-0000-000000000000"
+        "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
     }
     ```
 

@@ -6,7 +6,7 @@ author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
-ms.date: 11/17/2023
+ms.date: 01/21/2025
 ms.custom: devdivchpfy22, devx-track-dotnet
 ---
 
@@ -40,11 +40,12 @@ To enable Snapshot Debugger in your Functions app, add the `snapshotConfiguratio
   }
 }
 ```
+
 Generate traffic to your application that can trigger an exception. Then wait 10 to 15 minutes for snapshots to be sent to the Application Insights instance.
 
 You can verify that Snapshot Debugger has been enabled by checking your .NET function app files. For example, in the following simple .NET function app, the `.csproj`, `{Your}Function.cs`, and `host.json` of your .NET application show Snapshot Debugger as enabled:
 
-`Project.csproj`
+**`Project.csproj`**
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
@@ -67,7 +68,7 @@ You can verify that Snapshot Debugger has been enabled by checking your .NET fun
 </Project>
 ```
 
-`{Your}Function.cs`
+**`{Your}Function.cs`**
 
 ```csharp
 using System;
@@ -95,7 +96,7 @@ namespace SnapshotCollectorAzureFunction
 }
 ```
 
-`Host.json`
+**`host.json`**
 
 ```json
 {
@@ -140,13 +141,13 @@ The following example shows the `host.json` updated with the US Government Cloud
 
 Here are the supported overrides of the Snapshot Debugger agent endpoint:
 
-|Property    | US Government Cloud | China Cloud |
-|---------------|---------------------|-------------|
-|AgentEndpoint         | `https://snapshot.monitor.azure.us`    | `https://snapshot.monitor.azure.cn` |
+| Property        | US Government Cloud                 | China Cloud                         |
+| --------------- | ----------------------------------- | ----------------------------------- |
+| `agentEndpoint` | `https://snapshot.monitor.azure.us` | `https://snapshot.monitor.azure.cn` |
 
 ## Disable Snapshot Debugger
 
-To disable Snapshot Debugger in your Functions app, update your `host.json` file by setting the `snapshotConfiguration.isEnabled` property to `false`.
+To disable Snapshot Debugger in your Functions app, update your *host.json* file by setting the `snapshotConfiguration.isEnabled` property to `false`.
 
 ```json
 {

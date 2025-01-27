@@ -32,6 +32,12 @@ The Application Insights Agent autocollects the same dependency signals out of t
 
 The Application Insights Agent autocollects the same dependency signals out of the box as the SDK. To learn more, see [Dependency autocollection](./auto-collect-dependencies.md#net).
 
+Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information: 
+
+- **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
+
+- **Value:** `false`
+
 ### [Java](#tab/Java)
 
 We recommend the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java) for Java. The most popular libraries, frameworks, logs, and dependencies are [autocollected](./java-in-process-agent.md#autocollected-requests), along with many [other configurations](./java-standalone-config.md).

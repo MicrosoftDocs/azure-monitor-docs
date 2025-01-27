@@ -2,7 +2,7 @@
 title: Introduction to Azure Advisor
 description: Learn how to use Azure Advisor to optimize your Azure deployments and get answers to frequently asked questions.
 ms.topic: overview
-ms.date: 07/08/2024
+ms.date: 12/02/2024
 ---
 
 # Introduction to Azure Advisor
@@ -93,14 +93,24 @@ Advisor also includes your recommendations from [Microsoft Defender for Cloud](/
 
 To postpone or dismiss a recommendation, select **Postpone** or **Dismiss**. The recommendation is moved to the **Postponed/Dismissed** tab on the recommendation list page.
 
-## Related content
+## Related articles
 
-To learn more about Advisor recommendations, see:
+For more information about Azure Advisor, see the following articles.
 
-* [Get started with Advisor](advisor-get-started.md)
-* [Advisor score](azure-advisor-score.md)
-* [Advisor reliability recommendations](advisor-reference-reliability-recommendations.md)
-* [Advisor security recommendations](advisor-security-recommendations.md)
-* [Advisor performance recommendations](advisor-reference-performance-recommendations.md)
-* [Advisor cost recommendations](advisor-reference-cost-recommendations.md)
-* [Advisor operational excellence recommendations](advisor-reference-operational-excellence-recommendations.md)
+*   [Azure Advisor portal basics](./advisor-get-started.md)
+
+*   [Use Advisor score](./azure-advisor-score.md)
+
+*   [Azure Advisor REST API](/rest/api/advisor)
+
+For more information about specific Advisor recommendations, see the following articles.
+
+*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
+
+*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
+
+*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
+
+*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
+
+*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)

@@ -2,7 +2,7 @@
 title: Deploy Application Insights Agent
 description: Learn how to use Application Insights Agent to monitor website performance. It works with ASP.NET web apps hosted on-premises, in VMs, or on Azure.
 ms.topic: conceptual
-ms.date: 11/15/2023
+ms.date: 01/31/2025
 ms.reviewer: abinetabate
 ---
 
@@ -16,6 +16,11 @@ For a complete list of supported autoinstrumentation scenarios, see [Supported e
 
 > [!NOTE]
 > The module currently supports codeless instrumentation of ASP.NET and ASP.NET Core web apps hosted with IIS. Use an SDK to instrument Java and Node.js applications.
+
+> [!NOTE]
+> Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information:
+> - **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
+> - **Value:** `false`
 
 ## PowerShell Gallery
 

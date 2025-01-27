@@ -241,6 +241,7 @@ During public preview, these limitations apply:
     |                 | Germany West Central   |
     |                 | Switzerland North      |
     |                 | France Central         |
+    |                 | Norway East            |
     | **Middle East**     | Israel Central         |
 
 

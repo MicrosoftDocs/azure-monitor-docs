@@ -36,6 +36,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/advisor/advisor-security-recommendations.md",
+      "redirect_url": "/azure/defender-for-cloud/review-security-recommendations",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/advisor/security-baseline.md",
       "redirect_url": "/security/benchmark/azure/baselines/advisor-security-baseline",
       "redirect_document_id": false

@@ -65,21 +65,21 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region group | Regions | Notes |
-| --- | --- | --- |
-| **North America** | East US | Replication isn't supported to or from the East US 2 region. |
-|                        | East US 2 | Replication isn't supported to or from the East US region. |
-|                        | West US   | | 
-|                        | West US 2 | | 
-|                        | Central US   | | 
-|                        | South Central US   | | 
-|                        | Central Canada   | | 
-| **Europe**           | West Europe  | |
-|                        | North Europe | |
-|                        | South UK     | |
-|                        | West UK      | |
-|                        | Germany West Central      | |
-|                        | France Central      | |
+| Region Group  | Regions          | Notes                                                                 |
+|---------------|------------------|----------------------------------------------------------------------|
+| North America | East US          | East US can't replicate to or from the East US 2 and South Central US regions. |
+|               | East US 2        | East US 2 can't replicate to or from the East US and South Central US regions. |
+|               | West US          |                                                                      |
+|               | West US 2        |                                                                      |
+|               | Central US       |                                                                      |
+|               | South Central US | South Central US can't replicate to or from the East US and East US 2 regions. |
+|               | Central Canada   |                                                                      |
+| Europe        | West Europe      |                                                                      |
+|               | North Europe     |                                                                      |
+|               | South UK         |                                                                      |
+|               | West UK          |                                                                      |
+|               | Germany West Central |                                                                  |
+|               | France Central   |                                                                      | | |
 
 ### Data residency requirements
 

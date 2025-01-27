@@ -22,7 +22,7 @@ If you want to use a preconfigured integration, see:
 
 **Watch an introductory video:**
 
->[!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2OtUV]
+>[!VIDEO https://learn-video.azurefd.net/vod/player?id=4f25cc06-5873-4521-8c35-f4e9f0add183]
 
 ## Configure a custom notification by using the Service Health webhook payload
 To set up your own custom webhook integration, you need to parse the JSON payload that's sent via Service Health notification.

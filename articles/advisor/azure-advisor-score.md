@@ -2,7 +2,7 @@
 title: Use Advisor score
 description: Use Azure Advisor score to measure optimization progress.
 ms.topic: article
-ms.date: 09/26/2024
+ms.date: 12/02/2024
 
 ---
 
@@ -136,13 +136,26 @@ The scoring methodology is designed to control for the number of resources on a 
 
 No. Your score isn't necessarily a reflection of how much you spend. Unnecessary spending results in a lower **Cost** score.
 
-## Related content
+## Related articles
 
-For more information about Advisor recommendations, see:
+For more information about Azure Advisor, see the following articles.
 
-* [Introduction to Advisor](advisor-overview.md)
-* [Get started with Advisor](advisor-get-started.md)
-* [Advisor cost recommendations](advisor-cost-recommendations.md)
-* [Advisor performance recommendations](advisor-performance-recommendations.md)
-* [Advisor security recommendations](advisor-security-recommendations.md)
-* [Advisor operational excellence recommendations](advisor-operational-excellence-recommendations.md)
+*   [Introduction to Azure Advisor](./advisor-overview.md)
+
+*   [Azure Advisor portal basics](./advisor-get-started.md)
+
+*   [Use Advisor score](./azure-advisor-score.md)
+
+*   [Azure Advisor REST API](/rest/api/advisor)
+
+For more information about specific Advisor recommendations, see the following articles.
+
+*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
+
+*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
+
+*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
+
+*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
+
+*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)

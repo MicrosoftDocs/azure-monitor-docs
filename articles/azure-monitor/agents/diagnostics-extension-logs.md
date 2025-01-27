@@ -1,5 +1,5 @@
 ---
-title: Use Blob Storage for IIS and Table Storage for events in Azure Monitor | Microsoft Docs
+title: Send data from Azure Diagnostics extension to Azure Monitor Logs using Azure Diagnostics extension
 description: Azure Monitor can read the logs for Azure services that write diagnostics to Azure Table Storage or IIS logs written to Azure Blob Storage.
 ms.topic: conceptual
 author: bwren
@@ -9,12 +9,11 @@ ms.reviewer: luki
 
 ---
 
-# Send data from Azure Diagnostics extension to Azure Monitor Logs
+# Send data from Azure Diagnostics extension to Azure Monitor Logs using Azure Diagnostics extension
 
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article describes how to collect data collected by the diagnostics extension from Azure Storage to Azure Monitor Logs.
 
-> [!NOTE]
-> The Log Analytics agent in Azure Monitor is typically the preferred method to collect data from the guest operating system into Azure Monitor Logs. For a comparison of the agents, see [Overview of the Azure Monitor agents](../agents/agents-overview.md).
+[!INCLUDE [diagnostics-extension-deprecation](../includes/diagnostics-extension-deprecation.md)]
 
 ## Supported data types
 

@@ -2,7 +2,7 @@
 title: Quick Fix remediation for Advisor recommendations
 description: Perform bulk remediation using Quick Fix in Advisor
 ms.topic: article
-ms.date: 09/26/2024
+ms.date: 12/02/2024
 ---
 
 # Quick Fix remediation for Advisor
@@ -41,18 +41,26 @@ The **Quick Fix** feature provides a faster and easier way to remediate a recomm
     * Resource isn't remediated.
     * Resource is in the selected mode in the resource list view.
 
-## Next steps
+## Related articles
 
-For more information about Azure Advisor, go to:
+For more information about Azure Advisor, see the following articles.
 
-* [Introduction to Azure Advisor](./advisor-overview.md)
-* [Azure Advisor portal basics](./advisor-get-started.md)
-* [Azure Advisor REST API](/rest/api/advisor)
+*   [Introduction to Azure Advisor](./advisor-overview.md)
 
-To learn more about specific Advisor recommendations, see:
+*   [Azure Advisor portal basics](./advisor-get-started.md)
 
-* [Reliability](advisor-reference-reliability-recommendations.md)
-* [Security](advisor-security-recommendations.md)
-* [Performance](advisor-reference-performance-recommendations.md)
-* [Cost](advisor-reference-cost-recommendations.md)
-* [Operational excellence](advisor-reference-operational-excellence-recommendations.md)
+*   [Use Advisor score](./azure-advisor-score.md)
+
+*   [Azure Advisor REST API](/rest/api/advisor)
+
+For more information about specific Advisor recommendations, see the following articles.
+
+*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
+
+*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
+
+*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
+
+*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
+
+*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)

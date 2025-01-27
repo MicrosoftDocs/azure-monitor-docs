@@ -39,7 +39,7 @@ You can see your alerts in a timeline view. In this view, you can see the number
 
   :::image type="content" source="media/alerts-managing-alert-instances/alerts-timeline.png" lightbox="media/alerts-managing-alert-instances/alerts-timeline.png" alt-text="Screenshot that shows the Alerts timeline page in the Azure portal.":::
 
-To see the alerts in a timeline view, select **View as timeline** at the top of the Alerts summary page. You can choose to see the alerts timeline in with the severity of the alerts indicated by color, or a simplified view with critical or noncritical alerts.
+To see the alerts in a timeline view, select **View as timeline** at the top of the Alerts summary page. You can choose to see the alerts timeline with the severity of the alerts indicated by color, or a simplified view with critical or noncritical alerts.
 
   :::image type="content" source="media/alerts-managing-alert-instances/alerts-view-timeline.png" lightbox="media/alerts-managing-alert-instances/alerts-view-timeline.png" alt-text="Screenshot that shows the view timeline button in the Alerts summary page in the Azure portal.":::
 

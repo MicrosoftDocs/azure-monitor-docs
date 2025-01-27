@@ -12,6 +12,8 @@ ms.reviewer: mmcc
 
 This article shows you how to configure Azure Monitor Application Insights for Java.
 
+For more information, see [Get started with OpenTelemetry](opentelemetry-enable.md) which includes [sample applications](opentelemetry-enable.md#sample-applications).
+
 ## Connection string and role name
 
 Connection string and role name are the most common settings you need to get started:

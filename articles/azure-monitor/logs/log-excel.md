@@ -2,10 +2,10 @@
 title: Integrate Log Analytics and Excel
 description: Get a Log Analytics query into Excel and refresh results inside Excel. 
 ms.topic: conceptual
-author: guywild
+author: guywi-ms
 ms.author: guywild
-ms.reviewer: roygal
-ms.date: 06/22/2022
+ms.reviewer: ron.frenkel
+ms.date: 12/08/2024
 
 ---
 

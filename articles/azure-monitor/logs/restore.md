@@ -13,6 +13,9 @@ The restore operation makes a specific time range of data in a table available i
 > [!NOTE]
 > Tables with the [Auxiliary table plan](data-platform-logs.md) do not support data restore. Use a [search job](search-jobs.md) to retrieve data that's in long-term retention from an Auxiliary table.
 
+> [!WARNING]
+>  Creating a data restore starts billing for each data restore until your [restore is dismissed](#dismiss-restored-data). Learn more about the [costs for using data restore](#pricing-model). 
+
 ## Permissions
 
 To restore data from long-term retention, you need `Microsoft.OperationalInsights/workspaces/tables/write` and `Microsoft.OperationalInsights/workspaces/restoreLogs/write` permissions to the Log Analytics workspace, for example, as provided by the [Log Analytics Contributor built-in role](../logs/manage-access.md#built-in-roles).
@@ -31,6 +34,9 @@ The restore operation creates the restore table and allocates extra compute reso
 The destination table provides a view of the underlying source data, but doesn't affect it in any way. The table has no retention setting, and you must explicitly [dismiss the restored data](#dismiss-restored-data) when you no longer need it. 
 
 ## Restore data
+
+> [!WARNING]
+> When restoring data, be sure to [dismiss the restore](#dismiss-restored-data) as soon as you are done using the restore. You will continue to be billed for a data restore until it is dismissed ([learn more](#pricing-model)). 
 
 # [API](#tab/api-1)
 To restore data from a table, call the **Tables - Create or Update** API. The name of the destination table must end with *_RST*.
@@ -136,7 +142,7 @@ You can:
 
 The charge for restored logs is based on the volume of data you restore, and the duration for which the restore is active. Thus, the units of price are *per GB per day*. Data restores are billed on each UTC-day that the restore is active. 
 
-- Charges are subject to a minimum restored data volume of 2 TB per restore. If you restore less data, you will be charged for the 2 TB minimum each day until the [restore is dismissed](#dismiss-restored-data).
+- Charges are subject to a minimum restored data volume of 2 TB per restore since restore allocates extra compute resources for querying the restored data. If you restore less data, you will be charged for the 2 TB minimum each day until the [restore is dismissed](#dismiss-restored-data).
 - On the first and last days that the restore is active, you're only billed for the part of the day the restore was active. 
 
 - The minimum charge is for a 12-hour restore duration, even if the restore is active for less than 12-hours.

@@ -7,7 +7,7 @@ ms.topic: conceptual
 ms.custom: devx-track-arm-template
 ms.date: 08/26/2024
 ---
-# Send guest OS metrics to the Azure Monitor metric store by using an Azure Resource Manager template for a Windows virtual machine scale set
+# Send Windows VM scale set guest OS metrics to the Azure Monitor metric store using an Azure Resource Manager template and Windows Azure Diagnostic extension
 
 > [!NOTE]    
 > Azure Monitor Agent (AMA) collects monitoring data from the guest operating system of Azure and hybrid virtual machines and Virtual Machine Scale Sets and delivers it to Azure Monitor for use by features, insights, and other services such as [Microsoft Sentinel](/azure/sentinel/overview) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction).

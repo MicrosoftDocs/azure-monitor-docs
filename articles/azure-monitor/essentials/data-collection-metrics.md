@@ -24,9 +24,9 @@ Using DCRs to export metrics provides the following advantages over diagnostic s
 
 Use metrics export through DCRs for continuous export of metrics data. For querying historical data, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). For a comparison of the two services, see [Data plane Metrics Batch API query versus Metrics export](./data-plane-versus-metrics-export.md).
 
-Create DCRs for metrics using the REST API, Azure CLI, or Azure PowerShell. For information on how to create DCRs for metrics export, see [Create data collection rules for metrics](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
+Create DCRs for metrics using the REST API, Azure CLI, or Azure PowerShell. For information on how to create DCRs for metrics export, see [Create data collection rules for metrics](./metrics-export-create.md).
 
-When you create a DCR, you must create a Data collection rule association (DCRA) to associate the DCR with the resource to be monitored. You can create a single DCR for many resource types. For information on how to create a DCRA see [Create data collection rule associations](./data-collection-rule-create-edit.md#create-a-data-collection-rule-association). When using the Azure portal, the DCRA is created automatically.
+When you create a DCR, you must create a Data collection rule association (DCRA) to associate the DCR with the resource to be monitored. You can create a single DCR for many resource types. For information on how to create a DCRA see [Create data collection rule associations](./data-collection-rule-associations.md). When using the Azure portal, the DCRA is created automatically.
 
 > [!NOTE]
 > It is possible to use DCRs and diagnostic settings at the same time. We recommend that you disable diagnostic settings for metrics when using DCRs to avoid duplicate data collection.
@@ -429,7 +429,7 @@ The following example shows a data collection rule for metrics export that sends
 
 ## Create DCRs for metrics export
 
-Create DCRs for metrics export using the Azure portal, CLI, PowerShell, REST API, or ARM template. For more information, see [Create and edit data collection rules (DCRs) and associations in Azure Monitor](./data-collection-rule-create-edit.md#create-a-dcr-for-metrics-export).
+Create DCRs for metrics export using the Azure portal, CLI, PowerShell, REST API, or ARM template. For more information, see [Create a data collection rule (DCR) for metrics export](./metrics-export-create.md).
 
 
 ## Exported data

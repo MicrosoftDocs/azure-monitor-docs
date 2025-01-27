@@ -16,6 +16,8 @@ Container Insights offers the ability to collect Syslog events from Linux nodes 
 - Port 28330 should be available on the host node.
 
 
+- Ensure hostPort functionality is enabled in the cluster. For example, Cilium Enterprise does not have hostPort functionality enabled by default and prevents the syslog feature from working.
+
 ## Built-in workbooks
 
 To get a quick snapshot of your syslog data, use the built-in Syslog workbook using one of the following methods:
@@ -70,7 +72,7 @@ The following table provides different examples of log queries that retrieve Sys
 ## Next steps
 
 Once setup customers can start sending Syslog data to the tools of their choice
-- [Send Syslog to Microsoft Sentinel](/azure/sentinel/connect-syslog)
+- [Send Syslog to Microsoft Sentinel](/azure/sentinel/connect-cef-syslog-ama)
 - [Export data from Log Analytics](/azure/azure-monitor/logs/logs-data-export?tabs=portal)
 - [Syslog record properties](/azure/azure-monitor/reference/tables/syslog)
 

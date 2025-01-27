@@ -5,7 +5,7 @@ ms.topic: reference
 ms.service: azure-monitor
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 10/14/2024
+ms.date: 12/09/2024
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -23,7 +23,7 @@ Display events from more than one day ago, filtered by organization ID and summa
 
 ```query
 ProjectActivity
-| where OrganizationId != "5b5a146c-eba8-46af-96f8-e31b50d15a3f"
+| where OrganizationId != "22223333-cccc-4444-dddd-5555eeee6666"
 | summarize count() by UserId, ResultStatus
 
 ```

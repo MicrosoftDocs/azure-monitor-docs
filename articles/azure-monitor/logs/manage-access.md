@@ -5,7 +5,7 @@ ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: MeirMen
-ms.date: 03/20/2024
+ms.date: 01/14/2025
 ms.custom: devx-track-azurepowershell
 
 ---
@@ -166,6 +166,7 @@ Each workspace can have multiple accounts associated with it. Each account can h
 | View data in the **Backup** and **Site Recovery** solution tiles. | Administrator/Co-administrator<br><br>Accesses resources deployed by using the classic deployment model. |
 | Run a search job. | `Microsoft.OperationalInsights/workspaces/tables/write` <br> `Microsoft.OperationalInsights/workspaces/searchJobs/write`|
 | Restore data from long-term retention. | `Microsoft.OperationalInsights/workspaces/tables/write` <br> `Microsoft.OperationalInsights/workspaces/restoreLogs/write`|
+| Create or edit Summary rule | Microsoft.Operationalinsights/workspaces/summarylogs/write |
 
 ### Built-in roles
 
@@ -182,9 +183,7 @@ Create assignments at the resource level (workspace) to assure accurate access c
 
 #### Log Analytics Reader
 
-Members of the Log Analytics Reader role can view all monitoring data and monitoring settings, including the configuration of Azure diagnostics on all Azure resources.
-
-Members of the Log Analytics Reader role can:
+Members of the Log Analytics Reader role can view all monitoring data and monitoring settings, including the configuration of Azure diagnostics on all Azure resources. Allows members to view all data about resources within the assigned scope, including:
 
 - View and search all monitoring data.
 - View monitoring settings, including viewing the configuration of Azure diagnostics on all Azure resources.
@@ -250,13 +249,13 @@ In addition to using the built-in roles for a Log Analytics workspace, you can c
 **Example 1: Grant a user permission to read log data from their resources.**
 
 - Configure the workspace access control mode to *use workspace or resource permissions*.
-- Grant users `*/read` or `Microsoft.Insights/logs/*/read` permissions to their resources. If they're already assigned the [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#reader) role on the workspace, it's sufficient.
+- Grant users `*/read` or `Microsoft.Insights/logs/*/read` permissions to their resources. If they're already assigned the [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/analytics#log-analytics-reader) role on the workspace, it's sufficient.
 
 
 **Example 2: Grant a user permission to read log data from their resources and run a search job.**
 
 - Configure the workspace access control mode to *use workspace or resource permissions*.
-- Grant users `*/read` or `Microsoft.Insights/logs/*/read` permissions to their resources. If they're already assigned the [Log Analytics Reader](/azure/role-based-access-control/built-in-roles#reader) role on the workspace, it's sufficient.
+- Grant users `*/read` or `Microsoft.Insights/logs/*/read` permissions to their resources. If they're already assigned the [Log Analytics Reader](/azure/role-based-access-control/built-in-roles/analytics#log-analytics-reader) role on the workspace, it's sufficient.
 - Grant users the following permissions on the workspace:
   - `Microsoft.OperationalInsights/workspaces/tables/write`: Required to be able to create the search results table (_SRCH).
   - `Microsoft.OperationalInsights/workspaces/searchJobs/write`: Required to allow executing the search job operation. 
@@ -266,7 +265,7 @@ In addition to using the built-in roles for a Log Analytics workspace, you can c
 
 - Configure the workspace access control mode to *use workspace or resource permissions*.
 - Grant users the following permissions on the workspace: `Microsoft.OperationalInsights/workspaces/read` and `Microsoft.OperationalInsights/workspaces/sharedKeys/action`. With these permissions, users can't perform any workspace-level queries. They can only enumerate the workspace and use it as a destination for diagnostic settings or agent configuration.
-- Grant users the following permissions to their resources: `Microsoft.Insights/logs/*/read` and `Microsoft.Insights/diagnosticSettings/write`. If they're already assigned the [Log Analytics Contributor](/azure/role-based-access-control/built-in-roles#contributor) role, assigned the Reader role, or granted `*/read` permissions on this resource, it's sufficient.
+- Grant users the following permissions to their resources: `Microsoft.Insights/logs/*/read` and `Microsoft.Insights/diagnosticSettings/write`. If they're already assigned the [Log Analytics Contributor](/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor) role, assigned the Reader role, or granted `*/read` permissions on this resource, it's sufficient.
 
 **Example 4: Grant a user permission to read log data from their resources, but not to send logs to the Log Analytics workspace or read security events.**
 
@@ -291,7 +290,7 @@ In addition to using the built-in roles for a Log Analytics workspace, you can c
 **Example 6: Restrict a user from restoring data from long-term retention.**
 
 - Configure the workspace access control mode to *use workspace or resource permissions*.
-- Assign the user to the [Log Analytics Contributor](/azure/role-based-access-control/built-in-roles#contributor) role.
+- Assign the user to the [Log Analytics Contributor](/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor) role.
 - Add the following NonAction to block users from restoring data from long-term retention: `Microsoft.OperationalInsights/workspaces/restoreLogs/write`
 
 

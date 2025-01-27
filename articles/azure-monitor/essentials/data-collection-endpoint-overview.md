@@ -20,9 +20,6 @@ A data collection endpoint (DCE) is an Azure resource that defines a unique set 
 
 A DCE isn't always required for data collection since the data source may use a public endpoint or the ingestion endpoints in the DCR. The sections below describes those scenarios where a DCE is required.
 
-> [!IMPORTANT]
-> If you're sending data to a Log Analytics workspace 
-
 ### Azure Monitor agent (AMA) 
 
 [AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../logs/private-link-security.md). 
@@ -168,4 +165,4 @@ The sample data collection endpoint (DCE) below is for virtual machines with Azu
 
 ## Next steps
 
-- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-azure-monitor-resources)
+- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-resources-to-the-ampls)

@@ -317,7 +317,7 @@ Use the following command to create a data export rule to a Storage Account by u
             "type": "string"
         },
         "storageAccountResourceId": {
-            "defaultValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/Microsoft.Storage/storageAccounts/storage-account-name",
+            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/resource-group-name/providers/Microsoft.Storage/storageAccounts/storage-account-name",
             "type": "String"
         }
     },
@@ -375,7 +375,7 @@ Use the following command to create a data export rule to an Event Hub by using 
             "type": "string"
         },
         "namespacesResourceId": {
-            "defaultValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
+            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
             "type": "String"
         }
     },
@@ -431,7 +431,7 @@ Use the following command to create a data export rule to a specific Event Hub b
             "type": "string"
         },
         "namespacesResourceId": {
-            "defaultValue": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
+            "defaultValue": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/resource-group-name/providers/microsoft.eventhub/namespaces/namespaces-name",
             "type": "String"
         },
         "eventhubName": {
@@ -1249,4 +1249,3 @@ If the data export rule includes an unsupported table, the configuration will su
 ## Next steps
 
 [Query the exported data from Azure Data Explorer](../logs/azure-data-explorer-query-storage.md)
-

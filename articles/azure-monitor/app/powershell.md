@@ -19,7 +19,7 @@ The key to creating these resources is JSON templates for [Resource Manager](/az
 - Parameterize certain values, such as names.
 - Run the template whenever you want to create a new resource.
 
-You can package several resources together to create them all in one go. For example, you can create an app monitor with availability tests, alerts, and storage for continuous export. There are some subtleties to some of the parameterizations, which we'll explain here.
+You can package several resources together to create them all in one go. For example, you can create an app monitor with availability tests, alerts, and storage for continuous export. There are some subtleties to some of the parameterizations, which we explain here.
 
 ## One-time setup
 If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
@@ -204,11 +204,11 @@ Create a new .json file. Let's call it `template1.json` in this example. Copy th
    * `-TemplateFile` must occur before the custom parameters.
    * `-appName` is the name of the resource to create.
 
-You can add other parameters. You'll find their descriptions in the parameters section of the template.
+You can add other parameters. You find their descriptions in the parameters section of the template.
 
 ## Get the instrumentation key
 
-After you create an application resource, you'll want the instrumentation key:
+After you create an application resource, you want the instrumentation key:
 
 1. Sign in to Azure by using `$Connect-AzAccount`.
 1. Set your context to a subscription with `Set-AzContext "<subscription ID>"`.
@@ -355,13 +355,8 @@ armclient GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 
 ## Set the daily cap reset time
 
-To set the daily cap reset time, you can use [ARMClient](https://github.com/projectkudu/ARMClient). Here's an example using `ARMClient` to set the reset time to a new hour. This example shows 12:00 UTC:
-
-```PS
-armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/microsoft.insights/components/MyResourceName/CurrentBillingFeatures?api-version=2018-05-01-preview "{'CurrentBillingFeatures':['Basic'],'DataVolumeCap':{'Cap':100,'WarningThreshold':80,'ResetTime':12}}"
-```
-
-<a id="price"></a>
+> [!IMPORTANT]
+> The daily cap reset time can no longer be customized using the `ResetTime` attribute.
 
 ## Set the pricing plan
 
@@ -406,7 +401,7 @@ armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 "{'CurrentBillingFeatures':['Basic'],'DataVolumeCap':{'Cap':200,'ResetTime':12,'StopSendNotificationWhenHitCap':true,'WarningThreshold':90,'StopSendNotificationWhenHitThreshold':true}}"
 ```
 
-This code will set the daily cap to 200 GB per day, configure the daily cap reset time to 12:00 UTC, send emails both when the cap is hit and the warning level is met, and set the warning threshold to 90% of the cap.
+This code sets the daily cap to 200 GB per day, configure the daily cap reset time to 12:00 UTC, send emails both when the cap is hit and the warning level is met, and set the warning threshold to 90% of the cap.
 
 ## Add a metric alert
 
@@ -445,7 +440,7 @@ Now you have to replace the specific names with parameters. To [parameterize a t
 
 You can't parameterize only part of a string, so use `concat()` to build strings.
 
-Here are examples of the substitutions you'll want to make. There are several occurrences of each substitution. You might need others in your template. These examples use the parameters and variables we defined at the top of the template.
+Here are examples of the substitutions you want to make. There are several occurrences of each substitution. You might need others in your template. These examples use the parameters and variables we defined at the top of the template.
 
 | Find | Replace with |
 | --- | --- |

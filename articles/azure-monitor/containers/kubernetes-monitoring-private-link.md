@@ -34,8 +34,6 @@ If your AKS cluster isn't in the same region as your Azure Monitor workspace, th
 
 
 ### Ingestion from a private AKS cluster
-By default, a private AKS cluster can send data to Managed Prometheus and your Azure Monitor workspace over the public network using a public Data Collection Endpoint.
-
 If you choose to use an Azure Firewall to limit the egress from your cluster, you can implement one of the following:
 
 - Open a path to the public ingestion endpoint. Update the routing table with the following two endpoints:

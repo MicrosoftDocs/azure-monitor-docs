@@ -53,7 +53,7 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 | Azure Monitor | Log Analytics data export Data Exported | yes |
 | Azure Monitor | Platform Logs Data Processed | yes |
 
-*Pay-as-you-go Data Retention* is used for workspaces in all modern pricing tiers (Pay-as-you-go and Commitment Tiers).  "Standard Data Retention" is used for workspaces in the legacy Per Node and Standalone pricing tiers. 
+**Pay-as-you-go Data Retention** is interactive retention for workspaces in all modern pricing tiers (Pay-as-you-go and Commitment Tiers).  **Standard Data Retention** is interactive retention for workspaces in the legacy Per Node and Standalone pricing tiers.  **Data Archive** is the meter for long-term data retention. 
 
 ## Azure Monitor metrics meters:
 
@@ -62,6 +62,7 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 | Azure Monitor | Metrics ingestion Metric samples | yes |
 | Azure Monitor | Prometheus Metrics Queries Metric samples | yes |
 | Azure Monitor | Native Metric Queries API Calls | yes |
+| Azure Monitor | Metrics Export Metric Samples Exported | yes |
 
 ## Azure Monitor alerts meters
 

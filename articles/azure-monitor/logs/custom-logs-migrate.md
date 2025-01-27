@@ -95,7 +95,7 @@ While the Data Collector API automatically adjusts the destination table schema 
 
 When the source data schema changes, you can:
 
-- [Modify destination table schemas](../logs/create-custom-table.md) and [data collection rules](../essentials/data-collection-rule-edit.md) to align with source data schema changes.
+- [Modify destination table schemas](../logs/create-custom-table.md) and [data collection rules](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to align with source data schema changes.
 - [Define a transformation](../essentials/data-collection-transformations.md) in the data collection rule to send the new data into existing columns in the destination table. 
 - Leave the destination table and data collection rule unchanged. In this case, you won't ingest the new data.
 

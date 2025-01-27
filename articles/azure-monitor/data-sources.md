@@ -35,7 +35,7 @@ Audit logs and sign in logs in Microsoft Entra ID are similar to the activity lo
 
 | Data type | Description | Data collection method |
 |:---|:---|:---|
-| Audit logs</br>Signin logs | Enable you to assess many aspects of your Microsoft Entra ID environment, including history of sign-in activity, audit trail of changes made within a particular tenant, and activities performed by the provisioning service. | Collected automatically. View in the Azure portal or create a diagnostic setting to send it to other destinations.  |
+| Audit logs</br>Signin logs | Enable you to assess many aspects of your Microsoft Entra ID environment, including history of sign-in activity, audit trail of changes made within a particular tenant, and activities performed by the provisioning service. | Collected automatically with activity logs. View in the Azure portal or create a diagnostic setting to send it to other destinations.  |
 
 ## Apps and workloads
 

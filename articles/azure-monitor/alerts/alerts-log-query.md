@@ -11,11 +11,11 @@ ms.reviewer: nolavime
 
 This article describes how to write and convert [log search alerts](alerts-types.md#log-alerts) to achieve optimal performance. Optimized queries reduce latency and load of alerts, which run frequently.
 
-## Start writing an alert log query
+## Start writing a log search alert query
 
 Alert queries start from [querying the log data in Log Analytics](alerts-log.md#create-a-new-log-alert-rule-in-the-azure-portal) that indicates the issue. To understand what you can discover, see [Using queries in Azure Monitor Log Analytics](../logs/queries.md). You can also [get started on writing your own query](../logs/log-analytics-tutorial.md).
 
-### Queries that indicate the issue and not the alert
+### Make sure your query identifies the issue and not the alert itself
 
 The alert flow was built to transform the results that indicate the issue to an alert. For example, in the case of a query like:
 

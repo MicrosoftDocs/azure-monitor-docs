@@ -216,6 +216,8 @@ The settings for **collection frequency** and **namespace filtering** in the DCR
 | Perf | Yes | Yes | Data collection setting for namespaces isn't applicable for the Kubernetes Node related metrics since the Kubernetes Node isn't a namespace scoped object. |
 | InsightsMetrics| Yes | Yes | Data collection settings are only applicable for the metrics collecting the following namespaces: container.azm.ms/kubestate, container.azm.ms/pv and container.azm.ms/gpu |
 
+> [!NOTE]
+> Namespace filtering does not apply to ama-logs agent records. As a result, even if the kube-system namespace is listed among excluded namespaces, records associated to ama-logs agent container will still be ingested. 
 
 | Metric namespace | Interval? | Namespaces? | Remarks |
 |:---|:---:|:---:|:---|

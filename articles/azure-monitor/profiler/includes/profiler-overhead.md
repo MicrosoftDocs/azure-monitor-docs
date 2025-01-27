@@ -6,6 +6,6 @@ ms.date: 07/11/2024
 ---
 
 > [!NOTE]
-> When Profiler is actively running and collecting traces, it typically adds between 5% to 15% of CPU and memory overhead to your server. 
+> When the Application Insights Profiler for .NET is actively running and collecting traces, it typically adds between 5% to 15% of CPU and memory overhead to your server. 
 >
-> There is **no additional cost** for storing data captured by Profiler. The data is automatically deleted after 15 days.
+> There is **no additional cost** for storing data captured by .NET Profiler. The data is automatically deleted after 15 days.

@@ -6,7 +6,7 @@ ms.author: edbaynash
 ms.reviewer: poojaa
 ms.topic: conceptual
 ms.custom: devx-track-azurecli
-ms.date: 05/31/2024
+ms.date: 11/20/2024
 ---
 
 # Manage an Azure Monitor workspace
@@ -24,7 +24,7 @@ This article shows you how to create and delete an Azure Monitor workspace. When
 
     :::image type="content" source="media/azure-monitor-workspace-overview/view-azure-monitor-workspaces.png" lightbox="media/azure-monitor-workspace-overview/view-azure-monitor-workspaces.png" alt-text="Screenshot of Azure Monitor workspaces menu and page.":::
 
-3. On the **Create an Azure Monitor Workspace** page, select a **Subscription** and **Resource group** where the workspace should be created.
+3. On the **Create an Azure Monitor Workspace** page, select a **Subscription** and **Resource group** where the workspace is to be created.
 4. Provide a **Name** and a **Region** for the workspace.
 5. Select **Review + create** to create the workspace.
 
@@ -38,7 +38,7 @@ az monitor account create --name <azure-monitor-workspace-name> --resource-group
 For more details, visit [Azure CLI for Azure Monitor Workspace](/cli/azure/monitor/account)
 
 ### [Resource Manager](#tab/resource-manager)
-Use one of the following Resource Manager templates with any of the [standard deployment options](../resource-manager-samples.md#deploy-the-sample-templates) to create an Azure Monitor workspace.
+To create an Azure Monitor workspace, use one of the following Resource Manager templates with any of the [standard deployment options](../resource-manager-samples.md#deploy-the-sample-templates).
 
 ```json
 {
@@ -85,7 +85,7 @@ To connect your Azure Monitor managed service for Prometheus to your Azure Monit
 
 
 ## Delete an Azure Monitor workspace
-When you delete an Azure Monitor workspace, unlike with a [Log Analytics workspace](../logs/delete-workspace.md), there is no soft delete operation. The data in the workspace is immediately deleted, and there's no recovery option.
+When you delete an Azure Monitor workspace, unlike with a [Log Analytics workspace](../logs/delete-workspace.md), there's no soft delete operation. The data in the workspace is immediately deleted, and there's no recovery option.
 
 
 ### [Azure portal](#tab/azure-portal)
@@ -114,10 +114,13 @@ For information on deleting resources and Azure Resource Manager, see [Azure Res
 
 
 ## Link a Grafana workspace  
-Connect an Azure Monitor workspace to an [Azure Managed Grafana](/azure/managed-grafana/overview) workspace to allow Grafana to use the Azure Monitor workspace data in a Grafana dashboard. An Azure Monitor workspace can be connected to multiple Grafana workspaces, and a Grafana workspace can be connected to multiple Azure Monitor workspaces.
+Connect an Azure Monitor workspace to an [Azure Managed Grafana](/azure/managed-grafana/overview) workspace to allow Grafana to use the Azure Monitor workspace data in a Grafana dashboard. An Azure Monitor workspace can be connected to multiple Grafana workspaces, and a Grafana workspace can be connected to multiple Azure Monitor workspaces. Azure Managed Grafana and your Azure Monitor workspace can be in different regions. 
+
+To link your self-managed Grafana instance to an Azure Monitor workspace, see [Connect Grafana to Azure Monitor Prometheus metrics](./prometheus-grafana.md)
 
 > [!NOTE]
-> When you add the Azure Monitor workspace as a data source to Grafana, it will be listed in form `Managed_Prometheus_<azure-monitor-workspace-name>`.
+> When you add the Azure Monitor workspace as a data source to Grafana, it's listed in as `Prometheus_<azure monitor workspace query endpoint>`.
+  
 ### [Azure portal](#tab/azure-portal)
 
 1. Open the **Azure Monitor workspace** menu in the Azure portal.
@@ -160,20 +163,6 @@ Output
 To set up an Azure monitor workspace as a data source for Grafana using a Resource Manager template, see [Collect Prometheus metrics from AKS cluster](../containers/kubernetes-monitoring-enable.md?tabs=arm#enable-prometheus-and-grafana)
 
 ---
-
-If your Grafana instance is self managed, see [Use Azure Monitor managed service for Prometheus as data source for self-managed Grafana using managed system identity](./prometheus-self-managed-grafana-azure-active-directory.md)
-
-
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Can I use Azure Managed Grafana in a different region than my Azure Monitor workspace and managed service for Prometheus?
-        
-Yes. When you use managed service for Prometheus, you can create your Azure Monitor workspace in any of the supported regions. Your Azure Kubernetes Service clusters can be in any region and send data into an Azure Monitor workspace in a different region. Azure Managed Grafana can also be in a different region than where you created your Azure Monitor workspace. 
-
-
-
 
 
 ## Next steps

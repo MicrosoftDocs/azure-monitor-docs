@@ -457,4 +457,4 @@ Learn more about to:
 
 - [Create a custom table](../logs/create-custom-table.md#create-a-custom-table).
 - [Create a data collection endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint).
-- [Update an existing data collection rule](../essentials/data-collection-rule-edit.md).
+- [Update an existing data collection rule](../essentials/data-collection-rule-create-edit.md).
