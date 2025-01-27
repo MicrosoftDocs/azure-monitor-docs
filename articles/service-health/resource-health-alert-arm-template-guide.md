@@ -306,7 +306,7 @@ However, when a resource reports "Unknown," it's likely that its health status h
 },
 ```
 
-In this example, we're only notifying on events where the current and previous health status does'nt have "Unknown." This change may be a useful addition if your alerts are sent directly to your mobile phone or email. 
+In this example, we're only notifying on events where the current and previous health status doesn't have "Unknown." This change may be a useful addition if your alerts are sent directly to your mobile phone or email. 
 
 Note that it's possible for the currentHealthStatus and previousHealthStatus properties to be null in some events. For example, when an Updated event occurs it's likely that the health status of the resource hasn't changed since the last report. Only that other event information is available (for example, the cause). Therefore, using the clause above may result in some alerts not being triggered, because the properties.currentHealthStatus and properties.previousHealthStatus values will be set to null.
 
