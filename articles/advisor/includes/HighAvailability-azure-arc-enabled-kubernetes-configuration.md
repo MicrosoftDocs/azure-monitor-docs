@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Arc-enabled Kubernetes Configuration
@@ -20,7 +20,13 @@ The Microsoft Flux extension has a major version release. Plan for a manual upgr
   
 **Potential benefits**: Continued support and new functionality  
 
-For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters](https://aka.ms/fluxreleasenotes)  
+**Impact:** Medium
+  
+For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters - Azure Arc ](https://aka.ms/fluxreleasenotes)  
+
+ResourceType: microsoft.kubernetesconfiguration/extensions  
+Recommendation ID: 4bc7a00b-edbb-4963-8800-1b0f8897fecf  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--4bc7a00b-edbb-4963-8800-1b0f8897fecf_end-->
 
@@ -32,7 +38,13 @@ The Microsoft Flux extension frequently receives updates for security and stabil
   
 **Potential benefits**: Improved stability, security, and new functionality  
 
-For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters](https://aka.ms/fluxreleasenotes)  
+**Impact:** High
+  
+For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters - Azure Arc ](https://aka.ms/fluxreleasenotes)  
+
+ResourceType: microsoft.kubernetesconfiguration/extensions  
+Recommendation ID: 79cfad72-9b6d-4215-922d-7df77e1ea3bb  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--79cfad72-9b6d-4215-922d-7df77e1ea3bb_end-->
 
@@ -44,7 +56,13 @@ Current version of Microsoft Flux on one or more Azure Arc enabled clusters and 
   
 **Potential benefits**: Get security patches, bug fixes and Microsoft support  
 
-For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters](https://aka.ms/fluxreleasenotes)  
+**Impact:** Medium
+  
+For more information, see [Available extensions for Azure Arc-enabled Kubernetes clusters - Azure Arc ](https://aka.ms/fluxreleasenotes)  
+
+ResourceType: microsoft.kubernetesconfiguration/extensions  
+Recommendation ID: c8e3b516-a0d5-4c64-8a7a-71cfd068d5e8  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--c8e3b516-a0d5-4c64-8a7a-71cfd068d5e8_end-->
 

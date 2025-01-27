@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Media Services
@@ -20,7 +20,13 @@ When a media account hits its quota limits, disruption of service might occur. T
   
 **Potential benefits**: Avoid any disruption to service due to customer exceeding quota limits.  
 
-For more information, see [Azure Media Services quotas and limits](https://aka.ms/ams-quota-recommendation/)  
+**Impact:** Medium
+  
+For more information, see [Quotas and limits in Azure Media Services ](https://aka.ms/ams-quota-recommendation/)  
+
+ResourceType: microsoft.media/mediaservices  
+Recommendation ID: b7c9fd99-a979-40b4-ab48-b1dfab6bb41a  
+Subcategory: Scalability 
 
 <!--b7c9fd99-a979-40b4-ab48-b1dfab6bb41a_end-->
 

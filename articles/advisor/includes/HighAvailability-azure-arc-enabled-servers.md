@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Arc-enabled servers
@@ -20,7 +20,13 @@ The Azure Connected Machine agent is updated regularly with bug fixes, stability
   
 **Potential benefits**: Improved stability and new functionality  
 
-For more information, see [Managing and maintaining the Connected Machine agent](/azure/azure-arc/servers/manage-agent)  
+**Impact:** Medium
+  
+For more information, see [Managing the Azure Connected Machine agent - Azure Arc ](/azure/azure-arc/servers/manage-agent)  
+
+ResourceType: microsoft.hybridcompute/machines  
+Recommendation ID: 9d5717d2-4708-4e3f-bdda-93b3e6f1715b  
+Subcategory: Other
 
 <!--9d5717d2-4708-4e3f-bdda-93b3e6f1715b_end-->
 

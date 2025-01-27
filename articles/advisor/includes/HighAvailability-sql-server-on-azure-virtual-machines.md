@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability SQL Server on Azure Virtual Machines
@@ -20,7 +20,13 @@ For the benefits of zero-infrastructure backup, point-in-time restore, and centr
   
 **Potential benefits**: SQL aware backups with no-infra for backup, centralized management, AG integration and point-in-time restore  
 
-For more information, see [About SQL Server Backup in Azure VMs](/azure/backup/backup-azure-sql-database)  
+**Impact:** Medium
+  
+For more information, see [Back up SQL Server databases to Azure - Azure Backup ](/azure/backup/backup-azure-sql-database)  
+
+ResourceType: microsoft.sqlvirtualmachine/sqlvirtualmachines  
+Recommendation ID: 77f01e65-e57f-40ee-a0e9-e18c007d4d4c  
+Subcategory: DisasterRecovery
 
 <!--77f01e65-e57f-40ee-a0e9-e18c007d4d4c_end-->
 

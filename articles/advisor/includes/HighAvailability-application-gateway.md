@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 01/13/2025
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -20,7 +20,13 @@ Deploying two or more medium or large sized instances ensures business continuit
   
 **Potential benefits**: Ensure business continuity through application gateway resilience  
 
+**Impact:** Medium
+  
 For more information, see [Multi-region load balancing - Azure Reference Architectures ](https://aka.ms/aa_gatewayrec_learnmore)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 6a2b1e70-bd4c-4163-86de-5243d7ac05ee  
+Subcategory: BusinessContinuity
 
 <!--6a2b1e70-bd4c-4163-86de-5243d7ac05ee_end-->
 
@@ -32,7 +38,13 @@ Avoid overriding the hostname when configuring Application Gateway. Having a dom
   
 **Potential benefits**: Ensure site integrity and avoid broken cookies or redirect urls through a resilient Application Gateway configuration.  
 
-For more information, see [Troubleshoot App Service issues in Application Gateway](https://aka.ms/appgw-advisor-usecustomdomain)  
+**Impact:** Medium
+  
+For more information, see [Troubleshoot redirection to App Service URL - Azure Application Gateway ](https://aka.ms/appgw-advisor-usecustomdomain)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 52a9d0a7-efe1-4512-9716-394abd4e0ab1  
+Subcategory: Other
 
 <!--52a9d0a7-efe1-4512-9716-394abd4e0ab1_end-->
 
@@ -44,7 +56,13 @@ Your Application Gateway may be deleted after October 2024 due to a failed inter
   
 **Potential benefits**: Avoid disruption in management of Application Gateway V1 resource  
 
+**Impact:** High
+  
 For more information, see [Frequently asked questions about Application Gateway ](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 511a9f7b-7b5e-4713-b18d-0b7464a84d1f  
+Subcategory: BusinessContinuity
 
 <!--511a9f7b-7b5e-4713-b18d-0b7464a84d1f_end-->
 
@@ -52,11 +70,17 @@ For more information, see [Frequently asked questions about Application Gateway 
 
 #### Deploy your Application Gateway across Availability Zones  
   
-Achieve zone redundancy by deploying Application Gateway across Availability Zones. Zone redundancy boosts resilience by enabling Application Gateway to survive various outages, which ensures continuity even if one zone is affected, and enhances overall reliability.  
+Achieve zone redundancy by deploying Application Gateway across Availability Zones. Zone redundancy boosts resilience by enabling Application Gateway to survive various outages. Zone redundancy ensures continuity even if one zone is affected and enhances overall reliability.  
   
 **Potential benefits**: Resiliency of Application Gateways is considerably increased when using Availability Zones.  
 
-For more information, see [Scaling Application Gateway v2 and WAF v2](https://aka.ms/appgw/az)  
+**Impact:** High
+  
+For more information, see [Scaling and Zone-redundant Application Gateway v2 ](https://aka.ms/appgw/az)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 5c488377-be3e-4365-92e8-09d1e8d9038c  
+Subcategory: HighAvailability
 
 <!--5c488377-be3e-4365-92e8-09d1e8d9038c_end-->
 
@@ -68,7 +92,13 @@ To improve security and provide a more consistent experience across Azure, all u
   
 **Potential benefits**: Avoid disruptions in management of Application Gateway resource  
 
-For more information, see [Application Gateway infrastructure configuration](https://aka.ms/agsubnetjoin)  
+**Impact:** High
+  
+For more information, see [Azure Application Gateway infrastructure configuration ](https://aka.ms/agsubnetjoin)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 6cc8be07-8c03-4bd7-ad9b-c2985b261e01  
+Subcategory: Other
 
 <!--6cc8be07-8c03-4bd7-ad9b-c2985b261e01_end-->
 
@@ -80,7 +110,13 @@ When configuring the Application Gateway, it's recommended to provision autoscal
   
 **Potential benefits**: Increase performance and resiliency.  
 
-For more information, see [Scaling Application Gateway v2 and WAF v2](/azure/application-gateway/application-gateway-autoscaling-zone-redundant)  
+**Impact:** Medium
+  
+For more information, see [Scaling and Zone-redundant Application Gateway v2 ](/azure/application-gateway/application-gateway-autoscaling-zone-redundant)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: c9c9750b-9ddb-436f-b19a-9c725539a0b5  
+Subcategory: Scalability
 
 <!--c9c9750b-9ddb-436f-b19a-9c725539a0b5_end-->
 
@@ -92,7 +128,13 @@ Your Application Gateway is at risk of deletion after October 2024 due to a fail
   
 **Potential benefits**: Avoid disruption in management of Application Gateway V1 resource  
 
+**Impact:** High
+  
 For more information, see [Frequently asked questions about Application Gateway ](/azure/application-gateway/application-gateway-faq#can-i-change-the-virtual-network-or-subnet-for-an-existing-application-gateway)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: df989782-82d1-420d-b354-71956bd9379c  
+Subcategory: BusinessContinuity
 
 <!--df989782-82d1-420d-b354-71956bd9379c_end-->
 
@@ -100,11 +142,17 @@ For more information, see [Frequently asked questions about Application Gateway 
 
 #### Reactivate the Subscription to unblock internal upgrade for V1 gateway  
   
-Your Application Gateway is at risk of deletion after October 2024 due to a failed internal upgrade. This is because the subscription is in a non Active state. To fix this, please activate the subscription. Allow a day for this message to disappear once the issue is fixed.  
+Your Application Gateway is at risk of deletion after October 2024 due to a failed internal upgrade. This is because the subscription is set to a state other than Active. To fix this, please activate the subscription. Allow a day for this message to disappear once the issue is fixed.  
   
 **Potential benefits**: Avoid disruption in management of Application Gateway V1 resource  
 
-For more information, see [Reactivate a disabled Azure subscription](/azure/cost-management-billing/manage/subscription-disabled)  
+**Impact:** High
+  
+For more information, see [Reactivate a disabled Azure subscription - Microsoft Cost Management ](/azure/cost-management-billing/manage/subscription-disabled)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: fa44bc92-1747-4cef-9f78-7861be4c0db9  
+Subcategory: BusinessContinuity
 
 <!--fa44bc92-1747-4cef-9f78-7861be4c0db9_end-->
 
@@ -116,7 +164,13 @@ When ExpressRoute circuit isn't monitored by ExpressRoute Monitor on Network Per
   
 **Potential benefits**: Improve time-to-detect and time-to-mitigate issues in your network and provide insights on your network path via ExpressRoute  
 
-For more information, see [Configure Network Performance Monitor for ExpressRoute (deprecated)](/azure/expressroute/how-to-npm)  
+**Impact:** Medium
+  
+For more information, see [Azure ExpressRoute: Configure NPM for circuits ](/azure/expressroute/how-to-npm)  
+
+ResourceType: microsoft.network/expressroutecircuits  
+Recommendation ID: 17454550-1543-4068-bdaf-f3ed7cdd3d86  
+Subcategory: MonitoringAndAlerting
 
 <!--17454550-1543-4068-bdaf-f3ed7cdd3d86_end-->
 
@@ -128,7 +182,13 @@ When Front Door manages your TLS certificates, it reduces your operational costs
   
 **Potential benefits**: Ensure service availability by having Front Door manage and rotate your certificates  
 
-For more information, see [Best practices for Front Door](https://aka.ms/afd-use-managed-tls)  
+**Impact:** Medium
+  
+For more information, see [Azure Front Door - Best practices ](https://aka.ms/afd-use-managed-tls)  
+
+ResourceType: microsoft.network/frontdoors  
+Recommendation ID: 5185d64e-46fd-4ed2-8633-6d81f5e3ca59  
+Subcategory: Other
 
 <!--5185d64e-46fd-4ed2-8633-6d81f5e3ca59_end-->
 
@@ -140,7 +200,13 @@ Multiple origins support redundancy by distributing traffic across multiple inst
   
 **Potential benefits**: Increase your workload resiliency  
 
-For more information, see [Azure Well-Architected Framework perspective on Azure Front Door](https://aka.ms/afd-reliability-checklist)  
+**Impact:** High
+  
+For more information, see [Azure Well-Architected Framework perspective on Azure Front Door - Microsoft Azure Well-Architected Framework ](https://aka.ms/afd-reliability-checklist)  
+
+ResourceType: microsoft.network/frontdoors  
+Recommendation ID: 589ab0b0-1362-44fd-8551-0e7847767600  
+Subcategory: HighAvailability
 
 <!--589ab0b0-1362-44fd-8551-0e7847767600_end-->
 
@@ -152,7 +218,13 @@ When you rewrite the Host header, request cookies and URL redirections might bre
   
 **Potential benefits**: Ensure application integrity by preserving original host name  
 
-For more information, see [Best practices for Front Door](https://aka.ms/afd-same-domain-origin)  
+**Impact:** Medium
+  
+For more information, see [Azure Front Door - Best practices ](https://aka.ms/afd-same-domain-origin)  
+
+ResourceType: microsoft.network/frontdoors  
+Recommendation ID: 79f543f9-60e6-4ef6-ae42-2095f6149cba  
+Subcategory: Other
 
 <!--79f543f9-60e6-4ef6-ae42-2095f6149cba_end-->
 
@@ -164,9 +236,33 @@ Using Traffic Manager as one of the origins for Front Door isn't recommended, as
   
 **Potential benefits**: Increase your workload resiliency  
 
-For more information, see [Best practices for Front Door](https://aka.ms/afd-avoid-tm-frontdoor)  
+**Impact:** Medium
+  
+For more information, see [Azure Front Door - Best practices ](https://aka.ms/afd-avoid-tm-frontdoor)  
+
+ResourceType: microsoft.network/frontdoors  
+Recommendation ID: 825ff735-ed9a-4335-b132-321df86b0e81  
+Subcategory: Other
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
+
+<!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_begin-->
+
+#### Resolve issues for private endpoint not in succeeded state  
+  
+Private Endpoint not in a succeeded state potentially influences application availability and reliability. Healthy state of connectivity over private endpoints is crucial to reliably and securely access resources. Troubleshoot and resolve issues that cause a failed state.  
+  
+**Potential benefits**: Resume private connectivity and availability of application  
+
+**Impact:** Medium
+  
+For more information, see [Troubleshoot Azure Private Link Service connectivity problems ](https://aka.ms/pe-troubleshooting)  
+
+ResourceType: microsoft.network/privateendpoints  
+Recommendation ID: 5db013ba-e657-4b80-93f7-8c5b5f9e780a  
+Subcategory: BusinessContinuity
+
+<!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_begin-->
 
@@ -176,7 +272,13 @@ Profiles need more than one endpoint to ensure availability if one of the endpoi
   
 **Potential benefits**: Improve resiliency by allowing failover  
 
-For more information, see [Traffic Manager endpoints](https://aka.ms/AA1o0x4)  
+**Impact:** Medium
+  
+For more information, see [Traffic Manager Endpoint Types ](https://aka.ms/AA1o0x4)  
+
+ResourceType: microsoft.network/trafficmanagerprofiles  
+Recommendation ID: 6cd70072-c45c-4716-bf7b-b35c18e46e72  
+Subcategory: BusinessContinuity
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_end-->
 
@@ -184,11 +286,17 @@ For more information, see [Traffic Manager endpoints](https://aka.ms/AA1o0x4)
 
 #### Add an endpoint configured to "All (World)"  
   
-For geographic routing, traffic is routed to endpoints in defined regions. When a region fails, there is no pre-defined failover. Having an endpoint where the Regional Grouping is configured to "All (World)" for geographic profiles avoids traffic black holing and guarantees service availablity.  
+For geographic routing, traffic is routed to endpoints in defined regions. When a region fails, there is no pre-defined failover. Having an endpoint where the Regional Grouping is configured to "All (World)" for geographic profiles avoids traffic black holing and guarantees service availability.  
   
 **Potential benefits**: Improve resiliency by avoiding traffic black holes  
 
-For more information, see [Add, disable, enable, delete, or move endpoints](https://aka.ms/Rf7vc5)  
+**Impact:** High
+  
+For more information, see [Manage endpoints in Azure Traffic Manager ](https://aka.ms/Rf7vc5)  
+
+ResourceType: microsoft.network/trafficmanagerprofiles  
+Recommendation ID: 0bbe0a49-3c63-49d3-ab4a-aa24198f03f7  
+Subcategory: BusinessContinuity
 
 <!--0bbe0a49-3c63-49d3-ab4a-aa24198f03f7_end-->
 
@@ -200,7 +308,13 @@ All endpoints associated to this proximity profile are in the same region. Users
   
 **Potential benefits**: Improve resiliency by allowing failover to another region  
 
-For more information, see [Configure the performance traffic routing method](https://aka.ms/Ldkkdb)  
+**Impact:** Medium
+  
+For more information, see [Configure performance traffic routing method using Azure Traffic Manager ](https://aka.ms/Ldkkdb)  
+
+ResourceType: microsoft.network/trafficmanagerprofiles  
+Recommendation ID: 0db76759-6d22-4262-93f0-2f989ba2b58e  
+Subcategory: BusinessContinuity
 
 <!--0db76759-6d22-4262-93f0-2f989ba2b58e_end-->
 
@@ -215,7 +329,13 @@ Explore Virtual WAN RouteMap to reduce advertised IP routes.
   
 **Potential benefits**: Monitoring IP route counts prevents connectivity issues and ensures stability.  
 
-For more information, see [Virtual WAN FAQ](https://aka.ms/mseeprefixtracking)  
+**Impact:** High
+  
+For more information, see [Azure Virtual WAN FAQ ](https://aka.ms/mseeprefixtracking)  
+
+ResourceType: microsoft.network/virtualhubs  
+Recommendation ID: e3489565-d891-406e-91d1-44f476563850  
+Subcategory: HighAvailability
 
 <!--e3489565-d891-406e-91d1-44f476563850_end-->
 
@@ -227,7 +347,13 @@ When an ExpressRoute gateway only has one ExpressRoute circuit associated to it,
   
 **Potential benefits**: Improve resiliency in case of ExpressRoute peering location failure  
 
-For more information, see [Designing for high availability with Azure ExpressRoute](/azure/expressroute/designing-for-high-availability-with-expressroute)  
+**Impact:** Medium
+  
+For more information, see [Azure ExpressRoute: Designing for high availability ](/azure/expressroute/designing-for-high-availability-with-expressroute)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: 70f87e66-9b2d-4bfa-ae38-1d7d74837689  
+Subcategory: BusinessContinuity
 
 <!--70f87e66-9b2d-4bfa-ae38-1d7d74837689_end-->
 
@@ -239,7 +365,13 @@ The Basic VPN SKU is for development or testing scenarios. If you're using the V
   
 **Potential benefits**: Additional available features and higher stability and availability  
 
-For more information, see [About VPN Gateway configuration settings](https://aka.ms/aa_basicvpngateway_learnmore)  
+**Impact:** Medium
+  
+For more information, see [Azure VPN Gateway configuration settings ](https://aka.ms/aa_basicvpngateway_learnmore)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: e070c4bf-afaf-413e-bc00-e476b89c5f3d  
+Subcategory: HighAvailability
 
 <!--e070c4bf-afaf-413e-bc00-e476b89c5f3d_end-->
 
@@ -251,7 +383,13 @@ In active-active configuration, both instances of the VPN gateway establish site
   
 **Potential benefits**: Ensure business continuity through connection resilience  
 
-For more information, see [Design highly available gateway connectivity for cross-premises and VNet-to-VNet connections](https://aka.ms/aa_vpnha_learnmore)  
+**Impact:** Medium
+  
+For more information, see [Design highly available gateway connectivity - Azure VPN Gateway ](https://aka.ms/aa_vpnha_learnmore)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: c249dc0e-9a17-423e-838a-d72719e8c5dd  
+Subcategory: BusinessContinuity
 
 <!--c249dc0e-9a17-423e-838a-d72719e8c5dd_end-->
 
@@ -263,7 +401,13 @@ To ensure maximum resiliency, Microsoft recommends that you connect to two Expre
   
 **Potential benefits**: Maximum Resiliency in ExpressRoute is designed to ensure there isn’t a single point of failure within the Microsoft network path. This is achieved by offering dual (2) circuits across two different locations for site diversity in ExpressRoute. The goal of Maximum Resiliency is to enhance availability and ensure the highest level of resilience for critical workloads.  
 
-For more information, see [Design and architect Azure ExpressRoute for resiliency](https://aka.ms/ersiteresiliency)  
+**Impact:** High
+  
+For more information, see [Design and architect Azure ExpressRoute for resiliency ](https://aka.ms/ersiteresiliency)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: 8d61a7d4-5405-4f43-81e3-8c6239b844a6  
+Subcategory: null
 
 <!--8d61a7d4-5405-4f43-81e3-8c6239b844a6_end-->
 
@@ -275,7 +419,13 @@ Implement zone-redundant Virtual Network Gateway in Azure Availability Zones. Th
   
 **Potential benefits**: Provides zonal resiliency and redundancy for ExpressRoute  
 
-For more information, see [Create a zone-redundant virtual network gateway in availability zones](/azure/vpn-gateway/create-zone-redundant-vnet-gateway)  
+**Impact:** High
+  
+For more information, see [Create a zone-redundant virtual network gateway in Azure availability zones - Azure VPN Gateway ](/azure/vpn-gateway/create-zone-redundant-vnet-gateway)  
+
+ResourceType: microsoft.network/virtualnetworkgateways  
+Recommendation ID: c9af1ef6-55bc-48af-bfe4-2c80490159f8  
+Subcategory: null
 
 <!--c9af1ef6-55bc-48af-bfe4-2c80490159f8_end-->
 
@@ -287,20 +437,14 @@ Prevent connectivity failures due to source network address translation (SNAT) p
   
 **Potential benefits**: Prevent outbound connection failures with NAT gateway  
 
-For more information, see [Use Source Network Address Translation (SNAT) for outbound connections](/azure/load-balancer/load-balancer-outbound-connections#2-associate-a-nat-gateway-to-the-subnet)  
+**Impact:** Medium
+  
+For more information, see [Source Network Address Translation (SNAT) for outbound connections - Azure Load Balancer ](/azure/load-balancer/load-balancer-outbound-connections#2-associate-a-nat-gateway-to-the-subnet)  
+
+ResourceType: microsoft.network/virtualnetworks  
+Recommendation ID: 56f0c458-521d-4b8b-a704-c0a099483d19  
+Subcategory: HighAvailability
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
-
-<!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_begin-->
-
-#### Resolve issues for private endpoint not in succeeded state  
-  
-Private Endpoint not in a succeeded state potentially influences application availability and reliability. Healthy state of connectivity over private endpoints is crucial to reliably and securely access resources. Troubleshoot and resolve issues that cause a failed state.  
-  
-**Potential benefits**: Resume private connectivity and availability of application  
-
-For more information, see [Troubleshoot Azure Private Link Service connectivity problems](https://aka.ms/pe-troubleshooting)  
-
-<!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
 
 <!--articleBody-->

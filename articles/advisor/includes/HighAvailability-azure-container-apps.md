@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Container Apps
@@ -20,7 +20,13 @@ The custom domain certificate you uploaded is near expiration. To prevent possib
   
 **Potential benefits**: Your service wont fail because of expired certificate.  
 
-For more information, see [Custom domain names and bring your own certificates in Azure Container Apps](https://aka.ms/containerappcustomdomaincert)  
+**Impact:** Medium
+  
+For more information, see [Custom domain names and certificates in Azure Container Apps ](https://aka.ms/containerappcustomdomaincert)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: b9ce2d2e-554b-4391-8ebc-91c570602b04  
+Subcategory: Other
 
 <!--b9ce2d2e-554b-4391-8ebc-91c570602b04_end-->
 
@@ -32,7 +38,13 @@ We detected the managed certificate used by the Container App has failed to auto
   
 **Potential benefits**: Avoid downtime due to an expired certificate.  
 
-For more information, see [Custom domain names and free managed certificates in Azure Container Apps](https://aka.ms/containerapps/managed-certificates)  
+**Impact:** High
+  
+For more information, see [Custom domain names and free managed certificates in Azure Container Apps ](https://aka.ms/containerapps/managed-certificates)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: fa6c0880-da2e-42fd-9cb3-e1267ec5b5c2  
+Subcategory: Other
 
 <!--fa6c0880-da2e-42fd-9cb3-e1267ec5b5c2_end-->
 
@@ -44,7 +56,13 @@ The minimal replica count set for your Azure Container App containerized applica
   
 **Potential benefits**: Better availability for your container app.  
 
-For more information, see [Set scaling rules in Azure Container Apps](https://aka.ms/containerappscalingrules)  
+**Impact:** Medium
+  
+For more information, see [Scaling in Azure Container Apps ](https://aka.ms/containerappscalingrules)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: 9be5f344-6fa5-4abc-a1f2-61ae6192a075  
+Subcategory: HighAvailability
 
 <!--9be5f344-6fa5-4abc-a1f2-61ae6192a075_end-->
 
@@ -56,7 +74,13 @@ There's a potential networking issue  with your Container Apps environments that
   
 **Potential benefits**: Avoid DNS failures in your Container Apps Environment.  
 
-For more information, see [Quickstart: Deploy your first container app using the Azure portal](https://aka.ms/createcontainerapp)  
+**Impact:** High
+  
+For more information, see [Quickstart: Deploy your first container app using the Azure portal ](https://aka.ms/createcontainerapp)  
+
+ResourceType: microsoft.app/managedenvironments  
+Recommendation ID: c692e862-953b-49fe-9c51-e5d2792c1cc1  
+Subcategory: Other
 
 <!--c692e862-953b-49fe-9c51-e5d2792c1cc1_end-->
 
