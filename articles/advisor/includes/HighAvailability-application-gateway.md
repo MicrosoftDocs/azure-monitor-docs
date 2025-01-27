@@ -236,9 +236,16 @@ Using Traffic Manager as one of the origins for Front Door isn't recommended, as
   
 **Potential benefits**: Increase your workload resiliency  
 
-For more information, see [Best practices for Front Door](https://aka.ms/afd-avoid-tm-frontdoor)  
+**Impact:** Medium
+  
+For more information, see [Azure Front Door - Best practices ](https://aka.ms/afd-avoid-tm-frontdoor)  
+
+ResourceType: microsoft.network/frontdoors  
+Recommendation ID: 825ff735-ed9a-4335-b132-321df86b0e81  
+Subcategory: Other
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
+
 
 
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_begin-->
@@ -249,9 +256,16 @@ Private Endpoint not in a succeeded state potentially influences application ava
   
 **Potential benefits**: Resume private connectivity and availability of application  
 
-For more information, see [Troubleshoot Azure Private Link Service connectivity problems](https://aka.ms/pe-troubleshooting)  
+**Impact:** Medium
+  
+For more information, see [Troubleshoot Azure Private Link Service connectivity problems ](https://aka.ms/pe-troubleshooting)  
+
+ResourceType: microsoft.network/privateendpoints  
+Recommendation ID: 5db013ba-e657-4b80-93f7-8c5b5f9e780a  
+Subcategory: BusinessContinuity
 
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
+
 
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_begin-->
