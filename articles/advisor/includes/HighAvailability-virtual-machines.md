@@ -350,12 +350,13 @@ Upgrade the operating system (OS) disk from Standard HDD to Standard SSD for inc
 
 **Impact:** Medium
   
-  
+For more information, see [Azure Disks Standard SSD billable transaction cap blog](https://aka.ms/billedcapsblog)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
 Subcategory: HighAvailability
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
+
 
 <!--articleBody-->
