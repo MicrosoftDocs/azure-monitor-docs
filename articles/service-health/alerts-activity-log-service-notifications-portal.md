@@ -2,7 +2,7 @@
 title: Create Service Health alerts for Azure service notifications using Azure portal
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
-ms.date: 01/7/2025
+ms.date: 01/27/2025
 
 ---
 
