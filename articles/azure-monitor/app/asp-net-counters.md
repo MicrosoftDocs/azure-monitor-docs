@@ -16,15 +16,9 @@ ms.reviewer: rijolly
 
 ## Overview
 
-### [Performance counters](#tab/performancecounters)
-
-Performance counters are available on Windows platforms and provide predefined system and application-level metrics, such as CPU usage, memory consumption, and disk activity. These counters are built into the Windows operating system and are ideal for monitoring standard performance metrics with minimal setup. They're best suited for tracking resource utilization or troubleshooting system-level bottlenecks in Windows-based applications. However, they don't support custom application-specific metrics.
-
-### [Event counters](#tab/eventcounters)
-
-Event counters are supported across many platforms, including Windows, Linux, and macOS. They enable developers to define and monitor lightweight, customizable application-specific metrics, offering greater flexibility than performance counters. Event counters are ideal for scenarios where system metrics are insufficient, or detailed telemetry is required in cross-platform applications. However, they require explicit implementation and configuration, making them more effort-intensive to set up.
-
----
+> [!div class="checklist"]
+> - **Performance counters** are built into the Windows operating system and offer predefined metrics like CPU usage, memory consumption, and disk activity. These counters are ideal for monitoring standard performance metrics with minimal setup. They help track resource utilization or troubleshoot system-level bottlenecks in Windows-based applications but don't support custom application-specific metrics.
+> - **Event counters** work across multiple platforms, including Windows, Linux, and macOS. They allow developers to define and monitor lightweight, customizable application-specific metrics, providing more flexibility than performance counters. Event counters are useful when system metrics are insufficient or when detailed telemetry is needed in cross-platform applications. They require explicit implementation and configuration, which makes setup more effort-intensive.
 
 ## Configuring counters
 
