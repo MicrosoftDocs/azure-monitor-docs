@@ -38,7 +38,7 @@ This table describes Azure Monitor features that provide analysis of collected d
 
 Here's a video about how to create dashboards:
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE4AslH]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=14538555-8298-4e6e-8603-52db2ea447f1]
 
 ### Grafana
 

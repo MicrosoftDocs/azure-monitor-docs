@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Subscriptions
@@ -20,7 +20,13 @@ Keep your information and applications safe with robust, one click backup from A
   
 **Potential benefits**: Ensure your business-critical applications stay protected  
 
+**Impact:** Medium
+  
 For more information, see [Azure Backup Documentation - Azure Backup ](/azure/backup/)  
+
+ResourceType: microsoft.subscriptions/subscriptions  
+Recommendation ID: 9e91a63f-faaf-46f2-ac7c-ddfcedf13366  
+Subcategory: DisasterRecovery
 
 <!--9e91a63f-faaf-46f2-ac7c-ddfcedf13366_end-->
 
@@ -32,7 +38,13 @@ Azure Service Health alerts keep you informed about issues and advisories in fou
   
 **Potential benefits**: Stay informed about issues and advisories across 4 areas (Service issues, Planned maintenance, Security advisories and Health advisories)  
 
-For more information, see [Create Service health alerts on service notifications using the Azure portal](https://aka.ms/aa_servicehealthalert_action)  
+**Impact:** High
+  
+For more information, see [Receive Service health alerts on Azure service notifications using Azure portal - Azure Service Health ](https://aka.ms/aa_servicehealthalert_action)  
+
+ResourceType: microsoft.subscriptions/subscriptions  
+Recommendation ID: 242639fd-cd73-4be2-8f55-70478db8d1a5  
+Subcategory: MonitoringAndAlerting
 
 <!--242639fd-cd73-4be2-8f55-70478db8d1a5_end-->
 

@@ -20,6 +20,6 @@ Together, these experiences provide you with a comprehensive view into the healt
 
 **Watch an overview of the Azure Status page, Azure Service Health, and Azure Resource Health**
 
->[!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE2OgX6]
+>[!VIDEO https://learn-video.azurefd.net/vod/player?id=08a7fcb5-7367-4a10-a345-3cd70ef13d8c]
 
 [!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]

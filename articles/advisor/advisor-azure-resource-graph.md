@@ -2,7 +2,7 @@
 title: Advisor data in Azure Resource Graph
 description: Make queries for Advisor data in Azure Resource Graph
 ms.topic: article
-ms.date: 03/12/2020
+ms.date: 12/02/2024
 ---
 
 # Query for Advisor data in Resource Graph Explorer (Azure Resource Graph)
@@ -28,21 +28,26 @@ There are three resource types available for querying under Advisor resources. H
 
 These resource types are listed under a new table named as *AdvisorResources*, which you can also query in the Resource Graph Explorer in the Azure portal.
 
-## Next steps
+## Related articles
 
-For more information about Azure Advisor, go to:
+For more information about Azure Advisor, see the following articles.
 
-* [Introduction to Azure Advisor](advisor-overview.md)
-* [Azure Advisor portal basics](advisor-get-started.md)
-* [Azure Advisor REST API](/rest/api/advisor/)
+*   [Introduction to Azure Advisor](./advisor-overview.md)
 
-To learn more about specific Advisor recommendations, see:
+*   [Azure Advisor portal basics](./advisor-get-started.md)
 
-* [Reliability](advisor-reference-reliability-recommendations.md)
-* [Security](advisor-security-recommendations.md)
-* [Performance](advisor-reference-performance-recommendations.md)
-* [Cost](advisor-reference-cost-recommendations.md)
-* [Operational excellence](advisor-reference-operational-excellence-recommendations.md)
+*   [Use Advisor score](./azure-advisor-score.md)
 
+*   [Azure Advisor REST API](/rest/api/advisor)
 
+For more information about specific Advisor recommendations, see the following articles.
 
+*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
+
+*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
+
+*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
+
+*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
+
+*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)

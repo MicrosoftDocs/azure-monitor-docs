@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure IoT Hub
@@ -20,7 +20,13 @@ When Edge devices use outdated versions, performance degradation might occur. We
   
 **Potential benefits**: Ensure business continuity with latest supported version for your Edge devices  
 
-For more information, see [Update IoT Edge](https://aka.ms/IOTEdgeSDKCheck)  
+**Impact:** Medium
+  
+For more information, see [Update IoT Edge version on devices ](https://aka.ms/IOTEdgeSDKCheck)  
+
+ResourceType: microsoft.devices/iothubs  
+Recommendation ID: 51b1fad8-4838-426f-9871-107bc089677b  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--51b1fad8-4838-426f-9871-107bc089677b_end-->
 
@@ -32,7 +38,13 @@ When devices use an outdated SDK, performance degradation can occur. Some or all
   
 **Potential benefits**: Ensure business continuity with supported SDK for your devices  
 
-For more information, see [Azure IoT Hub SDKs](https://aka.ms/iothubsdk)  
+**Impact:** Medium
+  
+For more information, see [Azure IoT Hub device and service SDKs ](https://aka.ms/iothubsdk)  
+
+ResourceType: microsoft.devices/iothubs  
+Recommendation ID: d448c687-b808-4143-bbdc-02c35478198a  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--d448c687-b808-4143-bbdc-02c35478198a_end-->
 
@@ -44,7 +56,13 @@ This is when two or more devices are trying to connect to the IoT Hub using the 
   
 **Potential benefits**: Improve connectivity of your devices  
 
-For more information, see [Understand and resolve Azure IoT Hub errors](https://aka.ms/IotHubDeviceStorm)  
+**Impact:** Medium
+  
+For more information, see [Troubleshooting Azure IoT Hub error codes ](https://aka.ms/IotHubDeviceStorm)  
+
+ResourceType: microsoft.devices/iothubs  
+Recommendation ID: 8d7efd88-c891-46be-9287-0aec2fabd51c  
+Subcategory: Other
 
 <!--8d7efd88-c891-46be-9287-0aec2fabd51c_end-->
 
@@ -56,7 +74,13 @@ When a Device Update for IoT Hub instance uses an outdated version of the SDK, i
   
 **Potential benefits**: Ensure business continuity with supported SDK  
 
-For more information, see [What is Device Update for IoT Hub?](/azure/iot-hub-device-update/understand-device-update)  
+**Impact:** Medium
+  
+For more information, see [Introduction to Device Update for Azure IoT Hub ](/azure/iot-hub-device-update/understand-device-update)  
+
+ResourceType: microsoft.devices/iothubs  
+Recommendation ID: d1ff97b9-44cd-4acf-a9d3-3af500bd79d6  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--d1ff97b9-44cd-4acf-a9d3-3af500bd79d6_end-->
 
@@ -68,7 +92,13 @@ When an IoT Hub exceeds its daily message quota, operation and cost problems mig
   
 **Potential benefits**: The IoT Hub can receive messages again.  
 
-For more information, see [Understand and resolve Azure IoT Hub errors](/azure/iot-hub/troubleshoot-error-codes#403002-iothubquotaexceeded)  
+**Impact:** High
+  
+For more information, see [Troubleshooting Azure IoT Hub error codes ](/azure/iot-hub/troubleshoot-error-codes#403002-iothubquotaexceeded)  
+
+ResourceType: microsoft.devices/iothubs  
+Recommendation ID: e4bda6ac-032c-44e0-9b40-e0522796a6d2  
+Subcategory: Scalability
 
 <!--e4bda6ac-032c-44e0-9b40-e0522796a6d2_end-->
 

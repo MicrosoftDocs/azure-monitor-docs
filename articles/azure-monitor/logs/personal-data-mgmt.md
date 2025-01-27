@@ -133,5 +133,5 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
    ```
 
 ## Next steps
-- Learn more about [how Log Analytics collects, processes, and secures data](../logs/data-security.md).
+- Learn more about [security in Azure Monitor](../best-practices-security.md).
 - Learn more about [how Application Insights collects, processes, and secures data](/previous-versions/azure/azure-monitor/app/data-retention-privacy).

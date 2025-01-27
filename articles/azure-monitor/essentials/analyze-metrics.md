@@ -19,7 +19,7 @@ Azure Monitor metrics explorer is a component of the Azure portal that helps you
 
 Watch the following video for an overview of creating and working with metrics charts in Azure Monitor metrics explorer.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4qO59]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=01a767db-97ae-4ddf-b842-7fa5390bcf0d]
 
 ## Create a metric chart using PromQL
 

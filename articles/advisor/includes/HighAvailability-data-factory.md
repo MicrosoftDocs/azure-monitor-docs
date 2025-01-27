@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Data Factory
@@ -20,7 +20,13 @@ Implementing BCDR strategy improves high availability and reduced risk of data l
   
 **Potential benefits**: Improves high availability and reduced risk of data loss  
 
+**Impact:** Medium
+  
 For more information, see [BCDR for Azure Data Factory and Azure Synapse Analytics pipelines - Azure Architecture Center ](https://aka.ms/AArn7ln)  
+
+ResourceType: microsoft.datafactory/factories  
+Recommendation ID: 617ee02c-be69-441e-8294-dee5a237efff  
+Subcategory: DisasterRecovery
 
 <!--617ee02c-be69-441e-8294-dee5a237efff_end-->
 
@@ -32,7 +38,13 @@ Auto-upgrade of Self-hosted Integration runtime has been disabled. Know that you
   
 **Potential benefits**: To get the latest changes and bug fixes on the Self-Hosted Integration runtime  
 
-For more information, see [Self-hosted integration runtime autoupdate and expire notification](https://aka.ms/shirexpirynotification)  
+**Impact:** Medium
+  
+For more information, see [Self-hosted integration runtime autoupdate and expire notification - Azure Data Factory ](https://aka.ms/shirexpirynotification)  
+
+ResourceType: microsoft.datafactory/factories  
+Recommendation ID: 939b97dc-fdca-4324-ba36-6ea7e1ab399b  
+Subcategory: null
 
 <!--939b97dc-fdca-4324-ba36-6ea7e1ab399b_end-->
 

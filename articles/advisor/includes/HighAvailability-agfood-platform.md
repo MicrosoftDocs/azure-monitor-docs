@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability AgFood Platform
@@ -20,7 +20,13 @@ We identified calls to an ADMA DotNet SDK version that is scheduled for deprecat
   
 **Potential benefits**: Ensure uninterrupted access to ADMA  
 
-For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+**Impact:** Medium
+  
+For more information, see [Azure Data Manager for Agriculture REST APIs Reference ](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+ResourceType: microsoft.agfoodplatform/farmbeats  
+Recommendation ID: 77f976ab-59e3-474d-ba04-32a7d41c9cb1  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--77f976ab-59e3-474d-ba04-32a7d41c9cb1_end-->
 
@@ -32,7 +38,13 @@ We identified calls to an ADMA API version that is scheduled for deprecation. To
   
 **Potential benefits**: Ensure uninterrupted access to FarmBeats  
 
-For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+**Impact:** Medium
+  
+For more information, see [Azure Data Manager for Agriculture REST APIs Reference ](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+ResourceType: microsoft.agfoodplatform/farmbeats  
+Recommendation ID: 1233e513-ac1c-402d-be94-7133dc37cac6  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--1233e513-ac1c-402d-be94-7133dc37cac6_end-->
 
@@ -44,7 +56,13 @@ We identified calls to an ADMA Python SDK version that is scheduled for deprecat
   
 **Potential benefits**: Ensure uninterrupted access to ADMA  
 
-For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+**Impact:** Medium
+  
+For more information, see [Azure Data Manager for Agriculture REST APIs Reference ](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+ResourceType: microsoft.agfoodplatform/farmbeats  
+Recommendation ID: c4ec2fa1-19f4-491f-9311-ca023ee32c38  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--c4ec2fa1-19f4-491f-9311-ca023ee32c38_end-->
 
@@ -56,7 +74,13 @@ We identified calls to an ADMA JavaScript SDK version that is scheduled for depr
   
 **Potential benefits**: Ensure uninterrupted access to ADMA  
 
-For more information, see [What is Azure Data Manager for Agriculture?](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+**Impact:** Medium
+  
+For more information, see [Azure Data Manager for Agriculture REST APIs Reference ](https://aka.ms/FarmBeatsPaaSAzureAdvisorFAQ)  
+
+ResourceType: microsoft.agfoodplatform/farmbeats  
+Recommendation ID: 9e49a43a-dbe2-477d-9d34-a4f209617fdb  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--9e49a43a-dbe2-477d-9d34-a4f209617fdb_end-->
 
