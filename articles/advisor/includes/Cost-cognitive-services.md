@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 01/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Cognitive Services

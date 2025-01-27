@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 01/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -246,6 +246,8 @@ Subcategory: Other
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
 
+
+
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_begin-->
 
 #### Resolve issues for private endpoint not in succeeded state  
@@ -263,6 +265,8 @@ Recommendation ID: 5db013ba-e657-4b80-93f7-8c5b5f9e780a
 Subcategory: BusinessContinuity
 
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
+
+
 
 <!--6cd70072-c45c-4716-bf7b-b35c18e46e72_begin-->
 
