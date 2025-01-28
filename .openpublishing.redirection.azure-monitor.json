@@ -7693,7 +7693,7 @@
    "source_path_from_root": "/articles/azure-monitor/logs/data-security.md",
    "redirect_url": "/azure/azure-monitor/best-practices-security",
    "redirect_document_id": false
-  }
+  },
   {
    "source_path": "articles/azure/azure-monitor/reference/supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md",
    "redirect_url": "/azure/azure-monitor/reference",
