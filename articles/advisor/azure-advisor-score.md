@@ -2,7 +2,7 @@
 title: Use Advisor score
 description: Use Azure Advisor score to measure optimization progress.
 ms.topic: article
-ms.date: 07/12/2024
+ms.date: 12/02/2024
 
 ---
 
@@ -20,7 +20,7 @@ Advisor provides best-practice recommendations for your workloads. These recomme
 
 As a core feature of Advisor, Advisor score can help you achieve these goals effectively and efficiently.
 
-To get the most out of Azure, it's crucial to understand where you are in your workload optimization journey. You need to know which services or resources are consumed well and which are not. Further, you want to know how to prioritize your actions, based on recommendations, to maximize the outcome.
+To get the most out of Azure, it's crucial to understand where you are in your workload optimization journey. You need to know which services or resources are well consumed. Further, you want to know how to prioritize your actions, based on recommendations, to maximize the outcome.
 
 It's also important to track and report the progress you're making in this optimization journey. With Advisor score, you can easily do all these things with the new gamification experience.
 
@@ -38,7 +38,7 @@ You can track the progress you make over time by viewing your overall score and 
 
 1. Select **Advisor score** on the left pane to open the score page.
 
-:::image type="content" source="./media/advisor-score.png" alt-text="Screenshot that shows the Advisor score entry point." lightbox="./media/advisor-score.png":::
+:::image alt-text="Screenshot showing the entry point of Advisor Score in Azure Advisor." lightbox="./media/advisor-score.png" source="./media/advisor-score-preview.png" type="content":::
 
 ## Interpret an Advisor score
 
@@ -50,7 +50,7 @@ Advisor displays your overall Advisor score and a breakdown for Advisor categori
 
 The contribution of each recommendation to your category score is shown clearly on the **Advisor score** page in the Azure portal. You can increase each category score by the percentage point listed in the **Potential score increase** column. This value reflects both the weight of the recommendation within the category and the predicted ease of implementation to address the potentially easiest tasks. Focusing on the recommendations with the greatest score impact helps you make the most progress with time.
 
-![Screenshot that shows the Advisor score impact.](https://user-images.githubusercontent.com/41593141/195171044-6a45fa99-a291-49f3-8914-2b596771e63b.png)
+:::image alt-text="Screenshot showing the reliability score impact of a recommendation." lightbox="./media/advisor-score-reliability-score-impact.png" source="./media/advisor-score-reliability-score-impact-preview.png" type="content":::
 
 If any Advisor recommendations aren't relevant for an individual resource, you can postpone or dismiss those recommendations. They're excluded from the score calculation with the next refresh. Advisor also uses this input as feedback to improve the model.
 
@@ -58,7 +58,7 @@ If any Advisor recommendations aren't relevant for an individual resource, you c
 
 Advisor displays your category scores and your overall Advisor score as percentages. A score of 100% in any category means all your resources, *assessed by Advisor*, follow the best practices that Advisor recommends. On the other end of the spectrum, a score of 0% means that none of your resources, assessed by Advisor, follows Advisor recommendations.
 
-**Each of the five categories has a highest potential score of 100.** Your overall Advisor score is calculated as a sum of each applicable category score, divided by the sum of the highest potential score from all applicable categories. In most cases, this means adding up five Advisor scores for each category and dividing by 500. But *each category score is calculated only if you use resources that are assessed by Advisor*.
+**Each of the five categories has a highest potential score of 100.** Your overall Advisor score is calculated as a sum of each applicable category score, divided by the sum of the highest potential score from all applicable categories. In most cases, this means adding up five Advisor scores for each category and dividing by 500. But *each category score is only calculated when you use a resource assessed by Advisor*.
 
 ### Advisor score calculation example
 
@@ -71,7 +71,7 @@ The calculation of the Advisor score can be summarized in four steps:
 
 1. Advisor calculates the *retail cost of impacted resources*. These resources are the ones in your subscriptions that have at least one recommendation in Advisor.
 1. Advisor calculates the *retail cost of assessed resources*. These resources are the ones monitored by Advisor, whether they have any recommendations or not.
-1. For each recommendation type, Advisor calculates the *healthy resource ratio*. This ratio is the retail cost of impacted resources divided by the retail cost of assessed resources.
+1. Advisor uses the *healthy resource ratio* to calculate each recommendation type. This ratio is the retail cost of impacted resources divided by the retail cost of assessed resources.
 1. Advisor applies three other weights to the healthy resource ratio in each category:
 
    * Recommendations with greater impact are weighted heavier than recommendations with lower impact.
@@ -90,7 +90,7 @@ Your score is refreshed at least once per day.
 
 ### Why did my score change?
 
-Your score can change if you remediate impacted resources by adopting the best practices that Advisor recommends. If you or anyone with permissions on your subscription has modified or created new resources, you might also see fluctuations in your score. Your score is based on a ratio of the cost-impacted resources relative to the total cost of all resources.
+Your score can change if you remediate impacted resources by adopting the best practices that Advisor recommends. If anyone with permissions to your subscription modifies or creates a new resource, your score may fluctuate. Your score is based on a ratio of the cost-impacted resources relative to the total cost of all resources.
 
 ### I implemented a recommendation but my score didn't change. Why didn't the score increase?
 
@@ -102,19 +102,19 @@ Advisor doesn't immediately include new recommendations or recommendations with 
 
 ### Why is the cost score impact greater for some recommendations even if they have lower potential savings?
 
-Your **Cost** score reflects both your potential savings from underutilized resources and the predicted ease of implementing those recommendations. For example, extra weight is applied to impacted resources that have been idle for a long time, even if the potential savings are lower.
+Your **Cost** score reflects both your potential savings from underutilized resources and the predicted ease of implementing those recommendations. For example, even when the potential savings is lower Advisor places more weight on impacted resources that are idle for a long time.
 
 ### What does it mean when I see "Coming soon" in the score impact column?
 
 This message means that the recommendation is new, and we're working on bringing it to the Advisor score model. After this new recommendation is considered in a score calculation, you'll see the score impact value for your recommendation.
 
 ### What if a recommendation isn't relevant?
-
-If you dismiss a recommendation from Advisor, it's excluded from the calculation of your score. Dismissing recommendations also helps Advisor improve the quality of recommendations.
+ 
+If you dismiss a recommendation in Advisor, the recommendation is excluded from the calculation of your score. Dismissing recommendations also helps Advisor improve the quality of recommendations.
 
 ### Why don't I have a score for one or more categories or subscriptions?
 
-Advisor generates a score only for the categories and subscriptions that have resources that are assessed by Advisor.
+Advisor assesses your resources and only updates your score for the categories and subscriptions associated with each resource.
 
 ### How does Advisor calculate the retail cost of resources on a subscription?
 
@@ -136,13 +136,26 @@ The scoring methodology is designed to control for the number of resources on a 
 
 No. Your score isn't necessarily a reflection of how much you spend. Unnecessary spending results in a lower **Cost** score.
 
-## Related content
+## Related articles
 
-For more information about Advisor recommendations, see:
+For more information about Azure Advisor, see the following articles.
 
-* [Introduction to Advisor](advisor-overview.md)
-* [Get started with Advisor](advisor-get-started.md)
-* [Advisor cost recommendations](advisor-cost-recommendations.md)
-* [Advisor performance recommendations](advisor-performance-recommendations.md)
-* [Advisor security recommendations](advisor-security-recommendations.md)
-* [Advisor operational excellence recommendations](advisor-operational-excellence-recommendations.md)
+*   [Introduction to Azure Advisor](./advisor-overview.md)
+
+*   [Azure Advisor portal basics](./advisor-get-started.md)
+
+*   [Use Advisor score](./azure-advisor-score.md)
+
+*   [Azure Advisor REST API](/rest/api/advisor)
+
+For more information about specific Advisor recommendations, see the following articles.
+
+*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
+
+*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
+
+*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
+
+*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
+
+*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)

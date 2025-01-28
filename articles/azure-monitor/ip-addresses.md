@@ -2,7 +2,7 @@
 title: IP addresses used by Azure Monitor | Microsoft Docs
 description: This article discusses server firewall exceptions that are required by Azure Monitor
 ms.topic: reference
-ms.date: 03/14/2024
+ms.date: 01/31/2025
 ms.servce: azure-monitor
 ms.author: aaronmax
 ms.reviewer: saars
@@ -66,7 +66,6 @@ For more information on availability tests, see [Private availability testing](.
 
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |
-| Analytics portal | `analytics.applicationinsights.io` | dynamic | 80,443 |
 | CDN | `applicationanalytics.azureedge.net` | dynamic | 80,443 |
 | Media CDN | `applicationanalyticsmedia.azureedge.net` | dynamic | 80,443 |
 
@@ -77,7 +76,6 @@ The *.applicationinsights.io domain is owned by the Application Insights team.
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |
 | Portal | `portal.loganalytics.io` | dynamic | 80,443 |
-| CDN | `applicationanalytics.azureedge.net` | dynamic | 80,443 |
 
 The *.loganalytics.io domain is owned by the Log Analytics team.
 
@@ -125,7 +123,7 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
     
     :::image type="content" source="alerts/media/action-groups/action-group-service-tag.png" alt-text="Screenshot that shows how to add a service tag." border="true":::
 
-## Profiler
+## Application Insights Profiler for .NET
 
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |
@@ -136,7 +134,7 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
 ## Snapshot Debugger
 
 > [!NOTE]
-> Profiler and Snapshot Debugger share the same set of IP addresses.
+> Application Insights Profiler for .NET and Snapshot Debugger share the same set of IP addresses.
 
 | Purpose | URI | IP | Ports |
 | --- | --- | --- | --- |

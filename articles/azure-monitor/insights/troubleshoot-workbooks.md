@@ -5,7 +5,7 @@ author: AbbyMSFT
 services: azure-monitor 
 ms.author: abbyweisberg
 ms.topic: conceptual
-ms.date: 06/17/2020
+ms.date: 10/08/2024
 ---
 
 # Troubleshooting workbook-based insights

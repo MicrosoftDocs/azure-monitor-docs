@@ -620,6 +620,9 @@ GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef0123
 + 401 authorization errors:  
     The individual resource metrics APIs requires a user have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission on the resource being queried. Because the multi resource metrics APIs are subscription level APIs, users must have the  [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission for the queried subscription to use the multi resource metrics APIs. Even if users have Monitoring Reader on all the resources in a subscription, the request fails if the user doesn't have Monitoring Reader on the subscription itself.
 
++ 529 throttling errors
+    The 529 error code indicates that the metrics backend is currently throttling your requests. The recommended action is to implement an exponential backoff retry scheme.  For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
+
 
 ## Next steps
 

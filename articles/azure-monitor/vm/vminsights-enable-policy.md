@@ -1,5 +1,5 @@
 ---
-title: Enable VM insights by using Azure Policy
+title: Enable VM insights using Azure Policy
 description: This article describes how you enable VM insights for multiple Azure virtual machines or virtual machine scale sets by using Azure Policy.
 ms.topic: how-to
 author: guywi-ms
@@ -9,11 +9,15 @@ ms.date: 07/09/2023
 
 ---
 
-# Enable VM insights by using Azure Policy
+# Enable VM insights using Azure Policy
 
 [Azure Policy](/azure/governance/policy/overview) lets you set and enforce requirements for all new resources you create and resources you modify. VM insights policy initiatives, which are predefined sets of policies created for VM insights, install the agents required for VM insights and enable monitoring on all new virtual machines in your Azure environment. 
 
 This article explains how to enable VM insights for Azure virtual machines, virtual machine scale sets, and hybrid virtual machines connected with Azure Arc by using predefined VM insights policy initiates.
+
+## Prerequisites
+
+Before you can enable VM insights using Azure Policy, you need to have a VM insights DCR created. The DCR specifies what data to collect from the agent and how it should be processed. See [VM insights DCR](./vminsights-enable.md#vm-insights-dcr) for details on creating this DCR.
 
 
 ## VM insights initiatives
@@ -41,7 +45,7 @@ The initiatives apply to new machines you create and machines you modify, but no
 
 ## Support for custom images
 
-Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false`to allow onboarding Dependency Agent on custom images.  
+Azure Monitor Agent-based VM insights policy and initiative definitions have a `scopeToSupportedImages` parameter that's set to `true` by default to enable onboarding Dependency Agent on supported images only. Set this parameter to `false` to allow onboarding Dependency Agent on custom images.  
 
 ## Assign a VM insights policy initiative
 
@@ -69,7 +73,7 @@ To assign a VM insights policy initiative to a subscription or management group 
    > [!NOTE]
      > If you select a workspace that's not within the scope of the assignment, grant *Log Analytics Contributor* permissions to the policy assignment's principal ID. Otherwise, you might get a deployment failure like:
      >
-     > `The client '343de0fe-e724-46b8-b1fb-97090f7054ed' with object id '343de0fe-e724-46b8-b1fb-97090f7054ed' does not have authorization to perform action 'microsoft.operationalinsights/workspaces/read' over scope ...`
+     > `The client 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' with object id 'aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb' does not have authorization to perform action 'microsoft.operationalinsights/workspaces/read' over scope ...`
 
 1. Select **Review + create** to review the initiative assignment details. Select **Create** to create the assignment.
 

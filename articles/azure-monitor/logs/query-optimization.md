@@ -5,7 +5,7 @@ ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: MeirMen
-ms.date: 03/22/2022
+ms.date: 10/11/2024
 
 
 ---
@@ -26,7 +26,7 @@ Pay particular attention to queries that are used for recurrent and simultaneous
 
 Here's a detailed video walkthrough on optimizing queries.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE4NUH0]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=e498f85b-a3c6-4f77-95ce-cdd0a1a9d466]
 
 ## Query Details pane
 After you run a query in Log Analytics, select **Query details** at the bottom right corner of the screen to open the **Query Details** pane. This pane shows the results of several performance indicators for the query. These performance indicators are described in the following section.
@@ -192,6 +192,48 @@ SecurityEvent
 | parse EventData with * "<FilePath>" FilePath "</FilePath>" * "<FileHash>" FileHash "</FileHash>" *
 | summarize count() by FileHash, FilePath
 | where FileHash != "" // No need to filter out %SYSTEM32 here as it was removed before
+```
+
+### Break up large parse commands
+When using the `parse` operator, limit to five the number of columns you extract in a single statement. An excessive number of extractions in a single statement can result in significantly increased processing time. Instead, break the extractions into multiple `parse` statements.
+
+> [!NOTE]
+> In transformations, the `parse` operator is limited to 10 extractions in a single statement.
+
+For example, the following queries produce the same results, but the second is significantly more efficient because it breaks the parse operation into multiple smaller commands.
+
+ ```kql 
+//less efficient
+LogData
+| parse Message with
+    * "field1=" Field1: string
+    " field2=" Field2: string
+    " field3=" Field3: string
+    " field4=" Field4: string
+    " field5=" Field5: string
+    " field6=" Field6: string
+    " field7=" Field7: string
+    " field8=" Field8: string
+    " field9=" Field9: string
+    " field10=" Field10: string *
+```
+
+
+ ```kql 
+//more efficient
+LogData
+| parse Message with
+    * "field1=" Field1: string
+    " field2=" Field2: string
+    " field3=" Field3: string
+    " field4=" Field4: string
+    " field5=" Field5: string *
+| parse Message with
+    * " field6=" Field6: string
+    " field7=" Field7: string
+    " field8=" Field8: string
+    " field9=" Field9: string
+    " field10=" Field10: string *
 ```
 
 ## Data used for processed query

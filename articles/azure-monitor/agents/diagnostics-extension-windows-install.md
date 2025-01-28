@@ -4,7 +4,7 @@ description: Learn about installing and configuring the Azure Diagnostics extens
 services: azure-monitor
 author: bwren
 ms.topic: conceptual
-ms.date: 07/19/2023
+ms.date: 11/14/2024
 ms.author: bwren 
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli

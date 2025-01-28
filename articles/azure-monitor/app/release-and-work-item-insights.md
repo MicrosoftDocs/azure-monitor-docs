@@ -3,7 +3,7 @@ title: Release and work item insights for Application Insights
 description: Learn how to set up continuous monitoring of your release pipeline, create work items in GitHub or Azure DevOps, and track deployment or other significant events.
 ms.topic: conceptual
 ms.custom: devx-track-azurecli
-ms.date: 11/15/2023
+ms.date: 01/31/2025
 ms.reviewer: abinetabate
 ---
 
@@ -257,7 +257,7 @@ You can use the `CreateReleaseAnnotation` PowerShell script to create annotation
 
     |Argument | Definition | Note|
     |--------------|-----------------------|--------------------|
-    |`aiResourceId` | The resource ID to the target Application Insights resource. | Example:<br> /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName|
+    |`aiResourceId` | The resource ID to the target Application Insights resource. | Example:<br> /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName|
     |`releaseName` | The name to give the created release annotation. | |
     |`releaseProperties` | Used to attach custom metadata to the annotation. | Optional|
     

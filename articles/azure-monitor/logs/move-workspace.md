@@ -235,10 +235,10 @@ az resource move --destination-group
 
 ### [PowerShell](#tab/PowerShell)
 
-To move your workspace, run the [Move-AzResource](/powershell/module/AzureRM.Resources/Move-AzureRmResource) cmdlet as shown in the following example:
+To move your workspace, run the [Move-AzResource](/powershell/module/Az.Resources/Move-AzResource) cmdlet as shown in the following example:
 
 ```powershell
-Move-AzResource -ResourceId "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyResourceGroup01/providers/Microsoft.OperationalInsights/workspaces/MyWorkspace" -DestinationSubscriptionId "00000000-0000-0000-0000-000000000000" -DestinationResourceGroupName "MyResourceGroup02"
+Move-AzResource -ResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyResourceGroup01/providers/Microsoft.OperationalInsights/workspaces/MyWorkspace" -DestinationSubscriptionId "00000000-0000-0000-0000-000000000000" -DestinationResourceGroupName "MyResourceGroup02"
 ```
 
 ---

@@ -25,7 +25,6 @@ To add the table #include, find the table(s) for the resource type in the Metric
 ### Supported metrics for Microsoft.Monitor/accounts
 The following table lists the metrics available for the Microsoft.Monitor/accounts resource type.
 [!INCLUDE [horz-monitor-ref-metrics-tableheader](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-metrics-tableheader.md)]
-[!INCLUDE [Microsoft.Monitor/accounts](~/azure-reference-other-repo/azure-monitor-ref/supported-metrics/includes/microsoft-monitor-accounts-metrics-include.md)]
 [!INCLUDE [Microsoft.Monitor/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-monitor-accounts-metrics-include.md)]
 
 

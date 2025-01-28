@@ -12,11 +12,13 @@ ms.reviewer: nolavime
 
 # Create or edit a log search alert rule
 
-This article shows you how to create a new alert rule or edit an existing alert rule for log search in Azure Monitor. To learn more about alerts, see the [alerts overview](alerts-overview.md).
+This article shows you how to create a new log search alert rule or edit an existing log search alert rule in Azure Monitor. To learn more about alerts, see the [alerts overview](alerts-overview.md).
 
-You create an alert rule by combining the resources to be monitored, the monitoring data from the resource, and the conditions that you want to trigger the alert. You can then define [action groups](./action-groups.md) and [alert processing rules](alerts-action-rules.md) to determine what happens when an alert is triggered.
+Alert rules combine the resources to be monitored, the monitoring data from the resource, and the conditions that you want to trigger the alert. You can then define [action groups](./action-groups.md) and [alert processing rules](alerts-action-rules.md) to determine what happens when an alert is triggered.
 
 Alerts triggered by these alert rules contain a payload that uses the [common alert schema](alerts-common-schema.md).
+
+[!INCLUDE [alerts-rule-prerequisites](../includes/alerts-rule-prerequisites.md)]
 
 [!INCLUDE [alerts-wizard-access](../includes/alerts-wizard-access.md)]
 
@@ -70,7 +72,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
 
-   Cross-service queries aren't supported in government clouds. For more information about limitations, see [Cross-service query limitations](../logs/azure-monitor-data-explorer-proxy.md#limitations) and [Combine Azure Resource Graph tables with a Log Analytics workspace](../logs/azure-monitor-data-explorer-proxy.md#combine-azure-resource-graph-tables-with-a-log-analytics-workspace).
+   Cross-service queries aren't supported in government clouds. For more information about limitations, see [Cross-service query limitations](../logs/azure-monitor-data-explorer-proxy.md#implementation-considerations) and [Combine Azure Resource Graph tables with a Log Analytics workspace](../logs/azure-monitor-data-explorer-proxy.md#combine-azure-resource-graph-tables-with-a-log-analytics-workspace).
 
 1. Select **Run** to run the alert.
 1. The **Preview** section shows you the query results. When you finish editing your query, select **Continue Editing Alert**.
@@ -143,7 +145,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
    |Field  |Description  |
    |---------|---------|
-   |**Number of violations**|The number of violations that trigger the alert.|
+   |**Number of violations**|The number of violations that trigger the alert. Notice that in order to use this the query should include 'datetime' column in the query results |
    |**Evaluation period**|The time period within which the number of violations occur. |
    |**Override query time range**| If you want the alert evaluation period to be different from the query time range, enter a time range here.<br> The alert time range is limited to a maximum of two days. Even if the query contains an `ago` command with a time range of longer than two days, the two-day maximum time range is applied. For example, even if the query text contains `ago(7d)`, the query only scans up to two days of data. If the query requires more data than the alert evaluation, you can change the time range manually. If the query contains an `ago` command, it changes automatically to two days (48 hours).|
 
@@ -156,7 +158,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-alert-rule-preview.png" alt-text="Screenshot that shows a preview of a new alert rule.":::
 
-1. Select **Done**. From this point on, you can select the **Review + create** button at any time.
+1. Select **Done**. Once you have configured the alert rule conditions, you can configure the alert rule details to complete creation of the alert, or optionally, you can also add actions and tags to the alert rule.
 
 [!INCLUDE [alerts-wizard-actions](../includes/alerts-wizard-actions.md)]
 

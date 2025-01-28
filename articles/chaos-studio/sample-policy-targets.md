@@ -4,7 +4,7 @@ description: Sample Azure policies to add resources to Azure Chaos Studio by usi
 services: chaos-studio
 author: prasha-microsoft 
 ms.topic: sample
-ms.date: 11/11/2021
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio

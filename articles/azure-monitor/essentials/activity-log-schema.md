@@ -66,7 +66,7 @@ This category contains the record of all create, update, delete, and action oper
         "http://schemas.microsoft.com/claims/authnclassreference": "1",
         "aio": "A3GgTJdwK4vy7Fa7l6DgJC2mI0GX44tML385OpU1Q+z+jaPnFMwB",
         "http://schemas.microsoft.com/claims/authnmethodsreferences": "rsa,mfa",
-        "appid": "355249ed-15d9-460d-8481-84026b065942",
+        "appid": "00001111-aaaa-2222-bbbb-3333cccc4444",
         "appidacr": "2",
         "http://schemas.microsoft.com/2012/01/devicecontext/claims/identifier": "10845a4d-ffa4-4b61-a3b4-e57b9b31cdb5",
         "e_exp": "262800",
@@ -79,14 +79,14 @@ This category contains the record of all create, update, delete, and action oper
         "puid": "18247BBD84827C6D",
         "http://schemas.microsoft.com/identity/claims/scope": "user_impersonation",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier": "b-24Jf94A3FH2sHWVIFqO3-RSJEiv24Jnif3gj7s",
-        "http://schemas.microsoft.com/identity/claims/tenantid": "1114444b-7467-4144-a616-e3a5d63e147b",
+        "http://schemas.microsoft.com/identity/claims/tenantid": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": "rob@contoso.com",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn": "rob@contoso.com",
         "uti": "IdP3SUJGtkGlt7dDQVRPAA",
         "ver": "1.0"
     },
-    "correlationId": "b5768deb-836b-41cc-803e-3f4de2f9e40b",
-    "eventDataId": "d0d36f97-b29c-4cd9-9d3d-ea2b92af3e9d",
+    "correlationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
+    "eventDataId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
     "eventName": {
         "value": "EndRequest",
         "localizedValue": "End request"
@@ -96,7 +96,7 @@ This category contains the record of all create, update, delete, and action oper
         "localizedValue": "Administrative"
     },
     "eventTimestamp": "2018-01-29T20:42:31.3810679Z",
-    "id": "/subscriptions/<subscription ID>/resourcegroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNSG/events/d0d36f97-b29c-4cd9-9d3d-ea2b92af3e9d/ticks/636528553513810679",
+    "id": "/subscriptions/<subscription ID>/resourcegroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNSG/events/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/ticks/636528553513810679",
     "level": "Informational",
     "operationId": "04e575f8-48d0-4c43-a8b3-78c4eb01d287",
     "operationName": {
@@ -168,9 +168,9 @@ This category contains the record of any service health incidents that occurred 
 ```json
 {
   "channels": "Admin",
-  "correlationId": "c550176b-8f52-4380-bdc5-36c1b59d3a44",
+  "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee",
   "description": "Active: Network Infrastructure - UK South",
-  "eventDataId": "c5bc4514-6642-2be3-453e-c6a67841b073",
+  "eventDataId": "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f",
   "eventName": {
       "value": null
   },
@@ -179,7 +179,7 @@ This category contains the record of any service health incidents that occurred 
       "localizedValue": "Service Health"
   },
   "eventTimestamp": "2017-07-20T23:30:14.8022297Z",
-  "id": "/subscriptions/<subscription ID>/events/c5bc4514-6642-2be3-453e-c6a67841b073/ticks/636361902148022297",
+  "id": "/subscriptions/<subscription ID>/events/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/ticks/636361902148022297",
   "level": "Warning",
   "operationName": {
       "value": "Microsoft.ServiceHealth/incident/action",
@@ -241,7 +241,7 @@ The following resource health transitions aren't recorded in the activity log:
 ```json
 {
     "channels": "Admin, Operation",
-    "correlationId": "28f1bfae-56d3-7urb-bff4-194d261248e9",
+    "correlationId": "cccc2222-dd33-4444-55ee-666666ffffff",
     "description": "",
     "eventDataId": "a80024e1-883d-37ur-8b01-7591a1befccb",
     "eventName": {
@@ -253,7 +253,7 @@ The following resource health transitions aren't recorded in the activity log:
         "localizedValue": "Resource Health"
     },
     "eventTimestamp": "2018-09-04T15:33:43.65Z",
-    "id": "/subscriptions/<subscription ID>/resourceGroups/<resource group>/providers/Microsoft.Compute/virtualMachines/<resource name>/events/a80024e1-883d-42a5-8b01-7591a1befccb/ticks/636716720236500000",
+    "id": "/subscriptions/<subscription ID>/resourceGroups/<resource group>/providers/Microsoft.Compute/virtualMachines/<resource name>/events/cccc2c2c-dd3d-ee4e-ff5f-aaaaaa6a6a6a/ticks/636716720236500000",
     "level": "Critical",
     "operationId": "",
     "operationName": {
@@ -336,7 +336,7 @@ This category contains the record of all activations of classic Azure alerts. An
   },
   "correlationId": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/microsoft.insights/alertrules/myalert/incidents/L3N1YnNjcmlwdGlvbnMvZGY2MDJjOWMtN2FhMC00MDdkLWE2ZmItZWIyMGM4YmQxMTkyL3Jlc291cmNlR3JvdXBzL0NzbUV2ZW50RE9HRk9PRC1XZXN0VVMvcHJvdmlkZXJzL21pY3Jvc29mdC5pbnNpZ2h0cy9hbGVydHJ1bGVzL215YWxlcnQwNjM2MzYyMjU4NTM1MjIxOTIw",
   "description": "'Disk read LessThan 100000 ([Count]) in the last 5 minutes' has been resolved for CloudService: myResourceGroup/Production/Event.BackgroundJobsWorker.razzle (myResourceGroup)",
-  "eventDataId": "149d4baf-53dc-4cf4-9e29-17de37405cd9",
+  "eventDataId": "dddd3d3d-ee4e-ff5f-aa6a-bbbbbb7b7b7b",
   "eventName": {
     "value": "Alert",
     "localizedValue": "Alert"
@@ -345,7 +345,7 @@ This category contains the record of all activations of classic Azure alerts. An
     "value": "Alert",
     "localizedValue": "Alert"
   },
-  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/Event.BackgroundJobsWorker.razzle/events/149d4baf-53dc-4cf4-9e29-17de37405cd9/ticks/636362258535221920",
+  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/Event.BackgroundJobsWorker.razzle/events/dddd3d3d-ee4e-ff5f-aa6a-bbbbbb7b7b7b/ticks/636362258535221920",
   "level": "Informational",
   "resourceGroupName": "myResourceGroup",
   "resourceProviderName": {
@@ -447,9 +447,9 @@ This category contains the record of any events related to the operation of the 
   "claims": {
     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/spn": "Microsoft.Insights/autoscaleSettings"
   },
-  "correlationId": "fc6a7ff5-ff68-4bb7-81b4-3629212d03d0",
+  "correlationId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
   "description": "The autoscale engine attempting to scale resource '/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
-  "eventDataId": "a5b92075-1de9-42f1-b52e-6f3e4945a7c7",
+  "eventDataId": "eeee4efe-ff5f-aa6a-bb7b-cccccc8c8c8c",
   "eventName": {
     "value": "AutoscaleAction",
     "localizedValue": "AutoscaleAction"
@@ -458,7 +458,7 @@ This category contains the record of any events related to the operation of the 
     "value": "Autoscale",
     "localizedValue": "Autoscale"
   },
-  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/microsoft.insights/autoscalesettings/myResourceGroup-Production-myResource-myResourceGroup/events/a5b92075-1de9-42f1-b52e-6f3e4945a7c7/ticks/636361956518681572",
+  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/microsoft.insights/autoscalesettings/myResourceGroup-Production-myResource-myResourceGroup/events/eeee4efe-ff5f-aa6a-bb7b-cccccc8c8c8c/ticks/636361956518681572",
   "level": "Informational",
   "resourceGroupName": "myResourceGroup",
   "resourceProviderName": {
@@ -470,7 +470,7 @@ This category contains the record of any events related to the operation of the 
     "value": "microsoft.insights/autoscalesettings",
     "localizedValue": "microsoft.insights/autoscalesettings"
   },
-  "operationId": "fc6a7ff5-ff68-4bb7-81b4-3629212d03d0",
+  "operationId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
   "operationName": {
     "value": "Microsoft.Insights/AutoscaleSettings/Scaledown/Action",
     "localizedValue": "Microsoft.Insights/AutoscaleSettings/Scaledown/Action"
@@ -530,9 +530,9 @@ This category contains the record any alerts generated by Microsoft Defender for
 ```json
 {
     "channels": "Operation",
-    "correlationId": "965d6c6a-a790-4a7e-8e9a-41771b3fbc38",
+    "correlationId": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "description": "Suspicious double extension file executed. Machine logs indicate an execution of a process with a suspicious double extension.\r\nThis extension may trick users into thinking files are safe to be opened and might indicate the presence of malware on the system.",
-    "eventDataId": "965d6c6a-a790-4a7e-8e9a-41771b3fbc38",
+    "eventDataId": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "eventName": {
         "value": "Suspicious double extension file executed",
         "localizedValue": "Suspicious double extension file executed"
@@ -542,9 +542,9 @@ This category contains the record any alerts generated by Microsoft Defender for
         "localizedValue": "Security"
     },
     "eventTimestamp": "2017-10-18T06:02:18.6179339Z",
-    "id": "/subscriptions/<subscription ID>/providers/Microsoft.Security/locations/centralus/alerts/965d6c6a-a790-4a7e-8e9a-41771b3fbc38/events/965d6c6a-a790-4a7e-8e9a-41771b3fbc38/ticks/636439033386179339",
+    "id": "/subscriptions/<subscription ID>/providers/Microsoft.Security/locations/centralus/alerts/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/events/eeee4444-ff55-6666-77aa-888888bbbbbb/ticks/636439033386179339",
     "level": "Informational",
-    "operationId": "965d6c6a-a790-4a7e-8e9a-41771b3fbc38",
+    "operationId": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "operationName": {
         "value": "Microsoft.Security/locations/alerts/activate/action",
         "localizedValue": "Microsoft.Security/locations/alerts/activate/action"
@@ -618,9 +618,9 @@ This category contains the record of any new recommendations that are generated 
 ```json
 {
     "channels": "Operation",
-    "correlationId": "92481dfd-c5bf-4752-b0d6-0ecddaa64776",
+    "correlationId": "ffff5555-aa66-7777-88bb-999999cccccc",
     "description": "The action was successful.",
-    "eventDataId": "06cb0e44-111b-47c7-a4f2-aa3ee320c9c5",
+    "eventDataId": "aaaa6a6a-bb7b-cc8c-dd9d-eeeeee0e0e0e",
     "eventName": {
         "value": "",
         "localizedValue": ""
@@ -630,7 +630,7 @@ This category contains the record of any new recommendations that are generated 
         "localizedValue": "Recommendation"
     },
     "eventTimestamp": "2018-06-07T21:30:42.976919Z",
-    "id": "/SUBSCRIPTIONS/<Subscription ID>/RESOURCEGROUPS/MYRESOURCEGROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MYVM/events/06cb0e44-111b-47c7-a4f2-aa3ee320c9c5/ticks/636640038429769190",
+    "id": "/SUBSCRIPTIONS/<Subscription ID>/RESOURCEGROUPS/MYRESOURCEGROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MYVM/events/aaaa6a6a-bb7b-cc8c-dd9d-eeeeee0e0e0e/ticks/636640038429769190",
     "level": "Informational",
     "operationId": "",
     "operationName": {
@@ -717,13 +717,13 @@ This category contains records of all effect action operations performed by [Azu
         "http://schemas.microsoft.com/identity/claims/identityprovider": "https://sts.windows.net/1114444b-7467-4144-a616-e3a5d63e147b/",
         "http://schemas.microsoft.com/identity/claims/objectidentifier": "f409edeb-4d29-44b5-9763-ee9348ad91bb",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier": "b-24Jf94A3FH2sHWVIFqO3-RSJEiv24Jnif3gj7s",
-        "http://schemas.microsoft.com/identity/claims/tenantid": "1114444b-7467-4144-a616-e3a5d63e147b",
+        "http://schemas.microsoft.com/identity/claims/tenantid": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
         "uti": "IdP3SUJGtkGlt7dDQVRPAA",
         "ver": "1.0"
     },
-    "correlationId": "b5768deb-836b-41cc-803e-3f4de2f9e40b",
+    "correlationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
     "description": "",
-    "eventDataId": "d0d36f97-b29c-4cd9-9d3d-ea2b92af3e9d",
+    "eventDataId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
     "eventName": {
         "value": "EndRequest",
         "localizedValue": "End request"
@@ -733,7 +733,7 @@ This category contains records of all effect action operations performed by [Azu
         "localizedValue": "Policy"
     },
     "eventTimestamp": "2019-01-15T13:19:56.1227642Z",
-    "id": "/subscriptions/<subscriptionID>/resourceGroups/myResourceGroup/providers/Microsoft.Sql/servers/contososqlpolicy/events/13bbf75f-36d5-4e66-b693-725267ff21ce/ticks/636831551961227642",
+    "id": "/subscriptions/<subscriptionID>/resourceGroups/myResourceGroup/providers/Microsoft.Sql/servers/contososqlpolicy/events/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/ticks/636831551961227642",
     "level": "Warning",
     "operationId": "04e575f8-48d0-4c43-a8b3-78c4eb01d287",
     "operationName": {
@@ -821,7 +821,7 @@ When streaming the Azure Activity log to a storage account or event hub, the dat
 | time | eventTimestamp |  |
 | resourceId | resourceId | subscriptionId, resourceType, resourceGroupName are all inferred from the resourceId. |
 | operationName | operationName.value |  |
-| category | Part of operation name | Breakout of the operation type. "Write", "Delete", or "Action". |
+| category | Part of operation name | Always "Administrative" |
 | resultType | status.value | |
 | resultSignature | substatus.value | |
 | resultDescription | description |  |
@@ -851,14 +851,14 @@ Following is an example of an event using this schema:
             "resultSignature": "Succeeded.Created",
             "durationMs": 2826,
             "callerIpAddress": "111.111.111.11",
-            "correlationId": "c776f9f4-36e5-4e0e-809b-c9b3c3fb62a8",
+            "correlationId": "aaaa6666-bb77-8888-99cc-000000dddddd",
             "identity": {
                "authorization": {
-                   "scope": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-001/providers/Microsoft.Storage/storageAccounts/       msftstorageaccount",
+                   "scope": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Storage/storageAccounts/       msftstorageaccount",
                    "action": "Microsoft.Storage/storageAccounts/listAccountSas/action",
                    "evidence": {
                        "role": "Azure Eventhubs Service Role",
-                       "roleAssignmentScope": "/subscriptions/00000000-0000-0000-0000-000000000000",
+                       "roleAssignmentScope": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f",
                        "roleAssignmentId": "123abc2a6c314b0ab03a891259123abc",
                        "roleDefinitionId": "123456789de042a6a64b29b123456789",
                        "principalId": "abcdef038c6444c18f1c31311fabcdef",
@@ -872,7 +872,7 @@ Following is an example of an event using this schema:
                     "nbf": "1421876371",
                     "exp": "1421880271",
                     "ver": "1.0",
-                    "http://schemas.microsoft.com/identity/claims/tenantid": "00000000-0000-0000-0000-000000000000",
+                    "http://schemas.microsoft.com/identity/claims/tenantid": "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0",
                     "http://schemas.microsoft.com/claims/authnmethodsreferences": "pwd",
                     "http://schemas.microsoft.com/identity/claims/objectidentifier": "123abc45-8211-44e3-95xq-85137af64708",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn": "admin@contoso.com",
@@ -883,7 +883,7 @@ Following is an example of an event using this schema:
                     "name": "John Smith",
                     "groups": "12345678-cacfe77c-e058-4712-83qw-f9b08849fd60,12345678-4c41-4b23-99d2-d32ce7aa621c,12345678-0578-4ea0-9gdc-e66cc564d18c",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": " admin@contoso.com",
-                    "appid": "12345678-3bq0-49c1-b47d-974e53cbdf3c",
+                    "appid": "11112222-bbbb-3333-cccc-4444dddd5555",
                     "appidacr": "2",
                     "http://schemas.microsoft.com/identity/claims/scope": "user_impersonation",
                     "http://schemas.microsoft.com/claims/authnclassreference": "1"

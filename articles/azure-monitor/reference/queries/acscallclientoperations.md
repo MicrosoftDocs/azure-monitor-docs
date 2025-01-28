@@ -5,7 +5,7 @@ ms.topic: reference
 ms.service: azure-monitor
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 09/16/2024
+ms.date: 11/20/2024
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -445,7 +445,7 @@ Find all client operations for all participants in a call by callId. This query 
 
 ```query
 // Replace queryConditions_callId with the callId you want to investigate.
-declare query_parameters(queryConditions_callId:string = '00000000-0000-0000-0000-000000000000');
+declare query_parameters(queryConditions_callId:string = '22223333-cccc-4444-dddd-5555eeee6666');
 let rangeEventsWithCorrelation = dynamic(['UserFacingDiagnostics']);
 let pointEvents = dynamic([
 'SelectedMicrophoneChanged', 'SelectedSpeakerChanged', 'OptimalVideoCount-changed', 'State-changed', 'CallMode-changed',

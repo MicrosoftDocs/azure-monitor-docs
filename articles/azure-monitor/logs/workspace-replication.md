@@ -26,7 +26,7 @@ Here's a video that provides a quick overview of how Log Analytics workspace rep
 | Action | Permissions required |
 | --- | --- |
 | Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`,   `Microsoft.OperationalInsights/workspaces/failback`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
 | Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
 
 ## How Log Analytics workspace replication works
@@ -35,7 +35,7 @@ Your original workspace and region are referred to as the **primary**. The repli
 
 The workspace replication process creates an instance of your workspace in the secondary region. The process creates the secondary workspace with the same configuration as your primary workspace, and Azure Monitor automatically updates the secondary workspace with any future changes you make to your primary workspace configuration. 
 
-The secondary workspace is a "shadow" workspace for resiliency purposes only. You can’t see the secondary workspace in the Azure portal, and you can't manage or access it directly.
+The secondary workspace is a "shadow" workspace for resilience purposes only. You can’t see the secondary workspace in the Azure portal, and you can't manage or access it directly.
 
 When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren’t copied over. 
 
@@ -48,6 +48,16 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 :::image type="content" source="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" alt-text="Diagram that shows ingestion flows during normal and switchover modes." lightbox="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" border="false":::
 
+#### Protection against loss of data in transit during a regional failure
+
+Azure Monitor has several mechanisms to ensure that data in transit isn’t lost when there's a failure in the primary region. 
+
+Azure Monitor protects data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process the data. When the pipeline becomes available, it continues to process data in transit, and Azure Monitor ingests and replicates the data to the secondary region.
+
+If the primary region's ingestion endpoint isn't available, Azure Monitor Agent regularly retries sending log data to the endpoint. The data ingestion endpoint in the secondary region starts to receive data from agents a few minutes after you trigger switchover.
+
+If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. 
+
 
 ### Supported regions
 
@@ -55,21 +65,21 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region group | Regions | Notes |
-| --- | --- | --- |
-| **North America** | East US | Replication isn't supported to or from the East US 2 region. |
-|                        | East US 2 | Replication isn't supported to or from the East US region. |
-|                        | West US   | | 
-|                        | West US 2 | | 
-|                        | Central US   | | 
-|                        | South Central US   | | 
-|                        | Central Canada   | | 
-| **Europe**           | West Europe  | |
-|                        | North Europe | |
-|                        | South UK     | |
-|                        | West UK      | |
-|                        | Germany West Central      | |
-|                        | France Central      | |
+| Region Group  | Regions          | Notes                                                                 |
+|---------------|------------------|----------------------------------------------------------------------|
+| North America | East US          | East US can't replicate to or from the East US 2 and South Central US regions. |
+|               | East US 2        | East US 2 can't replicate to or from the East US and South Central US regions. |
+|               | West US          |                                                                      |
+|               | West US 2        |                                                                      |
+|               | Central US       |                                                                      |
+|               | South Central US | South Central US can't replicate to or from the East US and East US 2 regions. |
+|               | Central Canada   |                                                                      |
+| Europe        | West Europe      |                                                                      |
+|               | North Europe     |                                                                      |
+|               | South UK         |                                                                      |
+|               | West UK          |                                                                      |
+|               | Germany West Central |                                                                  |
+|               | France Central   |                                                                      | | |
 
 ### Data residency requirements
 

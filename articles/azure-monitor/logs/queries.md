@@ -64,7 +64,7 @@ You can define several of them when you [save your own query](save-query.md). Th
 
 | Query property | Description |
 | :--- | :--- |
-| Resource type | A resource as defined in Azure, such as a virtual machine. For a full mapping of Azure Monitor Logs and Log Analytics tables to resource type, see the [Azure Monitor table reference](/azure/azure-monitor/reference/tables/tables-resourcetype). |
+| Resource type | A resource as defined in Azure, such as a virtual machine. For a full mapping of Azure Monitor Logs and Log Analytics tables to resource type, see the [Azure Monitor table reference](/azure/azure-monitor/reference/logs-index). |
 | Category | A type of information, such as Security or Audit. Categories are identical to the categories defined in the Tables side pane. For a full list of categories, see the [Azure Monitor table reference](/azure/azure-monitor/reference/tables/tables-category). |
 | Solution | An Azure Monitor solution associated with the queries. |
 | Topic | The topic of the example query, such as Activity logs or App logs. The topic property is unique to example queries and might differ according to the specific resource type. |

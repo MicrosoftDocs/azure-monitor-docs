@@ -37,8 +37,7 @@ Remote write for Prometheus on Kubernetes clusters can also be configured using 
 
 - [Send Prometheus data from AKS to Azure Monitor using side car container with managed identity authentication](/azure/azure-monitor/containers/prometheus-remote-write-managed-identity)
 - [Send Prometheus data from AKS to Azure Monitor using side car container with Microsoft Entra ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-active-directory)
-- [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID pod-managed identity (preview) authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-ad-pod-identity)
-- [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID Workload ID (preview) authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-workload-identity)
+- [Send Prometheus data to Azure Monitor using side car container with Microsoft Entra ID Workload ID authentication](/azure/azure-monitor/containers/prometheus-remote-write-azure-workload-identity)
 
 ## Remote write from Virtual Machines and Virtual Machine Scale sets 
 
@@ -83,6 +82,10 @@ Use PromQL queries in Grafana and verify that the results return expected data. 
 ## Troubleshoot remote write 
 
 If remote data isn't appearing in your Azure Monitor workspace, see [Troubleshoot remote write](../containers/prometheus-remote-write-troubleshooting.md) for common issues and solutions. 
+
+## Release notes
+
+For detailed release notes on the remote write side car image, please refer to the [remote write release notes](https://github.com/Azure/prometheus-collector/blob/main/REMOTE-WRITE-RELEASENOTES.md).
 
 
 ## Next steps

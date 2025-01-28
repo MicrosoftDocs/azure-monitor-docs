@@ -4,7 +4,7 @@ description: Create a data collection rule to collect guest logs and metrics fro
 ms.service: azure-monitor
 ms.topic: article
 ms.custom: subject-monitoring
-ms.date: 09/28/2023
+ms.date: 11/06/2024
 ms.reviewer: Xema Pathak
 ---
 

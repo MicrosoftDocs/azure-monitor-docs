@@ -4,7 +4,7 @@ description: Understand the steps to connect Azure Monitor to your Chaos Studio 
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 09/27/2023
+ms.date: 10/14/2024
 ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.service: azure-chaos-studio
