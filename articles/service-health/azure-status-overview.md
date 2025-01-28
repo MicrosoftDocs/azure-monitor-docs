@@ -2,7 +2,7 @@
 title: Azure status overview | Microsoft Docs
 description: A global view into the health of Azure services
 ms.topic: overview
-ms.date: 10/14/2024
+ms.date: 1/27/2025
 
 ---
 # Azure status overview
