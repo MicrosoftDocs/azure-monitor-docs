@@ -2,7 +2,7 @@
 title: Resource impact from Azure planned maintenance events
 description: This article details where to find information from Azure Service Health about how Azure planned maintenance impacts your resources.
 ms.topic: conceptual
-ms.date: 1/07/2025
+ms.date: 1/27/2025
 
 ---
 
