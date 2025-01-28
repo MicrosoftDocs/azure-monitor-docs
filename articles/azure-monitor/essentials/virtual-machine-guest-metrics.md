@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor Agent virtual machine guest performance counters
+title: Virtual machine guest performance counters
 description: Guest metrics and performance counters collected by the Azure Monitor Agent for Linux and Windows virtual machines
 author: EdB-MSFT
 ms.author: edbaynash
@@ -11,7 +11,7 @@ ms.date: 01/27/2025
 ---
 
 
-# Azure Monitor Agent virtual machine guest performance counters  
+# Virtual machine guest performance counters  
 
 
 The Azure Monitor Agent collects guest metrics or performance counters from Windows and Linux virtual machines. These metrics are collected from the guest operating system and are useful for monitoring virtual machine performance. The performance counters can be stored in an Azure Monitor Log Analytics workspace or an Azure Monitor workspace. For information on how to collect data from a virtual machine using Azure Monitor Agent, see [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md).  For information on how to install Azure Monitor Agent, see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md).
