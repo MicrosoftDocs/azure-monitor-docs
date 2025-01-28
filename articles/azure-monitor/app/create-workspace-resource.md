@@ -1095,73 +1095,8 @@ armclient PUT /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/
 
 This code sets the daily cap to 200 GB per day, configure the daily cap reset time to 12:00 UTC, send emails both when the cap is hit and the warning level is met, and set the warning threshold to 90% of the cap.
 -->
-### Add a metric alert
 
-> [!NOTE]
-> Each Application Insights resource comes with metrics that are available out of the box. If separate components report to the same Application Insights resource, it might not make sense to alert on these metrics.
-
-### [Portal](#tab/portal)
-
-To learn how to create a metric alert in the Azure portal, see [Tutorial: Create a metric alert for an Azure resource](./../alerts/tutorial-metric-alert.md).
-
-### [Azure CLI](#tab/cli)
-
-To learn how to add a metric alert using Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
-
-### [PowerShell](#tab/powershell)
-
-To learn how to add a metric alert using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-powershell).
-
-### [REST](#tab/rest)
-
-To create a metric alert using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{alert-name}`, `{access-token}`, `{application-insights-resource-name}`, and `{action-group-name}`, with your specific values:
-
-```rest
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/metricAlerts/{alert-name}?api-version=2018-03-01
-Authorization: Bearer {access-token}
-Content-Type: application/json
-
-{
-  "properties": {
-    "description": "Metric alert for high CPU usage",
-    "severity": 3,
-    "enabled": true,
-    "scopes": [
-      "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}"
-    ],
-    "criteria": {
-      "allOf": [
-        {
-          "metricName": "cpuPercentage",
-          "metricNamespace": "Microsoft.Insights/components",
-          "operator": "GreaterThan",
-          "threshold": 80,
-          "timeAggregation": "Average",
-          "dimensions": [],
-          "metricAlertCriteriaType": "StaticThresholdCriterion"
-        }
-      ]
-    },
-    "actions": [
-      {
-        "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/actionGroups/{action-group-name}"
-      }
-    ]
-  }
-}
-```
-
-### [Bicep](#tab/bicep)
-
-To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
-
-### [JSON (ARM)](#tab/arm)
-
-To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
-
----
-
-To automate the creation of metric alerts, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-a-simple-static-threshold-metric-alert) article.
+## Create additional resources
 
 ### Create an availability test
 
@@ -1304,9 +1239,77 @@ For more information about creating availability tests using JSON (ARM), see [Mi
 
 ---
 
-## Create more Application Insights resources
+### Add a metric alert
 
-### How many Application Insights resources should I deploy?
+> [!NOTE]
+> Each Application Insights resource comes with metrics that are available out of the box. If separate components report to the same Application Insights resource, it might not make sense to alert on these metrics.
+
+### [Portal](#tab/portal)
+
+To learn how to create a metric alert in the Azure portal, see [Tutorial: Create a metric alert for an Azure resource](./../alerts/tutorial-metric-alert.md).
+
+### [Azure CLI](#tab/cli)
+
+To learn how to add a metric alert using Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
+
+### [PowerShell](#tab/powershell)
+
+To learn how to add a metric alert using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-powershell).
+
+### [REST](#tab/rest)
+
+To create a metric alert using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{alert-name}`, `{access-token}`, `{application-insights-resource-name}`, and `{action-group-name}`, with your specific values:
+
+```rest
+PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/metricAlerts/{alert-name}?api-version=2018-03-01
+Authorization: Bearer {access-token}
+Content-Type: application/json
+
+{
+  "properties": {
+    "description": "Metric alert for high CPU usage",
+    "severity": 3,
+    "enabled": true,
+    "scopes": [
+      "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}"
+    ],
+    "criteria": {
+      "allOf": [
+        {
+          "metricName": "cpuPercentage",
+          "metricNamespace": "Microsoft.Insights/components",
+          "operator": "GreaterThan",
+          "threshold": 80,
+          "timeAggregation": "Average",
+          "dimensions": [],
+          "metricAlertCriteriaType": "StaticThresholdCriterion"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/actionGroups/{action-group-name}"
+      }
+    ]
+  }
+}
+```
+
+### [Bicep](#tab/bicep)
+
+To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
+
+### [JSON (ARM)](#tab/arm)
+
+To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
+
+---
+
+To automate the creation of metric alerts, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-a-simple-static-threshold-metric-alert) article.
+
+### Create more Application Insights resources
+
+#### How many Application Insights resources should I deploy?
 
 When you're developing the next version of a web application, you don't want to mix up the [Application Insights](../../azure-monitor/app/app-insights-overview.md) telemetry from the new version and the already released version.
 
@@ -1314,7 +1317,7 @@ To avoid confusion, send the telemetry from different development stages to sepa
 
 If your system is an instance of Azure Cloud Services, there's [another method of setting separate connection strings](../../azure-monitor/app/azure-web-apps-net-core.md).
 
-### When to use a single Application Insights resource
+#### When to use a single Application Insights resource
 
 Use a single Application Insights resource for:
 
@@ -1328,7 +1331,7 @@ Use a single Application Insights resource for:
 > [!NOTE]
 > If you want to consolidate multiple Application Insights resources, you can point your existing application components to a new, consolidated Application Insights resource. The telemetry stored in your old resource won't be transferred to the new resource. Only delete the old resource when you have enough telemetry in the new resource for business continuity.
 
-### Other considerations
+#### Other considerations
 
 To activate portal experiences, add custom code to assign meaningful values to the [Cloud_RoleName](./app-map.md?tabs=net#set-or-override-cloud-role-name) attribute. Without these values, portal features don't function.
 
@@ -1336,38 +1339,7 @@ For Azure Service Fabric applications and classic cloud services, the SDK automa
 
 Live Metrics can't split data by role name.
 
-## Automate the resource creation process
-
-The resource creation process can be automated by using Bicep or JSON templates with [Azure Resource Manager](/azure/azure-resource-manager/management/overview). You can package several resources together to create them in one deployment. For example, you can create an Application Insights resource with availability tests, metric alerts, and a diagnostic setting to send telemetry to an Azure Storage account.
-
-### Option 1: Generate a template in the Azure portal
-
-You can generate a template from existing resources.
-
-#### Application Insights only
-
-1. Go to the Application Insights resource in the Azure portal.
-1. Open **Export template** listed under **Automation** in the left-hand navigation bar.
-1. (Optional): To use your own parameters, uncheck **Include parameters**.
-1. **Download** the template file or **Deploy** it directly in the Azure portal.
-
-#### Multiple resources
-
-1. Go to the resource group of your Application Insights resource.
-1. On the **Overview** pane, mark all resources you want to be included in the template, then select **Export template** in the top navigation bar.
-1. (Optional): To use your own parameters, uncheck **Include parameters**.
-1. **Download** the template file or **Deploy** it directly in the Azure portal.
-
-### Option 2: Create a template from scratch
-
-To learn how to create an ARM template from scratch, visit our [ARM template documentation](/azure/azure-resource-manager/templates/overview) which includes tutorials to [create a template](/azure/azure-resource-manager/templates/template-tutorial-create-first-template), [add resources](/azure/azure-resource-manager/templates/template-tutorial-add-resource), [add parameters](/azure/azure-resource-manager/templates/template-tutorial-add-parameters), and more.
-
-Available properties for [Application Insights](/azure/templates/microsoft.insights/components), [availability tests](/azure/templates/microsoft.insights/webtests), [metric alerts](/azure/templates/microsoft.insights/metricalerts), [diagnostic settings](/azure/templates/microsoft.insights/diagnosticsettings), and other resources can be found in our [Azure resource reference](/azure/templates/) documentation under the **Reference** > **Monitor** > **Insights** node.
-
-> [!TIP]
-> You can also use quickstart templates, available towards the bottom of each Azure resource reference documentation page linked above. To learn how to use them, visit [Tutorial: Use Azure Quickstart Templates](/azure/azure-resource-manager/templates/template-tutorial-quickstart-template).
-
-## Filter on the build number
+### Filter on the build number
 
 When you publish a new version of your application, you want to be able to separate the telemetry from different builds.
 
@@ -1410,7 +1382,7 @@ There are several different methods of setting the **Application Version** prope
 
     To allow the Microsoft Build Engine to generate version numbers, set the version like `1.0.*` in `AssemblyReference.cs`.
 
-## Version and release tracking
+### Version and release tracking
 
 To track the application version, make sure your Microsoft Build Engine process generates `buildinfo.config`. In your `.csproj` file, add:
 
@@ -1425,9 +1397,40 @@ When the Application Insights web module has the build information, it automatic
 
 The Microsoft Build Engine exclusively generates the build version number, not the developer build from Visual Studio.
 
-### Release annotations
+#### Release annotations
 
 If you use Azure DevOps, you can [get an annotation marker](./release-and-work-item-insights.md?tabs=release-annotations) added to your charts whenever you release a new version.
+
+## Automate the resource creation process
+
+The resource creation process can be automated by using Bicep or JSON templates with [Azure Resource Manager](/azure/azure-resource-manager/management/overview). You can package several resources together to create them in one deployment. For example, you can create an Application Insights resource with availability tests, metric alerts, and a diagnostic setting to send telemetry to an Azure Storage account.
+
+### Option 1: Generate a template in the Azure portal
+
+You can generate a template from existing resources.
+
+#### Application Insights only
+
+1. Go to the Application Insights resource in the Azure portal.
+1. Open **Export template** listed under **Automation** in the left-hand navigation bar.
+1. (Optional): To use your own parameters, uncheck **Include parameters**.
+1. **Download** the template file or **Deploy** it directly in the Azure portal.
+
+#### Multiple resources
+
+1. Go to the resource group of your Application Insights resource.
+1. On the **Overview** pane, mark all resources you want to be included in the template, then select **Export template** in the top navigation bar.
+1. (Optional): To use your own parameters, uncheck **Include parameters**.
+1. **Download** the template file or **Deploy** it directly in the Azure portal.
+
+### Option 2: Create a template from scratch
+
+To learn how to create an ARM template from scratch, visit our [ARM template documentation](/azure/azure-resource-manager/templates/overview) which includes tutorials to [create a template](/azure/azure-resource-manager/templates/template-tutorial-create-first-template), [add resources](/azure/azure-resource-manager/templates/template-tutorial-add-resource), [add parameters](/azure/azure-resource-manager/templates/template-tutorial-add-parameters), and more.
+
+Available properties for [Application Insights](/azure/templates/microsoft.insights/components), [availability tests](/azure/templates/microsoft.insights/webtests), [metric alerts](/azure/templates/microsoft.insights/metricalerts), [diagnostic settings](/azure/templates/microsoft.insights/diagnosticsettings), and other resources can be found in our [Azure resource reference](/azure/templates/) documentation under the **Reference** > **Monitor** > **Insights** node.
+
+> [!TIP]
+> You can also use quickstart templates, available towards the bottom of each Azure resource reference documentation page linked above. To learn how to use them, visit [Tutorial: Use Azure Quickstart Templates](/azure/azure-resource-manager/templates/template-tutorial-quickstart-template).
 
 ## Frequently asked questions
 
