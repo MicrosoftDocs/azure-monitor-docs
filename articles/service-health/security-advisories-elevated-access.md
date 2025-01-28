@@ -97,7 +97,7 @@ Operation: GET
 
 The following in the events object response are populated for security Advisories events using this endpoint:
 
-* Id
+* ID
 * name
 * type
 * nextLink
