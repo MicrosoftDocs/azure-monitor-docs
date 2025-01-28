@@ -1,15 +1,15 @@
 {
  "redirections": [
   {
-    "source_path_from_root": "/articles/azure-monitor/insights/code-optimizations.md",
-    "redirect_url": "/azure/azure-monitor/insights/code-optimizations-profiler-overview",
-    "redirect_document_id": false
-  },     
+   "source_path_from_root": "/articles/azure-monitor/insights/code-optimizations.md",
+   "redirect_url": "/azure/azure-monitor/insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
   {
-    "source_path_from_root": "/articles/azure-monitor/profiler/profiler-overview.md",
-    "redirect_url": "/azure/azure-monitor/insights/code-optimizations-profiler-overview",
-    "redirect_document_id": false
-  },     
+   "source_path_from_root": "/articles/azure-monitor/profiler/profiler-overview.md",
+   "redirect_url": "/azure/azure-monitor/insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
   {
    "source_path": "articles/azure-monitor/reference/queries/anffileaccess.md",
    "redirect_url": "/azure/azure-monitor/reference",
@@ -36,10 +36,10 @@
    "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/alerts/alerts-metric-near-real-time.md",
-    "redirect_url": "/azure/azure-monitor/reference/metrics-index",
-    "redirect_document_id": false
-   },
+   "source_path": "articles/azure-monitor/alerts/alerts-metric-near-real-time.md",
+   "redirect_url": "/azure/azure-monitor/reference/metrics-index",
+   "redirect_document_id": false
+  },
   {
    "source_path": "articles/azure-monitor/reference/queries/requests.md",
    "redirect_url": "/azure/azure-monitor/reference",
@@ -531,10 +531,10 @@
    "redirect_document_id": false
   },
   {
-    "source_path_from_root": "/articles/azure-monitor/app/javascript-sdk-upgrade.md",
-    "redirect_url": "/previous-versions/azure/azure-monitor/app/javascript-sdk-upgrade",
-    "redirect_document_id": false
-   },
+   "source_path_from_root": "/articles/azure-monitor/app/javascript-sdk-upgrade.md",
+   "redirect_url": "/previous-versions/azure/azure-monitor/app/javascript-sdk-upgrade",
+   "redirect_document_id": false
+  },
   {
    "source_path_from_root": "/articles/azure-monitor/app/tutorial-performance.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/tutorial-performance",
@@ -7675,20 +7675,25 @@
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   },
-   {
-    "source_path": "articles/azure/azure-monitor/reference/supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md",
-    "redirect_url": "/azure/azure-monitor/reference",
-    "redirect_document_id": false
-   },
-   {
-    "source_path_from_root": "/articles/azure-monitor/essentials/prometheus-self-managed-grafana-azure-active-directory.md",
-    "redirect_url": "/azure/azure-monitor/essentials/prometheus-grafana",
-    "redirect_document_id": false
+  {
+   "source_path": "articles/azure/azure-monitor/reference/supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
   },
   {
-    "source_path_from_root": "/articles/azure-monitor/logs/data-security.md",
-    "redirect_url": "/azure/azure-monitor/best-practices-security",
-    "redirect_document_id": false
-   }
+   "source_path_from_root": "/articles/azure-monitor/essentials/prometheus-self-managed-grafana-azure-active-directory.md",
+   "redirect_url": "/azure/azure-monitor/essentials/prometheus-grafana",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/logs/data-security.md",
+   "redirect_url": "/azure/azure-monitor/best-practices-security",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  }
  ]
 }
