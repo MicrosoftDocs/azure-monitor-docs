@@ -2,7 +2,7 @@
 title: Resource impact from Azure outages
 description: This article details where to find information from Azure Service Health about how Azure outages might affect your resources.
 ms.topic: conceptual
-ms.date: 10/31/2024
+ms.date: 01/27/2025
 ---
 
 # Resource impact from Azure outages
