@@ -394,37 +394,37 @@ Learn more about [MySQL server - OrcasMySQLConnectionRedirection (Improve MySQL 
 
 Our system shows that the server might be constrained because it is approaching limits for the currently provisioned storage values. Approaching the storage limits might result in degraded performance or in the server being moved to read-only mode. To ensure continued performance, we recommend increasing the provisioned storage amount.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMySqlStorageUpsell (Increase the storage limit for MySQL Flexible Server)](https://aka.ms/azure_mysql_flexible_server_storage).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMySqlStorageUpsell (Increase the storage limit for MySQL Flexible Server)](https://aka.ms/azure_mysql_flexible_server_storage).
 
 ### Scale the MySQL Flexible Server to a higher SKU
 
 Our system shows that your Flexible Server is exceeding the connection limits associated with your current SKU. A large number of failed connection requests might adversely affect server performance. To improve performance, we recommend increasing the number of vCores or switching to a higher SKU.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMysqlConnectionUpsell (Scale the MySQL Flexible Server to a higher SKU)](https://aka.ms/azure_mysql_flexible_server_storage).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMysqlConnectionUpsell (Scale the MySQL Flexible Server to a higher SKU)](https://aka.ms/azure_mysql_flexible_server_storage).
 
 ### Increase the MySQL Flexible Server vCores.
 
 Our system shows that the CPU has been running under high utilization for an extended time period over the last seven days. High CPU utilization might lead to slow query performance. To improve performance, we recommend moving to a larger compute size.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMysqlCpuUpcell (Increase the MySQL Flexible Server vCores.)](https://aka.ms/azure_mysql_flexible_server_pricing).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMysqlCpuUpcell (Increase the MySQL Flexible Server vCores.)](https://aka.ms/azure_mysql_flexible_server_pricing).
 
 ### Improve performance by optimizing MySQL temporary-table sizing.
 
 Our system shows that your MySQL server might be incurring unnecessary I/O overhead due to low temporary-table parameter settings. Unnecessary I/O overhead might result in unnecessary disk-based transactions and reduced performance. We recommend that you increase the 'tmp_table_size' and 'max_heap_table_size' parameter values to reduce the number of disk-based transactions.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMysqlTmpTable (Improve performance by optimizing MySQL temporary-table sizing.)](https://dev.mysql.com/doc/refman/8.0/en/internal-temporary-tables.html#internal-temporary-tables-engines).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMysqlTmpTable (Improve performance by optimizing MySQL temporary-table sizing.)](https://dev.mysql.com/doc/refman/8.0/en/internal-temporary-tables.html#internal-temporary-tables-engines).
 
 ### Move your MySQL server to Memory Optimized SKU
 
 Our system shows that there is high memory usage for this server that can result in slower query performance and increased IOPS. To improve performance,  review your workload queries to identify opportunities to minimize memory consumed.  If no such opportunity found, then we recommend moving to higher SKU with more memory or increase storage size to get more IOPS.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMysqlMemoryUpsell (Move your MySQL server to Memory Optimized SKU)](https://aka.ms/azure_mysql_flexible_server_storage).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMysqlMemoryUpsell (Move your MySQL server to Memory Optimized SKU)](https://aka.ms/azure_mysql_flexible_server_storage).
 
 ### Add a MySQL Read Replica server
 
 Our system shows that you might have a read intensive workload running, which results in resource contention for this server. This might lead to slow query performance for the server. To improve performance, we recommend you add a read replica, and offload some of your read workloads to the replica.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMysqlReadReplicaUpsell (Add a MySQL Read Replica server)](https://aka.ms/flexible-server-mysql-read-replicas).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMysqlReadReplicaUpsell (Add a MySQL Read Replica server)](https://aka.ms/flexible-server-mysql-read-replicas).
 
 ### Increase the work_mem to avoid excessive disk spilling from sort and hash
 
@@ -436,7 +436,7 @@ Learn more about [PostgreSQL server - OrcasPostgreSqlWorkMem (Increase the work_
 
 With the new Ev5 compute hardware, you can boost workload performance by 30% with higher concurrency and better throughput. Navigate to the Compute+Storage option on the Azure portal and switch to Ev5 compute at no extra cost. Ev5 compute provides best performance among other VM series in terms of QPS and latency.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMySqlComputeSeriesUpgradeEv5 (Boost your workload performance by 30% with the new Ev5 compute hardware)](https://techcommunity.microsoft.com/t5/azure-database-for-mysql-blog/boost-azure-mysql-business-critical-flexible-server-performance/ba-p/3603698).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMySqlComputeSeriesUpgradeEv5 (Boost your workload performance by 30% with the new Ev5 compute hardware)](https://techcommunity.microsoft.com/t5/azure-database-for-mysql-blog/boost-azure-mysql-business-critical-flexible-server-performance/ba-p/3603698).
 
 ### Increase the storage limit for Hyperscale (Citus) server group
 
@@ -447,67 +447,67 @@ Learn more about [PostgreSQL server - OrcasPostgreSqlCitusStorageLimitHyperscale
 ### Increase the PostgreSQL server vCores
 
 Over 7 days, CPU usage was at least one of the following: Above 90% for 2 or more hours, above 50% for 50% of the time, at max usage for 20% of the time. High CPU utilization can lead to slow query performance. To improve performance, we recommend moving your server to a larger SKU with higher compute.
-Learn more about [Azure Database for PostgreSQL flexible server - Upscale Server SKU for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-compute).
+Learn more about [Azure Database for PostgreSQL Flexible Server - Upscale Server SKU for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-compute).
 
 ### Optimize log_statement settings for PostgreSQL on Azure Database
 
 Our system shows that you have log_statement enabled, for better performance set it to NONE
 
-Learn more about [Azure Database for PostgreSQL flexible server - Optimize log_statement settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
+Learn more about [Azure Database for PostgreSQL Flexible Server - Optimize log_statement settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
 
 ### Optimize log_duration settings for PostgreSQL on Azure Database
 
 You may experience potential performance degradation due to logging settings. To optimize these settings, set the log_duration server parameter to OFF.
 
-Learn more about [Learn more about Azure Database for PostgreSQL flexible server - Optimize log_duration settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
+Learn more about [Learn more about Azure Database for PostgreSQL Flexible Server - Optimize log_duration settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
 
 ### Optimize log_min_duration settings for PostgreSQL on Azure Database
 
 Your log_min_duration server parameter is set to less than 60,000 ms (1 minute), which can lead to potential performance degradation. You can optimize logging settings by setting the log_min_duration_statement parameter to -1.
 
-Learn more about [Azure Database for PostgreSQL flexible server - Optimize log_min_duration settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
+Learn more about [Azure Database for PostgreSQL Flexible Server - Optimize log_min_duration settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
 
 ### Optimize log_error_verbosity settings for PostgreSQL on Azure Database
 
 Your server has been configured to output VERBOSE error logs. This can be useful for troubleshooting your database, but it can also result in reduced database performance. To improve performance, we recommend changing the log_error_verbosity server parameter to the DEFAULT setting.
 
-Learn more about [Learn more about Azure Database for PostgreSQL flexible server - Optimize log_error_verbosity settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
+Learn more about [Learn more about Azure Database for PostgreSQL Flexible Server - Optimize log_error_verbosity settings for PostgreSQL on Azure Database](/azure/postgresql/flexible-server/concepts-logging).
 
 ### Identify if checkpoints are happening too often to improve PostgreSQL - Flexible Server performance
 
 Your sever is encountering checkpoints frequently. To resolve the issue, we recommend increasing your max_wal_size server parameter.
 
-Learn more about [Azure Database for PostgreSQL flexible server – Increase max_wal_size](/azure/postgresql/flexible-server/server-parameters-table-write-ahead-log---checkpoints?pivots=postgresql-16#max_wal_size).
+Learn more about [Azure Database for PostgreSQL Flexible Server – Increase max_wal_size](/azure/postgresql/flexible-server/server-parameters-table-write-ahead-log---checkpoints?pivots=postgresql-16#max_wal_size).
 
 ### Identify inactive Logical Replication Slots to improve PostgreSQL - Flexible Server performance
 
 Your server may have inactive logical replication slots which can result in degraded server performance and availability. We recommend deleting inactive replication slots or consuming the changes from the slots so the Log Sequence Number (LSN) advances to closer to the current LSN of the server.
 
-Learn more about [Azure Database for PostgreSQL flexible server – Unused/inactive Logical Replication Slots](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#unused-replication-slots).
+Learn more about [Azure Database for PostgreSQL Flexible Server – Unused/inactive Logical Replication Slots](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#unused-replication-slots).
 
 ### Identify long-running transactions to improve PostgreSQL - Flexible Server performance
 
 There are transactions running for more than 24 hours. Review the High CPU Usage-> Long Running Transactions section in the troubleshooting guides to identify and mitigate the issue.
 
-Learn more about [Azure Database for PostgreSQL flexible server – Long Running transactions using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides). 
+Learn more about [Azure Database for PostgreSQL Flexible Server – Long Running transactions using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides). 
 
 ### Identify Orphaned Prepared transactions to improve PostgreSQL - Flexible Server performance
 
 There are orphaned prepared transactions. Rollback/Commit the prepared transaction.  The recommendations are shared in  Autovacuum Blockers ->  Autovacuum Blockers section in the troubleshooting guides.
 
-Learn more about [Azure Database for PostgreSQL flexible server – Orphaned Prepared transactions using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides). 
+Learn more about [Azure Database for PostgreSQL Flexible Server – Orphaned Prepared transactions using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides). 
 
 ### Identify Transaction Wraparound to improve PostgreSQL - Flexible Server performance
 
 The server has crossed the 50% wraparound limit, having 1 billion transactions. Refer to the recommendations shared in the Autovacuum Blockers -> Emergency AutoVacuum and Wraparound section of the troubleshooting guides.
 
-Learn more about [Azure Database for PostgreSQL flexible server – Transaction Wraparound using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides).
+Learn more about [Azure Database for PostgreSQL Flexible Server – Transaction Wraparound using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides).
 
 ### Identify High Bloat Ratio to improve PostgreSQL - Flexible Server performance
 
 The server has a bloat_ratio (dead tuples/ (live tuples + dead tuples) > 80%). Refer to the recommendations shared in the Autovacuum Monitoring section of the troubleshooting guides. 
 
-Learn more about [Azure Database for PostgreSQL flexible server – High Bloat Ratio using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides).
+Learn more about [Azure Database for PostgreSQL Flexible Server – High Bloat Ratio using Troubleshooting guides](/azure/postgresql/flexible-server/how-to-troubleshooting-guides).
 
 ### Increase the storage limit for Hyperscale (Citus) server group
 
@@ -519,7 +519,7 @@ Learn more about [Hyperscale (Citus) server group - MarlinStorageLimitRecommenda
 
 Consider our new offering, Azure Database for PostgreSQL Flexible Server, which provides richer capabilities such as zone resilient HA, predictable performance, maximum control, custom maintenance window, cost optimization controls, and simplified developer experience.
 
-Learn more about [Azure Database for PostgreSQL flexible server - OrcasPostgreSqlMeruMigration (Migrate your database from SSPG to FSPG)](/azure/postgresql/how-to-upgrade-using-dump-and-restore).
+Learn more about [Azure Database for PostgreSQL Flexible Server - OrcasPostgreSqlMeruMigration (Migrate your database from SSPG to FSPG)](/azure/postgresql/how-to-upgrade-using-dump-and-restore).
 
 ### Improve your Cache and application performance when running with high network bandwidth
 
