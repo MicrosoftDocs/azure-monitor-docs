@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Classic deployment model storage
@@ -20,7 +20,13 @@ Migrate your classic storage accounts to Azure Resource Manager to ensure busine
   
 **Potential benefits**: Ensure the ability to manage your data by migrating your classic storage account(s)  
 
+**Impact:** High
   
+  
+
+ResourceType: microsoft.classicstorage/storageaccounts  
+Recommendation ID: fd04ff97-d3b3-470a-9544-dfea3a5708db  
+Subcategory: HighAvailability
 
 <!--fd04ff97-d3b3-470a-9544-dfea3a5708db_end-->
 

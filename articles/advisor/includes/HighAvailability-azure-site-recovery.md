@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Site Recovery
@@ -20,7 +20,13 @@ Soft delete helps you retain your backup data in the Recovery Services vault for
   
 **Potential benefits**: Helps recovery of backup data in cases of accidental deletion  
 
-For more information, see [Soft delete for Azure Backup](/azure/backup/backup-azure-security-feature-cloud)  
+**Impact:** Medium
+  
+For more information, see [Soft delete for Azure Backup - Azure Backup ](/azure/backup/backup-azure-security-feature-cloud)  
+
+ResourceType: microsoft.recoveryservices/vaults  
+Recommendation ID: 3ebfaf53-4d8c-4e67-a948-017bbbf59de6  
+Subcategory: DisasterRecovery
 
 <!--3ebfaf53-4d8c-4e67-a948-017bbbf59de6_end-->
 
@@ -32,7 +38,13 @@ Cross Region Restore (CRR) allows you to restore Azure VMs in a secondary region
   
 **Potential benefits**: As one of the restore options, Cross Region Restore (CRR) allows you to restore Azure VMs in a secondary region, which is an Azure paired region.  
 
-For more information, see [How to restore Azure VM data in Azure portal](/azure/backup/backup-azure-arm-restore-vms#cross-region-restore)  
+**Impact:** Medium
+  
+For more information, see [Restore VMs by using the Azure portal using Azure Backup - Azure Backup ](/azure/backup/backup-azure-arm-restore-vms#cross-region-restore)  
+
+ResourceType: microsoft.recoveryservices/vaults  
+Recommendation ID: 9b1308f1-4c25-4347-a061-7cc5cd6a44ab  
+Subcategory: DisasterRecovery
 
 <!--9b1308f1-4c25-4347-a061-7cc5cd6a44ab_end-->
 

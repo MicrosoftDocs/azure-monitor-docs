@@ -87,7 +87,7 @@ The following namespaces are used by virtual machines.
 
 | Namespace | Description | Requirement |
 |:----------|:------------|:------------|
-| Virtual Machine Host | Host metrics automatically collected for all Azure virtual machines. Detailed list of metrics at [Microsoft.Compute/virtualMachines](../essentials/metrics-supported.md#microsoftcomputevirtualmachines). | Collected automatically with no configuration required. |
+| Virtual Machine Host | Host metrics automatically collected for all Azure virtual machines. Detailed list of metrics at [Microsoft.Compute/virtualMachines](../reference/supported-metrics/microsoft-compute-virtualmachines-metrics.md). | Collected automatically with no configuration required. |
 | Virtual Machine Guest | Guest operating system and application performance data on Windows machines. | Azure Monitor agent installed with a [Data Collection Rule](monitor-virtual-machine-data-collection.md#collect-performance-counters). |
 | azure.vm.linux.guestmetrics |  Guest operating system and application performance data on Linux machines. | Azure Monitor agent installed with a [Data Collection Rule](monitor-virtual-machine-data-collection.md#collect-performance-counters). |
 

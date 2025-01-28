@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 01/13/2025
+ms.date: 01/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -12,6 +12,46 @@ ms.custom: HighAvailability Azure Kubernetes Service (AKS)
   
 ## Azure Kubernetes Service (AKS)  
   
+<!--29a14bcd-36ad-41ea-9138-70049121eaea_begin-->
+
+#### Set node pool subnet size to maximum auto scale setting  
+  
+To allow AKS to efficiently scale out nodes, update the subnet size for node pools to match the maximum settings for the auto-scaler.  
+  
+**Potential benefits**: Efficient scaling for demand. Reduced resource constraints.  
+
+**Impact:** High
+  
+For more information, see [Configure Azure CNI networking for dynamic allocation of IPs and enhanced subnet support - Azure Kubernetes Service ](https://aka.ms/configure-azure-cni-dynamic-ip-allocation)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 29a14bcd-36ad-41ea-9138-70049121eaea  
+Subcategory: HighAvailability
+
+<!--29a14bcd-36ad-41ea-9138-70049121eaea_end-->
+
+
+
+<!--29f2eea3-b0d8-4934-a0f8-171dbd70ba13_begin-->
+
+#### Use AKS Backup for a cluster with persistent volumes  
+  
+Azure Kubernetes Service (AKS) backup is a cloud-native solution for backing up and restoring containerized apps and data in an AKS cluster. AKS Backup supports scheduled backups for cluster state and persistent volumes. AKS Backup offers granular control over a namespace or an entire cluster.  
+  
+**Potential benefits**: Backups for cluster state and persistent volumes  
+
+**Impact:** Medium
+  
+For more information, see [What is Azure Kubernetes Service (AKS) backup? - Azure Backup ](https://aka.ms/aks-backup)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 29f2eea3-b0d8-4934-a0f8-171dbd70ba13  
+Subcategory: DisasterRecovery
+
+<!--29f2eea3-b0d8-4934-a0f8-171dbd70ba13_end-->
+
+
+
 <!--70829b1a-272b-4728-b418-8f1a56432d33_begin-->
 
 #### Enable Autoscaling for your system node pools  
@@ -20,7 +60,13 @@ To ensure your system pods are scheduled even during times of high load, enable 
   
 **Potential benefits**: Enabling Autoscaler for system node pool ensures system pods are scheduled and cluster can function.  
 
-For more information, see [Use the cluster autoscaler in Azure Kubernetes Service (AKS)](/azure/aks/cluster-autoscaler?tabs=azure-cli#before-you-begin)  
+**Impact:** High
+  
+For more information, see [Use the cluster autoscaler in Azure Kubernetes Service (AKS) - Azure Kubernetes Service ](/azure/aks/cluster-autoscaler?tabs=azure-cli#before-you-begin)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 70829b1a-272b-4728-b418-8f1a56432d33  
+Subcategory: HighAvailability
 
 <!--70829b1a-272b-4728-b418-8f1a56432d33_end-->
 
@@ -32,7 +78,13 @@ Ensure your system node pools have at least 2 nodes for reliability of your syst
   
 **Potential benefits**: Having 2 nodes ensures resiliency against node failures.  
 
-For more information, see [Manage system node pools in Azure Kubernetes Service (AKS)](/azure/aks/use-system-pools?tabs=azure-cli#system-and-user-node-pools)  
+**Impact:** High
+  
+For more information, see [Use system node pools in Azure Kubernetes Service (AKS) - Azure Kubernetes Service ](/azure/aks/use-system-pools?tabs=azure-cli#system-and-user-node-pools)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: a9228ae7-4386-41be-b527-acd59fad3c79  
+Subcategory: HighAvailability
 
 <!--a9228ae7-4386-41be-b527-acd59fad3c79_end-->
 
@@ -44,7 +96,13 @@ A cluster without a dedicated system node pool is less reliable. We recommend yo
   
 **Potential benefits**: Ensures cluster reliability by preventing resource scarcity for core system pods  
 
-For more information, see [Manage system node pools in Azure Kubernetes Service (AKS)](/azure/aks/use-system-pools?tabs=azure-cli#before-you-begin)  
+**Impact:** High
+  
+For more information, see [Use system node pools in Azure Kubernetes Service (AKS) - Azure Kubernetes Service ](/azure/aks/use-system-pools?tabs=azure-cli#before-you-begin)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: f31832f1-7e87-499d-a52a-120f610aba98  
+Subcategory: HighAvailability
 
 <!--f31832f1-7e87-499d-a52a-120f610aba98_end-->
 
@@ -56,32 +114,14 @@ When a cluster has one or more node pools using a non-recommended burstable VM S
   
 **Potential benefits**: Best practice for consistent performance  
 
-For more information, see [Bv1 sizes series](/azure/virtual-machines/sizes-b-series-burstable)  
+**Impact:** Medium
+  
+For more information, see [Bv1 size series - Azure Virtual Machines ](/azure/virtual-machines/sizes-b-series-burstable)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: fac2ad84-1421-4dd3-8477-9d6e605392b4  
+Subcategory: HighAvailability
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_end-->
-
-<!--29f2eea3-b0d8-4934-a0f8-171dbd70ba13_begin-->
-
-#### Use AKS Backup for a cluster with persistent volumes  
-  
-Azure Kubernetes Service (AKS) backup is a cloud-native solution for backing up and restoring containerized apps and data in an AKS cluster. AKS Backup supports scheduled backups for cluster state and persistent volumes. AKS Backup offers granular control over a namespace or an entire cluster.  
-  
-**Potential benefits**: Backups for cluster state and persistent volumes  
-
-For more information, see [What is Azure Kubernetes Service backup?](https://aka.ms/aks-backup)  
-
-<!--29f2eea3-b0d8-4934-a0f8-171dbd70ba13_end-->
-
-<!--29a14bcd-36ad-41ea-9138-70049121eaea_begin-->
-
-#### Set node pool subnet size to maximum auto scale setting  
-  
-To allow AKS to efficiently scale out nodes, update the subnet size for node pools to match the maximum settings for the auto-scaler.  
-  
-**Potential benefits**: Efficient scaling for demand. Reduced resource constraints.  
-
-For more information, see [Configure Azure CNI networking for dynamic allocation of IPs and enhanced subnet support in Azure Kubernetes Service (AKS)](https://aka.ms/configure-azure-cni-dynamic-ip-allocation)  
-
-<!--29a14bcd-36ad-41ea-9138-70049121eaea_end-->
 
 <!--articleBody-->

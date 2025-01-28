@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -20,7 +20,13 @@ When Premium SSD unmanaged disks in storage accounts are about to reach their Pr
   
 **Potential benefits**: Avoid scale issues when account reaches capacity limit  
 
-For more information, see [Scalability and performance targets for standard storage accounts](https://aka.ms/premium_blob_quota)  
+**Impact:** High
+  
+For more information, see [Scalability and performance targets for standard storage accounts - Azure Storage ](https://aka.ms/premium_blob_quota)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: d42d751d-682d-48f0-bc24-bb15b61ac4b8  
+Subcategory: Scalability
 
 <!--d42d751d-682d-48f0-bc24-bb15b61ac4b8_end-->
 
@@ -32,7 +38,13 @@ Azure blob backup helps protect data from accidental or malicious deletion. We r
   
 **Potential benefits**: Protect data from accidental or malicious deletion  
 
-For more information, see [Overview of Azure Blob backup](/azure/backup/blob-backup-overview)  
+**Impact:** Medium
+  
+For more information, see [Overview of Azure Blobs backup - Azure Backup ](/azure/backup/blob-backup-overview)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 8ef907f4-f8e3-4bf1-962d-27e005a7d82d  
+Subcategory: DisasterRecovery
 
 <!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_end-->
 

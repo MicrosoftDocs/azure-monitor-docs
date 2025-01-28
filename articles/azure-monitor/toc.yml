@@ -227,11 +227,40 @@ items:
         displayName: opt insights, optimization insights, code optimization, perflens
         items:
         - name: Overview
-          href: insights/code-optimizations.md
-        - name: Set up Code Optimizations
-          href: insights/set-up-code-optimizations.md
-        - name: View insights
-          href: insights/view-code-optimizations.md
+          href: insights/code-optimizations-profiler-overview.md
+        - name: Enable using .NET Profiler
+          items:
+          - name: Enable Profiler on specific Azure resources
+            items:
+            - name: Azure App Service in Windows
+              href: profiler/profiler.md
+            - name: Azure App Service in Linux
+              href: profiler/profiler-aspnetcore-linux.md
+            - name: Azure Functions app
+              href: profiler/profiler-azure-functions.md
+            - name: Azure Cloud Service
+              href: profiler/profiler-cloudservice.md
+            - name: Azure Service Fabric app
+              href: profiler/profiler-servicefabric.md
+            - name: Azure Virtual Machines
+              href: profiler/profiler-vm.md
+            - name: ASP.NET Core app running in container
+              href: profiler/profiler-containers.md
+          - name: Configure Profiler
+            items:
+            - name: Configure Profiler
+              href: profiler/profiler-settings.md
+            - name: Configure BYOS (Bring Your Own Storage)
+              href: profiler/profiler-bring-your-own-storage.md
+            - name: Track Requests
+              href: profiler/profiler-trackrequests.md
+        - name: View insights and data
+          items:
+            - name: View insights
+              href: insights/view-code-optimizations.md
+            - name: View .NET Profiler data
+              displayName: profiling, debugging, code performance, perf
+              href: profiler/profiler-data.md
         - name: Extensions (preview)
           items:
           - name: Overview
@@ -241,40 +270,10 @@ items:
           - name: Visual Studio Code
             href: insights/code-optimizations-vscode-extension.md
         - name: Troubleshooting
-          href: insights/code-optimizations-troubleshoot.md
-        - name: Profiler
           items:
-          - name: Overview
-            displayName: profiling, debugging, code performance, perf
-            href: profiler/profiler-overview.md
-          - name: Enable Profiler
-            items:
-            - name: Azure App Service
-              href: profiler/profiler.md
-            - name: Azure Functions app
-              href: profiler/profiler-azure-functions.md
-            - name: Azure Cloud Service
-              href: profiler/profiler-cloudservice.md
-            - name: Azure Service Fabric app
-              href: profiler/profiler-servicefabric.md
-            - name: Azure Virtual Machines
-              href: profiler/profiler-vm.md
-            - name: ASP.NET Core app hosted in Linux on App Service
-              href: profiler/profiler-aspnetcore-linux.md
-            - name: ASP.NET Core app running in container
-              href: profiler/profiler-containers.md
-          - name: View Profiler data
-            displayName: profiling, debugging, code performance, perf
-            href: profiler/profiler-data.md
-          - name: Configure
-            items:
-            - name: Configure Profiler
-              href: profiler/profiler-settings.md
-            - name: Configure BYOS (Bring Your Own Storage)
-              href: profiler/profiler-bring-your-own-storage.md
-          - name: Track Requests
-            href: profiler/profiler-trackrequests.md
-          - name: Troubleshooting
+          - name: Code Optimizations
+            href: insights/code-optimizations-troubleshoot.md
+          - name: Profiler
             href: profiler/profiler-troubleshooting.md
       - name: Snapshot Debugger
         items:

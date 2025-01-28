@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability HDInsight
@@ -20,7 +20,13 @@ The HDInsight service attempted to apply a critical certificate update on your r
   
 **Potential benefits**: Ensure cluster health and stability  
 
-For more information, see [Set up clusters in HDInsight with Apache Hadoop, Apache Spark, Apache Kafka, and more](/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters)  
+**Impact:** High
+  
+For more information, see [Set up clusters in HDInsight with Apache Hadoop, Apache Spark, Apache Kafka, and more ](/azure/hdinsight/hdinsight-hadoop-provision-linux-clusters)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 69740e3e-5b96-4b0e-b9b8-4d7573e3611c  
+Subcategory: Other
 
 <!--69740e3e-5b96-4b0e-b9b8-4d7573e3611c_end-->
 
@@ -32,7 +38,13 @@ Plan to introduce a change in non-ESP ABFS clusters, which restricts non-Hadoop 
   
 **Potential benefits**: This change is to improve cluster security posture  
 
-For more information, see [Azure HDInsight release notes](https://aka.ms/hdireleasenotes)  
+**Impact:** High
+  
+For more information, see [Release notes for Azure HDInsight ](https://aka.ms/hdireleasenotes)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 24acd95e-fc9f-490c-b32d-edc6d747d0bc  
+Subcategory: Other
 
 <!--24acd95e-fc9f-490c-b32d-edc6d747d0bc_end-->
 
@@ -44,7 +56,13 @@ When data disks used by Kafka brokers in  HDInsight clusters are almost full, th
   
 **Potential benefits**: Avoid Kafka broker issues  
 
-For more information, see [Scenario: Brokers are unhealthy or can't restart due to disk space full issue](https://aka.ms/kafka-troubleshoot-full-disk)  
+**Impact:** High
+  
+For more information, see [Broker fails to start due to a full disk in Azure HDInsight ](https://aka.ms/kafka-troubleshoot-full-disk)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 35e3a19f-16e7-4bb1-a7b8-49e02a35af2e  
+Subcategory: Other
 
 <!--35e3a19f-16e7-4bb1-a7b8-49e02a35af2e_end-->
 
@@ -56,7 +74,13 @@ The max length of cluster name will be changed to 45 from 59 characters, to impr
   
 **Potential benefits**: Security posture improvement for HDInsight  
 
-For more information, see [Azure HDInsight release notes](/azure/hdinsight/hdinsight-release-notes)  
+**Impact:** Medium
+  
+For more information, see [Release notes for Azure HDInsight ](/azure/hdinsight/hdinsight-release-notes)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 41a248ef-50d4-4c48-81fb-13196f957210  
+Subcategory: Other
 
 <!--41a248ef-50d4-4c48-81fb-13196f957210_end-->
 
@@ -68,7 +92,13 @@ A cluster created one year ago doesn't have the latest image upgrades. Your clus
   
 **Potential benefits**: Get the latest fixes and features  
 
-For more information, see [Consider the below points before starting to create a cluster.](/azure/hdinsight/hdinsight-overview-before-you-start#keep-your-clusters-up-to-date)  
+**Impact:** High
+  
+For more information, see [Before you start with Azure HDInsight ](/azure/hdinsight/hdinsight-overview-before-you-start#keep-your-clusters-up-to-date)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 8f163c95-0029-4139-952a-42bd0d773b93  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--8f163c95-0029-4139-952a-42bd0d773b93_end-->
 
@@ -80,7 +110,13 @@ A cluster not using the latest image doesn't have the latest upgrades. Your clus
   
 **Potential benefits**: Get the latest fixes and features  
 
-For more information, see [Azure HDInsight release notes](/azure/hdinsight/hdinsight-release-notes)  
+**Impact:** High
+  
+For more information, see [Release notes for Azure HDInsight ](/azure/hdinsight/hdinsight-release-notes)  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: 97355d8e-59ae-43ff-9214-d4acf728467a  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--97355d8e-59ae-43ff-9214-d4acf728467a_end-->
 
@@ -92,7 +128,13 @@ We have detected a Network prob failure, it indicates unreachable gateway or a v
   
 **Potential benefits**: Improved availability  
 
+**Impact:** High
   
+  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: b3bf9f14-c83e-4dd3-8f5c-a6be746be173  
+Subcategory: Other
 
 <!--b3bf9f14-c83e-4dd3-8f5c-a6be746be173_end-->
 
@@ -105,7 +147,13 @@ There is a potential reliability issue on HDInsight clusters that use images dat
   
 **Potential benefits**: Improved Reliability in Scaling and Network connectivity  
 
+**Impact:** High
   
+  
+
+ResourceType: microsoft.hdinsight/clusters  
+Recommendation ID: e4635832-0ab1-48b1-a386-c791197189e6  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--e4635832-0ab1-48b1-a386-c791197189e6_end-->
 
