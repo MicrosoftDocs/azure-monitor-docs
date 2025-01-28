@@ -1,30 +1,31 @@
 ---
-title: Virtual machine guest metrics
-description: Guest metrics collected by the Azure Monitor agent for Linux and Windows virtual machines
+title: Virtual machine guest performance counters with Azure Monitor agent
+description: Guest metrics and performance counters collected by the Azure Monitor agent for Linux and Windows virtual machines
 author: EdB-MSFT
 ms.author: edbaynash
 services: azure-monitor
 ms.topic: conceptual
 ms.date: 01/27/2025
 
-# Customer intent: As an Azure administrator I want to learn about the guest metrics collected by the Azure Monitor agent for Linux and Windows virtual machines
+# Customer intent: As an Azure administrator I want to learn about the guest metrics and performance counters collected by the Azure Monitor agent for Linux and Windows virtual machines
 ---
 
 
-# Virtual machine guest metrics
+# Virtual machine guest performance counters with Azure Monitor agent 
 
 
-The Azure Monitor agent collects guest metrics from Windows and Linux virtual machines. These metrics are collected from the guest operating system and are useful for monitoring virtual machine performance. The metrics can be stored in an Azure Monitor Log Analytics workspace or an Azure monitor workspace. The metrics are collected by the Azure Monitor agent and aren't dependent on the virtual machine being connected to the internet.
+The Azure Monitor agent collects guest performance counters from Windows and Linux virtual machines. These metrics are collected from the guest operating system and are useful for monitoring virtual machine performance. The performance counters can be stored in an Azure Monitor Log Analytics workspace or an Azure Monitor workspace. The performance counters are collected by the Azure Monitor agent and aren't dependent on the virtual machine being connected to the internet. For Platform metrics, see [Azure Monitor supported metrics](/azure/azure-monitor/reference/metrics-index)
 
-For information on how to install Azure Monitor agent, see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md). For information on how to collect data from a virtual machine using  Azure Monitor agent, see [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md). 
+For information on how to install Azure Monitor agent, see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md). For information on how to collect data from a virtual machine using Azure Monitor agent, see [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md). 
 
 ## Performance counters
 
-The following performance counters are collected by the Azure Monitor agent:
+The following performance counters are collected by the Azure Monitor agent for Windows and Linux virtual machines:
+The default sample frequency is 60 seconds. This can be changed when creating or updating the data collection rule.
 
 ### [Windows virtual machines](#tab/windows)
 
-###  Performance counters collected from Windows virtual machines
+###   Windows performance
 
 The following performance counters are collected by the Azure Monitor agent for Windows virtual machines:
 
@@ -81,7 +82,7 @@ The following performance counters are collected by the Azure Monitor agent for 
 
 ### [Linux virtual machines](#tab/linux)
 
-###  Performance counters collected from Linux virtual machines
+### Linux performance counters
 
 The following performance counters are collected by the Azure Monitor agent for Linux virtual machines:
 
@@ -135,8 +136,6 @@ The following performance counters are collected by the Azure Monitor agent for 
 | System(*)\\Users | System | 60 |
 | System(*)\\Unique Users | System | 60 |
 | System(*)\\CPUs | System | 60 |
-
-
 ---
 
 
