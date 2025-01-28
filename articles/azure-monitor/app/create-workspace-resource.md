@@ -1362,10 +1362,10 @@ You can generate a template from existing resources.
 
 To learn how to create an ARM template from scratch, visit our [ARM template documentation](/azure/azure-resource-manager/templates/overview) which includes tutorials to [create a template](/azure/azure-resource-manager/templates/template-tutorial-create-first-template), [add resources](/azure/azure-resource-manager/templates/template-tutorial-add-resource), [add parameters](/azure/azure-resource-manager/templates/template-tutorial-add-parameters), and more.
 
-Available properties for [Application Insights](/azure/templates/microsoft.insights/components), [availability tests](/azure/templates/microsoft.insights/webtests), [metric alerts](/azure/templates/microsoft.insights/metricalerts), [diagnostic settings](/azure/templates/microsoft.insights/diagnosticsettings), and other resources can be found in our [resources documentation](/azure/templates/) under the **Reference** > **Monitor** > **Insights** node.
+Available properties for [Application Insights](/azure/templates/microsoft.insights/components), [availability tests](/azure/templates/microsoft.insights/webtests), [metric alerts](/azure/templates/microsoft.insights/metricalerts), [diagnostic settings](/azure/templates/microsoft.insights/diagnosticsettings), and other resources can be found in our [Azure resource reference](/azure/templates/) documentation under the **Reference** > **Monitor** > **Insights** node.
 
 > [!TIP]
-> You can also use quickstart templates, available towards the bottom of each resource documentation page linked above. To learn how to quickstart templates, visit [Tutorial: Use Azure Quickstart Templates](/azure/azure-resource-manager/templates/template-tutorial-quickstart-template).
+> You can also use quickstart templates, available towards the bottom of each Azure resource reference documentation page linked above. To learn how to use them, visit [Tutorial: Use Azure Quickstart Templates](/azure/azure-resource-manager/templates/template-tutorial-quickstart-template).
 
 ## Filter on the build number
 
