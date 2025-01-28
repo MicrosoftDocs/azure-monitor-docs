@@ -86,7 +86,7 @@ If remote data isn't appearing in your Azure Monitor workspace, see [Troubleshoo
 
 ## Release notes
 
-For detailed release notes on the Remote Write sidecar image, please refer to the [Remote Write Release Notes](https://github.com/Azure/prometheus-collector/blob/main/REMOTE-WRITE-RELEASENOTES.md)
+For detailed release notes on the remote write side car image, please refer to the [remote write release notes](https://github.com/Azure/prometheus-collector/blob/main/REMOTE-WRITE-RELEASENOTES.md).
 
 
 ## Next steps
