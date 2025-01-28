@@ -2,7 +2,7 @@
 title: Elevated access for viewing Security Advisories
 description: This article details a change that requires users to obtain elevated access roles in order to view Security Advisory details
 ms.topic: conceptual
-ms.date: 1/07/2025
+ms.date: 1/27/2025
 ---
 
 # Elevated access for viewing Security Advisories
