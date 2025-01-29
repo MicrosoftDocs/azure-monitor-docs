@@ -83,7 +83,7 @@ Sign in to the [Azure portal](https://portal.azure.com), and create an Applicati
 :::image type="content" source="./media/create-workspace-resource/create-workspace-based.png" lightbox="./media/create-workspace-resource/create-workspace-based.png" alt-text="Screenshot that shows a workspace-based Application Insights resource.":::
 
 > [!NOTE]
-> If you don't connect to an existing Log Analytics workspace, a new Log Analytics resource will be automatically created along with your Application Insights resource.
+> If you don't connect to an existing Log Analytics workspace during resource creation, a new Log Analytics resource is created automatically along with your Application Insights resource.
 
 After you create your resource, you'll see corresponding workspace information in the **Overview** pane.
 
