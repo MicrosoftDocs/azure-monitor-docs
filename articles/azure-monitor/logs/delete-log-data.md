@@ -1,5 +1,5 @@
 ---
-title: Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
+title: Delete data from a Log Analytics workspace by using the Delete Data API 
 description: Delete data from a table in your Log Analytics workspace. 
 author: guywi-ms
 ms.author: guywild
@@ -11,7 +11,7 @@ ms.date: 11/11/2024
 # Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
 
-# Delete data from a Log Analytics workspace by using the Delete Data API (Preview) 
+# Delete data from a Log Analytics workspace by using the Delete Data API 
 
 The Delete Data API lets you make asynchronous requests to remove data, such as sensitive, personal, corrupt, or incorrect log entries.
 
