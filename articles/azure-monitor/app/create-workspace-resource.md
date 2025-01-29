@@ -20,9 +20,7 @@ Enhanced capabilities include:
 * Log Analytics streaming processes data more quickly.
 
 > [!IMPORTANT]
-> This article applies to Application Insights workspace-based resources.
->
-> Classic Application Insights resources have been retired. [Transition to workspace-based Application Insights](/previous-versions/azure/azure-monitor/app/convert-classic-resource) to take advantage of new capabilities.
+> This article applies to *workspace-based* Application Insights resources. Classic Application Insights resources have been retired. [Transition to workspace-based Application Insights](/previous-versions/azure/azure-monitor/app/convert-classic-resource) to take advantage of new capabilities.
 
 This article shows you how to create and configure workspace-based Application Insights resources. Along with the Application Insights resource itself, you can add various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan). You can also create [availability tests](#create-an-availability-test), set up [metric alerts](#add-a-metric-alert), and automate the process using [Azure Resource Manager](/azure/azure-resource-manager/management/overview).
 
