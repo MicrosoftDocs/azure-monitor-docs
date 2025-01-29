@@ -256,7 +256,7 @@
         "articles/advisor/**/*": "Azure Advisor",
         "articles/azure-monitor/**/*": "Azure Monitor",
         "articles/service-health/**/*": "Azure Service Health"
-      }     
+      }
     },
     "overwrite": [],
     "externalReference": [],
