@@ -125,11 +125,13 @@ az monitor app-insights component create --app
 
 ### Example
 
+Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<resource-group-name>`
+
 ```azurecli
 az monitor app-insights component create --app <application-insights-resource-name> --location <azure-region-name> --resouce-group <resource-group-name>
 ```
 
-For more information about this command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create).
+For more information about the `az monitor app-insights component create` command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create).
 
 ## [PowerShell](#tab/powershell)
 
@@ -166,11 +168,13 @@ New-AzApplicationInsights -ResourceGroupName <String> -Name <String> -Location <
 
 ### Example
 
+Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `<azure-region-name>`
+
 ```azurepowershell
-New-AzApplicationInsights -Kind java -ResourceGroupName testgroup -Name test1027 -Location eastus
+New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -Location <azure-region-name>
 ```
 
-For more information about this command, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
+For more information about the `New-AzApplicationInsights` command, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
 
 ## [REST](#tab/rest)
 
@@ -955,13 +959,13 @@ For more information about setting the pricing placing using Azure CLI, see the 
 
 ### [PowerShell](#tab/powershell)
 
-To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<resource-name>, and \<pricing-plan\> with your specific values:
+To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<resource-name>`, and `<pricing-plan>` with your specific values:
 
 ```azurepowershell
 Set-AzApplicationInsightsPricingPlan -ResourceGroupName <resource-group-name> -Name <resource-name> -PricingPlan <pricing-plan>
 ```
 
-For more information about setting the pricing placing using Azure PowerShell, see our [Azure PowerShell documentation]().
+For more information about setting the pricing placing using Azure PowerShell, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan).
 
 ### [REST](#tab/rest)
 
