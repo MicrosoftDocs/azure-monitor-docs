@@ -5,7 +5,7 @@ author: EdB-MSFT
 ms.author: edbaynash
 services: azure-monitor
 ms.topic: conceptual
-ms.date: 01/27/2025
+ms.date: 01/29/2025
 
 # Customer intent: As an Azure administrator I want to learn about the guest metrics and performance counters collected by the Azure Monitor Agent for Linux and Windows virtual machines
 ---
