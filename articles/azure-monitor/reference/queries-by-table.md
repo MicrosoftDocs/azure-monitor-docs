@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 11/04/2024
+ms.date: 01/27/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1703,6 +1703,15 @@ ms.reviewer: lualderm
 - [Computers With Failed Ssh Logons](./queries/Syslog.md#computers-with-failed-ssh-logons)
 - [Computers With Failed Su Logons](./queries/Syslog.md#computers-with-failed-su-logons)
 - [Computers With Failed Sudo Logons](./queries/Syslog.md#computers-with-failed-sudo-logons)
+
+## [TOUserAudits](./queries/TOUserAudits.md)
+
+- [Auditing ToolchainOrchestrator Operations](./queries/TOUserAudits.md#auditing-toolchainorchestrator-operations)
+- [Auditing ToolchainOrchestrator API requests](./queries/TOUserAudits.md#auditing-toolchainorchestrator-api-requests)
+
+## [TOUserDiagnostics](./queries/TOUserDiagnostics.md)
+
+- [Toolchain orchestrator target provider and solution deployment failures](./queries/TOUserDiagnostics.md#toolchain-orchestrator-target-provider-and-solution-deployment-failures)
 
 ## [TSIIngress](./queries/TSIIngress.md)
 
