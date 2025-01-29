@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 01/27/2025
+ms.date: 01/29/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -523,7 +523,7 @@ Microsoft.AppPlatform/Spring
 - [AppPlatformBuildLogs](./tables/appplatformbuildlogs.md)
 - [AppPlatformContainerEventLogs](./tables/appplatformcontainereventlogs.md)
 
-### Azure Stack HCI  
+### Azure Local  
 
 Microsoft.AzureStackHCI/VirtualMachines  
 
@@ -560,7 +560,7 @@ Microsoft.AzureStackHCI/VirtualMachines
 - [HealthStateChangeEvent](./tables/healthstatechangeevent.md)
 - [CommonSecurityLog](./tables/commonsecuritylog.md)
 
-### Azure Stack HCI  
+### Azure Local  
 
 Microsoft.AzureStackHCI/clusters  
 

@@ -3,7 +3,7 @@ title: Azure Monitor features for Kubernetes monitoring
 description: Describes Container insights and Managed Prometheus in Azure Monitor, which work together to monitor your Kubernetes clusters.
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 12/20/2023
+ms.date: 01/29/2025
 ms.reviewer: viviandiec
 ---
 
@@ -29,7 +29,7 @@ Container insights supports the following environments:
 
 - [Azure Kubernetes Service (AKS)](/azure/aks/)
 - Following [Azure Arc-enabled Kubernetes cluster distributions](/azure/azure-arc/kubernetes/validation-program):
-  - AKS on Azure Stack HCI
+  - AKS on Azure Local
   - AKS Edge Essentials
   - Canonical
   - Cluster API Provider on Azure
