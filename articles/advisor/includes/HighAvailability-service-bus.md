@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Service Bus
@@ -20,7 +20,13 @@ When running critical applications, the Service Bus premium tier offers better r
   
 **Potential benefits**: Service Bus premium tier offers better resiliency with CPU and memory resource isolation as well as Geo-disaster recovery  
 
-For more information, see [Service Bus premium messaging tier](https://aka.ms/asb-premium)  
+**Impact:** Low
+  
+For more information, see [Azure Service Bus premium messaging tier - Azure Service Bus ](https://aka.ms/asb-premium)  
+
+ResourceType: microsoft.servicebus/namespaces  
+Recommendation ID: 29765e2c-5286-4039-963f-f8231e56cc3e  
+Subcategory: HighAvailability
 
 <!--29765e2c-5286-4039-963f-f8231e56cc3e_end-->
 
@@ -32,7 +38,13 @@ When running critical applications, enabling the auto scale feature allows you t
   
 **Potential benefits**: Enabling autoscale prevents users from capacity constraints  
 
-For more information, see [Automatically update messaging units of an Azure Service Bus namespace](https://aka.ms/asb-autoscale)  
+**Impact:** High
+  
+For more information, see [Azure Service Bus - Automatically update messaging units - Azure Service Bus ](https://aka.ms/asb-autoscale)  
+
+ResourceType: microsoft.servicebus/namespaces  
+Recommendation ID: 68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106  
+Subcategory: Scalability
 
 <!--68e62f5c-4ed1-4b78-a2a0-4d9a4cebf106_end-->
 

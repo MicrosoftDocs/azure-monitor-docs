@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cache for Redis
@@ -20,7 +20,13 @@ Fragmentation and memory pressure can cause availability incidents. To help in r
   
 **Potential benefits**: Avoid availability incidents when your cache has high memory fragmentation  
 
-For more information, see [How to configure Azure Cache for Redis](https://aka.ms/redis/recommendations/memory-policies)  
+**Impact:** Medium
+  
+For more information, see [How to configure Azure Cache for Redis - Azure Cache for Redis ](https://aka.ms/redis/recommendations/memory-policies)  
+
+ResourceType: microsoft.cache/redis  
+Recommendation ID: 7c380315-6ad9-4fb2-8930-a8aeb1d6241b  
+Subcategory: Other
 
 <!--7c380315-6ad9-4fb2-8930-a8aeb1d6241b_end-->
 
@@ -32,7 +38,13 @@ Geo-Replication enables disaster recovery for cached data, even in the unlikely 
   
 **Potential benefits**: Geo-Replication enables disaster recovery for cached data.  
 
-For more information, see [Configure passive geo-replication for Premium Azure Cache for Redis instances](https://aka.ms/redispremiumgeoreplication)  
+**Impact:** High
+  
+For more information, see [Configure passive geo-replication for Premium Azure Cache for Redis instances - Azure Cache for Redis ](https://aka.ms/redispremiumgeoreplication)  
+
+ResourceType: microsoft.cache/redis  
+Recommendation ID: c9e4a27c-79e6-4e4c-904f-b6612b6cd892  
+Subcategory: DisasterRecovery
 
 <!--c9e4a27c-79e6-4e4c-904f-b6612b6cd892_end-->
 

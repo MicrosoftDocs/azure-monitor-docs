@@ -1,19 +1,18 @@
 ---
-title: Azure Monitor Agent supported operating systems
-description: Identifies the operating systems supported by Azure Monitor Agent.
+title: Azure Monitor Agent Supported Operating Systems
+description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: conceptual
-author: rboucher
-ms.author: robb
 ms.date: 01/08/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
-# Customer intent: As an IT manager, I want to understand the capabilities of Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
+# Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
 
 ---
 
 # Azure Monitor Agent supported operating systems and environments
-This article lists the operating systems supported by [Azure Monitor Agent](./azure-monitor-agent-overview.md). See [Install and manage Azure Monitor Agent](./azure-monitor-agent-manage.md) for details on installing the agent.
+
+This article lists the operating systems that the [Azure Monitor Agent](./azure-monitor-agent-overview.md) supports. For installation information, see [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md).
 
 > [!NOTE]
 > All operating systems listed are assumed to be x64. x86 isn't supported for any operating system.
@@ -28,22 +27,20 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 | Windows Server 2019 Core                                 | ✓ |
 | Windows Server 2016                                      | ✓ |
 | Windows Server 2016 Core                                 | ✓ |
-| Windows Server 2012 R2                                   | ✓ |
-| Windows Server 2012                                      | ✓ |
-| Windows 11 Client and Pro                                | ✓<sup>1,2</sup> |
+| Windows 11 Client and Pro                                | ✓<sup>1, 2</sup> |
 | Windows 11 Enterprise<br>(including multi-session)       | ✓ |
-| Windows 10 1803 (RS4) and higher                         | ✓<sup>1</sup> |
-| Windows 10 Enterprise<br>(including multi-session) and Pro<br>(Server scenarios only)  | ✓ |
+| Windows 10 1803 (RS4) and later                         | ✓<sup>1</sup> |
+| Windows 10 Enterprise<br>(including multi-session) and Pro<br>(server scenarios only)  | ✓ |
 | Azure Stack HCI                                          | ✓ |
 | Windows IoT Enterprise                                   | ✓ |
 
-<sup>1</sup> Requires Azure Monitor agent [client installer](./azure-monitor-agent-windows-client.md).<br>
-<sup>2</sup> Also supported on Arm64-based machines.
+<sup>1</sup> Requires the Azure Monitor Agent [client installer](./azure-monitor-agent-windows-client.md) for Windows client devices.<br>
+<sup>2</sup> Also supported on ARM64-based machines.
 
 ## Linux operating systems
 
 > [!CAUTION]
-> CentOS is a Linux distribution that is nearing End Of Life (EOL) status. Consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
+> CentOS is a Linux distribution that is nearing end of life (EOL) status. Consider your use and planning accordingly. For more information, see the [CentOS EOL guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
@@ -54,7 +51,7 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 | Azure Linux 3.0                                             | ✓<sup>2</sup> |
 | CentOS Linux 8                                              | ✓ |
 | CentOS Linux 7                                              | ✓<sup>2</sup> |
-| CBL-Mariner 2.0                                             | ✓<sup>2,3</sup> |
+| CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
 | Debian 12                                                   | ✓ |
 | Debian 11                                                   | ✓<sup>2</sup> |
 | Debian 10                                                   | ✓ |
@@ -83,37 +80,38 @@ This article lists the operating systems supported by [Azure Monitor Agent](./az
 | Ubuntu 18.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 16.04 LTS                                            | ✓ |
 
-<sup>1</sup> Requires Python (2 or 3) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
-<sup>2</sup> Also supported on Arm64-based machines.<br>
-<sup>3</sup> Does not include the required least 4GB of disk space by default. See the following note. 
+<sup>1</sup> Requires Python (3 or 2) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
+<sup>2</sup> Also supported on ARM64-based machines.<br>
+<sup>3</sup> Does not include the required minimum 4 GB of disk space by default. See the following note. 
 
 > [!NOTE]
-> Machines and appliances that run heavily customized or stripped-down versions of the above distributions and hosted solutions that disallow customization by the user are not supported. Azure Monitor relies on various packages and other baseline functionality that is often removed from such systems. Installation may require some environmental modifications that the appliance vendor normally disallows. For example, [GitHub Enterprise Server](https://docs.github.com/en/enterprise-server/admin/overview/about-github-enterprise-server) is not supported due to heavy customization as well as [documented, license-level disallowance](https://docs.github.com/en/enterprise-server/admin/overview/system-overview#operating-system-software-and-patches) of operating system modification.
-
-> [!NOTE]
-> Disk size in Azure Linux (previously known as CBL-Mariner) is by default lower compared to other Azure VMs, which are about 30 GB. The Azure Monitor Agent requires at least 4 GB disk size in order to install and run successfully. See the [Azure Linux documentation](https://eng.ms/docs/products/mariner-linux/gettingstarted/azurevm/azurevm#disk-size) for more information and instructions on how to increase disk size before installing the agent.
+> - Machines and appliances that run heavily customized or stripped-down versions of the listed distributions and hosted solutions that disallow customization by the user are not supported. Azure Monitor relies on various packages and other baseline functionality that is often removed from these kinds of systems. Installations might require some environment modifications that the appliance vendor normally disallows. For example, [GitHub Enterprise Server](https://docs.github.com/en/enterprise-server/admin/overview/about-github-enterprise-server) is not supported due to heavy customization and because of [documented, license-level disallowance](https://docs.github.com/en/enterprise-server/admin/overview/system-overview#operating-system-software-and-patches) of operating system modification.
+> - Disk size in Azure Linux (previously known as CBL-Mariner) is by default lower compared to other Azure VMs, which are about 30 GB. The Azure Monitor Agent requires at least a 4-GB disk size to install and run successfully. For more information and for instructions on how to increase disk size before you install the agent, see the [Azure Linux documentation](https://eng.ms/docs/products/mariner-linux/gettingstarted/azurevm/azurevm#disk-size).
 
 ## Hardening standards
-Azure Monitoring Agent supports most industry-standard hardening standards and is continuously tested and certified against these standards every release. All Azure Monitor Agent scenarios are designed from the ground up with security in mind.
+
+The Azure Monitor Agent supports most industry-standard hardening standards and is continuously tested and certified against these standards for every release. All Azure Monitor Agent scenarios are explicitly designed for security.
 
 ### Windows hardening
-Azure Monitoring Agent supports all standard Windows hardening standards, including STIG and FIPs, and is FedRamp compliant under Azure Monitor.
+
+The Azure Monitor Agent supports all standard Windows hardening standards, including Security Technical Implementation Guides (STIGs) and Federal Information Processing Standards (FIPS), and is Federal Risk and Authorization Management Program (FedRAMP) compliant under Azure Monitor.
 
 ### Linux hardening
 
 > [!NOTE]
-> Only the Azure Monitoring Agent for Linux supports these hardening standards. The standards are not supported by the [Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md) or the [Azure Diagnostics extension](./diagnostics-extension-overview.md).
+> Only the Azure Monitor Agent for Linux supports the hardening standards described in this section. The standards aren't supported by the [Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md) or by the [Azure Diagnostics extension](./diagnostics-extension-overview.md).
 
-The Azure Monitoring Agent for Linux supports various hardening standards for Linux operating systems and distros. Every release of the agent is tested and certified against the supported hardening standards using images that are publicly available on the Azure Marketplace, including images published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). Only the settings and hardening that are applied to those images are supported. CIS-published images with additional customizations and images customized with settings and hardening that differs from official CIS benchmarks are not supported.
+The Azure Monitor Agent for Linux supports various hardening standards for Linux operating systems and distributions. Every release of the agent is tested and certified against the supported hardening standards by using images that are publicly available in Azure Marketplace, including images published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). Only settings and hardening that apply to those images are supported. CIS-published images that have more customizations and images customized with settings and hardening that differs from official CIS benchmarks aren't supported.
 
 Currently supported hardening standards:
+
 - SELinux
 - CIS level 1 and 2<sup>1</sup>
 - STIG
 - FIPS
 - FedRAMP
 
-<sup>1</sup> Only the below-listed distributions are supported:<br>
+<sup>1</sup> Only the following distributions are supported:<br>
 
 | CIS-hardened operating system | Support |
 |:---|:---:|
@@ -127,24 +125,21 @@ Currently supported hardening standards:
 | Red Hat Enterprise Linux Server 9 | ✓ |
 
 > [!IMPORTANT]  
-> Configuring your Linux Machine system-wide crypto policy to FUTURE mode disables certain cryptographic algorithms and is not recommended. 
-> This policy can prevent communication with backend Azure Monitor services that use best practice crypto policies. 
-> Specifically, the FUTURE policy disables some algorithms that use less than 3072 bits keys, such as SHA-1, RSA, and Diffie-Hellman.
+> Configuring your Linux machine system-wide crypto policy to "FUTURE" does not work with the Azure Monitor Agent. This policy disables certain cryptographic algorithms and prevents communication with back-end Azure Monitor services that use best-practice crypto policies. Specifically, the FUTURE policy disables some algorithms that use less than 3,072-bit keys, such as SHA-1, RSA, and Diffie-Hellman.
+>
+> To identify the current policy setting mode, run the following `update-crypto-policies` command:
+>
+> ```cmd
+> sudo update-crypto-policies --show
+> ```
 
-To identify the current policy setting mode, run the following update-crypto-policies command:
+## On-premises and in other clouds
 
-```cmd
-sudo update-crypto-policies --show
-```
+The Azure Monitor Agent is supported on machines in other clouds and in on-premises environments via [Azure Arc-enabled servers](/azure/azure-arc/servers/overview). The Azure Monitor Agent authenticates to your workspace by using a managed identity. The managed identity is created when you install the [Connected Machine agent](/azure/azure-arc/servers/agent-overview), which is part of Azure Arc. The legacy Log Analytics agent authenticated by using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution.
 
-## On-premises and other clouds
-Azure Monitor agent is supported on machines in other clouds and on-premises with [Azure Arc-enabled servers](/azure/azure-arc/servers/overview). Azure Monitor agent authenticates to your workspace with managed identity, which is created when you install the [Connected Machine agent](/azure/azure-arc/servers/agent-overview), which is part of Azure Arc. The legacy Log Analytics agent authenticated using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution. 
+The Azure Arc agent is used only as an installation mechanism and doesn't add cost or resource consumption. Paid options for Azure Arc are available, but these options aren't required to use the Azure Monitor Agent.
 
-The Azure Arc agent is only used as an installation mechanism and does not add any cost or resource consumption. There are paid options for Azure Arc, but these aren't required for the Azure Monitor agent.
-
-
-
-## Next steps
+## Related content
 
 - [Install the Azure Monitor Agent](azure-monitor-agent-manage.md) on Windows and Linux virtual machines.
 - [Identify requirements and prerequisites](azure-monitor-agent-requirements.md) for Azure Monitor Agent installation.

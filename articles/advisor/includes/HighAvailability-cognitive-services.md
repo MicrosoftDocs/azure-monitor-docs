@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -20,7 +20,13 @@ An Azure OpenAI resource with an older API version lacks the latest features and
   
 **Potential benefits**: Our new API versions contain the latest and greatest features and capabilities.  
 
-For more information, see [Azure OpenAI Service REST API reference](/azure/cognitive-services/openai/reference)  
+**Impact:** Medium
+  
+For more information, see [Azure OpenAI Service REST API reference - Azure OpenAI ](/azure/cognitive-services/openai/reference)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 13fed411-54aa-4923-b830-23b51539d79d  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--13fed411-54aa-4923-b830-23b51539d79d_end-->
 
@@ -32,7 +38,13 @@ If the quota for your resource is exceeded your resource becomes blocked. You ca
   
 **Potential benefits**: If you upgrade to a paid SKU you can use the resource again today.  
 
-For more information, see [Plan and manage costs for Azure AI Foundry](/azure/cognitive-services/plan-manage-costs#pay-as-you-go)  
+**Impact:** Medium
+  
+For more information, see [Plan and manage costs for Azure AI Foundry - Azure AI Foundry ](/azure/cognitive-services/plan-manage-costs#pay-as-you-go)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 3f83aee8-222d-445c-9a46-2af5fe5b4777  
+Subcategory: Scalability
 
 <!--3f83aee8-222d-445c-9a46-2af5fe5b4777_end-->
 

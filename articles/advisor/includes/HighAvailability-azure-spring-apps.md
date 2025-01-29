@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Spring Apps
@@ -20,7 +20,13 @@ We notice you are still using Application Configuration Service Gen1 which will 
   
 **Potential benefits**: Higher stability and availability  
 
-For more information, see [Use Application Configuration Service for Tanzu](https://aka.ms/AsaAcsUpgradeToGen2)  
+**Impact:** Medium
+  
+For more information, see [Use Application Configuration Service for Tanzu - Azure Spring Apps Enterprise plan ](https://aka.ms/AsaAcsUpgradeToGen2)  
+
+ResourceType: microsoft.appplatform/spring  
+Recommendation ID: 39d862c8-445c-40c6-ba59-0e86134df606  
+Subcategory: Other
 
 <!--39d862c8-445c-40c6-ba59-0e86134df606_end-->
 

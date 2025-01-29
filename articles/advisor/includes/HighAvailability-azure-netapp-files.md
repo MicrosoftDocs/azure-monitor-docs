@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -20,7 +20,13 @@ If Azure NetApp Files can't reach assigned AD DS site domain controllers, the do
   
 **Potential benefits**: Optimize DNS Connectivity with Azure Netapp Files  
 
-For more information, see [Understand guidelines for Active Directory Domain Services site design and planning for Azure NetApp Files](https://aka.ms/anfsitescoping)  
+**Impact:** High
+  
+For more information, see [Understand guidelines for Active Directory Domain Services site design and planning ](https://aka.ms/anfsitescoping)  
+
+ResourceType: microsoft.netapp/netappaccounts  
+Recommendation ID: 2e795f35-fce6-48dc-a5ac-6860cb9a0442  
+Subcategory: Other
 
 <!--2e795f35-fce6-48dc-a5ac-6860cb9a0442_end-->
 
@@ -32,7 +38,13 @@ Roles that are required for the management of Azure NetApp Files resources, must
   
 **Potential benefits**: Prevent volume creation failures by ensuring subnet/read permissions  
 
+**Impact:** High
   
+  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 4e112555-7dc0-4f33-85e7-18398ac41345  
+Subcategory: HighAvailability
 
 <!--4e112555-7dc0-4f33-85e7-18398ac41345_end-->
 
@@ -44,7 +56,13 @@ High availability of SAP while used with Azure NetApp Files relies on setting pr
   
 **Potential benefits**: Improve resiliency of SAP Application on ANF  
 
-For more information, see [Use Azure to host and run SAP workload scenarios](/azure/sap/workloads/get-started)  
+**Impact:** High
+  
+For more information, see [Get started with SAP on Azure VMs ](/azure/sap/workloads/get-started)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 8754f0ed-c82a-497e-be31-c9d701c976e1  
+Subcategory: Other
 
 <!--8754f0ed-c82a-497e-be31-c9d701c976e1_end-->
 
@@ -56,7 +74,13 @@ To avoid data or functionality loss during a regional or zonal disaster, impleme
   
 **Potential benefits**: Manage disaster recovery easily with Azure NetApp Files replication features  
 
-For more information, see [Understand data protection and disaster recovery options in Azure NetApp Files](https://aka.ms/anfcrr)  
+**Impact:** High
+  
+For more information, see [Understand data protection and disaster recovery options in Azure NetApp Files ](https://aka.ms/anfcrr)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: cda11061-35a8-4ca3-aa03-b242dcdf7319  
+Subcategory: DisasterRecovery
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_end-->
 
@@ -68,7 +92,13 @@ For Continuous Availability, we recommend enabling Server Message Block (SMB) vo
   
 **Potential benefits**: Prevent application disruptions by enabling Continuous Availability for SMB volumes  
 
-For more information, see [Enable Continuous Availability on existing SMB volumes](https://aka.ms/anfdoc-continuous-availability)  
+**Impact:** High
+  
+For more information, see [Enable Continuous Availability on existing Azure NetApp Files SMB volumes ](https://aka.ms/anfdoc-continuous-availability)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: e4bebd74-387a-4a74-b757-475d2d1b4e3e  
+Subcategory: HighAvailability
 
 <!--e4bebd74-387a-4a74-b757-475d2d1b4e3e_end-->
 

@@ -448,7 +448,7 @@ The following steps walk you through the process of creating [standard tests](#t
     -Location $pingTest.Location -Kind 'standard' -Tag @{ "hidden-link:$componentId" = "Resource" } -TestName $newStandardTestName `
     -RequestUrl $pingTestRequest.Url -RequestHttpVerb "GET" -GeoLocation $pingTest.PropertiesLocations -Frequency $pingTest.Frequency `
     -Timeout $pingTest.Timeout -RetryEnabled:$pingTest.RetryEnabled -Enabled:$pingTest.Enabled `
-    -RequestParseDependent:($pingTestRequest.ParseDependentRequests -eq [bool]::TrueString);
+    -RequestParseDependent:($pingTestRequest.ParseDependentRequests -eq [bool]::TrueString) -RuleSslCheck:$false;
     ```
 
     The new standard test doesn't have alert rules by default, so it doesn't create noisy alerts. No changes are made to your URL ping test so you can continue to rely on it for alerts.

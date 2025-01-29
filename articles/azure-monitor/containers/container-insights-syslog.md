@@ -72,7 +72,7 @@ The following table provides different examples of log queries that retrieve Sys
 ## Next steps
 
 Once setup customers can start sending Syslog data to the tools of their choice
-- [Send Syslog to Microsoft Sentinel](/azure/sentinel/connect-syslog)
+- [Send Syslog to Microsoft Sentinel](/azure/sentinel/connect-cef-syslog-ama)
 - [Export data from Log Analytics](/azure/azure-monitor/logs/logs-data-export?tabs=portal)
 - [Syslog record properties](/azure/azure-monitor/reference/tables/syslog)
 

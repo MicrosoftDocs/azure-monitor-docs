@@ -3,7 +3,7 @@ title: Azure Advisor portal basics
 description: Learn how to get started with Azure Advisor through the Azure portal, get and manage recommendations, and configure Advisor settings.
 ms.service: azure
 ms.topic: article
-ms.date: 03/07/2024
+ms.date: 12/02/2024
 
 ---
 
@@ -96,13 +96,24 @@ Use the **VM/VMSS right sizing** tab to adjust Advisor virtual machine (VM) and 
 
    :::image type="content" source="./media/advisor-get-started/advisor-configure-rules.png" alt-text="Screenshot that shows an Advisor configuration option for VM/VMSS sizing rules." lightbox="./media/advisor-get-started/advisor-configure-rules.png":::
 
-## Related content
+## Related articles
 
-To learn more about Advisor, see:
+For more information about Azure Advisor, see the following articles.
 
-- [Introduction to Azure Advisor](advisor-overview.md)
-- [Advisor cost recommendations](advisor-cost-recommendations.md)
-- [Advisor security recommendations](advisor-security-recommendations.md)
-- [Advisor reliability recommendations](advisor-high-availability-recommendations.md)
-- [Advisor operational excellence recommendations](advisor-operational-excellence-recommendations.md)
-- [Advisor performance recommendations](advisor-performance-recommendations.md)
+*   [Introduction to Azure Advisor](./advisor-overview.md)
+
+*   [Use Advisor score](./azure-advisor-score.md)
+
+*   [Azure Advisor REST API](/rest/api/advisor)
+
+For more information about specific Advisor recommendations, see the following articles.
+
+*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
+
+*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
+
+*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
+
+*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
+
+*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)

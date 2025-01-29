@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -20,7 +20,13 @@ Virtual machines in an Availability Set with disks that share either storage acc
   
 **Potential benefits**: Ensure business continuity through data resilience  
 
-For more information, see [https://aka.ms/aa_avset_manageddisk_learnmore](https://aka.ms/aa_avset_manageddisk_learnmore)  
+**Impact:** High
+  
+  
+
+ResourceType: microsoft.compute/availabilitysets  
+Recommendation ID: 02cfb5ef-a0c1-4633-9854-031fbda09946  
+Subcategory: HighAvailability
 
 <!--02cfb5ef-a0c1-4633-9854-031fbda09946_end-->
 
@@ -32,7 +38,13 @@ Azure Disks with ZRS provide synchronous replication of data across three Availa
   
 **Potential benefits**: By designing your applications to use ZRS Disks, your data is replicated across 3 Availability Zones, making your disk resilient to a zonal outage  
 
-For more information, see [Convert a disk from LRS to ZRS](https://aka.ms/migratedisksfromLRStoZRS)  
+**Impact:** High
+  
+For more information, see [Convert a disk from LRS to ZRS - Azure Virtual Machines ](https://aka.ms/migratedisksfromLRStoZRS)  
+
+ResourceType: microsoft.compute/disks  
+Recommendation ID: d4102c0f-ebe3-4b22-8fe0-e488866a87af  
+Subcategory: HighAvailability
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_end-->
 
@@ -44,7 +56,13 @@ Virtual machines are resilient to regional outages when replication to another r
   
 **Potential benefits**: Ensure business continuity in case of any Azure region outage  
 
-For more information, see [Quickstart: Set up disaster recovery to a secondary Azure region for an Azure VM](https://aka.ms/azure-site-recovery-dr-azure-vms)  
+**Impact:** Medium
+  
+For more information, see [Set up Azure VM disaster recovery to a secondary region with Azure Site Recovery - Azure Site Recovery ](https://aka.ms/azure-site-recovery-dr-azure-vms)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745  
+Subcategory: DisasterRecovery
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
 
@@ -56,21 +74,15 @@ IP address-based allowlisting is a vulnerable way to control outbound connectivi
   
 **Potential benefits**: Ensures better security, stability and resiliency than hard coded IP Addresses  
 
-For more information, see [About networking in Azure virtual machine disaster recovery](https://aka.ms/azure-site-recovery-using-service-tags)  
+**Impact:** High
+  
+For more information, see [About networking in Azure VM disaster recovery with Azure Site Recovery - Azure Site Recovery ](https://aka.ms/azure-site-recovery-using-service-tags)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: bcfeb92b-fe93-4cea-adc6-e747055518e9  
+Subcategory: Other
 
 <!--bcfeb92b-fe93-4cea-adc6-e747055518e9_end-->
-
-<!--58d6648d-32e8-4346-827c-4f288dd8ca24_begin-->
-
-#### Upgrade the standard disks attached to your premium-capable VM to premium disks  
-  
-Using Standard SSD disks with premium VMs may lead to suboptimal performance and latency issues. We recommend that you consider upgrading the standard disks to premium disks. For any Single Instance Virtual Machine using premium storage for all Operating System Disks and Data Disks, we guarantee Virtual Machine Connectivity of at least 99.9%. When choosing to upgrade, there are two factors to consider. The first factor is that upgrading requires a VM reboot and that takes 3-5 minutes to complete. The second is if the VMs in the list are mission-critical production VMs, evaluate the improved availability against the cost of premium disks.  
-  
-**Potential benefits**: Improved availability with single VM SLA available only when all disks are premium  
-
-For more information, see [Azure managed disk types](https://aka.ms/aa_storagestandardtopremium_learnmore)  
-
-<!--58d6648d-32e8-4346-827c-4f288dd8ca24_end-->
 
 <!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_begin-->
 
@@ -80,7 +92,13 @@ Azure Managed Disks provide higher resiliency, simplified service management, hi
   
 **Potential benefits**: Leverage higher resiliency and other benefits of Managed Disks  
 
-For more information, see [Introduction to Azure managed disks](https://aka.ms/md_overview)  
+**Impact:** High
+  
+For more information, see [Overview of Azure Disk Storage - Azure Virtual Machines ](https://aka.ms/md_overview)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 57ecb3cd-f2b4-4cad-8b3a-232cca527a0b  
+Subcategory: HighAvailability
 
 <!--57ecb3cd-f2b4-4cad-8b3a-232cca527a0b_end-->
 
@@ -92,7 +110,13 @@ Virtual Machines (VMs) in your subscription are running on images scheduled for 
   
 **Potential benefits**: Minimize any potential disruptions to your VM workloads  
 
+**Impact:** High
+  
 For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 11f04d70-5bb3-4065-b717-1f11b2e050a8  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--11f04d70-5bb3-4065-b717-1f11b2e050a8_end-->
 
@@ -104,7 +128,13 @@ Virtual Machines (VMs) in your subscription are running on images scheduled for 
   
 **Potential benefits**: Minimize any potential disruptions to your VM workloads  
 
+**Impact:** High
+  
 For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 937d85a4-11b2-4e13-a6b5-9e15e3d74d7b  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--937d85a4-11b2-4e13-a6b5-9e15e3d74d7b_end-->
 
@@ -116,7 +146,13 @@ Virtual Machines (VMs) in your subscription are running on images scheduled for 
   
 **Potential benefits**: Minimize any potential disruptions to your VM workloads  
 
+**Impact:** High
+  
 For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 681acf17-11c3-4bdd-8f71-da563c79094c  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--681acf17-11c3-4bdd-8f71-da563c79094c_end-->
 
@@ -128,21 +164,15 @@ For a session host to deploy and register to Windows Virtual Desktop (WVD) prope
   
 **Potential benefits**: Ensure successful deployment and session host functionality when using Windows Virtual Desktop service  
 
-For more information, see [Required FQDNs and endpoints for Azure Virtual Desktop](/azure/virtual-desktop/safe-url-list)  
+**Impact:** Medium
+  
+For more information, see [Required FQDNs and endpoints for Azure Virtual Desktop ](/azure/virtual-desktop/safe-url-list)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 53e0a3cb-3569-474a-8d7b-7fd06a8ec227  
+Subcategory: Other
 
 <!--53e0a3cb-3569-474a-8d7b-7fd06a8ec227_end-->
-
-<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_begin-->
-
-#### Align location of resource and resource group  
-  
-To reduce the impact of region outages, co-locate your resources with their resource group in the same region. This way, Azure Resource Manager stores metadata related to all resources within the group in one region. By co-locating, you reduce the chance of being affected by region unavailability.  
-  
-**Potential benefits**: Reduce write failures due to region outages  
-
-For more information, see [What is Azure Resource Manager?](/azure/azure-resource-manager/management/overview#resource-group-location-alignment)  
-
-<!--00e4ac6c-afa3-4578-a021-5f15e18850a2_end-->
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_begin-->
 
@@ -152,21 +182,35 @@ Availability Zones (AZ) in Azure help protect your applications and data from da
   
 **Potential benefits**: Usage of zonal VMs protect your apps from zonal outage in any other zones.  
 
-For more information, see [Move Azure single instance VMs from regional to zonal target availability zones](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
+**Impact:** High
+  
+For more information, see [Tutorial - Move Azure single instance Virtual Machines from regional to zonal availability zones - Azure Virtual Machines ](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 066a047a-9ace-45f4-ac50-6325840a6b00  
+Subcategory: HighAvailability
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_end-->
 
-<!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_begin-->
+<!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_begin-->
 
-#### Migrate to Virtual Machine Scale Sets Flex  
+#### Convert Standard to Premium disk for higher uptime  
   
-Migrate workloads from virtual machine (VM) to Virtual Machine Scale Sets Flex for deployment across zones or within the same zone across different fault domains. The platform plans to deprecate availability sets.  
+Use a Premium SSD managed disk in a Single Instance virtual machine for the highest uptime. Conversion is allowed from a Standard managed disk to a Premium managed disk.  
   
-**Potential benefits**: Availability across zones or across different fault domains  
+**Potential benefits**: Enhanced performance, configurability, and uptime  
 
-For more information, see [Migrate deployments and resources to Virtual Machine Scale Sets in Flexible orchestration](https://aka.ms/MigrateToVMSSFlex)  
+**Impact:** Low
+  
+For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines ](https://aka.ms/disks-high-availability)  
 
-<!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_end-->
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 2b5cf6e5-2792-49b2-9ec0-0e901be6488b  
+Subcategory: BusinessContinuity
+
+<!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
+
+
 
 <!--490262e8-313c-431f-a143-a9c2cadba41b_begin-->
 
@@ -176,7 +220,13 @@ Set the DNS Servers for the VM at the Virtual Network level to ensure consistenc
   
 **Potential benefits**: Ensures consistency and reliable name resolution  
 
-For more information, see [Name resolution for resources in Azure virtual networks](https://aka.ms/azvnetnameres)  
+**Impact:** Low
+  
+For more information, see [Name resolution for resources in Azure virtual networks ](https://aka.ms/azvnetnameres)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 490262e8-313c-431f-a143-a9c2cadba41b  
+Subcategory: Other
 
 <!--490262e8-313c-431f-a143-a9c2cadba41b_end-->
 
@@ -188,9 +238,35 @@ Secure your data by enabling backups for your virtual machines.
   
 **Potential benefits**: Protection of your Virtual Machines  
 
-For more information, see [What is the Azure Backup service?](/azure/backup/backup-overview)  
+**Impact:** Medium
+  
+For more information, see [What is Azure Backup? - Azure Backup ](/azure/backup/backup-overview)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 651c7925-17a3-42e5-85cd-73bd095cf27f  
+Subcategory: DisasterRecovery
 
 <!--651c7925-17a3-42e5-85cd-73bd095cf27f_end-->
+
+<!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_begin-->
+
+#### Add additional VM or use Premium disks for higher uptime  
+  
+Add a second instance VM to Availability Set or upgrade to Premium SSD managed disks for highest uptime.  
+  
+**Potential benefits**: Enhanced performance, configurability, and uptime  
+
+**Impact:** Medium
+  
+For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines ](https://aka.ms/disks-high-availability)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: e5e707f2-f41f-4aa6-bccf-3fb9748e5b66  
+Subcategory: BusinessContinuity
+
+<!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_end-->
+
+
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_begin-->
 
@@ -200,7 +276,13 @@ VMSS in your subscription are running on images that have been scheduled for dep
   
 **Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
 
+**Impact:** High
+  
 For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 3b739bd1-c193-4bb6-a953-1362ee3b03b2  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--3b739bd1-c193-4bb6-a953-1362ee3b03b2_end-->
 
@@ -212,7 +294,13 @@ VMSS in your subscription are running on images that have been scheduled for dep
   
 **Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
 
+**Impact:** High
+  
 For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 3d18d7cd-bdec-4c68-9160-16a677d0f86a  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--3d18d7cd-bdec-4c68-9160-16a677d0f86a_end-->
 
@@ -224,7 +312,13 @@ VMSS in your subscription are running on images that have been scheduled for dep
   
 **Potential benefits**: Minimize any potential disruptions to your Virtual Machine Scale Set workloads  
 
+**Impact:** High
+  
 For more information, see [Deprecated Azure Marketplace images - Azure Virtual Machines ](https://aka.ms/DeprecatedImagesFAQ)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 44abb62e-7789-4f2f-8001-fa9624cb3eb3  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--44abb62e-7789-4f2f-8001-fa9624cb3eb3_end-->
 
@@ -236,20 +330,33 @@ Enabling automatic instance repairs helps achieve high availability by maintaini
   
 **Potential benefits**: Increase resiliency by automating repair of failed instances  
 
-For more information, see [Automatic instance repairs for Azure Virtual Machine Scale Sets](https://aka.ms/vmss-automatic-repair)  
+**Impact:** High
+  
+For more information, see [Automatic instance repairs with Azure Virtual Machine Scale Sets - Azure Virtual Machine Scale Sets ](https://aka.ms/vmss-automatic-repair)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: b4d988a9-85e6-4179-b69c-549bdd8a55bb  
+Subcategory: HighAvailability
 
 <!--b4d988a9-85e6-4179-b69c-549bdd8a55bb_end-->
 
-<!--ce8bb934-ce5c-44b3-a94c-1836fa7a269a_begin-->
+<!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_begin-->
 
-#### Configure Virtual Machine Scale Set automated scaling by metrics  
+#### Upgrade to Standard SSD OS disk  
   
-Optimize resource utilization, reduce costs, and enhance application performance with custom autoscale based on a metric. Automatically add Virtual Machine instances based on real-time metrics such as CPU, memory, and disk operations. Ensure high availability while maintaining cost-efficiency.  
+Upgrade the operating system (OS) disk from Standard HDD to Standard SSD for increased uptime of single-instance virtual machine and improved input/output operations and throughput.  
   
-**Potential benefits**: Ensures high availability while maintaining cost-efficiency  
+**Potential benefits**: Boost single-instance VM uptime from 95% to 99.5%.  
 
-For more information, see [Overview of autoscale with Azure Virtual Machine Scale Sets](https://aka.ms/VMSSCustomAutoscaleMetric)  
+**Impact:** Medium
+  
+For more information, see [Azure Disks Standard SSD billable transaction cap blog](https://aka.ms/billedcapsblog)  
 
-<!--ce8bb934-ce5c-44b3-a94c-1836fa7a269a_end-->
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
+Subcategory: HighAvailability
+
+<!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
+
 
 <!--articleBody-->

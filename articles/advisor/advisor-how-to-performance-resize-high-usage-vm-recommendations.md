@@ -2,7 +2,7 @@
 title: Improve the performance of highly used VMs using Azure Advisor
 description: Use Azure Advisor to improve the performance of your Azure virtual machines with consistent high utilization.
 ms.topic: article
-ms.date: 10/27/2022
+ms.date: 12/02/2024
 ---
 
 # Improve the performance of highly used VMs using Azure Advisor
@@ -50,18 +50,26 @@ In such cases, use the Dismiss/Postpone options associated with the recommendati
 
 We're constantly working on improving these recommendations. Feel free to share feedback on the [Advisor forum](https://aka.ms/advisorfeedback).
 
-## Next steps
+## Related articles
 
-For more information about Azure Advisor, go to:
+For more information about Azure Advisor, see the following articles.
 
-* [Introduction to Azure Advisor](advisor-overview.md)
-* [Azure Advisor portal basics](advisor-get-started.md)
-* [Advisor score](azure-advisor-score.md)
+*   [Introduction to Azure Advisor](./advisor-overview.md)
 
-To learn more about specific Advisor recommendations, see:
+*   [Azure Advisor portal basics](./advisor-get-started.md)
 
-* [Reliability](advisor-reference-reliability-recommendations.md)
-* [Security](advisor-security-recommendations.md)
-* [Performance](advisor-reference-performance-recommendations.md)
-* [Cost](advisor-reference-cost-recommendations.md)
-* [Operational excellence](advisor-reference-operational-excellence-recommendations.md)
+*   [Use Advisor score](./azure-advisor-score.md)
+
+*   [Azure Advisor REST API](/rest/api/advisor)
+
+For more information about specific Advisor recommendations, see the following articles.
+
+*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md)
+
+*   [Reduce service costs by using Azure Advisor](./advisor-reference-cost-recommendations.md)
+
+*   [Performance recommendations](./advisor-reference-performance-recommendations.md)
+
+*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
+
+*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md)

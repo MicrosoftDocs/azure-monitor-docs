@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 11/04/2024
+ms.date: 01/27/2025
 ---
 
 # Azure Monitor Log Analytics log tables organized by category
@@ -174,6 +174,7 @@ ms.date: 11/04/2024
 - [PowerPlatformDlpActivity](./tables/powerplatformdlpactivity.md)
 - [REDConnectionEvents](./tables/redconnectionevents.md)
 - [SentinelAudit](./tables/sentinelaudit.md)
+- [TOUserAudits](./tables/touseraudits.md)
 - [VCoreMongoRequests](./tables/vcoremongorequests.md)
 - [VIAudit](./tables/viaudit.md)
 - [Windows365AuditLogs](./tables/windows365auditlogs.md)
@@ -267,6 +268,7 @@ ms.date: 11/04/2024
 - [ASCAuditLogs](./tables/ascauditlogs.md)
 - [ASCDeviceEvents](./tables/ascdeviceevents.md)
 - [ATCExpressRouteCircuitIpfix](./tables/atcexpressroutecircuitipfix.md)
+- [ATCMicrosoftPeeringMetadata](./tables/atcmicrosoftpeeringmetadata.md)
 - [ATCPrivatePeeringMetadata](./tables/atcprivatepeeringmetadata.md)
 - [AVNMConnectivityConfigurationChange](./tables/avnmconnectivityconfigurationchange.md)
 - [AVNMIPAMPoolAllocationChange](./tables/avnmipampoolallocationchange.md)
@@ -540,6 +542,8 @@ ms.date: 11/04/2024
 - [SynapseSqlPoolRequestSteps](./tables/synapsesqlpoolrequeststeps.md)
 - [SynapseSqlPoolSqlRequests](./tables/synapsesqlpoolsqlrequests.md)
 - [SynapseSqlPoolWaits](./tables/synapsesqlpoolwaits.md)
+- [TOUserAudits](./tables/touseraudits.md)
+- [TOUserDiagnostics](./tables/touserdiagnostics.md)
 - [TSIIngress](./tables/tsiingress.md)
 - [VIIndexing](./tables/viindexing.md)
 - [WebPubSubConnectivity](./tables/webpubsubconnectivity.md)
