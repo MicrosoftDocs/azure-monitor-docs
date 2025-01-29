@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 11/04/2024
+ms.date: 01/27/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -585,6 +585,7 @@ Microsoft.NetworkFunction/AzureTrafficCollectors
 - [AzureMetrics](./tables/azuremetrics.md)
 - [ATCExpressRouteCircuitIpfix](./tables/atcexpressroutecircuitipfix.md)
 - [ATCPrivatePeeringMetadata](./tables/atcprivatepeeringmetadata.md)
+- [ATCMicrosoftPeeringMetadata](./tables/atcmicrosoftpeeringmetadata.md)
 
 ### Azure Virtual Network Manager  
 
@@ -1526,6 +1527,8 @@ Microsoft.ToolchainOrchestrator/diagnostics
 
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
+- [TOUserAudits](./tables/touseraudits.md)
+- [TOUserDiagnostics](./tables/touserdiagnostics.md)
 
 ### Traffic Manager Profiles  
 
