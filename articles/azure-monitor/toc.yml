@@ -356,6 +356,8 @@ items:
     items:
     - name: Best practices
       href: best-practices-vm.md
+    - name: Virtual machine guest performance counters
+      href: vm/virtual-machine-guest-metrics.md  
     - name: Deployment guide
       items:
       - name: Overview
