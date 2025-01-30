@@ -47,11 +47,11 @@ The issues details look and feel has been updated, for better readability.
 You can view all planned maintenance.
 
 ## Health Advisories
-The following user interface(s) will be updated to the new experience.
+You will see Health Advisories based on your access level.
 
 ## Resource Health
-This shows all the links to page
+This page watches your resource and tells you if it's running as expected. There are links that will open directly to information about the health of your selected resource. 
 
 ## Alerts
-Open to see all the alerts - link to page
+Open this page to view any active Health Alerts and click on the link supplied for more details.
 
