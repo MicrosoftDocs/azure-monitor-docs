@@ -32,7 +32,7 @@ In this case, open the data collection rule (DCR) created when you enabled Manag
 
 > [!NOTE]
 > If your AKS cluster isn't in the same region as your Azure Monitor workspace, then you need to [create another DCE](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) in the same region as the AKS cluster.
-> Open the data collection rule (DCR) created when you create the Azure Monitor Workspace. This DCR have the same name as your Azure Monitor Workspace. On the **Data collection endpoint** dropdown, select the DCE created in the same region as the AKS cluster.
+> Open the data collection rule (DCR) created when you create the Azure Monitor Workspace. This DCR has the same name as your Azure Monitor Workspace. On the **Data collection endpoint** dropdown, select the DCE created in the same region as the AKS cluster.
 
 
 :::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" alt-text="A screenshot show the data collection rules page for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" :::
