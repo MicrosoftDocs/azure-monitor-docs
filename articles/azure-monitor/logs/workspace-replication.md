@@ -110,12 +110,10 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 
 ## Pricing model
 
-There's no charge for enabling workspace replication. The only extra charge you incur is for the ingestion and retention of replicated data in two regions.
-
-After you enable workspace replication, you're charged for the replication of all data that's ingested to your workspace. 
+When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace. 
 
 > [!IMPORTANT]
-> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's system data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the system data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
+> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
 
 
 ## Permissions required
@@ -186,23 +184,23 @@ Use the `GET` command to verify that the workspace provisioning state changes fr
 > [!NOTE]
 > When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
 
-### Associate data collection rules with the system data collection endpoint
+### Associate data collection rules with the workspace data collection endpoint
 
 Azure Monitor Agent, the Logs Ingestion API, and Azure Event Hubs collect data and send it to the destination you specify based on how you set up your [data collection rules (DCR)](../essentials/data-collection-rule-overview.md).
 
-If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the system data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace's system data collection endpoint enable replication and switchover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
+If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the workspace data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace data collection endpoint enable replication and switchover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
 
-To replicate data you collect using data collection rules, associate your data collection rules to the system data collection endpoint for your Log Analytics workspace:
+To replicate data you collect using data collection rules, associate your data collection rules to the workspace data collection endpoint:
 
 1. In the Azure portal, select **Data collection rules**.
 1. From the **Data collection rules** screen, select a data collection rule that sends data to your primary Log Analytics workspace.
-1. On the data collection rule **Overview** page, select **Configure DCE** and select the system data collection endpoint from the available list:
+1. On the data collection rule **Overview** page, select **Configure DCE** and select the workspace data collection endpoint from the available list:
 
    :::image type="content" source="media/workspace-replication/configure-dce.png" alt-text="Screenshot that shows how to configure a data collection endpoint for an existing data collection rule in the Azure portal." lightbox="media/workspace-replication/configure-dce.png":::
    For details about the System DCE, check the workspace object properties.
 
 > [!IMPORTANT]
-> Data collection rules connected to a workspace's system data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
+> Data collection rules connected to a workspace data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
 
 ### Disable workspace replication
 
