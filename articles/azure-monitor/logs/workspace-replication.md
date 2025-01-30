@@ -110,7 +110,7 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 
 ## Pricing model
 
-There's no charge for enabling workspace replication. The only extra charge you incur is for ingesting and retaining replicated data in two regions.
+There's no charge for enabling workspace replication. The only extra charge you incur is for the ingestion and retention of replicated data in two regions.
 
 After you enable workspace replication, you're charged for the replication of all data that's ingested to your workspace. 
 
