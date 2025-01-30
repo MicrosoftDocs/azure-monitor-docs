@@ -115,7 +115,7 @@ There's no charge for enabling workspace replication. The only extra charge you 
 After you enable workspace replication, you're charged for the replication of all data that's ingested to your workspace. 
 
 > [!IMPORTANT]
-> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's system data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the system data collection endpoint, you're still charged for all the data you ingest to your workspace, even though that the data isn't replicated.  
+> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's system data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the system data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
 
 
 ## Permissions required
@@ -130,9 +130,6 @@ After you enable workspace replication, you're charged for the replication of al
 ## Enable and disable workspace replication
 
 You enable and disable workspace replication by using a REST command. The command triggers a long running operation, which means that it can take a few minutes for the new settings to apply. After you enable replication, it can take up to one hour for all tables (data types) to begin replicating, and some data types might start replicating before others. Changes you make to table schemas after you enable workspace replication - for example, new custom log tables or custom fields you create, or diagnostic logs set up for new resource types - can take up to one hour to start replicating.
-
-> [!IMPORTANT]
-> Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
 
 ### Enable workspace replication
 
