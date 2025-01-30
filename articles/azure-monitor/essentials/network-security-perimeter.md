@@ -4,7 +4,7 @@ description: Details on adding Azure Monitor resources to your network security 
 ms.topic: conceptual
 author: bwren
 ms.author: bwren
-ms.date: 11/19/2024
+ms.date: 01/30/2025
 ---
 
 # Configure Azure Monitor with Network Security Perimeter (Preview)
@@ -116,7 +116,7 @@ Use the following process to add an NSP inbound access rule using the Azure port
 ## Add an NSP Outbound Access Rule
 [Data export in a Log Analytics workspace](../logs/logs-data-export.md) lets you continuously export data for particular tables in your workspace. You can export to an Azure Storage Account or Azure Event Hubs as the data arrives to an Azure Monitor pipeline.
 
-A Log analytics workspace within a security perimeter can only connect to storage and event hubs in the same perimeter. Other destinations require an outbound access rule based on the Fully Qualified Domain Name (FQDN) of the destination. For example, allow outbound access from any service associated with your Network Security Perimeter to an FQDN such as mystorageaccount.blob.core.windows.net.
+A Log analytics workspace within a security perimeter can only connect to storage and event hubs in the same perimeter. Other destinations require an outbound access rule based on the Fully Qualified Domain Name (FQDN) of the destination.
 
 Use the following process to add an NSP outbound access rule using the Azure portal:
 
@@ -139,6 +139,12 @@ Use the following process to add an NSP outbound access rule using the Azure por
  
     :::image type="content" source="./media/network-security-perimeter/outbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new outbound access rule in the Azure portal." lightbox="./media/network-security-perimeter/outbound-access-rule-new.png"::: 
 
+## Current limitations
+
+- For Log Analytics export scenarios to function correctly with storage accounts, both the Log Analytics workspace and the storage accounts must be part of the same perimeter.
+- Global action groups resource do not support NSP. You must create regional action groups resources that will support NSP.
+- Cross-resource queries are blocked for Log Analytics Workspaces associated with NSP. This includes  accessing the workspace through an ADX cluster.
+- NSP access logs are sampled every 30 minutes.
 
 ## Next steps
 
