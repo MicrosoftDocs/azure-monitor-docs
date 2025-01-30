@@ -61,7 +61,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
    - Change workspace retention, pricing tier, daily cap, and so on
    - Change network settings
    - Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
-- During switchover, solution data is ingested from **all** agents. The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover.
+- The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents. 
 - The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Sentinel. 
 - These features are currently not supported or only partially supported:
 
@@ -106,7 +106,7 @@ Various services and features that use Log Analytics workspaces are compatible w
 
 For example, regional network issues that cause log ingestion latency can impact Sentinel customers. Customers that use replicated workspaces can switch over to their secondary region to continue working with their Log Analytics workspace and Sentinel. However, if the network issue impacts the Sentinel service health, switching to another region doesn't mitigate the issue.
 
-Some Azure Monitor experiences, including Application Insights and VM Insights, are currently only partially compatible with workspace replication and switchover. For the full list, see [Restrictions and limitations](#restrictions-and-limitations).
+Some Azure Monitor experiences, including Application Insights and VM Insights, are currently only partially compatible with workspace replication and switchover. For the full list, see [Deployment considerations](#deployment-considerations).
 
 ## Permissions required
 
@@ -246,7 +246,7 @@ Service Health notifications are useful for service-related issues. To identify 
 
 ## Switch over to your secondary workspace
 
-During switchover, most operations work the same as when you use the primary workspace and region. However, some operations have slightly different behavior or are blocked. For more information, see [Restrictions and limitations](#restrictions-and-limitations).
+During switchover, most operations work the same as when you use the primary workspace and region. However, some operations have slightly different behavior or are blocked. For more information, see [Deployment considerations](#deployment-considerations).
 
 ### When should I switch over?
 
