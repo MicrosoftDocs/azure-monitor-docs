@@ -29,6 +29,12 @@ Azure Network Security Perimeter is currently in public preview. Network Securit
 - West US
 - West US 2
 
+## Current limitations
+
+- For Log Analytics export scenarios to function correctly with storage accounts, both the Log Analytics workspace and the storage accounts must be part of the same perimeter.
+- Global action groups resource do not support NSP. You must create regional action groups resources that will support NSP.
+- Cross-resource queries are blocked for Log Analytics Workspaces associated with NSP. This includes  accessing the workspace through an ADX cluster.
+- NSP access logs are sampled every 30 minutes.
 
 ## Supported components
 The components of Azure Monitor that are supported with a network security perimeter are listed in the following table with their minimum API version.
@@ -139,12 +145,7 @@ Use the following process to add an NSP outbound access rule using the Azure por
  
     :::image type="content" source="./media/network-security-perimeter/outbound-access-rule-new.png" alt-text="Screenshot of network security perimeter profile new outbound access rule in the Azure portal." lightbox="./media/network-security-perimeter/outbound-access-rule-new.png"::: 
 
-## Current limitations
 
-- For Log Analytics export scenarios to function correctly with storage accounts, both the Log Analytics workspace and the storage accounts must be part of the same perimeter.
-- Global action groups resource do not support NSP. You must create regional action groups resources that will support NSP.
-- Cross-resource queries are blocked for Log Analytics Workspaces associated with NSP. This includes  accessing the workspace through an ADX cluster.
-- NSP access logs are sampled every 30 minutes.
 
 ## Next steps
 
