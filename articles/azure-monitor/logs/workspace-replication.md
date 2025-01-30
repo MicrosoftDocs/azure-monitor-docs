@@ -108,6 +108,16 @@ For example, regional network issues that cause log ingestion latency can impact
 
 Some Azure Monitor experiences, including Application Insights and VM Insights, are currently only partially compatible with workspace replication and switchover. For the full list, see [Deployment considerations](#deployment-considerations).
 
+## Pricing model
+
+There's no charge for enabling workspace replication. The only additional charge you encur is for ingesting and retaining replicated data in two regions.
+
+After you enable workspace replication, you're charged for the replication of all data that's ingested to your workspace. 
+
+> [!IMPORTANT]
+> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's system data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the system data collection endpoint, you'll still be charged for all the data you ingest to your workspace, even though that don't isn't replicated.  
+
+
 ## Permissions required
 
 | Action | Permissions required |
