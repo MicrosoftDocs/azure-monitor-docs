@@ -50,7 +50,7 @@ You can view all planned maintenance.
 The following user interface(s) will be updated to the new experience.
 
 ## Resource Health
-This shows all the  link to page
+This shows all the links to page
 
 ## Alerts
 Open to see all the alerts - link to page
