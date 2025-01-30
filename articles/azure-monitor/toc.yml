@@ -28,6 +28,18 @@ items:
   - name: At-scale monitoring solutions
     displayName: scale, at-scale, monitor at-scale, monitor at scale, enterprise monitoring
     href: monitor-at-scale.md
+  - name: Best practices
+    items:
+    - name: Reliability
+      href: best-practices-reliability.md
+    - name: Security
+      href: best-practices-security.md
+    - name: Cost optimization
+      href: best-practices-cost.md    
+    - name: Operational excellence
+      href: best-practices-operation.md
+    - name: Performance efficiency
+      href: best-practices-performance.md
 - name: Monitoring scenarios
   items:
   - name: Monitor an Azure resource
@@ -344,6 +356,8 @@ items:
     items:
     - name: Best practices
       href: best-practices-vm.md
+    - name: Virtual machine guest performance counters
+      href: vm/virtual-machine-guest-metrics.md  
     - name: Deployment guide
       items:
       - name: Overview
