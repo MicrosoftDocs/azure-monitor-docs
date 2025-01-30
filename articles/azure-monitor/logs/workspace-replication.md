@@ -62,7 +62,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
    - Change network settings
    - Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
 - The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents. 
-- The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Sentinel. 
+- The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel. 
 - These features are currently not supported or only partially supported:
 
     | Feature | Support |
@@ -100,22 +100,22 @@ These region groups and regions are currently supported:
 
 Different customers have different data residency requirements, so it's important that you control where your data is stored. Azure Monitor processes and stores logs in the primary and secondary regions that you choose. For more information, see [Supported regions](#supported-regions).
 
-### Support for Sentinel and other services
+### Support for Microsoft Sentinel and other services
 
 Various services and features that use Log Analytics workspaces are compatible with workspace replication and switchover. These services and features continue to work when you switch over to the secondary workspace.
 
-For example, regional network issues that cause log ingestion latency can impact Sentinel customers. Customers that use replicated workspaces can switch over to their secondary region to continue working with their Log Analytics workspace and Sentinel. However, if the network issue impacts the Sentinel service health, switching to another region doesn't mitigate the issue.
+For example, regional network issues that cause log ingestion latency can impact Microsoft Sentinel customers. Customers that use replicated workspaces can switch over to their secondary region to continue working with their Log Analytics workspace and Sentinel. However, if the network issue impacts the Sentinel service health, switching to another region doesn't mitigate the issue.
 
 Some Azure Monitor experiences, including Application Insights and VM Insights, are currently only partially compatible with workspace replication and switchover. For the full list, see [Deployment considerations](#deployment-considerations).
 
 ## Pricing model
 
-There's no charge for enabling workspace replication. The only additional charge you encur is for ingesting and retaining replicated data in two regions.
+There's no charge for enabling workspace replication. The only extra charge you incur is for ingesting and retaining replicated data in two regions.
 
 After you enable workspace replication, you're charged for the replication of all data that's ingested to your workspace. 
 
 > [!IMPORTANT]
-> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's system data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the system data collection endpoint, you'll still be charged for all the data you ingest to your workspace, even though that don't isn't replicated.  
+> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's system data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the system data collection endpoint, you're still charged for all the data you ingest to your workspace, even though that the data isn't replicated.  
 
 
 ## Permissions required
