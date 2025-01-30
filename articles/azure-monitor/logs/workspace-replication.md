@@ -113,7 +113,7 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace. 
 
 > [!IMPORTANT]
-> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-system-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
+> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
 
 
 ## Permissions required
