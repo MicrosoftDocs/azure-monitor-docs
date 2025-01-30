@@ -1167,7 +1167,7 @@ items:
             displayName: Change Detection
           - name: NGINX.NGINXPLUS/nginxDeployments
             href: supported-logs/nginx-nginxplus-nginxdeployments-logs.md
-            displayName: NGINX Logs,NGINX Security Logs
+            displayName: NGINX Logs,NGINX Security Logs,NGINX Upstream Update Logs
           - name: Oracle.Database/cloudVmClusters
             href: supported-logs/oracle-database-cloudvmclusters-logs.md
             displayName: Add Virtual Machine events,Creation Events,Delete Events,Terminate
