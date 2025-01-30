@@ -4,7 +4,7 @@ description: Use the workspace replication feature in Log Analytics to create co
 ms.topic: how-to
 ms.author: guywild
 ms.reviewer: noakuper
-ms.date: 05/18/2024
+ms.date: 01/30/2025
 ms.custom: references_regions 
 
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
@@ -20,14 +20,6 @@ Here's a video that provides a quick overview of how Log Analytics workspace rep
 
 > [!IMPORTANT]
 > Although we sometimes use the term failover, for example in the API call, failover is also commonly used to describe an automatic process. Therefore, this article uses the term switchover to emphasize that the switch to the replicated workspace is an action you trigger manually. 
-
-## Permissions required
-
-| Action | Permissions required |
-| --- | --- |
-| Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-| Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
 
 ## How Log Analytics workspace replication works
 
@@ -115,6 +107,15 @@ Various services and features that use Log Analytics workspaces are compatible w
 For example, regional network issues that cause log ingestion latency can impact Sentinel customers. Customers that use replicated workspaces can switch over to their secondary region to continue working with their Log Analytics workspace and Sentinel. However, if the network issue impacts the Sentinel service health, switching to another region doesn't mitigate the issue.
 
 Some Azure Monitor experiences, including Application Insights and VM Insights, are currently only partially compatible with workspace replication and switchover. For the full list, see [Restrictions and limitations](#restrictions-and-limitations).
+
+## Permissions required
+
+| Action | Permissions required |
+| --- | --- |
+| Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+| Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+
 
 ## Enable and disable workspace replication
 
