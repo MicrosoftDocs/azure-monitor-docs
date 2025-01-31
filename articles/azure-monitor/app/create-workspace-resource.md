@@ -431,7 +431,6 @@ Update-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <app
 ```
 
 For more information about the `Update-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
-
 <!--
 ### [REST](#tab/rest)
 
@@ -774,7 +773,6 @@ Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Nam
 ```
 
 For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
-
 <!--
 ### [REST](#tab/rest)
 
@@ -923,7 +921,6 @@ Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Nam
 ```
 
 For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
-
 <!--
 ### [REST](#tab/rest)
 
@@ -1024,36 +1021,60 @@ To learn how to create an availability test in the Azure portal, see [Applicatio
 
 ### [Azure CLI](#tab/cli)
 
-To create an availability test, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
+To create a standard availability test with default settings, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<azure-region-name>`, `<web-test-name>`, `<url>`, `<subscription-id>`, and `<application-insights-resource-name>` with your specific values:
 
 ```azurecli
-az monitor app-insights web-test create --resource-group <resource-group-name> \
-                                        --name <web-test-name> \
-                                        --location <azure-region-name> \
-                                        --kind ping \
-                                        --frequency 300 \
-                                        --timeout 30 \
-                                        --enabled true \
-                                        --configuration "{\"WebTest\": \"<web-test-configuration>\"}" \
-                                        --tags Environment=Production
+az monitor app-insights web-test create --resource-group <resource-group-name>
+                                        --location <azure-region-name>
+                                        --web-test-kind standard
+                                        --name <web-test-name>
+                                        --defined-web-test-name <web-test-name>
+                                        --request-url <url>
+                                        --retry-enabled true
+                                        --ssl-check true
+                                        --ssl-lifetime-check 7
+                                        --frequency 300
+                                        --locations Id="us-ca-sjc-azr"
+                                        --locations Id="apac-sg-sin-azr"
+                                        --locations Id="us-il-ch1-azr"
+                                        --locations Id="us-va-ash-azr"
+                                        --locations Id="emea-au-syd-edge"
+                                        --http-verb GET
+                                        --timeout 120
+                                        --expected-status-code 200
+                                        --enabled true
+                                        --tags hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>=Resource
 ```
 
 For more information about the `az monitor app-insights web-test create` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/web-test#az-monitor-app-insights-web-test-create).
 
 ### [PowerShell](#tab/powershell)
 
-To create an availability test, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
+To create a standard availability test with default settings, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<azure-region-name>`, `<web-test-name>`, `<url>`, `<subscription-id>`, and `<application-insights-resource-name>` with your specific values:
 
 ```azurepowershell
-New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name> `
-                                 -Name <web-test-name> `
-                                 -Location <azure-region-name> `
-                                 -Kind ping `
-                                 -Frequency 300 `
-                                 -Timeout 30 `
-                                 -Enabled $true `
-                                 -Configuration "<web-test-configuration>" `
-                                 -Tags @{ Environment = "Production" }
+$geoLocation = @()
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-ca-sjc-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "apac-sg-sin-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-il-ch1-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-va-ash-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "emea-au-syd-edge"
+New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name>
+                                 -Location <azure-region-name>
+                                 -Name <web-test-name>
+                                 -TestName <web-test-name>
+                                 -WebTestKind standard
+                                 -RequestUrl <url>
+                                 -RetryEnabled
+                                 -RuleSslCheck
+                                 -RuleSslCertRemainingLifetimeCheck 7
+                                 -Frequency 300
+                                 -GeoLocation @geoLocation
+                                 -RequestHttpVerb GET
+                                 -Timeout 120
+                                 -RuleExpectedHttpStatusCode 200
+                                 -Enabled
+                                 -Tag @{"hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>" = "Resource"}
 ```
 
 For more information about the `New-AzApplicationInsightsWebTest` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsightswebtest).
