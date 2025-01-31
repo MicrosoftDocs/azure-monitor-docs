@@ -544,7 +544,7 @@ These dimensions are measured independently, but they interact with each other.
 
 * **Azure subscription**: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
 
-* **Application Insights resource**: [Create an Application Insights resource](create-workspace-resource.md#create-a-workspace-based-resource)
+* **Application Insights resource**: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
 * **Click Analytics**: Set up the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md).
 

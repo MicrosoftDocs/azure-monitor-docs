@@ -37,7 +37,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 
 > [!div class="checklist"]
 > * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
-> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-a-workspace-based-resource)
+> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
 
@@ -272,7 +272,7 @@ logger = logging.getLogger("<your_logger_namespace>")  # Logging telemetry will 
 The connection string is unique and specifies where the Azure Monitor OpenTelemetry Distro sends the telemetry it collects.
 
 > [!TIP]
-> If you don't already have an Application Insights resource, create one following [this guide](create-workspace-resource.md#create-a-workspace-based-resource). We recommend you create a new resource rather than [using an existing one](create-workspace-resource.md#when-to-use-a-single-application-insights-resource).
+> If you don't already have an Application Insights resource, create one following [this guide](create-workspace-resource.md#create-an-application-insights-resource). We recommend you create a new resource rather than [using an existing one](create-workspace-resource.md#when-to-use-a-single-application-insights-resource).
 
 To copy the connection string:
 
