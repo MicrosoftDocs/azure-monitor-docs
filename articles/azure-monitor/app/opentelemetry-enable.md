@@ -75,7 +75,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > [!NOTE]
 > If you don't rely on any properties listed in the [not-supported table](https://github.com/microsoft/ApplicationInsights-node.js/blob/beta/README.md#ApplicationInsights-Shim-Unsupported-Properties), the *ApplicationInsights shim* will be your easiest path forward once out of beta.
 >
-> If you rely on any those properties, proceed with the Azure Monitor OpenTelemetry Distro. We'll provide a migration guide soon.
+> If you rely on any of those properties, proceed with the Azure Monitor OpenTelemetry Distro. We'll provide a migration guide soon.
 
 > [!Tip]
 > If you're migrating from the Application Insights Classic API, see our [migration documentation](./opentelemetry-nodejs-migrate.md).

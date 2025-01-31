@@ -54,7 +54,7 @@ Three of the **Usage** panes use the same tool to slice and dice telemetry from 
     A custom event represents one occurrence of something happening in your app. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](./api-custom-events-metrics.md#trackevent) or use the [Click Analytics](javascript-feature-extensions.md) extension.
 
 > [!NOTE]
-> For information on an alternatives to using [anonymous IDs](./data-model-complete.md#anonymous-user-id) and ensuring an accurate count, see the documentation for [authenticated IDs](./data-model-complete.md#authenticated-user-id).
+> For information on an alternative to using [anonymous IDs](./data-model-complete.md#anonymous-user-id) and ensuring an accurate count, see the documentation for [authenticated IDs](./data-model-complete.md#authenticated-user-id).
 
 Clicking **View More Insights** displays the following information:
 
@@ -621,7 +621,7 @@ The tabs are:
 * **Feature metrics**: Enables understanding of HEART metrics at feature granularity.
 
 > [!WARNING]
-> The HEART workbook is currently built on logs and effectively are [log-based metrics](pre-aggregated-metrics-log-metrics.md). The accuracy of these metrics are negatively affected by sampling and filtering.
+> The HEART workbook is currently built on logs and effectively are [log-based metrics](pre-aggregated-metrics-log-metrics.md). The accuracy of these metrics is negatively affected by sampling and filtering.
 
 ### How HEART dimensions are defined and measured
 
