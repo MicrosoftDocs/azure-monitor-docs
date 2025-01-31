@@ -16,15 +16,17 @@ ms.reviewer: cogoodson
 
 Application Insights comes with a curated Application Performance Management (APM) experience to help you diagnose failures in your monitored applications.
 
-To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** experience or the **Failures** option under the **Investigate** category in the resource menu on the left.
+To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** experience or the **Failures** option under the **Investigate** category in the resource menu.
 
 <!-- need screenshot showing all ways to reach the Failures blade -->
+
+You can also get to the failures experience from the [Application Map](app-map.md) by selecting **Investigate failures** from the triage pane.
+
+<!-- screenshot showing app map to reach the Failures blade -->
 
 The **Failures** experience shows you a list of all failures collected for your application. It lets you view their frequency across different operations to help you focus your efforts on those issues with the highest impact.
 
 :::image type="content" source="media/failures-and-performance-views/4-application-insights-02.png" lightbox="media/failures-and-performance-views/4-application-insights-02.png" alt-text="Screenshot of analyzing failures." :::
-
-You can also diagnose failures in your application or its components from the application map, by selecting **Investigate failures** from the triage pane of [Application Map](app-map.md).
 
 ### Analyze failures
 
