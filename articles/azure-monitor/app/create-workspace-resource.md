@@ -437,7 +437,7 @@ For information on how to set up application monitoring with OpenTelemetry, see 
 
 ### Automatic instrumentation
 
-For monitoring of services like [Azure Functions](/azure/azure-functions/functions-overview) and [Azure App Service](/azure/app-service/overview), you can first create your Application Insights resource, then point to it when you enable monitoring. Alternatively, you can create a new Application Insights resource when you enable monitoring for the Azure service.
+For monitoring services like [Azure Functions](/azure/azure-functions/functions-overview) and [Azure App Service](/azure/app-service/overview), you can first create your Application Insights resource, then point to it when you enable monitoring. Alternatively, you can create a new Application Insights resource during the enablement process.
 
 ## Configure Application Insights resources
 
