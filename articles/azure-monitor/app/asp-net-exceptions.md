@@ -529,4 +529,4 @@ This count is different from the Exceptions count calculated by the Application 
 
 * [Monitor REST, SQL, and other calls to dependencies](./asp-net-dependencies.md)
 * [Monitor page load times, browser exceptions, and AJAX calls](./javascript.md)
-* [Monitor performance counters](./performance-counters.md)
+* [Monitor performance counters](./asp-net-counters.md)

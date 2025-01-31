@@ -568,13 +568,14 @@ items:
               Automation Events Summary Logs,Operational Call Automation
               Logs,Call Client Media Stats Time Series Logs,Call Client
               Operations Logs,Call Closed Captions Logs,Call Diagnostics
-              Logs,Call Diagnostics Logs with versioning,Operational Call
-              Recording Logs,Call Recording Summary Logs,Call Summary Logs,Call
-              Summary Logs with versioning,Call Survey Logs,Operational Chat
-              Logs,Email Service Send Mail Logs,Email Service Delivery Status
-              Update Logs,Email Service User Engagement Logs,Operational Job
-              Router Logs,Operational Rooms Logs,Operational SMS Logs,Usage
-              Records
+              Logs,Call Diagnostics Logs with versioning,Aggregated Calling
+              metrics in daily bins based on dimensions like SDK Version, OS
+              name, Subcode daily Logs,Operational Call Recording Logs,Call
+              Recording Summary Logs,Call Summary Logs,Call Summary Logs with
+              versioning,Call Survey Logs,Operational Chat Logs,Email Service
+              Send Mail Logs,Email Service Delivery Status Update Logs,Email
+              Service User Engagement Logs,Operational Job Router
+              Logs,Operational Rooms Logs,Operational SMS Logs,Usage Records
           - name: microsoft.community/communityTrainings
             href: supported-logs/microsoft-community-communitytrainings-logs.md
             displayName: Application Data Plane Exceptions and Errors,Application Data Plane
@@ -857,9 +858,6 @@ items:
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-logs.md
             displayName: Capacity Pool Autoscaled
-          - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
-            href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md
-            displayName: ANF File Access
           - name: Microsoft.Network/applicationgateways
             href: supported-logs/microsoft-network-applicationgateways-logs.md
             displayName: Application Gateway Access Log,Application Gateway Firewall
@@ -987,8 +985,9 @@ items:
               Logs,Indexer Service Logs,Legal Service Logs,Notification Service
               Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend
               Service Logs,Register Service Logs,Schema Service Logs,Search
-              Service Logs,Storage Service Logs,Unit Service Logs,WellDelivery
-              Service Logs,Workflow Service Logs
+              Extensions Service Logs,Search Service Logs,Storage Service
+              Logs,Unit Service Logs,WellDelivery Service Logs,Workflow Service
+              Logs
           - name: Microsoft.OpenLogisticsPlatform/Workspaces
             href: supported-logs/microsoft-openlogisticsplatform-workspaces-logs.md
             displayName: Supply Chain Entity Operations,Supply Chain Event logs
@@ -1168,7 +1167,11 @@ items:
             displayName: Change Detection
           - name: NGINX.NGINXPLUS/nginxDeployments
             href: supported-logs/nginx-nginxplus-nginxdeployments-logs.md
-            displayName: NGINX Logs,NGINX Security Logs
+            displayName: NGINX Logs,NGINX Security Logs,NGINX Upstream Update Logs
+          - name: Oracle.Database/cloudVmClusters
+            href: supported-logs/oracle-database-cloudvmclusters-logs.md
+            displayName: Add Virtual Machine events,Creation Events,Delete Events,Terminate
+              Virtual Machine Events,Update Events
   - name: Azure Monitor Log Analytics tables
     href: ./tables-index.md
     items:
@@ -1748,6 +1751,8 @@ items:
             href: tables/asimwebsessionlogs.md
           - name: ATCExpressRouteCircuitIpfix
             href: tables/atcexpressroutecircuitipfix.md
+          - name: ATCMicrosoftPeeringMetadata
+            href: tables/atcmicrosoftpeeringmetadata.md
           - name: ATCPrivatePeeringMetadata
             href: tables/atcprivatepeeringmetadata.md
           - name: AUIEventsAudit
@@ -2588,6 +2593,8 @@ items:
             href: tables/nwconnectionmonitortestresult.md
           - name: NetworkAccessAlerts
             href: tables/networkaccessalerts.md
+          - name: NetworkAccessConnectionEvents
+            href: tables/networkaccessconnectionevents.md
           - name: NetworkAccessTraffic
             href: tables/networkaccesstraffic.md
           - name: NetworkSessions
@@ -2792,6 +2799,10 @@ items:
             href: tables/synapsesqlpoolwaits.md
           - name: Syslog
             href: tables/syslog.md
+          - name: TOUserAudits
+            href: tables/touseraudits.md
+          - name: TOUserDiagnostics
+            href: tables/touserdiagnostics.md
           - name: TSIIngress
             href: tables/tsiingress.md
           - name: ThreatIntelIndicators
@@ -3438,6 +3449,10 @@ items:
             href: queries/SynapseLinkEvent.md
           - name: Syslog
             href: queries/Syslog.md
+          - name: TOUserAudits
+            href: queries/TOUserAudits.md
+          - name: TOUserDiagnostics
+            href: queries/TOUserDiagnostics.md
           - name: TSIIngress
             href: queries/TSIIngress.md
           - name: UCDOAggregatedStatus
