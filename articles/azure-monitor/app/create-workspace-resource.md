@@ -96,12 +96,11 @@ Select the blue link text to go to the associated Log Analytics workspace where 
 
 ## [Azure CLI](#tab/cli)
 
-> [!NOTE]
-> Before you can create an Application Insights resource using the Azure CLI, you first have to create a Log Analytics workspace. If you don't have one already, you can use the following command to create one:
->
-> ```azurecli
-> az monitor log-analytics workspace create --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --location <azure-region-name>
-> ```
+To create a workspace-based Application Insights resource, a Log Analytics workspace is required. If you don't have one already, you can use the following Azure CLI command to create one:
+
+```azurecli
+az monitor log-analytics workspace create --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --location <azure-region-name>
+```
 
 To create an Application Insights resource, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
@@ -113,10 +112,16 @@ For more information about the `az monitor app-insights component create` comman
 
 ## [PowerShell](#tab/powershell)
 
-To create an Application Insights resource, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, and `<azure-region-name>` with your specific values:
+To create a workspace-based Application Insights resource, a Log Analytics workspace is required. If you don't have one already, you can use the following Azure PowerShell command to create one:
 
 ```azurepowershell
-New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -Location <azure-region-name>
+New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Location <azure-region-name>
+```
+
+To create an Application Insights resource, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, and `<azure-region-name>`, and `<subscription-id>`, and `<log-analytics-workspace-name>` with your specific values:
+
+```azurepowershell
+New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -Location <azure-region-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>
 ```
 
 For more information about the `New-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
@@ -346,7 +351,7 @@ For more information about the `az monitor app-insights component show` command,
 To get the connection string, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>` and `<application-insights-resource-name>` with your specific values:
 
 ```azurepowershell
-Get-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> | Select-Object -ExpandProperty ConnectionString`
+Get-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> | Select-Object -ExpandProperty ConnectionString
 ```
 
 For more information about the `Get-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/get-azapplicationinsights).
@@ -409,23 +414,24 @@ In the Application Insights resource pane, select **Properties** > **Change Work
 
 ### [Azure CLI](#tab/cli)
 
-To change the Log Analytics workspace, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<new-workspace-resource-id>` with your specific values:
+To change the Log Analytics workspace, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<new-log-analytics-workspace-name>` with your specific values:
 
 ```azurecli
-az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --workspace <new-workspace-resource-id>
+az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --workspace <new-log-analytics-workspace-name>
 ```
 
 For more information about the `az monitor app-insights component update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-update).
 
 ### [PowerShell](#tab/powershell)
 
-To change the Log Analytics workspace, run the following Azure PowerShell command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<new-workspace-resource-id>` with your specific values:
+To change the Log Analytics workspace, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, `<subscription-id>` and `<new-log-analytics-workspace-name>` with your specific values:
 
 ```azurepowershell
-$resource = Get-AzResource -ResourceType "Microsoft.Insights/components" -ResourceGroupName "<resource-group-name>" -ResourceName "<application-insights-resource-name>"
-$resource.Properties.WorkspaceResourceId = "<new-workspace-resource-id>"
-Set-AzResource -ResourceId $resource.ResourceId -Properties $resource.Properties -Force
+Update-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>
 ```
+
+For more information about the `Update-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
+
 <!--
 ### [REST](#tab/rest)
 
@@ -892,32 +898,32 @@ Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-c
 
 ### Set the pricing plan
 
+The pricing plan for Application Insights resources can be set in the associated Log Analytics workspace.
+
 ### [Portal](#tab/portal)
 
 The pricing plan for Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).
 
 ### [Azure CLI](#tab/cli)
 
-To set the pricing plan, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<log-analytics-workspace-name>`, and `<pricing-plan>` with your specific values:
 
 ```azurecli
-az monitor app-insights component billing update \
-  --app <application-insights-resource-name> \
-  --resource-group <resource-group-name> \
-  --pricing-plan <pricing-plan>
+az monitor log-analytics workspace update --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --set <pricing-plan>
 ```
 
-For more information about the `az monitor app-insights component billing update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component/billing#az-monitor-app-insights-component-billing-update).
+For more information about the `az monitor log-analytics workspace update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update).
 
 ### [PowerShell](#tab/powershell)
 
-To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<resource-name>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<log-analytics-workspace-name>`, and `<pricing-plan>` with your specific values:
 
 ```azurepowershell
-Set-AzApplicationInsightsPricingPlan -ResourceGroupName <resource-group-name> -Name <resource-name> -PricingPlan <pricing-plan>
+Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Sku <pricing-plan>
 ```
 
-For more information about the `Set-AzApplicationInsightsPricingPlan` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/set-azapplicationinsightspricingplan).
+For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
+
 <!--
 ### [REST](#tab/rest)
 
