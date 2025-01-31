@@ -1,33 +1,28 @@
 ---
-title: Use Service Health to filter event notifications
+title: Use Event Level to prioritize notifications/communications
 description: Information on how use the metadata to filter event notifications 
 ms.topic: overview
-ms.date: 01/23/2025
+ms.date: 02/08/2025
 ---
-# Use Service Health to filter event notifications
+# Use Event Level to prioritize notifications/communications
 
 ## Overview
-Given the volume of Service Health event communications, the Event Level field now includes metadata that offers supplementary details. 
-This improvement enables users to quickly assess the importance of each alert. With this new feature, clients can filter, and sort events based on this metadata, allowing them to prioritize their responses more efficiently.
+To assist users in prioritizing Service Health event communications, we are introducing a new field called "Event Level," which indicates the significance of each communication. This enhancement allows users to rapidly evaluate the importance of each alert. With this feature, clients can filter, and sort events based on this metadata, enabling them to prioritize their actions more effectively.
 
 ## Who can see the Metadata fields
-Anyone who has access to the subscription as a reader can view and filter by Event Level.
+Anyone who has access to the subscription can view and filter by Event Level.
 
 ## Event Level Alert definitions
-### Outage
+### Event Level for Service Issues
+
 |title|Definition|
 |-----|-----|
 |**Informational**|No current service availability impact, but possible future issues in a specific region.|
 |**Warning**|Potential service issues in a region that could impact availability or performance if high availability or disaster recovery is not used, or the issue persists.|
 |**Critical**|Immediate attention recommended. Widespread issues affecting multiple regions or services, risking failure of high availability or disaster recovery measures.|
- 
- 
-## EvenLevel for Service Issues
-|title|Definition|
-|-----|-----|
-|**Informational**|Awareness only for security or privacy-related matters as part of our commitment to transparency. No action is required.|
-|**Warning**|Security or privacy event with recommended actions that can be taken if desired.|
-|**Critical**|Immediate attention is recommended. This is a security or privacy event with significant risk where action is needed.|
- 
- You can filter by Metadata to see specific types using the 'Event Level' field.
- ![A view of the filter options](../images/metada-screen.png "Service Issues")
+
+>[!Tip:] You can filter by Metadata to see specific types using the 'Event Level' field.
+
+>[!NOTE:] This is only available for Service Issues at this time. We are planning to extend this capability to other event types in the coming months.
+
+:::image type="content" source="./media/metada-screen.png" alt-text="Screenshot of new metada filter option.":::
