@@ -1,18 +1,18 @@
 ---
-title: Create and configure workspace-based Application Insights resources
-description: Learn how to create and configure workspace-based Application Insights resources programmatically and in the Azure portal
+title: Create and configure Application Insights resources
+description: Learn how to create and configure Application Insights resources programmatically and in the Azure portal
 ms.topic: conceptual
 ms.date: 01/31/2025
 ms.reviewer: cogoodson
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
 
-# Create and configure workspace-based Application Insights resources
+# Create and configure Application Insights resources
 
 > [!IMPORTANT]
 > This article applies to *workspace-based* Application Insights resources. Classic Application Insights resources have been retired. [Transition to workspace-based Application Insights](/previous-versions/azure/azure-monitor/app/convert-classic-resource) to take advantage of new capabilities.
 
-Workspace-based [Application Insights](app-insights-overview.md) integrates with [Log Analytics](../logs/log-analytics-overview.md) and sends telemetry to a common Log Analytics workspace. This setup provides full access to Log Analytics features, consolidates logs in one location, and allows for unified [Azure role-based access control](../roles-permissions-security.md) which eliminates the need for cross-app/workspace queries.
+[Application Insights](app-insights-overview.md) integrates with [Log Analytics](../logs/log-analytics-overview.md) and sends telemetry to a common Log Analytics workspace. This setup provides full access to Log Analytics features, consolidates logs in one location, and allows for unified [Azure role-based access control](../roles-permissions-security.md) which eliminates the need for cross-app/workspace queries.
 
 Enhanced capabilities include:
 
@@ -22,7 +22,7 @@ Enhanced capabilities include:
 * [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
 * Log Analytics streaming processes data more quickly.
 
-This article shows you how to create and configure workspace-based Application Insights resources. Along with the Application Insights resource itself, you can add various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan). You can also create [availability tests](#create-an-availability-test), set up [metric alerts](#add-a-metric-alert), and automate the process using [Azure Resource Manager](/azure/azure-resource-manager/management/overview).
+This article shows you how to create and configure Application Insights resources. Along with the Application Insights resource itself, you can add various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan). You can also create [availability tests](#create-an-availability-test), set up [metric alerts](#add-a-metric-alert), and automate the process using [Azure Resource Manager](/azure/azure-resource-manager/management/overview).
 
 > [!NOTE]
 > Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
@@ -74,13 +74,13 @@ You can deploy JSON templates via Azure CLI, Azure PowerShell, and in the Azure 
 
 ---
 
-## Create a workspace-based resource
+## Create an Application Insights resource
 
 ## [Portal](#tab/portal)
 
 Sign in to the [Azure portal](https://portal.azure.com), and create an Application Insights resource.
 
-:::image type="content" source="./media/create-workspace-resource/create-workspace-based.png" lightbox="./media/create-workspace-resource/create-workspace-based.png" alt-text="Screenshot that shows a workspace-based Application Insights resource.":::
+:::image type="content" source="./media/create-workspace-resource/create-resource.png" lightbox="./media/create-workspace-resource/create-resource.png" alt-text="Screenshot that shows an Application Insights resource.":::
 
 > [!NOTE]
 > If you don't connect to an existing Log Analytics workspace during resource creation, a new Log Analytics resource is created automatically along with your Application Insights resource.
@@ -363,7 +363,7 @@ Create a new *.json* file (for example, *parameters1.json*), copy the following 
 
 ## Configure monitoring
 
-After creating a workspace-based Application Insights resource, you configure monitoring.
+After creating an Application Insights resource, you configure monitoring.
 
 ### Get the connection string
 
@@ -414,30 +414,36 @@ Not applicable to ARM templates.
 
 ---
 
-### Code-based application monitoring
+### Application monitoring with OpenTelemetry
 
-For code-based application monitoring, you install the appropriate Application Insights SDK and point the connection string to your newly created resource.
+For application monitoring with OpenTelemetry, you install the appropriate Azure Monitor OpenTelemetry Distro and point the connection string to your newly created resource.
 
-For information on how to set up an Application Insights SDK for code-based monitoring, see the following documentation specific to the language or framework:
+For information on how to set up application monitoring with OpenTelemetry, see the following documentation specific to the language:
 
-* [ASP.NET](./asp-net.md)
-* [ASP.NET Core](./asp-net-core.md)
+* [ASP.NET Core](/azure/azure-monitor/app/opentelemetry-enable?tabs=aspnetcore#enable-opentelemetry-with-application-insights)
+* [.NET](/azure/azure-monitor/app/opentelemetry-enable?tabs=net#enable-opentelemetry-with-application-insights)
+* [Java](/azure/azure-monitor/app/opentelemetry-enable?tabs=java#enable-opentelemetry-with-application-insights)
+* [Java native](/azure/azure-monitor/app/opentelemetry-enable?tabs=java-native#enable-opentelemetry-with-application-insights)
+* [Node.js](/azure/azure-monitor/app/opentelemetry-enable?tabs=nodejs#enable-opentelemetry-with-application-insights)
+* [Python](/azure/azure-monitor/app/opentelemetry-enable?tabs=python#enable-opentelemetry-with-application-insights)
+
+> [!NOTE]
+> For web apps targeting browsers, it's recommended to use the [Application Insights JavaScript SDK](javascript-sdk.md).
+
+<!--
 * [Background tasks and modern console applications (.NET/.NET Core)](./worker-service.md)
 * [Classic console applications (.NET)](./console.md)
-* [Java](./opentelemetry-enable.md?tabs=java)
-* [JavaScript](./javascript.md)
-* [Node.js](./nodejs.md)
-* [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
+-->
 
-### Codeless monitoring
+### Automatic instrumentation
 
-For codeless monitoring of services like [Azure Functions](/azure/azure-functions/functions-overview) and [Azure App Service](/azure/app-service/overview), you can first create your workspace-based Application Insights resource, then point it when you configure monitoring. Alternatively, you can create a new Application Insights resource when you enable application monitoring in the Azure service.
+For monitoring of services like [Azure Functions](/azure/azure-functions/functions-overview) and [Azure App Service](/azure/app-service/overview), you can first create your Application Insights resource, then point to it when you enable monitoring. Alternatively, you can create a new Application Insights resource when you enable monitoring for the Azure service.
 
 ## Configure Application Insights resources
 
 ### Modify the associated workspace
 
-After creating a workspace-based Application Insights resource, you can modify the associated Log Analytics workspace.
+After creating an Application Insights resource, you can modify the associated Log Analytics workspace.
 
 ### [Portal](#tab/portal)
 
@@ -698,25 +704,25 @@ To export telemetry using diagnostic settings, paste the following code into you
 
 ### [Portal](#tab/portal)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+Data retention for Application Insights resources can be set in the associated Log Analytics workspace.
 
 For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=portal#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ### [Azure CLI](#tab/cli)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+Data retention for Application Insights resources can be set in the associated Log Analytics workspace.
 
 For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=cli#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ### [PowerShell](#tab/powershell)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+Data retention for Application Insights resources can be set in the associated Log Analytics workspace.
 
 For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=PowerShell#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ### [REST](#tab/rest)
 
-Data retention for workspace-based Application Insights resources can be set in the associated Log Analytics workspace.
+Data retention for Application Insights resources can be set in the associated Log Analytics workspace.
 
 For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=api#configure-the-default-interactive-retention-period-of-analytics-tables).
 
@@ -760,7 +766,7 @@ To set the data retention for the associated Log Analytics workspace, paste the 
 
 ### Set the daily cap
 
-For workspace-based Application Insights resource, the daily cap must be set independently for both Application Insights and the underlying Log Analytics workspace.
+The daily cap must be set independently for both Application Insights and the underlying Log Analytics workspace.
 
 ### [Portal](#tab/portal)
 
@@ -939,7 +945,7 @@ Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-c
 
 ### [Portal](#tab/portal)
 
-The pricing plan for workspace-based Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).
+The pricing plan for Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).
 
 ### [Azure CLI](#tab/cli)
 
@@ -1441,7 +1447,7 @@ This section provides answers to common questions.
 
 Transferring existing Application Insights resources between regions isn't supported, and you can't migrate historical data to a new region. The workaround involves:
 
-* Creating a new workspace-based Application Insights resource in the desired region.
+* Creating a new Application Insights resource in the desired region.
 * Re-creating any unique customizations from the original resource in the new one.
 * Updating your application with the new region resource's [connection string](./connection-strings.md).
 * Testing to ensure everything works as expected with the new Application Insights resource.
