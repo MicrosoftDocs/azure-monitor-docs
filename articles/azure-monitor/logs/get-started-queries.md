@@ -80,7 +80,7 @@ If you omit the `in (SecurityEvent)` part and run only `search "Cryptographic"`,
 > [!IMPORTANT]
 > Search queries are ordinarily slower than table-based queries because they have to process more data.
 
-### [Simple mode](#tab/simple)
+### [Simple mode](#tab/simple-limit)
 
 To search for records that include a specific value in any of their columns:
 
@@ -94,7 +94,7 @@ To search for records that include a specific value in any of their columns:
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-select.png" lightbox="media/get-started-queries/logs-simple-search-select.png" alt-text="Screenshot shows the Search field in simple mode.":::
 
-1. To only show 10 results, see [Limit results in simple mode](#simple-mode-1).
+1. To only show 10 results, see [Limit results](#limit-results).
 
 > [!IMPORTANT]
 > We recommend using **Filter** if you know which column holds the data you're searching for. The [search operator is substantially less performant](../logs/query-optimization.md#avoid-unnecessary-use-of-search-and-union-operators) than filtering, and might not function well on large volumes of data.
@@ -267,7 +267,7 @@ SecurityEvent
 
 ## [Simple mode](#tab/simple)
 
-To filter by multiple conditions, you can add more filters:
+To filter by multiple conditions, you can add additional filters:
 
 1. Open **Add** and choose the column `EventID`.
 
@@ -464,7 +464,7 @@ To calculate the average `CounterValue` for each computer:
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
-However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](#simple-mode-11) to see how this can be done using a Kusto query.
+However, it's currently not possible to define groups by multiple dimensions in simple mode. Switch to the KQL mode tab to see how this can be done using a Kusto query.
 
 ---
 
@@ -474,7 +474,7 @@ Grouping results can also be based on a time column or another continuous value.
 
 ### [KQL mode](#tab/kql)
 
-To create groups based on continuous values, it's best to break the range into manageable units by using `bin`. The following query analyzes `Perf` records that measure free memory (`Available MBytes`) on a specific computer. It calculates the average value of each 1-hour period over the last seven days:
+To create groups based on continuous values, it's best to break the range into manageable units by using `bin`. The following query analyzes `Perf` records that measure free memory (`Available MBytes`) on a specific computer. It calculates the average value of each 1-hour period over the last 7 days:
 
 ```Kusto
 Perf 
