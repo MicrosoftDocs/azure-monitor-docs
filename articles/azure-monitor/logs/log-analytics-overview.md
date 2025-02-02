@@ -8,23 +8,27 @@ ms.date: 12/28/2023
 
 # Overview of Log Analytics in Azure Monitor
 
-Log Analytics is a tool in the Azure portal that's used to edit and run log queries against data in the Azure Monitor Logs store.  
+The Log Analytics tool in the Azure portal lets you run and edit log queries against data in the Azure Monitor Logs store. 
 
-You might write a simple query that returns a set of records and then use features of Log Analytics to sort, filter, and analyze them. Or you might write a more advanced query to perform statistical analysis and visualize the results in a chart to identify a particular trend.
+Use Log Analytics to analyze and visualize log data using [Kusto Query Language (KQL)](../logs/get-started-queries.md) or the point-and-click experience provided in [Log Analytics simple mode](../logs/log-analytics-simple-mode.md). 
+
+For example, use Log Analytics to:
+- Write simple queries, or select a table in Simple mode, to return a set of records and then use features of Log Analytics to sort, filter, and analyze them. 
+- Write more advanced queries to perform statistical analysis and visualize the results in a chart to identify a particular trend.
 
 Whether you work with the results of your queries interactively or use them with other Azure Monitor features, such as log search alerts or workbooks, Log Analytics is the tool that you'll use to write and test them.
 
-
-> [!TIP]
-> This article describes Log Analytics and its features. If you want to jump right into a tutorial, see [Log Analytics tutorial](./log-analytics-tutorial.md).
+This article describes the Log Analytics user interface and its features. If you want to jump right into a tutorial, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
 Here's a video version of this tutorial: 
 
+> [!TIP] This video shows an earlier version of the user interface, but the .
+
 > [!VIDEO https://www.youtube.com/embed/-aMecR2Nrfc]
 
-## Start Log Analytics
+## Open Log Analytics
 
-To start Log Analytics in the Azure portal, on the **Azure Monitor** menu select **Logs**. You'll also see this option on the menu for most Azure resources. No matter where you start Log Analytics, the tool is the same. But the menu you use to start Log Analytics determines the data that's available.
+To open Log Analytics in the Azure portal, on the **Azure Monitor** menu select **Logs**. You'll also see this option on the menu for most Azure resources. No matter where you start Log Analytics, the tool is the same. But the menu you use to start Log Analytics determines the data that's available.
 
 If you start Log Analytics from the **Azure Monitor** menu or the **Log Analytics workspaces** menu, you'll have access to all the records in a workspace. If you select **Logs** from another type of resource, your data will be limited to log data for that resource. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](./scope.md).
 <!-- convertborder later -->
@@ -33,10 +37,6 @@ If you start Log Analytics from the **Azure Monitor** menu or the **Log Analytic
 When you start Log Analytics, a dialog appears that contains [example queries](../logs/queries.md). The queries are categorized by solution. Browse or search for queries that match your requirements. You might find one that does exactly what you need. You can also load one to the editor and modify it as required. Browsing through example queries is a good way to learn how to write your own queries.
 
 If you want to start with an empty script and write it yourself, close the example queries. Select **Queries** at the top of the screen to get them back.
-
-> [!TIP]
-> [Log Analytics simple mode](../logs/log-analytics-simple-mode.md) is currently in preview and available to a limited number of customers. To try it, select **Try Log Analytics simple mode** at the top right corner of the Log Analytics query editor.
-> :::image type="content" source="media/log-analytics-explorer/try-new-log-analytics.png" alt-text="A GIF showing the Try new Log Analytics button.":::
 
 ## Log Analytics interface
 
