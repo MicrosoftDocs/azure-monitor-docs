@@ -94,7 +94,7 @@ To search for records that include a specific value in any of their columns:
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-select.png" lightbox="media/get-started-queries/logs-simple-search-select.png" alt-text="Screenshot shows the Search field in simple mode.":::
 
-1. To only show 10 results, see [Limit results in simple mode](/azure/azure-monitor/logs/get-started-queries&tabs=simple#limit-results).
+1. To only show 10 results, see [Limit results in simple mode](#simple-mode-1).
 
 > [!IMPORTANT]
 > We recommend using **Filter** if you know which column holds the data you're searching for. The [search operator is substantially less performant](../logs/query-optimization.md#avoid-unnecessary-use-of-search-and-union-operators) than filtering, and might not function well on large volumes of data.
@@ -464,7 +464,9 @@ To calculate the average `CounterValue` for each computer:
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
-However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](/azure/azure-monitor/logs/get-started-queries&tabs=kql#perform-mathematical-or-statistical-calculations) to see how this can be done using a Kusto query.
+However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](#simple-mode-11)
+
+(/azure/azure-monitor/logs/get-started-queries&tabs=kql#perform-mathematical-or-statistical-calculations) to see how this can be done using a Kusto query.
 
 ---
 
