@@ -21,7 +21,7 @@ This article explains the fundamentals of writing log queries in Azure Monitor L
 * [Define and use custom fields](#define-and-use-custom-fields).
 * [Aggregate and group results](#aggregate-and-group-results).
 
-Where applicable, the article provides examples of querying data using both Kusto Query Language (KQL) and [Log Analtyics simple mode](log-analytics-simple-mode.md).
+Where applicable, the article provides examples of querying data using both Kusto Query Language (KQL) and [Log Analytics simple mode](log-analytics-simple-mode.md).
 
 > [!NOTE]
 > If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
