@@ -267,7 +267,7 @@ SecurityEvent
 
 ## [Simple mode](#tab/simple)
 
-To filter by multiple conditions, you can add additional filters:
+To filter by multiple conditions, you can add more filters:
 
 1. Open **Add** and choose the column `EventID`.
 
@@ -474,7 +474,7 @@ Grouping results can also be based on a time column or another continuous value.
 
 ### [KQL mode](#tab/kql)
 
-To create groups based on continuous values, it's best to break the range into manageable units by using `bin`. The following query analyzes `Perf` records that measure free memory (`Available MBytes`) on a specific computer. It calculates the average value of each 1-hour period over the last 7 days:
+To create groups based on continuous values, it's best to break the range into manageable units by using `bin`. The following query analyzes `Perf` records that measure free memory (`Available MBytes`) on a specific computer. It calculates the average value of each 1-hour period over the last seven days:
 
 ```Kusto
 Perf 
