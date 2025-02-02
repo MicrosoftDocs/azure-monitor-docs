@@ -80,7 +80,7 @@ If you omit the `in (SecurityEvent)` part and run only `search "Cryptographic"`,
 > [!IMPORTANT]
 > Search queries are ordinarily slower than table-based queries because they have to process more data.
 
-### [Simple mode](#tab/simple-limit)
+### [Simple mode](#tab/simple)
 
 To search for records that include a specific value in any of their columns:
 
