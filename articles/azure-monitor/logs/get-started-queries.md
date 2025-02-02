@@ -1,6 +1,6 @@
 ---
-title: Get started with log queries in Azure Monitor | Microsoft Docs
-description: This article provides a tutorial for getting started writing log queries in Azure Monitor.
+title: Get started with log queries in Azure Monitor Logs
+description: This article provides a tutorial for getting started writing log queries in Azure Monitor Logs.
 ms.topic: tutorial
 author: guywi-ms
 ms.author: guywild
@@ -9,9 +9,9 @@ ms.date: 01/08/2025
 
 ---
 
-# Get started with log queries in Azure Monitor
+# Get started with log queries in Azure Monitor Logs
 
-This article explains the fundamentals of writing log queries in Azure Monitor, including how to:
+This article explains the fundamentals of writing log queries in Azure Monitor Logs, including how to:
 
 * [Structure a query](#structure-a-query).
 * [Sort query results](#sort-results).
@@ -21,7 +21,7 @@ This article explains the fundamentals of writing log queries in Azure Monitor, 
 * [Define and use custom fields](#define-and-use-custom-fields).
 * [Aggregate and group results](#aggregate-and-group-results).
 
-Where applicable, the article provides examples using both Kusto Query Language (KQL) and simple mode in the Azure portal.
+Where applicable, the article provides examples of querying data using both Kusto Query Language (KQL) and [Log Analtyics simple mode](log-analytics-simple-mode.md).
 
 > [!NOTE]
 > If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
