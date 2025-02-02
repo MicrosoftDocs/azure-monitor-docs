@@ -12,10 +12,6 @@ The Log Analytics tool in the Azure portal lets you run and edit log queries aga
 
 Use Log Analytics to analyze and visualize log data using [Kusto Query Language (KQL)](../logs/get-started-queries.md) or the point-and-click experience provided in [Log Analytics simple mode](../logs/log-analytics-simple-mode.md). 
 
-For example, use Log Analytics to:
-- Write simple queries, or select a table in Simple mode, to return a set of records and then use features of Log Analytics to sort, filter, and analyze them. 
-- Write more advanced queries to perform statistical analysis and visualize the results in a chart to identify a particular trend.
-
 Whether you work with the results of your queries interactively or use them with other Azure Monitor features, such as log search alerts or workbooks, Log Analytics is the tool that you use to write and test them.
 
 This article describes the Log Analytics user interface and its features. If you want to jump right into a tutorial, see [Log Analytics tutorial](./log-analytics-tutorial.md).
