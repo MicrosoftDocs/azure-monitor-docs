@@ -464,9 +464,7 @@ To calculate the average `CounterValue` for each computer:
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
-However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](#simple-mode-11)
-
-(/azure/azure-monitor/logs/get-started-queries&tabs=kql#perform-mathematical-or-statistical-calculations) to see how this can be done using a Kusto query.
+However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](#simple-mode-11) to see how this can be done using a Kusto query.
 
 ---
 
