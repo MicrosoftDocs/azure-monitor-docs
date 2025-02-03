@@ -1049,7 +1049,7 @@ az monitor app-insights web-test create --resource-group <resource-group-name> \
 For more information about the `az monitor app-insights web-test create` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/web-test#az-monitor-app-insights-web-test-create).
 
 > [!NOTE]
-> The web test region (`-location`) is different from geographic location (`-locations`) of which multiple can be selected. The `-location` refers to the Azure region where the web test is created and hosted, while `-locations` refers to geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
+> The web test region (`-location`) is different from geographic location (`-locations`, notice the plural form) of which multiple can be selected. The `-location` refers to the Azure region where the web test is created and hosted, while `-locations` refers to geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
 
 ### [PowerShell](#tab/powershell)
 
@@ -1138,10 +1138,10 @@ Authorization: Bearer <access-token>
 }
 ```
 
-To learn more about creating and configuring web tests using the REST API, see our [REST API documentation](/rest/api/application-insights/web-tests/create-or-update).
-
 > [!NOTE]
-> The web test region (`-location`) is different from the geographic location (`-Locations`) of which multiple can be selected. `-location` refers to the Azure region where the web test is created and hosted, while `-Locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
+> The web test region (`-location`) is different from the geographic location (`-Locations`, notice the plural form) of which multiple can be selected. `-location` refers to the Azure region where the web test is created and hosted, while `-Locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
+
+To learn more about creating and configuring web tests using the REST API, see our [REST API documentation](/rest/api/application-insights/web-tests/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
@@ -1193,7 +1193,7 @@ resource webTest 'microsoft.insights/webtests@2022-06-15' = {
 ```
 
 > [!NOTE]
-> The web test region (`location`) is different from the geographic location (`locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
+> The web test region (`location`) is different from the geographic location (`Locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `Locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
 
 For more information about creating availability tests using Bicep, see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-bicep).
 
@@ -1255,7 +1255,7 @@ To create a standard availability test with default settings using JSON (ARM), a
 ```
 
 > [!NOTE]
-> The web test region (`location`) is different from the geographic location (`locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
+> The web test region (`location`) is different from the geographic location (`Locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `Locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
 
 For more information about creating availability tests using JSON (ARM), see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
 
