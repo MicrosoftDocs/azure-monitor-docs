@@ -275,7 +275,7 @@ Here's how to create a new Application Insights resource using a JSON (ARM) temp
 
 ### Create a parameter file
 
-Create a new *.json* file (for example, *my-parameters.json*), copy the following content into it, and replace the placeholders `<application-insights-resource-name>`, `<application-type>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:with your specific values:
+Create a new *.json* file (for example, *my-parameters.json*), copy the following content into it, and replace the placeholders `<application-insights-resource-name>`, `<application-type>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```json
 {
@@ -391,7 +391,7 @@ For information on how to set up application monitoring with OpenTelemetry, see 
 * [Python](/azure/azure-monitor/app/opentelemetry-enable?tabs=python#enable-opentelemetry-with-application-insights)
 
 > [!NOTE]
-> For web apps targeting browsers, it's recommended to use the [Application Insights JavaScript SDK](javascript-sdk.md).
+> For web apps targeting browsers, we recommend using the [Application Insights JavaScript SDK](javascript-sdk.md).
 
 <!--
 * [Background tasks and modern console applications (.NET/.NET Core)](./worker-service.md)
@@ -793,11 +793,11 @@ To set the daily cap for both Application Insights and Log Analytics, use the fo
 
 **Application Insights**
 
-Placeholders: `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{access-token}`, `<daily-cap-in-gb>`
+Placeholders: `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<daily-cap-in-gb>`
 
 ```http
-PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
-Authorization: Bearer {access-token}
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
+Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
@@ -809,11 +809,11 @@ Content-Type: application/json
 
 **Log Analytics**
 
-Placeholders: `{subscription-id}`, `{resource-group-name}`, `{log-analytics-workspace-name}`, `{access-token}`, `<daily-cap-in-gb>`
+Placeholders: `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, `<daily-cap-in-gb>`
 
 ```http
-PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.OperationalInsights/workspaces/{log-analytics-workspace-name}?api-version=2020-08-01
-Authorization: Bearer {access-token}
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>?api-version=2020-08-01
+Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
@@ -829,12 +829,12 @@ To set the daily cap for both Application Insights and Log Analytics, paste the 
 
 **Application Insights**
 
-Placeholders: `{application-insights-resource-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
+Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
 
 ```bicep
 resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: '{application-insights-resource-name}'
-  location: '{azure-region-name}'
+  name: '<application-insights-resource-name>'
+  location: '<azure-region-name>'
   properties: {
     Application_Type: 'web'
     DailyCap: <daily-cap-in-gb>
@@ -844,12 +844,12 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
 
 **Log Analytics**
 
-Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
+Placeholders: `<log-analytics-workspace-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
 
 ```bicep
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
-  name: '{log-analytics-workspace-name}'
-  location: '{azure-region-name}'
+  name: '<log-analytics-workspace-name>'
+  location: '<azure-region-name>'
   properties: {
     dailyQuotaGb: <daily-cap-in-gb>
   }
@@ -862,7 +862,7 @@ To set the daily cap for both Application Insights and Log Analytics, paste the 
 
 **Application Insights**
 
-Placeholders: `{application-insights-resource-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
+Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
 
 ```json
 {
@@ -872,8 +872,8 @@ Placeholders: `{application-insights-resource-name}`, `{azure-region-name}`, `<d
     {
       "type": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02",
-      "name": "{application-insights-resource-name}",
-      "location": "{azure-region-name}",
+      "name": "<application-insights-resource-name>",
+      "location": "<azure-region-name>",
       "properties": {
         "Application_Type": "web",
         "DailyCap": <daily-cap-in-gb>
@@ -885,7 +885,7 @@ Placeholders: `{application-insights-resource-name}`, `{azure-region-name}`, `<d
 
 **Log Analytics**
 
-Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-cap-in-gb>`
+Placeholders: `<log-analytics-workspace-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
 
 ```json
 {
@@ -895,8 +895,8 @@ Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-c
     {
       "type": "Microsoft.OperationalInsights/workspaces",
       "apiVersion": "2020-08-01",
-      "name": "{log-analytics-workspace-name}",
-      "location": "{azure-region-name}",
+      "name": "<log-analytics-workspace-name>",
+      "location": "<azure-region-name>",
       "properties": {
         "dailyQuotaGb": <daily-cap-in-gb>
       }
@@ -913,7 +913,7 @@ The pricing plan for Application Insights resources can be set in the associated
 
 ### [Portal](#tab/portal)
 
-The pricing plan for Application Insights resources can be set in the associated Log Analytics workspace. For more information, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).
+To learn how to set the pricing plan in the Azure portal, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).
 
 ### [Azure CLI](#tab/cli)
 
@@ -937,41 +937,38 @@ For more information about the `Set-AzOperationalInsightsWorkspace` command, ref
 
 ### [REST](#tab/rest)
 
-To set the pricing plan using REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
+To set the pricing plan using REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, and `<pricing-plan>` with your specific values:
 
 ```http
-PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
-Authorization: Bearer {access-token}
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>/pricingPlans/current?api-version=2017-10-01
 Content-Type: application/json
+Authorization: Bearer <access-token>
 
 {
   "properties": {
-    "PricingPlan": "Basic"
+    "planType": "<pricing-plan>"
   }
 }
 ```
 
 ### [Bicep](#tab/bicep)
 
-To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders with your specific values:
+To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, `<application-type>`, and `<pricing-plan>` with your specific values:
 
 ```bicep
-param location string = resourceGroup().location
-param appInsightsName string = 'myAppInsights'
-param pricingPlan string = 'Basic'
+param logAnalyticsName string = '<log-analytics-workspace-name>'
+param regionId string = '<azure-region-name>'
+param pricingPlan string = '<pricing-plan>'
 
-resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: appInsightsName
-  location: location
-  kind: 'web'
-  properties: {
-    Application_Type: 'web'
-  }
+resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
+  name: logAnalyticsName
+  location: regionId
+  properties: {}
 }
 
-resource pricingPlan 'Microsoft.Insights/components/pricingPlans@2017-10-01' = {
+resource pricingPlan 'Microsoft.OperationalInsights/workspaces/pricingPlans@2017-10-01' = {
   name: 'current'
-  parent: appInsights
+  parent: logAnalytics
   properties: {
     planType: pricingPlan
   }
@@ -980,39 +977,40 @@ resource pricingPlan 'Microsoft.Insights/components/pricingPlans@2017-10-01' = {
 
 ### [JSON (ARM)](#tab/arm)
 
-To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders with your specific values:
+To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, `<application-type>`, and `<pricing-plan>` with your specific values:
 
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "appInsightsName": {
+    "logAnalyticsName": {
       "type": "string",
-      "defaultValue": "myAppInsights"
+      "defaultValue": "<log-analytics-workspace-name>"
+    },
+    "regionId": {
+      "type": "string",
+      "defaultValue": "<azure-region-name>"
     },
     "pricingPlan": {
       "type": "string",
-      "defaultValue": "Basic"
+      "defaultValue": "<pricing-plan>"
     }
   },
   "resources": [
     {
-      "type": "Microsoft.Insights/components",
-      "apiVersion": "2020-02-02",
-      "name": "[parameters('appInsightsName')]",
-      "location": "[resourceGroup().location]",
-      "kind": "web",
-      "properties": {
-        "Application_Type": "web"
-      }
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2020-08-01",
+      "name": "[parameters('logAnalyticsName')]",
+      "location": "[parameters('regionId')]",
+      "properties": {}
     },
     {
-      "type": "Microsoft.Insights/components/pricingPlans",
+      "type": "Microsoft.OperationalInsights/workspaces/pricingPlans",
       "apiVersion": "2017-10-01",
-      "name": "current",
+      "name": "[concat(parameters('logAnalyticsName'), '/current')]",
       "dependsOn": [
-        "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]"
+        "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]"
       ],
       "properties": {
         "planType": "[parameters('pricingPlan')]"
