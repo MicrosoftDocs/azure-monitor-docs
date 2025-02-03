@@ -57,7 +57,7 @@ If you haven't used PowerShell with your Azure subscription before, install the 
 1. Use it to install Azure PowerShell.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
-<!--
+
 ### [REST](#tab/rest)
 
 To make a REST API call to Azure, you first need to obtain an access token. 
@@ -71,7 +71,7 @@ You can deploy Bicep templates via the Azure CLI, Azure PowerShell, and in the A
 ### [JSON (ARM)](#tab/arm)
 
 You can deploy JSON templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional prerequisites.
--->
+
 ---
 
 ## Create an Application Insights resource
@@ -125,7 +125,7 @@ New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <applic
 ```
 
 For more information about the `New-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
-<!--
+
 ## [REST](#tab/rest)
 
 To create an Application Insights resource using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{access-token}`, and `{azure-region-name}` with your specific values:
@@ -317,7 +317,7 @@ Create a new *.json* file (for example, *parameters1.json*), copy the following 
    * `-ResourceGroupName` is the group where you want to create the new resources.
    * `-TemplateFile` must occur before the custom parameters.
    * `-TemplateParameterFile` is the name of the parameter file.
--->
+
 ---
 
 ## Configure monitoring
@@ -355,7 +355,7 @@ Get-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <applic
 ```
 
 For more information about the `Get-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/get-azapplicationinsights).
-<!--
+
 ### [REST](#tab/rest)
 
 To retrieve the details of your Application Insights resource, use the following request and replace the placeholders `{subscription-id}`, and `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
@@ -374,7 +374,7 @@ Not applicable to Bicep templates.
 ### [JSON (ARM)](#tab/arm)
 
 Not applicable to ARM templates.
--->
+
 ---
 
 ### Application monitoring with OpenTelemetry
@@ -431,7 +431,7 @@ Update-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <app
 ```
 
 For more information about the `Update-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
-<!--
+
 ### [REST](#tab/rest)
 
 To change the Log Analytics workspace using REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, and `{new-workspace-name}` with your specific values:
@@ -485,7 +485,7 @@ To change the Log Analytics workspace, paste the following code into your templa
   ]
 }
 ```
--->
+
 ---
 
 ### Export telemetry
@@ -525,7 +525,7 @@ Set-AzDiagnosticSetting -ResourceId <application-insights-resource-id> -Name <di
 This example command enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
 
 For more information about the `Set-AzDiagnosticSetting` command, refer to the [Azure PowerShell documentation](/powershell/module/az.monitor/set-azdiagnosticsetting).
-<!--
+
 ### [REST](#tab/rest)
 
 To export telemetry to an Azure storage account using a diagnostic setting, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{setting-name}`, `{access-token}`, and `{storage-account-name}` with your specific values:
@@ -662,7 +662,7 @@ To export telemetry using diagnostic settings, paste the following code into you
   ]
 }
 ```
--->
+
 ---
 
 ### Set the data retention
@@ -684,7 +684,7 @@ For more information, see [Configure the default interactive retention period of
 Data retention for Application Insights resources can be set in the associated Log Analytics workspace.
 
 For more information, see [Configure the default interactive retention period of Analytics tables](/azure/azure-monitor/logs/data-retention-configure?tabs=PowerShell#configure-the-default-interactive-retention-period-of-analytics-tables).
-<!--
+
 ### [REST](#tab/rest)
 
 Data retention for Application Insights resources can be set in the associated Log Analytics workspace.
@@ -726,7 +726,7 @@ To set the data retention for the associated Log Analytics workspace, paste the 
   ]
 }
 ```
--->
+
 ---
 
 ### Set the daily cap
@@ -773,7 +773,7 @@ Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Nam
 ```
 
 For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
-<!--
+
 ### [REST](#tab/rest)
 
 To set the daily cap for both Application Insights and Log Analytics, use the following requests and replace the placeholders with your specific values:
@@ -891,7 +891,7 @@ Placeholders: `{log-analytics-workspace-name}`, `{azure-region-name}`, `<daily-c
   ]
 }
 ```
--->
+
 ---
 
 ### Set the pricing plan
@@ -921,7 +921,7 @@ Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Nam
 ```
 
 For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
-<!--
+
 ### [REST](#tab/rest)
 
 To set the pricing plan using REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
@@ -1008,7 +1008,7 @@ To set the pricing plan using JSON (ARM), paste the following code into your tem
   ]
 }
 ```
--->
+
 ---
 
 ## Create additional resources
@@ -1078,7 +1078,7 @@ New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name>
 ```
 
 For more information about the `New-AzApplicationInsightsWebTest` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsightswebtest).
-<!--
+
 ### [REST](#tab/rest)
 
 To create an availability test using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{webtest-name}`, `{access-token}`, `{azure-location-name}`, and `{website}` with your specific values:
@@ -1175,7 +1175,7 @@ To create an availability test using JSON (ARM), add the following code to your 
 ```
 
 For more information about creating availability tests using JSON (ARM), see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
--->
+
 ---
 
 ### Add a metric alert
@@ -1194,7 +1194,7 @@ To learn how to add a metric alert using Azure CLI, see [Create a new alert rule
 ### [PowerShell](#tab/powershell)
 
 To learn how to add a metric alert using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-powershell).
-<!--
+
 ### [REST](#tab/rest)
 
 To create a metric alert using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{alert-name}`, `{access-token}`, `{application-insights-resource-name}`, and `{action-group-name}`, with your specific values:
@@ -1241,7 +1241,7 @@ To learn how to add a metric alert using an ARM template, see [Create a new aler
 ### [JSON (ARM)](#tab/arm)
 
 To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
--->
+
 ---
 
 To automate the creation of metric alerts, see the [Metric alerts template](../alerts/alerts-metric-create-templates.md#template-for-a-simple-static-threshold-metric-alert) article.
