@@ -1365,7 +1365,7 @@ items:
         href: logs/notebooks-azure-monitor-logs.md
       - name: Standard columns
         href: logs/log-standard-columns.md
-      - name: Query Basic and Auxliary logs
+      - name: Query Basic and Auxiliary logs
         href: logs/basic-logs-query.md
       - name: Audit queries
         href: logs/query-audit.md
