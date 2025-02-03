@@ -45,8 +45,9 @@ The following [standard columns](log-standard-columns.md) are common to all tabl
 - `_ItemId`
 - `_IsBillable`
 - `_BilledSize`
+- `_TenantId`
 - `Type`
-
+ 
 For Auxiliary Logs, `_ItemId`, `_IsBillable` and `_BilledSize` are excluded from the size calculation. 
 
 ### Excluded tables
