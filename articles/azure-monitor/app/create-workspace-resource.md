@@ -1024,155 +1024,238 @@ To learn how to create an availability test in the Azure portal, see [Applicatio
 To create a standard availability test with default settings, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<azure-region-name>`, `<web-test-name>`, `<url>`, `<subscription-id>`, and `<application-insights-resource-name>` with your specific values:
 
 ```azurecli
-az monitor app-insights web-test create --resource-group <resource-group-name>
-                                        --location <azure-region-name>
-                                        --web-test-kind standard
-                                        --name <web-test-name>
-                                        --defined-web-test-name <web-test-name>
-                                        --request-url <url>
-                                        --retry-enabled true
-                                        --ssl-check true
-                                        --ssl-lifetime-check 7
-                                        --frequency 300
-                                        --locations Id="us-ca-sjc-azr"
-                                        --locations Id="apac-sg-sin-azr"
-                                        --locations Id="us-il-ch1-azr"
-                                        --locations Id="us-va-ash-azr"
-                                        --locations Id="emea-au-syd-edge"
-                                        --http-verb GET
-                                        --timeout 120
-                                        --expected-status-code 200
-                                        --enabled true
+az monitor app-insights web-test create --resource-group <resource-group-name> \
+                                        --location <azure-region-name> \
+                                        --web-test-kind standard \
+                                        --name <web-test-name> \
+                                        --defined-web-test-name <web-test-name> \
+                                        --request-url <url> \
+                                        --retry-enabled true \
+                                        --ssl-check true \
+                                        --ssl-lifetime-check 7 \
+                                        --frequency 300 \
+                                        --locations Id="us-ca-sjc-azr" \
+                                        --locations Id="apac-sg-sin-azr" \
+                                        --locations Id="us-il-ch1-azr" \
+                                        --locations Id="us-va-ash-azr" \
+                                        --locations Id="emea-au-syd-edge" \
+                                        --http-verb GET \
+                                        --timeout 120 \
+                                        --expected-status-code 200 \
+                                        --enabled true \
                                         --tags hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>=Resource
 ```
 
 For more information about the `az monitor app-insights web-test create` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/web-test#az-monitor-app-insights-web-test-create).
+
+> [!NOTE]
+> The web test region (`-location`) is different from geographic location (`-locations`) of which multiple can be selected. The `-location` refers to the Azure region where the web test is created and hosted, while `-locations` refers to geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
 
 ### [PowerShell](#tab/powershell)
 
 To create a standard availability test with default settings, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<azure-region-name>`, `<web-test-name>`, `<url>`, `<subscription-id>`, and `<application-insights-resource-name>` with your specific values:
 
 ```azurepowershell
-$geoLocation = @()
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-ca-sjc-azr"
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "apac-sg-sin-azr"
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-il-ch1-azr"
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-va-ash-azr"
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "emea-au-syd-edge"
-New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name>
-                                 -Location <azure-region-name>
-                                 -Name <web-test-name>
-                                 -TestName <web-test-name>
-                                 -WebTestKind standard
-                                 -RequestUrl <url>
-                                 -RetryEnabled
-                                 -RuleSslCheck
-                                 -RuleSslCertRemainingLifetimeCheck 7
-                                 -Frequency 300
-                                 -GeoLocation @geoLocation
-                                 -RequestHttpVerb GET
-                                 -Timeout 120
-                                 -RuleExpectedHttpStatusCode 200
-                                 -Enabled
+$geoLocation = @() 
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-ca-sjc-azr" 
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "apac-sg-sin-azr" 
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-il-ch1-azr" 
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-va-ash-azr" 
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "emea-au-syd-edge" 
+New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name> `
+                                 -Location <azure-region-name> `
+                                 -Name <web-test-name> `
+                                 -TestName <web-test-name> `
+                                 -Kind standard `
+                                 -RequestUrl <url> `
+                                 -RetryEnabled `
+                                 -RuleSslCheck `
+                                 -RuleSslCertRemainingLifetimeCheck 7 `
+                                 -Frequency 300 `
+                                 -GeoLocation $geoLocation `
+                                 -RequestHttpVerb GET `
+                                 -Timeout 120 `
+                                 -RuleExpectedHttpStatusCode 200 ` 
+                                 -Enabled `
                                  -Tag @{"hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>" = "Resource"}
 ```
 
 For more information about the `New-AzApplicationInsightsWebTest` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsightswebtest).
 
+> [!NOTE]
+> The web test region (`-Location`) is different from the geographic location (`-GeoLocation`) of which multiple can be selected. `-Location` refers to the Azure region where the web test is created and hosted, while `-GeoLocation` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
+
 ### [REST](#tab/rest)
 
-To create an availability test using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{webtest-name}`, `{access-token}`, `{azure-location-name}`, and `{website}` with your specific values:
+To create a standard availability test with default settings using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<web-test-name>`, `<access-token>`, `<azure-region-name>`, and `<url>` with your specific values:
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/webtests/{webtest-name}?api-version=2022-06-15
-Authorization: Bearer {access-token}
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>/webtests/<web-test-name>?api-version=2021-08-01
+
+Content-Type: application/json
+Authorization: Bearer <access-token>
 
 {
-  "location": "{azure-location-name}",
+  "location": "<azure-region-name>",
   "properties": {
-    "Name": "{webtest-name}",
-    "SyntheticMonitorId": "{webtest-name}",
-    "Description": "Simple availability test for {website}",
+    "Name": "<web-test-name>",
+    "SyntheticMonitorId": "<web-test-name>",
     "Enabled": true,
     "Frequency": 300,
     "Timeout": 120,
     "Kind": "standard",
     "RetryEnabled": true,
     "Request": {
-      "RequestUrl": "https://{website}.com",
+      "RequestUrl": "<url>",
       "HttpVerb": "GET"
     },
     "ValidationRules": {
-      "SSLCheck": true
+      "ExpectedHttpStatusCode": 200,
+      "SslCheck": true,
+      "SslCertRemainingLifetimeCheck": 7
     },
     "Locations": [
       {
-        "Id": "us-fl-mia-edge"
+        "Id": "us-ca-sjc-azr"
+      },
+      {
+        "Id": "apac-sg-sin-azr"
+      },
+      {
+        "Id": "us-il-ch1-azr"
+      },
+      {
+        "Id": "us-va-ash-azr"
+      },
+      {
+        "Id": "emea-au-syd-edge"
       }
     ]
+  },
+  "Tags": {
+    "hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>": "Resource"
   }
 }
 ```
 
 To learn more about creating and configuring web tests using the REST API, see our [REST API documentation](/rest/api/application-insights/web-tests/create-or-update).
 
+> [!NOTE]
+> The web test region (`-location`) is different from the geographic location (`-Locations`) of which multiple can be selected. `-location` refers to the Azure region where the web test is created and hosted, while `-Locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
+
 ### [Bicep](#tab/bicep)
 
-To create an availability test using Bicep, add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
+To create a standard availability test with default settings using Bicep, add the following code to your template and replace the placeholders  `<web-test-name>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<url>` with your specific values:
 
 ```bicep
-resource availabilityTest 'Microsoft.Insights/webtests@2022-06-15' = {
+resource webTest 'microsoft.insights/webtests@2022-06-15' = {
   name: '<web-test-name>'
   location: '<azure-region-name>'
-  kind: 'ping'
+  tags: {
+    'hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>': 'Resource'
+  }
   properties: {
-    Configuration: {
-      WebTest: '<web-test-configuration>'
-    }
-    Description: 'Availability Test for API'
+    SyntheticMonitorId: '<web-test-name>'
+    Name: '<web-test-name>'
     Enabled: true
     Frequency: 300
-    Timeout: 30
-  }
-  tags: {
-    Environment: 'Production'
+    Timeout: 120
+    Kind: 'standard'
+    RetryEnabled: true
+    Locations: [
+      {
+        Id: 'us-ca-sjc-azr'
+      }
+      {
+        Id: 'apac-sg-sin-azr'
+      }
+      {
+        Id: 'us-il-ch1-azr'
+      }
+      {
+        Id: 'us-va-ash-azr'
+      }
+      {
+        Id: 'emea-au-syd-edge'
+      }
+    ]
+    Request: {
+      RequestUrl: '<url>'
+      HttpVerb: 'GET'
+    }
+    ValidationRules: {
+      ExpectedHttpStatusCode: 200
+      SSLCheck: true
+      SSLCertRemainingLifetimeCheck: 7
+    }
   }
 }
 ```
+
+> [!NOTE]
+> The web test region (`location`) is different from the geographic location (`locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
 
 For more information about creating availability tests using Bicep, see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-bicep).
 
 ### [JSON (ARM)](#tab/arm)
 
-To create an availability test using JSON (ARM), add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, and `<web-test-configuration>` with your specific values:
+To create a standard availability test with default settings using JSON (ARM), add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<url>` with your specific values:
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "resources": [
-    {
-      "type": "Microsoft.Insights/webtests",
-      "apiVersion": "2022-06-15",
-      "name": "<web-test-name>",
-      "location": "<azure-region-name>",
-      "kind": "ping",
-      "properties": {
-        "Configuration": {
-          "WebTest": "<web-test-configuration>"
-        },
-        "Description": "Availability Test for API",
-        "Enabled": true,
-        "Frequency": 300,
-        "Timeout": 30
-      },
-      "tags": {
-        "Environment": "Production"
-      }
-    }
-  ]
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "microsoft.insights/webtests",
+            "apiVersion": "2022-06-15",
+            "name": "<web-test-name>",
+            "location": "<azure-region-name>",
+            "tags": {
+                "hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>": "Resource"
+            },
+            "properties": {
+                "SyntheticMonitorId": "<web-test-name>",
+                "Name": "<web-test-name>",
+                "Enabled": true,
+                "Frequency": 300,
+                "Timeout": 120,
+                "Kind": "standard",
+                "RetryEnabled": true,
+                "Locations": [
+                    {
+                        "Id": "us-ca-sjc-azr"
+                    },
+                    {
+                        "Id": "apac-sg-sin-azr"
+                    },
+                    {
+                        "Id": "us-il-ch1-azr"
+                    },
+                    {
+                        "Id": "us-va-ash-azr"
+                    },
+                    {
+                        "Id": "emea-au-syd-edge"
+                    }
+                ],
+                "Request": {
+                    "RequestUrl": "<url>",
+                    "HttpVerb": "GET"
+                },
+                "ValidationRules": {
+                    "ExpectedHttpStatusCode": 200,
+                    "SSLCheck": true,
+                    "SSLCertRemainingLifetimeCheck": 7
+                }
+            }
+        }
+    ]
 }
 ```
+
+> [!NOTE]
+> The web test region (`location`) is different from the geographic location (`locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
 
 For more information about creating availability tests using JSON (ARM), see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
 
