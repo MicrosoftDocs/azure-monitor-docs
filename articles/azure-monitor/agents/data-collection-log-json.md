@@ -151,7 +151,7 @@ Use the following ARM template to create a DCR for collecting JSON log files, ma
         "dataCollectionRuleName": {
             "type": "string",
             "metadata": {
-                "description": "Unique name for the DCR. "
+                "description": "Unique name for the DCR."
             }
         },
         "dataCollectionEndpointResourceId": {
@@ -163,7 +163,7 @@ Use the following ARM template to create a DCR for collecting JSON log files, ma
         "location": {
             "type": "string",
             "metadata": {
-                "description": "Region for the DCR. Must be the same location as the Log Analytics workspace. "
+                "description": "Region for the DCR. Must be the same location as the Log Analytics workspace."
             }
         },
         "filePatterns": {
@@ -185,9 +185,9 @@ Use the following ARM template to create a DCR for collecting JSON log files, ma
             }
         },
         "timeFormat": {
-            "type": "string"
+            "type": "string",
             "metadata": {
-                "discription": "The time format that you would like to use to split multi line imput"
+                "description": "The time format that you would like to use to split multi line input."
             }
       }
     },

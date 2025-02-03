@@ -3,7 +3,7 @@ title: Create metric alerts in Azure Monitor Logs
 description: Get information about creating near-real time metric alerts on popular Log Analytics data.
 ms.author: abbyweisberg
 ms.topic: conceptual
-ms.date: 12/12/2024
+ms.date: 02/02/2025
 ms.reviewer: harelbr
 ---
 
@@ -15,7 +15,7 @@ You can use metric alert capabilities on a predefined set of logs in Azure Monit
 
 A Log Analytics workspace supports these log types:
 
-- [Performance counters](../agents/data-sources-performance-counters.md) for Windows and Linux machines (corresponding with the supported [Log Analytics workspace metrics](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces))
+- [Performance counters](./../agents/data-sources-performance-counters.md) for Windows and Linux machines (corresponding with the supported [Log Analytics workspace metrics](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces))
 - [Heartbeat records for Agent Health](../insights/solution-agenthealth.md)
 - [Update management](/azure/automation/update-management/overview) records
 - [Event data](./../agents/data-sources-windows-events.md) logs
@@ -51,8 +51,8 @@ Before you create a metric alert for logs, make sure that the following items ar
 
 - **Log Analytics workspace**: You must have a valid and active Log Analytics workspace. For more information, see [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
 - **Agent configured for the Log Analytics workspace**: You need to configure an agent for Azure virtual machines or on-premises machines to send data to the Log Analytics workspace. For more information, see [Azure Monitor Agent overview](./../agents/agents-overview.md).
-- **Supported Log Analytics solution**: A Log Analytics solution should be configured and sending data to the Log Analytics workspace. Supported solutions are [performance counters for Windows and Linux](../agents/data-sources-performance-counters.md), [heartbeat records for Agent Health](../insights/solution-agenthealth.md), [Azure Automation Update Management](/azure/automation/update-management/overview), and [event data](./../agents/data-sources-windows-events.md).
-- **Logs configured for the Log Analytics solution**: The Log Analytics solution should have the required logs and data that correspond to [metrics supported for Log Analytics workspaces](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces) enabled. For example, the *% Available Memory* counter must be configured in the [performance counters](../agents/data-sources-performance-counters.md) solution first.
+- **Supported Log Analytics solution**: A Log Analytics solution should be configured and sending data to the Log Analytics workspace. Supported solutions are [performance counters for Windows and Linux](./../agents/data-sources-performance-counters.md), [heartbeat records for Agent Health](../insights/solution-agenthealth.md), [Azure Automation Update Management](/azure/automation/update-management/overview), and [event data](./../agents/data-sources-windows-events.md).
+- **Logs configured for the Log Analytics solution**: The Log Analytics solution should have the required logs and data that correspond to [metrics supported for Log Analytics workspaces](../essentials/metrics-supported.md#microsoftoperationalinsightsworkspaces) enabled. For example, the *% Available Memory* counter must be configured in the [performance counters](./../agents/data-sources-performance-counters.md) solution first.
 
 ## Methods for creating a metric alert for logs
 
@@ -85,13 +85,6 @@ In the following sample template, creation of a metric alert for a static thresh
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "convertRuleName": {
-            "type": "string",
-            "minLength": 1,
-            "metadata": {
-                "description": "Name of the rule to convert a log to a metric"
-            }
-        },
         "convertRuleDescription": {
             "type": "string",
             "minLength": 1,
@@ -233,7 +226,7 @@ In the following sample template, creation of a metric alert for a static thresh
     },
     "resources": [
         {
-            "name": "[parameters('convertRuleName')]",
+            "name": "[parameters('alertName')]",
             "type": "Microsoft.Insights/scheduledQueryRules",
             "apiVersion": "2018-04-16",
             "location": "[parameters('convertRuleRegion')]",
@@ -259,7 +252,7 @@ In the following sample template, creation of a metric alert for a static thresh
             "location": "global",
             "apiVersion": "2018-03-01",
             "tags": {},
-            "dependsOn":["[resourceId('Microsoft.Insights/scheduledQueryRules',parameters('convertRuleName'))]"],
+            "dependsOn":["[resourceId('Microsoft.Insights/scheduledQueryRules',parameters('alertName'))]"],
             "properties": {
                 "description": "[parameters('alertDescription')]",
                 "severity": "[parameters('alertSeverity')]",
@@ -298,9 +291,6 @@ If you save the preceding JSON as *metricfromLogsAlertStatic.json*, you can coup
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "convertRuleName": {
-            "value": "TestLogtoMetricRule" 
-        },
         "convertRuleDescription": {
             "value": "Test rule to extract metrics from logs via template"
         },
@@ -370,13 +360,6 @@ In the following sample template, creation of a metric alert for dynamic thresho
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "convertRuleName": {
-            "type": "string",
-            "minLength": 1,
-            "metadata": {
-                "description": "Name of the rule to convert a log to a metric."
-            }
-        },
         "convertRuleDescription": {
             "type": "string",
             "minLength": 1,
@@ -534,7 +517,7 @@ In the following sample template, creation of a metric alert for dynamic thresho
     },
     "resources": [
         {
-            "name": "[parameters('convertRuleName')]",
+            "name": "[parameters('alertName')]",
             "type": "Microsoft.Insights/scheduledQueryRules",
             "apiVersion": "2018-04-16",
             "location": "[parameters('convertRuleRegion')]",
@@ -560,7 +543,7 @@ In the following sample template, creation of a metric alert for dynamic thresho
             "location": "global",
             "apiVersion": "2018-03-01",
             "tags": {},
-            "dependsOn":["[resourceId('Microsoft.Insights/scheduledQueryRules',parameters('convertRuleName'))]"],
+            "dependsOn":["[resourceId('Microsoft.Insights/scheduledQueryRules',parameters('alertName'))]"],
             "properties": {
                 "description": "[parameters('alertDescription')]",
                 "severity": "[parameters('alertSeverity')]",
@@ -604,9 +587,6 @@ If you save the preceding JSON as *metricfromLogsAlertDynamic.json*, you can cou
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "convertRuleName": {
-            "value": "TestLogtoMetricRule"
-        },
         "convertRuleDescription": {
             "value": "Test rule to extract metrics from logs via template"
         },
