@@ -128,19 +128,19 @@ For more information about the `New-AzApplicationInsights` command, refer to the
 
 ## [REST](#tab/rest)
 
-To create an Application Insights resource using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{access-token}`, and `{azure-region-name}` with your specific values:
+To create an Application Insights resource using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<azure-region-name>` and `<application-type>` with your specific values:
 
 ```http
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
-Authorization: Bearer {access-token}
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
+Authorization: Bearer <access-token>
 Content-Type: application/json
 
 
 {
-  "location": "{azure-region-name}",
-  "kind": "web",
+  "location": "<azure-region-name>",
+  "kind": "<application-type>",
   "properties": {
-    "Application_Type": "web",
+    "Application_Type": "<application-type>",
     "Flow_Type": "Bluefield",
     "Request_Source": "rest"
   }
@@ -155,7 +155,7 @@ Here's how to create a new Application Insights resource using a Bicep (ARM) tem
 
 ### Create a template
 
-Create a new *.bicep* file (for example, *template1.bicep*) and copy the following content into it:
+Create a new *.bicep* file (for example, *my-template.bicep*), copy the following content into it:
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
@@ -174,14 +174,14 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 
 ### Create a parameter file
 
-Create a new *.bicepparam* file (for example, *parameters1.bicepparam*), copy the following content into it, and replace all placeholders with your own values:
+Create a new *.bicepparam* file (for example, *my-parameters.bicepparam*), copy the following content into it, and replace the placeholders `<application-insights-resource-name>`, `<application-type>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```bicep
-param name string = 'my_workspace_based_resource'
-param type string = 'web'
-param regionId string = 'westus2'
+param name string = '<application-insights-resource-name>'
+param type string = '<application-type>'
+param regionId string = '<azure-region-name>'
 param requestSource string = 'CustomDeployment'
-param workspaceResourceId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/testxxxx/providers/microsoft.operationalinsights/workspaces/testworkspace'
+param workspaceResourceId string = '/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<log-analytics-workspace-name>'
 ```
 
 ### Use the template to create a new Application Insights resource
@@ -191,7 +191,7 @@ param workspaceResourceId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeee
 1. Run a new deployment to create a new Application Insights resource:
 
     ```azurepowershell
-    New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile template1.bicep -TemplateParameterFile parameters1.bicepparam
+    New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile my-template.bicep -TemplateParameterFile my-parameters.bicepparam
     ``` 
 
    * `-ResourceGroupName` is the group where you want to create the new resources.
@@ -206,7 +206,7 @@ Here's how to create a new Application Insights resource using a JSON (ARM) temp
 
 ### Create a template
 
-1. Create a new *.json* file (for example, *template1.json*) and copy the following content into it:
+1. Create a new *.json* file (for example, *my-template.json*) and copy the following content into it:
 
 ```json
 {
@@ -275,7 +275,7 @@ Here's how to create a new Application Insights resource using a JSON (ARM) temp
 
 ### Create a parameter file
 
-Create a new *.json* file (for example, *parameters1.json*), copy the following content into it, and replace all placeholders with your own values:
+Create a new *.json* file (for example, *my-parameters.json*), copy the following content into it, and replace the placeholders `<application-insights-resource-name>`, `<application-type>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:with your specific values:
 
 ```json
 {
@@ -283,13 +283,13 @@ Create a new *.json* file (for example, *parameters1.json*), copy the following 
   "contentVersion": "1.0.0.0",
   "parameters": {
     "name": {
-      "value": "my_workspace_based_resource"
+      "value": "<application-insights-resource-name>"
     },
     "type": {
-      "value": "web"
+      "value": "<application-type>"
     },
     "regionId": {
-      "value": "westus2"
+      "value": "<azure-region-name>"
     },
     "tagsArray": {
       "value": {}
@@ -298,7 +298,7 @@ Create a new *.json* file (for example, *parameters1.json*), copy the following 
       "value": "CustomDeployment"
     },
     "workspaceResourceId": {
-      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/testxxxx/providers/microsoft.operationalinsights/workspaces/testworkspace"
+      "value": "/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<log-analytics-workspace-name>"
     }
   }
 }
@@ -311,7 +311,7 @@ Create a new *.json* file (for example, *parameters1.json*), copy the following 
 1. Run a new deployment to create a new Application Insights resource:
 
     ```azurepowershell
-    New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile template1.json -TemplateParameterFile parameters1.json
+    New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile my-template.json -TemplateParameterFile my-parameters.json
     ```
 
    * `-ResourceGroupName` is the group where you want to create the new resources.
@@ -358,11 +358,11 @@ For more information about the `Get-AzApplicationInsights` command, refer to the
 
 ### [REST](#tab/rest)
 
-To retrieve the details of your Application Insights resource, use the following request and replace the placeholders `{subscription-id}`, and `{resource-group-name}`, `{application-insights-resource-name}`, and `{access-token}` with your specific values:
+To retrieve the details of your Application Insights resource, use the following request and replace the placeholders `<subscription-id>`, and `<resource-group-name>`, `<application-insights-resource-name>`, and `<access-token>` with your specific values:
 
 ```http
-GET https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
-Authorization: Bearer {access-token}
+GET https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
+Authorization: Bearer <access-token>
 ```
 
 Look for the `properties.connectionString` field in the JSON response.
@@ -434,23 +434,23 @@ For more information about the `Update-AzApplicationInsights` command, refer to 
 
 ### [REST](#tab/rest)
 
-To change the Log Analytics workspace using REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, and `{new-workspace-name}` with your specific values:
+To change the Log Analytics workspace using REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, and `<new-log-analytics-workspace-name>` with your specific values:
 
 ```http
-PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}?api-version=2015-05-01
-Authorization: Bearer {access-token}
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
+Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
   "properties": {
-    "WorkspaceResourceId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.OperationalInsights/workspaces/{new-workspace-name}"
+    "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>"
   }
 }
 ```
 
 ### [Bicep](#tab/bicep)
 
-To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
+To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-log-analytics-workspace-name>` with your specific values:
 
 ```bicep
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
@@ -458,14 +458,14 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   location: '<azure-region-name>'
   properties: {
     Application_Type: '<application-type>'
-    WorkspaceResourceId: '<new-workspace-resource-id>'
+    WorkspaceResourceId: '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>'
   }
 }
 ```
 
 ### [JSON (ARM)](#tab/arm)
 
-To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
+To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-log-analytics-workspace-name>` with your specific values:
 
 ```json
 {
@@ -479,7 +479,7 @@ To change the Log Analytics workspace, paste the following code into your templa
       "location": "<azure-region-name>",
       "properties": {
         "Application_Type": "<application-type>",
-        "WorkspaceResourceId": "<new-workspace-resource-id>"
+        "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>"
       }
     }
   ]
@@ -528,16 +528,16 @@ For more information about the `Set-AzDiagnosticSetting` command, refer to the [
 
 ### [REST](#tab/rest)
 
-To export telemetry to an Azure storage account using a diagnostic setting, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{application-insights-resource-name}`, `{setting-name}`, `{access-token}`, and `{storage-account-name}` with your specific values:
+To export telemetry to an Azure storage account using a diagnostic setting, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<diagnostic-setting-name>`, `<access-token>`, and `<storage-account-name>` with your specific values:
 
 ```http
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/microsoft.insights/components/{application-insights-resource-name}/diagnosticSettings/{setting-name}?api-version=2017-05-01-preview
-Authorization: Bearer {access-token}
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>/diagnosticSettings/<diagnostic-setting-name>?api-version=2017-05-01-preview
+Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
   "properties": {
-    "storageAccountId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Storage/storageAccounts/{storage-account-name}",
+    "storageAccountId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Storage/storageAccounts/<storage-account-name>",
     "logs": [
       {
         "category": "Request",
@@ -554,24 +554,26 @@ Content-Type: application/json
 
 ### [Bicep](#tab/bicep)
 
-To export telemetry using diagnostic settings, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
+To export telemetry using diagnostic settings, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, `<diagnostic-setting-name>`, `<subscription-id>`, `<resource-group>`, and `<storage-account-name>` with your specific values:
 
 ```bicep
-param location string = resourceGroup().location
-param appInsightsName string = 'myAppInsights'
+param appInsightsName string = '<application-insights-resource-name>'
+param location string = '<azure-region-name>'
+param applicationType string = '<application-type>'
+param diagnosticSettingName string = '<diagnostic-setting-name>'
 param storageAccountId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account-name>'
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: appInsightsName
   location: location
-  kind: 'web'
+  kind: applicationType
   properties: {
-    Application_Type: 'web'
+    Application_Type: applicationType
   }
 }
 
 resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
-  name: 'myDiagnosticSetting'
+  name: diagnosticSettingName
   scope: appInsights
   properties: {
     storageAccountId: storageAccountId
@@ -601,7 +603,7 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
 
 ### [JSON (ARM)](#tab/arm)
 
-To export telemetry using diagnostic settings, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-workspace-resource-id>` with your specific values:
+To export telemetry using diagnostic settings, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, `<diagnostic-setting-name>`, `<subscription-id>`, `<resource-group>`, and `<storage-account-name>` with your specific values:
 
 ```json
 {
@@ -610,31 +612,42 @@ To export telemetry using diagnostic settings, paste the following code into you
   "parameters": {
     "appInsightsName": {
       "type": "string",
-      "defaultValue": "myAppInsights"
+      "defaultValue": "<application-insights-resource-name>"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "<azure-region-name>"
+    },
+    "applicationType": {
+      "type": "string",
+      "defaultValue": "<application-type>"
+    },
+    "diagnosticSettingName": {
+      "type": "string",
+      "defaultValue": "<diagnostic-setting-name>"
     },
     "storageAccountId": {
       "type": "string",
       "defaultValue": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Storage/storageAccounts/<storage-account-name>"
     }
   },
+
   "resources": [
     {
       "type": "Microsoft.Insights/components",
       "apiVersion": "2020-02-02",
       "name": "[parameters('appInsightsName')]",
-      "location": "[resourceGroup().location]",
-      "kind": "web",
+      "location": "[parameters('location')]",
+      "kind": "[parameters('applicationType')]",
       "properties": {
-        "Application_Type": "web"
+        "Application_Type": "[parameters('applicationType')]"
       }
     },
     {
       "type": "Microsoft.Insights/diagnosticSettings",
       "apiVersion": "2021-05-01-preview",
-      "name": "myDiagnosticSetting",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]"
-      ],
+      "name": "[parameters('diagnosticSettingName')]",
+      "scope": "[resourceId('Microsoft.Insights/components', parameters('appInsightsName'))]",
       "properties": {
         "storageAccountId": "[parameters('storageAccountId')]",
         "logs": [
@@ -1280,20 +1293,20 @@ To learn how to add a metric alert using PowerShell, see [Create a new alert rul
 
 ### [REST](#tab/rest)
 
-To create a metric alert using the REST API, use the following request and replace the placeholders `{subscription-id}`, `{resource-group-name}`, `{alert-name}`, `{access-token}`, `{application-insights-resource-name}`, and `{action-group-name}`, with your specific values:
+To create a metric alert using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<alert-name>`, `<access-token>`, `<description>`, `<application-insights-resource-name>`, and `<action-group-name>`, with your specific values:
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/metricAlerts/{alert-name}?api-version=2018-03-01
-Authorization: Bearer {access-token}
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/metricAlerts/<alert-name>?api-version=2018-03-01
+Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
   "properties": {
-    "description": "Metric alert for high CPU usage",
+    "description": "<description>",
     "severity": 3,
     "enabled": true,
     "scopes": [
-      "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/components/{application-insights-resource-name}"
+      "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>"
     ],
     "criteria": {
       "allOf": [
@@ -1310,7 +1323,7 @@ Content-Type: application/json
     },
     "actions": [
       {
-        "actionGroupId": "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.Insights/actionGroups/{action-group-name}"
+        "actionGroupId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/actionGroups/<action-group-name>"
       }
     ]
   }
