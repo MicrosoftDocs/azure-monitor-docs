@@ -69,8 +69,8 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 To delete rows from a table, use this command: 
 
 ```http  
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.
-OperationalInsights/workspaces/{workspace_name}/tables/{table_name}/deleteData?api-version=2023-09-01
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table_name}/deleteData?api-version=2023-09-01
+Authorization: Bearer eyJ0e...
 ```
 
 Specify one or more filters in the body of the API call. This example filters on the `TimeGenerated` and `Resource` columns:
@@ -111,12 +111,28 @@ Specify one or more filters in the body of the API call. This example filters on
 
 ## Check delete data operation status 
 
-To check the status of your operation, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
+To check the status of your operation and view the number of deleted records, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
  
 ```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.
-OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.OperationalInsights/locations/{region}/operationstatuses/{responseOperation}?api-version=2023-09-01
+Authorization: Bearer eyJ0e...
 ```
+
+#### Responses
+```http
+{
+  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.OperationalInsights/locations/eastus/operationstatuses/00000000-0000-0000-0000-000000001234",
+  "name": "00000000-0000-0000-0000-000000001234",
+  "status": "Succeeded",
+  "startTime": "2024-11-04T09:31:41.689659Z",
+  "endTime": "2024-11-04T09:36:49.0252644Z",
+  "properties": {
+    "RecordCount": 234812,
+    "Status": "Completed"
+  }
+}
+```
+
 For more information, see [Track asynchronous Azure operations](/azure/azure-resource-manager/management/async-operations).
 
 ## Next steps
