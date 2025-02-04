@@ -43,7 +43,7 @@ Here's a comparison between using the client installer and using the virtual mac
 | On-premises servers | No | [VM extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
 
 > [!IMPORTANT] 
-> The Azure Monitor agent isn't optimized for hibernation. If the agent computer hibernates, you may lose monitoring data.
+> The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data.
 
 
 ## Prerequisites
