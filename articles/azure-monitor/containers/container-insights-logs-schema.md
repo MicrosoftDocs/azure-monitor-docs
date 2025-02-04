@@ -120,7 +120,7 @@ With multiline logging enabled, previously split container logs are stitched tog
 
 - Multiline logging only stitches exception stack traces from the containers using Java, Python, .NET, and Go. Other multiline log entries are not stitched together.
 
-- If the log line which larger than 16KB instead of truncated by container runtime by default and log line will be supported up to 64KB. 
+- If the log line which larger than 16KB instead of truncated by container runtime by default and log line will be supported up to 64KB. 
 
 ### Examples
 
