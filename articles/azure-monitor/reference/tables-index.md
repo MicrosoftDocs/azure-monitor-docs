@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -420,6 +420,50 @@ Microsoft.LoadTestService/loadtests
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureLoadTestingOperation](./tables/azureloadtestingoperation.md)
 
+### Azure Local  
+
+Microsoft.AzureStackHCI/VirtualMachines  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AzureMetrics](./tables/azuremetrics.md)
+- [ADAssessmentRecommendation](./tables/adassessmentrecommendation.md)
+- [ADReplicationResult](./tables/adreplicationresult.md)
+- [ComputerGroup](./tables/computergroup.md)
+- [ContainerLog](./tables/containerlog.md)
+- [DnsEvents](./tables/dnsevents.md)
+- [DnsInventory](./tables/dnsinventory.md)
+- [SecurityBaselineSummary](./tables/securitybaselinesummary.md)
+- [SQLAssessmentRecommendation](./tables/sqlassessmentrecommendation.md)
+- [ConfigurationChange](./tables/configurationchange.md)
+- [ConfigurationData](./tables/configurationdata.md)
+- [Event](./tables/event.md)
+- [Heartbeat](./tables/heartbeat.md)
+- [Perf](./tables/perf.md)
+- [ProtectionStatus](./tables/protectionstatus.md)
+- [SecurityBaseline](./tables/securitybaseline.md)
+- [SecurityEvent](./tables/securityevent.md)
+- [Syslog](./tables/syslog.md)
+- [Update](./tables/update.md)
+- [UpdateRunProgress](./tables/updaterunprogress.md)
+- [UpdateSummary](./tables/updatesummary.md)
+- [VMBoundPort](./tables/vmboundport.md)
+- [VMConnection](./tables/vmconnection.md)
+- [VMComputer](./tables/vmcomputer.md)
+- [VMProcess](./tables/vmprocess.md)
+- [W3CIISLog](./tables/w3ciislog.md)
+- [WindowsFirewall](./tables/windowsfirewall.md)
+- [WireData](./tables/wiredata.md)
+- [InsightsMetrics](./tables/insightsmetrics.md)
+- [HealthStateChangeEvent](./tables/healthstatechangeevent.md)
+- [CommonSecurityLog](./tables/commonsecuritylog.md)
+
+### Azure Local  
+
+Microsoft.AzureStackHCI/clusters  
+
+- [Perf](./tables/perf.md)
+- [Event](./tables/event.md)
+
 ### Azure Managed CCF  
 
 Microsoft.ConfidentialLedger/ManagedCCFs  
@@ -523,50 +567,6 @@ Microsoft.AppPlatform/Spring
 - [AppPlatformBuildLogs](./tables/appplatformbuildlogs.md)
 - [AppPlatformContainerEventLogs](./tables/appplatformcontainereventlogs.md)
 
-### Azure Stack HCI  
-
-Microsoft.AzureStackHCI/VirtualMachines  
-
-- [AzureActivity](./tables/azureactivity.md)
-- [AzureMetrics](./tables/azuremetrics.md)
-- [ADAssessmentRecommendation](./tables/adassessmentrecommendation.md)
-- [ADReplicationResult](./tables/adreplicationresult.md)
-- [ComputerGroup](./tables/computergroup.md)
-- [ContainerLog](./tables/containerlog.md)
-- [DnsEvents](./tables/dnsevents.md)
-- [DnsInventory](./tables/dnsinventory.md)
-- [SecurityBaselineSummary](./tables/securitybaselinesummary.md)
-- [SQLAssessmentRecommendation](./tables/sqlassessmentrecommendation.md)
-- [ConfigurationChange](./tables/configurationchange.md)
-- [ConfigurationData](./tables/configurationdata.md)
-- [Event](./tables/event.md)
-- [Heartbeat](./tables/heartbeat.md)
-- [Perf](./tables/perf.md)
-- [ProtectionStatus](./tables/protectionstatus.md)
-- [SecurityBaseline](./tables/securitybaseline.md)
-- [SecurityEvent](./tables/securityevent.md)
-- [Syslog](./tables/syslog.md)
-- [Update](./tables/update.md)
-- [UpdateRunProgress](./tables/updaterunprogress.md)
-- [UpdateSummary](./tables/updatesummary.md)
-- [VMBoundPort](./tables/vmboundport.md)
-- [VMConnection](./tables/vmconnection.md)
-- [VMComputer](./tables/vmcomputer.md)
-- [VMProcess](./tables/vmprocess.md)
-- [W3CIISLog](./tables/w3ciislog.md)
-- [WindowsFirewall](./tables/windowsfirewall.md)
-- [WireData](./tables/wiredata.md)
-- [InsightsMetrics](./tables/insightsmetrics.md)
-- [HealthStateChangeEvent](./tables/healthstatechangeevent.md)
-- [CommonSecurityLog](./tables/commonsecuritylog.md)
-
-### Azure Stack HCI  
-
-Microsoft.AzureStackHCI/clusters  
-
-- [Perf](./tables/perf.md)
-- [Event](./tables/event.md)
-
 ### Azure Storage Mover  
 
 Microsoft.StorageMover/storageMovers  
@@ -655,6 +655,7 @@ Microsoft.Communication/CommunicationServices
 - [ACSBillingUsage](./tables/acsbillingusage.md)
 - [ACSCallDiagnostics](./tables/acscalldiagnostics.md)
 - [ACSCallDiagnosticsUpdates](./tables/acscalldiagnosticsupdates.md)
+- [ACSCallingMetrics](./tables/acscallingmetrics.md)
 - [ACSCallSurvey](./tables/acscallsurvey.md)
 - [ACSCallClientOperations](./tables/acscallclientoperations.md)
 - [ACSCallClientMediaStatsTimeSeries](./tables/acscallclientmediastatstimeseries.md)
@@ -783,6 +784,13 @@ Microsoft.DesktopVirtualization/workspaces
 - [WVDErrors](./tables/wvderrors.md)
 - [WVDCheckpoints](./tables/wvdcheckpoints.md)
 - [WVDManagement](./tables/wvdmanagement.md)
+
+### Dev Center Plans  
+
+Microsoft.DevCenter/plans  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AzureMetrics](./tables/azuremetrics.md)
 
 ### Dev Centers  
 
@@ -1296,6 +1304,7 @@ NGINX.NGINXPLUS/nginxDeployments
 
 - [NGXOperationLogs](./tables/ngxoperationlogs.md)
 - [NGXSecurityLogs](./tables/ngxsecuritylogs.md)
+- [NginxUpstreamUpdateLogs](./tables/nginxupstreamupdatelogs.md)
 
 ### Power BI Datasets  
 
