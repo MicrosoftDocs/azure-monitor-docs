@@ -11,9 +11,9 @@ ms.reviewer: abinetabate
 
 # Application Insights for Azure VMs and virtual machine scale sets
 
-Autoinstrumentation is available for ASP.NET, ASP.NET Core IIS-hosted, and Java applications running on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). 
+Autoinstrumentation is available for ASP.NET, ASP.NET Core IIS-hosted, and Java applications running on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/).
 
-This article walks you through enabling Application Insights monitoring for ASP.NET and ASP.NET Core IIS-hostedby applications using the Application Insights Agent, which autocollects the same dependency signals out of the box as the SDK. To learn more, see [Dependency autocollection](./auto-collect-dependencies.md#net). It also provides preliminary guidance for automating the process for large-scale deployments using PowerShell.
+This article walks you through enabling Application Insights monitoring for ASP.NET and ASP.NET Core IIS-hosted applications using the Application Insights Agent, which [autocollects the same dependency signals out of the box as the SDK](./auto-collect-dependencies.md#net). It also provides preliminary guidance for automating the process for large-scale deployments using PowerShell.
 
 > [!NOTE]
 > Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information:
@@ -21,9 +21,9 @@ This article walks you through enabling Application Insights monitoring for ASP.
 >  * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
 >  * **Value:** `false`
 
-For Java applications, we recommend the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java) for Java. The most popular libraries, frameworks, logs, and dependencies are [autocollected](./java-in-process-agent.md#autocollected-requests), along with many [other configurations](./java-standalone-config.md). To instrument Node.js or Python applications, use the [OpenTelemetry Distro](./opentelemetry-enable.md).
-
 For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+
+For Java applications, we recommend the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java) for Java. The most popular libraries, frameworks, logs, and dependencies are [autocollected](./java-in-process-agent.md#autocollected-requests), along with many [other configurations](./java-standalone-config.md). To instrument Node.js or Python applications, use the [OpenTelemetry Distro](./opentelemetry-enable.md).
 
 ## Prerequisites
 
