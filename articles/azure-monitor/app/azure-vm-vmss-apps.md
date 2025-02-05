@@ -11,19 +11,14 @@ ms.reviewer: abinetabate
 
 # Application Insights for Azure VMs and virtual machine scale sets
 
-Autoinstrumentation is available for ASP.NET, ASP.NET Core IIS-hosted, and Java applications running on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/).
-
-This article outlines how to enable Application Insights monitoring for ASP.NET and ASP.NET Core IIS-hosted applications using the Application Insights Agent, which [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net). It also provides preliminary guidance for automating large-scale deployments with PowerShell.
-
-For Java applications, we recommend the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java). The most popular libraries, frameworks, logs, and dependencies are [autocollected](./java-in-process-agent.md#autocollected-requests), along with many [other configurations](./java-standalone-config.md). To instrument Node.js or Python applications, use the [OpenTelemetry Distro](./opentelemetry-enable.md).
-
-For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
-
+This article explains how to enable Application Insights monitoring for IIS-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/) through autoinstrumentation. It covers how to use the Application Insights Agent, which [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net), and provides guidance for automating large-scale deployments with PowerShell.
+ 
 > [!NOTE]
-> Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information:
+> * For Java applications, use the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java), which [autocollects](./java-in-process-agent.md#autocollected-requests) the most popular libraries, frameworks, logs, and dependencies, along with many [other configurations](./java-standalone-config.md).
 >
->  * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
->  * **Value:** `false`
+> * Node.js and Python applications running on Azure VMs and Azure VMSS don't support autoinstrumentation. Use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) instead.
+ 
+For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
 ## Prerequisites
 
@@ -174,6 +169,15 @@ Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss.Name -Virtu
 
 ---
 
+## Frequently asked questions
+
+### How can I disable client-side monitoring for ASP.NET Core apps?
+
+Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable it, define an environment variable in the server with the following information:
+
+* **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
+* **Value:** `false`
+
 ## Troubleshooting
 
 Find troubleshooting tips for the Application Insights Monitoring Agent extension for .NET applications running on Azure virtual machines and virtual machine scale sets.
@@ -190,6 +194,8 @@ If your extension deployed successfully but you're unable to see telemetry, it c
 * Conflict with IIS shared configuration
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+
+
 
 ## Release notes
 
