@@ -11,42 +11,29 @@ ms.reviewer: abinetabate
 
 # Application Insights for Azure VMs and virtual machine scale sets
 
-Enabling monitoring for your ASP.NET and ASP.NET Core IIS-hosted applications running on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) or [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/) is now easier than ever. Get all the benefits of using Application Insights without modifying your code.
+Autoinstrumentation is available for ASP.NET, ASP.NET Core IIS-hosted, and Java applications running on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). 
 
-This article walks you through enabling Application Insights monitoring by using the Application Insights Agent. It also provides preliminary guidance for automating the process for large-scale deployments.
+This article walks you through enabling Application Insights monitoring for ASP.NET and ASP.NET Core IIS-hostedby applications using the Application Insights Agent, which autocollects the same dependency signals out of the box as the SDK. To learn more, see [Dependency autocollection](./auto-collect-dependencies.md#net). It also provides preliminary guidance for automating the process for large-scale deployments using PowerShell.
 
-## Enable Application Insights
+> [!NOTE]
+> Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information:
+>
+>  * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
+>  * **Value:** `false`
 
-Autoinstrumentation is easy to enable. Advanced configuration isn't required.
+For Java applications, we recommend the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java) for Java. The most popular libraries, frameworks, logs, and dependencies are [autocollected](./java-in-process-agent.md#autocollected-requests), along with many [other configurations](./java-standalone-config.md). To instrument Node.js or Python applications, use the [OpenTelemetry Distro](./opentelemetry-enable.md).
 
 For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
-> [!NOTE]
-> Autoinstrumentation is available for ASP.NET, ASP.NET Core IIS-hosted applications, and Java. Use an SDK to instrument Node.js and Python applications hosted on Azure virtual machines and virtual machine scale sets.
+## Prerequisites
 
-* **.NET Framework** - The Application Insights Agent autocollects the same dependency signals out of the box as the SDK. To learn more, see [Dependency autocollection](./auto-collect-dependencies.md#net).
+Before you install the Application Insights Agent extension, you need a connection string. [Create a new Application Insights resource](./create-workspace-resource.md) or copy the connection string from an existing one.
 
-* **.NET Core / .NET** - The Application Insights Agent autocollects the same dependency signals out of the box as the SDK. To learn more, see [Dependency autocollection](./auto-collect-dependencies.md#net).
-
-    Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information: 
-
-    * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
-    
-    * **Value:** `false`
-
-* **Java** - We recommend the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java) for Java. The most popular libraries, frameworks, logs, and dependencies are [autocollected](./java-in-process-agent.md#autocollected-requests), along with many [other configurations](./java-standalone-config.md).
-
-* **Node.js** - To instrument your Node.js application, use the [OpenTelemetry Distro](./opentelemetry-enable.md).
-
-* **Python** - To monitor Python apps, use the [OpenTelemetry Distro](./opentelemetry-enable.md).
-
-Before you install the Application Insights Agent extension, you'll need a connection string. [Create a new Application Insights resource](./create-workspace-resource.md) or copy the connection string from an existing Application Insights resource.
-
-### Enable monitoring for virtual machines
+## Enable monitoring for virtual machines
 
 You can use the Azure portal or PowerShell to enable monitoring for VMs.
 
-#### [Azure portal](#tab/portal)
+### [Azure portal](#tab/portal)
 
 1. In the Azure portal, go to your Application Insights resource. Copy your connection string to the clipboard.
 
@@ -64,10 +51,10 @@ You can use the Azure portal or PowerShell to enable monitoring for VMs.
 
     :::image type="content"source="./media/azure-vm-vmss-apps/install-extension.png" alt-text="Screenshot that shows the Create tab with the Review + create button." lightbox="media/azure-vm-vmss-apps/install-extension.png":::
 
-#### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 > [!NOTE]
-> Are you new to PowerShell? Check out the [Get started guide](/powershell/azure/get-started-azureps).
+> New to PowerShell? Check out the [Get started guide](/powershell/azure/get-started-azureps).
 
 Install or update the Application Insights Agent as an extension for Azure virtual machines:
 
@@ -128,15 +115,15 @@ Remove-AzVMExtension -ResourceGroupName "<myVmResourceGroup>" -VMName "<myVmName
 
 ---
 
-### Enable monitoring for virtual machine scale sets
+## Enable monitoring for virtual machine scale sets
 
 You can use the Azure portal or PowerShell to enable monitoring for virtual machine scale sets.
 
-#### [Azure portal](#tab/portal)
+### [Azure portal](#tab/portal)
 
 Follow the prior steps for VMs, but go to your virtual machine scale sets instead of your VM.
 
-#### [PowerShell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 Install or update Application Insights Agent as an extension for virtual machine scale sets:
 
@@ -221,5 +208,6 @@ Updated Application Insights .NET/.NET Core SDK to 2.18.1 - red field.
 Added the ASP.NET Core autoinstrumentation feature.
 
 ## Next steps
-* Learn how to [deploy an application to an Azure virtual machine scale set](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app).
-* [Availability overview](availability-overview.md)
+
+* [Deploy your application on Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app).
+* [Application Insights availability tests](availability.md)
