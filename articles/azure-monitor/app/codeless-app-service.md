@@ -2,9 +2,9 @@
 title: Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications - Azure Monitor | Microsoft Docs
 description: Application performance monitoring for Azure App Service. Chart load and response time, dependency information, and set alerts on performance.
 ms.topic: conceptual
-ms.date: 10/03/2024
+ms.date: 02/28/2025
 ms.custom:
-ms.author: v-nawrothkai
+ms.author: aaronmax
 ms.reviewer: abinetabate
 ---
 
@@ -274,8 +274,6 @@ If you encounter an issue that got fixed in the latest version of the [Applicati
 ## [Python (Preview)](#tab/python)
 
 The Application Insights Python version is updated automatically as part of App Service updates and *can't be updated manually*.
-
-If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
 
 ---
 
