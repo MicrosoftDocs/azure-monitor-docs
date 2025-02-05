@@ -184,7 +184,7 @@ The following metrics are collected by default from each default target. All oth
    - `apiserver_storage_list_returned_objects_total`
    - `apiserver_current_inflight_requests`
 > [!NOTE]
-> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and not collected by default. Only the sum, count are used for gathering the average latencies
+> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and all series are not collected by default(minimal ingestion profile). Only the sum, count are used for gathering the average latencies
 
    **controlplane-etcd (job=controlplane-etcd)**<br>
    - `etcd_server_has_leader`
