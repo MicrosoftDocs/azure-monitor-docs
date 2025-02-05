@@ -5,7 +5,7 @@ ms.topic: reference
 ms.service: azure-monitor
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 09/16/2024
+ms.date: 02/05/2025
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -19,7 +19,7 @@ For information on using these queries in the Azure portal, see [Log Analytics t
 ### Non-RDMA activity  
 
 
-View Non-RDMA activity of a node within a cluster.  
+View Non-RDMA activity of a machine.  
 
 ```query
 //Select your log analytics workspace and replace enter nodename with the name of the node within a cluster on which you want to set the alert for Non-RDMA activity
@@ -36,10 +36,10 @@ Perf
 ### RDMA activity  
 
 
-View RDMA activity of a node within a cluster.  
+View RDMA activity of a machine.  
 
 ```query
-//Select log analytics workspace and replace enter nodename with the name of the node within a cluster on which you want to set the alert for RDMA activity
+//Select log analytics workspace and replace enter nodename with the name of the machine on which you want to set the alert for RDMA activity
 Perf
 | where ObjectName == "RDMA Activity"
 | extend Nodename= tostring(split(Computer, ".")[0])

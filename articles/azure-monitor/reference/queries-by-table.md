@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: reference
 ms.service: azure-monitor
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -172,6 +172,7 @@ ms.reviewer: lualderm
 
 ## [ACSCallClientMediaStatsTimeSeries](./queries/ACSCallClientMediaStatsTimeSeries.md)
 
+- [Fetch time series media stats of all participants in a call](./queries/ACSCallClientMediaStatsTimeSeries.md#fetch-time-series-media-stats-of-all-participants-in-a-call)
 - [Metrics per each media type](./queries/ACSCallClientMediaStatsTimeSeries.md#metrics-per-each-media-type)
 - [Metric histogram per media type and direction](./queries/ACSCallClientMediaStatsTimeSeries.md#metric-histogram-per-media-type-and-direction)
 
@@ -182,6 +183,7 @@ ms.reviewer: lualderm
 - [Search calls by keyword](./queries/ACSCallClientOperations.md#search-calls-by-keyword)
 - [Search all user facing diagnostics in a call](./queries/ACSCallClientOperations.md#search-all-user-facing-diagnostics-in-a-call)
 - [Search all participants in a call](./queries/ACSCallClientOperations.md#search-all-participants-in-a-call)
+- [Check network quality of all participants in a call](./queries/ACSCallClientOperations.md#check-network-quality-of-all-participants-in-a-call)
 - [Search all client operations in a call](./queries/ACSCallClientOperations.md#search-all-client-operations-in-a-call)
 
 ## [ACSCallDiagnostics](./queries/ACSCallDiagnostics.md)
@@ -203,6 +205,7 @@ ms.reviewer: lualderm
 - [CallDiagnostics log for CallAutomation API call](./queries/ACSCallDiagnostics.md#calldiagnostics-log-for-callautomation-api-call)
 - [Search calls by keyword](./queries/ACSCallDiagnostics.md#search-calls-by-keyword)
 - [Search all participants in a call](./queries/ACSCallDiagnostics.md#search-all-participants-in-a-call)
+- [Check network quality of all participants in a call](./queries/ACSCallDiagnostics.md#check-network-quality-of-all-participants-in-a-call)
 
 ## [ACSCallRecordingIncomingOperations](./queries/ACSCallRecordingIncomingOperations.md)
 
@@ -490,6 +493,12 @@ ms.reviewer: lualderm
 
 - [Count DNS failures for a source by source and type](./queries/ASimDnsActivityLogs.md#count-dns-failures-for-a-source-by-source-and-type)
 - [Identify excessive query for a nonexistent domain by a source](./queries/ASimDnsActivityLogs.md#identify-excessive-query-for-a-nonexistent-domain-by-a-source)
+
+## [ATCExpressRouteCircuitIpfix](./queries/ATCExpressRouteCircuitIpfix.md)
+
+- [Get Top Talkers](./queries/ATCExpressRouteCircuitIpfix.md#get-top-talkers)
+- [Get Top Talkers by Source and Destination Port](./queries/ATCExpressRouteCircuitIpfix.md#get-top-talkers-by-source-and-destination-port)
+- [Get Total Bandwidth Usage](./queries/ATCExpressRouteCircuitIpfix.md#get-total-bandwidth-usage)
 
 ## [AVNMConnectivityConfigurationChange](./queries/AVNMConnectivityConfigurationChange.md)
 
@@ -1281,16 +1290,15 @@ ms.reviewer: lualderm
 
 ## [Event](./queries/Event.md)
 
-- [Memory usage percentage](./queries/Event.md#memory-usage-percentage)
-- [Avg node CPU usage percentage](./queries/Event.md#avg-node-cpu-usage-percentage)
+- [Avg. CPU usage per node (%)](./queries/Event.md#avg-cpu-usage-per-node-)
 - [Virtual machines failed](./queries/Event.md#virtual-machines-failed)
-- [Total virtual machines in a cluster.](./queries/Event.md#total-virtual-machines-in-a-cluster)
-- [Available volume capacity in a cluster.](./queries/Event.md#available-volume-capacity-in-a-cluster)
+- [Total VMs running on a cluster](./queries/Event.md#total-vms-running-on-a-cluster)
+- [Available volume capacity](./queries/Event.md#available-volume-capacity)
 - [Volume latency](./queries/Event.md#volume-latency)
 - [Volume IOPS](./queries/Event.md#volume-iops)
 - [Volume throughput](./queries/Event.md#volume-throughput)
 - [Cluster node down](./queries/Event.md#cluster-node-down)
-- [Memory usage percentage](./queries/Event.md#memory-usage-percentage)
+- [Memory usage per node (%)](./queries/Event.md#memory-usage-per-node-)
 - [Ingestion latency (end-to-end) timechart - Event table](./queries/Event.md#ingestion-latency-end-to-end-timechart---event-table)
 - [Show the trend of a selected event](./queries/Event.md#show-the-trend-of-a-selected-event)
 - [Error event on computer missing security co critical update](./queries/Event.md#error-event-on-computer-missing-security-co-critical-update)
@@ -1481,6 +1489,10 @@ ms.reviewer: lualderm
 
 - [Get traffic to non standard ports](./queries/NetworkSessions.md#get-traffic-to-non-standard-ports)
 - [High volume traffic to uncommon domains](./queries/NetworkSessions.md#high-volume-traffic-to-uncommon-domains)
+
+## [NginxUpstreamUpdateLogs](./queries/NginxUpstreamUpdateLogs.md)
+
+- [Show NGINXaaS upstream update logs](./queries/NginxUpstreamUpdateLogs.md#show-nginxaas-upstream-update-logs)
 
 ## [OEPAirFlowTask](./queries/OEPAirFlowTask.md)
 

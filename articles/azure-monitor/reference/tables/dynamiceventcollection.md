@@ -6,12 +6,12 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 09/16/2024
+ms.date: 02/05/2025
 ---
 
 # DynamicEventCollection
 
-A generic windows events table for data collected by the Defender for Endpoint agent
+Microsoft Defender for Endpoints (MDE) table for generic windows events. Fields of the raw events are available as part of the AdditionalFields column.
 
 
 ## Table attributes

@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 ---
 
 # NetworkAccessConnectionEvents
@@ -19,7 +19,7 @@ This table is part of Identity and Network Access, which contains Network Traffi
 |Attribute|Value|
 |---|---|
 |**Resource types**|-|
-|**Categories**|-|
+|**Categories**|Security, Network, IT & Management Tools|
 |**Solutions**| LogManagement|
 |**Basic log**|No|
 |**Ingestion-time transformation**|No|
