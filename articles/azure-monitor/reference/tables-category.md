@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 ---
 
 # Azure Monitor Log Analytics log tables organized by category
@@ -221,6 +221,7 @@ ms.date: 01/27/2025
 - [ACSCallSummary](./tables/acscallsummary.md)
 - [ACSCallSummaryUpdates](./tables/acscallsummaryupdates.md)
 - [ACSCallSurvey](./tables/acscallsurvey.md)
+- [ACSCallingMetrics](./tables/acscallingmetrics.md)
 - [ACSChatIncomingOperations](./tables/acschatincomingoperations.md)
 - [ACSEmailSendMailOperational](./tables/acsemailsendmailoperational.md)
 - [ACSEmailStatusUpdateOperational](./tables/acsemailstatusupdateoperational.md)
@@ -487,6 +488,7 @@ ms.date: 01/27/2025
 - [NGXOperationLogs](./tables/ngxoperationlogs.md)
 - [NGXSecurityLogs](./tables/ngxsecuritylogs.md)
 - [NSPAccessLogs](./tables/nspaccesslogs.md)
+- [NginxUpstreamUpdateLogs](./tables/nginxupstreamupdatelogs.md)
 - [OEPAirFlowTask](./tables/oepairflowtask.md)
 - [OEPAuditLogs](./tables/oepauditlogs.md)
 - [OEPDataplaneLogs](./tables/oepdataplanelogs.md)
@@ -665,6 +667,7 @@ ms.date: 01/27/2025
 - [IntuneDevices](./tables/intunedevices.md)
 - [IntuneOperationalLogs](./tables/intuneoperationallogs.md)
 - [NetworkAccessAlerts](./tables/networkaccessalerts.md)
+- [NetworkAccessConnectionEvents](./tables/networkaccessconnectionevents.md)
 - [NetworkAccessTraffic](./tables/networkaccesstraffic.md)
 - [RemoteNetworkHealthLogs](./tables/remotenetworkhealthlogs.md)
 - [Update](./tables/update.md)
@@ -696,6 +699,7 @@ ms.date: 01/27/2025
 - [NWConnectionMonitorPathResult](./tables/nwconnectionmonitorpathresult.md)
 - [NWConnectionMonitorTestResult](./tables/nwconnectionmonitortestresult.md)
 - [NetworkAccessAlerts](./tables/networkaccessalerts.md)
+- [NetworkAccessConnectionEvents](./tables/networkaccessconnectionevents.md)
 - [NetworkAccessTraffic](./tables/networkaccesstraffic.md)
 - [NetworkMonitoring](./tables/networkmonitoring.md)
 - [RemoteNetworkHealthLogs](./tables/remotenetworkhealthlogs.md)
@@ -806,6 +810,7 @@ ms.date: 01/27/2025
 - [NCBMSecurityLogs](./tables/ncbmsecuritylogs.md)
 - [NSPAccessLogs](./tables/nspaccesslogs.md)
 - [NetworkAccessAlerts](./tables/networkaccessalerts.md)
+- [NetworkAccessConnectionEvents](./tables/networkaccessconnectionevents.md)
 - [NetworkAccessTraffic](./tables/networkaccesstraffic.md)
 - [NetworkSessions](./tables/networksessions.md)
 - [OfficeActivity](./tables/officeactivity.md)
