@@ -1,17 +1,17 @@
 ---
-title: Move a Log Analytics workspace in Azure Monitor | Microsoft Docs
+title: Move a Log Analytics workspace in Azure Monitor
 description: Learn how to move your Log Analytics workspace to another subscription or resource group.
 ms.topic: conceptual
 ms.service:  azure-monitor
 ms.reviewer: yossiy
-ms.date: 08/12/2024
+ms.date: 02/05/2025
 ms.custom: devx-track-azurepowershell
 
 ---
 
 # Move a Log Analytics workspace to a different subscription or resource group
 
-In this article, you'll learn the steps to move a Log Analytics workspace to another resource group or subscription in the same region. To move a workspace across regions, see [Move a Log Analytics workspace to another region](./move-workspace-region.md).
+This article explains how to move a Log Analytics workspace to another resource group or subscription in the same region. Moving a Log Analytics workspace in the same region does not affect your log data or data retention settings.
 
 > [!TIP] 
 > To learn more about how to move Azure resources through the Azure portal, PowerShell, the Azure CLI, or the REST API, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
@@ -38,13 +38,12 @@ In this article, you'll learn the steps to move a Log Analytics workspace to ano
 | Unlink the Automation account | `Microsoft.OperationalInsights/workspaces/linkedServices/delete` permissions on the linked Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
 | Move a Log Analytics workspace. | `Microsoft.OperationalInsights/workspaces/delete` and `Microsoft.OperationalInsights/workspaces/write` permissions on the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
 
-## Considerations and limits
-
-Consider these points before you move a Log Analytics workspace:
+## Considerations 
 
 - It can take Azure Resource Manager a few hours to complete. Solutions might be unresponsive during the operation.
-- Managed solutions that are installed in the workspace, will be moved as well.
-- Managed solutions are workspace's objects and can't be moved independently.
+- Your log data and data retention settings will remain unaffected.
+- Managed solutions that are installed in the workspace will be moved as well.
+- Managed solutions are workspace objects and can't be moved independently.
 - Workspace keys (both primary and secondary) are regenerated with a workspace move operation. If you keep a copy of your workspace keys in Azure Key Vault, update them with the new keys generated after the workspace is moved.
 
 >[!IMPORTANT]

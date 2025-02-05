@@ -4,7 +4,7 @@ description: Use the workspace replication feature in Log Analytics to create co
 ms.topic: how-to
 ms.author: guywild
 ms.reviewer: noakuper
-ms.date: 05/18/2024
+ms.date: 01/30/2025
 ms.custom: references_regions 
 
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
@@ -21,14 +21,6 @@ Here's a video that provides a quick overview of how Log Analytics workspace rep
 > [!IMPORTANT]
 > Although we sometimes use the term failover, for example in the API call, failover is also commonly used to describe an automatic process. Therefore, this article uses the term switchover to emphasize that the switch to the replicated workspace is an action you trigger manually. 
 
-## Permissions required
-
-| Action | Permissions required |
-| --- | --- |
-| Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-| Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
-
 ## How Log Analytics workspace replication works
 
 Your original workspace and region are referred to as the **primary**. The replicated workspace and alternate region are referred to as the **secondary**.
@@ -43,7 +35,7 @@ If an outage affects your primary region, you can switch over and reroute all in
 
 When you switch over, the secondary workspace becomes active and your primary becomes inactive. Azure Monitor then ingests new data through the ingestion pipeline in your secondary region, rather than the primary region. When you switch over to your secondary region, Azure Monitor replicates all data you ingest from the secondary region to the primary region. The process is asynchronous and doesn't affect your ingestion latency.
 
-> [!IMPORTANT]
+> [!NOTE]
 > After you switch over to the secondary region, if the primary region can't process incoming log data, Azure Monitor buffers the data in the secondary region for up to 11 days. During the first four days, Azure Monitor automatically reattempts to replicate the data periodically.
 
 :::image type="content" source="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" alt-text="Diagram that shows ingestion flows during normal and switchover modes." lightbox="media/workspace-replication/log-analyics-workspace-replication-ingestion-flows.png" border="false":::
@@ -58,6 +50,29 @@ If the primary region's ingestion endpoint isn't available, Azure Monitor Agent 
 
 If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. 
 
+
+## Deployment considerations
+
+- Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
+- The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
+- Azure Monitor supports querying of the inactive region. Query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. Replication of alert rules across regions is currently not supported. 
+- When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
+- Workspace management operations can't be initiated during switchover, including:
+   - Change workspace retention, pricing tier, daily cap, and so on
+   - Change network settings
+   - Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
+- The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents. 
+- The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel. 
+- These features are currently not supported or only partially supported:
+
+    | Feature | Support |
+    | --- | --- |
+    |Auxiliary table plans|Not supported. Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace.|
+    | Search jobs, Restore | Partially supported - Search job and restore operations create tables and populate them with search results or restored data. After you enable workspace replication, new tables created for these operations replicate to your secondary workspace. Tables populated **before** you enable replication aren't replicated. If these operations are in progress when you switch over, the outcome is unexpected. It might complete successfully but not replicate, or it might fail, depending on your workspace health and the exact timing.|
+    | Application Insights over Log Analytics workspaces | Not supported |
+    | VM Insights | Not supported |
+    | Container Insights | Not supported |
+    | Private links | Not supported during failover |
 
 ### Supported regions
 
@@ -85,20 +100,34 @@ These region groups and regions are currently supported:
 
 Different customers have different data residency requirements, so it's important that you control where your data is stored. Azure Monitor processes and stores logs in the primary and secondary regions that you choose. For more information, see [Supported regions](#supported-regions).
 
-### Support for Sentinel and other services
+### Support for Microsoft Sentinel and other services
 
 Various services and features that use Log Analytics workspaces are compatible with workspace replication and switchover. These services and features continue to work when you switch over to the secondary workspace.
 
-For example, regional network issues that cause log ingestion latency can impact Sentinel customers. Customers that use replicated workspaces can switch over to their secondary region to continue working with their Log Analytics workspace and Sentinel. However, if the network issue impacts the Sentinel service health, switching to another region doesn't mitigate the issue.
+For example, regional network issues that cause log ingestion latency can impact Microsoft Sentinel customers. Customers that use replicated workspaces can switch over to their secondary region to continue working with their Log Analytics workspace and Sentinel. However, if the network issue impacts the Sentinel service health, switching to another region doesn't mitigate the issue.
 
-Some Azure Monitor experiences, including Application Insights and VM Insights, are currently only partially compatible with workspace replication and switchover. For the full list, see [Restrictions and limitations](#restrictions-and-limitations).
+Some Azure Monitor experiences, including Application Insights and VM Insights, are currently only partially compatible with workspace replication and switchover. For the full list, see [Deployment considerations](#deployment-considerations).
+
+## Pricing model
+
+When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace. 
+
+> [!IMPORTANT]
+> If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
+
+
+## Permissions required
+
+| Action | Permissions required |
+| --- | --- |
+| Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+| Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+| Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
+
 
 ## Enable and disable workspace replication
 
 You enable and disable workspace replication by using a REST command. The command triggers a long running operation, which means that it can take a few minutes for the new settings to apply. After you enable replication, it can take up to one hour for all tables (data types) to begin replicating, and some data types might start replicating before others. Changes you make to table schemas after you enable workspace replication - for example, new custom log tables or custom fields you create, or diagnostic logs set up for new resource types - can take up to one hour to start replicating.
-
-> [!IMPORTANT]
-> Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
 
 ### Enable workspace replication
 
@@ -155,23 +184,23 @@ Use the `GET` command to verify that the workspace provisioning state changes fr
 > [!NOTE]
 > When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
 
-### Associate data collection rules with the system data collection endpoint
+### Associate data collection rules with the workspace data collection endpoint
 
-You use [data collection rules (DCR)](../essentials/data-collection-rule-overview.md) to collect log data using Azure Monitor Agent and the Logs Ingestion API.
+Azure Monitor Agent, the Logs Ingestion API, and Azure Event Hubs collect data and send it to the destination you specify based on how you set up your [data collection rules (DCR)](../essentials/data-collection-rule-overview.md).
 
-If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the system data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace's system data collection endpoint enable replication and switchover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
+If you have data collection rules that send data to your primary workspace, you need to associate the rules to a system [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md), which Azure Monitor creates when you enable workspace replication. The name of the workspace data collection endpoint is identical to your workspace ID. Only data collection rules you associate to the workspace data collection endpoint enable replication and switchover. This behavior lets you specify the set of log streams to replicate, which helps you control your replication costs.
 
-To replicate data you collect using data collection rules, associate your data collection rules to the system data collection endpoint for your Log Analytics workspace:
+To replicate data you collect using data collection rules, associate your data collection rules to the workspace data collection endpoint:
 
 1. In the Azure portal, select **Data collection rules**.
 1. From the **Data collection rules** screen, select a data collection rule that sends data to your primary Log Analytics workspace.
-1. On the data collection rule **Overview** page, select **Configure DCE** and select the system data collection endpoint from the available list:
+1. On the data collection rule **Overview** page, select **Configure DCE** and select the workspace data collection endpoint from the available list:
 
    :::image type="content" source="media/workspace-replication/configure-dce.png" alt-text="Screenshot that shows how to configure a data collection endpoint for an existing data collection rule in the Azure portal." lightbox="media/workspace-replication/configure-dce.png":::
    For details about the System DCE, check the workspace object properties.
 
 > [!IMPORTANT]
-> Data collection rules connected to a workspace's system data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
+> Data collection rules connected to a workspace data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
 
 ### Disable workspace replication
 
@@ -222,7 +251,7 @@ Service Health notifications are useful for service-related issues. To identify 
 
 ## Switch over to your secondary workspace
 
-During switchover, most operations work the same as when you use the primary workspace and region. However, some operations have slightly different behavior or are blocked. For more information, see [Restrictions and limitations](#restrictions-and-limitations).
+During switchover, most operations work the same as when you use the primary workspace and region. However, some operations have slightly different behavior or are blocked. For more information, see [Deployment considerations](#deployment-considerations).
 
 ### When should I switch over?
 
@@ -552,28 +581,7 @@ LAQueryLogs
 | where ResponseCode>=500 and ResponseCode<600 
 | count
 ```
-## Restrictions and limitations
 
-- Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
-- The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
-- Replication of alert rules across regions is currently not supported. Since Azure Monitor supports querying the inactive region, query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available.
-- When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
-- During switchover, workspace management operations aren't supported, including:
-   - Change workspace retention, pricing tier, daily cap, and so on
-   - Change network settings
-   - Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
-- The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. Therefore, during switchover, solution data is ingested from **all** agents.
-- The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Sentinel. 
-- These features are currently not supported or only partially supported:
-
-    | Feature | Support |
-    | --- | --- |
-    |Auxiliary table plans|Not supported. Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace.|
-    | Search jobs, Restore | Partially supported - Search job and restore operations create tables and populate them with search results or restored data. After you enable workspace replication, new tables created for these operations replicate to your secondary workspace. Tables populated **before** you enable replication aren't replicated. If these operations are in progress when you switch over, the outcome is unexpected. It might complete successfully but not replicate, or it might fail, depending on your workspace health and the exact timing.|
-    | Application Insights over Log Analytics workspaces | Not supported |
-    | VM Insights | Not supported |
-    | Container Insights | Not supported |
-    | Private links | Not supported during failover |
 
 ## Related content
 
