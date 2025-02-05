@@ -3,7 +3,7 @@ title: Azure Monitor features for Kubernetes monitoring
 description: Describes Container insights and Managed Prometheus in Azure Monitor, which work together to monitor your Kubernetes clusters.
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 01/29/2025
+ms.date: 02/05/2025
 ms.reviewer: viviandiec
 ---
 
@@ -15,7 +15,7 @@ ms.reviewer: viviandiec
 - Container insights is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters and their components.  You can analyze the collected data for the different components in your cluster with a collection of [views](container-insights-analyze.md) and prebuilt [workbooks](container-insights-reports.md).
 
 > [!IMPORTANT]
-> Container insights collects metric data from your cluster in addition to logs. This functionality has been replaced by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). You can analyze that data using built-in dashboards in [Managed Grafana](/azure/managed-grafana/overview) and alert on them using [prebuilt Prometheus alert rules](container-insights-metric-alerts.md).
+> Container insights collects metric data from your cluster in addition to logs. This functionality is replaced by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). You can analyze that data using built-in dashboards in [Managed Grafana](/azure/managed-grafana/overview) and alert on them using [prebuilt Prometheus alert rules](container-insights-metric-alerts.md).
 > 
 > You can continue to have Container insights collect metric data so you can use the Container insights monitoring experience. Or you can save cost by disabling this collection and using Grafana for metric analysis. See [Configure data collection in Container insights using data collection rule](container-insights-data-collection-dcr.md) for configuration options.
 > 
@@ -60,7 +60,7 @@ Access Container insights in the Azure portal from **Containers** in the **Monit
 
 Container insights and Managed Prometheus rely on a containerized [Azure Monitor agent](../agents/agents-overview.md) for Linux. This specialized agent collects performance and event data from all nodes in the cluster. The agent is deployed and registered with the specified workspaces during deployment. When you enable Container insights on a cluster, a [Data collection rule (DCR)](../essentials/data-collection-rule-overview.md) is created with the name `MSCI-<cluster-region>-<cluster-name>` that contains the definition of data that should be collected by Azure Monitor agent. 
 
-Since March 1, 2023 Container insights uses a semver compliant agent version. The agent version is *mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.1.4* or later. When a new version of the agent is released, it will be automatically upgraded on your managed Kubernetes clusters that are hosted on AKS. To track which versions are released, see [Agent release announcements](https://github.com/microsoft/Docker-Provider/blob/ci_prod/ReleaseNotes.md). 
+Since March 1, 2023 Container insights uses a Semver compliant agent version. The agent version is *mcr.microsoft.com/azuremonitor/containerinsights/ciprod:3.1.4* or later. When a new version of the agent is released, it's automatically upgraded on your managed Kubernetes clusters that are hosted on AKS. To track which versions are released, see [Agent release announcements](https://github.com/microsoft/Docker-Provider/blob/ci_prod/ReleaseNotes.md). 
 
 
 ### Log Analytics agent
