@@ -33,19 +33,17 @@ Because Azure Monitor supports various levels of customization, your cluster may
 
 1. Open the Azure portal and navigate to your desired AKS cluster.
 
-2. Choose the `Monitor` or `Insights` menu item from the menu, displaying a splash screen indicating no monitoring enabled.
+2. Choose the `Monitor` or `Insights` menu item from the menu, displaying a basic monitoring experience with options to onboard to monitoring.
 
-![Screenshot of unmonitoring cluster.](media/container-insights-experience-v2/splash-screen-nothing-enabled.png)
+![Screenshot of unmonitoring cluster.](media/container-insights-experience-v2/monitor-blade-free.png)
 
-3. Select the `Configure monitoring` button to open up the monitoring configuration blade.
+3. Select the `Monitoring Settings` button from the toolbar to open up the monitoring configuration blade or any of the `Enable metrics` links below. Note that by default, the `Logs and Events` dropdown is selected under `Advanced Settings`.
 
-4. Underneath the advanced settings blade, choose `Logs and events` from the Cost presets dropdown.
+4. To finish the setup, click the `Configure` button.
 
-5. To finish the setup, click the `Configure` button.
+5. Once the onboarding deployment completes, you should be able to see the Insights experience using Prometheus as the data source, indicated by the toolbar dropdown showing `Managed Prometheus visualizations (Preview)`.
 
-6. Once the onboarding deployment completes, you should be able to see the Insights experience using Prometheus as the data source, indicated by the toolbar dropdown showing `Managed Prometheus visualizations (Preview)`.
-
-![Screenshot of AKS cluster with Prometheus based Container Insights.](media/container-insights-experience-v2/container-insights-prom-full.png)
+![Screenshot of AKS cluster with Prometheus based Container Insights.](media/container-insights-experience-v2/full-monitoring-enabled.png)
 
 ### [Logs based Container Insights enabled](#tab/LA)
 
@@ -63,7 +61,7 @@ If the banner was previously dismissed, you can instead use the dropdown in the 
 
 4. Once the monitoring deployment is complete, the Insights blade should switch to using Prometheus as the data source, indicated by the toolbar dropdown showing `Managed Prometheus visualizations (Preview)`.
 
-![Screenshot of AKS cluster with Prometheus based Container Insights.](media/container-insights-experience-v2/container-insights-prom-full.png)
+![Screenshot of AKS cluster with Prometheus based Container Insights.](media/container-insights-experience-v2/full-monitoring-enabled.png)
 
 
 ### [Prometheus enabled and logs based Container Insights not enabled or with custom settings applied](#tab/Prom)
@@ -72,7 +70,7 @@ If the banner was previously dismissed, you can instead use the dropdown in the 
 
 2. Choose the `Insights` menu item from the menu, which displays a banner for enabling Prometheus recording rules.
 
-![Screenshot of AKS cluster with Prometheus based Container Insights.](media/container-insights-experience-v2/container-insights-splash-screen-prom-only.png)
+![Screenshot of AKS cluster with Prometheus based Container Insights.](media/container-insights-experience-v2/monitor-blade-free.png)
 
 3. Click `Enable` to deploy the recording rules.
 
@@ -80,8 +78,6 @@ If the banner was previously dismissed, you can instead use the dropdown in the 
 
 > [!Note]
 > Some charts will only have partial data for the default time range until sufficient time has elapsed for the recording rules to collect data.
-
-![Screenshot of AKS cluster with Prometheus based Container Insights, with recording rule banner.](media/container-insights-experience-v2/container-insights-prom-recording-rules-loading.png)
 
 ---
 
