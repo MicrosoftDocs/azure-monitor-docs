@@ -7699,11 +7699,6 @@
    "source_path_from_root": "/articles/azure-monitor/logs/data-security.md",
    "redirect_url": "/azure/azure-monitor/best-practices-security",
    "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
   }
  ]
 }
