@@ -1286,6 +1286,8 @@ items:
             href: tables/microsoft-desktopvirtualization_workspaces.md
           - name: microsoft.devcenter/devcenters
             href: tables/microsoft-devcenter_devcenters.md
+          - name: microsoft.devcenter/plans
+            href: tables/microsoft-devcenter_plans.md
           - name: microsoft.devices/iothubs
             href: tables/microsoft-devices_iothubs.md
           - name: microsoft.devices/provisioningservices
@@ -1543,12 +1545,12 @@ items:
             href: tables/aaduserriskevents.md
           - name: ABAPAuditLog
             href: tables/abapauditlog.md
+          - name: ABAPChangeDocsLog
+            href: tables/abapchangedocslog.md
+          - name: ABAPUserDetails
+            href: tables/abapuserdetails.md
           - name: ABSBotRequests
             href: tables/absbotrequests.md
-          - name: ABSChannelToBotRequests
-            href: tables/abschanneltobotrequests.md
-          - name: ABSDependenciesRequests
-            href: tables/absdependenciesrequests.md
           - name: ACICollaborationAudit
             href: tables/acicollaborationaudit.md
           - name: ACRConnectedClientList
@@ -1585,6 +1587,8 @@ items:
             href: tables/acscallsummaryupdates.md
           - name: ACSCallSurvey
             href: tables/acscallsurvey.md
+          - name: ACSCallingMetrics
+            href: tables/acscallingmetrics.md
           - name: ACSChatIncomingOperations
             href: tables/acschatincomingoperations.md
           - name: ACSEmailSendMailOperational
@@ -1755,10 +1759,6 @@ items:
             href: tables/atcmicrosoftpeeringmetadata.md
           - name: ATCPrivatePeeringMetadata
             href: tables/atcprivatepeeringmetadata.md
-          - name: AUIEventsAudit
-            href: tables/auieventsaudit.md
-          - name: AUIEventsOperational
-            href: tables/auieventsoperational.md
           - name: AVNMConnectivityConfigurationChange
             href: tables/avnmconnectivityconfigurationchange.md
           - name: AVNMIPAMPoolAllocationChange
@@ -2035,8 +2035,6 @@ items:
             href: tables/cdbqueryruntimestatistics.md
           - name: CDBTableApiRequests
             href: tables/cdbtableapirequests.md
-          - name: CHSMManagementAuditLogs
-            href: tables/chsmmanagementauditlogs.md
           - name: CIEventsAudit
             href: tables/cieventsaudit.md
           - name: CIEventsOperational
@@ -2591,6 +2589,8 @@ items:
             href: tables/nwconnectionmonitorpathresult.md
           - name: NWConnectionMonitorTestResult
             href: tables/nwconnectionmonitortestresult.md
+          - name: NatGatewayFlowlogsV1
+            href: tables/natgatewayflowlogsv1.md
           - name: NetworkAccessAlerts
             href: tables/networkaccessalerts.md
           - name: NetworkAccessConnectionEvents
@@ -2599,6 +2599,8 @@ items:
             href: tables/networkaccesstraffic.md
           - name: NetworkSessions
             href: tables/networksessions.md
+          - name: NginxUpstreamUpdateLogs
+            href: tables/nginxupstreamupdatelogs.md
           - name: OEPAirFlowTask
             href: tables/oepairflowtask.md
           - name: OEPAuditLogs
@@ -2609,6 +2611,12 @@ items:
             href: tables/oepelasticoperator.md
           - name: OEPElasticsearch
             href: tables/oepelasticsearch.md
+          - name: OEWExperimentAssignmentSummary
+            href: tables/oewexperimentassignmentsummary.md
+          - name: OEWExperimentScorecardMetricPairs
+            href: tables/oewexperimentscorecardmetricpairs.md
+          - name: OEWExperimentScorecards
+            href: tables/oewexperimentscorecards.md
           - name: OLPSupplyChainEntityOperations
             href: tables/olpsupplychainentityoperations.md
           - name: OLPSupplyChainEvents
@@ -2665,6 +2673,10 @@ items:
             href: tables/resourcemanagementpublicaccesslogs.md
           - name: SCCMAssessmentRecommendation
             href: tables/sccmassessmentrecommendation.md
+          - name: SCGPoolExecutionLog
+            href: tables/scgpoolexecutionlog.md
+          - name: SCGPoolRequestLog
+            href: tables/scgpoolrequestlog.md
           - name: SCOMAssessmentRecommendation
             href: tables/scomassessmentrecommendation.md
           - name: SPAssessmentRecommendation
@@ -2673,6 +2685,10 @@ items:
             href: tables/sqlassessmentrecommendation.md
           - name: SQLSecurityAuditEvents
             href: tables/sqlsecurityauditevents.md
+          - name: SVMPoolExecutionLog
+            href: tables/svmpoolexecutionlog.md
+          - name: SVMPoolRequestLog
+            href: tables/svmpoolrequestlog.md
           - name: SecureScoreControls
             href: tables/securescorecontrols.md
           - name: SecureScores
@@ -3099,6 +3115,8 @@ items:
             href: queries/ASRReplicatedItems.md
           - name: ASimDnsActivityLogs
             href: queries/ASimDnsActivityLogs.md
+          - name: ATCExpressRouteCircuitIpfix
+            href: queries/ATCExpressRouteCircuitIpfix.md
           - name: AVNMConnectivityConfigurationChange
             href: queries/AVNMConnectivityConfigurationChange.md
           - name: AVNMIPAMPoolAllocationChange
@@ -3391,6 +3409,8 @@ items:
             href: queries/NWConnectionMonitorTestResult.md
           - name: NetworkSessions
             href: queries/NetworkSessions.md
+          - name: NginxUpstreamUpdateLogs
+            href: queries/NginxUpstreamUpdateLogs.md
           - name: OEPAirFlowTask
             href: queries/OEPAirFlowTask.md
           - name: OLPSupplyChainEntityOperations

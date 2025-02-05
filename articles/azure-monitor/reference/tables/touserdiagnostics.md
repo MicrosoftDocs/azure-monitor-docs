@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 ---
 
 # TOUserDiagnostics
@@ -21,7 +21,7 @@ Contains all Toolchain orchestrator API Server user diagnostics logs. These even
 |**Resource types**|microsoft.toolchainorchestrator/diagnostics|
 |**Categories**|Azure Resources|
 |**Solutions**| LogManagement|
-|**Basic log**|No|
+|**Basic log**|Yes|
 |**Ingestion-time transformation**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/touserdiagnostics)|
 

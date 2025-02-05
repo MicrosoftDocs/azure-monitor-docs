@@ -6,12 +6,12 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 09/16/2024
+ms.date: 02/05/2025
 ---
 
 # Event
 
-Events from Windows Event Log on Windows computers using the Log Analytics agent and Azure Monitor agent.
+Events from Windows Event Log on Windows computers using the Log Analytics agent.
 
 
 ## Table attributes
