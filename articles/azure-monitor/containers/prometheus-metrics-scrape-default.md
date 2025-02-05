@@ -173,11 +173,11 @@ The following metrics are collected by default from each default target. All oth
    - `apiserver_cache_list_returned_objects_total`
    - `apiserver_flowcontrol_demand_seats_average`
    - `apiserver_flowcontrol_current_limit_seats`
-   - `apiserver_request_sli_duration_seconds_bucket{+inf bucket}`
+   - `apiserver_request_sli_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_sli_duration_seconds_count`
    - `apiserver_request_sli_duration_seconds_sum`
    - `process_start_time_seconds`
-   - `apiserver_request_duration_seconds_bucket{+inf bucket}`
+   - `apiserver_request_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_duration_seconds_count`
    - `apiserver_request_duration_seconds_sum`
    - `apiserver_storage_list_fetched_objects_total`
