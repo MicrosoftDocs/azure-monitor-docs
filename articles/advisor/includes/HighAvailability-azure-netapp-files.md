@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 02/05/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -68,21 +68,16 @@ Subcategory: Other
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_begin-->
 
-#### Implement disaster recovery strategies for your Azure NetApp Files resources  
+#### Configure a snapshot for the Azure NetApp Files volume  
   
-To avoid data or functionality loss during a regional or zonal disaster, implement common disaster recovery techniques such as cross region replication or cross zone replication for your Azure NetApp Files volumes.  
+Configure a snapshot for the Azure NetApp Files volume. Restore a snapshot to a new volume, restore a single file by using a client, or revert an existing volume by using a snapshot.  
   
-**Potential benefits**: Manage disaster recovery easily with Azure NetApp Files replication features  
+**Potential benefits**: Add data protection for the Azure NetApp Files volume.  
 
-**Impact:** High
-  
-For more information, see [Understand data protection and disaster recovery options in Azure NetApp Files ](https://aka.ms/anfcrr)  
-
-ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
-Recommendation ID: cda11061-35a8-4ca3-aa03-b242dcdf7319  
-Subcategory: DisasterRecovery
+For more information, see [How Azure NetApp Files snapshots work](/azure/azure-netapp-files/snapshots-introduction)  
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_end-->
+
 
 <!--e4bebd74-387a-4a74-b757-475d2d1b4e3e_begin-->
 
@@ -101,5 +96,17 @@ Recommendation ID: e4bebd74-387a-4a74-b757-475d2d1b4e3e
 Subcategory: HighAvailability
 
 <!--e4bebd74-387a-4a74-b757-475d2d1b4e3e_end-->
+
+<!--c70fc854-2814-4b03-9b93-8ad7b918bfcf_begin-->
+
+#### Configure a backup for the Azure NetApp Files volume  
+  
+Configure a backup for the Azure NetApp Files volume. An Azure NetApp Files backup provides a fully managed backup solution for long-term recovery, archiving, and compliance. An Azure NetApp Files backup expands the data protection provided by Azure NetApp Files volume.  
+  
+**Potential benefits**: Add data protection for the Azure NetApp Files volume.  
+
+For more information, see [Configure policy-based backups for Azure NetApp Files](/azure/azure-netapp-files/backup-configure-policy-based)  
+
+<!--c70fc854-2814-4b03-9b93-8ad7b918bfcf_end-->
 
 <!--articleBody-->
