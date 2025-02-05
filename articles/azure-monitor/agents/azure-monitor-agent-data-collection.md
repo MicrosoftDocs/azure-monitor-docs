@@ -73,20 +73,12 @@ The **Basics** tab includes basic information about the DCR.
 
 On the **Resources** pane, you can add VMs to be associated with the DCR. To choose resources to add, select **Add resources**. The Azure Monitor Agent is automatically installed on any resource that doesn't already have the agent installed. A [data collection rule association (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra) is created between the machine and the DCR.
 
-> [!TIP]
-> Before you add a VM to a DCR, ensure that the VM isn't associated with other DCRs using the same data sources or you may collect duplicate data. See [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#preview-dcr-experience) to list the DCRs associated with a VM in the Azure portal. You can also use the following PowerShell command to list all DCRs for a VM:
->
-> ```powershell
-> Get-AzDataCollectionRuleAssociation -resourceUri <vm-resource-id>
-> ```
-
+> [!IMPORTANT]
+> When resources are added to a DCR, the default option in the Azure portal is to enable a system-assigned managed identity for the resources. For existing applications, if a user-assigned managed identity is already set, if you don't specify the user-assigned identity when you add the resource to a DCR by using the portal, the machine defaults to using a *system-assigned identity* that's applied by the DCR.
 
 :::image type="content" source="media/azure-monitor-agent-data-collection/resources-tab.png" lightbox="media/azure-monitor-agent-data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
 
 If you're using Azure Monitor Private Links, select **Enable Data Collection Endpoints** on the **Resources** tab and select an endpoint in the region of each monitored machine.
-
-> [!IMPORTANT]
-> When resources are added to a DCR, the default option in the Azure portal is to enable a system-assigned managed identity for the resources. For existing applications, if a user-assigned managed identity is already set, if you don't specify the user-assigned identity when you add the resource to a DCR by using the portal, the machine defaults to using a *system-assigned identity* that's applied by the DCR.
 
 ## Add data sources
 
