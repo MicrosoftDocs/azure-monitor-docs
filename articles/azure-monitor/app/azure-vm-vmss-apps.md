@@ -11,7 +11,7 @@ ms.reviewer: abinetabate
 
 # Application Insights for Azure VMs and virtual machine scale sets
 
-This article explains how to enable Application Insights monitoring through autoinstrumentation for IIS-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). It covers how to deploy the Application Insights Agent through a virtual machine extension, which [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net), and provides guidance for automating large-scale deployments with PowerShell.
+This article explains how to enable Application Insights monitoring through autoinstrumentation for IIS-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/). It covers how to deploy the Application Insights Agent using a virtual machine extension, which [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net), and provides guidance for automating large-scale deployments with PowerShell.
  
 > [!NOTE]
 > * For Java applications, use the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java), which [autocollects](./java-in-process-agent.md#autocollected-requests) the most popular libraries, frameworks, logs, and dependencies, along with many [other configurations](./java-standalone-config.md).
