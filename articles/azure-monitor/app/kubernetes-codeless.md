@@ -48,13 +48,13 @@ az extension update --name aks-preview
 az login
 
 # Register the feature flag for Azure Monitor App Monitoring in preview
-az feature register --namespace 'Microsoft.ContainerService' --name 'AzureMonitorAppMonitoringPreview'
+az feature register --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview"
 
 # List the registration state of the Azure Monitor App Monitoring Preview feature
 az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/AzureMonitorAppMonitoringPreview')].{Name:name,State:properties.state}"
 
 # Once the feature shows as registered in the prior step, re-register the Microsoft.ContainerService provider to apply the new feature settings
-az provider register --namespace Microsoft.ContainerService
+az provider register --namespace "Microsoft.ContainerService"
 
 # Check the registration state of the Microsoft.ContainerService provider
 az provider show --namespace "Microsoft.ContainerService" --query "registrationState"
