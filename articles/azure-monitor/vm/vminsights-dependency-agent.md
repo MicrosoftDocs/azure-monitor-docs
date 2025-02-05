@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.custom: linux-related-content
 author: guywi-ms
 ms.author: guywild
-ms.date: 11/06/2024
+ms.date: 01/29/2025
 ---
 
 # Dependency Agent in Azure Monitor VM insights
@@ -19,7 +19,7 @@ Dependency Agent collects data about processes running on the virtual machine an
 
 - Azure Monitor agent must be installed on the same machine.
 - Requires a connection from the virtual machine to the address 169.254.169.254. This address identifies the Azure metadata service endpoint. 
-- Currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2019, except Windows Server 2008 SP2 and Azure Stack HCI. For Linux, see [Dependency Agent Linux support](#dependency-agent-linux-support).
+- Currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2019, except Windows Server 2008 SP2 and Azure Local. For Linux, see [Dependency Agent Linux support](#dependency-agent-linux-support).
 
 ## Linux considerations
 

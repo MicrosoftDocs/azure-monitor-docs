@@ -4,7 +4,7 @@ description: Get an overview of the Azure Monitor Agent. Learn how you can use t
 ms.topic: conceptual
 author: guywi-ms
 ms.author: guywild
-ms.date: 11/14/2024
+ms.date: 01/29/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -74,7 +74,7 @@ The following tables identify the different environments and features that are c
 |  | VM insights | ✓ | ✓ |
 |  | Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) |  |  |
 |  | Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |
-|  | Azure Stack HCI | ✓ |  |
+|  | Azure Local | ✓ |  |
 |  | Update Manager (no longer uses agents) |  |  |
 |  | Change tracking | ✓ | ✓ |
 |  | SQL Best Practices Assessment | ✓ |     |
