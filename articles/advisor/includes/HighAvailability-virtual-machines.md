@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -200,15 +200,10 @@ Use a Premium SSD managed disk in a Single Instance virtual machine for the high
   
 **Potential benefits**: Enhanced performance, configurability, and uptime  
 
-**Impact:** Low
-  
-For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines ](https://aka.ms/disks-high-availability)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 2b5cf6e5-2792-49b2-9ec0-0e901be6488b  
-Subcategory: BusinessContinuity
+For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
+
 
 
 
@@ -256,15 +251,10 @@ Add a second instance VM to Availability Set or upgrade to Premium SSD managed d
   
 **Potential benefits**: Enhanced performance, configurability, and uptime  
 
-**Impact:** Medium
-  
-For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines ](https://aka.ms/disks-high-availability)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: e5e707f2-f41f-4aa6-bccf-3fb9748e5b66  
-Subcategory: BusinessContinuity
+For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
 
 <!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_end-->
+
 
 
 
@@ -348,15 +338,10 @@ Upgrade the operating system (OS) disk from Standard HDD to Standard SSD for inc
   
 **Potential benefits**: Boost single-instance VM uptime from 95% to 99.5%.  
 
-**Impact:** Medium
-  
 For more information, see [Azure Disks Standard SSD billable transaction cap blog](https://aka.ms/billedcapsblog)  
 
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
-Subcategory: HighAvailability
-
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
+
 
 
 <!--articleBody-->
