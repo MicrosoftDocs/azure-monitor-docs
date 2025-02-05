@@ -33,7 +33,7 @@ Because Azure Monitor supports various levels of customization, your cluster may
 
 1. Open the Azure portal and navigate to your desired AKS cluster.
 
-2. Choose the `Insights` menu item from the menu, displaying a splash screen indicating no monitoring enabled.
+2. Choose the `Monitor` or `Insights` menu item from the menu, displaying a splash screen indicating no monitoring enabled.
 
 ![Screenshot of unmonitoring cluster.](media/container-insights-experience-v2/splash-screen-nothing-enabled.png)
 
