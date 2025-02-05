@@ -207,6 +207,8 @@ items:
             href: supported-metrics/microsoft-insights-datacollectionrules-metrics.md
           - name: Microsoft.IoTCentral/IoTApps
             href: supported-metrics/microsoft-iotcentral-iotapps-metrics.md
+          - name: Microsoft.IoTFirmwareDefense/workspaces
+            href: supported-metrics/microsoft-iotfirmwaredefense-workspaces-metrics.md
           - name: microsoft.keyvault/managedhsms
             href: supported-metrics/microsoft-keyvault-managedhsms-metrics.md
           - name: Microsoft.KeyVault/vaults
@@ -455,6 +457,8 @@ items:
             href: supported-metrics/oracle-database-autonomousdatabases-metrics.md
           - name: Oracle.Database/cloudVmClusters
             href: supported-metrics/oracle-database-cloudvmclusters-metrics.md
+          - name: Oracle.Database/exadbVmClusters
+            href: supported-metrics/oracle-database-exadbvmclusters-metrics.md
           - name: Private.MessagingConnectors/connectors
             href: supported-metrics/private-messagingconnectors-connectors-metrics.md
           - name: Wandisco.Fusion/migrators
@@ -858,6 +862,9 @@ items:
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-logs.md
             displayName: Capacity Pool Autoscaled
+          - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
+            href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md
+            displayName: ANF File Access
           - name: Microsoft.Network/applicationgateways
             href: supported-logs/microsoft-network-applicationgateways-logs.md
             displayName: Application Gateway Access Log,Application Gateway Firewall
