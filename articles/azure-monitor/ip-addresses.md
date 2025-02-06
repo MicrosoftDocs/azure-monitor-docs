@@ -1,6 +1,6 @@
 ---
 title: IP addresses used by Azure Monitor | Microsoft Docs
-description: This article discusses server firewall exceptions that are required by Azure Monitor
+description: This article discusses server firewall exceptions required by Azure Monitor
 ms.topic: reference
 ms.date: 01/31/2025
 ms.servce: azure-monitor
@@ -14,12 +14,12 @@ Author: AaronMaxwell
 [Azure Monitor](.\overview.md) uses several IP addresses. Azure Monitor is made up of core platform metrics and logs in addition to Log Analytics and Application Insights. You might need to know IP addresses if the app or infrastructure that you're monitoring is hosted behind a firewall.
 
 > [!NOTE]
-> Although these addresses are static, it's possible that we'll need to change them from time to time. All Application Insights traffic represents outbound traffic with the exception of availability monitoring and webhook action groups, which also require inbound firewall rules.
+> Although these addresses are static, it's possible that we need to change them from time to time. All Application Insights traffic represents outbound traffic except for availability monitoring and webhook action groups, which also require inbound firewall rules.
 
 You can use Azure [network service tags](/azure/virtual-network/service-tags-overview) to manage access if you're using Azure network security groups. If you're managing access for hybrid/on-premises resources, you can download the equivalent IP address lists as [JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which are updated each week. To cover all the exceptions in this article, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`.
 
 > [!NOTE]
-> Service tags do not replace validation/authentication checks required for cross-tenant communications between a customer's azure resource and other service tag resources.
+> Service tags don't replace validation/authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources.
 
 ## Outgoing ports
 
@@ -30,7 +30,7 @@ You need to open some outgoing ports in your server's firewall to allow the Appl
 
 | Purpose | URL | Type | IP | Ports |
 | --- | --- | --- | --- | --- |
-| Telemetry | `dc.applicationinsights.azure.com`<br/>`dc.applicationinsights.microsoft.com`<br/>`dc.services.visualstudio.com`<br/>`{region}.in.applicationinsights.azure.com`<br/><br/> |Global<br/>Global<br/>Global<br/>Regional<br/>|| 443 |
+| Telemetry | `dc.applicationinsights.azure.com`<br/>`dc.applicationinsights.microsoft.com`<br/>`dc.services.visualstudio.com`<br/><br/>`{region}.in.applicationinsights.azure.com`<br/><br/> |Global<br/>Global<br/>Global<br/>Regional<br/>|| 443 |
 | Live Metrics | `live.applicationinsights.azure.com`<br/>`rt.applicationinsights.microsoft.com`<br/>`rt.services.visualstudio.com`<br/><br/>`{region}.livediagnostics.monitor.azure.com`<br/><br/>Example for `{region}`: `westus2`|Global<br/>Global<br/>Global<br/><br/>Regional<br/>|20.49.111.32/29<br/>13.73.253.112/29| 443 |
 
 > [!NOTE]
@@ -69,7 +69,7 @@ For more information on availability tests, see [Private availability testing](.
 | CDN | `applicationanalytics.azureedge.net` | dynamic | 80,443 |
 | Media CDN | `applicationanalyticsmedia.azureedge.net` | dynamic | 80,443 |
 
-The *.applicationinsights.io domain is owned by the Application Insights team.
+The Application Insights team owns the *.applicationinsights.io domain.
 
 ## Log Analytics portal
 
@@ -77,7 +77,7 @@ The *.applicationinsights.io domain is owned by the Application Insights team.
 | --- | --- | --- | --- |
 | Portal | `portal.loganalytics.io` | dynamic | 80,443 |
 
-The *.loganalytics.io domain is owned by the Log Analytics team.
+The Log Analytics team owns the *.loganalytics.io domain.
 
 ## Application Insights Azure portal extension
 
