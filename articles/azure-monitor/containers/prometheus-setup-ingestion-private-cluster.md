@@ -24,8 +24,8 @@ For more details, see [Azure Monitor Private Link Scope (AMPLS)](../logs/private
 
 To setup ingestion of Managed Prometheus metrics from virtual network using private endpoints into Azure Monitor Workspace, below are the high-level steps:
 
-1. Create an Azure Monitor Private Link Scope (AMPLS) and connect it with the Data Collection Endpoint of the Azure Monitor Workspace
-2. Connect the AMPLS to the private endpoint that is setup for the virtual network of your private AKS cluster
+- Create an Azure Monitor Private Link Scope (AMPLS) and connect it with the Data Collection Endpoint of the Azure Monitor Workspace
+- Connect the AMPLS to the private endpoint that is setup for the virtual network of your private AKS cluster
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ A [private AKS cluster](/azure/aks/private-clusters) with Managed Prometheus ena
 
 ## Setup data ingestion from private AKS cluster to Azure Monitor Workspace
 
-### Create an AMPLS for Azure Monitor Workspace
+### 1. Create an AMPLS for Azure Monitor Workspace
 
 Metrics collected with Azure Managed Prometheus is ingested and stored in Azure Monitor workspace, so you must make the workspace accessible over a private link. For this, create an Azure Monitor Private Link Scope or AMPLS.
 
@@ -46,7 +46,7 @@ Metrics collected with Azure Managed Prometheus is ingested and stored in Azure 
 
 For more details on setup of AMPLS see [Configure private link for Azure Monitor](/azure/azure-monitor/logs/private-link-configure).
 
-### Connect the AMPLS to the Data Collection Endpoint of Azure Monitor Workspace
+### 2. Connect the AMPLS to the Data Collection Endpoint of Azure Monitor Workspace
 
 Private links for data ingestion for Managed Prometheus are configured on the Data Collection Endpoints (DCE) of the Azure Monitor workspace that stores the data. To identify the DCEs associated with your Azure Monitor workspace, select Data Collection Endpoints from your Azure Monitor workspace in the Azure portal.
 
@@ -58,19 +58,27 @@ Private links for data ingestion for Managed Prometheus are configured on the Da
 
 :::image type="content" source="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls-dce.png" alt-text="Connect DCE to the AMPLS" lightbox="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls-dce.png" :::
 
-#### Configure DCEs
+#### 2a. Configure DCEs
+
+> [!NOTE]
+> If your AKS cluster isn't in the same region as your Azure Monitor Workspace, then you need to configure the Data Collection Rule of your AMW. 
+
+Follow the steps below only if your AKS cluster is not in the same region as your Azure Monitor Workspace. If your cluster is in the same region, skip this step and move to step 3.
+
+1. [Create a Data Collection Endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) in the same region as the AKS cluster.
+2. Go to your Azure Monitor Workspace, and click on the Data collection rule (DCR) on the Overview page. This DCR has the same name as your Azure Monitor Workspace. On the **Data collection endpoint** dropdown, select the DCE created in the same region as the AKS cluster.
+
+:::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr.png" alt-text="A screenshot show the data collection rule for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr.png" :::
 
 :::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" alt-text="A screenshot show the data collection endpoints page for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" :::
 
 In this case, open the data collection rule (DCR) created when you enabled Managed Prometheus. This DCR will be named **MSProm-\<clusterName\>-\<clusterRegion\>**. The cluster will be listed on the **Resources** page. On the **Data collection endpoint** dropdown, select the DCE in the same region as the AKS cluster.
 
-> [!NOTE]
-> If your AKS cluster isn't in the same region as your Azure Monitor workspace, then you need to [create another DCE](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) in the same region as the AKS cluster.
-> Open the data collection rule (DCR) created when you create the Azure Monitor Workspace. This DCR has the same name as your Azure Monitor Workspace. On the **Data collection endpoint** dropdown, select the DCE created in the same region as the AKS cluster.
+
 
 :::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" alt-text="A screenshot show the data collection rules page for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" :::
 
-### Connect AMPLS to private endpoint of AKS cluster
+### 3. Connect AMPLS to private endpoint of AKS cluster
 
 A private endpoint is a special network interface for an Azure service in your Virtual Network (VNet). We will create a private endpoint in the VNet of your private AKS cluster and connect it to the AMPLS for secure ingestion of metrics.
 
@@ -82,7 +90,7 @@ A private endpoint is a special network interface for an Azure service in your V
 
 3. In the **Virtual Network** section, select the virtual network of your AKS cluster. You can find this in the portal under AKS overview -> Settings -> Networking -> Virtual network integration.
 
-## Verify if metrics are ingested into Azure Monitor Workspace
+## 4. Verify if metrics are ingested into Azure Monitor Workspace
 
 Verify if Prometheus metrics from your private AKS cluster are ingested into Azure Monitor Workspace:
 
