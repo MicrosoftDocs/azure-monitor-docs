@@ -150,7 +150,7 @@ Example:
 
 ## Distributed tracing for Node.js function apps
 
-To view more data from your Node Azure Functions applications than is [collected by default](/azure/azure-functions/functions-monitoring#collecting-telemetry-data), instrument your Function using the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=nodejs).
+To view more data from your Node.js application running on Azure Functions than is [collected by default with autoinstrumentation](/azure/azure-functions/functions-monitoring#collecting-telemetry-data), instrument your application manually using the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=nodejs).
 
 ## Distributed tracing for Python function apps
 
