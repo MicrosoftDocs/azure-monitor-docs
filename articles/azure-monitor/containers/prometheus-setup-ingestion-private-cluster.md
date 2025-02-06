@@ -8,7 +8,7 @@ ms.topic: conceptual
 ms.date: 01/25/2025
 ---
 
-# Setup data ingestion of Managed Prometheus metrics from private endpoint into Azure Monitor workspace from a private AKS cluster
+# Setup data ingestion of Managed Prometheus metrics from private AKS cluster to Azure Monitor workspace
 
 [Azure Private Link](/azure/private-link/private-link-overview) enables you to access Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. An [Azure Monitor Private Link Scope (AMPLS)](../logs/private-link-security.md) connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. Using private endpoints for Managed Prometheus and your Azure Monitor workspace you can allow clients on a virtual network (VNet) to securely ingest data over a Private Link.
 
@@ -20,7 +20,7 @@ This article describes the end-to-end instructions on how to configure Managed P
 - An Azure Private Link enables you to securely link Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. Azure Monitor uses a single private link connection called Azure Monitor Private Link Scope or AMPLS, which enables each client in the virtual network to connect with all Azure Monitor resources like Log Analytics Workspace, Azure Monitor Workspace etc. (instead of creating multiple private links).
 For more details, see [Azure Monitor Private Link Scope (AMPLS)](../logs/private-link-security.md)
 
-:::image type="content" source="./media/azure-monitor-workspace-private-endpoint/amp-private-ingestion-overview.png" lightbox="./media/azure-monitor-workspace-private-endpoint/amp-private-ingestion-overview.png" alt-text="Diagram that shows overview of ingestion through private link.":::
+:::image type="content" source="./media/kubernetes-monitoring-private-link/amp-private-ingestion-overview.png" lightbox="./media/kubernetes-monitoring-private-link/amp-private-ingestion-overview.png" alt-text="Diagram that shows overview of ingestion through private link.":::
 
 To setup ingestion of Managed Prometheus metrics from virtual network using private endpoints into Azure Monitor Workspace, below are the high-level steps:
 
@@ -44,11 +44,11 @@ Metrics collected with Azure Managed Prometheus is ingested and stored in an Azu
 ### Configure DCEs
 Private links for data ingestion for Managed Prometheus are configured on the Data Collection Endpoints (DCE) of the Azure Monitor workspace that stores the data. To identify the DCEs associated with your Azure Monitor workspace, select **Data Collection Endpoints** from your Azure Monitor workspace in the Azure portal.
 
-:::image type="content" source="../containers/media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" alt-text="A screenshot show the data collection endpoints page for an Azure Monitor workspace." lightbox="../containers/media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" :::
+:::image type="content" source="./media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" alt-text="A screenshot show the data collection endpoints page for an Azure Monitor workspace." lightbox="./media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" :::
 
 If your AKS cluster isn't in the same region as your Azure Monitor workspace, then you need to [create another DCE](./data-collection-endpoint-overview.md#create-a-data-collection-endpoint) in the same region as the AKS cluster. In this case, open the data collection rule (DCR) created when you enabled Managed Prometheus. This DCR will be named **MSProm-\<clusterName\>-\<clusterRegion\>**. The cluster will be listed on the **Resources** page. On the **Data collection endpoint** dropdown, select the DCE in the same region as the AKS cluster.
 
-:::image type="content" source="../containers/media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" alt-text="A screenshot show the data collection rules page for an Azure Monitor workspace." lightbox="../containers/media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" :::
+:::image type="content" source="./media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" alt-text="A screenshot show the data collection rules page for an Azure Monitor workspace." lightbox="./media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" :::
 
 
 
