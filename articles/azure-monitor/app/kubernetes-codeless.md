@@ -145,13 +145,22 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     > [!IMPORTANT]
     > To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.
 
-    Example:
-    
+    Examples:
+    - Java
     ```yml
     instrumentation.opentelemetry.io/inject-java:"cr1"
     ```
+    - Node.js:
+    ```yml
+    instrumentation.opentelemetry.io/inject-nodejs:"cr1"
+    ```
+
 > [!TIP]
 > [Restart deployments](#restart-deployment) for settings to take effect.
+
+Annotation placement should look as follows.
+
+:::image type="content" source="media/kubernetes-codeless/example-annotation.png" alt-text="A screenshot of annotation placement within a YAML file." lightbox="media/kubernetes-codeless/example-annotation.png":::
 
 ### Mixed mode onboarding
 
