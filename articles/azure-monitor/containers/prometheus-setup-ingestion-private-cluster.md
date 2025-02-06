@@ -70,18 +70,27 @@ In this case, open the data collection rule (DCR) created when you enabled Manag
 
 :::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" alt-text="A screenshot show the data collection rules page for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" :::
 
-
 ### Connect AMPLS to private endpoint of AKS cluster
 
+A private endpoint is a special network interface for an Azure service in your Virtual Network (VNet). We will create a private endpoint in the VNet of your private AKS cluster and connect it to the AMPLS for secure ingestion of metrics.
 
+1. In the Azure portal, search for the AMPLS that you created in the previous steps. Go to the AMPLS overview page, click on **Configure** -> **Private Endpoint connections**, and then select **+ Private Endpoint**.
+2. Select the resource group and enter a name of the private endpoint, then click *Next*.
+3. In the **Resource** section, select **Microsoft.Monitor/accounts** as the Resource type, the Azure Monitor Workspace as the Resource, and then select **prometheusMetrics**. Click *Next*.
 
+:::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-private-endpoint-config.png" alt-text="A screenshot show the private endpoint config" lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-private-endpoint-config.png" :::
 
-> [!NOTE]
-> - See [Connect to a data source privately](/azure/managed-grafana/how-to-connect-to-data-source-privately) for details on how to configure private link to query data from your Azure Monitor workspace using Grafana.
-> - See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../essentials/azure-monitor-workspace-private-endpoint.md) for details on how to configure private link to query data from your Azure Monitor workspace using workbooks.
+3. In the **Virtual Network** section, select the virtual network of your AKS cluster. You can find this in the portal under AKS overview -> Settings -> Networking -> Virtual network integration.
 
+## Verify if metrics are ingested into Azure Monitor Workspace
+
+Verify if Prometheus metrics from your private AKS cluster are ingested into Azure Monitor Workspace:
+
+1. In the Azure portal, search for the Azure Monitor Workspace, and go to **Monitoring** -> **Metrics**.
+2. In the Metrics Explorer, query for metrics and verify that you are able to query.
 
 ## Next steps
 
 - [Query data from Azure Managed Grafana using Managed Private Endpoint](/azure/managed-grafana/how-to-connect-to-data-source-privately).
+- [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../essentials/azure-monitor-workspace-private-endpoint.md) for details on how to configure private link to query data from your Azure Monitor workspace using workbooks.
 - [Azure Private Endpoint DNS configuration](/azure/private-link/private-endpoint-dns)
