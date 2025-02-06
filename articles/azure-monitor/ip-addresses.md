@@ -30,7 +30,7 @@ You need to open some outgoing ports in your server's firewall to allow the Appl
 
 | Purpose | URL | Type | IP | Ports |
 | --- | --- | --- | --- | --- |
-| Telemetry | `dc.applicationinsights.azure.com`<br/>`dc.applicationinsights.microsoft.com`<br/>`dc.services.visualstudio.com`<br/><br/>`{region}.in.applicationinsights.azure.com`<br/><br/> |Global<br/>Global<br/>Global<br/>Regional<br/>|| 443 |
+| Telemetry | `dc.applicationinsights.azure.com`<br/>`dc.applicationinsights.microsoft.com`<br/>`dc.services.visualstudio.com`<br/><br/>`{region}.in.applicationinsights.azure.com`<br/><br/> |Global<br/>Global<br/>Global<br/><br/>Regional<br/>|| 443 |
 | Live Metrics | `live.applicationinsights.azure.com`<br/>`rt.applicationinsights.microsoft.com`<br/>`rt.services.visualstudio.com`<br/><br/>`{region}.livediagnostics.monitor.azure.com`<br/><br/>Example for `{region}`: `westus2`|Global<br/>Global<br/>Global<br/><br/>Regional<br/>|20.49.111.32/29<br/>13.73.253.112/29| 443 |
 
 > [!NOTE]
