@@ -30,8 +30,8 @@ You need to open some outgoing ports in your server's firewall to allow the Appl
 
 | Purpose | URL | Type | IP | Ports |
 | --- | --- | --- | --- | --- |
-| Telemetry | `dc.applicationinsights.azure.com`<br/>`dc.applicationinsights.microsoft.com`<br/>`dc.services.visualstudio.com`<br/>`*.in.applicationinsights.azure.com`<br/><br/> |Global<br/>Global<br/>Global<br/>Regional<br/>|| 443 |
-| Live Metrics | `live.applicationinsights.azure.com`<br/>`rt.applicationinsights.microsoft.com`<br/>`rt.services.visualstudio.com`<br/><br/>`{region}.livediagnostics.monitor.azure.com`<br/><br/>*Example for `{region}`: `westus2`|Global<br/>Global<br/>Global<br/><br/>Regional<br/>|20.49.111.32/29<br/>13.73.253.112/29| 443 |
+| Telemetry | `dc.applicationinsights.azure.com`<br/>`dc.applicationinsights.microsoft.com`<br/>`dc.services.visualstudio.com`<br/>`{region}.in.applicationinsights.azure.com`<br/><br/> |Global<br/>Global<br/>Global<br/>Regional<br/>|| 443 |
+| Live Metrics | `live.applicationinsights.azure.com`<br/>`rt.applicationinsights.microsoft.com`<br/>`rt.services.visualstudio.com`<br/><br/>`{region}.livediagnostics.monitor.azure.com`<br/><br/>Example for `{region}`: `westus2`|Global<br/>Global<br/>Global<br/><br/>Regional<br/>|20.49.111.32/29<br/>13.73.253.112/29| 443 |
 
 > [!NOTE]
 > Application Insights ingestion endpoints are IPv4 only.
@@ -148,41 +148,12 @@ This section provides answers to common questions.
 
 ### Can I monitor an intranet web server?
 
-Yes, but you need to allow traffic to our services by either firewall exceptions or proxy redirects:
-
-- QuickPulse `https://rt.services.visualstudio.com:443`
-- ApplicationIdProvider `https://dc.services.visualstudio.com:443`
-- TelemetryChannel `https://dc.services.visualstudio.com:443`
+Yes, but you need to allow traffic to our services by either firewall exceptions or proxy redirects.
           
-See [IP addresses used by Azure Monitor](./ip-addresses.md) to review our full list of services and IP addresses.
+See [IP addresses used by Azure Monitor](./ip-addresses.md#outgoing-ports) to review our full list of services and IP addresses.
           
 ### How do I reroute traffic from my server to a gateway on my intranet?
           
-Route traffic from your server to a gateway on your intranet by overwriting endpoints in your configuration. If the `Endpoint` properties aren't present in your config, these classes use the default values shown in the following ApplicationInsights.config example.
+Route traffic from your server to a gateway on your intranet by overwriting endpoints in your configuration. If the `Endpoint` properties aren't present in your config, these classes use the default values which are documented in [IP addresses used by Azure Monitor](./ip-addresses.md#outgoing-ports).
           
 Your gateway should route traffic to our endpoint's base address. In your configuration, replace the default values with `http://<your.gateway.address>/<relative path>`.
-          
-#### Example ApplicationInsights.config with default endpoints:
-          
-```xml
-<ApplicationInsights>
-...
-<TelemetryModules>
-    <Add Type="Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPulse.QuickPulseTelemetryModule, Microsoft.AI.PerfCounterCollector">
-    <QuickPulseServiceEndpoint>https://rt.services.visualstudio.com/QuickPulseService.svc</QuickPulseServiceEndpoint>
-    </Add>
-</TelemetryModules>
-    ...
-<TelemetryChannel>
-    <EndpointAddress>https://dc.services.visualstudio.com/v2/track</EndpointAddress>
-</TelemetryChannel>
-...
-<ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights">
-    <ProfileQueryEndpoint>https://dc.services.visualstudio.com/api/profiles/{0}/appId</ProfileQueryEndpoint>
-</ApplicationIdProvider>
-...
-</ApplicationInsights>
-```
-
-> [!NOTE]
-> `ApplicationIdProvider` is available starting in v2.6.0.
