@@ -5,7 +5,7 @@ ms.topic: reference
 ms.service: azure-monitor
 ms.author: edbaynash
 author: EdB-MSFT
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -25,7 +25,7 @@ Lists of audit Toolchain orchestrator operations.
 TOUserAudits
 | where Message !startswith_cs "Request" 
 | order by EdgeLocation, TimeGenerated desc
-| project EdgeLocation, TimeGenerated, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
+| project EdgeLocation, TimeGenerated, User, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
 | take 100
 ```
 
@@ -40,7 +40,7 @@ Lists of audit Toolchain orchestrator api requests.
 TOUserAudits
 | where Message startswith_cs "Request" 
 | order by EdgeLocation, TimeGenerated desc
-| project EdgeLocation, TimeGenerated, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
+| project EdgeLocation, TimeGenerated, User, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
 | take 100
 ```
 
