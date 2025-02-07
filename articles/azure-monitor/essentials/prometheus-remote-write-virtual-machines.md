@@ -353,7 +353,7 @@ If you're on a Kubernetes cluster that's running Prometheus Operator, use the fo
    kubectl apply -f <remote-write-secret.yaml>
    ```
 
-2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#azuread).
+2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md).
 
    ```yaml
    prometheus:
