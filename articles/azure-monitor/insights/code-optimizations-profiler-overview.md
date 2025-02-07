@@ -40,11 +40,11 @@ Using the [Code Optimizations consolidated oveview page](./view-code-optimizatio
 
 #### Analyze
 
-Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shos a rolling 24-hour window of recently identitified issues, with a 30-day history for you to review and analyze past events.
+Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identitified issues, with a 30-day history for you to review and analyze past events.
 
 #### Resolve
 
-After identifying and analyzing the Code Optimization results, you can resolve these issues in your code using the Code Optimizations [Visual Studio](./code-optimizations-vs-extension.md) and [Visual Studio Code](./code-optimizations-vscode-extension.md) extensions. With these extensions, interact with GitHub Copilot to receive a code fix specific to the issues detected by Code Optimizations. 
+After identifying and analyzing the Code Optimization results, you can resolve these issues in your code using the Code Optimizations [Visual Studio](./code-optimizations-vs-extension.md) and [Visual Studio Code](./code-optimizations-vscode-extension.md) extensions. With these extensions, interact with GitHub Copilot to receive a code fix grounded in Code Optimizations insights. 
 
 #### Demo video
 
