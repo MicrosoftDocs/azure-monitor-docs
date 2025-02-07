@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 12/17/2024
-ms.reviewer: ryankahng
+ms.date: 02/07/2025
+ms.reviewer: jan.kalis
 ms.collection: ce-skilling-ai-copilot
 ---
 
@@ -27,11 +27,24 @@ The .NET Profiler and Code Optimizations work together to provide a holistic app
 
 ### Code Optimizations
 
-[Code Optimizations](https://aka.ms/codeoptimizations) analyzes the profiling data collected by the Application Insights Profiler for .NET. As the .NET Profiler uploads data to Application Insights, our machine learning model analyzes some of the data to find where the application's code can be optimized. Code Optimizations:
+[Code Optimizations](https://aka.ms/codeoptimizations) identifies, analyzes, and resolves the profiling data collected by the Application Insights Profiler for .NET. As the .NET Profiler uploads data to Application Insights, our machine learning model analyzes some of the data to find where the application's code can be optimized. Code Optimizations:
 
 - Displays aggregated data gathered over time.
 - Connects data with the methods and functions in your application code.
 - Narrows down the culprit by finding bottlenecks within the code.
+- Provides code-level performance fixes based on insights.
+
+#### Identify
+
+Using the [Code Optimizations consolidated oveview page](./view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
+
+#### Analyze
+
+Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shos a rolling 24-hour window of recently identitified issues, with a 30-day history for you to review and analyze past events.
+
+#### Resolve
+
+After identifying and analyzing the Code Optimization results, you can resolve these issues in your code using the Code Optimizations [Visual Studio](./code-optimizations-vs-extension.md) and [Visual Studio Code](./code-optimizations-vscode-extension.md) extensions. With these extensions, interact with GitHub Copilot to receive a code fix specific to the issues detected by Code Optimizations. 
 
 #### Demo video
 
