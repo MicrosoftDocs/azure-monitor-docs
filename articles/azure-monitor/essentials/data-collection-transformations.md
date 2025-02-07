@@ -61,6 +61,7 @@ See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 > [!IMPORTANT]
 > If Azure Sentinel is enabled for the Log Analytics workspace, there's no filtering ingestion charge regardless of how much data the transformation filters.
 
+
 ## Next steps
 
 - [Read more about data collection rules (DCRs)](./data-collection-rule-overview.md).
