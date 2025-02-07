@@ -39,10 +39,11 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 1. Open the GitHub Copilot chat. 
 
 You have two options for using the Code Optimizations extension in Visual Studio Code:
-- [With Code Optimizations](#option-1-with-code-optimizations)
-- [Without Code Optimizations](#option-2-without-code-optimizations)
+- [Connect to Code Optimizations in Azure](#option-1-connect-to-code-optimizations-in-azure)
+- [Optimize code based on GitHub issues from Code Optimizations](#option-2-optimize-code-based-on-github-issues-from-code-optimizations)
+- [Without Code Optimizations](#option-3-without-code-optimizations)
 
-### Option 1: With Code Optimizations
+### Option 1: Connect to Code Optimizations in Azure
 
 While using the extension with Code Optimizations enabled on your application requires more setup steps, you receive more accurate fix suggestions in your code. 
 
@@ -82,7 +83,7 @@ To get started, make sure Code Optimizations are identified for your application
 
 1. Generate fixes for other issues by following the prompts in the Copilot response.
 
-#### Optimize your code
+### Option 2: Optimize code based on GitHub issues from Code Optimizations
 
 Aside from the `@code-optimizations /connect` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command.
 
@@ -124,7 +125,8 @@ Directly trigger `/optimize` on selected code. Using this method, you can proact
 
 You can then run benchmark/load tests to ensure the changes improve performance, and unit tests to ensure code semantics are preserved.
 
-#### Option 2: Without Code Optimizations
+
+### Option 3: Without Code Optimizations
 
 You can use the Visual Studio Code extension without Code Optimizations enabled. While this method requires less setup time, you may receive less accurate fix suggestions. 
 
