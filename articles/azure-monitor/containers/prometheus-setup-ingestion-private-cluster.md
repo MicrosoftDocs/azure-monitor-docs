@@ -25,7 +25,7 @@ For more details, see [Azure Monitor Private Link Scope (AMPLS)](../logs/private
 To setup ingestion of Managed Prometheus metrics from virtual network using private endpoints into Azure Monitor Workspace, below are the high-level steps:
 
 - Create an Azure Monitor Private Link Scope (AMPLS) and connect it with the Data Collection Endpoint of the Azure Monitor Workspace
-- Connect the AMPLS to the private endpoint that is setup for the virtual network of your private AKS cluster
+- Connect the AMPLS to a private endpoint that is setup for the virtual network of your private AKS cluster
 
 ## Prerequisites
 
@@ -61,22 +61,22 @@ Private links for data ingestion for Managed Prometheus are configured on the Da
 #### 2a. Configure DCEs
 
 > [!NOTE]
-> If your AKS cluster isn't in the same region as your Azure Monitor Workspace, then you need to configure the Data Collection Rule of your AMW. 
+> If your AKS cluster isn't in the same region as your Azure Monitor Workspace, then you need to configure the Data Collection Rule for the Azure Monitor Workspace. 
 
-Follow the steps below only if your AKS cluster is not in the same region as your Azure Monitor Workspace. If your cluster is in the same region, skip this step and move to step 3.
+Follow the steps below **only if your AKS cluster is not in the same region as your Azure Monitor Workspace**. If your cluster is in the same region, skip this step and move to step 3.
 
 1. [Create a Data Collection Endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) in the same region as the AKS cluster.
-2. Go to your Azure Monitor Workspace, and click on the Data collection rule (DCR) on the Overview page. This DCR has the same name as your Azure Monitor Workspace. On the **Data collection endpoint** dropdown, select the DCE created in the same region as the AKS cluster.
+2. Go to your Azure Monitor Workspace, and click on the Data collection rule (DCR) on the Overview page. This DCR has the same name as your Azure Monitor Workspace. 
 
 :::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr.png" alt-text="A screenshot show the data collection rule for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr.png" :::
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" alt-text="A screenshot show the data collection endpoints page for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-endpoints.png" :::
+3. From the DCR overview page, click on **Resources** -> **+ Add**, and then select the AKS cluster.
 
-In this case, open the data collection rule (DCR) created when you enabled Managed Prometheus. This DCR will be named **MSProm-\<clusterName\>-\<clusterRegion\>**. The cluster will be listed on the **Resources** page. On the **Data collection endpoint** dropdown, select the DCE in the same region as the AKS cluster.
+:::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr-aks.png" alt-text="Screenshot showing how to connect AMW DCR to AKS" lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr-aks.png" :::
 
+4. Once the AKS cluster is added (you might need to refresh the page), click on the AKS cluster, and then **Edit Data Collection of Endpoint**. On the blade that opens, select the Data Collection Endpoint that you created in step 1 of this section. Note that this DCE should be in the same region as the AKS cluster.
 
-
-:::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" alt-text="A screenshot show the data collection rules page for an Azure Monitor workspace." lightbox="media/kubernetes-monitoring-private-link/azure-monitor-workspace-data-collection-rule.png" :::
+:::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr-dce.png" alt-text="A screenshot showing association of the DCE." lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr-dce.png" :::
 
 ### 3. Connect AMPLS to private endpoint of AKS cluster
 
