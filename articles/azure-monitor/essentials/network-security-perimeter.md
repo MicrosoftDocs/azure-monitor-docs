@@ -55,6 +55,7 @@ The following components of Azure Monitor are **not** supported with a network s
 - [Application Insights Profiler for .NET](./../profiler/profiler-overview.md) and [Snapshot Debugger](./../snapshot-debugger/snapshot-debugger.md)
 - Log Analytics customer managed key
 - Cross-resource queries that include any Log Analytics workspaces associated with an NSP
+- Azure Monitor Workspace (for Managed Prometheus metrics)
 
 > [!NOTE]
 > For Application insights, configure NSP for the Log Analytics workspace used for the Application insights resource.
