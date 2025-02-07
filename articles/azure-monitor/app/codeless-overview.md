@@ -55,7 +55,7 @@ Links are provided to more information for each supported scenario.
 - ¹: Application Insights is on by default and enabled automatically.
 - ²: This feature is in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 - ³: An agent must be deployed and configured.
-- ⁴: Only single-container applications are supported with autoinstrumentation. For multi-container applications, use manual instrumentation.
+- ⁴: Autoinstrumentation only supports single-container applications. For multi-container applications, manual instrumentation is required using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
 
 > [!NOTE]
 > Autoinstrumentation was known as "codeless attach" before October 2021.
