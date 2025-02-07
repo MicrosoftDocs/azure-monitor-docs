@@ -354,7 +354,7 @@ Dependency collection is enabled by default. The article [Dependency tracking in
 
 ### EventCounter
 
-`EventCounterCollectionModule` is enabled by default, and it collects a default set of counters from [.NET](/dotnet/fundamentals/) apps. The [EventCounter](eventcounters.md) tutorial lists the default set of counters collected. It also has instructions on how to customize the list.
+`EventCounterCollectionModule` is enabled by default, and it collects a default set of counters from [.NET](/dotnet/fundamentals/) apps. The [EventCounter](asp-net-counters.md) tutorial lists the default set of counters collected. It also has instructions on how to customize the list.
 
 ### Manually track other telemetry
 

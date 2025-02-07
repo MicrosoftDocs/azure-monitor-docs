@@ -7,7 +7,7 @@ services: azure-monitor
 ms.topic: reference
 ms.service: azure-monitor
 ms.custom: ignite-2022
-ms.date: 01/02/2025
+ms.date: 02/05/2025
 ms.reviewer: priyamishra
 ---
 
@@ -16,7 +16,7 @@ ms.reviewer: priyamishra
 > [!NOTE]
 > This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 
-Last updated: 01/02/2025.
+Last updated: 02/05/2025.
 
 Azure Monitor provides several ways to interact with metrics, including charting them in the Azure portal, accessing them through the REST API, or querying them by using PowerShell or the Azure CLI (Command Line Interface).  
 
@@ -164,6 +164,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.Web <a name="microsoftweb"></a>|[containerapps](./supported-metrics/Microsoft-Web-containerapps-metrics.md)<br>[hostingEnvironments](./supported-metrics/Microsoft-Web-hostingEnvironments-metrics.md)<br>[hostingenvironments/multirolepools](./supported-metrics/Microsoft-Web-hostingenvironments-multirolepools-metrics.md)<br>[hostingenvironments/workerpools](./supported-metrics/Microsoft-Web-hostingenvironments-workerpools-metrics.md)<br>[serverfarms](./supported-metrics/Microsoft-Web-serverfarms-metrics.md)<br>[sites](./supported-metrics/Microsoft-Web-sites-metrics.md)<br>[sites/slots](./supported-metrics/Microsoft-Web-sites-slots-metrics.md)<br>[staticsites](./supported-metrics/Microsoft-Web-staticsites-metrics.md)<br>|[hostingEnvironments](./supported-logs/Microsoft-Web-hostingEnvironments-logs.md)<br>[sites](./supported-logs/Microsoft-Web-sites-logs.md)<br>[sites/slots](./supported-logs/Microsoft-Web-sites-slots-logs.md)<br>[staticsites](./supported-logs/Microsoft-Web-staticsites-logs.md)<br>|
 |microsoft.workloads <a name="microsoftworkloads"></a>|N/A|[sapvirtualinstances](./supported-logs/microsoft-workloads-sapvirtualinstances-logs.md)<br>|
 |NGINX.NGINXPLUS <a name="nginxnginxplus"></a>|[NGINX.NGINXPLUS/nginxDeployments](./supported-metrics/NGINX-NGINXPLUS-nginxDeployments-metrics.md)<br>|[NGINX.NGINXPLUS/nginxDeployments](./supported-logs/NGINX-NGINXPLUS-nginxDeployments-logs.md)<br>|
+|Oracle.Database <a name="oracledatabase"></a>|[Oracle.Database/autonomousDatabases](./supported-metrics/Oracle-Database-autonomousDatabases-metrics.md)<br>[Oracle.Database/cloudVmClusters](./supported-metrics/Oracle-Database-cloudVmClusters-metrics.md)<br>[Oracle.Database/exadbVmClusters](./supported-metrics/Oracle-Database-exadbVmClusters-metrics.md)<br>|[Oracle.Database/cloudVmClusters](./supported-logs/Oracle-Database-cloudVmClusters-logs.md)<br>|
 |Microsoft.azurestackhci <a name="microsoftazurestackhci"></a>|[clusters](./supported-metrics/Microsoft-azurestackhci-clusters-metrics.md)<br>|N/A|
 |microsoft.bing <a name="microsoftbing"></a>|[accounts](./supported-metrics/microsoft-bing-accounts-metrics.md)<br>|N/A|
 |Microsoft.BotService <a name="microsoftbotservice"></a>|[botServices/channels](./supported-metrics/Microsoft-BotService-botServices-channels-metrics.md)<br>[botServices/connections](./supported-metrics/Microsoft-BotService-botServices-connections-metrics.md)<br>[checknameavailability](./supported-metrics/Microsoft-BotService-checknameavailability-metrics.md)<br>[hostsettings](./supported-metrics/Microsoft-BotService-hostsettings-metrics.md)<br>[listauthserviceproviders](./supported-metrics/Microsoft-BotService-listauthserviceproviders-metrics.md)<br>[listqnamakerendpointkeys](./supported-metrics/Microsoft-BotService-listqnamakerendpointkeys-metrics.md)<br>|N/A|
@@ -179,6 +180,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft. <br>HybridContainerService <a name="microsofthybridcontainerservice"></a>|[provisionedClusters](./supported-metrics/Microsoft-HybridContainerService-provisionedClusters-metrics.md)<br>|N/A|
 |microsoft.hybridnetwork <a name="microsofthybridnetwork"></a>|[networkfunctions](./supported-metrics/microsoft-hybridnetwork-networkfunctions-metrics.md)<br>[virtualnetworkfunctions](./supported-metrics/microsoft-hybridnetwork-virtualnetworkfunctions-metrics.md)<br>|N/A|
 |Microsoft.IoTCentral <a name="microsoftiotcentral"></a>|[IoTApps](./supported-metrics/Microsoft-IoTCentral-IoTApps-metrics.md)<br>|N/A|
+|Microsoft.IoTFirmwareDefense <a name="microsoftiotfirmwaredefense"></a>|[workspaces](./supported-metrics/Microsoft-IoTFirmwareDefense-workspaces-metrics.md)<br>|N/A|
 |microsoft. <br>kubernetesconfiguration <a name="microsoftkubernetesconfiguration"></a>|[extensions](./supported-metrics/microsoft-kubernetesconfiguration-extensions-metrics.md)<br>|N/A|
 |Microsoft.Maps <a name="microsoftmaps"></a>|[accounts](./supported-metrics/Microsoft-Maps-accounts-metrics.md)<br>|N/A|
 |Microsoft.MessagingConnectors <a name="microsoftmessagingconnectors"></a>|[connectors](./supported-metrics/Microsoft-MessagingConnectors-connectors-metrics.md)<br>|N/A|
@@ -193,7 +195,6 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.StorageSync <a name="microsoftstoragesync"></a>|[storageSyncServices](./supported-metrics/Microsoft-StorageSync-storageSyncServices-metrics.md)<br>|N/A|
 |Microsoft.StorageTasks <a name="microsoftstoragetasks"></a>|[storageTasks](./supported-metrics/Microsoft-StorageTasks-storageTasks-metrics.md)<br>|N/A|
 |Microsoft.VoiceServices <a name="microsoftvoiceservices"></a>|[CommunicationsGateways](./supported-metrics/Microsoft-VoiceServices-CommunicationsGateways-metrics.md)<br>|N/A|
-|Oracle.Database <a name="oracledatabase"></a>|[Oracle.Database/autonomousDatabases](./supported-metrics/Oracle-Database-autonomousDatabases-metrics.md)<br>[Oracle.Database/cloudVmClusters](./supported-metrics/Oracle-Database-cloudVmClusters-metrics.md)<br>|N/A|
 |Private.MessagingConnectors <a name="privatemessagingconnectors"></a>|[Private.MessagingConnectors/connectors](./supported-metrics/Private-MessagingConnectors-connectors-metrics.md)<br>|N/A|
 |Wandisco.Fusion <a name="wandiscofusion"></a>|[Wandisco.Fusion/migrators](./supported-metrics/Wandisco-Fusion-migrators-metrics.md)<br>[Wandisco.Fusion/migrators/dataTransferAgents](./supported-metrics/Wandisco-Fusion-migrators-dataTransferAgents-metrics.md)<br>[Wandisco.Fusion/migrators/liveDataMigrations](./supported-metrics/Wandisco-Fusion-migrators-liveDataMigrations-metrics.md)<br>[Wandisco.Fusion/migrators/metadataMigrations](./supported-metrics/Wandisco-Fusion-migrators-metadataMigrations-metrics.md)<br>|N/A|
 

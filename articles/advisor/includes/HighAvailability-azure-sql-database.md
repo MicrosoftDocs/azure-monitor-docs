@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 02/05/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -24,6 +24,9 @@ For more information, see [Overview of business continuity with Azure SQL Databa
 
 <!--2ea11bcb-dfd0-48dc-96f0-beba578b989a_end-->
 
+
+
+
 <!--807e58d0-e385-41ad-987b-4a4b3e3fb563_begin-->
 
 #### Enable zone redundancy for Azure SQL Database to achieve high availability and resiliency.  
@@ -32,7 +35,13 @@ To achieve high availability and resiliency, enable zone redundancy for the SQL 
   
 **Potential benefits**: Enabling zone redundancy ensures Azure SQL Database is resilient to zonal hardware and software failures and the recovery is transparent to applications.  
 
-For more information, see [Availability through redundancy -  Azure SQL Database](/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#zone-redundant-availability)  
+**Impact:** High
+  
+For more information, see [Availability through local and zone redundancy - Azure SQL Database ](/azure/azure-sql/database/high-availability-sla?view=azuresql&tabs=azure-powershell#zone-redundant-availability)  
+
+ResourceType: microsoft.sql/servers/databases  
+Recommendation ID: 807e58d0-e385-41ad-987b-4a4b3e3fb563  
+Subcategory: HighAvailability
 
 <!--807e58d0-e385-41ad-987b-4a4b3e3fb563_end-->
 

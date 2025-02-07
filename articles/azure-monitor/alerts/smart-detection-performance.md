@@ -98,7 +98,7 @@ Where is the problem? Is the server slow to respond, is the page too long, or do
 
 Open the Browsers metric pane. The segmented display of browser page load time shows where the time is going. 
 
-* If **Send Request Time** is high, either the server is responding slowly, or the request is a post with large amount of data. Look at the [performance metrics](../app/performance-counters.md) to investigate response times.
+* If **Send Request Time** is high, either the server is responding slowly, or the request is a post with large amount of data. Look at the [performance metrics](../app/asp-net-counters.md) to investigate response times.
 * Set up [dependency tracking](../app/asp-net-dependencies.md) to see whether the slowness is because of external services or your database.
 * If **Receiving Response** is predominant, your page and its dependent parts - JavaScript, CSS, images, and so on (but not asynchronously loaded data) are long. Set up an [availability test](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability), and be sure to set the option to load dependent parts. When you get some results, open the detail of a result and expand it to see the load times of different files.
 * High **Client Processing time** suggests scripts are running slowly. If the reason isn't obvious, consider adding some timing code and send the times in trackMetric calls.

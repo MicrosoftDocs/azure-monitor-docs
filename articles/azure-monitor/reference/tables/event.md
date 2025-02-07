@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: logs
 ms.author: orens
 author: osalzberg
-ms.date: 09/16/2024
+ms.date: 02/05/2025
 ---
 
 # Event

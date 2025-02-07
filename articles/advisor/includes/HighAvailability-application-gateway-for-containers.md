@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway for Containers
@@ -20,7 +20,13 @@ The version of Application Gateway for Containers was provisioned with a preview
   
 **Potential benefits**: Ensure supportability and resiliency for production workloads  
 
-For more information, see [What is Application Gateway for Containers?](https://aka.ms/appgwcontainers/docs)  
+**Impact:** High
+  
+For more information, see [What is Application Gateway for Containers? ](https://aka.ms/appgwcontainers/docs)  
+
+ResourceType: microsoft.servicenetworking/trafficcontrollers  
+Recommendation ID: db83b3d4-96e5-4cfe-b736-b3280cadd163  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--db83b3d4-96e5-4cfe-b736-b3280cadd163_end-->
 

@@ -181,6 +181,23 @@ See the [Apply config file](prometheus-metrics-scrape-validate.md#deploy-config-
 > [!NOTE]
 > When custom scrape configuration fails to apply because of validation errors, default scrape configuration continues to be used.
 
+## Global settings
+The configuration format for global settings is the same as supported by [OSS prometheus configuration](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#configuration-file) 
+
+```yaml
+global:
+  scrape_interval: <duration>
+  scrape_timeout: <duration>
+  external_labels:
+    <labelname1>: <labelvalue>
+    <labelname2>: <labelvalue>
+scrape_configs:
+  - <job-x>
+  - <job-y>
+```
+The settings provided in the global section apply to all scrape jobs (both jobs in Configmap and Custom resources) but are overridden if they are specified in the individual jobs.
+
+> [!NOTE]
 > If you want to use global settings that apply to all the scrape jobs, and only have [Custom Resources](prometheus-metrics-scrape-crd.md) you would still need to create a configmap with just the global settings(Settings for each of these in the custom resources will override the ones in the global section)
 
 

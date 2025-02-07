@@ -58,7 +58,7 @@
     href: advisor-reference-performance-recommendations.md
   - name: Reliability
     href: advisor-reference-reliability-recommendations.md
-  - name: Security recommendations
+  - name: Security
     items:
     - name: AI security recommendations
       displayName: AI security recommendations
