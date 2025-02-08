@@ -87,7 +87,7 @@ Currently, the only regions that require endpoint modifications are [Azure Gover
 |App setting    | US Government Cloud | China Cloud |   
 |---------------|---------------------|-------------|
 |ApplicationInsightsProfilerEndpoint         | `https://profiler.monitor.azure.us`    | `https://profiler.monitor.azure.cn` |
-|ApplicationInsightsEndpoint | `https://dc.applicationinsights.us` | `https://dc.applicationinsights.azure.cn` |
+|ApplicationInsightsEndpoint | [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) | `https://dc.applicationinsights.azure.cn` |
 
 <a name='enable-azure-active-directory-authentication-for-profile-ingestion'></a>
 
