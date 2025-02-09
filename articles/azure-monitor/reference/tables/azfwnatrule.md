@@ -13,6 +13,8 @@ ms.date: 09/16/2024
 
 Contains all DNAT (Destination Network Address Translation) events log data. Each match between data plane and DNAT rule creates a log entry with the data plane packet and the matched rule's attributes.
 
+Azure Firewall logs DNAT rule matches in the AZFWNatRule table. Only traffic that successfully matches a DNAT rule is logged. If a connection does not match any DNAT rule, it will not be recorded in the AZFWNatRule table.
+
 
 ## Table attributes
 
