@@ -22,10 +22,10 @@ Follow the steps below to set up ingestion of Prometheus metrics from private AK
 
 :::image type="content" source="./media/kubernetes-monitoring-private-link/amp-private-ingestion-overview.png" lightbox="./media/kubernetes-monitoring-private-link/amp-private-ingestion-overview.png" alt-text="Diagram that shows overview of ingestion through private link.":::
 
-To set up ingestion of Managed Prometheus metrics from virtual network using private endpoints into Azure Monitor Workspace, below are the high-level steps:
+To set up ingestion of Managed Prometheus metrics from virtual network using private endpoints into Azure Monitor Workspace, follow these high-level steps:
 
-- Create an Azure Monitor Private Link Scope (AMPLS) and connect it with the Data Collection Endpoint of the Azure Monitor Workspace
-- Connect the AMPLS to a private endpoint that is set up for the virtual network of your private AKS cluster
+- Create an Azure Monitor Private Link Scope (AMPLS) and connect it with the Data Collection Endpoint of the Azure Monitor Workspace.
+- Connect the AMPLS to a private endpoint that is set up for the virtual network of your private AKS cluster.
 
 ### Prerequisites
 
@@ -40,11 +40,11 @@ Metrics collected with Azure Managed Prometheus is ingested and stored in Azure 
 1. In the Azure portal, search for "Azure Monitor Private Link Scopes", and then click "Create".
 2. Enter the resource group and name, select **Private Only** for **Ingestion Access Mode**.
 
-   :::image type="content" source="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls.png" alt-text="Screenshot showing AMPLS configuration" lightbox="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls.png" :::
+   :::image type="content" source="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls.png" alt-text="Screenshot showing AMPLS configuration." lightbox="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls.png" :::
 
 3. Click on "Review + Create" to create the AMPLS.
 
-For more details on set up of AMPLS, see [Configure private link for Azure Monitor](/azure/azure-monitor/logs/private-link-configure).
+For more details on setup of AMPLS, see [Configure private link for Azure Monitor](/azure/azure-monitor/logs/private-link-configure).
 
 ### 2. Connect the AMPLS to the Data Collection Endpoint of Azure Monitor Workspace
 
@@ -56,7 +56,7 @@ Private links for data ingestion for Managed Prometheus are configured on the Da
 
 2. Now, in the Azure portal, search for the AMPLS that you created in the previous step. Go to the AMPLS overview page, click on **Azure Monitor Resources**, click **Add**, and then connect the DCE of the Azure Monitor Workspace that you noted in the previous step.
 
-:::image type="content" source="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls-dce.png" alt-text="Screenshot showing connection of DCE to the AMPLS" lightbox="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls-dce.png" :::
+:::image type="content" source="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls-dce.png" alt-text="Screenshot showing connection of DCE to the AMPLS." lightbox="./media/kubernetes-monitoring-private-link/amp-private-ingestion-ampls-dce.png" :::
 
 ### 2a. Configure DCEs
 
