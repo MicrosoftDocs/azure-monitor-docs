@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/05/2025
+ms.date: 02/10/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -20,9 +20,16 @@ Enable cross region disaster recovery for Azure SQL Database for business contin
   
 **Potential benefits**: Enabling disaster recovery creates a continuously synchronized readable secondary database for a primary database.  
 
-For more information, see [Overview of business continuity with Azure SQL Database](https://aka.ms/sqldb_dr_overview)  
+**Impact:** High
+  
+For more information, see [Cloud business continuity - disaster recovery - Azure SQL Database ](https://aka.ms/sqldb_dr_overview)  
+
+ResourceType: microsoft.sql/servers/databases  
+Recommendation ID: 2ea11bcb-dfd0-48dc-96f0-beba578b989a  
+Subcategory: DisasterRecovery
 
 <!--2ea11bcb-dfd0-48dc-96f0-beba578b989a_end-->
+
 
 
 
