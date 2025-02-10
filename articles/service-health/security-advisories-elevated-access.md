@@ -31,14 +31,6 @@ Since details displayed in this tab are sensitive, role based access (RBAC) is r
 Accessing Security Advisories requires elevated access across the Summary, Impacted Services, Issue Updates, and Impacted Resources tabs. Users who have subscription reader access, or tenant roles at tenant scope won't be able to view security advisory details until they get the required roles.
 
 ### 1. On the Service Health portal
-A banner is displayed to users<!-- until April 2024--> on the Summary and Issue Updates tabs prompting customers to get the right roles to view these tabs in future. 
-
-
-## What changed in Security Advisories?
-
-Accessing Security Advisories now requires elevated access across the **Summary**, **Impacted Resources**, and **Issue Updates** tabs. Users who have subscription reader access, or tenant roles at tenant scope, aren't able anymore to view security advisory details until they get the required roles.
-
-### 1. On the Service Health portal
 
 An error message on the **Summary** and **Issue Updates** tabs is displayed to users who don't have one of the following required roles:
 
