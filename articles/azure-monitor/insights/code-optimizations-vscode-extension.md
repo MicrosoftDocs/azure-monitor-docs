@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/23/2024
+ms.date: 02/11/2025
 ms.reviewer: jkalis
 ---
 
@@ -61,9 +61,41 @@ To get started, make sure Code Optimizations are identified for your application
     - The Application Insights resource name.
     - The account with which you're signed into the Azure portal.
 
+#### Create Code Optimizations work items
+
+You can create Azure DevOps or GitHub issues from the Code Optimizations results. 
+
+1. Select one of the performance issues from the results. 
+1. In the details pane, click **Create Work Item**.
+
+   :::image type="content" source="./media/code-optimizations-vscode-extension/create-work-item-button.png" alt-text="Screenshot of the button for creating a work item in the details pane.":::
+
+1. From the dropdown, choose whether you'd like to create an issue through Azure DevOps or GitHub. 
+
+   # [Azure DevOps](#tab/devops)
+
+   1. Choose a project from the dropdown, or create a new one.
+       - If you create a new project, enter the project URL and click **Add project**.  
+
+   1. Click the toggle to label the issue as a **Task** or a **Bug**.
+
+       :::image type="content" source="./media/code-optimizations-vscode-extension/create-azure-devops-issue.png" alt-text="Screenshot of the options for creating an issue using Azure DevOps.":::
+
+   
+   # [GitHub](#tab/github)
+
+   1. Choose a project from the dropdown, or create a new one.
+       - If you create a new project, enter the project URL and click **Add project**.  
+
+       :::image type="content" source="./media/code-optimizations-vscode-extension/create-github-issue.png" alt-text="Screenshot of the options for creating an issue using GitHub.":::
+
+   ---
+
+1. Click **Create Work Item**.
+
 #### Get the Application ID for your app
 
-1. In the portal, navigate to your Application Insights resource.
+1. Navigate to your Application Insights resource.
 1. Select **Configure** > **API Access**.
 1. Make note of your Application ID at the top of the API Access pane.
 
