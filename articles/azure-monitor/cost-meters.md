@@ -11,10 +11,9 @@ ms.date: 09/20/2023
 This article contains a reference of the billing meter names used by Azure Monitor in [Azure Cost Management + Billing](cost-usage.md#azure-cost-management--billing). Use this information to interpret your monthly charges for Azure Monitor.
 
 ## Log data ingestion
-The following table lists the meters used to bill for data ingestion in your Log Analytics workspaces, and whether the meter is regional. There's a different billing meter, `MeterId` in the export usage report for each region. Note that Basic Logs ingestion can be used when the workspace's pricing tier is Pay-as-you-go or any commitment tier. 
+The following table lists the meters used to bill for data ingestion in your Log Analytics workspaces, and whether the meter is regional. There's a different billing meter, `MeterId` in the export usage report for each region. Note that Auxiliary Logs and Basic Logs table plans can be used when the workspace's pricing tier is Pay-as-you-go or any commitment tier, not any of the legacy pricing tiers. 
 
-
-| Pricing tier |ServiceName | MeterName  | Regional Meter? |
+| Analytics Logs <br/> Pricing tier |ServiceName | MeterName  | Regional Meter? |
 | -------- | -------- | -------- | -------- |
 | (any)        | Azure Monitor  | Auxiliary Logs Data Ingestion | yes |
 | (any)        | Azure Monitor  | Basic Logs Data Ingestion | yes |
