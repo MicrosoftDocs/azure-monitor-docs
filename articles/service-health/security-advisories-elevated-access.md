@@ -22,7 +22,7 @@ Azure customers use [Service Health](service-health-overview.md) to stay informe
 - Security Advisories are displayed to users at the subscription or tenant level. 
 - Users with tenant roles [listed here](admin-access-reference.md) can also access tenant level security advisory details on the **Summary** and **Issue Updates** tabs.
 - Only users with elevated access roles can access the information on the summary and issue update tabs.
-  For more information on subscription and tenant roles [read Resource impact from Azure security incidents](impacted-resources-security.md).
+  For more information on subscription and tenant roles read [Resource impact from Azure security incidents](impacted-resources-security.md).
 
 
 ## What are Impacted Resources within Security Advisories?
@@ -44,7 +44,7 @@ Accessing Security Advisories now requires elevated access across the **Summary*
 
 ### 1. On the Service Health portal
 
-Only users with elevated access roles can access the information on the summary and issue update tabs.
+Only users with elevated access roles can access the information on the **Summary**, **Impacted Resources**, and **Issue Updates** tab.
 
 ### 2. Service Health API Changes
 
