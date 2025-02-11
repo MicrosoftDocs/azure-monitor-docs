@@ -123,7 +123,7 @@ Run the `/optimize` command along with the Azure DevOps or GitHub work item numb
 
 1. Click **Create Work Item**.
 
-##### `@code-optimizations /optimize <ISSUE_NUMBER>`
+##### Run the `/optimize` command
 
 1. In Visual Studio Code, using GitHub Copilot, call `/optimize` with the issue number you created in the Code Optimizations service in the Azure portal. In the following example, "5" represents the GitHub issue number that you'd like to fix.
    
