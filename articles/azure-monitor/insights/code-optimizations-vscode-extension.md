@@ -61,11 +61,41 @@ To get started, make sure Code Optimizations are identified for your application
     - The Application Insights resource name.
     - The account with which you're signed into the Azure portal.
 
-#### Create Code Optimizations work items
+#### Get the Application ID for your app
 
-You can create Azure DevOps or GitHub issues from the Code Optimizations results. 
+1. Navigate to your Application Insights resource.
+1. Select **Configure** > **API Access**.
+1. Make note of your Application ID at the top of the API Access pane.
 
-1. Select one of the performance issues from the results. 
+    :::image type="content" source="media/code-optimizations-vscode-extension/app-insights-app-id.png" alt-text="Screenshot of finding the application ID in the Azure portal.":::
+
+#### Invoke the extension
+
+1. Invoke the extension by executing the following command, replacing the placeholder with the Application ID you saved earlier.
+
+    ```bash
+    @code_optimizations /connect <YOUR_APPLICATION_ID>
+    ```
+
+    The command pulls the top issues from Code Optimizations, maps them to source code in your local repo, and suggests fixes/recommendations. It automatically generates the top recommendation. 
+
+    :::image type="content" source="media/code-optimizations-vscode-extension/connect-command.png" alt-text="Screenshot of the results from running the code-optimizations connect command in Visual Studio Code.":::
+
+1. Generate fixes for other issues by following the prompts in the Copilot response.
+
+### Option 2: Optimize code based on GitHub issues from Code Optimizations
+
+Aside from the `@code-optimizations /connect` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command:
+- With a Code Optimizations issue number.
+- With code selection directly in Visual Studo Code. 
+
+#### With a Code Optimizations issue number
+
+Run the `/optimize` command along with the Azure DevOps or GitHub work item number created by Code Optimizations service in the Azure portal. 
+
+##### Create Code Optimizations work items
+
+1. In the portal, select one of the performance issues from the results. 
 1. In the details pane, click **Create Work Item**.
 
    :::image type="content" source="./media/code-optimizations-vscode-extension/create-work-item-button.png" alt-text="Screenshot of the button for creating a work item in the details pane.":::
@@ -93,35 +123,9 @@ You can create Azure DevOps or GitHub issues from the Code Optimizations results
 
 1. Click **Create Work Item**.
 
-#### Get the Application ID for your app
+##### `@code-optimizations /optimize <ISSUE_NUMBER>`
 
-1. Navigate to your Application Insights resource.
-1. Select **Configure** > **API Access**.
-1. Make note of your Application ID at the top of the API Access pane.
-
-    :::image type="content" source="media/code-optimizations-vscode-extension/app-insights-app-id.png" alt-text="Screenshot of finding the application ID in the Azure portal.":::
-
-#### Invoke the extension
-
-1. Invoke the extension by executing the following command, replacing the placeholder with the Application ID you saved earlier.
-
-    ```bash
-    @code_optimizations /connect <YOUR_APPLICATION_ID>
-    ```
-
-    The command pulls the top issues from Code Optimizations, maps them to source code in your local repo, and suggests fixes/recommendations. It automatically generates the top recommendation. 
-
-    :::image type="content" source="media/code-optimizations-vscode-extension/connect-command.png" alt-text="Screenshot of the results from running the code-optimizations connect command in Visual Studio Code.":::
-
-1. Generate fixes for other issues by following the prompts in the Copilot response.
-
-### Option 2: Optimize code based on GitHub issues from Code Optimizations
-
-Aside from the `@code-optimizations /connect` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command.
-
-**`@code-optimizations /optimize <GITHUB_ISSUE_NUMBER>`**
-
-1. Call `/optimize` along with the GitHub issue number created by Code Optimizations service in the Azure portal. In the following example, "5" represents the GitHub issue number that you'd like to fix.
+1. In Visual Studio Code, using GitHub Copilot, call `/optimize` with the issue number you created in the Code Optimizations service in the Azure portal. In the following example, "5" represents the GitHub issue number that you'd like to fix.
    
    ```bash
    @code-optimizations /optimize 5 
@@ -148,7 +152,7 @@ Aside from the `@code-optimizations /connect` command, you can also use the `/op
 
     :::image type="content" source="media/code-optimizations-vscode-extension/accept-fix.png" alt-text="Screenshot of the Accept Fix button for when you review suggestions.":::
 
-**Code selection + `@code-optimizaitons /optimize`**
+#### With code selection directly in Visual Studo Code 
 
 Directly trigger `/optimize` on selected code. Using this method, you can proactively optimize some code you think has a performance issue. 
 
@@ -156,7 +160,6 @@ Directly trigger `/optimize` on selected code. Using this method, you can proact
 1. Call the `/optimize` command in the Copilot chat.
 
 You can then run benchmark/load tests to ensure the changes improve performance, and unit tests to ensure code semantics are preserved.
-
 
 ### Option 3: Without Code Optimizations
 
