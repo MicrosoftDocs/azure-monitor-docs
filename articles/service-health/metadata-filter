@@ -4,7 +4,7 @@ description: Information on how use the metadata to filter event notifications
 ms.topic: overview
 ms.date: 02/08/2025
 ---
-# Use Service Health metadata to filter event communications
+# Service Health Event Level filter notifications
 
 ## Overview
 To assist users in prioritizing Service Health event communications, we are introducing a new field called "Event Level," which indicates the significance of each communication. This enhancement allows users to rapidly evaluate the importance of each alert. With this feature, clients can filter, and sort events based on this metadata, enabling them to prioritize their actions more effectively.
