@@ -27,6 +27,9 @@ The following table lists the meters used to bill for data ingestion in your Log
 | 1000 GB/day Commitment Tier | Azure Monitor  | 1000 GB Commitment Tier Capacity Reservation | yes |
 | 2000 GB/day Commitment Tier | Azure Monitor  | 2000 GB Commitment Tier Capacity Reservation | yes |
 | 5000 GB/day Commitment Ties | Azure Monitor  | 5000 GB Commitment Tier Capacity Reservation | yes |
+| 10000 GB/day Commitment Tier | Azure Monitor  | 10000 GB Commitment Tier Capacity Reservation | yes |
+| 25000 GB/day Commitment Tier | Azure Monitor  | 25000 GB Commitment Tier Capacity Reservation | yes |
+| 50000 GB/day Commitment Ties | Azure Monitor  | 50000 GB Commitment Tier Capacity Reservation | yes |
 | Per Node (legacy tier) | Insight and Analytics | Standard Node | no |
 | Per Node (legacy tier)  | Insight and Analytics | Standard Data Overage per Node | no |
 | Per Node (legacy tier)  | Insight and Analytics | Standard Data Included per Node | no |
