@@ -32,6 +32,9 @@ When IP addresses aren't collected, city and other geolocation attributes also a
 >
 > To learn more about handling personal data, see [Guidance for personal data](../logs/personal-data-mgmt.md).
 
+> [!NOTE]
+> The IP addresses associated with telemetry ingested prior to enabling the `DisableIpMasking` property will continue to be displayed as `0.0.0.0`. Only telemetry ingested after this change will reflect the actual IP address information.
+
 To enable IP collection and storage, the `DisableIpMasking` property of the Application Insights component must be set to `true`.
 
 Options to set this property include:
