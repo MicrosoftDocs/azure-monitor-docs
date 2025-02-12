@@ -38,7 +38,7 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 1. In Visual Studio Code, open the repo holding your .NET application with Code Optimizations enabled. 
 1. Open the GitHub Copilot chat. 
 
-You have two options for using the Code Optimizations extension in Visual Studio Code:
+You have three options for using the Code Optimizations extension in Visual Studio Code:
 - [Connect to Code Optimizations in Azure](#option-1-connect-to-code-optimizations-in-azure)
 - [Optimize code based on GitHub issues from Code Optimizations](#option-2-optimize-code-based-on-github-issues-from-code-optimizations)
 - [Without Code Optimizations](#option-3-without-code-optimizations)
