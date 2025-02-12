@@ -38,7 +38,7 @@ The key benefits of SCOM Managed Instance are:
 SCOM Managed Instance functionality allows you to:
 
 - Configure an E2E System Center Operations Manager setup (SCOM Managed Instance) on Azure.
-- Manage (view, delete) your SCOM Managed Instance in Azure.
+- Manage (view or/and delete) your SCOM Managed Instance in Azure.
 - Connect to your SCOM Managed Instance using the System Center Operations Manager Ops console.
 - Monitor workloads (wherever they're located) using the Ops, and while using your existing management packs.
 - Incur zero database maintenance (Ops database and Data warehouse database) because of the offloading of database management to SQL Managed Instance (SQL MI).
