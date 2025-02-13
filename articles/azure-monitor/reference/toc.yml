@@ -571,14 +571,13 @@ items:
             displayName: Advanced Messaging Logs,Operational Authentication Logs,Call
               Automation Events Summary Logs,Operational Call Automation
               Logs,Call Client Media Stats Time Series Logs,Call Client
-              Operations Logs,Call Closed Captions Logs,Call Diagnostics
-              Logs,Call Diagnostics Logs with versioning,Aggregated Calling
-              metrics in daily bins based on dimensions like SDK Version, OS
-              name, Subcode daily Logs,Operational Call Recording Logs,Call
-              Recording Summary Logs,Call Summary Logs,Call Summary Logs with
-              versioning,Call Survey Logs,Operational Chat Logs,Email Service
-              Send Mail Logs,Email Service Delivery Status Update Logs,Email
-              Service User Engagement Logs,Operational Job Router
+              Operations Logs,Service Side Request and Outcome Logs,Call Closed
+              Captions Logs,Call Diagnostics Logs,Call Diagnostics Logs with
+              versioning,Calling Metrics Logs,Operational Call Recording
+              Logs,Call Recording Summary Logs,Call Summary Logs,Call Summary
+              Logs with versioning,Call Survey Logs,Operational Chat Logs,Email
+              Service Send Mail Logs,Email Service Delivery Status Update
+              Logs,Email Service User Engagement Logs,Operational Job Router
               Logs,Operational Rooms Logs,Operational SMS Logs,Usage Records
           - name: microsoft.community/communityTrainings
             href: supported-logs/microsoft-community-communitytrainings-logs.md
