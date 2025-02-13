@@ -1559,6 +1559,8 @@ items:
             href: tables/abapauditlog.md
           - name: ABAPChangeDocsLog
             href: tables/abapchangedocslog.md
+          - name: ABAPTableDataLog
+            href: tables/abaptabledatalog.md
           - name: ABAPUserDetails
             href: tables/abapuserdetails.md
           - name: ABSBotRequests
