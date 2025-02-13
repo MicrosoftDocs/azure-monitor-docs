@@ -53,7 +53,7 @@ Global requests from clients can be processed by action group services in any re
     | Option | Behavior |
     | ------ | -------- |
     | Global | The action groups service decides where to store the action group. The action group is persisted in at least two regions to ensure regional resiliency. Processing of actions may be done in any [geographic region](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br></br>Voice, SMS, and email actions performed as the result of [service health alerts](../../service-health/alerts-activity-log-service-notifications-portal.md) are resilient to Azure live-site incidents. |
-    | Regional | The action group is stored within the selected region. The action group is [zone-redundant](/azure/reliability/availability-zones-service-support). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br><br>You can select one of these regions for regional processing of action groups:<br><br>• East US<br>• West US<br>• East US2<br>• West US2<br>• South Central US<br>• North Central US<br>• Sweden Central<br>• Germany West Central<br>• India Central<br>• India South<br><br>We're continually adding more regions for regional data processing of action groups. |
+    | Regional | The action group is stored within the selected region. The action group is [zone-redundant](/azure/reliability/availability-zones-service-support). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br><br>You can select one of these regions for regional processing of action groups:<br>• East US<br>• West US<br>• East US2<br>• West US2<br>• South Central US<br>• North Central US<br>• Sweden Central<br>• Germany West Central<br>• India Central<br>• India South<br><br>We're continually adding more regions for regional data processing of action groups. |
 
     The action group is saved in the subscription, region, and resource group that you select.
 
@@ -90,7 +90,7 @@ Global requests from clients can be processed by action group services in any re
     | Action type | Details |
     |-------------|---------|
     | Automation Runbook | Use Automation Runbook to automate tasks based on metrics. For example, shut down resources when a certain threshold in the associated budget is met. For information about limits on Automation runbook payloads, see [Automation limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#automation-limits). |
-    | Event hubs | An Event Hubs action publishes notifications to Event Hubs. For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver. |
+    | Event hubs | An Event Hubs action publishes notifications to Event Hubs. It's the only action type that supports [Azure Private Link](/azure/event-hubs/private-link-service) and [network security perimeter (NSP)](/azure/private-link/network-security-perimeter-concepts). For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver. |
     | Functions | Calls an existing HTTP trigger endpoint in functions. For more information, see [Azure Functions](/azure/azure-functions/functions-get-started).<br>When you define the function action, the function's HTTP trigger endpoint and access key are saved in the action definition, for example, `https://azfunctionurl.azurewebsites.net/api/httptrigger?code=<access_key>`. If you change the access key for the function, you must remove and re-create the function action in the action group.<br>Your endpoint must support the HTTP POST method.<br>The function must have access to the storage account. If it doesn't have access, keys aren't available and the function URI isn't accessible.<br>[Learn about restoring access to the storage account](/azure/azure-functions/functions-recover-storage-account). |
     | ITSM | An ITSM action requires an ITSM connection. To learn how to create an ITSM connection, see [ITSM integration](./itsmc-overview.md). |
     | Logic apps |You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration and to customize your alert notifications. |
@@ -120,7 +120,7 @@ When you create or update an action group in the Azure portal, you can test the 
     > [!NOTE]
     > The action group must be created and saved before testing. If you're editing an existing action group, save the changes to the action group before testing.
 
-1. On the action group page, select **Test action group**.
+1. On the action group page, select **Test**.
 
     :::image type="content" source="./media/action-groups/test-action-group.png" alt-text="Screenshot that shows the test action group page with the Test option.":::
 
@@ -150,16 +150,18 @@ The following table describes the role membership requirements that are needed f
 | Resource group contributor        | Supported             | Supported                                    | Not applicable                          |
 | Action group resource contributor | Supported             | Not applicable                               | Not applicable                          |
 | Azure Monitor contributor         | Supported             | Supported                                    | Not applicable                          |
-| Custom role<sup>1</sup>           | Supported             | Supported                                    | Not applicable                          |
+| Custom role <sup>1</sup>           | Supported             | Supported                                    | Not applicable                          |
 
 <sup>1</sup> The custom role must have the **Microsoft.Insights/createNotifications/*** permission.
 
- > [!NOTE]
-  > * If a user is not a member of the above Role Memberships with the correct permissions to generate this notification, the minimum permission required to test an action group is "**Microsoft.Insights/createNotifications/***"
-  > * You can run a limited number of tests per time period. To check which limits apply to your situation, see [Azure Monitor service limits](../service-limits.md).
-  > * When you configure an action group in the portal, you can opt in or out of the common alert schema.
-  >     * To find common schema samples for all sample types, see [Common alert schema definitions for Test Action Group](./alerts-common-schema-test-action-definitions.md).
-  >     * To find non-common schema alert definitions, see [Non-common alert schema definitions for Test Action Group](./alerts-non-common-schema-definitions.md).
+> [!NOTE]
+> * If a user is not a member of the above Role Memberships with the correct permissions to generate this notification, the minimum permission required to test an action group is "**Microsoft.Insights/createNotifications/***"
+>
+> * You can run a limited number of tests per time period. To check which limits apply to your situation, see [Azure Monitor service limits](../service-limits.md).
+>
+> * When you configure an action group in the portal, you can opt in or out of the common alert schema.
+>     * To find common schema samples for all sample types, see [Common alert schema definitions for Test Action Group](./alerts-common-schema-test-action-definitions.md).
+>     * To find non-common schema alert definitions, see [Non-common alert schema definitions for Test Action Group](./alerts-non-common-schema-definitions.md).
 
 ## Create an action group with a Resource Manager template
 
@@ -351,7 +353,7 @@ After you create an action group, you can view it in the portal:
 
 A phone number or email can be included in action groups in many subscriptions. Azure Monitor uses rate limiting to suspend notifications when too many notifications are sent to a particular phone number, email address or device. Rate limiting ensures that alerts are manageable and actionable.
 
-Rate limiting applies to SMS, voice, and email notifications. All other notification actions aren't rate limited. Rate limiting applies across all subscriptions. Rate limiting is applied as soon as the threshold is reached, even if messages are sent from multiple subscriptions. When an email address is rate limited, a notification is sent to communicate that rate limiting was applied and when the rate limiting expires.
+Rate limiting applies to SMS, voice, push, and email notifications. All other notification actions aren't rate limited. Rate limiting applies across all subscriptions. Rate limiting is applied as soon as the threshold is reached, even if messages are sent from multiple subscriptions. When an email address is rate limited, a notification is sent to communicate that rate limiting was applied and when the rate limiting expires.
 
 For information about rate limits, see [Azure Monitor service limits](../service-limits.md).
  
@@ -365,14 +367,14 @@ When you use Azure Resource Manager for email notifications, you can send email 
 If your primary email doesn't receive notifications, configure the email address for the Email Azure Resource Manager role:
 
 1. In the Azure portal, go to **Microsoft Entra ID**.
-1. On the left, select **All users**. On the right, a list of users appears.
+1. Select **Users** in the left-hand menu to show a list of all users.
 1. Select the user whose *primary email* you want to review.
 
     :::image type="content" source="media/action-groups/active-directory-user-profile.png" alt-text="Screenshot that shows the Azure portal All users page. Information about one user is visible but is indecipherable." border="true":::
 
-1. In the user profile, look under **Contact info** for an **Email** value. If it's blank:
+1. In the user profile under **Properties**, look at **Contact info** for an **Email** value. If it's blank:
 
-    1. At the top of the page, select **Edit**.
+    1. At the top of the page, select **Edit properties**.
     1. Enter an email address.
     1. At the top of the page, select **Save**.
     
@@ -386,17 +388,6 @@ When you set up the Resource Manager role:
 * Make the assignment at the **subscription** level.
 * Make sure an email address is configured for the user in their **Microsoft Entra profile**.
 
-Further considerations:
-
-* If a user is not a member of the above Role Memberships with the correct permissions to generate this notification, the minimum permission required to test an action group is "**Microsoft.Insights/createNotifications/**"
-
-* You can run a limited number of tests per time period. To check which limits, apply to your situation, see [Azure Monitor service limits](../service-limits.md).
-
-* When you configure an action group in the portal, you can opt in or out of the common alert schema.
-
-    * To find common schema samples for all sample types, see [Common alert schema definitions for Test Action Group](./alerts-common-schema-test-action-definitions.md).
-    * To find non-common schema alert definitions, see [Non-common alert schema definitions for Test Action Group](./alerts-non-common-schema-definitions.md).
-
 > [!NOTE]
 > It can take up to 24 hours for a customer to start receiving notifications after they add a new Azure Resource Manager role to their subscription.
 
@@ -405,7 +396,7 @@ Further considerations:
 You might have a limited number of SMS actions per action group.
 
 * For information about rate limits, see [Azure Monitor service limits](../service-limits.md).
-* For important information about using SMS notifications in action groups, see [SMS alert behavior in action groups](./alerts-sms-behavior.md).
+* For important information about using SMS notifications in action groups, see the table under step 9 in [Create an action group in the Azure portal](#create-an-action-group-in-the-azure-portal).
 
 > [!NOTE]
 > If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party SMS provider that offers support in your country/region.
@@ -419,11 +410,11 @@ These replies are supported for SMS notifications. The recipient of the SMS can 
 | DISABLE `<Action Group Short name>` | Disables further SMS from the Action Group                  |
 | ENABLE `<Action Group Short name>`  | Re-enables SMS from the Action Group                        |
 | STOP                                | Disables further SMS from all Action Groups                 |
-| START                               | Re-enables SMS from ALL Action Groups                       |
+| START                               | Re-enables SMS from all Action Groups                       |
 | HELP                                | A response is sent to the user with a link to this article. |
 
->[!NOTE]
->If a user has unsubscribed from SMS alerts, but is then added to a new action group; they WILL receive SMS alerts for that new action group, but remain unsubscribed from all previous action groups.
+> [!NOTE]
+> If a user has unsubscribed from SMS alerts, but is then added to a new action group; they WILL receive SMS alerts for that new action group, but remain unsubscribed from all previous action groups.
 
 You might have a limited number of Azure app actions per action group.
 
@@ -539,7 +530,7 @@ Webhook action groups generally follow these rules when called:
 
 * After retries attempted to call the webhook fail, no action group calls the endpoint for 15 minutes.
 
-* The retry logic assumes that the call can be retried. The status codes: 408, 429, 503, 504, or HttpRequestException, WebException, `TaskCancellationException` allow for the call to be retried”.
+* The retry logic assumes that the call can be retried. The status codes 408, 429, 503, 504, or HttpRequestException, WebException, `TaskCancellationException` allow for the call to be retried.
 
 ### Configure authentication for Secure webhook
 
@@ -554,7 +545,7 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 
 [!INCLUDE [Azure AD PowerShell deprecation note](~/reusable-content/msgraph-powershell/includes/aad-powershell-deprecation-note.md)]
 
-1. Create a Microsoft Entra application for your protected web API. For more information, see [Protected web API: App registration](/azure/active-directory/develop/scenario-protected-web-api-app-registration). Configure your protected API to be called by a daemon app and expose application permissions, not delegated permissions. For more information about these permissions, see [If your web API is called by a service or daemon app](/azure/active-directory/develop/scenario-protected-web-api-app-registration#if-your-web-api-is-called-by-a-service-or-daemon-app).
+1. Create a Microsoft Entra application for your protected web API. For more information, see [Protected web API: App registration](/azure/active-directory/develop/scenario-protected-web-api-app-registration). Configure your protected API to be called by a daemon app and expose application permissions, not delegated permissions.
 
     > [!NOTE]
     > Configure your protected web API to accept V2.0 access tokens. For more information about this setting, see [Microsoft Entra app manifest](/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute).
@@ -583,7 +574,7 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 > [!NOTE]
 >Pre-requisites: [Install the Microsoft Graph PowerShell SDK](/powershell/microsoftgraph/installation?view=graph-powershell-1.0&preserve-view=true)
 
-#### How to run?
+#### How to run
 
 1. Copy and paste the script below to your machine
 1. Replace your tenantId, and the ObjectID in your App Registration
@@ -673,7 +664,7 @@ foreach ($role in $myAppRoles) { Write-Host $role.Value }
 Write-Host "================================================================================================="
 ```
 
-### Migrate Runbook action from "Run as account" to "Run as Managed Identity"
+## Migrate Runbook action from "Run as account" to "Run as Managed Identity"
 
 > [!NOTE]
 > Azure Automation "Run as account" has [retired](https://azure.microsoft.com/updates/azure-automation-runas-account-retiring-on-30-september-2023/) on 30 September 2023, which affects actions created with action type "Automation Runbook". Existing actions linking to "Run as account" runbooks won't be supported after retirement. However, those runbooks would continue to execute until the expiry of "Run as" certificate of the Automation account.
