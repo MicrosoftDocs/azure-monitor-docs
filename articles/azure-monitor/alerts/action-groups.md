@@ -48,12 +48,12 @@ Global requests from clients can be processed by action group services in any re
     * Select the region.
   
     > [!NOTE]
-    > Service Health Alerts are only supported in public clouds within the global region. For Action Groups to properly function in response to a Service Health Alert the region of the action group must be set as "Global".
+    > Service Health Alerts are only supported in public clouds within the global region. For Action Groups to properly function in response to a Service Health Alert, the region of the action group must be set as *Global*.
 
     | Option | Behavior |
     | ------ | -------- |
     | Global | The action groups service decides where to store the action group. The action group is persisted in at least two regions to ensure regional resiliency. Processing of actions may be done in any [geographic region](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br></br>Voice, SMS, and email actions performed as the result of [service health alerts](../../service-health/alerts-activity-log-service-notifications-portal.md) are resilient to Azure live-site incidents. |
-    | Regional | The action group is stored within the selected region. The action group is [zone-redundant](/azure/reliability/availability-zones-service-support). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview). You can select one of these regions for regional processing of action groups:<br>- East US<br>- West US<br>- East US2<br>- West US2<br>- South Central US<br>- North Central US<br>- Sweden Central<br>- Germany West Central<br>- India Central<br>- India South<br> We're continually adding more regions for regional data processing of action groups.|
+    | Regional | The action group is stored within the selected region. The action group is [zone-redundant](/azure/reliability/availability-zones-service-support). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br><br>You can select one of these regions for regional processing of action groups:<br><br>• East US<br>• West US<br>• East US2<br>• West US2<br>• South Central US<br>• North Central US<br>• Sweden Central<br>• Germany West Central<br>• India Central<br>• India South<br><br>We're continually adding more regions for regional data processing of action groups. |
 
     The action group is saved in the subscription, region, and resource group that you select.
 
@@ -72,8 +72,8 @@ Global requests from clients can be processed by action group services in any re
         | Notification type | Description | Fields |
         |-------------------|-------------|--------|
         | Email Azure Resource Manager role | Send an email to the subscription members, based on their role.<br>See [Email](#email-azure-resource-manager). | Enter the primary email address configured for the Microsoft Entra user. See [Email](#email-azure-resource-manager). |
-        | Email | Ensure that your email filtering and any malware/spam prevention services are configured appropriately. Emails are sent from the following email addresses:<br>* azure-noreply@microsoft.com<br>* azureemail-noreply@microsoft.com<br>* alerts-noreply@mail.windowsazure.com | Enter the email where the notification should be sent. |
-        | SMS | SMS notifications support bi-directional communication. The SMS contains the following information:<br>* Shortname of the action group this alert was sent to<br>* The title of the alert.<br>A user can respond to an SMS to:<br>* Unsubscribe from all SMS alerts for all action groups or a single action group.<br>* Resubscribe to alerts<br>* Request help.<br>For more information about supported SMS replies, see [SMS replies](#sms-replies). | Enter the **Country code** and the **Phone number** for the SMS recipient. If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). As a workaround until your country is supported, configure the action group to call a webhook to a third-party SMS provider that supports your country/region. |
+        | Email | Ensure that your email filtering and any malware/spam prevention services are configured appropriately.<br><br>Emails are sent from the following email addresses:<br>• azure-noreply@microsoft.com<br>• azureemail-noreply@microsoft.com<br>• alerts-noreply@mail.windowsazure.com | Enter the email where the notification should be sent. |
+        | SMS | SMS notifications support bi-directional communication. The SMS contains the following information:<br>• Shortname of the action group this alert was sent to<br>• The title of the alert.<br><br>A user can respond to an SMS to:<br>• Unsubscribe from all SMS alerts for all action groups or a single action group.<br>• Resubscribe to alerts<br>• Request help.<br><br>For more information about supported SMS replies, see [SMS replies](#sms-replies). | Enter the **Country code** and the **Phone number** for the SMS recipient. If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). As a workaround until your country is supported, configure the action group to call a webhook to a third-party SMS provider that supports your country/region. |
         | Azure app Push notifications | Send notifications to the [Azure mobile app](https://azure.microsoft.com/features/azure-portal/mobile-app/). | In the **Azure account email** field, enter the email address that you use as your account ID when you configure the Azure mobile app. |
         | Voice | Voice notification. | Enter the **Country code** and the **Phone number** for the recipient of the notification. If you can't select your country/region code in the Azure portal, voice notifications aren't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). As a workaround until your country is supported, configure the action group to call a webhook to a third-party voice call provider that supports your country/region. |
 
@@ -382,14 +382,20 @@ You may have a limited number of email actions per action group. To check which 
 
 When you set up the Resource Manager role:
 
-1. Assign an entity of type **User** or **Group** to the role.
-1. Make the assignment at the **subscription** level.
-1. Make sure an email address is configured for the user in their **Microsoft Entra profile**.
-> * If a user is not a member of the above Role Memberships with the correct permissions to generate this notification, the minimum permission required to test an action group is "**Microsoft.Insights/createNotifications/***"
-> * You can run a limited number of tests per time period. To check which limits, apply to your situation, see [Azure Monitor service limits](../service-limits.md).
-> * When you configure an action group in the portal, you can opt in or out of the common alert schema.
->     * To find common schema samples for all sample types, see [Common alert schema definitions for Test Action Group](./alerts-common-schema-test-action-definitions.md).
->     * To find non-common schema alert definitions, see [Non-common alert schema definitions for Test Action Group](./alerts-non-common-schema-definitions.md).
+* Assign an entity of type **User** or **Group** to the role.
+* Make the assignment at the **subscription** level.
+* Make sure an email address is configured for the user in their **Microsoft Entra profile**.
+
+Further considerations:
+
+* If a user is not a member of the above Role Memberships with the correct permissions to generate this notification, the minimum permission required to test an action group is "**Microsoft.Insights/createNotifications/**"
+
+* You can run a limited number of tests per time period. To check which limits, apply to your situation, see [Azure Monitor service limits](../service-limits.md).
+
+* When you configure an action group in the portal, you can opt in or out of the common alert schema.
+
+    * To find common schema samples for all sample types, see [Common alert schema definitions for Test Action Group](./alerts-common-schema-test-action-definitions.md).
+    * To find non-common schema alert definitions, see [Non-common alert schema definitions for Test Action Group](./alerts-non-common-schema-definitions.md).
 
 > [!NOTE]
 > It can take up to 24 hours for a customer to start receiving notifications after they add a new Azure Resource Manager role to their subscription.
@@ -524,12 +530,15 @@ For information about pricing for supported countries/regions, see [Azure Monito
 Webhook action groups generally follow these rules when called:
 
 * When a webhook is invoked, if the first call fails, it is retried at least 1 more time, and up to 5 times (5 retries) at various delay intervals (5, 20, 40 seconds).
+
     * The delay between 1st and 2nd attempt is 5 seconds
     * The delay between 2nd and 3rd attempt is 20 seconds
     * The delay between 3rd and 4th attempt is 5 seconds
     * The delay between 4th and 5th attempt is 40 seconds
     * The delay between 5th and 6th attempt is 5 seconds
+
 * After retries attempted to call the webhook fail, no action group calls the endpoint for 15 minutes.
+
 * The retry logic assumes that the call can be retried. The status codes: 408, 429, 503, 504, or HttpRequestException, WebException, `TaskCancellationException` allow for the call to be retried”.
 
 ### Configure authentication for Secure webhook
