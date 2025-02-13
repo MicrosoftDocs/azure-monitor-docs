@@ -152,7 +152,32 @@ The following table describes the role membership requirements that are needed f
 | Azure Monitor contributor         | Supported             | Supported                                    | Not applicable                          |
 | Custom role <sup>1</sup>           | Supported             | Supported                                    | Not applicable                          |
 
-<sup>1</sup> The custom role must have the **Microsoft.Insights/createNotifications/*** permission.
+<sup>1</sup> The custom role must have the **Microsoft.Insights/ActionGroups/*** permission added. However, this will also give the user permission to update and delete the action group. To add restrictions so the user can only test the action group, add the following under the **JSON** tab for the custom role:
+
+```json
+{
+    "properties": {
+        "roleName": "",
+        "description": "",
+        "assignableScopes": [
+            "/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}"
+        ],
+        "permissions": [
+            {
+                "actions": [
+		                "Microsoft.Insights/ActionGroups/*"
+		            ],
+		            "notActions": [
+		                "Microsoft.Insights/ActionGroups/write",
+		                "Microsoft.Insights/ActionGroups/delete"
+		            ],
+		            "dataActions": [],
+		            "notDataActions": []
+            }
+	      ]
+    }
+}
+```
 
 > [!NOTE]
 > * If a user isn't a member of the above Role Memberships with the correct permissions to generate this notification, the minimum permission required to test an action group is "**Microsoft.Insights/createNotifications/***"
