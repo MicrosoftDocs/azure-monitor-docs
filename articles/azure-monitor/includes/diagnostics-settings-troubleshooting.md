@@ -32,4 +32,4 @@ When a resource is inactive and exporting zero-value metrics, the diagnostic set
 
 When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This means that there is a potential latency of up to 15 minutes for the next nonzero value to be exported. The maximum backoff time of two hours is reached after seven days of inactivity. Once the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes. 
 
-This behavior only applies to exported metrics and doesn't affect metrics-based alerts or autosacle.
+This behavior only applies to exported metrics and doesn't affect metrics-based alerts or autoscale.
