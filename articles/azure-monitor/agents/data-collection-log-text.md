@@ -15,7 +15,7 @@ Many applications and services will log information to text files instead of sta
 
 ## Prerequisites
 
-- Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
+- Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table).
 - A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
 - Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
 
@@ -62,50 +62,6 @@ The incoming stream of data includes the columns in the following table.
 | `FilePath` | string | If you add this column to the incoming stream in the DCR, it will be populated with the path to the log file. This column is not created automatically and can't be added using the portal. You must manually modify the DCR created by the portal or create the DCR using another method where you can explicitly define the incoming stream. |
 | `Computer` | string | If you add this column to the incoming stream in the DCR, it will be populated with the name of the computer with the log file. This column is not created automatically and can't be added using the portal. You must manually modify the DCR created by the portal or create the DCR using another method where you can explicitly define the incoming stream. |
 
-
-## Custom table
-Before you can collect log data from a text file, you must create a custom table in your Log Analytics workspace to receive the data. The table schema must match the data you are collecting, or you must add a transformation to ensure that the output schema matches the table. 
-
-> [!Warning]
-> To avoid data loss, it’s important that you do not use an existing custom log table that MMA agents are currently utilizing.
-> Once any AMA agent writes to an existing custom log table, MMA agents will no longer be able to write to that table.
-> Instead, you should create a new table specifically for AMA agents to ensure smooth transition from one agent to the next.
-
-
-For example, you can use the following PowerShell script to create a custom table with `RawData`, `FilePath`, and `Computer`. You wouldn't need a transformation for this table because the schema matches the default schema of the incoming stream. 
-
-
-```powershell
-$tableParams = @'
-{
-    "properties": {
-        "schema": {
-               "name": "{TableName}_CL",
-               "columns": [
-                    {
-                        "name": "TimeGenerated",
-                        "type": "DateTime"
-                    }, 
-                    {
-                        "name": "RawData",
-                        "type": "String"
-                    },
-                    {
-                        "name": "FilePath",
-                        "type": "String"
-                    },
-                    {
-                        "name": "Computer",
-                        "type": "String"
-                    }
-              ]
-        }
-    }
-}
-'@
-
-Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{WorkspaceName}/tables/{TableName}_CL?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
-```
 
 
 ## Create a data collection rule for a text file

@@ -15,9 +15,12 @@ Many applications and services will log information to a JSON files instead of s
 
 ## Prerequisites
 
-- Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
+- Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table).
 - A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
 - Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+
+> [!WARNING]
+> You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
 
 ## Basic operation
 The following diagram shows the basic operation of collecting log data from a json file. 
@@ -33,10 +36,9 @@ The following diagram shows the basic operation of collecting log data from a js
 The file that the Azure Monitor Agent is monitoring must meet the following requirements:
 
 - The file must be stored on the local drive of the machine with the Azure Monitor Agent in the directory that is being monitored.
-- Each record must be delineated with an end of line. 
+- Each entry must be contained in a single row and delineated with an end of line. The JSON body format is not supported. See sample below.
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
-- JSON text must be contained in a single row. The JSON body format is not supported. See sample below.
      
 
 Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
@@ -49,66 +51,7 @@ Adhere to the following recommendations to ensure that you don't experience data
 
 
 
-## Custom table
-Before you can collect log data from a JSON file, you must create a custom table in your Log Analytics workspace to receive the data. The table schema must match the columns in the incoming stream, or you must add a transformation to ensure that the output schema matches the table. 
-
-> [!WARNING]
-> You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
->
-
-For example, you can use the following PowerShell script to create a custom table with multiple columns.  
-
-```powershell
-$tableParams = @'
-{
-    "properties": {
-        "schema": {
-               "name": "{TableName}_CL",
-               "columns": [
-                    {
-                        "name": "TimeGenerated",
-                        "type": "DateTime"
-                    }, 
-                    {
-                        "name": "MyStringColumn",
-                        "type": "string"
-                    },
-                    {
-                        "name": "MyIntegerColumn",
-                        "type": "int"
-                    },
-                    {
-                        "name": "MyRealColumn",
-                        "type": "real"
-                    },
-                    {
-                        "name": "MyBooleanColumn",
-                        "type": "bool"
-                    },
-                    {
-                        "name": "FilePath",
-                        "type": "string"
-                    },
-                    {
-                        "name": "Computer",
-                        "type": "string"
-                    }
-              ]
-        }
-    }
-}
-'@
-
-Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{WorkspaceName}/tables/{TableName}_CL?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
-```
-
-
-## Create a data collection rule for a JSON file
-
-> [!NOTE]
-> The agent based JSON custom file ingestion is currently in preview and does not have a complete UI experience in the portal yet. While you can create the DCR using the portal, you must modify it to define the columns in the incoming stream. This section includes details on creating the DCR using an ARM template.
-
-### Incoming stream schema
+## Incoming stream schema
 
 > [!NOTE]
 > Multiline support that uses a time stamp to delimited events is now available
@@ -126,7 +69,22 @@ JSON files include a property name with each value, and the incoming stream in t
 ### Transformation
 The [transformation](../essentials/data-collection-transformations.md) potentially modifies the incoming stream to filter records or to modify the schema to match the target table. If the schema of the incoming stream is the same as the target table, then you can use the default transformation of `source`. If not, then modify the `transformKql` section of tee ARM template with a KQL query that returns the required schema.
 
-### ARM template
+## Create a data collection rule for a JSON file
+
+### [Portal](#tab/portal)
+
+Create a data collection rule, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
+ 
+
+| Setting | Description |
+|:---|:---|
+| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
+| Table name | Name of the destination table in your Log Analytics Workspace. |     
+| Record delimiter | Not currently used but reserved for future potential use allowing delimiters other than the currently supported end of line (`/r/n`). | 
+| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
+
+
+### [Resource Manager template](#tab/arm)
 
 Use the following ARM template to create a DCR for collecting JSON log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template.
 
