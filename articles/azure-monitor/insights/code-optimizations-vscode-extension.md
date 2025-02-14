@@ -87,7 +87,7 @@ To get started, make sure Code Optimizations are identified for your application
 
 Aside from the `@code-optimizations /connect` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command:
 - With a Code Optimizations issue number.
-- With code selection directly in Visual Studo Code. 
+- With code selection directly in Visual Studio Code. 
 
 #### With a Code Optimizations issue number
 
