@@ -69,7 +69,7 @@ The following table highlights the key differences between System Center Operati
 |Dashboarding|Basic reports about monitoring setup|SSRS-based reporting.|Built-in templates on Azure workbooks and dashboards for Azure Managed Grafana.|
 |Dashboarding|App-specific reports|Customers must manually integrate with SquaredUp.|Partner published library of dashboards for Azure Managed Grafana.|
 |Fail-over to different region|Ability to fail over to a different datacenter or region|Customer can configure this in their own on-premises environment.|Not supported.|
-|Network Monitoring | Supported as per Management packs | Not Supported. Microsoft recommends using [Network Devices](/azure/network-watcher/network-insights-overview) to monitor Network devices.|
+|Network Monitoring | |Supported as per Management packs | Not Supported. Microsoft recommends using [Network Devices](/azure/network-watcher/network-insights-overview) to monitor Network devices.|
 
 ## Architecture
 
