@@ -3,8 +3,6 @@ ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
 ms.date: 12/12/2024
-author: rboucher
-ms.author: robb
 ---
 
 ### Active Service Health event subscription impact
