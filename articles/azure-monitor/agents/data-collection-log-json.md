@@ -2,7 +2,7 @@
 title: Collect logs from a JSON file with Azure Monitor Agent 
 description: Configure a data collection rule to collect log data from a JSON file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 11/14/2024
+ms.date: 02/14/2025
 author: guywi-ms
 ms.author: guywild
 ms.reviewer: jeffwo
@@ -57,14 +57,7 @@ Following is a sample of a typical JSON log file that can be collected by Azure 
 
 ## Incoming stream schema
 
-> [!NOTE]
-> Multiline support that uses a time stamp to delimited events is now available
-
-JSON files include a property name with each value, and the incoming stream in the DCR needs to include a column matching the name of each property. You need to modify the `columns` section of the ARM template with the columns from your log.
-
- The following table describes optional columns that you can include in addition to the columns defining the data in your log file. 
-
- | Column | Type | Description |
+| Column | Type | Description |
 |:---|:---|:---|
 | `TimeGenerated` | datetime | The time the record was generated. This value will be automatically populated with the time the record is added to the Log Analytics workspace if it's not included in the incoming stream.  |
 | `FilePath` | string | If you add this column to the incoming stream in the DCR, it will be populated with the path to the log file. This column is not created automatically and can't be added using the portal. You must manually modify the DCR created by the portal or create the DCR using another method where you can explicitly define the incoming stream. |
@@ -101,10 +94,8 @@ Use the following ARM template to create a DCR for collecting JSON log files, ma
 | File patterns | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas (AMA version 1.26 or higher required for multiple file patterns on Linux).<br><br>Examples:<br>- C:\Logs\MyLog.json<br>- C:\Logs\MyLog*.json<br>- C:\App01\AppLog.json, C:\App02\AppLog.json<br>- /var/mylog.json<br>- /var/mylog*.json |
 | Table name | Name of the destination table in your Log Analytics Workspace. |     
 | Workspace resource ID | Resource ID of the Log Analytics workspace with the target table. |
-| timeFormat| The following times formats are supported.  Use the quotes strings in your ARM template. Do not include the sample time that is in parentheses. <br> - “yyyy-MM-ddTHH:mm:ssk”   (2024-10-29T18:28:34) <br> - “YYYY-MM-DD HH:MM:SS”   (2024-10-29 18:28:34) <br> - “M/D/YYYY HH:MM:SS AM/PM”   (10/29/2024 06:28:34 PM) <br> - “Mon DD, YYYY HH:MM:SS”   (Oct[ober] 29, 2024 18:28:34) <br> - “yyMMdd HH:mm:ss”   (241029 18:28:34) <br> - “ddMMyy HH:mm:ss”   (291024 18:28:34) <br> - “MMM d HH:mm:ss”   (Oct 29 18:28:34) <br> - “dd/MMM/yyyy:HH:mm:ss zzz”   (14/Oct/2024:18:28:34 -00) |
 
-> [!IMPORTANT]
-> When you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources)
+After you create the DCR using an ARM template, you must associate the DCR with the machine that will use it. You can use the Azure portal and select the machines as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources)
 
 ```json
 {
@@ -146,12 +137,7 @@ Use the following ARM template to create a DCR for collecting JSON log files, ma
             "metadata": {
                 "description": "Resource ID of the Log Analytics workspace with the target table."
             }
-        },
-        "timeFormat": {
-            "type": "string",
-            "metadata": {
-                "description": "The time format that you would like to use to split multi line input."
-            }
+        }
       }
     },
     "variables": {
@@ -205,12 +191,7 @@ Use the following ARM template to create a DCR for collecting JSON log files, ma
                                 "[parameters('filePatterns')]"
                             ],
                             "format": "json",
-                            "name": "Custom-Json-stream",
-                            "settings": {
-                               "text": {
-                                   "recordStartTimestampFormat": "[parameters('timeFormat')]"
-                               }
-                            }
+                            "name": "Custom-Json-stream"
                         }
                     ]
                 },
@@ -240,6 +221,9 @@ Use the following ARM template to create a DCR for collecting JSON log files, ma
 }
 ```
 ---
+
+## Transformation
+A [transformation](../essentials/data-collection-transformations.md) can modifies the incoming stream to filter records or to modify the schema to match the target table. The default transformation of `source` makes does not modify the table.
 
 ## Troubleshooting
 Go through the following steps if you aren't collecting data from the JSON log that you're expecting.

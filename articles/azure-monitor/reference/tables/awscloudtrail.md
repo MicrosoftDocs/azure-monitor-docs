@@ -13,7 +13,7 @@ ms.date: 02/11/2025
 
 # AWSCloudTrail
 
-CloudTrail logs, which ingested from Sentinel's connector, holds all your data and management events of your Amazon Wev Services account.
+CloudTrail logs, which ingested from Sentinel's connector, holds all your data and management events of your Amazon Web Services account.
 
 
 ## Table attributes

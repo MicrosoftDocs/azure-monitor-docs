@@ -6,7 +6,6 @@ ms.author: bwren
 services: azure-monitor
 ms.topic: sample
 ms.date: 08/09/2023
-ms.reviewer: robb
 ---
 # Resource Manager template samples for Azure Monitor
 

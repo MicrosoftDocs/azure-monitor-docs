@@ -5,7 +5,7 @@ description: This article describes about Azure Monitor SCOM Managed Instance.
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 10/22/2024
+ms.date: 02/14/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: overview
@@ -38,7 +38,7 @@ The key benefits of SCOM Managed Instance are:
 SCOM Managed Instance functionality allows you to:
 
 - Configure an E2E System Center Operations Manager setup (SCOM Managed Instance) on Azure.
-- Manage (view or/and delete) your SCOM Managed Instance in Azure.
+- Manage (view, delete) your SCOM Managed Instance in Azure.
 - Connect to your SCOM Managed Instance using the System Center Operations Manager Ops console.
 - Monitor workloads (wherever they're located) using the Ops, and while using your existing management packs.
 - Incur zero database maintenance (Ops database and Data warehouse database) because of the offloading of database management to SQL Managed Instance (SQL MI).
@@ -69,6 +69,7 @@ The following table highlights the key differences between System Center Operati
 |Dashboarding|Basic reports about monitoring setup|SSRS-based reporting.|Built-in templates on Azure workbooks and dashboards for Azure Managed Grafana.|
 |Dashboarding|App-specific reports|Customers must manually integrate with SquaredUp.|Partner published library of dashboards for Azure Managed Grafana.|
 |Fail-over to different region|Ability to fail over to a different datacenter or region|Customer can configure this in their own on-premises environment.|Not supported.|
+|Workload monitoring|Monitoring network devices|Supported as per Management packs. | Not Supported. Microsoft recommends using [Network Insights](/azure/network-watcher/network-insights-overview) to monitor Network devices.|
 
 ## Architecture
 

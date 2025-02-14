@@ -36,9 +36,6 @@ Adhere to the following recommendations to ensure that you don't experience data
 
 ## Incoming stream
 
-> [!NOTE]
-> Multiline support that uses a time stamp to delimited events is now available.  You must use a resource management template deployment until support is added in the Portal UI.
-
 The incoming stream of data includes the columns in the following table. 
 
 | Column | Type | Description |
