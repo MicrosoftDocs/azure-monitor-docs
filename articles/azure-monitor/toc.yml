@@ -273,7 +273,7 @@ items:
             - name: View .NET Profiler data
               displayName: profiling, debugging, code performance, perf
               href: profiler/profiler-data.md
-        - name: Extensions (preview)
+        - name: Fix with GitHub Copilot (preview)
           items:
           - name: Overview
             href: insights/code-optimizations-extensions.md
@@ -496,7 +496,7 @@ items:
           href: containers/prometheus-metrics-scrape-scale.md
       - name: Integrations
         items:
-        - name: Setup exporters for common workloads
+        - name: Set up exporters for common workloads
           displayName: Prometheus
           href: containers/prometheus-exporters.md
           items:
