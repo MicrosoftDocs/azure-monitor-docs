@@ -496,7 +496,7 @@ items:
           href: containers/prometheus-metrics-scrape-scale.md
       - name: Integrations
         items:
-        - name: Setup exporters for common workloads
+        - name: Set up exporters for common workloads
           displayName: Prometheus
           href: containers/prometheus-exporters.md
           items:
