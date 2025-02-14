@@ -2,7 +2,7 @@
 title: Azure status overview | Microsoft Docs
 description: A global view into the health of Azure services
 ms.topic: overview
-ms.date: 1/27/2025
+ms.date: 2/14/2025
 
 ---
 # Azure status overview
@@ -11,7 +11,6 @@ ms.date: 1/27/2025
 
 :::image type="content" source="./media/azure-status-overview/azure-status.PNG" alt-text="Screenshot of top level Azure Status page.":::
 
-For more information, see [What's New in Azure Service Health](whats-new.md#azure-service-health-portal-experience-update) 
 
 ## Azure status updates
 
