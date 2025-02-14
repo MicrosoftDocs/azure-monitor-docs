@@ -15,7 +15,7 @@ You can use this field to sort events.
 
 
 
-## What's coming soon
+## What's coming
 
 ### Azure Co-Pilot for Microsoft in Service Health
 You can use Azure Co-Pilot for Microsoft to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the service health portal. 
