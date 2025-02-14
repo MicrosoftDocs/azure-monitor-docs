@@ -152,7 +152,7 @@ The following table describes the role membership requirements that are needed f
 | Azure Monitor contributor         | Supported             | Supported                                    | Not applicable                          |
 | Custom role <sup>1</sup>           | Supported             | Supported                                    | Not applicable                          |
 
-<sup>1</sup> The custom role must have the **Microsoft.Insights/ActionGroups/*** permission added. However, this will also give the user permission to update and delete the action group. To add restrictions so the user can only test the action group, add the following under the **JSON** tab for the custom role:
+<sup>1</sup> The custom role must have the **Microsoft.Insights/ActionGroups/*** permission added, which will also allow the user to update and delete the action group. To add restrictions so the user can only test the action group, add the following under the **JSON** tab for the custom role:
 
 ```json
 {
@@ -165,23 +165,21 @@ The following table describes the role membership requirements that are needed f
         "permissions": [
             {
                 "actions": [
-		                "Microsoft.Insights/ActionGroups/*"
-		            ],
-		            "notActions": [
-		                "Microsoft.Insights/ActionGroups/write",
-		                "Microsoft.Insights/ActionGroups/delete"
-		            ],
-		            "dataActions": [],
-		            "notDataActions": []
+                    "Microsoft.Insights/ActionGroups/*"
+                ],
+                "notActions": [
+                    "Microsoft.Insights/ActionGroups/write",
+                    "Microsoft.Insights/ActionGroups/delete"
+                ],
+                "dataActions": [],
+                "notDataActions": []
             }
-	      ]
+        ]
     }
 }
 ```
 
 > [!NOTE]
-<!--> * If a user isn't a member of the above Role Memberships with the correct permissions to generate this notification, the minimum permission required to test an action group is "**Microsoft.Insights/createNotifications/***"
->-->
 > * You can run a limited number of tests per time period. To check which limits apply to your situation, see [Azure Monitor service limits](../service-limits.md).
 >
 > * When you configure an action group in the portal, you can opt in or out of the common alert schema.
@@ -491,7 +489,7 @@ You might have a limited number of Azure app actions per action group.
 You might have a limited number of voice actions per action group. For important information about rate limits, see [Azure Monitor service limits](../service-limits.md).
 
 > [!NOTE]
-> If you can't select your country/region code in the Azure portal, voice calls aren't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party voice call provider that offers support in your country/region. If a country is marked with an '*', calls come from a USA based phone number.
+> If you can't select your country/region code in the Azure portal, voice calls aren't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party voice call provider that offers support in your country/region. If a country is marked with an asterisk (\*), calls come from a USA based phone number.
 
 ### Countries/Regions with Voice notification support
 
@@ -597,7 +595,7 @@ If you use the webhook action, your target webhook endpoint must be able to proc
 ### Secure webhook PowerShell script
 
 > [!NOTE]
->Pre-requisites: [Install the Microsoft Graph PowerShell SDK](/powershell/microsoftgraph/installation?view=graph-powershell-1.0&preserve-view=true)
+>Prerequisites: [Install the Microsoft Graph PowerShell SDK](/powershell/microsoftgraph/installation?view=graph-powershell-1.0&preserve-view=true)
 
 #### How to run
 
