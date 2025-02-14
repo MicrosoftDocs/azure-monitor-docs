@@ -2,7 +2,7 @@
 title: What's new in Azure Service Health
 description: What's New in Azure Service Health
 ms.topic: conceptual
-ms.date: 02/10/2025
+ms.date: 02/14/2025
 ---
 
 # What's new in Azure Service Health service
@@ -11,7 +11,7 @@ This article lists recent changes in the Azure Service Health service.
 
 ## New Metadata information
 In February 2025, there's a new field called Event Level which indicates the significance of each communication in Service Health Communications. 
-You can use this field to sort events. [See](metadata-filter.md)
+You can use this field to sort events.
 
 
 
