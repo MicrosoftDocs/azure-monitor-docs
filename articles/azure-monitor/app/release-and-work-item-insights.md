@@ -102,7 +102,7 @@ You can see deployment gate behavior and other release steps in the release logs
 
 ## [Release annotations](#tab/release-annotations)
 
-Annotations show where you deployed a new build or other significant events. Annotations make it easy to see whether your changes had any effect on your application's performance. They can be automatically created by the [Azure Pipelines](/azure/devops/pipelines/tasks/) build system. You can also create annotations to flag any event you want by creating them from PowerShell.
+Annotations show where you deployed a new build or other significant events. Annotations make it easy to see whether your changes had any effect on your application's performance. They can be created automatically by the [Azure Pipelines](/azure/devops/pipelines/tasks/) build system. You can also create annotations to flag any event you want by creating them from PowerShell.
 
 ## Release annotations with Azure Pipelines build
 
@@ -300,7 +300,7 @@ Select any annotation marker to open details about the release, including reques
 Release annotations are a feature of the cloud-based Azure Pipelines service of Azure DevOps.
 
 > [!IMPORTANT]
-> Annotations using API keys is deprecated. We recommend using the [Azure CLI](#create-release-annotations-with-the-azure-cli) instead.
+> Annotations using API keys are deprecated. We recommend using the [Azure CLI](#create-release-annotations-with-the-azure-cli) instead.
 
 ### Install the annotations extension (one time)
 
@@ -331,7 +331,7 @@ Create a separate API key for each of your Azure Pipelines release templates.
     :::image type="content" source="./media/release-and-work-item-insights/3-add-task.png" lightbox="./media/release-and-work-item-insights/3-add-task.png" alt-text="Screenshot that shows selecting Add Task and Application Insights Release Annotation.":::
     
     > [!NOTE]
-    > The Release Annotation task currently supports only Windows-based agents. It won't run on Linux, macOS, or other types of agents.
+    > The Release Annotation task currently supports only Windows-based agents. It doesn't run on Linux, macOS, or other types of agents.
 
 1. Under **Application ID**, paste the Application Insights ID you copied from the **API Access** tab.
 
@@ -404,7 +404,7 @@ You can access your new template from any End-to-end transaction details that yo
 
     :::image type="content" source="./media/release-and-work-item-insights/create-work-item.png" alt-text=" Screenshot of end to end transaction details tab with create work item selected." lightbox="./media/release-and-work-item-insights/create-work-item.png":::
 
-1. A new tab in your browser will open up to your select tracking system. In Azure DevOps you can create a bug or task, and in GitHub you can create a new issue in your repository. A new work item is automatically create with contextual information provided by Application Insights.
+1. A new tab in your browser opens up to your select tracking system. In Azure DevOps you can create a bug or task, and in GitHub you can create a new issue in your repository. A new work item is automatically create with contextual information provided by Application Insights.
 
     :::image type="content" source="./media/release-and-work-item-insights/github-work-item.png" alt-text=" Screenshot of automatically created GitHub issue." lightbox="./media/release-and-work-item-insights/github-work-item.png":::
 
@@ -420,7 +420,7 @@ Select edit :::image type="icon" source="./media/release-and-work-item-insights/
 
 :::image type="content" source="./media/release-and-work-item-insights/edit-workbook.png" alt-text=" Screenshot of the work item template workbook in edit mode." lightbox="./media/release-and-work-item-insights/edit-workbook.png":::
 
-You can create more than one work item configuration and have a custom workbook to meet each scenario. The workbooks can also be deployed by Azure Resource Manager ensuring standard implementations across your environments.
+You can create more than one work item configuration and have a custom workbook to meet each scenario. The workbooks can also be deployed with Azure Resource Manager ensuring standard implementations across your environments.
 
 ## Classic work item integration 
 

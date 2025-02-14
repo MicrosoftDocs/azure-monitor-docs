@@ -57,9 +57,9 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
 1. **Have you accidentally unsubscribed from the action group?**
 
     > [!NOTE]
-    > Keep in mind that if you unsubscribe from an action group, all members from a distribution list will be unsubscribed as well. You can continue to use your distribution list email address. However, you will need to inform the users of your distribution list that if they unsubscribe, they are unsubscribing the whole distribution list rather than just themselves.
+    > Keep in mind that if you unsubscribe from an action group, all members from a distribution list are unsubscribed as well. You can continue to use your distribution list email address. However, you'll need to inform the users of your distribution list that if they unsubscribe, they're unsubscribing the whole distribution list rather than just themselves.
     >
-    > A work around for this is to add the email address of all the users in the action group individually. One action group can contain up to 1000 email address. Then, if a specific user wants to unsubscribe, they'll be able to do so without affecting the other users. You will also be able to see which users have unsubscribed.
+    > A work-around for this is to add the email address of all the users in the action group individually. One action group can contain up to 1000 email address. Then, if a specific user wants to unsubscribe, they'll be able to do so without affecting the other users. You'll also be able to see which users have unsubscribed.
 
     The alert emails provide a link to unsubscribe from the action group. To check if you accidentally unsubscribed from this action group, either:
 
@@ -90,7 +90,7 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
 
 ## I didn't receive the expected SMS, voice call, or push notification
 
-If you can see a fired alert in the portal, but did not receive the SMS, voice call or push notification that you configured, follow these steps: 
+If you can see a fired alert in the portal, but didn't receive the SMS, voice call or push notification that you configured, follow these steps: 
 
 1. **Was the action suppressed by an [alert processing rule](./alerts-processing-rules.md)?**
 
@@ -146,7 +146,7 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 
     1. **Is the source IP address blocked?**
     
-        Webhooks only support public networks and firewalls, [IP addresses](../ip-addresses.md) for all regions need to be in the allowlist.Add the [IP addresses](../ip-addresses.md) that the webhook is called from to your allowlist.
+        Webhooks only support public networks and firewalls, [IP addresses](../ip-addresses.md) for all regions need to be in the allowlist. Add the [IP addresses](../ip-addresses.md) that the webhook is called from to your allowlist.
 
     1. **Does your webhook endpoint work correctly?**
 
@@ -177,7 +177,7 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
 1. **Is it really the same alert?** 
 
-    In some cases, multiple similar alerts are fired at around the same time. So, it might just seem like the same alert triggered its actions multiple times. For example, an activity log alert rule might be configured to fire both when an event starts and finishes (succeeded or failed), by not filtering on the event status field. Another example is in Log search alerts when you define dimentins and we check all the dimension combinations due to the factthat we are checking all the diffrent combinations it can also result in similar alerts.
+    In some cases, multiple similar alerts are fired at around the same time. So, it might just seem like the same alert triggered its actions multiple times. For example, an activity log alert rule might be configured to fire both when an event starts and finishes (succeeded or failed), by not filtering on the event status field. Another example is in Log search alerts when you define dimentions and we check all the dimension combinations due to the fact that we're checking all the different combinations it can also result in similar alerts.
 
     To check if these actions or notifications came from different alerts, examine the alert details, such as its timestamp and either the alert ID or its correlation ID. Alternatively, check the list of fired alerts in the portal. If that is the case, you would need to adapt the alert rule logic or otherwise configure the alert source. 
 
@@ -199,7 +199,7 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
     "This is a degraded email experience. That means the formatting may be off or details could be missing. For more information on the degraded email experience, read here."
     
-    If your notification doesn't contain this note and you received the alert, but believe some of its fields are missing or incorrect, check the payload format. The payload can be either [common schema format](./alerts-common-schema.md) or non common which means a diffrent scheme between alert types:[activity log alerts](../alerts/activity-log-alerts-webhook.md), for [log search alerts](../alerts/alerts-log-webhook.md) (both Application Insights and log analytics), for [metric alerts](alerts-metric-near-real-time.md#payload-schema). In order to see the payload you can use a webhook action and to send it to your IP in order to see the result.
+    If your notification doesn't contain this note and you received the alert, but believe some of its fields are missing or incorrect, check the payload format. The payload can be either [common schema format](./alerts-common-schema.md) or non common which means a different scheme between alert types:[activity log alerts](../alerts/activity-log-alerts-webhook.md), for [log search alerts](../alerts/alerts-log-webhook.md) (both Application Insights and log analytics), for [metric alerts](alerts-metric-near-real-time.md#payload-schema). In order to see the payload you can use a webhook action and to send it to your IP in order to see the result.
 
 1. **What format did you use when configuring the alert rule?**
 
@@ -211,7 +211,7 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
     Check if the format specified at the action level is what you expect. For example, you might have developed code that responds to alerts (webhook, function, logic app, etc.), expecting one format, but later in the action you or another person specified a different format.
 
-    Also, check the payload format (JSON) for [activity log alerts](../alerts/activity-log-alerts-webhook.md), for [log search alerts](../alerts/alerts-log-webhook.md) (both Application Insights and log analytics), for [metric alerts](alerts-metric-near-real-time.md#payload-schema),and for the [common alert schema](../alerts/alerts-common-schema.md).
+    Also, check the payload format (JSON) for [activity log alerts](../alerts/activity-log-alerts-webhook.md), for [log search alerts](../alerts/alerts-log-webhook.md) (both Application Insights and log analytics), for [metric alerts](alerts-metric-near-real-time.md#payload-schema), and for the [common alert schema](../alerts/alerts-common-schema.md).
  
 ### **The search results are not included in the log search alert notifications.**
 
@@ -225,15 +225,15 @@ This is by design. Stateful log search alerts use a [time-based resolution logic
 
 ### The dimensions list is empty or alert title doesn't contain a dimension name
 
-When a query does not return any rows, the resource ID field (which is the basis for populating dimension and title fields) is empty. For example, when you have a log search alert rule that returns no results, if the threshold is 0, the alert fires as expected, but the dimensions list is empty or alert title doesn't contain a dimension name. 
+When a query doesn't return any rows, the resource ID field (which is the basis for populating dimension and title fields) is empty. For example, when you have a log search alert rule that returns no results, if the threshold is 0, the alert fires as expected, but the dimensions list is empty or alert title doesn't contain a dimension name. 
  
 ### Information is missing in an activity log alert
 
-[Activity log alerts](./alerts-types.md#activity-log-alerts) are alerts that are based on events written to the Azure activity log, such as events about creating, updating, or deleting Azure resources, service health and resource health events, or findings from Azure Advisor and Azure Policy. If you received an alert based on the activity log but some fields that you need are missing or incorrect, first check the events in the activity log itself. If the Azure resource did not write the fields you are looking for in its activity log event, those fields aren't included in the corresponding alert. 
+[Activity log alerts](./alerts-types.md#activity-log-alerts) are alerts that are based on events written to the Azure activity log, such as events about creating, updating, or deleting Azure resources, service health and resource health events, or findings from Azure Advisor and Azure Policy. If you received an alert based on the activity log but some fields that you need are missing or incorrect, first check the events in the activity log itself. If the Azure resource didn't write the fields you're looking for in its activity log event, those fields aren't included in the corresponding alert. 
 
 ### The custom properties are missing from email, SMS, or push notifications.
 
-Custom properties are only passed to the payload for actions, such as webhook, Azure function or logic apps. Custom properties aren't included in for notifications (email/SMS/push).
+Custom properties are only passed to the payload for actions such as webhook, Azure Functions, or Azure Logic apps. Custom properties aren't included in notifications (email/SMS/push).
 
 ## The alert processing rule isn't working as expected
 
@@ -275,7 +275,7 @@ If you can see a fired alert in the portal, but a related alert processing rule 
 
     * The **scope** defines the range of resources that the alert rule applies to. This could be a single resource, a resource group, or even an entire subscription. The scope determines which resources are included in the evaluation of the alert rule.
 
-    For example, if you have an alert rule with a scope that includes multiple virtual machines, the alert will monitor all those virtual machines. If any of them meet the alert condition, the alert will be triggered. However, the target resource will be the specific virtual machine that caused the alert to fire.
+    For example, if you have an alert rule with a scope that includes multiple virtual machines, the alert monitors all those virtual machines. If any of them meet the alert condition, the alert is triggered. However, the target resource is the specific virtual machine that caused the alert to fire.
     For example, in log search alerts, if the scope of the alert is a Log Analytics workspace, and the **_ResourceId** column is selected, the target resource gets the value of the Resource ID, causing the alert to be triggered on a different resource than initially intended.
 
     In summary, the target resource is the individual resource being monitored, while the scope defines the broader set of resources that the alert rule applies to.
