@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: This article describes the version details for the Azure Monitor Agent virtual machine extension.
 ms.topic: conceptual
-ms.date: 11/14/2024
+ms.date: 02/14/2024
 author: guywi-ms
 ms.author: guywild
 ms.custom: references_region
@@ -29,6 +29,7 @@ We strongly recommend that you always update to the latest version, or opt in to
 ## Version details
 | Release Date | Release notes | Windows | Linux |
 |:---|:---|:---|:---|
+| January 2025 | **Windows Features**<ul><li>Added the ability to tune the disk quota for the windows agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul>**Linux Features**<ul><li>Added the ability to tune the disk quota for the Linux agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul>| 1.32.0| 1.33.3|
 | November 2024 | **Windows Features**<ul><li>Update priorities for selection of ARC/AMA/System Proxy. Some customers have had difficulties with the default proxy selections</li><li>Populate SourceHostname column in Sentinel's Windows Firewall Logs (ASimNetworkSessionLogs table)</li><li>Resolve data latency issues for Sentinel's DNS activity logs (ASimDnsActivityLogs table)</li><li>Update Troubleshooter to version 1.6.37</li><li>Update Metric Extension to version 2.2024.930.1245</li></ul>| 1.31.0| |
 | October 2024 | **Windows Features**<ul><li>AMA: Updating AMA proxy settings to allow the Arc proxy to be bypassed</li><li>AMA: Custom Logs support Timestamp as delimiter (for MMA parity). You must deploy it using a DCR template or through the CLI. UI support is coming in the December release.</li><li>Enhance security for file operation when data folder contain redirection</li><li>Update MetricsExtension version to v2.2024.726.1005</li></ul>| 1.30.0| |
 | September 2024   | **Linux Features**<ul><li>Support for Azure Linux 3, Ubuntu 24.04 LTS, and Amazon Linux 2023</li><li>Arm64 support for Azure Linux 3 and Ubuntu 24.04 LTS</li><li>Support timestamp-delimited Custom Text Logs for parity with OMS agent</li></ul> **Linux Fixes**<ul><li>Limit how frequently AMA writes its own log messages when the disk full; this fixes an error were logging that the disk is full makes the issue worse</li><li>Fix a crash that can occur when sending events to an unavailable Event Hub</li><li>Reduce resource utilization when sending events to an unavailable Event Hub</li><li>Fix for syslog-ng misconfiguration that caused syslog-ng service startup failure on rpm-based distros</li><li>Fix a crash that could occur when parsing syslog messages with a `.` character in the app/process name</li><li>Fix a unicode parsing issue that could cause install failures on certain system locales</li></ul> | | 1.33.1 |
