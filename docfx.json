@@ -194,7 +194,7 @@
         "articles/azure-monitor/change/**/*": "hannahhunter",
         "articles/azure-monitor/containers/**/*": "bwren",
         "articles/azure-monitor/essentials/**/*": "edbaynash",
-        "articles/azure-monitor/insights/**/*": "robb",
+        "articles/azure-monitor/insights/**/*": "bwren",
         "articles/azure-monitor/logs/**/*": "guywild",
         "articles/azure-monitor/profiler/**/*": "hannahhunter",
         "articles/azure-monitor/snapshot-debugger/**/*": "hannahhunter",
