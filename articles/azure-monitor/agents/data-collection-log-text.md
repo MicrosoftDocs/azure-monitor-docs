@@ -9,9 +9,7 @@ ms.reviewer: jeffwo
 ---
 
 # Collect logs from a text file with Azure Monitor Agent 
-**Custom Text Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
-
-Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. This data can be collected with [Azure Monitor Agent](azure-monitor-agent-overview.md) and stored in a Log Analytics workspace with data collected from other sources.
+Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. This data can be used with the **Custom Text Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
 
 ## Prerequisites
 
@@ -19,21 +17,9 @@ Many applications and services will log information to text files instead of sta
 - A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
 - Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
 
-## Basic operation
-
-The following diagram shows the basic operation of collecting log data from a text file. 
-
-1. The agent watches for any log files that match a specified name pattern on the local disk. 
-2. Each entry in the log is collected and sent to Azure Monitor. The incoming stream includes the entire log entry in a single column. 
-3. If the default transformation is used, the entire log entry is sent to a single column in the target table.
-4. If a custom transformation is used, the log entry can be parsed into multiple columns in the target table.
-
-
-:::image type="content" source="media/data-collection-log-text/text-log-collection.png" lightbox="media/data-collection-log-text/text-log-collection.png" alt-text="Diagram showing collection of a text log by the Azure Monitor agent, showing both simple collection and a transformation for a comma-delimited file." border="false":::
-
 
 ## Text file requirements and best practices
-The file that the Azure Monitor Agent is monitoring must meet the following requirements:
+The file that Azure Monitor collects must meet the following requirements:
 
 - The file must be stored on the local drive of the machine with the Azure Monitor Agent in the directory that is being monitored.
 - Each record must be delineated with an end of line. 
@@ -66,170 +52,21 @@ The incoming stream of data includes the columns in the following table.
 
 ## Create a data collection rule for a text file
 
-### [Portal](#tab/portal)
-
 Create a data collection rule, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
- 
+
+:::image type="content" source="media/data-collection-log-text/configuration.png" lightbox="media/data-collection-log-text/configuration.png" alt-text="Screenshot that shows configuration of text file collection.":::
+
 
 | Setting | Description |
 |:---|:---|
 | File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
 | Table name | Name of the destination table in your Log Analytics Workspace. |     
-| Record delimiter | Not currently used but reserved for future potential use allowing delimiters other than the currently supported end of line (`/r/n`). | 
-| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
+| Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat`. If no date in the specified format is found then end of line is used. | 
+| timeFormat| The following time formats are supported.<br> - `yyyy-MM-ddTHH:mm:ssk`  (2024-10-29T18:28:34) <br> - `YYYY-MM-DD HH:MM:SS`   (2024-10-29 18:28:34) <br> - `M/D/YYYY HH:MM:SS AM/PM`   (10/29/2024 06:28:34 PM) <br> - `Mon DD, YYYY HH:MM:SS`   (October 29, 2024 18:28:34) <br> - `yyMMdd HH:mm:ss`   (241029 18:28:34) <br> - `ddMMyy HH:mm:ss`   (291024 18:28:34) <br> - `MMM d HH:mm:ss`   (Oct 29 18:28:34) <br> - `dd/MMM/yyyy:HH:mm:ss zzz`   (14/Oct/2024:18:28:34 -00) |
+| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. In this case, the destination table must have a `RawData` column to collect the data. |
 
  
 
-### [Resource Manager template](#tab/arm)
-
-Use the following ARM template to create a DCR for collecting text log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template. 
- 
-
-| Setting | Description |
-|:---|:---|
-| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
-| Table name | Name of the destination table in your Log Analytics Workspace. |     
-| Record delimiter | Not currently used but reserved for future potential use allowing delimiters other than the currently supported end of line (`/r/n`). | 
-| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
-| timeFormat| The following times formats are supported.  Use the quotes strings in your ARM template. Do not include the sample time that is in parentheses. <br> - “yyyy-MM-ddTHH:mm:ssk”   (2024-10-29T18:28:34) <br> - “YYYY-MM-DD HH:MM:SS”   (2024-10-29 18:28:34) <br> - “M/D/YYYY HH:MM:SS AM/PM”   (10/29/2024 06:28:34 PM) <br> - “Mon DD, YYYY HH:MM:SS”   (October 29, 2024 18:28:34) <br> - “yyMMdd HH:mm:ss”   (241029 18:28:34) <br> - “ddMMyy HH:mm:ss”   (291024 18:28:34) <br> - “MMM d HH:mm:ss”   (Oct 29 18:28:34) <br> - “dd/MMM/yyyy:HH:mm:ss zzz”   (14/Oct/2024:18:28:34 -000) |
-
-
-
-Use the following ARM template to create or modify a DCR for collecting text log files. In addition to the parameter values, you may need to modify the following values in the template:
-
-- `columns`: Remove the `FilePath` column if you don't want to collect it.
-- `transformKql`: Modify the default transformation if you want to modify or filter the incoming stream, for example to parse the log entry into multiple columns. The output schema of the transformation must match the schema of the target table.
-
-> [!IMPORTANT]
-> If you create the DCR using an ARM template, you still must associate the DCR with the agents that will use it. You can edit the DCR in the Azure portal and select the agents as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources). The parameters section in the DCR is optional if you replace them with strings lower down in the JSON.
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dataCollectionRuleName": {
-            "type": "string",
-            "metadata": {
-              "description": "Unique name for the DCR. "
-            }
-        },
-        "dataCollectionEndpointResourceId": {
-            "type": "string",
-            "metadata": {
-              "description": "Resource ID of the data collection endpoint (DCE)."
-            }
-        },
-        "location": {
-            "type": "string",
-            "metadata": {
-              "description": "Region for the DCR. Must be the same location as the Log Analytics workspace. "
-            }
-        },
-        "filePatterns": {
-            "type": "string",
-            "metadata": {
-              "description": "Path on the local disk for the log file to collect. May include wildcards.Enter multiple file patterns separated by commas (AMA version 1.26 or higher required for multiple file patterns on Linux)."
-            }
-        },
-        "tableName": {
-            "type": "string",
-            "metadata": {
-              "description": "Name of destination table in your Log Analytics workspace. "
-            }
-        },
-        "workspaceResourceId": {
-            "type": "string",
-            "metadata": {
-              "description": "Resource ID of the Log Analytics workspace with the target table."
-            }
-        },
-        "timeFormat": {
-            "type": "string"
-            "metadata": {
-                "discription": "The time format that you would like to use to split multi line imput"
-            }
-      }
-    },
-    "variables": {
-      "tableOutputStream": "[concat('Custom-', parameters('tableName'))]"
-    },
-    "resources": [
-        {
-            "type": "Microsoft.Insights/dataCollectionRules",
-            "name": "[parameters('dataCollectionRuleName')]",
-            "location": "[parameters('location')]",
-            "apiVersion": "2022-06-01",
-            "properties": {
-                "dataCollectionEndpointId": "[parameters('dataCollectionEndpointResourceId')]",
-                "streamDeclarations": {
-                    "Custom-Text-stream": {
-                        "columns": [
-                            {
-                                "name": "TimeGenerated",
-                                "type": "datetime"
-                            },
-                            {
-                                "name": "RawData",
-                                "type": "string"
-                            },
-                            {
-                                "name": "FilePath",
-                                "type": "string"
-                            },
-                            {
-                                "name": "Computer",
-                                "type": "string"
-                            }
-                        ]
-                    }
-                },
-                "dataSources": {
-                    "logFiles": [
-                        {
-                            "streams": [
-                                "Custom-Text-stream"
-                            ],
-                            "filePatterns": [
-                                "[parameters('filePatterns')]"
-                            ],
-                            "format": "text",
-                            "name": "Custom-Text-dataSource",
-                            "settings": {
-                               "text": {
-                                      "recordStartTimestampFormat": "[parameters('timeFormat')]"
-                               }
-                            }
-                        }
-                    ]
-                },
-                "destinations": {
-                    "logAnalytics": [
-                        {
-                            "workspaceResourceId": "[parameters('workspaceResourceId')]",
-                            "name": "workspace"
-                        }
-                    ]
-                },
-                "dataFlows": [
-                    {
-                        "streams": [
-                            "Custom-Text-dataSource"
-                        ],
-                        "destinations": [
-                            "workspace"
-                        ],
-                        "transformKql": "source",
-                        "outputStream": "[variables('tableOutputStream')]"
-                    }
-                ]
-            }
-        }
-    ]
-}
-```
-
----
 
 ## Delimited log files
 Many text log files have entries that are delimited by a character such as a comma. To parse this data into separate columns, use a transformation with the [split function](/azure/data-explorer/kusto/query/split-function).

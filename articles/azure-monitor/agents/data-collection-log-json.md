@@ -9,9 +9,7 @@ ms.reviewer: jeffwo
 ---
 
 # Collect logs from a JSON file with Azure Monitor Agent 
-**Custom JSON Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text and JSON logs type.
-
-Many applications and services will log information to a JSON files instead of standard logging services such as Windows Event log or Syslog. This data can be collected with [Azure Monitor Agent](azure-monitor-agent-overview.md) and stored in a Log Analytics workspace with data collected from other sources.
+**Custom JSON Logs** is one of the data sources you can collect from a virtual machine using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) in Azure Monitor. Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the JSON logs data source type.
 
 ## Prerequisites
 
@@ -32,24 +30,30 @@ The following diagram shows the basic operation of collecting log data from a js
 :::image type="content" source="media/data-collection-log-json/json-log-collection.png" lightbox="media/data-collection-log-json/json-log-collection.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection." border="false":::
 
 
-## JSON file requirements and best practices
-The file that the Azure Monitor Agent is monitoring must meet the following requirements:
+## JSON file requirements
+The file that the Azure Monitor agent is collecting must meet the following requirements:
 
-- The file must be stored on the local drive of the machine with the Azure Monitor Agent in the directory that is being monitored.
+- The file must be stored on the local drive of the agent machine in the directory that is being monitored.
 - Each entry must be contained in a single row and delineated with an end of line. The JSON body format is not supported. See sample below.
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
-     
 
 Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
-  
 
 - Create a new log file every day so that you can easily clean up old files.
 - Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least 2 days to allow ample time for all logs to be processed.
 - Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
 - Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
 
+Following is a sample of a typical JSON log file that can be collected by Azure Monitor.
 
+```json
+{"TimeGenerated":"2025-02-14 01:08:53","StatusCode":3215,"Message":"This is the status message."}
+{"TimeGenerated":"2025-02-14 01:08:53","StatusCode":3215,"Message":"This is the status message."}
+{"TimeGenerated":"2025-02-14 01:08:53","StatusCode":3215,"Message":"This is the status message."}
+{"TimeGenerated":"2025-02-14 01:08:53","StatusCode":3215,"Message":"This is the status message."}
+{"TimeGenerated":"2025-02-14 01:08:53","StatusCode":3215,"Message":"This is the status message."}
+```
 
 ## Incoming stream schema
 
@@ -82,6 +86,7 @@ Create a data collection rule, as described in [Collect data with Azure Monitor 
 | Table name | Name of the destination table in your Log Analytics Workspace. |     
 | Record delimiter | Not currently used but reserved for future potential use allowing delimiters other than the currently supported end of line (`/r/n`). | 
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
+
 
 
 ### [Resource Manager template](#tab/arm)
