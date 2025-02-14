@@ -7,7 +7,7 @@ ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
 ms.date: 02/11/2025
-ms.reviewer: jkalis
+ms.reviewer: jan.kalis
 ---
 
 # Code Optimizations extensions for Visual Studio Code (preview)

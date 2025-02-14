@@ -571,14 +571,13 @@ items:
             displayName: Advanced Messaging Logs,Operational Authentication Logs,Call
               Automation Events Summary Logs,Operational Call Automation
               Logs,Call Client Media Stats Time Series Logs,Call Client
-              Operations Logs,Call Closed Captions Logs,Call Diagnostics
-              Logs,Call Diagnostics Logs with versioning,Aggregated Calling
-              metrics in daily bins based on dimensions like SDK Version, OS
-              name, Subcode daily Logs,Operational Call Recording Logs,Call
-              Recording Summary Logs,Call Summary Logs,Call Summary Logs with
-              versioning,Call Survey Logs,Operational Chat Logs,Email Service
-              Send Mail Logs,Email Service Delivery Status Update Logs,Email
-              Service User Engagement Logs,Operational Job Router
+              Operations Logs,Service Side Request and Outcome Logs,Call Closed
+              Captions Logs,Call Diagnostics Logs,Call Diagnostics Logs with
+              versioning,Calling Metrics Logs,Operational Call Recording
+              Logs,Call Recording Summary Logs,Call Summary Logs,Call Summary
+              Logs with versioning,Call Survey Logs,Operational Chat Logs,Email
+              Service Send Mail Logs,Email Service Delivery Status Update
+              Logs,Email Service User Engagement Logs,Operational Job Router
               Logs,Operational Rooms Logs,Operational SMS Logs,Usage Records
           - name: microsoft.community/communityTrainings
             href: supported-logs/microsoft-community-communitytrainings-logs.md
@@ -862,9 +861,6 @@ items:
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-logs.md
             displayName: Capacity Pool Autoscaled
-          - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
-            href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md
-            displayName: ANF File Access
           - name: Microsoft.Network/applicationgateways
             href: supported-logs/microsoft-network-applicationgateways-logs.md
             displayName: Application Gateway Access Log,Application Gateway Firewall
@@ -1385,6 +1381,8 @@ items:
             href: tables/microsoft-network_frontdoors.md
           - name: microsoft.network/loadbalancers
             href: tables/microsoft-network_loadbalancers.md
+          - name: microsoft.network/natgateways
+            href: tables/microsoft-network_natgateways.md
           - name: microsoft.network/networkinterfaces
             href: tables/microsoft-network_networkinterfaces.md
           - name: microsoft.network/networkmanagers
@@ -1417,6 +1415,8 @@ items:
             href: tables/microsoft-networkcloud_storageappliances.md
           - name: microsoft.networkfunction/azuretrafficcollectors
             href: tables/microsoft-networkfunction_azuretrafficcollectors.md
+          - name: microsoft.onlineexperimentation/workspaces
+            href: tables/microsoft-onlineexperimentation_workspaces.md
           - name: microsoft.openenergyplatform/energyservices
             href: tables/microsoft-openenergyplatform_energyservices.md
           - name: microsoft.openlogisticsplatform/workspaces
@@ -1483,6 +1483,10 @@ items:
             href: tables/microsoft-sql_servers.md
           - name: microsoft.sql/servers/databases
             href: tables/microsoft-sql_servers_databases.md
+          - name: microsoft.standbypool/standbycontainergrouppools
+            href: tables/microsoft-standbypool_standbycontainergrouppools.md
+          - name: microsoft.standbypool/standbyvirtualmachinepools
+            href: tables/microsoft-standbypool_standbyvirtualmachinepools.md
           - name: microsoft.storage/storageaccounts
             href: tables/microsoft-storage_storageaccounts.md
           - name: microsoft.storagecache/amlfilesytems
@@ -1554,6 +1558,8 @@ items:
             href: tables/abapauditlog.md
           - name: ABAPChangeDocsLog
             href: tables/abapchangedocslog.md
+          - name: ABAPTableDataLog
+            href: tables/abaptabledatalog.md
           - name: ABAPUserDetails
             href: tables/abapuserdetails.md
           - name: ABSBotRequests
@@ -2226,8 +2232,6 @@ items:
             href: tables/databricksworkspace.md
           - name: DatabricksWorkspaceFiles
             href: tables/databricksworkspacefiles.md
-          - name: DatabricksWorkspaceLogs
-            href: tables/databricksworkspacelogs.md
           - name: DataverseActivity
             href: tables/dataverseactivity.md
           - name: DefenderIoTRawEvent
@@ -3026,6 +3030,8 @@ items:
             href: queries/ACSCallClientOperations.md
           - name: ACSCallDiagnostics
             href: queries/ACSCallDiagnostics.md
+          - name: ACSCallDiagnosticsUpdates
+            href: queries/ACSCallDiagnosticsUpdates.md
           - name: ACSCallRecordingIncomingOperations
             href: queries/ACSCallRecordingIncomingOperations.md
           - name: ACSCallRecordingSummary
@@ -3308,8 +3314,8 @@ items:
             href: queries/DNSQueryLogs.md
           - name: DataTransferOperations
             href: queries/DataTransferOperations.md
-          - name: DatabricksWorkspaceLogs
-            href: queries/DatabricksWorkspaceLogs.md
+          - name: DatabricksBudgetPolicyCentral
+            href: queries/DatabricksBudgetPolicyCentral.md
           - name: DataverseActivity
             href: queries/DataverseActivity.md
           - name: DevCenterDiagnosticLogs
@@ -3414,12 +3420,22 @@ items:
             href: queries/NWConnectionMonitorPathResult.md
           - name: NWConnectionMonitorTestResult
             href: queries/NWConnectionMonitorTestResult.md
+          - name: NatGatewayFlowlogsV1
+            href: queries/NatGatewayFlowlogsV1.md
           - name: NetworkSessions
             href: queries/NetworkSessions.md
           - name: NginxUpstreamUpdateLogs
             href: queries/NginxUpstreamUpdateLogs.md
           - name: OEPAirFlowTask
             href: queries/OEPAirFlowTask.md
+          - name: OEPDataplaneLogs
+            href: queries/OEPDataplaneLogs.md
+          - name: OEWExperimentAssignmentSummary
+            href: queries/OEWExperimentAssignmentSummary.md
+          - name: OEWExperimentScorecardMetricPairs
+            href: queries/OEWExperimentScorecardMetricPairs.md
+          - name: OEWExperimentScorecards
+            href: queries/OEWExperimentScorecards.md
           - name: OLPSupplyChainEntityOperations
             href: queries/OLPSupplyChainEntityOperations.md
           - name: OfficeActivity
@@ -3448,8 +3464,16 @@ items:
             href: queries/REDConnectionEvents.md
           - name: ResourceManagementPublicAccessLogs
             href: queries/ResourceManagementPublicAccessLogs.md
+          - name: SCGPoolExecutionLog
+            href: queries/SCGPoolExecutionLog.md
+          - name: SCGPoolRequestLog
+            href: queries/SCGPoolRequestLog.md
           - name: SQLAssessmentRecommendation
             href: queries/SQLAssessmentRecommendation.md
+          - name: SVMPoolExecutionLog
+            href: queries/SVMPoolExecutionLog.md
+          - name: SVMPoolRequestLog
+            href: queries/SVMPoolRequestLog.md
           - name: SecurityAttackPathData
             href: queries/SecurityAttackPathData.md
           - name: SecurityEvent

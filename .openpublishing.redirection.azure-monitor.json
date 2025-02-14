@@ -7724,6 +7724,21 @@
    "source_path": "articles/azure-monitor/reference/tables/chsmmanagementauditlogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/queries/databricksworkspacelogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/databricksworkspacelogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
   }
  ]
 }

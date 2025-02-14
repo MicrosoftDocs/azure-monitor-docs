@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 02/10/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure AI Search
@@ -65,5 +65,41 @@ Recommendation ID: b3efb46f-6d30-4201-98de-6492c1f8f10d
 Subcategory: Scalability
 
 <!--b3efb46f-6d30-4201-98de-6492c1f8f10d_end-->
+
+<!--e24f566a-0ea9-4a6b-94c5-be0a73f251c8_begin-->
+
+#### Upgrade to the newest version of the listQueryKeys request  
+  
+Upgrade to the newest version of the Search/searchServices/mysearchservice/listQueryKeys request. The platform identified resources under the subscription using an outdated version of the Search/searchServices/mysearchservice/listQueryKeys request.  
+  
+**Potential benefits**: Improved security.  
+
+**Impact:** Medium
+  
+For more information, see [Query Keys - List By Search Service - REST API (Azure Search Management) ](/rest/api/searchmanagement/query-keys/list-by-search-service)  
+
+ResourceType: microsoft.search/searchservices  
+Recommendation ID: e24f566a-0ea9-4a6b-94c5-be0a73f251c8  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--e24f566a-0ea9-4a6b-94c5-be0a73f251c8_end-->
+
+<!--98acf571-d0a4-4111-993c-829f91b8c71b_begin-->
+
+#### Add a replica for instance of the Azure AI Search  
+  
+Add a replica for Azure AI Search. Instance of Azure AI Search isn't covered by service-level agreement. In Azure AI Search, a replica is a copy of the index. Adding replicas allows Azure AI Search to do machine reboots and maintenance against one replica, while a query runs on another replica.  
+  
+**Potential benefits**: Improve reliability of Azure AI Search instance.  
+
+**Impact:** Medium
+  
+For more information, see [Reliability in Azure AI Search - Azure AI Search ](https://aka.ms/AISearchHighAvailability)  
+
+ResourceType: microsoft.search/searchservices  
+Recommendation ID: 98acf571-d0a4-4111-993c-829f91b8c71b  
+Subcategory: HighAvailability
+
+<!--98acf571-d0a4-4111-993c-829f91b8c71b_end-->
 
 <!--articleBody-->

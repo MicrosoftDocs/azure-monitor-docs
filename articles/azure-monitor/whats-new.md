@@ -16,6 +16,25 @@ This article lists significant changes to Azure Monitor documentation.
 >
 > :::image type="content" source="./media//whats-new/rss.png" alt-text="An rss icon.":::  https://aka.ms/azmon/rss
 
+## [2025](#tab/2025)
+
+### January 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Agents|[Azure Monitor Agent supported operating systems and environments](agents/azure-monitor-agent-supported-operating-systems.md)|Azure Monitor Agent now supports Windows Server 2025. The agent no longer supports Windows Server 2012 and Windows Server 2012 R2.  |
+|Application-Insights|[Counters for .NET in Application Insights](app/asp-net-counters.md)|We now cover .NET performance and event counter information in the same place.|
+|Application-Insights|[Configuring JMX metrics](app/java-jmx-metrics-configuration.md)|New configuration examples for Java 17 JMX metrics, including garbage collection and threading.|
+|Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](app/opentelemetry-enable.md)|Added logging configuration as an important step when getting started with Python OpenTelemetry.|
+|Containers|[Recommended alert rules for Kubernetes clusters](containers/kubernetes-metric-alerts.md)|Added table mapping legacy Container insights metrics to Prometheus metrics.|
+|Containers|[Troubleshoot Container insights](containers/container-insights-troubleshoot.md)|General cleanup of article and added troubleshooting for additional error conditions.|
+|Essentials|[Virtual machine guest performance counters](vm/virtual-machine-guest-metrics.md)|A new article listing guest performance counters for Windows and Linux VMs.|
+|Essentials|[Connect Grafana to Azure Monitor Prometheus metrics](essentials/prometheus-grafana.md)|All Grafana configuration for Prometheus are now in  a single article|
+|Logs|[Get started with log queries in Azure Monitor](logs/get-started-queries.md)|Added examples of how to query data in your Log Analytics workspace using simple mode, alongside Kusto Query Language (KQL) examples.|
+|Visualizations|[Azure Monitor Logs overview](logs/data-platform-logs.md)|We now recommend using summary rules for custom dashboards, workbooks, and reports to improve query performance and reduce query errors and timeouts.|
+
+
+
 ## [2024](#tab/2024)
 
 ### December 2024

@@ -4,7 +4,7 @@ description: Learn how to use roles and permissions in Azure Monitor to restrict
 services: azure-monitor
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
-ms.date: 05/31/2024
+ms.date: 02/12/2025
 ms.reviewer: dalek
 ---
 
@@ -14,7 +14,7 @@ This article shows how to apply [role-based access control (RBAC)](/azure/role-b
 
 ## Built-in monitoring roles
 
-[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) provides built-in roles for monitoring that you can assign to users, groups, service principals, and managed identities. The most common roles are [*Monitoring Reader*](#monitoring-reader) and [*Monitoring Contributor*](#monitoring-contributor) for read and write permissions, respectively.
+[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) provides built-in roles for monitoring that you can assign to users, groups, service principals, and managed identities. The most common roles are [*Monitoring Reader*](#monitoring-reader) and [*Monitoring Contributor*](#monitoring-contributor) for read and write permissions, respectively. When assigning a role, you can specify the scope of the role assignment. Roles can be assigned at the subscription, resource group, or resource level. The wider the scope, the more resources the role assignment applies to. Make sure that you assign the role at the appropriate scope to limit access to only the resources that the user needs to access.
 
 For more detailed information on the monitoring roles, see [RBAC Monitoring Roles](/azure/role-based-access-control/built-in-roles#monitor).
 

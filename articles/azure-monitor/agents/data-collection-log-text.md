@@ -50,9 +50,6 @@ Adhere to the following recommendations to ensure that you don't experience data
 
 ## Incoming stream
 
-> [!NOTE]
-> Multiline support that uses a time stamp to delimited events is now available.  You must use a resource management template deployment until support is added in the Portal UI.
-
 The incoming stream of data includes the columns in the following table. 
 
 | Column | Type | Description |
@@ -64,15 +61,7 @@ The incoming stream of data includes the columns in the following table.
 
 
 ## Custom table
-Before you can collect log data from a text file, you must create a custom table in your Log Analytics workspace to receive the data. The table schema must match the data you are collecting, or you must add a transformation to ensure that the output schema matches the table. 
-
-> [!Warning]
-> To avoid data loss, it’s important that you do not use an existing custom log table that MMA agents are currently utilizing.
-> Once any AMA agent writes to an existing custom log table, MMA agents will no longer be able to write to that table.
-> Instead, you should create a new table specifically for AMA agents to ensure smooth transition from one agent to the next.
-
-
-For example, you can use the following PowerShell script to create a custom table with `RawData`, `FilePath`, and `Computer`. You wouldn't need a transformation for this table because the schema matches the default schema of the incoming stream. 
+Before you can collect log data from a text file, you must create a custom table in your Log Analytics workspace to receive the data. The table schema must match the data you are collecting, or you must add a transformation to ensure that the output schema matches the table. You can use the following PowerShell script to create a custom table with `RawData`, `FilePath`, and `Computer`. 
 
 
 ```powershell
