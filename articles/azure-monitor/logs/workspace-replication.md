@@ -50,25 +50,31 @@ If the primary region's ingestion endpoint isn't available, Azure Monitor Agent 
 
 If you write your own client to send log data to your Log Analytics workspace, ensure that the client handles failed ingestion requests. 
 
-
 ## Deployment considerations
 
-- Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.  
-- The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
-- Azure Monitor supports querying of the inactive region. Query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. Replication of alert rules across regions is currently not supported. 
-- When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
-- Workspace management operations can't be initiated during switchover, including:
-   - Change workspace retention, pricing tier, daily cap, and so on
-   - Change network settings
-   - Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
-- The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents. 
-- The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel. 
-- These features are currently not supported or only partially supported:
+* Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.
+
+* The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
+
+* Azure Monitor supports querying of the inactive region. Query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. Replication of alert rules across regions is currently not supported.
+
+* When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
+
+* Workspace management operations can't be initiated during switchover, including:
+    * Change workspace retention, pricing tier, daily cap, and so on
+    * Change network settings
+    * Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
+
+* The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents.
+
+* The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel.
+
+* These features are currently not supported or only partially supported:
 
     | Feature | Support |
-    | --- | --- |
-    |Auxiliary table plans|Not supported. Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace.|
-    | Search jobs, Restore | Partially supported - Search job and restore operations create tables and populate them with search results or restored data. After you enable workspace replication, new tables created for these operations replicate to your secondary workspace. Tables populated **before** you enable replication aren't replicated. If these operations are in progress when you switch over, the outcome is unexpected. It might complete successfully but not replicate, or it might fail, depending on your workspace health and the exact timing.|
+    |---------|---------|
+    | Auxiliary table plans | Not supported. Azure Monitor doesn't replicate data in tables with the Auxiliary log plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace. |
+    | Search jobs, Restore | Partially supported - Search job and restore operations create tables and populate them with search results or restored data. After you enable workspace replication, new tables created for these operations replicate to your secondary workspace. Tables populated **before** you enable replication aren't replicated. If these operations are in progress when you switch over, the outcome is unexpected. It might complete successfully but not replicate, or it might fail, depending on your workspace health and the exact timing. |
     | Application Insights over Log Analytics workspaces | Not supported |
     | VM Insights | Not supported |
     | Container Insights | Not supported |
@@ -80,21 +86,21 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region Group  | Regions          | Notes                                                                 |
-|---------------|------------------|----------------------------------------------------------------------|
-| North America | East US          | East US can't replicate to or from the East US 2 and South Central US regions. |
-|               | East US 2        | East US 2 can't replicate to or from the East US and South Central US regions. |
-|               | West US          |                                                                      |
-|               | West US 2        |                                                                      |
-|               | Central US       |                                                                      |
-|               | South Central US | South Central US can't replicate to or from the East US and East US 2 regions. |
-|               | Central Canada   |                                                                      |
-| Europe        | West Europe      |                                                                      |
-|               | North Europe     |                                                                      |
-|               | South UK         |                                                                      |
-|               | West UK          |                                                                      |
-|               | Germany West Central |                                                                  |
-|               | France Central   |                                                                      | | |
+| Region Group  | Regions              | Notes                                                                          |
+|---------------|----------------------|--------------------------------------------------------------------------------|
+| North America | East US              | East US can't replicate to or from the East US 2 and South Central US regions. |
+|               | East US 2            | East US 2 can't replicate to or from the East US and South Central US regions. |
+|               | West US              |                                                                                |
+|               | West US 2            |                                                                                |
+|               | Central US           |                                                                                |
+|               | South Central US     | South Central US can't replicate to or from the East US and East US 2 regions. |
+|               | Central Canada       |                                                                                |
+| Europe        | West Europe          |                                                                                |
+|               | North Europe         |                                                                                |
+|               | South UK             |                                                                                |
+|               | West UK              |                                                                                |
+|               | Germany West Central |                                                                                |
+|               | France Central       |                                                                                |
 
 ### Data residency requirements
 
@@ -115,11 +121,10 @@ When you enable workspace replication, you're charged for the replication of all
 > [!IMPORTANT]
 > If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.  
 
-
 ## Permissions required
 
 | Action | Permissions required |
-| --- | --- |
+|--------|----------------------|
 | Enable workspace replication | `Microsoft.OperationalInsights/workspaces/write` and `Microsoft.Insights/dataCollectionEndpoints/write` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
 | Switch over and switch back (trigger failover and failback) | `Microsoft.OperationalInsights/locations/workspaces/failover`, `Microsoft.OperationalInsights/workspaces/failback`, `Microsoft.Insights/dataCollectionEndpoints/triggerFailover/action`, and `Microsoft.Insights/dataCollectionEndpoints/triggerFailback/action` permissions, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
 | Check workspace state | `Microsoft.OperationalInsights/workspaces/read` permissions to the Log Analytics workspace, as provided by the [Monitoring Contributor built-in role](../roles-permissions-security.md#monitoring-contributor), for example |
@@ -152,11 +157,11 @@ body:
 
 Where:
 
-- `<subscription_id>`: The subscription ID related to your workspace.
-- `<resourcegroup_name>` : The resource group that contains your Log Analytics workspace resource.
-- `<workspace_name>`: The name of your workspace.
-- `<primary_region>`: The primary region for your Log Analytics workspace.
-- `<secondary_region>`: The region in which Azure Monitor creates the secondary workspace.
+* `<subscription_id>`: The subscription ID related to your workspace.
+* `<resourcegroup_name>` : The resource group that contains your Log Analytics workspace resource.
+* `<workspace_name>`: The name of your workspace.
+* `<primary_region>`: The primary region for your Log Analytics workspace.
+* `<secondary_region>`: The region in which Azure Monitor creates the secondary workspace.
 
 For the supported `location` values, see [Supported regions](#supported-regions).
 
@@ -174,12 +179,11 @@ https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<res
 
 Where:
 
-- `<subscription_id>`: The subscription ID related to your workspace.
-- `<resourcegroup_name>`: The resource group that contains your Log Analytics workspace resource.
-- `<workspace_name>`: The name of your Log Analytics workspace.
+* `<subscription_id>`: The subscription ID related to your workspace.
+* `<resourcegroup_name>`: The resource group that contains your Log Analytics workspace resource.
+* `<workspace_name>`: The name of your Log Analytics workspace.
  
 Use the `GET` command to verify that the workspace provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
-
 
 > [!NOTE]
 > When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
@@ -196,8 +200,8 @@ To replicate data you collect using data collection rules, associate your data c
 1. From the **Data collection rules** screen, select a data collection rule that sends data to your primary Log Analytics workspace.
 1. On the data collection rule **Overview** page, select **Configure DCE** and select the workspace data collection endpoint from the available list:
 
-   :::image type="content" source="media/workspace-replication/configure-dce.png" alt-text="Screenshot that shows how to configure a data collection endpoint for an existing data collection rule in the Azure portal." lightbox="media/workspace-replication/configure-dce.png":::
-   For details about the System DCE, check the workspace object properties.
+    :::image type="content" source="media/workspace-replication/configure-dce.png" alt-text="Screenshot that shows how to configure a data collection endpoint for an existing data collection rule in the Azure portal." lightbox="media/workspace-replication/configure-dce.png":::
+    For details about the System DCE, check the workspace object properties.
 
 > [!IMPORTANT]
 > Data collection rules connected to a workspace data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
@@ -224,10 +228,10 @@ body:
 
 Where:
 
-- `<subscription_id>`: The subscription ID related to your workspace.
-- `<resourcegroup_name>` : The resource group that contains your workspace resource.
-- `<workspace_name>`: The name of your workspace.
-- `<primary_region>`: The primary region for your workspace.
+* `<subscription_id>`: The subscription ID related to your workspace.
+* `<resourcegroup_name>` : The resource group that contains your workspace resource.
+* `<workspace_name>`: The name of your workspace.
+* `<primary_region>`: The primary region for your workspace.
 
 The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
 
@@ -237,14 +241,16 @@ Ingestion latency or query failures are examples of issues that can often be han
 
 Service Health notifications are useful for service-related issues. To identify issues impacting your specific workspace (and possibly not the entire service), you can use other measures:
 
-- [Create alerts based on the workspace resource health](log-analytics-workspace-health.md#view-log-analytics-workspace-health-and-set-up-health-status-alerts)
-- Set your own thresholds for [workspace health metrics](log-analytics-workspace-health.md#view-log-analytics-workspace-health-metrics)
-- Create your own monitoring queries to serve as custom health indicators for your workspace, as described in [Monitor workspace performance using queries](#monitor-workspace-performance-using-queries), to:
-   - Measure ingestion latency per table
-   - Identify whether the source of latency is the collection agents or the ingestion pipeline
-   - Monitor ingestion volume anomalies per table and resource
-   - Monitor query success rate per table, user, or resource
-   - Create alerts based on your queries
+* [Create alerts based on the workspace resource health](log-analytics-workspace-health.md#view-log-analytics-workspace-health-and-set-up-health-status-alerts)
+
+* Set your own thresholds for [workspace health metrics](log-analytics-workspace-health.md#view-log-analytics-workspace-health-metrics)
+
+* Create your own monitoring queries to serve as custom health indicators for your workspace, as described in [Monitor workspace performance using queries](#monitor-workspace-performance-using-queries), to:
+    * Measure ingestion latency per table
+    * Identify whether the source of latency is the collection agents or the ingestion pipeline
+    * Monitor ingestion volume anomalies per table and resource
+    * Monitor query success rate per table, user, or resource
+    * Create alerts based on your queries
 
 > [!NOTE]
 > You can also use log queries to monitor your secondary workspace, but keep in mind that logs replication is done in batch operations. The measured latency can fluctuate and doesn't indicate any health issue with your secondary workspace. For more information, see [Audit the inactive workspace](#audit-the-inactive-workspace).
@@ -263,16 +269,16 @@ There are several points to consider in your plan for switchover, as described i
 
 The switchover process routes ingestion and query requests to your secondary region, which usually bypasses any faulty component that's causing latency or failure in your primary region. As a result, switchover isn't likely to help if:
 
-- There's a cross-regional issue with an underlying resource. For example, if the same resource types fail in both your primary and secondary regions.
-- You experience an issue related to workspace management, such as changing workspace retention. Workspace management operations are always handled in your primary region. During switchover, workspace management operations are blocked.
+* There's a cross-regional issue with an underlying resource. For example, if the same resource types fail in both your primary and secondary regions.
+* You experience an issue related to workspace management, such as changing workspace retention. Workspace management operations are always handled in your primary region. During switchover, workspace management operations are blocked.
 
 #### Issue duration
 
 Switchover isn't instantaneous. The process of rerouting requests relies on DNS updates, which some clients pick up within minutes while others can take more time. Therefore, it's helpful to understand whether the issue can be resolved within a few minutes. If the observed issue is consistent or continuous, don't wait to switch over. Here are some examples:
 
-- **Ingestion**: Issues with the ingestion pipeline in your primary region can affect data replication to your secondary workspace. During switchover, logs are instead sent to the ingestion pipeline in the secondary region.
+* **Ingestion**: Issues with the ingestion pipeline in your primary region can affect data replication to your secondary workspace. During switchover, logs are instead sent to the ingestion pipeline in the secondary region.
 
-- **Query**: If queries in your primary workspace fail or timeout, Log search alerts can be affected. In this scenario, switch over to your secondary workspace to make sure all your alerts are triggered correctly.
+* **Query**: If queries in your primary workspace fail or timeout, Log search alerts can be affected. In this scenario, switch over to your secondary workspace to make sure all your alerts are triggered correctly.
 
 #### Secondary workspace data
 
@@ -293,10 +299,10 @@ https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<res
 
 Where:
 
-- `<subscription_id>`: The subscription ID related to your workspace.
-- `<resourcegroup_name>` : The resource group that contains your workspace resource.
-- `<secondary_region>`: The region to switch to during switchover.
-- `<workspace_name>`: The name of the workspace to switch to during switchover.
+* `<subscription_id>`: The subscription ID related to your workspace.
+* `<resourcegroup_name>` : The resource group that contains your workspace resource.
+* `<secondary_region>`: The region to switch to during switchover.
+* `<workspace_name>`: The name of the workspace to switch to during switchover.
 
 The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
 
@@ -320,8 +326,8 @@ You can query your primary workspace in the Azure portal for the inactive region
 
 There are two important health items to check in preparation for switchback to your primary workspace:
 
-- Confirm there are no outstanding Service Health notifications for the primary workspace and region.
-- Confirm your primary workspace is ingesting logs and processing queries as expected.
+* Confirm there are no outstanding Service Health notifications for the primary workspace and region.
+* Confirm your primary workspace is ingesting logs and processing queries as expected.
 
 For examples of how to query your primary workspace when your secondary workspace is active and bypass the rerouting of requests to your secondary workspace, see [Audit the inactive workspace](#audit-the-inactive-workspace).
 
@@ -341,9 +347,9 @@ https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<res
 
 Where:
 
-- `<subscription_id>`: The subscription ID related to your workspace.
-- `<resourcegroup_name>` : The resource group that contains your workspace resource.
-- `<workspace_name>`: The name of the workspace to switch to during switchback.
+* `<subscription_id>`: The subscription ID related to your workspace.
+* `<resourcegroup_name>` : The resource group that contains your workspace resource.
+* `<workspace_name>`: The name of the workspace to switch to during switchback.
 
 The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
 
@@ -375,8 +381,8 @@ api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=Perf%20|%20c
 
 You can confirm that Azure Monitor runs your query in the intended region by checking these fields in the `LAQueryLogs` table, which is created when you [enable query auditing in your Log Analytics workspace](query-audit.md):
 
-- `isWorkspaceInFailover`: Indicates whether the workspace was in switchover mode during the query. The data type is Boolean (True, False).
-- `workspaceRegion`: The region of the workspace targeted by the query. The data type is String.
+* `isWorkspaceInFailover`: Indicates whether the workspace was in switchover mode during the query. The data type is Boolean (True, False).
+* `workspaceRegion`: The region of the workspace targeted by the query. The data type is String.
 
 ## Monitor workspace performance using queries
 
@@ -390,8 +396,8 @@ Two significant measurements of workspace performance include _ingestion latency
 
 Ingestion latency measures the time it takes to ingest logs to the workspace. The time measurement starts when the initial logged event occurs and ends when the log is stored in your workspace. The total ingestion latency is composed of two parts:
 
-- **Agent latency**: The time required by the agent to report an event.
-- **Ingestion pipeline (backend) latency**: The time required for the ingestion pipeline to process the logs and write them to your workspace.
+* **Agent latency**: The time required by the agent to report an event.
+* **Ingestion pipeline (backend) latency**: The time required for the ingestion pipeline to process the logs and write them to your workspace.
 
 Different data types have different ingestion latency. You can measure ingestion for each data type separately, or create a generic query for all types, and a more fine-grained query for specific types that are of higher importance to you. We suggest you measure the 90th percentile of the ingestion latency, which is more sensitive to change than the average or the 50th percentile (median).
 
@@ -454,9 +460,9 @@ Perf
 
 Ingestion volume measurements can help identify unexpected changes to the total or table-specific ingestion volume for your workspace. The query volume measurements can help you identify performance issues with log ingestion. Some useful volume measurements include:
 
-- Total ingestion volume per table
-- Constant ingestion volume (standstill)
-- Ingestion anomalies - spikes and dips in ingestion volume
+* Total ingestion volume per table
+* Constant ingestion volume (standstill)
+* Ingestion anomalies - spikes and dips in ingestion volume
 
 The following sections show how to use queries to check the ingestion volume for your workspace. 
 
@@ -522,13 +528,13 @@ You can create a custom anomaly detector to support the scenario requirements fo
 
 The following query calculates:
 
-- **Expected ingestion volume**: Per hour, by table (based on the median of medians, but you can customize the logic)
-- **Actual ingestion volume**: Per hour, by table
+* **Expected ingestion volume**: Per hour, by table (based on the median of medians, but you can customize the logic)
+* **Actual ingestion volume**: Per hour, by table
 
 To filter out insignificant differences between the expected and the actual ingestion volume, the query applies two filters:
 
-- **Rate of change**: Over 150% or under 66% of the expected volume, per table
-- **Volume of change**: Indicates whether the increased or decreased volume is more than 0.1% of the monthly volume of that table
+* **Rate of change**: Over 150% or under 66% of the expected volume, per table
+* **Volume of change**: Indicates whether the increased or decreased volume is more than 0.1% of the monthly volume of that table
 
 ```kusto
 // Calculate expected vs actual hourly ingestion per table
@@ -582,8 +588,7 @@ LAQueryLogs
 | count
 ```
 
-
 ## Related content
 
-- [Monitor Log Analytics workspace health](../logs/log-analytics-workspace-health.md)
-- [Monitor operational issues in your Azure Monitor Log Analytics workspace](../logs/monitor-workspace.md)
+* [Monitor Log Analytics workspace health](../logs/log-analytics-workspace-health.md)
+* [Monitor operational issues in your Azure Monitor Log Analytics workspace](../logs/monitor-workspace.md)
