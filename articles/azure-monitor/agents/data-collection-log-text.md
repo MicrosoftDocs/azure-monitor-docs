@@ -34,22 +34,21 @@ Adhere to the following recommendations to ensure that you don't experience data
 - Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
 
 
-## Incoming stream
+## Log Analytics workspace table
+Before you create the DCR, you must create the custom table in the Log Analytics workspace that will receive the data. The following table describes the required and optional columns in the table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
 
-The incoming stream of data includes the columns in the following table. 
-
-| Column | Type | Description |
+| Column | Type | Required? | Description |
 |:---|:---|:---|
-| `TimeGenerated` | datetime | The time the record was generated. This value will be automatically populated with the time the record is added to the Log Analytics workspace. You can override this value using a transformation to set `TimeGenerated` to another value. |
-| `RawData` | string | The entire log entry in a single column. You can use a transformation if you want to break down this data into multiple columns before sending to the table. |
-| `FilePath` | string | If you add this column to the incoming stream in the DCR, it will be populated with the path to the log file. This column is not created automatically and can't be added using the portal. You must manually modify the DCR created by the portal or create the DCR using another method where you can explicitly define the incoming stream. |
-| `Computer` | string | If you add this column to the incoming stream in the DCR, it will be populated with the name of the computer with the log file. This column is not created automatically and can't be added using the portal. You must manually modify the DCR created by the portal or create the DCR using another method where you can explicitly define the incoming stream. |
+| `TimeGenerated` | datetime | Yes | This column is required in all tables and contains the time the record was generated. This value will be automatically populated with the time the record is added to the Log Analytics workspace. You can override this value using a transformation to set `TimeGenerated` to a value from the log entry. |
+| `RawData` | string | Yes<sup>1</sup> | The entire log entry in a single column. You can use a transformation if you want to break down this data into multiple columns before sending to the table. |
+| `Computer` | string | No | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
+| `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
 
+<sup>1</sup> The table doesn't have to include a `RawData` column if you use a transformation to parse the data into multiple columns. 
 
+## Create a data collection rule (DCR) for a text file
 
-## Create a data collection rule for a text file
-
-Create a data collection rule, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
+Create a DCR, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
 
 :::image type="content" source="media/data-collection-log-text/configuration.png" lightbox="media/data-collection-log-text/configuration.png" alt-text="Screenshot that shows configuration of text file collection.":::
 
@@ -61,8 +60,6 @@ Create a data collection rule, as described in [Collect data with Azure Monitor 
 | Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat`. If no date in the specified format is found then end of line is used. | 
 | timeFormat| The following time formats are supported.<br> - `yyyy-MM-ddTHH:mm:ssk`  (2024-10-29T18:28:34) <br> - `YYYY-MM-DD HH:MM:SS`   (2024-10-29 18:28:34) <br> - `M/D/YYYY HH:MM:SS AM/PM`   (10/29/2024 06:28:34 PM) <br> - `Mon DD, YYYY HH:MM:SS`   (October 29, 2024 18:28:34) <br> - `yyMMdd HH:mm:ss`   (241029 18:28:34) <br> - `ddMMyy HH:mm:ss`   (291024 18:28:34) <br> - `MMM d HH:mm:ss`   (Oct 29 18:28:34) <br> - `dd/MMM/yyyy:HH:mm:ss zzz`   (14/Oct/2024:18:28:34 -00) |
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. In this case, the destination table must have a `RawData` column to collect the data. |
-
- 
 
 
 ## Delimited log files
