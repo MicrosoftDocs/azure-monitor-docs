@@ -21,7 +21,7 @@ This document provides step-by-step guide on how you can use Azure Monitor manag
 
 ## Prerequisites
 
-1.	Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/azure/install-azure-cli). If you are using, AKS Istio add-on, you will need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
+1.	Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/azure/get-started-with-azure-cli). If you are using, AKS Istio add-on, you will need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
 2.	Kubectl installed to interact with your Kubernetes cluster. 
 
 ## Limitations
@@ -34,7 +34,7 @@ This document provides step-by-step guide on how you can use Azure Monitor manag
 
 ### Create an AKS cluster with Managed Prometheus enabled
 
-First, you need to create an AKS cluster or use an existing one, and enable Managed Prometheus and Managed Grafana enabled. For instructions on how to do this, see [Enable Prometheus and Grafana in an AKS cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana).
+First, you need to create an AKS cluster or use an existing one, and enable Managed Prometheus and Managed Grafana enabled. For instructions on how to do this, see [Enable Prometheus and Grafana in an AKS cluster](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
 
 If you are using Azure CLI to create a new AKS cluster, you can use the below commands:
 
@@ -69,7 +69,7 @@ pod-annotation-based-scraping: |-
     podannotationnamespaceregex = "istio-system|my-namespace"
 ```
 
-For more information on pod-annotations based scraping, see [Enable pod-annotation based scraping](./prometheus-metrics-scrape-configuration#enable-pod-annotation-based-scraping).
+For more information on pod-annotations based scraping, see [Enable pod-annotation based scraping](./prometheus-metrics-scrape-configuration.md#enable-pod-annotation-based-scraping).
 
 Apply the updated configmap to your AKS cluster:
 
@@ -91,7 +91,7 @@ View Istio metrics in the Azure Monitor Workspace using the following steps:
 3. Click on the Azure Monitor Workspace instance and on the instance overview page, click on the Metrics section to query metrics and query for istio_requests_total.lick on the Azure Monitor Workspace instance and on the instance overview page, click on the Metrics section to query metrics and query for istio_requests_total.
 4. Alternatively, you can click on the Managed Grafana instance, and on the instance overview page, click on the Endpoint URL. This will navigate to the Grafana portal where you can query the Azure Container Storage metrics. The data source will be automatically configured for you to query metrics from the associated Azure Monitor Workspace.
 
-To learn more about querying Prometheus metrics from Azure Monitor Workspace, see [Query Prometheus metrics](../essentials/prometheus-grafana).
+To learn more about querying Prometheus metrics from Azure Monitor Workspace, see [Query Prometheus metrics](../essentials/prometheus-grafana.md).
 
 
 ## Import Grafana dashboard for istiod
