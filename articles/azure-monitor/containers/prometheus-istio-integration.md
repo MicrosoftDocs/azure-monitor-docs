@@ -21,7 +21,7 @@ This document provides step-by-step guide on how you can use Azure Monitor manag
 
 ## Prerequisites
 
-1.	Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/azure/get-started-with-azure-cli). If you are using, AKS Istio add-on, you will need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
+1.	Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli). If you are using, AKS Istio add-on, you will need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
 2.	Kubectl installed to interact with your Kubernetes cluster. 
 
 ## Limitations
