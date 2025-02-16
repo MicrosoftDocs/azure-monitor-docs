@@ -1,15 +1,57 @@
 ---
-title: Configure Kafka integration for Prometheus metrics in Azure Monitor
-description: Describes how to configure Kafka monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
+title: Collect Istio metrics with Azure Managed Prometheus
+description: Describes how to configure Istio monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
 ms.topic: conceptual
-ms.date: 3/19/2024
-ms.reviewer: rashmy
+ms.date: 2/15/2025
+ms.reviewer: sunasing
 ms.service: azure-monitor
 ms.subservice: containers
 ---
-# Apache Kafka
-Apache Kafka is an open-source distributed event streaming platform used by high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
-This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) to monitor kafka clusters by scraping prometheus metrics. 
+# Collect Istio metrics with Azure Managed Prometheus
+
+## Introduction
+
+[Istio](https://istio.io/) is an open-source service mesh that layers transparently onto existing distributed applications. Istio’s powerful features provide a uniform and more efficient way to secure, connect, and monitor services especially in a distributed application architecture. It helps developers handle service-to-service interactions by providing features like traffic management, observability, security, and policy enforcement without modifying application code. Istio is widely used in modern cloud-native applications, especially those running on Kubernetes.
+
+Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on](/azure/aks/istio-about) that is officially supported and tested for integration with AKS.
+
+Azure Monitor managed service for Prometheus allows you to collect and analyze metrics at scale. Prometheus metrics are stored in Azure Monitor Workspaces. The workspace supports analysis tools like Azure Managed Grafana, Azure Monitor metrics explorer with PromQL, and open source tools such as PromQL and Grafana.
+
+This document provides step-by-step guide on how you can use Azure Monitor managed service for Prometheus to collect Istio metrics, either using open-source Istio or AKS service-mesh Istio add-on, and visualize them in Azure Managed Grafana.
+
+## Prerequisites
+
+1.	Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/azure/install-azure-cli). If you are using, AKS Istio add-on, you will need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
+2.	Kubectl installed to interact with your Kubernetes cluster. 
+
+## Limitations
+
+- For a list of limitations with AKS service-mesh based Istio add-on, see [Istio-based service mesh add-on for Azure Kubernetes Service](/azure/aks/istio-about#limitations).
+- Currently there is no support for using Kiali service mesh visualization with Azure Managed Prometheus.
+
+
+## Setup Istio, Azure Managed Prometheus and Azure Managed Grafana
+
+### Create an AKS cluster with Managed Prometheus enabled
+
+First, you need to create an AKS cluster or use an existing one, and enable Managed Prometheus and Managed Grafana enabled. For instructions on how to do this, see [Enable Prometheus and Grafana in an AKS cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana).
+
+If you are using Azure CLI to create a new AKS cluster, you can use the below commands:
+
+```bash
+az group create --name myResourceGroup --location eastus
+az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 2  --enable-azure-monitor-metrics --generate-ssh-keys
+```
+
+### Setup Istio
+
+
+
+
+
+
+
+
 
 ## Prerequisites
 
