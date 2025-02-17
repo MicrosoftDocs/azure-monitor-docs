@@ -273,9 +273,7 @@ If you can see a fired alert in the portal, but a related alert processing rule 
 
     * The **target resource** refers to the specific resource that triggered the alert. This could be an individual virtual machine, a database, or any other Azure resource. When an alert is triggered, it is because a condition has been met on this particular resource.
 
-    * The **scope** defines the range of resources that the alert rule applies to. This could be a single resource, a resource group, or even an entire subscription. The scope determines which resources are included in the evaluation of the alert rule.
-
-    For example, if you have an alert rule with a scope that includes multiple virtual machines, the alert monitors all those virtual machines. If any of them meet the alert condition, the alert is triggered. However, the target resource is the specific virtual machine that caused the alert to fire.
+     For example, if you have an alert rule with a scope that includes multiple virtual machines, the alert monitors all those virtual machines. If any of them meet the alert condition, the alert is triggered. However, the target resource is the specific virtual machine that caused the alert to fire.
     For example, in log search alerts, if the scope of the alert is a Log Analytics workspace, and the **_ResourceId** column is selected, the target resource gets the value of the Resource ID, causing the alert to be triggered on a different resource than initially intended.
 
     In summary, the target resource is the individual resource being monitored, while the scope defines the broader set of resources that the alert rule applies to.
