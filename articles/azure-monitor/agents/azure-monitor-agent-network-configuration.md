@@ -91,6 +91,14 @@ $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[pass
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
 ```
 
+**Revert Proxy configuration to defaults**
+
+To restore proxy configuration to defaults you could define $settingsString = '{}'; as in the following example:
+```azurepowershell
+$settingsString = '{}';
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName RESOURCE GROUP HERE -VMName VM NAME HERE -Location westeurope  -> >  SettingString $settingsString
+```
+
 # [Linux VM](#tab/PowerShellLinux)
 
 **No proxy**
@@ -137,6 +145,14 @@ New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType Az
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "true"}}
 $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[password]"}}
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
+```
+
+**Revert Proxy configuration to defaults**
+
+To restore proxy configuration to defaults you could define $settingsString = '{}'; as in the following example:
+```azurepowershell
+$settings = '{}';
+New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
 # [Linux Arc-enabled server](#tab/PowerShellLinuxArc)
