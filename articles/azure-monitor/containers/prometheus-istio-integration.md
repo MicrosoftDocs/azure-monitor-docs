@@ -69,6 +69,10 @@ pod-annotation-based-scraping: |-
     podannotationnamespaceregex = "istio-system|my-namespace"
 ```
 
+
+> [!WARNING]
+> Scraping the pod annotations from many namespaces can generate a very large volume of metrics depending on the number of pods that have annotations.
+
 For more information on pod-annotations based scraping, see [Enable pod-annotation based scraping](./prometheus-metrics-scrape-configuration.md#enable-pod-annotation-based-scraping).
 
 Apply the updated configmap to your AKS cluster:
