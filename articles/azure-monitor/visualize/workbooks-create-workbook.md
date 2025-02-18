@@ -37,7 +37,7 @@ Workbooks allow authors to include text blocks in their workbooks. The text can 
 
 :::image type="content" source="media/workbooks-create-workbook/workbooks-text-example.png" lightbox="media/workbooks-create-workbook/workbooks-text-example.png" alt-text="Screenshot of adding text to a workbook.":::
 
-Text is added through a markdown control into which an author can add their content. An author can use the full formatting capabilities of markdown. These include different heading and font styles, hyperlinks, tables, etc. Markdown allows authors to create rich Word- or Portal-like reports or analytic narratives.  Text can contain parameter values in the markdown text, and those parameter references are updated as the parameters change.
+Text is added through a markdown control into which an author can add their content. An author can use the full formatting capabilities of markdown. These include different heading and font styles, hyperlinks, tables, etc. Markdown allows authors to create rich Word- or Portal-like reports or analytic narratives. Text can contain parameter values in the markdown text, and those parameter references are updated as the parameters change.
 
 **Edit mode**:
     <!-- convertborder later -->
@@ -78,7 +78,7 @@ These text styles are available:
 | upsell  | The portal's "upsell" style, with a `🚀` or similar icon and purple background |
 | warning | The portal's "warning" style, with a `⚠` or similar icon and blue background |
 
-You can also choose a text parameter as the source of the style. The parameter value must be one of the above text values. The absence of a value, or any unrecognized value will be treated as `plain` style.
+You can also choose a text parameter as the source of the style. The parameter value must be one of the above text values. The absence of a value or any unrecognized value are treated as `plain` style.
 
 ### Text style examples
 
@@ -110,13 +110,13 @@ To add a query to an Azure Workbook:
 
 ### Best practices for querying logs
 
-* **Predefine summary rules to aggregate data you want to visualize.** Instead of executing queries on large data sets or long time ranges, [create summary rules](../logs/summary-rules.md) to aggregate the data you need from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and timeouts.
+* **Predefine summary rules to aggregate data you want to visualize.** Instead of executing queries on large data sets or long time ranges, [create summary rules](../logs/summary-rules.md) to aggregate the data you need from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and time-outs.
 * **Use the smallest possible time ranges.** The longer the time ranges, the slower the queries, and the more data returned. For longer time ranges, the query might have to go to slower "cold" storage, making the query even slower. Default to the shortest useful time range, but allow the user to pick a larger time range that may be slower.
 * **Use the "All" special value in dropdowns.** You can add an **All** special item in the dropdown parameter settings. You can use a special value. Using an **All** special item correctly can dramatically simplify queries.
 * **Protect against missing columns.** If you're using a custom table or custom columns, design your template so that it works if the column is missing in a workspace. See the [column_ifexists](/azure/kusto/query/columnifexists) function.
 * **Protect against a missing table.** If your template is installed as part of a solution, or in other cases where the tables are guaranteed to exist, checking for missing columns is unnecessary. If you're creating generic templates that could be visible on any resource or workspace, it's a good idea to protect for tables that don't exist.
 
-    The log analytics query language doesn't have a **table_ifexists** function like the function for testing for columns. However, there are some ways to check if a table exists. For example, you can use a [fuzzy union](/azure/kusto/query/unionoperator?pivots=azuredataexplorer).  When doing a union, you can use the **isfuzzy=true** setting to let the union continue if some of the tables don't exist.  You can add a parameter query in your workbook that checks for existence of the table, and hides some content if it doesn't.  Items that aren't visible aren't run, so you can design your template so that other queries in the workbook that would fail if the table doesn't exist, don't run until after the test verifies that the table exists.
+    The log analytics query language doesn't have a **table_ifexists** function like the function for testing for columns. However, there are some ways to check if a table exists. For example, you can use a [fuzzy union](/azure/kusto/query/unionoperator?pivots=azuredataexplorer). When doing a union, you can use the **isfuzzy=true** setting to let the union continue if some of the tables don't exist. You can add a parameter query in your workbook that checks for existence of the table, and hides some content if it doesn't. Items that aren't visible aren't run, so you can design your template so that other queries in the workbook that would fail if the table doesn't exist, don't run until after the test verifies that the table exists.
     
     For example:
     
@@ -126,9 +126,9 @@ To add a query to an Azure Workbook:
     | top 1 by isMissing asc
     ```
     
-    This query returns a **1** if the **AzureDiagnostics** table doesn't exist in the workspace. If the real table doesn't exist, the fake row of the **MissingTable** will be returned. If any columns exist in the schema for the **AzureDiagnostics** table, a **0** is returned.  You could use this as a parameter value, and conditionally hide your query steps unless the parameter value is 0. You could also use conditional visibility to show text that says that the current workspace doesn't have the missing table, and send the user to documentation on how to onboard.
+    This query returns a **1** if the **AzureDiagnostics** table doesn't exist in the workspace. If the real table doesn't exist, the fake row of the **MissingTable** is returned. If any columns exist in the schema for the **AzureDiagnostics** table, a **0** is returned. You could use this as a parameter value, and conditionally hide your query steps unless the parameter value is 0. You could also use conditional visibility to show text that says that the current workspace doesn't have the missing table, and send the user to documentation on how to onboard.
     
-    Instead of hiding steps, you may just want to have no rows as a result.  You can change the **MissingTable** to be an empty data table with the appropriate matching schema:
+    Instead of hiding steps, you may just want to have no rows as a result. You can change the **MissingTable** to be an empty data table with the appropriate matching schema:
     
     ```kusto
     let MissingTable = datatable(ResourceId: string) [];
@@ -148,9 +148,9 @@ This video shows you how to use resource level logs queries in Azure Workbooks. 
 
 Uses dynamic scopes for more efficient querying. The snippet below uses this heuristic:
 
-1. _Individual resources_: if the count of selected resource is less than or equal to 5
-1. _Resource groups_: if the number of resources is over 5 but the number of resource groups the resources belong to is less than or equal to 3
-1. _Subscriptions_: otherwise
+1. *Individual resources*: if the count of selected resource is less than or equal to 5
+1. *Resource groups*: if the number of resources is over 5 but the number of resource groups the resources belong to is less than or equal to 3
+1. *Subscriptions*: otherwise
 
 ```kusto
 Resources
@@ -341,7 +341,7 @@ A sample workbook with the above tabs is available in [sample Azure Workbooks wi
 
 ### Toolbars
 
-Use the Toolbar style to have your links appear styled as a toolbar.  In toolbar style, the author must fill in fields for:
+Use the Toolbar style to have your links appear styled as a toolbar. In toolbar style, the author must fill in fields for:
 
 * Button text, the text to display on the toolbar. Parameters may be used in this field.
 * Icon, the icon to display in the toolbar.
@@ -351,7 +351,7 @@ Use the Toolbar style to have your links appear styled as a toolbar.  In toolbar
 
 If any required parameters are used in button text, tooltip text, or value fields, and the required parameter is unset, the toolbar button is disabled. For example, this can be used to disable toolbar buttons when no value is selected in another parameter/control.
 
-A sample workbook with  toolbars, globals parameters, and ARM Actions is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-toolbar-links).
+A sample workbook with toolbars, globals parameters, and ARM Actions is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-toolbar-links).
 
 ## Add groups
 
@@ -469,7 +469,7 @@ To turn a larger template into multiple subtemplates:
 1. Create a copy of the shared parameters step, and then use **move into group** to move the copy into the group created in step 1. This parameter allows the subtemplate to work independently of the outer template, and will get merged out when loaded inside the outer template.
 
     > [!NOTE]
-    > Subtemplates don't technically need to have the parameters that get merged out if you never plan on the sub-templates being visible by themselves. However, if the sub-templates do not have the parameters, it will make them very hard to edit or debug if you need to do so later.
+    > Subtemplates don't technically need to have the parameters that get merged out if you never plan on the subtemplates being visible by themselves. However, if the subtemplates don't have the parameters, it will make them very hard to edit or debug if you need to do so later.
 
 1. Move each item in the workbook you want to be in the subtemplate into the group created in step 1.
 
