@@ -2,14 +2,14 @@
 title: Collect logs from a JSON file with Azure Monitor Agent 
 description: Configure a data collection rule to collect log data from a JSON file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 02/14/2025
+ms.date: 02/18/2025
 author: bwren
 ms.author: bwren
 ms.reviewer: jeffwo
 ---
 
 # Collect logs from a JSON file with Azure Monitor Agent 
-Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. If this data is stored in JSON format, it can be collected with the **Custom JSON Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
+Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. If this data is stored in JSON format, it can be collected by Azure Monitor using the **Custom JSON Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
 
 ## Prerequisites
 
@@ -20,17 +20,7 @@ Many applications and services will log information to text files instead of sta
 > [!WARNING]
 > You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
 
-## Basic operation
-The following diagram shows the basic operation of collecting log data from a json file. 
-
-1. The agent watches for any log files that match a specified name pattern on the local disk. 
-2. Each entry in the log is collected and sent to Azure Monitor. The incoming stream defined by the user is used to parse the log data into columns.
-3. A default transformation is used if the schema of the incoming stream matches the schema of the target table.
-
-:::image type="content" source="media/data-collection-log-json/json-log-collection.png" lightbox="media/data-collection-log-json/json-log-collection.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection." border="false":::
-
-
-## JSON file requirements
+## JSON file requirements and best practices
 The file that the Azure Monitor agent is collecting must meet the following requirements:
 
 - The file must be stored on the local drive of the agent machine in the directory that is being monitored.
@@ -55,20 +45,24 @@ Following is a sample of a typical JSON log file that can be collected by Azure 
 {"TimeGenerated":"2025-02-14 01:08:53","StatusCode":3215,"Message":"This is the status message."}
 ```
 
-## Incoming stream schema
+## Log Analytics workspace table
+The agent watches for any json files on the local disk that match the specified name pattern. Each entry is collected as it's written to the log and sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
 
-| Column | Type | Description |
-|:---|:---|:---|
-| `TimeGenerated` | datetime | The time the record was generated. This value will be automatically populated with the time the record is added to the Log Analytics workspace if it's not included in the incoming stream.  |
-| `FilePath` | string | If you add this column to the incoming stream in the DCR, it will be populated with the path to the log file. This column is not created automatically and can't be added using the portal. You must manually modify the DCR created by the portal or create the DCR using another method where you can explicitly define the incoming stream. |
-| `Computer` | string | If you add this column to the incoming stream in the DCR, it will be populated with the name of the computer with the log file. This column is not created automatically and can't be added using the portal. You must manually modify the DCR created by the portal or create the DCR using another method where you can explicitly define the incoming stream. |
+ The following table describes the required and optional columns in the table in addition to the columns identified in the Json data. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
+
+| Column | Type | Required? | Description |
+|:---|:---|:---|:---|
+| `TimeGenerated` | datetime | Yes | This column contains the time the record was generated and is required in all tables. This value will be automatically populated with the time the record is added to the Log Analytics workspace. You can override this value using a transformation to set `TimeGenerated` to a value from the log entry. |
+| `RawData` | string | Yes<sup>1</sup> | The entire log entry in a single column. You can use a transformation if you want to break down this data into multiple columns before sending to the table. |
+| `Computer` | string | No | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
+| `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
+
+<sup>1</sup> The table doesn't have to include a `RawData` column if you use a transformation to parse the data into multiple columns. 
 
 ### Transformation
 The [transformation](../essentials/data-collection-transformations.md) potentially modifies the incoming stream to filter records or to modify the schema to match the target table. If the schema of the incoming stream is the same as the target table, then you can use the default transformation of `source`. If not, then modify the `transformKql` section of tee ARM template with a KQL query that returns the required schema.
 
 ## Create a data collection rule for a JSON file
-
-### [Portal](#tab/portal)
 
 Create a data collection rule, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
  
@@ -81,146 +75,6 @@ Create a data collection rule, as described in [Collect data with Azure Monitor 
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
 
 
-
-### [Resource Manager template](#tab/arm)
-
-Use the following ARM template to create a DCR for collecting JSON log files, making the changes described in the previous sections. The following table describes the parameters that require values when you deploy the template.
-
-| Setting | Description |
-|:---|:---|
-| Data collection rule name | Unique name for the DCR. |
-| Data collection endpoint resource ID | Resource ID of the data collection endpoint (DCE). |
-| Location | Region for the DCR. Must be the same location as the Log Analytics workspace. |
-| File patterns | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas (AMA version 1.26 or higher required for multiple file patterns on Linux).<br><br>Examples:<br>- C:\Logs\MyLog.json<br>- C:\Logs\MyLog*.json<br>- C:\App01\AppLog.json, C:\App02\AppLog.json<br>- /var/mylog.json<br>- /var/mylog*.json |
-| Table name | Name of the destination table in your Log Analytics Workspace. |     
-| Workspace resource ID | Resource ID of the Log Analytics workspace with the target table. |
-
-After you create the DCR using an ARM template, you must associate the DCR with the machine that will use it. You can use the Azure portal and select the machines as described in [Add resources](./azure-monitor-agent-data-collection.md#add-resources)
-
-```json
-{
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dataCollectionRuleName": {
-            "type": "string",
-            "metadata": {
-                "description": "Unique name for the DCR."
-            }
-        },
-        "dataCollectionEndpointResourceId": {
-            "type": "string",
-            "metadata": {
-              "description": "Resource ID of the data collection endpoint (DCE)."
-            }
-        },
-        "location": {
-            "type": "string",
-            "metadata": {
-                "description": "Region for the DCR. Must be the same location as the Log Analytics workspace."
-            }
-        },
-        "filePatterns": {
-            "type": "string",
-            "metadata": {
-                "description": "Path on the local disk for the log file to collect. May include wildcards.Enter multiple file patterns separated by commas (AMA version 1.26 or higher required for multiple file patterns on Linux)."
-            }
-        },
-        "tableName": {
-            "type": "string",
-            "metadata": {
-                "description": "Name of destination table in your Log Analytics workspace. "
-            }
-        },
-        "workspaceResourceId": {
-            "type": "string",
-            "metadata": {
-                "description": "Resource ID of the Log Analytics workspace with the target table."
-            }
-        }
-      }
-    },
-    "variables": {
-        "tableOutputStream": "[concat('Custom-', parameters('tableName'))]"
-    },
-    "resources": [
-        {
-            "type": "Microsoft.Insights/dataCollectionRules",
-            "apiVersion": "2022-06-01",
-            "name": "[parameters('dataCollectionRuleName')]",
-            "location": "[parameters('location')]",
-            "properties": {
-                "dataCollectionEndpointId": "[parameters('dataCollectionEndpointResourceId')]",
-                "streamDeclarations": {
-                    "Custom-Json-stream": {
-                        "columns": [
-                            {
-                                "name": "TimeGenerated",
-                                "type": "datetime"
-                            },
-                            {
-                                "name": "FilePath",
-                                "type": "string"
-                            },
-                            {
-                                "name": "MyStringColumn",
-                                "type": "string"
-                            },
-                            {
-                                "name": "MyIntegerColumn",
-                                "type": "int"
-                            },
-                            {
-                                "name": "MyRealColumn",
-                                "type": "real"
-                            },
-                            {
-                                "name": "MyBooleanColumn",
-                                "type": "boolean"
-                            }
-                        ]
-                    }
-                },
-                "dataSources": {
-                    "logFiles": [
-                        {
-                            "streams": [
-                                "Custom-Json-stream"
-                            ],
-                            "filePatterns": [
-                                "[parameters('filePatterns')]"
-                            ],
-                            "format": "json",
-                            "name": "Custom-Json-stream"
-                        }
-                    ]
-                },
-                "destinations": {
-                    "logAnalytics": [
-                        {
-                            "workspaceResourceId": "[parameters('workspaceResourceId')]",
-                            "name": "workspace"
-                        }
-                    ]
-                },
-                "dataFlows": [
-                    {
-                        "streams": [
-                            "Custom-Json-stream"
-                        ],
-                        "destinations": [
-                            "workspace"
-                        ],
-                        "transformKql": "source",
-                        "outputStream": "[variables('tableOutputStream')]"
-                    }
-                ]
-            }
-        }
-    ]
-}
-```
----
 
 ## Transformation
 A [transformation](../essentials/data-collection-transformations.md) can modifies the incoming stream to filter records or to modify the schema to match the target table. The default transformation of `source` makes does not modify the table.
