@@ -3,8 +3,8 @@ title: Collect logs from a text file with Azure Monitor Agent
 description: Configure a data collection rule to collect log data from a text file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
 ms.date: 11/14/2024
-author: guywi-ms
-ms.author: guywild
+author: bwren
+ms.author: bwren
 ms.reviewer: jeffwo
 ---
 
@@ -12,7 +12,7 @@ ms.reviewer: jeffwo
 Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. This data can be used with the **Custom Text Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
 
 ## Prerequisites
-
+ 
 - Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table).
 - A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
 - Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
@@ -33,9 +33,10 @@ Adhere to the following recommendations to ensure that you don't experience data
 - Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
 - Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
 
-
 ## Log Analytics workspace table
-Before you create the DCR, you must create the custom table in the Log Analytics workspace that will receive the data. The following table describes the required and optional columns in the table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
+The agent watches for any log files on the local disk that match the specified name pattern. Each entry is collected as it's written to the log and sent to Azure Monitor. By default, the entire log entry is sent to a single column in the target table called `RawData`. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
+
+ The following table describes the required and optional columns in the table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
 
 | Column | Type | Required? | Description |
 |:---|:---|:---|
@@ -45,6 +46,20 @@ Before you create the DCR, you must create the custom table in the Log Analytics
 | `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
 
 <sup>1</sup> The table doesn't have to include a `RawData` column if you use a transformation to parse the data into multiple columns. 
+
+For example, consider a text file with the following data.
+
+```plaintext
+2024-06-21 19:17:34,1423,Error,Sales,Unable to connect to pricing service.
+2024-06-21 19:18:23,1420,Information,Sales,Pricing service connection established.
+2024-06-21 21:45:13,2011,Warning,Procurement,Module failed and was restarted.
+2024-06-21 23:53:31,4100,Information,Data,Nightly backup complete.
+```
+
+When collected using default settings, this data would appear as follows when retrieved with a log query.
+
+:::image type="content" source="media/data-collection-log-text/default-results.png" lightbox="media/data-collection-log-text/default-results.png" alt-text="Screenshot that shows log query returning results of default file collection.":::
+
 
 ## Create a data collection rule (DCR) for a text file
 

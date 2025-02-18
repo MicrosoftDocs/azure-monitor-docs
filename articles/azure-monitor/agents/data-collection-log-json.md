@@ -3,13 +3,13 @@ title: Collect logs from a JSON file with Azure Monitor Agent
 description: Configure a data collection rule to collect log data from a JSON file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
 ms.date: 02/14/2025
-author: guywi-ms
-ms.author: guywild
+author: bwren
+ms.author: bwren
 ms.reviewer: jeffwo
 ---
 
 # Collect logs from a JSON file with Azure Monitor Agent 
-**Custom JSON Logs** is one of the data sources you can collect from a virtual machine using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) in Azure Monitor. Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the JSON logs data source type.
+Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. If this data is stored in JSON format, it can be collected with the **Custom JSON Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the text logs type.
 
 ## Prerequisites
 
