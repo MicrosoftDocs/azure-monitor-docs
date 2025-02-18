@@ -78,6 +78,9 @@ The following table describes the workspaces that are required to support Manage
 ## Enable Prometheus and Grafana
 Use one of the following methods to enable scraping of Prometheus metrics from your cluster and enable Managed Grafana to visualize the metrics. See [Link a Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) for options to connect your Azure Monitor workspace and Azure Managed Grafana workspace.
 
+> [!NOTE]
+> If the deployment is done using an ARM, Bicep or Terraform template or Azure Policy, and you are not using the provided examples, ensure that the Data Collection Endpoints, Data Collection Rules and the Data Collection Rule Associations are named `MSProm-<Location of Azure Monitor Workspace>-<Name of cluster resource>`. Failure to do so will result in the onboarding process not completing successfully.
+
 > [!NOTE] 
 > If you have a single Azure Monitor Resource that is private-linked, then Prometheus enablement won't work if the AKS cluster and Azure Monitor Workspace are in different regions.
 > The configuration needed for the Prometheus add-on isn't available cross region because of the private link constraint.
