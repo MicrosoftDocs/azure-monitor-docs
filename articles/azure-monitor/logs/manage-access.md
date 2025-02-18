@@ -79,6 +79,11 @@ The *access control mode* is a setting on each workspace that defines how permis
     > [!NOTE]
     > If a user has only resource permissions to the workspace, they can only access the workspace by using resource-context mode assuming the workspace access mode is set to **Use resource or workspace permissions**.
 
+| Access mode | Require workspace permissions | Use resource or workspace permissions |
+| --- | --- | --- |
+| **Workspace-context mode**<br>When accessing **Logs** through Azure Monitor or Log Analytics | User has access to all data in any table they've been granted access to. | Workspace permissions apply. |
+| **Resource-context mode**<br>When accessing **Logs** through the resource directly | User has access to only data for that resource in any table they've been granted access to. | Only resource permissions are verified, and workspace permissions are ignored. |
+
 ### Configure access control mode for a workspace
 
 # [Azure portal](#tab/portal)
