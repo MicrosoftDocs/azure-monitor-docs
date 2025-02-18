@@ -74,9 +74,23 @@ Check out our enablement docs for [.NET, Java, JavaScript (Node.js), and Python]
 
 ### Should I use OpenTelemetry or the Application Insights SDK?
 
-We recommend using the OpenTelemetry Distro unless you require a [feature that is only available with formal support in the Application Insights SDK](#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+We recommend using the Azure Monitor OpenTelemetry Distro for new projects when [its capabilities](#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro) align with your monitoring needs. OpenTelemetry is an industry-standard framework that enhances cross-platform observability and provides a standardized approach to telemetry collection.
 
-Adopting OpenTelemetry now prevents having to migrate at a later date.
+However, the Application Insights SDKs still provide certain capabilities that are not yet fully automated in OpenTelemetry, including:
+
+- Automatic dependency tracking – OpenTelemetry supports dependency tracking, but some dependencies require additional configuration compared to the automatic tracking available in Application Insights SDKs.
+- Custom telemetry types (e.g., `AvailabilityTelemetry`, `PageViewTelemetry`) – OpenTelemetry does not have direct equivalents; similar functionality can be implemented via manual instrumentation.
+- Telemetry processors and initializers – OpenTelemetry has processors and span processors, but they do not fully replace Application Insights Telemetry Processors and Initializers in all scenarios.
+- Extended metrics collection – While OpenTelemetry has a strong metrics system, some built-in metrics from Application Insights SDKs require manual setup in OpenTelemetry.
+
+OpenTelemetry also provides advantages over the Application Insights SDKs, including:
+
+- Better standardization across platforms
+- A wider ecosystem of instrumentation libraries
+- Greater flexibility in data collection and processing
+- Improved vendor neutrality (though Azure Monitor OpenTelemetry Distro is still optimized for Azure)
+
+Azure Monitor's OpenTelemetry integration is continuously evolving, and Microsoft continues to enhance its capabilities. If you are considering a transition, carefully evaluate whether OpenTelemetry currently meets your observability requirements or if the Application Insights SDK remains the better fit for your needs.
 
 ### When should I use the Azure Monitor OpenTelemetry exporter?
 
