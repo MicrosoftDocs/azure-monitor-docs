@@ -25,6 +25,16 @@ You can click directly on any alert rule for additional details and see the aler
 >[!Note]
 >The classic experience for the Health Alerts blade will be retired. Users will not be able to switch back from the new experience once it is rolled out.
 
+> [!IMPORTANT]
+>Customers are observing a mismatch in the number of health advisories between the Azure Resource Graph query results and the service health blade.
+> 
+>This is an expected behavior as the backend query for the service health blade on the portal merges the results by tracking ID. So, from Resource Graph, the responses contain multiple communications for one tracking ID.
+>
+>Although the Resource Graph query returns multiple responses for each tracking ID, the service health blade on the portal aggregates the results into one event.
+>
+>As a result, the Resource Graph query returns a significantly higher number of health advisories compared to what is shown on the portal, leading to confusion and concerns regarding the accuracy of the service health information.
+
+
 ##### Tenant Level View
 Users with [tenant admin access](admin-access-reference.md#roles-with-tenant-admin-access), can view events at the tenant scope. The Service Issues, Health Advisories, Security Advisories, and Health History blades show events both at tenant and subscription levels. 
 
