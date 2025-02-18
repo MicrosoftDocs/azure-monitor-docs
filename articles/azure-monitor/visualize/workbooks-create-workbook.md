@@ -101,11 +101,20 @@ To add a query to an Azure Workbook:
 1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a query by doing either of these steps:
     * Select **Add**, and **Add query** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add query**.
-1. Select the [data source](workbooks-data-sources.md) for your query. The other fields are determined based on the data source you choose.
+
+1. Select the [data source](workbooks-data-sources.md) for your query. The other fields are determined based on the source you choose.
+
 1. Select any other values that are required based on the data source you selected.
+
+    > [!NOTE]
+    > Consider user permissions when selecting the **Resource type**. For example, if the workspace [access control mode](./../logs/manage-access.md#access-control-mode) is set to **Use resource or workspace permissions** and you have *read* permissions for a virtual machine (VM) but not for the Log Analytics workspace the VM is sending telemetry to, you must select *Virtual machine* for **Resource type** to see data.
+
 1. Select the [visualization](workbooks-visualizations.md) for your workbook.
+
 1. In the query section, enter your query, or select from a list of sample queries by selecting **Samples**, and then edit the query to your liking.
+
 1. Select **Run Query**.
+
 1. When you're sure you have the query you want in your workbook, select **Done editing**.
 
 ### Best practices for querying logs
@@ -419,7 +428,7 @@ This is the group before being loaded in the workbook:
 
 
 The group after being loaded in the workbook:
-
+    <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-after.png" lightbox="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-after.png" alt-text="Screenshot showing an explicit group after being loaded in the workbook.":::
 
 #### Always mode
