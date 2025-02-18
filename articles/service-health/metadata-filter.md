@@ -21,10 +21,10 @@ Anyone who has access to the subscription can view and filter by Event Level.
 |**Warning**|Potential service issues in a region that could impact availability or performance if high availability or disaster recovery is not used, or the issue persists.|
 |**Critical**|Immediate attention recommended. Widespread issues affecting multiple regions or services, risking failure of high availability or disaster recovery measures.|
 
->[!Tip:] 
+>[!Tip] 
 >You can filter by Metadata to see specific types using the 'Event Level' field.
 
->[!NOTE:] 
+>[!NOTE] 
 >This is only available for Service Issues at this time. 
 
-:::image type="content" source="./media/metada-screen.png" alt-text="Screenshot of new metada filter option.":::
+:::[new metada filter option](articles/service-health/media/metada-screen.png#lightbox):::
