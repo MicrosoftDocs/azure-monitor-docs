@@ -25,6 +25,8 @@ Anyone who has access to the subscription can view and filter by Event Level.
 >You can filter by Metadata to see specific types using the 'Event Level' field.
 
 >[!NOTE] 
->This is only available for Service Issues at this time. 
+>This is only available for Service Issues at this time.
+>
 
-:::[new metada filter option](articles/service-health/media/metada-screen.png#lightbox):::
+![new media filter](./media/metada-screen.png)
+
