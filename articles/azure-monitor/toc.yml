@@ -359,12 +359,6 @@ items:
       - name: Create data collection rule
         displayName: Azure Monitor agent, AMA
         href: agents/azure-monitor-agent-data-collection.md
-      - name: Verify data collection
-        displayName: Azure Monitor agent, AMA
-        href: vm/data-collection-verify.md
-      - name: DCR samples
-        displayName: Azure Monitor agent, AMA
-        href: vm/data-collection-rule-samples.md
       - name: Data sources
         items:
         - name: Windows events
@@ -393,6 +387,14 @@ items:
         - name: Configure a syslog forwarder
           href: /azure/sentinel/forward-syslog-monitor-agent
           maintainContext: true
+        - name: Send data to Event Hubs and Storage
+          href: agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md
+      - name: Verify data collection
+        displayName: Azure Monitor agent, AMA
+        href: vm/data-collection-verify.md
+      - name: DCR samples
+        displayName: Azure Monitor agent, AMA
+        href: vm/data-collection-rule-samples.md
     - name: VM insights
       items:
       - name: Overview
@@ -816,16 +818,18 @@ items:
       - name: Overview
         displayName: Azure Monitor agent, AMA
         href: agents/azure-monitor-agent-overview.md
-      - name: Supported operating systems
-        displayName: Azure Monitor agent, AMA
-        href: agents/azure-monitor-agent-supported-operating-systems.md
       - name: Requirements
-        displayName: Azure Monitor agent, AMA
-        href: agents/azure-monitor-agent-requirements.md
-      - name: Network settings
-        displayName: Azure Monitor agent, AMA
-        href: agents/azure-monitor-agent-network-configuration.md
-      - name: Install Azure Monitor Agent
+        items:
+        - name: Supported operating systems
+          displayName: Azure Monitor agent, AMA
+          href: agents/azure-monitor-agent-supported-operating-systems.md
+        - name: Requirements
+          displayName: Azure Monitor agent, AMA
+          href: agents/azure-monitor-agent-requirements.md
+        - name: Network settings
+          displayName: Azure Monitor agent, AMA
+          href: agents/azure-monitor-agent-network-configuration.md
+      - name: Install and configure
         displayName: Azure Monitor agent
         items:
         - name: Virtual machines
@@ -836,13 +840,11 @@ items:
           href: agents/azure-monitor-agent-policy.md
         - name: Log Analytics gateway
           href: agents/gateway.md
-        - name: Send data to Event Hubs and Storage
-          href: agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md
+        - name: Private link
+          displayName: Azure Monitor agent, AMA
+          href: agents/azure-monitor-agent-private-link.md
       - name: Monitor
         href: agents/azure-monitor-agent-health.md
-      - name: Private link
-        displayName: Azure Monitor agent, AMA
-        href: agents/azure-monitor-agent-private-link.md
       - name: Migrate from Log Analytics Agent
         items:
         - name: Migration guidance
