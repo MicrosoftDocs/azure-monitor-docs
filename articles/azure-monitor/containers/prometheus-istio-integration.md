@@ -9,8 +9,6 @@ ms.subservice: containers
 ---
 # Collect Istio metrics with Azure Managed Prometheus
 
-## Introduction
-
 [Istio](https://istio.io/) is an open-source service mesh that layers transparently onto existing distributed applications. Istio’s powerful features provide a uniform and more efficient way to secure, connect, and monitor services especially in a distributed application architecture. It helps developers handle service-to-service interactions by providing features like traffic management, observability, security, and policy enforcement without modifying application code. Istio is widely used in modern cloud-native applications, especially on Kubernetes.
 
 Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on](/azure/aks/istio-about) that is officially supported and tested for integration with AKS.
@@ -60,9 +58,9 @@ az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 
 ### Set up Managed Prometheus to collect Istio metrics
 
-To collect metrics from your Istio setup with Managed Prometheus, you can use pod annotations which are automatically setup with Istio. You need to enable pod annotation based scraping in Managed Prometheus.
+To collect metrics from your Istio setup with Managed Prometheus, you can use pod annotations which are automatically set up with Istio. You need to enable pod annotation based scraping in Managed Prometheus.
 
-To enable the same, customize the Managed Prometheus configmap: ama-metrics-settings-configmap.yaml to include the istio-system namespace and the namespaces that istio sidecar is setup. For example, if you have setup istio to inject the sidecar in “my-namespace”, update the configmap as below:
+To enable the same, customize the Managed Prometheus configmap: ama-metrics-settings-configmap.yaml to include the istio-system namespace and the namespaces that istio sidecar is set up. For example, if you have set up istio to inject the sidecar in “my-namespace”, update the configmap as below:
 
 ```yaml
 pod-annotation-based-scraping: |-
@@ -88,7 +86,7 @@ The metrics scraped from Istio are stored in the Azure Monitor workspace that is
 View Istio metrics in the Azure Monitor Workspace using the following steps:
 
 1.	In the Azure portal, navigate to your AKS cluster.
-2.	Under Monitoring, select Insights and then Monitor Settings
+2.	Under Monitoring, select Insights and then Monitor Settings.
 
 :::image type="content" source="./media/monitor-kubernetes/amp-istio-query.png" lightbox="./media/monitor-kubernetes/amp-istio-query.png" alt-text="Diagram that shows how to view the Azure Monitor Workspace.":::
 
