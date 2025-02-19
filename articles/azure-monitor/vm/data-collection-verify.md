@@ -8,6 +8,9 @@ ms.reviewer: jeffwo
 ---
 
 # Verify data collection with Azure Monitor agent
+When you create a data collection rule (DCR) to collect data from a virtual machine, you can verify that the data is being collected by querying the Log Analytics workspace. This article provides guidance for using Log Analytics for simple log queries and examples of queries for different types of data.
+
+
 
 ## Windows events
 
