@@ -656,6 +656,16 @@
    "redirect_document_id": false
   },
   {
+   "source_path_from_root": "/articles/azure-monitor/app/eventcounters.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net-counters",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/app/performance-counters.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net-counters",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/app/legacy-pricing.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/legacy-pricing",
    "redirect_document_id": false

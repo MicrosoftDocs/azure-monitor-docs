@@ -1,23 +1,27 @@
 ---
-title: What's new in Azure Service Health service
-description: What's New in Azure Service Health service
+title: What's new in Azure Service Health
+description: What's New in Azure Service Health
 ms.topic: conceptual
-ms.date: 12/19/2022
+ms.date: 02/14/2025
 ---
 
 # What's new in Azure Service Health service
 
 This article lists recent changes in the Azure Service Health service. 
 
-## Azure Status page location changed
-On July 25, 2022 the Azure status page location changed to [azure.status.microsoft](https://azure.status.microsoft) from status.azure.com. Starting February 2023, you will be automatically redirected to this new page. The current page will be discontinued soon after.
+## New Metadata information
+In February 2025, there's a new field called Event Level which indicates the significance of each communication in Service Health Communications. 
+You can use this field to sort events. See [Service Health Event Level Filter notifications](metadata-filter.md)
 
-## User interface changes in Azure Status page
-The following changes were made on July 25, 2022: 
- - A new tab named [**Current Impact**](azure-status-overview.md#current-impact-tab) was added to the Azure Status page.
- - The health history UI has been updated. 
 
-For more information on the Azure Status page, visit [Azure status overview](azure-status-overview.md)
 
-## Azure Service Health Portal experience update
-On June 6, 2022, the Azure Service Health portal experience was updated. For more information, see [Azure Service Health portal update](service-health-portal-update.md)
+## What's coming
+
+### Azure Co-Pilot for Microsoft in Service Health
+You can use Azure Co-Pilot for Microsoft to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the service health portal. 
+
+### In-portal Billing communications
+There will be new Billing communication events available in-portal for subscribers to find more information about their billing events such as overbilling, underbilling, price changes, etc.
+
+### New Communication Event tags
+There will be new metadata tags for communication events to filter through the service health events in the portal.
