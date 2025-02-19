@@ -261,6 +261,8 @@ items:
             href: supported-metrics/microsoft-mobilenetwork-radioaccessnetworks-metrics.md
           - name: Microsoft.Monitor/accounts
             href: supported-metrics/microsoft-monitor-accounts-metrics.md
+          - name: Microsoft.NetApp/netAppAccounts
+            href: supported-metrics/microsoft-netapp-netappaccounts-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
