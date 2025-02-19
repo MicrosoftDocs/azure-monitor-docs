@@ -26,7 +26,7 @@ The following table provides different examples of log queries that retrieve Sys
 ## IIS logs
 Different examples of log queries that retrieve IIS log records are shown in the following table:
 
-| Query | Description |
+| Description | Query |
 |:---|:---|
 | All IIS log records. | `W3CIISLog` |
 | All IIS log records with a return status of 500. | `W3CIISLog | where scStatus==500` |
@@ -36,30 +36,11 @@ Different examples of log queries that retrieve IIS log records are shown in the
 
 ## Performance data
 
-The following queries are examples to retrieve performance records.
-
-### All performance data from a particular computer
-
-```query
-Perf
-| where Computer == "MyComputer"
-```
-
-### Average CPU utilization across all computers
-
-```query
-Perf 
-| where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
-| summarize AVGCPU = avg(CounterValue) by Computer
-```
-
-### Hourly average, minimum, maximum, and 75-percentile CPU usage for a specific computer
-
-```query
-Perf
-| where CounterName == "% Processor Time" and InstanceName == "_Total" and Computer == "MyComputer"
-| summarize ["min(CounterValue)"] = min(CounterValue), ["avg(CounterValue)"] = avg(CounterValue), ["percentile75(CounterValue)"] = percentile(CounterValue, 75), ["max(CounterValue)"] = max(CounterValue) by bin(TimeGenerated, 1h), Computer
-```
+| Description | Query |
+|:---|:---|
+| All performance data from a particular computer | `Perf | where Computer == "MyComputer"` |
+| Average CPU utilization across all computers | `Perf | where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total" | summarize AVGCPU = avg(CounterValue) by Computer` |
+| Hourly average, minimum, maximum, and 75-percentile CPU usage for a specific computer | `Perf | where CounterName == "% Processor Time" and InstanceName == "_Total" and Computer == "MyComputer" | summarize ["min(CounterValue)"] = min(CounterValue), ["avg(CounterValue)"] = avg(CounterValue), ["percentile75(CounterValue)"] = percentile(CounterValue, 75), ["max(CounterValue)"] = max(CounterValue) by bin(TimeGenerated, 1h), Computer` |
 
 > [!NOTE]
 > Additional query examples are available at [Queries for the Perf table](/azure/azure-monitor/reference/queries/perf).
