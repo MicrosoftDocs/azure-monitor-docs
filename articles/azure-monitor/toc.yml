@@ -509,6 +509,9 @@ items:
           - name: Monitor Elastic Search
             displayName: Prometheus
             href: containers/prometheus-elasticsearch-integration.md
+          - name: Monitor Istio
+            displayName: Prometheus
+            href: containers/prometheus-istio-integration.md
         - name: Scale using KEDA based on Prometheus metrics
           displayName: Prometheus
           href: containers/integrate-keda.md
