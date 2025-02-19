@@ -28,5 +28,4 @@ Anyone who has access to the subscription can view and filter by Event Level.
 >This is only available for Service Issues at this time.
 >
 
-![new media filter](./media/metada-screen.png)
-
+:::image type="content" source="media/metada-screen.png" alt-text="New metadata filter screen" lightbox="media/metada-screen.png":::
