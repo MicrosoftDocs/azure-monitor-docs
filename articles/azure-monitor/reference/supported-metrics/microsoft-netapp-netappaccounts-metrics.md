@@ -1,32 +1,28 @@
 ---
-title: Supported metrics - Microsoft.Automation/automationAccounts
-description: Reference for Microsoft.Automation/automationAccounts metrics in Azure Monitor.
+title: Supported metrics - Microsoft.NetApp/netAppAccounts
+description: Reference for Microsoft.NetApp/netAppAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
 author: EdB-MSFT
 ms.author: edbaynash
 ms.service: azure-monitor
 ms.date: 02/18/2025
-ms.custom: Microsoft.Automation/automationAccounts, naam
+ms.custom: Microsoft.NetApp/netAppAccounts, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.Automation/automationAccounts
+# Supported metrics for Microsoft.NetApp/netAppAccounts
   
-The following table lists the metrics available for the Microsoft.Automation/automationAccounts resource type.  
+The following table lists the metrics available for the Microsoft.NetApp/netAppAccounts resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Automation/automationAccounts](../supported-logs/microsoft-automation-automationaccounts-logs.md)  
-  
  
 
-[!INCLUDE [Microsoft.Automation/automationAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-automation-automationaccounts-metrics-include.md)]  
+[!INCLUDE [Microsoft.NetApp/netAppAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-netappaccounts-metrics-include.md)]  
 
 
 
