@@ -1,0 +1,104 @@
+---
+title: Verify data collection with Azure Monitor agent
+description: Query data from Log Analytics workspace to verify data collection with Azure Monitor agent for a VM client.
+ms.topic: conceptual
+ms.date: 02/18/2025
+ms.reviewer: jeffwo
+
+---
+
+# Verify data collection with Azure Monitor agent
+
+## Windows events
+
+## Sample Syslog log queries
+
+The following table provides different examples of log queries that retrieve Syslog records.
+
+- **All Syslogs**
+
+    ``` kusto
+	Syslog
+	```
+
+- **All Syslog records with severity of error**
+
+	``` kusto    
+	Syslog
+	| where SeverityLevel == "error"
+	```
+
+- **All Syslog records with auth facility type**
+
+	``` kusto
+	Syslog
+	| where facility == "auth"
+	```
+
+- **Count of Syslog records by facility**
+
+	``` kusto
+	Syslog
+	| summarize AggregatedValue = count() by facility
+	```
+
+
+## IIS logs
+Different examples of log queries that retrieve IIS log records are shown in the following table:
+
+| Query | Description |
+|:--- |:--- |
+| W3CIISLog |All IIS log records. |
+| W3CIISLog &#124; where scStatus==500 |All IIS log records with a return status of 500. |
+| W3CIISLog &#124; summarize count() by cIP |Count of IIS log entries by client IP address. |
+| W3CIISLog &#124; where csHost=="www\.contoso.com" &#124; summarize count() by csUriStem |Count of IIS log entries by URL for the host www\.contoso.com. |
+| W3CIISLog &#124; summarize sum(csBytes) by Computer &#124; take 500000 |Total bytes received by each IIS computer. |
+
+## Performance data
+
+The following queries are examples to retrieve performance records.
+
+### All performance data from a particular computer
+
+```query
+Perf
+| where Computer == "MyComputer"
+```
+
+### Average CPU utilization across all computers
+
+```query
+Perf 
+| where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
+| summarize AVGCPU = avg(CounterValue) by Computer
+```
+
+### Hourly average, minimum, maximum, and 75-percentile CPU usage for a specific computer
+
+```query
+Perf
+| where CounterName == "% Processor Time" and InstanceName == "_Total" and Computer == "MyComputer"
+| summarize ["min(CounterValue)"] = min(CounterValue), ["avg(CounterValue)"] = avg(CounterValue), ["percentile75(CounterValue)"] = percentile(CounterValue, 75), ["max(CounterValue)"] = max(CounterValue) by bin(TimeGenerated, 1h), Computer
+```
+
+> [!NOTE]
+> Additional query examples are available at [Queries for the Perf table](/azure/azure-monitor/reference/queries/perf).
+
+## Text logs
+
+## JSON logs
+
+## Windows firewall logs
+
+Count the firewall log entries by URL for the host www.contoso.com.
+    
+```kusto
+WindowsFirewall 
+| take 10
+```
+
+[ ![Screenshot that shows the results of a Firewall log query.](media/data-collection-firewall-log/law-query-results.png) ](media/data-collection-firewall-log/law-query-results.png#lightbox)
+
+
+## Next steps
+

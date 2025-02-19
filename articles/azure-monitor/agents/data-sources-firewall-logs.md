@@ -75,16 +75,6 @@ To create the data collection rule in the Azure portal:
 > It can take up to 5 minutes for data to be sent to the destinations after you create the data collection rule.
 
 
-### Sample log queries
-
-Count the firewall log entries by URL for the host www.contoso.com.
-    
-```kusto
-WindowsFirewall 
-| take 10
-```
-
-[ ![Screenshot that shows the results of a Firewall log query.](media/data-collection-firewall-log/law-query-results.png) ](media/data-collection-firewall-log/law-query-results.png#lightbox)
 
 ## Troubleshoot
 Use the following steps to troubleshoot the collection of firewall logs. 

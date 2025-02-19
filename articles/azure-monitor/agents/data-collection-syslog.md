@@ -208,36 +208,6 @@ Syslog records have a type of **Syslog** and have the properties shown in the fo
 | ProcessID |ID of the process that generated the message. |
 | EventTime |Date and time that the event was generated. |
 
-## Sample Syslog log queries
-
-The following table provides different examples of log queries that retrieve Syslog records.
-
-- **All Syslogs**
-
-    ``` kusto
-	Syslog
-	```
-
-- **All Syslog records with severity of error**
-
-	``` kusto    
-	Syslog
-	| where SeverityLevel == "error"
-	```
-
-- **All Syslog records with auth facility type**
-
-	``` kusto
-	Syslog
-	| where facility == "auth"
-	```
-
-- **Count of Syslog records by facility**
-
-	``` kusto
-	Syslog
-	| summarize AggregatedValue = count() by facility
-	```
 
 ## Troubleshooting
 Go through the following steps if you aren't collecting data from the JSON log that you're expecting.

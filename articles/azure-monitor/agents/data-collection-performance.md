@@ -52,35 +52,7 @@ Performance counters data can be sent to the following locations.
 
 :::image type="content" source="media/data-collection-performance/destination-metrics.png" lightbox="media/data-collection-performance/destination-metrics.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule.":::
 
-## Log queries with performance records
 
-The following queries are examples to retrieve performance records.
-
-#### All performance data from a particular computer
-
-```query
-Perf
-| where Computer == "MyComputer"
-```
-
-#### Average CPU utilization across all computers
-
-```query
-Perf 
-| where ObjectName == "Processor" and CounterName == "% Processor Time" and InstanceName == "_Total"
-| summarize AVGCPU = avg(CounterValue) by Computer
-```
-
-#### Hourly average, minimum, maximum, and 75-percentile CPU usage for a specific computer
-
-```query
-Perf
-| where CounterName == "% Processor Time" and InstanceName == "_Total" and Computer == "MyComputer"
-| summarize ["min(CounterValue)"] = min(CounterValue), ["avg(CounterValue)"] = avg(CounterValue), ["percentile75(CounterValue)"] = percentile(CounterValue, 75), ["max(CounterValue)"] = max(CounterValue) by bin(TimeGenerated, 1h), Computer
-```
-
-> [!NOTE]
-> Additional query examples are available at [Queries for the Perf table](/azure/azure-monitor/reference/queries/perf).
 
 ## Next steps
 

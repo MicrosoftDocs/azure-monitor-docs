@@ -354,22 +354,45 @@ items:
     items:
     - name: Best practices
       href: best-practices-vm.md
-    - name: Virtual machine guest performance counters
-      href: vm/virtual-machine-guest-metrics.md  
-    - name: Deployment guide
+    - name: Configure data collection
       items:
-      - name: Overview
-        href: vm/monitor-virtual-machine.md
-      - name: Deploy agents
-        href: vm/monitor-virtual-machine-agent.md
-      - name: Collect data
-        href: vm/monitor-virtual-machine-data-collection.md
-      - name: Analyze data
-        href: vm/monitor-virtual-machine-analyze.md
-      - name: Create alerts
-        href: vm/monitor-virtual-machine-alerts.md
-      - name: Troubleshoot VM performance issues
-        href: /troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json
+      - name: Create data collection rule
+        displayName: Azure Monitor agent, AMA
+        href: agents/azure-monitor-agent-data-collection.md
+      - name: Verify data collection
+        displayName: Azure Monitor agent, AMA
+        href: vm/data-collection-verify.md
+      - name: DCR samples
+        displayName: Azure Monitor agent, AMA
+        href: vm/data-collection-rule-samples.md
+      - name: Data sources
+        items:
+        - name: Windows events
+          displayName: data collection rule,Azure Monitor agent
+          href: agents/data-collection-windows-events.md
+        - name: Syslog events
+          href: agents/data-collection-syslog.md        
+        - name: IIS logs
+          displayName: data collection rule,Azure Monitor Agent,IIS logs
+          href: agents/data-collection-iis.md
+        - name: Performance data
+          displayName: data collection rule,Azure Monitor agent
+          href: agents/data-collection-performance.md          
+        - name: Text logs
+          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+          href: agents/data-collection-log-text.md
+        - name: JSON logs
+          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+          href: agents/data-collection-log-json.md
+        - name: SNMP traps
+          displayName: data collection rule,Azure Monitor agent
+          href: agents/data-collection-snmp-data.md
+        - name: Windows Firewall logs
+          displayName: data collection rule,Azure Monitor Agent,firewall logs
+          href: agents/data-sources-firewall-logs.md
+        - name: Configure a syslog forwarder
+          href: /azure/sentinel/forward-syslog-monitor-agent
+          maintainContext: true
     - name: VM insights
       items:
       - name: Overview
@@ -406,6 +429,20 @@ items:
           href: vm/vminsights-change-analysis.md
         - name: Visualize data with workbooks
           href: vm/vminsights-workbooks.md
+    - name: Deployment guide
+      items:
+      - name: Overview
+        href: vm/monitor-virtual-machine.md
+      - name: Deploy agents
+        href: vm/monitor-virtual-machine-agent.md
+      - name: Collect data
+        href: vm/monitor-virtual-machine-data-collection.md
+      - name: Analyze data
+        href: vm/monitor-virtual-machine-analyze.md
+      - name: Create alerts
+        href: vm/monitor-virtual-machine-alerts.md
+      - name: Troubleshoot VM performance issues
+        href: /troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json
     - name: System Center
       items:
       - name: Migrate from Operations Manager
@@ -422,6 +459,8 @@ items:
         href: vm/tutorial-monitor-vm-enable-insights.md
       - name: Collect VM guest logs and metrics
         href: vm/tutorial-monitor-vm-guest.md
+    - name: Virtual machine guest performance counters
+      href: vm/virtual-machine-guest-metrics.md  
   - name: Monitor containers
     items:
     - name: Azure Monitor features
@@ -795,39 +834,6 @@ items:
           href: agents/azure-monitor-agent-windows-client.md
         - name: Azure Policy
           href: agents/azure-monitor-agent-policy.md
-      - name: Configure data collection
-        items:
-        - name: Create data collection rule
-          displayName: Azure Monitor agent, AMA
-          href: agents/azure-monitor-agent-data-collection.md 
-        - name: Data sources
-          items:
-          - name: Windows events
-            displayName: data collection rule,Azure Monitor agent
-            href: agents/data-collection-windows-events.md
-          - name: Syslog events
-            href: agents/data-collection-syslog.md        
-          - name: IIS logs
-            displayName: data collection rule,Azure Monitor Agent,IIS logs
-            href: agents/data-collection-iis.md
-          - name: Performance data
-            displayName: data collection rule,Azure Monitor agent
-            href: agents/data-collection-performance.md          
-          - name: Text logs
-            displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-            href: agents/data-collection-log-text.md
-          - name: JSON logs
-            displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-            href: agents/data-collection-log-json.md
-          - name: SNMP traps
-            displayName: data collection rule,Azure Monitor agent
-            href: agents/data-collection-snmp-data.md
-          - name: Windows Firewall logs
-            displayName: data collection rule,Azure Monitor Agent,firewall logs
-            href: agents/data-sources-firewall-logs.md
-          - name: Configure a syslog forwarder
-            href: /azure/sentinel/forward-syslog-monitor-agent
-            maintainContext: true
         - name: Log Analytics gateway
           href: agents/gateway.md
         - name: Send data to Event Hubs and Storage
