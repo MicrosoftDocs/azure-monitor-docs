@@ -153,6 +153,10 @@ The telemetry processors perform the following actions (in order):
 }
 ```
 
+## Sampling and missing logs
+
+Rate-limited sampling is enabled by default starting in the 3.4 agent, which can cause unexpected missing logs.
+
 ## Project example
 
 This [Java 2.x SDK project](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/advanced/migration-2x) is migrated to [a new project using the 3.x Java agent](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/advanced/migration-3x).

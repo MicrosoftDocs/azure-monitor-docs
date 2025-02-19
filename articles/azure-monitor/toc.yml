@@ -273,7 +273,7 @@ items:
             - name: View .NET Profiler data
               displayName: profiling, debugging, code performance, perf
               href: profiler/profiler-data.md
-        - name: Extensions (preview)
+        - name: Fix with GitHub Copilot (preview)
           items:
           - name: Overview
             href: insights/code-optimizations-extensions.md
@@ -496,7 +496,7 @@ items:
           href: containers/prometheus-metrics-scrape-scale.md
       - name: Integrations
         items:
-        - name: Setup exporters for common workloads
+        - name: Set up exporters for common workloads
           displayName: Prometheus
           href: containers/prometheus-exporters.md
           items:
@@ -685,7 +685,7 @@ items:
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
   - name: Monitor Azure Monitor
-  href: monitor-azure-monitor.md
+    href: monitor-azure-monitor.md
 - name: Data collection
   items:
   - name: Data sources
@@ -1365,7 +1365,7 @@ items:
         href: logs/notebooks-azure-monitor-logs.md
       - name: Standard columns
         href: logs/log-standard-columns.md
-      - name: Query Basic and Auxliary logs
+      - name: Query Basic and Auxiliary logs
         href: logs/basic-logs-query.md
       - name: Audit queries
         href: logs/query-audit.md

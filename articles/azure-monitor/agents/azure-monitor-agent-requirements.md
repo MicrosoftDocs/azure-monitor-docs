@@ -57,11 +57,7 @@ For methods other than installing by using the Azure portal, you must have the f
 
 ## Disk space
 
-> [!NOTE]
-> Azure Monitor Agent installation requires 500 MB in each of the following paths:
-> - */var* 
-> - */etc* 
-> - */opt*
+This table lists the Azure Monitor Agent disk space requirements. Azure Monitor Agent expects to cache and log data to a local filesystem.
 
 | Purpose | Environment | Path | Suggested space |
 |:---|:---|:---|:---|

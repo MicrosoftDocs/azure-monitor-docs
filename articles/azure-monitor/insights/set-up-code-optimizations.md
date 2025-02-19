@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/07/2024
-ms.reviewer: ryankahng
+ms.date: 02/07/2025
+ms.reviewer: jan.kalis
 ---
 
 # Set up Code Optimizations

@@ -11,10 +11,9 @@ ms.date: 09/20/2023
 This article contains a reference of the billing meter names used by Azure Monitor in [Azure Cost Management + Billing](cost-usage.md#azure-cost-management--billing). Use this information to interpret your monthly charges for Azure Monitor.
 
 ## Log data ingestion
-The following table lists the meters used to bill for data ingestion in your Log Analytics workspaces, and whether the meter is regional. There's a different billing meter, `MeterId` in the export usage report for each region. Note that Basic Logs ingestion can be used when the workspace's pricing tier is Pay-as-you-go or any commitment tier. 
+The following table lists the meters used to bill for data ingestion in your Log Analytics workspaces, and whether the meter is regional. There's a different billing meter, `MeterId` in the export usage report for each region. Note that Auxiliary Logs and Basic Logs table plans can be used when the workspace's pricing tier is Pay-as-you-go or any commitment tier, not any of the legacy pricing tiers. 
 
-
-| Pricing tier |ServiceName | MeterName  | Regional Meter? |
+| Analytics Logs <br/> Pricing tier |ServiceName | MeterName  | Regional Meter? |
 | -------- | -------- | -------- | -------- |
 | (any)        | Azure Monitor  | Auxiliary Logs Data Ingestion | yes |
 | (any)        | Azure Monitor  | Basic Logs Data Ingestion | yes |
@@ -27,6 +26,9 @@ The following table lists the meters used to bill for data ingestion in your Log
 | 1000 GB/day Commitment Tier | Azure Monitor  | 1000 GB Commitment Tier Capacity Reservation | yes |
 | 2000 GB/day Commitment Tier | Azure Monitor  | 2000 GB Commitment Tier Capacity Reservation | yes |
 | 5000 GB/day Commitment Ties | Azure Monitor  | 5000 GB Commitment Tier Capacity Reservation | yes |
+| 10000 GB/day Commitment Tier | Azure Monitor  | 10000 GB Commitment Tier Capacity Reservation | yes |
+| 25000 GB/day Commitment Tier | Azure Monitor  | 25000 GB Commitment Tier Capacity Reservation | yes |
+| 50000 GB/day Commitment Ties | Azure Monitor  | 50000 GB Commitment Tier Capacity Reservation | yes |
 | Per Node (legacy tier) | Insight and Analytics | Standard Node | no |
 | Per Node (legacy tier)  | Insight and Analytics | Standard Data Overage per Node | no |
 | Per Node (legacy tier)  | Insight and Analytics | Standard Data Included per Node | no |

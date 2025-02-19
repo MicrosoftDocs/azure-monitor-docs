@@ -3,8 +3,6 @@ title: Collect Windows events from virtual machines with Azure Monitor Agent
 description: Describes how to collect Windows events counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
 ms.topic: conceptual
 ms.date: 11/14/2024
-author: rboucher
-ms.author: robb
 ms.reviewer: jeffwo
 
 ---

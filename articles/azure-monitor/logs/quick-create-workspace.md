@@ -33,7 +33,7 @@ Use the **Log Analytics workspaces** menu to create a workspace.
 
     :::image type="content" source="media/quick-create-workspace/azure-portal-01.png" alt-text="Screenshot that shows the search bar at the top of the Azure home screen. As you begin typing, the list of search results filters based on your input.":::
 
-1. Select **Add**.
+1. Select **Create**.
 
 1. Select a **Subscription** from the dropdown.
 1. Use an existing **Resource Group** or create a new one.
