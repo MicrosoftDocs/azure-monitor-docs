@@ -354,6 +354,8 @@ items:
     items:
     - name: Best practices
       href: best-practices-vm.md
+    - name: Monitor virtual machines
+      href: vm/monitor-vm.md
     - name: Configure data collection
       items:
       - name: Create data collection rule
