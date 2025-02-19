@@ -15,32 +15,12 @@ ms.reviewer: jeffwo
 
 The following table provides different examples of log queries that retrieve Syslog records.
 
-- **All Syslogs**
-
-    ``` kusto
-	Syslog
-	```
-
-- **All Syslog records with severity of error**
-
-	``` kusto    
-	Syslog
-	| where SeverityLevel == "error"
-	```
-
-- **All Syslog records with auth facility type**
-
-	``` kusto
-	Syslog
-	| where facility == "auth"
-	```
-
-- **Count of Syslog records by facility**
-
-	``` kusto
-	Syslog
-	| summarize AggregatedValue = count() by facility
-	```
+| Description | Query |
+|:---|:---|
+| All Syslogs | `Syslog` |
+| All Syslog records with severity of error | `Syslog | where SeverityLevel == "error"` |
+| All Syslog records with auth facility type | `Syslog | where facility == "auth"` |
+| Count of Syslog records by facility | `Syslog | summarize AggregatedValue = count() by facility` |
 
 
 ## IIS logs
@@ -48,11 +28,11 @@ Different examples of log queries that retrieve IIS log records are shown in the
 
 | Query | Description |
 |:---|:---|
-| `W3CIISLog` | All IIS log records. |
-| `W3CIISLog | where scStatus==500` |All IIS log records with a return status of 500. |
-| `W3CIISLog | summarize count() by cIP` |Count of IIS log entries by client IP address. |
-| `W3CIISLog | where csHost=="www\.contoso.com" | summarize count() by csUriStem` |Count of IIS log entries by URL for the host www\.contoso.com. |
-| `W3CIISLog | summarize sum(csBytes) by Computer | take 500000` |Total bytes received by each IIS computer. |
+| All IIS log records. | `W3CIISLog` |
+| All IIS log records with a return status of 500. | `W3CIISLog | where scStatus==500` |
+| Count of IIS log entries by client IP address. | `W3CIISLog | summarize count() by cIP` |
+| Count of IIS log entries by URL for the host www\.contoso.com. | `W3CIISLog | where csHost=="www\.contoso.com" | summarize count() by csUriStem` |
+| Total bytes received by each IIS computer. | `W3CIISLog | summarize sum(csBytes) by Computer | take 500000` |
 
 ## Performance data
 
