@@ -107,7 +107,7 @@ To add a query to an Azure Workbook:
 1. Select any other values that are required based on the data source you selected.
 
     > [!NOTE]
-    > Consider user permissions when selecting the **Resource type**. For example, if the workspace [access control mode](./../logs/manage-access.md#access-control-mode) is set to **Use resource or workspace permissions** and you have *read* permissions for a virtual machine (VM) but not for the Log Analytics workspace the VM is sending telemetry to, you must select *Virtual machine* for **Resource type** to see data.
+    > Consider user permissions when selecting the **Resource type**. For example, if you have *read* permissions for a resource but not for the Log Analytics workspace the resource is sending telemetry to, you must select the resource for **Resource type** to see data.
 
 1. Select the [visualization](workbooks-visualizations.md) for your workbook.
 
