@@ -9,32 +9,37 @@ ms.date: 02/09/2025
 
 # Monitor virtual machines in Azure
 
+This article provides an overview of how to monitor the health and performance of virtual machines in Azure. This includes Azure virtual machines (VM), virtual machine scale sets (VMSS), and Azure Arc-enabled servers. 
 
-
+> [!TIP]
+> This article is intended for users who are new to Azure or Azure Monitor or those with basic VM monitor requirements. It provides an overview of the core concepts of monitoring VMs, the features provided by Azure Monitor, and guidance for the most common processes. If you have more advanced requirements or need to plan monitoring for a large number of VMs supporting an enterprise environment, see [Azure Monitor virtual deployment guide](./monitor-virtual-machine.md).
 
 
 ## Distinguish between VM host and client
 
 When monitoring the performance and availability of a VM in Azure, it's important to distinguish between monitoring the host VM and its client operating system. 
 
-### Host VM
-The **Host VM** is the cloud infrastructure that supports the VM. In addition to tracking basic information such as whether this VM is running, monitoring the host VM includes data on CPU usage, memory consumption, disk I/O, and network traffic. These metrics provide insights into the overall health and performance of the VM, helping to identify issues such as resource bottlenecks or service outages. Host-level monitoring is crucial for ensuring that the VM has the necessary resources to operate efficiently and for detecting any underlying infrastructure problems that could affect its performance.
-
-- Activity log. Track any changes made to the VM configuration in addition to the running history of the VM.
-- Host metrics. Collected automatically.
-- Recommended alerts. 
-
-### Client OS
-The **Client OS** is the software environment running in the VM. Monitoring the client OS includes tracking the health and performance of applications, services, and processes, as well as monitoring system logs and events. Client OS monitoring provides a detailed view of how the workloads running on the VM are performing, allowing for the identification of issues such as application crashes, high memory usage by specific processes, or security vulnerabilities. Monitoring the client OS allows you to ensure that the applications and services hosted by the VM are running smoothly and to quickly address any software-related issues that may arise.
-
-To collect data from the client OS, you must install the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md).
-
-- VM insights.
-- Data collection rules
-- Alerts
+| | |
+|:---|:---|
+| Host VM | Cloud infrastructure that supports the machine. In addition to tracking basic information such as whether this VM is running, monitoring the host VM includes data on CPU usage, memory consumption, disk I/O, and network traffic. These metrics provide insights into the overall health and performance of the VM, helping to identify issues such as resource bottlenecks or service outages. Host-level monitoring is crucial for ensuring that the VM has the necessary resources to operate efficiently and for detecting any underlying infrastructure problems that could affect its performance.<br><br>- Activity log. Track any changes made to the VM configuration in addition to the running history of the VM.<br>- Host metrics. Collected automatically.<br>- Recommended alerts. |
+| Client OS | Software environment running in the VM. Monitoring the client OS includes tracking the health and performance of applications, services, and processes, as well as monitoring system logs and events. Client OS monitoring provides a detailed view of how the workloads running on the VM are performing, allowing for the identification of issues such as application crashes, high memory usage by specific processes, or security vulnerabilities. Monitoring the client OS allows you to ensure that the applications and services hosted by the VM are running smoothly and to quickly address any software-related issues that may arise.<br><br>To collect data from the client OS, you must install the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md).<br><br>- VM insights.<br>- Data collection rules<br>- Alerts |
 
 ## VM Overview page
-To begin exploring Azure Monitor, go to the **Overview** page for your virtual machine, and then select the **Monitoring** tab. You can see the number of active alerts on the tab.
+To begin exploring Azure Monitor, go to the **Overview** page for your virtual machine, and then select the **Monitoring** tab. This includes an overview of the VMs health based on data that's either automatically collected or that you can quickly enable. 
+
+| Section | Description |
+|:---|:---|
+| Health events | Resource Health |
+| Azure outages | Service Health |
+| Alerts | |
+| Insights | |
+| Performance and utilization | |
+| Additional Azure Monitor tools | |
+
+
+
+
+You can see the number of active alerts on the tab.
 
 The **Alerts** pane shows you the alerts fired in the last 24 hours, along with important statistics about those alerts. If there are no alerts configured for your VM, there is a link to help you quickly create new alerts for your VM.
 
