@@ -74,7 +74,7 @@ In KQL mode, the top bar has controls for working with a query and switching to 
 |:-------|:------------|
 | **Run button** | Run the selected query in the query window. You can also select **Shift+Enter** to run a query. |
 | **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
-| **Show** | Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](#configure-query-result-limit). |
+| **Show** | Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
 | **Simple/KQL mode** | Switch between Simple and KQL mode. |
 
 ### [Simple mode](#tab/simple)
@@ -87,8 +87,8 @@ In Simple mode, the top bar has controls for working with data and switching to 
 |:-------|:------------|
 | **Scope** | Specifies the scope of data used for the query. This could be all the data in a Log Analytics workspace or data for a particular resource across multiple workspaces. See [Query scope](./scope.md). |
 | **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
-| **Show** | Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](#configure-query-result-limit). |
-| **Add** | Add filters, and apply Simple mode operators, as described in [Explore and analyze data in Simple mode](#explore-and-analyze-data-in-simple-mode). |
+| **Show** | Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
+| **Add** | Add filters, and apply Simple mode operators, as described in [Explore and analyze data in Simple mode](./log-analytics-simple-mode.md#explore-and-analyze-data-in-simple-mode). |
 | **Simple/KQL mode** | Switch between Simple and KQL mode. |
 
 ---
@@ -158,7 +158,7 @@ This section describes more tools available above the query area of the screen, 
 | **Switch back to classic Logs** | Switch back to the [classic Log Analytics user interface](../logs/log-analytics-overview.md). |
 | **Queries Hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 
-:::image type="content" source="media/log-analytics-overview/logs-more-tools.png" lightbox="media/log-analytics-overview/logs-more-tools.png" alt-text="Screenshot that shows Log Analytics settings.":::
+:::image type="content" source="media/log-analytics-overview/logs-settings.png" lightbox="media/log-analytics-overview/logs-settings.png" alt-text="Screenshot that shows Log Analytics settings.":::
 
 ## Relationship to Azure Data Explorer
 

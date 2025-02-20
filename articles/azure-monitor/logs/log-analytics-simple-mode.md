@@ -62,7 +62,7 @@ To get started, you can:
   
 ## Explore and analyze data in Simple mode
 
-After you [get started in Simple mode](#get-started-in-simple-mode), you can explore and analyze data using the [top query bar](#top-query-bar).
+After you [get started in Simple mode](#get-started-in-simple-mode), you can explore and analyze data using the [top query bar](./log-analytics-overview.md#top-query-bar).
 
 > [!NOTE]
 > The order in which you apply filters and operators affects your query and results. For example, if you apply a filter and then aggregate, Log Analytics applies the aggregation to the filtered data. If you aggregate and then filter, the aggregation is applied to the unfiltered data.
@@ -163,7 +163,7 @@ For straightforward queries on a single table, Log Analytics displays the table 
 
 1. Select one of the preset limits, or enter a custom limit.
  
-    The maximum number of results that you can retrieve in the Log Analytics portal experience, in both Simple mode and KQL mode, is 30,000. However, when you [share a Log Analytics query](#more-tools) with an integrated tool, or use the query in a [search job](search-jobs.md), the query limit is set based on the tools you choose.
+    The maximum number of results that you can retrieve in the Log Analytics portal experience, in both Simple mode and KQL mode, is 30,000. However, when you [share a Log Analytics query](./log-analytics-overview.md#more-tools) with an integrated tool, or use the query in a [search job](search-jobs.md), the query limit is set based on the tools you choose.
 
     Select **Max. limit** to return the maximum number of results provided by any of the tools available on the **Share** window or using a search job.
 
