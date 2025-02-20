@@ -1,6 +1,6 @@
 ---
 title: Use Event Level to prioritize notifications and communications
-description: Information on how use the metadata to filter event notifications.
+description: Information on how to use the metadata to filter event notifications.
 ms.topic: overview
 ms.date: 02/14/2025
 ---
