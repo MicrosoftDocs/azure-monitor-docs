@@ -8,9 +8,11 @@ ms.date: 12/28/2023
 
 # Overview of Log Analytics in Azure Monitor
 
-The Log Analytics tool in the Azure portal lets you run and edit log queries against data in the Azure Monitor Logs store. 
+The Log Analytics tool in the Azure portal lets you run and edit log queries against data in the Azure Monitor Logs store. It offers two modes that make log data simpler to explore and analyze for both basic and advanced users:
 
-Use Log Analytics to analyze and visualize log data using [Kusto Query Language (KQL)](../logs/get-started-queries.md) or the point-and-click experience provided in [Log Analytics simple mode](../logs/log-analytics-simple-mode.md). 
+* **Simple mode** provides the most commonly used Azure Monitor Logs functionality in an intuitive, spreadsheet-like experience. Just point and click to filter, sort, and aggregate data to get to the insights you need 80% of the time.
+
+* **KQL mode** gives advanced users the full power of Kusto Query Language (KQL) to derive deeper insights from their logs using the Log Analytics query editor.
 
 Whether you work with the results of your queries interactively or use them with other Azure Monitor features, such as log search alerts or workbooks, Log Analytics is the tool that you use to write and test them.
 
@@ -26,18 +28,18 @@ Here's a video version of this tutorial:
 To open Log Analytics in the Azure portal, on the **Azure Monitor** menu select **Logs**. You'll also see this option on the menu for most Azure resources. No matter where you start Log Analytics, the tool is the same. But the menu you use to start Log Analytics determines the data that's available.
 
 When you open Log Analytics from the **Azure Monitor** menu or the **Log Analytics workspaces** menu, you have access to all of the records in a workspace. When you select **Logs** from another type of resource, your data is limited to log data for that resource. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](./scope.md).
-<!-- convertborder later -->
+
 :::image type="content" source="media/log-analytics-overview/start-log-analytics.png" lightbox="media/log-analytics-overview/start-log-analytics.png" alt-text="Screenshot that shows starting Log Analytics." border="false":::
 
 When you start Log Analytics, a dialog appears that contains [example queries](../logs/queries.md). The queries are categorized by solution. Browse or search for queries that match your requirements. You might find one that does exactly what you need. You can also load one to the editor and modify it as required. Browsing through example queries is a good way to learn how to write your own queries.
 
 If you want to start with an empty script and write it yourself, close the example queries. Select **Queries** at the top of the screen to get them back.
 
-## Log Analytics interface]
+## Log Analytics interface
 
 ### [KQL mode](#tab/kql)
 
-The following image identifies four Log Analytics components in KQL mode. These are:
+The following image identifies five Log Analytics components in KQL mode. These are:
 
 1. [Top action bar](#top-action-bar)
 1. [Left sidebar](#left-sidebar)
@@ -45,18 +47,18 @@ The following image identifies four Log Analytics components in KQL mode. These 
 1. [Results window](#results-window)
 1. [More tools](#more-tools)
 
-:::image type="content" source="media/log-analytics-overview/logs-kql-overview.png" lightbox="media/log-analytics-overview/logs-kql-overview.png" alt-text="Screenshot that shows the Log Analytics interface with four features identified.":::
+:::image type="content" source="media/log-analytics-overview/logs-kql-overview.png" lightbox="media/log-analytics-overview/logs-kql-overview.png" alt-text="Screenshot that shows the Log Analytics interface in KQL mode with five features identified.":::
 
 ### [Simple mode](#tab/simple)
 
-The following image identifies three Log Analytics components in simple mode. These are:
+The following image identifies four Log Analytics components in Simple mode. These are:
 
 1. [Top action bar](#top-action-bar)
 1. [Left sidebar](#left-sidebar)
 1. [Results window](#results-window)
 1. [More tools](#more-tools)
 
-:::image type="content" source="media/log-analytics-overview/logs-simple-overview.png" alt-text="Screenshot that shows Log Analytics Simple mode." lightbox="media/log-analytics-overview/logs-simple-overview.png":::
+:::image type="content" source="media/log-analytics-overview/logs-simple-overview.png" lightbox="media/log-analytics-overview/logs-simple-overview.png" alt-text="Screenshot that shows the Log Analytics interface in Simple mode with five features identified." :::
 
 ---
 
@@ -64,7 +66,7 @@ The following image identifies three Log Analytics components in simple mode. Th
 
 ### [KQL mode](#tab/kql)
 
-In KQL mode, the top bar has controls for working with a query and switching to simple mode.
+In KQL mode, the top bar has controls for working with a query and switching to Simple mode.
 
 :::image type="content" source="media/log-analytics-overview/logs-kql-topbar.png" lightbox="media/log-analytics-overview/logs-kql-topbar.png" alt-text="Screenshot that shows the top action bar in KQL mode.":::
 
@@ -79,7 +81,7 @@ In KQL mode, the top bar has controls for working with a query and switching to 
 
 In Simple mode, the top bar has controls for working with data and switching to KQL mode.
 
-:::image type="content" source="media/log-analytics-overview/logs-simple-topbar.png" lightbox="media/log-analytics-overview/logs-simple-topbar.png" alt-text="Screenshot that shows the top action bar in simple mode.":::
+:::image type="content" source="media/log-analytics-overview/logs-simple-topbar.png" lightbox="media/log-analytics-overview/logs-simple-topbar.png" alt-text="Screenshot that shows the top action bar in Simple mode.":::
 
 | Option | Description |
 |:-------|:------------|
@@ -97,7 +99,7 @@ The collapsible left pane gives you access to tables, example and saved queries,
 
 Pin the left pane to keep it open while you work, or maximize your query window by selecting an icon from the left pane only when you need it.
 
-:::image type="content" source="media/log-analytics-explorer/log-analytics-left-sidebar.png" alt-text="Screenshot that shows the left sidebar in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-left-sidebar.png":::
+:::image type="content" source="media/log-analytics-explorer/log-analytics-left-sidebar.png" lightbox="media/log-analytics-explorer/log-analytics-left-sidebar.png" alt-text="Screenshot that shows the left sidebar in Log Analytics.":::
 
 | Option | Description |
 |:-------|:------------|
@@ -105,6 +107,9 @@ Pin the left pane to keep it open while you work, or maximize your query window 
 | **Queries** | Lists example and saved queries. This is the same list that's in the Queries Hub. Select **Group by** to change the grouping of the queries. Hover over a query to view the query's description. Select a query to run it. |
 | **Functions** | Lists [functions](../logs/functions.md), which allow you to reuse predefined query logic in your log queries. |
 | **Query history** | Lists your query history. Select a query to rerun it. |
+
+> [!NOTE]
+> The **Tables** view doesn't show empty tables by default. To change that, open the context menu `...` in above the top action bar, select **Log Analytics settings**, toggle **Show tables with no data**, and **Save** your changes.
 
 ### Query window
 
@@ -140,7 +145,7 @@ The chart view displays the results as one of multiple available chart types. Yo
 
 This section describes more tools available above the query area of the screen, as shown in this screenshot, from left to right.
 
-:::image type="content" source="media/log-analytics-explorer/log-analytics-more-tools.png" alt-text="Screenshot that shows the More tools window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-more-tools.png":::
+:::image type="content" source="media/log-analytics-overview/logs-more-tools.png" lightbox="media/log-analytics-overview/logs-more-tools.png" alt-text="Screenshot that shows the More tools window in Log Analytics.":::
 
 | Option | Description |
 |:-------|:------------|
@@ -149,22 +154,11 @@ This section describes more tools available above the query area of the screen, 
 | **Share** | Copy a link to your query, the query text, or query results, or [export data to Excel](../logs/log-excel.md), CSV, or [Power BI](../logs/log-powerbi.md). |
 | **New alert rule** | [Create a new alert rule](../alerts/alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). |
 | **Search job mode** | [Run a search job](../logs/search-jobs.md). |
-| **Log Analytics settings** | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data. |
+| **Log Analytics settings**<br>*See screenshot below* | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data. |
 | **Switch back to classic Logs** | Switch back to the [classic Log Analytics user interface](../logs/log-analytics-overview.md). |
 | **Queries Hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 
-<!--
-
-| Save button | Save the query to a [query pack](./query-packs.md). Saved queries are available from: <ul><li> The **Other** section in the **Queries** dialog for the workspace</li><li>The **Other** section in the **Queries** tab in the [left sidebar](#left-sidebar) for the workspace</ul> |
- Share button | Copy a link to the query, the query text, or the query results to the clipboard. |
-| New alert rule button | Open the Create an alert rule page. Use this page to [create an alert rule](../alerts/alerts-create-new-alert-rule.md?tabs=log) with an alert type of [log search alert](../alerts/alerts-types.md#log-alerts). The page opens with the [Conditions tab](../alerts/alerts-create-new-alert-rule.md?tabs=log#set-the-alert-rule-conditions) selected, and your query is added to the **Search query** field. |
-| Export button | Export the results of the query to a CSV file or the query to Power Query Formula Language format for use with Power BI. |
-| Pin to button | Pin the results of the query to an Azure dashboard or add them to an Azure workbook. |
-| Format query button | Arrange the selected text for readability. |
-| Search job mode toggle | [Run search jobs](./search-jobs.md).
-| Queries button | Open the **Queries** dialog, which provides access to saved queries in the workspace. |
-
--->
+:::image type="content" source="media/log-analytics-overview/logs-more-tools.png" lightbox="media/log-analytics-overview/logs-more-tools.png" alt-text="Screenshot that shows Log Analytics settings.":::
 
 ## Relationship to Azure Data Explorer
 
