@@ -11,21 +11,10 @@ ms.reviewer: jeffwo
 
 # Collect data from VM client with Azure Monitor
 
-> [!NOTE]
-> VM insights
-
 Azure Monitor automatically collects metrics and activity logs from your Azure and Arc-enabled virtual machines. To collect metrics and logs from the client operating system and its workloads though, you need to install the [Azure Monitor Agent](azure-monitor-agent-overview.md) and configure [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that specify what you want to collect and where to send it.  This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients and to install the agent on any machines that require it.
 
-If you're new to Azure Monitor or have basic data collection requirements, you should be able to meet all your requirements by using the Azure portal and the guidance in this article. If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md), you might need to create a DCR by using other methods or edit a DCR after you create it in the portal. You can use different methods to manage DCRs and create associations if you want to deploy by using the Azure CLI, Azure PowerShell, an Azure Resource Manager template (ARM template), or Azure Policy.
-
-The Azure portal provides a simplified experience for creating a DCR for virtual machines and scale sets. Using this method, you don't need to understand the structure of a DCR unless you want to implement an advanced feature, like a transformation. You can also use other creation methods that are described in [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md).
-
-> [!WARNING]
-> The following scenarios might collect duplicate data, which can increase billing charges:
->
-> - Creating multiple DCRs that have the same data source and associating them to the same agent. Ensure that you filter data in the DCRs so that each DCR collects unique data.
-> - Creating a DCR that collects security logs and enabling Microsoft Sentinel for the same agents. In this case, you can collect the same events in the **Event** table and in the **SecurityEvent** table.
-> - Using both the Azure Monitor Agent and the legacy Log Analytics agent on the same machine. Limit duplicate events to only the time when you transition from one agent to the other.
+> [!IMPORTANT]
+> If you're new to Azure Monitor or have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article. If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md)
 
 ## Data sources
 
@@ -40,6 +29,12 @@ The following table lists the types of data you can currently collect from a VM 
 | [JSON log](./data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [IIS logs](./data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
 
+> [!WARNING]
+> The following scenarios might collect duplicate data, which can increase billing charges:
+>
+> - Creating multiple DCRs that have the same data source and associating them to the same agent. Ensure that you filter data in the DCRs so that each DCR collects unique data.
+> - Creating a DCR that collects security logs and enabling Microsoft Sentinel for the same agents. In this case, you can collect the same events in the **Event** table and in the **SecurityEvent** table.
+> - Using both the Azure Monitor Agent and the legacy Log Analytics agent on the same machine. Limit duplicate events to only the time when you transition from one agent to the other.
 
 ## Prerequisites
 

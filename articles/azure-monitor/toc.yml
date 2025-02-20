@@ -403,9 +403,6 @@ items:
           maintainContext: true
         - name: Send data to Event Hubs and Storage
           href: agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md
-      - name: Verify data collection
-        displayName: Azure Monitor agent, AMA
-        href: vm/data-collection-verify.md
       - name: DCR samples
         displayName: Azure Monitor agent, AMA
         href: vm/data-collection-rule-samples.md

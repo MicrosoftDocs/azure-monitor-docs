@@ -10,7 +10,8 @@ ms.reviewer: jeffwo
 ---
 
 # Data collection rule (DCR) samples for VM data collection in Azure Monitor
-The [Azure Monitor agent](../agents/azure-monitor-agent-data-collection.md) runs on virtual machines, virtual machine scale sets, and Kubernetes clusters. It supports [VM insights](../vm/vminsights-overview.md) and [container insights](../containers/container-insights-overview.md) and supports various data collection scenarios for VMs described in [Azure Monitor agent data collection](../agents/azure-monitor-agent-data-collection.md). 
+
+
 
 The following samples show DCRs for collecting different kinds of data using the Azure Monitor agent.
 
