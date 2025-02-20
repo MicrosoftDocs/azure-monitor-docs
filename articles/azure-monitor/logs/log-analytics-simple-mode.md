@@ -62,7 +62,7 @@ To get started, you can:
   
 ## Explore and analyze data in Simple mode
 
-After you [get started in Simple mode](#get-started-in-simple-mode), you can explore and analyze data using the [top query bar](./log-analytics-overview.md#top-query-bar).
+After you [get started in Simple mode](#get-started-in-simple-mode), you can explore and analyze data using the [top query bar](./log-analytics-overview.md#top-action-bar).
 
 > [!NOTE]
 > The order in which you apply filters and operators affects your query and results. For example, if you apply a filter and then aggregate, Log Analytics applies the aggregation to the filtered data. If you aggregate and then filter, the aggregation is applied to the unfiltered data.
