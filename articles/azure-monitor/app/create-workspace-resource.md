@@ -158,6 +158,12 @@ Here's how to create a new Application Insights resource using a Bicep (ARM) tem
 Create a new *.bicep* file (for example, *my-template.bicep*), copy the following content into it:
 
 ```bicep
+param name string 
+param type string 
+param regionId string 
+param requestSource string 
+param workspaceResourceId string 
+
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: name
   location: regionId
@@ -177,6 +183,8 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 Create a new *.bicepparam* file (for example, *my-parameters.bicepparam*), copy the following content into it, and replace the placeholders `<application-insights-resource-name>`, `<application-type>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```bicep
+using 'my-template.bicep' 
+
 param name string = '<application-insights-resource-name>'
 param type string = '<application-type>'
 param regionId string = '<azure-region-name>'
@@ -453,12 +461,14 @@ Content-Type: application/json
 To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-log-analytics-workspace-name>` with your specific values:
 
 ```bicep
+param workspaceResourceId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>' 
+
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   name: '<application-insights-resource-name>'
   location: '<azure-region-name>'
   properties: {
     Application_Type: '<application-type>'
-    WorkspaceResourceId: '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>'
+    WorkspaceResourceId: workspaceResourceId
   }
 }
 ```
@@ -579,22 +589,14 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
     storageAccountId: storageAccountId
     logs: [
       {
-        category: 'Request'
+        category: 'AppRequest'
         enabled: true
-        retentionPolicy: {
-          days: 30
-          enabled: true
-        }
       }
     ]
     metrics: [
       {
         category: 'AllMetrics'
         enabled: true
-        retentionPolicy: {
-          days: 30
-          enabled: true
-        }
       }
     ]
   }
@@ -652,22 +654,14 @@ To export telemetry using diagnostic settings, paste the following code into you
         "storageAccountId": "[parameters('storageAccountId')]",
         "logs": [
           {
-            "category": "Request",
-            "enabled": true,
-            "retentionPolicy": {
-              "days": 30,
-              "enabled": true
-            }
+            "category": "AppRequest",
+            "enabled": true
           }
         ],
         "metrics": [
           {
             "category": "AllMetrics",
-            "enabled": true,
-            "retentionPolicy": {
-              "days": 30,
-              "enabled": true
-            }
+            "enabled": true
           }
         ]
       }
@@ -894,11 +888,13 @@ Placeholders: `<log-analytics-workspace-name>`, `<azure-region-name>`, `<daily-c
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces",
-      "apiVersion": "2020-08-01",
+      "apiVersion": "2023-09-01",
       "name": "<log-analytics-workspace-name>",
       "location": "<azure-region-name>",
       "properties": {
-        "dailyQuotaGb": <daily-cap-in-gb>
+        "workspaceCapping": {
+          "dailyQuotaGb": <daily-cap-in-gb>
+        }
       }
     }
   ]
@@ -953,67 +949,79 @@ Authorization: Bearer <access-token>
 
 ### [Bicep](#tab/bicep)
 
-To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, `<application-type>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<pricing-plan>` with your specific values:
 
 ```bicep
-param logAnalyticsName string = '<log-analytics-workspace-name>'
-param regionId string = '<azure-region-name>'
-param pricingPlan string = '<pricing-plan>'
-
-resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
-  name: logAnalyticsName
-  location: regionId
-  properties: {}
+param workspaceName string {
+  metadata: {
+    description: '<log-analytics-workspace-name>'
+  }
 }
 
-resource pricingPlan 'Microsoft.OperationalInsights/workspaces/pricingPlans@2017-10-01' = {
-  name: 'current'
-  parent: logAnalytics
+param workspaceRegion string {
+  metadata: {
+    description: '<azure-region-name>'
+  }
+}
+
+param capacityReservationLevel int = 300 {
+  metadata: {
+    description: '<pricing-plan>
+  }
+}
+
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
+  name: workspaceName
+  location: workspaceRegion
   properties: {
-    planType: pricingPlan
+    sku: {
+      name: 'capacityreservation'
+      capacityReservationLevel: capacityReservationLevel
+    }
   }
 }
 ```
 
 ### [JSON (ARM)](#tab/arm)
 
-To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, `<application-type>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<pricing-plan>` with your specific values:
 
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "logAnalyticsName": {
+    "workspaceName": {
       "type": "string",
-      "defaultValue": "<log-analytics-workspace-name>"
+      "metadata": {
+        "description": "<log-analytics-workspace-name>"
+      }
     },
-    "regionId": {
+    "workspaceRegion": {
       "type": "string",
-      "defaultValue": "<azure-region-name>"
+      "metadata": {
+        "description": "<azure-region-name>"
+      }
     },
-    "pricingPlan": {
-      "type": "string",
-      "defaultValue": "<pricing-plan>"
+    "capacityReservationLevel": {
+      "type": "int",
+      "defaultValue": 300,
+      "metadata": {
+        "description": "<pricing-plan>"
+      }
     }
   },
   "resources": [
     {
+      "name": "[parameters('workspaceName')]",
       "type": "Microsoft.OperationalInsights/workspaces",
       "apiVersion": "2020-08-01",
-      "name": "[parameters('logAnalyticsName')]",
-      "location": "[parameters('regionId')]",
-      "properties": {}
-    },
-    {
-      "type": "Microsoft.OperationalInsights/workspaces/pricingPlans",
-      "apiVersion": "2017-10-01",
-      "name": "[concat(parameters('logAnalyticsName'), '/current')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('logAnalyticsName'))]"
-      ],
+      "location": "[parameters('workspaceRegion')]",
       "properties": {
-        "planType": "[parameters('pricingPlan')]"
+        "sku": {
+          "name": "capacityreservation",
+          "capacityReservationLevel": "[parameters('capacityReservationLevel')]"
+        }
       }
     }
   ]
