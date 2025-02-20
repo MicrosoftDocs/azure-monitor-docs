@@ -356,7 +356,19 @@ items:
       href: best-practices-vm.md
     - name: Monitor virtual machines
       href: vm/monitor-vm.md
-    - name: Configure data collection
+    - name: Tutorials
+      items:
+      - name: Enable recommended alerts
+        displayName: virtual machines, vm, vms
+        href: vm/tutorial-monitor-vm-alert-recommended.md
+      - name: Create an availability alert
+        displayName: virtual machines, vm, vms
+        href: vm/tutorial-monitor-vm-alert-availability.md
+      - name: Enable VM insights
+        href: vm/tutorial-monitor-vm-enable-insights.md
+      - name: Collect VM guest logs and metrics
+        href: vm/tutorial-monitor-vm-guest.md
+    - name: Configure client data
       items:
       - name: Create data collection rule
         displayName: Azure Monitor agent, AMA
@@ -453,16 +465,6 @@ items:
         href: azure-monitor-operations-manager.md
       - name: Assess Operations Manager
         href: insights/scom-assessment.md
-    - name: Tutorials
-      items:
-      - name: Enable recommended alerts for VMs
-        href: vm/tutorial-monitor-vm-alert-recommended.md
-      - name: Create an availability alert for VMs
-        href: vm/tutorial-monitor-vm-alert-availability.md
-      - name: Enable VM insights
-        href: vm/tutorial-monitor-vm-enable-insights.md
-      - name: Collect VM guest logs and metrics
-        href: vm/tutorial-monitor-vm-guest.md
     - name: Virtual machine guest performance counters
       href: vm/virtual-machine-guest-metrics.md  
   - name: Monitor containers
