@@ -17,7 +17,8 @@ Whether you work with the results of your queries interactively or use them with
 This article describes the Log Analytics user interface and its features. If you want to jump right into a tutorial, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
 Here's a video version of this tutorial: 
-
+<br>
+<br>
 > [!VIDEO https://www.youtube.com/embed/-aMecR2Nrfc]
 
 ## Open Log Analytics
@@ -43,6 +44,29 @@ The following image identifies four Log Analytics components. These four Log Ana
 
 :::image type="content" source="media/log-analytics-overview/log-analytics.png" lightbox="media/log-analytics-overview/log-analytics.png" alt-text="Screenshot that shows the Log Analytics interface with four features identified.":::
 
+------------------------------------------
+
+This section orients you with the controls available in Log Analytics Simple mode.
+
+:::image type="content" source="media/log-analytics-explorer/log-analytics-simple-mode-user-interface.png" alt-text="Screenshot that shows Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-simple-mode-user-interface.png":::
+
+### Top action bar
+
+### [Simple mode](#tab/simple)
+
+In Simple mode, the top bar has controls for working with data and switching to KQL mode.
+
+:::image type="content" source="media/log-analytics-explorer/log-analytics-top-query-bar.png" alt-text="Screenshot that shows the top query bar in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-top-query-bar.png":::
+
+| Option | Description |
+|:-------|:------------|
+| **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
+| **Show** | Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](#configure-query-result-limit). |
+| **Add** | Add filters, and apply Simple mode operators, as described in [Explore and analyze data in Simple mode](#explore-and-analyze-data-in-simple-mode). |
+| **Simple/KQL mode** | Switch between Simple and KQL mode. |
+
+### [KQL mode](#tab/kql)
+
 ### Top action bar
 
 The top bar has controls for working with a query in the query window.
@@ -61,16 +85,39 @@ The top bar has controls for working with a query in the query window.
 | Search job mode toggle | [Run search jobs](./search-jobs.md).
 | Queries button | Open the **Queries** dialog, which provides access to saved queries in the workspace. |
 
-### Left sidebar
+---
 
-The sidebar on the left lists tables in the workspace, sample queries, functions, and filter options for the current query.
+### Left pane
 
-| Tab | Description |
-|:---|:---|
-| Tables | Lists the tables that are part of the selected scope. Select **Group by** to change the grouping of the tables. Hover over a table name to display a dialog with a description of the table and options to view its documentation and preview its data. Expand a table to view its columns. Double-click a table or column name to add it to the query. |
-| Queries | List of example queries that you can open in the query window. This list is the same one that appears when you open Log Analytics. Select **Group by** to change the grouping of the queries. Double-click a query to add it to the query window or hover over it for other options. |
-| Functions | Lists the [functions](./functions.md) in the workspace. |
-| Filter | Creates filter options based on the results of a query. After you run a query, columns appear with different values from the results. Select one or more values, and then select **Apply & Run** to add a **where** command to the query and run it again. |
+The collapsible left pane gives you access to tables, example and saved queries, functions, and query history.
+
+Pin the left pane to keep it open while you work, or maximize your query window by selecting an icon from the left pane only when you need it.
+
+:::image type="content" source="media/log-analytics-explorer/log-analytics-left-sidebar.png" alt-text="Screenshot that shows the left sidebar in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-left-sidebar.png":::
+
+| Option | Description |
+|:-------|:------------|
+| **Tables** | Lists the tables that are part of the selected scope. Hover over a table name to view the table's description and a link to its documentation. Expand a table to view its columns. Select a table to run a query on it. |
+| **Queries** | Lists example and saved queries. This is the same list that's in the Queries Hub. Select **Group by** to change the grouping of the queries. Hover over a query to view the query's description. Select a query to run it. |
+| **Functions** | Lists [functions](../logs/functions.md), which allow you to reuse predefined query logic in your log queries. |
+| **Query history** | Lists your query history. Select a query to rerun it. |
+
+### More tools
+
+This section describes more tools available above the query area of the screen, as shown in this screenshot, from left to right.
+
+:::image type="content" source="media/log-analytics-explorer/log-analytics-more-tools.png" alt-text="Screenshot that shows the More tools window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-more-tools.png":::
+
+| Option | Description |
+|:-------|:------------|
+| **Tab context menu** | [Change query scope](scope.md) or rename, duplicate, or close tab. |
+| **Save** | [Save a query to a query pack](../logs/save-query.md) or as a [function](functions.md), or pin your query to a [workbook](../visualize/workbooks-overview.md), an [Azure dashboard](../visualize/tutorial-logs-dashboards.md), or [Grafana dashboard](../visualize/grafana-plugin.md#pin-charts-from-the-azure-portal-to-azure-managed-grafana). |
+| **Share** | Copy a link to your query, the query text, or query results, or [export data to Excel](../logs/log-excel.md), CSV, or [Power BI](../logs/log-powerbi.md). |
+| **New alert rule** | [Create a new alert rule](../alerts/alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). |
+| **Search job mode** | [Run a search job](../logs/search-jobs.md). |
+| **Log Analytics settings** | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data. |
+| **Switch back to classic Logs** | Switch back to the [classic Log Analytics user interface](../logs/log-analytics-overview.md). |
+| **Queries Hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 
 ### Query window
 
@@ -95,9 +142,9 @@ Select **Group columns** to display the grouping bar above the query results. Gr
 The chart view displays the results as one of multiple available chart types. You can specify the chart type in a **render** command in your query. You can also select it from the **Visualization Type** dropdown.
 
 | Option | Description |
-|:---|:---|
+|:-------|:------------|
 | Visualization type | Type of chart to display. |
-| X-axis | Column in the results to use for the x-axis.
+| X-axis | Column in the results to use for the x-axis. |
 | Y-axis | Column in the results to use for the y-axis. Typically, this is a numeric column. |
 | Split by | Column in the results that defines the series in the chart. A series is created for each value in the column. |
 | Aggregation | Type of aggregation to perform on the numeric values in the y-axis. |
@@ -110,5 +157,5 @@ Log Analytics adds features specific to Azure Monitor, such as filtering by time
 
 ## Next steps
 
-- Walk through a [tutorial on using Log Analytics in the Azure portal](./log-analytics-tutorial.md).
-- Walk through a [tutorial on writing queries](./get-started-queries.md).
+* Walk through a [tutorial on using Log Analytics in the Azure portal](./log-analytics-tutorial.md).
+* Walk through a [tutorial on writing queries](./get-started-queries.md).
