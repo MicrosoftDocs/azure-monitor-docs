@@ -120,7 +120,7 @@ Configure the resource thresholds that cause a profile to be collected:
     :::image type="content" source="./media/java-standalone-profiler/profiler-button.png" alt-text="Screenshot of the Profiler button from the Performance pane." lightbox="media/java-standalone-profiler/profiler-button.png":::
 
 > [!WARNING]
-> The _Profiler traces_ button at bottom right does not work for Java.
+> The _Profiler traces_ button at bottom right is not supported for Java.
     
 1. Select **Triggers**
 
