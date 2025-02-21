@@ -16,7 +16,7 @@ Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor
 
 ---------------------------
 
-## Application Insights with OpenTelemetry Experiences
+## Application Insights Experiences
 
 Application Insights supports OpenTelemetry (OTel) to collect telemetry data in a standardized format across platforms. Integration with Azure services allows for efficient monitoring and diagnostics, improving application observability and performance.
 
