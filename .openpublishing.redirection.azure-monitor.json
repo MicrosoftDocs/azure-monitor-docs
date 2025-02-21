@@ -7784,6 +7784,11 @@
    "source_path": "articles/azure-monitor/agents/data-sources-firewall-logs.md",
    "redirect_url": "/azure/azure-monitor/vm/data-collection-firewall-logs",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md",
+   "redirect_url": "/azure/azure-monitor/vm/send-events-hubs-storage",
+   "redirect_document_id": false
   }
  ]
 }

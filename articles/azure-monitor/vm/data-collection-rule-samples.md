@@ -12,11 +12,10 @@ ms.reviewer: jeffwo
 # Data collection rule (DCR) samples for VM data collection in Azure Monitor
 
 
-
 The following samples show DCRs for collecting different kinds of data using the Azure Monitor agent.
 
 ## Windows events
-DCRs for Windows events use the `windowsEventLogs` data source with the `Microsoft-Event` incoming stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `xPathQueries` property. See [Collect Windows events with Azure Monitor Agent](../agents/data-collection-windows-events.md) for further details on using XPaths to filter the specific data you want to collect. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+DCRs for Windows events use the `windowsEventLogs` data source with the `Microsoft-Event` incoming stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `xPathQueries` property. See [Collect Windows events with Azure Monitor Agent](../agents/data-collection-windows-events.md) for further details on using XPaths to filter the specific data you want to collect. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](../essentials/data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for calculated columns and to further filter data, but you should use XPaths to filter data at the agent as much as possible for efficiency and to avoid potential ingestion charges.
 
@@ -69,7 +68,7 @@ The following sample DCR performs the following actions:
 ```
 
 ## Syslog events
-DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](../essentials/data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency at to avoid potential ingestion charges.
 
@@ -151,7 +150,7 @@ The following sample DCR performs the following actions:
 ## Performance counters
 DCRs for performance data use the `performanceCounters` data source with the incoming `Microsoft-InsightsMetrics` and `Microsoft-Perf` streams. `Microsoft-InsightsMetrics` is used to send data to Azure Monitor Metrics, while `Microsoft-Perf` is used to send data to a Log Analytics workspace. You can include both data sources in the DCR if you're sending performance data to both destinations. The schemas of these streams are known, so they don't need to be defined in the `dataSources` section.
  
- The performance counters to collect are specified in the `counterSpecifiers` property. See [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+ The performance counters to collect are specified in the `counterSpecifiers` property. See [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](../essentials/data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for `Microsoft-Perf` for additional functionality and to further filter data, but you should select only the counters you require in `counterSpecifiers` for efficiency at to avoid potential ingestion charges.
 
@@ -566,7 +565,7 @@ Workspace transformation DCRs have an empty `datasources` section since the tran
 
 The sample DCR below has the following details:
 - Transformation for the `LAQueryLogs` table that filters out queries of the table itself and adds a column with the workspace name.
-- Transformation for the `Event` table that filters out Information events and removes the `ParameterXml` column. This will only apply to data coming from the deprecated Log Analytics agent and not the Azure Monitor agent as explained in [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr).
+- Transformation for the `Event` table that filters out Information events and removes the `ParameterXml` column. This will only apply to data coming from the deprecated Log Analytics agent and not the Azure Monitor agent as explained in [Workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
 
 ```json
 {
@@ -600,77 +599,6 @@ The sample DCR below has the following details:
                     "clv2ws1"
                 ],
                 "transformKql": "source | where EventLevelName in ('Error', 'Critical', 'Warning') | project-away ParameterXml"
-            }
-        ]
-    }
-}
-```
-
-
-## Send data to multiple tables
-There are multiple reasons why you might want to send data from a single data source to multiple tables in the same Log Analytics workspace, including the following:
-
-- Save ingestion costs by sending records used for occasional troubleshooting to a [basic logs table](../logs/basic-logs-azure-tables.md). 
-- Send records or columns with sensitive data to a table with different permissions or retention settings.
-
-To send data from a single data source to multiple tables, create multiple data flows in the DCR with a unique transformation query and output table for each as shown in the following diagram.
-
-> [!IMPORTANT]
-> Currently, the tables in the DCR must be in the same Log Analytics workspace. To send to multiple workspaces from a single data source, use multiple DCRs and configure your application to send the data to each.
-
-:::image type="content" source="media/data-collection-rule-samples/multiple-destinations.png" lightbox="media/data-collection-rule-samples/multiple-destinations.png" alt-text="Diagram that shows transformation sending data to multiple tables." border="false":::
-
-The following sample filters records sent to the Event table by the Azure Monitor agent. Only warning and error events are sent to the Event table. Other events are sent to a copy of the event table named Event_CL which is configured for basic logs.
-
-> [!NOTE]
-> This sample requires a copy of the Event table created in the same workspace named Event_CL. 
-
-```json
-{
-    "location": "eastus",
-    "properties": {
-        "dataSources": {
-            "windowsEventLogs": [
-              {
-                "name": "eventLogsDataSource",
-                "streams": [
-                  "Microsoft-Event"
-                ],
-                "xPathQueries": [
-                  "System!*[System[(Level = 1 or Level = 2 or Level = 3)]]",
-                  "Application!*[System[(Level = 1 or Level = 2 or Level = 3)]]"
-                ]
-              }
-            ]
-        },
-        "destinations": {
-            "logAnalytics": [
-                {
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
-                    "name": "MyDestination"
-                }
-            ]
-        },
-        "dataFlows": [
-            {
-                "streams": [
-                    "Microsoft-Event"
-                ],
-                "destinations": [
-                    "MyDestination"
-                ],
-                "transformKql": "source | where EventLevelName in ('Error', 'Warning')",
-                "outputStream": "Microsoft-Event"
-            },
-            {
-                "streams": [
-                    "Microsoft-Event"
-                ],
-                "destinations": [
-                    "MyDestination"
-                ],
-                "transformKql": "source | where EventLevelName !in ('Error', 'Warning')",
-                "outputStream": "Custom-Event_CL"
             }
         ]
     }

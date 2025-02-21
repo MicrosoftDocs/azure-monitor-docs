@@ -403,7 +403,7 @@ items:
           href: /azure/sentinel/forward-syslog-monitor-agent
           maintainContext: true
         - name: Send data to Event Hubs and Storage
-          href: vm/azure-monitor-agent-send-data-to-event-hubs-and-storage.md
+          href: vm/send-event-hubs-storage.md
       - name: DCR samples
         displayName: Azure Monitor agent, AMA
         href: vm/data-collection-rule-samples.md
