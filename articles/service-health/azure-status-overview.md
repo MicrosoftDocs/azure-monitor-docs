@@ -1,61 +1,63 @@
 ---
-title: Azure status overview | Microsoft Docs
-description: A global view into the health of Azure services
+title: Azure Status Overview
+description: A global view into the health of Azure services.
 ms.topic: overview
 ms.date: 2/14/2025
 
 ---
 # Azure status overview
 
-[Azure status](https://azure.status.microsoft/) provides you with a global view of the health of Azure services and regions. With Azure status, you can get information on service availability. Azure status is available to everyone to view all services that report their service health, as well as incidents with wide-ranging impact. If you're a current Azure user however, we strongly encourage you to use the personalized experience in [Azure Service Health](https://aka.ms/azureservicehealth). Azure Service Health includes all outages, upcoming planned maintenance activities, and service advisories.
+[Azure status](https://azure.status.microsoft/) provides you with a global view of the health of Azure services and regions. Azure status also provides you information on service availability.
 
-:::image type="content" source="./media/azure-status-overview/azure-status.PNG" alt-text="Screenshot of top level Azure Status page.":::
+Azure status is available to everyone to view all services that report their service health, as well as incidents with wide-ranging impact.
 
+If you're a current Azure user however, we strongly encourage you to use the personalized experience in [Azure Service Health](https://aka.ms/azureservicehealth). Azure Service Health includes all outages, upcoming planned maintenance activities, and service advisories.
+
+:::image type="content" source="./media/azure-status-overview/azure-status.PNG" alt-text="Screenshot of top level Azure Status pane.":::
 
 ## Azure status updates
 
-The Azure status page gets updated in real time as the health of Azure services change. If you leave the Azure status page open, you can control the rate at which the page refreshes with new data. At the top, you can see the last time the page was updated.
+The Azure status pane updates in real time as the health of Azure services changes. If you leave the Azure status pane open, you can control the rate at which the pane refreshes with new data. At the top, you can see the last time the pane was updated.
 
-:::image type="content" source="./media/azure-status-overview/update.PNG" alt-text="Screenshot of Azure status refresh page.":::
+:::image type="content" source="./media/azure-status-overview/update.PNG" alt-text="Screenshot of Azure status refresh pane.":::
 
 ## Azure status banner
 
-The status banner on the Azure Status page highlights active incidents affecting Azure services.
+The status banner on the Azure status pane highlights active incidents affecting Azure services.
 
-:::image type="content" source="./media/azure-status-overview/banner.png" alt-text="Screenshot of Azure status banner example":::
+:::image type="content" source="./media/azure-status-overview/banner.png" alt-text="Screenshot of Azure status banner example.":::
 
 ## Current Impact tab
 
-Azure status page shows the current impact of an active event on the entirety of Azure. Use [Azure Service Health](service-health-overview.md) to see view other issues that may be impacting your services.  
+Azure status pane shows the current impact of an active event on the entirety of Azure. Use [Azure Service Health](service-health-overview.md) to see view other issues that may be impacting your services.  
 
-:::image type="content" source="./media/azure-status-overview/current-impact.png" alt-text="Screenshot of Azure status current impact tab":::
+:::image type="content" source="./media/azure-status-overview/current-impact.png" alt-text="Screenshot of Azure status current impact tab.":::
 
 ## Azure status history
 
-While the Azure status page always shows the latest health information, you can view older events using the Azure status history page. The Azure Status History page is used to provide RCAs for Scenario 1. 
+While the Azure status pane always shows the latest health information, you can view older events using the Azure status history pane. The Azure Status History pane is used to provide RCAs for Scenario 1. 
 
-:::image type="content" source="./media/azure-status-overview/status-history.png" alt-text="Screenshot of Azure status history page":::
+:::image type="content" source="./media/azure-status-overview/status-history.png" alt-text="Screenshot of Azure status history pane.":::
 
 ## RSS Feed
 
 Azure status also provides [an RSS feed](https://azure.status.microsoft/status/feed/) of changes to the health of Azure services that you can subscribe to.
 
-## When does Azure publish communications to the Status page?
- 
-Most of our service issue communications are provided as targeted notifications sent directly to impacted customers & partners. These are delivered through [Azure Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal and trigger any [Azure Service Health alerts](./alerts-activity-log-service-notifications-portal.md?toc=%2fazure%2fservice-health%2ftoc.json) that have been configured. The public Status page is only used to communicate about service issues under three specific scenarios:
+## When does Azure publish communications to the Status pane?
+
+Most of our service issue communications are provided as targeted notifications sent directly to impacted customers & partners. These are delivered through [Azure Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal and trigger any [Azure Service Health alerts](./alerts-activity-log-service-notifications-portal.md?toc=%2fazure%2fservice-health%2ftoc.json) that have been configured. The public Status pane is only used to communicate about service issues under three specific scenarios:
 
 - **Scenario 1 - Broad impact involving multiple regions, zones, or services** - A service issue has broad/significant customer impact across multiple services for a full region or multiple regions. We notify you in this case because customer-configured resilience like high availability and/or disaster recovery may not be sufficient to avoid impact.
 - **Scenario 2 - Azure portal / Service Health not accessible** - A service issue impedes you from accessing the Azure portal or Azure Service Health and thus impacted our standard outage communications path described earlier. 
 - **Scenario 3 - Service Impact, but not sure who exactly is affected yet** - The service issue has broad/significant customer impact but we aren't yet able to confirm which customers, regions, or services are affected. In this case, we aren't able to send targeted communications, so we provide public updates.
- 
-## When does Azure publish RCAs to the Status History page?
 
-While the [Azure status page](https://azure.status.microsoft/status) always shows the latest health information, you can view older events using the [Azure status history page](https://azure.status.microsoft/status/history/). The history page contains all Post Incident Response (PIR), formerly known as RCAs (Root Cause Analysis) for incidents that occurred on November 20, 2019 or later. 
- 
-The [Azure status history page](https://azure.status.microsoft/status/history/) is used to provide RCAs for scenario 1 above. We're committed to publishing PIRs publicly for service issues that had the broadest impact, such as those with both a multi-service and multi-region impact. We publish to ensure that all customers and the industry at large can learn from our retrospectives on these issues, and understand what steps we're taking to make such issues less likely and/or less impactful in future. 
- 
-For scenarios 2 and 3 above - We may communicate publicly on the Status page during impact to work around when our standard, targeted communications aren't able to reach all impacted customers. After the issue is mitigated, we'll conduct a thorough impact analysis to determine exactly which customer subscriptions were impacted. In such scenarios, we'll provide the relevant PIR only to affected customers via [Azure Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal.
+## When does Azure publish RCAs to the Status History pane?
 
+While the [Azure status pane](https://azure.status.microsoft/status) always shows the latest health information, you can view older events using the [Azure status history pane](https://azure.status.microsoft/status/history/). The history pane contains all Post Incident Response (PIR), formerly known as Root Cause Analysis (RCA) for incidents that occurred on November 20, 2019 or later.
+
+The [Azure status history pane](https://azure.status.microsoft/status/history/) provides RCAs for scenario 1 above. We're committed to publishing PIRs publicly for service issues that had the broadest impact, such as those with both a multi-service and multi-region impact. We publish to ensure that all customers and the industry at large can learn from our retrospectives on these issues, and understand what steps we're taking to make such issues less likely and/or less impactful in future. 
+ 
+For scenarios 2 and 3 above - We may communicate publicly on the Status pane during impact to work around when our standard, targeted communications aren't able to reach all impacted customers. After the issue is mitigated, we'll conduct a thorough impact analysis to determine exactly which customer subscriptions were impacted. In such scenarios, we'll provide the relevant PIR only to affected customers via [Azure Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal.
 
 ## Next Steps
 
