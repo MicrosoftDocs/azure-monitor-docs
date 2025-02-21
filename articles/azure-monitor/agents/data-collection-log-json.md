@@ -36,8 +36,15 @@ The file that the Azure Monitor Agent is monitoring must meet the following requ
 - Each record must be delineated with an end of line. 
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
-- JSON text must be contained in a single row. The JSON body format is not supported. See sample below.
-     
+- JSON text must be contained in a single row. The JSON body format is not supported. See example below.
+
+```powershell
+// Each record needs to follow the schema of your custom table
+{"Column01": "Value01","Column02": true} // record 1
+{"Column01": "Value01","Column02": false} // record 2
+{"Column01": "Value01","Column02": true} // record 3
+ // End of the line after last record
+```
 
 Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
   
