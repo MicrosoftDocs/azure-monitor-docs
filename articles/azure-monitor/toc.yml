@@ -373,7 +373,7 @@ items:
       items:
       - name: Create data collection rule
         displayName: Azure Monitor agent, AMA
-        href: vm/azure-monitor-agent-data-collection.md
+        href: vm/data-collection.md
       - name: Data sources
         items:
         - name: Windows events
