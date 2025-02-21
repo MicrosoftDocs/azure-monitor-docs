@@ -1,17 +1,20 @@
 ---
-title: Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
-description: This article provides guidance on how to add and modify OpenTelemetry for applications using Azure Monitor.
+title: Add and modify OpenTelemetry in Application Insights
+description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights for .NET, Java, Node.js, and Python applications, including custom attributes, telemetry processors, and log and trace modifications.
 ms.topic: conceptual
-ms.date: 12/07/2024
+ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 ms.reviewer: mmcc
+
+#customer intent: As a developer or site reliability engineer, I want to integrate and customize OpenTelemetry (OTel) instrumentation in Application Insights so that I can achieve standardized telemetry collection and enhanced observability for my .NET, Java, Node.js, or Python applications.
+
 ---
 
 # Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 
-This article provides guidance on how to add and modify OpenTelemetry for applications using [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
+This guide provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 

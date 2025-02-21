@@ -1,17 +1,20 @@
 ---
-title: Configure Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
-description: This article provides configuration guidance for .NET, Java, Node.js, and Python applications.
+title: Configuring OpenTelemetry in Application Insights
+description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 ms.reviewer: mmcc
+
+#customer intent: As a developer or site reliability engineer, I want to configure OpenTelemetry (OTel) settings in Application Insights so that I can standardize telemetry data collection and enhance observability for my .NET, Java, Node.js, or Python applications.
+
 ---
 
 # Configure Azure Monitor OpenTelemetry
 
-This article covers configuration settings for the Azure Monitor OpenTelemetry distro.
+This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview) using the Azure Monitor OpenTelemetry distro. Proper configuration ensures consistent telemetry data collection across .NET, Java, Node.js, and Python applications, allowing for more reliable monitoring and diagnostics.
 
 ## Connection string
 

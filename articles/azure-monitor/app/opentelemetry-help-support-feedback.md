@@ -1,14 +1,17 @@
 ---
-title: OpenTelemetry help, support, and feedback for Azure Monitor Application Insights
-description: This article provides answers to frequently asked questions (FAQ), troubleshooting steps, support options, and feedback mechanisms for OpenTelemetry on Azure Monitor Application Insights for .NET, Java, Node.js, and Python apps.
+title: OpenTelemetry help and support for Azure Monitor Application Insights
+description: This article provides FAQs, troubleshooting steps, support options, and feedback mechanisms for OpenTelemetry (OTel) in Application Insights for .NET, Java, Node.js, and Python applications.
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 03/23/2025
 ms.reviewer: mmcc
+
+#customer intent: As a developer or site reliability engineer, I want to find support resources and provide feedback for OpenTelemetry (OTel) integration with Application Insights to effectively monitor my .NET, Java, Node.js, or Python applications.
+
 ---
 
-# OpenTelemetry help, support, and feedback
+# OpenTelemetry Support and Feedback for Application Insights
 
-This article provides help, support, and feedback options for OpenTelemetry on [Azure Monitor Application Insights](.\opentelemetry-enable.md) for .NET, Java, Node.js, and Python apps.
+This document outlines available resources for assistance, support channels, and feedback mechanisms related to OpenTelemetry (OTel) integration with [Azure Monitor Application Insights](.\opentelemetry-enable.md) for .NET, Java, Node.js, and Python applications.
 
 > [!div class="checklist"]
 > - [Review frequently asked questions](#frequently-asked-questions)

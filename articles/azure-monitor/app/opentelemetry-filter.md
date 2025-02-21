@@ -1,19 +1,22 @@
 ---
-title: Filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
-description: This article provides guidance on how to filter OpenTelemetry for applications using Azure Monitor.
+title: Filtering OpenTelemetry in Application Insights
+description: Learn how to filter OpenTelemetry (OTel) data in Application Insights for .NET, Java, Node.js, and Python applications to exclude unwanted telemetry and protect sensitive information.
 ms.topic: conceptual
-ms.date: 12/06/2024
+ms.date: 03/23/2025
 ms.author: v-nawrothkai
 ms.service: azure-monitor
 ms.subservice: application-insights
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 ms.reviewer: mmcc
+
+#customer intent: As a developer or site reliability engineer, I want to filter OpenTelemetry (OTel) data in Application Insights so that I can exclude unnecessary telemetry and protect sensitive information in my .NET, Java, Node.js, or Python applications.
+
 ---
 
 # Filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 
-This article provides guidance on how to filter OpenTelemetry for applications using [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
+This guide provides instructions on filtering OpenTelemetry (OTel) data within [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview). Implementing filters allows developers to exclude unnecessary telemetry and prevent the collection of sensitive information, ensuring optimized performance and compliance.
 
 Reasons why you might want to filter out telemetry include:
 
@@ -23,7 +26,7 @@ Reasons why you might want to filter out telemetry include:
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
-## Filter telemetry using instrumentation libraries
+## Filter OpenTelemetry using instrumentation libraries
 
 For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).
 
