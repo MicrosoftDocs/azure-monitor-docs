@@ -67,6 +67,7 @@ To assign these permissions granularly, you can [create a custom role](/azure/ro
 * **Chaos Studio Experiment Contributor**: Can create, run, and see details for experiments, onboard targets, and manage capabilities.
 * **Chaos Studio Operator**: Can run and see details for experiments but cannot create experiments or manage targets and capabilities.
 * **Chaos Studio Reader**: Can view targets, capabilities, experiments, and experiment details.
+* **Chaos Studio Target Contributor**: Can onboard targets and manage capabilities but cannot create, run, or see details for experiments.
 
 For more detailed information on these built-in roles for Chaos Studio operations, see [RBAC DevOps Roles](/azure/role-based-access-control/built-in-roles#devops).
 
