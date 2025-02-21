@@ -747,7 +747,7 @@ To learn how to set the daily cap in the Azure portal, see [Set daily cap on Log
 ### [Azure CLI](#tab/cli)
 
 > [!NOTE]
-> Currently, Azure doesn't provide a command to set a daily cap for Application Insights via the Azure CLI.
+> Currently, Azure doesn't provide a command to set the daily cap for Application Insights via the Azure CLI.
 
 To change the daily cap for Log Analytics, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<log-analytics-workspace-name>`, and `<daily-cap-in-gb>` with your specific values.
 
@@ -819,8 +819,11 @@ Content-Type: application/json
 
 ### [Bicep](#tab/bicep)
 
-To set the daily cap for both Application Insights and Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
+> [!NOTE]
+> Currently, Azure doesn't provide a way to set the daily cap for Application Insights via a Bicep template.
 
+To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
+<!--
 **Application Insights**
 
 Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
@@ -837,7 +840,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
 ```
 
 **Log Analytics**
-
+-->
 Placeholders: `<log-analytics-workspace-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
 
 ```bicep
@@ -852,8 +855,11 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 
 ### [JSON (ARM)](#tab/arm)
 
-To set the daily cap for both Application Insights and Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
+> [!NOTE]
+> Currently, Azure doesn't provide a way to set the daily cap for Application Insights via a JSON (ARM) template.
 
+To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
+<!--
 **Application Insights**
 
 Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
@@ -878,7 +884,7 @@ Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<d
 ```
 
 **Log Analytics**
-
+-->
 Placeholders: `<log-analytics-workspace-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
 
 ```json
@@ -952,23 +958,9 @@ Authorization: Bearer <access-token>
 To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<pricing-plan>` with your specific values:
 
 ```bicep
-param workspaceName string {
-  metadata: {
-    description: '<log-analytics-workspace-name>'
-  }
-}
-
-param workspaceRegion string {
-  metadata: {
-    description: '<azure-region-name>'
-  }
-}
-
-param capacityReservationLevel int = 300 {
-  metadata: {
-    description: '<pricing-plan>
-  }
-}
+param workspaceName string = '<log-analytics-workspace-name>'
+param workspaceRegion string = '<azure-region-name>'
+param capacityReservationLevel int = '<pricing-plan>'
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
   name: workspaceName
@@ -993,22 +985,15 @@ To set the pricing plan using JSON (ARM), paste the following code into your tem
   "parameters": {
     "workspaceName": {
       "type": "string",
-      "metadata": {
-        "description": "<log-analytics-workspace-name>"
-      }
+      "defaultValue": "<log-analytics-workspace-name>" 
     },
     "workspaceRegion": {
       "type": "string",
-      "metadata": {
-        "description": "<azure-region-name>"
-      }
+      "defaultValue": "<azure-region-name>" 
     },
     "capacityReservationLevel": {
       "type": "int",
-      "defaultValue": 300,
-      "metadata": {
-        "description": "<pricing-plan>"
-      }
+      "defaultValue": "<pricing-plan>"
     }
   },
   "resources": [
