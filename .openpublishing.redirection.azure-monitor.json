@@ -7741,7 +7741,7 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/vm/data-collection.md",
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-data-collection.md",
    "redirect_url": "/azure/azure-monitor/vm/data-collection",
    "redirect_document_id": false
   },
