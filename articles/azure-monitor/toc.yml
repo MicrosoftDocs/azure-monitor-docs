@@ -398,7 +398,7 @@ items:
           href: vm/data-collection-snmp-data.md
         - name: Windows Firewall logs
           displayName: data collection rule,Azure Monitor Agent,firewall logs
-          href: vm/data-sources-firewall-logs.md
+          href: vm/data-collection-firewall-logs.md
         - name: Configure a syslog forwarder
           href: /azure/sentinel/forward-syslog-monitor-agent
           maintainContext: true
