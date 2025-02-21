@@ -50,15 +50,15 @@ The **Key Metrics** pane includes charts that show key health metrics, such as a
 :::image type="content" source="media/monitor-vm/overview-key-metrics.png" alt-text="Screenshot of the Azure virtual machine 'Key metrics' pane.":::
 
 ## Activity log
-The [Activity log](../azure-monitor/essentials/activity-log.md) displays recent activity by the virtual machine, including any configuration changes and when it was stopped and started. View the Activity log in the Azure portal, or create a [diagnostic setting to send it to a Log Analytics workspace](../azure-monitor/essentials/activity-log.md#send-to-log-analytics-workspace), where you can view events over time or analyze them with other collected data.
+The [Activity log](../essentials/activity-log.md) displays recent activity by the virtual machine, including any configuration changes and when it was stopped and started. View the Activity log in the Azure portal, or create a [diagnostic setting to send it to a Log Analytics workspace](../essentials/activity-log.md#send-to-log-analytics-workspace), where you can view events over time or analyze them with other collected data.
 
 :::image type="content" source="media/monitor-vm/activity-log.png" lightbox="media/monitor-vm/activity-log.png" alt-text="Screenshot of the 'Activity log' pane.":::
 
 ## Recommended alerts
-Start by enabling recommended alerts. These are a predefined set of alert rules based on host metrics for the VM. You can quickly enable and customize each of these rules with a few clicks in the Azure portal. See [Tutorial: Enable recommended alert rules for Azure virtual machine](../azure-monitor/vm/tutorial-monitor-vm-alert-recommended.md). This includes the [VM availability metric](monitor-vm-reference.md#vm-availability-metric-preview) which alerts when the VM stops running.
+Start by enabling recommended alerts. These are a predefined set of alert rules based on host metrics for the VM. You can quickly enable and customize each of these rules with a few clicks in the Azure portal. See [Tutorial: Enable recommended alert rules for Azure virtual machine](./vm/tutorial-monitor-vm-alert-recommended.md). This includes the [VM availability metric](monitor-vm-reference.md#vm-availability-metric-preview) which alerts when the VM stops running.
 
 ## Azure Monitor agent
-Azure Monitor starts automatically collecting metric data for your virtual machine host when you create the VM. To collect logs and performance data from the guest operating system of the virtual machine, though, you must install the [Azure Monitor agent](../azure-monitor/agents/azure-monitor-agent-overview.md). You can install the agent and configure collection using either [VM insights](#vm-insights) or by [creating a data collection rule](#create-data-collection-rule) as described below.
+Azure Monitor starts automatically collecting metric data for your virtual machine host when you create the VM. To collect logs and performance data from the guest operating system of the virtual machine, though, you must install the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md). You can install the agent and configure collection using either [VM insights](#vm-insights) or by [creating a data collection rule](#create-data-collection-rule) as described below.
 
 ## VM insights
 VM insights is designed to monitor your Azure and hybrid virtual machines in a single interface. VM insights provides the following benefits beyond other features for monitoring VMs in Azure Monitor:
@@ -72,18 +72,18 @@ VM insights is designed to monitor your Azure and hybrid virtual machines in a s
 
 :::image type="content" source="media/monitor-vm/vminsights-02.png" lightbox="media/monitor-vm/vminsights-02.png" alt-text="Screenshot of the VM insights 'Map' view.":::
 
-For a tutorial on enabling VM insights for a virtual machine, see [Enable monitoring with VM insights for Azure virtual machine](../azure-monitor/vm/tutorial-monitor-vm-enable-insights.md). For general information about enabling insights and a variety of methods for onboarding virtual machines, see [Enable VM insights overview](../azure-monitor/vm/vminsights-enable-overview.md).
+For a tutorial on enabling VM insights for a virtual machine, see [Enable monitoring with VM insights for Azure virtual machine](./tutorial-monitor-vm-enable-insights.md). For general information about enabling insights and a variety of methods for onboarding virtual machines, see [Enable VM insights overview](./vminsights-enable-overview.md).
 
 
 
 ## Create data collection rule
-If you enable [VM insights](#vm-insights), the Azure Monitor agent is installed and starts sending a predefined set of performance data to Azure Monitor Logs. You can create additional data collection rules to collect events and other performance data. To learn how to install the Azure Monitor agent and create a data collection rule that defines the data to collect, see [Tutorial: Collect guest logs and metrics from an Azure virtual machine](../azure-monitor/vm/tutorial-monitor-vm-guest.md).
+If you enable [VM insights](#vm-insights), the Azure Monitor agent is installed and starts sending a predefined set of performance data to Azure Monitor Logs. You can create additional data collection rules to collect events and other performance data. To learn how to install the Azure Monitor agent and create a data collection rule that defines the data to collect, see [Tutorial: Collect guest logs and metrics from an Azure virtual machine](./tutorial-monitor-vm-guest.md).
 
 
 ## Analyze metrics
 Metrics are numerical values that describe some aspect of a system at a particular point in time. Although platform metrics for the virtual machine host are collected automatically, you must install the Azure Monitor agent and [create a data collection rule](#create-data-collection-rule) to collect guest metrics.
 
-The **Overview** pane includes the most common host metrics, and you can access others by using the **Metrics** pane. With this tool, you can create charts from metric values and visually correlate trends. You can also create a metric alert rule or pin a chart to an Azure dashboard. For a tutorial on using this tool, see [Analyze metrics for an Azure resource](../azure-monitor/essentials/tutorial-metrics.md).
+The **Overview** pane includes the most common host metrics, and you can access others by using the **Metrics** pane. With this tool, you can create charts from metric values and visually correlate trends. You can also create a metric alert rule or pin a chart to an Azure dashboard. For a tutorial on using this tool, see [Analyze metrics for an Azure resource](../essentials/tutorial-metrics.md).
 
 :::image type="content" source="media/monitor-vm/metrics-explorer.png" lightbox="media/monitor-vm/metrics-explorer.png" alt-text="Screenshot of the 'Metrics' pane in Azure Monitor.":::
 
@@ -92,9 +92,9 @@ For a list of the available metrics, see [Reference: Monitoring Azure virtual ma
 ## Analyze logs
 Event data in Azure Monitor Logs is stored in a Log Analytics workspace, where it's separated into tables, each with its own set of unique properties.
 
-VM insights stores the data it collects in Logs, and the insights provide performance and map views that you can use to interactively analyze the data. You can work directly with this data to drill down further or perform custom analyses. For more information and to get sample queries for this data, see [How to query logs from VM insights](../azure-monitor/vm/vminsights-log-query.md).
+VM insights stores the data it collects in Logs, and the insights provide performance and map views that you can use to interactively analyze the data. You can work directly with this data to drill down further or perform custom analyses. For more information and to get sample queries for this data, see [How to query logs from VM insights](./vminsights-log-query.md).
 
-To analyze other log data that you collect from your virtual machines, use [log queries](../azure-monitor/logs/get-started-queries.md) in [Log Analytics](../azure-monitor/logs/log-analytics-tutorial.md). Several [built-in queries](../azure-monitor/logs/queries.md) for virtual machines are available to use, or you can create your own. You can interactively work with the results of these queries, include them in a workbook to make them available to other users, or generate alerts based on their results.
+To analyze other log data that you collect from your virtual machines, use [log queries](../logs/get-started-queries.md) in [Log Analytics](../logs/log-analytics-tutorial.md). Several [built-in queries](../logs/queries.md) for virtual machines are available to use, or you can create your own. You can interactively work with the results of these queries, include them in a workbook to make them available to other users, or generate alerts based on their results.
 
 :::image type="content" source="media/monitor-vm/log-analytics-query.png" lightbox="media/monitor-vm/log-analytics-query.png" alt-text="Screenshot of the 'Logs' pane displaying Log Analytics query results.":::
 
@@ -104,13 +104,13 @@ Azure Monitor alerts proactively notify you when important conditions are found 
 
 
 ### Multi-resource metric alerts
-Using recommended alerts, a separate alert rule is created for each VM. You can choose to instead use a [multi-resource alert rule](../azure-monitor/alerts/alerts-types.md#monitor-multiple-resources) to use a single alert rule that applies to all VMs in a particular resource group or subscription (within the same region). See [Create availability alert rule for Azure virtual machine (preview)](../azure-monitor/vm/tutorial-monitor-vm-alert-availability.md) for a tutorial using the availability metric.
+Using recommended alerts, a separate alert rule is created for each VM. You can choose to instead use a [multi-resource alert rule](../alerts/alerts-types.md#monitor-multiple-resources) to use a single alert rule that applies to all VMs in a particular resource group or subscription (within the same region). See [Create availability alert rule for Azure virtual machine (preview)](./tutorial-monitor-vm-alert-availability.md) for a tutorial using the availability metric.
 
 ### Other alert rules
 For more information about the various alerts for Azure virtual machines, see the following resources:
 
-- See [Monitor virtual machines with Azure Monitor: Alerts](../azure-monitor/vm/monitor-virtual-machine-alerts.md) for common alert rules for virtual machines. 
-- See [Create a log query alert for an Azure resource](../azure-monitor/alerts/tutorial-log-alert.md) for a tutorial on creating a log query alert rule.
+- See [Monitor virtual machines with Azure Monitor: Alerts](./monitor-virtual-machine-alerts.md) for common alert rules for virtual machines. 
+- See [Create a log query alert for an Azure resource](../alerts/tutorial-log-alert.md) for a tutorial on creating a log query alert rule.
 - For common log alert rules, go to the **Queries** pane in Log Analytics. For **Resource type**, enter **Virtual machines**, and for **Type**, enter **Alerts**.
 
 
@@ -122,4 +122,4 @@ For documentation about the logs and metrics that are generated by Azure virtual
 
 
 > [!NOTE]
-> This article provides basic information to help you get started with monitoring your VMs. For a complete guide to monitoring your entire environment of Azure and hybrid virtual machines, see [Monitor virtual machines with Azure Monitor](../azure-monitor/vm/monitor-virtual-machine.md).
+> This article provides basic information to help you get started with monitoring your VMs. For a complete guide to monitoring your entire environment of Azure and hybrid virtual machines, see [Monitor virtual machines with Azure Monitor](./monitor-virtual-machine.md).

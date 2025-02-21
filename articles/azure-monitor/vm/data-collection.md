@@ -76,7 +76,7 @@ On the **Resources** pane, select **Add resources** to add VMs that will use the
 
 :::image type="content" source="media/azure-monitor-agent-data-collection/resources-tab.png" lightbox="media/azure-monitor-agent-data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
 
-If you're using [Azure Monitor Private Links](azure-monitor-agent-private-link.md), select **Enable Data Collection Endpoints** on the **Resources** tab and select an endpoint in the region of each monitored machine. Otherwise, you don't need to select a DCE for each resource.
+If you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-private-link.md), select **Enable Data Collection Endpoints** on the **Resources** tab and select an endpoint in the region of each monitored machine. Otherwise, you don't need to select a DCE for each resource.
 
 > [!IMPORTANT]
 > When resources are added to a DCR, the default option in the Azure portal is to enable a system-assigned managed identity for the resources. For existing applications, if a user-assigned managed identity is already set, if you don't specify the user-assigned identity when you add the resource to a DCR by using the portal, the machine defaults to using a *system-assigned identity* that's applied by the DCR.
@@ -124,12 +124,11 @@ Once you verify that the agent is communicating properly, make sure that the dat
 | [Performance counters](./data-collection-performance.md) | Virtual Machines  | Perf |
 | [Syslog](./data-collection-syslog.md) | Virtual Machines  | Syslog |
 | [IIS logs](./data-collection-iis.md) | Virtual Machines  | W3CIISLog |
-| [Text log](./data-collection-log-text.md) | Custom Logs | <Custom table name> |
-| [JSON log](./data-collection-log-json.md) | Custom Logs | <Custom table name> |
+| [Text log](./data-collection-log-text.md) | Custom Logs | \<Custom table name\> |
+| [JSON log](./data-collection-log-json.md) | Custom Logs | \<Custom table name\> |
 
 
 ## Related content
 
-- [Collect text logs by using the Azure Monitor Agent](data-collection-log-text.md).
-- Learn more about the [Azure Monitor Agent](azure-monitor-agent-overview.md).
+- Learn more about the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
 - Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
