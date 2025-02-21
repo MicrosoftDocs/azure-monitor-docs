@@ -156,7 +156,7 @@ We don't recommend it. See [Supplemental terms of use for Microsoft Azure previe
 
 ### What's the difference between manual and automatic instrumentation?
 
-See the [OpenTelemetry Overview](../app/opentelemetry-overview.md#instrumentation-options).
+See the [OpenTelemetry Overview](../app/opentelemetry-overview.md).
 
 ### Can I use the OpenTelemetry Collector?
 

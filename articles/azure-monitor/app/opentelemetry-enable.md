@@ -14,7 +14,7 @@ ms.reviewer: mmcc
 
 # Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications
 
-This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview). The Azure Monitor OpenTelemetry Distro:
+This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md). The Azure Monitor OpenTelemetry Distro:
 
 * Provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution) which includes support for features specific to Azure Monitor.
 * Enables [automatic](opentelemetry-add-modify.md#automatic-data-collection) telemetry by including OpenTelemetry instrumentation libraries for collecting traces, metrics, logs, and exceptions.

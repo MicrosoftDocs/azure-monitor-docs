@@ -11,7 +11,7 @@ ms.reviewer: mmcc
 
 # Collect telemetry with OpenTelemetry in Application Insights
 
-Before you can monitor your application, it needs to be instrumented. In the following sections, we cover some data collection basics of [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
+Before you can monitor your application, it needs to be instrumented. In the following sections, we cover some data collection basics of [Azure Monitor Application Insights](app-insights-overview.md).
 
 Instrumenting applications with OpenTelemetry (OTel) in Application Insights enables standardized telemetry collection across platforms. This improves observability, simplifies performance monitoring, and supports distributed tracing, metrics, and log analysis.
 

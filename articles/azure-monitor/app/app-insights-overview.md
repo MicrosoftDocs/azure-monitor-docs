@@ -1,5 +1,4 @@
 ---
-ms.date: 03/23/2025---
 title: Application Insights OpenTelemetry overview
 description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview

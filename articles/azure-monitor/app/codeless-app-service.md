@@ -10,7 +10,7 @@ ms.reviewer: abinetabate
 
 # Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications
 
-Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Service without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options).
+Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Service without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md).
 
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 

@@ -14,7 +14,7 @@ ms.reviewer: mmcc
 
 # Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 
-This guide provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview).
+This guide provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within [Azure Monitor Application Insights](app-insights-overview.md).
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 

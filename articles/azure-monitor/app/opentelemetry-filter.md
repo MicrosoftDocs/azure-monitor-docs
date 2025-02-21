@@ -16,7 +16,7 @@ ms.reviewer: mmcc
 
 # Filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 
-This guide provides instructions on filtering OpenTelemetry (OTel) data within [Azure Monitor Application Insights](app-insights-overview.md#application-insights-overview). Implementing filters allows developers to exclude unnecessary telemetry and prevent the collection of sensitive information, ensuring optimized performance and compliance.
+This guide provides instructions on filtering OpenTelemetry (OTel) data within [Azure Monitor Application Insights](app-insights-overview.md). Implementing filters allows developers to exclude unnecessary telemetry and prevent the collection of sensitive information, ensuring optimized performance and compliance.
 
 Reasons why you might want to filter out telemetry include:
 

@@ -8,7 +8,7 @@ ms.reviewer: mmcc
 
 # Geolocation and IP address handling
 
-This article explains how geolocation lookup and IP address handling work in [Application Insights](app-insights-overview.md#application-insights-overview).
+This article explains how geolocation lookup and IP address handling work in [Application Insights](app-insights-overview.md).
 
 ## Default behavior
 

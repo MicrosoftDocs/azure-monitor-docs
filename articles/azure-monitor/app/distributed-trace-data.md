@@ -17,7 +17,7 @@ Modern cloud and [microservices](https://azure.com/microservices) architectures 
 
 Azure Monitor provides two experiences for consuming distributed trace data: the [transaction diagnostics](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics) view for a single transaction/request and the [application map](./app-map.md) view to show how systems interact.
 
-[Application Insights](app-insights-overview.md#application-insights-overview) can monitor each component separately and detect which component is responsible for failures or performance degradation by using distributed telemetry correlation. This article explains the data model, context-propagation techniques, protocols, and implementation of correlation tactics on different languages and platforms used by Application Insights.
+[Application Insights](app-insights-overview.md) can monitor each component separately and detect which component is responsible for failures or performance degradation by using distributed telemetry correlation. This article explains the data model, context-propagation techniques, protocols, and implementation of correlation tactics on different languages and platforms used by Application Insights.
 
 ## Enable distributed tracing
 
