@@ -158,7 +158,7 @@ This section describes more tools available above the query area of the screen, 
 | **Switch back to classic Logs** | Switch back to the [classic Log Analytics user interface](../logs/log-analytics-overview.md). |
 | **Queries Hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 
-:::image type="content" source="media/log-analytics-overview/logs-settings.png" lightbox="media/log-analytics-overview/logs-settings.png" alt-text="Screenshot that shows Log Analytics settings.":::
+<img src="media/log-analytics-overview/logs-settings.png" alt="Screenshot that shows Log Analytics settings." width="65%" border="1px" style='border:1px solid #e6e6e6'>
 
 ## Relationship to Azure Data Explorer
 
