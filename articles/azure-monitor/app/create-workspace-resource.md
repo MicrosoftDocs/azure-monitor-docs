@@ -128,21 +128,34 @@ For more information about the `New-AzApplicationInsights` command, refer to the
 
 ## [REST](#tab/rest)
 
-To create an Application Insights resource using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<azure-region-name>` and `<application-type>` with your specific values:
+To create an Application Insights resource using the REST API, you first have to create a Log Analytics workspace. Use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, and `<azure-region-name>` with your specific values:
 
-```http
-PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
+> [!NOTE]
+> If you already have a Log Analytics workspace, you can skip this step.
+
+```rest
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>?api-version=2023-09-01
 Authorization: Bearer <access-token>
 Content-Type: application/json
 
+{
+	"location": "<azure-region-name>"
+}
+```
+
+To create an Application Insights resource using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<application-type>`, `<azure-region-name>`, and `<log-analytics-workspace-name>` with your specific values:
+
+```http
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2020-02-02
+Authorization: Bearer <access-token>
+Content-Type: application/json
 
 {
-  "location": "<azure-region-name>",
   "kind": "<application-type>",
+  "location": "<azure-region-name>",
   "properties": {
     "Application_Type": "<application-type>",
-    "Flow_Type": "Bluefield",
-    "Request_Source": "rest"
+    "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>"
   }
 }
 ```
@@ -171,7 +184,6 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   kind: 'other'
   properties: {
     Application_Type: type
-    Flow_Type: 'Bluefield'
     Request_Source: requestSource
     WorkspaceResourceId: workspaceResourceId
   }
@@ -273,7 +285,6 @@ Here's how to create a new Application Insights resource using a JSON (ARM) temp
       "kind": "other",
       "properties": {
         "Application_Type": "[parameters('type')]",
-        "Flow_Type": "Bluefield",
         "Request_Source": "[parameters('requestSource')]",
         "WorkspaceResourceId": "[parameters('workspaceResourceId')]"
       }
@@ -380,6 +391,8 @@ Authorization: Bearer <access-token>
 
 Look for the `properties.connectionString` field in the JSON response.
 
+For more information about retrieving Application Insights resource information resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/get).
+
 ### [Bicep](#tab/bicep)
 
 Not applicable to Bicep templates.
@@ -427,46 +440,49 @@ In the Application Insights resource pane, select **Properties** > **Change Work
 
 ### [Azure CLI](#tab/cli)
 
-To change the Log Analytics workspace, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<new-log-analytics-workspace-name>` with your specific values:
+To change the Log Analytics workspace, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```azurecli
-az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --workspace <new-log-analytics-workspace-name>
+az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --workspace <log-analytics-workspace-name>
 ```
 
 For more information about the `az monitor app-insights component update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-update).
 
 ### [PowerShell](#tab/powershell)
 
-To change the Log Analytics workspace, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, `<subscription-id>` and `<new-log-analytics-workspace-name>` with your specific values:
+To change the Log Analytics workspace, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, `<subscription-id>` and `<log-analytics-workspace-name>` with your specific values:
 
 ```azurepowershell
-Update-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>
+Update-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>
 ```
 
 For more information about the `Update-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
 
 ### [REST](#tab/rest)
 
-To change the Log Analytics workspace using REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, and `<new-log-analytics-workspace-name>` with your specific values:
+To change the Log Analytics workspace using REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<azure-region-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```http
-PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2020-02-02
 Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
   "properties": {
-    "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>"
+    "location": "<azure-region-name>",
+    "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>"
   }
 }
 ```
 
+For more information about modifying the associated workspace using the REST API, see the [REST API documentation](/rest/api/application-insights/components/create-or-update).
+
 ### [Bicep](#tab/bicep)
 
-To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-log-analytics-workspace-name>` with your specific values:
+To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```bicep
-param workspaceResourceId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>' 
+param workspaceResourceId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>' 
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   name: '<application-insights-resource-name>'
@@ -480,7 +496,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 
 ### [JSON (ARM)](#tab/arm)
 
-To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<new-log-analytics-workspace-name>` with your specific values:
+To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```json
 {
@@ -494,7 +510,7 @@ To change the Log Analytics workspace, paste the following code into your templa
       "location": "<azure-region-name>",
       "properties": {
         "Application_Type": "<application-type>",
-        "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<new-log-analytics-workspace-name>"
+        "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>"
       }
     }
   ]
