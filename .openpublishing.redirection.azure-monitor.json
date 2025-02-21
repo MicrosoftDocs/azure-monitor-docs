@@ -7741,6 +7741,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/vm/data-collection.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/agents/data-collection-windows-events.md",
    "redirect_url": "/azure/azure-monitor/vm/data-collection-windows-events",
    "redirect_document_id": false

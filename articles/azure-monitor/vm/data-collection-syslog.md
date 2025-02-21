@@ -9,7 +9,7 @@ ms.reviewer: glinuxagent
 
 # Collect Syslog events with Azure Monitor Agent
 
-**Syslog events** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the Syslog events data source type.
+**Syslog events** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the Syslog events data source type.
 
 Syslog is an event logging protocol that's common to Linux. You can use the Syslog daemon that's built into Linux devices and appliances to collect local events of the types you specify. Applications send messages that are either stored on the local machine or delivered to a Syslog collector.
 
@@ -19,7 +19,7 @@ Syslog is an event logging protocol that's common to Linux. You can use the Sysl
 ## Prerequisites
 
 - [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac). Syslog events are sent to the [Syslog](/azure/azure-monitor/reference/tables/event) table.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 ## Configure collection of Syslog data
 
@@ -213,7 +213,7 @@ Syslog records have a type of **Syslog** and have the properties shown in the fo
 Go through the following steps if you aren't collecting data from the JSON log that you're expecting.
 
 - Verify that data is being written to Syslog.
-- See [Verify operation](./azure-monitor-agent-data-collection.md#verify-operation) to verify whether the agent is operational and data is being received.
+- See [Verify operation](../vm/data-collection.md#verify-operation) to verify whether the agent is operational and data is being received.
 
 ## Next steps
 

@@ -9,13 +9,13 @@ ms.reviewer: jeffwo
 ---
 
 # Collect logs from a text file with Azure Monitor Agent 
-Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. This data can be collected by Azure Monitor using the **Custom Text Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the custom text logs type.
+Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. This data can be collected by Azure Monitor using the **Custom Text Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the custom text logs type.
 
 ## Prerequisites
  
 - Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a new table if you don't already have one.
 - A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 > [!WARNING]
 > You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
@@ -65,7 +65,7 @@ When collected using default settings, this data would appear as follows when re
 
 ## Create a data collection rule (DCR) for a text file
 
-Create a DCR, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
+Create a DCR, as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
 
 :::image type="content" source="media/data-collection-log-text/configuration.png" lightbox="media/data-collection-log-text/configuration.png" alt-text="Screenshot that shows configuration of text file collection.":::
 
@@ -111,7 +111,7 @@ Go through the following steps if you aren't collecting data from the text log t
 - Verify that data is being written to the log file being collected.
 - Verify that the name and location of the log file matches the file pattern you specified.
 - Verify that the schema of the target table matches the incoming stream or that you have a transformation that will convert the incoming stream to the correct schema.
-- See [Verify operation](./azure-monitor-agent-data-collection.md#verify-operation) to verify whether the agent is operational and data is being received.
+- See [Verify operation](../vm/data-collection.md#verify-operation) to verify whether the agent is operational and data is being received.
 
 ## Next steps
 

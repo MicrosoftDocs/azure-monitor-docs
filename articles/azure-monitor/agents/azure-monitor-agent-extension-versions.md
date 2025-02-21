@@ -75,4 +75,4 @@ We strongly recommend that you always update to the latest version, or opt in to
 ## Next steps
 
 - [Install and manage the extension](./azure-monitor-agent-manage.md).
-- [Create a data collection rule](./azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.
+- [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and send it to Azure Monitor.

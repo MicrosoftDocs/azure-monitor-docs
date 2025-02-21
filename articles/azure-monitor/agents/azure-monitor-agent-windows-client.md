@@ -63,7 +63,7 @@ Here's a comparison between using the client installer and using the virtual mac
     (Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`)
 
     If you use private links on the agent, you must also add the [data collection endpoints](../essentials/data-collection-endpoint-overview.md#components-of-a-dce).
-- A DCR that you want to associate with the devices. If it doesn't exist already, [create a data collection rule](./azure-monitor-agent-data-collection.md). *Don't associate the rule to any resources yet*.
+- A DCR that you want to associate with the devices. If it doesn't exist already, [create a data collection rule](../vm/data-collection.md). *Don't associate the rule to any resources yet*.
 - Before you use any PowerShell cmdlet, ensure that the cmdlet-related PowerShell module is installed and imported.
 
 ## Limitations

@@ -11,18 +11,18 @@ ms.reviewer: jeffwo
 
 # Collect performance counters with Azure Monitor Agent
 
-**Performance counters** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides more details for the Windows events data source type.
+**Performance counters** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides more details for the Windows events data source type.
 
 Performance counters provide insight into the performance of hardware components, operating systems, and applications. [Azure Monitor Agent](azure-monitor-agent-overview.md) can collect performance counters from Windows and Linux machines at frequent intervals for near real time analysis.
 
 ## Prerequisites
 
 * If you're going to send performance data to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md), then you must have one created where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
-* Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+* Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 ## Configure performance counters data source
 
-Create a data collection rule, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **Performance Counters** from the **Data source type** dropdown. 
+Create a data collection rule, as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md). In the **Collect and deliver** step, select **Performance Counters** from the **Data source type** dropdown. 
 
 For performance counters, select from a predefined set of objects and their sampling rate. 
     

@@ -10,7 +10,7 @@ ms.reviewer: jeffwo
 ---
 
 # Collect IIS logs with Azure Monitor Agent
-**IIS Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the Windows events data source type.
+**IIS Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the Windows events data source type.
 
 Internet Information Services (IIS) stores user activity in log files that can be collected by Azure Monitor agent and sent to a Log Analytics workspace.
 
@@ -19,7 +19,7 @@ Internet Information Services (IIS) stores user activity in log files that can b
 
 - [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac). Windows events are sent to the [Event](/azure/azure-monitor/reference/tables/event) table.
 - A data collection endpoint (DCE) if you plan to use Azure Monitor Private Links. The data collection endpoint must be in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 ## Configure collection of IIS logs on client
 Before you can collect IIS logs from the machine, you must ensure that IIS logging has been enabled and is configured correctly.
@@ -36,7 +36,7 @@ The default location for IIS log files is **C:\\inetpub\\logs\\LogFiles\\W3SVC1*
 
 ## Configure IIS log data source
 
-Create a data collection rule, as described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). In the **Collect and deliver** step, select **IIS Logs** from the **Data source type** dropdown. You only need to specify a file pattern to identify the directory where the log files are located if they are stored in a different location than configured in IIS. In most cases, you can leave this value blank.
+Create a data collection rule, as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md). In the **Collect and deliver** step, select **IIS Logs** from the **Data source type** dropdown. You only need to specify a file pattern to identify the directory where the log files are located if they are stored in a different location than configured in IIS. In most cases, you can leave this value blank.
 
 :::image type="content" source="media/data-collection-iis/iis-data-collection-rule.png" lightbox="media/data-collection-iis/iis-data-collection-rule.png" alt-text="Screenshot that shows the Azure portal form to select basic performance counters in a data collection rule.":::
 
@@ -84,7 +84,7 @@ Go through the following steps if you aren't collecting data from the JSON log t
 
 - Verify that IIS logs are being created in the location you specified.
 - Verify that IIS logs are configured to be W3C formatted.
-- See [Verify operation](./azure-monitor-agent-data-collection.md#verify-operation) to verify whether the agent is operational and data is being received.
+- See [Verify operation](../vm/data-collection.md#verify-operation) to verify whether the agent is operational and data is being received.
 
 
 ## Next steps
