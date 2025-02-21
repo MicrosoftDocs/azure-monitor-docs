@@ -208,6 +208,11 @@ param workspaceResourceId string = '/subscriptions/<subscription-id>/resourcegro
 
 You can add other parameters. You find their descriptions in the parameters section of the template.
 
+> [!TIPP]
+> You can use the VS Code [Bicep extension by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to simplify the deployment process.
+>
+> Visit [publisher's GitHub repository](https://github.com/Azure/bicep/issues) for extension related questions.
+
 ## [JSON (ARM)](#tab/arm)
 
 Here's how to create a new Application Insights resource using a JSON (ARM) template.
@@ -589,7 +594,7 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
     storageAccountId: storageAccountId
     logs: [
       {
-        category: 'AppRequest'
+        category: 'AppRequests'
         enabled: true
       }
     ]
@@ -654,7 +659,7 @@ To export telemetry using diagnostic settings, paste the following code into you
         "storageAccountId": "[parameters('storageAccountId')]",
         "logs": [
           {
-            "category": "AppRequest",
+            "category": "AppRequests",
             "enabled": true
           }
         ],
@@ -822,26 +827,7 @@ Content-Type: application/json
 > [!NOTE]
 > Currently, Azure doesn't provide a way to set the daily cap for Application Insights via a Bicep template.
 
-To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
-<!--
-**Application Insights**
-
-Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
-
-```bicep
-resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
-  name: '<application-insights-resource-name>'
-  location: '<azure-region-name>'
-  properties: {
-    Application_Type: 'web'
-    DailyCap: <daily-cap-in-gb>
-  }
-}
-```
-
-**Log Analytics**
--->
-Placeholders: `<log-analytics-workspace-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
+To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
 ```bicep
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
@@ -858,34 +844,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 > [!NOTE]
 > Currently, Azure doesn't provide a way to set the daily cap for Application Insights via a JSON (ARM) template.
 
-To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders with your specific values:
-<!--
-**Application Insights**
-
-Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "resources": [
-    {
-      "type": "Microsoft.Insights/components",
-      "apiVersion": "2020-02-02",
-      "name": "<application-insights-resource-name>",
-      "location": "<azure-region-name>",
-      "properties": {
-        "Application_Type": "web",
-        "DailyCap": <daily-cap-in-gb>
-      }
-    }
-  ]
-}
-```
-
-**Log Analytics**
--->
-Placeholders: `<log-analytics-workspace-name>`, `<azure-region-name>`, `<daily-cap-in-gb>`
+To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
 ```json
 {
@@ -919,20 +878,36 @@ To learn how to set the pricing plan in the Azure portal, see [Application Insig
 
 ### [Azure CLI](#tab/cli)
 
-To set the pricing plan, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<log-analytics-workspace-name>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan, run the following Azure CLI command in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
+
+**Pay-as-you-go**
 
 ```azurecli
-az monitor log-analytics workspace update --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --set <pricing-plan>
+az monitor log-analytics workspace update --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --set PerGB2018
+```
+
+**Commitment tier**
+
+```azurecli
+az monitor log-analytics workspace update --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --set CapacityReservation --level <capacity-reservation-in-gb>
 ```
 
 For more information about the `az monitor log-analytics workspace update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update).
 
 ### [PowerShell](#tab/powershell)
 
-To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<log-analytics-workspace-name>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
+
+**Pay-as-you-go**
 
 ```azurepowershell
-Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Sku <pricing-plan>
+Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Sku perb2018
+```
+
+**Commitment tier**
+
+```azurepowershell
+Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Sku capacityreservation -SkuCapacity <capacity-reservation-in-gb>
 ```
 
 For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
@@ -955,12 +930,31 @@ Authorization: Bearer <access-token>
 
 ### [Bicep](#tab/bicep)
 
-To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan using Bicep, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
+
+**Pay-as-you-go**
 
 ```bicep
 param workspaceName string = '<log-analytics-workspace-name>'
 param workspaceRegion string = '<azure-region-name>'
-param capacityReservationLevel int = '<pricing-plan>'
+
+resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
+  name: workspaceName
+  location: workspaceRegion
+  properties: {
+    sku: {
+      name: 'pergb2018'
+    }
+  }
+}
+```
+
+**Commitment tier**
+
+```bicep
+param workspaceName string = '<log-analytics-workspace-name>'
+param workspaceRegion string = '<azure-region-name>'
+param capacityReservationLevel int = '<capacity-reservation-in-gb>'
 
 resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08-01' = {
   name: workspaceName
@@ -974,9 +968,45 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 }
 ```
 
+For more information about updating the Microsoft.OperationalInsights/workspaces resource using Bicep, refer to the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep#workspacesku).
+
 ### [JSON (ARM)](#tab/arm)
 
-To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
+
+**Pay-as-you-go**
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "<log-analytics-workspace-name>" 
+    },
+    "workspaceRegion": {
+      "type": "string",
+      "defaultValue": "<azure-region-name>" 
+    }
+  },
+  "resources": [
+    {
+      "name": "[parameters('workspaceName')]",
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2020-08-01",
+      "location": "[parameters('workspaceRegion')]",
+      "properties": {
+        "sku": {
+          "name": "pergb2018"
+        }
+      }
+    }
+  ]
+}
+```
+
+**Commitment tier**
 
 ```json
 {
@@ -993,7 +1023,7 @@ To set the pricing plan using JSON (ARM), paste the following code into your tem
     },
     "capacityReservationLevel": {
       "type": "int",
-      "defaultValue": "<pricing-plan>"
+      "defaultValue": <capacity-reservation-in-gb>
     }
   },
   "resources": [
@@ -1012,6 +1042,8 @@ To set the pricing plan using JSON (ARM), paste the following code into your tem
   ]
 }
 ```
+
+For more information about updating the Microsoft.OperationalInsights/workspaces resource using JSON (ARM), refer to the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1).
 
 ---
 
