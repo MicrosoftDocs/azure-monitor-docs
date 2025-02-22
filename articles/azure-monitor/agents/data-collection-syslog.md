@@ -3,7 +3,7 @@ title: Collect Syslog events with Azure Monitor Agent
 description: Configure collection of Syslog events by using a data collection rule on virtual machines with Azure Monitor Agent.
 ms.topic: conceptual
 ms.custom: linux-related-content
-ms.date: 11/14/2024
+ms.date: 02/04/2025
 ms.reviewer: glinuxagent
 ---
 
@@ -25,39 +25,21 @@ Syslog is an event logging protocol that's common to Linux. You can use the Sysl
 
 In the **Collect and deliver** step of the DCR, select **Linux Syslog** from the **Data source type** dropdown. 
 
-The following facilities are supported with the Syslog collector:
-
-| Priority Index Number | Priority Name |
-|:---|:---|
-| {none} | No Pri   |
-| 0	 | Kern     |
-| 1	 | user     |
-| 2      | mail     |
-| 3	 | daemon   |
-| 4	 | auth     |
-| 5 	 | syslog   |
-| 6	 | lpr      |
-| 7  	 | news     |
-| 8	 | uucp     |
-| 9      | cron     |
-| 10     | authpriv |
-| 11	 | ftp      |
-| 12     | ntp      |
-| 13     | audit    |
-| 14     | alert    |
-| 15     | clock    |
-| 16     | local0   |
-| 17     | local1   |
-| 18     | local2   |
-| 19     | local3   |
-| 20     | local4   |
-| 21     | local5   |
-| 22     | local6   |
-| 23     | local7   |
+Select a **Minimum log level** for each facility or **NONE** to collect no events for that facility. You can configure multiple facilities at once by selecting their checkbox and then selecting a log level in **Set minimum log level for selected facilities**.
 
 :::image type="content" source="./media/data-collection-syslog/create-rule-data-source.png" lightbox="./media/data-collection-syslog/create-rule-data-source.png" alt-text="Screenshot that shows the page to select the data source type and minimum log level.":::
 
-By default, the agent will collect all events that are sent by the Syslog configuration. Change the **Minimum log level** for each facility to limit data collection. Select **NONE** to collect no events for a particular facility.
+All logs with the selected severity level and higher are collected for the facility. The supported severity levels and their relative severity are as follows:
+
+1. Debug
+2. Info
+3. Notice
+4. Warning
+5. Error
+6. Critical
+7. Alert
+8. Emergency
+
 
 ## Destinations
 

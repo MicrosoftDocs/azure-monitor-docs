@@ -2,7 +2,7 @@
 title: Troubleshoot Container insights | Microsoft Docs
 description: This article describes how you can troubleshoot and resolve issues with Container insights.
 ms.topic: conceptual
-ms.date: 01/23/2025
+ms.date: 01/29/2025
 ms.reviewer: aul
 
 ---
@@ -232,8 +232,8 @@ ContainerLog
 
 To enable collection of these fields so you don't have to modify your queries, enable the setting `log_collection_settings.enrich_container_logs` in the agent config map as described in the [data collection configuration settings](./container-insights-data-collection-configmap.md).
 
-### Logs not being collected on Azure Stack HCI cluster
-If you registered your cluster and/or configured HCI Insights before November 2023, features that use the Azure Monitor agent on HCI, such as Arc for Servers Insights, VM Insights, Container Insights, Defender for Cloud, or Microsoft Sentinel might not be collecting logs and event data properly. See [Repair AMA agent for HCI](/azure-stack/hci/manage/monitor-hci-single?tabs=22h2-and-later#repair-ama-for-azure-stack-hci) for steps to reconfigure the agent and HCI Insights.
+### Logs not being collected on Azure Local cluster
+If you registered your cluster and/or configured Insights for Azure Local before November 2023, features that use the Azure Monitor agent on Azure Local, such as Arc for Servers Insights, VM Insights, Container Insights, Defender for Cloud, or Microsoft Sentinel might not be collecting logs and event data properly. See [Repair AMA agent for Azure Local](/azure/azure-local/manage/monitor-hci-single?tabs=22h2-and-later#repair-ama-for-azure-stack-hci) for steps to reconfigure the agent and Insights for Azure Local.
 
 ### Missing data on large clusters
 If data is missing from any of the following tables, the likely issue is related to parsing of the large payloads because of a large number of pods or nodes. This is known issue in the ruby plugin to parse the large JSON payload  because of the default PODS_CHUNK_SIZE, which is 1000.

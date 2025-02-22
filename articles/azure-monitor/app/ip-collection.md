@@ -8,7 +8,7 @@ ms.reviewer: mmcc
 
 # Geolocation and IP address handling
 
-This article explains how geolocation lookup and IP address handling work in [Application Insights](app-insights-overview.md#application-insights-overview).
+This article explains how geolocation lookup and IP address handling work in [Application Insights](app-insights-overview.md).
 
 ## Default behavior
 
@@ -31,6 +31,9 @@ When IP addresses aren't collected, city and other geolocation attributes also a
 > The default and our recommendation is to not collect IP addresses. If you override this behavior, verify the collection doesn't break any compliance requirements or local regulations.
 >
 > To learn more about handling personal data, see [Guidance for personal data](../logs/personal-data-mgmt.md).
+
+> [!NOTE]
+> The IP addresses associated with telemetry ingested prior to enabling the `DisableIpMasking` property will continue to be displayed as `0.0.0.0`. Only telemetry ingested after this change will reflect the actual IP address information.
 
 To enable IP collection and storage, the `DisableIpMasking` property of the Application Insights component must be set to `true`.
 

@@ -1,11 +1,11 @@
 ---
 title: Supported metrics - Microsoft.MixedReality/remoteRenderingAccounts
 description: Reference for Microsoft.MixedReality/remoteRenderingAccounts metrics in Azure Monitor.
-ms.topic: reference
+ms.topic: generated-reference
 author: EdB-MSFT
 ms.author: edbaynash
 ms.service: azure-monitor
-ms.date: 11/19/2024
+ms.date: 02/18/2025
 ms.custom: Microsoft.MixedReality/remoteRenderingAccounts, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 

@@ -100,9 +100,9 @@ Semver is a universal software versioning schema that's defined in the format MA
   
 With the rise of Kubernetes and the OSS ecosystem, Container Insights migrate to use semver image following the K8s recommended standard wherein with each minor version introduced, all breaking changes were required to be publicly documented with each new Kubernetes release.   
 
-## Repair duplicate agents
+## Repair duplicate or obsolete agents on AKS or Azure Arc Kubernetes cluster
 
-If you manually enabled Container Insights using custom methods prior to October 2022, you can end up with multiple versions of the agent running together. Follow the steps below to clear this duplication. 
+If you manually enabled Container Insights using custom methods such as HELM or yaml, you could end up with multiple versions of the agent or an old version of the agent that doesn’t get updated automatically. Follow the steps below to ensure your cluster remains secure and continues to receive all critical security and quality updates for the agent.
 
 
 1.	Gather details of any custom settings, such as memory and CPU limits on your omsagent containers. 
@@ -152,7 +152,7 @@ If you manually enabled Container Insights using custom methods prior to October
 5.	Disable Container insights to clean all related resources using the guidance at [Disable Container insights on your Kubernetes cluster](../containers/kubernetes-monitoring-disable.md)
 
 
-6.	Re-onboard to Container insights using the guidance at [Enable Container insights on your Kubernetes cluster](kubernetes-monitoring-enable.md)
+6.	Re-onboard to Container insights using the guidance at [Enable Container insights on your Kubernetes cluster](kubernetes-monitoring-enable.md#enable-container-insights)
 
 
 

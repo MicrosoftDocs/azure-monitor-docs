@@ -2,7 +2,7 @@
 title: ApplicationInsights.config reference - Azure | Microsoft Docs
 description: Enable or disable data collection modules and add performance counters and other parameters.
 ms.topic: conceptual
-ms.date: 01/31/2024
+ms.date: 3/21/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.reviewer: mmcc
@@ -43,7 +43,7 @@ Dependencies can be autocollected without modifying your code by using agent-bas
 
 ### Performance collector
 
-The performance collector [collects system performance counters](./performance-counters.md), such as CPU, memory, and network load from IIS installations. You can specify which counters to collect, including performance counters you've set up yourself.
+The performance collector [collects system performance counters](./asp-net-counters.md), such as CPU, memory, and network load from IIS installations. You can specify which counters to collect, including performance counters you've set up yourself.
 
 * `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`
 * [Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet package

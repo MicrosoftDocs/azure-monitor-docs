@@ -656,6 +656,16 @@
    "redirect_document_id": false
   },
   {
+   "source_path_from_root": "/articles/azure-monitor/app/eventcounters.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net-counters",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/app/performance-counters.md",
+   "redirect_url": "/azure/azure-monitor/app/asp-net-counters",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/app/legacy-pricing.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/legacy-pricing",
    "redirect_document_id": false
@@ -7695,7 +7705,42 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/reference/tables/abschanneltobotrequests.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/absdependenciesrequests.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/auieventsaudit.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/auieventsoperational.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/chsmmanagementauditlogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-netapp-netappaccounts-capacitypools-volumes-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/queries/databricksworkspacelogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/databricksworkspacelogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }

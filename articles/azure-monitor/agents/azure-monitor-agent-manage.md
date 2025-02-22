@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: conceptual
-ms.date: 01/22/2025
+ms.date: 02/14/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -11,9 +11,6 @@ ms.reviewer: jeffwo
 # Install and manage the Azure Monitor Agent
 
 This article describes the different methods you can use to install, uninstall, update, and configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers.
-
-> [!IMPORTANT]
-> The Azure Monitor Agent requires at least one data collection rule (DCR) to begin collecting data after it's installed on a client machine. Your installation method determines whether a DCR is created automatically. If a DCR isn't created automatically during installation, you must configure data collection by following the guidance in [Collect data with the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
 
 ## Prerequisites
 
@@ -418,7 +415,7 @@ The AgentSettings DCR currently supports setting the following parameters:
 
 | Parameter | Description | Valid values |
 | --------- | ----------- | ----------- |
-| `MaxDiskQuotaInMB` | To provide resiliency, the agent collects data in a local cache when the agent can't send data. The agent sends the data in the cache after the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: `1025` to `51199`<br>Windows: `4000` to `51199` |
+| `MaxDiskQuotaInMB` | To provide resiliency, the agent collects data in a local cache when the agent can't send data. The agent sends the data in the cache after the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: `4,000` to `1,000,000`<br>Windows: `4000` to `1,000,000` |
 | `UseTimeReceivedForForwardedEvents` | Changes the **WEF** column in the Microsoft Sentinel Windows Event Forwarding (WEF) table to use `TimeReceived` instead of `TimeGenerated` data | `0` or `1` |
 
 ### Set up the AgentSettings DCR

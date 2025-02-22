@@ -271,7 +271,6 @@ The only supported data sources for the KQL statement in a transformation are as
   - [`isempty`](/azure/data-explorer/kusto/query/isemptyfunction)
   - [`isnotempty`](/azure/data-explorer/kusto/query/isnotemptyfunction)
   - [`parse_json`](/azure/data-explorer/kusto/query/parsejsonfunction)
-  - [`replace`](https://github.com/microsoft/Kusto-Query-Language/blob/master/doc/replacefunction.md)
   - [`split`](/azure/data-explorer/kusto/query/splitfunction)
   - [`strcat`](/azure/data-explorer/kusto/query/strcatfunction)
   - [`strcat_delim`](/azure/data-explorer/kusto/query/strcat-delimfunction)
