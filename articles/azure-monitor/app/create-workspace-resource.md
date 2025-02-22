@@ -160,7 +160,7 @@ Content-Type: application/json
 }
 ```
 
-For more information about creating and updating Application Insights resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/create-or-update).
+For more information about creating and updating Application Insights resources and Log Analytics workspaces using the REST API, refer to the REST API documentation for [Application Insights](/rest/api/application-insights/components/create-or-update) and [Log Analytics](/rest/api/loganalytics/workspaces/create-or-update).
 
 ## [Bicep](#tab/bicep)
 
