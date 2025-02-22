@@ -23,6 +23,7 @@ This document lists a set of commonly used workloads which have curated configur
 - [Apache Kafka](./prometheus-kafka-integration.md)
 - [Argo CD](./prometheus-argo-cd-integration.md)
 - [Elastic Search](./prometheus-elasticsearch-integration.md)
+- [Istio](./prometheus-istio-integration.md)
 
 ## Next steps
 

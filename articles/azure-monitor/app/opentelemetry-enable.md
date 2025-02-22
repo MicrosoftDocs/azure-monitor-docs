@@ -1,17 +1,20 @@
 ---
-title: Enable Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
-description: This article provides guidance on how to enable Azure Monitor on applications by using OpenTelemetry.
+title: Enable OpenTelemetry in Application Insights
+description: Learn how to enable OpenTelemetry (OTel) data collection in Application Insights for .NET, Java, Node.js, and Python applications using the Azure Monitor OpenTelemetry Distro.
 ms.topic: conceptual
-ms.date: 10/14/2024
+ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 ms.reviewer: mmcc
+
+#customer intent: As a developer or site reliability engineer, I want to enable OpenTelemetry (OTel) data collection in Application Insights so that I can automatically collect telemetry data from my .NET, Java, Node.js, or Python applications without extensive configuration.
+
 ---
 
 # Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications
 
-This article describes how to enable and configure OpenTelemetry-based data collection within [Application Insights](app-insights-overview.md#application-insights-overview). The Azure Monitor OpenTelemetry Distro:
+This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md). The Azure Monitor OpenTelemetry Distro:
 
 * Provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution) which includes support for features specific to Azure Monitor.
 * Enables [automatic](opentelemetry-add-modify.md#automatic-data-collection) telemetry by including OpenTelemetry instrumentation libraries for collecting traces, metrics, logs, and exceptions.
@@ -110,7 +113,7 @@ dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 
 #### [Java](#tab/java)
 
-Download the latest [applicationinsights-agent-3.6.2.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.6.2/applicationinsights-agent-3.6.2.jar) file.
+Download the latest [applicationinsights-agent-3.7.0.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.0/applicationinsights-agent-3.7.0.jar) file.
 
 > [!WARNING]
 >
@@ -223,7 +226,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
 
 Autoinstrumentation is enabled through configuration changes. *No code changes are required.*
 
-Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.6.2.jar"` to your application's JVM args.
+Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.0.jar"` to your application's JVM args.
 
 > [!NOTE]
 > Sampling is enabled by default at a rate of 5 requests per second, aiding in cost management. Telemetry data may be missing in scenarios exceeding this rate. For more information on modifying sampling configuration, see [sampling overrides](./java-standalone-sampling-overrides.md).
@@ -301,7 +304,7 @@ To paste your connection string, select from the following options:
 
 * **Set via configuration file** - *Java only*
     
-    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.6.2.jar` with the following content:
+    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.0.jar` with the following content:
     
     ```json
     {

@@ -57,6 +57,9 @@ Replace the suffix in the endpoints with the suffix in the following table for r
 The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](./gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
 
 > [!IMPORTANT]
+> OMS Gateway is not supported with Azure Arc-enabled servers for proxy connectivity, private link connectivity, and public endpoint connectivity options.
+
+> [!IMPORTANT]
 > Proxy configuration isn't supported for [Azure Monitor Metrics (preview)](../essentials/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
 
 > [!NOTE]
@@ -86,6 +89,14 @@ Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMo
 $settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth": "true"}}';
 $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[password]"}}';
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location>  -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
+```
+
+**Revert Proxy configuration to defaults**
+
+To restore proxy configuration to defaults you could define $settingsString = '{}'; as in the following example:
+```azurepowershell
+$settingsString = '{}';
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName RESOURCE GROUP HERE -VMName VM NAME HERE -Location westeurope  -> >  SettingString $settingsString
 ```
 
 # [Linux VM](#tab/PowerShellLinux)
@@ -134,6 +145,14 @@ New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType Az
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "true"}}
 $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[password]"}}
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
+```
+
+**Revert Proxy configuration to defaults**
+
+To restore proxy configuration to defaults you could define $settingsString = '{}'; as in the following example:
+```azurepowershell
+$settings = '{}';
+New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
 # [Linux Arc-enabled server](#tab/PowerShellLinuxArc)

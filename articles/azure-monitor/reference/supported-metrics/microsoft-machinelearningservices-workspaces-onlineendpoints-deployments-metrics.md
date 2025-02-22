@@ -1,11 +1,11 @@
 ---
 title: Supported metrics - Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments
 description: Reference for Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments metrics in Azure Monitor.
-ms.topic: reference
+ms.topic: generated-reference
 author: EdB-MSFT
 ms.author: edbaynash
 ms.service: azure-monitor
-ms.date: 11/19/2024
+ms.date: 02/18/2025
 ms.custom: Microsoft.MachineLearningServices/workspaces/onlineEndpoints/deployments, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
