@@ -102,36 +102,41 @@ To create a workspace-based Application Insights resource, a Log Analytics works
 az monitor log-analytics workspace create --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --location <azure-region-name>
 ```
 
-To create an Application Insights resource, run the following Azure CLI command in your terminal and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:
+Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<azure-region-name>`
+
+To create an Application Insights resource, run the following Azure CLI command in your terminal:
 
 ```azurecli
 az monitor app-insights component create --app <application-insights-resource-name> --location <azure-region-name> --resource-group <resource-group-name> --workspace <log-analytics-workspace-name>
 ```
 
-For more information about the `az monitor app-insights component create` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create).
+Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<resource-group-name>`, `<log-analytics-workspace-name>`
+
+For more information about creating Application Insights resources and Log Analytics workspaces using the Azure CLI, refer to the [Azure CLI documentation for Application Insights](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create) and [Log Analytics](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-create).
 
 ## [PowerShell](#tab/powershell)
 
 To create a workspace-based Application Insights resource, a Log Analytics workspace is required. If you don't have one already, you can use the following Azure PowerShell command to create one:
 
 ```azurepowershell
-New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Location <azure-region-name>
+New-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Location <azure-region-name>
 ```
 
-To create an Application Insights resource, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, and `<azure-region-name>`, and `<subscription-id>`, and `<log-analytics-workspace-name>` with your specific values:
+Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<azure-region-name>`
+
+To create an Application Insights resource, run the following Azure PowerShell command in your terminal:
 
 ```azurepowershell
 New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -Location <azure-region-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>
 ```
 
-For more information about the `New-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsights).
+Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `<azure-region-name>`,`<subscription-id>`, `<log-analytics-workspace-name>`
+
+For more information about creating Application Insights resources and Log Analytics workspaces using Azure PowerShell, refer to the [Azure PowerShell documentation for Application Insights](/powershell/module/az.applicationinsights/new-azapplicationinsights) and [Log Analytics](/powershell/module/az.operationalinsights/new-azoperationalinsightsworkspace).
 
 ## [REST](#tab/rest)
 
-To create an Application Insights resource using the REST API, you first have to create a Log Analytics workspace. Use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, and `<azure-region-name>` with your specific values:
-
-> [!NOTE]
-> If you already have a Log Analytics workspace, you can skip this step.
+To create a workspace-based Application Insights resource, a Log Analytics workspace is required. If you don't have one already, you can use the following REST API call to create one:
 
 ```rest
 PUT https://management.azure.com/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>?api-version=2023-09-01
@@ -143,7 +148,9 @@ Content-Type: application/json
 }
 ```
 
-To create an Application Insights resource using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<application-type>`, `<azure-region-name>`, and `<log-analytics-workspace-name>` with your specific values:
+Placeholders: `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, `<azure-region-name>` 
+
+To create an Application Insights resource using the REST API, use the following request:
 
 ```http
 PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2020-02-02
@@ -160,7 +167,9 @@ Content-Type: application/json
 }
 ```
 
-For more information about creating and updating Application Insights resources and Log Analytics workspaces using the REST API, refer to the REST API documentation for [Application Insights](/rest/api/application-insights/components/create-or-update) and [Log Analytics](/rest/api/loganalytics/workspaces/create-or-update).
+Placeholders: `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<application-type>`, `<azure-region-name>`, `<log-analytics-workspace-name>`
+
+For more information about creating Application Insights resources and Log Analytics workspaces using the REST API, refer to the [REST API documentation for Application Insights](/rest/api/application-insights/components/create-or-update) and [Log Analytics](/rest/api/loganalytics/workspaces/create-or-update).
 
 ## [Bicep](#tab/bicep)
 
