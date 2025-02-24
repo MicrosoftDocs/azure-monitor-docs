@@ -571,7 +571,7 @@ For more information about the `Set-AzDiagnosticSetting` command, refer to the [
 To export telemetry to an Azure storage account using a diagnostic setting, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<diagnostic-setting-name>`, `<access-token>`, and `<storage-account-name>` with your specific values:
 
 ```http
-PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>/diagnosticSettings/<diagnostic-setting-name>?api-version=2017-05-01-preview
+PUT https://management.azure.com//subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>/providers/Microsoft.Insights/diagnosticSettings/<diagnostic-setting-name>?api-version=2021-05-01-preview
 Authorization: Bearer <access-token>
 Content-Type: application/json
 
@@ -580,17 +580,23 @@ Content-Type: application/json
     "storageAccountId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Storage/storageAccounts/<storage-account-name>",
     "logs": [
       {
-        "category": "Request",
-        "enabled": true,
-        "retentionPolicy": {
-          "enabled": true,
-          "days": 30
-        }
+        "category": "AppRequests",
+        "enabled": true
+      }
+    ],
+    "metrics": [
+      {
+        "category": "AllMetrics",
+        "enabled": true
       }
     ]
   }
 }
 ```
+
+This example call enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
+
+For information, refer to our [REST API documentation](/rest/api/monitor/diagnostic-settings/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
@@ -813,39 +819,29 @@ For more information about the `Set-AzOperationalInsightsWorkspace` command, ref
 
 ### [REST](#tab/rest)
 
-To set the daily cap for both Application Insights and Log Analytics, use the following requests and replace the placeholders with your specific values:
+> [!NOTE]
+> Currently, Azure doesn't provide a command to set the daily cap for Application Insights via the Azure CLI.
 
-**Application Insights**
+To change the daily cap for Log Analytics, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
-Placeholders: `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<daily-cap-in-gb>`
+Placeholders: 
 
 ```http
-PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>?api-version=2023-09-01
 Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
+  "location": '<azure-region-name>',
   "properties": {
-    "DailyCap": <daily-cap-in-gb>
+    "workspaceCapping": {
+      "dailyQuotaGb": <daily-cap-in-gb>,
+    },
   }
 }
 ```
 
-**Log Analytics**
-
-Placeholders: `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, `<daily-cap-in-gb>`
-
-```http
-PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>?api-version=2020-08-01
-Authorization: Bearer <access-token>
-Content-Type: application/json
-
-{
-  "properties": {
-    "dailyQuotaGb": <daily-cap-in-gb>
-  }
-}
-```
+For more information about the setting the Log Analytics daily cap, refer to the [REST API documentation](/rest/api/loganalytics/workspaces/create-or-update)
 
 ### [Bicep](#tab/bicep)
 
@@ -941,6 +937,8 @@ For more information about the `Set-AzOperationalInsightsWorkspace` command, ref
 
 To set the pricing plan using REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, and `<pricing-plan>` with your specific values:
 
+**Pay-as-you-go**
+
 ```http
 PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>/pricingPlans/current?api-version=2017-10-01
 Content-Type: application/json
@@ -948,7 +946,26 @@ Authorization: Bearer <access-token>
 
 {
   "properties": {
-    "planType": "<pricing-plan>"
+    "sku": {
+      "name": "pergb2018"
+    }
+  }
+}
+```
+
+**Commitment tier**
+
+```http
+PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>/pricingPlans/current?api-version=2017-10-01
+Content-Type: application/json
+Authorization: Bearer <access-token>
+
+{
+  "properties": {
+    "sku": {
+      "name": "capacityreservation",
+      "capacityReservationLevel": "[parameters('capacityReservationLevel')]"
+    }
   }
 }
 ```
@@ -1341,42 +1358,7 @@ To learn how to add a metric alert using PowerShell, see [Create a new alert rul
 
 ### [REST](#tab/rest)
 
-To create a metric alert using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<alert-name>`, `<access-token>`, `<description>`, `<application-insights-resource-name>`, and `<action-group-name>`, with your specific values:
-
-```rest
-PUT https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/metricAlerts/<alert-name>?api-version=2018-03-01
-Authorization: Bearer <access-token>
-Content-Type: application/json
-
-{
-  "properties": {
-    "description": "<description>",
-    "severity": 3,
-    "enabled": true,
-    "scopes": [
-      "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>"
-    ],
-    "criteria": {
-      "allOf": [
-        {
-          "metricName": "cpuPercentage",
-          "metricNamespace": "Microsoft.Insights/components",
-          "operator": "GreaterThan",
-          "threshold": 80,
-          "timeAggregation": "Average",
-          "dimensions": [],
-          "metricAlertCriteriaType": "StaticThresholdCriterion"
-        }
-      ]
-    },
-    "actions": [
-      {
-        "actionGroupId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/actionGroups/<action-group-name>"
-      }
-    ]
-  }
-}
-```
+For a list of various example REST API calls to create a metric alert, refer to the [REST API documentation](/rest/api/monitor/metric-alerts/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
