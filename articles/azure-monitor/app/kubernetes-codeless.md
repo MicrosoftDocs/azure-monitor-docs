@@ -146,8 +146,8 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
     > To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.
 
     Examples:
-    - Java: `instrumentation.opentelemetry.io/inject-java:"cr1"`
-    - Node.js: `instrumentation.opentelemetry.io/inject-nodejs:"cr1"`
+    - Java: `instrumentation.opentelemetry.io/inject-java: "cr1"`
+    - Node.js: `instrumentation.opentelemetry.io/inject-nodejs: "cr1"`
     
     Annotation placement should look as follows.
 
@@ -159,7 +159,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
       template:
         metadata:
           annotations:
-            instrumentation.opentelemetry.io/inject-nodejs:"cr1"
+            instrumentation.opentelemetry.io/inject-nodejs: "cr1"
     ```
 
 > [!TIP]
@@ -203,12 +203,12 @@ The following annotations disable autoinstrumentation for the language indicated
 - Node.js: `instrumentation.opentelemetry.io/inject-nodejs`
 
   ```yml
-  instrumentation.opentelemetry.io/inject-java:"false"
+  instrumentation.opentelemetry.io/inject-java: "false"
   ```
 To turn autoinstrumentation back on after disabling.
 
   ```yml
-  instrumentation.opentelemetry.io/inject-java:"true"
+  instrumentation.opentelemetry.io/inject-java: "true"
   ```
 
 Annotation placement should look as follows.
@@ -221,7 +221,7 @@ spec:
   template:
     metadata:
       annotations:
-        instrumentation.opentelemetry.io/inject-java:"false"
+        instrumentation.opentelemetry.io/inject-java: "false"
 ```
 
 ### Enabling logs in Application Insights
@@ -247,7 +247,7 @@ Use the following annotation to enable logs in Application Insights
 > To avoid adding them to the deployment's annotations by mistake, add annotations at the `spec.template.metadata.annotations` level of your deployment.
 
   ```yml
-  monitor.azure.com/enable-application-logs:"true"
+  monitor.azure.com/enable-application-logs: "true"
   ```
 
 ## Prepare a cluster during AKS cluster create
@@ -312,7 +312,7 @@ The following steps can help to resolve problems when no data appears in your Ap
     
     Check the `monitor.azure.com/instrumentation` annotation on the deployment itself and the latest replica set that belongs to it.
     
-    The annotation should be present with proper JSON in the following pattern: `{"crName":"crName1","crResourceVersion":"20177993","platforms":["Java"]}`
+    The annotation should be present with proper JSON in the following pattern: `{"crName": "crName1","crResourceVersion": "20177993","platforms":["Java"]}`
 
     If the annotation **isn't present**, then the deployment isn't instrumented and the following steps need to be completed.
     
