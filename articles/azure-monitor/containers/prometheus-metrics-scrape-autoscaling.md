@@ -14,8 +14,6 @@ The HPA allows the ama-metrics replicaset pod, which scrapes Prometheus metrics 
 
 [Kubernetes support for HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) 
 
-[HPA Deployment Spec for Managed Prometheus Addon](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-collector-hpa.yaml)
-
 ### Update Min and Max shards
 The HPA object named **ama-metrics-hpa** in the kube-system namespace can be edited to update the min and max shards/replicaset instances.
 Note that if the changes are not within the supported range of 2 to 12 they will be ineffective and fall back to the last known good.
@@ -52,6 +50,8 @@ Ex - If the customer wants to set the shards to 8 and not have the HPA update th
 ```bash
 kubectl patch hpa ama-metrics-hpa -n kube-system --type merge --patch '{"spec": {"minReplicas": 8, "maxReplicas": 8}}'
 ```
+
+*A kubectl edit on the ama-metrics-hpa spec gives more information about the scale up and scale down configurations used for HPA*
 
 ## Next steps
 
