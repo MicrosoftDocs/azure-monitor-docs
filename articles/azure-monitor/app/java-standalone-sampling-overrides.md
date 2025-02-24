@@ -428,7 +428,7 @@ No, Sampling Overrides is now generally available (GA) and can be used with both
 
 #### How do I configure Sampling Overrides when using Azure App Service with autoinstrumentation?
 
-If you use autoinstrumentation, update the `applicationinsights.json` file in the Azure portal or configure the Application Insights agent settings.
+If you use autoinstrumentation, update the `applicationinsights.json` file in the Azure portal.
 
 #### Is it necessary to manually upload the Application Insights agent file for Sampling Overrides?
 
