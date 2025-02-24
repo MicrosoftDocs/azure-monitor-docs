@@ -29,6 +29,10 @@ Azure Monitor managed service for Prometheus provides preconfigured alerts, rule
 
 Pricing is based on ingestion and query with no additional storage cost. For more information, see the **Metrics** tab in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
+> [!NOTE]
+> Azure Managed Prometheus supports Horizontal Pod Autoscaling for replicaset pods in AKS and Arc-enabled Kubernetes clusters.
+See [Autoscaling](../containers/prometheus-metrics-scrape-autoscaling.md) to learn more.
+
 ### Enable Azure Monitor managed service for Prometheus
 
 Azure Monitor managed service for Prometheus collects data from AKS and Azure Arc-enabled Kubernetes.

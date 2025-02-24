@@ -9,7 +9,7 @@ ms.reviewer: rashmy
 # Horizontal Pod Autoscaling for Collector Replicaset
 
 ### Overview
-The Managed Prometheus Addon now supports Horizontal Pod Autoscaling(HPA) for the ama-metrics replicaset pod. 
+Azure Managed Prometheus supports Horizontal Pod Autoscaling(HPA) for the ama-metrics replicaset pod by default. 
 The HPA allows the ama-metrics replicaset pod, which scrapes Prometheus metrics with custom jobs, to scale automatically based on memory utilization to prevent OOMKills. By default, the HPA is configured with a minimum of 2 replicas and a maximum of 12 replicas. Users can configure the number of shards within the range of 2 to 12 replicas.
 
 [Kubernetes support for HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) 
@@ -18,7 +18,7 @@ The HPA allows the ama-metrics replicaset pod, which scrapes Prometheus metrics 
 
 ### Update Min and Max shards
 The HPA object named **ama-metrics-hpa** in the kube-system namespace can be edited to update the min and max shards/replicaset instances.
-Note that the changes will not be reconciled as long as they remain within the supported range of 2 to 12.
+Note that if the changes are not within the supported range of 2 to 12 they will be ineffective and fall back to the last known good.
 
 **Update Min replicas**
 ```bash
