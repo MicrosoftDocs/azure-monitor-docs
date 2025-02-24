@@ -159,7 +159,7 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
       template:
         metadata:
           annotations:
-            instrumentation.opentelemetry.io/inject-nodejs: "cr1"
+            instrumentation.opentelemetry.io/inject-nodejs:"cr1"
     ```
 
 > [!TIP]
@@ -221,7 +221,7 @@ spec:
   template:
     metadata:
       annotations:
-        instrumentation.opentelemetry.io/inject-java: "false"
+        instrumentation.opentelemetry.io/inject-java:"false"
 ```
 
 ### Enabling logs in Application Insights
