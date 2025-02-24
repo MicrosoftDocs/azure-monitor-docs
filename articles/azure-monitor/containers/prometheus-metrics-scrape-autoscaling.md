@@ -10,15 +10,15 @@ ms.reviewer: rashmy
 
 ### Overview
 The Managed Prometheus Addon now supports Horizontal Pod Autoscaling(HPA) for the ama-metrics replicaset pod. 
-With this, the ama-metrics replicaset pod which handles the scraping of prometheus metrics with custom jobs can scale automatically based on the memory utilization. By default, the HPA is configured with a minimum of 2 replicas (which is our global default) and a maximum of 12 replicas. The customers will also the have capability to set the shards to any number of minimum and maximum repliacas as long as they are within the range of 2 and 12.
-With this, HPA automatically takes care of scaling based on the memory utlization of the ama-metrics pod to avoid OOMKills along with providing customer flexibility.
+The HPA allows the ama-metrics replicaset pod, which scrapes Prometheus metrics with custom jobs, to scale automatically based on memory utilization to prevent OOMKills. By default, the HPA is configured with a minimum of 2 replicas and a maximum of 12 replicas. Users can configure the number of shards within the range of 2 to 12 replicas.
 
 [Kubernetes support for HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) 
 
 [HPA Deployment Spec for Managed Prometheus Addon](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-collector-hpa.yaml)
 
 ### Update Min and Max shards
-In order to update the min and max shards on the HPA, the HPA object **ama-metrics-hpa** in the kube-system namespace can be edited and it will not be reconciled as long as it is within the supported range of 2 and 12.
+The HPA object named **ama-metrics-hpa** in the kube-system namespace can be edited to update the min and max shards/replicaset instances.
+Note that the changes will not be reconciled as long as they remain within the supported range of 2 to 12.
 
 **Update Min replicas**
 ```bash
@@ -43,7 +43,8 @@ kubectl edit hpa ama-metrics-hpa -n kube-system
 ```
 
 ### Update min and max shards to disable HPA scaling
-HPA should be able to handle the load automatically for varying customer needs. But, it it doesnt fit the needs, the customer can set min shards = max shards so that HPA doesnt scale the replicas based on the varying loads. 
+If the default HPA settings do not meet the customer's requirements, they can configure the minimum and maximum number of shards to be the same.
+This prevents the HPA from scaling the replicas based on varying loads, ensuring a consistent number of replicas.
 
 Ex - If the customer wants to set the shards to 8 and not have the HPA update the shards, update the min and max shards to 8.
 
