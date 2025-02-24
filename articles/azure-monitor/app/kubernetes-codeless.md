@@ -211,6 +211,19 @@ To turn autoinstrumentation back on after disabling.
   instrumentation.opentelemetry.io/inject-java:"true"
   ```
 
+Annotation placement should look as follows.
+
+```yml
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+  template:
+    metadata:
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: "false"
+```
+
 ### Enabling logs in Application Insights
 
 You can opt to collect logs in Application Insights as an addition to or replacement for Container Insights logs. 
