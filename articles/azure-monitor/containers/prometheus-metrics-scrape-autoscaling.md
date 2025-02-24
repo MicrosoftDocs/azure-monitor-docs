@@ -6,7 +6,7 @@ ms.date: 2/28/2024
 ms.reviewer: rashmy
 ---
 
-# Managed Prometheus support for Horizontal Pod Autoscaling for Collector Replicaset
+# Horizontal Pod Autoscaling for Collector Replicaset
 
 ### Overview
 The Managed Prometheus Addon now supports Horizontal Pod Autoscaling(HPA) for the ama-metrics replicaset pod. 

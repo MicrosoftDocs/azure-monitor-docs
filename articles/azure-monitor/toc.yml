@@ -494,7 +494,7 @@ items:
         - name: High scale
           displayName: Prometheus
           href: containers/prometheus-metrics-scrape-scale.md
-        - name: Autoscale support for Managed Prometheus Addon
+        - name: Autoscale support
           displayName: Prometheus
           href: containers/prometheus-metrics-scrape-autoscaling.md
       - name: Integrations
