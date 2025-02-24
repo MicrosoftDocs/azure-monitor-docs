@@ -9,7 +9,7 @@ ms.date: 2/14/2025
 
 The [Azure status](https://azure.status.microsoft/) pane provides you with a global view of the health of Azure services and regions, and service availability.
 
-Anyone can visit the **Azure status** pane and view incidents related to all services that report service health, as well as incidents with wide-ranging impact.
+Anyone can visit the **Azure status** pane and view incidents related to all services that report service health and incidents with wide-ranging impact.
 
 While anyone can view **Azure status**, we strongly encourage current Azure users to use the personalized experience in [Azure Service Health](https://aka.ms/azureservicehealth), which includes all outages, upcoming planned maintenance activities, and service advisories.
 
@@ -57,7 +57,7 @@ The public **Azure status** pane is used only to communicate about service issue
 
 While the [**Azure status** pane](https://azure.status.microsoft/status) always shows the latest health information, you can view older events using the [**Azure status history** pane](https://azure.status.microsoft/status/history/). The history pane contains all Post Incident Responses (PIRs), (formerly known as Root Cause Analyses or RCAs) for incidents that occurred on November 20, 2019 or later.
 
-The [**Azure status history** pane](https://azure.status.microsoft/status/history/) displays PIRs only for Scenario 1 events. We're committed to publishing PIRs publicly for service issues with the broadest impact, such as those with both a multi-service and multi-region impact. We conduct and publish PIRs to ensure that all customers and the industry at large:
+The [**Azure status history** pane](https://azure.status.microsoft/status/history/) displays PIRs only for Scenario 1 events. We're committed to publishing PIRs publicly for service issues with the broadest impact, like issues with both a multi-service and multi-region impact. We conduct and publish PIRs to ensure that all customers and the industry at large:
 
 * Can learn from our retrospectives on these issues.  
 * Can understand what steps we're taking to make such issues less likely and/or less impactful in the future.
