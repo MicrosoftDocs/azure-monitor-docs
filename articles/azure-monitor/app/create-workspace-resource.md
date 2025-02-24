@@ -2,7 +2,7 @@
 title: Create and configure Application Insights resources
 description: Learn how to create and configure Application Insights resources programmatically and in the Azure portal
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 02/25/2025
 ms.reviewer: cogoodson
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
@@ -16,16 +16,15 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 Enhanced capabilities include:
 
-* [Customer-managed keys](../logs/customer-managed-keys.md) encrypt your data at rest with keys only accessible to you.
-* [Azure Private Link](../logs/private-link-security.md) securely connects Azure PaaS services to your virtual network using private endpoints.
-* [Bring your own storage (BYOS)](./profiler-bring-your-own-storage.md) lets you manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
-* [Commitment tiers](../logs/cost-logs.md#commitment-tiers) offer up to a 30% saving over pay-as-you-go pricing.
-* Log Analytics streaming processes data more quickly.
+* [Customer-managed keys](../logs/customer-managed-keys.md) - Encrypt your data at rest with keys only accessible to you.
+* [Azure Private Link](../logs/private-link-security.md) - Securely connect Azure PaaS services to your virtual network using private endpoints.
+* [Bring your own storage (BYOS)](./profiler-bring-your-own-storage.md) - Manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
+* [Commitment tiers](../logs/cost-logs.md#commitment-tiers) - Save up to 30% over pay-as-you-go pricing.
 
 This article shows you how to create and configure Application Insights resources. Along with the Application Insights resource itself, you can add various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan). You can also create [availability tests](#create-an-availability-test), set up [metric alerts](#add-a-metric-alert), and automate the process using [Azure Resource Manager](/azure/azure-resource-manager/management/overview).
 
 > [!NOTE]
-> Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing for workspace-based Application Insights resources, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
+> Data ingestion and retention for workspace-based Application Insights resources are billed through the Log Analytics workspace where the data is located. To learn more about billing, see [Azure Monitor Logs pricing details](../logs/cost-logs.md).
 
 ## Prerequisites
 
@@ -41,7 +40,7 @@ No additional requirements for the Azure portal.
 
 ### [Azure CLI](#tab/cli)
 
-To access the preview Application Insights Azure CLI commands, you first need to run:
+To access Application Insights Azure CLI commands, you first need to run:
 
 ```azurecli
  az extension add -n application-insights
@@ -66,11 +65,11 @@ For more information, see [Manage Azure resources by using the REST API](/azure/
 
 ### [Bicep](#tab/bicep)
 
-You can deploy Bicep templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional prerequisites.
+You can deploy Bicep templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional requirements.
 
 ### [JSON (ARM)](#tab/arm)
 
-You can deploy JSON templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional prerequisites.
+You can deploy JSON (ARM) templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional requirements.
 
 ---
 
@@ -85,7 +84,7 @@ Sign in to the [Azure portal](https://portal.azure.com), and create an Applicati
 > [!NOTE]
 > If you don't connect to an existing Log Analytics workspace during resource creation, a new Log Analytics resource is created automatically along with your Application Insights resource.
 
-After you create your resource, you'll see corresponding workspace information in the **Overview** pane.
+After you create your resource, you can find the corresponding workspace information in the **Overview** pane.
 
 :::image type="content" source="./media/create-workspace-resource/workspace-name.png" lightbox="./media/create-workspace-resource/workspace-name.png" alt-text="Screenshot that shows a workspace name.":::
 
@@ -112,11 +111,11 @@ Placeholders: `<application-insights-resource-name>`, `<azure-region-name>`, `<r
 az monitor app-insights component create --app <application-insights-resource-name> --location <azure-region-name> --resource-group <resource-group-name> --workspace <log-analytics-workspace-name>
 ```
 
-For more information about creating Application Insights resources and Log Analytics workspaces using the Azure CLI, refer to the [Azure CLI documentation for Application Insights](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create) and [Log Analytics](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-create).
+For more information about creating Application Insights resources and Log Analytics workspaces using the Azure CLI, see the [Azure CLI documentation for Application Insights](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-create) and [Log Analytics](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-create).
 
 ## [PowerShell](#tab/powershell)
 
-To create a workspace-based Application Insights resource, a Log Analytics workspace is required. If you don't have one already, you can use the following Azure PowerShell command to create one:
+To create a workspace-based Application Insights resource, a Log Analytics workspace is required. If you don't have one already, you can use the following Azure PowerShell command to create one.
 
 Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<azure-region-name>`
 
@@ -124,7 +123,7 @@ Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<azure
 New-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Location <azure-region-name>
 ```
 
-To create an Application Insights resource, run the following Azure PowerShell command in your terminal:
+To create an Application Insights resource, run the following Azure PowerShell command in your terminal.
 
 Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `<azure-region-name>`,`<subscription-id>`, `<log-analytics-workspace-name>`
 
@@ -132,7 +131,7 @@ Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `
 New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -Location <azure-region-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>
 ```
 
-For more information about creating Application Insights resources and Log Analytics workspaces using Azure PowerShell, refer to the [Azure PowerShell documentation for Application Insights](/powershell/module/az.applicationinsights/new-azapplicationinsights) and [Log Analytics](/powershell/module/az.operationalinsights/new-azoperationalinsightsworkspace).
+For more information about creating Application Insights resources and Log Analytics workspaces using Azure PowerShell, see to the [Azure PowerShell documentation for Application Insights](/powershell/module/az.applicationinsights/new-azapplicationinsights) and [Log Analytics](/powershell/module/az.operationalinsights/new-azoperationalinsightsworkspace).
 
 ## [REST](#tab/rest)
 
@@ -169,7 +168,7 @@ Content-Type: application/json
 }
 ```
 
-For more information about creating Application Insights resources and Log Analytics workspaces using the REST API, refer to the [REST API documentation for Application Insights](/rest/api/application-insights/components/create-or-update) and [Log Analytics](/rest/api/loganalytics/workspaces/create-or-update).
+For more information about creating Application Insights resources and Log Analytics workspaces using the REST API, see to the [REST API documentation for Application Insights](/rest/api/application-insights/components/create-or-update) and [Log Analytics](/rest/api/loganalytics/workspaces/create-or-update).
 
 ## [Bicep](#tab/bicep)
 
@@ -223,9 +222,9 @@ param workspaceResourceId string = '/subscriptions/<subscription-id>/resourcegro
     New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile my-template.bicep -TemplateParameterFile my-parameters.bicepparam
     ``` 
 
-   * `-ResourceGroupName` is the group where you want to create the new resources.
-   * `-TemplateFile` must occur before the custom parameters.
-   * `-TemplateParameterFile` is the name of the parameter file.
+    * `-ResourceGroupName` is the group where you want to create the new resources.
+    * `-TemplateFile` must occur before the custom parameters.
+    * `-TemplateParameterFile` is the name of the parameter file.
 
 You can add other parameters. You find their descriptions in the parameters section of the template.
 
@@ -240,7 +239,7 @@ Here's how to create a new Application Insights resource using a JSON (ARM) temp
 
 ### Create a template
 
-1. Create a new *.json* file (for example, *my-template.json*) and copy the following content into it:
+Create a new *.json* file (for example, *my-template.json*) and copy the following content into it:
 
 ```json
 {
@@ -347,9 +346,9 @@ Create a new *.json* file (for example, *my-parameters.json*), copy the followin
     New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile my-template.json -TemplateParameterFile my-parameters.json
     ```
 
-   * `-ResourceGroupName` is the group where you want to create the new resources.
-   * `-TemplateFile` must occur before the custom parameters.
-   * `-TemplateParameterFile` is the name of the parameter file.
+    * `-ResourceGroupName` is the group where you want to create the new resources.
+    * `-TemplateFile` must occur before the custom parameters.
+    * `-TemplateParameterFile` is the name of the parameter file.
 
 ---
 
@@ -377,7 +376,7 @@ To get the connection string, run the following Azure CLI command in your termin
 az monitor app-insights component show --app <application-insights-resource-name> --resource-group <resource-group-name> --query connectionString --output tsv
 ```
 
-For more information about the `az monitor app-insights component show` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-show).
+For more information about the `az monitor app-insights component show` command, see to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-show).
 
 ### [PowerShell](#tab/powershell)
 
@@ -387,7 +386,7 @@ To get the connection string, run the following Azure PowerShell command in your
 Get-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> | Select-Object -ExpandProperty ConnectionString
 ```
 
-For more information about the `Get-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/get-azapplicationinsights).
+For more information about the `Get-AzApplicationInsights` command, see to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/get-azapplicationinsights).
 
 ### [REST](#tab/rest)
 
@@ -455,7 +454,7 @@ To change the Log Analytics workspace, run the following Azure CLI command in yo
 az monitor app-insights component update --app <application-insights-resource-name> --resource-group <resource-group-name> --workspace <log-analytics-workspace-name>
 ```
 
-For more information about the `az monitor app-insights component update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-update).
+For more information about the `az monitor app-insights component update` command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-update).
 
 ### [PowerShell](#tab/powershell)
 
@@ -465,7 +464,7 @@ To change the Log Analytics workspace, run the following Azure PowerShell comman
 Update-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>
 ```
 
-For more information about the `Update-AzApplicationInsights` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
+For more information about the `Update-AzApplicationInsights` command, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
 
 ### [REST](#tab/rest)
 
@@ -552,7 +551,7 @@ az monitor diagnostic-settings create --name <diagnostic-setting-name> --resourc
 
 This example command enables diagnostic settings and sends all logs of your Application Insights resource to the specified storage account. To also send metrics, add `--metrics '[{"category": "AllMetrics", "enabled": true}]'` to the command.
 
-For more information about the `az monitor diagnostic-settings create` command, refer to the [Azure CLI documentation](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create).
+For more information about the `az monitor diagnostic-settings create` command, see the [Azure CLI documentation](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create).
 
 ### [PowerShell](#tab/powershell)
 
@@ -564,7 +563,7 @@ Set-AzDiagnosticSetting -ResourceId <application-insights-resource-id> -Name <di
 
 This example command enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
 
-For more information about the `Set-AzDiagnosticSetting` command, refer to the [Azure PowerShell documentation](/powershell/module/az.monitor/set-azdiagnosticsetting).
+For more information about the `Set-AzDiagnosticSetting` command, see the [Azure PowerShell documentation](/powershell/module/az.monitor/set-azdiagnosticsetting).
 
 ### [REST](#tab/rest)
 
@@ -596,7 +595,7 @@ Content-Type: application/json
 
 This example call enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
 
-For information, refer to our [REST API documentation](/rest/api/monitor/diagnostic-settings/create-or-update).
+For information, see the [REST API documentation](/rest/api/monitor/diagnostic-settings/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
@@ -791,7 +790,7 @@ To change the daily cap for Log Analytics, run the following Azure CLI command i
 az monitor log-analytics workspace update --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --set workspaceCapping.dailyQuotaGb=<daily-cap-in-gb>
 ```
 
-For more information about the `az monitor log-analytics workspace update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update).
+For more information about the `az monitor log-analytics workspace update` command, see the [Azure CLI documentation](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update).
 
 ### [PowerShell](#tab/powershell)
 
@@ -805,7 +804,7 @@ Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `
 Set-AzApplicationInsightsDailyCap -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -DailyCapGB <daily-cap-in-gb>
 ```
 
-For more information about the `Set-AzApplicationInsightsDailyCap` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/set-azapplicationinsightsdailycap).
+For more information about the `Set-AzApplicationInsightsDailyCap` command, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/set-azapplicationinsightsdailycap).
 
 **Log Analytics**
 
@@ -815,7 +814,7 @@ Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<daily
 Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -DailyQuotaGb <daily-cap-in-gb>
 ```
 
-For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
+For more information about the `Set-AzOperationalInsightsWorkspace` command, see the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
 
 ### [REST](#tab/rest)
 
@@ -841,7 +840,7 @@ Content-Type: application/json
 }
 ```
 
-For more information about the setting the Log Analytics daily cap, refer to the [REST API documentation](/rest/api/loganalytics/workspaces/create-or-update)
+For more information about the setting the Log Analytics daily cap, see the [REST API documentation](/rest/api/loganalytics/workspaces/create-or-update)
 
 ### [Bicep](#tab/bicep)
 
@@ -913,7 +912,7 @@ az monitor log-analytics workspace update --resource-group <resource-group-name>
 az monitor log-analytics workspace update --resource-group <resource-group-name> --workspace-name <log-analytics-workspace-name> --set CapacityReservation --level <capacity-reservation-in-gb>
 ```
 
-For more information about the `az monitor log-analytics workspace update` command, refer to the [Azure CLI documentation](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update).
+For more information about the `az monitor log-analytics workspace update` command, see the [Azure CLI documentation](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update).
 
 ### [PowerShell](#tab/powershell)
 
@@ -931,7 +930,7 @@ Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Nam
 Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -Sku capacityreservation -SkuCapacity <capacity-reservation-in-gb>
 ```
 
-For more information about the `Set-AzOperationalInsightsWorkspace` command, refer to the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
+For more information about the `Set-AzOperationalInsightsWorkspace` command, see the [Azure PowerShell documentation](/powershell/module/az.operationalinsights/set-azoperationalinsightsworkspace).
 
 ### [REST](#tab/rest)
 
@@ -1010,7 +1009,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 }
 ```
 
-For more information about updating the Microsoft.OperationalInsights/workspaces resource using Bicep, refer to the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep#workspacesku).
+For more information about updating the Microsoft.OperationalInsights/workspaces resource using Bicep, see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep#workspacesku).
 
 ### [JSON (ARM)](#tab/arm)
 
@@ -1085,7 +1084,7 @@ To set the pricing plan using JSON (ARM), paste the following code into your tem
 }
 ```
 
-For more information about updating the Microsoft.OperationalInsights/workspaces resource using JSON (ARM), refer to the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1).
+For more information about updating the Microsoft.OperationalInsights/workspaces resource using JSON (ARM), see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1).
 
 ---
 
@@ -1124,7 +1123,7 @@ az monitor app-insights web-test create --resource-group <resource-group-name> \
                                         --tags hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>=Resource
 ```
 
-For more information about the `az monitor app-insights web-test create` command, refer to the [Azure CLI documentation](/cli/azure/monitor/app-insights/web-test#az-monitor-app-insights-web-test-create).
+For more information about the `az monitor app-insights web-test create` command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/web-test#az-monitor-app-insights-web-test-create).
 
 > [!NOTE]
 > The web test region (`-location`) is different from geographic location (`-locations`, notice the plural form) of which multiple can be selected. The `-location` refers to the Azure region where the web test is created and hosted, while `-locations` refers to geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
@@ -1158,7 +1157,7 @@ New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name> `
                                  -Tag @{"hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>" = "Resource"}
 ```
 
-For more information about the `New-AzApplicationInsightsWebTest` command, refer to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsightswebtest).
+For more information about the `New-AzApplicationInsightsWebTest` command, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/new-azapplicationinsightswebtest).
 
 > [!NOTE]
 > The web test region (`-Location`) is different from the geographic location (`-GeoLocation`) of which multiple can be selected. `-Location` refers to the Azure region where the web test is created and hosted, while `-GeoLocation` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
@@ -1341,7 +1340,7 @@ For more information about creating availability tests using JSON (ARM), see [Mi
 
 ### Add a metric alert
 
-> [!NOTE]
+> [!TIP]
 > Each Application Insights resource comes with metrics that are available out of the box. If separate components report to the same Application Insights resource, it might not make sense to alert on these metrics.
 
 ### [Portal](#tab/portal)
@@ -1358,7 +1357,7 @@ To learn how to add a metric alert using PowerShell, see [Create a new alert rul
 
 ### [REST](#tab/rest)
 
-For a list of various example REST API calls to create a metric alert, refer to the [REST API documentation](/rest/api/monitor/metric-alerts/create-or-update).
+For a list of various example REST API calls to create a metric alert, see the [REST API documentation](/rest/api/monitor/metric-alerts/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
@@ -1394,7 +1393,7 @@ Use a single Application Insights resource for:
 * When the same smart detection and work item integration settings are suitable across all roles.
 
 > [!NOTE]
-> If you want to consolidate multiple Application Insights resources, you can point your existing application components to a new, consolidated Application Insights resource. The telemetry stored in your old resource won't be transferred to the new resource. Only delete the old resource when you have enough telemetry in the new resource for business continuity.
+> If you want to consolidate multiple Application Insights resources, you can point your existing application components to a new, consolidated Application Insights resource. The telemetry stored in your old resource doesn't transfer to the new resource. Only delete the old resource when you have enough telemetry in the new resource for business continuity.
 
 #### Other considerations
 
@@ -1443,7 +1442,7 @@ There are several different methods of setting the **Application Version** prope
 
     This step generates a file called *yourProjectName*`.BuildInfo.config`. The Publish process renames it to `BuildInfo.config`.
 
-    The build label contains a placeholder `(*AutoGen_...*)` when you build with Visual Studio. But when built with the Microsoft Build Engine, it's populated with the correct version number.
+    The build label contains a placeholder `(*AutoGen_...*)` when you build with Visual Studio.  When built with the Microsoft Build Engine, the placeholder is populated with the correct version number.
 
     To allow the Microsoft Build Engine to generate version numbers, set the version like `1.0.*` in `AssemblyReference.cs`.
 
@@ -1495,7 +1494,7 @@ To learn how to create an ARM template from scratch, visit our [ARM template doc
 Available properties for [Application Insights](/azure/templates/microsoft.insights/components), [availability tests](/azure/templates/microsoft.insights/webtests), [metric alerts](/azure/templates/microsoft.insights/metricalerts), [diagnostic settings](/azure/templates/microsoft.insights/diagnosticsettings), and other resources can be found in our [Azure resource reference](/azure/templates/) documentation under the **Reference** > **Monitor** > **Insights** node.
 
 > [!TIP]
-> You can also use quickstart templates, available towards the bottom of each Azure resource reference documentation page linked above. To learn how to use them, visit [Tutorial: Use Azure Quickstart Templates](/azure/azure-resource-manager/templates/template-tutorial-quickstart-template).
+> You can also use quickstart templates, available towards the bottom of each Azure resource reference documentation page linked in this section. To learn how to use templates, visit [Tutorial: Use Azure Quickstart Templates](/azure/azure-resource-manager/templates/template-tutorial-quickstart-template).
 
 ## Frequently asked questions
 
