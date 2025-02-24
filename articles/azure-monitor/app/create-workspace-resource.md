@@ -50,7 +50,7 @@ If you don't run the `az extension add` command, you see an error message that s
 
 ### [PowerShell](#tab/powershell)
 
-If you haven't used PowerShell with your Azure subscription before, install the Azure PowerShell module on the machine where you want to run the scripts:
+Before using PowerShell with your Azure subscription for the first time, install the Azure PowerShell module on the machine where you want to run the scripts:
 
 1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
 1. Use it to install Azure PowerShell.
@@ -458,7 +458,7 @@ For more information about the `az monitor app-insights component update` comman
 
 ### [PowerShell](#tab/powershell)
 
-To change the Log Analytics workspace, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, `<subscription-id>` and `<log-analytics-workspace-name>` with your specific values:
+To change the Log Analytics workspace, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<application-insights-resource-name>`, `<subscription-id>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```azurepowershell
 Update-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>
@@ -1222,7 +1222,7 @@ To learn more about creating and configuring web tests using the REST API, see o
 
 ### [Bicep](#tab/bicep)
 
-To create a standard availability test with default settings using Bicep, add the following code to your template and replace the placeholders  `<web-test-name>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<url>` with your specific values:
+To create a standard availability test with default settings using Bicep, add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<url>` with your specific values:
 
 ```bicep
 resource webTest 'microsoft.insights/webtests@2022-06-15' = {
@@ -1442,7 +1442,7 @@ There are several different methods of setting the **Application Version** prope
 
     This step generates a file called *yourProjectName*`.BuildInfo.config`. The Publish process renames it to `BuildInfo.config`.
 
-    The build label contains a placeholder `(*AutoGen_...*)` when you build with Visual Studio.  When built with the Microsoft Build Engine, the placeholder is populated with the correct version number.
+    The build label contains a placeholder `(*AutoGen_...*)` when you build with Visual Studio. When built with the Microsoft Build Engine, the placeholder is populated with the correct version number.
 
     To allow the Microsoft Build Engine to generate version numbers, set the version like `1.0.*` in `AssemblyReference.cs`.
 
@@ -1511,7 +1511,7 @@ Transferring existing Application Insights resources between regions isn't suppo
 * Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means to lose all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
 
 Unique customizations that commonly need to be manually re-created or updated for the resource in the new region include but aren't limited to:
-          
+
 * Re-create custom dashboards and workbooks.
 * Re-create or update the scope of any custom log/metric alerts.
 * Re-create availability alerts.
