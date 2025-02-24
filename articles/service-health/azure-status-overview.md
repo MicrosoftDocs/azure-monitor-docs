@@ -35,7 +35,7 @@ The **Current Impact** tab displays active events that affect the entirety of Az
 
 ## Azure status history
 
-Although the **Azure status** pane shows the latest health information, you can view older events using the **Azure status history** pane. The **Azure status history** pane is used to provide Post Incident Reviews (PIRs) for [Scenario 1 events](Scenario 1).
+Although the **Azure status** pane shows the latest health information, you can view older events using the **Azure status history** pane. The **Azure status history** pane is used to provide Post Incident Reviews (PIRs) for Scenario 1 events.
 
 :::image type="content" source="./media/azure-status-overview/status-history.png" alt-text="Screenshot of Azure status history pane.":::
 
