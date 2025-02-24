@@ -15,7 +15,7 @@ With this, HPA automatically takes care of scaling based on the memory utlizatio
 
 [Kubernetes support for HPA](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/) 
 
-[HPA Deployment Spec for Managed Prometheus Addon](../../otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-collector-hpa.yaml)
+[HPA Deployment Spec for Managed Prometheus Addon](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-collector-hpa.yaml)
 
 ### Update Min and Max shards
 In order to update the min and max shards on the HPA, the HPA object **ama-metrics-hpa** in the kube-system namespace can be edited and it will not be reconciled as long as it is within the supported range of 2 and 12.
