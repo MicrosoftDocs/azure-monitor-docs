@@ -273,7 +273,7 @@ items:
             - name: View .NET Profiler data
               displayName: profiling, debugging, code performance, perf
               href: profiler/profiler-data.md
-        - name: Extensions (preview)
+        - name: Fix with GitHub Copilot (preview)
           items:
           - name: Overview
             href: insights/code-optimizations-extensions.md
@@ -539,7 +539,7 @@ items:
           href: containers/prometheus-metrics-scrape-scale.md
       - name: Integrations
         items:
-        - name: Setup exporters for common workloads
+        - name: Set up exporters for common workloads
           displayName: Prometheus
           href: containers/prometheus-exporters.md
           items:
@@ -552,6 +552,9 @@ items:
           - name: Monitor Elastic Search
             displayName: Prometheus
             href: containers/prometheus-elasticsearch-integration.md
+          - name: Monitor Istio
+            displayName: Prometheus
+            href: containers/prometheus-istio-integration.md
         - name: Scale using KEDA based on Prometheus metrics
           displayName: Prometheus
           href: containers/integrate-keda.md
@@ -728,7 +731,7 @@ items:
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
   - name: Monitor Azure Monitor
-  href: monitor-azure-monitor.md
+    href: monitor-azure-monitor.md
 - name: Data collection
   items:
   - name: Data sources

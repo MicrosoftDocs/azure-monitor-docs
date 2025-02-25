@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 02/17/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -140,5 +140,23 @@ Recommendation ID: 26f91380-cb68-4642-bb6f-1bce3c64c55e
 Subcategory: DisasterRecovery
 
 <!--26f91380-cb68-4642-bb6f-1bce3c64c55e_end-->
+
+<!--7a48f43e-8615-4ce0-8039-83b9d24f945a_begin-->
+
+#### Create a cross-zone replication relationship from the Azure NetApp Files volume to another volume  
+  
+Create a cross-zone replication relationship from the Azure NetApp Files volume to an Azure NetApp Files volume in another availability zone. The Azure NetApp Files cross-zone replication feature provides data protection between volumes in different availability zones.  
+  
+**Potential benefits**: Protect data for volumes in different availability zones.  
+
+**Impact:** Medium
+  
+For more information, see [Cross-zone replication of Azure NetApp Files volumes ](/azure/azure-netapp-files/cross-zone-replication-introduction)  
+
+ResourceType: microsoft.netapp/netappaccounts  
+Recommendation ID: 7a48f43e-8615-4ce0-8039-83b9d24f945a  
+Subcategory: DisasterRecovery
+
+<!--7a48f43e-8615-4ce0-8039-83b9d24f945a_end-->
 
 <!--articleBody-->

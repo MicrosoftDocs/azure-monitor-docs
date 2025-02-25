@@ -2,9 +2,9 @@
 title: Azure Monitor Resource log / log analytics tables
 description: Field definitions for Azure Monitor resource log / log analytics tables.
 author: EdB-MSFT
-ms.topic: reference
+ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/11/2025
+ms.date: 02/18/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 

@@ -2,9 +2,9 @@
 title: Azure Monitor log analytics queries by tables
 description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
-ms.topic: reference
+ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/11/2025
+ms.date: 02/18/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
