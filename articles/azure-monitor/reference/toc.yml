@@ -1558,6 +1558,8 @@ items:
             href: tables/aaduserriskevents.md
           - name: ABAPAuditLog
             href: tables/abapauditlog.md
+          - name: ABAPAuthorizationDetails
+            href: tables/abapauthorizationdetails.md
           - name: ABAPChangeDocsLog
             href: tables/abapchangedocslog.md
           - name: ABAPTableDataLog
@@ -2026,6 +2028,10 @@ items:
             href: tables/azuremetricsv2.md
           - name: BehaviorAnalytics
             href: tables/behavioranalytics.md
+          - name: BehaviorEntities
+            href: tables/behaviorentities.md
+          - name: BehaviorInfo
+            href: tables/behaviorinfo.md
           - name: BlockchainApplicationLog
             href: tables/blockchainapplicationlog.md
           - name: BlockchainProxyLog
