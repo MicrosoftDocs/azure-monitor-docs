@@ -1405,21 +1405,19 @@ Live Metrics can't split data by role name.
 
 ### Version and release tracking
 
-When you publish a new version of your application, you want to be able to separate the telemetry from different builds.
-
-You can set the **Application Version** property so you can filter [search](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
+When you publish a new version of your application, you want to be able to separate the telemetry from different builds. You can set the **Application Version** property so you can filter [search](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
 
 There are several different methods of setting the **Application Version** property.
 
-* Set the version directly:
+* **Set the version directly:**
 
     Add the line `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;` to the initialization code of your application.
 
     To ensure that all `TelemetryClient` instances are set consistently, wrap that line in a [telemetry initializer](../../azure-monitor/app/api-custom-events-metrics.md#defaults).
 
-* Set the version in `BuildInfo.config` (ASP.NET only):
+* **Set the version in `BuildInfo.config` (ASP.NET only):**
 
-    . The Application Insights web module picks up the version from the `BuildLabel` node. Include this file in your project and remember to set the **Copy Always** property in Solution Explorer.
+    The Application Insights web module picks up the version from the `BuildLabel` node. Include this file in your project and remember to set the **Copy Always** property in Solution Explorer.
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
