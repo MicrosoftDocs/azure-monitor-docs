@@ -5,7 +5,7 @@ ms.topic: overview
 ms.date: 02/14/2025
 ---
 
-# Filter notifications by using the Event Level metadata field in Azure Service Health 
+# Filter notifications by using Event Level in Azure Service Health
 
 To help you prioritize Azure Service Health event communications, there's a new metadata field on the **Service Issues** pane called **Event Level**. The new field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
 
