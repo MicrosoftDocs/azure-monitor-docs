@@ -363,7 +363,7 @@ The [connection string](./connection-strings.md?tabs=net) identifies the resourc
 To get the connection string of your Application Insights resource:
 
 1. Open your Application Insights resource in the Azure portal.
-1. On the Overview pane, look for the connection string under **Essentials**.
+1. On the **Overview** pane in the **Essentials** section, look for **Connection string**.
 1. If you hover over the connection string, an icon appears which allows you to copy it to your clipboard.
 
 ### [Azure CLI](#tab/cli)
@@ -442,7 +442,7 @@ After creating an Application Insights resource, you can modify the associated L
 
 ### [Portal](#tab/portal)
 
-In the Application Insights resource pane, select **Properties** > **Change Workspace** > **Log Analytics Workspaces**.
+In your Application Insights resource, select **Properties** > **Change workspace** > **Log Analytics Workspaces**.
 
 ### [Azure CLI](#tab/cli)
 
@@ -535,7 +535,7 @@ The legacy continuous export functionality isn't supported for workspace-based r
 
 ### [Portal](#tab/portal)
 
-Select **Diagnostic settings** > **Add diagnostic setting** in your Application Insights resource.
+In your Application Insights resource, select **Diagnostic settings** > **Add diagnostic setting**.
 
 You can select all tables or a subset of tables to archive to a storage account. You can also stream to an [event hub](/azure/event-hubs/event-hubs-about).
 
@@ -1415,7 +1415,7 @@ There are several different methods of setting the **Application Version** prope
 
     `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;`
 
-* To ensure that all `TelemetryClient` instances are set consistently, wrap that line in a [telemetry initializer](../../azure-monitor/app/api-custom-events-metrics.md#defaults).
+    To ensure that all `TelemetryClient` instances are set consistently, wrap that line in a [telemetry initializer](../../azure-monitor/app/api-custom-events-metrics.md#defaults).
 
 * ASP.NET: Set the version in `BuildInfo.config`. The web module picks up the version from the `BuildLabel` node. Include this file in your project and remember to set the **Copy Always** property in Solution Explorer.
 
