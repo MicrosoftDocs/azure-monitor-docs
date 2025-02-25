@@ -914,7 +914,7 @@ For more information about the `az monitor log-analytics workspace update` comma
 
 ### [PowerShell](#tab/powershell)
 
-To set the pricing plan, run one of the following Azure PowerShell command in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and (if applicable) `<capacity-reservation-in-gb>` with your specific values:
+To set the pricing plan, run one of the following Azure PowerShell commands in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and (if applicable) `<capacity-reservation-in-gb>` with your specific values:
 
 **Pay-as-you-go**
 
