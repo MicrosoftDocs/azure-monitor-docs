@@ -36,7 +36,7 @@ This article shows you how to create and configure Application Insights resource
 
 ### [Portal](#tab/portal)
 
-No additional requirements for the Azure portal.
+No additional requirements.
 
 ### [Azure CLI](#tab/cli)
 
@@ -72,14 +72,17 @@ You can deploy JSON (ARM) templates via the Azure CLI, Azure PowerShell, and in 
 
 ## [Portal](#tab/portal)
 
-Sign in to the [Azure portal](https://portal.azure.com), and create an Application Insights resource.
+1. Sign in to the [Azure portal](https://portal.azure.com).
+1. Select **Create a resource**.
+1. Open the category **Monitoring & Diagnostics**, then select **Application Insights**.
+1. Enter all relevant information, then **Review + create** your Application Insights resource.
 
 :::image type="content" source="./media/create-workspace-resource/create-resource.png" lightbox="./media/create-workspace-resource/create-resource.png" alt-text="Screenshot that shows an Application Insights resource.":::
 
 > [!NOTE]
 > If you don't connect to an existing Log Analytics workspace during resource creation, a new Log Analytics resource is created automatically along with your Application Insights resource.
 
-After you create your resource, you can find the corresponding workspace information in the **Overview** pane.
+After creating your resource, you can find the corresponding workspace information in the Application Insights **Overview** pane.
 
 :::image type="content" source="./media/create-workspace-resource/workspace-name.png" lightbox="./media/create-workspace-resource/workspace-name.png" alt-text="Screenshot that shows a workspace name.":::
 
@@ -394,7 +397,7 @@ Authorization: Bearer <access-token>
 
 Look for the `properties.connectionString` field in the JSON response.
 
-For more information about retrieving Application Insights resource information resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/get).
+For more information about retrieving information about Application Insights resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/get).
 
 ### [Bicep](#tab/bicep)
 
@@ -777,7 +780,7 @@ To learn how to set the daily cap in the Azure portal, see [Set daily cap on Log
 ### [Azure CLI](#tab/cli)
 
 > [!NOTE]
-> Currently, Azure doesn't provide a command to set the daily cap for Application Insights via the Azure CLI.
+> Currently, Azure doesn't provide a way to set the daily cap for Application Insights via the Azure CLI.
 
 To change the daily cap for Log Analytics, run the following Azure CLI command in your terminal and replace the placeholders `<resource-group-name>`, `<log-analytics-workspace-name>`, and `<daily-cap-in-gb>` with your specific values.
 
@@ -814,7 +817,7 @@ For more information about the `Set-AzOperationalInsightsWorkspace` command, see
 ### [REST](#tab/rest)
 
 > [!NOTE]
-> Currently, Azure doesn't provide a command to set the daily cap for Application Insights via the Azure CLI.
+> Currently, Azure doesn't provide a way to set the daily cap for Application Insights with the Azure CLI.
 
 To change the daily cap for Log Analytics, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
@@ -840,7 +843,7 @@ For more information about the setting the Log Analytics daily cap, see the [RES
 ### [Bicep](#tab/bicep)
 
 > [!NOTE]
-> Currently, Azure doesn't provide a way to set the daily cap for Application Insights via a Bicep template.
+> Currently, Azure doesn't provide a way to set the daily cap for Application Insights with a Bicep template.
 
 To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
@@ -857,7 +860,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 ### [JSON (ARM)](#tab/arm)
 
 > [!NOTE]
-> Currently, Azure doesn't provide a way to set the daily cap for Application Insights via a JSON (ARM) template.
+> Currently, Azure doesn't provide a way to set the daily cap for Application Insights with a JSON (ARM) template.
 
 To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
@@ -885,7 +888,7 @@ To set the daily cap for Log Analytics, paste the following code into your templ
 
 ### Set the pricing plan
 
-The pricing plan for Application Insights resources can be set in the associated Log Analytics workspace.
+The pricing plan for Application Insights resources can be set in the associated Log Analytics workspace. For more information about available pricing plans, see [Azure Monitor Logs cost calculations and options](./../logs/cost-logs.md).
 
 ### [Portal](#tab/portal)
 
@@ -893,7 +896,7 @@ To learn how to set the pricing plan in the Azure portal, see [Application Insig
 
 ### [Azure CLI](#tab/cli)
 
-To set the pricing plan, run the following Azure CLI command in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
+To set the pricing plan, run one of the following Azure CLI commands in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and (if applicable) `<capacity-reservation-in-gb>` with your specific values:
 
 **Pay-as-you-go**
 
@@ -911,7 +914,7 @@ For more information about the `az monitor log-analytics workspace update` comma
 
 ### [PowerShell](#tab/powershell)
 
-To set the pricing plan, run the following Azure PowerShell command in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
+To set the pricing plan, run one of the following Azure PowerShell command in your terminal and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and (if applicable) `<capacity-reservation-in-gb>` with your specific values:
 
 **Pay-as-you-go**
 
@@ -929,7 +932,7 @@ For more information about the `Set-AzOperationalInsightsWorkspace` command, see
 
 ### [REST](#tab/rest)
 
-To set the pricing plan using REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, and `<pricing-plan>` with your specific values:
+To set the pricing plan using the REST API, use one of the following requests and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, and (if applicable) `<capacity-reservation-in-gb>` with your specific values:
 
 **Pay-as-you-go**
 
@@ -958,11 +961,13 @@ Authorization: Bearer <access-token>
   "properties": {
     "sku": {
       "name": "capacityreservation",
-      "capacityReservationLevel": "[parameters('capacityReservationLevel')]"
+      "capacityReservationLevel": <capacity-reservation-in-gb>
     }
   }
 }
 ```
+
+For more information about setting the pricing plan using the REST API, see the [REST API documentation](/rest/api/loganalytics/workspaces/create-or-update#workspacesku).
 
 ### [Bicep](#tab/bicep)
 
@@ -1004,7 +1009,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 }
 ```
 
-For more information about updating the Microsoft.OperationalInsights/workspaces resource using Bicep, see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep#workspacesku).
+For more information about updating the `Microsoft.OperationalInsights/workspaces` resource using Bicep, see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep#workspacesku).
 
 ### [JSON (ARM)](#tab/arm)
 
@@ -1079,7 +1084,7 @@ To set the pricing plan using JSON (ARM), paste the following code into your tem
 }
 ```
 
-For more information about updating the Microsoft.OperationalInsights/workspaces resource using JSON (ARM), see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1).
+For more information about updating the `Microsoft.OperationalInsights/workspaces` resource using JSON (ARM), see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1).
 
 ---
 
@@ -1352,7 +1357,7 @@ To learn how to add a metric alert using PowerShell, see [Create a new alert rul
 
 ### [REST](#tab/rest)
 
-For a list of various example REST API calls to create a metric alert, see the [REST API documentation](/rest/api/monitor/metric-alerts/create-or-update).
+For a list of various REST API call examples to create a metric alert, see the [REST API documentation](/rest/api/monitor/metric-alerts/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
