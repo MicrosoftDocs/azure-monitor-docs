@@ -1409,13 +1409,13 @@ When you publish a new version of your application, you want to be able to separ
 
 There are several different methods of setting the **Application Version** property.
 
-* **Set the version directly:**
+* **Option 1:** Set the version directly
 
     Add the line `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;` to the initialization code of your application.
 
     To ensure that all `TelemetryClient` instances are set consistently, wrap that line in a [telemetry initializer](../../azure-monitor/app/api-custom-events-metrics.md#defaults).
 
-* **Set the version in `BuildInfo.config` (ASP.NET only):**
+* **Option 2:** Set the version in `BuildInfo.config` (ASP.NET only)
 
     The Application Insights web module picks up the version from the `BuildLabel` node. Include this file in your project and remember to set the **Copy Always** property in Solution Explorer.
 
