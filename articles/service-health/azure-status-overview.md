@@ -65,7 +65,7 @@ The [**Azure status history** pane](https://azure.status.microsoft/status/histor
 * Can learn from our retrospectives on these issues.  
 * Can understand what steps we're taking to make such issues less likely and/or less impactful in the future.
 
-During Scenario 2 and 3 events, we might communicate publicly on the *Azure status** pane as a workaround to reach affected customers when standard, targeted communication routes aren't available.
+During Scenario 2 and 3 events, we might communicate publicly on the **Azure status** pane as a workaround to reach affected customers when standard, targeted communication routes aren't available.
 
 After a Scenario 2 or 3 issue is mitigated, we conduct a thorough impact analysis to determine which customer subscriptions were affected. We provide the relevant PIR only to affected customers via [Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal.
 
