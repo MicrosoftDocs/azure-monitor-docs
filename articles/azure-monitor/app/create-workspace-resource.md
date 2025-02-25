@@ -226,7 +226,7 @@ param workspaceResourceId string = '/subscriptions/<subscription-id>/resourcegro
 
 You can add other parameters. You find their descriptions in the parameters section of the template.
 
-> [!TIPP]
+> [!TIP]
 > You can use the VS Code [Bicep extension by Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) to simplify the deployment process.
 >
 > Visit [publisher's GitHub repository](https://github.com/Azure/bicep/issues) for extension related questions.
