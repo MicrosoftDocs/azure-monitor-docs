@@ -62,9 +62,9 @@ For more information, see [Manage Azure resources by using the REST API](/azure/
 
 You can deploy Bicep templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional requirements.
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
-You can deploy JSON (ARM) templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional requirements.
+You can deploy ARM templates via the Azure CLI, Azure PowerShell, and in the Azure portal. Check the respective tabs for additional requirements.
 
 ---
 
@@ -231,9 +231,9 @@ You can add other parameters. You find their descriptions in the parameters sect
 >
 > Visit [publisher's GitHub repository](https://github.com/Azure/bicep/issues) for extension related questions.
 
-## [JSON (ARM)](#tab/arm)
+## [ARM (JSON)](#tab/arm)
 
-Here's how to create a new Application Insights resource using a JSON (ARM) template.
+Here's how to create a new Application Insights resource using an ARM template.
 
 ### Create a template
 
@@ -403,7 +403,7 @@ For more information about retrieving information about Application Insights res
 
 Not applicable to Bicep templates.
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 Not applicable to ARM templates.
 
@@ -500,7 +500,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<log-analytics-workspace-name>` with your specific values:
 
@@ -636,7 +636,7 @@ resource diagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-pre
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 To export telemetry using diagnostic settings, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, `<diagnostic-setting-name>`, `<subscription-id>`, `<resource-group>`, and `<storage-account-name>` with your specific values:
 
@@ -745,7 +745,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 To set the data retention for the associated Log Analytics workspace, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, `<retention-period-in-days>` with your specific values:
 
@@ -857,10 +857,10 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 }
 ```
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 > [!NOTE]
-> Currently, Azure doesn't provide a way to set the daily cap for Application Insights with a JSON (ARM) template.
+> Currently, Azure doesn't provide a way to set the daily cap for Application Insights using an ARM template.
 
 To set the daily cap for Log Analytics, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
@@ -1011,9 +1011,9 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2020-08
 
 For more information about updating the `Microsoft.OperationalInsights/workspaces` resource using Bicep, see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-bicep#workspacesku).
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
-To set the pricing plan using JSON (ARM), paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
+To set the pricing plan using an ARM template, paste the following code into your template and replace the placeholders `<log-analytics-workspace-name>`, `<azure-region-name>`, and for the commitment tier also `<capacity-reservation-in-gb>` with your specific values:
 
 **Pay-as-you-go**
 
@@ -1084,7 +1084,7 @@ To set the pricing plan using JSON (ARM), paste the following code into your tem
 }
 ```
 
-For more information about updating the `Microsoft.OperationalInsights/workspaces` resource using JSON (ARM), see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1).
+For more information about updating the `Microsoft.OperationalInsights/workspaces` resource using an ARM template, see the [templates documentation](/azure/templates/microsoft.operationalinsights/workspaces?pivots=deployment-language-arm-template#workspacesku-1).
 
 ---
 
@@ -1274,9 +1274,9 @@ resource webTest 'microsoft.insights/webtests@2022-06-15' = {
 
 For more information about creating availability tests using Bicep, see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-bicep).
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
-To create a standard availability test with default settings using JSON (ARM), add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<url>` with your specific values:
+To create a standard availability test with default settings using an ARM template, add the following code to your template and replace the placeholders `<web-test-name>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<url>` with your specific values:
 
 ```json
 {
@@ -1334,7 +1334,7 @@ To create a standard availability test with default settings using JSON (ARM), a
 > [!NOTE]
 > The web test region (`location`) is different from the geographic location (`Locations`) of which multiple can be selected. `location` refers to the Azure region where the web test is created and hosted, while `Locations` refers to the geographic location or locations from which the web test is executed. For a full list of all geographic locations, see [Application Insights availability tests](availability.md#location-population-tags).
 
-For more information about creating availability tests using JSON (ARM), see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
+For more information about creating availability tests using an ARM template, see [Microsoft.Insights webtests](/azure/templates/microsoft.insights/webtests?pivots=deployment-language-arm-template).
 
 ---
 
@@ -1363,7 +1363,7 @@ For a list of various REST API call examples to create a metric alert, see the [
 
 To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
 
-### [JSON (ARM)](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
 
@@ -1403,21 +1403,23 @@ For Azure Service Fabric applications and classic cloud services, the SDK automa
 
 Live Metrics can't split data by role name.
 
-### Filter on the build number
+### Version and release tracking
 
 When you publish a new version of your application, you want to be able to separate the telemetry from different builds.
 
-You can set the **Application Version** property so that you can filter [search](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
+You can set the **Application Version** property so you can filter [search](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
 
 There are several different methods of setting the **Application Version** property.
 
-* Set directly:
+* Set the version directly:
 
-    `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;`
+    Add the line `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;` to the initialization code of your application.
 
     To ensure that all `TelemetryClient` instances are set consistently, wrap that line in a [telemetry initializer](../../azure-monitor/app/api-custom-events-metrics.md#defaults).
 
-* ASP.NET: Set the version in `BuildInfo.config`. The web module picks up the version from the `BuildLabel` node. Include this file in your project and remember to set the **Copy Always** property in Solution Explorer.
+* Set the version in `BuildInfo.config` (ASP.NET only):
+
+    . The Application Insights web module picks up the version from the `BuildLabel` node. Include this file in your project and remember to set the **Copy Always** property in Solution Explorer.
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -1432,11 +1434,12 @@ There are several different methods of setting the **Application Version** prope
 
     ```
 
-* ASP.NET: Generate `BuildInfo.config` automatically in the Microsoft Build Engine. Add a few lines to your `.csproj` file:
+    Generate `BuildInfo.config` automatically in the Microsoft Build Engine. Add the following lines to your `.csproj` file:
 
     ```xml
     <PropertyGroup>
-      <GenerateBuildInfoConfigFile>true</GenerateBuildInfoConfigFile>    <IncludeServerNameInBuildInfo>true</IncludeServerNameInBuildInfo>
+      <GenerateBuildInfoConfigFile>true</GenerateBuildInfoConfigFile>
+      <IncludeServerNameInBuildInfo>true</IncludeServerNameInBuildInfo>
     </PropertyGroup>
     ```
 
@@ -1445,21 +1448,6 @@ There are several different methods of setting the **Application Version** prope
     The build label contains a placeholder `(*AutoGen_...*)` when you build with Visual Studio. When built with the Microsoft Build Engine, the placeholder is populated with the correct version number.
 
     To allow the Microsoft Build Engine to generate version numbers, set the version like `1.0.*` in `AssemblyReference.cs`.
-
-### Version and release tracking
-
-To track the application version, make sure your Microsoft Build Engine process generates `buildinfo.config`. In your `.csproj` file, add:
-
-```xml
-<PropertyGroup>
-  <GenerateBuildInfoConfigFile>true</GenerateBuildInfoConfigFile>
-  <IncludeServerNameInBuildInfo>true</IncludeServerNameInBuildInfo>
-</PropertyGroup>
-```
-
-When the Application Insights web module has the build information, it automatically adds **Application Version** as a property to every item of telemetry. For this reason, you can filter by version when you perform [diagnostic searches](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) or when you [explore metrics](../../azure-monitor/essentials/metrics-charts.md).
-
-The Microsoft Build Engine exclusively generates the build version number, not the developer build from Visual Studio.
 
 #### Release annotations
 
