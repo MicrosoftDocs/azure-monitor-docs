@@ -2,24 +2,24 @@
 title: IP hosts used by Azure Monitor | Microsoft Docs
 description: This article discusses server firewall exceptions required by Azure Monitor
 ms.topic: reference
-ms.date: 02/11/2025
+ms.date: 03/27/2025
 ms.servce: azure-monitor
 ms.author: aaronmax
-ms.reviewer: saars
+ms.reviewer: rofrenke
 Author: AaronMaxwell
 ---
 
 # IP addresses used by Azure Monitor
 
-[Azure Monitor](.\overview.md) uses several IP addresses. Azure Monitor is made up of core platform metrics and logs in addition to Log Analytics and Application Insights. You might need to know IP addresses if the app or infrastructure that you're monitoring is hosted behind a firewall.
+If your monitored application or infrastructure is behind a firewall, you need to configure network access to allow communication with [Azure Monitor](.\overview.md) services.
+
+Azure Monitor uses [service tags](/azure/virtual-network/service-tags-overview), which provide a more reliable and dynamic way to manage network access. Service tags are regularly updated and can be retrieved through an API, ensuring that you have the latest available IP address information without requiring manual updates.
+
+If you're using [Azure network security groups](/azure/virtual-network/network-security-groups-overview), you can manage access with [Azure network service tags](/azure/virtual-network/service-tags-overview). For hybrid or on-premises resources, you can download the equivalent IP address lists as [JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which are refreshed weekly. To cover all necessary exceptions, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`. For more information, see [Azure Service Tags Overview](/azure/virtual-network/service-tags-overview).
 
 > [!NOTE]
-> All Application Insights traffic represents outbound traffic except for availability monitoring and webhook action groups, which also require inbound firewall rules.
-
-You can use Azure [network service tags](/azure/virtual-network/service-tags-overview) to manage access if you're using Azure network security groups. If you're managing access for hybrid/on-premises resources, you can download the equivalent IP address lists as [JSON files](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which are updated each week. To cover all the exceptions in this article, use the service tags `ActionGroup`, `ApplicationInsightsAvailability`, and `AzureMonitor`.
-
-> [!NOTE]
-> Service tags don't replace validation/authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources.
+> * All Application Insights traffic represents outbound traffic except for availability monitoring and webhook action groups, which also require inbound firewall rules.
+> * Service tags don't replace validation/authentication checks required for cross-tenant communications between a customer's Azure resource and other service tag resources.
 
 ## Outgoing ports
 
@@ -68,7 +68,7 @@ For more information on availability tests, see [Private availability testing](.
 
 | Purpose | URI | Ports |
 | --- | --- | --- |
-| CDN | `applicationanalytics.azureedge.net`  | 80,443 |
+| CDN (Content Delivery Network) | `applicationanalytics.azureedge.net`  | 80,443 |
 | Media CDN | `applicationanalyticsmedia.azureedge.net` | 80,443 |
 
 The Application Insights team owns the *.applicationinsights.io domain.
@@ -88,7 +88,7 @@ The Log Analytics team owns the *.loganalytics.io domain.
 | Application Insights extension | `stamp2.app.insightsportal.visualstudio.com` | 80,443 |
 | Application Insights extension CDN | `insightsportal-prod2-cdn.aisvc.visualstudio.com`<br/>`insightsportal-prod2-asiae-cdn.aisvc.visualstudio.com`<br/>`insightsportal-cdn-aimon.applicationinsights.io` | 80,443 |
 
-## Application Insights SDKs
+## Application Insights SDKs (Software Development Kits)
 
 | Purpose | URI |  Ports |
 | --- | --- | --- | 
@@ -148,14 +148,23 @@ Managing changes to source IP addresses can be time consuming. Using *service ta
 
 This section provides answers to common questions.
 
-### Can I monitor an intranet web server?
+#### Can I monitor an intranet web server?
 
 Yes, but you need to allow traffic to our services by either firewall exceptions or proxy redirects.
           
 See [IP addresses used by Azure Monitor](./ip-addresses.md#outgoing-ports) to review our full list of services and IP addresses.
           
-### How do I reroute traffic from my server to a gateway on my intranet?
+#### How do I reroute traffic from my server to a gateway on my intranet?
           
 Route traffic from your server to a gateway on your intranet by overwriting endpoints in your configuration. If the `Endpoint` properties aren't present in your config, these classes use the default values which are documented in [IP addresses used by Azure Monitor](./ip-addresses.md#outgoing-ports).
           
 Your gateway should route traffic to our endpoint's base address. In your configuration, replace the default values with `http://<your.gateway.address>/<relative path>`.
+
+#### What if my product doesn't support service tags?
+
+If your product doesn't support service tags, take the following steps to ensure full connectivity:  
+
+- Check the latest IP ranges in the [downloadable Azure IP ranges and service tags JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files), which updates weekly.  
+- Review firewall logs for blocked requests and update your allowlist as needed.  
+
+For more information, see [Azure Service Tags Overview](/azure/virtual-network/service-tags-overview).
