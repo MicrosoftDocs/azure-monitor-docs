@@ -2,7 +2,7 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 12/12/2024
+ms.date: 02/25/2025
 ---
 
 ### Active Service Health event subscription impact
@@ -43,7 +43,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ### All active health advisory events
 
-Returns all active health advisory Service Health events across all subscriptions to which the user has access.
+Returns all active health advisory Service Health events across all subscriptions the user has access to.
 
 ```kusto
 ServiceHealthResources
@@ -73,7 +73,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 ---
 ### All upcoming service retirement events
 
-Returns all upcoming Service Health events for Retirements across all subscriptions to which the user has access.
+Returns all upcoming Service Health events for Retirements across all subscriptions the user has access to.
 
 ```ServiceHealthResources
 | where type =~ 'Microsoft.ResourceHealth/events'
@@ -87,7 +87,7 @@ Returns all upcoming Service Health events for Retirements across all subscripti
 
 ### All active planned maintenance events
 
-Returns all active planned maintenance Service Health events across all subscriptions to which the user has access.
+Returns all active planned maintenance Service Health events across all subscriptions the user has access to.
 
 ```kusto
 ServiceHealthResources
@@ -118,7 +118,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ### All active Service Health events
 
-Returns all active Service Health events across all subscriptions to which the user has access including service issues, planned maintenance, health advisories, and security advisories.
+Returns all active Service Health events across all subscriptions the user has access to including service issues, planned maintenance, health advisories, and security advisories.
 
 ```kusto
 ServiceHealthResources
