@@ -56,9 +56,9 @@ The public **Azure status** pane is used only to communicate about service issue
 * **Scenario 2**: A service issue impedes you from accessing the Azure portal or Service Health and we're unable to contact you via our standard outage communications path.
 * **Scenario 3**: A service issue has broad/significant customer impact but we aren't yet able to confirm which customers, regions, or services are affected. We aren't able to send targeted communications, so we provide public updates.
 
-## When does Azure publish PIRs to the status history pane?
+## What does Azure publish to the status history pane?
 
-While the [**Azure status** pane](https://azure.status.microsoft/status) always shows the latest health information, you can view older events by using the [**Azure status history** pane](https://azure.status.microsoft/status/history/). The history pane contains all PIRs for incidents that occurred on November 20, 2019 or later.
+You can view older events by using the [**Azure status history** pane](https://azure.status.microsoft/status/history/). The history pane contains PIRs for incidents that occurred on November 20, 2019 or later.
 
 The [**Azure status history** pane](https://azure.status.microsoft/status/history/) displays PIRs only for Scenario 1 events. We're committed to publishing PIRs publicly for service issues with the broadest impact, like issues with both a multi-service and multi-region impact. We conduct and publish PIRs to ensure that all customers and the industry at large:
 
