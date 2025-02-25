@@ -16,10 +16,10 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 Enhanced capabilities include:
 
-* [Customer-managed keys](../logs/customer-managed-keys.md) - Encrypt your data at rest with keys only accessible to you.
-* [Azure Private Link](../logs/private-link-security.md) - Securely connect Azure PaaS services to your virtual network using private endpoints.
-* [Bring your own storage (BYOS)](./profiler-bring-your-own-storage.md) - Manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
-* [Commitment tiers](../logs/cost-logs.md#commitment-tiers) - Save up to 30% over pay-as-you-go pricing.
+* **[Customer-managed keys](../logs/customer-managed-keys.md) -** Encrypt your data at rest with keys only accessible to you.
+* **[Azure Private Link](../logs/private-link-security.md) -** Securely connect Azure PaaS services to your virtual network using private endpoints.
+* **[Bring your own storage (BYOS)](./profiler-bring-your-own-storage.md) -** Manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
+* **[Commitment tiers](../logs/cost-logs.md#commitment-tiers) -** Save up to 30% over pay-as-you-go pricing.
 
 This article shows you how to create and configure Application Insights resources. Along with the Application Insights resource itself, you can add various configurations like setting the [daily](#set-the-daily-cap) cap and [pricing plan](#set-the-pricing-plan). You can also create [availability tests](#create-an-availability-test), set up [metric alerts](#add-a-metric-alert), and automate the process using [Azure Resource Manager](/azure/azure-resource-manager/management/overview).
 
@@ -49,11 +49,6 @@ To access Application Insights Azure CLI commands, you first need to run:
 If you don't run the `az extension add` command, you see an error message that states `az : ERROR: az monitor: 'app-insights' is not in the 'az monitor' command group. See 'az monitor --help'`.
 
 ### [PowerShell](#tab/powershell)
-
-Before using PowerShell with your Azure subscription for the first time, install the Azure PowerShell module on the machine where you want to run the scripts:
-
-1. Install [Microsoft Web Platform Installer (v5 or higher)](https://www.microsoft.com/web/downloads/platform.aspx).
-1. Use it to install Azure PowerShell.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
@@ -390,7 +385,7 @@ For more information about the `Get-AzApplicationInsights` command, see to the [
 
 ### [REST](#tab/rest)
 
-To retrieve the details of your Application Insights resource, use the following request and replace the placeholders `<subscription-id>`, and `<resource-group-name>`, `<application-insights-resource-name>`, and `<access-token>` with your specific values:
+To retrieve the details of your Application Insights resource, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<access-token>` with your specific values:
 
 ```http
 GET https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2015-05-01
@@ -476,8 +471,8 @@ Authorization: Bearer <access-token>
 Content-Type: application/json
 
 {
+  "location": "<azure-region-name>",
   "properties": {
-    "location": "<azure-region-name>",
     "WorkspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>"
   }
 }
@@ -595,7 +590,7 @@ Content-Type: application/json
 
 This example call enables diagnostic settings and sends all metrics and logs of your Application Insights resource to the specified storage account.
 
-For information, see the [REST API documentation](/rest/api/monitor/diagnostic-settings/create-or-update).
+For more information about creating a diagnostic setting using the REST API, see the [REST API documentation](/rest/api/monitor/diagnostic-settings/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
