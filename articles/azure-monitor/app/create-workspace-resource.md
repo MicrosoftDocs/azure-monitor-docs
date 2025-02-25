@@ -170,7 +170,7 @@ For more information about creating Application Insights resources and Log Analy
 
 ## [Bicep](#tab/bicep)
 
-Here's how to create a new Application Insights resource using a Bicep (ARM) template.
+Here's how to create a new Application Insights resource using a Bicep template.
 
 ### Create a template
 
