@@ -18,15 +18,17 @@ Application Insights comes with a curated Application Performance Management (AP
 
 To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** experience or the **Failures** option under the **Investigate** category in the resource menu.
 
-<!-- need screenshot showing all ways to reach the Failures blade -->
+:::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the Failures experience in Application Insights.":::
 
 You can also get to the failures experience from the [Application Map](app-map.md) by selecting **Investigate failures** from the triage pane.
 
-<!-- screenshot showing app map to reach the Failures blade -->
+:::image type="content" source="media/failures-and-performance-views/failures-app-map.png" lightbox="media/failures-and-performance-views/failures-app-map.png" alt-text="Screenshot showing how to reach the failures experience from the application map.":::
+
+### Failures overview
 
 The **Failures** experience shows you a list of all failures collected for your application. It lets you view their frequency across different operations to help you focus your efforts on those issues with the highest impact.
 
-:::image type="content" source="media/failures-and-performance-views/4-application-insights-02.png" lightbox="media/failures-and-performance-views/4-application-insights-02.png" alt-text="Screenshot of analyzing failures." :::
+:::image type="content" source="media/failures-and-performance-views/failures-view.png" lightbox="media/failures-and-performance-views/failures-view.png" alt-text="Screenshot of the failures experience in Application Insights." :::
 
 ### Analyze failures
 
@@ -57,13 +59,17 @@ You can further investigate slow transactions to identify slow requests and serv
 
 To get to the **Performance** experience in Application Insights, select either the **Server response time** or **Server requests** graph in the **Overview** experience, or the **Performance** option under the **Investigate** category in the resource menu on the left.
 
-<!-- Screenshot showing all ways to reach the Performance pane -->
+:::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the performance experience in Application Insights.":::
+
+You can also analyze performance in your application or its components from the application map, by selecting **Investigate performance** from the triage pane of [Application Map](app-map.md).
+
+:::image type="content" source="media/failures-and-performance-views/performance-app-map.png" lightbox="media/failures-and-performance-views/performance-app-map.png" alt-text="Screenshot showing how to reach the performance experience from the application map.":::
+
+### Performance overview
 
 The **Performance** experience shows a list of operations collected for your application with the option to drill into each one.
 
-:::image type="content" source="media/failures-and-performance-views/4-application-insights-05.png" alt-text="Screenshot of analyzing performance." lightbox="media/failures-and-performance-views/4-application-insights-05.png":::
-
-You can also analyze performance in your application or its components from the application map, by selecting **Investigate performance** from the triage pane of [Application Map](app-map.md).
+:::image type="content" source="media/failures-and-performance-views/performance-view.png" lightbox="media/failures-and-performance-views/performance-view.png" alt-text="Screenshot of the performance experience in Application Insights." :::
 
 On the **Performance** page, you can isolate slow transactions by selecting the time range, operation name, and durations of interest. You're also prompted with automatically identified anomalies and commonalities across transactions. From this page, you can drill into an individual transaction for an end-to-end view of transaction details with a Gantt chart of dependencies.
 
