@@ -100,7 +100,7 @@ Create or use an existing Azure Key Vault in the region that the cluster is plan
 > It's recommended to set up notification and respond to Azure Key Vault events such as key nearing expiry, received via [Azure Event Grid](/azure/key-vault/general/event-grid-logicapps). When key expires, ingestion and queries aren't affected, but you can't perform update on the key and will need to contact support.
 
 <!-- convertborder later -->
-:::image type="content" source="media/customer-managed-keys/soft-purge-protection.png" lightbox="media/customer-managed-keys/soft-purge-protection.png" alt-text="Screenshot of soft delete and purge protection settings." border="false" width="500":::
+:::image type="content" source="media/customer-managed-keys/soft-purge-protection.png" lightbox="media/customer-managed-keys/soft-purge-protection.png" alt-text="Screenshot of soft delete and purge protection settings." border="false":::
 
 These settings can be updated in Key Vault via CLI and PowerShell:
 
