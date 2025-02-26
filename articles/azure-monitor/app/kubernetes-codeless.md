@@ -51,9 +51,10 @@ az login
 az feature register --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview"
 
 # List the registration state of the Azure Monitor App Monitoring Preview feature
+# It could take hours for the registration state to change from Registering to Registered
 az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/AzureMonitorAppMonitoringPreview')].{Name:name,State:properties.state}"
 
-# Once the feature shows as registered in the prior step, re-register the Microsoft.ContainerService provider to apply the new feature settings
+# Once the feature shows as Registered in the prior step, re-register the Microsoft.ContainerService provider to apply the new feature settings
 az provider register --namespace "Microsoft.ContainerService"
 
 # Check the registration state of the Microsoft.ContainerService provider
