@@ -26,4 +26,4 @@ Make sure to adjust and handle the response using [the standard response format]
 
 ## Migrate beta queries to standard queries
 
-To migrate queries that use the Beta API call - for example, `https://api.loganalytics.io/beta/workspaces/{workspaceId}/query` - use the [standard request format](request-format.md) instead.
+To migrate queries that use the Beta API - for example, `https://api.loganalytics.io/beta/workspaces/{workspaceId}/query` - use the [standard request format](request-format.md) instead.
