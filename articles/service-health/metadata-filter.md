@@ -1,30 +1,31 @@
 ---
-title: Use Event Level to prioritize notifications and communications
-description: Information on how to use the metadata to filter event notifications.
+title: Use Event Level to Prioritize Notifications and Communications
+description: Learn how to use a new metadata field to filter event notifications in Azure Service Health.
 ms.topic: overview
 ms.date: 02/14/2025
 ---
-# Service Health Event Level filter notifications
 
-To assist users in prioritizing Service Health event communications, we are introducing a new field called "Event Level," which indicates the significance of each communication. This enhancement allows users to rapidly evaluate the importance of each alert. With this feature, clients can filter, and sort events based on this metadata, enabling them to prioritize their actions more effectively.
+# Filter notifications by using Event Level in Azure Service Health
 
-## Who can see the Metadata fields
-Anyone who has access to the subscription can view and filter by Event Level.
+To help you prioritize Azure Service Health event communications, the **Service Issues** pane includes a new metadata field called **Event Level**. This field can help you understand the significance of each communication and rapidly evaluate the importance of each alert.
 
-## Event Level Alert definitions
-### Event Level for Service Issues
+You can use this feature to filter and sort events, and more effectively prioritize your actions.
 
-|Title|Definition|
+## Access to the Event Level metadata field
+Everyone with access to the subscription can view and filter by **Event Level**.
+
+## Event Level alert definitions
+
+|Alert type|Definition|
 |-----|-----|
-|**Informational**|No current service availability impact, but possible future issues in a specific region.|
-|**Warning**|Potential service issues in a region that could impact availability or performance if high availability or disaster recovery is not used, or the issue persists.|
-|**Critical**|Immediate attention recommended. Widespread issues affecting multiple regions or services, risking failure of high availability or disaster recovery measures.|
+|**Informational**|There's no current service availability impact, but there's a potential for future problems in a specific region.|
+|**Warning**|Potential service problems in a region could affect availability or performance if high availability or disaster recovery isn't used, or if the problems persist.|
+|**Critical**|We recommend immediate attention. Widespread problems affect multiple regions or services, which risk the failure of high availability or disaster recovery measures.|
 
->[!Tip] 
->You can filter by Metadata to see specific types using the 'Event Level' field.
+> [!TIP]
+> You can use the **Event Level** field to filter by alert.
 
->[!NOTE] 
->This is only available for Service Issues at this time.
->
+:::image type="content" source="media/metada-screen.png" alt-text="Screenshot of the new metadata filter screen." lightbox="media/metada-screen.png":::
 
-:::image type="content" source="media/metada-screen.png" alt-text="Screenshot of new metadata filter screen." lightbox="media/metada-screen.png":::
+> [!NOTE]
+> This field is currently available only on the **Service Issues** pane.
