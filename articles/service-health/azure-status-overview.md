@@ -52,7 +52,7 @@ The public **Azure status** pane is used only to communicate about service issue
 
 * **Scenario 1**: A service issue has broad/significant customer impact across multiple services that affect a full region or multiple regions. In Scenario 1 events, we notify you because customer-configured resilience like high availability/disaster recovery might not be sufficient to avoid impact.
 * **Scenario 2**: A service issue impedes you from accessing the Azure portal or Service Health, and we're unable to contact you via our standard outage communications path.
-* **Scenario 3**: A service issue has broad/significant customer impact but we aren't yet able to confirm which customers, regions, or services are affected. We aren't able to send targeted communications, so we provide public updates.
+* **Scenario 3**: A service issue has broad/significant customer impact, but we can't yet confirm which customers, regions, or services are affected. We can't send targeted communications, so we provide public updates.
 
 ## What does Azure publish to the status history pane?
 
