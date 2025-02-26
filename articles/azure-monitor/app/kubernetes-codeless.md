@@ -20,7 +20,7 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 ## Prerequisites
 
 * An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using Java or Node.js in the Azure public cloud
-* [A workspace-based Application Insights resource](create-workspace-resource.md#workspace-based-application-insights-resources).
+* [A workspace-based Application Insights resource](create-workspace-resource.md#create-and-configure-application-insights-resources).
 
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux Arm64 node pools.
