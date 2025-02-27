@@ -64,6 +64,8 @@ items:
       items:
       - name: Data Collection Basics
         href: app/opentelemetry-overview.md
+      - name: Create and configure a resource
+        href: app/create-workspace-resource.md
       - name: Automatic instrumentation
         items:
         - name: Autoinstrumentation supported scenarios
@@ -208,10 +210,6 @@ items:
           href: /previous-versions/azure/azure-monitor/app/convert-classic-resource
         - name: Migrate to connection strings
           href: app/migrate-from-instrumentation-keys-to-connection-strings.md
-      - name: Create a resource
-        href: app/create-workspace-resource.md
-      - name: Manage Application Insights
-        href: app/powershell.md
     - name: Experiences
       items:
       - name: Application dashboard

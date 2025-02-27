@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2025
+ms.date: 02/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -58,12 +58,13 @@ Configure a backup for the Azure Blob in the Azure Storage account. Protect Azur
 
 **Impact:** Medium
   
-For more information, see [Quickstart - Configure vaulted backup for Azure Blobs using Azure Backup - Azure Backup ](/azure/backup/blob-backup-configure-quick)  
+For more information, see [Quickstart - Configure vaulted backup for Azure Blobs using Azure Backup - Azure Backup](/azure/backup/blob-backup-configure-quick)  
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: 4346d0ad-b591-479a-9c87-e01afe9188b6  
 Subcategory: DisasterRecovery
 
 <!--4346d0ad-b591-479a-9c87-e01afe9188b6_end-->
+
 
 <!--articleBody-->

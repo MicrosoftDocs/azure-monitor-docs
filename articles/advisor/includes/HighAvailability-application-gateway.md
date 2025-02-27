@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2025
+ms.date: 02/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -451,12 +451,13 @@ Use a health probe of the application gateway for monitoring the health of serve
 
 **Impact:** High
   
-For more information, see [Health monitoring overview for Azure Application Gateway ](/azure/application-gateway/application-gateway-probe-overview)  
+For more information, see [Health monitoring overview for Azure Application Gateway](/azure/application-gateway/application-gateway-probe-overview)  
 
 ResourceType: microsoft.network/applicationgateways  
 Recommendation ID: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32  
 Subcategory: Scalability
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
+
 
 <!--articleBody-->
