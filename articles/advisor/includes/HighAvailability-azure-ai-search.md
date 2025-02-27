@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 02/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure AI Search
@@ -76,13 +76,14 @@ Upgrade to the newest version of the Search/searchServices/mysearchservice/listQ
 
 **Impact:** Medium
   
-For more information, see [Query Keys - List By Search Service - REST API (Azure Search Management) ](/rest/api/searchmanagement/query-keys/list-by-search-service)  
+For more information, see [Query Keys - List By Search Service - REST API (Azure Search Management)](/rest/api/searchmanagement/query-keys/list-by-search-service)  
 
 ResourceType: microsoft.search/searchservices  
 Recommendation ID: e24f566a-0ea9-4a6b-94c5-be0a73f251c8  
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--e24f566a-0ea9-4a6b-94c5-be0a73f251c8_end-->
+
 
 <!--98acf571-d0a4-4111-993c-829f91b8c71b_begin-->
 
@@ -94,12 +95,13 @@ Add a replica for Azure AI Search. Instance of Azure AI Search isn't covered by 
 
 **Impact:** Medium
   
-For more information, see [Reliability in Azure AI Search - Azure AI Search ](https://aka.ms/AISearchHighAvailability)  
+For more information, see [Reliability in Azure AI Search - Azure AI Search](https://aka.ms/AISearchHighAvailability)  
 
 ResourceType: microsoft.search/searchservices  
 Recommendation ID: 98acf571-d0a4-4111-993c-829f91b8c71b  
 Subcategory: HighAvailability
 
 <!--98acf571-d0a4-4111-993c-829f91b8c71b_end-->
+
 
 <!--articleBody-->

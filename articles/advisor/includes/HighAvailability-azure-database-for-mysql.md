@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 02/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for MySQL
@@ -87,5 +87,23 @@ Subcategory: ServiceUpgradeAndRetirement
 
 
 
+
+<!--f51c5bce-c771-42c0-97c8-5c6676bad17c_begin-->
+
+#### Globally set the value of the innodb_strict_mode server parameter to OFF  
+  
+Globally set the value of the innodb_strict_mode  server parameter to OFF. The platform identified a critical issue with the High Availability server. The platform isn't able to process data from the source server due to an error: Table Row Size Too Large.  
+  
+**Potential benefits**: Uninterrupted replication. Improved data consistency  
+
+**Impact:** High
+  
+For more information, see [Server Parameters in Azure Database for MySQL - Flexible Server - Azure Database for MySQL - Flexible Server](https://aka.ms/innodb_strict_mode_serverpara)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: f51c5bce-c771-42c0-97c8-5c6676bad17c  
+Subcategory: HighAvailability
+
+<!--f51c5bce-c771-42c0-97c8-5c6676bad17c_end-->
 
 <!--articleBody-->
