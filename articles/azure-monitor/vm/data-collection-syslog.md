@@ -16,12 +16,8 @@ Syslog is an event logging protocol that's common to Linux. You can use the Sysl
 > [!TIP]
 > To collect data from devices that don't allow local installation of Azure Monitor Agent, [configure a dedicated Linux-based log forwarder](/azure/sentinel/forward-syslog-monitor-agent).
 
-## Prerequisites
 
-- [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac). Syslog events are sent to the [Syslog](/azure/azure-monitor/reference/tables/event) table.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
-
-## Configure collection of Syslog data
+## Configure Syslog data source
 
 In the **Collect and deliver** step of the DCR, select **Linux Syslog** from the **Data source type** dropdown. 
 
@@ -43,20 +39,18 @@ All logs with the selected severity level and higher are collected for the facil
 
 ## Destinations
 
-Syslog data can be sent to the following locations.
+## Add destinations
+Syslog data can only be sent to a Log Analytics workspace where it's stored in the [Syslog](/azure/azure-monitor/reference/tables/syslog). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
 
-| Destination | Table / Namespace |
-|:---|:---|
-| Log Analytics workspace | [Syslog](/azure/azure-monitor/reference/tables/syslog) |
-    
+:::image type="content" source="media/data-collection-windows-event/destination-workspace.png" lightbox="media/data-collection-windows-event/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::    
+
+
+## Configure Syslog on the Linux agent
+When Azure Monitor Agent is installed on a Linux machine, it installs a default Syslog configuration file that defines the facility and severity of the messages that are collected if Syslog is enabled in a DCR. The configuration file is different depending on the Syslog daemon that the client has installed.
 
 > [!NOTE]
 > Azure Monitor Linux Agent versions 1.15.2 and higher support syslog RFC formats including Cisco Meraki, Cisco ASA, Cisco FTD, Sophos XG, Juniper Networks, Corelight Zeek, CipherTrust, NXLog, McAfee, and Common Event Format (CEF).
 
-:::image type="content" source="media/data-collection-windows-event/destination-workspace.png" lightbox="media/data-collection-windows-event/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
-
-## Configure Syslog on the Linux agent
-When Azure Monitor Agent is installed on a Linux machine, it installs a default Syslog configuration file that defines the facility and severity of the messages that are collected if Syslog is enabled in a DCR. The configuration file is different depending on the Syslog daemon that the client has installed.
 
 ### Rsyslog
 On many Linux distributions, the rsyslogd daemon is responsible for consuming, storing, and routing log messages sent by using the Linux Syslog API. Azure Monitor Agent uses the TCP forward output module (`omfwd`) in rsyslog to forward log messages.
@@ -193,27 +187,7 @@ The following facilities are supported with the Syslog collector:
 | 20 | local6 |
 | 21 | local7 |
 
-## Syslog record properties
 
-Syslog records have a type of **Syslog** and have the properties shown in the following table.
-
-| Property | Description |
-|:--- |:--- |
-| Computer |Computer that the event was collected from. |
-| Facility |Defines the part of the system that generated the message. |
-| HostIP |IP address of the system sending the message. |
-| HostName |Name of the system sending the message. |
-| SeverityLevel |Severity level of the event. |
-| SyslogMessage |Text of the message. |
-| ProcessID |ID of the process that generated the message. |
-| EventTime |Date and time that the event was generated. |
-
-
-## Troubleshooting
-Go through the following steps if you aren't collecting data from the JSON log that you're expecting.
-
-- Verify that data is being written to Syslog.
-- See [Verify operation](../vm/data-collection.md#verify-operation) to verify whether the agent is operational and data is being received.
 
 ## Next steps
 

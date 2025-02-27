@@ -2,21 +2,21 @@
 title: Collect data from VM client with Azure Monitor
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 11/14/2024
-author: guywild
-ms.author: guywild
+ms.date: 02/26/2025
+author: bwren
+ms.author: bwren
 ms.reviewer: jeffwo
 
 ---
 
 # Collect data from VM client with Azure Monitor
 
-Azure Monitor automatically collects host metrics and activity logs from your Azure and Arc-enabled virtual machines. You need to configure collection of logs and metrics from the client OS and workloads though.
-
-To collect metrics and logs from the client operating system and its workloads though, you need to install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and configure [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that specify what you want to collect and where to send it.  This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients and to install the agent on any machines that require it.
+Azure Monitor automatically collects host metrics and activity logs from your Azure and Arc-enabled virtual machines. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that specify what you want to collect and where to send it.  This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
 
 > [!IMPORTANT]
-> If you're new to Azure Monitor or have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article. If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md)
+> The [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) must be installed on each VM that will use a DCR. The agent is automatically installed on any VM that doesn't already have it when you use the process described in this article.
+>
+> If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article. If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md)
 
 ## Data sources
 
@@ -42,18 +42,18 @@ The following table lists the types of data you can currently collect from a VM 
 
 - [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. You can create a new workspace, but you should probably use an existing one if you have one.
 - [Permissions to create DCR objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
-> To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
+- To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 - See the detailed article for each data source for any additional prerequisites.
 
 ## Create a data collection rule
 
 In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
 
-:::image type="content" source="media/azure-monitor-agent-data-collection/create-data-collection-rule.png" lightbox="media/azure-monitor-agent-data-collection/create-data-collection-rule.png" alt-text="Screenshot that shows the Create button for a new data collection rule.":::
+:::image type="content" source="media/data-collection/create-data-collection-rule.png" lightbox="media/data-collection/create-data-collection-rule.png" alt-text="Screenshot that shows the Create button for a new data collection rule.":::
 
 The **Basics** tab includes basic information about the DCR.
 
-:::image type="content" source="media/azure-monitor-agent-data-collection/basics-tab.png" lightbox="media/azure-monitor-agent-data-collection/basics-tab.png" alt-text="Screenshot that shows the Basics tab for a new data collection rule.":::
+:::image type="content" source="media/data-collection/basics-tab.png" lightbox="media/data-collection/basics-tab.png" alt-text="Screenshot that shows the Basics tab for a new data collection rule.":::
 
 | Setting | Description |
 |:---|:---|
@@ -68,13 +68,13 @@ The **Basics** tab includes basic information about the DCR.
 
 ## Add resources
 
-On the **Resources** pane, select **Add resources** to add VMs that will use the DCR. You don't need to add any VMs yet since you can update the DCR after creation and add/remove any resources. The Azure Monitor Agent is automatically installed on any resource that doesn't already have it. A few minutes after the DCR is saved, 
+On the **Resources** pane, select **Add resources** to add VMs that will use the DCR. You don't need to add any VMs yet since you can update the DCR after creation and add/remove any resources.
 
 > [!TIP]
 > When you add a VM to a DCR, a [data collection rule association (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra) is created between the machine and the DCR. The same DCRA is removed if you remove the resource from the DCR. You don't need to know anything about DCRAs when working in the Azure portal. It's an important concept though if you work with DCRs using another method such as CLI or PowerShell. See [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md) for more information about DCRAs.
 
 
-:::image type="content" source="media/azure-monitor-agent-data-collection/resources-tab.png" lightbox="media/azure-monitor-agent-data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
+:::image type="content" source="media/data-collection/resources-tab.png" lightbox="media/data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
 
 If you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-private-link.md), select **Enable Data Collection Endpoints** on the **Resources** tab and select an endpoint in the region of each monitored machine. Otherwise, you don't need to select a DCE for each resource.
 
@@ -85,7 +85,7 @@ If you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-priv
 
 On the **Collect and deliver** pane, click **Add data source** to add and configure data sources and destinations for the DCR. You can choose to add multiple data sources to the same DCR or create multiple DCRs with different data sources. A DCR can have up to 10 data sources, and a VM can use any number of DCRs.
 
-:::image type="content" source="media/azure-monitor-agent-data-collection/add-data-source.png" lightbox="media/azure-monitor-agent-data-collection/add-data-source.png" alt-text="Screenshot that shows the Add data sources tab for a new data collection rule.":::
+:::image type="content" source="media/data-collection/add-data-source.png" lightbox="media/data-collection/add-data-source.png" alt-text="Screenshot that shows the Add data sources tab for a new data collection rule.":::
 
 | Setting | Description |
 |:---|:---|
@@ -102,10 +102,7 @@ On the **Collect and deliver** pane, click **Add data source** to add and config
 
 ## Verify operation
 
-After you create a DCR and associate it with VMs, you can verify that the agent is operational and that data is being collected by querying the data in the Log Analytics workspace.
-
-> [!NOTE]
-> It can take up to 5 minutes for data to be sent to the destinations when you create a DCR by using the data collection rule wizard.
+It can take up to 5 minutes for data to be sent to the destinations after you create a DCR. You can verify that the agent is operational and that data is being collected by querying the data in the Log Analytics workspace. 
 
 ### Verify agent operation
 
@@ -113,7 +110,7 @@ Verify that the agent is operational and communicating properly with Azure Monit
 
 From the virtual machine in the Azure port, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Heartbeat**. If the agent is communicating correctly, you should see heartbeat records for the VM.
 
-:::image type="content" source="media/azure-monitor-agent-data-collection/resources-tab.png" lightbox="media/azure-monitor-agent-data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
+:::image type="content" source="media/data-collection/heartbeat.png" lightbox="media/data-collection/heartbeat.png" alt-text="Screenshot that shows the selection of the Heartbeats table in a Log Analytics workspace.":::
 
 ### Verify that records are received
 Once you verify that the agent is communicating properly, make sure that the data you expect is being collected. Use the same process as above to view the data in the table for the data source that you configured. The following table lists the category and table for each data source.
