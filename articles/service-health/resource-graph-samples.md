@@ -1,13 +1,15 @@
 ---
 title: Azure Resource Graph sample queries for Azure Service Health
 description: Sample Azure Resource Graph queries for Azure Service Health showing use of resource types and tables to access Azure Service Health related resources and properties.
-ms.date: 12/18/2024
+ms.date: 02/27/2025
 ms.topic: sample
 ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-azurecli
 ---
 # Azure Resource Graph sample queries for Azure Service Health
 
 This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Service Health.
+[!NOTE:]
+Any of the queries will give the results generally within 5 minutes.
 
 ## Azure Service Health
 
