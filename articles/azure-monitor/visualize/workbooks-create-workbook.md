@@ -78,7 +78,7 @@ These text styles are available:
 | upsell  | The portal's "upsell" style, with a `🚀` or similar icon and purple background |
 | warning | The portal's "warning" style, with a `⚠` or similar icon and blue background |
 
-You can also choose a text parameter as the source of the style. The parameter value must be one of the above text values. The absence of a value or any unrecognized value are treated as `plain` style.
+You can also choose a text parameter as the source of the style. The parameter value must be one of the above text values. The absence of a value or any unrecognized value is treated as `plain` style.
 
 ### Text style examples
 
