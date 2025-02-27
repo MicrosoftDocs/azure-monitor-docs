@@ -9,7 +9,7 @@ ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-
 
 This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Service Health.
 [!NOTE:]
-Any of the queries will give the results generally within 5 minutes.
+You should see the updated results of each query within 5 minutes in general.
 
 ## Azure Service Health
 
