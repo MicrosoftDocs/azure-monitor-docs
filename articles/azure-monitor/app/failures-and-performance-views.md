@@ -12,8 +12,10 @@ ms.reviewer: cogoodson
 
 [Application Insights](./app-insights-overview.md) features two key tools: the Failures view and the Performance view.
 
-* The Failures view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
-* The Performance view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts. Together, they ensure the ongoing health and efficiency of web applications.
+* **Failures view -** Tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
+* **Performance view -** Quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
+
+Together, they ensure the ongoing health and efficiency of web applications.
 
 ## [Failures view](#tab/failures-view)
 
@@ -29,21 +31,19 @@ You can also get to the failures experience from the [Application Map](app-map.m
 
 ### Failures overview
 
-The **Failures** experience shows you a list of all failures collected for your application. It lets you view their frequency across different operations to help you focus your efforts on those issues with the highest impact.
+The **Failures** view shows you a list of all failed operations collected for your application. It lets you view their frequency as well as the number of users affected, to help you focus your efforts on the issues with the highest impact.
 
 :::image type="content" source="media/failures-and-performance-views/failures-view.png" lightbox="media/failures-and-performance-views/failures-view.png" alt-text="Screenshot of the failures view in Application Insights.":::
 
 ### Analyze failures
 
-To continue your investigation into the root cause of the error or exception, you can drill into the problematic transaction for a detailed end-to-end transaction view that includes dependencies and exception details.
+To continue your investigation into the root cause of an error or exception, you can drill into the problematic transaction for a detailed end-to-end transaction view that includes dependencies and exception details.
 
-In this example, we investigate **GET Employees/Create** due to the large amount of affected users.
-
-1. Select **Get Employees/Create** to show more information about this operation in the right pane.
+1. Select an operation to show more information about it in the right pane.
 
 1. Under **Drill into**, select the button with the number of filtered results to view a list of sample operations.
 
-1. Select a search result to open the **End-to-end transaction details** view.
+1. Select a sample operation to open the **End-to-end transaction details** view.
 
     :::image type="content" source="media/failures-and-performance-views/failures-view-drill-into.png" lightbox="media/failures-and-performance-views/failures-view-drill-into.png" alt-text="Screenshot of the failures view with the 'Drill into' button highlighted.":::
 
@@ -52,19 +52,13 @@ In this example, we investigate **GET Employees/Create** due to the large amount
 
 ### End-to-end transaction details
 
-1. The details of the failed request show the Gantt chart which shows two exceptions in this transaction. Selecting an exception shows additional information like **Exception Properties** and the **Call Stack**.
-
-:::image type="content" source="media/failures-and-performance-views/failures-transaction-view.png" lightbox="media/failures-and-performance-views/failures-transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
-
-:::image type="content" source="media/failures-and-performance-views/failures-exception.png" lightbox="media/failures-and-performance-views/failures-exception.png" alt-text="Screenshot showing the end-to-end transaction view with an exception highlighted.":::
+The end-to-end tranasction view shows a Gantt chart of the transaction. Selecting an exception shows more information like **Exception Properties** and the **Call Stack**. Additionally, you can **Open debug snapshot** to see code-level debug information of the exception.
 
 :::image type="content" source="media/failures-and-performance-views/failures-exception-open-debugger.png" lightbox="media/failures-and-performance-views/failures-exception-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction with 'Open debug snapshot' highlighted.":::
 
 ### Debug Snapshot
 
-1. Select **Open debug snapshot** at the top to open the **Debug Snapshot** pane to see the call stack and inspect variables at each call stack frame. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
-
-:::image type="content" source="media/failures-and-performance-views/failures-debug-snapshot.png" lightbox="media/failures-and-performance-views/failures-debug-snapshot.png" alt-text="Screenshot showing the debug snapshot feature.":::
+The Debug Snapshot view shows the call stack and allows you to inspect variables at each call stack frame. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
 
 :::image type="content" source="media/failures-and-performance-views/failures-debug-snapshot-details.png" lightbox="media/failures-and-performance-views/failures-debug-snapshot-details.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
 
