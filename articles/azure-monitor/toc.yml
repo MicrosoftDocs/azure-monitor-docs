@@ -353,8 +353,7 @@ items:
   - name: Monitor virtual machines
     items:
     - name: Overview
-      displayName: virtual machines, vm, vms
-      href: vm/monitor-vm.md
+      href: /azure/virtual-machines/monitor-vm?toc=/azure/azure-monitor/toc.json
     - name: Best practices
       href: best-practices-vm.md
     - name: Tutorials
