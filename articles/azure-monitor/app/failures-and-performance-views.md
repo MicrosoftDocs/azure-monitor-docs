@@ -10,48 +10,63 @@ ms.reviewer: cogoodson
 
 # Failures and Performance views
 
-[Application Insights](./app-insights-overview.md) features two key tools: the Failures view and the Performance view. The Failures view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability. The Performance view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts. Together, they ensure the ongoing health and efficiency of web applications.
+[Application Insights](./app-insights-overview.md) features two key tools: the Failures view and the Performance view.
+
+* The Failures view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
+* The Performance view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts. Together, they ensure the ongoing health and efficiency of web applications.
 
 ## [Failures view](#tab/failures-view)
 
 Application Insights comes with a curated Application Performance Management (APM) experience to help you diagnose failures in your monitored applications.
 
-To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** experience or the **Failures** option under the **Investigate** category in the resource menu.
+To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** experience, or the **Failures** option under the **Investigate** category in the resource menu.
 
-:::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the Failures experience in Application Insights.":::
+:::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the failures view in Application Insights.":::
 
 You can also get to the failures experience from the [Application Map](app-map.md) by selecting **Investigate failures** from the triage pane.
 
-:::image type="content" source="media/failures-and-performance-views/failures-app-map.png" lightbox="media/failures-and-performance-views/failures-app-map.png" alt-text="Screenshot showing how to reach the failures experience from the application map.":::
+:::image type="content" source="media/failures-and-performance-views/failures-app-map.png" lightbox="media/failures-and-performance-views/failures-app-map.png" alt-text="Screenshot showing how to reach the failures view from the application map.":::
 
 ### Failures overview
 
 The **Failures** experience shows you a list of all failures collected for your application. It lets you view their frequency across different operations to help you focus your efforts on those issues with the highest impact.
 
-:::image type="content" source="media/failures-and-performance-views/failures-view.png" lightbox="media/failures-and-performance-views/failures-view.png" alt-text="Screenshot of the failures experience in Application Insights." :::
+:::image type="content" source="media/failures-and-performance-views/failures-view.png" lightbox="media/failures-and-performance-views/failures-view.png" alt-text="Screenshot of the failures view in Application Insights.":::
 
 ### Analyze failures
 
 To continue your investigation into the root cause of the error or exception, you can drill into the problematic transaction for a detailed end-to-end transaction view that includes dependencies and exception details.
 
-:::image type="content" source="media/failures-and-performance-views/4-application-insights-03.png" lightbox="media/failures-and-performance-views/4-application-insights-03.png" alt-text="Screenshot of analyzing failure with end-to-end view.":::
-
 In this example, we investigate **GET Employees/Create** due to the large amount of affected users.
 
 1. Select **Get Employees/Create** to show more information about this operation in the right pane.
 
-    <!-- Screenshot showing Get Employees/Create selected -->
-
 1. Under **Drill into**, select the button with the number of filtered results to view a list of sample operations.
 
-    <!-- Screenshot showing list of sample operations -->
+1. Select a search result to open the **End-to-end transaction details** view.
+
+    :::image type="content" source="media/failures-and-performance-views/failures-view-drill-into.png" lightbox="media/failures-and-performance-views/failures-view-drill-into.png" alt-text="Screenshot of the failures view with the 'Drill into' button highlighted.":::
 
     > [!NOTE]
     > The **Suggested** samples have related telemetry from all components, even if sampling might have been in effect in any of them.
 
-1. Select a search result to open the **End-to-end transaction details** view.
+### End-to-end transaction details
 
-    <!-- Screenshot showing end-to-end transaction view -->
+1. The details of the failed request show the Gantt chart which shows two exceptions in this transaction. Selecting an exception shows additional information like **Exception Properties** and the **Call Stack**.
+
+:::image type="content" source="media/failures-and-performance-views/failures-transaction-view.png" lightbox="media/failures-and-performance-views/failures-transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
+
+:::image type="content" source="media/failures-and-performance-views/failures-exception.png" lightbox="media/failures-and-performance-views/failures-exception.png" alt-text="Screenshot showing the end-to-end transaction view with an exception highlighted.":::
+
+:::image type="content" source="media/failures-and-performance-views/failures-exception-open-debugger.png" lightbox="media/failures-and-performance-views/failures-exception-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction with 'Open debug snapshot' highlighted.":::
+
+### Debug Snapshot
+
+1. Select **Open debug snapshot** at the top to open the **Debug Snapshot** pane to see the call stack and inspect variables at each call stack frame. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
+
+:::image type="content" source="media/failures-and-performance-views/failures-debug-snapshot.png" lightbox="media/failures-and-performance-views/failures-debug-snapshot.png" alt-text="Screenshot showing the debug snapshot feature.":::
+
+:::image type="content" source="media/failures-and-performance-views/failures-debug-snapshot-details.png" lightbox="media/failures-and-performance-views/failures-debug-snapshot-details.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
 
 ## [Performance view](#tab/performance-view)
 
@@ -59,21 +74,23 @@ You can further investigate slow transactions to identify slow requests and serv
 
 To get to the **Performance** experience in Application Insights, select either the **Server response time** or **Server requests** graph in the **Overview** experience, or the **Performance** option under the **Investigate** category in the resource menu on the left.
 
-:::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the performance experience in Application Insights.":::
+:::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the performance view in Application Insights.":::
 
 You can also analyze performance in your application or its components from the application map, by selecting **Investigate performance** from the triage pane of [Application Map](app-map.md).
 
-:::image type="content" source="media/failures-and-performance-views/performance-app-map.png" lightbox="media/failures-and-performance-views/performance-app-map.png" alt-text="Screenshot showing how to reach the performance experience from the application map.":::
+:::image type="content" source="media/failures-and-performance-views/performance-app-map.png" lightbox="media/failures-and-performance-views/performance-app-map.png" alt-text="Screenshot showing how to reach the performance view from the application map.":::
 
 ### Performance overview
 
 The **Performance** experience shows a list of operations collected for your application with the option to drill into each one.
 
-:::image type="content" source="media/failures-and-performance-views/performance-view.png" lightbox="media/failures-and-performance-views/performance-view.png" alt-text="Screenshot of the performance experience in Application Insights." :::
+:::image type="content" source="media/failures-and-performance-views/performance-view.png" lightbox="media/failures-and-performance-views/performance-view.png" alt-text="Screenshot showing the performance view in Application Insights.":::
 
 On the **Performance** page, you can isolate slow transactions by selecting the time range, operation name, and durations of interest. You're also prompted with automatically identified anomalies and commonalities across transactions. From this page, you can drill into an individual transaction for an end-to-end view of transaction details with a Gantt chart of dependencies.
 
 If you instrument your web pages with Application Insights, you can also gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires adding a script to your web pages. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle.
+
+:::image type="content" source="media/failures-and-performance-views/performance-view-drill-into.png" lightbox="media/failures-and-performance-views/performance-view-drill-into.png" alt-text="Screenshot showing the performance view with the 'Drill into' button highlighted.":::
 
 ### Identify slow server operations
 
@@ -120,25 +137,19 @@ In addition to identifying server processes to optimize, Application Insights ca
 > [!NOTE]
 > Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
 
+:::image type="content" source="media/failures-and-performance-views/performance-transaction-view.png" lightbox="media/failures-and-performance-views/performance-transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
+
+:::image type="content" source="media/failures-and-performance-views/performance-profiler-traces.png" lightbox="media/failures-and-performance-views/performance-profiler-traces.png" alt-text="Screenshot showing the profiler traces feature.":::
+
+:::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
+
 ---
-
-## End-to-end transaction details
-
-1. The details of the failed request show the Gantt chart which shows two exceptions in this transaction. Selecting an exception shows additional information like **Exception Properties** and the **Call Stack**.
-
-    <!-- Screenshot showing end-to-end transaction view -->
-
-1. Select **Open debug snapshot** at the top to open the **Debug Snapshot** pane to see the call stack and inspect variables at each call stack frame. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
-
-    <!-- Screenshot showing Snapshot Debugger | ACCESS REQUIRED! -->
 
 ### Add a work item
 
 If you connect Application Insights to a tracking system, such as Azure DevOps or GitHub, you can create a work item directly from Application Insights.
 
 1. Select **Create work item** and create a new template or pick an existing one.
-
-    <!-- Screenshot showing Create work item selected -->
 
 1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
 
