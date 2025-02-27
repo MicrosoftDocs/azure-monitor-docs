@@ -2,7 +2,7 @@
 title: Resource impact from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
 ms.topic: conceptual
-ms.date: 3/3/2023
+ms.date: 2/26/2025
 ---
 
 # Resource impact from Azure security incidents
@@ -10,38 +10,39 @@ ms.date: 3/3/2023
 In support of the experience of viewing impacted resources, Service Health has enabled a new feature to:
 
 - Display resources impacted by a security incident
-- Enabling role-based access control (RBAC) for viewing security incident impacted resource information
+- Enable role-based access control (RBAC) for viewing security incident impacted resource information
 
-This article details what is communicated to users and where they can view information about their impacted resources.
+This article explains what is communicated to users, and where they can view information about their impacted resources.
 
 >[!Note]
 >This feature will be rolled out in phases. The rollout will gradually expand to 100 percent of subscription and tenant customers.
 
 ## Role Based Access (RBAC) For Security Incident Resource Impact
 
-[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to. Given the sensitive nature of security incidents, role-based access is leveraged to limit the audience of their impacted resource information. Along with resource information, Service Health provides the below information to users whose resources are impacted by a security incident:
+[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) helps you manage who has access to Azure resources, what they can do with those resources, and what areas they have access to.<br> 
+Given the sensitive nature of security incidents, role-based access is leveraged to limit the audience of their impacted resource information. Along with resource information, Service Health provides the below information to users whose resources are impacted by a security incident:
 
 Users authorized with the following roles can view security impacted resource information:
 
 **Subscription level**
 - Subscription Owner
 - Subscription Admin
-- Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions or Microsoft.ResourceHealth/events/action permissions
+- Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions <br>or Microsoft.ResourceHealth/events/action permissions
 
 **Tenant level**
-- Security Admin/Security Reader
+- Security Admin
 - Global Admin/Tenant Admin
-- Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions or Microsoft.ResourceHealth/events/action permissions
+- Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions <br>or Microsoft.ResourceHealth/events/action permissions" to "Custom Roles with Microsoft.ResourceHealth/events/fetchEventDetails/action permissions <br>and Microsoft.ResourceHealth/events/action permissions" under both Subscription Level and Tenant Level
 
 ## Viewing Impacted Resources for Security Incidents on the Service Health Portal
 
-In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Security Advisories** displays resources that are impacted by a security incident. Along with resource information, Service Health provides the below information to users whose resources are impacted by a security incident:
+In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Security Advisories** displays resources that are impacted by a security incident. Along with resource information, Service Health provides the information shown below to users whose resources are impacted by a security incident:
 
 |Column  |Description |
 |---------|---------|
 |**Subscription ID**|Unique ID for the subscription that contains the impacted resource|
-|**Subscription Name**|Subscription name for the subscription that contains the impacted resource|
-|**Tenant Name**|Tenant name for the tenant that contains the impacted resource|
+|**Subscription Name**|Name for the subscription that contains the impacted resource|
+|**Tenant Name**|Name for the tenant that contains the impacted resource|
 |**Tenant ID**|Unique ID for the tenant that contains the impacted resource|
 
 The following examples show a security incident with impacted resources from the subscription and tenant scope.
@@ -57,7 +58,7 @@ The following examples show a security incident with impacted resources from the
 
 ## Accessing Impacted Resources programmatically via an API
 
-Impacted resource information for security incidents can be retrieved programmatically using the Events API. To access the list of resources impacted by a security incident, users authorized with the above-mentioned roles can use the endpoints below. For details on how to access this data, see the [API documentation](/rest/api/resourcehealth/2022-10-01/security-advisory-impacted-resources).
+You can retrieve information about impacted resources for security incidents using the Events API program. Authorized users with the specified roles can access the list of resources impacted by a security incident using the endpoints provided below. For details on how to access this data, see the [API documentation](/rest/api/resourcehealth/2022-10-01/security-advisory-impacted-resources).
 
 **Subscription**
 
