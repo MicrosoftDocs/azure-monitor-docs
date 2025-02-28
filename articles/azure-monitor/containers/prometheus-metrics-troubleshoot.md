@@ -197,6 +197,8 @@ If creation of Azure Monitor Workspace fails with an error saying "*Resource 're
 
 When you create an Azure Monitor workspace, by default a data collection rule and a data collection endpoint in the form "*azure-monitor-workspace-name*" will automatically be created in a resource group in the form "*MA_azure-monitor-workspace-name_location_managed*". Currently there's no way to change the names of these resources, and you'll need to set an exemption on the Azure Policy to exempt the above resources from policy evaluation. See [Azure Policy exemption structure](/azure/governance/policy/concepts/exemption-structure).
 
-## Next steps
+## High Scale considerations
 
+If you are collecting metrics at high scale, check the sections below for HPA and high scale guidance.
 - [Check considerations for collecting metrics at high scale](prometheus-metrics-scrape-scale.md).
+- [Horizontal Pod Autoscaling for collector replicaset](prometheus-metrics-scrape-autoscaling.md)
