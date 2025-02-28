@@ -401,9 +401,6 @@ items:
           maintainContext: true
         - name: Send data to Event Hubs and Storage
           href: vm/send-event-hubs-storage.md
-      - name: DCR samples
-        displayName: Azure Monitor agent, AMA
-        href: vm/data-collection-rule-samples.md
     - name: VM insights
       items:
       - name: Overview
@@ -744,9 +741,7 @@ items:
         items: 
         - name: Create and edit
           displayName: Data collection rules, DCR
-          href: essentials/data-collection-rule-create-edit.md  
-        - name: Samples and scenarios
-          href: essentials/data-collection-rule-samples.md          
+          href: essentials/data-collection-rule-create-edit.md         
         - name: Manage associations
           displayName: data collection rules, DCR
           href: essentials/data-collection-rule-associations.md
@@ -782,7 +777,9 @@ items:
           href: essentials/data-plane-versus-metrics-export.md
       - name: Monitor DCRs
         displayName: Data collection rules
-        href: essentials/data-collection-monitor.md 
+        href: essentials/data-collection-monitor.md
+      - name: Samples and scenarios
+        href: essentials/data-collection-rule-samples.md 
       - name: Data collection endpoints
         href: essentials/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration

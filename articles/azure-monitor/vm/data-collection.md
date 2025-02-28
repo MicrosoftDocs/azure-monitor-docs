@@ -13,18 +13,18 @@ ms.reviewer: jeffwo
 
 Azure Monitor automatically collects host metrics and activity logs from your Azure and Arc-enabled virtual machines. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that specify what you want to collect and where to send it.  This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
 
-> [!IMPORTANT]
->If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each data source. You can use the Azure portal to create and edit the DCR, and the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is automatically installed on each VM that doesn't already have it.
+> [!NOTE]
+>If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each [data source](#add-data-sources). You can use the Azure portal to create and edit the DCR, and the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is automatically installed on each VM that doesn't already have it.
 >
->If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md) and [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md).
+>If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md) and [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md). You can also view sample DCRs created by this process at [Data collection rule (DCR) samples for VM  in Azure Monitor](./data-collection-rule-samples-ama.md).
 
 
 ## Prerequisites
 
-- [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md) if you don't already have a workspace you can use..
+- [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md) if you don't already have a workspace you can use.
 - [Permissions to create DCR objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
 - To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
-- See the detailed article for each data source for any additional prerequisites.
+- See the detailed article for each [data source](#add-data-sources) for any additional prerequisites.
 
 ## Create a data collection rule
 
@@ -49,11 +49,10 @@ The **Basics** tab includes basic information about the DCR.
 
 ## Add resources
 
-On the **Resources** pane, select **Add resources** to add VMs that will use the DCR. You don't need to add any VMs yet since you can update the DCR after creation and add/remove any resources.
+On the **Resources** pane, select **Add resources** to add VMs that will use the DCR. You don't need to add any VMs yet since you can update the DCR after creation and add/remove any resources. If you select **Enable Data Collection Endpoints** on the **Resources** tab, you can select a DCE for each VM. This is only required if you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-private-link.md). Otherwise, don't select this option.
 
 :::image type="content" source="media/data-collection/resources-tab.png" lightbox="media/data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
 
-If you select **Enable Data Collection Endpoints** on the **Resources** tab, you can select a DCE for each VM. This is only required if you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-private-link.md). Otherwise, don't select this option.
 
 > [!IMPORTANT]
 > When resources are added to a DCR, the default option in the Azure portal is to enable a system-assigned managed identity for the resources. For existing applications, if a user-assigned managed identity is already set, if you don't specify the user-assigned identity when you add the resource to a DCR by using the portal, the machine defaults to using a *system-assigned identity* that's applied by the DCR.
@@ -66,10 +65,10 @@ On the **Collect and deliver** pane, click **Add data source** to add and config
 
 | Setting | Description |
 |:---|:---|
-| **Data source** | Select a **Data source type** and define related fields based on the data source type you select. For details about configuring each type of data source, see related articles in [Data sources](/azure/azure-monitor/agents/azure-monitor-agent-data-collection#data-sources). |
-| **Destination** | Add one or more destinations for each data source. While you can select multiple destinations, be aware that this will send duplicate data to each location resulting in additional cost.  See the details for each data type for the different destinations they support. |
+| **Data source** | Select a **Data source type** and provide values for the fields based on the data source type you select. See the table below for details about configuring each type of data source. |
+| **Destination** | Add one or more destinations for each data source. While you can select multiple destinations of the same type, be aware that this will send duplicate data to each which will result in additional cost. See the details for each data type for the different destinations they support. |
 
-The following table lists the types of data you can currently collect from a VM client with Azure Monitor and where you can send that data. See the relevant linked article to learn how to configure that data source.
+The following table lists the types of data you can collect from a VM client with Azure Monitor and where you can send that data. See the linked article for each to learn how to configure that data source.
 
 | Data source | Description | Client OS | Destinations |
 |:---|:---|:---|:---|
@@ -115,7 +114,7 @@ Be careful of the following scenarios which may result in collecting duplicate d
 - Creating a DCR that collects security logs and enabling [Microsoft Sentinel](/azure/sentinel) for the same VMs. In this case, the same events will be sent to both the **Event** table (Azure Monitor) and in the **SecurityEvent** table (Microsoft Sentinel).
 - Creating a DCR for a VM that's also running the legacy [Log Analytics agent](../agents/log-analytics-agent.md) on the same machine. Both may be collecting identical data and storing it in the same table. Follow the guidance at [Migrate to Azure Monitor Agent from Log Analytics agent](../agents/azure-monitor-agent-migration.md) to migrate from the legacy agent.
 
-Before you add a VM to a DCR, ensure that the VM isn't associated with other DCRs using the same data sources or you may collect duplicate data. See [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#preview-dcr-experience) to list the DCRs associated with a VM in the Azure portal. You can also use the following PowerShell command to list all DCRs for a VM:
+See [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#preview-dcr-experience) to list the DCRs associated with a VM in the Azure portal. You can also use the following PowerShell command to list all DCRs for a VM:
 
 ```powershell
 Get-AzDataCollectionRuleAssociation -resourceUri <vm-resource-id>
