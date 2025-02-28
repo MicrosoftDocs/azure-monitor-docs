@@ -7696,6 +7696,10 @@
    "redirect_document_id": false
   },
   {
+   "source_path_from_root": "/articles/azure-monitor/app/powershell.md",
+   "redirect_url": "/azure/azure-monitor/app/create-workspace-resource",
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/logs/data-security.md",
    "redirect_url": "/azure/azure-monitor/best-practices-security",
    "redirect_document_id": false
