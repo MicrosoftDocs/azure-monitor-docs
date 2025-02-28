@@ -6,7 +6,7 @@ ms.date: 2/28/2024
 ms.reviewer: rashmy
 ---
 
-# Horizontal Pod Autoscaling(HPA) for Collector Replica set
+# Horizontal Pod Autoscaling (HPA) for Collector Replica set
 
 ### Overview
 Azure Managed Prometheus supports Horizontal Pod Autoscaling(HPA) for the ama-metrics replica set pod by default. 
