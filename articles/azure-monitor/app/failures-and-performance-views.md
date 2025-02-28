@@ -58,7 +58,7 @@ The end-to-end tranasction view shows a Gantt chart of the transaction. Selectin
 
 ### Debug Snapshot
 
-The Debug Snapshot view shows the call stack and allows you to inspect variables at each call stack frame. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
+The Debug Snapshot view shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
 
 :::image type="content" source="media/failures-and-performance-views/failures-debug-snapshot-details.png" lightbox="media/failures-and-performance-views/failures-debug-snapshot-details.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
 
@@ -135,9 +135,15 @@ In addition to identifying server processes to optimize, Application Insights ca
 
 :::image type="content" source="media/failures-and-performance-views/performance-profiler-traces.png" lightbox="media/failures-and-performance-views/performance-profiler-traces.png" alt-text="Screenshot showing the profiler traces feature.":::
 
-:::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
-
 ---
+
+### Use analytics data
+
+All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the data in various ways. You can use this data to analyze the requests that generated the exception you're researching. 
+
+On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu. This will take you to the Logs view where you can further modify the query or select a different one from the sidebar.
+
+:::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
 
 ### Add a work item
 
@@ -146,8 +152,6 @@ If you connect Application Insights to a tracking system, such as Azure DevOps o
 1. Select **Create work item** and create a new template or pick an existing one.
 
 1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
-
-    <!-- Screenshot showing New Work Item pane | ACCESS REQUIRED! -->
 
 ## Next steps
 
