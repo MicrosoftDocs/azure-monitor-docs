@@ -5,12 +5,12 @@ ms.topic: include
 ms.date: 02/25/2025
 ---
 
-### Active Service Health event subscription impact
+### Active Service Health event subscription affect
 
 Returns all active Service Health events - including service issues, planned maintenance, health advisories, and security advisories – grouped by event type and including count of impacted subscriptions.
 
 [!NOTE:]
-This does not include emerging issues. For more information open [this page](https://learn.microsoft.com/en-us/rest/api/resourcehealth/emerging-issues?view=rest-resourcehealth-2024-02-01).
+This event subscription doesn't include emerging issues. For more information, open [this page](https://learn.microsoft.com/en-us/rest/api/resourcehealth/emerging-issues?view=rest-resourcehealth-2024-02-01).
 
 
 ```kusto
@@ -43,7 +43,7 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 
 ### All active health advisory events
 
-Returns all active health advisory Service Health events across all subscriptions to which the user has access to.
+Returns all active health advisory Service Health events across all subscriptions the user has access to.
 
 ```kusto
 ServiceHealthResources
