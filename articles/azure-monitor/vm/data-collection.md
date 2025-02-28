@@ -14,36 +14,32 @@ ms.reviewer: jeffwo
 Azure Monitor automatically collects host metrics and activity logs from your Azure and Arc-enabled virtual machines. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that specify what you want to collect and where to send it.  This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
 
 > [!IMPORTANT]
-> The [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) must be installed on each VM that will use a DCR. The agent is automatically installed on any VM that doesn't already have it when you use the process described in this article.
+> If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each data source. You can use the Azure portal to create and edit the DCR, and the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is automatically installed on each VM that doesn't already have it.
 >
-> If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article. If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md)
+>  If you want to take advantage of more advanced features like [transformations](../essentials/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md) and [Create DCRs in Azure Monitor](../essentials/data-collection-rule-create-edit.md).
 
-## Data sources
-
-The following table lists the types of data you can currently collect from a VM with the Azure Monitor agent and where you can send that data. Complete the steps in this article to create the DCR and assign it to resources, and then see the relevant linked article to learn how to configure the data source.
-
-| Data source | Description | Client OS | Destinations |
-|:---|:---|:---|:---|
-| [Windows events](./data-collection-windows-events.md) |  Information sent to the Windows event logging system, including sysmon events | Windows | Log Analytics workspace |
-| [Performance counters](./data-collection-performance.md) | Numerical values that measure the performance of different aspects of the operating system and workloads  | Windows<br>Linux | Azure Monitor metrics (preview) <br>Log Analytics workspace |
-| [Syslog](./data-collection-syslog.md) | Information sent to the Linux event logging system | Linux | Log Analytics workspace |
-| [Text log](./data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace
-| [JSON log](./data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
-| [IIS logs](./data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
-
-> [!WARNING]
-> The following scenarios might collect duplicate data, which can increase billing charges:
->
-> - Creating multiple DCRs that have the same data source and associating them to the same agent. Ensure that you filter data in the DCRs so that each DCR collects unique data.
-> - Creating a DCR that collects security logs and enabling Microsoft Sentinel for the same agents. In this case, you can collect the same events in the **Event** table and in the **SecurityEvent** table.
-> - Using both the Azure Monitor Agent and the legacy Log Analytics agent on the same machine. Limit duplicate events to only the time when you transition from one agent to the other.
 
 ## Prerequisites
 
-- [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. You can create a new workspace, but you should probably use an existing one if you have one.
+- [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md) if you don't already have a workspace you can use..
 - [Permissions to create DCR objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
 - To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 - See the detailed article for each data source for any additional prerequisites.
+
+> [!WARNING]
+> Be careful of the following scenarios might which can increase billing charges by collecting duplicate data:
+>
+> - Creating multiple DCRs that have the same data source and associating them to the same VM. If you do have DCRs with the same data source, make sure that you configure them to filter for unique data.
+> - Creating a DCR that collects security logs and enabling [Microsoft Sentinel](/azure/sentinel) for the same VMs. In this case, the same events will be sent to both the **Event** table (Azure Monitor) and in the **SecurityEvent** table (Microsoft Sentinel).
+> - Creating a DCR for a VM that's also running the legacy [Log Analytics agent](../agents/log-analytics-agent.md) on the same machine. Follow the guidance at [Migrate to Azure Monitor Agent from Log Analytics agent](../agents/azure-monitor-agent-migration.md) to migrate from the legacy agent.
+>
+> Before you add a VM to a DCR, ensure that the VM isn't associated with other DCRs using the same data sources or you may collect duplicate data. See [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#preview-dcr-experience) to list the DCRs associated with a VM in the Azure portal. You can also use the following PowerShell command to list all DCRs for a VM:
+>
+> ```powershell
+> Get-AzDataCollectionRuleAssociation -resourceUri <vm-resource-id>
+> ```
+
+
 
 ## Create a data collection rule
 
@@ -62,7 +58,7 @@ The **Basics** tab includes basic information about the DCR.
 | **Resource** | A resource group to store the DCR. The resource group doesn't need to be the same resource group as the virtual machines. |
 | **Region** | The Azure region to store the DCR. The region must be the *same* region as any Log Analytics workspace or Azure Monitor workspace that's used in a destination of the DCR. If you have workspaces in different regions, create multiple DCRs to associate with the same set of machines. |
 | **Platform Type** | Specifies the type of data sources that are available for the DCR, either **Windows** or **Linux**. **None** allows for both. <sup>1</sup> |
-| **Data Collection Endpoint** | Specifies the data collection endpoint (DCE) that's used to collect data. The DCE is required only if you're using a data source that requires a DCE. For more information, see [Set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md). |
+| **Data Collection Endpoint** | Specifies the [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) that's used to collect data. A DCE is required only if you're using a data source that requires one. These data sources will be grayed out in the **Add data source** tab if a DCE isn't selected. For most implementations, you can use a single DCE for each Log Analytics workspace. See [Create a data collection endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for details on how to create a DCE. |
 
 <sup>1</sup> This option sets the `kind` attribute in the DCR. You can set other values for this attribute, but the values aren't available to select in the portal.
 
@@ -70,13 +66,9 @@ The **Basics** tab includes basic information about the DCR.
 
 On the **Resources** pane, select **Add resources** to add VMs that will use the DCR. You don't need to add any VMs yet since you can update the DCR after creation and add/remove any resources.
 
-> [!TIP]
-> When you add a VM to a DCR, a [data collection rule association (DCRA)](../essentials/data-collection-rule-overview.md#data-collection-rule-associations-dcra) is created between the machine and the DCR. The same DCRA is removed if you remove the resource from the DCR. You don't need to know anything about DCRAs when working in the Azure portal. It's an important concept though if you work with DCRs using another method such as CLI or PowerShell. See [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md) for more information about DCRAs.
-
-
 :::image type="content" source="media/data-collection/resources-tab.png" lightbox="media/data-collection/resources-tab.png" alt-text="Screenshot that shows the Resources tab for a new data collection rule.":::
 
-If you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-private-link.md), select **Enable Data Collection Endpoints** on the **Resources** tab and select an endpoint in the region of each monitored machine. Otherwise, you don't need to select a DCE for each resource.
+If you select **Enable Data Collection Endpoints** on the **Resources** tab, you can select a DCE for each VM. This is only required if you're using [Azure Monitor Private Links](../agents/azure-monitor-agent-private-link.md). Otherwise, don't select this option.
 
 > [!IMPORTANT]
 > When resources are added to a DCR, the default option in the Azure portal is to enable a system-assigned managed identity for the resources. For existing applications, if a user-assigned managed identity is already set, if you don't specify the user-assigned identity when you add the resource to a DCR by using the portal, the machine defaults to using a *system-assigned identity* that's applied by the DCR.
@@ -90,14 +82,19 @@ On the **Collect and deliver** pane, click **Add data source** to add and config
 | Setting | Description |
 |:---|:---|
 | **Data source** | Select a **Data source type** and define related fields based on the data source type you select. For details about configuring each type of data source, see related articles in [Data sources](/azure/azure-monitor/agents/azure-monitor-agent-data-collection#data-sources). |
-| **Destination** | Add one or more destinations for each data source. You can select multiple destinations of the same type or select different types. For example, you can select multiple Log Analytics workspaces, which is called *multihoming*. See the details for each data type for the different destinations they support. |
+| **Destination** | Add one or more destinations for each data source. While you can select multiple destinations, be aware that this will send duplicate data to each location resulting in additional cost.  See the details for each data type for the different destinations they support. |
 
-> [!TIP]
-> Before you add a VM to a DCR, ensure that the VM isn't associated with other DCRs using the same data sources or you may collect duplicate data. See [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#preview-dcr-experience) to list the DCRs associated with a VM in the Azure portal. You can also use the following PowerShell command to list all DCRs for a VM:
->
-> ```powershell
-> Get-AzDataCollectionRuleAssociation -resourceUri <vm-resource-id>
-> ```
+The following table lists the types of data you can currently collect from a VM client with Azure Monitor and where you can send that data. See the relevant linked article to learn how to configure that data source.
+
+| Data source | Description | Client OS | Destinations |
+|:---|:---|:---|:---|
+| [Windows events](./data-collection-windows-events.md) |  Information sent to the Windows event logging system, including sysmon events | Windows | Log Analytics workspace |
+| [Performance counters](./data-collection-performance.md) | Numerical values that measure the performance of different aspects of the operating system and workloads  | Windows<br>Linux | Azure Monitor metrics (preview) <br>Log Analytics workspace |
+| [Syslog](./data-collection-syslog.md) | Information sent to the Linux event logging system | Linux | Log Analytics workspace |
+| [Text log](./data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace
+| [JSON log](./data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
+| [IIS logs](./data-collection-iis.md) | Internet Information Service (IIS) logs from the local disk of Windows machines | Windows | Log Analytics workspace |
+
 
 
 ## Verify operation
