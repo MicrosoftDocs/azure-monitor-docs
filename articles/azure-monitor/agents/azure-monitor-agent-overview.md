@@ -25,7 +25,7 @@ For a short introduction to the Azure Monitor Agent, including a demo of how to 
 
 The Azure Monitor Agent is one method of [data collection for Azure Monitor](../data-sources.md). It's installed on VMs running in Azure, in other clouds, or on-premises, where it has access to local logs and performance data. Without the agent, you can collect data only from the host machine because you would have no access to the client operating system and to running processes.
 
-The agent can be installed by using different methods, as described in [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md). You can install the agent on a single machine or at scale by using Azure Policy or other tools. In some cases, the agent is automatically installed when you enable a feature that requires it, such as Microsoft Sentinel.
+The agent can be installed by using different methods, as described in [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md). You can install the agent on a single machine or at scale by using Azure Policy or other tools. In some cases, the agent is automatically installed when you enable a feature that requires it, such as Microsoft Sentinel. The automatic installation only occurs when the feature is first enabled. For continued automated installation for new VM deployments a policy should be created and enabled following the instructions here: [Using a Policy to Install AMA](/azure/azure-monitor/agents/azure-monitor-agent-policy).
 
 ## Data collection
 
