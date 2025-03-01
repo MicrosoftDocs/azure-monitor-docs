@@ -89,7 +89,7 @@ It can take up to 5 minutes for data to be sent to the destinations after you cr
 
 Verify that the agent is operational and communicating properly with Azure Monitor by checking the [Heartbeat](/azure/azure-monitor/reference/tables/heartbeat) for the VM. When an agent is properly communicating with Azure Monitor, it sends a record to the Heartbeat table every minute. 
 
-From the virtual machine in the Azure port, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Heartbeat**. If the agent is communicating correctly, you should see heartbeat records for the VM.
+From the virtual machine in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Heartbeat**. If the agent is communicating correctly, you should see heartbeat records for the VM.
 
 :::image type="content" source="media/data-collection/heartbeat.png" lightbox="media/data-collection/heartbeat.png" alt-text="Screenshot that shows the selection of the Heartbeats table in a Log Analytics workspace.":::
 

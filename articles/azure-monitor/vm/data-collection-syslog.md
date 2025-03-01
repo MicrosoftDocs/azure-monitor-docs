@@ -8,18 +8,17 @@ ms.reviewer: glinuxagent
 ---
 
 # Collect Syslog events with Azure Monitor Agent
+Syslog is an event logging protocol that's common to Linux. You can use the Syslog daemon that's built into Linux devices and appliances to collect local events of the types you specify. Applications send messages that are either stored on the local machine or delivered to a Syslog collector. Collect Syslog events from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Linux Syslog** data source. 
 
-**Syslog events** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the Syslog events data source type.
-
-Syslog is an event logging protocol that's common to Linux. You can use the Syslog daemon that's built into Linux devices and appliances to collect local events of the types you specify. Applications send messages that are either stored on the local machine or delivered to a Syslog collector.
+Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Syslog data source type.
 
 > [!TIP]
-> To collect data from devices that don't allow local installation of Azure Monitor Agent, [configure a dedicated Linux-based log forwarder](/azure/sentinel/forward-syslog-monitor-agent).
+> To collect data from devices that don't allow local installation of Azure Monitor agent, configure a dedicated Linux-based log forwarder as described in [Forward Syslog data to a Log Analytics workspace with Microsoft Sentinel by using Azure Monitor Agent](/azure/sentinel/forward-syslog-monitor-agent).
 
 
 ## Configure Syslog data source
 
-In the **Collect and deliver** step of the DCR, select **Linux Syslog** from the **Data source type** dropdown. 
+On the **Collect and deliver** tab of the DCR, select **Linux Syslog** from the **Data source type** dropdown. 
 
 Select a **Minimum log level** for each facility or **NONE** to collect no events for that facility. You can configure multiple facilities at once by selecting their checkbox and then selecting a log level in **Set minimum log level for selected facilities**.
 
@@ -36,14 +35,15 @@ All logs with the selected severity level and higher are collected for the facil
 7. Alert
 8. Emergency
 
-
-## Destinations
-
 ## Add destinations
-Syslog data can only be sent to a Log Analytics workspace where it's stored in the [Syslog](/azure/azure-monitor/reference/tables/syslog). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
+Syslog data can only be sent to a Log Analytics workspace where it's stored in the [Syslog](/azure/azure-monitor/reference/tables/syslog) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
 
 :::image type="content" source="media/data-collection-windows-event/destination-workspace.png" lightbox="media/data-collection-windows-event/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::    
 
+## Verify data collection
+To verify that data is being collected, check for records in the **Syslog** table. From the virtual machine or from the Log Analytics workspace in the Azure port, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Syslog**. 
+
+:::image type="content" source="media/data-collection-windows-event/verify-syslog.png" lightbox="media/data-collection-windows-event/verify-syslog.png" alt-text="Screenshot that shows records returned from Syslog table." :::
 
 ## Configure Syslog on the Linux agent
 When Azure Monitor Agent is installed on a Linux machine, it installs a default Syslog configuration file that defines the facility and severity of the messages that are collected if Syslog is enabled in a DCR. The configuration file is different depending on the Syslog daemon that the client has installed.
