@@ -43,7 +43,7 @@ Syslog data can only be sent to a Log Analytics workspace where it's stored in t
 ## Verify data collection
 To verify that data is being collected, check for records in the **Syslog** table. From the virtual machine or from the Log Analytics workspace in the Azure port, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Syslog**. 
 
-:::image type="content" source="media/data-collection-windows-event/verify-syslog.png" lightbox="media/data-collection-windows-event/verify-syslog.png" alt-text="Screenshot that shows records returned from Syslog table." :::
+:::image type="content" source="media/data-collection-syslog/verify-syslog.png" lightbox="media/data-collection-syslog/verify-syslog.png" alt-text="Screenshot that shows records returned from Syslog table." :::
 
 ## Configure Syslog on the Linux agent
 When Azure Monitor Agent is installed on a Linux machine, it installs a default Syslog configuration file that defines the facility and severity of the messages that are collected if Syslog is enabled in a DCR. The configuration file is different depending on the Syslog daemon that the client has installed.
