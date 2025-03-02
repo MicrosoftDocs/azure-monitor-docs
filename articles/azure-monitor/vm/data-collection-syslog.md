@@ -7,7 +7,7 @@ ms.date: 02/04/2025
 ms.reviewer: glinuxagent
 ---
 
-# Collect Syslog events with Azure Monitor Agent
+# Collect Syslog events from virtual machine client with Azure Monitor
 Syslog is an event logging protocol that's common to Linux. You can use the Syslog daemon that's built into Linux devices and appliances to collect local events of the types you specify. Applications send messages that are either stored on the local machine or delivered to a Syslog collector. Collect Syslog events from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Linux Syslog** data source. 
 
 Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Syslog data source type.
