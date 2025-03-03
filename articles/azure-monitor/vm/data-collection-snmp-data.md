@@ -120,6 +120,6 @@ Depending on where you sent SNMP events, use the guidance at one of the followin
 
 Learn more about: 
 
-- [Azure Monitor Agent](azure-monitor-agent-overview.md).
+- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
 - [Data collection rules](../essentials/data-collection-rule-overview.md).
 - [Best practices for cost management in Azure Monitor](../best-practices-cost.md). 

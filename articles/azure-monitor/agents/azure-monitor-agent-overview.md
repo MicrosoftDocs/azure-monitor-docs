@@ -103,9 +103,9 @@ The following tables identify the different environments and features that are c
 
 ## Supported data sources
 
-For a list of data sources the Azure Monitor Agent can collect and to learn how to configure them, see [Collect data with the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+For a list of data sources the Azure Monitor Agent can collect and to learn how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
 
 ## Related content
 
 - [Install the Azure Monitor Agent](azure-monitor-agent-manage.md) on Windows and Linux virtual machines.
-- [Create a data collection rule](./azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.
+- [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and send it to Azure Monitor.
