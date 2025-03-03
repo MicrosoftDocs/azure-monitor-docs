@@ -31,7 +31,7 @@ You can view the agents associated with a DCE from its **Resources** page. Click
 
 :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" alt-text="Screenshot resources for a DCE in the Azure portal." :::
 
-A DCE is required for certain [AMA data sources](../agents/azure-monitor-agent-data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs , a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
+A DCE is required for certain [AMA data sources](../vm/data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs , a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
 
 > [!IMPORTANT]
 > If the data source is sending to a destination configured for private link, the DCE configured in the DCR for that data source must be added to AMPLS.
@@ -95,7 +95,7 @@ This table describes the components of a data collection endpoint, related regio
      :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" alt-text="A diagram that shows monitored resources in multiple regions sending data to multiple Log Analytics workspaces in different regions using data collection endpoints." lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png":::
 
 > [!NOTE]
-> By default, the Microsoft.Insights resource provider isnt registered in a Subscription. Ensure to register it successfully before trying to create a Data Collection Endpoint.
+> By default, the Microsoft.Insights resource provider isn't registered in a Subscription. Ensure to register it successfully before trying to create a Data Collection Endpoint.
 
 ## Create a data collection endpoint
 

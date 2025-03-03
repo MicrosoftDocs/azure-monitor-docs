@@ -7743,6 +7743,56 @@
    "source_path": "articles/azure-monitor/reference/tables/databricksworkspacelogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-data-collection.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-windows-events.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-windows-events",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-iis.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-iis",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-log-json.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-log-json",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-log-text.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-log-text",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-performance.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-performance",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-syslog.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-syslog",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-snmp-data.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-snmp-data",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-sources-firewall-logs.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-firewall-logs",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md",
+   "redirect_url": "/azure/azure-monitor/vm/send-events-hubs-storage",
+   "redirect_document_id": false
   }
  ]
 }

@@ -2,51 +2,46 @@
 title: Collect Windows events from virtual machines with Azure Monitor Agent
 description: Describes how to collect Windows events counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 11/14/2024
+ms.date: 03/03/2025
 ms.reviewer: jeffwo
 
 ---
 
-# Collect Windows events with Azure Monitor Agent
-**Windows events** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md). This article provides additional details for the Windows events data source type.
+# Collect Windows events from virtual machine with Azure Monitor
+Windows event logs are some of the most common sources for health of the client operating system and workloads of Windows machines. You can collect events from standard logs, such as System and Application, and any custom logs created by applications you need to monitor. Collect Windows event logs from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Windows events** data source. 
 
-Windows event logs are one of the most common data sources for Windows machines with [Azure Monitor Agent](azure-monitor-agent-overview.md) since it's a common source of health and information for the Windows operating system and applications running on it. You can collect events from standard logs, such as System and Application, and any custom logs created by applications you need to monitor.
+Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Windows Events data source type.
 
-## Prerequisites
+> [!NOTE]
+> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data).
 
-- [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac). Windows events are sent to the [Event](/azure/azure-monitor/reference/tables/event) table.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+## Configure Windows event data source
 
-## Configure Windows event data source 
-
-In the **Collect and deliver** step of the DCR, select **Windows Event Logs** from the **Data source type** dropdown. Select from a set of logs and severity levels to collect.
+On the **Collect and deliver** tab of the DCR, select **Windows Event Logs** from the **Data source type** dropdown. Select from a set of logs and severity levels to collect. Only logs with the selected severity level for each log will be collected.
 
 :::image type="content" source="media/data-collection-windows-event/data-source-windows-event.png" lightbox="media/data-collection-windows-event/data-source-windows-event.png" alt-text="Screenshot that shows configuration of a Windows event data source in a data collection rule." :::
 
-Select **Custom** to [filter events by using XPath queries](#filter-events-using-xpath-queries). You can then specify an [XPath](https://www.w3schools.com/xml/xpath_syntax.asp) to collect any specific values.
+Select **Custom** to [filter events by using XPath queries](#filter-events-using-xpath-queries). This allows you more granular control over the events that you collect by using an [XPath](https://www.w3schools.com/xml/xpath_syntax.asp) to specify the events to collect.
 
 :::image type="content" source="media/data-collection-windows-event/data-source-windows-event-custom.png" lightbox="media/data-collection-windows-event/data-source-windows-event-custom.png" alt-text="Screenshot that shows custom configuration of a Windows event data source in a data collection rule." :::
 
 ## Security events
-There are two methods you can use to collect security events with Azure Monitor agent:
 
-- Select the security event log in your DCR just like the System and Application logs. These events are sent to the [Event](/azure/azure-monitor/reference/tables/Event) table in your Log Analytics workspace with other events. 
-- Enable Microsoft Sentinel on the workspace which also uses Azure Monitor agent to collect events. Security events are sent to the [SecurityEvent](/azure/azure-monitor/reference/tables/SecurityEvent).
+If you select the **Security** log in the DCR, the events are sent to the [Event](/azure/azure-monitor/reference/tables/Event) table in your Log Analytics workspace with events from other logs such as System and Application.
+
+Another option is to enable [Microsoft Sentinel](/azure/sentinel/) on the workspace and enable the [Windows Security Events via AMA connector for Microsoft Sentinel](/azure/sentinel/data-connectors/windows-security-events-via-ama). This uses the same [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) and collects the same events, but they're sent to the [SecurityEvent](/azure/azure-monitor/reference/tables/SecurityEvent) table which is used by Sentinel.
 
 ## Filter events using XPath queries
-
-You're charged for any data you collect in a Log Analytics workspace. Therefore, you should only collect the event data you need. The basic configuration in the Azure portal provides you with a limited ability to filter out events. To specify more filters, use custom configuration and specify an XPath that filters out the events you don't need. 
+The basic configuration in the Azure portal provides you with a limited ability to filter events based on log and severity. To specify more granular filtering, use custom configuration and specify an XPath that filters for only the events you need. 
 
 XPath entries are written in the form `LogName!XPathQuery`. For example, you might want to return only events from the Application event log with an event ID of 1035. The `XPathQuery` for these events would be `*[System[EventID=1035]]`. Because you want to retrieve the events from the Application event log, the XPath is `Application!*[System[EventID=1035]]`
 
-[!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
-
 > [!NOTE]
-> AMA uses the [EvtSubscribe](/windows/win32/api/winevt/nf-winevt-evtsubscribe) system API to subscribe to Windows Event Logs. Windows OS does not allow subscribing to Windows Event Logs of type Analytic/Debug channels. Therefore, you cannot collect or export data from Analytic and Debug channels to a Log Analytics workspace.
+> Azure Monitor agent uses the [EvtSubscribe](/windows/win32/api/winevt/nf-winevt-evtsubscribe) system API to subscribe to Windows Event Logs. Windows OS does not allow subscribing to Windows Event Logs of type Analytic/Debug channels. Therefore, you cannot collect or export data from Analytic and Debug channels to a Log Analytics workspace.
 
 ### Extract XPath queries from Windows Event Viewer
 
-In Windows, you can use Event Viewer to extract XPath queries as shown in the following screenshots.
+You can use Event Viewer in Windows to extract XPath queries as shown in the following screenshots.
 
 When you paste the XPath query into the field on the **Add data source** screen, as shown in step 5, you must append the log type category followed by an exclamation point (!).
 
@@ -66,7 +61,7 @@ When you paste the XPath query into the field on the **Add data source** screen,
 > - If you receive the message "No events were found that match the specified selection criteria," the query might be valid but there are no matching events on the local machine.
 > - If you receive the message "The specified query is invalid," the query syntax is invalid.
 
-Examples of using a custom XPath to filter events:
+The following table gives examples of XPath queries to filter events:
 
 | Description |  XPath |
 |:---|:---|
@@ -79,19 +74,20 @@ Examples of using a custom XPath to filter events:
 > For a list of limitations in the XPath supported by Windows event log, see [XPath 1.0 limitations](/windows/win32/wes/consuming-events#xpath-10-limitations).  For example, you can use the "position", "Band", and "timediff" functions within the query but other functions like "starts-with" and "contains" are not currently supported.
 
 
-## Destinations
-Windows event data can be sent to the following locations.
+## Add destinations
+Windows event data can only be sent to a Log Analytics workspace where it's stored in the [Event](/azure/azure-monitor/reference/tables/event) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
 
-| Destination | Table / Namespace |
-|:---|:---|
-| Log Analytics workspace | [Event](/azure/azure-monitor/reference/tables/event) |
-    
 
 :::image type="content" source="media/data-collection-windows-event/destination-workspace.png" lightbox="media/data-collection-windows-event/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
 
 
+## Verify data collection
+To verify that data is being collected, check for records in the **Event** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Event**. 
+
+:::image type="content" source="media/data-collection-windows-event/verify-event.png" lightbox="media/data-collection-windows-event/verify-event.png" alt-text="Screenshot that shows records returned from Event table." :::
+
+
 ## Next steps
 
-- [Collect text logs by using Azure Monitor Agent](data-collection-text-log.md).
-- Learn more about [Azure Monitor Agent](azure-monitor-agent-overview.md).
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
 - Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
