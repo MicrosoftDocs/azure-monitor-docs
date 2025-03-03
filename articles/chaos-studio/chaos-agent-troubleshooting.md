@@ -14,7 +14,7 @@ ms.service: azure-chaos-studio
 
 This page provides a consolidated guide to troubleshooting issues related to the Chaos Agent used in Azure Chaos Studio. Use this guide to diagnose problems during installation, verify network connectivity, interpret agent status messages, and resolve common errors.
 
-> **Note:** For detailed setup instructions, refer to the [Install and Configure Chaos Agent](./install-and-configure-chaos-agent.md) page. For network and security details, see [Private Link and Network Security](./private-link-and-network-security.md).
+> **Note:** For detailed setup instructions, refer to the [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) page. For network and security details, see [Private Link and Network Security](chaos-studio-private-link-agent-service.md).
 
 ---
 
@@ -25,7 +25,7 @@ If the Chaos Agent fails to install or appears unhealthy, check the following:
 - **Extension Deployment Failure**  
   - **Symptoms:** The VM Extensions blade shows a status other than `Provisioning succeeded` (e.g., *Failed*, *Error*).  
   - **Troubleshooting Steps:**
-    1. Verify that the target VM meets the minimum prerequisites (supported OS, correct version, etc.). See [OS Support and Compatibility](./os-support-and-compatibility.md).
+    1. Verify that the target VM meets the minimum prerequisites (supported OS, correct version, etc.). See [OS Support and Compatibility](chaos-agent-os-support.md).
     2. Confirm that a user-assigned managed identity is attached to the VM.  
     3. Check the **Activity Log** in the Azure portal for any errors related to extension deployment.
     4. If the VM is part of a Virtual Machine Scale Set, ensure that the scale set upgrade policy is not set to **Manual**. If it is, upgrade instances manually (using `az vmss update-instances`) or switch to an **Automatic** policy.
