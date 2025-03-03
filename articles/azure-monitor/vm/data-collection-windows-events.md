@@ -2,7 +2,7 @@
 title: Collect Windows events from virtual machines with Azure Monitor Agent
 description: Describes how to collect Windows events counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 02/26/2025
+ms.date: 03/03/2025
 ms.reviewer: jeffwo
 
 ---
@@ -10,8 +10,10 @@ ms.reviewer: jeffwo
 # Collect Windows events from virtual machine with Azure Monitor
 Windows event logs are some of the most common sources for health of the client operating system and workloads of Windows machines. You can collect events from standard logs, such as System and Application, and any custom logs created by applications you need to monitor. Collect Windows event logs from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Windows events** data source. 
 
+Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Windows Events data source type.
 
-
+> [!NOTE]
+> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data).
 
 ## Configure Windows event data source
 
@@ -80,13 +82,12 @@ Windows event data can only be sent to a Log Analytics workspace where it's stor
 
 
 ## Verify data collection
-To verify that data is being collected, check for records in the **Event** table. From the virtual machine or from the Log Analytics workspace in the Azure port, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Event**. 
+To verify that data is being collected, check for records in the **Event** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Event**. 
 
 :::image type="content" source="media/data-collection-windows-event/verify-event.png" lightbox="media/data-collection-windows-event/verify-event.png" alt-text="Screenshot that shows records returned from Event table." :::
 
 
 ## Next steps
 
-- [Collect text logs by using Azure Monitor Agent](./data-collection-log-text.md).
 - Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
 - Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).

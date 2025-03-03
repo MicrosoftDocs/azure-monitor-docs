@@ -3,17 +3,20 @@ title: Collect Syslog events with Azure Monitor Agent
 description: Configure collection of Syslog events by using a data collection rule on virtual machines with Azure Monitor Agent.
 ms.topic: conceptual
 ms.custom: linux-related-content
-ms.date: 02/04/2025
-ms.reviewer: glinuxagent
+ms.date: 03/03/2025
 ---
 
 # Collect Syslog events from virtual machine client with Azure Monitor
 Syslog is an event logging protocol that's common to Linux. You can use the Syslog daemon that's built into Linux devices and appliances to collect local events of the types you specify. Applications send messages that are either stored on the local machine or delivered to a Syslog collector. Collect Syslog events from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Linux Syslog** data source. 
 
-Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Syslog data source type.
-
 > [!TIP]
 > To collect data from devices that don't allow local installation of Azure Monitor agent, configure a dedicated Linux-based log forwarder as described in [Forward Syslog data to a Log Analytics workspace with Microsoft Sentinel by using Azure Monitor Agent](/azure/sentinel/forward-syslog-monitor-agent).
+
+
+Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Linux Syslog data source type.
+
+> [!NOTE]
+> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data).
 
 
 ## Configure Syslog data source
@@ -41,7 +44,7 @@ Syslog data can only be sent to a Log Analytics workspace where it's stored in t
 :::image type="content" source="media/data-collection-windows-event/destination-workspace.png" lightbox="media/data-collection-windows-event/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::    
 
 ## Verify data collection
-To verify that data is being collected, check for records in the **Syslog** table. From the virtual machine or from the Log Analytics workspace in the Azure port, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Syslog**. 
+To verify that data is being collected, check for records in the **Syslog** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Syslog**. 
 
 :::image type="content" source="media/data-collection-syslog/verify-syslog.png" lightbox="media/data-collection-syslog/verify-syslog.png" alt-text="Screenshot that shows records returned from Syslog table." :::
 
@@ -191,8 +194,5 @@ The following facilities are supported with the Syslog collector:
 
 ## Next steps
 
-Learn more about:
-
-- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md)
-- [Data collection rules](../essentials/data-collection-rule-overview.md)
-- [Best practices for cost management in Azure Monitor](../best-practices-cost.md)
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
+- Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
