@@ -1,4 +1,14 @@
-
+---
+title: "Troubleshooting Chaos Agent"
+description: "Learn how to diagnose and resolve common issues with the Chaos Agent, including installation, network connectivity, and agent health issues."
+services: chaos-studio
+author: nikhilkaul-msft
+ms.topic: article
+ms.date: 03/03/2025
+ms.author: abbyweisberg
+ms.reviewer: nikhilkaul
+ms.service: azure-chaos-studio
+---
 
 # Troubleshooting Chaos Agent
 
