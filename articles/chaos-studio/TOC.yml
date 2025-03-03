@@ -54,7 +54,13 @@
   - name: Agent Concepts
     href: chaos-agent-concepts.md
   - name: Install and Configure Chaos Agent
-    href: chaos-agent-install-configure.md
+    items:
+    - name: Portal
+      href: chaos-studio-tutorial-agent-based-portal.md
+    - name: CLI
+      href: chaos-studio-tutorial-agent-based-cli.md
+    - name: Verify Agent Status
+      href: chaos-agent-verify-status.md
   - name: OS Support and Compatibility
     href: chaos-agent-os-support.md
   - name: Troubleshooting Chaos Agent
