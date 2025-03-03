@@ -37,9 +37,12 @@ When IP addresses aren't collected, city and other geolocation attributes also a
 
 To enable IP collection and storage, the `DisableIpMasking` property of the Application Insights component must be set to `true`.
 
-### [Portal](#tab/portal)
+## Disable IP masking
 
-If you need to modify the behavior for only a single Application Insights resource, use the Azure portal.
+> [!TIPP]
+> If you need to modify the behavior for only a single Application Insights resource, use the Azure portal.
+
+### [Portal](#tab/portal)
 
 1. Go to your Application Insights resource, and then select **Automation** > **Export template**.
 
@@ -68,10 +71,12 @@ If you need to modify the behavior for only a single Application Insights resour
     If you select and edit the template again, only the default template without the newly added property. If you aren't seeing IP address data and want to confirm that `"DisableIpMasking": true` is set, run the following PowerShell commands:
     
     ```powershell
-    # Replace `Fabrikam-dev` with the appropriate resource and resource group name.
+    # Replace <application-insights-resource-name> and <resource-group-name> with the appropriate resource and resource group name.
+
     # If you aren't using Azure Cloud Shell, you need to connect to your Azure account
-    # Connect-AzAccount 
-    $AppInsights = Get-AzResource -Name 'Fabrikam-dev' -ResourceType 'microsoft.insights/components' -ResourceGroupName 'Fabrikam-dev'
+    # Connect-AzAccount
+
+    $AppInsights = Get-AzResource -Name '<application-insights-resource-name>' -ResourceType 'microsoft.insights/components' -ResourceGroupName '<resource-group-name>'
     $AppInsights.Properties
     ```
     
@@ -87,24 +92,26 @@ If you need to modify the behavior for only a single Application Insights resour
 The PowerShell `Update-AzApplicationInsights` cmdlet can disable IP masking with the `DisableIPMasking` parameter.
 
 ```powershell
-Update-AzApplicationInsights -Name "aiName" -ResourceGroupName "rgName" -DisableIPMasking:$true
+# Replace <application-insights-resource-name> and <resource-group-name> with the appropriate resource and resource group name.
+
+Update-AzApplicationInsights -Name "<application-insights-resource-name>" -ResourceGroupName "<resource-group-name>" -DisableIPMasking:$true
 ```
 
-For more information on the `Update-AzApplicationInsights` cmdlet, see [Update-AzApplicationInsights](/powershell/module/az.applicationinsights/update-azapplicationinsights)
+For more information on the `Update-AzApplicationInsights` cmdlet, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
 
 ### [REST API](#tab/rest)
 
 The following [REST API](/rest/api/azure/) payload makes the same modifications:
 
 ```json
-PATCH https://management.azure.com/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/microsoft.insights/components/<resource-name>?api-version=2018-05-01-preview HTTP/1.1
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>?api-version=2018-05-01-preview HTTP/1.1
 Host: management.azure.com
 Authorization: AUTH_TOKEN
 Content-Type: application/json
 Content-Length: 54
 
 {
-    "location": "<resource location>",
+    "location": "<azure-region-name>",
     "kind": "web",
     "properties": {
         "Application_Type": "web",
@@ -113,19 +120,18 @@ Content-Length: 54
 }
 ```
 
-### [Bicep)](#tab/bicep)
+### [Bicep](#tab/bicep)
 
 ```bicep
-resource <resource-name> 'microsoft.insights/components@2020-02-02' = {
-    name: '<resource-name>'
-    location: 'westcentralus'
-    tags: {}
+resource appInsights 'microsoft.insights/components@2020-02-02' = {
+    name: '<application-insights-resource-name>'
+    location: '<azure-region-name>'
+    tags: {
 
+    }
     kind: 'web'
     properties: {
         Application_Type: 'web'
-        Flow_Type: 'Redfield'
-        Request_Source: 'IbizaAIExtension'
         // ...
         DisableIpMasking: true
     }
@@ -136,18 +142,16 @@ resource <resource-name> 'microsoft.insights/components@2020-02-02' = {
 
 ```json
 {
-    "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<resource-name>",
-    "name": "<resource-name>",
+    "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>",
+    "name": "<application-insights-resource-name>",
     "type": "microsoft.insights/components",
-    "location": "westcentralus",
+    "location": "<azure-region-name>",
     "tags": {
 
     },
     "kind": "web",
     "properties": {
         "Application_Type": "web",
-        "Flow_Type": "Redfield",
-        "Request_Source": "IbizaAIExtension",
         // ...
         "DisableIpMasking": true
     }
