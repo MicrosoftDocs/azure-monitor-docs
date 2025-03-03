@@ -28,12 +28,12 @@ When IP addresses aren't collected, city and other geolocation attributes also a
 ## Storage of IP address data
 
 > [!WARNING]
-> The default and our recommendation is to not collect IP addresses. If you override this behavior, verify the collection doesn't break any compliance requirements or local regulations.
+> The default and our recommendation are to not collect IP addresses. If you override this behavior, verify the collection doesn't break any compliance requirements or local regulations.
 >
 > To learn more about handling personal data, see [Guidance for personal data](../logs/personal-data-mgmt.md).
 
 > [!NOTE]
-> The IP addresses associated with telemetry ingested prior to enabling the `DisableIpMasking` property will continue to be displayed as `0.0.0.0`. Only telemetry ingested after this change will reflect the actual IP address information.
+> The IP addresses associated with telemetry ingested before enabling the `DisableIpMasking` property continues to be displayed as `0.0.0.0`. Only telemetry ingested after this change reflects the actual IP address information.
 
 To enable IP collection and storage, the `DisableIpMasking` property of the Application Insights component must be set to `true`.
 
@@ -52,7 +52,7 @@ If you need to modify the behavior for only a single Application Insights resour
     :::image type="content" source="media/ip-collection/edit-template.png" lightbox="media/ip-collection/edit-template.png" alt-text="Screenshot that shows the Edit button, along with a warning about the resource group.":::
 
     > [!NOTE]
-    > If you experience the error shown in the preceding screenshot, you can resolve it. It states: "The resource group is in a location that is not supported by one or more resources in the template. Please choose a different resource group." Temporarily select a different resource group from the dropdown list and then re-select your original resource group.
+    > If you experience the error shown in the preceding screenshot, you can resolve it. It states: "The resource group is in a location that isn't supported by one or more resources in the template. Please choose a different resource group." Temporarily select a different resource group from the dropdown list and then reselect your original resource group.
 
 1. In the JSON template, locate `properties` inside `resources`. Add a comma to the last JSON field, and then add the following new line: `"DisableIpMasking": true`. Then select **Save**.
 
@@ -136,4 +136,3 @@ Content-Length: 54
 
 * Learn more about [personal data collection](../logs/personal-data-mgmt.md) in Azure Monitor.
 * Learn how to [set the user IP](opentelemetry-add-modify.md#set-the-user-ip) using OpenTelemetry.
-* 
