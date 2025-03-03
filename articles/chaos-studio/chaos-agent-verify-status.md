@@ -41,7 +41,7 @@ If the **Handler Status** is `Not Ready`, this typically indicates a **network o
 |--------------|---------|------------|
 | **Failed to register agent due to credential error.** | The agent could not authenticate with Chaos Studio. | Ensure the virtual machine has a managed identity configured correctly. Follow the steps in [Create an experiment using an agent-based fault](chaos-studio-agent-based-portal.md). |
 | **Failed to register agent due to Network Exception.** | The agent is unable to reach the Chaos Studio data plane endpoint due to network restrictions. | Verify network settings to ensure outbound traffic to Chaos Studio endpoints is not blocked. |
-| **Failed to register agent due to API Exception.** | This error should not occur if Chaos Studio is healthy. Other errors (Credential or Network) typically cover this scenario. | Ensure the managed identity and network settings are correct. If issues persist, contact support. |
+| **Failed to register agent due to API Exception.** | This error should not occur if Chaos Studio is healthy. | If issues persist, contact support and verify that Chaos Studio service is not having an outage. |
 
 ## Check Agent Logs
 
