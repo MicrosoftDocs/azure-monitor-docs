@@ -26,7 +26,7 @@ Before you can collect IIS logs from the machine, you must ensure that IIS loggi
 
 - The IIS log file must be in W3C format and stored on the local drive of the machine running the agent. 
 - Each entry in the log file must be delineated with an end of line. 
-- The log file must not use circular logging,, which overwrites old entries.
+- The log file must not use circular logging, which overwrites old entries.
 - The log file must not use renaming, where a file is moved and a new file with the same name is opened. 
 
 The default location for IIS log files is **C:\\inetpub\\logs\\LogFiles\\W3SVC1**. Verify that log files are being written to this location or check your IIS configuration to identify an alternate location. Check the timestamps of the log files to ensure that they're recent.

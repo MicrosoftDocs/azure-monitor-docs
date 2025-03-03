@@ -95,7 +95,7 @@ This table describes the components of a data collection endpoint, related regio
      :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" alt-text="A diagram that shows monitored resources in multiple regions sending data to multiple Log Analytics workspaces in different regions using data collection endpoints." lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png":::
 
 > [!NOTE]
-> By default, the Microsoft.Insights resource provider isnt registered in a Subscription. Ensure to register it successfully before trying to create a Data Collection Endpoint.
+> By default, the Microsoft.Insights resource provider isn't registered in a Subscription. Ensure to register it successfully before trying to create a Data Collection Endpoint.
 
 ## Create a data collection endpoint
 

@@ -136,7 +136,7 @@ Use one of the following methods to create a workspace transformation DCR for yo
 > It may take up to 60 minutes for a new transformation query to be activated.
 
 
-### [Azure Portal](#tab/portal)
+### [Azure portal](#tab/portal)
 You can create a workspace transformation DCR in the Azure portal by adding a transformation to a supported table.
 
 1. On the Log Analytics workspaces menu in the Azure portal, select **Tables**. Click to the right of the table you're interested in and select Create transformation.

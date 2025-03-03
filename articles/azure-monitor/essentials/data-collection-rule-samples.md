@@ -17,10 +17,10 @@ These samples require knowledge of the DCR structure as described in [Structure 
 Each of these samples focuses on a particular data source, although you can combine multiple data sources of different types in a single DCR. Include a data flow for each to send the data to the appropriate destination. There is no functional difference between combining multiple data sources in a single DCR or creating separate DCRs for each data source. The choice depends on your requirements for managing and monitoring the data collection.
 
 > [!NOTE]
-> These samples show in this article provide the source JSON required to create the DCR. After creation, the DCR will have additional properties as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md).
+> The samples shown in this article provide the source JSON required to create the DCR. After creation, the DCR will have additional properties as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md).
 
 ## Collect VM client data
-The following samples show DCR definitions for collecting different kinds of data from a virtual machines using the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md). You can create these DCRs using the Azure portal as described in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). 
+The following samples show DCR definitions for collecting different kinds of data from virtual machines using the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md). You can create these DCRs using the Azure portal as described in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). 
 
 ### Windows events
 DCRs for Windows events use the `windowsEventLogs` data source with the `Microsoft-Event` incoming stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `xPathQueries` property. See [Collect Windows events with Azure Monitor Agent](../agents/data-collection-windows-events.md) for further details on using XPaths to filter the specific data you want to collect. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](../essentials/data-collection-rule-create-edit.md#dcr-definition).

@@ -14,7 +14,7 @@ This article describes how to configure communication with Azure Automation and 
 The Log Analytics gateway is an HTTP forward proxy that supports HTTP tunneling using the HTTP CONNECT command. This gateway sends data to Azure Automation and a Log Analytics workspace in Azure Monitor on behalf of the computers that cannot directly connect to the internet. The gateway is only for log agent related connectivity and does not support Azure Automation features like runbook, DSC, and others.
 
 > [!NOTE]
-> The Log Analytic gateway has be updated to work with the Azure Monitor Agent (AMA) and will be supported beyond the deprication date of legacy agent (MMA/OMS) on August 31, 2024.
+> The Log Analytics gateway has been updated to work with the Azure Monitor Agent (AMA) and will be supported beyond the deprecation date of legacy agent (MMA/OMS) on August 31, 2024.
 > 
 
 The Log Analytics gateway supports:
