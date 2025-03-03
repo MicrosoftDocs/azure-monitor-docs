@@ -72,3 +72,10 @@ Ensure that stress-ng is manually installed using your distribution’s package 
 
 ### Windows DNS Fault:
 The DNS fault on Windows requires the LKG plugin to be installed. If a conflicting plugin is present (i.e. if the customer overrides the LKG plugin), the DNS fault will not execute.
+
+### Hardened OS/Custom OS Support info: 
+The agent isn't currently tested against custom Linux distributions or hardened Linux distributions (for example, FIPS or SELinux).
+
+If an operating system isn't currently listed, you may still attempt to install, use, and troubleshoot the virtual machine extension, agent, and agent-based capabilities, but Chaos Studio cannot guarantee behavior or support for an unlisted operating system.
+
+To request validation and support on more operating systems or versions, use the [Chaos Studio Feedback Community](https://aka.ms/ChaosStudioFeedback).
