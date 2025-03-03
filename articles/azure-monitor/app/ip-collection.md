@@ -2,7 +2,7 @@
 title: Application Insights IP address collection | Microsoft Docs
 description: Understand how Application Insights handles IP addresses and geolocation.
 ms.topic: conceptual
-ms.date: 07/24/2024
+ms.date: 03/03/2025
 ms.reviewer: mmcc
 ---
 
@@ -37,36 +37,7 @@ When IP addresses aren't collected, city and other geolocation attributes also a
 
 To enable IP collection and storage, the `DisableIpMasking` property of the Application Insights component must be set to `true`.
 
-Options to set this property include:
-
-- [ARM template](#arm-template)
-- [Portal](#portal)
-- [REST API](#rest-api)
-- [PowerShell](#powershell)
-
-### ARM template
-
-```json
-{
-       "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<resource-name>",
-       "name": "<resource-name>",
-       "type": "microsoft.insights/components",
-       "location": "westcentralus",
-       "tags": {
-              
-       },
-       "kind": "web",
-       "properties": {
-              "Application_Type": "web",
-              "Flow_Type": "Redfield",
-              "Request_Source": "IbizaAIExtension",
-              // ...
-              "DisableIpMasking": true
-       }
-}
-```
-
-### Portal
+### [Portal](#tab/portal)
 
 If you need to modify the behavior for only a single Application Insights resource, use the Azure portal.
 
@@ -106,7 +77,17 @@ If you need to modify the behavior for only a single Application Insights resour
     
     A list of properties is returned as a result. One of the properties should read `DisableIpMasking: true`. If you run the PowerShell commands before you deploy the new property with Azure Resource Manager, the property doesn't exist.
 
-### REST API
+### [PowerShell](#tab/powershell)
+
+The PowerShell `Update-AzApplicationInsights` cmdlet can disable IP masking with the `DisableIPMasking` parameter.
+
+```powershell
+Update-AzApplicationInsights -Name "aiName" -ResourceGroupName "rgName" -DisableIPMasking:$true
+```
+
+For more information on the `Update-AzApplicationInsights` cmdlet, see [Update-AzApplicationInsights](/powershell/module/az.applicationinsights/update-azapplicationinsights)
+
+### [REST API](#tab/rest)
 
 The following [REST API](/rest/api/azure/) payload makes the same modifications:
 
@@ -127,17 +108,32 @@ Content-Length: 54
 }
 ```
 
-### PowerShell
+### [ARM (JSON)](#tab/arm)
 
-The PowerShell `Update-AzApplicationInsights` cmdlet can disable IP masking with the `DisableIPMasking` parameter.
-
-```powershell
-Update-AzApplicationInsights -Name "aiName" -ResourceGroupName "rgName" -DisableIPMasking:$true
+```json
+{
+       "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<resource-name>",
+       "name": "<resource-name>",
+       "type": "microsoft.insights/components",
+       "location": "westcentralus",
+       "tags": {
+              
+       },
+       "kind": "web",
+       "properties": {
+              "Application_Type": "web",
+              "Flow_Type": "Redfield",
+              "Request_Source": "IbizaAIExtension",
+              // ...
+              "DisableIpMasking": true
+       }
+}
 ```
 
-For more information on the `Update-AzApplicationInsights` cmdlet, see [Update-AzApplicationInsights](/powershell/module/az.applicationinsights/update-azapplicationinsights)
+---
 
 ## Next steps
 
 * Learn more about [personal data collection](../logs/personal-data-mgmt.md) in Azure Monitor.
 * Learn how to [set the user IP](opentelemetry-add-modify.md#set-the-user-ip) using OpenTelemetry.
+* 
