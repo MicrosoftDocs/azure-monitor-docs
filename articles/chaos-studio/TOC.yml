@@ -61,6 +61,8 @@
       href: chaos-studio-tutorial-agent-based-cli.md
     - name: Verify Agent Status
       href: chaos-agent-verify-status.md
+    - name: Uninstall the Chaos Agent
+      href: chaos-agent-uninstall.md
   - name: OS Support and Compatibility
     href: chaos-agent-os-support.md
   - name: Troubleshooting Chaos Agent
