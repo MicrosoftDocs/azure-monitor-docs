@@ -99,12 +99,12 @@ Content-Type: application/json
 Content-Length: 54
 
 {
-       "location": "<resource location>",
-       "kind": "web",
-       "properties": {
-              "Application_Type": "web",
-              "DisableIpMasking": true
-       }
+    "location": "<resource location>",
+    "kind": "web",
+    "properties": {
+        "Application_Type": "web",
+        "DisableIpMasking": true
+    }
 }
 ```
 
@@ -112,21 +112,21 @@ Content-Length: 54
 
 ```json
 {
-       "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<resource-name>",
-       "name": "<resource-name>",
-       "type": "microsoft.insights/components",
-       "location": "westcentralus",
-       "tags": {
-              
-       },
-       "kind": "web",
-       "properties": {
-              "Application_Type": "web",
-              "Flow_Type": "Redfield",
-              "Request_Source": "IbizaAIExtension",
-              // ...
-              "DisableIpMasking": true
-       }
+    "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<resource-name>",
+    "name": "<resource-name>",
+    "type": "microsoft.insights/components",
+    "location": "westcentralus",
+    "tags": {
+
+    },
+    "kind": "web",
+    "properties": {
+        "Application_Type": "web",
+        "Flow_Type": "Redfield",
+        "Request_Source": "IbizaAIExtension",
+        // ...
+        "DisableIpMasking": true
+    }
 }
 ```
 
