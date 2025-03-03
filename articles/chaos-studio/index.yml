@@ -72,7 +72,7 @@ landingContent:
             url: chaos-studio-tutorial-agent-based-portal.md
           - text: Install and Configure Chaos Agent (CLI)
             url: chaos-studio-tutorial-agent-based-cli.md
-          - text: Verify Agent Status
+          - text: Verify Agent Health Status
             url: chaos-agent-verify-status.md
           - text: OS Support and Compatibility
             url: chaos-agent-os-support.md
@@ -82,6 +82,8 @@ landingContent:
             url: chaos-studio-private-link-agent-service.md
           - text: Chaos Agent Known Issues
             url: chaos-agent-known-issues.md
+          - text: Uninstall Chaos Agent
+            url: chaos-agent-uninstall.md
 
   - title: Reference
     linkLists:
