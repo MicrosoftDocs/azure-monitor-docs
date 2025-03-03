@@ -84,3 +84,62 @@ The agent reports two key statuses on the VM’s **Extensions + applications** b
   Run the following command to view logs from the Chaos Agent service:
   ```bash
   journalctl -u azure-chaos-agent
+
+Look for error messages indicating connectivity or dependency issues.
+
+# Common Errors and Solutions
+
+Below are some frequent error messages along with recommended actions:
+
+## Credential or Identity Errors
+•	Error Message: “Failed to register agent due to credential error.”
+
+•	Cause: The VM’s managed identity is not configured correctly.
+
+•	Solution: Verify that the VM has the correct user-assigned managed identity attached and that it has the required permissions. Refer to the Install and Configure Chaos Agent page for detailed steps.
+
+## Missing Prerequisites for Fault Execution
+•	Error Message: “Failed to register agent due to API Exception.” or “Fault prerequisites not met” (e.g., missing stress-ng on Linux).
+	
+•	Cause:Required dependencies (like stress-ng) are missing.
+	
+•	Solution: Install the missing dependency on the target VM. For example, on Debian/Ubuntu:
+
+```
+sudo apt-get install stress-ng
+```
+
+Refer to the OS Support and Compatibility page for further details.
+
+## Network Connectivity Blockage
+•	Error Message: "The agent log shows an inability to connect to acs-prod-<region>.chaosagent.trafficmanager.net."
+
+•	Cause: Outbound network traffic is blocked.
+
+•	Solution: Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint’s IP.
+
+## Extension Timeout or “ExtensionHandlerFailed”
+•	Error Message: “ExtensionHandlerFailed” or timeout errors in the Activity Log.
+
+•	Cause: The agent extension did not start properly, possibly due to network or resource configuration issues.
+	
+•	Potential solution(s):
+•	Restart the VM and verify network connectivity.
+•	Check for any interfering security software that may block the extension.
+•	If persistent, reinstall the extension using the Azure CLI (see installation troubleshooting above).
+
+
+## Additional Resources
+•	Install and Configure Chaos Agent
+
+•	OS Support and Compatibility
+
+•	Private Link and Network Security
+
+•	Chaos Agent Known Issues
+
+If you continue to experience issues after following these steps, please consider creating an incident with the Chaos Studio team.
+
+This document is intended to help users quickly diagnose and resolve issues with the Chaos Agent. For further assistance, please refer to our support channels or visit the Azure Chaos Studio community forums.
+
+---
