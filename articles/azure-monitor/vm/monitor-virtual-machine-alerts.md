@@ -27,7 +27,7 @@ This scenario describes how to implement complete monitoring of your Azure and h
 Alert rules inspect data that's already been collected in Azure Monitor. You need to ensure that data is being collected for a particular scenario before you can create an alert rule. See [Monitor virtual machines with Azure Monitor: Collect data](monitor-virtual-machine-data-collection.md) for guidance on configuring data collection for various scenarios, including all the alert rules in this article.
 
 ## Recommended alert rules
-Azure Monitor provides a set of [recommended alert rules](tutorial-monitor-vm-alert-availability.md) that you can quickly enable for any Azure virtual machine. These rules are a great starting point for basic monitoring. But alone, they won't provide sufficient alerting for most enterprise implementations for the following reasons:
+Azure Monitor provides a set of [recommended alert rules](tutorial-monitor-vm-alert-recommended.md) that you can quickly enable for any Azure virtual machine. These rules are a great starting point for basic monitoring. But alone, they won't provide sufficient alerting for most enterprise implementations for the following reasons:
 
 - Recommended alerts only apply to Azure virtual machines and not hybrid machines.
 - Recommended alerts only include host metrics and not guest metrics or logs. These metrics are useful to monitor the health of the machine itself. But they give you minimal visibility into the workloads and applications running on the machine.
