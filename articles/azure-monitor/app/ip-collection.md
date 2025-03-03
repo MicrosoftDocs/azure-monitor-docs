@@ -77,6 +77,11 @@ If you need to modify the behavior for only a single Application Insights resour
     
     A list of properties is returned as a result. One of the properties should read `DisableIpMasking: true`. If you run the PowerShell commands before you deploy the new property with Azure Resource Manager, the property doesn't exist.
 
+### [Azure CLI](#tab/cli)
+
+> [!NOTE]
+> Currently, Azure doesn't provide a way to disable IP masking for Application Insights via the Azure CLI. To disable IP masking programmatically, use Azure PowerShell.
+
 ### [PowerShell](#tab/powershell)
 
 The PowerShell `Update-AzApplicationInsights` cmdlet can disable IP masking with the `DisableIPMasking` parameter.
@@ -104,6 +109,25 @@ Content-Length: 54
     "properties": {
         "Application_Type": "web",
         "DisableIpMasking": true
+    }
+}
+```
+
+### [Bicep)](#tab/bicep)
+
+```bicep
+resource <resource-name> 'microsoft.insights/components@2020-02-02' = {
+    name: '<resource-name>'
+    location: 'westcentralus'
+    tags: {}
+
+    kind: 'web'
+    properties: {
+        Application_Type: 'web'
+        Flow_Type: 'Redfield'
+        Request_Source: 'IbizaAIExtension'
+        // ...
+        DisableIpMasking: true
     }
 }
 ```
