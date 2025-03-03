@@ -1946,6 +1946,12 @@ items:
             href: tables/appcentererror.md
           - name: AppDependencies
             href: tables/appdependencies.md
+          - name: AppEnvSessionConsoleLogs
+            href: tables/appenvsessionconsolelogs.md
+          - name: AppEnvSessionLifecycleLogs
+            href: tables/appenvsessionlifecyclelogs.md
+          - name: AppEnvSessionPoolEventLogs
+            href: tables/appenvsessionpooleventlogs.md
           - name: AppEnvSpringAppConsoleLogs
             href: tables/appenvspringappconsolelogs.md
           - name: AppEvents
