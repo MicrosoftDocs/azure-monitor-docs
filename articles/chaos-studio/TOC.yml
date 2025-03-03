@@ -53,7 +53,7 @@
     href: chaos-agent-overview.md
   - name: Agent Concepts
     href: chaos-agent-concepts.md
-  - name: Install and Configure Chaos Agent
+  - name: Install Chaos Agent and Verify Agent Status
     items:
     - name: Portal
       href: chaos-studio-tutorial-agent-based-portal.md
@@ -65,7 +65,7 @@
     href: chaos-agent-os-support.md
   - name: Troubleshooting Chaos Agent
     href: chaos-agent-troubleshooting.md
-  - name: Private Link and Network Security
+  - name: Private Link and Network Security for Chaos Agent
     href: chaos-studio-private-link-agent-service.md
   - name: Chaos Agent Known Issues
     href: chaos-agent-known-issues.md
