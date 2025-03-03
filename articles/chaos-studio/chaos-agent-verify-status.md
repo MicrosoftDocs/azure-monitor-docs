@@ -24,7 +24,7 @@ After installing the Chaos Agent on a virtual machine, verify that it is running
    - **Status**: Should be `Provisioning succeeded`. If it shows `Provisioning failed`, the installation did not complete successfully.
    - **Handler Status**: Should be `Ready`. If it is `Not Ready`, the agent could not connect to the Chaos Studio service.
 
-If the **Handler Status** is `Not Ready`, this typically indicates a **network or identity issue**. Refer to the [Chaos Agent Troubleshooting Guide](link-to-troubleshooting) for more details.
+If the **Handler Status** is `Not Ready`, this typically indicates a **network or identity issue**. Refer to the [Chaos Agent Troubleshooting Guide](chaos-agent-troubleshooting.md) for more details.
 
 [![Azure portal chaos agent example status image](images/chaos-agent-status-2.png)](images/chaos-agent-status-2.png#lightbox)
 
