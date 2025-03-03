@@ -1,4 +1,4 @@
----
+ ---
 title: Verify Chaos Agent Status
 description: Learn how to verify the status of the Azure Chaos Studio agent on a virtual machine after installation.
 services: chaos-studio
@@ -13,18 +13,18 @@ ms.custom:
 
 # Verify Chaos Agent Status
 
-After installing the Chaos Agent on a virtual machine, verify that it is running correctly. This guide walks you through checking the agent's status in the Azure portal, understanding possible states, and troubleshooting potential issues.
+After installing the Chaos Agent on a virtual machine, verify that it's running correctly. This guide walks you through checking the agent's status in the Azure portal, understanding possible states, and troubleshooting potential issues.
 
-## Check Chaos Agent Status in the Azure Portal
+## Check Chaos Agent Status in the Azure portal
 
 1. Open the **Azure portal** and navigate to your virtual machine.
 2. In the left-hand menu, select **Settings > Extensions + applications**.
 3. Locate **ChaosAgent** in the list of installed extensions and select it. [![Azure portal Extensions + applications blade](images/chaos-agent-status-1.png)](images/chaos-agent-status-1.png#lightbox)
 4. Check the following status fields:
-   - **Status**: Should be `Provisioning succeeded`. If it shows `Provisioning failed`, the installation did not complete successfully.
-   - **Handler Status**: Should be `Ready`. If it is `Not Ready`, the agent could not connect to the Chaos Studio service.
+   - **Status**: Should be `Provisioning succeeded`. If it shows `Provisioning failed`, the installation didn't complete successfully.
+   - **Handler Status**: Should be `Ready`. If it's `Not Ready`, the agent couldn't connect to the Chaos Studio service.
 
-If the **Handler Status** is `Not Ready`, this typically indicates a **network or identity issue**. Refer to the [Chaos Agent Troubleshooting Guide](chaos-agent-troubleshooting.md) for more details.
+If the **Handler Status** is `Not Ready`, this status typically indicates a **network or identity issue**. For more information, see the [Chaos Agent Troubleshooting Guide](chaos-agent-troubleshooting.md).
 
 [![Azure portal chaos agent example status image](images/chaos-agent-status-2.png)](images/chaos-agent-status-2.png#lightbox)
 
@@ -39,16 +39,16 @@ If the **Handler Status** is `Not Ready`, this typically indicates a **network o
 ### Error States and Troubleshooting
 | Error Message | Meaning | Resolution |
 |--------------|---------|------------|
-| **Failed to register agent due to credential error.** | The agent could not authenticate with Chaos Studio. | Ensure the virtual machine has a managed identity configured correctly. Follow the steps in [Create an experiment using an agent-based fault](chaos-studio-tutorial-agent-based-portal.md). |
-| **Failed to register agent due to Network Exception.** | The agent is unable to reach the Chaos Studio data plane endpoint due to network restrictions. | Verify network settings to ensure outbound traffic to Chaos Studio endpoints is not blocked. |
-| **Failed to register agent due to API Exception.** | This error should not occur if Chaos Studio is healthy. | If issues persist, contact support and verify that Chaos Studio service is not having an outage. |
+| **Failed to register agent due to credential error.** | The agent couldn't authenticate with Chaos Studio. | Ensure the virtual machine has a managed identity configured correctly. Follow the steps in [Create an experiment using an agent-based fault](chaos-studio-tutorial-agent-based-portal.md). |
+| **Failed to register agent due to Network Exception.** | The agent is unable to reach the Chaos Studio data plane endpoint due to network restrictions. | Verify network settings to ensure outbound traffic to Chaos Studio endpoints isn't blocked. |
+| **Failed to register agent due to API Exception.** | This error shouldn't occur if Chaos Studio is healthy. | If issues persist, contact support and verify that Chaos Studio service isn't having an outage. |
 
 ## Check Agent Logs
 
-If the agent is not behaving as expected, check the logs for more details:
+If the agent isn't behaving as expected, check the logs for more details:
 
 - **Windows**: Open **Event Viewer**, navigate to **Application logs**, and look for entries from the `AzureChaosAgent` source.
-- **Linux**: Run the following command to view logs:
+- **Linux**: To view logs run the following command:
 
   ```sh
   journalctl -u azure-chaos-agent
