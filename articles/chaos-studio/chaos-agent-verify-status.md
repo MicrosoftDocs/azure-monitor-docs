@@ -19,14 +19,15 @@ After installing the Chaos Agent on a virtual machine, verify that it's running 
 
 1. Open the **Azure portal** and navigate to your virtual machine.
 2. In the left-hand menu, select **Settings > Extensions + applications**.
-3. Locate **ChaosAgent** in the list of installed extensions and select it. [![Azure portal Extensions + applications blade](images/chaos-agent-status-1.png)](images/chaos-agent-status-1.png#lightbox)
+3. Locate **ChaosAgent** in the list of installed extensions and select it. [![Screenshot of the Azure portal's Extensions + Applications page for a virtual machine. The page displays a list of installed extensions, including ChaosAgent and OmsAgentForLinux.](images/chaos-agent-status-1.png)](images/chaos-agent-status-1.png#lightbox)
+
 4. Check the following status fields:
    - **Status**: Should be `Provisioning succeeded`. If it shows `Provisioning failed`, the installation didn't complete successfully.
    - **Handler Status**: Should be `Ready`. If it's `Not Ready`, the agent couldn't connect to the Chaos Studio service.
 
 If the **Handler Status** is `Not Ready`, this status typically indicates a **network or identity issue**. For more information, see the [Chaos Agent Troubleshooting Guide](troubleshooting.md).
 
-[![Azure portal chaos agent example status image](images/chaos-agent-status-2.png)](images/chaos-agent-status-2.png#lightbox)
+[![Screenshot of the Azure portal displaying details of the ChaosAgent extension. The panel shows that the extension is of type Microsoft.Azure.Chaos.ChaosLinuxAgent, version 1.0.391, with a status of 'Provisioning succeeded' and a message indicating successful installation. The handler status is 'Not Ready,' and automatic upgrade status is 'Disabled.'](images/chaos-agent-status-2.png)](images/chaos-agent-status-2.png#lightbox)
 
 ## Possible Chaos Agent States and Troubleshooting Steps
 
