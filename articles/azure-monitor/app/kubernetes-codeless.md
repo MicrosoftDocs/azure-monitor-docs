@@ -3,7 +3,7 @@ title: Monitor applications on AKS with Azure Monitor Application Insights (Prev
 description: Azure Monitor integrates seamlessly with your application running on Azure Kubernetes Service and allows you to spot the problems with your apps quickly.
 ms.topic: conceptual
 ms.custom: devx-track-extended-java
-ms.date: 10/10/2024
+ms.date: 04/03/2025
 ms.reviewer: abinetabate
 ---
 
@@ -21,6 +21,7 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 
 * An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using Java or Node.js in the Azure public cloud
 * [A workspace-based Application Insights resource](create-workspace-resource.md#create-and-configure-application-insights-resources).
+* Azure CLI 2.60.0 or greater. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli), [What version of the Azure CLI is installed?](/cli/azure/install-azure-cli#what-version-of-the-azure-cli-is-installed), and [How to update the Azure CLI](/cli/azure/update-azure-cli).
 
 > [!WARNING]
 > - This feature is incompatible with both Windows (any architecture) and Linux Arm64 node pools.
