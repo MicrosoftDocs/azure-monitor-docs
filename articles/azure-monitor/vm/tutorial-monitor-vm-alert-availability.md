@@ -108,7 +108,7 @@ The **Actions** page allows you to add one or more [action groups](../alerts/act
 
 To test the alert rule, stop one or more virtual machines in the scope you specified. If you configured a notification in your action group, then you should receive that notification within a few seconds. You also see an alert for each VM on the **Alerts** page.
 
-:::image type="content" source="media/tutorial-monitor-vm/vm-availability-metric-alert.png" lightbox="media/tutorial-monitor-vm/alerts-summary.png" alt-text="Alerts summary":::
+:::image type="content" source="media/tutorial-monitor-vm/vm-availability-metric-alert.png" lightbox="media/tutorial-monitor-vm/alerts-summary.png" alt-text="Screenshot showing alerts summary":::
 
 ## Next steps
 
