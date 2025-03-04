@@ -26,9 +26,7 @@ In this article, you learn how to:
 
 ## Prerequisites
 
-To complete the steps in this article, you need the following: 
-
-* At least one Azure virtual machine to monitor.
+To complete the steps in this article, you need at least one Azure virtual machine to monitor.
 
 ## View VM availability metric in metrics explorer
 
@@ -99,7 +97,7 @@ The **Actions** page allows you to add one or more [action groups](../alerts/act
     | Subscription           | Subscription where the alert rule is stored.                                                                                                            |
     | Resource group         | Resource group where the alert rule is stored. This doesn't need to be in the same resource group as the resource that you're monitoring.               |
     | Severity               | The severity allows you to group alerts with a similar relative importance. A severity of **Error** is appropriate for an unresponsive virtual machine. |
-    | Alert rule name        | Name of the alert that's displayed when it fires.                                                                                                       |
+    | Alert rule name        | Name of the alert that shows when it fires.                                                                                                             |
     | Alert rule description | Optional description of the alert rule.                                                                                                                 |
     
     :::image type="content" source="media/tutorial-monitor-vm/alert-rule-details.png" lightbox="media/tutorial-monitor-vm/alert-rule-details.png" alt-text="Screenshot showing alert rule details.":::
