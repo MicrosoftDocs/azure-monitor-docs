@@ -253,33 +253,33 @@ Learn more about [Cosmos DB account - CosmosDBPartitionMerge (Enable partition m
 
 ### Your Azure Database for MySQL - Flexible Server is vulnerable using weak, deprecated TLSv1 or TLSv1.1 protocols
 
-To support modern security standards, MySQL community edition discontinued the support for communication over Transport Layer Security (TLS) 1.0 and 1.1 protocols. Microsoft also stopped supporting connections over TLSv1 and TLSv1.1 to Azure Database for MySQL - Flexible server to comply with the modern security standards. We recommend you upgrade your client driver to support TLSv1.2.
+To support modern security standards, MySQL community edition discontinued the support for communication over Transport Layer Security (TLS) 1.0 and 1.1 protocols. Microsoft also stopped supporting connections over TLSv1 and TLSv1.1 to Azure Database for MySQL - Flexible Server to comply with the modern security standards. We recommend you upgrade your client driver to support TLSv1.2.
 
-Learn more about [Azure Database for MySQL flexible server - OrcasMeruMySqlTlsDeprecation (Your Azure Database for MySQL - Flexible Server is vulnerable using weak, deprecated TLSv1 or TLSv1.1 protocols)](https://aka.ms/encrypted_connection_deprecated_protocols).
+Learn more about [Azure Database for MySQL Flexible Server - OrcasMeruMySqlTlsDeprecation (Your Azure Database for MySQL - Flexible Server is vulnerable using weak, deprecated TLSv1 or TLSv1.1 protocols)](https://aka.ms/encrypted_connection_deprecated_protocols).
 
 ### Optimize or partition tables in your database which has huge tablespace size
 
-The maximum supported tablespace size in Azure Database for MySQL -Flexible server is 4 TB. To effectively manage large tables, we recommended that you optimize the table or implement partitioning, which helps distribute the data across multiple files and prevent reaching the hard limit of 4 TB in the tablespace.
+The maximum supported tablespace size in Azure Database for MySQL -Flexible Server is 4 TB. To effectively manage large tables, we recommended that you optimize the table or implement partitioning, which helps distribute the data across multiple files and prevent reaching the hard limit of 4 TB in the tablespace.
 
-Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerSingleTablespace4TBLimit2bf9 (Optimize or partition tables in your database which has huge tablespace size)](https://techcommunity.microsoft.com/t5/azure-database-for-mysql-blog/how-to-reclaim-storage-space-with-azure-database-for-mysql/ba-p/3615876).
+Learn more about [Azure Database for MySQL Flexible Server - MySqlFlexibleServerSingleTablespace4TBLimit2bf9 (Optimize or partition tables in your database which has huge tablespace size)](https://techcommunity.microsoft.com/t5/azure-database-for-mysql-blog/how-to-reclaim-storage-space-with-azure-database-for-mysql/ba-p/3615876).
 
 ### Enable storage autogrow for MySQL Flexible Server
 
 Storage autogrowth prevents a server from running out of storage and becoming read-only.
 
-Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerStorageAutogrow43b64 (Enable storage autogrow for MySQL Flexible Server)](/azure/mysql/flexible-server/concepts-service-tiers-storage#storage-auto-grow).
+Learn more about [Azure Database for MySQL Flexible Server - MySqlFlexibleServerStorageAutogrow43b64 (Enable storage autogrow for MySQL Flexible Server)](/azure/mysql/flexible-server/concepts-service-tiers-storage#storage-auto-grow).
 
 ### Apply resource delete lock
 
 Lock your MySQL Flexible Server to protect from accidental user deletions and modifications.
 
-Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerResourceLockbe19e (Apply resource delete lock)](/azure/azure-resource-manager/management/lock-resources).
+Learn more about [Azure Database for MySQL Flexible Server - MySqlFlexibleServerResourceLockbe19e (Apply resource delete lock)](/azure/azure-resource-manager/management/lock-resources).
 
 ### Add firewall rules for MySQL Flexible Server
 
 Add firewall rules to protect your server from unauthorized access.
 
-Learn more about [Azure Database for MySQL flexible server - MySqlFlexibleServerNoFirewallRule6e523 (Add firewall rules for MySQL Flexible Server)](/azure/mysql/flexible-server/how-to-manage-firewall-portal).
+Learn more about [Azure Database for MySQL Flexible Server - MySqlFlexibleServerNoFirewallRule6e523 (Add firewall rules for MySQL Flexible Server)](/azure/mysql/flexible-server/how-to-manage-firewall-portal).
 
 ### Injecting a cache into a virtual network (VNet) imposes complex requirements on your network configuration, which is a common source of incidents affecting customer applications
 
