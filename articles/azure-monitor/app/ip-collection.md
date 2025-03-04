@@ -39,7 +39,7 @@ To enable IP collection and storage, the `DisableIpMasking` property of the Appl
 
 ## Disable IP masking
 
-> [!TIPP]
+> [!TIP]
 > If you need to modify the behavior for only a single Application Insights resource, use the Azure portal.
 
 ### [Portal](#tab/portal)
