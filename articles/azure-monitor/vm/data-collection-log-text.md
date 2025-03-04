@@ -1,24 +1,42 @@
 ---
-title: Collect logs from a text file with Azure Monitor Agent 
+title: Collect text file from virtual machine with Azure Monitor
 description: Configure a data collection rule to collect log data from a text file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 02/18/2025
+ms.date: 03/03/2025
 author: bwren
 ms.author: bwren
 ms.reviewer: jeffwo
 ---
 
-# Collect logs from a text file with Azure Monitor Agent 
-Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. This data can be collected by Azure Monitor using the **Custom Text Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the custom text logs type.
+# Collect text file from virtual machine with Azure Monitor
+Many applications and services on a virtual machine will log information to text files instead of standard logging services such as Windows Event log or Syslog. Collect custom text logs from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Custom Text Logs** data source. 
+
+Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Custom Text Logs data source type.
 
 ## Prerequisites
- 
-- Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a new table if you don't already have one.
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need the following before creating this data source:
+
+- Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a new table to receive the data if you don't already have one.
 - A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 > [!WARNING]
 > You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
+
+## Configure custom text file data source
+
+Create a DCR, as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
+
+:::image type="content" source="media/data-collection-log-text/configuration.png" lightbox="media/data-collection-log-text/configuration.png" alt-text="Screenshot that shows configuration of text file collection.":::
+
+The options available in the **Custom Text Logs** configuration are described in the following table.
+
+| Setting | Description |
+|:---|:---|
+| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
+| Table name | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
+| Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. | 
+| timeFormat| The following time formats are supported.<br><br> - `yyyy-MM-ddTHH:mm:ssk`  (2024-10-29T18:28:34) <br> - `YYYY-MM-DD HH:MM:SS`   (2024-10-29 18:28:34) <br> - `M/D/YYYY HH:MM:SS AM/PM`   (10/29/2024 06:28:34 PM) <br> - `Mon DD, YYYY HH:MM:SS`   (October 29, 2024 18:28:34) <br> - `yyMMdd HH:mm:ss`   (241029 18:28:34) <br> - `ddMMyy HH:mm:ss`   (291024 18:28:34) <br> - `MMM d HH:mm:ss`   (Oct 29 18:28:34) <br> - `dd/MMM/yyyy:HH:mm:ss zzz`   (14/Oct/2024:18:28:34 -00) |
+| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. |
 
 ## Text file requirements and best practices
 The file that Azure Monitor collects must meet the following requirements:
@@ -61,23 +79,6 @@ For example, consider a text file with the following data.
 When collected using default settings, this data would appear as follows when retrieved with a log query.
 
 :::image type="content" source="media/data-collection-log-text/default-results.png" lightbox="media/data-collection-log-text/default-results.png" alt-text="Screenshot that shows log query returning results of default file collection.":::
-
-
-## Create a data collection rule (DCR) for a text file
-
-Create a DCR, as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md). In the **Collect and deliver** step, select **Custom Text Logs** from the **Data source type** dropdown. 
-
-:::image type="content" source="media/data-collection-log-text/configuration.png" lightbox="media/data-collection-log-text/configuration.png" alt-text="Screenshot that shows configuration of text file collection.":::
-
-The options available in the **Custom Text Logs** configuration are described in the following table.
-
-| Setting | Description |
-|:---|:---|
-| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
-| Table name | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
-| Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. | 
-| timeFormat| The following time formats are supported.<br><br> - `yyyy-MM-ddTHH:mm:ssk`  (2024-10-29T18:28:34) <br> - `YYYY-MM-DD HH:MM:SS`   (2024-10-29 18:28:34) <br> - `M/D/YYYY HH:MM:SS AM/PM`   (10/29/2024 06:28:34 PM) <br> - `Mon DD, YYYY HH:MM:SS`   (October 29, 2024 18:28:34) <br> - `yyMMdd HH:mm:ss`   (241029 18:28:34) <br> - `ddMMyy HH:mm:ss`   (291024 18:28:34) <br> - `MMM d HH:mm:ss`   (Oct 29 18:28:34) <br> - `dd/MMM/yyyy:HH:mm:ss zzz`   (14/Oct/2024:18:28:34 -00) |
-| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. |
 
 
 ## Delimited log files
