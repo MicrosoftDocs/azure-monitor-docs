@@ -614,13 +614,14 @@ items:
             displayName: Login Events,RepositoryEvent logs
           - name: Microsoft.ContainerService/fleets
             href: supported-logs/microsoft-containerservice-fleets-logs.md
-            displayName: Kubernetes Cloud Controller Manager,guard,Kubernetes API
-              Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
-              Controller Manager,Kubernetes Scheduler
+            displayName: Kubernetes Cloud Controller
+              Manager,fleet-hub-agent,guard,Kubernetes API Server,Kubernetes
+              Audit,Kubernetes Audit Admin Logs,Kubernetes Controller
+              Manager,Kubernetes Scheduler
           - name: Microsoft.ContainerService/managedClusters
             href: supported-logs/microsoft-containerservice-managedclusters-logs.md
             displayName: Kubernetes Cloud Controller Manager,Kubernetes Cluster
-              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,guard,Kubernetes
+              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-member-agent,guard,Kubernetes
               API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
               Controller Manager,Kubernetes Scheduler
           - name: Microsoft.CustomProviders/resourceproviders
@@ -1015,6 +1016,10 @@ items:
             href: supported-logs/microsoft-providerhub-providermonitorsettings-logs.md
             displayName: UserRP Http Incoming Requests,UserRP Http Outgoing Requests,UserRP
               Provisioning Operations
+          - name: Microsoft.ProviderHub/providerRegistrations
+            href: supported-logs/microsoft-providerhub-providerregistrations-logs.md
+            displayName: Provisioning Operations,UserRP Http Incoming Requests,UserRP Http
+              Outgoing Requests
           - name: microsoft.purview/accounts
             href: supported-logs/microsoft-purview-accounts-logs.md
             displayName: DataSensitivity,ScanStatus,PurviewAccountAuditEvents
