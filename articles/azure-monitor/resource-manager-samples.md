@@ -1,7 +1,6 @@
 ---
 title: Resource Manager template samples for Azure Monitor
 description: Deploy and configure Azure Monitor features by using Resource Manager templates.
-services: azure-monitor
 ms.topic: sample
 ms.date: 08/09/2023
 ---

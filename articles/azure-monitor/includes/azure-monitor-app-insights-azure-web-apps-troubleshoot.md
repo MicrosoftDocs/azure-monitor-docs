@@ -3,7 +3,6 @@ ms.topic: include
 ms.date: 08/04/2023
 ms.author: AaronMaxwell
 author: AaronMaxwell
-services: azure-monitor
 ms.subservice: application-insights
 ---
 

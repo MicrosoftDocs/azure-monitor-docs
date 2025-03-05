@@ -3,7 +3,6 @@ title: Azure Monitor supported metrics by resource type
 description: List of metrics available for each resource type with Azure Monitor.
 author: EdB-MSFT
 ms.author: edbaynash
-services: azure-monitor
 ms.topic: generated-reference
 ms.service: azure-monitor
 ms.date: 03/03/2025

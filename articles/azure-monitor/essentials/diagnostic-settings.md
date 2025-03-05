@@ -1,7 +1,6 @@
 ---
 title: Diagnostic settings in Azure Monitor
 description: Learn about working with diagnostic settings for Azure Monitor platform metrics and logs.
-services: azure-monitor
 ms.topic: conceptual
 ms.custom:
 ms.date: 01/16/2025
