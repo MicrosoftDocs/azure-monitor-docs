@@ -33,7 +33,7 @@ For more details on installation and identity requirements, please see the [Chao
 
 To function correctly, the Chaos Agent requires outbound connectivity to the Chaos Studio service endpoints. Specifically, the VM must be able to reach:
 ```
-https://acs-prod-<region>.chaosagent.trafficmanager.net
+https://<region>.agents.chaos-prod.azure.com
 ```
 Without this connectivity, the agent will not receive instructions or be able to report its status. Additional network configuration points include:
 
