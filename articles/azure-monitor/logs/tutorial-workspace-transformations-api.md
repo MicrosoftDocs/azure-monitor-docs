@@ -2,8 +2,6 @@
 title: Tutorial - Add ingestion-time transformation to Azure Monitor Logs using Resource Manager templates
 description: Describes how to add a custom transformation to data flowing through Azure Monitor Logs using Resource Manager templates.
 ms.topic: tutorial
-author: bwren
-ms.author: bwren
 ms.date: 08/12/2024
 ---
 

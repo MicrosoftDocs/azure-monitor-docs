@@ -2,8 +2,6 @@
 title: Tables that support ingestion-time transformations in Azure Monitor Logs
 description: Reference for tables that support ingestion-time transformations in Azure Monitor Logs.
 ms.topic: reference
-author: bwren
-ms.author: bwren
 ms.date: 07/10/2022
 ---
 

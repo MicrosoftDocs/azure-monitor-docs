@@ -1,7 +1,6 @@
 ---
 title: Manage tables in a Log Analytics workspace 
 description: Learn how to manage table settings in a Log Analytics workspace based on your data analysis and cost management needs.
-ms.author: guywild
 ms.reviewer: adi.biran
 ms.topic: conceptual
 ms.date: 07/21/2024
