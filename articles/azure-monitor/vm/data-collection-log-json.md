@@ -1,24 +1,45 @@
 ---
-title: Collect logs from a JSON file with Azure Monitor Agent 
+title: Collect JSON file from virtual machine with Azure Monitor
 description: Configure a data collection rule to collect log data from a JSON file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 02/18/2025
+ms.date: 03/04/2025
 author: bwren
 ms.author: bwren
 ms.reviewer: jeffwo
 ---
 
-# Collect logs from a JSON file with Azure Monitor Agent 
-Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. If this data is stored in JSON format, it can be collected by Azure Monitor using the **Custom JSON Logs** data source in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the text logs type.
+# Collect JSON file from virtual machine with Azure Monitor
+Many applications and services will log information to text files instead of standard logging services such as Windows Event log or Syslog. If this data is stored in JSON format, it can be collected by Azure Monitor in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Custom JSON Logs** data source.
+
+Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the JSON logs type.
+
+> [!NOTE]
+> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#json-logs).
 
 ## Prerequisites
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need the following before creating this data source:
 
 - Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods.
-- A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 > [!WARNING]
 > You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
+
+## Configure custom JSON file data source
+
+On the **Collect and deliver** tab of the DCR, select **Custom JSON Logs** from the **Data source type** dropdown.
+
+The options available in the **Custom JSON Logs** configuration are described in the following table.
+
+| Setting | Description |
+|:---|:---|
+| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
+| Table name | Name of the destination table in your Log Analytics Workspace. |     
+| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
+| JSON Schema | Columns to collect from the JSON log file and sent to the destination table. The columns described in [Log Analytics workspace table](#log-analytics-workspace-table) that aren't required, do not need to be included in the schema of the destination table. `TimeGenerated` and any other columns that you added, do not need to be included in the schema of the destination table. |
+
+Retrieving this data with a log query would return the following results.
+
+:::image type="content" source="media/data-collection-log-text/delimited-results.png" lightbox="media/data-collection-log-text/delimited-results.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection.":::
 
 ## JSON file requirements and best practices
 The file that the Azure Monitor agent is collecting must meet the following requirements:
@@ -55,26 +76,9 @@ Any columns in the table that match the name of a field in the parsed Json data 
 | `Computer` | string | No | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
 | `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
 
-## Create a data collection rule for a JSON file
-
-Create a data collection rule, as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md). In the **Collect and deliver** step, select **Custom JSON Logs** from the **Data source type** dropdown. 
-
-The options available in the **Custom JSON Logs** configuration are described in the following table.
-
-| Setting | Description |
-|:---|:---|
-| File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
-| Table name | Name of the destination table in your Log Analytics Workspace. |     
-| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
-| JSON Schema | Columns to collect from the JSON log file and sent to the destination table. The columns described in [Log Analytics workspace table](#log-analytics-workspace-table) that aren't required, do not need to be included in the schema of the destination table. `TimeGenerated` and any other columns that you added, do not need to be included in the schema of the destination table. |
-
-Retrieving this data with a log query would return the following results.
-
-:::image type="content" source="media/data-collection-log-text/delimited-results.png" lightbox="media/data-collection-log-text/delimited-results.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection.":::
-
 
 ### Transformation
-The [transformation](../essentials/data-collection-transformations.md) potentially modifies the incoming stream to filter records or to modify the schema to match the target table. If the schema of the incoming stream is the same as the target table, then you can use the default transformation of `source`. If not, then modify the `transformKql` section of tee ARM template with a KQL query that returns the required schema.
+The [transformation](../essentials/data-collection-transformations.md) potentially modifies the incoming stream to filter records or to modify the schema to match the target table. If the schema of the incoming stream is the same as the target table, then you can use the default transformation of `source`. If not, then modify the `transformKql` section of the ARM template with a KQL query that returns the required schema.
 
 
 ## Troubleshooting
