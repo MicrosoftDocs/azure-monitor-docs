@@ -15,9 +15,7 @@ Details for the creation of the DCR are provided in [Collect data with Azure Mon
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#json-logs).
 
 ## Prerequisites
-In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need the following before creating this data source:
-
-- Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods.
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for the  [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods.
 
 > [!WARNING]
 > You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
@@ -66,17 +64,13 @@ Following is a sample of a typical JSON log file that can be collected by Azure 
 ## Log Analytics workspace table
 The agent watches for any json files on the local disk that match the specified name pattern. Each entry is collected as it's written to the log and then parsed before being sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
 
-Any columns in the table that match the name of a field in the parsed Json data will be populated with the value from the log entry. The following table describes the required and optional columns in the table in addition to the columns identified in the Json data. 
+Any columns in the table that match the name of a field in the parsed Json data will be populated with the value from the log entry. The following table describes the required and optional columns in the table in addition to the columns identified in your JSON data. 
 
 | Column | Type | Required? | Description |
 |:---|:---|:---|:---|
 | `TimeGenerated` | datetime | Yes | This column contains the time the record was generated and is required in all tables. This value will be automatically populated with the time the record is added to the Log Analytics workspace. You can override this value using a transformation to set `TimeGenerated` to a value from the log entry. |
 | `Computer` | string | No | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
 | `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
-
-
-### Transformation
-The [transformation](../essentials/data-collection-transformations.md) potentially modifies the incoming stream to filter records or to modify the schema to match the target table. If the schema of the incoming stream is the same as the target table, then you can use the default transformation of `source`. If not, then modify the `transformKql` section of the ARM template with a KQL query that returns the required schema.
 
 
 ## Troubleshooting

@@ -8,12 +8,8 @@ ms.reviewer: jeffwo
 ---
 
 # Collect IIS logs from virtual machine with Azure Monitor
-Internet Information Services (IIS) stores user activity in log files that can be collected by Azure Monitor agent using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **IIS Logs** data source. 
+Internet Information Services (IIS) stores user activity in log files that can be collected by Azure Monitor agent using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **IIS Logs** data source. Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the IIS logs data source type.
 
-Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the IIS logs data source type.
-
-> [!NOTE]
-> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#iis-logs).
 
 ## Configure IIS log data source
 
@@ -21,13 +17,10 @@ On the **Collect and deliver** tab of the DCR, select **IIS Logs** from the **Da
 
 :::image type="content" source="media/data-collection-iis/iis-data-collection-rule.png" lightbox="media/data-collection-iis/iis-data-collection-rule.png" alt-text="Screenshot that shows the Azure portal form to select basic performance counters in a data collection rule.":::
 
-## Destinations
+## Add destinations
+IIS logs can only be sent to a Log Analytics workspace where it's stored in the [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
 
-IIS log data can be sent to the following locations.
-
-| Destination | Table / Namespace |
-|:---|:---|
-| Log Analytics workspace | [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) |
+:::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
 
 
 ## Configure collection of IIS logs on client
@@ -43,7 +36,7 @@ The default location for IIS log files is **C:\\inetpub\\logs\\LogFiles\\W3SVC1*
 :::image type="content" source="media/data-collection-iis/iis-log-format-setting.png" lightbox="media/data-collection-iis/iis-log-format-setting.png" alt-text="Screenshot of IIS logging configuration dialog box on agent machine.":::
 
 > [!NOTE]
-> The X-Forwarded-For custom field is not supported at this time. If this is a critical field, you can collect the IIS logs as a custom text log.
+> The X-Forwarded-For custom field is not currently supported. If this is a critical field, you can collect the IIS logs as a [custom text log](./data-collection-log-text.md).
 
 ## Troubleshooting
 Go through the following steps if you aren't collecting data from the JSON log that you're expecting.
@@ -55,8 +48,5 @@ Go through the following steps if you aren't collecting data from the JSON log t
 
 ## Next steps
 
-Learn more about: 
-
-- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
-- [Data collection rules](../essentials/data-collection-rule-overview.md).
-- [Best practices for cost management in Azure Monitor](../best-practices-cost.md).
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
+- Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
