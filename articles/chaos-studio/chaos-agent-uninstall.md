@@ -42,4 +42,4 @@ For Virtual Machine Scale Sets (VMSS), use:
 ```bash
 az vmss extension delete --resource-group <ResourceGroupName> --vmss-name <VMSSName> --name ChaosAgent
 ```
-Replace <ResourceGroupName>, <VMName>, and <VMSSName> with your actual resource names.
+Replace ResourceGroupName, VMName, and VMSSName with your actual resource names.
