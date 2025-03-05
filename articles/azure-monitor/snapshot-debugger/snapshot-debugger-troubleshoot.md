@@ -6,7 +6,7 @@ author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: conceptual
-ms.date: 01/21/2025
+ms.date: 03/04/2025
 ms.custom: devdivchpfy22, devx-track-dotnet
 ---
 
@@ -78,12 +78,6 @@ The interactive, chat-like interface looks for common problems and guides you to
 :::image type="content" source="./media/snapshot-debugger/health-check.png" alt-text="Screenshot showing the interactive Health Check window listing the problems and suggestions how to fix them.":::
 
 If that doesn't solve the problem, then refer to the following manual troubleshooting steps.
-
-## Verify the instrumentation key
-
-Make sure you're using the correct instrumentation key in your published application. Usually, the instrumentation key is read from the *ApplicationInsights.config* file. Verify the value is the same as the instrumentation key for the Application Insights resource that you see in the portal.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## <a id="SSL"></a>Check TLS/SSL client settings (ASP.NET)
 
