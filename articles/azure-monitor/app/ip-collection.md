@@ -95,11 +95,11 @@ To disable IP masking using [Azure PowerShell](/powershell/azure/what-is-azure-p
 Update-AzApplicationInsights -Name "<application-insights-resource-name>" -ResourceGroupName "<resource-group-name>" -DisableIPMasking:$true
 ```
 
-For more information on the `Update-AzApplicationInsights` cmdlet, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
+For more information about the the `Update-AzApplicationInsights` cmdlet, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
 
 ### [REST API](#tab/rest)
 
-To disable IP masking using [REST API](/rest/api/azure/), use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, and `<azure-region-name>` with your specific values:
+To disable IP masking using the [REST API](/rest/api/azure/), use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, and `<azure-region-name>` with your specific values:
 
 ```json
 PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>?api-version=2018-05-01-preview HTTP/1.1
@@ -116,6 +116,8 @@ Content-Type: application/json
     }
 }
 ```
+
+For more information about configuring Application Insights resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/create-or-update).
 
 ### [Bicep](#tab/bicep)
 
