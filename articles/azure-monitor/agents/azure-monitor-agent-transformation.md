@@ -3,8 +3,6 @@ title: Transform text logs during ingestion in Azure Monitor Logs
 description: Write a KQL query that transforms text log data and add the transformation to a data collection rule in Azure Monitor Logs.
 ms.topic: conceptual
 ms.date: 11/14/2024
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: jeffwo
 ---
 # Tutorial: Transform text logs during ingestion in Azure Monitor Logs
