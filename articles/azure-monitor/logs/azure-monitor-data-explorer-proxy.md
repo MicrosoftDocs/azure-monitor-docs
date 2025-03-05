@@ -1,8 +1,6 @@
 ---
 title: Correlate data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace 
 description: Run cross-service queries to correlated data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace.
-author: guywi-ms
-ms.author: guywild
 ms.topic: conceptual
 ms.date: 08/12/2024
 ms.reviewer: osalzberg

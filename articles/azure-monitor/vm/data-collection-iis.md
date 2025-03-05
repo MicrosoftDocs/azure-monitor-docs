@@ -3,8 +3,6 @@ title: Collect IIS logs with Azure Monitor Agent
 description: Configure collection of Internet Information Services (IIS) logs on virtual machines with Azure Monitor Agent.
 ms.topic: concept-article
 ms.date: 11/14/2024
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: jeffwo
 
 ---

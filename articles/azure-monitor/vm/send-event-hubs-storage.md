@@ -2,8 +2,6 @@
 title: Send data to Event Hubs and Storage (Preview)
 description: This article describes how to use Azure Monitor Agent to upload data to Azure Storage and Event Hubs.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 01/05/2025
 ms.reviewer: luki
 ---
