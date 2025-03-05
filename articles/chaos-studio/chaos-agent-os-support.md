@@ -14,11 +14,6 @@ ms.service: azure-chaos-studio
 
 The following compatibility matrix outlines the officially supported operating systems for the Azure Chaos Studio Agent, along with the minimum supported version and the fault support from our agent fault library. In the fault columns, a check (✓) indicates full support, “✓ (outbound)” denotes that only outbound support is provided, and an “✗” means the fault is not supported on that operating system.
 
-> **Note:** While the chaos agent will attempt to auto-install dependencies on certain mainstream Linux OS’s, these are open source packages that you can install yourself using the commands in the package dependencies section. For Linux, the required packages are:
-> 
-> ```AzCLI
-> sudo apt-get install stress-ng tc netem
-> ```
 
 ---
 
