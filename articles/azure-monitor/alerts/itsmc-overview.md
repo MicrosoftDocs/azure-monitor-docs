@@ -1,7 +1,6 @@
 ---
 title: IT Service Management integration
 description: This article provides an overview of the ways you can integrate with an IT Service Management product.
-ms.author: abbyweisberg
 ms.reviewer: nolavime
 ms.topic: conceptual
 ms.date: 07/30/2024

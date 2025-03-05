@@ -2,8 +2,6 @@
 title: Create alert rules for an Azure resource
 description: Describes the different options for creating alert rules in Azure Monitor and where you can find more information about each option.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 02/16/2024
 
 ---
