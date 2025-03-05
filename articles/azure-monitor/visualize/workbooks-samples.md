@@ -2,8 +2,6 @@
 title: Sample Azure Workbooks with links
 description: See sample Azure Workbooks.
 services: azure-monitor
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.custom: devx-track-arm-template
 ms.date: 09/17/2024

@@ -1,10 +1,6 @@
 ---
 title: Autoscale in Azure Monitor
 description: This article describes the autoscale feature in Azure Monitor and its benefits.
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
-ms.subservice: autoscale
 ms.topic: conceptual
 ms.date: 11/01/2024
 

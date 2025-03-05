@@ -3,9 +3,6 @@ title: Filtering OpenTelemetry in Application Insights
 description: Learn how to filter OpenTelemetry (OTel) data in Application Insights for .NET, Java, Node.js, and Python applications to exclude unwanted telemetry and protect sensitive information.
 ms.topic: conceptual
 ms.date: 03/23/2025
-ms.author: v-nawrothkai
-ms.service: azure-monitor
-ms.subservice: application-insights
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 ms.reviewer: mmcc

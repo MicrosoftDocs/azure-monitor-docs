@@ -1,11 +1,8 @@
 ---
 title: Autoscale common metrics
 description: Learn which metrics are commonly used for autoscaling your cloud services, virtual machines, and web apps.
-author: EdB-MSFT
-ms.author: edbaynash
 ms.topic: conceptual
 ms.date: 11/01/2024
-ms.subservice: autoscale 
 ms.reviewer: akkumari
 
 # customer intent: As an Azure administrator, I want to learn which metrics are best to scale my resources using Azure Monitor autoscale
