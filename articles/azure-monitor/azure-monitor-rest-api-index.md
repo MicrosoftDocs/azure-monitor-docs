@@ -85,12 +85,6 @@ Organized by subject area.
 | [Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. |
 | [Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
 | [Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
-| ***Private Link Networking*** |  |
-| [Private endpoint connections (preview)](/rest/api/monitor/private-endpoint-connections) | Approve, reject, delete, and retrieve a private endpoint connection and retrieve all project endpoint connections on a private link scope. |
-| [Private link resources (preview)](/rest/api/monitor/private-link-resources) | Retrieve a single private link resource that needs to be created for an Azure Monitor PrivateLinkScope or all private link resources within an Azure Monitor PrivateLinkScope resource that need to be created for an Azure Monitor PrivateLinkScope. |
-| [Private link scope operation status (preview)](/rest/api/monitor/private-link-scope-operation-status) | Retrieves the status of an Azure asynchronous operation associated with a private link scope operation. |
-| [Private link scoped resources (preview)](/rest/api/monitor/private-link-scoped-resources) | Approve, reject, delete, and retrieve a scoped resource object and retrieve all scoped resource objects within an Azure Monitor PrivateLinkScope resource. |
-| [Private link scopes (preview)](/rest/api/monitor/private-link-scopes) | Manage an Azure Monitor PrivateLinkScope including its tags and retrieve a list of all Azure Monitor PrivateLinkScopes within a subscription or resource group. |
 | ***Query log data*** |  |
 | [Data Access](./logs/api/overview.md) | Query Log Analytics data. |
 | ***Send Custom Log Data to Log Analytics*** |  |
