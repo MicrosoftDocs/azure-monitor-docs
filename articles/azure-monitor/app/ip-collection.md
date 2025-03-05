@@ -2,7 +2,7 @@
 title: Application Insights IP address collection | Microsoft Docs
 description: Understand how Application Insights handles IP addresses and geolocation.
 ms.topic: conceptual
-ms.date: 03/03/2025
+ms.date: 03/05/2025
 ms.reviewer: mmcc
 ---
 
@@ -89,11 +89,9 @@ To enable IP collection and storage, the `DisableIpMasking` property of the Appl
 
 ### [PowerShell](#tab/powershell)
 
-The following PowerShell `Update-AzApplicationInsights` cmdlet disables IP masking with the `DisableIPMasking` parameter:
+To disable IP masking using [Azure PowerShell](/powershell/azure/what-is-azure-powershell), use the following command and replace the placeholders `<application-insights-resource-name>` and `<resource-group-name>` with your specific values:
 
 ```powershell
-# Replace <application-insights-resource-name> and <resource-group-name> with the appropriate resource and resource group name.
-
 Update-AzApplicationInsights -Name "<application-insights-resource-name>" -ResourceGroupName "<resource-group-name>" -DisableIPMasking:$true
 ```
 
