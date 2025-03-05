@@ -61,7 +61,7 @@
       href: chaos-studio-tutorial-agent-based-portal.md
     - name: CLI
       href: chaos-studio-tutorial-agent-based-cli.md
-    - name: Verify Agent Status
+    - name: Verify agent status
       href: chaos-agent-verify-status.md
   - name: Chaos Mesh faults on AKS
     items:
