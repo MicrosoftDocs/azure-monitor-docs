@@ -1,7 +1,6 @@
 ---
 title: Azure Workbooks templates
 description: Learn how to use Azure Workbooks templates.
-services: azure-monitor
 ms.topic: conceptual
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr 

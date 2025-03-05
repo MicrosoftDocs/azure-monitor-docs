@@ -1,7 +1,6 @@
 ---
 title: Ingest events from Azure Event Hubs into Azure Monitor Logs (Preview)
 description: Ingest logs from Event Hubs into Azure Monitor Logs 
-services: azure-monitor
 ms.reviewer: ilanawaitser
 ms.topic: tutorial 
 ms.date: 12/28/2023

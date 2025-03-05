@@ -1,7 +1,6 @@
 ---
 title: Log Analytics Workspace Insights
 description: An overview of Log Analytics Workspace Insights usage, performance, health, agents, queries, and change log.
-services: azure-monitor 
 ms.topic: conceptual
 ms.reviewer: osalzberg
 ms.date: 12/28/2023

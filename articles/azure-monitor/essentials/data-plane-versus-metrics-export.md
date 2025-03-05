@@ -1,7 +1,6 @@
 ---
 title: Data plane API and metrics batch query versus metrics export 
 description: A comparison of Data plane API or metrics batch query and metrics export.
-services: azure-monitor
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: conceptual
