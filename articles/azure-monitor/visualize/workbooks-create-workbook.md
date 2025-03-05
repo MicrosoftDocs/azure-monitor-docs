@@ -1,7 +1,6 @@
 ---
 title: Create or edit an Azure Workbook
 description: Learn how to create an Azure Workbook.
-services: azure-monitor
 ms.topic: conceptual
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr

@@ -1,7 +1,6 @@
 ---
 title: Azure Workbooks honeycomb visualizations
 description: Learn about Azure Workbooks honeycomb visualizations.
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 09/17/2024

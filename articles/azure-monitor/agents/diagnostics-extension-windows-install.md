@@ -1,7 +1,6 @@
 ---
 title: Install and configure the Azure Diagnostics extension for Windows (WAD)
 description: Learn about installing and configuring the Azure Diagnostics extension for Windows and how the data is stored in an Azure Storage account.
-services: azure-monitor
 ms.topic: conceptual
 ms.date: 11/14/2024
 ms.custom: devx-track-azurecli
