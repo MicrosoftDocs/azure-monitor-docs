@@ -3,8 +3,6 @@ title: Collect logs from a text file with Azure Monitor Agent
 description: Configure a data collection rule to collect log data from a text file on a virtual machine using Azure Monitor Agent.
 ms.topic: conceptual
 ms.date: 02/18/2025
-author: bwren
-ms.author: bwren
 ms.reviewer: jeffwo
 ---
 

@@ -2,8 +2,6 @@
 title: Enable VM Insights
 description: Describes different methods for enabling VM Insights on virtual machines and virtual machine scale sets.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: xpathak
 ms.date: 10/03/2024
 ms.custom: references_regions

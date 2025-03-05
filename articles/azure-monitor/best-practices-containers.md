@@ -2,8 +2,6 @@
 title: Best practices for monitoring Kubernetes with Azure Monitor
 description: Provides a template for a Well-Architected Framework (WAF) article specific to monitoring Kubernetes with Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 03/29/2023
 ms.reviewer: bwren
 ---

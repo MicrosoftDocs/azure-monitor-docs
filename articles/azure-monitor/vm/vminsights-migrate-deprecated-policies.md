@@ -2,8 +2,6 @@
 title: Migrate from deprecated VM insights policies
 description: This article explains how to migrate from deprecated VM insights policies to their replacement policies.
 ms.topic: how-to
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: Rahul.Bagaria
 ms.date: 11/06/2024
 
