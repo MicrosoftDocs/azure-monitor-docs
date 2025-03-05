@@ -1,8 +1,6 @@
 ---
 title: Tables that support the Basic table plan in Azure Monitor Logs
 description: This article lists all tables support the Basic table plan in Azure Monitor Logs.
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: osalzberg
 ms.topic: how-to
 ms.date: 07/22/2024

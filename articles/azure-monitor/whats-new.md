@@ -1,10 +1,10 @@
 ---
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
-author: EdB-MSFT
 ms.topic: conceptual
-ms.date: 09/06/2024
-ms.author: edbaynash
+ms.date: 04/03/2025
+author: AaronMaxwell
+ms.author: aaronmax
 ---
 
 # What's new in Azure Monitor documentation

@@ -4,8 +4,6 @@ description: Describes how to configure Kafka monitoring using Prometheus metric
 ms.topic: conceptual
 ms.date: 3/19/2024
 ms.reviewer: rashmy
-ms.service: azure-monitor
-ms.subservice: containers
 ---
 # Apache Kafka
 Apache Kafka is an open-source distributed event streaming platform used by high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.

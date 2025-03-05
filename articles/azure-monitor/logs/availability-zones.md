@@ -3,8 +3,6 @@ title: Availability zones in Azure Monitor
 description: Learn about the data and service resilience benefits Azure Monitor availability zones provide to protect against datacenter failure. 
 ms.subservice: logs
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 10/06/2024
 ms.custom: references_regions
 

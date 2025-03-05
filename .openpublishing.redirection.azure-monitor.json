@@ -7566,11 +7566,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-providerhub-providerregistrations-logs.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/vm/vminsights-enable-overview.md",
    "redirect_url": "/azure/azure-monitor/vm/vminsights-enable",
    "redirect_document_id": false
@@ -7791,7 +7786,7 @@
   },
   {
    "source_path": "articles/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md",
-   "redirect_url": "/azure/azure-monitor/vm/send-events-hubs-storage",
+   "redirect_url": "/azure/azure-monitor/vm/send-event-hubs-storage",
    "redirect_document_id": false
   }
  ]

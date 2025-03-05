@@ -2,8 +2,6 @@
 title: 'Tutorial: Add a workspace transformation to Azure Monitor Logs by using the Azure portal'
 description: Describes how to add a custom transformation to data flowing through Azure Monitor Logs by using the Azure portal.
 ms.topic: tutorial
-author: bwren
-ms.author: bwren
 ms.date: 08/12/2024
 ---
 
