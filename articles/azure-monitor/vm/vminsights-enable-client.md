@@ -2,8 +2,6 @@
 title: Enable VM Insights on a Windows client machine
 description: This article describes how you enable VM Insights on a Windows client machine that's not always online.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 12/11/2023
 # Customer-intent: As a cloud administrator, I want to enable VM Insights on a Windows client machine that's not always online, so that I can collect performance and dependency data when the machine comes online.
 
