@@ -4,7 +4,6 @@ description: Learn about all the Azure Monitor workbook grid visualizations.
 services: azure-monitor
 ms.topic: conceptual
 ms.date: 09/17/2024
-ms.author: abbyweisberg
 ---
 
 # Grid visualizations

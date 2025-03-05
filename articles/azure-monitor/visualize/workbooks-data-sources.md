@@ -2,8 +2,6 @@
 title: Azure Workbooks data sources | Microsoft docs
 description: Simplify complex reporting with prebuilt and custom parameterized workbooks built from multiple data sources.
 services: azure-monitor
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.custom: devx-track-arm-template
 ms.date: 09/17/2024

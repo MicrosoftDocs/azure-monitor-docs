@@ -3,8 +3,6 @@ title: Samples of Azure Monitor alert payloads
 description: See examples of payloads for Azure monitor alerts.
 ms.topic: reference
 ms.date: 01/23/2023
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.reviewer: ofmanor
 ---
 
