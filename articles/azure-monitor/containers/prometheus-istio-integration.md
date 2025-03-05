@@ -4,8 +4,6 @@ description: Describes how to configure Istio monitoring using Prometheus metric
 ms.topic: conceptual
 ms.date: 2/15/2025
 ms.reviewer: sunasing
-ms.service: azure-monitor
-ms.subservice: containers
 ---
 # Collect Istio metrics with Azure Managed Prometheus
 

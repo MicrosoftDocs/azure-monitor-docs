@@ -4,8 +4,6 @@ description: Describes how to integrate Azure Kubernetes Service workloads with 
 ms.topic: conceptual
 ms.date: 6/20/2024
 ms.reviewer: rashmy
-ms.service: azure-monitor
-ms.subservice: containers
 ---
 
 # Use Prometheus exporters for common workloads with Azure Managed Prometheus

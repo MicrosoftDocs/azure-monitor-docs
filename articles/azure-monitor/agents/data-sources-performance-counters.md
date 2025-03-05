@@ -3,8 +3,6 @@ title: Collect Windows and Linux performance data sources with the Log Analytics
 description: Learn how to configure collection of performance counters for Windows and Linux agents, how they're stored in the workspace, and how to analyze them.
 ms.topic: conceptual
 ms.custom: linux-related-content
-author: guywi-ms
-ms.author: guywild
 ms.date: 11/14/2024
 ---
 
