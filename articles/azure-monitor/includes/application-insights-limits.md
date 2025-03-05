@@ -1,7 +1,6 @@
 ---
 title: include file
 description: include file
-services: application-insights
 author: AaronMaxwell
 ms.service: application-insights
 ms.topic: include

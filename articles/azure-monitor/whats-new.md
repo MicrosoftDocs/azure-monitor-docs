@@ -1,10 +1,10 @@
 ---
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
-author: EdB-MSFT
 ms.topic: conceptual
-ms.date: 09/06/2024
-ms.author: edbaynash
+ms.date: 04/03/2025
+author: AaronMaxwell
+ms.author: aaronmax
 ---
 
 # What's new in Azure Monitor documentation
@@ -44,7 +44,7 @@ This article lists significant changes to Azure Monitor documentation.
 |General|[Azure Monitor security overview and guidelines](best-practices-security.md)|Refreshed Azure Monitor security overview and guidelines.|
 |Application-Insights|[Configure the Application Insights SDK with ApplicationInsights.config or .xml](app/configuration-with-applicationinsights-config.md)|Instrumentation key examples have been replaced with connection strings.|
 |Application-Insights|[Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](app/opentelemetry-add-modify.md)|OpenTelemetry filtering documentation now has its own dedicated page with more information on using span processors where applicable.|
-|Agents|[Collect data with Azure Monitor Agent](agents/azure-monitor-agent-data-collection.md)|Rewritten to better describe how to create a DCR for Azure Monitor agent and link to details to configure different data sources.|
+|Agents|[Collect data with Azure Monitor Agent](vm/data-collection.md)|Rewritten to better describe how to create a DCR for Azure Monitor agent and link to details to configure different data sources.|
 |Essentials|[Monitor DCR data collection in Azure Monitor](essentials/data-collection-monitor.md)|Rewritten for clarity.|
 |Essentials|[Manage data collection rule associations in Azure Monitor](essentials/data-collection-rule-associations.md)|Rewritten for clarity. Section added for creating new association.|
 |Essentials|[Data collection rules (DCRs) in Azure Monitor](essentials/data-collection-rule-overview.md)|Rewritten to consolidate all high level concepts for DCRs.|
@@ -183,7 +183,7 @@ This article lists significant changes to Azure Monitor documentation.
 |---|---|---|
 |Agents|[Collect firewall logs with Azure Monitor Agent (Preview)](agents/data-sources-firewall-logs.md)|New article that explains how to collect Windows Firewall logs with Azure Monitor Agent.|
 |Agents|[AMA agent data field differences from MMA](agents/azure-monitor-agent-data-field-differences.md)|New article that describes differences between the data collected by Log Analytics agent and Azure Monitor Agent. This information is important when you migrate from the legacy agent to Azure Monitor Agent, especially for migrating queries.|
-|Agents|[Collect data with Azure Monitor Agent](agents/azure-monitor-agent-data-collection.md)|Rewritten to describe basic process for all data sources.|
+|Agents|[Collect data with Azure Monitor Agent](vm/data-collection.md)|Rewritten to describe basic process for all data sources.|
 |Agents|[Install and manage Azure Monitor Agent](agents/azure-monitor-agent-manage.md)|Rewritten to simplify agent onboarding guidance.|
 |Agents|[Azure Monitor Agent overview](agents/azure-monitor-agent-overview.md)|Rewritten to better describe core concepts including DCR associations.|
 |Agents|[Use Azure Policy to install and manage the Azure Monitor agent](agents/azure-monitor-agent-policy.md)|New article to break Azure Policy guidance out from onboarding guidance.|

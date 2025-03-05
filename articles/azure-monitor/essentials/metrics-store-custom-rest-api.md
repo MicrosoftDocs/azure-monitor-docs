@@ -2,7 +2,6 @@
 title: Send metrics to the Azure Monitor metric database by using a REST API
 description: Learn how to send custom metrics for an Azure resource to the Azure Monitor metrics store by using a REST API.
 author: EdB-MSFT
-services: azure-monitor
 ms.reviewer: priyamishra
 ms.topic: how-to
 ms.date: 01/27/2025

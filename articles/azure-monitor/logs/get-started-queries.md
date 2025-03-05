@@ -2,8 +2,6 @@
 title: Get started with log queries in Azure Monitor Logs
 description: This article provides a tutorial for getting started writing log queries in Azure Monitor Logs.
 ms.topic: tutorial
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: ilanawaitser
 ms.date: 01/08/2025
 

@@ -2,8 +2,6 @@
 title: Manage read access to tables in a Log Analytics workspace
 description: This article explains how you to manage read access to specific tables in a Log Analytics workspace.
 ms.topic: how-to
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: MeirMen
 ms.date: 07/22/2024
 ms.custom: devx-track-azurepowershell

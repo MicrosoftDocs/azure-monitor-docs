@@ -1,8 +1,6 @@
 ---
 title: AIOps and machine learning in Azure Monitor
 description: Use machine learning to improve your ability to predict IT needs and identify and respond to anomalous patterns in log data. 
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: ilanawaitser
 ms.topic: conceptual 
 ms.date: 11/17/2024

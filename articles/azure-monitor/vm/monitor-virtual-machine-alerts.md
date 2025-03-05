@@ -3,8 +3,6 @@ title: 'Monitor virtual machines with Azure Monitor: Alerts'
 description: Learn how to create alerts from virtual machines and their guest workloads by using Azure Monitor.
 ms.service: azure-monitor
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 02/15/2024
 ms.reviewer: Xema Pathak
 
@@ -27,7 +25,7 @@ This scenario describes how to implement complete monitoring of your Azure and h
 Alert rules inspect data that's already been collected in Azure Monitor. You need to ensure that data is being collected for a particular scenario before you can create an alert rule. See [Monitor virtual machines with Azure Monitor: Collect data](monitor-virtual-machine-data-collection.md) for guidance on configuring data collection for various scenarios, including all the alert rules in this article.
 
 ## Recommended alert rules
-Azure Monitor provides a set of [recommended alert rules](tutorial-monitor-vm-alert-availability.md) that you can quickly enable for any Azure virtual machine. These rules are a great starting point for basic monitoring. But alone, they won't provide sufficient alerting for most enterprise implementations for the following reasons:
+Azure Monitor provides a set of [recommended alert rules](tutorial-monitor-vm-alert-recommended.md) that you can quickly enable for any Azure virtual machine. These rules are a great starting point for basic monitoring. But alone, they won't provide sufficient alerting for most enterprise implementations for the following reasons:
 
 - Recommended alerts only apply to Azure virtual machines and not hybrid machines.
 - Recommended alerts only include host metrics and not guest metrics or logs. These metrics are useful to monitor the health of the machine itself. But they give you minimal visibility into the workloads and applications running on the machine.
@@ -73,7 +71,7 @@ If you set the target resource of a log search alert rule to a specific machine,
 
 If you set the target resource of a log search alert rule to a Log Analytics workspace, you have access to all data in that workspace. For this reason, you can alert on data from all machines in the workgroup with a single rule. This arrangement gives you the option of creating a single alert for all machines. You can then use dimensions to create a separate alert for each machine.
 
-For example, you might want to alert when an error event is created in the Windows event log by any machine. You first need to create a data collection rule as described in [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md) to send these events to the `Event` table in the Log Analytics workspace. Then you create an alert rule that queries this table by using the workspace as the target resource and the condition shown in the following image.
+For example, you might want to alert when an error event is created in the Windows event log by any machine. You first need to create a data collection rule as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md) to send these events to the `Event` table in the Log Analytics workspace. Then you create an alert rule that queries this table by using the workspace as the target resource and the condition shown in the following image.
 
 The query returns a record for any error messages on any machine. Use the **Split by dimensions** option and specify **_ResourceId** to instruct the rule to create an alert for each machine if multiple machines are returned in the results.
 

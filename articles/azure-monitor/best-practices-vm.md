@@ -2,8 +2,6 @@
 title: Best practices for monitoring virtual machines in Azure Monitor
 description: Best practices organized by the pillars of the Well-Architected Framework (WAF) for monitoring virtual machines in Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 07/26/2024
 ms.reviewer: bwren
 ---
