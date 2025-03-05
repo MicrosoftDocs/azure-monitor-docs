@@ -4,8 +4,6 @@ description: Aggregate data in Log Analytics workspace with summary rules featur
 ms.service: azure-monitor
 ms.subservice: logs
 ms.topic: how-to
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: yossi-y
 ms.date: 11/17/2024
 
