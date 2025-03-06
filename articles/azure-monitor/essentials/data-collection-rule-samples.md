@@ -10,23 +10,20 @@ ms.reviewer: jeffwo
 ---
 
 # Data collection rule (DCR) samples in Azure Monitor
-This article includes sample [data collection rules (DCRs)](./data-collection-rule-overview.md) for common data collection scenarios in Azure Monitor. You can modify these DCR definitions as required for your environment and create the DCR using the guidance in [Create or edit a data collection rule](./data-collection-rule-create-edit.md). You can also use and combine the basic strategies in these samples to create DCRs for other scenarios.
+This article includes sample [data collection rules (DCR)](./data-collection-rule-overview.md) definitions for common data collection scenarios in Azure Monitor. You can modify these DCR definitions as required for your environment and create the DCR using the guidance in [Create or edit a data collection rule](./data-collection-rule-create-edit.md). You can also use and combine the basic strategies in these samples to create DCRs for other scenarios.
 
-These samples require knowledge of the DCR structure as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md). Several may be configured using the Azure portal without any detailed knowledge of the DCR structure. Use these samples when you need to work with the DCR definition itself to perform more advanced configurations or to automate the creation of DCRs.
+These samples require knowledge of the DCR structure as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md). Several may be configured using the Azure portal without any detailed knowledge of the DCR structure. Use these samples as a starting point if you want to manage the DCRs using methods outside of the Azure portal such as ARM, CLI, and PowerShell. You may need to use these methods to edit existing DCRs to implement advanced features such as [transformations](../essentials/data-collection-transformations.md).
 
 Each of these samples focuses on a particular data source, although you can combine multiple data sources of different types in a single DCR. Include a data flow for each to send the data to the appropriate destination. There is no functional difference between combining multiple data sources in a single DCR or creating separate DCRs for each data source. The choice depends on your requirements for managing and monitoring the data collection.
 
 > [!NOTE]
-> These samples show in this article provide the source JSON required to create the DCR. After creation, the DCR will have additional properties as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md).
+> The samples shown in this article provide the source JSON required to create the DCR. After creation, the DCR will have additional properties as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md).
 
-
-## DCRs for Azure Monitor agent
-The [Azure Monitor agent](../agents/azure-monitor-agent-data-collection.md) runs on virtual machines, virtual machine scale sets, and Kubernetes clusters. It supports [VM insights](../vm/vminsights-overview.md) and [container insights](../containers/container-insights-overview.md) and supports various data collection scenarios for VMs described in [Azure Monitor agent data collection](../agents/azure-monitor-agent-data-collection.md). 
-
-The following samples show DCRs for collecting different kinds of data using the Azure Monitor agent.
+## Collect VM client data
+The following samples show DCR definitions for collecting different kinds of data from virtual machines using the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md). You can create these DCRs using the Azure portal as described in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). 
 
 ### Windows events
-DCRs for Windows events use the `windowsEventLogs` data source with the `Microsoft-Event` incoming stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `xPathQueries` property. See [Collect Windows events with Azure Monitor Agent](../agents/data-collection-windows-events.md) for further details on using XPaths to filter the specific data you want to collect. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+DCRs for Windows events use the `windowsEventLogs` data source with the `Microsoft-Event` incoming stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `xPathQueries` property. See [Collect Windows events with Azure Monitor Agent](../agents/data-collection-windows-events.md) for further details on using XPaths to filter the specific data you want to collect. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](../essentials/data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for calculated columns and to further filter data, but you should use XPaths to filter data at the agent as much as possible for efficiency and to avoid potential ingestion charges.
 
@@ -79,7 +76,7 @@ The following sample DCR performs the following actions:
 ```
 
 ### Syslog events
-DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](../essentials/data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency at to avoid potential ingestion charges.
 
@@ -161,7 +158,7 @@ The following sample DCR performs the following actions:
 ### Performance counters
 DCRs for performance data use the `performanceCounters` data source with the incoming `Microsoft-InsightsMetrics` and `Microsoft-Perf` streams. `Microsoft-InsightsMetrics` is used to send data to Azure Monitor Metrics, while `Microsoft-Perf` is used to send data to a Log Analytics workspace. You can include both data sources in the DCR if you're sending performance data to both destinations. The schemas of these streams are known, so they don't need to be defined in the `dataSources` section.
  
- The performance counters to collect are specified in the `counterSpecifiers` property. See [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](./data-collection-rule-create-edit.md#dcr-definition).
+ The performance counters to collect are specified in the `counterSpecifiers` property. See [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](../essentials/data-collection-rule-create-edit.md#dcr-definition).
 
 You can add a transformation to the `dataFlows` property for `Microsoft-Perf` for additional functionality and to further filter data, but you should select only the counters you require in `counterSpecifiers` for efficiency at to avoid potential ingestion charges.
 
@@ -402,7 +399,7 @@ The following sample DCR performs the following actions:
 }
 ```
 
-## Send data to Event Hubs or Storage
+### Send data to Event Hubs or Storage
 DCRs sending data to event hubs or storage accounts use the same data sources as other DCRs that collect data with Azure Monitor agent (AMA), but have one or more of the following destinations. See [Send data to Event Hubs and Storage (Preview)](../agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md) for more details.
 
 - `eventHubsDirect`
@@ -508,6 +505,8 @@ The following sample DCR performs the following actions:
     }
 }
 ```
+
+
 
 ## Logs ingestion API
 DCRs for the Logs ingestion API must define the schema of the incoming stream in the `streamDeclarations` section of the DCR definition. The incoming data must be formatted in JSON with a schema matching the columns in this definition. No transformation is required if this schema matches the schema of the target table. If the schemas don't match, then you must add a transformation to the `dataFlows` property to format the data. See [Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md) for more details.

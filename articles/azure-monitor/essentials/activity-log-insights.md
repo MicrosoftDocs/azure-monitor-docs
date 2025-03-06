@@ -2,7 +2,6 @@
 title: Azure activity log and activity log insights
 description: Learn how to monitor changes to resources and resource groups in an Azure subscription with Azure Monitor activity log insights.
 author: guywi-ms
-services: azure-monitor
 ms.topic: how-to
 ms.date: 12/11/2023
 ms.author: guywild

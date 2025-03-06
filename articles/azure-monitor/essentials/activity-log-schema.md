@@ -2,8 +2,6 @@
 title: Azure Activity Log event schema
 description: Describes the event schema for each category in the Azure Activity log.
 author: bwren
-services: azure-monitor
-
 ms.topic: reference
 ms.date: 09/30/2020
 ms.author: bwren

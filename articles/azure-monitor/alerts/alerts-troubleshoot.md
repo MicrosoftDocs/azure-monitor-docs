@@ -1,7 +1,6 @@
 ---
 title: Troubleshooting Azure Monitor alerts and notifications
 description: Troubleshoot common problems with Azure Monitor alerts and possible solutions. 
-ms.author: abbyweisberg
 ms.topic: troubleshooting
 ms.date: 02/28/2024
 ms.reviewer: nolavime

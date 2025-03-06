@@ -1,7 +1,6 @@
 ---
 title: Enable monitoring with VM insights for an Azure virtual machine
 description: Enable monitoring with VM insights in Azure Monitor to monitor an Azure virtual machine.
-ms.service: azure-monitor
 ms.topic: article
 ms.custom: subject-monitoring
 ms.date: 11/06/2024

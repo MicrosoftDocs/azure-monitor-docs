@@ -4,9 +4,7 @@ description: This article discusses server firewall exceptions required by Azure
 ms.topic: reference
 ms.date: 03/27/2025
 ms.servce: azure-monitor
-ms.author: aaronmax
 ms.reviewer: rofrenke
-Author: AaronMaxwell
 ---
 
 # IP addresses used by Azure Monitor

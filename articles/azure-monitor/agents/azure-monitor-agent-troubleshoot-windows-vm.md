@@ -47,7 +47,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
     1. Check if you see the latest DCR downloaded at this location `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\configchunks`  
     
 ## Issues collecting Performance counters
-1. Check that your DCR JSON contains a section for 'performanceCounters'. If not, fix your DCR. See [how to create DCR](./azure-monitor-agent-data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
+1. Check that your DCR JSON contains a section for 'performanceCounters'. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
 2. Check that the file `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\mcsconfig.lkg.xml` exists.
 3. Open the file and check if it contains `CounterSet` nodes as shown in the example below:
     ```xml
@@ -84,7 +84,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
     2. Open it and look for any Level 2 errors and try to fix them.
 
 ## Issues collecting Windows event logs
-1. Check that your DCR JSON contains a section for 'windowsEventLogs'. If not, fix your DCR. See [how to create DCR](./azure-monitor-agent-data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
+1. Check that your DCR JSON contains a section for 'windowsEventLogs'. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
 2. Check that the file `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\mcsconfig.lkg.xml` exists.
 3. Open the file and check if it contains `Subscription` nodes as shown in the example below:
     ```xml

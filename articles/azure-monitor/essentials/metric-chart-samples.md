@@ -1,7 +1,6 @@
 ---
 title: Azure Monitor metric chart example
 description: Learn about visualizing your Azure Monitor data.
-services: azure-monitor
 ms.topic: conceptual
 author: EdB-MSFT
 ms.author: edbaynash

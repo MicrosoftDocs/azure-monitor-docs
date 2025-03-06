@@ -5,8 +5,6 @@ ms.topic: conceptual
 ms.custom: linux-related-content
 ms.date: 11/14/2024
 ms.reviewer: JeffWo
-ms.author: guywild
-author: guywi-ms
 ---
 
 # Install the Log Analytics agent on Linux computers

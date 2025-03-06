@@ -1,7 +1,6 @@
 ---
 title: Stream Azure monitoring data to an event hub and external partners
 description: Learn how to stream your Azure monitoring data to an event hub to get the data into a partner SIEM or analytics tool.
-services: azure-monitor
 author: EdB-MSFT
 ms.author: edbaynash
 ms.topic: conceptual

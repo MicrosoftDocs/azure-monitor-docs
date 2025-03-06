@@ -1,7 +1,6 @@
 ---
 title: View and manage log search alert rules created in previous versions| Microsoft Docs
 description: Use the Azure Monitor portal to manage log search alert rules created in earlier versions.
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 07/30/2024
 ms.custom: devx-track-azurepowershell

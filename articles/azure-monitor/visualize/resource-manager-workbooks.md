@@ -3,8 +3,6 @@ title: Resource Manager template samples for workbooks
 description: Sample Azure Resource Manager templates to deploy Azure Monitor workbooks.
 ms.topic: sample
 ms.custom: devx-track-arm-template
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.date: 09/17/2024
 ---
 

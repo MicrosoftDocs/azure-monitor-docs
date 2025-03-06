@@ -1,8 +1,6 @@
 ---
 title: Query data in a Basic and Auxiliary table in Azure Monitor Logs 
 description: This article explains how to query data from Basic and Auxiliary logs tables.
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: adi.biran
 ms.topic: conceptual
 ms.date: 07/21/2024

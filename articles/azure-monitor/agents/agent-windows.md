@@ -3,8 +3,6 @@ title: Install Log Analytics agent on Windows computers
 description: This article describes how to connect Windows computers hosted in other clouds or on-premises to Azure Monitor with the Log Analytics agent for Windows.
 ms.topic: conceptual
 ms.date: 11/14/2024
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: JeffWo
 ---
 

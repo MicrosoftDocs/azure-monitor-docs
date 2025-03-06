@@ -1,7 +1,6 @@
 ---
 title: Set up Prometheus remote write by using managed identity authentication
-description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use managed identity authentication to send data from a self-managed Prometheus server running in your Azure Kubernetes Server (AKS) cluster or Azure Arc-enabled Kubernetes cluster. 
-author: EdB-MSFT 
+description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use managed identity authentication to send data from a self-managed Prometheus server running in your Azure Kubernetes Server (AKS) cluster or Azure Arc-enabled Kubernetes cluster.
 ms.topic: conceptual
 ms.date: 4/18/2024
 ---

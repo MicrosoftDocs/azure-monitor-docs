@@ -1,7 +1,6 @@
 ---
 title: Analyze metrics with Azure Monitor metrics explorer
 description: Learn how to analyze metrics with Azure Monitor metrics explorer by creating metrics charts, setting chart dimensions, time ranges, aggregation, filters, splitting, and sharing.
-services: azure-monitor
 author: EdB-MSFT
 ms.author: edbaynash    
 ms.topic: conceptual

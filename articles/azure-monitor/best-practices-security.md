@@ -2,8 +2,6 @@
 title: Azure Monitor security overview and guidelines
 description: Describes .
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 03/12/2024
 ms.reviewer: bwren
 ---

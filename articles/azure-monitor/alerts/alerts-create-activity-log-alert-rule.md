@@ -1,8 +1,6 @@
 ---
 title: Create an activity log, service health, or resource health alert rule
 description: This article shows you how to create or edit an activity log, service health, or resource health alert rule in Azure Monitor.
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: how-to
 ms.date: 11/27/2023
 ms.reviewer: harelbr

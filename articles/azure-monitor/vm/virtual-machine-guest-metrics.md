@@ -1,9 +1,6 @@
 ---
 title: Virtual machine guest performance counters
 description: Guest metrics and performance counters collected by the Azure Monitor Agent for Linux and Windows virtual machines
-author: EdB-MSFT
-ms.author: edbaynash
-services: azure-monitor
 ms.topic: conceptual
 ms.date: 01/29/2025
 
