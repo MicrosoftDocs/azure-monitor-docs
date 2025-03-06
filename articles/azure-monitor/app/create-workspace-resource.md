@@ -129,7 +129,7 @@ Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `
 New-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -Location <azure-region-name> -WorkspaceResourceId /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>
 ```
 
-For more information about creating Application Insights resources and Log Analytics workspaces using Azure PowerShell, see to the [Azure PowerShell documentation for Application Insights](/powershell/module/az.applicationinsights/new-azapplicationinsights) and [Log Analytics](/powershell/module/az.operationalinsights/new-azoperationalinsightsworkspace).
+For more information about creating Application Insights resources and Log Analytics workspaces using Azure PowerShell, see the [Azure PowerShell documentation for Application Insights](/powershell/module/az.applicationinsights/new-azapplicationinsights) and [Log Analytics](/powershell/module/az.operationalinsights/new-azoperationalinsightsworkspace).
 
 ## [REST](#tab/rest)
 
@@ -166,7 +166,7 @@ Content-Type: application/json
 }
 ```
 
-For more information about creating Application Insights resources and Log Analytics workspaces using the REST API, see to the [REST API documentation for Application Insights](/rest/api/application-insights/components/create-or-update) and [Log Analytics](/rest/api/loganalytics/workspaces/create-or-update).
+For more information about creating Application Insights resources and Log Analytics workspaces using the REST API, see the [REST API documentation for Application Insights](/rest/api/application-insights/components/create-or-update) and [Log Analytics](/rest/api/loganalytics/workspaces/create-or-update).
 
 ## [Bicep](#tab/bicep)
 
@@ -374,7 +374,7 @@ To get the connection string, run the following Azure CLI command in your termin
 az monitor app-insights component show --app <application-insights-resource-name> --resource-group <resource-group-name> --query connectionString --output tsv
 ```
 
-For more information about the `az monitor app-insights component show` command, see to the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-show).
+For more information about the `az monitor app-insights component show` command, see the [Azure CLI documentation](/cli/azure/monitor/app-insights/component#az-monitor-app-insights-component-show).
 
 ### [PowerShell](#tab/powershell)
 
@@ -384,7 +384,7 @@ To get the connection string, run the following Azure PowerShell command in your
 Get-AzApplicationInsights -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> | Select-Object -ExpandProperty ConnectionString
 ```
 
-For more information about the `Get-AzApplicationInsights` command, see to the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/get-azapplicationinsights).
+For more information about the `Get-AzApplicationInsights` command, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/get-azapplicationinsights).
 
 ### [REST](#tab/rest)
 
@@ -466,7 +466,7 @@ For more information about the `Update-AzApplicationInsights` command, see the [
 
 ### [REST](#tab/rest)
 
-To change the Log Analytics workspace using REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<azure-region-name>`, and `<log-analytics-workspace-name>` with your specific values:
+To change the Log Analytics workspace using the REST API, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, `<azure-region-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```http
 PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.Insights/components/<application-insights-resource-name>?api-version=2020-02-02
@@ -1088,6 +1088,10 @@ For more information about updating the `Microsoft.OperationalInsights/workspace
 
 ---
 
+### Disable IP masking
+
+By default, Application Insights doesn't store IP addresses. To learn how to disable IP masking, see [Geolocation and IP address handling](./ip-collection.md#disable-ip-masking).
+
 ## Create additional resources
 
 ### Create an availability test
@@ -1349,7 +1353,7 @@ To learn how to create a metric alert in the Azure portal, see [Tutorial: Create
 
 ### [Azure CLI](#tab/cli)
 
-To learn how to add a metric alert using Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
+To learn how to add a metric alert using the Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
 
 ### [PowerShell](#tab/powershell)
 
