@@ -15,13 +15,9 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#text-logs).
 
 ## Prerequisites
-In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need the following before creating this data source:
-
-- Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a new table to receive the data if you don't already have one.
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for the  [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods.
 
 
-> [!WARNING]
-> You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
 
 ## Configure custom text file data source
 
@@ -36,7 +32,7 @@ The options available in the **Custom Text Logs** configuration are described in
 | File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
 | Table name | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
 | Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. | 
-| timeFormat| The time format used in the log file as described in [Time formats](#time-formats) below. |
+| Timestamp Format| The time format used in the log file as described in [Time formats](#time-formats) below. |
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. |
 
 ### Time formats
@@ -84,7 +80,7 @@ The agent watches for any log files on the local disk that match the specified n
 
 <sup>1</sup> The table doesn't have to include a `RawData` column if you use a transformation to parse the data into multiple columns. 
 
-For example, consider a text file with the following data.
+Following is a sample of a typical custom text file that can be collected by Azure Monitor. While each line does start with a date, this isn't required since end of line will be used to identify each entry if no date is found.
 
 ```plaintext
 2024-06-21 19:17:34,1423,Error,Sales,Unable to connect to pricing service.
@@ -97,6 +93,22 @@ When collected using default settings, this data would appear as follows when re
 
 :::image type="content" source="media/data-collection-log-text/default-results.png" lightbox="media/data-collection-log-text/default-results.png" alt-text="Screenshot that shows log query returning results of default file collection.":::
 
+## Multiline log files
+Some log files may contain entries that span multiple lines. If each log entry starts with a date, then this date can be used as the delimiter to define each log entry. In this case, the extra lines will be joined together in the `RawData` column.
+
+For example, the text file in the previous example might be formatted as follows:
+
+```plaintext
+2024-06-21 19:17:34,1423,Error,Sales,
+Unable to connect to pricing service.
+2024-06-21 19:18:23,1420,Information,Sales,
+Pricing service connection established.
+2024-06-21 21:45:13,2011,Warning,Procurement,
+Module failed and was restarted.
+2024-06-21 23:53:31,4100,Information,Data,
+Nightly backup complete.
+```
+If the timestamp format `YYYY-MM-DD HH:MM:SS` is used in the DCR, then the data would be collected in the same way as the previous example. The extra lines would be included in the `RawData` column. If another timestamp format were used that doesn't match the date in the log entry, then each entry would be collected as two separate records.
 
 ## Delimited log files
 Many text log files have entries with columns delimited by a character such as a comma. Instead of sending the entire entry to the `RawData` column, you can parse the data into separate columns so that each can be populated in the destination table. Use a transformation with the [split function](/azure/data-explorer/kusto/query/split-function) to perform this parsing.
