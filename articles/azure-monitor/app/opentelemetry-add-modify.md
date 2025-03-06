@@ -1668,9 +1668,15 @@ Currently unavailable.
 
 -->
   
-### Send custom telemetry using the Application Insights Classic API
+### Send custom events
 
-We recommend you use the OpenTelemetry APIs whenever possible, but there might be some scenarios when you have to use the Application Insights [Classic API](api-custom-events-metrics.md).
+<!--
+- We're repurposing the "Send custom telemetry using the Application Insights Classic API" for sending custom events.
+- All languages need to be updated.
+- Node and Java - Jackson and Raj to help considering where we move information unrelated to custom events
+-->
+
+This section provides guidance on instrumenting your application to capture and send custom events.
   
 #### [ASP.NET Core](#tab/aspnetcore)
   
