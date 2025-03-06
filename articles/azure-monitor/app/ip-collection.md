@@ -123,8 +123,6 @@ For more information about configuring Application Insights resources using the 
 
 To disable IP masking using [Bicep](/azure/azure-resource-manager/bicep/overview), use the following template and replace the placeholders `<application-insights-resource-name>` and `<azure-region-name>` with your specific values:
 
-The following  template disables IP masking with the `DisableIPMasking` parameter:
-
 ```bicep
 resource appInsights 'microsoft.insights/components@2020-02-02' = {
     name: '<application-insights-resource-name>'
