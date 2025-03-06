@@ -32,6 +32,11 @@ The options available in the **Custom JSON Logs** configuration are described in
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
 | JSON Schema | Columns to collect from the JSON log file and sent to the destination table. The columns described in [Log Analytics workspace table](#log-analytics-workspace-table) that aren't required, do not need to be included in the schema of the destination table. `TimeGenerated` and any other columns that you added, do not need to be included in the schema of the destination table. |
 
+## Add destinations
+Custom text logs can only be sent to a Log Analytics workspace where it's stored in the [custom table](#log-analytics-workspace-table) that you create. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
+
+:::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." ::: 
+
 ## JSON file requirements and best practices
 The file that the Azure Monitor agent is collecting must meet the following requirements:
 
@@ -40,21 +45,20 @@ The file that the Azure Monitor agent is collecting must meet the following requ
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
 
-Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
-
-- Create a new log file every day so that you can easily clean up old files.
-- Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least 2 days to allow ample time for all logs to be processed.
-- Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
-- Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
-
 Following is a sample of a typical JSON log file that can be collected by Azure Monitor. This includes the fields: `Time`, `Code`, `Severity`,`Module`, and `Message`. 
 
 ```json
 {"Time":"2024-06-21 19:17:34","Code":1423,"Severity":"Error","Module":"Sales","Message":"Unable to connect to pricing service."}
 {"Time":"2024-06-21 19:18:23","Code":1420,"Severity":"Information","Module":"Sales","Message":"Pricing service connection established."}
-{"Time":"2024-06-21 21:45:13","Code":"2011","Severity":"Warning","Module":"Procurement","Message":"Module failed and was restarted."}
-{"Time":"2024-06-21 23:53:31","Code":"4100","Severity":"Information","Module":"Data","Message":"Nightly backup complete."}
+{"Time":"2024-06-21 21:45:13","Code":2011,"Severity":"Warning","Module":"Procurement","Message":"Module failed and was restarted."}
+{"Time":"2024-06-21 23:53:31","Code":4100,"Severity":"Information","Module":"Data","Message":"Nightly backup complete."}
 ```
+
+Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
+
+- Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least 2 days to allow ample time for all logs to be processed.
+- Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
+- Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
 
 ## Log Analytics workspace table
 The agent watches for any json files on the local disk that match the specified name pattern. Each entry is collected as it's written to the log and then parsed before being sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
@@ -71,7 +75,11 @@ Retrieving this data with a log query would return the following results.
 
 :::image type="content" source="media/data-collection-log-text/delimited-results.png" lightbox="media/data-collection-log-text/delimited-results.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection.":::
 
-See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table. For example, you can use the following PowerShell script to create a custom table to receive the data from the sample JSON file in [JSON file requirements and best practices](#json-file-requirements-and-best-practices).  
+### Create custom table
+
+If the destination table doesn't already exist then you must create it before creating the DCR. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table.
+
+For example, you can use the following PowerShell script to create a custom table to receive the data from the sample JSON file above.  
 
 ```powershell
 $tableParams = @'

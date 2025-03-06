@@ -33,8 +33,13 @@ The options available in the **Custom Text Logs** configuration are described in
 | Timestamp Format| The time format used in the log file as described in [Time formats](#time-formats) below. |
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. |
 
+## Add destinations
+Custom text logs can only be sent to a Log Analytics workspace where it's stored in the [custom table](#log-analytics-workspace-table) that you create. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
+
+:::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." ::: 
+
 ### Time formats
-The following table describes the time formats that are supported in the `timeFormat` setting. If a time with the specified format is included in the log entry, it will be used to identify a new log entry. If no date in the specified format is found, then end of line is used as the delimiter. See 
+The following table describes the time formats that are supported in the `timeFormat` setting of the DCR. If a time with the specified format is included in the log entry, it will be used to identify a new log entry. If no date in the specified format is found, then end of line is used as the delimiter. See [Multiline log files](#multiline-log-files) for further description on how this setting is used.
 
 | Time format | Example |
 |:---|:---|
@@ -52,16 +57,9 @@ The following table describes the time formats that are supported in the `timeFo
 ## Text file requirements and best practices
 The file that Azure Monitor collects must meet the following requirements:
 
-- The file must be stored on the local drive of the machine with the Azure Monitor Agent in the directory that is being monitored.
+- The file must be stored on the local drive of the agent machine in the directory that is being monitored.
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
-
-Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
-  
-- Create a new log file every day so that you can easily clean up old files.
-- Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least 2 days to allow ample time for all logs to be processed.
-- Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
-- Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
 
 Following is a sample of a typical custom text file that can be collected by Azure Monitor. While each line does start with a date, this isn't required since end of line will be used to identify each entry if no date is found.
 
@@ -72,8 +70,14 @@ Following is a sample of a typical custom text file that can be collected by Azu
 2024-06-21 23:53:31,4100,Information,Data,Nightly backup complete.
 ```
 
+Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
+  
+- Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least two days to allow ample time for all logs to be processed.
+- Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
+- Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
+
 ## Log Analytics workspace table
-The agent watches for any log files on the local disk that match the specified name pattern. Each entry is collected as it's written to the log and sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
+Each entry in the log file is collected as it's created and sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
 
  The following table describes the required and optional columns in the table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
 
@@ -90,8 +94,10 @@ When collected using default settings, the data from the sample log file shown a
 
 :::image type="content" source="media/data-collection-log-text/default-results.png" lightbox="media/data-collection-log-text/default-results.png" alt-text="Screenshot that shows log query returning results of default file collection.":::
 
+### Create custom table
+If the destination table doesn't already exist then you must create it before creating the DCR. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table.
 
-See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table. For example, you can use the following PowerShell script to create a custom table to receive the data from the sample JSON file in [JSON file requirements and best practices](#json-file-requirements-and-best-practices).  
+For example, you can use the following PowerShell script to create a custom table to receive the data from a custom text log.  
 
 ```powershell
 $tableParams = @'
@@ -121,6 +127,7 @@ $tableParams = @'
     }
 }
 '@
+```
 
 ## Multiline log files
 Some log files may contain entries that span multiple lines. If each log entry starts with a date, then this date can be used as the delimiter to define each log entry. In this case, the extra lines will be joined together in the `RawData` column.

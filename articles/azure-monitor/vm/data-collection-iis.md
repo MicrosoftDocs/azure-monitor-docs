@@ -22,6 +22,10 @@ IIS logs can only be sent to a Log Analytics workspace where it's stored in the 
 
 :::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
 
+## Verify data collection
+To verify that data is being collected, check for records in the **W3CIISLog** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Queries** button. Under the **Virtual machines** category, click **Run** next to **List IIS Log entries**. 
+
+:::image type="content" source="media/data-collection-iis/verify-iis.png" lightbox="media/data-collection-iis/verify-iis.png" alt-text="Screenshot that shows records returned from W3CIISLog table." :::
 
 ## Configure collection of IIS logs on client
 Before you can collect IIS logs from the machine, you must ensure that IIS logging has been enabled and is configured correctly.
