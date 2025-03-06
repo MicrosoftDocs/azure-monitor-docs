@@ -1,8 +1,6 @@
 ---
 title: Collect custom metrics for Linux Virtual Machines with the InfluxData Telegraf agent
 description: Instructions on how to deploy the InfluxData Telegraf agent on a Linux VM in Azure and configure the agent to publish metrics to Azure Monitor.
-author: EdB-MSFT
-ms.author: edbaynash
 ms.reviewer: priyamishra
 ms.topic: conceptual
 ms.custom: linux-related-content

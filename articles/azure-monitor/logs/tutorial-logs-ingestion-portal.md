@@ -3,8 +3,7 @@ title: 'Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Azure
 description: Tutorial on how sending data to a Log Analytics workspace in Azure Monitor using the Logs ingestion API. Supporting components configured using the Azure portal.
 ms.topic: tutorial
 ms.date: 11/26/2024
-ms.reviewer: ivkhrul 
-ms.service: azure-monitor
+ms.reviewer: ivkhrul
 ---
 
 # Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Azure portal)

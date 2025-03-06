@@ -1,7 +1,6 @@
 ---
 title: Sample data collection rules (DCRs) in Azure Monitor
 description: Sample data collection rule for different Azure Monitor data collection scenarios.
-author: bwren
 ms.topic: sample
 ms.date: 12/04/2024
 ms.custom: references_region

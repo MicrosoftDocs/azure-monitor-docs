@@ -2,8 +2,6 @@
 title: Data collection endpoints in Azure Monitor 
 description: Overview of how data collection endpoints work and how to create and set them up based on your deployment.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 03/18/2024
 ms.custom: references_region
 ms.reviwer: nikeist

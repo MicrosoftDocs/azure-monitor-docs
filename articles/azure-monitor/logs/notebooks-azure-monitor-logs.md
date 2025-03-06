@@ -1,7 +1,6 @@
 ---
 title: Analyze data in Azure Monitor Logs using a notebook
 description: Learn how to integrate a notebook with a Log Analytics workspace to create a machine learning pipeline or perform advanced analysis on data in Azure Monitor Logs. 
-ms.service: azure-monitor
 ms.topic: tutorial
 ms.reviewer: ilanawaitser
 ms.date: 08/12/2024

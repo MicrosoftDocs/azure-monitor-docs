@@ -1,8 +1,6 @@
 ---
 title: Aggregate data in a Log Analytics workspace by using summary rules (Preview)
 description: Aggregate data in Log Analytics workspace with summary rules feature in Azure Monitor, including creating, starting, stopping, and troubleshooting rules. 
-ms.service: azure-monitor
-ms.subservice: logs
 ms.topic: how-to
 ms.reviewer: yossi-y
 ms.date: 11/17/2024

@@ -3,8 +3,6 @@ title: Resource Manager template samples for diagnostic settings
 description: Sample Azure Resource Manager templates to apply Azure Monitor diagnostic settings to an Azure resource.
 ms.topic: sample
 ms.custom: devx-track-arm-template
-author: EdB-MSFT
-ms.author: edbaynash
 ms.date: 08/26/2024
 ms.reviewer: lualderm
 ---
