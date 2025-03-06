@@ -3,8 +3,6 @@ title: Connection strings in Application Insights
 description: This article explains the components of connection strings and how to use them.
 ms.topic: conceptual
 ms.date: 10/10/2024
-ms.service: azure-monitor
-ms.subservice: application-insights
 ms.reviewer: cogoodson
 ---
 

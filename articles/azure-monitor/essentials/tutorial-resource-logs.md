@@ -2,8 +2,6 @@
 title: Collect resource logs from an Azure resource
 description: Learn how to configure diagnostic settings to send resource logs from an Azure resource to a Log Analytics workspace where they can be analyzed with a log query.
 ms.topic: article
-author: bwren
-ms.author: bwren
 ms.date: 08/08/2023
 ms.reviewer: lualderm
 ---

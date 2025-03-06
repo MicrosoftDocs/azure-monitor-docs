@@ -1,11 +1,9 @@
 ---
 title: Azure monitoring REST API walkthrough
 description: How to authenticate requests and use the Azure Monitor REST API to retrieve available metric definitions, metric values, and activity logs.
-author: EdB-MSFT
 ms.topic: conceptual
 ms.date: 01/27/2025
 ms.custom: has-adal-ref
-ms.author: edbaynash
 ms.reviewer: priyamishra
 ---
 

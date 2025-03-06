@@ -1,8 +1,6 @@
 ---
 title: Create a transformation in Azure Monitor
 description: Create a transformation in Azure Monitor and add it to a data collection rule (DCR).
-author: bwren
-ms.author: bwren
 ms.topic: conceptual
 ms.date: 12/06/2024
 ms.reviwer: nikeist

@@ -1,10 +1,8 @@
 ---
 title: Migrate from the metrics API to the getBatch API
 description: How to migrate from the metrics API to the getBatch API
-author: EdB-MSFT
 ms.topic: how-to
 ms.date: 01/23/2025
-ms.author: edbaynash
 ms.reviewer: priyamishra
 
 # Customer intent: As a customer, I want to understand how to migrate from the metrics API to the getBatch API
