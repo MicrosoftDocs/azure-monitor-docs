@@ -13,10 +13,7 @@ ms.date: 02/02/2025
 
 # Analyze data using Log Analytics Simple mode
 
-Use Log Analytics to analyze and visualize log data using the point-and-click experience provided in Log Analytics simple mode. You can switch seamlessly between Simple and KQL modes, see [Switch modes](#switch-modes).
-
-> [!NOTE]
-> Configure [Log Analytics settings](./log-analytics-overview.md#more-tools) to open Log Analytics in Simple or KQL mode by default.
+Use Log Analytics to analyze and visualize log data using the point-and-click experience provided in Log Analytics simple mode. You can [switch seamlessly between Simple and KQL modes](#switch-modes) and configure [Log Analytics settings](./log-analytics-overview.md#more-tools) to open Log Analytics in Simple mode by default.
 
 This article explains how to use Log Analytics Simple mode to explore and analyze data in Azure Monitor Logs.
 

@@ -175,7 +175,7 @@ This section describes more tools available above the query area of the screen, 
 | **Share** | Copy a link to your query, the query text, or query results, or [export data to Excel](../logs/log-excel.md), CSV, or [Power BI](../logs/log-powerbi.md). |
 | **New alert rule** | [Create a new alert rule](../alerts/alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). |
 | **Search job mode** | [Run a search job](../logs/search-jobs.md). |
-| **Log Analytics settings**<br>*See screenshot below* | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data. |
+| **Log Analytics settings** | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data.<br><br>*See screenshot below.* |
 | **Queries hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 
 <img src="media/log-analytics-overview/logs-settings.png" alt="Screenshot that shows Log Analytics settings." width="65%" border="1px" style='border:1px solid #e6e6e6'>
