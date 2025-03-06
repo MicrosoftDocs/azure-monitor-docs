@@ -95,7 +95,7 @@ To disable IP masking using [Azure PowerShell](/powershell/azure/what-is-azure-p
 Update-AzApplicationInsights -Name "<application-insights-resource-name>" -ResourceGroupName "<resource-group-name>" -DisableIPMasking:$true
 ```
 
-For more information about the the `Update-AzApplicationInsights` cmdlet, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
+For more information about the `Update-AzApplicationInsights` cmdlet, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
 
 ### [REST API](#tab/rest)
 
