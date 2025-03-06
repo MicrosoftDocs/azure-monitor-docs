@@ -47,9 +47,9 @@ spec:
         operator: In
         values: [app-frontend, app-backend]
 
-    # [Optional] Filter by pod namespace
-    namespaceSelector:
-      matchNames: [app-frontend, app-backend]
+  # [Optional] Filter by pod namespace
+  namespaceSelector:
+    matchNames: [app-frontend, app-backend]
 
   # [Optional] Labels on the pod with these keys will be added as labels to each metric scraped
   podTargetLabels: [app, region, environment]
