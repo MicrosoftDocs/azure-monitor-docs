@@ -20,9 +20,13 @@ Use Log Analytics to analyze and visualize log data using the point-and-click ex
 
 This article explains how to use Log Analytics Simple mode to explore and analyze data in Azure Monitor Logs.
 
-Here's a video that provides a quick overview of how to query logs in Log Analytics using both Simple and KQL modes:
+## Tutorial video
+
+> [!NOTE]
+> This video shows an earlier version of the user interface, but the screenshots throughout this article are up to date and reflect the current UI.
+
 <br>
-<br>
+
 >[!VIDEO https://www.youtube.com/embed/85Xxj5FhTk0?cc_load_policy=1&cc_lang_pref=auto]
 
 ## How Simple mode works
