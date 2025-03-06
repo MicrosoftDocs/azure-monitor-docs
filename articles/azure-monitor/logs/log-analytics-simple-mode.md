@@ -13,7 +13,7 @@ ms.date: 02/02/2025
 
 # Analyze data using Log Analytics Simple mode
 
-Use Log Analytics to analyze and visualize log data using the point-and-click experience provided in [Log Analytics simple mode](../logs/log-analytics-simple-mode.md). You can switch seamlessly between [Simple and KQL modes](./log-analytics-overview.md).
+Use Log Analytics to analyze and visualize log data using the point-and-click experience provided in Log Analytics simple mode. You can switch seamlessly between Simple and KQL modes, see [Switch modes](#switch-modes).
 
 > [!NOTE]
 > Configure [Log Analytics settings](./log-analytics-overview.md#more-tools) to open Log Analytics in Simple or KQL mode by default.
@@ -79,6 +79,9 @@ To change the time range and number of records displayed, use the **Time range**
     
 :::image type="content" source="media/log-analytics-explorer/log-analytics-time-range-limit.png" alt-text="Screenshot that shows the time range and limit selectors in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-time-range-limit.png":::
 
+> [!NOTE]
+> The time range you set is applied at the end of the query and doesn't change the amount of data being queried.
+
 #### Filter by column
 
 1. Select **Add** and choose a column.
@@ -93,7 +96,7 @@ To change the time range and number of records displayed, use the **Time range**
 
 #### Search for entries that have a specific value in the table
 
-1. Select **Search**.
+1. Select **Add** > **Search in table**.
 
     :::image type="content" source="media/log-analytics-explorer/log-analytics-search.png" alt-text="Screenshot that shows the Search option in Log Analytics Simple mode." lightbox="media/log-analytics-explorer/log-analytics-search.png":::
 
@@ -106,7 +109,7 @@ To change the time range and number of records displayed, use the **Time range**
 
 #### Aggregate data
 
-1. Select **Aggregate**.
+1. Select **Add** > **Aggregate**.
 
 1. Select a column to aggregate by and select an operator to aggregate by, as described in [Use aggregation operators](#use-aggregation-operators).
 
@@ -114,7 +117,7 @@ To change the time range and number of records displayed, use the **Time range**
 
 #### Show or hide columns
 
-1. Select **Show columns**.
+1. Select **Add** > **Show columns**.
 
 1. Select or clear columns to show or hide them, then select **Apply**.
 
@@ -122,7 +125,7 @@ To change the time range and number of records displayed, use the **Time range**
 
 #### Sort by column
 
-1. Select **Sort**.
+1. Select **Add** > **Sort**.
 
 1. Select a column to sort by.
 
@@ -141,6 +144,7 @@ Use aggregation operators to summarize data from multiple rows, as described in 
 | [count](/azure/data-explorer/kusto/query/count-operator) | Counts the number of times each distinct value exists in the column. |
 | [dcount](/azure/data-explorer/kusto/query/dcount-aggfunction) | For the `dcount` operator, you select two columns. The operator counts the total number of distinct values in the second column correlated to each value in the first column. For example, this shows the distinct number of result codes for successful and failed operations:<br/> :::image type="content" source="media/log-analytics-explorer/log-analytics-dcount.png" alt-text="Screenshot that shows the result of an aggregation using the dcount operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-dcount.png"::: |
 | [sum](/azure/data-explorer/kusto/query/sum-aggregation-function)<br/>[avg](/azure/data-explorer/kusto/query/avg-aggregation-function)<br/>[max](/azure/data-explorer/kusto/query/max-aggregation-function)<br/>[min](/azure/data-explorer/kusto/query/min-aggregation-function) | For these operators, you select two columns. The operators calculate the sum, average, maximum, or minimum of all values in the second column for each value in the first column. For example, this shows the total duration of each operation in milliseconds for the past 24 hours:<br/>:::image type="content" source="media/log-analytics-explorer/log-analytics-sum.png" alt-text="Screenshot that shows the results of an aggregation using the sum operator in Azure Monitor Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-sum.png"::: |
+| [stdev](/kusto/query/stdev-aggregation-function) | Calculates the standard deviation of a set of values. |
 
 > [!IMPORTANT]
 > Basic logs tables don't support aggregation using the `avg` and `sum` operators.
