@@ -7,7 +7,7 @@ ms.reviewer: jeffwo
 ---
 
 # Collect text file from virtual machine with Azure Monitor
-Many applications and services on a virtual machine will log information to text files instead of standard logging services such as Windows Event log or Syslog. Collect custom text logs from virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Custom Text Logs** data source. 
+Many applications and services on a virtual machine will log information to text files instead of standard logging services such as Windows Event log or Syslog. Collect custom text logs from virtual machines can be collected using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Custom Text Logs** data source. 
 
 Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Custom Text Logs data source type.
 
@@ -15,9 +15,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#text-logs).
 
 ## Prerequisites
-In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for the  [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods.
-
-
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for details about the requirements of this table.
 
 ## Configure custom text file data source
 
@@ -36,7 +34,7 @@ The options available in the **Custom Text Logs** configuration are described in
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. |
 
 ### Time formats
-The following table describes the time formats that are supported in the `timeFormat` setting. If a time with the specified format is included in the log entry, it will be used a line delimiter. If no date in the specified format is found, then end of line is used as the delimiter.
+The following table describes the time formats that are supported in the `timeFormat` setting. If a time with the specified format is included in the log entry, it will be used to identify a new log entry. If no date in the specified format is found, then end of line is used as the delimiter. See 
 
 | Time format | Example |
 |:---|:---|
@@ -55,7 +53,6 @@ The following table describes the time formats that are supported in the `timeFo
 The file that Azure Monitor collects must meet the following requirements:
 
 - The file must be stored on the local drive of the machine with the Azure Monitor Agent in the directory that is being monitored.
-- Each record must be delineated with an end of line. 
 - The file must use ASCII or UTF-8 encoding. Other formats such as UTF-16 aren't supported.
 - New records should be appended to the end of the file and not overwrite old records. Overwriting will cause data loss.
 
@@ -65,6 +62,15 @@ Adhere to the following recommendations to ensure that you don't experience data
 - Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least 2 days to allow ample time for all logs to be processed.
 - Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
 - Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
+
+Following is a sample of a typical custom text file that can be collected by Azure Monitor. While each line does start with a date, this isn't required since end of line will be used to identify each entry if no date is found.
+
+```plaintext
+2024-06-21 19:17:34,1423,Error,Sales,Unable to connect to pricing service.
+2024-06-21 19:18:23,1420,Information,Sales,Pricing service connection established.
+2024-06-21 21:45:13,2011,Warning,Procurement,Module failed and was restarted.
+2024-06-21 23:53:31,4100,Information,Data,Nightly backup complete.
+```
 
 ## Log Analytics workspace table
 The agent watches for any log files on the local disk that match the specified name pattern. Each entry is collected as it's written to the log and sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
@@ -80,18 +86,41 @@ The agent watches for any log files on the local disk that match the specified n
 
 <sup>1</sup> The table doesn't have to include a `RawData` column if you use a transformation to parse the data into multiple columns. 
 
-Following is a sample of a typical custom text file that can be collected by Azure Monitor. While each line does start with a date, this isn't required since end of line will be used to identify each entry if no date is found.
-
-```plaintext
-2024-06-21 19:17:34,1423,Error,Sales,Unable to connect to pricing service.
-2024-06-21 19:18:23,1420,Information,Sales,Pricing service connection established.
-2024-06-21 21:45:13,2011,Warning,Procurement,Module failed and was restarted.
-2024-06-21 23:53:31,4100,Information,Data,Nightly backup complete.
-```
-
-When collected using default settings, this data would appear as follows when retrieved with a log query.
+When collected using default settings, the data from the sample log file shown above would appear as follows when retrieved with a log query.
 
 :::image type="content" source="media/data-collection-log-text/default-results.png" lightbox="media/data-collection-log-text/default-results.png" alt-text="Screenshot that shows log query returning results of default file collection.":::
+
+
+See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table. For example, you can use the following PowerShell script to create a custom table to receive the data from the sample JSON file in [JSON file requirements and best practices](#json-file-requirements-and-best-practices).  
+
+```powershell
+$tableParams = @'
+{
+    "properties": {
+        "schema": {
+               "name": "{TableName}_CL",
+               "columns": [
+                    {
+                        "name": "TimeGenerated",
+                        "type": "DateTime"
+                    }, 
+                    {
+                        "name": "Computer",
+                        "type": "string"
+                    },
+                    {
+                        "name": "FilePath",
+                        "type": "string"
+                    },
+                    {
+                        "name": "RawData",
+                        "type": "string"
+                    }
+              ]
+        }
+    }
+}
+'@
 
 ## Multiline log files
 Some log files may contain entries that span multiple lines. If each log entry starts with a date, then this date can be used as the delimiter to define each log entry. In this case, the extra lines will be joined together in the `RawData` column.
@@ -113,16 +142,13 @@ If the timestamp format `YYYY-MM-DD HH:MM:SS` is used in the DCR, then the data 
 ## Delimited log files
 Many text log files have entries with columns delimited by a character such as a comma. Instead of sending the entire entry to the `RawData` column, you can parse the data into separate columns so that each can be populated in the destination table. Use a transformation with the [split function](/azure/data-explorer/kusto/query/split-function) to perform this parsing.
 
-For example, consider a text file with the following comma-delimited data. These fields could be described as: `Time`, `Code`, `Severity`,`Module`, and `Message`. 
+The sample text file shown above is comma-delimited, and the fields could be described as: `Time`, `Code`, `Severity`, `Module`, and `Message`. To parse this data into separate columns, add each of the columns to the destination table and add the following transformation to the DCR.
 
-```plaintext
-2024-06-21 19:17:34,1423,Error,Sales,Unable to connect to pricing service.
-2024-06-21 19:18:23,1420,Information,Sales,Pricing service connection established.
-2024-06-21 21:45:13,2011,Warning,Procurement,Module failed and was restarted.
-2024-06-21 23:53:31,4100,Information,Data,Nightly backup complete.
-```
+Notable attributes of the transformation query include the following:
 
-The following transformation parses the data into separate columns. Because `split` returns dynamic data, you must use functions such as `tostring` and `toint` to convert the data to the correct scalar type. You also need to provide a name for each entry that matches the column name in the target table. Note that this example provides a `TimeGenerated` value. If this was not provided, the ingestion time would be used.
+- The query outputs properties that each match a column name in the target table.
+- Renames the `Time` property in the log file so that this value is used for `TimeGenerated`. If this was not provided, then `TimeGenerated` would be populated with the ingestion time.
+- Because `split` returns dynamic data, you must use functions such as `tostring` and `toint` to convert the data to the correct scalar type. 
 
 ```kusto
 source | project d = split(RawData,",") | project TimeGenerated=todatetime(d[0]), Code=toint(d[1]), Severity=tostring(d[2]), Module=tostring(d[3]), Message=tostring(d[4])
@@ -145,8 +171,5 @@ Go through the following steps if you aren't collecting data from the text log t
 
 ## Next steps
 
-Learn more about: 
-
-- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md)
-- [Data collection rules](../essentials/data-collection-rule-overview.md)
-- [Best practices for cost management in Azure Monitor](../best-practices-cost.md)
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
+- Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).

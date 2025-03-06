@@ -78,7 +78,7 @@ The following table gives examples of XPath queries to filter events:
 Windows event data can only be sent to a Log Analytics workspace where it's stored in the [Event](/azure/azure-monitor/reference/tables/event) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
 
 
-:::image type="content" source="media/data-collection-windows-event/destination-workspace.png" lightbox="media/data-collection-windows-event/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
+:::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
 
 
 ## Verify data collection

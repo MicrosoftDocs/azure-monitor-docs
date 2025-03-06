@@ -15,11 +15,13 @@ Details for the creation of the DCR are provided in [Collect data with Azure Mon
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#json-logs).
 
 ## Prerequisites
-In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for the  [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods.
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for details about the requirements of this table.
 
 ## Configure custom JSON file data source
 
 On the **Collect and deliver** tab of the DCR, select **Custom JSON Logs** from the **Data source type** dropdown.
+
+:::image type="content" source="media/data-collection-log-json/configuration.png" lightbox="media/data-collection-log-json/configuration.png" alt-text="Screenshot that shows configuration of JSON file collection.":::
 
 The options available in the **Custom JSON Logs** configuration are described in the following table.
 
@@ -29,10 +31,6 @@ The options available in the **Custom JSON Logs** configuration are described in
 | Table name | Name of the destination table in your Log Analytics Workspace. |     
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
 | JSON Schema | Columns to collect from the JSON log file and sent to the destination table. The columns described in [Log Analytics workspace table](#log-analytics-workspace-table) that aren't required, do not need to be included in the schema of the destination table. `TimeGenerated` and any other columns that you added, do not need to be included in the schema of the destination table. |
-
-Retrieving this data with a log query would return the following results.
-
-:::image type="content" source="media/data-collection-log-text/delimited-results.png" lightbox="media/data-collection-log-text/delimited-results.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection.":::
 
 ## JSON file requirements and best practices
 The file that the Azure Monitor agent is collecting must meet the following requirements:
@@ -69,8 +67,9 @@ Any columns in the table that match the name of a field in the parsed Json data 
 | `Computer` | string | No | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
 | `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
 
-> [!WARNING]
-> You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
+Retrieving this data with a log query would return the following results.
+
+:::image type="content" source="media/data-collection-log-text/delimited-results.png" lightbox="media/data-collection-log-text/delimited-results.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection.":::
 
 See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table. For example, you can use the following PowerShell script to create a custom table to receive the data from the sample JSON file in [JSON file requirements and best practices](#json-file-requirements-and-best-practices).  
 
@@ -134,7 +133,6 @@ Go through the following steps if you aren't collecting data from the JSON log t
 
 ## Next steps
 
-Learn more about: 
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
+- Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
 
-- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
-- [Data collection rules](../essentials/data-collection-rule-overview.md).
