@@ -1090,7 +1090,7 @@ For more information about updating the `Microsoft.OperationalInsights/workspace
 
 ### Disable IP masking
 
-Application Insights, by default, doesn't store IP addresses. To learn how to disable IP masking, see [Geolocation and IP address handling](./ip-collection.md#disable-ip-masking).
+By default, Application Insights doesn't store IP addresses. To learn how to disable IP masking, see [Geolocation and IP address handling](./ip-collection.md#disable-ip-masking).
 
 ## Create additional resources
 
