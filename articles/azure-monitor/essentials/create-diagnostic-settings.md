@@ -1,8 +1,6 @@
 ---
 title: Create diagnostic settings in Azure Monitor
 description: Learn how to send Azure Monitor platform metrics and logs to Azure Monitor Logs, Azure Storage, or Azure Event Hubs with diagnostic settings.
-author: EdB-MSFT
-ms.author: edbaynash
 ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.date: 08/11/2024

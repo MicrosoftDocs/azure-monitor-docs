@@ -1,10 +1,8 @@
 ---
 title: Query Prometheus metrics using Azure workbooks
 description: Query Prometheus metrics in the portal using Azure Workbooks.
-author: EdB-MSFT
 ms.topic: conceptual
 ms.date: 09/23/2024
-ms.author: edbaynash
 ---
 
 # Query Prometheus metrics using Azure workbooks

@@ -2,8 +2,6 @@
 title: Query Prometheus metrics using the API and PromQL
 description: Describes how to use the API to Query metrics in an Azure Monitor workspace using PromQL.
 ms.topic: how-to
-author: EdB-MSFT
-ms.author: edbaynash
 ms.date: 09/17/2024
 ms.reviewer: aul
 ---
