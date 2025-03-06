@@ -1852,29 +1852,30 @@ catch (error) {
 
 #### [Python](#tab/python)
   
-Unlike other languages, Python doesn't have an Application Insights SDK. You can meet all your monitoring needs with the Azure Monitor OpenTelemetry Distro, except for sending `customEvents`. Until the OpenTelemetry Events API stabilizes, use the [Azure Monitor Events Extension](https://pypi.org/project/azure-monitor-events-extension/0.1.0/) with the Azure Monitor OpenTelemetry Distro to send `customEvents` to Application Insights.
+Unlike other languages, Python doesn't have an Application Insights SDK. You can meet all your monitoring needs with the Azure Monitor OpenTelemetry Distro. You can use the logging api directly to send `customEvents` to Application Insights.
 
-Install the distro and the extension:
+Install the distro:
 
 ```console
 pip install azure-monitor-opentelemetry
-pip install azure-monitor-events-extension
 ```
 
-Use the `track_event` API offered in the extension to send customEvents:
+Use the Python logging library with a specific attribute to send a `customEvent`:
 
 ```python
 ...
-from azure.monitor.events.extension import track_event
+import logging
 from azure.monitor.opentelemetry import configure_azure_monitor
 
-configure_azure_monitor()
+logger = logging.getLogger("my-app-logger")
+configure_azure_monitor(
+    logger_name="my-app-logger",  # Collect logs from your namespaced logger
+)
 
-# Use the track_event() api to send custom event telemetry
-# Takes event name and custom dimensions
-track_event("Test event", {"key1": "value1", "key2": "value2"})
+# Use the logging library with "microsoft.custom_event.name" attribute key
+# The value of the attribute will become the name of the `customEvent`
+logger.warning("Hello World!", extra={"microsoft.custom_event.name": "test-event-name", "additional_attrs": "val1"})
 
-input()
 ...
 ```
 
