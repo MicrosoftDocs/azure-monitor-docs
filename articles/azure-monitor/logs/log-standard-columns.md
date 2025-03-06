@@ -27,7 +27,7 @@ The **TimeGenerated**  column contains the date and time that the record was cre
 > Tables supporting classic Application Insights resources use the **Timestamp** column instead of the **TimeGenerated** column.
 
 > [!NOTE]
-> The **TimeGenerated** value cannot be older than 2 days before received time or more than a day in the future. If in some situation, the value is older than 2 days or more than a day in the future, it would be replaced with the actual recieved time.
+> The **TimeGenerated** value cannot be older than 2 days before received time or more than a day in the future. If in some situation, the value is older than 2 days or more than a day in the future, it would be replaced with the actual received time.
 
 ### Examples
 
