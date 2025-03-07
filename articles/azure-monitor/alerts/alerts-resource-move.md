@@ -27,11 +27,11 @@ When you move a resource, its resource ID changes in most cases. Behind the scen
 **How does moving the resource affect existing rules?**
 
 Alert rules and alert processing rules have a scope of resources they apply to. The scope could be an entire subscription, a resource group, or one or more specific resources.
-For example, here is a rule with a scope with two resources (two virtual machines):
+The following example shows a rule with a scope with two resources (two virtual machines):
 
 :::image type="content" source="media/alerts-resource-move/multi-resource-alert-rule.png" lightbox="media/alerts-resource-move/multi-resource-alert-rule.png" alt-text="Multi resource alert rule":::
 
-If the rule scope explicitly mentions a resource, and that resource has moved and changed its resource ID, then that rule will look for a wrong or non-existent resource and thus fail.
+If the rule scope explicitly mentions a resource, and that resource has moved and changed its resource ID, then that rule will look for a wrong or nonexistent resource and thus fail.
 
 **How to fix the problem?**
 
@@ -44,7 +44,7 @@ The problem applies to these rule types:
 * Metric alerts – For more information, see the next section [Alert rules based on metrics](#alert-rules-based-on-metrics).
 
 > [!NOTE]
-> Log search alert rules and smart detector alert rules are not affected because their scope is either a workspace or Application Insights. Neither of these scopes currently support region moves.
+> Log search alert rules and smart detector alert rules aren't affected because their scope is either a workspace or Application Insights. Neither of these scopes currently support region moves.
 
 ## Alert rules based on metrics
 
@@ -64,7 +64,7 @@ If **only some** of the resources in the scope have moved, you need to remove th
     Navigate to **Alerts** > **Alert rules** > filter by the containing subscription and the moved resource.
 
     > [!NOTE]
-    > Activity Log alert rules do not support this process. It's not possible to update the scope of an activity log alert rule and have it point to a resource in another subscription. Instead you can create a new rule that will replace the old one.
+    > Activity Log alert rules don't support this process. It's not possible to update the scope of an activity log alert rule and have it point to a resource in another subscription. Instead you can create a new rule that replaces the old one.
 
 * **For alert processing rules**
 
