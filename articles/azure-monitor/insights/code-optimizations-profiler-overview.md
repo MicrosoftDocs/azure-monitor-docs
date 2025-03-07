@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 02/07/2025
+ms.date: 03/07/2025
 ms.reviewer: jan.kalis
 ms.collection: ce-skilling-ai-copilot
 ---
@@ -76,21 +76,40 @@ Code Optimizations are generated automatically after [Application Insights Profi
 
 Some Code Optimization features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](/azure/copilot/overview). 
 
-## Supported services
+## Enabling .NET Profiler
 
-The Profiler and Code Optimizations work with .NET applications deployed on the following Azure services. View specific instructions for enabling Profiler for each service type in the following links.
+As frameworks and Azure services evolve, you can enable .NET Profiler for your .NET apps running on Azure via a number of options. Select the method for enabling .NET Profiler on your application.
 
-| Compute platform | .NET (>= 4.6) | .NET Core |
-| ---------------- | ------------- | --------- |
-| [Azure App Service - .NET app on Windows](../profiler/profiler.md) | Yes | Yes |
-| [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md) | No | Yes |
-| [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md) | Yes | Yes |
-| [Azure Cloud Services](../profiler/profiler-cloudservice.md) | Yes | Yes |
-| [Azure Container Instances for Windows](../profiler/profiler-containers.md) | No | Yes |
-| [Azure Container Instances for Linux](../profiler/profiler-containers.md) | No | Yes |
-| Kubernetes | No | Yes |
-| [Azure Functions](../profiler/profiler-azure-functions.md) | Yes | Yes |
-| [Azure Service Fabric](../profiler/profiler-servicefabric.md) | Yes | Yes |
+# [Azure portal](#tab/portal)
+
+Since the Profiler is already installed in the Azure App Service runtime, you can enable Profiler for .NET in the Azure portal for your .NET apps running on:
+- [Azure App Service - .NET app on Windows](../profiler/profiler.md)
+- [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md)
+- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md)
+
+There is no code change required in your application.
+
+# [ARM template](#tab/arm)
+
+You can enable the Profiler for .NET with an ARM template for .NET apps hosted on:
+- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)
+- [Azure Service Fabric](../profiler/profiler-servicefabric.md)
+
+Once you've enabled the Application Insights SDK in your application code, no other code change is required to enable the .NET Profiler.
+
+# [Code](#tab/code)
+
+If your .NET app runs on other variants of [Azure PaaS services or Containers](../profiler/profiler-containers.md), such as:
+- Azure Container Apps
+- Azure Kubernetes Services
+- Azure Container Instances
+
+You can choose between two options for enabling .NET Profiler:
+
+- Application Insights Profiler for ASP.NET Core that uses the Application Insights SDK, or
+- ***New*** Azure Monitor OpenTelemetry Profiler for NET (Preview) that uses Azure Monitor OpenTelemetry Distro
+
+---
 
 > [!NOTE]
 > You can also use the [Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md), currently in preview.
