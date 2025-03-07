@@ -106,8 +106,8 @@ If your .NET app runs on other variants of [Azure PaaS services or Containers](.
 
 You can choose between two options for enabling .NET Profiler:
 
-- Application Insights Profiler for ASP.NET Core that uses the Application Insights SDK, or
-- ***New*** Azure Monitor OpenTelemetry Profiler for NET (Preview) that uses Azure Monitor OpenTelemetry Distro
+- [Application Insights Profiler for ASP.NET Core](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore) that uses the [Application Insights SDK](../app/asp-net-core.md), or
+- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/26ce82dc69ca3b9b74df0a31833309e2a49904ad/README.md) that uses [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-help-support-feedback.md#why-should-i-use-the-azure-monitor-opentelemetry-distro)
 
 ---
 
