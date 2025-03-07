@@ -43,7 +43,7 @@ The default location for IIS log files is **C:\\inetpub\\logs\\LogFiles\\W3SVC1*
 > The X-Forwarded-For custom field is not currently supported. If this is a critical field, you can collect the IIS logs as a [custom text log](./data-collection-log-text.md).
 
 ## Troubleshooting
-Go through the following steps if you aren't collecting data from the JSON log that you're expecting.
+Go through the following steps if you aren't collecting data from the IIS log that you're expecting.
 
 - Verify that IIS logs are being created in the location you specified.
 - Verify that IIS logs are configured to be W3C formatted.
