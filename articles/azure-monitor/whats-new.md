@@ -18,6 +18,16 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## [2025](#tab/2025)
 
+### February 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Agents|[Collect logs from a JSON file with Azure Monitor Agent](agents/data-collection-log-json.md)|Update for new JSON data source UI.|
+|Application-Insights|[Create and configure Application Insights resources](app/create-workspace-resource.md)|We unified our resource documentation to provide comprehensive guidance for both portal and at-scale deployment scenarios, significantly increasing accessibility for our largest customers. At-scale support now includes all modalities—Azure CLI, PowerShell, REST API, Bicep, and ARM.|
+|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](app/kubernetes-codeless.md)|Public Preview of Autoinstrumentation for Azure Kubernetes Service (AKS) is now live. This solution enables seamless application telemetry collection across entire clusters.|
+|Essentials|[Create a transformation in Azure Monitor](essentials/data-collection-transformations-create.md)|Added sample for normalization in Sentinel.|
+|Logs|[Analyze data using Log Analytics Simple mode](logs/log-analytics-simple-mode.md)|Log Analytics simple mode is now generally available.|
+
 ### January 2025
 
 |Subservice | Article | Description |
