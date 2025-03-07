@@ -61,21 +61,22 @@ If **only some** of the resources in the scope have moved, you need to remove th
 
 * **For alert rules**
 
-    Navigate to Alerts > Manage alert rules > filter by the containing subscription and the moved resource.
+    Navigate to **Alerts** > **Alert rules** > filter by the containing subscription and the moved resource.
 
     > [!NOTE]
     > Activity Log alert rules do not support this process. It's not possible to update the scope of an activity log alert rule and have it point to a resource in another subscription. Instead you can create a new rule that will replace the old one.
 
 * **For alert processing rules**
 
-    Navigate to Alerts > Alert processing rules (preview) > filter by the containing subscription and the moved resource.
+    Navigate to **Alerts** > **Alert processing rules** > filter by the containing subscription and the moved resource.
 
 ### Change scope of a rule from the Azure portal
 
 1. Open the rule that you have identified in the previous step by clicking on it.
-1. Under **Resource**, click **Edit** and adjust the scope, as needed.
-1. Adjust other properties of the rule as needed.
-1. Click **Save**.
+1. In the top action bar, select **Edit** 
+1. Select **Edit scope** and adjust the scope as needed.
+1. (Optional) Adjust other properties of the rule.
+1. Go to **Review + save**, review your changes, and select **Save**.
 
 :::image type="content" source="media/alerts-resource-move/change-alert-rule-scope.png" lightbox="media/alerts-resource-move/change-alert-rule-scope.png" alt-text="Change alert rule scope":::
 
@@ -85,7 +86,7 @@ If **only some** of the resources in the scope have moved, you need to remove th
     1. Navigate to the Resource Groups section in the portal and open the resource group containing the rule.
     1. In the Overview section, check the **Show hidden type** checkbox, and filter by the relevant type of the rule.
     1. Select the relevant rule to view its details.
-    1. Under **Settings**, select **Export template**.
+    1. Under **Automation**, select **Export template**.
 1. Modify the template. If needed, split into two rules (relevant for some cases of metric alerts, as noted above).
 1. Redeploy the template.
 
