@@ -14,6 +14,7 @@ Many applications and services will log information to text files instead of sta
 - Custom table in a Log Analytics workspace to receive the data. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a new table if you don't already have one.
 - A data collection endpoint (DCE) in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
 - Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
+- Aarch64 is not supported with custom log collection.
 
 > [!WARNING]
 > You shouldn't use an existing custom table used by Log Analytics agent. The legacy agents won't be able to write to the table once the first Azure Monitor agent writes to it. Create a new table for Azure Monitor agent to use to prevent Log Analytics agent data loss.
