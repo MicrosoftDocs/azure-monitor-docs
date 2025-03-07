@@ -26,21 +26,27 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
 
 ## Create a logic app
 
-1. In the [Azure portal](https://portal.azure.com/), create a new logic app. In the **Search** bar at the top of the page, enter **Logic App**.
+1. In the [Azure portal](https://portal.azure.com/), create a new logic app. In the **Search** bar at the top of the page, enter **Logic apps** and select it from the drop-down menu.
 
-1. On the **Logic App** page, select **Add**.
+1. On the **Logic apps** page, select **Add**.
 
-1. Select the **Subscription** and **Resource group** for your logic app.
+1. Under **Consumption**, select **Multi-tenant**.
 
-1. Set **Logic App name**. For **Plan type**, select **Consumption**.
+1. On the next page, select the **Subscription** and **Resource group** for your logic app.
+
+1. Set a **Logic App name** and choose a **Region**.
 
 1. Select **Review + create** > **Create**.
 
-1. Select **Go to resource** after the deployment is finished.
-
     :::image type="content" source="./media/alerts-logic-apps/create-logic-app.png" alt-text="Screenshot that shows the Create Logic App page.":::
 
-1. On the **Logic Apps Designer** page, select **When a HTTP request is received**.
+1. Select **Go to resource** after the deployment is finished.
+
+## Set up a trigger
+
+1. On the **Logic app** page, select **Edit** in the top action bar.
+
+1. Select **Add a trigger**, search for **When a HTTP request is received**, and select it from the search results.
 
     :::image type="content" source="./media/alerts-logic-apps/logic-apps-designer.png" alt-text="Screenshot that shows the Logic Apps Designer start page.":::
 
@@ -129,15 +135,17 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
 
     1. In the **Type** field, select **Array**.
 
-    1. In the **Value** field, select **Add dynamic Content**. Select the **Expression** tab and enter the string `split(triggerBody()?['data']?['essentials']?['alertTargetIDs'][0], '/')`.
+    1. In the **Value** field, select **fx** to open the Function pop-up window. Enter the string `split(triggerBody()?['data']?['essentials']?['alertTargetIDs'][0], '/')` in the empty field at the top and select **Add**.
 
         :::image type="content" source="./media/alerts-logic-apps/initialize-variable.png" alt-text="Screenshot that shows the Parameters tab for the Initialize variable pane.":::
 
     1. Select **+** > **Add an action** to insert another step.
 
-    1. In the **Search** field, search for and select **Azure Resource Manager** > **Read a resource**.
+    1. In the **Search** field, search for and select **Azure Resource Manager** > **See more** > **Read a resource**.
+    
+    1. Select an **Authentication** method and **Sign in**.
 
-    1. Populate the fields of the **Read a resource** action with the array values from the `AffectedResource` variable. In each of the fields, select the field and scroll down to **Enter a custom value**. Select **Add dynamic content**, and then select the **Expression** tab. Enter the strings from this table:
+    1. Populate the fields of the **Read a resource** action with the array values from the `AffectedResource` variable. In each of the fields, select the field and scroll down to **Enter a custom value**. Select **fx** to open the Function pop-up window. Enter the corresponding string from this table in the empty field at the top and select **Add**.
 
         | Field | String value |
         |-------|--------------|
@@ -145,7 +153,7 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
         | Resource Group | `variables('AffectedResource')[4]` |
         | Resource Provider | `variables('AffectedResource')[6]` |
         | Short Resource ID | `concat(variables('AffectedResource')[7], '/', variables('AffectedResource')[8]` |
-        | Client API Version | Resource type's API version |
+        | Client Api Version | Resource type's API version |
     
         To find your resource type's API version, select the **JSON view** link on the top right-hand side of the resource overview page.
 
@@ -153,13 +161,11 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
 
     The dynamic content now includes tags from the affected resource. You can use those tags when you configure your notifications as described in the following steps.
 
-1. Send an email or post a Teams message.
+## Set up an action
 
-1. Select **+** > **Add an action** to insert a new step.
+Select **+** > **Add an action** to insert a new step.
 
-    :::image type="content" source="./media/alerts-logic-apps/configure-http-request-received.png" alt-text="Screenshot that shows the parameters for When an HTTP request is received.":::
-
-## [Send an email](#tab/send-email)
+### [Send an email](#tab/send-email)
 
 1. In the search field, search for **Outlook**.
 
@@ -197,7 +203,7 @@ You've created a logic app that sends an email to the specified address, with de
 
 The next step is to create an action group to trigger your logic app.
 
-## [Post a Teams message](#tab/send-teams-message)
+### [Post a Teams message](#tab/send-teams-message)
 
 1. In the search field, search for **Microsoft Teams**.
 
@@ -284,7 +290,7 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 ## Create a rule by using your action group
 
-1. [Create a rule](./alerts-create-new-alert-rule.md) for one of your resources.
+1. [Create an alert rule](./alerts-create-new-alert-rule.md) for one of your resources.
 
 1. On the **Actions** tab of your rule, choose **Select action groups**.
 
