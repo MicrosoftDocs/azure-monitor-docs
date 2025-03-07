@@ -143,7 +143,6 @@ Learn how to enable the .NET Profiler with Code Optimizations on your Azure serv
 - [ASP.NET Core application hosted in Windows on Azure App Service](../profiler/profiler.md)
 - [ASP.NET Core application hosted in Linux on Azure App Service](../profiler/profiler-aspnetcore-linux.md)
 - [Azure Functions app](../profiler/profiler-azure-functions.md)
-- [Azure Cloud Services](../profiler/profiler-cloudservice.md)
 - [Azure Service Fabric app](../profiler/profiler-servicefabric.md)
 - [Azure Virtual Machines](../profiler/profiler-vm.md)
 - [ASP.NET Core application running in containers](../profiler/profiler-containers.md)
