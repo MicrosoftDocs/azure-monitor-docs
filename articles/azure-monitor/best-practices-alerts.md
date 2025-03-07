@@ -4,7 +4,7 @@ description: Provides a template for a Well-Architected Framework (WAF) article 
 ms.topic: conceptual
 author: AbbyMSFT
 ms.author: abbyweisberg
-ms.date: 03/04/2025
+ms.date: 03/07/2025
 ms.reviewer: abbyweisberg
 ---
 
