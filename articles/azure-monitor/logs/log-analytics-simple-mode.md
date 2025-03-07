@@ -87,7 +87,7 @@ To change the time range and number of records displayed, use the **Time range**
 
 1. Select a value to filter by, or enter text or numbers in the **Search** box.
 
-    If you filter by selecting values from a list, you can select multiple values. If the list is long, you'll see a **Not all results are shown** message. Scroll to the bottom of the list and select **Load more results** to retrieve more values.
+    If you filter by selecting values from a list, you can select multiple values. If the list is long, you see a **Not all results are shown** message. Scroll to the bottom of the list and select **Load more results** to retrieve more values.
     
     :::image type="content" source="media/log-analytics-explorer/log-analytics-filter.png" alt-text="Screenshot that shows filter values for the OperationId column in Log Analytics simple mode." lightbox="media/log-analytics-explorer/log-analytics-filter.png":::
 
@@ -152,7 +152,7 @@ To switch modes, select **Simple mode** or **KQL mode** from the dropdown in the
 
 :::image type="content" source="media/log-analytics-explorer/log-analytics-switch-modes-Simple.png" alt-text="Screenshot that shows how to toggle between simple mode and KQL mode in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-switch-modes-simple.png":::
 
-When you begin to query logs in imple mode and then switch to KQL mode, the query editor is prepopulated with the KQL query related to your simple mode analysis. You can then edit and continue working with the query.
+When you begin to query logs in simple mode and then switch to KQL mode, the query editor is prepopulated with the KQL query related to your simple mode analysis. You can then edit and continue working with the query.
 
 :::image type="content" source="media/log-analytics-explorer/log-analytics-switch-modes-kql.png" alt-text="Screenshot that shows a query in Log Analytics KQL mode." lightbox="media/log-analytics-explorer/log-analytics-switch-modes-kql.png":::
 
