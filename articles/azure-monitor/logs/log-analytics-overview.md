@@ -14,7 +14,7 @@ The Log Analytics tool in the Azure portal lets you run and edit log queries aga
 
 * **KQL mode** gives advanced users the full power of Kusto Query Language (KQL) to derive deeper insights from their logs using the Log Analytics query editor.
 
-Whether you work with the results of your queries interactively or use them with other Azure Monitor features, such as log search alerts or workbooks, Log Analytics is the tool that you use to write and test them.
+Whether you work with the results of your queries interactively or use them with other Azure Monitor features, such as log search alerts or workbooks. Log Analytics is the tool that you use to write and test them.
 
 This article describes the Log Analytics user interface and its features. If you want to jump right into a tutorial, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
@@ -29,9 +29,9 @@ This article describes the Log Analytics user interface and its features. If you
 
 ## Open Log Analytics
 
-To open Log Analytics in the Azure portal, on the **Azure Monitor** menu select **Logs**. You'll also see this option on the menu for most Azure resources. No matter where you start Log Analytics, the tool is the same. But the menu you use to start Log Analytics determines the data that's available.
+To open Log Analytics in the Azure portal, select **Logs** either in **Azure Monitor**, in a **Log Analytics workspace**, or from a specific resource. The tool is always the same, but where you start determines the data that's avaiable.
 
-When you open Log Analytics from the **Azure Monitor** menu or the **Log Analytics workspaces** menu, you have access to all of the records in a workspace. When you select **Logs** from another type of resource, your data is limited to log data for that resource. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](./scope.md).
+When you open **Logs** from **Azure Monitor** or a **Log Analytics workspaces**, you have access to all of the records in a workspace. When you select **Logs** from another type of resource, your data is limited to log data for that resource. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](./scope.md).
 
 :::image type="content" source="media/log-analytics-overview/start-log-analytics.png" lightbox="media/log-analytics-overview/start-log-analytics.png" alt-text="Screenshot that shows starting Log Analytics." border="false":::
 
@@ -43,7 +43,7 @@ If you want to start with an empty script and write it yourself, close the examp
 
 ### [KQL mode](#tab/kql)
 
-The following image identifies five Log Analytics components in KQL mode. These are:
+The following image identifies five Log Analytics components in KQL mode:
 
 1. [Top action bar](#top-action-bar)
 1. [Left sidebar](#left-sidebar)
@@ -55,14 +55,14 @@ The following image identifies five Log Analytics components in KQL mode. These 
 
 ### [Simple mode](#tab/simple)
 
-The following image identifies four Log Analytics components in Simple mode. These are:
+The following image identifies four Log Analytics components in simple mode:
 
 1. [Top action bar](#top-action-bar)
 1. [Left sidebar](#left-sidebar)
 1. [Results window](#results-window)
 1. [More tools](#more-tools)
 
-:::image type="content" source="media/log-analytics-overview/logs-simple-overview.png" lightbox="media/log-analytics-overview/logs-simple-overview.png" alt-text="Screenshot that shows the Log Analytics interface in Simple mode with five features identified." :::
+:::image type="content" source="media/log-analytics-overview/logs-simple-overview.png" lightbox="media/log-analytics-overview/logs-simple-overview.png" alt-text="Screenshot that shows the Log Analytics interface in simple mode with five features identified." :::
 
 ---
 
@@ -70,7 +70,7 @@ The following image identifies four Log Analytics components in Simple mode. The
 
 ### [KQL mode](#tab/kql)
 
-In KQL mode, the top bar has controls for working with a query and switching to Simple mode.
+In KQL mode, the top bar has controls for working with a query and switching to simple mode.
 
 :::image type="content" source="media/log-analytics-overview/logs-kql-topbar.png" lightbox="media/log-analytics-overview/logs-kql-topbar.png" alt-text="Screenshot that shows the top action bar in KQL mode.":::
 
@@ -78,24 +78,24 @@ In KQL mode, the top bar has controls for working with a query and switching to 
 |:-------|:------------|
 | **Run button** | Run the selected query in the query window. You can also select **Shift+Enter** to run a query. |
 | **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
-| **Show** | Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
+| **Show** | Configure the number of entries Log Analytics retrieves in simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
 | **Simple/KQL mode** | Switch between Simple and KQL mode. |
 
 ### [Simple mode](#tab/simple)
 
-In Simple mode, the top bar has controls for working with data and switching to KQL mode.
+In simple mode, the top bar has controls for working with data and switching to KQL mode.
 
-:::image type="content" source="media/log-analytics-overview/logs-simple-topbar.png" lightbox="media/log-analytics-overview/logs-simple-topbar.png" alt-text="Screenshot that shows the top action bar in Simple mode.":::
+:::image type="content" source="media/log-analytics-overview/logs-simple-topbar.png" lightbox="media/log-analytics-overview/logs-simple-topbar.png" alt-text="Screenshot that shows the top action bar in simple mode.":::
 
 | Option | Description |
 |:-------|:------------|
 | **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
-| **Show** | Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
-| **Add** | Add filters, and apply Simple mode operators, as described in [Explore and analyze data in Simple mode](./log-analytics-simple-mode.md#explore-and-analyze-data-in-simple-mode). |
+| **Show** | Configure the number of entries Log Analytics retrieves in simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
+| **Add** | Add filters, and apply simple mode operators, as described in [Explore and analyze data in simple mode](./log-analytics-simple-mode.md#explore-and-analyze-data-in-simple-mode). |
 | **Simple/KQL mode** | Switch between Simple and KQL mode. |
 
 > [!NOTE]
-> In Simple mode, the top action bar doesn't include a **Run** button. The results update automatically as the user refines the query.
+> In simple mode, the top action bar doesn't include a **Run** button. The results update automatically as the user refines the query.
 
 ---
 
@@ -182,7 +182,7 @@ This section describes more tools available above the query area of the screen, 
 
 ## Relationship to Azure Data Explorer
 
-If you've worked with the Azure Data Explorer web UI, Log Analytics should look familiar. That's because it's built on top of Azure Data Explorer and uses the same Kusto Query Language.
+If you've worked with the Azure Data Explorer web UI, Log Analytics should look familiar. It's built on top of Azure Data Explorer and uses the same Kusto Query Language.
 
 Log Analytics adds features specific to Azure Monitor, such as filtering by time range and the ability to create an alert rule from a query. Both tools include an explorer that lets you scan through the structure of available tables. The Azure Data Explorer web UI primarily works with tables in Azure Data Explorer databases. Log Analytics works with tables in a Log Analytics workspace.
 
