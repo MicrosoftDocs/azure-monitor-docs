@@ -29,9 +29,9 @@ The options available in the **Custom Text Logs** configuration are described in
 |:---|:---|
 | File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
 | Table name | Name of the destination table in your Log Analytics Workspace. This table must already exist. |     
-| Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. | 
+| Record delimiter | Indicates the delimiter between log entries. `TimeStamp` is the only current allowed value. This looks for a date in the format specified in `timeFormat` to identify the start of a new record. If no date in the specified format is found then end of line is used. See [Time formats](#time-formats) for more details. | 
 | Timestamp Format| The time format used in the log file as described in [Time formats](#time-formats) below. |
-| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. |
+| Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. See [Delimited log files](#delimited-log-files) for an example of using a transformation. |
 
 ## Add destinations
 Custom text logs can only be sent to a Log Analytics workspace where it's stored in the [custom table](#log-analytics-workspace-table) that you create. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
@@ -79,7 +79,7 @@ Adhere to the following recommendations to ensure that you don't experience data
 ## Log Analytics workspace table
 Each entry in the log file is collected as it's created and sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
 
- The following table describes the required and optional columns in the table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
+ The following table describes the required and optional columns in the workspace table. The table can include other columns, but they won't be populated unless you parse the data with a transformation as described in [Delimited log files](#delimited-log-files).
 
 | Column | Type | Required? | Description |
 |:---|:---|:---|:---|
@@ -151,10 +151,10 @@ Many text log files have entries with columns delimited by a character such as a
 
 The sample text file shown above is comma-delimited, and the fields could be described as: `Time`, `Code`, `Severity`, `Module`, and `Message`. To parse this data into separate columns, add each of the columns to the destination table and add the following transformation to the DCR.
 
-Notable attributes of the transformation query include the following:
+Notable details of the transformation query include the following:
 
-- The query outputs properties that each match a column name in the target table.
-- Renames the `Time` property in the log file so that this value is used for `TimeGenerated`. If this was not provided, then `TimeGenerated` would be populated with the ingestion time.
+- The query outputs properties that each match a column name in the target table. 
+- This example renames the `Time` property in the log file so that this value is used for `TimeGenerated`. If this was not provided, then `TimeGenerated` would be populated with the ingestion time.
 - Because `split` returns dynamic data, you must use functions such as `tostring` and `toint` to convert the data to the correct scalar type. 
 
 ```kusto

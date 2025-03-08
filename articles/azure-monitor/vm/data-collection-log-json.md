@@ -30,7 +30,8 @@ The options available in the **Custom JSON Logs** configuration are described in
 | File pattern | Identifies the location and name of log files on the local disk. Use a wildcard for filenames that vary, for example when a new file is created each day with a new name. You can enter multiple file patterns separated by commas.<br><br>Examples:<br>- C:\Logs\MyLog.txt<br>- C:\Logs\MyLog*.txt<br>- C:\App01\AppLog.txt, C:\App02\AppLog.txt<br>- /var/mylog.log<br>- /var/mylog*.log |
 | Table name | Name of the destination table in your Log Analytics Workspace. |     
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged. |
-| JSON Schema | Columns to collect from the JSON log file and sent to the destination table. The columns described in [Log Analytics workspace table](#log-analytics-workspace-table) that aren't required, do not need to be included in the schema of the destination table. `TimeGenerated` and any other columns that you added, do not need to be included in the schema of the destination table. |
+| JSON Schema | Properties to collect from the JSON log file and sent to the destination table. The only required property is `TimeGenerated`. If this value isn't provided by the JSON file, the ingestion time will be used. The other columns described in [Log Analytics workspace table](#log-analytics-workspace-table) that aren't required can also be included and will be automatically populated.<br><br>Any other properties will populate columns in the table with the same name. Ensure that properties that do match table columns use the same data type as the corresponding column.<br><br>The image above shows a JSON schema for the sample JSON file shown in [JSON file requirements and best practices](#json-file-requirements-and-best-practices) |
+
 
 ## Add destinations
 Custom text logs can only be sent to a Log Analytics workspace where it's stored in the [custom table](#log-analytics-workspace-table) that you create. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
@@ -48,10 +49,10 @@ The file that the Azure Monitor agent is collecting must meet the following requ
 Following is a sample of a typical JSON log file that can be collected by Azure Monitor. This includes the fields: `Time`, `Code`, `Severity`,`Module`, and `Message`. 
 
 ```json
-{"Time":"2024-06-21 19:17:34","Code":1423,"Severity":"Error","Module":"Sales","Message":"Unable to connect to pricing service."}
-{"Time":"2024-06-21 19:18:23","Code":1420,"Severity":"Information","Module":"Sales","Message":"Pricing service connection established."}
-{"Time":"2024-06-21 21:45:13","Code":2011,"Severity":"Warning","Module":"Procurement","Message":"Module failed and was restarted."}
-{"Time":"2024-06-21 23:53:31","Code":4100,"Severity":"Information","Module":"Data","Message":"Nightly backup complete."}
+{"Time":"2025-03-07 13:17:34","Code":1423,"Severity":"Error","Module":"Sales","Message":"Unable to connect to pricing service."}
+{"Time":"2025-03-07 13:18:23","Code":1420,"Severity":"Information","Module":"Sales","Message":"Pricing service connection established."}
+{"Time":"2025-03-07 15:45:13","Code":2011,"Severity":"Warning","Module":"Procurement","Message":"Module failed and was restarted."}
+{"Time":"2025-03-07 15:53:31","Code":4100,"Severity":"Information","Module":"Data","Message":"Daily backup complete."}
 ```
 
 Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
@@ -63,7 +64,7 @@ Adhere to the following recommendations to ensure that you don't experience data
 ## Log Analytics workspace table
 The agent watches for any json files on the local disk that match the specified name pattern. Each entry is collected as it's written to the log and then parsed before being sent to the specified table in a Log Analytics workspace. The custom table in the Log Analytics workspace that will receive the data must exist before you create the DCR.
 
-Any columns in the table that match the name of a field in the parsed Json data will be populated with the value from the log entry. The following table describes the required and optional columns in the table in addition to the columns identified in your JSON data. 
+Any columns in the table that match the name of a field in the parsed Json data will be populated with the value from the log entry. The following table describes the required and optional columns in the workspace table in addition to the columns identified in your JSON data. 
 
 | Column | Type | Required? | Description |
 |:---|:---|:---|:---|
@@ -71,14 +72,10 @@ Any columns in the table that match the name of a field in the parsed Json data 
 | `Computer` | string | No | If the table includes this column, it will be populated with the name of the computer the log entry was collected from. |
 | `FilePath` | string | No | If the table includes this column, it will be populated with the path to the log file the log entry was collected from. |
 
-Retrieving this data with a log query would return the following results.
-
-:::image type="content" source="media/data-collection-log-text/delimited-results.png" lightbox="media/data-collection-log-text/delimited-results.png" alt-text="Screenshot that shows log query returning results of comma-delimited file collection.":::
 
 ### Create custom table
 
-If the destination table doesn't already exist then you must create it before creating the DCR. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table.
-
+If the destination table doesn't already exist then you must create it before creating the DCR. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table. 
 For example, you can use the following PowerShell script to create a custom table to receive the data from the sample JSON file above.  
 
 ```powershell
@@ -90,7 +87,7 @@ $tableParams = @'
                "columns": [
                     {
                         "name": "TimeGenerated",
-                        "type": "DateTime"
+                        "type": "dateTime"
                     }, 
                     {
                         "name": "Computer",
@@ -101,8 +98,20 @@ $tableParams = @'
                         "type": "string"
                     },
                     {
-                        "name": "Severity",
+                        "name": "Time",
+                        "type": "dateTime"
+                    },
+                    {
+                        "name": "Code",
                         "type": "int"
+                    },
+                    {
+                        "name": "Severity",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Module",
+                        "type": "string"
                     },
                     {
                         "name": "Message",
@@ -117,15 +126,22 @@ $tableParams = @'
 Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{WorkspaceName}/tables/{TableName}_CL?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
 ```
 
+The following example shows a query returning the data from this table with the data from the sample JSON file showed above. It was collected using a DCR with the sample JSON schema shown above. Since the JSON data doesn't include a property for `TimeGenerated`, the ingestion time is used. The `Computer` and `FilePath` columns are also automatically populated.
+
+:::image type="content" source="media/data-collection-log-json/validate-json.png" lightbox="media/data-collection-log-json/validate-json.png" alt-text="Screenshot that shows log query returning results of collected JSON log.":::
+
 ## Transformation
 The [transformation](../essentials/data-collection-transformations.md) potentially modifies the incoming stream to filter records or to modify the schema to match the target table. If the schema of the incoming stream is the same as the target table, then you can use the default transformation of `source`. If not, then modify the `transformKql` section of the ARM template with a KQL query that returns the required schema.
 
-For example, in the example above, the log entry has a `Time` field that contains the time the log entry was created. There is no corresponding field in the destination table though, so the `TimeGenerated` property is populated with the time that the log entry is received. To map the value of the `Time` field in the log entry to the `TimeGenerated` field in the destination table, you can use a transformation like the following:
+For example, in the example above, the log entry has a `Time` field that contains the time the log entry was created. Instead of storing this as a separate column in the destination table, you could use the following transformation to map the value of the `Time` property to `TimeGenerated`. 
 
 ```json
 source | extend TimeGenerated = todatetime(Time) | project-away Time
 ```
 
+This would result in the following log query. Notice that the `Time` column is blank, and the value of that property is used for `TimeGenerated`.
+
+:::image type="content" source="media/data-collection-log-json/validate-json-transformation.png" lightbox="media/data-collection-log-json/validate-json-transformation.png" alt-text="Screenshot that shows log query returning results of collected JSON log with transformation.":::
 
 ## Troubleshooting
 Go through the following steps if you aren't collecting data from the JSON log that you're expecting.

@@ -27,6 +27,13 @@ On the **Collect and deliver** tab of the DCR, select **Firewall Logs** from the
 
 :::image type="content" source="media/data-collection-firewall-log/data-source-firewall-logs.png" lightbox="media/data-collection-firewall-log/data-source-firewall-logs.png" alt-text="Screenshot that shows configuration of the Firewall Logs data source." :::
 
+## Add destinations
+Windows event data can only be sent to a Log Analytics workspace where it's stored in the [Event](/azure/azure-monitor/reference/tables/event) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
+
+
+:::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
+
+
 ## Verify data collection
 To verify that data is being collected, check for records in the **WindowsFirewall** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Security and Audit** category, click **Run** next to **WindowsFirewall**. If this section or the table don't appear in the list, check [Troubleshoot](#troubleshoot) for steps to resolve the issue.
 
