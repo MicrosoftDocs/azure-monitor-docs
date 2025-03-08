@@ -22,8 +22,7 @@ In the Azure portal, search for **Security and Audit** and select the solution f
 
 
 ## Configure firewall logs data source
-
-On the **Collect and deliver** tab of the DCR, select **Firewall Logs** from the **Data source type** dropdown. Select each of the network profiles that you want to collect.
+Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Firewall Logs** from the **Data source type** dropdown. Select each of the network profiles that you want to collect.
 
 :::image type="content" source="media/data-collection-firewall-log/data-source-firewall-logs.png" lightbox="media/data-collection-firewall-log/data-source-firewall-logs.png" alt-text="Screenshot that shows configuration of the Firewall Logs data source." :::
 
@@ -35,7 +34,7 @@ Windows event data can only be sent to a Log Analytics workspace where it's stor
 
 
 ## Verify data collection
-To verify that data is being collected, check for records in the **WindowsFirewall** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Security and Audit** category, click **Run** next to **WindowsFirewall**. If this section or the table don't appear in the list, check [Troubleshoot](#troubleshoot) for steps to resolve the issue.
+To verify that data is being collected, check for records in the `WindowsFirewall` table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Security and Audit** category, click **Run** next to **WindowsFirewall**. If this section or the table doesn't appear in the list, check [Troubleshoot](#troubleshoot) for steps to resolve the issue.
 
 :::image type="content" source="media/data-collection-firewall-log/verify-firewall.png" lightbox="media/data-collection-firewall-log/verify-firewall.png" alt-text="Screenshot that shows firewall log query with collected firewall logs." :::
 
@@ -47,7 +46,7 @@ Use the following steps to troubleshoot the collection of firewall logs.
 
 Follow these steps on the Windows machine:
 
-1. Select Start, then open Settings.
+1. Select **Start**, then open **Settings**.
 1. Under **Update & Security**, select **Windows Security**, and then **Firewall & network protection**.
 1. Select a network profile: **domain**, **private**, or **public**.
 2. Verify that the **Microsoft Defender Firewall** setting is switched to **On**.

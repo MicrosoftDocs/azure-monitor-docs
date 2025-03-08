@@ -20,8 +20,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 
 
 ## Configure Syslog data source
-
-On the **Collect and deliver** tab of the DCR, select **Linux Syslog** from the **Data source type** dropdown. 
+Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Linux Syslog** from the **Data source type** dropdown. 
 
 Select a **Minimum log level** for each facility or **NONE** to collect no events for that facility. You can configure multiple facilities at once by selecting their checkbox and then selecting a log level in **Set minimum log level for selected facilities**.
 

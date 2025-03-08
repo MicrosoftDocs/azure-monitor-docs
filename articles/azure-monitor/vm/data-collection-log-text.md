@@ -18,8 +18,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for details about the requirements of this table.
 
 ## Configure custom text file data source
-
-On the **Collect and deliver** tab of the DCR, select **Custom Text Logs** from the **Data source type** dropdown.
+Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Custom Text Logs** from the **Data source type** dropdown.
 
 :::image type="content" source="media/data-collection-log-text/configuration.png" lightbox="media/data-collection-log-text/configuration.png" alt-text="Screenshot that shows configuration of text file collection.":::
 
@@ -97,7 +96,7 @@ When collected using default settings, the data from the sample log file shown a
 ### Create custom table
 If the destination table doesn't already exist then you must create it before creating the DCR. See [Create a custom table](../logs/create-custom-table.md#create-a-custom-table) for different methods to create a table.
 
-For example, you can use the following PowerShell script to create a custom table to receive the data from a custom text log.  
+For example, you can use the following PowerShell script to create a custom table to receive the data from a custom text log. This example also adds the optional columns.
 
 ```powershell
 $tableParams = @'
@@ -144,7 +143,7 @@ Module failed and was restarted.
 2024-06-21 23:53:31,4100,Information,Data,
 Nightly backup complete.
 ```
-If the timestamp format `YYYY-MM-DD HH:MM:SS` is used in the DCR, then the data would be collected in the same way as the previous example. The extra lines would be included in the `RawData` column. If another timestamp format were used that doesn't match the date in the log entry, then each entry would be collected as two separate records.
+If the time stamp format `YYYY-MM-DD HH:MM:SS` is used in the DCR, then the data would be collected in the same way as the previous example. The extra lines would be included in the `RawData` column. If another time stamp format were used that doesn't match the date in the log entry, then each entry would be collected as two separate records.
 
 ## Delimited log files
 Many text log files have entries with columns delimited by a character such as a comma. Instead of sending the entire entry to the `RawData` column, you can parse the data into separate columns so that each can be populated in the destination table. Use a transformation with the [split function](/azure/data-explorer/kusto/query/split-function) to perform this parsing.
