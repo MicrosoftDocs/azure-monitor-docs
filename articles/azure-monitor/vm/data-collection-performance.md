@@ -51,7 +51,7 @@ To verify that data is being collected in the Log Analytics workspace, check for
 
 To verify that data is being collected in Azure Monitor Metrics, select **Metrics** from the virtual machine in the Azure portal. Select **Virtual Machine Guest** (Windows) or **azure.vm.linux.guestmetrics** for the namespace and then select a metric to add to the view.
 
-:::image type="content" source="media/data-collection-performance/verify-metrics.png" lightbox="media/data-collection-metrics/verify-performance-counter.png" alt-text="Screenshot that shows client metrics in Metrics explorer." :::
+:::image type="content" source="media/data-collection-performance/verify-metrics.png" lightbox="media/data-collection-performance/verify-metrics.png" alt-text="Screenshot that shows client metrics in Metrics explorer." :::
 
 
 ## Next steps

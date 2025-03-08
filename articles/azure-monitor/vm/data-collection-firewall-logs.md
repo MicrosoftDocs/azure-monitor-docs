@@ -37,7 +37,7 @@ Windows event data can only be sent to a Log Analytics workspace where it's stor
 ## Verify data collection
 To verify that data is being collected, check for records in the **WindowsFirewall** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Security and Audit** category, click **Run** next to **WindowsFirewall**. If this section or the table don't appear in the list, check [Troubleshoot](#troubleshoot) for steps to resolve the issue.
 
-:::image type="content" source="media/data-collection-firewall-log/verify-firewall.png" lightbox="media/data-collection-firewall-log/verify-firewall.png" alt-text="Screenshot that shows firewall logs on a local disk." :::
+:::image type="content" source="media/data-collection-firewall-log/verify-firewall.png" lightbox="media/data-collection-firewall-log/verify-firewall.png" alt-text="Screenshot that shows firewall log query with collected firewall logs." :::
 
 
 ## Troubleshoot
@@ -62,12 +62,12 @@ To verify and modify the logging settings, follow these steps on the Windows mac
 
 2. Select **Monitoring** and check the **Logging Settings** for each profile.
 
-    :::image type="content" source="media/data-collection-firewall-log/firewall-logging-setting.png" lightbox="media/data-collection-firewall-log/firewall-logging-setting.png" alt-text="Screenshot that shows firewall logs." :::
+    :::image type="content" source="media/data-collection-firewall-log/firewall-logging-settings.png" lightbox="media/data-collection-firewall-log/firewall-logging-settings.png" alt-text="Screenshot that shows current firewall log settings." :::
 
 
 3. To change the logging settings, right-click **Windows Defender Firewall** in the left pane and select **Properties**. Select **Customize** next to **Logging** and modify any settings for each profile.
 
-    :::image type="content" source="media/data-collection-firewall-log/turn-on-firewall-logging.png" lightbox="media/data-collection-firewall-log/turn-on-firewall-logging.png" alt-text="Screenshot that shows firewall logs on a local disk." :::
+    :::image type="content" source="media/data-collection-firewall-log/turn-on-firewall-logging.png" lightbox="media/data-collection-firewall-log/turn-on-firewall-logging.png" alt-text="Screenshot that shows modifying firewall log settings." :::
 
 You can enable logging for all profiles using the following command line:
 
