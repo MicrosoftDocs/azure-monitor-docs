@@ -14,7 +14,8 @@ ms.service: azure-chaos-studio
 
 This page provides a consolidated guide to troubleshooting issues related to the Chaos Agent used in Azure Chaos Studio. Use this guide to diagnose problems during installation, verify network connectivity, interpret agent status messages, and resolve common errors.
 
-> **Note:** For detailed setup instructions, refer to the [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) page. For network and security details, see [Private Link and Network Security](chaos-studio-private-link-agent-service.md).
+> [!NOTE]
+> For detailed setup instructions, refer to the [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) page. For network and security details, see [Private Link and Network Security](chaos-studio-private-link-agent-service.md).
 
 ---
 
@@ -51,15 +52,15 @@ Even when the agent is installed, it may not communicate properly if network con
      `https://acs-prod-region.chaosagent.trafficmanager.net`  
      Replace `region` with your VM's deployment region.
   2. **Check NSG and Firewall Settings:**  
-     - Confirm that any Network Security Group (NSG) attached to the VM allows outbound HTTPS (port 443) traffic.  
-     - The recommended approach is to allow the **ChaosStudio** service tag for outbound traffic.
+     a. Confirm that any Network Security Group (NSG) attached to the VM allows outbound HTTPS (port 443) traffic.  
+     b. The recommended approach is to allow the **ChaosStudio** service tag for outbound traffic.
   3. **Proxy and Custom DNS:**  
      If your environment uses a proxy or custom DNS settings, verify these settings aren't blocking access to the endpoint.
   4. **Private Link Configuration:**  
      For environments configured with Private Link, ensure that:
-     - The Private Endpoint is correctly set up and approved.
-     - DNS resolution is updated so that the Chaos Agent service domain resolves to the Private Endpoint’s IP.
-     - The agent’s configuration is updated accordingly.
+     a. The Private Endpoint is correctly set up and approved.
+     b. DNS resolution is updated so that the Chaos Agent service domain resolves to the Private Endpoint’s IP.
+     c. The agent’s configuration is updated accordingly.
   
 ---
 
@@ -120,16 +121,11 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 ## More Resources
 
-• If you continue to experience issues after following these steps, consider [creating an incident with the Chaos Studio team](https://portal.microsofticm.com/imp/v3/incidents/create?tmpl=P3i141).
-
-• This document is intended to help users quickly diagnose and resolve issues with the Chaos Agent. For further assistance, refer to our support channels or visit the Azure Chaos Studio community forums.
-
-•[Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) 
-
-•[OS Support and Compatibility](chaos-agent-os-support.md)
-
-•[Private Link and Network Security](chaos-studio-private-link-agent-service.md)
-
-•[Chaos Agent Known Issues](chaos-agent-known-issues.md)
+• If you continue to experience issues after following these steps, consider [creating an incident with the Chaos Studio team](https://portal.microsofticm.com/imp/v3/incidents/create?tmpl=P3i141).<br>
+• This document is intended to help users quickly diagnose and resolve issues with the Chaos Agent. For further assistance, refer to our support channels or visit the Azure Chaos Studio community forums.<br>
+• [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md)<br> 
+• [OS Support and Compatibility](chaos-agent-os-support.md)<br>
+• [Private Link and Network Security](chaos-studio-private-link-agent-service.md)<br>
+• [Chaos Agent Known Issues](chaos-agent-known-issues.md)<br>
 
 ---
