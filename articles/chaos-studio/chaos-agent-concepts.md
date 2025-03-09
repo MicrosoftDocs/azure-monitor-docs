@@ -72,13 +72,6 @@ The agent authenticates with Azure Chaos Studio using a user-assigned managed id
 
 For more details on installation and identity requirements see the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
-## Filepath of installed files
-
-The agent attempts to install itself and its dependencies in the following filepaths:
-
-- **Windows:**
-- **Linux:** 
-
 - **Monitoring and Logging:**  
   - Ensure your monitoring solutions capture logs from the Windows Event Log or the Linux systemd journal to diagnose issues effectively.
   
