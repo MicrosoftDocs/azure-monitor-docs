@@ -1,9 +1,6 @@
 ---
 title: Custom metrics in Azure Monitor (preview)
 description: Learn about custom metrics in Azure Monitor and how they're modeled.
-author: EdB-MSFT
-ms.service: azure-monitor
-ms-author: edbaynash
 ms.topic: conceptual
 ms.date: 11/07/2024
 ms.reviewer: priyamishra

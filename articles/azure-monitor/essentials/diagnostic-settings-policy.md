@@ -1,8 +1,6 @@
 ---
 title: Create diagnostic settings at scale using Azure policies and initiatives
 description: Use Azure Policy to create diagnostic settings in Azure Monitor at scale as each Azure resource is created.
-author: EdB-MSFT
-ms.author: edbaynash
 ms.topic: conceptual
 ms.date: 01/16/2025
 ms.reviewer: lualderm

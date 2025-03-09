@@ -141,9 +141,9 @@
         "articles/advisor/**/*": "ikhapova",
         "articles/azure-monitor/**/*": "bwren",
         "articles/azure-monitor/agents/**/*": "bwren",
-        "articles/azure-monitor/alerts/**/*": "AbbyMSFT",
+        "articles/azure-monitor/alerts/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/app/**/*": "AaronMaxwell",
-        "articles/azure-monitor/autoscale/**/*": "EdB-MSFT",
+        "articles/azure-monitor/autoscale/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/change/**/*": "hhunter-ms",
         "articles/azure-monitor/containers/**/*": "bwren",
         "articles/azure-monitor/essentials/**/*": "bwren",
@@ -151,8 +151,9 @@
         "articles/azure-monitor/logs/**/*": "austinmccollum",
         "articles/azure-monitor/profiler/**/*": "hhunter-ms",
         "articles/azure-monitor/snapshot-debugger/**/*": "hhunter-ms",
-        "articles/azure-monitor/visualize/**/*": "AbbyMSFT",
+        "articles/azure-monitor/visualize/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/vm/**/*": "bwren",
+        "articles/chaos-studio/**/*": "",
         "articles/service-health/**/*": "jocalland"
       },
       "featureFlags": {
@@ -188,9 +189,9 @@
         "articles/advisor/**/*": "ikhapova",
         "articles/azure-monitor/**/*": "bwren",
         "articles/azure-monitor/agents/**/*": "bwren",
-        "articles/azure-monitor/alerts/**/*": "abbyweisberg",
+        "articles/azure-monitor/alerts/**/*": "inhenkel",
         "articles/azure-monitor/app/**/*": "aaronmax",
-        "articles/azure-monitor/autoscale/**/*": "edbaynash",
+        "articles/azure-monitor/autoscale/**/*": "inhenkel",
         "articles/azure-monitor/change/**/*": "hannahhunter",
         "articles/azure-monitor/containers/**/*": "bwren",
         "articles/azure-monitor/essentials/**/*": "bwren",
@@ -198,13 +199,15 @@
         "articles/azure-monitor/logs/**/*": "austinmc",
         "articles/azure-monitor/profiler/**/*": "hannahhunter",
         "articles/azure-monitor/snapshot-debugger/**/*": "hannahhunter",
-        "articles/azure-monitor/visualize/**/*": "abbyweisberg",
+        "articles/azure-monitor/visualize/**/*": "inhenkel",
         "articles/azure-monitor/vm/**/*": "bwren",
+        "articles/chaos-studio/**/*": "",
         "articles/service-health/**/*": "v-jocalland"
       },
       "ms.service": {
         "articles/advisor/**/**/*": "azure-advisor",
         "articles/azure-monitor/**/*": "azure-monitor",
+        "articles/chaos-studio/**/**/*": "azure-chaos-studio",
         "articles/service-health/**/*": "azure-service-health"
       },
       "ms.reviewer": {
@@ -243,6 +246,14 @@
           "Azure",
           "Azure Monitor"
         ],
+        "articles/chaos-studio/**/*.md": [
+          "Azure",
+          "Chaos Studio"
+        ],
+        "articles/chaos-studio/**/*.yml": [
+          "Azure",
+          "Chaos Studio"
+        ],
         "articles/service-health/**/*.md": [
           "Azure",
           "Service Health"
@@ -255,6 +266,7 @@
     "titleSuffix": {
         "articles/advisor/**/*": "Azure Advisor",
         "articles/azure-monitor/**/*": "Azure Monitor",
+        "articles/chaos-studio/**/*": "Azure Chaos Studio",
         "articles/service-health/**/*": "Azure Service Health"
       }
     },

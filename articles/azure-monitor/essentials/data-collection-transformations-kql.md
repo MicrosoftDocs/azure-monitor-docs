@@ -1,8 +1,6 @@
 ---
 title: Supported KQL features in Azure Monitor transformations
 description: Supported KQL features in Azure Monitor transformations
-author: bwren
-ms.author: bwren
 ms.topic: conceptual
 ms.date: 10/15/2024
 ms.reviwer: nikeist
