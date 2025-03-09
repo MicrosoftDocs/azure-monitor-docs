@@ -18,7 +18,7 @@ In addition to the prerequisites in [Collect data from virtual machine client wi
 
 In the Azure portal, search for **Security and Audit** and select the solution from the Marketplace. When prompted, specify the **Resource group** and **Log Analytics Workspace** where you'll be sending the firewall log data.
 
-:::image type="content" source="media/data-collection-firewall-log/security-and-audit-solution.png" lightbox="media/data-collection-firewall-log/security-and-audit-solution.png" alt-text="Screenshot that shows installation of the Security and Audit solution." :::
+:::image type="content" source="media/data-collection-firewall-log/security-audit-solution.png" lightbox="media/data-collection-firewall-log/security-audit-solution.png" alt-text="Screenshot that shows installation of the Security and Audit solution." :::
 
 
 ## Configure firewall logs data source
