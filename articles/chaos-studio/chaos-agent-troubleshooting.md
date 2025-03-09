@@ -28,8 +28,8 @@ If the Chaos Agent fails to install or appears unhealthy, follow these debugging
     1. Verify that the target VM meets the minimum prerequisites (supported OS, correct version, etc.). See [OS Support and Compatibility](chaos-agent-os-support.md).
     2. Confirm that a user-assigned managed identity is attached to the VM.  
     3. Check the **Activity Log** in the Azure portal for any errors related to extension deployment.
-    4. If the VM is part of a Virtual Machine Scale Set, ensure that the scale set upgrade policy is not set to **Manual**. If it is, upgrade instances manually (using `az vmss update-instances`) or switch to an **Automatic** policy.
-    5. Consider uninstalling and reinstalling the extension using the Azure CLI or Azure Portal by disabling and re-enabling agent-based faults on your VM:
+    4. If the VM is part of a Virtual Machine Scale Set, ensure that the scale set upgrade policy isn't set to **Manual**. If it is, upgrade instances manually (using `az vmss update-instances`) or switch to an **Automatic** policy.
+    5. Consider uninstalling and reinstalling the extension using the Azure CLI or Azure portal by disabling and re-enabling agent-based faults on your VM:
        ```bash
        az vm extension delete --resource-group <ResourceGroup> --vm-name <VMName> --name ChaosAgent
        az vm extension set --resource-group <ResourceGroup> --vm-name <VMName> --name ChaosAgent --publisher Microsoft.Azure.Chaos --version <version>
@@ -42,7 +42,7 @@ If the Chaos Agent fails to install or appears unhealthy, follow these debugging
 Even when the agent is installed, it may not communicate properly if network connectivity is disrupted.
 
 - **Symptoms:**  
-  - The agent’s **Handler status** does not show `Ready`.
+  - The agent’s **Handler status** doesn't show `Ready`.
   - Logs indicate failure to reach the Chaos Studio agent service endpoint.
 
 - **Troubleshooting Steps:**
@@ -54,7 +54,7 @@ Even when the agent is installed, it may not communicate properly if network con
      - Confirm that any Network Security Group (NSG) attached to the VM allows outbound HTTPS (port 443) traffic.  
      - The recommended approach is to allow the **ChaosStudio** service tag for outbound traffic.
   3. **Proxy and Custom DNS:**  
-     If your environment uses a proxy or custom DNS settings, verify these settings are not blocking access to the endpoint.
+     If your environment uses a proxy or custom DNS settings, verify these settings aren't blocking access to the endpoint.
   4. **Private Link Configuration:**  
      For environments configured with Private Link, ensure that:
      - The Private Endpoint is correctly set up and approved.
@@ -73,7 +73,7 @@ The agent reports two key statuses on the VM’s **Extensions + applications** b
   
 - **Handler Status Field:**  
   - `Ready`: Indicates the agent is running and communicating with the Chaos Studio service.
-  - `NotReady` or an empty status suggests the agent cannot connect—commonly due to network issues or misconfigured identities.
+  - `NotReady` or an empty status suggests the agent can't connect—commonly due to network issues or misconfigured identities.
 
 ### How to Check Agent Logs
 
@@ -97,7 +97,7 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 | **Error Message** | **Cause** | **Solution** |
 |-------------------|-----------|--------------|
-| "Failed to register agent due to credential error." | The VM’s managed identity is not configured correctly. | Verify that the VM has the correct user-assigned managed identity attached and that it has the required permissions. Refer to the [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) page for detailed steps. |
+| "Failed to register agent due to credential error." | The VM’s managed identity isn't configured correctly. | Verify that the VM has the correct user-assigned managed identity attached and that it has the required permissions. Refer to the [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) page for detailed steps. |
 
 ### Missing Prerequisites for Fault Execution
 
@@ -111,11 +111,11 @@ Some other issues and their accompanying solutions for the Chaos agent.
 |-------------------|-----------|--------------|
 | "The agent log shows an inability to connect to acs-prod-<deployedRegion>.chaosagent.trafficmanager.net." | Outbound network traffic is blocked. | Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint’s IP. |
 
-### Extension Timeout or “ExtensionHandlerFailed”
+### Extension time-out or “ExtensionHandlerFailed”
 
 | **Error Message** | **Cause** | **Solution** |
 |-------------------|-----------|--------------|
-| "ExtensionHandlerFailed" or timeout errors in the Activity Log. | The agent extension did not start properly, possibly due to network or resource configuration issues. | - Restart the VM and verify network connectivity.<br/>- Check for any interfering security software that may block the extension.<br/>- If persistent, reinstall the extension using the Azure CLI (see installation troubleshooting section). |
+| "ExtensionHandlerFailed" or time-out errors in the Activity Log. | The agent extension didn't start properly, possibly due to network or resource configuration issues. | - Restart the VM and verify network connectivity.<br/>- Check for any interfering security software that may block the extension.<br/>- If persistent, reinstall the extension using the Azure CLI (see installation troubleshooting section). |
 
 
 ## More Resources
