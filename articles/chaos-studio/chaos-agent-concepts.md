@@ -15,20 +15,6 @@ ms.custom:
 
 This document provides a deep dive into the **Chaos Agent** within Azure Chaos Studio. It explains how the agent works, its network access requirements, dependencies, and security considerations, ensuring that you have the information needed to properly deploy and maintain the agent in your environment.
 
-## Architecture
-
-The Chaos Agent runs as a background service on the virtual machine (VM) and is deployed via a VM extension. Depending on the operating system:
-
-- **Windows:** Operates as a Windows service.
-- **Linux:** Runs as a systemd service.
-
-The agent authenticates with Azure Chaos Studio using a user-assigned managed identity attached to the VM. It communicates with the Chaos Studio backend to receive fault execution commands. Key aspects include:
-
-- **Target Identity:** The identity of the VM that is being targeted.
-- **Experiment Managed Identity:** Must have at least Reader access on the VM to execute faults.
-
-For more details on installation and identity requirements, please see the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
-
 ## Network Access
 
 To function correctly, the Chaos Agent requires outbound connectivity to the Chaos Studio service endpoints. Specifically, the VM must be able to reach:
@@ -39,21 +25,6 @@ Without this connectivity, the agent will not receive instructions or be able to
 
 - **NSG Configuration:** Use the **ChaosStudio** service tag to allow outbound traffic in Network Security Groups.
 - **Private Connectivity:** Private Link can be configured for fully private connectivity. For more details, review the [Chaos Studio private link for agent documentation](chaos-studio-private-link-agent-service.md).
-
-## Dependencies
-
-The proper operation of the Chaos Agent depends on several software components and system configurations:
-
-- **Linux Dependencies:**  
-  - Some agent-based faults require the `stress-ng` utility.  
-  - The installer auto-installs `stress-ng` on supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
-  - For distributions like Azure Linux (Mariner), manual installation is necessary.
-
-- **OS-Specific Logging:**  
-  - **Windows:** Utilizes the Windows Event Log for logging.  
-  - **Linux:** Uses the systemd journal for logging.
-
-Further details can be found in the [Chaos Studio fault library documentation](chaos-studio-fault-library.md).
 
 ## Security
 
@@ -66,7 +37,47 @@ For additional security best practices and troubleshooting tips, refer to the [C
 
 ## Additional Considerations
 - **Application Insights**
-  - Connect your agent-based fault injection experiment with App Insights in order to have richer data populated about the experiment you're running. 
+  - Connect your agent-based fault injection experiment with App Insights in order to have richer data populated about the experiment you're running.
+ 
+## Dependencies
+
+The proper operation of the Chaos Agent depends on several software components and system configurations:
+
+- **Linux Dependencies:**  
+  - Some agent-based faults require different dependencies. For example, resource pressure faults depend on the `stress-ng` utility. 
+  - The installer attempts to auto-install `stress-ng` `tc` and `netem` on supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
+  - For certain distributions like Azure Linux (Mariner), manual installation of dependencies is necessary.
+  - For more info on dependencies see our [OS compatibility page](chaos-agent-os-support.md)
+
+- **OS-Specific Logging:**  
+  - **Windows:** Utilizes the Windows Event Log for logging.  
+  - **Linux:** Uses the systemd journal for logging.
+
+Further details can be found in the [Chaos Studio fault library documentation](chaos-studio-fault-library.md). 
+
+## Architecture
+
+The Chaos Agent runs as a background service on the virtual machine (VM) and is deployed via a VM extension. Depending on the operating system:
+
+
+- **Windows:** Operates as a Windows service.
+- **Linux:** Runs as a systemd service.
+
+The agent authenticates with Azure Chaos Studio using a user-assigned managed identity attached to the VM. It communicates with the Chaos Studio backend to receive fault execution commands. Key aspects include:
+
+- **Target Identity:** The identity of the VM that is being targeted.
+- **Experiment Managed Identity:** Must have at least Reader access on the VM to execute faults.
+
+### VM Extension diagram
+
+For more details on installation and identity requirements, please see the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
+
+## Filepath of installed files
+
+The agent will attempt to install itself and its dependencies in the following filepaths:
+
+- **Windows:**
+- **Linux:** 
 
 - **Monitoring and Logging:**  
   - Ensure your monitoring solutions capture logs from the Windows Event Log or the Linux systemd journal to diagnose issues effectively.
