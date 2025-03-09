@@ -39,7 +39,7 @@ The following compatibility matrix outlines the officially supported operating s
 
 ---
 
-## Manual Package Dependencies
+## Manual Package Dependencies for specific OS':
 
 While the agent may auto-install some dependencies on certain mainstream Linux OS', you might need to install the following packages manually on certain operating systems due to limitations or other required configurations:
 
