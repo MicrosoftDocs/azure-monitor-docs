@@ -27,7 +27,7 @@ The purpose of the Chaos Agent is to introduce agent-based fault injection into 
 
 ## How It Works
 
-The Chaos Agent is delivered as a VM extension and supports both Windows and Linux operating systems. Once deployed, it executes fault injection tasks directly on the target VM, allowing for:
+The Chaos Agent is shipped via VM extension and supports both Windows and Linux operating systems. Once deployed, it uses a managed identity to execute fault injection tasks directly on the target VM, allowing for:
 
 - **Agent-Based Fault Injection**: Running inside the VM to trigger faults that cannot be simulated externally.
 - **VM Extension Delivery**: Simplifies deployment across various environments.
