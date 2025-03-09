@@ -48,8 +48,8 @@ Even when the agent is installed, it may not communicate properly if network con
 - **Troubleshooting Steps:**
   1. **Verify Outbound Access:**  
      Ensure that the VM has outbound network access to the Chaos Agent service endpoint, which follows the pattern:  
-     `https://acs-prod-<region>.chaosagent.trafficmanager.net`  
-     Replace `<region>` with your VM's deployment region.
+     `https://acs-prod-region.chaosagent.trafficmanager.net`  
+     Replace `region` with your VM's deployment region.
   2. **Check NSG and Firewall Settings:**  
      - Confirm that any Network Security Group (NSG) attached to the VM allows outbound HTTPS (port 443) traffic.  
      - The recommended approach is to allow the **ChaosStudio** service tag for outbound traffic.
