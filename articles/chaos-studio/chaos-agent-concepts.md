@@ -21,7 +21,7 @@ To function correctly, the Chaos Agent requires outbound connectivity to the Cha
 ```
 https://<region>.agents.chaos-prod.azure.com
 ```
-Without this connectivity, the agent will not receive instructions or be able to report its status. Additional network configuration points include:
+Without this connectivity, the agent won't receive instructions or be able to report its status. Other network configuration points include:
 
 - **NSG Configuration:** Use the **ChaosStudio** service tag to allow outbound traffic in Network Security Groups.
 - **Private Connectivity:** Private Link can be configured for fully private connectivity. For more details, review the [Chaos Studio private link for agent documentation](chaos-studio-private-link-agent-service.md).
@@ -31,11 +31,11 @@ Without this connectivity, the agent will not receive instructions or be able to
 Security is a primary consideration in the design of the Chaos Agent:
 
 - **Managed Identity:** The agent uses Azure Managed Identity for authentication, eliminating the need to store secrets on the VM.
-- **RBAC Controls:** All chaos actions are initiated by the user’s experiment, and Azure RBAC ensures that only authorized fault operations are executed.
+- **Role-based access Controls (RBAC):** All chaos actions are initiated by the user’s experiment, and Azure RBAC ensures that only authorized fault operations are executed.
 
-For additional security best practices and troubleshooting tips, refer to the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
+For more security best practices and troubleshooting tips, refer to the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
-## Additional Considerations
+## Other Considerations
 - **Application Insights**
   - Connect your agent-based fault injection experiment with App Insights in order to have richer data populated about the experiment you're running.
  
@@ -45,9 +45,9 @@ The proper operation of the Chaos Agent depends on several software components a
 
 - **Linux Dependencies:**  
   - Some agent-based faults require different dependencies. For example, resource pressure faults depend on the `stress-ng` utility. 
-  - The installer attempts to auto-install `stress-ng` `tc` and `netem` on supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
+  - The installer attempts to autoinstall `stress-ng` `tc` and `netem` on supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
   - For certain distributions like Azure Linux (Mariner), manual installation of dependencies is necessary.
-  - For more info on dependencies see our [OS compatibility page](chaos-agent-os-support.md)
+  - For more info on dependencies, see our [OS compatibility page](chaos-agent-os-support.md)
 
 - **OS-Specific Logging:**  
   - **Windows:** Utilizes the Windows Event Log for logging.  
@@ -70,11 +70,11 @@ The agent authenticates with Azure Chaos Studio using a user-assigned managed id
 
 ### VM Extension diagram
 
-For more details on installation and identity requirements, please see the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
+For more details on installation and identity requirements see the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
 ## Filepath of installed files
 
-The agent will attempt to install itself and its dependencies in the following filepaths:
+The agent attempts to install itself and its dependencies in the following filepaths:
 
 - **Windows:**
 - **Linux:** 
