@@ -78,7 +78,7 @@ Not all VMs returned by the dynamic query have the Chaos Agent installed and ena
 ## Agent Selection on Unsupported OS
 
 **Issue:**
-Enabling the Chaos Agent on VMs running unsupported or outdated operating systems can lead to unexpected behavior or failure of certain fault types.
+Enabling the Chaos Agent on VMs running untested or outdated operating systems can lead to unexpected behavior or failure of certain fault types. It is likely to work assuming you have installed the right dependencies, but may require manual debugging.
 
 **Cause:**
 The Chaos Agent is officially tested on a specific set of operating systems. Running it on an unsupported OS may result in partial functionality or errors during fault execution.
