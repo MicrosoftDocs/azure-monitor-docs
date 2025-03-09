@@ -12,7 +12,7 @@ ms.service: azure-chaos-studio
 
 # Chaos Agent Version Compatibility
 
-The following compatibility matrix outlines the officially supported operating systems for the Azure Chaos Studio Agent, along with the minimum supported version and the fault support from our agent fault library. In the fault columns, a check (✓) indicates full support, “✓ (outbound)” denotes that only outbound support is provided, and an “✗” means the fault is not supported on that operating system.
+The following compatibility matrix outlines the officially supported operating systems for the Azure Chaos Studio Agent, along with the minimum supported version and the fault support from our agent fault library. In the fault columns, a check (✓) indicates full support, "✓ (outbound)" denotes that only outbound support is provided, and an "✗" means the fault isn't supported on that operating system.
 
 
 ---
@@ -35,13 +35,13 @@ The following compatibility matrix outlines the officially supported operating s
 | Debian (Buster)           | 10+     | **Prerequisite:** Ensure `AzCLI unzip` utility is installed | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | openSUSE Leap             | 15.2+   | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | Oracle Linux              | 8.3+    | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
-| Other Operating Systems   | N/A     | Not officially tested. May work, but additional troubleshooting/manual dependency installation may be required | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
+| Other Operating Systems   | N/A     | Not officially tested. May work, but more troubleshooting/manual dependency installation may be required | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
 
 ---
 
 ## Manual Package Dependencies for specific OS':
 
-While the agent may auto-install some dependencies on certain mainstream Linux OS', you might need to install the following packages manually on certain operating systems due to limitations or other required configurations:
+While the agent may autoinstall some dependencies on certain mainstream Linux OS', you might need to install the following packages manually on certain operating systems due to limitations or other required configurations:
 
 ### Linux (Debian/Ubuntu):
 
@@ -66,11 +66,11 @@ Ensure that stress-ng is manually installed using your distribution’s package 
 ## Known Issues
 
 ### Windows DNS Fault:
-The DNS fault on Windows requires the LKG plugin to be installed. If a conflicting plugin is present (i.e. if the customer overrides the LKG plugin), the DNS fault will not execute.
+The DNS fault on Windows requires the LKG plugin to be installed. If a conflicting plugin is present (that is, if the customer overrides the LKG plugin), the DNS fault can't execute.
 
 ### Hardened OS/Custom OS Support info: 
 The agent isn't currently tested against custom Linux distributions or hardened Linux distributions (for example, FIPS or SELinux).
 
-If an operating system isn't currently listed, you may still attempt to install, use, and troubleshoot the virtual machine extension, agent, and agent-based capabilities, but Chaos Studio cannot guarantee behavior or support for an unlisted operating system.
+If an operating system isn't currently listed, you may still attempt to install, use, and troubleshoot the virtual machine extension, agent, and agent-based capabilities, but Chaos Studio can't guarantee behavior or support for an unlisted operating system.
 
 To request validation and support on more operating systems or versions, use the [Chaos Studio Feedback Community](https://aka.ms/ChaosStudioFeedback).
