@@ -109,7 +109,7 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 | **Error Message** | **Cause** | **Solution** |
 |-------------------|-----------|--------------|
-| "The agent log shows an inability to connect to acs-prod-<deployedRegion>.chaosagent.trafficmanager.net." | Outbound network traffic is blocked. | Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint’s IP. |
+| "The agent log shows an inability to connect to acs-prod-region.chaosagent.trafficmanager.net." | Outbound network traffic is blocked. | Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint’s IP. |
 
 ### Extension time-out or “ExtensionHandlerFailed”
 
