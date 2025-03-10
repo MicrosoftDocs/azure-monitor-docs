@@ -176,7 +176,7 @@ Follow these steps:
 
 1. Enter values for the **Alert rule name** and the **Alert rule description**.
 
-1. (Optional) If you're creating a metric alert rule that monitors a custom metric with the scope defined as one of the following regions and you want to make sure that the data processing for the alert rule takes place within that region, you can select to process the alert rule in one of these regions:
+1. (Optional) If you're creating a metric alert rule that monitors a custom metric within a specific region, you can ensure that the data processing for the alert rule takes place within that region. To do this, select one of the regions where you want the alert rule to be processed:
 
     * North Europe
     * West Europe
@@ -225,7 +225,7 @@ Consider the following restrictions for metric alert rule names:
 * The combined resource group name and alert rule name can't exceed 252 characters.
 
 > [!NOTE]
-> If the alert rule name contains characters that aren't alphabetic or numeric (for example, spaces, punctuation marks, or symbols), these characters might be URL-encoded when retrieved by certain clients.
+> If the alert rule name contains characters that aren't alphabetic or numeric, these characters might be URL-encoded when retrieved by certain clients. Examples include spaces, punctuation marks, and symbols.
 
 ## Restrictions when you use dimensions in a metric alert rule with multiple conditions
 
