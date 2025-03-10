@@ -2,7 +2,7 @@
 title: ASP.NET performance and event counters
 description: Monitor .NET system and event counters in Application Insights.
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 04/08/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.reviewer: rijolly

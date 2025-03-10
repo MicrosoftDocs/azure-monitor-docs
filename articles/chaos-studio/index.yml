@@ -95,8 +95,6 @@ landingContent:
             url: experiment-examples.md
           - text: Fault providers
             url: chaos-studio-fault-providers.md
-          - text: Version compatibility
-            url: chaos-studio-versions.md
           - text: Regional availability
             url: chaos-studio-region-availability.md
           - text: Limitations and known issues

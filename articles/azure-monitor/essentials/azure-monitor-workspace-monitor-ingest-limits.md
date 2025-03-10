@@ -42,5 +42,5 @@ To open a support ticket:
 ## Next steps
 
 + [Azure Monitor service limits](../service-limits.md#prometheus-metrics)
-+ [Create an alert rule in Azure Monitor](../alerts/alerts-create-metric-alert-rule.yml)
++ [Create an alert rule in Azure Monitor](../alerts/alerts-create-metric-alert-rule.md)
 + [Create a metric alert for an Azure resource](../alerts/tutorial-metric-alert.md)
