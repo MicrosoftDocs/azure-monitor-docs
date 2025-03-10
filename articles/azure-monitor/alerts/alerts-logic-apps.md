@@ -47,8 +47,8 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
 1. On the **Logic app** page, select **Edit** in the top action bar.
 
 1. Select **Add a trigger**, search for **When a HTTP request is received**, and select it from the search results.
-
-    :::image type="content" source="./media/alerts-logic-apps/logic-apps-designer.png" alt-text="Screenshot that shows the Logic Apps Designer start page.":::
+lightbox=""
+    :::image type="content" source="./media/alerts-logic-apps/logic-apps-designer.png" lightbox="./media/alerts-logic-apps/logic-apps-designer.png" alt-text="Screenshot that shows the Logic Apps Designer start page.":::
 
 1. Paste the common alert schema into the **Request Body JSON Schema** field from the following JSON:
     ```json
@@ -118,7 +118,7 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
     }
     ```
 
-    :::image type="content" source="./media/alerts-logic-apps/configure-http-request-received.png" alt-text="Screenshot that shows the Parameters tab for the When an HTTP request is received pane.":::
+    :::image type="content" source="./media/alerts-logic-apps/configure-http-request-received.png" lightbox="./media/alerts-logic-apps/configure-http-request-received.png" alt-text="Screenshot that shows the Parameters tab for the When an HTTP request is received pane.":::
 
 1. (Optional). You can customize the alert notification by extracting information about the affected resource on which the alert fired, for example, the resource's tags. You can then include those resource tags in the alert payload and use the information in your logical expressions for sending the notifications. To do this step, we will:
 
@@ -137,7 +137,7 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
 
     1. In the **Value** field, select **fx** to open the Function pop-up window. Enter the string `split(triggerBody()?['data']?['essentials']?['alertTargetIDs'][0], '/')` in the empty field at the top and select **Add**.
 
-        :::image type="content" source="./media/alerts-logic-apps/initialize-variable.png" alt-text="Screenshot that shows the Parameters tab for the Initialize variable pane.":::
+        :::image type="content" source="./media/alerts-logic-apps/initialize-variable.png" lightbox="./media/alerts-logic-apps/initialize-variable.png" alt-text="Screenshot that shows the Parameters tab for the Initialize variable pane.":::
 
     1. Select **+** > **Add an action** to insert another step.
 
@@ -171,7 +171,7 @@ Select **+** > **Add an action** to insert a new step.
 
 1. Under **Office 365 Outlook**, select **Send an email (V2)** from the list of actions.
 
-    :::image type="content" source="./media/alerts-logic-apps/choose-operation-outlook.png" alt-text="Screenshot that shows the Add an action page of the Logic Apps Designer with Office 365 Outlook selected.":::
+    :::image type="content" source="./media/alerts-logic-apps/choose-operation-outlook.png" lightbox="./media/alerts-logic-apps/choose-operation-outlook.png" alt-text="Screenshot that shows the Add an action page of the Logic Apps Designer with Office 365 Outlook selected.":::
 
 1. Sign in to Office 365 when you're prompted to create a connection.
 
@@ -195,7 +195,7 @@ Select **+** > **Add an action** to insert a new step.
 
 1. Select **Save**.
 
-    :::image type="content" source="./media/alerts-logic-apps/configure-email.png" alt-text="Screenshot that shows the Parameters tab on the Send an email pane.":::
+    :::image type="content" source="./media/alerts-logic-apps/configure-email.png" lightbox="./media/alerts-logic-apps/configure-email.png" alt-text="Screenshot that shows the Parameters tab on the Send an email pane.":::
 
 You've created a logic app that sends an email to the specified address, with details from the alert that triggered it.
 
@@ -207,7 +207,7 @@ The next step is to create an action group to trigger your logic app.
 
 1. Under **Microsoft Teams**, select **Post message in a chat or channel** from the list of actions.
 
-    :::image type="content" source="./media/alerts-logic-apps/choose-operation-teams.png" alt-text="Screenshot that shows the Add an action page of the Logic Apps Designer with Microsoft Teams selected.":::
+    :::image type="content" source="./media/alerts-logic-apps/choose-operation-teams.png" lightbox="./media/alerts-logic-apps/choose-operation-teams.png" alt-text="Screenshot that shows the Add an action page of the Logic Apps Designer with Microsoft Teams selected.":::
 
 1. Sign in to Teams when you're prompted to create a connection.
 
@@ -228,7 +228,7 @@ The next step is to create an action group to trigger your logic app.
 
 1. Select **Save**.
 
-    :::image type="content" source="./media/alerts-logic-apps/configure-teams-message.png" alt-text="Screenshot that shows the Parameters tab on the Post message in a chat or channel pane.":::
+    :::image type="content" source="./media/alerts-logic-apps/configure-teams-message.png" lightbox="./media/alerts-logic-apps/configure-teams-message.png" alt-text="Screenshot that shows the Parameters tab on the Post message in a chat or channel pane.":::
 
 You've created a logic app that sends a Teams message to the specified group, with details from the alert that triggered it.
 
@@ -250,7 +250,7 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 1. Select the **Actions** tab.
 
-    :::image type="content" source="./media/alerts-logic-apps/create-action-group.png" alt-text="Screenshot that shows the Basics tab on the Create an action group page.":::
+    :::image type="content" source="./media/alerts-logic-apps/create-action-group.png" lightbox="./media/alerts-logic-apps/create-action-group.png" alt-text="Screenshot that shows the Basics tab on the Create an action group page.":::
 
 1. On the **Actions** tab under **Action type**, select **Logic App**.
 
@@ -264,7 +264,7 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 1. Select **Review + create** > **Create**.
 
-    :::image type="content" source="./media/alerts-logic-apps/create-action-group-actions.png" alt-text="Screenshot that shows the Actions tab on the Create an action group page and the Logic App pane.":::
+    :::image type="content" source="./media/alerts-logic-apps/create-action-group-actions.png" lightbox="./media/alerts-logic-apps/create-action-group-actions.png" alt-text="Screenshot that shows the Actions tab on the Create an action group page and the Logic App pane.":::
 
 ## Test your action group
 
@@ -278,11 +278,11 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 1. Select **Test**.
 
-    :::image type="content" source="./media/alerts-logic-apps/test-action-group.png" alt-text="Screenshot that shows an action group details Test page.":::
+    :::image type="content" source="./media/alerts-logic-apps/test-action-group.png" lightbox="./media/alerts-logic-apps/test-action-group.png" alt-text="Screenshot that shows an action group details Test page.":::
     
     The following email is sent to the specified account:
     
-    :::image type="content" source="./media/alerts-logic-apps/sample-output-email.png" alt-text="Screenshot that shows a sample email sent by the Test page.":::
+    :::image type="content" source="./media/alerts-logic-apps/sample-output-email.png" lightbox="./media/alerts-logic-apps/sample-output-email.png" alt-text="Screenshot that shows a sample email sent by the Test page.":::
 
 ## Create a rule by using your action group
 
@@ -296,7 +296,7 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 1. Finish the creation of your rule.
 
-    :::image type="content" source="./media/alerts-logic-apps/select-action-groups.png" alt-text="Screenshot that shows the Actions tab on the Create an alert rule pane and the Select action groups pane.":::
+    :::image type="content" source="./media/alerts-logic-apps/select-action-groups.png" lightbox="./media/alerts-logic-apps/select-action-groups.png" alt-text="Screenshot that shows the Actions tab on the Create an alert rule pane and the Select action groups pane.":::
 
 ## Next steps
 
