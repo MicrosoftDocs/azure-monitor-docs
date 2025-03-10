@@ -41,6 +41,17 @@ If you want to start with an empty script and write it yourself, close the examp
 
 ## Log Analytics interface
 
+### [Simple mode](#tab/simple)
+
+The following image identifies four Log Analytics components in simple mode:
+
+1. [Top action bar](#top-action-bar)
+1. [Left sidebar](#left-sidebar)
+1. [Results window](#results-window)
+1. [More tools](#more-tools)
+
+:::image type="content" source="media/log-analytics-overview/logs-simple-overview.png" lightbox="media/log-analytics-overview/logs-simple-overview.png" alt-text="Screenshot that shows the Log Analytics interface in simple mode with five features identified." :::
+
 ### [KQL mode](#tab/kql)
 
 The following image identifies five Log Analytics components in KQL mode:
@@ -53,33 +64,9 @@ The following image identifies five Log Analytics components in KQL mode:
 
 :::image type="content" source="media/log-analytics-overview/logs-kql-overview.png" lightbox="media/log-analytics-overview/logs-kql-overview.png" alt-text="Screenshot that shows the Log Analytics interface in KQL mode with five features identified.":::
 
-### [Simple mode](#tab/simple)
-
-The following image identifies four Log Analytics components in simple mode:
-
-1. [Top action bar](#top-action-bar)
-1. [Left sidebar](#left-sidebar)
-1. [Results window](#results-window)
-1. [More tools](#more-tools)
-
-:::image type="content" source="media/log-analytics-overview/logs-simple-overview.png" lightbox="media/log-analytics-overview/logs-simple-overview.png" alt-text="Screenshot that shows the Log Analytics interface in simple mode with five features identified." :::
-
 ---
 
 ### Top action bar
-
-### [KQL mode](#tab/kql)
-
-In KQL mode, the top bar has controls for working with a query and switching to simple mode.
-
-:::image type="content" source="media/log-analytics-overview/logs-kql-topbar.png" lightbox="media/log-analytics-overview/logs-kql-topbar.png" alt-text="Screenshot that shows the top action bar in KQL mode.":::
-
-| Option | Description |
-|:-------|:------------|
-| **Run button** | Run the selected query in the query window. You can also select **Shift+Enter** to run a query. |
-| **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
-| **Show** | Configure the number of entries Log Analytics retrieves in simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
-| **Simple/KQL mode** | Switch between Simple and KQL mode. |
 
 ### [Simple mode](#tab/simple)
 
@@ -96,6 +83,19 @@ In simple mode, the top bar has controls for working with data and switching to 
 
 > [!NOTE]
 > In simple mode, the top action bar doesn't include a **Run** button. The results update automatically as the user refines the query.
+
+### [KQL mode](#tab/kql)
+
+In KQL mode, the top bar has controls for working with a query and switching to simple mode.
+
+:::image type="content" source="media/log-analytics-overview/logs-kql-topbar.png" lightbox="media/log-analytics-overview/logs-kql-topbar.png" alt-text="Screenshot that shows the top action bar in KQL mode.":::
+
+| Option | Description |
+|:-------|:------------|
+| **Run button** | Run the selected query in the query window. You can also select **Shift+Enter** to run a query. |
+| **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
+| **Show** | Configure the number of entries Log Analytics retrieves in simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](./log-analytics-simple-mode.md#configure-query-result-limit). |
+| **Simple/KQL mode** | Switch between Simple and KQL mode. |
 
 ---
 
@@ -166,7 +166,7 @@ This section describes more tools available above the query area of the screen, 
 :::image type="content" source="media/log-analytics-overview/logs-more-tools.png" lightbox="media/log-analytics-overview/logs-more-tools.png" alt-text="Screenshot that shows the More tools window in Log Analytics.":::
 
 > [!NOTE]
-> Tabs represent the query history of your current session.
+> Tabs represent the query history of your current session. In simple mode, you can only use one query per tab.
 
 | Option | Description |
 |:-------|:------------|
