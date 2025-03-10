@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 01/30/2025
+ms.date: 03/07/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -45,7 +45,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
-| AlmaLinux 9                                                 | ✓<sup>2</sup> |
+| AlmaLinux 9                                                 | ✓ |
 | AlmaLinux 8                                                 | ✓<sup>2</sup> |
 | Amazon Linux 2                                              | ✓ |
 | Amazon Linux 2023                                           | ✓ |
@@ -65,8 +65,8 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
 | Red Hat Enterprise Linux Server 7                           | ✓ |
-| Rocky Linux 9                                               | ✓ |
-| Rocky Linux 8                                               | ✓ |
+| Rocky Linux 9                                               | ✓<sup>2</sup> |
+| Rocky Linux 8                                               | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP6                         | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP5                         | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP4                         | ✓<sup>2</sup> |
