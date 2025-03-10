@@ -250,7 +250,7 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 1. Select the **Actions** tab.
 
-    :::image type="content" source="./media/alerts-logic-apps/create-action-group.png" alt-text="Screenshot that shows the Actions tab on the Create an action group page.":::
+    :::image type="content" source="./media/alerts-logic-apps/create-action-group.png" alt-text="Screenshot that shows the Basics tab on the Create an action group page.":::
 
 1. On the **Actions** tab under **Action type**, select **Logic App**.
 
@@ -268,17 +268,17 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 ## Test your action group
 
-1. Select your action group.
+1. Go to the **Azure Monitor** page and select **Alerts** from the pane on the left.
 
-1. In the **Logic App** section, select **Test action group (preview)**.
+1. Go to **Action groups** and select your logic app.
 
-    :::image type="content" source="./media/alerts-logic-apps/test-action-group1.png" alt-text="Screenshot that shows an action group details page with the Test action group option.":::
+1. Select **Test** in the top action bar.
 
 1. Select a sample alert type from the **Select sample type** dropdown.
 
 1. Select **Test**.
 
-    :::image type="content" source="./media/alerts-logic-apps/test-action-group2.png" alt-text="Screenshot that shows an action group details Test page.":::
+    :::image type="content" source="./media/alerts-logic-apps/test-action-group.png" alt-text="Screenshot that shows an action group details Test page.":::
     
     The following email is sent to the specified account:
     
