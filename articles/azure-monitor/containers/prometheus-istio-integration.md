@@ -9,11 +9,11 @@ ms.reviewer: sunasing
 
 [Istio](https://istio.io/) is an open-source service mesh that layers transparently onto existing distributed applications. Istio’s powerful features provide a uniform and more efficient way to secure, connect, and monitor services especially in a distributed application architecture. It helps developers handle service-to-service interactions by providing features like traffic management, observability, security, and policy enforcement without modifying application code. Istio is widely used in modern cloud-native applications, especially on Kubernetes.
 
-Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on](/azure/aks/istio-about) that is officially supported and tested for integration with AKS.
+Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on](/azure/aks/istio-about) that is officially supported and tested for integration with AKS and Azure Arc-enabled Kubernetes.
 
 Azure Monitor managed service for Prometheus allows you to collect and analyze metrics at scale. Prometheus metrics are stored in Azure Monitor Workspaces. The workspace supports analysis tools like Azure Managed Grafana, Azure Monitor metrics explorer with PromQL, and open source tools such as PromQL and Grafana.
 
-This document provides step-by-step guide on how you can use Azure Monitor managed service for Prometheus to collect Istio metrics, either using open-source Istio or AKS service-mesh Istio add-on, and visualize them in Azure Managed Grafana.
+This document provides step-by-step guide on how you can use Azure Monitor managed service for Prometheus to collect Istio metrics, either using open-source Istio service-mesh Istio add-on with AKS or Azure Arc-enabled Kubernetes, and visualize them in Azure Managed Grafana.
 
 ## Prerequisites
 

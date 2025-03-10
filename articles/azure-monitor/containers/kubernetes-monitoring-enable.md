@@ -57,7 +57,7 @@ This article provides onboarding guidance for the following types of clusters. A
   - If you previously installed monitoring on a cluster using a script without cluster extensions, follow the instructions at [Disable monitoring of your Kubernetes cluster](kubernetes-monitoring-disable.md) to delete this Helm chart.
 
 > [!NOTE]
-> The Managed Prometheus Arc-Enabled Kubernetes (preview) extension does not support the following configurations:
+> The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations:
 > * Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
 > * Windows nodes
 
@@ -115,7 +115,7 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
 ```
 
-#### Arc-enabled cluster (preview)
+#### Arc-enabled cluster
 
 
 ```azurecli
@@ -192,7 +192,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     - Profile module: [https://aka.ms/nested_azuremonitormetrics_profile_clusterResourceId](https://aka.ms/nested_azuremonitormetrics_profile_clusterResourceId)
     - Azure Managed Grafana Role Assignment module: [https://aka.ms/nested_grafana_amw_role_assignment](https://aka.ms/nested_grafana_amw_role_assignment)
 
-    **Arc-Enabled cluster (preview) ARM**
+    **Arc-Enabled cluster ARM**
 
     - Template file: [https://aka.ms/azureprometheus-arc-arm-template](https://aka.ms/azureprometheus-arc-arm-template)
     - Parameter file: [https://aka.ms/azureprometheus-arc-arm-template-parameters](https://aka.ms/azureprometheus-arc-arm-template-parameters)

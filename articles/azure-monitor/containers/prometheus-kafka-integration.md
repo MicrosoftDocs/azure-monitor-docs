@@ -2,17 +2,17 @@
 title: Configure Kafka integration for Prometheus metrics in Azure Monitor
 description: Describes how to configure Kafka monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
 ms.topic: conceptual
-ms.date: 3/19/2024
+ms.date: 3/10/2025
 ms.reviewer: rashmy
 ---
 # Apache Kafka
 Apache Kafka is an open-source distributed event streaming platform used by high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
-This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) to monitor kafka clusters by scraping prometheus metrics. 
+This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) and Azure Arc-enabled Kubernetes to monitor kafka clusters by scraping prometheus metrics. 
 
 ## Prerequisites
 
-+ Kafka cluster running on AKS
-+ Azure Managed prometheus enabled on the AKS cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
++ Kafka cluster running on AKS or Azure Arc-enabled Kubernetes
++ Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
 
 
 ### Install Kafka Exporter
@@ -51,7 +51,7 @@ To import the Grafana Dashboards using the ID or JSON, follow the instructions t
     |:---|:---|
     | `azureMonitorWorkspace` | Resource ID for the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
     | `location` | Location of the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
-    | `clusterName` | Name of the AKS cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
+    | `clusterName` | Name of the AKS or Azure Arc-enabled Kubernetes cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
     | `actionGroupId` | Resource ID for the alert action group. Retrieve from the **JSON view** on the **Overview** page for the action group. Learn more about [action groups](../alerts/action-groups.md) |
 
 3. Deploy the template by using any standard methods for installing ARM templates. For guidance, see [ARM template samples for Azure Monitor](../resource-manager-samples.md).

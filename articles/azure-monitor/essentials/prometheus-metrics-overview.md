@@ -18,7 +18,7 @@ Prometheus metrics are stored in an Azure Monitor workspace. You can analyze and
 
 ## Azure Monitor managed service for Prometheus
 
-Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md) that provides a fully managed and scalable environment for running Prometheus. It simplifies the deployment, management, and scaling of Prometheus in AKS, so you can focus on monitoring your applications and infrastructure.
+Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md) that provides a fully managed and scalable environment for running Prometheus. It simplifies the deployment, management, and scaling of Prometheus in AKS and Azure Arc-enabled Kubernetes, so you can focus on monitoring your applications and infrastructure.
 
 As a fully managed service, Azure Monitor managed service for Prometheus automatically deploys Prometheus in AKS or Azure Arc-enabled Kubernetes. The service provides high availability, service-level agreement (SLA) guarantees, and automatic software updates. It provides a highly scalable metrics store that retains data for up to 18 months.
 
@@ -27,8 +27,7 @@ Azure Monitor managed service for Prometheus provides preconfigured alerts, rule
 Pricing is based on ingestion and query with no additional storage cost. For more information, see the **Metrics** tab in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 > [!NOTE]
-> Azure Managed Prometheus supports Horizontal Pod Autoscaling for replicaset pods in AKS Kubernetes clusters.
-See [Autoscaling](../containers/prometheus-metrics-scrape-autoscaling.md) to learn more.
+> Azure Managed Prometheus supports Horizontal Pod Autoscaling for replicaset pods in AKS Kubernetes clusters. See [Autoscaling](../containers/prometheus-metrics-scrape-autoscaling.md) to learn more.
 
 ### Enable Azure Monitor managed service for Prometheus
 
