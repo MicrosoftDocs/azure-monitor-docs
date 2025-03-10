@@ -137,17 +137,17 @@ Follow these steps:
     | Check every | Select how often the alert rule checks if the condition is met. |
     | Lookback period | Select how far back to look each time the data is checked. For example, every 1 minute, look back 5 minutes. |
 
-1. (Optional) If you are using dynamic thresholds, in the **Advanced options** section, you can specify how many failures within a specific time period trigger an alert. For example, you can specify that you only want to trigger an alert if there were three failures in the last hour. Your application business policy should determine this setting. 
+1. (Optional) If you're using dynamic thresholds, in the **Advanced options** section, you can specify how many failures within a specific time period trigger an alert. For example, you can specify that you only want to trigger an alert if there were three failures in the last hour. Your application business policy should determine this setting. 
 
     Select values for these fields:
 
     | Field | Description |
     |-------|-------------|
     | Number of violations | The number of violations within the configured time frame that trigger the alert. |
-    | Evaluation period | The time period within which the number of violations occur. |
+    | Evaluation period | The time period in which the number of violations occurs. |
     | Ignore data before | Use this setting to select the date from which to start using the metric historical data for calculating the dynamic thresholds. For example, if a resource was running in testing mode and is moved to production, you may want to disregard the metric behavior while the resource was in testing. |
 
-1. Select **Done**. Once you have configured the alert rule conditions, you can configure the alert rule details to complete creation of the alert, or optionally, you can also add actions and tags to the alert rule.
+1. Select **Done**. Once you configured the alert rule conditions, you can configure the alert rule details to complete creation of the alert, or optionally, you can also add actions and tags to the alert rule.
 
 ## Configure the alert rule actions
 
@@ -210,7 +210,7 @@ Follow these steps:
 
 1. On the **Review + create** tab, the rule is validated, and lets you know about any issues.
 
-1. When validation passes and you've reviewed the settings, select the **Create** button.
+1. When validation passes and you reviewed the settings, select the **Create** button.
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-rule-review-create.png" alt-text="Screenshot that shows the Review and create tab when creating a new alert rule.":::
 
@@ -225,7 +225,7 @@ Consider the following restrictions for metric alert rule names:
 * The combined resource group name and alert rule name can't exceed 252 characters.
 
 > [!NOTE]
-> If the alert rule name contains characters that aren't alphabetic or numeric, for example, spaces, punctuation marks, or symbols, these characters might be URL-encoded when retrieved by certain clients.
+> If the alert rule name contains characters that aren't alphabetic or numeric (for example, spaces, punctuation marks, or symbols), these characters might be URL-encoded when retrieved by certain clients.
 
 ## Restrictions when you use dimensions in a metric alert rule with multiple conditions
 
@@ -237,7 +237,7 @@ Consider the following constraints when you use dimensions in an alert rule that
 
 * You can't use the option to **Select all current and future values**. Select the asterisk (\*).
 
-* You cannot use dynamic thresholds in alert rules that monitor multiple conditions.
+* You can't use dynamic thresholds in alert rules that monitor multiple conditions.
 
 * When metrics that are configured in different conditions support the same dimension, a configured dimension value must be explicitly set in the same way for all those metrics in the relevant conditions.
 
@@ -250,7 +250,7 @@ Consider the following constraints when you use dimensions in an alert rule that
 
     * You want to update the first condition and only monitor transactions where the **ApiName** dimension equals `"GetBlob"`.
 
-    * Because both the **Transactions** and **SuccessE2ELatency** metrics support an **ApiName** dimension, you'll need to update both conditions, and have them specify the **ApiName** dimension with a `"GetBlob"` value.
+    * Because both the **Transactions** and **SuccessE2ELatency** metrics support an **ApiName** dimension, you need to update both conditions, and have them specify the **ApiName** dimension with a `"GetBlob"` value.
 
 ## Considerations when creating an alert rule that contains multiple criteria
 
