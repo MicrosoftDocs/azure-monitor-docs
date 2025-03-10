@@ -131,8 +131,6 @@
     href: experiment-examples.md
   - name: Fault providers
     href: chaos-studio-fault-providers.md
-  - name: Version compatibility
-    href: chaos-studio-versions.md
   - name: Regional availability
     href: chaos-studio-region-availability.md
   - name: Limitations and known issues
