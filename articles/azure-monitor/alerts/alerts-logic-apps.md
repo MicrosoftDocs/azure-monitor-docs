@@ -167,23 +167,15 @@ Select **+** > **Add an action** to insert a new step.
 
 ### [Send an email](#tab/send-email)
 
-1. In the search field, search for **Outlook**.
+1. In the search field, search for **Send an email (V2)**.
 
-1. Select **Office 365 Outlook**.
+1. Under **Office 365 Outlook**, select **Send an email (V2)** from the list of actions.
 
     :::image type="content" source="./media/alerts-logic-apps/choose-operation-outlook.png" alt-text="Screenshot that shows the Add an action page of the Logic Apps Designer with Office 365 Outlook selected.":::
 
-1. Select **Send an email (V2)** from the list of actions.
-
 1. Sign in to Office 365 when you're prompted to create a connection.
 
-1. Create the email **Body** by entering static text and including content taken from the alert payload by choosing fields from the **Dynamic content** list.
-
-    For example:
-
-    * **An alert has monitoring condition:** Select **monitorCondition** from the **Dynamic content** list.
-    * **Date fired:** Select **firedDateTime** from the **Dynamic content** list.
-    * **Affected resources:** Select **alertTargetIDs** from the **Dynamic content** list.
+1. Enter the email address to send the alert to the **To** field.
 
 1. In the **Subject** field, create the subject text by entering static text and including content taken from the alert payload by choosing fields from the **Dynamic content** list.
 
@@ -193,7 +185,13 @@ Select **+** > **Add an action** to insert a new step.
     * **with severity:** Select **severity** from the **Dynamic content** list.
     * **has condition:** Select **monitorCondition** from the **Dynamic content** list.
 
-1. Enter the email address to send the alert to the **To** field.
+1. Create the email **Body** by entering static text and including content taken from the alert payload by choosing fields from the **Dynamic content** list.
+
+    For example:
+
+    * **Monitoring condition:** Select **monitorCondition** from the **Dynamic content** list.
+    * **Date fired:** Select **firedDateTime** from the **Dynamic content** list.
+    * **Affected resources:** Select **alertTargetIDs** from the **Dynamic content** list.
 
 1. Select **Save**.
 
@@ -205,13 +203,11 @@ The next step is to create an action group to trigger your logic app.
 
 ### [Post a Teams message](#tab/send-teams-message)
 
-1. In the search field, search for **Microsoft Teams**.
+1. In the search field, search for **Post message in a chat or channel**.
 
-1. Select **Microsoft Teams**.
+1. Under **Microsoft Teams**, select **Post message in a chat or channel** from the list of actions.
 
     :::image type="content" source="./media/alerts-logic-apps/choose-operation-teams.png" alt-text="Screenshot that shows the Add an action page of the Logic Apps Designer with Microsoft Teams selected.":::
-
-1. Select **Post message in a chat or channel** from the list of actions.
 
 1. Sign in to Teams when you're prompted to create a connection.
 
