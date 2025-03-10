@@ -288,7 +288,7 @@ To trigger your logic app, create an action group. Then create an alert that use
 
 1. [Create an alert rule](./alerts-create-new-alert-rule.md) for one of your resources.
 
-1. On the **Actions** tab of your rule, choose **Select action groups**.
+1. On the **Actions** tab of your rule, choose **Use action groups**.
 
 1. Select your action group from the list.
 
