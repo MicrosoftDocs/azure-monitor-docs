@@ -8,7 +8,7 @@ ms.date: 07/21/2024
 # Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
 ---
 
-# Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview) 
+# Set up a table with the Auxiliary plan in your Log Analytics workspace
 
 The [Auxiliary table plan](../logs/data-platform-logs.md#table-plans) lets you ingest and retain data in your Log Analytics workspace at a low cost. Azure Monitor Logs currently supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](../logs/manage-logs-tables.md#table-type-and-schema) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](../logs/logs-ingestion-api-overview.md).
 
