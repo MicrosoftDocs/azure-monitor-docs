@@ -74,7 +74,7 @@ The diagram and table below compare the Analytics, Basic, and Auxiliary table pl
 
 :::image type="content" source="media/data-platform-logs/azure-monitor-logs-data-plans.png" lightbox="media/data-platform-logs/azure-monitor-logs-data-plans.png" alt-text="Diagram that presents an overview of the capabilities provided by the Analytics, Basic, and Auxiliary table plans.":::
 
-| Features                                               | Analytics                                                    | Basic                                                        | Auxiliary (Preview)                                          |
+| Features                                               | Analytics                                                    | Basic                                                        | Auxiliary                                           |
 | ------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Best for                                               | High-value data used for continuous monitoring, real-time detection, and performance analytics. | Medium-touch data needed for troubleshooting and incident response. | Low-touch data, such as verbose logs, and data required for auditing and compliance. |
 | Supported [table types](../logs/manage-logs-tables.md) | All table types                                              | [Azure tables that support Basic logs](basic-logs-azure-tables.md) and DCR-based custom tables | DCR-based custom tables                                      |
@@ -91,12 +91,12 @@ The diagram and table below compare the Analytics, Basic, and Auxiliary table pl
 | [Summary rules](../logs/summary-rules.md)              | ✅                                                            | ✅ KQL limited to a single table                              | ✅ KQL limited to a single table                              |
 | [Restore](../logs/restore.md)                          | ✅                                                            | ✅                                                            | ❌                                                            |
 | Interactive retention                                  | 30 days (90 days for Microsoft Sentinel and Application Insights).<br> Can be extended to up to two years at a prorated monthly long-term retention charge. | 30 days                                                      | 30 days                                                      |
-| Total retention                                        | Up to 12 years                                               | Up to 12 years                                               | Up to 12 years*<br>*Public preview limitation: Auxiliary plan total retention is currently fixed at 365 days.                                              |
+| Total retention                                        | Up to 12 years                                               | Up to 12 years                                               | Up to 12 years |
 
 <sup>1</sup> Basic and Auxiliary table plans currently support Workbooks and Grafana.
 
 > [!NOTE]
-> The Auxiliary table plan is in public preview. For current limitations and supported regions, see [Public preview limitations](create-custom-table-auxiliary.md#public-preview-limitations).<br> The Basic and Auxiliary table plans aren't available for workspaces in [legacy pricing tiers](cost-logs.md#legacy-pricing-tiers).
+> The Basic and Auxiliary table plans aren't available for workspaces in [legacy pricing tiers](cost-logs.md#legacy-pricing-tiers).
 
 ## Kusto Query Language (KQL) and Log Analytics 
 
