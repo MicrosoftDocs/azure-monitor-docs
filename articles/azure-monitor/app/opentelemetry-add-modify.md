@@ -1812,6 +1812,7 @@ logger.emit({
       "microsoft.custom_event.name": "test",
   },
 });
+```
 
 #### [Python](#tab/python)
   
