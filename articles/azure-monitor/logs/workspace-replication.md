@@ -328,7 +328,7 @@ The `PUT` command is a long running operation that can take some time to complet
 > Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and you won't be able to access them again. Their original copy on your primary location isn't changed in this process.
 
 > [!IMPORTANT]
-> The process of removing cluster replication takes 14 days. If you require an immediate handling of this process, please create an [Azure support request](https://learn.microsoft.com/en-us/azure/azure-portal/supportability/how-to-create-azure-support-request).
+> The process of removing cluster replication takes 14 days. If you require an immediate handling of this process, please create an [Azure support request](https://learn.microsoft.com/azure/azure-portal/supportability/how-to-create-azure-support-request).
 > 
 ## Monitor workspace and service health
 
