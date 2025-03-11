@@ -6,7 +6,7 @@ ms.author: guywild
 ms.reviewer: yossiy
 ms.service: azure-monitor
 ms.topic: how-to 
-ms.date: 11/11/2024
+ms.date: 03/11/2025
 
 # Customer intent: As a Log Analytics workspace administrator, I want to delete data from tables in my Log Analytics workspace if the data is ingested by mistake, corrupt, or includes personal identifiable details.
 ---
@@ -19,7 +19,7 @@ This article explains how to delete log entries from a specific table in your Lo
 
 ## How the Delete Data API works
 
-The Delete Data API removes rows from a table in your Log Analytics workspace.
+The Delete Data API is ideal for unplanned deletions of individual records. For example, when you discover that corrupt telemetry data was ingested to the workspace and you want to prevent it from skewing query results. The Delete Data API mark records that meet the specified filter criteria as deleted without physically removing them from storage. 
 
 To specify which rows of the table you want to delete, you send one or more filters in the body of the API call.
 
