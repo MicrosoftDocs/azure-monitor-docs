@@ -1668,7 +1668,7 @@ Currently unavailable.
 
 -->
   
-### Send custom events (Preview)
+### Send custom events
 
 <!--
 - We're repurposing the "Send custom telemetry using the Application Insights Classic API" for sending custom events.
@@ -1676,12 +1676,12 @@ Currently unavailable.
 - Node and Java - Jackson and Raj to help considering where we move information unrelated to custom events
 -->
 
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 This section provides guidance on instrumenting your application to capture and send custom events.
   
 #### [ASP.NET Core](#tab/aspnetcore)
+
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
@@ -1704,6 +1704,9 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 ```
 
 #### [.NET](#tab/net)
+
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
@@ -1796,62 +1799,19 @@ It's not possible to send custom telemetry using the Application Insights Classi
 
 #### [Node.js](#tab/nodejs)
 
-If you want to add custom events or access the Application Insights API, replace the @azure/monitor-opentelemetry package with the `applicationinsights` [v3 Beta package](https://www.npmjs.com/package/applicationinsights/v/beta). It offers the same methods and interfaces, and all sample code for @azure/monitor-opentelemetry applies to the v3 Beta package.
+To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object.
 
-You need to use the `applicationinsights` v3 Beta package to send custom telemetry using the Application Insights classic API. (https://www.npmjs.com/package/applicationinsights/v/beta)
-
-```javascript
-// Import the TelemetryClient class from the Application Insights SDK for JavaScript.
-const { TelemetryClient } = require("applicationinsights");
-
-// Create a new TelemetryClient instance.
-const telemetryClient = new TelemetryClient();
-```
-
-Then use the `TelemetryClient` to send custom telemetry:
-
-**Events**
-
-```javascript
-// Create an event telemetry object.
-let eventTelemetry = {
-    name: "testEvent"
-};
-
-// Send the event telemetry object to Azure Monitor Application Insights.
-telemetryClient.trackEvent(eventTelemetry);
-```
-
-**Logs**
-
-```javascript
-// Create a trace telemetry object.
-let traceTelemetry = {
-    message: "testMessage",
-    severity: "Information"
-};
-
-// Send the trace telemetry object to Azure Monitor Application Insights.
-telemetryClient.trackTrace(traceTelemetry);
-```
-
-**Exceptions**
-
-```javascript
-// Try to execute a block of code.
-try {
-    ...
-}
-
-// If an error occurs, catch it and send it to Azure Monitor Application Insights as an exception telemetry item.
-catch (error) {
-    let exceptionTelemetry = {
-    exception: error,
-    severity: "Critical"
-    };
-    telemetryClient.trackException(exceptionTelemetry);
-}
-```
+```typescript
+/**
+ * Send a customEvent by including the microsoft attribute key in the log.
+ * The customEvent name uses the value of that attribute.
+ */
+logger.emit({
+  body: 'test log message',
+  attributes: {
+      "microsoft.custom_event.name": "test",
+  },
+});
 
 #### [Python](#tab/python)
   
