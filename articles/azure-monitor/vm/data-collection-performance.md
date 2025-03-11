@@ -36,7 +36,7 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 > Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
 
 ## Add destinations
-Performance counters can be sent to a Log Analytics workspace where it's stored in the [Perf](/azure/azure-monitor/reference/tables/event) table and/or Azure Monitor Metrics (preview) where it's available in [Metrics explorer](../essentials/metrics-explorer.md). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. No further details are required for **Azure Monitor Metrics (preview)** since this is stored at the subscription level for the monitored resource.
+Performance counters can be sent to a Log Analytics workspace where it's stored in the [Perf](/azure/azure-monitor/reference/tables/event) table and/or Azure Monitor Metrics (preview) where it's available in [Metrics explorer](../essentials/metrics-explorer.md). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. While you can add multiple workspaces, be aware that this will send duplicate data to each which will result in additional cost. No further details are required for **Azure Monitor Metrics (preview)** since this is stored at the subscription level for the monitored resource.
 
 > [!NOTE]
 > For Linux, using Azure Monitor Metrics as the only destination is supported in v1.10.9.0 or higher.
