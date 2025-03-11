@@ -45,7 +45,7 @@ The proper operation of the Chaos Agent depends on several software components a
 
 - **Linux Dependencies:**  
   - Some agent-based faults require different dependencies. For example, resource pressure faults depend on the `stress-ng` utility. 
-  - The installer attempts to autoinstall `stress-ng` `tc` and `netem` on supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
+  - The installer attempts to autoinstall `stress-ng` `tc` and `netem` on auto install supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
   - For certain distributions like Azure Linux (Mariner), manual installation of dependencies is necessary.
   - For more info on dependencies, see our [OS compatibility page](chaos-agent-os-support.md)
 
@@ -76,6 +76,18 @@ Imagine you have installed the chaos studio extension by triggering our agent-ba
 
 For more details on installation and identity requirements see the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
+## Filepath of installed files
+
+The agent attempts to install itself and its dependencies in the following filepaths:
+
+- **Windows:** ```C:\Packages\Plugins\Microsoft.Azure.Chaos.ChaosWindowsAgent\<version>```
+- **Linux:** ```/var/lib/waagent/Microsoft.Azure.Chaos.ChaosLinuxAgent-<version>```
+- **Linux Dependencies:** Installed in the linux-x64 folder at the above location
+
+<br>[![Screenshot of terminal example showing filepath of Chaos agent on a linux machine](images/chaos-agent-linux-filepath-example.png)](images/chaos-agent-linux-filepath-example.png#lightbox)<br>
+
+## Additional Concepts
+
 - **Monitoring and Logging:**  
   - Ensure your monitoring solutions capture logs from the Windows Event Log or the Linux systemd journal to diagnose issues effectively.
   
@@ -88,5 +100,5 @@ For more details on installation and identity requirements see the [Chaos Studio
 - **Maintenance and Updates:**  
   - Keep the agent and its dependencies up-to-date to benefit from performance improvements and security patches.
 
-This comprehensive overview should empower you to configure, deploy, and troubleshoot the Chaos Agent effectively within your Azure environment.
+These concepts should help you understand how things work so you can configure, deploy, and troubleshoot the Chaos Agent effectively within your Azure environment.
 
