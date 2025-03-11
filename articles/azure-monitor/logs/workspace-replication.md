@@ -242,6 +242,26 @@ To replicate data you collect using data collection rules, associate your data c
 > [!IMPORTANT]
 > Data collection rules connected to a workspace data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
 
+### What to check if workspace replication fails
+* Is the workspace linked to a dedicated cluster? 
+    * Replication must be enabled on the cluster before it can be enabled on the workspace. 
+    * Both cluster and workspace replication must be set to the same secondary location. For example, if the cluster is replicated to  North Europe, the workspaces linked to it can only be replicated to North Europe too.
+* Did you use the REST API to enable replication?
+    * Verify you used API version 2025-02-01 or later.
+* Is the primary workspace located in East US, East US 2, or South Central US?
+    * East US, East US 2, and South Central US can't replicate to one another.
+* Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can’t have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
+* Do you have the [required permissions](#permissions-required)?
+* Did you allow enough time for replication operation to complete? replication is a long running operation. Monitor the state of the opeation as explained in [Check request provisioning state](#check-request-provisioning-state).
+* Did you try to re-enable replication in order to change the workspace secondary location? To change the location of your secondary workspace, you must first [disable workspace replication](#disable-workspace-replication), allow the operation to complete and only then eable replication to another secondary location.
+
+### What to check if workspace replication is set but logs are not replicated?
+
+* Replication can take up to an hour to start applying, and some data types may start replicating before others.
+* Logs ingested to the workspace before replication was enabled are **not** copied over to the seconary workspace. Only logs ingested after replication was enabled - will be replicated.
+* If some logs are replicated and other are not - verify all the data collection rules (DCRs) that stream logs to the workspace are [configured properly](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). To review the DCRs that target the workspace, see the [Log Analytics Workspace Insights](log-analytics-workspace-insights-overview.md) Data Collection tab, in the Azure Portal.
+
+
 ### Disable workspace replication
 
 To disable replication for a workspace, use this `PUT` command:
@@ -380,6 +400,12 @@ Where:
 * `<workspace_name>`: The name of the workspace to switch to during switchover.
 
 The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+
+### What to check if switchover (failover) fails
+* Did you use the REST API to trigger switchover (failover)?
+    * Verify you used API version 2025-02-01 or later.
+    * Verify the secondary location provided in the failover command is the secondary location set for this workspace. This information is available in the Azure Portal view of the workspace, and over API.
+* Switching regions requires a Log Analytics Contributor role **on the resource group of the workspace**, and not just on the workspace itsef.
 
 ## Switch back to your primary workspace
 
