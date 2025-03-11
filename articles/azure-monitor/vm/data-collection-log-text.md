@@ -150,6 +150,9 @@ Many text log files have entries with columns delimited by a character such as a
 
 The sample text file shown above is comma-delimited, and the fields could be described as: `Time`, `Code`, `Severity`, `Module`, and `Message`. To parse this data into separate columns, add each of the columns to the destination table and add the following transformation to the DCR.
 
+> [!IMPORTANT]
+> Prior to adding this transformation to the DCR, you must add these columns to the destination table. You can modify the PowerShell script above to include the additional columns when the table is created. Or use the Azure portal as described in [Add or delete a custom column](../logs/create-custom-table.md#add-or-delete-a-custom-column) to add the columns to an existing table.
+
 Notable details of the transformation query include the following:
 
 - The query outputs properties that each match a column name in the target table. 
