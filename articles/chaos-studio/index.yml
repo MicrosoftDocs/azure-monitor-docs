@@ -97,7 +97,7 @@ landingContent:
             url: chaos-studio-fault-providers.md
           - text: Regional availability
             url: chaos-studio-region-availability.md
-          - text: Chaos mesh versions
+          - text: Chaos Mesh version compatibility
             url: chaos-studio-versions.md
           - text: Limitations and known issues
             url: chaos-studio-limitations.md
