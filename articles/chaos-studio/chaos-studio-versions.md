@@ -1,6 +1,6 @@
 ---
 title: Azure Chaos Studio compatibility
-description: Understand the compatibility of Azure Chaos Studio with operating systems and tools.
+description: Understand the compatibility of Azure Chaos Studio with Chaos Mesh operating systems and tools.
 services: chaos-studio
 author: rsgel 
 ms.topic: overview
@@ -10,7 +10,7 @@ ms.reviewer: carlsonr
 ms.service: azure-chaos-studio
 ---
 
-# Azure Chaos Studio Chaos mesh version compatibility
+# Azure Chaos Studio Chaos Mesh version compatibility
 
 The following reference shows relevant version support and compatibility for chaos mesh within Chaos Studio.
 
