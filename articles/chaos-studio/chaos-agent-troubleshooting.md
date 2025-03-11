@@ -103,7 +103,7 @@ Look for error messages indicating connectivity or dependency issues.
   - Start/Stop Agent on the host
     - In Admin powershell, run ```Start-Service AzureChaosAgent``` or ```Stop-Service AzureChaosAgent``` 
 - **Linux agent local debugging**
-  - Linux chaos agent is managed by systemd. [Systemd](https://www.man7.org/linux/man-pages/man1/systemd.1.html)
+  - Linux chaos agent is managed by [Systemd](https://www.man7.org/linux/man-pages/man1/systemd.1.html).
   - Agent location
     - If Agent is running, you can locate linux agent executable by running ```ps aux | grep chaos```
   - Get Agent log on host
