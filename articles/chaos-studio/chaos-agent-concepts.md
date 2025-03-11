@@ -70,6 +70,10 @@ The agent authenticates with Azure Chaos Studio using a user-assigned managed id
 
 ### VM Extension diagram
 
+Imagine you have installed the chaos studio extension by triggering our agent-based faults. The following diagram displays how this installation would proceed. 
+
+<br>[![Diagram showing how the VM Extension Platform in Azure talks to the customer VM and installs the chaos studio agent.](images/chaos-vm-extension-diagram.png)](images/chaos-vm-extension-diagram.png#lightbox)<br>
+
 For more details on installation and identity requirements see the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
 ## Filepath of installed files
