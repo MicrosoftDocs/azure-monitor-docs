@@ -72,7 +72,7 @@ The following image identifies five Log Analytics components in KQL mode:
 
 In simple mode, the top bar has controls for working with data and switching to KQL mode.
 
-:::image type="content" source="media/log-analytics-overview/logs-simple-topbar.png" lightbox="media/log-analytics-overview/logs-simple-topbar.png" alt-text="Screenshot that shows the top action bar in simple mode.":::
+:::image type="content" source="media/log-analytics-overview/logs-simple-top-bar.png" lightbox="media/log-analytics-overview/logs-simple-top-bar.png" alt-text="Screenshot that shows the top action bar in simple mode.":::
 
 | Option | Description |
 |:-------|:------------|
@@ -88,7 +88,7 @@ In simple mode, the top bar has controls for working with data and switching to 
 
 In KQL mode, the top bar has controls for working with a query and switching to simple mode.
 
-:::image type="content" source="media/log-analytics-overview/logs-kql-topbar.png" lightbox="media/log-analytics-overview/logs-kql-topbar.png" alt-text="Screenshot that shows the top action bar in KQL mode.":::
+:::image type="content" source="media/log-analytics-overview/logs-kql-top-bar.png" lightbox="media/log-analytics-overview/logs-kql-top-bar.png" alt-text="Screenshot that shows the top action bar in KQL mode.":::
 
 | Option | Description |
 |:-------|:------------|
