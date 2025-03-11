@@ -84,10 +84,9 @@ As frameworks and Azure services evolve, you can enable .NET Profiler for your .
 
 Since the Profiler is already installed in the Azure App Service runtime, you can enable Profiler for .NET in the Azure portal for your .NET apps running on:
 - [Azure App Service - .NET app on Windows](../profiler/profiler.md)
-- [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md)
 - [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md)
 
-There is no code change required in your application.
+There is no code change required in your application for these services.
 
 # [ARM template](#tab/arm)
 
@@ -99,15 +98,16 @@ Once you've enabled the Application Insights SDK in your application code, no ot
 
 # [Code](#tab/code)
 
-If your .NET app runs on other variants of [Azure PaaS services or Containers](../profiler/profiler-containers.md), such as:
-- Azure Container Apps
-- Azure Kubernetes Services
-- Azure Container Instances
+If your .NET app runs on other variants of Azure PaaS services or Containers, such as:
+- [Azure Container Apps](../profiler/profiler-containers.md)
+- [Azure Kubernetes Services](../profiler/profiler-containers.md)
+- [Azure Container Instances](../profiler/profiler-containers.md)
+- [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md)
 
 You can choose between two options for enabling .NET Profiler:
 
 - [Application Insights Profiler for ASP.NET Core](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore) that uses the [Application Insights SDK](../app/asp-net-core.md), or
-- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/26ce82dc69ca3b9b74df0a31833309e2a49904ad/README.md) that uses [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-help-support-feedback.md#why-should-i-use-the-azure-monitor-opentelemetry-distro)
+- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net) that uses [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-help-support-feedback.md#why-should-i-use-the-azure-monitor-opentelemetry-distro)
 
 ---
 
