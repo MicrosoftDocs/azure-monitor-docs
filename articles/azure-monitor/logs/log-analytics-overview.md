@@ -182,7 +182,7 @@ This section describes more tools available above the query area of the screen, 
 | **Log Analytics settings** | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data.<br><br>*See screenshot below.* |
 | **Queries hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 
-<img src="media/log-analytics-overview/logs-settings.png" alt="Screenshot that shows Log Analytics settings." width="65%" border="1px" style='border:1px solid #e6e6e6'>
+:::image type="content" source="media/log-analytics-overview/logs-settings.png" lightbox="media/log-analytics-overview/logs-settings-zoom.png" alt-text="Screenshot that shows the Logs settings window in Log Analytics.":::
 
 ## Relationship to Azure Data Explorer
 
