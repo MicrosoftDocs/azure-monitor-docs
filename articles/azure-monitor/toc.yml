@@ -629,8 +629,6 @@ items:
         href: /azure/network-watcher/network-insights-overview?toc=/azure/azure-monitor/toc.json
       - name: Topology
         href: /azure/network-watcher/network-insights-topology?toc=/azure/azure-monitor/toc.json
-      - name: Troubleshoot
-        href: /azure/network-watcher/network-insights-troubleshooting?toc=/azure/azure-monitor/toc.json
   - name: Azure Monitor SCOM Managed Instance
     items:
     - name: SCOM Managed Instance
