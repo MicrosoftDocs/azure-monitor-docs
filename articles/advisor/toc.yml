@@ -48,6 +48,8 @@
     href: advisor-azure-resource-graph.md
   - name: Calculate total cost savings
     href: advisor-how-to-calculate-total-cost-savings.md
+  - name: Use Service Upgrade and Retirement recommendations
+    href: ./advisor-how-to-use-service-upgrade-retirement-recommendations.md
 - name: Recommendations
   items:
   - name: Cost
