@@ -80,7 +80,7 @@ The agent attempts to install itself and its dependencies in the following filep
 - **Linux:** ```/var/lib/waagent/Microsoft.Azure.Chaos.ChaosLinuxAgent-<version>```
 - **Linux Dependencies:** Installed in the linux-x64 folder at the above location
 
-
+<br>[![Screenshot of terminal example showing filepath of Chaos agent on a linux machine](images/chaos-agent-linux-filepath-example.png)](chaos-agent-linux-filepath-example.png#lightbox)<br>
 
 ## Additional Concepts
 
