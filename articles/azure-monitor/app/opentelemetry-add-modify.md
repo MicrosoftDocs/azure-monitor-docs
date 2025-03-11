@@ -1682,45 +1682,47 @@ This section provides guidance on instrumenting your application to capture and 
   
 **Events**
 
-1. Add `Microsoft.ApplicationInsights` to your application.
+To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
-1. Create a `TelemetryClient` instance:
+```csharp
+// Create a logger factory and configure OpenTelemetry with Azure Monitor
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder
+        .AddOpenTelemetry(options =>
+        {
+            options.AddAzureMonitorLogExporter();
+        });
+});
 
-    > [!NOTE]
-    > It's important to only create once instance of the TelemetryClient per application.
-    
-    ```csharp
-    var telemetryConfiguration = new TelemetryConfiguration { ConnectionString = "" };
-    var telemetryClient = new TelemetryClient(telemetryConfiguration);
-    ```
+// Create a logger for the specified category
+var logger = loggerFactory.CreateLogger(logCategoryName);
 
-1. Use the client to send custom telemetry:
-
-    ```csharp
-    telemetryClient.TrackEvent("testEvent");
-    ```
+// Send a custom event with the event name and additional attributes
+logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
+```
 
 #### [.NET](#tab/net)
 
-**Events**
+To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
-1. Add `Microsoft.ApplicationInsights` to your application.
+```csharp
+// Create a logger factory and configure OpenTelemetry with Azure Monitor
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder
+        .AddOpenTelemetry(options =>
+        {
+            options.AddAzureMonitorLogExporter();
+        });
+});
 
-1. Create a `TelemetryClient` instance:
+// Create a logger for the specified category
+var logger = loggerFactory.CreateLogger(logCategoryName);
 
-    > [!NOTE]
-    > It's important to only create once instance of the TelemetryClient per application.
-    
-    ```csharp
-    var telemetryConfiguration = new TelemetryConfiguration { ConnectionString = "" };
-    var telemetryClient = new TelemetryClient(telemetryConfiguration);
-    ```
-
-1. Use the client to send custom telemetry:
-
-    ```csharp
-    telemetryClient.TrackEvent("testEvent");
-    ```
+// Send a custom event with the event name and additional attributes
+logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
+```
 
 #### [Java](#tab/java)
 
