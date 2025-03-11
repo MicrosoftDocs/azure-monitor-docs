@@ -117,9 +117,9 @@ Pin the left pane to keep it open while you work, or maximize your query window 
 > [!NOTE]
 > The **Tables** view doesn't show empty tables by default.
 >
-> To change that for the current session, open the context menu `...` next to the search bar, then select **Show tables with no data**.
+> * To change that for the *current session*, open the context menu `...` next to the search bar, then select **Show tables with no data**.
 >
-> To show or hide empty tables permanently, open the context menu `...` above the top action bar, select **Log Analytics settings**, toggle **Show tables with no data**, and **Save** your changes.
+> * To show or hide empty tables *permanently*, open the context menu `...` [above the top action bar](#more-tools), select **Log Analytics settings**, toggle **Show tables with no data**, and **Save** your changes.
 
 ### Query window
 
