@@ -78,10 +78,7 @@ Some Code Optimization features (such as code-level fix suggestions) require [Co
 
 ## Enabling .NET Profiler
 
-As frameworks and Azure services evolve, you can enable .NET Profiler for your .NET apps running on Azure via a number of options. Select the method for enabling .NET Profiler on your application.
-- [Azure portal](#azure-portal)
-- [ARM template](#arm-template)
-- [Application code](#application-code)
+As frameworks and Azure services evolve, you can enable .NET Profiler for your .NET apps running on Azure via a number of options.
 
 ### Azure portal
 
