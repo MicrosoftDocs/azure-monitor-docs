@@ -89,6 +89,29 @@ The agent reports two key statuses on the VM’s **Extensions + applications** b
 Look for error messages indicating connectivity or dependency issues.
 
 ---
+## Chaos Agent local VM debugging
+
+### Debug Agent logs on host
+
+- **Windows agent local debugging**
+  - Chaos agent is running as windows service `AzureChaosAgent`
+    - Windows service code runs in the VMExtention handler
+  - Agent location 
+    - Agent is installed as Azure VM Extension. Agent location is typically at ```C:\Packages\Plugins\Microsoft.Azure.Chaos.ChaosWindowsAgent\<version>``` . The directory contains both ```AzureChaosAgent.exe``` and ```agentsettings.json``` and libraries.
+  - Get Agent log on host: Agent log is pushed to windows service log. 
+    - Example powershell command to check latest 50 lines of agent log: ```Get-EventLog -LogName "Application" -Source "AzureChaosAgent" -Newest 50```` . 
+  - Start/Stop Agent on the host
+    - In Admin powershell, run ```Start-Service AzureChaosAgent``` or ```Stop-Service AzureChaosAgent``` 
+- **Linux agent local debugging**
+  - Linux chaos agent is managed by [Systemd](https://www.man7.org/linux/man-pages/man1/systemd.1.html).
+  - Agent location
+    - If Agent is running, you can locate linux agent executable by running ```ps aux | grep chaos```
+  - Get Agent log on host
+    - Example bash command to latest 50 lines of agent log: ```journalctl -u azure-chaos-agent --lines 50```
+  - Start/Stop Agent on the host
+    - run bash command ```systemctl start azure-chaos-agent``` or ```systemctl stop azure-chaos-agent```
+   
+---
 
 ## Other Common Errors and Solutions
 
