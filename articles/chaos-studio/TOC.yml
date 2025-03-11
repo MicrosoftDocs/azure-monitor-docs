@@ -133,7 +133,7 @@
     href: chaos-studio-fault-providers.md
   - name: Regional availability
     href: chaos-studio-region-availability.md
-  - name: Chaos mesh supported versions
+  - name: Chaos Mesh version compatibility
     href: chaos-studio-versions.md
   - name: Limitations and known issues
     href: chaos-studio-limitations.md
