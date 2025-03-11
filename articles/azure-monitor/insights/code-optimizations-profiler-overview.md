@@ -80,34 +80,11 @@ Some Code Optimization features (such as code-level fix suggestions) require [Co
 
 As frameworks and Azure services evolve, you can enable .NET Profiler for your .NET apps running on Azure via a number of options.
 
-### Via the Azure portal
-
-Since the Profiler is already installed in the Azure App Service runtime, you can enable Profiler for .NET in the Azure portal for your .NET apps running on:
-- [Azure App Service - .NET app on Windows](../profiler/profiler.md)
-- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md)
-
-There is no code change required in your application for these services.
-
-### Via an ARM template
-
-You can enable the Profiler for .NET with an ARM template for .NET apps hosted on:
-- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)
-- [Azure Service Fabric](../profiler/profiler-servicefabric.md)
-
-Once you've enabled the Application Insights SDK in your application code, no other code change is required to enable the .NET Profiler.
-
-### In your application code
-
-If your .NET app runs on other variants of Azure PaaS services or Containers, such as:
-- [Azure Container Apps](../profiler/profiler-containers.md)
-- [Azure Kubernetes Services](../profiler/profiler-containers.md)
-- [Azure Container Instances](../profiler/profiler-containers.md)
-- [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md)
-
-You can choose between two options for enabling .NET Profiler:
-
-- [Application Insights Profiler for ASP.NET Core](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore) that uses the [Application Insights SDK](../app/asp-net-core.md), or
-- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net) that uses [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-help-support-feedback.md#why-should-i-use-the-azure-monitor-opentelemetry-distro)
+| Enablement method        | Services |
+| ------------------------ | -------- | 
+| Using the Azure portal   | Since the Profiler is already installed in the Azure App Service runtime, you can enable Profiler for .NET in the Azure portal for your .NET apps running on:<br>- [Azure App Service - .NET app on Windows](../profiler/profiler.md)<br>- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md)<br>There is no code change required in your application for these services. |
+| Using an ARM template    | You can enable the Profiler for .NET with an ARM template for .NET apps hosted on:<br>- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)<br>- [Azure Service Fabric](../profiler/profiler-servicefabric.md)<br>- [Azure App Service - .NET app on Windows](../profiler/profiler.md)<br>- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md)<br>There is no code change required in your application for these services.<br>Once you've enabled the Application Insights SDK in your application code, no other code change is required to enable the .NET Profiler. |
+| In your application code | If your .NET app runs on other variants of Azure PaaS services or Containers, such as:<br>- [Azure Container Apps](../profiler/profiler-containers.md)<br>- [Azure Kubernetes Services](../profiler/profiler-containers.md)<br>- [Azure Container Instances](../profiler/profiler-containers.md)<br>- [Azure App Service - .NET app on Windows](../profiler/profiler-containers.md)<br>- [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md)<br>You can choose between two options for enabling .NET Profiler:<br>- [Application Insights Profiler for ASP.NET Core](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore) that uses the [Application Insights SDK](../app/asp-net-core.md), or<br>- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net) that uses [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-help-support-feedback.md#why-should-i-use-the-azure-monitor-opentelemetry-distro) |
 
 > [!NOTE]
 > You can also use the [Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md), currently in preview.
