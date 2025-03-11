@@ -789,9 +789,6 @@ items:
         href: essentials/edge-pipeline-configure.md
       - name: Tutorials
         items:
-        - name: Transformation in text logs
-          displayName: Custom text logs, transformations
-          href: agents/azure-monitor-agent-transformation.md
         - name: Workspace transformation in Azure portal
           displayName: Workspace transformations
           href: logs/tutorial-workspace-transformations-portal.md
