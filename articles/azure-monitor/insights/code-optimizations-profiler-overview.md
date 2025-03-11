@@ -80,7 +80,7 @@ Some Code Optimization features (such as code-level fix suggestions) require [Co
 
 As frameworks and Azure services evolve, you can enable .NET Profiler for your .NET apps running on Azure via a number of options.
 
-### Azure portal
+### Via the Azure portal
 
 Since the Profiler is already installed in the Azure App Service runtime, you can enable Profiler for .NET in the Azure portal for your .NET apps running on:
 - [Azure App Service - .NET app on Windows](../profiler/profiler.md)
@@ -88,7 +88,7 @@ Since the Profiler is already installed in the Azure App Service runtime, you ca
 
 There is no code change required in your application for these services.
 
-### ARM template
+### Via an ARM template
 
 You can enable the Profiler for .NET with an ARM template for .NET apps hosted on:
 - [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)
@@ -96,7 +96,7 @@ You can enable the Profiler for .NET with an ARM template for .NET apps hosted o
 
 Once you've enabled the Application Insights SDK in your application code, no other code change is required to enable the .NET Profiler.
 
-### Application code
+### In your application code
 
 If your .NET app runs on other variants of Azure PaaS services or Containers, such as:
 - [Azure Container Apps](../profiler/profiler-containers.md)
