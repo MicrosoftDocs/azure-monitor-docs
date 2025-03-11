@@ -60,7 +60,7 @@ There are four types of availability tests:
    |---------|---------|-------------|
    | **Basic Information** | | |
    | | **URL** | The URL can be any webpage you want to test, but it must be visible from the public internet. The URL can include a query string. So, for example, you can exercise your database a little. If the URL resolves to a redirect, we follow it up to 10 redirects. |
-   | | **Parse dependent requests** | Test requests images, scripts, style files, and other files that are part of the webpage under test. The recorded response time includes the time taken to get these files. The test fails if any of these resources can't be successfully downloaded within the timeout for the whole test. If the option isn't selected, the test only requests the file at the URL you specified. Enabling this option results in a stricter check. The test could fail for cases, which might not be noticeable when you manually browse the site. We parse only up to 15 dependent requests. |
+   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the timeout. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
    | | **Enable retries for availability test failures** | When the test fails, it retries after a short interval. A failure is reported only if three successive attempts fail. Subsequent tests are then performed at the usual test frequency. Retry is temporarily suspended until the next success. This rule is applied independently at each test location. *We recommend this option*. On average, about 80% of failures disappear on retry. |
    | | **Enable SSL certificate validity** | You can verify the SSL certificate on your website to make sure it's correctly installed, valid, trusted, and doesn't give any errors to any of your users. SSL certificate validation will only be performed on the *final redirected URL*. |
    | | **Proactive lifetime check** | This setting enables you to define a set time period before your SSL certificate expires. After it expires, your test will fail. |
@@ -448,7 +448,7 @@ The following steps walk you through the process of creating [standard tests](#t
     -Location $pingTest.Location -Kind 'standard' -Tag @{ "hidden-link:$componentId" = "Resource" } -TestName $newStandardTestName `
     -RequestUrl $pingTestRequest.Url -RequestHttpVerb "GET" -GeoLocation $pingTest.PropertiesLocations -Frequency $pingTest.Frequency `
     -Timeout $pingTest.Timeout -RetryEnabled:$pingTest.RetryEnabled -Enabled:$pingTest.Enabled `
-    -RequestParseDependent:($pingTestRequest.ParseDependentRequests -eq [bool]::TrueString);
+    -RequestParseDependent:($pingTestRequest.ParseDependentRequests -eq [bool]::TrueString) -RuleSslCheck:$false;
     ```
 
     The new standard test doesn't have alert rules by default, so it doesn't create noisy alerts. No changes are made to your URL ping test so you can continue to rely on it for alerts.

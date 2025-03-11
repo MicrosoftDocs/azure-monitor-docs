@@ -1,17 +1,15 @@
 ---
-title: Analyze data using Log Analytics Simple mode (Preview)
+title: Analyze data using Log Analytics Simple mode
 description: This article explains how to use Log Analytics Simple mode to explore and analyze data in Azure Monitor Logs.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
-ms.reviewer: ilanawaitser
-ms.date: 05/19/2024
+ms.reviewer: noyablanga
+ms.date: 02/02/2025
 
 # Customer intent: As an analyst or DevOps troubleshooter, I want to get insights from log data without using Kusto Query Language (KQL).
 
 ---
 
-# Analyze data using Log Analytics Simple mode (Preview)
+# Analyze data using Log Analytics Simple mode
 
 Log Analytics now offers two modes that make log data simpler to explore and analyze for both basic and advanced users:  
 
@@ -30,12 +28,6 @@ Here's a video that provides a quick overview of how to query logs in Log Analyt
 
 >[!VIDEO https://www.youtube.com/embed/85Xxj5FhTk0?cc_load_policy=1&cc_lang_pref=auto]
 
-## Try Log Analytics Simple mode
-
-Simple Mode is now the default view for some users. If it’s not enabled by default for you, simply select **Try the new Log Analytics** at the top-right corner of the query editor. You can switch back to the classic Log Analytics experience at any time. 
-
-:::image type="content" source="media/log-analytics-explorer/try-new-log-analytics.png" alt-text="A screenshot showing the Try the new Log Analytics button." lightbox="media/log-analytics-explorer/try-new-log-analytics.png":::
-
 ## How Simple mode works
 
 Simple mode lets you [get started quickly by retrieving data from one or more tables with one click](#get-started-in-simple-mode). You then use a set of intuitive controls to [explore and analyze the retrieved data](#explore-and-analyze-data-in-simple-mode).  
@@ -53,7 +45,7 @@ In Simple mode, the top bar has controls for working with data and switching to 
 | Option | Description |
 |:---|:---|
 | **Time range** | Select the [time range](./scope.md) for the data available to the query. In KQL mode, if you set a different time range in your query, the time range you set in the time picker is overridden. |
-|**Limit**|Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](#configure-query-result-limit).|
+|**Show**|Configure the number of entries Log Analytics retrieves in Simple mode. The default limit is 1000. For more information on query limits, see [Configure query results limit](#configure-query-result-limit).|
 |**Add**|Add filters, and apply Simple mode operators, as described in [Explore and analyze data in Simple mode](#explore-and-analyze-data-in-simple-mode).|
 |**Simple/KQL mode**|Switch between Simple and KQL mode.|
 
@@ -131,7 +123,7 @@ After you [get started in Simple mode](#get-started-in-simple-mode), you can exp
 
 By default, Simple mode lists the latest 1,000 entries in the table from the last 24 hours. 
 
-To change the time range and number of records displayed, use the **Time range** and **Limit** selectors. For more information about result limit, see [Configure query result limit](#configure-query-result-limit).
+To change the time range and number of records displayed, use the **Time range** and **Show** selectors. For more information about result limit, see [Configure query result limit](#configure-query-result-limit).
     
 :::image type="content" source="media/log-analytics-explorer/log-analytics-time-range-limit.png" alt-text="Screenshot that shows the time range and limit selectors in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-time-range-limit.png":::
 
@@ -213,7 +205,7 @@ For straightforward queries on a single table, Log Analytics displays the table 
 
 ## Configure query result limit
 
-1. Select **Limit** to open the **Limit results** window.
+1. Select **Show** to open the **Show results** window.
 
     :::image type="content" source="media/log-analytics-explorer/log-analytics-result-limits.png" alt-text="Screenshot that shows the limit results window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-result-limits.png":::
 

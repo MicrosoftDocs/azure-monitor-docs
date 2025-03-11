@@ -36,6 +36,11 @@ The following targets are **enabled/ON** when you enable Container Network Obser
 - `networkobservabilityHubble` (`job=networkobservabilityHubble`)
 - `networkobservabilityCilium` (`job=networkobservabilityCilium`)
 
+The following targets are **enabled/ON** when you enable Azure Container Storage which is a cloud-based volume management, deployment, and orchestration service built natively for containers and natively integrates with AKS. For more information, see [Azure Container Storage](/azure/storage/container-storage/enable-monitoring).
+
+- `acstor-capacity-provisioner` (`job=acstor-capacity-provisioner`)
+- `acstor-metrics-exporter` (`job=acstor-metrics-exporter`)
+
 ## Metrics collected from default targets
 
 The following metrics are collected by default from each default target. All other metrics are dropped through relabeling rules.
@@ -168,16 +173,18 @@ The following metrics are collected by default from each default target. All oth
    - `apiserver_cache_list_returned_objects_total`
    - `apiserver_flowcontrol_demand_seats_average`
    - `apiserver_flowcontrol_current_limit_seats`
-   - `apiserver_request_sli_duration_seconds_bucket`
+   - `apiserver_request_sli_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_sli_duration_seconds_count`
    - `apiserver_request_sli_duration_seconds_sum`
    - `process_start_time_seconds`
-   - `apiserver_request_duration_seconds_bucket`
+   - `apiserver_request_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_duration_seconds_count`
    - `apiserver_request_duration_seconds_sum`
    - `apiserver_storage_list_fetched_objects_total`
    - `apiserver_storage_list_returned_objects_total`
    - `apiserver_current_inflight_requests`
+> [!NOTE]
+> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and all series are not collected by default(minimal ingestion profile). Only the sum, count are used for gathering the average latencies
 
    **controlplane-etcd (job=controlplane-etcd)**<br>
    - `etcd_server_has_leader`
@@ -191,6 +198,9 @@ The following metrics are collected by default from each default target. All oth
 
    **networkobservabilityHubble (job=networkobservabilityHubble)**, and **networkobservabilityCilium (job=networkobservabilityCilium)** <br>
    For list of metrics collected by these targets, see [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics)
+
+   **acstor-capacity-provisioner (job=acstor-capacity-provisioner)** and **acstor-metrics-exporter (job=acstor-metrics-exporter**) <br>
+   For list of metrics collected by these targets, see [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
 
 ## Default targets scraped for Windows
 Following Windows targets are configured to scrape, but scraping isn't enabled (**disabled/OFF**) by default - meaning you don't have to provide any scrape job configuration for scraping these targets but they are disabled/OFF by default and you need to turn ON/enable scraping for these targets using [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) under `default-scrape-settings-enabled` section.

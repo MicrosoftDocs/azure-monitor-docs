@@ -2,8 +2,6 @@
 title: Optimize log queries in Azure Monitor
 description: Best practices for optimizing log queries in Azure Monitor.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: MeirMen
 ms.date: 10/11/2024
 
@@ -26,7 +24,7 @@ Pay particular attention to queries that are used for recurrent and simultaneous
 
 Here's a detailed video walkthrough on optimizing queries.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE4NUH0]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=e498f85b-a3c6-4f77-95ce-cdd0a1a9d466]
 
 ## Query Details pane
 After you run a query in Log Analytics, select **Query details** at the bottom right corner of the screen to open the **Query Details** pane. This pane shows the results of several performance indicators for the query. These performance indicators are described in the following section.

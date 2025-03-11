@@ -2,8 +2,6 @@
 title: Log Analytics agent overview
 description: This article helps you understand how to collect data and monitor computers hosted in Azure, on-premises, or other cloud environments with Log Analytics.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 11/14/2024
 ms.reviewer: luki
 
@@ -80,7 +78,7 @@ The following table lists the types of data you can configure a Log Analytics wo
 | --- | --- |
 | [Windows Event logs](../agents/data-sources-windows-events.md) | Information sent to the Windows event logging system |
 | [Syslog](../agents/data-sources-syslog.md)                     | Information sent to the Linux event logging system |
-| [Performance](../agents/data-sources-performance-counters.md)  | Numerical values measuring performance of different aspects of operating system and workloads |
+| [Performance](data-sources-performance-counters.md)  | Numerical values measuring performance of different aspects of operating system and workloads |
 | [IIS logs](../agents/data-sources-iis-logs.md)                 | Usage information for IIS websites running on the guest operating system |
 | [Custom logs](../agents/data-sources-custom-logs.md)           | Events from text files on both Windows and Linux computers |
 
@@ -101,7 +99,7 @@ The Windows and Linux agents support the [FIPS 140 standard](/windows/security/t
 
 ## TLS protocol
 
-To ensure the security of data in transit to Azure Monitor logs, we strongly encourage you to configure the agent to use at least Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable. Although they still currently work to allow backward compatibility, they are *not recommended*. For more information, see [Sending data securely using TLS](../logs/data-security.md#sending-data-securely-using-tls).
+To ensure the security of data in transit to Azure Monitor logs, we strongly encourage you to configure the agent to use at least Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable. Although they still currently work to allow backward compatibility, they are *not recommended*. 
 
 ## Network requirements
 

@@ -1,10 +1,9 @@
 ---
 title: Roles, permissions, and security in Azure Monitor
 description: Learn how to use roles and permissions in Azure Monitor to restrict access to monitoring resources.
-services: azure-monitor
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
-ms.date: 05/31/2024
+ms.date: 02/12/2025
 ms.reviewer: dalek
 ---
 
@@ -14,7 +13,7 @@ This article shows how to apply [role-based access control (RBAC)](/azure/role-b
 
 ## Built-in monitoring roles
 
-[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) provides built-in roles for monitoring that you can assign to users, groups, service principals, and managed identities. The most common roles are [*Monitoring Reader*](#monitoring-reader) and [*Monitoring Contributor*](#monitoring-contributor) for read and write permissions, respectively.
+[Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) provides built-in roles for monitoring that you can assign to users, groups, service principals, and managed identities. The most common roles are [*Monitoring Reader*](#monitoring-reader) and [*Monitoring Contributor*](#monitoring-contributor) for read and write permissions, respectively. When assigning a role, you can specify the scope of the role assignment. Roles can be assigned at the subscription, resource group, or resource level. The wider the scope, the more resources the role assignment applies to. Make sure that you assign the role at the appropriate scope to limit access to only the resources that the user needs to access.
 
 For more detailed information on the monitoring roles, see [RBAC Monitoring Roles](/azure/role-based-access-control/built-in-roles#monitor).
 
@@ -143,7 +142,7 @@ $resourceGroup = "ResourceGroupName"
 
 [Data in Azure Monitor](data-platform.md) can be sent in a storage account or streamed to an event hub, both of which are general-purpose Azure resources. Being general-purpose resources, creating, deleting, and accessing them is a privileged operation reserved for an administrator. Since this data can contain sensitive information such as IP addresses or user names, use the following practices for monitoring-related resources to prevent misuse:
 
-* Use a single, dedicated storage account for monitoring data. If you need to separate monitoring data into multiple storage accounts, always use different storage accounts for monitoring data and other types of data. If you share storage accounts for monitoring and other types of data, you might inadvertently grant access to other data to organizations that should only access monitoring data. For example, a non-Microsoft organization for security information and event management should need only access to monitoring data.
+* Use a single, dedicated storage account for monitoring data. If you need to separate monitoring data into multiple storage accounts, the storage accounts should be used only for monitoring data. If you share storage accounts for monitoring and other types of data, you might inadvertently grant access to other data to organizations that should only access monitoring data. For example, a non-Microsoft organization for security information and event management should need only access to monitoring data.
 * Use a single, dedicated service bus or event hub namespace across all diagnostic settings for the same reason described in the previous point.
 * Limit access to monitoring-related storage accounts or event hubs by keeping them in a separate resource group. [Use scope](/azure/role-based-access-control/overview#scope) on your monitoring roles to limit access to only that resource group.
 * You should never grant the ListKeys permission for either storage accounts or event hubs at subscription scope when a user only needs access to monitoring data. Instead, give these permissions to the user at a resource or resource group scope (if you have a dedicated monitoring resource group).

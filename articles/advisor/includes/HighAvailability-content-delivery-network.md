@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -20,7 +20,13 @@ Azure CDN from Edgio employs CNAME delegation to renew certificates with DigiCer
   
 **Potential benefits**: Ensure service availability.  
 
+**Impact:** High
   
+  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: ceecfd41-89b3-4c64-afe6-984c9cc03126  
+Subcategory: Other
 
 <!--ceecfd41-89b3-4c64-afe6-984c9cc03126_end-->
 
@@ -32,7 +38,13 @@ When customer certificates for Azure Front Door Standard and Premium profiles ex
   
 **Potential benefits**: Ensure service availability.  
 
-For more information, see [Configure HTTPS on an Azure Front Door custom domain by using the Azure portal](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain#use-your-own-certificate)  
+**Impact:** High
+  
+For more information, see [Configure HTTPS for your custom domain - Azure Front Door ](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain#use-your-own-certificate)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 4e1c2077-7c73-4ace-b4aa-f11b36c28290  
+Subcategory: BusinessContinuity
 
 <!--4e1c2077-7c73-4ace-b4aa-f11b36c28290_end-->
 
@@ -44,7 +56,13 @@ Azure Front Door (AFD) can't automatically renew the managed certificate because
   
 **Potential benefits**: undefined  
 
-For more information, see [Configure a custom domain on Azure Front Door by using the Azure portal](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
+**Impact:** High
+  
+For more information, see [How to add a custom domain - Azure Front Door ](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: bfe85fd2-ee53-4c35-8781-7790da2107e1  
+Subcategory: BusinessContinuity
 
 <!--bfe85fd2-ee53-4c35-8781-7790da2107e1_end-->
 
@@ -56,7 +74,13 @@ Configure the Azure Front Door (AFD) customer certificate secret to 'Latest' for
   
 **Potential benefits**: Latest’ version can be automatically rotated.  
 
-For more information, see [Configure HTTPS on an Azure Front Door custom domain by using the Azure portal](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain#certificate-renewal-and-changing-certificate-types)  
+**Impact:** Medium
+  
+For more information, see [Configure HTTPS for your custom domain - Azure Front Door ](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain#certificate-renewal-and-changing-certificate-types)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 2c057605-4707-4d3e-bbb0-a7fe9b6a626b  
+Subcategory: Other
 
 <!--2c057605-4707-4d3e-bbb0-a7fe9b6a626b_end-->
 
@@ -68,7 +92,13 @@ Validate domain ownership by adding the DNS TXT record to your DNS provider. Val
   
 **Potential benefits**: Ensure service availability.  
 
-For more information, see [Configure a custom domain on Azure Front Door by using the Azure portal](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
+**Impact:** High
+  
+For more information, see [How to add a custom domain - Azure Front Door ](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 9411bc9f-d181-497c-b519-4154ae04fb00  
+Subcategory: BusinessContinuity
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
 
@@ -80,9 +110,14 @@ Migrate from Azure CDN Standard/Premium by Edgio before 15 January 2025 when the
   
 **Potential benefits**: Avoid downtime and ensure business continuity.  
 
+**Impact:** High
+  
 For more information, see [Azure updates ](https://azure.microsoft.com/updates?id=467688)  
 
-<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_end-->
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f  
+Subcategory: ServiceUpgradeAndRetirement
 
+<!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_end-->
 
 <!--articleBody-->

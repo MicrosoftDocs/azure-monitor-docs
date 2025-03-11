@@ -6,7 +6,7 @@ author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: conceptual
-ms.date: 08/21/2024
+ms.date: 01/21/2025
 ms.custom: devdivchpfy22, devx-track-dotnet
 ---
 
@@ -14,7 +14,7 @@ ms.custom: devdivchpfy22, devx-track-dotnet
 
 If you enabled Application Insights Snapshot Debugger for your application, but aren't seeing snapshots for exceptions, you can use these instructions to troubleshoot.
 
-There can be many different reasons why snapshots aren't generated. You can start by running the snapshot health check to identify some of the possible common causes.
+Snapshot generation fails due to many different reasons. You can start by running the Snapshot Health Check to identify some of the possible common causes.
 
 ## Unsupported scenarios
 
@@ -36,13 +36,13 @@ For App Service and applications using the Application Insights SDK, you have to
 
 For more information about other connection overrides, see [Application Insights documentation](../app/connection-strings.md?tabs=net#connection-string-with-explicit-endpoint-overrides).
 
-For Function App, you have to update the `host.json` using the supported overrides:
+For Function App, you have to update the *host.json* using the supported overrides:
 
 | Property      | US Government Cloud                 | China Cloud                         |
 |---------------|-------------------------------------|-------------------------------------|
 | AgentEndpoint | `https://snapshot.monitor.azure.us` | `https://snapshot.monitor.azure.cn` |
 
-Example of the `host.json` updated with the US Government Cloud agent endpoint:
+Example of the *host.json* updated with the US Government Cloud agent endpoint:
 
 ```json
 {
@@ -62,13 +62,16 @@ Example of the `host.json` updated with the US Government Cloud agent endpoint:
 }
 ```
 
-## Use the snapshot health check
+## Use the Snapshot Health Check
 
-Several common problems result in the Open Debug Snapshot not showing up. Using an outdated Snapshot Collector, for example; reaching the daily upload limit; or perhaps the snapshot is just taking a long time to upload. Use the Snapshot Health Check to troubleshoot common problems.
+Several common problems result in the **Open Debug Snapshot** button not appearing. For example:
+- Using an outdated Snapshot Collector
+- Reaching the daily upload limit
+- The snapshot is just taking a long time to upload. 
 
-There's a link in the exception pane of the end-to-end trace view that takes you to the Snapshot Health Check.
+Access the Snapshot Health Check to troubleshoot common problems via a link in the **Exception** pane of the end-to-end trace view.
 
-:::image type="content" source="./media/snapshot-debugger/enter-snapshot-health-check.png" alt-text="Screenshot showing how to enter snapshot health check.":::
+:::image type="content" source="./media/snapshot-debugger/enter-snapshot-health-check.png" alt-text="Screenshot showing how to enter Snapshot Health Check.":::
 
 The interactive, chat-like interface looks for common problems and guides you to fix them.
 
@@ -87,6 +90,7 @@ Make sure you're using the correct instrumentation key in your published applica
 If you have an ASP.NET application which is hosted in Azure App Service or in IIS on a virtual machine, your application could fail to connect to the Snapshot Debugger service due to a missing SSL security protocol.
 
 [The Snapshot Debugger endpoint requires TLS version 1.2](snapshot-debugger-upgrade.md?toc=/azure/azure-monitor/toc.json). The set of SSL security protocols is one of the quirks enabled by the `httpRuntime targetFramework` value in the `system.web` section of `web.config`.
+
 If the `httpRuntime targetFramework` is 4.5.2 or lower, then TLS 1.2 isn't included by default.
 
 > [!NOTE]
@@ -237,15 +241,11 @@ For applications that *aren't* hosted in App Service, the uploader logs are in t
 
 ## Troubleshooting Cloud Services
 
-In Cloud Services, the default temporary folder could be too small to hold the minidump files, leading to lost snapshots.
+In Cloud Services, the default temporary folder could be too small to hold the minidump files, leading to lost snapshots. The space needed depends on the total working set of your application and the number of concurrent snapshots.
 
-The space needed depends on the total working set of your application and the number of concurrent snapshots.
+The working set of a 32-bit ASP.NET web role is typically between 200 MB and 500 MB. Allow for at least two concurrent snapshots. For example, if your application uses 1 GB of total working set, you should make sure there's at least 2 GB of disk space to store snapshots.
 
-The working set of a 32-bit ASP.NET web role is typically between 200 MB and 500 MB. Allow for at least two concurrent snapshots.
-
-For example, if your application uses 1 GB of total working set, you should make sure there's at least 2 GB of disk space to store snapshots.
-
-Follow these steps to configure your Cloud Service role with a dedicated local resource for snapshots.
+Configure your Cloud Service role with a dedicated local resource for snapshots:
 
 1. Add a new local resource to your Cloud Service by editing the Cloud Service definition (.csdef) file. The following example defines a resource called `SnapshotStore` with a size of 5 GB.
 
@@ -301,16 +301,16 @@ When the Snapshot Collector starts up, it tries to find a folder on disk that is
 
 The Snapshot Collector checks a few well-known locations, making sure it has permissions to copy the Snapshot Uploader binaries. The following environment variables are used:
 
-* Fabric_Folder_App_Temp
-* LOCALAPPDATA
-* APPDATA
-* TEMP
+- `Fabric_Folder_App_Temp`
+- `LOCALAPPDATA`
+- `APPDATA`
+- `TEMP`
 
-If a suitable folder can't be found, Snapshot Collector reports an error saying *"Couldn't find a suitable shadow copy folder."*
+**If a suitable folder can't be found,** Snapshot Collector reports an error saying *"Couldn't find a suitable shadow copy folder."*
 
-If the copy fails, Snapshot Collector reports a `ShadowCopyFailed` error.
+**If the copy fails,** Snapshot Collector reports a `ShadowCopyFailed` error.
 
-If the uploader can't be launched, Snapshot Collector reports an `UploaderCannotStartFromShadowCopy` error. The body of the message often contains `System.UnauthorizedAccessException`. This error usually occurs because the application is running under an account with reduced permissions. The account has permission to write to the shadow copy folder, but it doesn't have permission to execute code.
+**If the uploader can't be launched,** Snapshot Collector reports an `UploaderCannotStartFromShadowCopy` error. The body of the message often contains `System.UnauthorizedAccessException`. This error usually occurs because the application is running under an account with reduced permissions. The account has permission to write to the shadow copy folder, but it doesn't have permission to execute code.
 
 Since these errors usually happen during startup, they're often followed by an `ExceptionDuringConnect` error saying *Uploader failed to start*.
 

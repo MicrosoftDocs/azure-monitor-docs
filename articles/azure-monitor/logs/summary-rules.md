@@ -4,10 +4,8 @@ description: Aggregate data in Log Analytics workspace with summary rules featur
 ms.service: azure-monitor
 ms.subservice: logs
 ms.topic: how-to
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: yossi-y
-ms.date: 11/17/2024
+ms.date: 03/06/2025
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
@@ -113,7 +111,13 @@ The operators you can use in summary rule your query depend on the plan of the s
  - Basic: Supports all KQL operators on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
  - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
-Summary rules are most beneficial in term of cost and query experiences when results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify that the query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces). Check that the query produces the intended expected results and schema. If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
+Summary rules are most beneficial in term of cost and query experiences when results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify the followings:
+
+1. Check that the query produces the intended expected results and schema.
+1. The query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces).
+1. A record size in results is less than 1MB.
+
+If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
 
 When you update a query and there are fewer fields in summary results, Azure Monitor doesn't automatically remove the columns from the destination table, and you need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
 
@@ -215,6 +219,12 @@ Use this template to create or update a summary rule. For more information about
       }
     }
     // ----- optional -----
+    // "displayName": {
+    //   "type": "String",
+    //   "metadata": {
+    //     "description": "Optional - The summary rule display name when provided."
+    //   }
+    // },
     // "binDelay": {
     //   "type": "Int",
     //   "metadata": {
@@ -278,7 +288,7 @@ Use this template to create or update a summary rule. For more information about
       "value": "myrulename"
     },
     "description": {
-      "value": "My rule description."
+      "value": "My rule description"
     },
     "location": {
       "value": "eastus" //Log Analytics workspace region
@@ -311,6 +321,7 @@ This table describes the summary rule parameters:
 | `destinationTable` | `tablename_CL` | Specifies the name of the destination custom log table. The name value must have the suffix `_CL`. Azure Monitor creates the table in the workspace, if it doesn't already exist, based on the query you set in the rule. If the table already exists in the workspace, Azure Monitor adds any new columns introduced in the query. <br><br> If the summary results include a reserved column name - such as `TimeGenerated`, `_IsBillable`, `_ResourceId`, `TenantId`, or `Type` - Azure Monitor appends the `_Original` prefix to the original fields to preserve their original values.|
 | `binDelay` (optional) | Integer (minutes) | Sets a time to wait before bin execution, typically useful when executed on late arriving data, also known as [ingestion latency](data-ingestion-time.md), and allows most data to arrive. The default delay is from three and a half minutes to 10% of the `binSize` value. <br><br> If you know that the data you query is typically ingested with delay, set the `binDelay` parameter with the known delay value or greater, up to 1440 minutes. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br>In some cases, Azure Monitor might begin bin execution slightly after the set bin delay to ensure service reliability and query success.|
 | `binStartTime` (optional) | Datetime in<br>`%Y-%n-%eT%H:%M %Z` format | Specifies the date and time for the initial bin execution. The value can start at rule creation datetime minus the `binSize` value, or later and in whole hours. For example, if the datetime is `2023-12-03T12:13Z` and `binSize` is 1,440, the earliest valid `binStartTime` value is `2023-12-02T13:00Z`, and the aggregation includes data logged between 02T13:00 and 03T13:00. In this scenario, the rules start aggregating a 03T13:00 plus the default or specified delay. <br><br> The `binStartTime` parameter is useful in daily summary scenarios. Suppose you're in the UTC-8 time zone and you create a daily rule at `2023-12-03T12:13Z`. You want the rule to complete before you start your day at 8:00 (00:00 UTC). Set the `binStartTime` parameter to `2023-12-02T22:00Z`. The first aggregation includes all data logged between 02T:06:00 and 03T:06:00 local time, and the rule runs at the same time daily. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br><br> When you update rules, you can either: <br> - Use the existing `binStartTime` value or remove the `binStartTime` parameter, in which case execution continues based on the initial definition.<br> - Update the rule with a new `binStartTime` value to set a new datetime value. |
+| `displayName` (optional) | String | Specifies the rule display name in Azure portal experiences. |
 | `timeSelector` (optional) | `TimeGenerated` | Defines the timestamp field that Azure Monitor uses to aggregate data. For example, if you set `"binSize": 120`, you might get entries with a `TimeGenerated` value between `02:00` and `04:00`. |
 
 ### Configure the aggregation timing

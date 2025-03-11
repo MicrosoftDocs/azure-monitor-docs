@@ -1,7 +1,6 @@
 ---
 title: Remote-write in Azure Monitor Managed Service for Prometheus
 description: Describes how to configure remote-write to send data from self-managed Prometheus running in your AKS cluster or Azure Arc-enabled Kubernetes cluster 
-author: bwren 
 ms.topic: conceptual
 ms.date: 09/16/2024
 ---
@@ -82,6 +81,10 @@ Use PromQL queries in Grafana and verify that the results return expected data. 
 ## Troubleshoot remote write 
 
 If remote data isn't appearing in your Azure Monitor workspace, see [Troubleshoot remote write](../containers/prometheus-remote-write-troubleshooting.md) for common issues and solutions. 
+
+## Release notes
+
+For detailed release notes on the remote write side car image, please refer to the [remote write release notes](https://github.com/Azure/prometheus-collector/blob/main/REMOTE-WRITE-RELEASENOTES.md).
 
 
 ## Next steps

@@ -4,8 +4,6 @@ description: Describes how to integrate Azure Kubernetes Service workloads with 
 ms.topic: conceptual
 ms.date: 6/20/2024
 ms.reviewer: rashmy
-ms.service: azure-monitor
-ms.subservice: containers
 ---
 
 # Use Prometheus exporters for common workloads with Azure Managed Prometheus
@@ -23,6 +21,7 @@ This document lists a set of commonly used workloads which have curated configur
 - [Apache Kafka](./prometheus-kafka-integration.md)
 - [Argo CD](./prometheus-argo-cd-integration.md)
 - [Elastic Search](./prometheus-elasticsearch-integration.md)
+- [Istio](./prometheus-istio-integration.md)
 
 ## Next steps
 

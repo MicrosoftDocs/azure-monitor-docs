@@ -2,7 +2,7 @@
 title: Azure Monitor Application Insights Profiler for Java
 description: How to configure the Azure Monitor Application Insights Profiler for Java
 ms.topic: conceptual
-ms.date: 11/15/2023
+ms.date: 01/31/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
 ---
@@ -118,6 +118,9 @@ Configure the resource thresholds that cause a profile to be collected:
 
     :::image type="content" source="./media/java-standalone-profiler/performance-blade.png" alt-text="Screenshot of the link to open performance pane." lightbox="media/java-standalone-profiler/performance-blade.png":::
     :::image type="content" source="./media/java-standalone-profiler/profiler-button.png" alt-text="Screenshot of the Profiler button from the Performance pane." lightbox="media/java-standalone-profiler/profiler-button.png":::
+
+> [!WARNING]
+> The _Profiler traces_ button at bottom right is not supported for Java.
     
 1. Select **Triggers**
 

@@ -1,12 +1,12 @@
 ---
-title: Enable Application Insights Profiler for .NET for Azure App Service apps | Microsoft Docs
+title: Enable Application Insights Profiler for .NET for Azure App Service apps in Windows | Microsoft Docs
 description: Profile live apps on Azure App Service with Application Insights Profiler for .NET.
 ms.topic: how-to
-ms.date: 08/15/2024
+ms.date: 02/18/2025
 ms.reviewer: ryankahng
 ---
 
-# Enable the .NET Profiler for Azure App Service apps
+# Enable the .NET Profiler for Azure App Service apps in Windows
 
 [Application Insights Profiler for .NET](./profiler-overview.md) is preinstalled as part of the Azure App Service runtime. You can run Profiler on ASP.NET and ASP.NET Core apps running on App Service by using the Basic service tier or higher.
 
@@ -50,7 +50,11 @@ If your Application Insights resource is in the same subscription as your instan
 
 1. In the left menu, select **Monitoring** > **Application Insights**.
 
-1. Under **Application Insights**, select **Enable**.
+1. Click the **Turn on Application Insights** button.
+
+   :::image type="content" source="./media/profiler/turn-on-app-insights.png" alt-text="Screenshot that shows turning on Application Insights for your app.":::
+
+1. In the Application Insights setting page, under **Application Insights**, make sure **Enable** is selected.
 
 1. Verify that you connected an Application Insights resource to your app.
 
@@ -58,12 +62,11 @@ If your Application Insights resource is in the same subscription as your instan
 
 1. Scroll down and select the **.NET** or **.NET Core** tab, depending on your app.
 1. Verify that **Collection level** > **Recommended** is selected.
-1. Under **Profiler**, select **On**.
-
-   If you chose the **Basic** collection level earlier, the Profiler setting is disabled.
-1. Select **Apply** > **Yes** to confirm.
+1. Under **Profiler and Code Optimizations**, select **On**. If you chose the **Basic** collection level earlier, the Profiler setting is disabled.
 
    :::image type="content" source="./media/profiler/enable-profiler.png" alt-text="Screenshot that shows enabling Profiler on your app.":::
+
+1. Select **Apply** > **Yes** to confirm.
 
 ### For Application Insights and App Service in different subscriptions
 
@@ -87,7 +90,9 @@ Currently, the only regions that require endpoint modifications are [Azure Gover
 |App setting    | US Government Cloud | China Cloud |   
 |---------------|---------------------|-------------|
 |ApplicationInsightsProfilerEndpoint         | `https://profiler.monitor.azure.us`    | `https://profiler.monitor.azure.cn` |
-|ApplicationInsightsEndpoint | `https://dc.applicationinsights.us` | `https://dc.applicationinsights.azure.cn` |
+|ApplicationInsightsEndpoint | `https://{region}.in.applicationinsights.azure.us` | `https://{region}.in.applicationinsights.azure.cn` |
+
+[Compare Azure Public and Azure Government endpoints](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) for common Azure services.
 
 <a name='enable-azure-active-directory-authentication-for-profile-ingestion'></a>
 

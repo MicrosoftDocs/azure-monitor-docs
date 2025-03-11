@@ -2,8 +2,6 @@
 title: Create data collection rules (DCRs) in Azure Monitor
 description: Details on creating data collection rules (DCRs) in Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 11/19/2024
 ms.reviewer: nikeist
 ms.custom: references_regions
@@ -37,7 +35,7 @@ The Azure portal provides a simplified experience for creating a DCR for particu
 | Scenario | Description |
 |:---|:---|
 | Enable VM insights | When you enable VM Insights on a VM, the Azure Monitor agent is installed and a DCR is created and associated with the virtual machine. This DCR collects a predefined set of performance counters and shouldn't be modified. See [Enable VM Insights](../vm/vminsights-enable-overview.md). |
-| Collect client data from VM | Create a DCR in the Azure portal using a guided interface to select different data sources from the client operating system of a VM. Examples include Windows events, Syslog events, and text logs. The Azure Monitor agent is automatically installed if necessary, and an association is created between the DCR and each VM you select. See [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md). |
+| Collect client data from VM | Create a DCR in the Azure portal using a guided interface to select different data sources from the client operating system of a VM. Examples include Windows events, Syslog events, and text logs. The Azure Monitor agent is automatically installed if necessary, and an association is created between the DCR and each VM you select. See [Collect data with Azure Monitor Agent](../vm/data-collection.md). |
 | Metrics export | Create a DCR in the Azure portal using a guided interface to select metrics of different resource types to collect. An association is created between the DCR and each resource you select. See [Create a data collection rule (DCR) for metrics export](./metrics-export-create.md). |
 | Table creation | When you create a new table in a Log Analytics workspace using the Azure portal, you upload sample data that Azure Monitor uses to create a DCR, including a transformation, that can be used with the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md). You can't modify this DCR in the Azure portal but can modify it using any of the methods described in this article. See [Create a custom table](../logs/create-custom-table.md?tabs=azure-portal-1%2Cazure-portal-2%2Cazure-portal-3#create-a-custom-table). |
 | Kubernetes monitoring | To monitor a Kubernetes cluster, you enable Container Insights for logs and Prometheus for metrics. A DCR for each is created and associated with the containerized version of Azure Monitor agent in the cluster. You may need to modify the Container insights DCR to add a transformation. See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) and [Data transformations in Container insights](../containers/container-insights-transformations.md). |

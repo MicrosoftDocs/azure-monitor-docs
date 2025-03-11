@@ -2,9 +2,6 @@
 title: Use predictive autoscale to scale out before load demands in virtual machine scale sets
 description: This article provides information on the new predictive autoscale feature in Azure Monitor.
 ms.topic: conceptual
-author: EdB-MSFT
-ms.author: edbaynash
-ms.subservice: autoscale
 ms.date: 11/12/2024
 ms.custom: references_regions, devx-track-arm-template
 ms.reviewer: akkumari

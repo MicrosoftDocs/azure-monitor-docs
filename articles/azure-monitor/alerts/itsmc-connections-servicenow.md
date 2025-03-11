@@ -1,7 +1,6 @@
 ---
 title: Connect ServiceNow with IT Service Management Connector
 description: Learn how to connect ServiceNow with the IT Service Management Connector (ITSMC) in Azure Monitor to centrally monitor and manage ITSM work items.
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 7/30/2024
 ms.reviewer: nolavime
@@ -115,7 +114,7 @@ Use the following procedure to create a ServiceNow connection.
 
    | **Field** | **Description** |
    | --- | --- |
-   | **Connection Name**   | Enter a name for the ServiceNow instance that you want to connect with ITSMC. You use this name later in Log Analytics when you configure ITSM work items and view detailed analytics. |
+   | **Connection Name**   | Enter a name for the ServiceNow instance that you want to connect with ITSMC. You use this name later in Log Analytics when you configure ITSM work items and view detailed analytics. The name should be a single word name without special characters, for example, "-" and ".".|
    | **Partner Type**   | Select **ServiceNow**. |
    | **Server Url**   | Enter the URL of the ServiceNow instance that you want to connect to ITSMC. The URL should point to a supported SaaS version with the suffix *.servicenow.com* (for example `https://XXXXX.service-now.com/`).|
    | **Username**   | Enter the integration username that you created in the ServiceNow app to support the connection to ITSMC.|

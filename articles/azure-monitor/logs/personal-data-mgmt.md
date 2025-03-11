@@ -2,8 +2,6 @@
 title: Managing personal data in Azure Monitor Logs and Application Insights
 description: This article describes how to manage personal data stored in Azure Monitor Log Analytics and the methods to identify and remove it.
 ms.topic: conceptual
-author: guywild
-ms.author: guywild
 ms.reviewer: meirm
 ms.date: 06/28/2022
 # Customer intent: As an Azure Monitor admin user, I want to understand how to manage personal data in logs that Azure Monitor collects.
@@ -133,5 +131,5 @@ To manage system resources, we limit purge requests to 50 requests an hour. Batc
    ```
 
 ## Next steps
-- Learn more about [how Log Analytics collects, processes, and secures data](../logs/data-security.md).
+- Learn more about [security in Azure Monitor](../best-practices-security.md).
 - Learn more about [how Application Insights collects, processes, and secures data](/previous-versions/azure/azure-monitor/app/data-retention-privacy).

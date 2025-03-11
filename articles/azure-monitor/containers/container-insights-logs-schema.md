@@ -1,8 +1,6 @@
 ---
 title: Configure the ContainerLogV2 schema for Container Insights
 description: Switch your ContainerLog table to the ContainerLogV2 schema.
-author: aul
-ms.author: bwren
 ms.subservice: logs
 ms.topic: conceptual
 ms.date: 11/19/2024
@@ -111,28 +109,34 @@ Import the dashboard from the Grafana gallery at [ContainerLogV2 Dashboard](http
 > When you initially load the Grafana Dashboard, you may see errors due to variables not yet being selected. To prevent this from recurring, save the dashboard after selecting a set of variables so that it becomes default on the first open.
 
 ## Multi-line logging
-With multiline logging enabled, previously split container logs are stitched together and sent as single entries to the ContainerLogV2 table. If the stitched log line is larger than 64 KB, it will be truncated due to Log Analytics workspace limits. This feature also has support for .NET, Go, Python and Java stack traces, which appear as single entries in the ContainerLogV2 table. Enable multiline logging with ConfigMap as described in [Configure data collection in Container insights using ConfigMap](container-insights-data-collection-configmap.md).
+With multiline logging enabled, previously split container logs are stitched together and sent as single entries to the ContainerLogV2 table. Enable multiline logging with ConfigMap as described in [Configure data collection in Container insights using ConfigMap](container-insights-data-collection-configmap.md).
 
 >[!NOTE]
-> The configmap now features a language specification option, wherein the customers can select only the languages that they are interested in. This feature can be enabled by editing the languages in the stacktrace_languages option in the [configmap](https://github.com/microsoft/Docker-Provider/blob/ci_prod/kubernetes/container-azm-ms-agentconfig.yaml).
+> The configmap now features a language specification option that allows you to select only the languages you're interested in. This feature can be enabled by editing the languages in the stacktrace_languages option in the [configmap](https://github.com/microsoft/Docker-Provider/blob/ci_prod/kubernetes/container-azm-ms-agentconfig.yaml).
 
-The following screenshots show multi-line logging for Go exception stack trace:
+### Limitations
 
-**Multi-line logging disabled**
+- Multiline logging only stitches exception stack traces from the containers using Java, Python, .NET, and Go. Other multiline log entries, including custom exceptions and arbitrary log messages, are not stitched together.
+
+- If the log line which larger than 16KB instead of truncated by container runtime by default and log line will be supported up to 64KB. 
+
+### Examples
+
+**Go exception stack trace multi-line logging disabled**
 
 <!-- convertborder later -->
 :::image type="content" source="./media/container-insights-logging-v2/multi-line-disabled-go.png" lightbox="./media/container-insights-logging-v2/multi-line-disabled-go.png" alt-text="Screenshot that shows Multi-line logging disabled." border="false":::
 
-**Multi-line logging enabled**
+**Go exception stack trace multi-line logging enabled**
 
 <!-- convertborder later -->
 :::image type="content" source="./media/container-insights-logging-v2/multi-line-enabled-go.png" lightbox="./media/container-insights-logging-v2/multi-line-enabled-go.png" alt-text="Screenshot that shows Multi-line enabled." border="false":::
 
-**Java stack trace**
+**Java stack trace multi-line logging enabled**
 
 :::image type="content" source="./media/container-insights-logging-v2/multi-line-enabled-java.png" lightbox="./media/container-insights-logging-v2/multi-line-enabled-java.png" alt-text="Screenshot that shows Multi-line enabled for Java.":::
 
-**Python stack trace**
+**Python stack trace multi-line logging enabled**
 
 :::image type="content" source="./media/container-insights-logging-v2/multi-line-enabled-python.png" lightbox="./media/container-insights-logging-v2/multi-line-enabled-python.png" alt-text="Screenshot that shows Multi-line enabled for Python.":::
 

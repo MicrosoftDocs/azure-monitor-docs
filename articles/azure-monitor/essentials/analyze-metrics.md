@@ -1,9 +1,6 @@
 ---
 title: Analyze metrics with Azure Monitor metrics explorer
 description: Learn how to analyze metrics with Azure Monitor metrics explorer by creating metrics charts, setting chart dimensions, time ranges, aggregation, filters, splitting, and sharing.
-services: azure-monitor
-author: EdB-MSFT
-ms.author: edbaynash    
 ms.topic: conceptual
 ms.date: 11/20/2024
 ms.reviewer: vitalyg
@@ -19,7 +16,7 @@ Azure Monitor metrics explorer is a component of the Azure portal that helps you
 
 Watch the following video for an overview of creating and working with metrics charts in Azure Monitor metrics explorer.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4qO59]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=01a767db-97ae-4ddf-b842-7fa5390bcf0d]
 
 ## Create a metric chart using PromQL
 

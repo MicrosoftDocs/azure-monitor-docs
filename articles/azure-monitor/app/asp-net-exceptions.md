@@ -4,7 +4,7 @@ description: Capture exceptions from ASP.NET apps along with request telemetry.
 ms.topic: conceptual
 ms.devlang: csharp
 ms.custom: devx-track-csharp
-ms.date: 01/31/2024
+ms.date: 3/21/2025
 ms.reviewer: mmcc
 ---
 
@@ -529,4 +529,4 @@ This count is different from the Exceptions count calculated by the Application 
 
 * [Monitor REST, SQL, and other calls to dependencies](./asp-net-dependencies.md)
 * [Monitor page load times, browser exceptions, and AJAX calls](./javascript.md)
-* [Monitor performance counters](./performance-counters.md)
+* [Monitor performance counters](./asp-net-counters.md)

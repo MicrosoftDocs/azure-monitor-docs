@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/11/2024
-ms.reviewer: jkalis
+ms.date: 02/07/2025
+ms.reviewer: jan.kalis
 ---
 
 # Code Optimizations extensions for Visual Studio (preview)
@@ -18,9 +18,7 @@ This article guides you through using the extension with GitHub Copilot in Visua
 
 ## Prerequisites
 
-- [Install versions 17.10 or 17.11 of Visual Studio](https://visualstudio.microsoft.com/downloads/). 
-   > [!NOTE]
-   > Version 17.12 of Visual Studio is not yet supported.
+- [Install version 17.12 or higher of Visual Studio](https://visualstudio.microsoft.com/downloads/). 
 - Sign up for and log into a GitHub account with [a valid GitHub Copilot subscription](https://docs.github.com/en/copilot/about-github-copilot/subscription-plans-for-github-copilot).
 - Enable the following services for your .NET application:
   - [Application Insights](../app/create-workspace-resource.md)

@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/23/2024
-ms.reviewer: jkalis
+ms.date: 02/11/2025
+ms.reviewer: jan.kalis
 ---
 
 # Code Optimizations extensions for Visual Studio Code (preview)
@@ -38,11 +38,12 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 1. In Visual Studio Code, open the repo holding your .NET application with Code Optimizations enabled. 
 1. Open the GitHub Copilot chat. 
 
-You have two options for using the Code Optimizations extension in Visual Studio Code:
-- [With Code Optimizations](#option-1-with-code-optimizations)
-- [Without Code Optimizations](#option-2-without-code-optimizations)
+You have three options for using the Code Optimizations extension in Visual Studio Code:
+- [Connect to Code Optimizations in Azure](#option-1-connect-to-code-optimizations-in-azure)
+- [Optimize code based on GitHub issues from Code Optimizations](#option-2-optimize-code-based-on-github-issues-from-code-optimizations)
+- [Without Code Optimizations](#option-3-without-code-optimizations)
 
-### Option 1: With Code Optimizations
+### Option 1: Connect to Code Optimizations in Azure
 
 While using the extension with Code Optimizations enabled on your application requires more setup steps, you receive more accurate fix suggestions in your code. 
 
@@ -62,7 +63,7 @@ To get started, make sure Code Optimizations are identified for your application
 
 #### Get the Application ID for your app
 
-1. In the portal, navigate to your Application Insights resource.
+1. Navigate to your Application Insights resource.
 1. Select **Configure** > **API Access**.
 1. Make note of your Application ID at the top of the API Access pane.
 
@@ -82,13 +83,49 @@ To get started, make sure Code Optimizations are identified for your application
 
 1. Generate fixes for other issues by following the prompts in the Copilot response.
 
-#### Optimize your code
+### Option 2: Optimize code based on GitHub issues from Code Optimizations
 
-Aside from the `@code-optimizations /connect` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command.
+Aside from the `@code-optimizations /connect` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command:
+- With a Code Optimizations issue number.
+- With code selection directly in Visual Studio Code. 
 
-**`@code-optimizations /optimize <GITHUB_ISSUE_NUMBER>`**
+#### With a Code Optimizations issue number
 
-1. Call `/optimize` along with the GitHub issue number created by Code Optimizations service in the Azure portal. In the following example, "5" represents the GitHub issue number that you'd like to fix.
+Run the `/optimize` command along with the Azure DevOps or GitHub work item number created by Code Optimizations service in the Azure portal. 
+
+##### Create Code Optimizations work items
+
+1. In the portal, select one of the performance issues from the results. 
+1. In the details pane, click **Create Work Item**.
+
+   :::image type="content" source="./media/code-optimizations-vscode-extension/create-work-item-button.png" alt-text="Screenshot of the button for creating a work item in the details pane.":::
+
+1. From the dropdown, choose whether you'd like to create an issue through Azure DevOps or GitHub. 
+
+   # [Azure DevOps](#tab/devops)
+
+   1. Choose a project from the dropdown, or create a new one.
+       - If you create a new project, enter the project URL and click **Add project**.  
+
+   1. Click the toggle to label the issue as a **Task** or a **Bug**.
+
+       :::image type="content" source="./media/code-optimizations-vscode-extension/create-azure-devops-issue.png" alt-text="Screenshot of the options for creating an issue using Azure DevOps.":::
+
+   
+   # [GitHub](#tab/github)
+
+   1. Choose a project from the dropdown, or create a new one.
+       - If you create a new project, enter the project URL and click **Add project**.  
+
+       :::image type="content" source="./media/code-optimizations-vscode-extension/create-github-issue.png" alt-text="Screenshot of the options for creating an issue using GitHub.":::
+
+   ---
+
+1. Click **Create Work Item**.
+
+##### Run the `/optimize` command
+
+1. In Visual Studio Code, using GitHub Copilot, call `/optimize` with the issue number you created in the Code Optimizations service in the Azure portal. In the following example, "5" represents the GitHub issue number that you'd like to fix.
    
    ```bash
    @code-optimizations /optimize 5 
@@ -115,7 +152,7 @@ Aside from the `@code-optimizations /connect` command, you can also use the `/op
 
     :::image type="content" source="media/code-optimizations-vscode-extension/accept-fix.png" alt-text="Screenshot of the Accept Fix button for when you review suggestions.":::
 
-**Code selection + `@code-optimizaitons /optimize`**
+#### With code selection directly in Visual Studo Code 
 
 Directly trigger `/optimize` on selected code. Using this method, you can proactively optimize some code you think has a performance issue. 
 
@@ -124,7 +161,7 @@ Directly trigger `/optimize` on selected code. Using this method, you can proact
 
 You can then run benchmark/load tests to ensure the changes improve performance, and unit tests to ensure code semantics are preserved.
 
-#### Option 2: Without Code Optimizations
+### Option 3: Without Code Optimizations
 
 You can use the Visual Studio Code extension without Code Optimizations enabled. While this method requires less setup time, you may receive less accurate fix suggestions. 
 

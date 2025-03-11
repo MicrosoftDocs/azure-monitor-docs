@@ -3,8 +3,6 @@ title: Azure Monitor REST API index
 description: Lists the operation groups for the Azure Monitor REST API, which includes Application Insights, Log Analytics, and Monitor.
 ms.date: 05/07/2024
 ms.topic: reference
-ms.author: robb
-author: rboucher
 ---
 
 # Azure Monitor REST API index
@@ -87,17 +85,11 @@ Organized by subject area.
 | [Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. |
 | [Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
 | [Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
-| ***Private Link Networking*** |  |
-| [Private endpoint connections (preview)](/rest/api/monitor/private-endpoint-connections) | Approve, reject, delete, and retrieve a private endpoint connection and retrieve all project endpoint connections on a private link scope. |
-| [Private link resources (preview)](/rest/api/monitor/private-link-resources) | Retrieve a single private link resource that needs to be created for an Azure Monitor PrivateLinkScope or all private link resources within an Azure Monitor PrivateLinkScope resource that need to be created for an Azure Monitor PrivateLinkScope. |
-| [Private link scope operation status (preview)](/rest/api/monitor/private-link-scope-operation-status) | Retrieves the status of an Azure asynchronous operation associated with a private link scope operation. |
-| [Private link scoped resources (preview)](/rest/api/monitor/private-link-scoped-resources) | Approve, reject, delete, and retrieve a scoped resource object and retrieve all scoped resource objects within an Azure Monitor PrivateLinkScope resource. |
-| [Private link scopes (preview)](/rest/api/monitor/private-link-scopes) | Manage an Azure Monitor PrivateLinkScope including its tags and retrieve a list of all Azure Monitor PrivateLinkScopes within a subscription or resource group. |
 | ***Query log data*** |  |
 | [Data Access](./logs/api/overview.md) | Query Log Analytics data. |
 | ***Send Custom Log Data to Log Analytics*** |  |
 | [Logs Ingestion](./logs/logs-ingestion-api-overview.md) | Lets you send data to a Log Analytics workspace using either a [REST API call](./logs/logs-ingestion-api-overview.md#rest-api-call) or [client libraries](./logs/logs-ingestion-api-overview.md#client-libraries). |
 | ***Retired or being retired*** |  |
 | [Alerts (classic) rule incidents](/rest/api/monitor/alert-rule-incidents) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Older classic alerts functions. Gets an incident associated to a [classic metric alert rule](./alerts/alerts-classic.overview.md). When an alert rule fires because the threshold is crossed in the up or down direction, an incident is created and an entry added to the [Activity Log](./essentials/platform-logs-overview.md). |
-| [Alert (classic) rules](/rest/api/monitor/alert-rules) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Provides operations for managing [classic alert](./alerts/alerts-classic.overview.md) rules. |
+| [Alert (classic) rules](/previous-versions/azure/azure-monitor/alerts/alerts-classic.overview) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Provides operations for managing [classic alert](./alerts/alerts-classic.overview.md) rules. |
 | [Data Collector](/rest/api/loganalytics/create-request) | Data Collector API Reference. |

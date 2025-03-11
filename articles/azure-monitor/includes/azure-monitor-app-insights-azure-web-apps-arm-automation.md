@@ -1,7 +1,6 @@
 ---
 ms.topic: include
 ms.date: 09/03/2021
-services: azure-monitor
 ms.subservice: application-insights
 author: AaronMaxwell
 ms.author: aaronmax

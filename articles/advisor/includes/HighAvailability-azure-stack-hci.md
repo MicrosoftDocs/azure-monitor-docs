@@ -1,7 +1,7 @@
 ---
-ms.service: azure-monitor
+ms.service: azure
 ms.topic: include
-ms.date: 12/30/2024
+ms.date: 01/26/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Stack HCI
@@ -20,7 +20,13 @@ Upgrade to the latest version of API/SDK of AKS enabled by Azure Arc for new fun
   
 **Potential benefits**: The latest version of AKS enabled by Azure Arc with new functionality and improved stability.  
 
-For more information, see [https://azure.github.io/azure-sdk/releases/latest/index.html](https://azure.github.io/azure-sdk/releases/latest/index.html)  
+**Impact:** Low
+  
+For more information, see [Azure SDK Releases ](https://azure.github.io/azure-sdk/releases/latest/index.html)  
+
+ResourceType: microsoft.azurestackhci/clusters  
+Recommendation ID: 09e56b5a-9a00-47a7-82dd-9bd9569eb6ed  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--09e56b5a-9a00-47a7-82dd-9bd9569eb6ed_end-->
 
@@ -32,7 +38,13 @@ Upgrade to the latest version of API/SDK of AKS enabled by Azure Arc for new fun
   
 **Potential benefits**: The latest version of AKS enabled by Azure Arc with new functionality and improved stability.  
 
-For more information, see [https://azure.github.io/azure-sdk/releases/latest/index.html](https://azure.github.io/azure-sdk/releases/latest/index.html)  
+**Impact:** Low
+  
+For more information, see [Azure SDK Releases ](https://azure.github.io/azure-sdk/releases/latest/index.html)  
+
+ResourceType: microsoft.azurestackhci/clusters  
+Recommendation ID: 2ac72093-309f-41ec-bf9d-55e9fc490563  
+Subcategory: ServiceUpgradeAndRetirement
 
 <!--2ac72093-309f-41ec-bf9d-55e9fc490563_end-->
 

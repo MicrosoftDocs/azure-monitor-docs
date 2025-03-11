@@ -63,7 +63,13 @@ Chaos Studio has the following operations:
 | Microsoft.Chaos/experiments/executions/Read | Get the execution status for a run of a chaos experiment. |
 | Microsoft.Chaos/experiments/executions/getExecutionDetails/action | Get the execution details (status and errors for each action) for a run of a chaos experiment. |
 
-To assign these permissions granularly, you can [create a custom role](/azure/role-based-access-control/custom-roles).
+To assign these permissions granularly, you can [create a custom role](/azure/role-based-access-control/custom-roles). You may also use the following Azure built-in roles to manage access to Chaos Studio:
+* **Chaos Studio Experiment Contributor**: Can create, run, and see details for experiments, onboard targets, and manage capabilities.
+* **Chaos Studio Operator**: Can run and see details for experiments but cannot create experiments or manage targets and capabilities.
+* **Chaos Studio Reader**: Can view targets, capabilities, experiments, and experiment details.
+* **Chaos Studio Target Contributor**: Can onboard targets and manage capabilities but cannot create, run, or see details for experiments.
+
+For more detailed information on these built-in roles for Chaos Studio operations, see [RBAC DevOps Roles](/azure/role-based-access-control/built-in-roles#devops).
 
 ## Network security
 

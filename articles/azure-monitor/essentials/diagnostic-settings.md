@@ -1,12 +1,9 @@
 ---
 title: Diagnostic settings in Azure Monitor
 description: Learn about working with diagnostic settings for Azure Monitor platform metrics and logs.
-author: rboucher
-ms.author: robb
-services: azure-monitor
 ms.topic: conceptual
 ms.custom:
-ms.date: 06/13/2024
+ms.date: 01/16/2025
 ms.reviewer: lualderm
 ---
 
@@ -33,7 +30,7 @@ The following video walks you through routing resource platform logs with diagno
 
 Information on these newer features is included in this article.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RE4AvVO]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=2e9e11cc-fc03-4caa-8fee-4386abf454bc]
 
 ## Sources
 
@@ -92,7 +89,7 @@ To ensure the security of data in transit, all destination endpoints are configu
 | [Log Analytics workspace](../logs/workspace-design.md) | Metrics are converted to log form. This option might not be available for all resource types. Sending them to the Azure Monitor Logs store (which is searchable via Log Analytics) helps you to integrate them into queries, alerts, and visualizations with existing log data.
 | [Azure Storage account](/azure/storage/blobs/) | Archiving logs and metrics to a Storage account is useful for audit, static analysis, or back up. Compared to using Azure Monitor Logs or a Log Analytics workspace, Storage is less expensive, and logs can be kept there indefinitely.  | 
 | [Azure Event Hubs](/azure/event-hubs/) | When you send logs and metrics to Event Hubs, you can stream data to external systems such as third-party SIEMs and other Log Analytics solutions.  |
-| [Azure Monitor partner solutions](/azure/partner-solutions/overview)| Specialized integrations can be made between Azure Monitor and other non-Microsoft monitoring platforms. Integration is useful when you're already using one of the partners.  |
+| [Azure Monitor partner solutions](/azure/partner-solutions/partners#observability)| Specialized integrations can be made between Azure Monitor and other non-Microsoft monitoring platforms. Integration is useful when you're already using one of the partners.  |
 
 ## Activity log settings
 
@@ -120,6 +117,9 @@ There are certain limitations with exporting metrics:
 - **Not all metrics are exportable with diagnostic settings**. Because of internal limitations, not all metrics are exportable to Azure Monitor Logs or Log Analytics. For more information, see the **Exportable** column in the [list of supported metrics](./metrics-supported.md).
 
 To get around these limitations for specific metrics, you can manually extract them by using the [Metrics REST API](/rest/api/monitor/metrics/list). Then you can import them into Azure Monitor Logs by using the [Azure Monitor Data Collector API](../logs/data-collector-api.md).
+
+> [!IMPORTANT]
+> Diagnostic settings don't support resourceIDs with non-ASCII characters (for example, Preproduccón). For more information, see [Troubleshooting](#setting-disappears-due-to-non-ascii-characters-in-resourceid).
 
 ### Destination limitations
 
@@ -149,6 +149,8 @@ There's a cost for collecting data in a Log Analytics workspace, so only collect
 You might also not want to collect platform metrics from Azure resources because this data is already being collected in Metrics. Only configure your diagnostic data to collect metrics if you need metric data in the workspace for more complex analysis with log queries. Diagnostic settings don't allow granular filtering of resource logs.
 
 [!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
+
+[!INCLUDE [diagnostics-settings-troubleshooting](../includes/diagnostics-settings-troubleshooting.md)]
 
 ## Next steps
 

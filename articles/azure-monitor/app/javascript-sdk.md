@@ -26,7 +26,7 @@ We provide the [Debug plugin](https://github.com/microsoft/ApplicationInsights-J
 ## Prerequisites
 
 * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
-* Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-a-workspace-based-resource)
+* Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 * An application that uses [JavaScript](/visualstudio/javascript)
 
 ## Get started
@@ -130,12 +130,12 @@ To paste the connection string in your environment, follow these steps:
 1. Replace the placeholder `"YOUR_CONNECTION_STRING"` in the JavaScript code with your [connection string](./connection-strings.md) copied to the clipboard.
 
     The `connectionString` format must follow "InstrumentationKey=xxxx;....". If the string provided doesn't meet this format, the SDK load process fails.
-    
+ 
     The connection string isn't considered a security token or key. For more information, see [Do new Azure regions require the use of connection strings?](./connection-strings.md#do-new-azure-regions-require-the-use-of-connection-strings).
 
-    > [!NOTE]
-    > The Application Insights JavaScript SDK requires the connection string to be passed in during initialization and configuration. It's viewable in plain text in client browsers. There's no easy way to use the [Microsoft Entra ID-based authentication](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights) for browser telemetry. We recommend that you consider creating a separate Application Insights resource for browser telemetry if you need to secure the service telemetry.
-
+   > [!NOTE]
+   > The Application Insights JavaScript SDK requires the connection string to be provided during initialization and configuration. This connection string is visible in plain text in client browsers, and there is no straightforward way to use [Microsoft Entra ID-based authentication](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights) for browser telemetry. We recommend that you consider creating a separate Application Insights resource with local authentication enabled for JavaScript browser-based telemetry if you need to secure the service telemetry separately using Microsoft Entra ID-based authentication.
+   
 ### (Optional) Add SDK configuration
 
 The optional [SDK configuration](./javascript-sdk-configuration.md#sdk-configuration) is passed to the Application Insights JavaScript SDK during initialization.

@@ -47,6 +47,30 @@
       href: azure-container-instance-details.md
   - name: Reliability 
     href: /azure/reliability/reliability-chaos-studio?toc=/azure/chaos-studio/toc.json&bc=/azure/chaos-studio/breadcrumb/toc.json
+- name: Chaos Agent
+  items:
+  - name: Chaos Agent Overview
+    href: chaos-agent-overview.md
+  - name: Agent Concepts
+    href: chaos-agent-concepts.md
+  - name: Install Chaos Agent and Verify Agent Status
+    items:
+    - name: Portal
+      href: chaos-studio-tutorial-agent-based-portal.md
+    - name: CLI
+      href: chaos-studio-tutorial-agent-based-cli.md
+    - name: Verify Agent Status
+      href: chaos-agent-verify-status.md
+    - name: Uninstall the Chaos Agent
+      href: chaos-agent-uninstall.md
+  - name: OS Support and Compatibility
+    href: chaos-agent-os-support.md
+  - name: Troubleshooting Chaos Agent
+    href: chaos-agent-troubleshooting.md
+  - name: Private Link and Network Security for Chaos Agent
+    href: chaos-studio-private-link-agent-service.md
+  - name: Chaos Agent Known Issues
+    href: chaos-agent-known-issues.md
 - name: Create and run experiments
   items:
   - name: Service-direct faults
@@ -61,6 +85,8 @@
       href: chaos-studio-tutorial-agent-based-portal.md
     - name: CLI
       href: chaos-studio-tutorial-agent-based-cli.md
+    - name: Verify agent status
+      href: chaos-agent-verify-status.md
   - name: Chaos Mesh faults on AKS
     items:
     - name: Portal
@@ -85,18 +111,18 @@
     href: chaos-studio-tutorial-availability-zone-down-portal.md
 - name: Manage and Monitor experiments
   items:
-    - name: Emit Chaos experiment telemetry
-      items:
-      - name: Set up your Chaos Experiment to emit telemetry to Azure Monitor
-        href: chaos-studio-set-up-azure-monitor.md
-      - name: Set up your Agent-Based Chaos Experiment to emit telemetry to App Insights
-        href: chaos-studio-set-up-app-insights.md
-    - name: Configure an experiment using customer-managed keys (CMK)
-      href: chaos-studio-configure-customer-managed-keys.md
-    - name: Set up an agent-based chaos experiment using private link
-      href: chaos-studio-private-link-agent-service.md
-    - name: Troubleshoot common issues
-      href: troubleshooting.md
+  - name: Emit Chaos experiment telemetry
+    items:
+    - name: Set up your Chaos Experiment to emit telemetry to Azure Monitor
+      href: chaos-studio-set-up-azure-monitor.md
+    - name: Set up your Agent-Based Chaos Experiment to emit telemetry to App Insights
+      href: chaos-studio-set-up-app-insights.md
+  - name: Configure an experiment using customer-managed keys (CMK)
+    href: chaos-studio-configure-customer-managed-keys.md
+  - name: Set up an agent-based chaos experiment using private link
+    href: chaos-studio-private-link-agent-service.md
+  - name: Troubleshoot common issues
+    href: troubleshooting.md
 - name: Reference
   items:
   - name: Fault library
@@ -105,8 +131,6 @@
     href: experiment-examples.md
   - name: Fault providers
     href: chaos-studio-fault-providers.md
-  - name: Version compatibility
-    href: chaos-studio-versions.md
   - name: Regional availability
     href: chaos-studio-region-availability.md
   - name: Limitations and known issues

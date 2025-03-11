@@ -1,9 +1,6 @@
 ---
 title: Overview of Azure Monitor with Prometheus
 description: Get an overview of Azure Monitor with Prometheus, which provides Prometheus-compatible interfaces called Azure Monitor workspaces for storing and retrieving metric data.
-author: EdB-MSFT
-ms.service: azure-monitor
-ms-author: edbaynash
 ms.topic: conceptual
 ms.date: 10/06/2024
 ---
@@ -28,6 +25,10 @@ As a fully managed service, Azure Monitor managed service for Prometheus automat
 Azure Monitor managed service for Prometheus provides preconfigured alerts, rules, and dashboards. With recommended dashboards from the Prometheus community and native Grafana integration, you can achieve comprehensive monitoring immediately. Azure Monitor managed service for Prometheus integrates with Azure Managed Grafana, and it also works with self-managed Grafana.
 
 Pricing is based on ingestion and query with no additional storage cost. For more information, see the **Metrics** tab in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
+
+> [!NOTE]
+> Azure Managed Prometheus supports Horizontal Pod Autoscaling for replicaset pods in AKS Kubernetes clusters.
+See [Autoscaling](../containers/prometheus-metrics-scrape-autoscaling.md) to learn more.
 
 ### Enable Azure Monitor managed service for Prometheus
 

@@ -2,8 +2,6 @@
 title: Create Log Analytics workspaces
 description: Learn how to create a Log Analytics workspace to enable management solutions and data collection from your cloud and on-premises environments.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 08/12/2024
 ms.reviewer: yossiy
 
@@ -33,7 +31,7 @@ Use the **Log Analytics workspaces** menu to create a workspace.
 
     :::image type="content" source="media/quick-create-workspace/azure-portal-01.png" alt-text="Screenshot that shows the search bar at the top of the Azure home screen. As you begin typing, the list of search results filters based on your input.":::
 
-1. Select **Add**.
+1. Select **Create**.
 
 1. Select a **Subscription** from the dropdown.
 1. Use an existing **Resource Group** or create a new one.

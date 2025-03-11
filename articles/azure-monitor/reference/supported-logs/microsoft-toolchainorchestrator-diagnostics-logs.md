@@ -1,11 +1,11 @@
 ---
 title: Supported log categories - Microsoft.ToolchainOrchestrator/diagnostics
 description: Reference for Microsoft.ToolchainOrchestrator/diagnostics in Azure Monitor Logs.
-ms.topic: reference
+ms.topic: generated-reference
 ms.service: azure-monitor
 ms.author: orens
 author: osalzberg
-ms.date: 11/19/2024
+ms.date: 02/18/2025
 ms.custom: Microsoft.ToolchainOrchestrator/diagnostics, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 

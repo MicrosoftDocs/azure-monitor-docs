@@ -1,18 +1,17 @@
 ---
 title: Migrate from the metrics API to the getBatch API
 description: How to migrate from the metrics API to the getBatch API
-author: EdB-MSFT
-services: azure-monitor
 ms.topic: how-to
-ms.date: 12/23/2024
-ms.author: edbaynash
+ms.date: 01/23/2025
 ms.reviewer: priyamishra
 
 # Customer intent: As a customer, I want to understand how to migrate from the metrics API to the getBatch API
 ---
 # How to migrate from the metrics API to the getBatch API
 
-Heavy use of the [metrics API](/rest/api/monitor/metrics/list?tabs=HTTP) can result in throttling or performance problems. Migrating to the [`metrics:getBatch`](/rest/api/monitor/metrics-batch/batch?tabs=HTTP) API allows you to query multiple resources in a single REST request. The two APIs share a common set of query parameter and response formats that make migration easy.
+Heavy use of the [metrics API](/rest/api/monitor/metrics/list?tabs=HTTP) can result in throttling or performance problems. Migrating to the [`metrics:getBatch`](/rest/api/monitor/metrics-batch/batch?tabs=HTTP) API allows you to query multiple resources in a single REST request. The two APIs share a common set of query parameter and response formats that make migration easy. 
+
+This article provides guidance on how to convert an existing metrics API call to a `metrics:getBatch` API call. For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
 
 ## Request format 
  The `metrics:getBatch` API request has the following format:
@@ -58,7 +57,7 @@ To help identify groups of resources that meet these criteria, run the following
 
 ## Request conversion steps
 
-To convert an existing metrics API call to a metric:getBatch API call, follow these steps:
+To convert an existing metrics API call to a `metric:getBatch` API call, follow these steps:
 
 Assume the following API call is being used to request metrics:
 
@@ -67,7 +66,7 @@ GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
 ```
 
 1. Change the hostname.  
- Replace  `management.azure.com` with a regional endpoint for the Azure Monitor Metrics data plane using the following format: `<region>.metrics.monitor.azure.com` where `region` is region of the resources you're requesting metrics for.  For the example, if the resources are in westus2, the hostname is  `westus2.metrics.monitor.azure.com`.
+ Replace  `management.azure.com` with a regional endpoint for the Azure Monitor Metrics data plane using the following format: `<region>.metrics.monitor.azure.com` where `region` is region of the resources for which you're requesting metrics. For the example, if the resources are in westus2, the hostname is  `westus2.metrics.monitor.azure.com`.
 
 1. Change the API name and path.  
  The `metrics:getBatch` API is a subscription level POST API. The resources for which the metrics are requested, are specified in the request body rather than in the URL path.  
@@ -75,8 +74,8 @@ GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
     from `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sample-test/providers/Microsoft.Storage/storageAccounts/testaccount/providers/microsoft.Insights/metrics`  
      to `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/metrics:getBatch`
 
-1. The `metricNamespace` query param is required for metrics:getBatch. For Azure standard metrics, the namespace name is usually the resource type of the resources you specified. To check the namespace value to use, see the [metrics namespaces API](/rest/api/monitor/metric-namespaces/list?tabs=HTTP)
-1. Switch from using the `timespan` query param to using `starttime` and `endtime`.  For example, `?timespan=2023-04-20T12:00:00.000Z/2023-04-22T12:00:00.000Z` becomes `?startime=2023-04-20T12:00:00.000Z&endtime=2023-04-22T12:00:00.000Z`.
+1. The `metricNamespace` query param is required for `metrics:getBatch`. For Azure standard metrics, the namespace name is usually the resource type of the resources you specified. To check the namespace value to use, see the [metrics namespaces API](/rest/api/monitor/metric-namespaces/list?tabs=HTTP)
+1. Switch from using the `timespan` query param to using `starttime` and `endtime`. For example, `?timespan=2023-04-20T12:00:00.000Z/2023-04-22T12:00:00.000Z` becomes `?startime=2023-04-20T12:00:00.000Z&endtime=2023-04-22T12:00:00.000Z`.
 1. Update the api-version query parameter as follows: `&api-version=2023-10-01`
 1. The filter query param isn't prefixed with a `$` in the `metrics:getBatch` API. Change the query param from `$filter=` to `filter=`.
 1.  The `metrics:getBatch` API is a POST call with a body that contains a comma-separated list of resourceIds in the following format:
@@ -98,11 +97,11 @@ GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
     }
     ```
 
-  Up to 50 unique resource IDs may be specified in each call. Each resource must belong to the same subscription, region, and be of the same resource type.  
+  Up to 50 unique resource IDs can be specified in each call. Each resource must belong to the same subscription, region, and be of the same resource type.  
 
 > [!IMPORTANT] 
 > + The `resourceids` object property in the body must be lower case. 
-> + Ensure that there are no trailing commas on your last resourceid in the array list.
+> + Ensure that there are no trailing commas on your last resource ID in the array list.
 
 ### Converted batch request
 
@@ -122,7 +121,7 @@ The following example shows the converted batch request.
     }
 ```
 
-## Response Format
+## Response format
 
 The response format of the `metrics:getBatch` API encapsulates a list of individual metrics call responses in the following format:
 
@@ -631,10 +630,10 @@ The individual metrics API requires a user have the [Monitoring Reader](/azure/r
 
 ### 529 throttling errors
 
-While the data plane batch API is designed to help mitigate throttling problems, 529 error codes can still occur which indicates that the metrics backend is currently throttling some customers. The recommended action is to implement an exponential backoff retry scheme.
+While the data plane batch API is designed to help mitigate throttling problems, 529 error codes can still occur. This error indicates that the metrics backend is currently throttling your requests. The recommended action is to implement an exponential backoff retry scheme. For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
 
 ## Paging 
-Paging isn't supported by the metrics:getBatch API. The most common use-case for this API is frequently calling every few minutes for the same metrics and resources for the latest timeframe. Low latency is an important consideration so many customers parallelize their queries as much as possible. Paging forces customers into a sequential calling pattern that introduces additional query latency. In scenarios where requests return volumes of metric data where paging would be beneficial, it's recommended to split the query into multiple parallel queries.
+Paging isn't supported by the `metrics:getBatch` API. The most common use-case for this API is frequently calling every few minutes for the same metrics and resources for the latest timeframe. Low latency is an important consideration so many customers parallelize their queries as much as possible. Paging forces customers into a sequential calling pattern that introduces additional query latency. In scenarios where requests return volumes of metric data where paging would be beneficial, it's recommended to split the query into multiple parallel queries.
 
 ## Billing
 Yes all metrics data plane and batching calls are billed. For more information, see the **Azure Monitor native metrics** section in [Basic Log Search Queries](https://azure.microsoft.com/pricing/details/monitor/#pricing).
