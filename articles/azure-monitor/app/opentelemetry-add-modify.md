@@ -1668,7 +1668,7 @@ Currently unavailable.
 
 -->
   
-### Send custom events
+### Send custom events (Preview)
 
 <!--
 - We're repurposing the "Send custom telemetry using the Application Insights Classic API" for sending custom events.
@@ -1676,11 +1676,12 @@ Currently unavailable.
 - Node and Java - Jackson and Raj to help considering where we move information unrelated to custom events
 -->
 
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 This section provides guidance on instrumenting your application to capture and send custom events.
   
 #### [ASP.NET Core](#tab/aspnetcore)
-  
-**Events**
 
 To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
