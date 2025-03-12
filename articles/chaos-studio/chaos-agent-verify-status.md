@@ -4,7 +4,7 @@ description: Learn how to verify the status of the Azure Chaos Studio agent on a
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: article
-ms.date: 03/02/2025
+ms.date: 03/12/2025
 ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.service: azure-chaos-studio
@@ -53,5 +53,5 @@ If the agent isn't behaving as expected, check the logs for more details:
 - **Linux**: To view logs run the following command:
 
   ```sh
-  journalctl -u azure-chaos-agent
+  journalctl -u azure-chaos-agent --lines 50
   ```
