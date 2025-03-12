@@ -35,7 +35,7 @@ Security is a primary consideration in the design of the Chaos Agent:
 
 For more security best practices and troubleshooting tips, refer to the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
-## Other Considerations
+## Enhanced Monitoring
 - **Application Insights**
   - Connect your agent-based fault injection experiment with App Insights in order to have richer data populated about the experiment you're running.
  
