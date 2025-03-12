@@ -85,21 +85,20 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region Group  | Regions              | Notes                                                                          |
-|---------------|----------------------|--------------------------------------------------------------------------------|
-| North America | East US              | East US can't replicate to or from the East US 2 and South Central US regions. |
-|               | East US 2            | East US 2 can't replicate to or from the East US and South Central US regions. |
-|               | West US              |                                                                                |
-|               | West US 2            |                                                                                |
-|               | Central US           |                                                                                |
-|               | South Central US     | South Central US can't replicate to or from the East US and East US 2 regions. |
-|               | Central Canada       |                                                                                |
-| Europe        | West Europe          |                                                                                |
-|               | North Europe         |                                                                                |
-|               | South UK             |                                                                                |
-|               | West UK              |                                                                                |
-|               | Germany West Central |                                                                                |
-|               | France Central       |                                                                                |
+| Region Group              | Primary regions               | Supported secondary regions (any of the below) |
+|---------------------------|-------------------------------|----------------------------|
+| North America             | East US* <br> East US 2* <br> West US <br> West US 2 <br> West US 3 <br> Central US <br> South Central US* <br> North Central US <br> West Central US <br> Canada Central <br> Canada East              | East US* <br> East US 2* <br> West US <br> West US 2 <br> Central US <br> Canada Central    
+| Europe          | West Europe <br> North Europe <br> South UK <br> West UK <br> Germany North <br> Germany West Central <br> France Central <br> France South <br> Italy North <br> Norway East <br> Norway West <br> Poland Central <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West          | West Europe <br> North Europe <br> South UK <br> Germany West Central <br> France Central 
+| Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East <br> Australia Southeast  |
+| Asia Pacific   | East Asia <br> Southeast Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South    | East Asia <br> Southeast <br> Japan East <br> Korea Central
+| India                     | Central India <br> South India <br> West India | Central India <br> South India                                           |
+| Middle East               | Qatar Central <br> UAE Central <br> UAE North | Qatar Central <br> UAE Central <br> UAE North
+| Central & South America   | Brazil South <br> Brazil Southeast <br> Mexico Central        | Brazil South <br> Brazil Southeast
+| Africa                    | South Africa North <br> South Africa West | South Africa North <br> South Africa West
+|
+
+> [!NOTE]
+> Workspaces located in East US, East US 2, and South Central US can't replicate to these three region. Please select another secondary location from the North America region group.
 
 ### Data residency requirements
 
