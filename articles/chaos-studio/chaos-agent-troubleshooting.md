@@ -26,7 +26,7 @@ If the Chaos Agent fails to install or appears unhealthy, follow these debugging
 - **Extension Deployment Failure**  
   - **Symptoms:** The Virtual Machine (VM) Extensions blade shows a status other than `Provisioning succeeded` (for example, *Failed*, *Error*).  
   - **Troubleshooting Steps:**
-    1. Verify that the target VM meets the minimum prerequisites (supported OS, correct version, etc.). See [OS Support and Compatibility](chaos-agent-os-support.md).
+    1. Verify that the target VM meets the minimum prerequisites (autoinstall supported OS, correct version, etc.). See [OS Support and Compatibility](chaos-agent-os-support.md).
     2. Confirm that a user-assigned managed identity is attached to the VM.  
     3. Check the **Activity Log** in the Azure portal for any errors related to extension deployment.
     4. If the VM is part of a Virtual Machine Scale Set, ensure that the scale set upgrade policy isn't set to **Manual**. If it is, upgrade instances manually (using `az vmss update-instances`) or switch to an **Automatic** policy.
@@ -49,7 +49,7 @@ Even when the agent is installed, it may not communicate properly if network con
 - **Troubleshooting Steps:**
   1. **Verify Outbound Access:**  
      Ensure that the VM has outbound network access to the Chaos Agent service endpoint, which follows the pattern:  
-     `https://acs-prod-region.chaosagent.trafficmanager.net`  
+     `https://<region>.agents.chaos-prod.azure.com`  
      Replace `region` with your VM's deployment region.
   2. **Check NSG and Firewall Settings:**  
      a. Confirm that any Network Security Group (NSG) attached to the VM allows outbound HTTPS (port 443) traffic.  
@@ -82,9 +82,9 @@ The agent reports two key statuses on the VM’s **Extensions + applications** b
   Open **Event Viewer** → **Windows Logs** → **Application**. Filter by the source **AzureChaosAgent** to view relevant log entries.
   
 - **Linux:**  
-  Run the following command to view logs from the Chaos Agent service:
+  Run the following command to view the latest logs from the Chaos Agent service:
   ```bash
-  journalctl -u azure-chaos-agent
+  journalctl -u azure-chaos-agent --lines 50
 
 Look for error messages indicating connectivity or dependency issues.
 
@@ -133,7 +133,7 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 | **Error Message** | **Cause** | **Solution** |
 |-------------------|-----------|--------------|
-| "The agent log shows an inability to connect to acs-prod-region.chaosagent.trafficmanager.net." | Outbound network traffic is blocked. | Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint’s IP. |
+| "The agent log shows an inability to connect to https://<region>.agents.chaos-prod.azure.com." | Outbound network traffic is blocked. | Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint’s IP. |
 
 ### Extension time-out or “ExtensionHandlerFailed”
 
