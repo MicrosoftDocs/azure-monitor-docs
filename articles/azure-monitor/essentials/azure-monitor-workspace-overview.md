@@ -96,9 +96,9 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 |UAE|UAE North|
 |UK|UK South, UK West|
 |US|Central US, East US, East US 2, South Central US, West Central US, West US, West US 2, West US 3|
-|US Government|USGov Virginia<sup>1</sup>, USGov Texas<sup>1</sup>|is still in preview in these regions.
+|US Government|USGov Virginia<sup>1</sup>, USGov Texas<sup>1</sup>|
 
-<sup>1</sup> Managed Prometheus for Arc-Enabled Kubernetes clusters 
+<sup>1</sup> Managed Prometheus for Arc-Enabled Kubernetes clusters is still in preview in these regions.
 
 If you have clusters in regions where Azure Monitor Workspace is not yet available, you can select another region in the same geography.
 

@@ -99,7 +99,7 @@ This step isn't required if you're using an AKS identity. An AKS identity alread
 > [!IMPORTANT]
 > To complete the steps in this section, you must have owner or user access administrator permissions for the cluster.
 
-1. Identify the virtual machine scale sets in the [node resource group](#get-the-name-of-the-aks-node-resource-group) for your cluster.
+1. Identify the virtual machine scale sets in the [node resource group](#get-the-name-of-the-clusters-node-resource-group) for your cluster.
 
     :::image type="content" source="media/prometheus-remote-write-managed-identity/resource-group-details-virtual-machine-scale-sets.png" alt-text="Screenshot that shows virtual machine scale sets in the node resource group." lightbox="media/prometheus-remote-write-managed-identity/resource-group-details-virtual-machine-scale-sets.png":::
 
