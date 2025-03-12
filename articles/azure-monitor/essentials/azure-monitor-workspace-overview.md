@@ -80,7 +80,7 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 |Australia|Australia Central, Australia East, Australia Southeast|
 |Brazil|Brazil South, Brazil Southeast|
 |Canada|Canada Central, Canada East|
-|China|China North 3 (Preview), China East 3 (Preview)|
+|China|China North 3 (Preview)<sup>1</sup>, China East 3 (Preview)<sup>1</sup>|
 |Europe|North Europe, West Europe|
 |France|France Central, France South|
 |Germany|Germany West Central|
@@ -96,8 +96,9 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 |UAE|UAE North|
 |UK|UK South, UK West|
 |US|Central US, East US, East US 2, South Central US, West Central US, West US, West US 2, West US 3|
-|US Government|USGov Virginia, USGov Texas|
+|US Government|USGov Virginia<sup>1</sup>, USGov Texas<sup>1</sup>|is still in preview in these regions.
 
+<sup>1</sup> Managed Prometheus for Arc-Enabled Kubernetes clusters 
 
 If you have clusters in regions where Azure Monitor Workspace is not yet available, you can select another region in the same geography.
 
