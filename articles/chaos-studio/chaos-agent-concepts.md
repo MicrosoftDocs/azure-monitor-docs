@@ -24,6 +24,7 @@ https://<region>.agents.chaos-prod.azure.com
 Without this connectivity, the agent won't receive instructions or be able to report its status. Other network configuration points include:
 
 - **NSG Configuration:** Use the **ChaosStudio** service tag to allow outbound traffic in Network Security Groups.
+  - Regularly verify that NSG rules and firewall settings permit outbound traffic to the required Chaos Agent service endpoints.
 - **Private Connectivity:** Private Link can be configured for fully private connectivity. For more details, review the [Chaos Studio private link for agent documentation](chaos-studio-private-link-agent-service.md).
 
 ## Security
@@ -35,9 +36,11 @@ Security is a primary consideration in the design of the Chaos Agent:
 
 For more security best practices and troubleshooting tips, refer to the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
-## Other Considerations
-- **Application Insights**
+## Monitoring
+- **Application Insights (Recommended)**
   - Connect your agent-based fault injection experiment with App Insights in order to have richer data populated about the experiment you're running.
+- **Monitoring and Logging:**  
+  - Ensure your monitoring solutions capture logs from the Windows Event Log or the Linux systemd journal to diagnose issues effectively.
  
 ## Dependencies
 
@@ -66,7 +69,10 @@ The Chaos Agent runs as a background service on the virtual machine (VM) and is 
 The agent authenticates with Azure Chaos Studio using a user-assigned managed identity attached to the VM. It communicates with the Chaos Studio backend to receive fault execution commands. Key aspects include:
 
 - **Target Identity:** The identity of the VM that is being targeted.
-- **Experiment Managed Identity:** Must have at least Reader access on the VM to execute faults.
+- **Experiment Managed Identity:** Must have at least Reader access on the VM to execute faults (required by experiment).
+> [!NOTE]
+> **Identity and Access Reviews:**  
+  - Periodically review the permissions assigned to both the target identity and the experiment managed identity to adhere to the principle of least privilege.
 
 ### VM Extension diagram
 
@@ -86,19 +92,7 @@ The agent attempts to install itself and its dependencies in the following filep
 
 <br>[![Screenshot of terminal example showing filepath of Chaos agent on a linux machine](images/chaos-agent-linux-filepath-example.png)](images/chaos-agent-linux-filepath-example.png#lightbox)<br>
 
-## Additional Concepts
+## Maintenance and Updates
 
-- **Monitoring and Logging:**  
-  - Ensure your monitoring solutions capture logs from the Windows Event Log or the Linux systemd journal to diagnose issues effectively.
-  
-- **Network Diagnostics:**  
-  - Regularly verify that NSG rules and firewall settings permit outbound traffic to the required Chaos Agent service endpoints.
-  
-- **Identity and Access Reviews:**  
-  - Periodically review the permissions assigned to both the target identity and the experiment managed identity to adhere to the principle of least privilege.
-  
-- **Maintenance and Updates:**  
-  - Keep the agent and its dependencies up-to-date to benefit from performance improvements and security patches.
-
-These concepts should help you understand how things work so you can configure, deploy, and troubleshoot the Chaos Agent effectively within your Azure environment.
+- Keep the agent and its dependencies up-to-date to benefit from performance improvements and security patches. This can be done from the [verify agent status page](chaos-agent-verify-status.md). The Chaos agent does not support auto-update at this time. 
 
