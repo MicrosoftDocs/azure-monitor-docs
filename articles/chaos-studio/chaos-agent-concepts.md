@@ -38,9 +38,12 @@ For more security best practices and troubleshooting tips, refer to the [Chaos S
 
 ## Monitoring
 - **Application Insights (Recommended)**
-  - Connect your agent-based fault injection experiment with App Insights in order to have richer data populated about the experiment you're running.
-- **Monitoring and Logging:**  
-  - Ensure your monitoring solutions capture logs from the Windows Event Log or the Linux systemd journal to diagnose issues effectively.
+  - (Optional) Connect your agent-based fault injection experiment with App Insights in order to have richer data populated about the experiment you're running. See [agent-based experiment monitoring](chaos-studio-set-up-app-insights.md)
+ 
+## OS-Specific Logging:  
+  - **Windows:** Utilizes the Windows Event Log for logging.  
+  - **Linux:** Uses the systemd journal for logging.
+    - It is good practice to ensure your monitoring solutions capture logs from the Windows Event Log or the Linux systemd journal to diagnose issues effectively.
  
 ## Dependencies
 
@@ -52,16 +55,11 @@ The proper operation of the Chaos Agent depends on several software components a
   - For certain distributions like Azure Linux (Mariner), manual installation of dependencies is necessary.
   - For more info on dependencies, see our [OS compatibility page](chaos-agent-os-support.md)
 
-- **OS-Specific Logging:**  
-  - **Windows:** Utilizes the Windows Event Log for logging.  
-  - **Linux:** Uses the systemd journal for logging.
-
 Further details can be found in the [Chaos Studio fault library documentation](chaos-studio-fault-library.md). 
 
 ## Architecture
 
 The Chaos Agent runs as a background service on the virtual machine (VM) and is deployed via a VM extension. Depending on the operating system:
-
 
 - **Windows:** Operates as a Windows service.
 - **Linux:** Runs as a systemd service.
