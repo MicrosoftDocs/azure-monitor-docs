@@ -4,7 +4,7 @@ items:
 - name: Overview
   items:
     - name: Azure Monitor overview
-      href: overview.md
+      href: fundamentals/overview.md
     - name: Insights and curated visualizations
       href: insights/insights-overview.md
     - name: Multicloud monitoring
