@@ -36,7 +36,7 @@ The following compatibility matrix outlines the officially supported operating s
 | openSUSE Leap             | 15.2+   | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | Oracle Linux              | 8.3+    | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | Other Operating Systems   | N/A     | Not officially tested. May work, but more troubleshooting/manual dependency installation may be required | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-
+|**Required dependencies** | | | | | | | | | | | | | | | | | | | | | | | | 
 ---
 
 ## Manual Package Dependencies for specific OS':
