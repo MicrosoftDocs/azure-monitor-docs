@@ -67,6 +67,10 @@
           href: chaos-studio-private-link-agent-service.md
         - name: Uninstall the agent
           href: chaos-agent-uninstall.md
+    - name: Monitoring
+      items:
+        - name: Emit telemetry to App Insights
+          href: chaos-studio-set-up-app-insights.md
     - name: FAQ
       items:
         - name: Troubleshooting
