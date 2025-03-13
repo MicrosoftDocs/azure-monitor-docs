@@ -48,7 +48,7 @@ The proper operation of the Chaos Agent depends on several software components a
 
 - **Linux Dependencies:**  
   - Some agent-based faults require different dependencies. For example, resource pressure faults depend on the `stress-ng` utility. 
-  - The installer attempts to autoinstall `stress-ng` `tc` and `netem` on auto install supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
+  - The installer attempts to autoinstall `stress-ng` on auto install supported distributions such as Debian/Ubuntu, RHEL, and openSUSE.  
   - For certain distributions like Azure Linux (Mariner), manual installation of dependencies is necessary.
   - For more info on dependencies, see our [OS compatibility page](chaos-agent-os-support.md)
 
@@ -72,7 +72,7 @@ The agent authenticates with Azure Chaos Studio using a user-assigned managed id
 - **Experiment Managed Identity:** Must have at least Reader access on the VM to execute faults (required by experiment).
 > [!NOTE]
 > **Identity and Access Reviews:**  
-  - Periodically review the permissions assigned to both the target identity and the experiment managed identity to adhere to the principle of least privilege.
+> Periodically review the permissions assigned to both the target identity and the experiment managed identity to adhere to the principle of least privilege.
 
 ### VM Extension diagram
 
