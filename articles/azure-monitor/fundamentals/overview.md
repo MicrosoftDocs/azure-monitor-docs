@@ -15,7 +15,7 @@ Azure Monitor collects and aggregates the data from every layer and component of
 
 This diagram shows an abstracted view of the monitoring process. A more detailed breakdown of the Azure Monitor architecture is shown in the following [High level architecture](#high-level-architecture) section.
 
-## High level architecture
+## High-level architecture
 
 Azure Monitor can monitor these types of resources in Azure, other clouds, or on-premises:
 
@@ -217,7 +217,7 @@ SCOM MI currently uses its own separate traditional SCOM alerting mechanism in t
 
 **[Autoscale](../autoscale/autoscale-overview.md)** allows you to dynamically control the number of resources running to handle the load on your application. You can create rules that use Azure Monitor metrics to determine when to automatically add resources when the load increases or remove resources that are sitting idle. You can specify a minimum and maximum number of instances, and the logic for when to increase or decrease resources to save money and to increase performance.
 
-:::image type="content" source="media/overview/autoscale.png" border="false" alt-text="Conceptual diagram showing how autoscale grows" :::
+:::image type="content" source="media/overview/autoscale.png" border="false" alt-text="Conceptual diagram showing how autoscale grows." :::
 
 **[Azure Logic Apps](/azure/logic-apps/logic-apps-overview)** is also an option. For more information, see the following [Integrate](#integrate) section.
 
