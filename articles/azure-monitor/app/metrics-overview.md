@@ -164,9 +164,9 @@ Metrics in the Availability category enable you to see the health of your web ap
 
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
-| Unit of measure | Supported aggregations | Supported dimensions        |
-|-----------------|------------------------|-----------------------------|
-| Percentage      | Avg                    | `Run location`, `Test name` |
+| Unit of measure | Supported aggregations | Supported dimensions        | Max time series |
+|-----------------|------------------------|-----------------------------|-----------------|
+| Percentage      | Avg                    | `Run location`, `Test name` | 5000            |
 
 #### Availability test duration (availabilityResults/duration)
 
@@ -498,17 +498,17 @@ Use metrics in the **Performance counters** category to access [system performan
 
 ### [Standard](#tab/standard)
 
-#### Available memory (performanceCounters/availableMemory)
+#### Available memory (performanceCounters/availableMemory) <!-- performanceCounters/memoryAvailableBytes -->
 
-| Unit of measure                        | Supported aggregations | Supported dimensions  |
-|----------------------------------------|------------------------|-----------------------|
-| Megabytes / Gigabytes (data dependent) | Avg, Max, Min          | `Cloud role instance` |
+| Unit of measure                        | Supported aggregations | Supported dimensions  | Max time series |
+|----------------------------------------|------------------------|-----------------------|-----------------|
+| Megabytes / Gigabytes (data dependent) | Avg, Max, Min          | `Cloud role instance` | 5000            |
 
-#### Exception rate (performanceCounters/exceptionRate)
+#### Exception rate (performanceCounters/exceptionRate) <!-- performanceCounters/exceptionsPerSecond -->
 
-| Unit of measure | Supported aggregations | Supported dimensions  |
-|-----------------|------------------------|-----------------------|
-| Count           | Avg, Max, Min          | `Cloud role instance` |
+| Unit of measure | Supported aggregations | Supported dimensions  | Max time series |
+|-----------------|------------------------|-----------------------|-----------------|
+| Count           | Avg, Max, Min          | `Cloud role instance` | 5000            |
 
 #### HTTP request execution time (performanceCounters/requestExecutionTime)
 
