@@ -36,7 +36,7 @@ The following compatibility matrix outlines the officially supported operating s
 | openSUSE Leap             | 15.2+   | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | Oracle Linux              | 8.3+    | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | Other Operating Systems   | N/A     | Not officially tested. May work, but more troubleshooting/manual dependency installation may be required | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-|**Required dependencies** | |List of linux packages required in order for the fault to work via the Azure Chaos Studio agent | ```tc``` and ```netem``` | | | | | | | | | | | | | | | | | | | | | 
+|**Required dependencies** | |List of linux packages required in order for the fault to work via the Azure Chaos Studio agent | ```tc``` and ```netem``` |Unavailable on Linux|```tc``` and ```netem```|```tc``` and ```netem```|```tc``` and ```netem```|Unavailable on Linux|```stress-ng```|```stress-ng```|Unavailable on Linux|```stress-ng```|None|None|Unavailable on Linux|Unavailable on Linux|```stress-ng```|
 ---
 
 ## Manual Package Dependencies for specific operating systems
