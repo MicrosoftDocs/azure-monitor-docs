@@ -44,11 +44,11 @@ The following diagram shows a high-level architecture view of Azure Monitor.
 
 The diagram depicts the Azure Monitor system components:
 
-* **[Data sources](../data-sources.md)** are the types of resources being monitored.
+* **[Data sources](data-sources.md)** are the types of resources being monitored.
 
 * The data is **collected and routed** to the data platform. Clicking on the diagram shows these options, which are also called out in detail later in this article.
 
-* The **[data platform](../data-platform.md)** stores the collected monitoring data. Azure Monitor's core data platform has stores for metrics, logs, traces, and changes. System Center Operations Manager MI uses its own database hosted in SQL Managed Instance.
+* The **[data platform](data-platform.md)** stores the collected monitoring data. Azure Monitor's core data platform has stores for metrics, logs, traces, and changes. System Center Operations Manager MI uses its own database hosted in SQL Managed Instance.
 
 * The **consumption** section shows the components that use data from the data platform.
 
@@ -61,7 +61,7 @@ The diagram depicts the Azure Monitor system components:
 
 ## Data sources
 
-Azure Monitor can collect [data from multiple sources](../data-sources.md).
+Azure Monitor can collect [data from multiple sources](data-sources.md).
 
 The following diagram shows an expanded version of the data source types that Azure Monitor can gather monitoring data from.
 
@@ -81,13 +81,13 @@ Azure Monitor collects these types of data:
 | Azure Platform | **Azure resource** - Data about the operation of an Azure resource from inside the resource, including changes. Resource Logs are one example.<br><br>**Azure subscription** - The operation and management of an Azure subscription, and data about the health and operation of Azure itself. The activity log is one example.<br><br>**Azure tenant** - Data about the operation of tenant-level Azure services, such as Microsoft Entra ID. |
 | Custom Sources | Data that gets into the system using the<br>- Azure Monitor REST API<br>- Data Collection API |
 
-For detailed information about each of the data sources, see [data sources](../data-sources.md).
+For detailed information about each of the data sources, see [data sources](data-sources.md).
 
 SCOM MI (like on premises SCOM) collects only IaaS Workload and Operating System sources.
 
 ## Data collection and routing
 
-Azure Monitor collects and routes monitoring data using a few different mechanisms depending on the data being routed and the destination. Much like a road system improved over the years, not all roads lead to all locations. Some are legacy, some new, and some are better to take than others given how Azure Monitor has evolved over time. For more information, see **[data sources](../data-sources.md)**.
+Azure Monitor collects and routes monitoring data using a few different mechanisms depending on the data being routed and the destination. Much like a road system improved over the years, not all roads lead to all locations. Some are legacy, some new, and some are better to take than others given how Azure Monitor has evolved over time. For more information, see **[data sources](data-sources.md)**.
 
 :::image type="content" source="media/overview/data-collection-box-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor data collection and routing." border="false" lightbox="media/overview/data-collection-blowup-type-2-opt.svg":::
 
@@ -107,7 +107,7 @@ A common way to route monitoring data to other non-Microsoft tools is using *Eve
 
 SCOM MI (like on-premises SCOM) uses an agent to collect data, which it sends to a management server running in a SCOM MI on Azure.
 
-For detailed information about data collection, see [data collection](../best-practices-data-collection.md).
+For detailed information about data collection, see [data collection](best-practices-data-collection.md).
 
 ## Data platform
 
@@ -182,7 +182,7 @@ Visualizations such as charts and tables are effective tools for summarizing mon
 | [Power BI](../logs/log-powerbi.md) | Power BI is a business analytics service that provides interactive visualizations across various data sources. It's an effective means of making data available to others within and outside your organization. You can configure Power BI to automatically import log data from Azure Monitor to take advantage of these visualizations. |
 | [Grafana](../visualize/grafana-plugin.md) | Grafana is an open platform that excels in operational dashboards. All versions of Grafana include the Azure Monitor data source plug-in to visualize your Azure Monitor metrics and logs. Azure Managed Grafana also optimizes this experience for Azure-native data stores such as Azure Monitor and Azure Data Explorer. In this way, you can easily connect to any resource in your subscription and view all resulting monitoring data in a familiar Grafana dashboard. It also supports pinning charts from Azure Monitor metrics and logs to Grafana dashboards.<br><br>Grafana has popular plug-ins and dashboard templates for non-Microsoft APM tools such as Dynatrace, New Relic, and AppDynamics as well. You can use these resources to visualize Azure platform data alongside other metrics from higher in the stack collected by these other tools. It also has AWS CloudWatch and GCP BigQuery plug-ins for multicloud monitoring in a single pane of glass. |
 
-For a more extensive discussion of the recommended visualization tools and when to use them, see [Analyze and visualize monitoring data](../best-practices-analysis.md)
+For a more extensive discussion of the recommended visualization tools and when to use them, see [Analyze and visualize monitoring data](best-practices-analysis.md)
 
 ### Analyze
 
@@ -258,7 +258,7 @@ In September 2018, Microsoft combined Azure Monitor, Log Analytics, and Applicat
 
 ### How much does Azure Monitor cost?
 
-The cost of Azure Monitor is based on your usage of different features and is primarily determined by the amount of data you collect. See [Azure Monitor cost and usage](../usage-estimated-costs.md) for details on how costs are determined and [Cost optimization in Azure Monitor](../best-practices-cost.md) for recommendations on reducing your overall spend.
+The cost of Azure Monitor is based on your usage of different features and is primarily determined by the amount of data you collect. See [Azure Monitor cost and usage](cost-usage.md) for details on how costs are determined and [Cost optimization in Azure Monitor](best-practices-cost.md) for recommendations on reducing your overall spend.
 
 ### Is there an on-premises version of Azure Monitor?
 
@@ -272,6 +272,6 @@ Microsoft also offers System Center Operations Manager Managed Instance (SCOM MI
 
 ## Next steps
 
-* [Getting started with Azure Monitor](../getting-started.md)
-* [Sources of monitoring data for Azure Monitor](../data-sources.md)
+* [Getting started with Azure Monitor](getting-started.md)
+* [Sources of monitoring data for Azure Monitor](data-sources.md)
 * [Data collection in Azure Monitor](../essentials/data-collection.md)
