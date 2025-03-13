@@ -41,7 +41,7 @@ The following compatibility matrix outlines the officially supported operating s
 
 ## Manual Package Dependencies for specific operating systems
 
-While the agent may autoinstall some dependencies on certain mainstream Linux OS', you might need to install the following packages manually on certain operating systems due to limitations or other required configurations:
+While the agent may autoinstall some dependencies on certain mainstream Linux operating systems, you might need to install the following packages manually on certain operating systems due to limitations or other required configurations:
 
 ### Linux (Debian/Ubuntu):
 
