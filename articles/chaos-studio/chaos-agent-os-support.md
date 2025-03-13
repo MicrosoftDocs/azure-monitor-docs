@@ -61,7 +61,7 @@ While the agent may autoinstall some dependencies on certain mainstream Linux op
 
 ### Azure Linux (Mariner):
 
-Ensure that stress-ng is manually installed using your distribution’s package manager.
+```sudo tdnf install stress-ng```
 
 ---
 
