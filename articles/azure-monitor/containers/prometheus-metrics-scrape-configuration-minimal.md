@@ -193,6 +193,9 @@ The following metrics are allow-listed with `minimalingestionprofile=true` for d
 - `node_exporter_build_info`
 - `node_time_seconds`
 - `node_uname_info"`
+  
+> [!NOTE]
+> The controlplane-apiserver and controlplane-etcd are currently in preview and requires enabling the flag. Please follow the documentation [here](azure/aks/control-plane-metrics-monitor.md)
 
 **controlplane-apiserver**<br>
 - `apiserver_request_total`
