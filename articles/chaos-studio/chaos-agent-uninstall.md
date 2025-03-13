@@ -43,3 +43,9 @@ For Virtual Machine Scale Sets (VMSS), use:
 az vmss extension delete --resource-group <ResourceGroupName> --vmss-name <VMSSName> --name ChaosAgent
 ```
 Replace ResourceGroupName, VMName, and VMSSName with your actual resource names.
+
+>[!Note]
+> If you uninstall the agent and also want to remove ```stress-ng```, you will need to use the appropriate package manager command (for example ```yum remove``` for RHEL-based systems) for your operating system.
+> Here is an example of removing ```stress-ng``` from an Ubuntu-based system:
+>
+>```sudo apt-get remove --purge stress-ng``` 
