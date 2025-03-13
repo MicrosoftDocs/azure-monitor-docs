@@ -248,8 +248,6 @@ items:
               href: profiler/profiler-aspnetcore-linux.md
             - name: Azure Functions app
               href: profiler/profiler-azure-functions.md
-            - name: Azure Cloud Service
-              href: profiler/profiler-cloudservice.md
             - name: Azure Service Fabric app
               href: profiler/profiler-servicefabric.md
             - name: Azure Virtual Machines
