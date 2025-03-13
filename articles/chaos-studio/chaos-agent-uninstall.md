@@ -19,7 +19,7 @@ This article describes how to remove the Chaos Agent from your virtual machine (
 
 ## Using the Azure portal
 
-To uninstall the Chaos Agent from your VMs):
+To uninstall the Chaos Agent from your VMs:
 1. Open **Azure Chaos Studio** in the Azure portal.
 2. Select the VM with the agent installed from the **Targets** page
 3. Click **Disable Agent-Based Faults** in the top left.
