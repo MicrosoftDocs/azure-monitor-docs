@@ -7798,6 +7798,11 @@
    "source_path": "articles/azure-monitor/vm/virtual-machine-guest-metrics.md",
    "redirect_url": "/azure/azure-monitor/vm/data-collection-performance",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/overview.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/overview",
+   "redirect_document_id": false
   }
  ]
 }
