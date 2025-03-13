@@ -457,8 +457,6 @@ items:
         href: azure-monitor-operations-manager.md
       - name: Assess Operations Manager
         href: insights/scom-assessment.md
-    - name: Guest performance counters
-      href: vm/virtual-machine-guest-metrics.md  
   - name: Monitor containers
     items:
     - name: Azure Monitor features
