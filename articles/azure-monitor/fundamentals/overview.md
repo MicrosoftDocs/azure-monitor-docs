@@ -39,7 +39,8 @@ The following diagram shows a high-level architecture view of Azure Monitor.
 
 :::image type="content" source="media/overview/overview-simple-20230707-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor with data sources on the left sending data to a central data platform and features of Azure Monitor on the right that use the collected data." border="false" lightbox="media/overview/overview-blowout-20230707-opt.svg":::
 
-Click on the diagram to see a more detailed expanded version showing a larger breakdown of data sources and data collection methods.
+> [!NOTE]
+> Click on the diagram to see a more detailed expanded version showing a larger breakdown of data sources and data collection methods.
 
 The diagram depicts the Azure Monitor system components:
 
@@ -90,7 +91,8 @@ Azure Monitor collects and routes monitoring data using a few different mechanis
 
 :::image type="content" source="media/overview/data-collection-box-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor data collection and routing." border="false" lightbox="media/overview/data-collection-blowup-type-2-opt.svg":::
 
-Click on the diagram to see a larger version of the data collection in context.
+> [!NOTE]
+> Click on the diagram to see a larger version of the data collection in context.
 
 | Collection method | Description |
 |-------------------|-------------|
@@ -120,7 +122,8 @@ Each store is optimized for specific types of data and monitoring scenarios.
 
 :::image type="content" source="media/overview/data-platform-box-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor data platform." border="false" lightbox="media/overview/data-platform-blowup-type-2-opt.svg":::
 
-Select the preceding diagram to see the Data Platform in the context of the whole of Azure Monitor.
+> [!NOTE]
+> Select the preceding diagram to see the Data Platform in the context of the whole of Azure Monitor.
 
 | Pillar of Observability/<br>Data Store | Description |
 |----------------------------------------|-------------|
