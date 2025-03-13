@@ -36,11 +36,11 @@ The .NET Profiler and Code Optimizations work together to provide a holistic app
 
 #### Identify
 
-Using the [Code Optimizations consolidated oveview page](./view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
+Using the [Code Optimizations consolidated overview page](./view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
 
 #### Analyze
 
-Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identitified issues, with a 30-day history for you to review and analyze past events.
+Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
 
 #### Resolve
 
