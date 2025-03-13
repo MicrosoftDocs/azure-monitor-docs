@@ -14,7 +14,7 @@
       href: chaos-studio-target-selection.md
 - name: Quickstart
   items:
-    - name: Create and run a chaos experiment 
+    - name: Create and run a chaos experiment
       href: chaos-studio-quickstart-azure-portal.md
 - name: Tutorials
   items:
@@ -24,7 +24,7 @@
       href: tutorial-schedule.md
 - name: Samples
   items:
-    - name: Azure REST API 
+    - name: Azure REST API
       href: chaos-studio-samples-rest-api.md
     - name: ARM templates
       items:
@@ -32,11 +32,11 @@
           href: sample-template-targets.md
         - name: Experiments
           href: sample-template-experiment.md
-    - name: Bicep 
+    - name: Bicep
       href: chaos-studio-bicep.md
     - name: Azure policy definitions
       href: sample-policy-targets.md
-- name: Security and Reliability
+- name: Security and reliability
   items:
     - name: Permissions and security
       href: chaos-studio-permissions-security.md
@@ -45,9 +45,9 @@
       items:
         - name: Accessing container image details
           href: azure-container-instance-details.md
-    - name: Reliability 
+    - name: Reliability
       href: /azure/reliability/reliability-chaos-studio?toc=/azure/chaos-studio/toc.json&bc=/azure/chaos-studio/breadcrumb/toc.json
-- name: Chaos Studio Agent
+- name: Chaos Studio agent
   items:
     - name: Overview
       href: chaos-agent-overview.md
@@ -55,7 +55,7 @@
       href: chaos-agent-concepts.md
     - name: Supported operating systems
       href: chaos-agent-os-support.md
-    - name: Install and Configure
+    - name: Install and configure
       items:
         - name: Portal installation tutorial
           href: chaos-studio-tutorial-agent-based-portal.md
@@ -63,7 +63,7 @@
           href: chaos-studio-tutorial-agent-based-cli.md
         - name: Verify agent status
           href: chaos-agent-verify-status.md
-        - name: Private Link and Network security for agent
+        - name: Private Link and network security for agent
           href: chaos-studio-private-link-agent-service.md
         - name: Uninstall the agent
           href: chaos-agent-uninstall.md
@@ -71,7 +71,7 @@
       items:
         - name: Troubleshooting
           href: chaos-agent-troubleshooting.md
-        - name: Known Issues
+        - name: Known issues
           href: chaos-agent-known-issues.md
 - name: Create and run experiments
   items:
@@ -103,21 +103,21 @@
       items:
         - name: Portal
           href: chaos-studio-tutorial-dynamic-target-portal.md
-        - name: CLI 
+        - name: CLI
           href: chaos-studio-tutorial-dynamic-target-cli.md
-- name: Use Chaos experiment templates
-  items: 
+- name: Use chaos experiment templates
+  items:
     - name: Use a chaos experiment template to induce an outage on an Azure Active Directory instance
       href: chaos-studio-tutorial-aad-outage-portal.md
     - name: Use a chaos experiment template to take down Virtual Machine Scale Set availability zones with autoscale disabled
       href: chaos-studio-tutorial-availability-zone-down-portal.md
-- name: Manage and Monitor experiments
+- name: Manage and monitor experiments
   items:
-    - name: Emit Chaos experiment telemetry
+    - name: Emit chaos experiment telemetry
       items:
-        - name: Set up your Chaos Experiment to emit telemetry to Azure Monitor
+        - name: Set up your chaos experiment to emit telemetry to Azure Monitor
           href: chaos-studio-set-up-azure-monitor.md
-        - name: Set up your Agent-Based Chaos Experiment to emit telemetry to App Insights
+        - name: Set up your agent-based chaos experiment to emit telemetry to App Insights
           href: chaos-studio-set-up-app-insights.md
     - name: Configure an experiment using customer-managed keys (CMK)
       href: chaos-studio-configure-customer-managed-keys.md
