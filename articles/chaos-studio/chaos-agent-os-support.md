@@ -36,7 +36,7 @@ The following compatibility matrix outlines the officially supported operating s
 | openSUSE Leap             | 15.2+   | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | Oracle Linux              | 8.3+    | —     | ✓ (outbound) | ✗ | ✓ (outbound) | ✓ (outbound) | ✓ (outbound) | ✗ | ✓ | ✓ | ✗ | ✓ | ✓ | ✓ | ✗ | ✗ | ✓ |
 | Other Operating Systems   | N/A     | Not officially tested. May work, but more troubleshooting/manual dependency installation may be required | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? | ? |
-|**Required dependencies** | |List of linux packages required in order for the fault to work via the Azure Chaos Studio agent | | | | | | | | | | | | | | | | | | | | | | 
+|**Required dependencies** | |List of linux packages required in order for the fault to work via the Azure Chaos Studio agent | ```tc``` and ```netem``` | | | | | | | | | | | | | | | | | | | | | 
 ---
 
 ## Manual Package Dependencies for specific operating systems
@@ -45,18 +45,18 @@ While the agent may autoinstall some dependencies on certain mainstream Linux op
 
 ### Linux (Debian/Ubuntu):
 
-```sudo apt-get install stress-ng tc netem unzip```
+```sudo apt-get install stress-ng unzip```
 
 ### Red Hat Enterprise Linux / CentOS:
  
 
-```sudo yum install stress-ng tc netem```
+```sudo yum install stress-ng```
 
 
 ### openSUSE / Oracle Linux:
  
 
-```sudo zypper install stress-ng tc netem```
+```sudo zypper install stress-ng```
 
 
 ### Azure Linux (Mariner):
