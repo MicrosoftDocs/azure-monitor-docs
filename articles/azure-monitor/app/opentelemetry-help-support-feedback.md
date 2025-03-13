@@ -174,6 +174,10 @@ In Application Insights, the 'Traces' table stores raw text logs for diagnostic 
 
 With the growing adoption of cloud-native practices, there's an evolution in telemetry collection and terminology. OpenTelemetry became a standard for collecting and instrumenting telemetry data. In this context, the term 'Traces' took on a new meaning. Rather than raw logs, 'Traces' in OpenTelemetry refer to a richer, structured form of telemetry that includes spans, which represent individual units of work. These spans are crucial for constructing detailed transaction views, enabling better monitoring and diagnostics of cloud-native applications.
 
+### How should I instrument Blazor Apps?
+
+To instrument a Blazor app, first identify the hosting model. Blazor Server supports full [OpenTelemetry-based instrumentation](opentelemetry-enable.md). Blazor WebAssembly runs in the browser and supports limited instrumentation through JavaScript.
+
 ## Troubleshooting
 
 ### [ASP.NET Core](#tab/aspnetcore)
