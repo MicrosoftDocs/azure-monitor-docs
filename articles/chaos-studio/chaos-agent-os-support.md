@@ -39,7 +39,7 @@ The following compatibility matrix outlines the officially supported operating s
 |**Required dependencies** | | | | | | | | | | | | | | | | | | | | | | | | 
 ---
 
-## Manual Package Dependencies for specific OS':
+## Manual Package Dependencies for specific operating systems
 
 While the agent may autoinstall some dependencies on certain mainstream Linux OS', you might need to install the following packages manually on certain operating systems due to limitations or other required configurations:
 
@@ -63,14 +63,18 @@ While the agent may autoinstall some dependencies on certain mainstream Linux OS
 
 Ensure that stress-ng is manually installed using your distribution’s package manager.
 
-## Known Issues
+---
 
-### Windows DNS Fault:
-The DNS fault on Windows requires the LKG plugin to be installed. If a conflicting plugin is present (that is, if the customer overrides the LKG plugin), the DNS fault can't execute.
+## Hardening standards
 
-### Hardened OS/Custom OS Support info: 
+### Linux hardening 
+
 The agent isn't currently tested against custom Linux distributions or hardened Linux distributions (for example, FIPS or SELinux).
+
+---
+## Unlisted operating systems
 
 If an operating system isn't currently listed, you may still attempt to install, use, and troubleshoot the virtual machine extension, agent, and agent-based capabilities, but Chaos Studio can't guarantee behavior or support for an unlisted operating system.
 
+---
 To request validation and support on more operating systems or versions, use the [Chaos Studio Feedback Community](https://aka.ms/ChaosStudioFeedback).
