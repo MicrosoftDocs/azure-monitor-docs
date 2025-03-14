@@ -34,11 +34,11 @@ For multi-tenant logging, Container Insights adds support for **ContainerLogV2Ex
 When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default DCR and the ContainerLogV2Extension DCR. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they'll be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace as usual. 
 
 - If there is an extension DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
-- If there isn't an extension DCR for the namespace of the log entry, the default DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry won't be collected.
+- If there isn't an extension DCR for the namespace of the log entry, the default DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry isn't collected.
 
 ## Limitations
 
-This feature supports up to 50k logs/sec/node. If this doesn’t meet your log scale requirements, please reach out through Microsoft support channel. 
+This feature supports up to 50k logs/sec/node. If this doesn’t meet your log scale requirements, reach out through Microsoft support channel. 
 
 ## Prerequisites 
 
@@ -58,7 +58,7 @@ az aks disable-addons -a monitoring -g <clusterRGName> -n <clusterName>
 
 
 ### Enable multi-tenancy feature in ConfigMap
-Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the cluster. Ths setting will be used when Container insights is enabled.
+Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the cluster. Ths setting is used when Container insights is enabled.
 
 1. If you don't already have a ConfigMap for Container insights, download the [template ConfigMap YAML file](https://aka.ms/container-azm-ms-agentconfig) and open it in an editor.
 
@@ -70,7 +70,7 @@ Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the
         enabled = true
     ```
     
-3.  Enable multi-tenancy by changing the `enabled` setting in `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR will be sent  to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
+3.  Enable multi-tenancy by changing the `enabled` setting in `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR is sent  to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
 
     ```yaml
     log-data-collection-settings: |-
@@ -100,7 +100,7 @@ Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the
     ```
 
 ### Enable monitoring add-on
-Once the ConfigMap for the cluster has been updated, you can enable Container insights by enabling the monitoring add-on. This will use the settings in the ConfigMap to enable high log scale mode and multi-tenancy. For additional onboarding commands, see [Enable Container insights](./kubernetes-monitoring-enable.md#enable-container-insights).
+Once the ConfigMap for the cluster is updated, you can enable Container insights by enabling the monitoring add-on. This uses the settings in the ConfigMap to enable high log scale mode and multi-tenancy. For additional onboarding commands, see [Enable Container insights](./kubernetes-monitoring-enable.md#enable-container-insights).
 
 ```azurecli
 ### Existing AKS cluster
