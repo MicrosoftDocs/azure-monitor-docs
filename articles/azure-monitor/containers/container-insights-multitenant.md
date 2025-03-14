@@ -1,6 +1,6 @@
 ---
 title: Multi-tenant managed logging in Container insights (Preview)
-description: 
+description: Concepts and onboarding steps for multi-tenancy in Container insights.
 ms.topic: conceptual
 ms.custom: references_regions
 ms.date: 02/05/2025
@@ -28,7 +28,7 @@ The multi-tenancy feature in Container insights supports the following scenarios
 
     :::image type="content" source="media/container-insights-multitenant/multihoming.png" lightbox="media/container-insights-multitenant/multihoming.png" alt-text="Diagram that illustrates multihoming for Container insights." :::
 
-## Technical operation
+## Operation
 
 Container insights use a [data collection rule (DCR)](../essentials/data-collection-rules-overview.md) to define the data collection settings for your AKS cluster. This DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights).
 
@@ -36,17 +36,8 @@ For multi-tenancy, Container Insights adds support for **ContainerLogV2Extension
 
 When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default DCR and the ContainerLogV2Extension DCR. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they will be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace as usual. 
 
-The routing and ingestion of container logs operate as follows: 
-
-- The Container Insights agent builds the Kubernetes namespaces to DCR map using the periodically (every 5 minutes) fetched ContainerLogV2Extension DCRs. This map gets periodically updated as new DCRs added or existing DCRs removed to keep the state of the DCRs. 
-
-- For each log entry: 
-
-    - If the Kubernetes namespace of the log entry is in the Kubernetes namespace DCR map, then this log entry will be ingested into all the Azure Log Analytics Workspace destinations specified in the corresponding DCRs. If the DCR has ingestion transformation KQL filter, then KQL filter is applied in the Azure Log Analytics ingestion pipeline.   
-    - If the k8s namespace is not in the Kubernetes namespace to DCR map, the log entry will be ingested into the Azure Log Analytics workspace defined in the default ContainerInsights Extension DCR which is default behavior, and this behavior can be disabled through disable_fallback_ingestion config map setting  
-    - If the Kubernetes Namespace DCR map has the _ALL_K8S_NAMESPACES_ then all log entries from across all the namespaces will be ingested to the Azure Log Analytics Workspace destinations specified in the corresponding DCRs. This is multi-homing behavior. 
-
-
+- If there is an extension DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
+- If there isn't an extension DCR for the namespace of the log entry, the default DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry will not be collected.
 
 ## Prerequisites 
 
@@ -93,11 +84,11 @@ Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the
 
     ```yaml
     [agent_settings.fbit_config]
-    #   log_flush_interval_secs = "1"                 # default value is 15
-    #   tail_mem_buf_limit_megabytes = "10"           # default value is 10
-    #   tail_buf_chunksize_megabytes = "1"            # default value is 32kb (comment out this line for default)
-    #   tail_buf_maxsize_megabytes = "1"              # default value is 32kb (comment out this line for default)
-      enable_internal_metrics = "true"              # default value is false
+    #   log_flush_interval_secs = "1"
+    #   tail_mem_buf_limit_megabytes = "10"
+    #   tail_buf_chunksize_megabytes = "1"
+    #   tail_buf_maxsize_megabytes = "1"
+      enable_internal_metrics = "true"
     #   tail_ignore_older = "5m"      
     ```
 
@@ -241,6 +232,10 @@ Use the following steps to disable the multi-tenancy feature on a cluster.
 > [!NOTE]
 > See [Disable monitoring of your Kubernetes cluster](./kubernetes-monitoring-disable.md) if you want to completely disable Container insights for the cluster.
 
+## Network and Firewall requirements
+In addition to the requirements described in [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md), multi-tenancy requires access for the logs ingestion endpoint to port 443. Retrieve this from the **Overview** page of the data collectiong endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
+
+:::image type="content" source="media/container-insights-multitenant/logs-ingestion-endpoint.png" lightbox="media/container-insights-multitenant/logs-ingestion-endpoint.png" alt-text="Screenshot to show the logs ingestion endpoint retrieved from the overview page for the DCE." :::
 
 
 ## Next steps
