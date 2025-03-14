@@ -5,16 +5,16 @@ ms.date: 08/09/2023
 ms.topic: sample
 ms.custom: subject-resourcegraph-sample
 ---
+
 # Azure Resource Graph sample queries for Azure Monitor
 
-This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries
-for Azure Monitor.
+This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Monitor.
 
 ## Azure Monitor
 
-[!INCLUDE [azure-resource-graph-samples-cat-monitor](./includes/azure-monitor.md)]
+[!INCLUDE [azure-resource-graph-samples-cat-monitor](../includes/azure-monitor.md)]
 
 ## Next steps
 
-- Learn more about the [query language](/azure/governance/resource-graph/concepts/query-language).
-- Learn more about how to [explore resources](/azure/governance/resource-graph/concepts/explore-resources).
+* Learn more about the [query language](/azure/governance/resource-graph/concepts/query-language).
+* Learn more about how to [explore resources](/azure/governance/resource-graph/concepts/explore-resources).
