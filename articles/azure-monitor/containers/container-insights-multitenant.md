@@ -27,7 +27,7 @@ The multi-tenanct logging feature in Container insights supports the following s
 
 ## How it works
 
-Container insights use a [data collection rule (DCR)](../essentials/data-collection-rules-overview.md) to define the data collection settings for your AKS cluster. This DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights).
+Container insights use a [data collection rule (DCR)](../essentials/data-collection-rule-overview.md) to define the data collection settings for your AKS cluster. This DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights).
 
 For multi-tenanct logging, Container Insights adds support for **ContainerLogV2Extension** DCRs, which are used to define collection of container logs for k8s namespaces. Multiple **ContainerLogV2Extension** DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
 
@@ -44,8 +44,7 @@ This feature supports up to 50k logs/sec/node. If this doesn’t meet your log s
 
 - An Azure CLI version of 2.63.0 or higher 
 - The AKS-preview CLI extension version must be 7.0.0b4 or higher if an AKS-preview CLI extension is installed. 
-- The Container Log schema version  be v2, i.e., ContainerLogV2 and must be enabled in High log scale mode 
-- Cluster meets Firewall requirements - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-high-scale#network-firewall-requirements 
+- Cluster meets [firewall requirements](#firewall-requirements).
 
 
 ## Onboarding steps
@@ -232,7 +231,7 @@ Use the following steps to disable multi-tenant logging on a cluster.
     ```
 
 
-## Network and Firewall requirements
+## Firewall requirements
 In addition to the requirements described in [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md), multi-tenancy requires access for the logs ingestion endpoint to port 443. Retrieve this from the **Overview** page of the data collectiong endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
 
 :::image type="content" source="media/container-insights-multitenant/logs-ingestion-endpoint.png" lightbox="media/container-insights-multitenant/logs-ingestion-endpoint.png" alt-text="Screenshot to show the logs ingestion endpoint retrieved from the overview page for the DCE." :::
