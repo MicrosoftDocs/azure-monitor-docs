@@ -8,7 +8,7 @@ ms.date: 09/20/2023
 
 # Azure Monitor billing meter names
 
-This article contains a reference of the billing meter names used by Azure Monitor in [Azure Cost Management + Billing](cost-usage.md#azure-cost-management--billing). Use this information to interpret your monthly charges for Azure Monitor.
+This article contains a reference of the billing meter names used by Azure Monitor in [Azure Cost Management + Billing](cost-usage.md#microsoft-cost-management--billing). Use this information to interpret your monthly charges for Azure Monitor.
 
 ## Log data ingestion
 

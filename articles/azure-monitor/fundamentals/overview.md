@@ -37,7 +37,7 @@ If you're a System Center Operations Manager (SCOM) user, Azure Monitor now incl
 
 The following diagram shows a high-level architecture view of Azure Monitor.
 
-:::image type="content" source="media/overview/overview-simple-20230707-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor with data sources sending data on the left, and Azure Monitor features using the collected data on the right." border="false" lightbox="media/overview/overview-blowout-20230707-opt.svg":::
+:::image type="content" source="media/overview/overview-simple-20230707-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor with data sources sending data, and Azure Monitor features using the collected data." border="false" lightbox="media/overview/overview-blowout-20230707-opt.svg":::
 
 > [!NOTE]
 > Click on the diagram to see a more detailed expanded version showing a larger breakdown of data sources and data collection methods.
@@ -120,7 +120,7 @@ Azure Monitor stores data in data stores for each of the three pillars of observ
 
 Each store is optimized for specific types of data and monitoring scenarios.
 
-:::image type="content" source="media/overview/data-platform-box-opt.svg" alt-text="Diagram that shows an overview of Azure Monitor data platform." border="false" lightbox="media/overview/data-platform-blowup-type-2-opt.svg":::
+:::image type="content" source="media/overview/data-platform-box-opt.svg" alt-text="Diagram showing an overview of the Azure Monitor data platform." border="false" lightbox="media/overview/data-platform-blowup-type-2-opt.svg":::
 
 > [!NOTE]
 > Select the preceding diagram to see the Data Platform in the context of the whole of Azure Monitor.
