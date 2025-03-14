@@ -231,13 +231,13 @@ You may need to integrate Azure Monitor with other systems or to build custom so
 |---------------|-------------|
 | [Event Hubs](/azure/event-hubs/event-hubs-about) | Azure Event Hubs is a streaming platform and event ingestion service. It can transform and store data by using any real-time analytics provider or batching/storage adapters. Use Event Hubs to stream Azure Monitor data to partner Security Information and Event Management (SIEM) and monitoring tools. |
 | [Azure Storage](/azure/storage/common/storage-introduction) | Export data to Azure storage for less expensive, long-term archival of monitoring data for auditing or compliance purposes. |
-| [Hosted and Managed Partners](/azure/partner-solutions/partners##observability) | Many external partners integrate with Azure Monitor. Azure Monitor has also partnered with a few monitoring providers to provide an [Azure-hosted version of their products](/azure/partner-solutions/partners#observability) to make interoperability easier. Examples include Elastic, Datadog, Logz.io, and Dynatrace. |
+| [Hosted and Managed Partners](/azure/partner-solutions/partners##observability) | Many external partners integrate with Azure Monitor. Azure Monitor also partners with various monitoring providers to provide an [Azure-hosted version of their products](/azure/partner-solutions/partners#observability) to make interoperability easier. Examples include Elastic, Datadog, Logz.io, and Dynatrace. |
 | [API](/rest/api/monitor/) | Multiple APIs are available to read and write metrics and logs to and from Azure Monitor in addition to accessing generated alerts. You can also configure and retrieve alerts. With APIs, you have unlimited possibilities to build custom solutions that integrate with Azure Monitor. |
 | [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) | Azure Logic Apps is a service you can use to automate tasks and business processes by using workflows that integrate with different systems and services with little or no code. Activities are available that read and write metrics and logs in Azure Monitor. You can use Logic Apps to [customize responses and perform other actions in response to Azure Monitor alerts](../alerts/alerts-logic-apps.md). You can also perform other [more complex actions](../logs/logicapp-flow-connector.md) when the Azure Monitor infrastructure doesn't already supply a built-it method. |
-| [Azure Functions](/azure/azure-functions/functions-overview) | Similar to Azure Logic Apps, Azure Functions gives you the ability to preprocess and post process monitoring data and perform complex action beyond the scope of typical Azure Monitor alerts. Azure Functions uses code however providing additional flexibility over Logic Apps. |
-| Azure DevOps and GitHub | Azure Monitor Application Insights gives you the ability to create [Work Item Integration](../app/release-and-work-item-insights.md?tabs=work-item-integration) with monitoring data embedding in it. Additional options include [release annotations](../app/release-and-work-item-insights.md?tabs=release-annotations) and [continuous monitoring](../app/release-and-work-item-insights.md?tabs=continuous-monitoring). |
+| [Azure Functions](/azure/azure-functions/functions-overview) | Similar to Azure Logic Apps, Azure Functions gives you the ability to preprocess and post process monitoring data and to perform complex action beyond the scope of typical Azure Monitor alerts. Azure Functions uses code however providing extra flexibility over Logic Apps. |
+| Azure DevOps and GitHub | Azure Monitor Application Insights gives you the ability to create [Work Item Integration](../app/release-and-work-item-insights.md?tabs=work-item-integration) with monitoring data embedding in it. More options include [release annotations](../app/release-and-work-item-insights.md?tabs=release-annotations) and [continuous monitoring](../app/release-and-work-item-insights.md?tabs=continuous-monitoring). |
 
-Additional integrations not shown in the diagram that may be of interest. 
+More integrations not shown in the diagram that may be of interest.
 
 | Integration | Description |
 |-------------|-------------|
@@ -246,7 +246,8 @@ Additional integrations not shown in the diagram that may be of interest.
 | [Microsoft Intune](/mem/intune/fundamentals/what-is-intune) | Create a diagnostic setting to send logs to Azure Monitor. See [Send log data to storage, Event Hubs, or log analytics in Intune (preview)](/mem/intune/fundamentals/review-logs-using-azure-monitor). |
 | [ITSM](../alerts/itsmc-overview.md) | The [IT Service Management (ITSM) Connector](../alerts/itsmc-overview.md) allows you to connect Azure and a supported ITSM product/service. |
 
-These are just a few options. There are many more third party companies that integrate with Azure and Azure Monitor at various levels. Use your favorite search engine to locate them.
+> [!NOTE]
+> There are many more third party companies that integrate with Azure and Azure Monitor at various levels. Use your favorite search engine to locate them.
 
 ## Frequently asked questions
 
@@ -254,7 +255,7 @@ This section provides answers to common questions.
 
 ### What's the difference between Azure Monitor, Log Analytics, and Application Insights?
 
-In September 2018, Microsoft combined Azure Monitor, Log Analytics, and Application Insights into a single service to provide powerful end-to-end monitoring of your applications and the components they rely on. Features in Log Analytics and Application Insights haven't changed, although some features have been rebranded to Azure Monitor to better reflect their new scope. The log data engine and query language of Log Analytics is now referred to as Azure Monitor Logs.
+In September 2018, Microsoft combined Azure Monitor, Log Analytics, and Application Insights into a single service to provide powerful end-to-end monitoring of your applications and the components they rely on. Features in Log Analytics and Application Insights haven't changed, although some features are rebranded to Azure Monitor to better reflect their new scope. The log data engine and query language of Log Analytics is now referred to as Azure Monitor Logs.
 
 ### How much does Azure Monitor cost?
 
