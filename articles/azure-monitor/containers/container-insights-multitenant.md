@@ -1,5 +1,5 @@
 ---
-title: Multi-tenant managed logging in Container insights (Preview)
+title: Multitenant managed logging in Container insights (Preview)
 description: Concepts and onboarding steps for multi-tenant logging in Container insights.
 ms.topic: conceptual
 ms.custom: references_regions
@@ -15,7 +15,7 @@ This article describes how multi-tenant logging works in Container insights, the
 
 
 ## Scenarios
-The multi-tenanct logging feature in Container insights supports the following scenarios:
+The multi-tenant logging feature in Container insights supports the following scenarios:
 
 - **Multi-tenancy.** Sends container logs (stdout & stderr) from each k8s namespaces to their own Log Analytics workspace.  
 
@@ -29,12 +29,12 @@ The multi-tenanct logging feature in Container insights supports the following s
 
 Container insights use a [data collection rule (DCR)](../essentials/data-collection-rule-overview.md) to define the data collection settings for your AKS cluster. This DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights).
 
-For multi-tenanct logging, Container Insights adds support for **ContainerLogV2Extension** DCRs, which are used to define collection of container logs for k8s namespaces. Multiple **ContainerLogV2Extension** DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
+For multi-tenant logging, Container Insights adds support for **ContainerLogV2Extension** DCRs, which are used to define collection of container logs for k8s namespaces. Multiple **ContainerLogV2Extension** DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
 
-When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default DCR and the ContainerLogV2Extension DCR. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they will be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace as usual. 
+When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default DCR and the ContainerLogV2Extension DCR. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they'll be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace as usual. 
 
 - If there is an extension DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
-- If there isn't an extension DCR for the namespace of the log entry, the default DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry will not be collected.
+- If there isn't an extension DCR for the namespace of the log entry, the default DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry won't be collected.
 
 ## Limitations
 
@@ -70,7 +70,7 @@ Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the
         enabled = true
     ```
     
-3.  Enable multi-tenancy by changing the `enabled` setting in `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that do not have a corresponding ContainerLogV2 extension DCR will be sent  to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
+3.  Enable multi-tenancy by changing the `enabled` setting in `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR will be sent  to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
 
     ```yaml
     log-data-collection-settings: |-
@@ -199,7 +199,7 @@ The QoS Grafana dashboard reports on the health and performance of your multi-te
 
 
 
-## Disabling multi-tenanct logging
+## Disabling multi-tenant logging
 
 Use the following steps to disable multi-tenant logging on a cluster.
 
@@ -232,7 +232,7 @@ Use the following steps to disable multi-tenant logging on a cluster.
 
 
 ## Firewall requirements
-In addition to the requirements described in [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md), multi-tenancy requires access for the logs ingestion endpoint to port 443. Retrieve this from the **Overview** page of the data collectiong endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
+In addition to the requirements described in [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md), multi-tenancy requires access for the logs ingestion endpoint to port 443. Retrieve this from the **Overview** page of the data collection endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
 
 :::image type="content" source="media/container-insights-multitenant/logs-ingestion-endpoint.png" lightbox="media/container-insights-multitenant/logs-ingestion-endpoint.png" alt-text="Screenshot to show the logs ingestion endpoint retrieved from the overview page for the DCE." :::
 
