@@ -45,7 +45,7 @@ Applications hosted outside of Azure must be hard coded to send telemetry to [Az
 
 ## Audit
 
-In addition to monitoring the health of your cloud resources, you can consolidate auditing data from your AWS and GCP clouds into your Log Analytics workspace so that you can consolidate your analysis and reporting. This is best performed by Azure Sentinel which uses the same workspace as Azure Monitor and provides additional features for collecting and analyzing security and auditing data.
+In addition to monitoring the health of your cloud resources, you can consolidate auditing data from your AWS and GCP clouds into your Log Analytics workspace so that you can consolidate your analysis and reporting. This is best performed by Azure Sentinel which uses the same workspace as Azure Monitor and provides extra features for collecting and analyzing security and auditing data.
 
 Use the following methods to ingest AWS service log data into Microsoft Sentinel.
 

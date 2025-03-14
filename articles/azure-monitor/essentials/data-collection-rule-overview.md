@@ -42,7 +42,7 @@ The data collection process supported by DCRs is based on the Azure Monitor pipe
 
 :::image type="content" source="./media/monitoring-patterns/azure-monitor-pipeline-simple.png" lightbox="./media/monitoring-patterns/azure-monitor-pipeline-simple.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
 
-Each data collection scenario using the Azure Monitor pipeline is defined in a DCR that provides instructions for how the cloud pipeline should process data it receives. Depending on the scenario, DCRs specify all or some of the following:
+Each data collection scenario using the Azure Monitor pipeline is defined in a DCR. The DCR provides instructions for how the cloud pipeline should process the data it receives. Depending on the scenario, DCRs specify all or some of the following:
 
 * Data to collect and send to the pipeline.
 * Schema of the incoming data.
@@ -71,7 +71,7 @@ For example, the following diagram illustrates data collection for [Azure Monito
 
 ### Direct ingestion
 
-With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using [Logs ingestion API](../logs/logs-ingestion-api-overview.md). Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures that the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
+With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using [Logs ingestion API](../logs/logs-ingestion-api-overview.md). Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
 
 :::image type="content" source="media/monitoring-patterns/data-collection-direct-ingestion.svg" lightbox="media/monitoring-patterns/data-collection-direct-ingestion.svg" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
 
@@ -101,7 +101,7 @@ Data collection rules are available in all public regions where Log Analytics wo
 
 ## Next steps
 
-For additional information on how to work with DCRs, see:
+For more information on how to work with DCRs, see:
 
 * [Data collection rule structure](data-collection-rule-structure.md) for a description of the JSON structure of DCRs and the different elements used for different workflows.
 * [Sample data collection rules (DCRs)](data-collection-rule-samples.md) for sample DCRs for different data collection scenarios.
