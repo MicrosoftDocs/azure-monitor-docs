@@ -12,26 +12,25 @@ Performance efficiency is the ability of your workload to scale to meet the dema
 
 This article describes [Performance efficiency](/azure/architecture/framework/security/) for Azure Monitor as part of the [Azure Well-Architected Framework](/azure/architecture/framework/). The Azure Well-Architected Framework is a set of guiding tenets that can be used to improve the quality of a workload. The framework consists of five pillars of architectural excellence:
 
-- Reliability
-- Security
-- Cost Optimization
-- Operational Excellence
-- Performance Efficiency
+* Reliability
+* Security
+* Cost Optimization
+* Operational Excellence
+* Performance Efficiency
 
 ## Azure Monitor Logs
 
-[!INCLUDE [waf-logs-reliability](includes/waf-logs-performance.md)]
-
+[!INCLUDE [waf-logs-reliability](../includes/waf-logs-performance.md)]
 
 ## Virtual machines
 
-[!INCLUDE [waf-vm-reliability](includes/waf-vm-performance.md)]
+[!INCLUDE [waf-vm-reliability](../includes/waf-vm-performance.md)]
 
 ## Containers
 
-[!INCLUDE [waf-containers-reliability](includes/waf-containers-performance.md)]
+[!INCLUDE [waf-containers-reliability](../includes/waf-containers-performance.md)]
 
 ## Next step
 
-- [Get best practices for a complete deployment of Azure Monitor](best-practices.md).
+* [Get best practices for a complete deployment of Azure Monitor](best-practices.md).
 

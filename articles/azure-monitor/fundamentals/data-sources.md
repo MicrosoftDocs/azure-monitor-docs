@@ -24,10 +24,9 @@ Create diagnostic settings for each of the following data types can be sent to a
 
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|
-|Activity log | The Activity log provides insight into subscription-level events for Azure services including service health records and configuration changes. | Collected automatically. View in the Azure portal or create a diagnostic setting to send it to other destinations. Can be collected in Log Analytics workspace at no charge. See [Azure Monitor activity log](../essentials/activity-log.md). |
+| Activity log | The Activity log provides insight into subscription-level events for Azure services including service health records and configuration changes. | Collected automatically. View in the Azure portal or create a diagnostic setting to send it to other destinations. Can be collected in Log Analytics workspace at no charge. See [Azure Monitor activity log](../essentials/activity-log.md). |
 | Platform metrics | Platform metrics are numerical values that are automatically collected at regular intervals for different aspects of a resource. The specific metrics vary for each type of resource. | Collected automatically and stored in [Azure Monitor Metrics](../essentials/data-platform-metrics.md). View in metrics explorer or create a diagnostic setting to send it to other destinations. See [Azure Monitor Metrics overview](../essentials/data-platform-metrics.md) and [Supported metrics with Azure Monitor](/azure/azure-monitor/reference/supported-metrics/metrics-index) for a list of metrics for different services. |
 | Resource logs | Provide insight into operations that were performed within an Azure resource. The content of resource logs varies by the Azure service and resource type. | You must create a diagnostic setting to collect resources logs. See [Azure resource logs](../essentials/resource-logs.md) and [Supported services, schemas, and categories for Azure resource logs](../essentials/resource-logs-schema.md) for details on each service. |
-
 
 ## Log data from Microsoft Entra ID
 
@@ -76,7 +75,6 @@ Azure Kubernetes Service (AKS) clusters create the same activity logs and platfo
 |:----------|:------------|:-----------------------|
 | Cluster Metrics | Usage and performance data for the cluster, nodes, deployments, and workloads. | Enable managed Prometheus for the cluster to send cluster metrics to an [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md). See [Enable Prometheus and Grafana](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) for onboarding and [Default Prometheus metrics configuration in Azure Monitor](../containers/prometheus-metrics-scrape-default.md) for a list of metrics that are collected by default. |
 | Logs | Standard Kubernetes logs including events for the cluster, nodes, deployments, and workloads. | Enable Container insights for the cluster to send container logs to a Log Analytics workspace. See [Enable Container insights](../containers/kubernetes-monitoring-enable.md#enable-container-insights) for onboarding and [Configure data collection in Container insights using data collection rule](../containers/container-insights-data-collection-dcr.md) to configure which logs are collected. |
-
 
 ## Custom sources
 

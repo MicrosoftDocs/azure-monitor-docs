@@ -12,29 +12,29 @@ Operational excellence refers to operations processes required keep a service ru
 
 This article describes [Operational excellence](/azure/architecture/framework/security/) for Azure Monitor as part of the [Azure Well-Architected Framework](/azure/architecture/framework/). The Azure Well-Architected Framework is a set of guiding tenets that can be used to improve the quality of a workload. The framework consists of five pillars of architectural excellence:
 
-- Reliability
-- Security
-- Cost Optimization
-- Operational Excellence
-- Performance Efficiency
+* Reliability
+* Security
+* Cost Optimization
+* Operational Excellence
+* Performance Efficiency
 
 ## Azure Monitor Logs
 
-[!INCLUDE [waf-logs-reliability](includes/waf-logs-operation.md)]
+[!INCLUDE [waf-logs-reliability](../includes/waf-logs-operation.md)]
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](includes/waf-alerts-operation.md)]
+[!INCLUDE [waf-containers-reliability](../includes/waf-alerts-operation.md)]
 
 ## Virtual machines
 
-[!INCLUDE [waf-vm-reliability](includes/waf-vm-operation.md)]
+[!INCLUDE [waf-vm-reliability](../includes/waf-vm-operation.md)]
 
 ## Containers
 
-[!INCLUDE [waf-containers-reliability](includes/waf-containers-operation.md)]
+[!INCLUDE [waf-containers-reliability](../includes/waf-containers-operation.md)]
 
 ## Next step
 
-- [Get best practices for a complete deployment of Azure Monitor](best-practices.md).
+* [Get best practices for a complete deployment of Azure Monitor](best-practices.md).
 
