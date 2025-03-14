@@ -45,4 +45,4 @@ Performance efficiency is the ability of your workload to scale to meet the dema
 
 ## Next step
 
-* [Get best practices for a complete deployment of Azure Monitor](best-practices.md).
+* Learn more about [getting started with Azure Monitor](getting-started.md).

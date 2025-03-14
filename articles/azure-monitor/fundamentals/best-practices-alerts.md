@@ -46,4 +46,4 @@ Alerts offer a high degree of performance efficiency without any design decision
 
 ## Next step
 
-* [Get best practices for a complete deployment of Azure Monitor](best-practices.md).
+* Learn more about [getting started with Azure Monitor](getting-started.md).

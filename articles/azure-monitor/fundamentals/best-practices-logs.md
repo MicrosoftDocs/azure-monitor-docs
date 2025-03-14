@@ -46,4 +46,4 @@ This article provides architectural best practices for Azure Monitor Logs. The g
 
 ## Next step
 
-* [Get best practices for a complete deployment of Azure Monitor](best-practices.md).
+* Learn more about [getting started with Azure Monitor](getting-started.md).
