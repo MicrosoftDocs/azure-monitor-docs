@@ -132,5 +132,5 @@ You can also build your own custom websites and applications using metric and lo
 
 ## Next steps
 
-* [Deploy Azure Monitor: Alerts and automated actions](best-practices-alerts.md)
+* [Deploy Azure Monitor: Alerts and automated actions](../alerts/best-practices-alerts.md)
 * [Optimize costs in Azure Monitor](best-practices-cost.md)

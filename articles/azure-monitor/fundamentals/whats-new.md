@@ -181,7 +181,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-overview.md)|Added diagram.|
 |Essentials|[Monitor and troubleshoot DCR data collection in Azure Monitor](../essentials/data-collection-monitor.md)|Corrected an error in KQL using InputStreamId.|
 |General|[Analyze and visualize monitoring data](best-practices-analysis.md)|We've updated our visualization recommendations to better guide customers when to use Azure Managed Grafana and when to use Azure Workbooks.|
-|Logs|[Best practices for Azure Monitor Logs](best-practices-logs.md)|Updated overview of features that enhance resilience of your Log Analytics workspace, including a new video. |
+|Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Updated overview of features that enhance resilience of your Log Analytics workspace, including a new video. |
 |Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace (Preview)](../logs/create-custom-table-auxiliary.md)|New article that explains how to set up a table with the Auxiliary plan. |
 |Logs|[Azure Monitor Logs overview](../logs/data-platform-logs.md)|Updated Azure Monitor Logs overview provides a high-level overview of data collection, management, retrieval, and consumption for a range of use cases.|
 |Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|New video that explains how to use search jobs in Azure Monitor Logs.|
@@ -375,7 +375,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](../containers/prometheus-metrics-scrape-configuration.md)|[Azure Monitor Managed Prometheus] Docs for pod annotation scraping through configmap|
 |Essentials|[Custom metrics in Azure Monitor (preview)](../essentials/metrics-custom-overview.md)|Article refreshed an updated|
 |General|[Disable monitoring of your Kubernetes cluster](../containers/kubernetes-monitoring-disable.md)|New article to consolidate process for all container configurations and for both Prometheus and Container insights.|
-|Logs|[Best practices for Azure Monitor Logs](best-practices-logs.md)|Dedicated clusters are now available in all commitment tiers, with a minimum daily ingestion of 100 GB.|
+|Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Dedicated clusters are now available in all commitment tiers, with a minimum daily ingestion of 100 GB.|
 |Logs|[Enhance data and service resilience in Azure Monitor Logs with availability zones](../logs/availability-zones.md)|Availability zones are now supported in the Israel Central, Poland Central, and Italy North regions.|
 |Virtual-Machines|[Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md)|VM Insights Dependency Agent now supports RHEL 8.6 Linux.|
 |Visualizations|[Composite bar renderer](../visualize/workbooks-composite-bar.md)|We've edited the Workbooks content to make some features and functionality easier to find based on customer feedback. We've also removed legacy content.|
@@ -419,7 +419,7 @@ Containers|[Data transformations in Container insights](../containers/container-
 Containers|[Enable Container insights](../containers/container-insights-onboard.md)|New article: Enable private link with Container insights|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../essentials/prometheus-rule-groups.md)|Create or edit Prometheus rule group in the Azure portal (preview)|
 Logs|[Detect and mitigate potential issues using AIOps and machine learning in Azure Monitor](../logs/aiops-machine-learning.md)|Microsoft Copilot in Azure now helps you write KQL queries to analyze data and troubleshoot issues based on prompts, such as "Are there any errors in container logs?". |
-Logs|[Best practices for Azure Monitor Logs](best-practices-logs.md)|More guidance on Azure Monitor Logs features that provide enhanced resilience.|
+Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|More guidance on Azure Monitor Logs features that provide enhanced resilience.|
 Logs|[Data retention and archive in Azure Monitor Logs](../logs/data-retention-configure.md)|Azure Monitor Logs extended archiving of data to up to 12 years.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Added Basic logs support for Network managers tables.|
 Virtual-Machines|[Enable VM insights in the Azure portal](../vm/vminsights-enable-portal.md)|Azure portal no longer supports enabling VM insights using Log Analytics agent.|
@@ -430,7 +430,7 @@ Visualizations|[Azure Workbooks](../visualize/workbooks-overview.md)|We clarifie
 
 |Subservice | Article | Description |
 |---|---|---|
-General|[Best practices for monitoring Kubernetes with Azure Monitor](best-practices-containers.md)|New article.|
+General|[Best practices for monitoring Kubernetes with Azure Monitor](../containers/best-practices-containers.md)|New article.|
 General|[Estimate Azure Monitor costs](cost-estimate.md)|New article describing use of Azure Monitor pricing calculator.|
 General|[Azure Monitor billing meter names](cost-meters.md)|Billing meters moved into dedicated reference article.|
 General|[Azure Monitor cost and usage](cost-usage.md)|Rewritten.|
@@ -589,7 +589,7 @@ Containers|[Monitor an Azure Kubernetes Service cluster using Container insights
 Containers|[Manage the Container insights agent](../containers/container-insights-manage-agent.md)|Semantic version update of container insights agent version|
 Essentials|[Azure Monitor Metrics overview](../essentials/data-platform-metrics.md)|New Batch Metrics API that allows multiple resource requests and reducing throttling found in the non-batch version. |
 General|[Cost optimization in Azure Monitor](best-practices-cost.md)|Rewritten to match organization of Well Architected Framework service guides|
-General|[Best practices for Azure Monitor Logs](best-practices-logs.md)|New article with consolidated list of best practices for Logs organized by WAF pillar.|
+General|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|New article with consolidated list of best practices for Logs organized by WAF pillar.|
 General|[Migrate from Operations Manager to Azure Monitor](azure-monitor-operations-manager.md)|Migrate from Operations Manager to Azure Monitor|
 Logs|[Application Insights API Access with Microsoft Azure Active Directory (Azure AD) Authentication](../app/app-insights-azure-ad-api.md)|New article that explains how to authenticate and access the Azure Monitor Application Insights APIs using Azure AD.|
 Logs|[Tutorial: Replace custom fields in Log Analytics workspace with KQL-based custom columns](../logs/custom-fields-migrate.md)|Guidance for migrate legacy custom fields to KQL-based custom columns using transformations.|

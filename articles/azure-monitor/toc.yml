@@ -353,7 +353,7 @@ items:
     - name: Overview
       href: /azure/virtual-machines/monitor-vm?toc=/azure/azure-monitor/toc.json
     - name: Best practices
-      href: fundamentals/best-practices-vm.md
+      href: vm/best-practices-vm.md
     - name: Tutorials
       items:
       - name: Enable recommended alerts
@@ -467,7 +467,7 @@ items:
       href: containers/monitor-kubernetes.md
     - name: Best practices
       displayName: containers, kubernetes
-      href: fundamentals/best-practices-containers.md
+      href: containers/best-practices-containers.md
     - name: Analyze and reduce costs
       href: containers/container-insights-cost.md
     - name: Enable Container Insights and Managed Prometheus
@@ -1075,7 +1075,7 @@ items:
       href: logs/data-platform-logs.md
     - name: Best practices
       displayName: Logs, WAF, well architected framework, Azure Customer Lockbox, Customer Lockbox, Lockbox
-      href: fundamentals/best-practices-logs.md
+      href: logs/best-practices-logs.md
     - name: Cost details
       displayName: Log Analytics workspace,Logs
       href: logs/cost-logs.md
@@ -1446,7 +1446,7 @@ items:
     - name: Choosing the type of alert rule
       href: alerts/alerts-types.md
     - name: Best practices
-      href: fundamentals/best-practices-alerts.md
+      href: alerts/best-practices-alerts.md
     - name: Set up alerts
       items:
         - name: Set up alert rules

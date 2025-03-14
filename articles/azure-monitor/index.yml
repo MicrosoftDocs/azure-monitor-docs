@@ -70,7 +70,7 @@ landingContent:
           - text: Understand analysis and visualization tools
             url: fundamentals/best-practices-analysis.md
           - text: Configure alerts and automated actions
-            url: fundamentals/best-practices-alerts.md
+            url: alerts/best-practices-alerts.md
           - text: Optimize costs
             url: fundamentals/best-practices-cost.md
 

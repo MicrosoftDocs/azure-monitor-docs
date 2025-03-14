@@ -29,7 +29,7 @@ Security is one of the most important aspects of any architecture. Azure Monitor
 
 ## Cost optimization
 
-Cost optimization refers to ways to reduce unnecessary expenses and improve operational efficiencies. You can significantly reduce your cost for Azure Monitor by understanding your different configuration options and opportunities to reduce the amount of data that it collects. See [Azure Monitor cost and usage](cost-usage.md) to understand the different ways that Azure Monitor charges and how to view your monthly bill.
+Cost optimization refers to ways to reduce unnecessary expenses and improve operational efficiencies. You can significantly reduce your cost for Azure Monitor by understanding your different configuration options and opportunities to reduce the amount of data that it collects. See [Azure Monitor cost and usage](../fundamentals/cost-usage.md) to understand the different ways that Azure Monitor charges and how to view your monthly bill.
 
 [!INCLUDE [waf-alerts-cost](../includes/waf-alerts-cost.md)]
 
@@ -46,4 +46,4 @@ Alerts offer a high degree of performance efficiency without any design decision
 
 ## Next step
 
-* Learn more about [getting started with Azure Monitor](getting-started.md).
+* Learn more about [getting started with Azure Monitor](../fundamentals/getting-started.md).
