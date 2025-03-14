@@ -1,6 +1,6 @@
 ---
 title: Multi-tenant managed logging in Container insights (Preview)
-description: Concepts and onboarding steps for multi-tenancy in Container insights.
+description: Concepts and onboarding steps for multi-tenant logging in Container insights.
 ms.topic: conceptual
 ms.custom: references_regions
 ms.date: 02/05/2025
@@ -9,41 +9,42 @@ ms.reviewer: viviandiec
 
 # Multi-tenant managed logging in Container insights (Preview)
 
-Multi-tenancy in Container insights is useful for customers who operate shared cluster platforms using AKS. You need the ability to configure log collection in a way that segregates log by different teams so that each team has access to the logs of the containers running in k8s namespaces that they own and the ability to get the billing and management associated to the Azure Log analytics workspace.  
+Multi-tenant logging in Container insights is useful for customers who operate shared cluster platforms using AKS. You may need the ability to configure log collection in a way that segregates logs by different teams so that each has access to the logs of the containers running in k8s namespaces that they own and the ability to access the billing and management associated with the Azure Log analytics workspace. For example, logs from infrastructure namespaces such as kube-system can be directed to a specific Log Analytics workspace for the infrastructure team, while each application team's logs can be sent to their respective workspaces. 
 
-For example, logs from infrastructure namespaces such as kube-system can be directed to a specific Log Analytics workspace for the infrastructure team, while each application team's logs can be sent to their respective workspaces. 
+This article describes how multi-tenant logging works in Container insights, the scenarios it supports, and how to onboard your cluster to use this feature.
 
-## Limitations
-
-This feature supports up to 50k logs/sec/node and if this doesn’t meet your log scale requirements, please reach out through Microsoft support channel. 
 
 ## Scenarios
-The multi-tenancy feature in Container insights supports the following scenarios:
+The multi-tenanct logging feature in Container insights supports the following scenarios:
 
 - **Multi-tenancy.** Sends container logs (stdout & stderr) from each k8s namespaces to their own Log Analytics workspace.  
 
     :::image type="content" source="media/container-insights-multitenant/multitenancy.png" lightbox="media/container-insights-multitenant/multitenancy.png" alt-text="Diagram that illustrates multitenancy for Container insights." :::
 
-- **Multi-homing:**  Sends the same set of logs from one or more k8s namespaces to multiple Log Analytics workspaces. 
+- **Multi-homing:**  Sends the same set of container logs (stdout & stderr) from one or more k8s namespaces to multiple Log Analytics workspaces. 
 
     :::image type="content" source="media/container-insights-multitenant/multihoming.png" lightbox="media/container-insights-multitenant/multihoming.png" alt-text="Diagram that illustrates multihoming for Container insights." :::
 
-## Operation
+## How it works
 
 Container insights use a [data collection rule (DCR)](../essentials/data-collection-rules-overview.md) to define the data collection settings for your AKS cluster. This DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights).
 
-For multi-tenancy, Container Insights adds support for **ContainerLogV2Extension** DCRs, which are used to define collection of container logs for k8s namespaces. Multiple **ContainerLogV2Extension** DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
+For multi-tenanct logging, Container Insights adds support for **ContainerLogV2Extension** DCRs, which are used to define collection of container logs for k8s namespaces. Multiple **ContainerLogV2Extension** DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
 
 When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default DCR and the ContainerLogV2Extension DCR. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they will be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace as usual. 
 
 - If there is an extension DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
 - If there isn't an extension DCR for the namespace of the log entry, the default DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry will not be collected.
 
+## Limitations
+
+This feature supports up to 50k logs/sec/node. If this doesn’t meet your log scale requirements, please reach out through Microsoft support channel. 
+
 ## Prerequisites 
 
 - An Azure CLI version of 2.63.0 or higher 
 - The AKS-preview CLI extension version must be 7.0.0b4 or higher if an AKS-preview CLI extension is installed. 
-- The Container Log schema version MUST be v2, i.e., ContainerLogV2 and must be enabled in High log scale mode 
+- The Container Log schema version  be v2, i.e., ContainerLogV2 and must be enabled in High log scale mode 
 - Cluster meets Firewall requirements - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-high-scale#network-firewall-requirements 
 
 
@@ -126,29 +127,29 @@ Once the cluster has been enabled for monitoring with high log scale mode and mu
 
 2. Edit the parameter file with values for the following parameters. 
 
-| Parameter Name | Description |
-|:---|:---|
-| `aksResourceId` | Azure Resource ID of the AKS cluster |
-| `aksResourceLocation` | Azure Region of the AKS cluster |
-| `workspaceResourceId` | Azure Resource ID of the Azure Log Analytics Workspace |
-| `workspaceRegion` | 	Azure Region of the Azure Log Analytics Workspace |
-| `enableContainerLogV2` | Indicates whether to use ContainerLogV2. Must be `true`. |
-| `enableSyslog` | Indicates whether enable Syslog collection or not. |
-| `syslogLevels` | Syslog log levels to collect. |
-| `syslogFacilities` | Syslog facilities to collect. |
-| `resourceTagValues` | Azure Resource Tags to use on AKS, data collection rule (DCR), and data collection endpoint (DCE). |
-| `dataCollectionInterval` | Data collection interval for applicable inventory and perf data collection. Default is 1m. |
-| `namespaceFilteringModeForDataCollection` | Data collection namespace filtering mode for applicable inventory and performance data collection. Default is `Off`. |
-| `namespacesForDataCollection` | Namespaces for data collection for applicable for inventory and perf data collection. |
-| `streams` | Streams for data collection.  For high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2`.  Ensure that you don't have both streams, or you'll cause duplicate logs. |
-| `useAzureMonitorPrivateLinkScope` | Indicates whether to configure Azure Monitor Private Link Scope.  |
-| `azureMonitorPrivateLinkScopeResourceId` | Azure Resource ID of the Azure Monitor Private Link Scope. |
+    | Parameter Name | Description |
+    |:---|:---|
+    | `aksResourceId` | Azure Resource ID of the AKS cluster |
+    | `aksResourceLocation` | Azure Region of the AKS cluster |
+    | `workspaceResourceId` | Azure Resource ID of the Azure Log Analytics Workspace |
+    | `workspaceRegion` | 	Azure Region of the Azure Log Analytics Workspace |
+    | `enableContainerLogV2` | Indicates whether to use ContainerLogV2. Must be `true`. |
+    | `enableSyslog` | Indicates whether enable Syslog collection or not. |
+    | `syslogLevels` | Syslog log levels to collect. |
+    | `syslogFacilities` | Syslog facilities to collect. |
+    | `resourceTagValues` | Azure Resource Tags to use on AKS, data collection rule (DCR), and data collection endpoint (DCE). |
+    | `dataCollectionInterval` | Data collection interval for applicable inventory and perf data collection. Default is 1m. |
+    | `namespaceFilteringModeForDataCollection` | Data collection namespace filtering mode for applicable inventory and performance data collection. Default is `Off`. |
+    | `namespacesForDataCollection` | Namespaces for data collection for applicable for inventory and perf data collection. |
+    | `streams` | Streams for data collection.  For high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2`.  Ensure that you don't have both streams, or you'll cause duplicate logs. |
+    | `useAzureMonitorPrivateLinkScope` | Indicates whether to configure Azure Monitor Private Link Scope.  |
+    | `azureMonitorPrivateLinkScopeResourceId` | Azure Resource ID of the Azure Monitor Private Link Scope. |
 
 3. Deploy the template using the parameter file with the following command. 
 
-```azurecli
-az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file  aks-enable-monitoring-msi-onboarding-template-file --parameters aks-enable-monitoring-msi-onboarding-template-parameter-file
-```
+    ```azurecli
+    az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file  aks-enable-monitoring-msi-onboarding-template-file --parameters aks-enable-monitoring-msi-onboarding-template-parameter-file
+    ```
 
 ### Create DCR for each application or infrastructure team
 Repeat the following steps to create a separate DCR for application or infrastructure team. Each will include a set of k8s namespaces and a Log Analytics workspace destination.
@@ -174,9 +175,9 @@ Repeat the following steps to create a separate DCR for application or infrastru
     
 3. Deploy the template using the parameter file with the following command. 
 
-```azurecli
-az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file  template-file  aks-enable-monitoring-multitenancy-onboarding-template-file --parameters aks-enable-monitoring-multitenancy-onboarding-template-parameter-file
-```
+    ```azurecli
+    az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file  template-file  aks-enable-monitoring-multitenancy-onboarding-template-file --parameters aks-enable-monitoring-multitenancy-onboarding-template-parameter-file
+    ```
 
 ## QoS Grafana Dashboards
 The QoS Grafana dashboard reports on the health and performance of your multi-tenancy clusters. 
@@ -199,11 +200,12 @@ The QoS Grafana dashboard reports on the health and performance of your multi-te
 
 
 
-## Disabling multi-tenancy feature
+## Disabling multi-tenanct logging
 
-Use the following steps to disable the multi-tenancy feature on a cluster.
+Use the following steps to disable multi-tenant logging on a cluster.
 
-1.	Remove the ContainerLogV2 Extension DCR association 
+> [!NOTE]
+> See [Disable monitoring of your Kubernetes cluster](./kubernetes-monitoring-disable.md) if you want to completely disable Container insights for the cluster.
 
 1. Use the following command to list all the DCR associations for the cluster.
     
@@ -223,14 +225,12 @@ Use the following steps to disable the multi-tenancy feature on a cluster.
     az monitor data-collection rule delete --name <ContainerLogV2Extension DCR> --resource-group <rgName>
     ``````
 
-4. Edit `container-azm-ms-agentconfig` and change the value for `enabled` under [log_collection_settings.multi_tenancy] from `true` to `false`.
+4. Edit `container-azm-ms-agentconfig` and change the value for `enabled` under `[log_collection_settings.multi_tenancy]` from `true` to `false`.
 
     ```bash
     kubectl edit cm container-azm-ms-agentconfig -n kube-system -o yaml 
     ```
 
-> [!NOTE]
-> See [Disable monitoring of your Kubernetes cluster](./kubernetes-monitoring-disable.md) if you want to completely disable Container insights for the cluster.
 
 ## Network and Firewall requirements
 In addition to the requirements described in [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md), multi-tenancy requires access for the logs ingestion endpoint to port 443. Retrieve this from the **Overview** page of the data collectiong endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
