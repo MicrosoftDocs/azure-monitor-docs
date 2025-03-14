@@ -22,11 +22,11 @@ For more detailed information on the monitoring roles, see [RBAC Monitoring Role
 People assigned the Monitoring Reader role can view all monitoring data in a subscription but can't modify any resource or edit any settings related to monitoring resources. This role is appropriate for users in an organization, such as support or operations engineers, who need to:
 
 * View monitoring dashboards in the Azure portal.
-* View alert rules defined in [Azure alerts](alerts/alerts-overview.md).
-* Query Azure Monitor Metrics by using the [Azure Monitor REST API](/rest/api/monitor/metrics), [PowerShell cmdlets](powershell-samples.md), or [cross-platform CLI](cli-samples.md).
+* View alert rules defined in [Azure alerts](../alerts/alerts-overview.md).
+* Query Azure Monitor Metrics by using the [Azure Monitor REST API](/rest/api/monitor/metrics), [PowerShell cmdlets](/powershell/module/az.monitor), or [cross-platform CLI](/cli/azure/service-page/monitor).
 * Query the Activity log by using the portal, Azure Monitor REST API, PowerShell cmdlets, or cross-platform CLI.
-* View the [diagnostic settings](essentials/diagnostic-settings.md) for a resource.
-* View the [log profile](essentials/activity-log.md#legacy-collection-methods) for a subscription.
+* View the [diagnostic settings](../essentials/diagnostic-settings.md) for a resource.
+* View the [log profile](../essentials/activity-log.md#legacy-collection-methods) for a subscription.
 * View autoscale settings.
 * View alert activity and settings.
 * Search Log Analytics workspace data, including usage data for the workspace.
@@ -44,8 +44,8 @@ People assigned the Monitoring Contributor role can view all monitoring data in 
 This role is a superset of the Monitoring Reader role. It's appropriate for members of an organization's monitoring team or managed service providers who, in addition to the permissions mentioned earlier, need to:
 
 * View monitoring dashboards in the portal and create their own private monitoring dashboards.
-* Create and edit [diagnostic settings](essentials/diagnostic-settings.md) for a resource. <sup>1</sup>
-* Set alert rule activity and settings using [Azure alerts](alerts/alerts-overview.md).
+* Create and edit [diagnostic settings](../essentials/diagnostic-settings.md) for a resource. <sup>1</sup>
+* Set alert rule activity and settings using [Azure alerts](../alerts/alerts-overview.md).
 * List shared keys for a Log Analytics workspace.
 * Create, delete, and execute saved searches in a Log Analytics workspace.
 * Create and delete the workspace storage configuration for Log Analytics.
@@ -109,8 +109,8 @@ New-AzRoleAssignment -ObjectId $User.Id -RoleDefinitionId $RoleId -Scope $Scope
 You can also [Assign Azure roles by using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 > [!IMPORTANT]
-> - Ensure you have the necessary permissions to assign roles in the specified scope. You must have *Owner* rights to the subscription or the resource group.
-> - Assign access in the resource group or subscription to which your resource belongs, not in the resource itself.
+> * Ensure you have the necessary permissions to assign roles in the specified scope. You must have *Owner* rights to the subscription or the resource group.
+> * Assign access in the resource group or subscription to which your resource belongs, not in the resource itself.
 
 ## PowerShell query to determine role membership
 
@@ -183,18 +183,19 @@ You can follow a similar pattern with event hubs, but first you need to create a
 1. In the portal, create a shared access policy on the event hubs that were created for streaming monitoring data with only listening claims. For example, you might call it "monitoringReadOnly." If possible, give that key directly to the consumer and skip the next step.
 1. If the consumer needs to get the key on demand, grant the user the ListKeys action for that event hub. This step is also necessary for users who need to set a diagnostic setting or a log profile to stream to event hubs. For example, you might create an Azure RBAC rule:
    
-   ```powershell
-   $role = Get-AzRoleDefinition "Reader"
-   $role.Id = $null
-   $role.Name = "Monitoring Event Hub Listener"
-   $role.Description = "Can get the key to listen to an event hub streaming monitoring data."
-   $role.Actions.Clear()
-   $role.Actions.Add("Microsoft.EventHub/namespaces/authorizationrules/listkeys/action")
-   $role.Actions.Add("Microsoft.EventHub/namespaces/Read")
-   $role.AssignableScopes.Clear()
-   $role.AssignableScopes.Add("/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.ServiceBus/namespaces/mySBNameSpace")
-   New-AzRoleDefinition -Role $role 
-   ```
+    ```powershell
+    $role = Get-AzRoleDefinition "Reader"
+    $role.Id = $null
+    $role.Name = "Monitoring Event Hub Listener"
+    $role.Description = "Can get the key to listen to an event hub streaming monitoring data."
+    $role.Actions.Clear()
+    $role.Actions.Add("Microsoft.EventHub/namespaces/authorizationrules/listkeys/action")
+    $role.Actions.Add("Microsoft.EventHub/namespaces/Read")
+    $role.AssignableScopes.Clear()
+    $role.AssignableScopes.Add("/subscriptions/mySubscription/resourceGroups/myResourceGroup/providers/Microsoft.ServiceBus/namespaces/mySBNameSpace")
+    New-AzRoleDefinition -Role $role 
+    ```
+
 ## Next steps
 
 * [Read about Azure RBAC and permissions in Azure Resource Manager](/azure/role-based-access-control/overview)
