@@ -14,7 +14,6 @@ ms.service: azure-chaos-studio
 
 The following compatibility matrix outlines the officially supported operating systems for the Azure Chaos Studio Agent, along with the minimum supported version and the fault support from our agent fault library. In the fault columns, a check (✓) indicates full support, "✓ (outbound)" denotes that only outbound support is provided, and an "✗" means the fault isn't supported on that operating system.
 
-
 ---
 
 ## Windows Compatibility
@@ -28,7 +27,7 @@ The following compatibility matrix outlines the officially supported operating s
 ## Linux Compatibility
 
 | Operating System          | Version | Notes                                                                                         | Network Disconnect | Network Disconnect via Firewall | Network Latency   | Network Packet Loss | Network Isolation | DNS Failure | CPU Pressure | Physical Memory Pressure | Virtual Memory Pressure | Linux Disk IO Pressure | Stop Service | Kill Process | Pause Process | Time Change | Arbitrary Stress-ng Stressor |
-|---------------------------|---------|-----------------------------------------------------------------------------------------------|--------------------|---------------------------------|-------------------|---------------------|-------------------|-------------|--------------|--------------------------|-------------------------|------------------------|--------------|--------------|---------------|-------------|------------------------------|
+|:---------------------------:|:---------:|:-----------------------------------------------------------------------------------------------:|:--------------------:|:---------------------------------:|:-------------------:|:---------------------:|:-------------------:|:-------------:|:--------------:|:--------------------------:|:-------------------------:|:------------------------:|:--------------:|:--------------:|:---------------:|:-------------:|:------------------------------:|
 | Azure Linux (Mariner)     | 3       | **Prerequisite:** Manually install `AzCLI stress-ng` for CPU, Memory, and Disk I/O faults    | ✓ (outbound)       | ✗                               | ✓ (outbound)      | ✓ (outbound)        | ✓ (outbound)      | ✗           | ✓            | ✓                        | ✗                       | ✓                      | ✓            | ✓            | ✓             | ✗           | ✓                            |
 | Red Hat Enterprise Linux  | 8.x+    | Tested up to RHEL 8.9                                                                         | ✓ (outbound)       | ✗                               | ✓ (outbound)      | ✓ (outbound)        | ✓ (outbound)      | ✗           | ✓            | ✓                        | ✗                       | ✓                      | ✓            | ✓            | ✓             | ✗           | ✓                            |
 | Ubuntu Server             | 20.04+  | —                                                                                             | ✓ (outbound)       | ✗                               | ✓ (outbound)      | ✓ (outbound)        | ✓ (outbound)      | ✗           | ✓            | ✓                        | ✗                       | ✓                      | ✓            | ✓            | ✓             | ✗           | ✓                            |
