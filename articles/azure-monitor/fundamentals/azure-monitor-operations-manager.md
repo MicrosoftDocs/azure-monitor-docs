@@ -11,7 +11,7 @@ ms.reviewer: bwren
 
 This article o currentprovides guidance for customers whly use [System Center Operations Manager (SCOM)](/system-center/scom/welcome) and are planning a transition to cloud based monitoring with [Azure Monitor](overview.md) as they migrate business applications and other resources into Azure.
 
-There's no standard process for migrating from System Center Operations Manager (SCOM), and you may rely on SCOM management packs for an extended time as opposed to performing a quick migration. This article describes the different options available and decision criteria you can use to determine the best strategy for your particular environment.
+There's no standard process for migrating from SCOM (System Center Operations Manager), and you may rely on SCOM management packs for an extended time as opposed to performing a quick migration. This article describes the different options available and decision criteria you can use to determine the best strategy for your particular environment.
 
 ## Hybrid cloud monitoring
 
