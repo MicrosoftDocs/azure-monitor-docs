@@ -156,7 +156,7 @@ The Azure portal is a web-based, unified console that provides an alternative to
 
 Some Azure resource providers have curated visualizations that provide a customized monitoring experience and require minimal configuration. Insights are large, scalable, curated visualizations.
 
-:::image type="content" source="media/overview/insights-box-opt.svg" alt-text="Diagram that shows the Insights part of the Consumption section of the Azure Monitor system." border="false" lightbox="media/overview/insights-blowup-type-2-opt.svg":::
+:::image type="content" source="media/overview/insights-box-opt.svg" alt-text="Diagram that shows the insights part of the consumption section of the Azure Monitor system." border="false" lightbox="media/overview/insights-blowup-type-2-opt.svg":::
 
 The following table describes some of the larger insights:
 
@@ -171,7 +171,7 @@ For more information, see the [list of insights and curated visualizations in th
 
 ### Visualize
 
-:::image type="content" source="media/overview/visualize-box-opt.svg" alt-text="Diagram that shows the Visualize part of the Consumption section of the Azure Monitor system." border="false" lightbox="media/overview/visualize-blowup-type-2-opt.svg":::
+:::image type="content" source="media/overview/visualize-box-opt.svg" alt-text="Diagram that shows the visualize part of the consumption section of the Azure Monitor system." border="false" lightbox="media/overview/visualize-blowup-type-2-opt.svg":::
 
 Visualizations such as charts and tables are effective tools for summarizing monitoring data and presenting it to different audiences. Azure Monitor has its own features for visualizing monitoring data and uses other Azure services for publishing it to different audiences. Power BI and Grafana aren't officially part of the Azure Monitor product, but they're a core integration and part of the Azure Monitor story.
 
@@ -188,7 +188,7 @@ For a more extensive discussion of the recommended visualization tools and when 
 
 The Azure portal contains built-in tools that allow you to analyze monitoring data.
 
-:::image type="content" source="media/overview/analyze-box-opt.svg" alt-text="Diagram that shows the Analyze part of the Consumption section of the Azure Monitor system." border="false" lightbox="media/overview/analyze-blowup-type-2-opt.svg":::
+:::image type="content" source="media/overview/analyze-box-opt.svg" alt-text="Diagram that shows the analyze part of the consumption section of the Azure Monitor system." border="false" lightbox="media/overview/analyze-blowup-type-2-opt.svg":::
 
 | Tool | Description |
 |------|-------------|
@@ -200,7 +200,7 @@ The Azure portal contains built-in tools that allow you to analyze monitoring da
 
 An effective monitoring solution proactively responds to critical events, without the need for an individual or team to notice the issue. The response could be a text or email to an administrator, or an automated process that attempts to correct an error condition.
 
-:::image type="content" source="media/overview/respond-box-opt.svg" alt-text="Diagram that shows the Respond part of the Consumption section of the Azure Monitor system." border="false" lightbox="media/overview/respond-blowup-type-2-opt.svg":::
+:::image type="content" source="media/overview/respond-box-opt.svg" alt-text="Diagram that shows the respond part of the consumption section of the Azure Monitor system." border="false" lightbox="media/overview/respond-blowup-type-2-opt.svg":::
 
 [**Artificial Intelligence for IT Operations (AIOps)**](../logs/aiops-machine-learning.md) can improve service quality and reliability by using machine learning to process and automatically act on data you collect from applications, services, and IT resources into Azure Monitor. It automates data-driven tasks, predicts capacity usage, identifies performance issues, and detects anomalies across applications, services, and IT resources. These features simplify IT monitoring and operations without requiring machine learning expertise. 
 
@@ -225,7 +225,7 @@ SCOM MI currently uses its own separate traditional System Center Operations Man
 
 You may need to integrate Azure Monitor with other systems or to build custom solutions that use your monitoring data. These Azure services work with Azure Monitor to provide integration capabilities. The following diagram and table show only a few of the possible integrations.
 
-:::image type="content" source="media/overview/integrate-box-opt.svg" alt-text="Diagram that shows the Integrate part of the Consumption section of the Azure Monitor system." border="false" lightbox="media/overview/integrate-box-opt.svg":::
+:::image type="content" source="media/overview/integrate-box-opt.svg" alt-text="Diagram that shows the yntegrate part of the consumption section of the Azure Monitor system." border="false" lightbox="media/overview/integrate-box-opt.svg":::
 
 | Azure service | Description |
 |---------------|-------------|
