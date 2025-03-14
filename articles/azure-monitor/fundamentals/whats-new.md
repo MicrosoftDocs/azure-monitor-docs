@@ -14,7 +14,7 @@ This article lists significant changes to Azure Monitor documentation.
 > [!TIP]
 > Get notified when this page is updated by copying and pasting the following URL into your feed reader:
 >
-> :::image type="content" source="./media/whats-new/rss.png" alt-text="An rss icon."::: https://aka.ms/azmon/rss
+> :::image type="content" source="media/whats-new/rss.png" alt-text="An rss icon."::: https://aka.ms/azmon/rss
 
 ## [2025](#tab/2025)
 
@@ -103,6 +103,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Profiler|[Enable the .NET Profiler for Azure Functions apps](../profiler/profiler-azure-functions.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
 |Profiler|[Configure BYOS for Application Insights Profiler for .NET and Snapshot Debugger](../profiler/profiler-bring-your-own-storage.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
 |Profiler|[Enable the .NET Profiler on Azure containers](../profiler/profiler-containers.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
+|Profiler|[Enable the .NET Profiler for Azure Cloud Services](../insights/code-optimizations-profiler-overview.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
 |Profiler|[View Application Insights Profiler for .NET data](../profiler/profiler-data.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
 |Profiler|[Profile production applications in Azure with Application Insights Profiler for .NET](../profiler/profiler-overview.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
 |Profiler|[Enable the .NET Profiler for Azure Service Fabric applications](../profiler/profiler-servicefabric.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
@@ -418,7 +419,7 @@ Containers|[Data transformations in Container insights](../containers/container-
 Containers|[Enable Container insights](../containers/container-insights-onboard.md)|New article: Enable private link with Container insights|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../essentials/prometheus-rule-groups.md)|Create or edit Prometheus rule group in the Azure portal (preview)|
 Logs|[Detect and mitigate potential issues using AIOps and machine learning in Azure Monitor](../logs/aiops-machine-learning.md)|Microsoft Copilot in Azure now helps you write KQL queries to analyze data and troubleshoot issues based on prompts, such as "Are there any errors in container logs?". |
-Logs|[Best practices for Azure Monitor Logs](./best-practices-logs.md)|More guidance on Azure Monitor Logs features that provide enhanced resilience.|
+Logs|[Best practices for Azure Monitor Logs](best-practices-logs.md)|More guidance on Azure Monitor Logs features that provide enhanced resilience.|
 Logs|[Data retention and archive in Azure Monitor Logs](../logs/data-retention-configure.md)|Azure Monitor Logs extended archiving of data to up to 12 years.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Added Basic logs support for Network managers tables.|
 Virtual-Machines|[Enable VM insights in the Azure portal](../vm/vminsights-enable-portal.md)|Azure portal no longer supports enabling VM insights using Log Analytics agent.|
@@ -809,7 +810,7 @@ Application-insights|[Sampling in Application Insights](../app/sampling.md)|Prio
 Application-insights|[What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md)|Overhauled the autoinstrumentation overview with links and footnotes.|
 Application-insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, and Python applications (preview)](../app/opentelemetry-enable.md)|Open Telemetry Metrics are now available for .NET, Node.js and Python applications.|
 Application-insights|[Find and diagnose performance issues with Application Insights](../app/tutorial-performance.md)|Replaced the URL Ping (Classic) Test with Standard Test step-by-step instructions.|
-Application-insights|[Application Insights API for custom events and metrics](./app/api-custom-events-metrics.md)|Added flushing information to the FAQ.|
+Application-insights|[Application Insights API for custom events and metrics](../app/api-custom-events-metrics.md)|Added flushing information to the FAQ.|
 Application-insights|[Azure AD authentication for Application Insights](../app/azure-ad-authentication.md)|Updated the `TelemetryConfiguration` code sample by using .NET.|
 Application-insights|[Using Azure Monitor Application Insights with Spring Boot](../app/java-spring-boot.md)|Updated the Spring Boot information to 3.4.2.|
 Application-insights|[Configuration options: Azure Monitor Application Insights for Java](../app/java-standalone-config.md)|Added new features on Capture Log4j Markers and Logback Markers as custom properties on the corresponding trace (log message) telemetry.|
@@ -843,59 +844,59 @@ Visualizations|[Azure Workbooks](../visualize/workbooks-overview.md)|New video t
 
 | Article | Description |
 |---|---|
-|[Azure Monitor Agent overview](./agents/agents-overview.md)|Added Azure Monitor Agent support for Arm64-based virtual machines for a number of distributions. <br><br>Azure Monitor Agent and legacy agents don't support machines and appliances that run heavily customized or stripped-down versions of operating system distributions. <br><br>Azure Monitor Agent versions 1.15.2 and higher now support Syslog RFC formats, including Cisco Meraki, Cisco ASA, Cisco FTD, Sophos XG, Juniper Networks, Corelight Zeek, CipherTrust, NXLog, McAfee, and Common Event Format (CEF).|
+|[Azure Monitor Agent overview](../agents/agents-overview.md)|Added Azure Monitor Agent support for Arm64-based virtual machines for a number of distributions. <br><br>Azure Monitor Agent and legacy agents don't support machines and appliances that run heavily customized or stripped-down versions of operating system distributions. <br><br>Azure Monitor Agent versions 1.15.2 and higher now support Syslog RFC formats, including Cisco Meraki, Cisco ASA, Cisco FTD, Sophos XG, Juniper Networks, Corelight Zeek, CipherTrust, NXLog, McAfee, and Common Event Format (CEF).|
 
 #### Alerts
 
 | Article | Description |
 |---|---|
-|[Convert ITSM actions that send events to ServiceNow to Secure Webhook actions](./alerts/itsm-convert-servicenow-to-webhook.md)|As of September 2022, we're starting the three-year process of deprecating support of using ITSM actions to send events to ServiceNow. Learn how to convert ITSM actions that send events to ServiceNow to Secure Webhook actions.|
-|[Create a new alert rule](./alerts/alerts-create-new-alert-rule.md)|Added description of all available monitoring services to **Create a new alert rule** and **Alert processing rules** pages. <br><br>Added support for regional processing for metric alert rules that monitor a custom metric with the scope defined as one of the supported regions. <br><br> Clarified that selecting the **Automatically resolve alerts** setting makes log alerts stateful.|
+|[Convert ITSM actions that send events to ServiceNow to Secure Webhook actions](../alerts/itsm-convert-servicenow-to-webhook.md)|As of September 2022, we're starting the three-year process of deprecating support of using ITSM actions to send events to ServiceNow. Learn how to convert ITSM actions that send events to ServiceNow to Secure Webhook actions.|
+|[Create a new alert rule](../alerts/alerts-create-new-alert-rule.md)|Added description of all available monitoring services to **Create a new alert rule** and **Alert processing rules** pages. <br><br>Added support for regional processing for metric alert rules that monitor a custom metric with the scope defined as one of the supported regions. <br><br> Clarified that selecting the **Automatically resolve alerts** setting makes log alerts stateful.|
 |[Types of Azure Monitor alerts](../alerts/alerts-types.md)|Azure Database for PostgreSQL - Flexible Servers is supported for monitoring multiple resources.|
-|[Upgrade legacy rules management to the current Scheduled Query Rules API from legacy Log Analytics Alert API](./alerts/alerts-log-api-switch.md)|The process of moving legacy log alert rules management from the legacy API to the current API is now supported by the government cloud.|
+|[Upgrade legacy rules management to the current Scheduled Query Rules API from legacy Log Analytics Alert API](../alerts/alerts-log-api-switch.md)|The process of moving legacy log alert rules management from the legacy API to the current API is now supported by the government cloud.|
 
 #### Application Insights
 
 | Article | Description |
 |---|---|
-|[Azure Monitor OpenTelemetry-based autoinstrumentation for Java applications](./app/opentelemetry-enable.md?tabs=java)|Added new OpenTelemetry `@WithSpan` annotation guidance.|
+|[Azure Monitor OpenTelemetry-based autoinstrumentation for Java applications](../app/opentelemetry-enable.md?tabs=java)|Added new OpenTelemetry `@WithSpan` annotation guidance.|
 |[Capture Application Insights custom metrics with .NET and .NET Core](/previous-versions/azure/azure-monitor/app/tutorial-asp-net-custom-metrics)|Updated tutorial steps and images.|
-|[Configuration options: Azure Monitor Application Insights for Java](./app/opentelemetry-enable.md)|Updated connection string guidance.|
+|[Configuration options: Azure Monitor Application Insights for Java](../app/opentelemetry-enable.md)|Updated connection string guidance.|
 |[Enable Application Insights for ASP.NET Core applications](/previous-versions/azure/azure-monitor/app/tutorial-asp-net-core)|Updated tutorial steps and images.|
-|[Enable Azure Monitor OpenTelemetry Exporter for .NET, Node.js, and Python applications (preview)](./app/opentelemetry-enable.md)|Fixed the product feedback link at the bottom of each document.|
-|[Filter and preprocess telemetry in the Application Insights SDK](./app/api-filtering-sampling.md)|Added sample initializer to control which client IP gets used as part of geo-location mapping.|
-|[Java Profiler for Azure Monitor Application Insights](./app/java-standalone-profiler.md)|Announced the new Java Profiler at Ignite. Read all about it.|
-|[Release notes for Azure Web App extension for Application Insights](./app/web-app-extension-release-notes.md)|Added release notes for 2.8.44 and 2.8.43.|
-|[Resource Manager template samples for creating Application Insights resources](./app/create-workspace-resource.md)|Fixed inaccurate tagging of workspace-based resources as still in preview.|
-|[Unified cross-component transaction diagnostics](./app/transaction-search-and-diagnostics.md?tabs=transaction-diagnostics)|Added a FAQ section to help troubleshoot Azure portal errors like "error retrieving data."|
-|[Upgrading from Application Insights Java 2.x SDK](./app/java-standalone-upgrade-from-2x.md)|Added more upgrade guidance. Java 2.x is deprecated.|
-|[Using Azure Monitor Application Insights with Spring Boot](./app/java-spring-boot.md)|Updated configuration options.|
+|[Enable Azure Monitor OpenTelemetry Exporter for .NET, Node.js, and Python applications (preview)](../app/opentelemetry-enable.md)|Fixed the product feedback link at the bottom of each document.|
+|[Filter and preprocess telemetry in the Application Insights SDK](../app/api-filtering-sampling.md)|Added sample initializer to control which client IP gets used as part of geo-location mapping.|
+|[Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md)|Announced the new Java Profiler at Ignite. Read all about it.|
+|[Release notes for Azure Web App extension for Application Insights](../app/web-app-extension-release-notes.md)|Added release notes for 2.8.44 and 2.8.43.|
+|[Resource Manager template samples for creating Application Insights resources](../app/create-workspace-resource.md)|Fixed inaccurate tagging of workspace-based resources as still in preview.|
+|[Unified cross-component transaction diagnostics](../app/transaction-search-and-diagnostics.md?tabs=transaction-diagnostics)|Added a FAQ section to help troubleshoot Azure portal errors like "error retrieving data."|
+|[Upgrading from Application Insights Java 2.x SDK](../app/java-standalone-upgrade-from-2x.md)|Added more upgrade guidance. Java 2.x is deprecated.|
+|[Using Azure Monitor Application Insights with Spring Boot](../app/java-spring-boot.md)|Updated configuration options.|
 
 #### Autoscale
 
 | Article | Description |
 |---|---|
-|[Autoscale with multiple profiles](./autoscale/autoscale-multiprofile.md)|New article: Using multiple profiles in autoscale with CLI PowerShell and templates.|
-|[Flapping in autoscale](./autoscale/autoscale-flapping.md)|New article: Flapping in autoscale.|
-|[Understand autoscale settings](./autoscale/autoscale-understanding-settings.md)|Clarified how often autoscale runs.|
+|[Autoscale with multiple profiles](../autoscale/autoscale-multiprofile.md)|New article: Using multiple profiles in autoscale with CLI PowerShell and templates.|
+|[Flapping in autoscale](../autoscale/autoscale-flapping.md)|New article: Flapping in autoscale.|
+|[Understand autoscale settings](../autoscale/autoscale-understanding-settings.md)|Clarified how often autoscale runs.|
 
 #### Change Analysis
 
 | Article | Description |
 |---|---|
-|[Troubleshoot Azure Monitor's Change Analysis](./change/change-analysis-troubleshoot.md)|Added section about partial data and how to mitigate to the troubleshooting guide.|
+|[Troubleshoot Azure Monitor's Change Analysis](../change/change-analysis-troubleshoot.md)|Added section about partial data and how to mitigate to the troubleshooting guide.|
 
 #### Essentials
 
 | Article | Description |
 |---|---|
-|[Structure of transformation in Azure Monitor (preview)](./essentials/data-collection-transformations-structure.md)|Added information about new KQL functions that are supported.|
+|[Structure of transformation in Azure Monitor (preview)](../essentials/data-collection-transformations-structure.md)|Added information about new KQL functions that are supported.|
 
 #### Virtual machines
 
 | Article | Description |
 |---|---|
-|[Migrate from Service Map to Azure Monitor VM insights](./vm/vminsights-migrate-from-service-map.md)|Added a new article with guidance for migrating from the Service Map solution to Azure Monitor VM insights.|
+|[Migrate from Service Map to Azure Monitor VM insights](../vm/vminsights-migrate-from-service-map.md)|Added a new article with guidance for migrating from the Service Map solution to Azure Monitor VM insights.|
 
 #### Network Insights
 
@@ -907,7 +908,7 @@ Visualizations|[Azure Workbooks](../visualize/workbooks-overview.md)|New video t
 
 | Article | Description |
 |---|---|
-|[Access deprecated troubleshooting guides in Azure Workbooks](./visualize/workbooks-access-troubleshooting-guide.md)|New article: Access deprecated troubleshooting guides in Azure Workbooks.|
+|[Access deprecated troubleshooting guides in Azure Workbooks](../visualize/workbooks-access-troubleshooting-guide.md)|New article: Access deprecated troubleshooting guides in Azure Workbooks.|
 
 ### August 2022
 
