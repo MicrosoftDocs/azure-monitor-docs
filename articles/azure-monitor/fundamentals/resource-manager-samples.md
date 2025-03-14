@@ -16,11 +16,11 @@ The basic steps to use one of the template samples are:
 1. Modify the parameters for your environment and save the JSON file.
 1. Deploy the template by using [any deployment method for Resource Manager templates](/azure/azure-resource-manager/templates/deploy-portal).
 
-Following are basic steps for using different methods to deploy the sample templates. Follow the included links for more details.
+Following are basic steps for using different methods to deploy the sample templates. Follow the included links for more information.
 
 ## [Azure portal](#tab/portal)
 
-For more details, see [Deploy resources with ARM templates and Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
+For more information, see [Deploy resources with ARM templates and Azure portal](/azure/azure-resource-manager/templates/deploy-portal).
 
 1. In the Azure portal, select **Create a resource**, search for **template**. and then select **Template deployment**.
 1. Select **Create**.
@@ -32,7 +32,7 @@ For more details, see [Deploy resources with ARM templates and Azure portal](/az
 
 ## [CLI](#tab/cli)
 
-For more details, see [How to use Azure Resource Manager (ARM) deployment templates with Azure CLI](/azure/azure-resource-manager/templates/deploy-cli).
+For more information, see [How to use Azure Resource Manager (ARM) deployment templates with Azure CLI](/azure/azure-resource-manager/templates/deploy-cli).
 
 ```azurecli
 az login
@@ -45,7 +45,7 @@ az deployment group create \
 
 ## [PowerShell](#tab/powershell)
 
-For more details, see [Deploy resources with ARM templates and Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell).
+For more information, see [Deploy resources with ARM templates and Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell).
 
 ```powershell
 Connect-AzAccount
@@ -55,7 +55,7 @@ New-AzResourceGroupDeployment -Name AzureMonitorDeployment -ResourceGroupName <r
 
 ## [REST API](#tab/api)
 
-For more details, see [Deploy resources with ARM templates and Azure Resource Manager REST API](/azure/azure-resource-manager/templates/deploy-rest).
+For more information, see [Deploy resources with ARM templates and Azure Resource Manager REST API](/azure/azure-resource-manager/templates/deploy-rest).
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2020-10-01
