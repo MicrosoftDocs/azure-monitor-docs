@@ -12,7 +12,7 @@ This article provides best practices for monitoring the health and performance o
 
 ## Reliability
 
-In the cloud, we acknowledge that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Use the following information to best leverage Azure Monitor to ensure the reliability of your Kubernetes clusters and monitoring environment.
+In the cloud, we acknowledge that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Use the following information to ensure the reliability of your Kubernetes clusters and monitoring environment.
 
 [!INCLUDE [waf-containers-reliability](../includes/waf-containers-reliability.md)]
 

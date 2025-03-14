@@ -9,9 +9,9 @@ ms.reviewer: bwren
 
 # Migrate from System Center Operations Manager (SCOM) to Azure Monitor
 
-This article provides guidance for customers who currently use [System Center Operations Manager (SCOM)](/system-center/scom/welcome) and are planning a transition to cloud based monitoring with [Azure Monitor](overview.md) as they migrate business applications and other resources into Azure. 
+This article o currentprovides guidance for customers whly use [System Center Operations Manager (SCOM)](/system-center/scom/welcome) and are planning a transition to cloud based monitoring with [Azure Monitor](overview.md) as they migrate business applications and other resources into Azure.
 
-There's no standard process for migrating from SCOM, and you may rely on SCOM management packs for an extended time as opposed to performing a quick migration. This article describes the different options available and decision criteria you can use to determine the best strategy for your particular environment.
+There's no standard process for migrating from System Center Operations Manager (SCOM), and you may rely on SCOM management packs for an extended time as opposed to performing a quick migration. This article describes the different options available and decision criteria you can use to determine the best strategy for your particular environment.
 
 ## Hybrid cloud monitoring
 
@@ -64,7 +64,7 @@ Enable [VM insights](../vm/vminsights-overview.md) to install the Azure Monitor 
 Continue to use management packs for functionality that isn't provided by other features in Azure Monitor. This includes management packs for critical server software like IIS, SQL Server, or Exchange. You may also have custom management packs developed for on-premises infrastructure that can't be reached with Azure Monitor. Also continue to use SCOM if you tightly integrated into your operational processes until you can transition to modernizing your service operations where Azure Monitor and other Azure services can augment or replace.
 
 > [!NOTE]
-> If you enable VM Insights with the Log Analytics agent instead of the Azure Monitor agent, then no additional agent needs to be installed on the VM. Azure Monitor agent is recommended though because of its significant improvements in monitoring the VM in the cloud. The complexity from maintaining multiple agents is offset by the ability to define monitoring in data collection rules, which allow you to configure different data collection for different sets of VMs, similar to your strategy for designing management packs.
+> If you enable VM Insights with the Log Analytics agent instead of the Azure Monitor agent, then no other agent needs to be installed on the VM. Azure Monitor agent is recommended though because of its significant improvements in monitoring the VM in the cloud. The complexity from maintaining multiple agents is offset by the ability to define monitoring in data collection rules, which allow you to configure different data collection for different sets of VMs, similar to your strategy for designing management packs.
 
 ## Migrate management pack logic for VM workloads
 
