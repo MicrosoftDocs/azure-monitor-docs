@@ -179,14 +179,16 @@ These actions are building blocks for constructing effective experiments. Use th
 | inboundDestinationFilters | Delimited JSON array of packet filters defining which inbound packets to target. Maximum of 16. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
-The parameters **destinationFilters** and **inboundDestinationFilters** use the following array of packet filters.
+The parameters **destinationFilters** and **inboundDestinationFilters** use the following array of packet filters. 
 
 | Property | Value |
 |-|-|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. microsoft.com) to target. |
+| subnetMask | (Optional) Subnet mask to block for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address and a default subnet mask of 255.255.255.255 is applied. The corresponding IP address is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't affect the new IP address.
 
 #### Sample JSON
 
@@ -298,10 +300,12 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. microsoft.com) to target. |
+| subnetMask | (Optional) Subnet mask to block for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address and a default subnet mask of 255.255.255.255 is applied. The corresponding IP address is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't affect the new IP address.
 
 #### Sample JSON
 
@@ -360,10 +364,12 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 | packetLossRate | The rate at which packets matching the destination filters will be lost, ranging from 0.0 to 1.0. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 | destinationFilters | Delimited JSON array of packet filters (parameters below) that define which outbound packets to target for fault injection. Maximum of three.|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. microsoft.com) to target. |
+| subnetMask | (Optional) Subnet mask to block for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address and a default subnet mask of 255.255.255.255 is applied. The corresponding IP address is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't affect the new IP address.
 
 #### Sample JSON
 
