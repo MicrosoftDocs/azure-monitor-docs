@@ -1,6 +1,11 @@
 {
  "redirections": [
   {
+   "source_path_from_root": "/articles/azure-monitor/profiler/profiler-cloudservice.md",
+   "redirect_url": "/azure/azure-monitor/profiler/profiler-overview",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/insights/code-optimizations.md",
    "redirect_url": "/azure/azure-monitor/insights/code-optimizations-profiler-overview",
    "redirect_document_id": false
@@ -7787,6 +7792,21 @@
   {
    "source_path": "articles/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md",
    "redirect_url": "/azure/azure-monitor/vm/send-event-hubs-storage",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-transformation.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-log-text",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/virtual-machine-guest-metrics.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-performance",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/overview.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/overview",
    "redirect_document_id": false
   }
  ]

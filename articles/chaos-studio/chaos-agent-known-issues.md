@@ -41,24 +41,6 @@ sudo yum install kernel-modules-extra
 Reboot the VM after installation to load the sch_netem module.
 
 ---
-
-## DNS Fault on Windows with LKG Plugin Conflict
-
-**Issue:**
-The DNS failure fault on Windows may not execute as expected if there's a conflicting LKG plugin installed on the target machine.
-
-**Cause:**
-A conflict with the LKG plugin may prevent the DNS interceptor from installing or functioning correctly, leading to the fault not being executed.
-
-**Potential Workarounds:**
-
-•	Ensure that the required DNS interceptor is installed and configured using the default settings.
-
-•	Avoid overriding the DNS interceptor with any custom or conflicting plugins.
-
-•	If a conflict is detected, restore the default configuration or reinstall the DNS interceptor as per the documented instructions.
-
----
 ## Dynamic Targeting Issues
 
 **Issue:**

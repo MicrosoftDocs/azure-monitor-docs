@@ -64,7 +64,7 @@ On the **Collect and deliver** pane, click **Add data source** to add and config
 | Setting | Description |
 |:---|:---|
 | **Data source** | Select a **Data source type** and provide values for the fields based on the data source type you select. See the table below for details about configuring each type of data source. |
-| **Destination** | Add one or more destinations for each data source. While you can select multiple destinations of the same type, be aware that this will send duplicate data to each which will result in additional cost. See the details for each data type for the different destinations they support. |
+| **Destination** | Add one or more destinations for each data source. Some data sources will only allow a single data source. If you need multiple, then you can create another DCR.<br><br>While you can select multiple destinations of the same type for some data sources, be aware that this will send duplicate data to each which will result in additional cost. See the details for each data type for the different destinations they support. |
 
 The following table lists the types of data you can collect from a VM client with Azure Monitor and where you can send that data. See the linked article for each to learn how to configure that data source.
 

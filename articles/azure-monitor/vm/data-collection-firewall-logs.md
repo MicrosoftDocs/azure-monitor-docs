@@ -27,7 +27,7 @@ Create the DCR using the process in [Collect data from virtual machine client wi
 :::image type="content" source="media/data-collection-firewall-log/data-source-firewall-logs.png" lightbox="media/data-collection-firewall-log/data-source-firewall-logs.png" alt-text="Screenshot that shows configuration of the Firewall Logs data source." :::
 
 ## Add destinations
-Windows event data can only be sent to a Log Analytics workspace where it's stored in the [Event](/azure/azure-monitor/reference/tables/event) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
+Firewall logs can only be sent to a Log Analytics workspace where it's stored in the [Event](/azure/azure-monitor/reference/tables/event) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. You can only add a single workspace to a DCR for a firewall log data source. If you need multiple destinations, create multiple DCRs. Be aware though that this will send duplicate data to each which will result in additional cost.
 
 
 :::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::

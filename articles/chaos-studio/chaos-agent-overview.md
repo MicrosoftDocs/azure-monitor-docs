@@ -33,6 +33,8 @@ The Chaos Agent is shipped via VM extension and supports both Windows and Linux 
 - **VM Extension Delivery**: Simplifies deployment across various environments.
 - **Targeted Fault Scenarios**: Offers precise control over the induced faults, ensuring your systems are rigorously tested.
 
+<br>[![Diagram showing how the Chaos Studio agent core components are packaged and hosted on a customer's virtual machine and how they communicate with the Azure managed service for Chaos Studio.](images/chaos-agent-overview-architecture.png)](images/chaos-agent-overview-architecture.png#lightbox)<br>
+
 ## Key Scenarios Enabled
 
 The agent facilitates several critical fault injection scenarios, including:

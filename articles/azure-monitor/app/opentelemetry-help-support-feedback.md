@@ -2,7 +2,7 @@
 title: OpenTelemetry help and support for Azure Monitor Application Insights
 description: This article provides FAQs, troubleshooting steps, support options, and feedback mechanisms for OpenTelemetry (OTel) in Application Insights for .NET, Java, Node.js, and Python applications.
 ms.topic: conceptual
-ms.date: 03/23/2025
+ms.date: 03/12/2025
 ms.reviewer: mmcc
 
 #customer intent: As a developer or site reliability engineer, I want to find support resources and provide feedback for OpenTelemetry (OTel) integration with Application Insights to effectively monitor my .NET, Java, Node.js, or Python applications.
@@ -126,7 +126,7 @@ The following chart breaks out OpenTelemetry feature support for each language.
 | Filter requests, dependencies, logs, and exceptions by anonymous user ID and synthetic source                        | :x:                | :x:                | :x:                | :white_check_mark: |
 | Filter dependencies, logs, and exceptions by operation name                                                          | :x:                | :x:                | :x:                | :white_check_mark: |
 | [Adaptive sampling](../app/sampling.md#adaptive-sampling)                                                            | :x:                | :x:                | :x:                | :white_check_mark: |
-| [.NET Profiler](../profiler/profiler-overview.md)                                                                    | :x:                | :x:                | :x:                | :warning:          |
+| [.NET Profiler](../profiler/profiler-overview.md)                                                                    | :warning:          | :x:                | :x:                | :warning:          |
 | [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)                                                       | :x:                | :x:                | :x:                | :x:                |
 
 **Key**
@@ -173,6 +173,10 @@ You could be trying to visualize raw text logs rather than OpenTelemetry traces.
 In Application Insights, the 'Traces' table stores raw text logs for diagnostic purposes. They aid in identifying and correlating traces associated with user requests, other events, and exception reports. However, the 'Traces' table doesn't directly contribute to the end-to-end transaction view (waterfall chart) in visualization tools like Grafana.
 
 With the growing adoption of cloud-native practices, there's an evolution in telemetry collection and terminology. OpenTelemetry became a standard for collecting and instrumenting telemetry data. In this context, the term 'Traces' took on a new meaning. Rather than raw logs, 'Traces' in OpenTelemetry refer to a richer, structured form of telemetry that includes spans, which represent individual units of work. These spans are crucial for constructing detailed transaction views, enabling better monitoring and diagnostics of cloud-native applications.
+
+### How should I instrument Blazor Apps?
+
+To instrument a Blazor app, first identify the hosting model. Blazor Server supports full [OpenTelemetry-based instrumentation](opentelemetry-enable.md). Blazor WebAssembly runs in the browser and supports limited instrumentation through JavaScript.
 
 ## Troubleshooting
 
