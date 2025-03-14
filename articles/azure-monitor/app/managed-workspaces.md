@@ -43,16 +43,16 @@ Managed resources created by Application Insights follow specific naming convent
 
 You can identify the managing resource by checking the **Managed By** property in the Azure portal.
 
-## Auto-migrate classic resources
+## Automatically migrated classic resources
 
-Starting March XX, classic Application Insights resources will be automatically migrated to workspace-based resources. As part of the migration:
+Beginning on March 31, 2025, classic Application Insights resources are automatically migrated to workspace-based resources. As part of the migration:
 
 - The classic Application Insights resource is converted to a workspace-based resource.
 - A managed Log Analytics workspace is created and linked to the migrated resource.
 - The workspace is placed in a new resource group with the same access permissions as the Application Insights resource.
 
 > [!IMPORTANT]  
-> Each migrated classic resource will receive its own managed workspace. To prevent this, [migrate your classic resources manually](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+> Each migrated classic resource receives its own managed workspace. To prevent this scenario, [migrate your classic resources manually](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
 ## Frequently asked questions
 
@@ -60,7 +60,7 @@ Starting March XX, classic Application Insights resources will be automatically 
 
 No. Existing ARM templates and API calls continue to work. When you attempt to create a classic resource, a workspace-based resource with a managed workspace is created instead.
 
-### Will I be notified before my resource is migrated?
+### Am I notified before my resource is migrated?
 
 No. Notification for individual resource migrations isn't available. To control when and how your resources are migrated, use [manual migration](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
@@ -68,21 +68,24 @@ No. Notification for individual resource migrations isn't available. To control 
 
 Individual migrations usually complete in less than two minutes. The full rollout takes place over several weeks across all regions.
 
-### How can I tell if a resource has been migrated?
+### How can I tell if a resource is migrated?
 
 After migration, the resource links to a Log Analytics workspace on the Overview page. The classic retirement notice is removed, and the retirements workbook no longer lists the resource.
 
 ### Will my billing change after migration?
 
-Most users will not see a change in billing. Workspace-based Application Insights enables cost-saving features. If you're on a legacy billing model, review the [pricing documentation](https://azure.microsoft.com/pricing/details/monitor/) for details.
+Costs typically remain similar. Workspace-based Application Insights enables cost-saving features and we recommend reviewing [pricing plans](./create-workspace-resource.md#set-the-pricing-plan).
 
-### Will I lose alerts or availability tests during migration?
+If you're on a legacy billing model, review the [pricing documentation](https://azure.microsoft.com/pricing/details/monitor/) for details.
+
+### Do I lose alerts or availability tests during migration?
 
 No. All alerts, dashboards, and availability tests remain intact and continue to function after migration.
 
 ## Next steps
 
 - [Create and configure Application Insights resources](./create-workspace-resource.md)
-- [Connection strings in Application Insights](./connection-strings.md)
-- [Data collection basics](./opentelemetry-overview.md)
-- [Application Insights overview](./app-insights-overview.md)
+- [Manage connection strings in Application Insights](./connection-strings.md)
+- [Understand data collection basics](./opentelemetry-overview.md)
+- [Explore the Application Insights overview](./app-insights-overview.md)
+
