@@ -318,7 +318,7 @@ This article lists significant changes to Azure Monitor documentation.
 
 |Subservice | Article | Description |
 |---|---|---|
-|Alerts|[Improve the reliability of your application by using Azure Advisor](../advisor/advisor-high-availability-recommendations.md)|We’ve updated the alerts troubleshooting articles to remove out of date content and include common support issues.|
+|Alerts|[Improve the reliability of your application by using Azure Advisor](../../advisor/advisor-reference-reliability-recommendations.md)|We’ve updated the alerts troubleshooting articles to remove out of date content and include common support issues.|
 |Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](../app/opentelemetry-enable.md)|OpenTelemetry sample applications are now provided in a centralized location.|
 |Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Classic Application Insights resources have been retired. For more information, see this article for migration information and frequently asked questions.|
 |Application-Insights|[Sampling overrides - Azure Monitor Application Insights for Java](../app/java-standalone-sampling-overrides.md)|The sampling overrides feature has reached general availability (GA), starting from 3.5.0.|
@@ -957,7 +957,7 @@ Visualizations|[Azure Workbooks](../visualize/workbooks-overview.md)|New video t
 |[Enable Change Analysis](../change/change-analysis-enable.md)| Added a note for slot-level enablement.|
 |[Tutorial: Track a web app outage by using Change Analysis](../change/tutorial-outages.md)| Added setup steps to the tutorial.|
 |[Use Change Analysis in Azure Monitor to find web-app issues](../change/change-analysis.md)|Updated limitations.|
-|[Observability data in Azure Monitor](observability-data.md)| Added a "Changes" section.|
+|[Observability data in Azure Monitor](overview.md)| Added a "Changes" section.|
 
 #### Containers
 
