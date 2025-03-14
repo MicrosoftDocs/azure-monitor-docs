@@ -64,7 +64,7 @@ The [out-of-the-box Grafana Azure alerts dashboard](https://grafana.com/grafana/
 
 ### Power BI
 
-[Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) is useful for creating business-centric dashboards and reports, along with reports that analyze long-term KPI (Key Performance Indicator) trends. You can [import the results of a log query](./logs/log-powerbi.md) into a Power BI dataset, which allows you to take advantage of features such as combining data from different sources and sharing reports on the web and mobile devices.
+[Power BI](https://powerbi.microsoft.com/documentation/powerbi-service-get-started/) is useful for creating business-centric dashboards and reports, along with reports that analyze long-term KPI (Key Performance Indicator) trends. You can [import the results of a log query](../logs/log-powerbi.md) into a Power BI dataset, which allows you to take advantage of features such as combining data from different sources and sharing reports on the web and mobile devices.
 
 :::image type="content" source="media/visualizations/power-bi.png" lightbox="media/visualizations/power-bi.png" alt-text="Screenshot that shows an example Power BI report for IT operations." border="false":::
 
@@ -90,7 +90,7 @@ We recommend using Azure Managed Grafana for data visualizations and dashboards 
 
 | Visualization tool | Benefits | Recommended uses |
 |--------------------|----------|------------------|
-| [**Azure workbooks**](./visualize/workbooks-overview.md) |    |    |
+| [**Azure workbooks**](../visualize/workbooks-overview.md) |    |    |
 |    | Native Azure dashboarding platform | Use as a tool for engineering and technical teams to visualize and investigate scenarios. |
 |    | Autorefresh | Use as a reporting tool for App developers, Cloud engineers, and other technical personnel |
 |    | Out-of-the-box and public GitHub templates and reports |    |
