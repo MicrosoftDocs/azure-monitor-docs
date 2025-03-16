@@ -109,7 +109,9 @@ Specify one or more filters in the body of the API call. This example filters on
 
 
 
-## Check delete data operation status 
+## Check delete data operations and status 
+
+You can track data deletion activities in a workspace through the Azure Activity Log. In the **Log Analytics workspace** menu within the Azure portal, choose **Activity Log** and find **Delete Data from log analytics workspace** events. Select an event and open it in JSON format for details such as number of records deleted, caller, and message.
 
 To check the status of your operation and view the number of deleted records, send a GET request with the `Azure-AsyncOperation` URL provided in the response header:
  
