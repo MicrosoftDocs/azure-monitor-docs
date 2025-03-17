@@ -121,10 +121,12 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 **Logs**
 
-* Logback (including MDC properties) ¹ ³
-* Log4j (including MDC/Thread Context properties) ¹ ³
-* JBoss Logging (including MDC properties) ¹ ³
-* java.util.logging ¹ ³
+* Logback (including MDC properties) ¹
+* Log4j (including MDC/Thread Context properties) ¹
+* JBoss Logging (including MDC properties) ¹
+* java.util.logging ¹
+
+The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
 
 **Default collection**
 
@@ -280,7 +282,9 @@ useAzureMonitor(options);
 
 **Logs**
 
-* [Python logging library](https://docs.python.org/3/howto/logging.html) ⁴
+* [Python logging library](https://docs.python.org/3/howto/logging.html)
+
+The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
 
 Examples of using the Python logging library can be found on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
 
@@ -292,8 +296,6 @@ Telemetry emitted by Azure SDKS is automatically [collected](https://github.com/
 
 * ¹: Supports automatic reporting of *unhandled/uncaught* exceptions
 * ²: Supports OpenTelemetry Metrics
-* ³: By default, logging is only collected at INFO level or higher. To change this setting, see the [configuration options](./java-standalone-config.md#autocollected-logging).
-* ⁴: By default, logging is only collected when that logging is performed at the WARNING level or higher.
 
 > [!NOTE]
 > The Azure Monitor OpenTelemetry Distros include custom mapping and logic to automatically emit [Application Insights standard metrics](standard-metrics.md).
@@ -1670,15 +1672,11 @@ Currently unavailable.
   
 ### Send custom events
 
-<!--
-- We're repurposing the "Send custom telemetry using the Application Insights Classic API" for sending custom events.
-- All languages need to be updated.
-- Node and Java - Jackson and Raj to help considering where we move information unrelated to custom events
--->
-
 This section provides guidance on instrumenting your application to capture and send custom events.
   
 #### [ASP.NET Core](#tab/aspnetcore)
+
+Custom events are in Public Preview and use Azure.Monitor.OpenTelemetry.AspNetCore 1.3.0-beta.3.
 
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
@@ -1704,6 +1702,8 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 ```
 
 #### [.NET](#tab/net)
+
+Custom events are in Public Preview and use Azure.Monitor.OpenTelemetry.Exporter 1.4.0-beta.3.
 
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
@@ -1816,15 +1816,7 @@ logger.emit({
 
 #### [Python](#tab/python)
   
-Unlike other languages, Python doesn't have an Application Insights SDK. You can meet all your monitoring needs with the Azure Monitor OpenTelemetry Distro. You can use the logging api directly to send `customEvents` to Application Insights.
-
-Install the distro:
-
-```console
-pip install azure-monitor-opentelemetry
-```
-
-Use the Python logging library with a specific attribute to send a `customEvent`:
+To send a `customEvent` in Python, use the logging library with the `"microsoft.custom_event.name"` attribute in the `extra` parameter.
 
 ```python
 ...
