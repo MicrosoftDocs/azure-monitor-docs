@@ -20,19 +20,19 @@ This article describes [Operational excellence](/azure/architecture/framework/se
 
 ## Azure Monitor Logs
 
-[!INCLUDE [waf-logs-reliability](../includes/waf-logs-operation.md)]
+[!INCLUDE [waf-logs-reliability](includes/waf-logs-operation.md)]
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-alerts-operation.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-alerts-operation.md)]
 
 ## Virtual machines
 
-[!INCLUDE [waf-vm-reliability](../includes/waf-vm-operation.md)]
+[!INCLUDE [waf-vm-reliability](includes/waf-vm-operation.md)]
 
 ## Containers
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-containers-operation.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-containers-operation.md)]
 
 ## Next step
 

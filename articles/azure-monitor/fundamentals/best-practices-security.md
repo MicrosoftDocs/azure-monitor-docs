@@ -31,19 +31,19 @@ The guidelines in this article build on the [Microsoft security responsibility m
 
 ## Log ingestion and storage
 
-[!INCLUDE [waf-logs-reliability](../includes/waf-logs-security.md)]
+[!INCLUDE [waf-logs-reliability](includes/waf-logs-security.md)]
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-alerts-security.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-alerts-security.md)]
 
 ## Virtual machine monitoring
 
-[!INCLUDE [waf-vm-reliability](../includes/waf-vm-security.md)]
+[!INCLUDE [waf-vm-reliability](includes/waf-vm-security.md)]
 
 ## Container monitoring
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-containers-security.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-containers-security.md)]
 
 ## Next step
 

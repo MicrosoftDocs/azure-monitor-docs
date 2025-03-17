@@ -20,7 +20,7 @@ This article describes [Cost optimization](/azure/architecture/framework/cost/) 
 
 ## Azure Monitor Logs
 
-[!INCLUDE [waf-logs-cost](../includes/waf-logs-cost.md)]
+[!INCLUDE [waf-logs-cost](includes/waf-logs-cost.md)]
 
 ## Azure resources
 
@@ -37,19 +37,19 @@ This article describes [Cost optimization](/azure/architecture/framework/cost/) 
 
 ## Alerts
 
-[!INCLUDE [waf-containers-cost](../includes/waf-alerts-cost.md)]
+[!INCLUDE [waf-containers-cost](includes/waf-alerts-cost.md)]
 
 ## Virtual machines
 
-[!INCLUDE [waf-vm-cost](../includes/waf-vm-cost.md)]
+[!INCLUDE [waf-vm-cost](includes/waf-vm-cost.md)]
 
 ## Containers
 
-[!INCLUDE [waf-containers-cost](../includes/waf-containers-cost.md)]
+[!INCLUDE [waf-containers-cost](includes/waf-containers-cost.md)]
 
 ## Application Insights
 
-[!INCLUDE [waf-application-insights-cost](../includes/waf-application-insights-cost.md)]
+[!INCLUDE [waf-application-insights-cost](includes/waf-application-insights-cost.md)]
 
 ## Next step
 

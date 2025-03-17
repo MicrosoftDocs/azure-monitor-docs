@@ -20,15 +20,15 @@ This article describes [Performance efficiency](/azure/architecture/framework/se
 
 ## Azure Monitor Logs
 
-[!INCLUDE [waf-logs-reliability](../includes/waf-logs-performance.md)]
+[!INCLUDE [waf-logs-reliability](includes/waf-logs-performance.md)]
 
 ## Virtual machines
 
-[!INCLUDE [waf-vm-reliability](../includes/waf-vm-performance.md)]
+[!INCLUDE [waf-vm-reliability](includes/waf-vm-performance.md)]
 
 ## Containers
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-containers-performance.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-containers-performance.md)]
 
 ## Next step
 

@@ -20,19 +20,19 @@ This article describes [Reliability](/azure/architecture/framework/reliability/)
 
 ## Azure Monitor Logs
 
-[!INCLUDE [waf-logs-reliability](../includes/waf-logs-reliability.md)]
+[!INCLUDE [waf-logs-reliability](includes/waf-logs-reliability.md)]
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-alerts-reliability.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-alerts-reliability.md)]
 
 ## Virtual machines
 
-[!INCLUDE [waf-vm-reliability](../includes/waf-vm-reliability.md)]
+[!INCLUDE [waf-vm-reliability](includes/waf-vm-reliability.md)]
 
 ## Containers
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-containers-reliability.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-containers-reliability.md)]
 
 ## Next step
 
