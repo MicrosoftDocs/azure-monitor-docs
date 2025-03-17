@@ -188,7 +188,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
 
-The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address and a default subnet mask of 255.255.255.255 is applied. The corresponding IP address is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't affect the new IP address.
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -305,7 +305,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
 
-The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address and a default subnet mask of 255.255.255.255 is applied. The corresponding IP address is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't affect the new IP address.
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -369,7 +369,7 @@ The `address` parameter accepts either the IP address at the start of the IP ran
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
 
-The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address and a default subnet mask of 255.255.255.255 is applied. The corresponding IP address is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't affect the new IP address.
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
