@@ -8,26 +8,28 @@ ms.reviewer: jeffwo
 ---
 
 # Resource Manager template samples for agents in Azure Monitor
+
 This article includes sample [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to deploy and configure the [Azure Monitor agent](./azure-monitor-agent-overview.md), the legacy [Log Analytics agent](./log-analytics-agent.md) and [diagnostic extension](./diagnostics-extension-overview.md) for virtual machines in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ## Azure Monitor agent
 
 The samples in this section install the Azure Monitor agent on Windows and Linux virtual machines and Azure Arc-enabled servers. 
 
-###  Prerequisites
+### Prerequisites
 
 To use the templates below, you'll need:
-- To [create a user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-arm#create-a-user-assigned-managed-identity-3) and [assign the user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#user-assigned-managed-identity), or [enable a system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#system-assigned-managed-identity). A managed identity is required for Azure Monitor agent to collect and publish data. User-assigned managed identities are _strongly recommended_ over system-assigned managed identities due to their ease of management at scale.
-- To configure data collection for Azure Monitor Agent, you must also deploy [Resource Manager template data collection rules and associations](./resource-manager-data-collection-rules.md).
+
+* To [create a user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-arm#create-a-user-assigned-managed-identity-3) and [assign the user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#user-assigned-managed-identity), or [enable a system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm#system-assigned-managed-identity). A managed identity is required for Azure Monitor agent to collect and publish data. User-assigned managed identities are _strongly recommended_ over system-assigned managed identities due to their ease of management at scale.
+* To configure data collection for Azure Monitor Agent, you must also deploy [Resource Manager template data collection rules and associations](./resource-manager-data-collection-rules.md).
 
 ### Permissions required
 
 | Built-in Role | Scope(s) | Reason |
-|:---|:---|:---|
+|:--------------|:---------|:-------|
 | <ul><li>[Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)</li><li>[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator)</li></ul> | <ul><li>Virtual machines, virtual machine scale sets</li><li>Arc-enabled servers</li></ul> | To deploy agent extension |
-| Any role that includes the action *Microsoft.Resources/deployments/** | <ul><li>Subscription and/or</li><li>Resource group and/or </li><li>An existing data collection rule</li></ul> | To deploy ARM templates |
+| Any role that includes the action *Microsoft.Resources/deployments/* | <ul><li>Subscription and/or</li><li>Resource group and/or </li><li>An existing data collection rule</li></ul> | To deploy ARM templates |
 
 ### Azure Windows virtual machine
 
