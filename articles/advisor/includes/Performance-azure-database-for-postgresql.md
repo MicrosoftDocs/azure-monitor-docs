@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 03/17/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -238,13 +238,14 @@ Your server has orphaned prepared transactions. Rollback or commit the orphaned 
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL - Flexible Server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
+For more information, see [Autovacuum tuning - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40  
 
 
 <!--eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40_end-->
+
 
 <!--c3c74c9e-e241-496c-be3f-57a2797aa91f_begin-->
 
