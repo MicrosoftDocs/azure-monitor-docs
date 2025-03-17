@@ -19,25 +19,25 @@ For more information about alerting at-scale solutions, see [Alerting at-scale](
 
 In the cloud, we acknowledge that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Use the following information to minimize failure of your Azure Monitor alert rule components.
 
-[!INCLUDE [waf-alerts-reliability](../includes/waf-alerts-reliability.md)]
+[!INCLUDE [waf-alerts-reliability](includes/waf-alerts-reliability.md)]
 
 ## Security
 
 Security is one of the most important aspects of any architecture. Azure Monitor provides features to employ both the principle of least privilege and defense-in-depth. Use the following information to maximize the security of Azure Monitor alerts.
 
-[!INCLUDE [waf-alerts-security](../includes/waf-alerts-security.md)]
+[!INCLUDE [waf-alerts-security](includes/waf-alerts-security.md)]
 
 ## Cost optimization
 
 Cost optimization refers to ways to reduce unnecessary expenses and improve operational efficiencies. You can significantly reduce your cost for Azure Monitor by understanding your different configuration options and opportunities to reduce the amount of data that it collects. See [Azure Monitor cost and usage](../fundamentals/cost-usage.md) to understand the different ways that Azure Monitor charges and how to view your monthly bill.
 
-[!INCLUDE [waf-alerts-cost](../includes/waf-alerts-cost.md)]
+[!INCLUDE [waf-alerts-cost](includes/waf-alerts-cost.md)]
 
 ## Operational excellence
 
 Operational excellence refers to operations processes required keep a service running reliably in production. Use the following information to minimize the operational requirements for supporting Azure Monitor alerts.
 
-[!INCLUDE [waf-alerts-operation](../includes/waf-alerts-operation.md)]
+[!INCLUDE [waf-alerts-operation](includes/waf-alerts-operation.md)]
 
 ## Performance efficiency
 

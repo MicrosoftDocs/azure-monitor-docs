@@ -37,7 +37,7 @@ This article describes [Cost optimization](/azure/architecture/framework/cost/) 
 
 ## Alerts
 
-[!INCLUDE [waf-containers-cost](includes/waf-alerts-cost.md)]
+[!INCLUDE [waf-containers-cost](../alerts/includes/waf-alerts-cost.md)]
 
 ## Virtual machines
 

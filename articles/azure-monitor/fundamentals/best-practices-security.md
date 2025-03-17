@@ -35,7 +35,7 @@ The guidelines in this article build on the [Microsoft security responsibility m
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](includes/waf-alerts-security.md)]
+[!INCLUDE [waf-containers-reliability](../alerts/includes/waf-alerts-security.md)]
 
 ## Virtual machine monitoring
 

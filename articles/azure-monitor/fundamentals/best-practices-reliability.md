@@ -24,7 +24,7 @@ This article describes [Reliability](/azure/architecture/framework/reliability/)
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](includes/waf-alerts-reliability.md)]
+[!INCLUDE [waf-containers-reliability](../alerts/includes/waf-alerts-reliability.md)]
 
 ## Virtual machines
 

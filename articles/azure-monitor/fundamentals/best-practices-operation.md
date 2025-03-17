@@ -24,7 +24,7 @@ This article describes [Operational excellence](/azure/architecture/framework/se
 
 ## Alerts
 
-[!INCLUDE [waf-containers-reliability](includes/waf-alerts-operation.md)]
+[!INCLUDE [waf-containers-reliability](../alerts/includes/waf-alerts-operation.md)]
 
 ## Virtual machines
 
