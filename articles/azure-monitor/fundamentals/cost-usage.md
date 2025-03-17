@@ -10,7 +10,7 @@ ms.date: 01/24/2024
 
 This article describes the different ways that Azure Monitor charges for usage and how to evaluate charges on your Azure bill.
 
-[!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
+[!INCLUDE [azure-monitor-cost-optimization](includes/azure-monitor-cost-optimization.md)]
 
 ## Pricing model
 
