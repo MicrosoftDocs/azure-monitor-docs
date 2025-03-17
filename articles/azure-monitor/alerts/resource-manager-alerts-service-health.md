@@ -11,7 +11,7 @@ ms.date: 12/25/2023
 
 This article includes samples of [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create and configure service health alerts in Azure Monitor. 
 
-[!INCLUDE [azure-monitor-samples](includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ## Template for creating service health alert rules
 

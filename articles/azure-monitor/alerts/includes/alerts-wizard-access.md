@@ -16,7 +16,7 @@ There are multiple ways to create or edit an alert rule.
 1. On the left pane, select **Alerts**.
 1. Select  **+ Create** > **Alert rule**.
 
-:::image type="content" source="../alerts/media/alerts-create-new-alert-rule/alerts-create-new-alert-rule.png" alt-text="Screenshot that shows steps to create an alert rule from the portal home page.":::
+:::image type="content" source="../media/alerts-create-new-alert-rule/alerts-create-new-alert-rule.png" alt-text="Screenshot that shows steps to create an alert rule from the portal home page.":::
 
 ### Create or edit an alert rule from a specific resource
 
@@ -25,4 +25,4 @@ There are multiple ways to create or edit an alert rule.
 1. Select **+ Create** > **Alert rule**.
 1. The scope of the alert rule is set to the resource you selected. Continue with setting the conditions for the alert rule.
 
-:::image type="content" source="../alerts/media/alerts-create-new-alert-rule/alerts-create-new-alert-rule-2.png" alt-text="Screenshot that shows steps to create an alert rule from a selected resource.":::
+:::image type="content" source="../media/alerts-create-new-alert-rule/alerts-create-new-alert-rule-2.png" alt-text="Screenshot that shows steps to create an alert rule from a selected resource.":::
