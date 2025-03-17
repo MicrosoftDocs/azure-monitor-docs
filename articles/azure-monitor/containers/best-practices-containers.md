@@ -14,13 +14,13 @@ This article provides best practices for monitoring the health and performance o
 
 In the cloud, we acknowledge that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Use the following information to ensure the reliability of your Kubernetes clusters and monitoring environment.
 
-[!INCLUDE [waf-containers-reliability](../includes/waf-containers-reliability.md)]
+[!INCLUDE [waf-containers-reliability](includes/waf-containers-reliability.md)]
 
 ## Security
 
 Security is one of the most important aspects of any architecture. Azure Monitor provides features to employ both the principle of least privilege and defense-in-depth. Use the following information to monitor your Kubernetes clusters and ensure that only authorized users access collected data.
 
-[!INCLUDE [waf-containers-security](../includes/waf-containers-security.md)]
+[!INCLUDE [waf-containers-security](includes/waf-containers-security.md)]
 
 ## Cost optimization
 
@@ -29,19 +29,19 @@ Cost optimization refers to ways to reduce unnecessary expenses and improve oper
 > [!NOTE]
 > See [Optimize costs in Azure Monitor](../fundamentals/best-practices-cost.md) for cost optimization recommendations across all features of Azure Monitor.
 
-[!INCLUDE [waf-containers-cost](../includes/waf-containers-cost.md)]
+[!INCLUDE [waf-containers-cost](includes/waf-containers-cost.md)]
 
 ## Operational excellence
 
 Operational excellence refers to operations processes required keep a service running reliably in production. Use the following information to minimize the operational requirements for monitoring your Kubernetes clusters.
 
-[!INCLUDE [waf-containers-operation](../includes/waf-containers-operation.md)]
+[!INCLUDE [waf-containers-operation](includes/waf-containers-operation.md)]
 
 ## Performance efficiency
 
 Performance efficiency is the ability of your workload to scale to meet the demands placed on it by users in an efficient manner. Use the following information to monitor the performance of your Kubernetes clusters and ensure they're configured for maximum performance.
 
-[!INCLUDE [waf-containers-performance](../includes/waf-containers-performance.md)]
+[!INCLUDE [waf-containers-performance](includes/waf-containers-performance.md)]
 
 ## Next step
 

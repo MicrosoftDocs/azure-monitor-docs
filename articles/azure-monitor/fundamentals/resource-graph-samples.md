@@ -12,7 +12,7 @@ This page is a collection of [Azure Resource Graph](/azure/governance/resource-g
 
 ## Azure Monitor
 
-[!INCLUDE [azure-resource-graph-samples-cat-monitor](../includes/azure-monitor.md)]
+[!INCLUDE [azure-resource-graph-samples-cat-monitor](includes/azure-monitor.md)]
 
 ## Next steps
 
