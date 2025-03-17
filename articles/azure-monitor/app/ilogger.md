@@ -12,7 +12,7 @@ ms.reviewer: mmcc
 
 In this article, you learn how to capture logs with Application Insights in .NET apps by using the [`Microsoft.Extensions.Logging.ApplicationInsights`][nuget-ai] provider package. If you use this provider, you can query and analyze your logs by using the Application Insights tools.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 > [!NOTE]
 > If you want to implement the full range of Application Insights telemetry along with logging, see [Configure Application Insights for your ASP.NET websites](./asp-net.md) or [Application Insights for ASP.NET Core applications](./asp-net-core.md).
