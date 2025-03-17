@@ -15,7 +15,7 @@ This article lists limits in different areas of Azure Monitor.
 
 ## Action groups
 
-[!INCLUDE [monitoring-limits-action-groups](includes/azure-monitor-limits-action-groups.md)]
+[!INCLUDE [monitoring-limits-action-groups](../alerts/includes/azure-monitor-limits-action-groups.md)]
 
 ## Autoscale
 
