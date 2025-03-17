@@ -17,7 +17,7 @@ This architecture describes a flexible strategy for monitoring your enterprise e
 :::image type="content" source="media/enterprise-monitoring-architecture/architecture-diagram.png" lightbox="media/enterprise-monitoring-architecture/architecture-diagram.png" alt-text="Diagram of enterprise monitoring with Azure Monitor." border="false":::
 
 
-### Workflow
+### Workflows
 
 The following workflows correspond to the above diagram:
 
@@ -87,15 +87,6 @@ For specific considerations for implementing Azure Monitor, see the following be
 - [Performance efficiency](/azure/azure-monitor/best-practices-performance) - The ability of your workload to scale to meet the demands placed on it by users in an efficient manner.
 
 
-## Contributors
-
-*This article is maintained by Microsoft. It was originally written by the following contributors.*
-
- - [Antonio Di Lorenzo](https://www.linkedin.com/in/antdilor/) | Architect
- - [Brian Wren](https://www.linkedin.com/in/brian-wren-2a6aa71) | Principal Content Developer
- - [Rob Boucher](https://www.linkedin.com/in/robboucherjr) | Senior Content Developer
- 
-*To see non-public LinkedIn profiles, sign in to LinkedIn.*
 
 
 ## Next steps
