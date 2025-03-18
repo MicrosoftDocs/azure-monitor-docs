@@ -85,7 +85,7 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region Group              | Primary regions               | Supported secondary regions (any of the below) |
+| Region Group              | Primary regions               | Secondary regions (replication locations) |
 |---------------------------|-------------------------------|----------------------------|
 | North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2    
 | Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | North Europe <br> West Europe 
