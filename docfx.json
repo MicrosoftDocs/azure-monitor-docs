@@ -139,6 +139,7 @@
       },
       "author": {
         "articles/advisor/**/*": "ikhapova",
+        "articles/azure-monitor/**/*": "bwren",
         "articles/azure-monitor/agents/**/*": "bwren",
         "articles/azure-monitor/alerts/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/app/**/*": "AaronMaxwell",
@@ -187,6 +188,7 @@
       },
       "ms.author": {
         "articles/advisor/**/*": "ikhapova",
+        "articles/azure-monitor/**/*": "bwren",
         "articles/azure-monitor/agents/**/*": "bwren",
         "articles/azure-monitor/alerts/**/*": "inhenkel",
         "articles/azure-monitor/app/**/*": "aaronmax",
