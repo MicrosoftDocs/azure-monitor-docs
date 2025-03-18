@@ -6,7 +6,7 @@ ms.topic: include
 ms.date: 11/28/2023
 ---
 
-[Action groups](../articles/azure-monitor/alerts/action-groups.md) define a set of actions to take when an alert is fired such as sending an email or an SMS message.
+[Action groups](../action-groups.md) define a set of actions to take when an alert is fired such as sending an email or an SMS message.
 
 To configure actions, select the **Actions** tab.
 

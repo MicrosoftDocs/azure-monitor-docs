@@ -10,4 +10,4 @@ ms.custom: "include file"
 ---
 
 > [!TIP]
-> For strategies to reduce your Azure Monitor costs, see [Cost optimization and Azure Monitor](../articles/azure-monitor/best-practices-cost.md).
+> For strategies to reduce your Azure Monitor costs, see [Cost optimization and Azure Monitor](../best-practices-cost.md).
