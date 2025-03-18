@@ -133,7 +133,7 @@ You enable and disable workspace replication by using a REST command. The comman
 
 ### Using a dedicated cluster?
 If your workspace is linked to a dedicated cluster, you must first enable replication on the cluster, and only then on the workspace. This operation creates a second cluster on your secondary region (no extra charge beyond replication charges), in order to allow your workspace to keep using a dedicated cluster even if you failover. This also means features like cluster managed keys (CMK) continue to work (with the same key) during failover.
-Once replication is enabled, you can proceed to enable replication for one or more of the workspaces linked to this cluster. You can chose to enable replication only for some of the workspaces linked to this cluster.
+Once cross-region replication is enabled, proceed to enable replication for one or more of the workspaces linked to this cluster.
 
 > [!IMPORTANT]
 > Once cluster replication is enabled, changing the replication destination requires disabling replication and re-enabling it against a different location.
