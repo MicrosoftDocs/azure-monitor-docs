@@ -62,7 +62,7 @@ We __strongly__ recommend you restructure your data collection policy to stop co
 Use the [Log Analytics query API](/rest/api/loganalytics/dataaccess/query) to send for view and export data requests. 
 
 > [!NOTE]
-> You can't use the Log Analytics query API on that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). Instead, use the [Search API](basic-logs-query.md#run-a-query-on-a-basic-or-auxiliary-table).
+> You can't use the Log Analytics query API on tables that have the [Basic and Auxiliary table plans](data-platform-logs.md#table-plans). Instead, use the [Search API](basic-logs-query.md#run-a-query-on-a-basic-or-auxiliary-table).
 
 You need to implement the logic for converting the data to an appropriate format for delivery to your users. [Azure Functions](https://azure.microsoft.com/services/functions/) is a great place to host such logic.
 
