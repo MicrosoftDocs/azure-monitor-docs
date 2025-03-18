@@ -2,7 +2,7 @@
 title: Tutorial - Add ingestion-time transformation to Azure Monitor Logs using Resource Manager templates
 description: Describes how to add a custom transformation to data flowing through Azure Monitor Logs using Resource Manager templates.
 ms.topic: tutorial
-ms.date: 08/12/2024
+ms.date: 03/17/2025
 ---
 
 # Tutorial: Add transformation in workspace data collection rule to Azure Monitor using Resource Manager templates
@@ -31,8 +31,8 @@ To complete this tutorial, you need the following:
 - The table must already have some data.
 - The table can't already be linked to the [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
 
+## Overview
 
-## Overview of tutorial
 In this tutorial, you'll reduce the storage requirement for the `LAQueryLogs` table by filtering out certain records. You'll also remove the contents of a column while parsing the column data to store a piece of data in a custom column. The [LAQueryLogs table](query-audit.md#audit-data) is created when you enable [log query auditing](query-audit.md) in a workspace, but this is only used as a sample for the tutorial. You can use this same basic process to create a transformation for any [supported table](tables-feature-support.md) in a Log Analytics workspace.  
 
 
