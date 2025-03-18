@@ -32,9 +32,9 @@ ___
 
 Managed workspaces have the following limitations:
 
-- **Support** only the Application Insights resource that created them. A managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.  
-- **Changes** to workspace settings, such as quotas, are allowed, but the workspace can't be repurposed for other uses.  
-- **Deletion** of the connected Application Insights resource is required to remove managed workspaces. To keep the Application Insights resource, connect it to a different workspace and then delete the managed workspaces.  
+- Support only the Application Insights resource that created them. A managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.
+- Changes to workspace settings, such as quotas, are allowed, but the workspace can't be repurposed for other uses.
+- Deletion of the connected Application Insights resource is required to remove managed workspaces. To keep the Application Insights resource, connect it to a different workspace and then delete the managed workspaces.
 
 ___
 ## Identify managed workspaces
@@ -42,10 +42,10 @@ ___
 Managed workspaces created by Application Insights follow specific naming conventions.
 
 **managed workspace groups**
-- **Name**: `ai_<APPINSIGHTS RESOURCE NAME>_<APPINSIGHTS RESOURCE ID>_managed`  
+- **Name**: `ai_<APPINSIGHTS RESOURCE NAME>_<APPINSIGHTS RESOURCE ID>_managed`
 - **Managed by**: The associated Application Insights resource
 
-**Managed Log Analytics workspaces**  
+**Managed Log Analytics workspaces**
 - **Name**: `managed-<APPINSIGHTS RESOURCE NAME>-ws`
 
 You can identify the managing resource by checking the **Managed By** property in the Azure portal.
@@ -65,14 +65,14 @@ Beginning in April 2025, classic Application Insights resources are automaticall
 ___
 ### Limitations of automatic migration
 
-[!WARNING]  
+> [!WARNING]
 > Classic Application Insights resources that aren't migrated by April 24, 2025, will be disabled and can't ingest new data. To reenable a resource, convert it to a workspace-based Application Insights resource.
 
 Some classic Application Insights resources can't be migrated until you take other actions. These scenarios include:
 
-- Using Unicode or non-UTF-8 characters in the resource name.  
-- Restricting Log Analytics workspace creation in the subscription.  
-- Enforcing policies that prevent new resource creation in the subscription.  
+- Using Unicode or non-UTF-8 characters in the resource name.
+- Restricting Log Analytics workspace creation in the subscription.
+- Enforcing policies that prevent new resource creation in the subscription.
 
 To prevent service interruptions, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
