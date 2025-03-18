@@ -98,7 +98,7 @@ For more information, see [Logging in ASP.NET Core](/aspnet/core/fundamentals/lo
 To add Application Insights logging to console applications, first install the following NuGet packages:
 
 * [`Microsoft.Extensions.Logging.ApplicationInsights`][nuget-ai]
-* [`Microsoft.Extensions.DependencyInjection`][nuget-ai]
+* [`Microsoft.Extensions.DependencyInjection`](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection)
 
 The following example uses the Microsoft.Extensions.Logging.ApplicationInsights package and demonstrates the default behavior for a console application. The Microsoft.Extensions.Logging.ApplicationInsights package should be used in a console application or whenever you want a bare minimum implementation of Application Insights without the full feature set such as metrics, distributed tracing, sampling, and telemetry initializers.
 
