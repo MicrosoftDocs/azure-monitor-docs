@@ -93,6 +93,15 @@ Advisor also includes your recommendations from [Microsoft Defender for Cloud](/
 
 To postpone or dismiss a recommendation, select **Postpone** or **Dismiss**. The recommendation is moved to the **Postponed/Dismissed** tab on the recommendation list page.
 
+### Are the suppression entries in Azure Advisor prone to becoming stale? What happens to the recommendations?
+
+Advisor receives data snapshots from providers every 24 hours, so suppression entries are updated regularly to ensure they remain current.
+Recommendations that have been suppressed are supposed to stay suppressed, even if it has been resolved or the associated resource has been deleted. As such, suppression entries remain so that if those recommendations ever reappear, they stay suppressed until the user reactivates them.A change request to have the suppression entry be removed whenever a recommendation is removed/resolved will be created
+
+### Do Security recommendations expire? If so, what is their Time to Live?
+
+Yes, Security recommendations have a TTL of 60 hours.
+
 ## Related articles
 
 For more information about Azure Advisor, see the following articles.
