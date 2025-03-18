@@ -108,6 +108,7 @@ No. All alerts, dashboards, and availability tests remain intact and continue to
 ___
 ## Next steps
 
+- [Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)
 - [Create and configure Application Insights resources](./create-workspace-resource.md)
 - [Manage connection strings in Application Insights](./connection-strings.md)
 - [Understand data collection basics](./opentelemetry-overview.md)
