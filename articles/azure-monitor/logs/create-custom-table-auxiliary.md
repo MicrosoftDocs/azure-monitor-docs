@@ -18,8 +18,6 @@ Here's a video that explains some of the uses and benefits of the Auxiliary tabl
 
 > [!VIDEO https://www.youtube.com/embed/GbD2Q3K_6Vo?cc_load_policy=1&cc_lang_pref=auto]
 
-> [!IMPORTANT]
-> See [public preview limitations](#public-preview-limitations) for supported regions and limitations related to Auxiliary tables and data collection rules.  
 
 ## Prerequisites
 
@@ -213,56 +211,21 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
     
     1. [Grant your application permission to use your DCR](../logs/tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
 
-## Public preview limitations
-
-During public preview, these limitations apply:
-
-- The Auxiliary plan is gradually being rolled out to all regions and is currently supported in:
-
-    | **Region**      | **Locations**          |
-    |-----------------|------------------------|
-    | **Americas**        | Canada Central         |
-    |                 | Central US             |
-    |                 | East US                |
-    |                 | East US 2              |
-    |                 | West US                |
-    |                 | West US 2              |
-    |                 | South Central US       |
-    |                 | North Central US       |
-    | **Asia Pacific**    | Australia East         |
-    |                 | Australia South East   |
-    |                 | East Asia         |
-    | **Europe**          | West Europe        |
-    |                 | North Europe           |
-    |                 | UK South               |
-    |                 | Germany West Central   |
-    |                 | Switzerland North      |
-    |                 | France Central         |
-    |                 | Norway East            |
-    | **Middle East**     | Israel Central         |
-
+## Feature limitations
 
 - You can set the Auxiliary plan only on data collection rule-based custom tables you create using the [Tables - Create Or Update API](/rest/api/loganalytics/tables/create-or-update), version `2023-01-01-preview`.
 - Tables with the Auxiliary plan: 
-    - Are currently unbilled. There's currently no charge for ingestion, queries, search jobs, and long-term retention.
+    - Currently there is no charge for queries and search jobs over Auxiliary tables.
     - Do not support columns with dynamic data.
-    - Have a fixed total retention of 365 days.
     - Support ISO 8601 datetime format only.
 - A data collection rule that sends data to a table with an Auxiliary plan:
     - Can only send data to a single table.
     - Can't include a [transformation](../essentials/data-collection-transformations.md). 
-- Ingestion data for Auxiliary tables isn't currently available in the Azure Monitor Logs [Usage table](/azure/azure-monitor/reference/tables/usage). To estimate data ingestion volume, you can count the number of records in your Auxiliary table using this query:
-
-    ```kusto
-    MyTable_CL
-    | summarize count()
-    ```
 - These features are currently not supported:
 
     | Feature | Details |
     | --- | --- |
     |[Log Analytics workspace replication](workspace-replication.md)| Azure Monitor doesn't replicate data in tables with the Auxiliary plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you swith over to your secondary workspace.|
-    | [Customer-managed keys](customer-managed-keys.md) | Data in tables with the Auxiliary plan is encrypted with Microsoft-managed keys, even if you protect the data in the rest of your Log Analytics workspace using your own encryption key. |
     | [Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview) | The Lockbox interface, which lets you review and approve or reject customer data access requests in response to a customer-initiated support ticket or a problem identified by Microsoft does not apply to tables with the Auxiliary plan.|
 
 
