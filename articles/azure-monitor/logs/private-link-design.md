@@ -100,6 +100,7 @@ Following are exceptions to this network access:
 > * VM Insights
 > * Container Insights
 > * Log Analytics **Workspace Summary (deprecated)** pane (that shows the solutions dashboard)
+> * Metrics pane in Application Insights (log-based metrics charting)
 
 ## Special considerations
 
