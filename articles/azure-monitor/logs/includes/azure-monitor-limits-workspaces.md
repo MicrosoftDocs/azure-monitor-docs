@@ -16,17 +16,17 @@ ms.custom: "include file"
 |:-------------|:--------------|:---------------|:--------|
 | [Pay-as-you-go](../cost-logs.md#pricing-model)<br>(introduced April 2018) | No limit | Up to 730 days interactive retention/<br> up to 12 years [data archive](../data-retention-configure.md) | Data retention beyond 31 days is available for extra charges. Learn more about [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor). |
 | [Commitment tiers](../cost-logs.md#commitment-tiers)<br>(introduced November 2019) | No limit | Up to 730 days interactive retention/<br> up to 12 years [data archive](../data-retention-configure.md) | Data retention beyond 31 days is available for extra charges. Learn more about [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor). |
-| [Legacy Per Node (OMS)](../cost-logs.md#per-node-pricing-tier)<br>(introduced April 2016) | No limit | 30 to 730 days | Data retention beyond 31 days is available for extra charges. Learn more about [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor). Access to use tier is limited to subscriptions that contained a Log Analytics workspace or Application Insights resource on April 2, 2018, or are linked to an Enterprise Agreement that started before February 1, 2019 and is still active.  |
-| [Legacy Standalone tier](../cost-logs.md#standalone-pricing-tier)<br>(introduced April 2016) | No limit | 30 to 730 days | Data retention beyond 31 days is available for extra charges. Learn more about [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor). Access to use tier is limited to subscriptions that contained a Log Analytics workspace or Application Insights resource on April 2, 2018, or are linked to an Enterprise Agreement that started before February 1, 2019 and is still active.|
-| [Legacy Free tier](../cost-logs.md#free-trial-pricing-tier)<br>(introduced April 2016) | 500 MB | 7 days | When your workspace reaches the 500-MB-per-day limit, data ingestion stops and resumes at the start of the next day. A day is based on UTC. Data collected by Microsoft Defender for Cloud isn't included in this 500-MB-per-day limit and continues to be collected above this limit. Creating new workspaces in, or moving existing workspaces into, the legacy Free Trial pricing tier is possible only until July 1, 2022.  |
-| [Legacy Standard tier](../cost-logs.md#standard-and-premium-pricing-tiers) | No limit | 30 days  | Retention can't be adjusted. This tier hasn't been available to any new workspaces since October 1, 2016.|
-| [Legacy Premium tier](../cost-logs.md#standard-and-premium-pricing-tiers) | No limit | 365 days  | Retention can't be adjusted. This tier hasn't been available to any new workspaces since October 1, 2016.|
+| [Legacy Per Node (OMS)](../cost-logs.md#per-node-pricing-tier)<br>(introduced April 2016) | No limit | 30 to 730 days | Data retention beyond 31 days is available for extra charges. Learn more about [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor). Access to use tier is limited to subscriptions that contained a Log Analytics workspace or Application Insights resource on April 2, 2018, or are linked to an Enterprise Agreement that started before February 1, 2019 and is still active. |
+| [Legacy Standalone tier](../cost-logs.md#standalone-pricing-tier)<br>(introduced April 2016) | No limit | 30 to 730 days | Data retention beyond 31 days is available for extra charges. Learn more about [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor). Access to use tier is limited to subscriptions that contained a Log Analytics workspace or Application Insights resource on April 2, 2018, or are linked to an Enterprise Agreement that started before February 1, 2019 and is still active. |
+| [Legacy Free tier](../cost-logs.md#free-trial-pricing-tier)<br>(introduced April 2016) | 500 MB | 7 days | When your workspace reaches the 500-MB-per-day limit, data ingestion stops and resumes at the start of the next day. A day is based on UTC. Data collected by Microsoft Defender for Cloud isn't included in this 500-MB-per-day limit and continues to be collected above this limit. Creating new workspaces in, or moving existing workspaces into, the legacy Free Trial pricing tier is possible only until July 1, 2022. |
+| [Legacy Standard tier](../cost-logs.md#standard-and-premium-pricing-tiers) | No limit | 30 days | Retention can't be adjusted. This tier hasn't been available to any new workspaces since October 1, 2016. |
+| [Legacy Premium tier](../cost-logs.md#standard-and-premium-pricing-tiers) | No limit | 365 days | Retention can't be adjusted. This tier hasn't been available to any new workspaces since October 1, 2016. |
 
 **Number of workspaces per subscription**
 
 | Pricing tier | Workspace limit | Comments |
 |:-------------|:----------------|:---------|
-| Legacy Free tier  | 10 | This limit can't be increased. Creating new workspaces in, or moving existing workspaces into, the legacy Free Trial pricing tier is possible only until July 1, 2022. |
+| Legacy Free tier | 10 | This limit can't be increased. Creating new workspaces in, or moving existing workspaces into, the legacy Free Trial pricing tier is possible only until July 1, 2022. |
 | All other tiers | No limit | You're limited by the number of resources within a resource group and the number of resource groups per subscription. |
 
 <a name="azure-portal"></a>
@@ -42,7 +42,7 @@ ms.custom: "include file"
 | Category | Limit | Comments |
 |:---------|:------|:---------|
 | Maximum size for a single post | 30 MB | Split larger volumes into multiple posts. |
-| Maximum size for field values  | 32 KB | Fields longer than 32 KB are truncated. |
+| Maximum size for field values | 32 KB | Fields longer than 32 KB are truncated. |
 
 <a name="la-query-api"></a>
 
@@ -60,10 +60,10 @@ ms.custom: "include file"
 | Category | Limit | Comments |
 |:---------|:------|:---------|
 | Maximum size of data | ~16.7 MB (~16 MiB) | The connector infrastructure dictates that limit is set lower than query API limit. |
-| Maximum number of records | 500,000 | |
-| Maximum connector timeout | 110 second | |
-| Maximum query timeout | 100 second | |
-| Charts | | The Logs page and the connector use different charting libraries for visualization. Some functionality isn't currently available in the connector. |
+| Maximum number of records | 500,000 |  |
+| Maximum connector timeout | 110 second |  |
+| Maximum query timeout | 100 second |  |
+| Charts |  | The Logs page and the connector use different charting libraries for visualization. Some functionality isn't currently available in the connector. |
 
 **Summary rules**
 
@@ -86,7 +86,7 @@ ms.custom: "include file"
 
 Azure Monitor is a high-scale data service that serves thousands of customers sending Terabytes of data each daily and at a growing pace. A soft volume rate limit intends to isolate Azure Monitor customers from sudden ingestion spikes in a multitenancy environment. The default ingestion volume rate threshold in workspaces is 500 MB (compressed), which is translated to approximately 6 GB/min uncompressed.
 
-The volume rate limit applies to data ingested from [workspace-based Application Insights](../..app/create-workspace-resource.md), Azure resources via [Diagnostic settings](../../essentials/diagnostic-settings.md), and [Data Collector API](../../logs/data-collector-api.md). When the volume rate limit is reached, a retry mechanism attempts to ingest the data four times in a period of 12 hours and drop it if operation fails. The limit doesn't apply to data ingested from [agents](../../agents/agents-overview.md), or via [Data Collection Rule (DCR)](../../essentials/data-collection-rule-overview.md).
+The volume rate limit applies to data ingested from [workspace-based Application Insights](../app/create-workspace-resource.md), Azure resources via [Diagnostic settings](../../essentials/diagnostic-settings.md), and [Data Collector API](../../logs/data-collector-api.md). When the volume rate limit is reached, a retry mechanism attempts to ingest the data four times in a period of 12 hours and drop it if operation fails. The limit doesn't apply to data ingested from [agents](../../agents/agents-overview.md), or via [Data Collection Rule (DCR)](../../essentials/data-collection-rule-overview.md).
 
 When volume rate is higher than 80% of the threshold in your workspace, an event is sent to the `Operation` table in your workspace every 6 hours while the threshold exceeds. When the ingested volume rate is higher than the threshold, some data is dropped, an event is sent to the `Operation` table in your workspace every 6 hours while the threshold exceeds. 
 
