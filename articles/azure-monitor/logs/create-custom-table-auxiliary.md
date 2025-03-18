@@ -211,11 +211,10 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
     
     1. [Grant your application permission to use your DCR](../logs/tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
 
-## Feature limitations
+## Limitations
 
 - You can set the Auxiliary plan only on data collection rule-based custom tables you create using the [Tables - Create Or Update API](/rest/api/loganalytics/tables/create-or-update), version `2023-01-01-preview`.
 - Tables with the Auxiliary plan: 
-    - Currently there is no charge for queries and search jobs over Auxiliary tables.
     - Do not support columns with dynamic data.
     - Support ISO 8601 datetime format only.
 - A data collection rule that sends data to a table with an Auxiliary plan:
