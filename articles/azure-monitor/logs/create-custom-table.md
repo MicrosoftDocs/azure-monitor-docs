@@ -2,7 +2,6 @@
 title: Add or delete tables and columns in Azure Monitor Logs
 description: Create a table with a custom schema to collect logs from any data source. 
 ms.reviewer: adi.biran
-ms.service: azure-monitor
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to 
 ms.date: 01/28/2024

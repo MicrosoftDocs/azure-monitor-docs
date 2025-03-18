@@ -260,7 +260,7 @@ Here are good reference articles on how to use Telegraf, InfluxDB, Azure Monitor
 * [How to configure data sources for Azure Managed Grafana](/azure/managed-grafana/how-to-data-source-plugins-managed-identity)
 * [Use Azure Monitor managed service for Prometheus as data source for Grafana using managed system identity](../essentials/prometheus-grafana.md)
 * [How to monitor system Metrics with the TICK Stack on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-monitor-system-metrics-with-the-tick-stack-on-ubuntu-16-04)
-* [A monitoring solution for Docker hosts, containers, and containerized services](https://stefanprodan.com/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/)
+* [A monitoring solution for Docker hosts, containers, and containerized services](https://stefanprodan.com/blog/2016/a-monitoring-solution-for-docker-hosts-containers-and-containerized-services/)
 
 Here's an image of a full Grafana dashboard that has metrics from Azure Monitor metrics, logs, and traces combined.
 

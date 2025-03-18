@@ -4,7 +4,7 @@ items:
 - name: Overview
   items:
     - name: Azure Monitor overview
-      href: overview.md
+      href: fundamentals/overview.md
     - name: Insights and curated visualizations
       href: insights/insights-overview.md
     - name: Multicloud monitoring
@@ -248,8 +248,6 @@ items:
               href: profiler/profiler-aspnetcore-linux.md
             - name: Azure Functions app
               href: profiler/profiler-azure-functions.md
-            - name: Azure Cloud Service
-              href: profiler/profiler-cloudservice.md
             - name: Azure Service Fabric app
               href: profiler/profiler-servicefabric.md
             - name: Azure Virtual Machines
@@ -348,6 +346,8 @@ items:
         href: https://stackoverflow.com/questions/tagged/azure-application-insights
       - name: Application Insights product feedback
         href: https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0
+      - name: Troubleshooting articles
+        href: /troubleshoot/azure/azure-monitor/welcome-azure-monitor
   - name: Monitor virtual machines
     items:
     - name: Overview
@@ -457,8 +457,6 @@ items:
         href: azure-monitor-operations-manager.md
       - name: Assess Operations Manager
         href: insights/scom-assessment.md
-    - name: Guest performance counters
-      href: vm/virtual-machine-guest-metrics.md  
   - name: Monitor containers
     items:
     - name: Azure Monitor features
@@ -629,8 +627,6 @@ items:
         href: /azure/network-watcher/network-insights-overview?toc=/azure/azure-monitor/toc.json
       - name: Topology
         href: /azure/network-watcher/network-insights-topology?toc=/azure/azure-monitor/toc.json
-      - name: Troubleshoot
-        href: /azure/network-watcher/network-insights-troubleshooting?toc=/azure/azure-monitor/toc.json
   - name: Azure Monitor SCOM Managed Instance
     items:
     - name: SCOM Managed Instance
@@ -789,9 +785,6 @@ items:
         href: essentials/edge-pipeline-configure.md
       - name: Tutorials
         items:
-        - name: Transformation in text logs
-          displayName: Custom text logs, transformations
-          href: agents/azure-monitor-agent-transformation.md
         - name: Workspace transformation in Azure portal
           displayName: Workspace transformations
           href: logs/tutorial-workspace-transformations-portal.md
@@ -1459,7 +1452,7 @@ items:
         - name: Set up alert rules
           items:
           - name: Metric alert rules
-            href: alerts/alerts-create-metric-alert-rule.yml
+            href: alerts/alerts-create-metric-alert-rule.md
           - name: Log search alert rules
             href: alerts/alerts-create-log-alert-rule.md
           - name: Activity log, service health or resource health alert rules

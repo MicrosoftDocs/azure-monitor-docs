@@ -1,8 +1,6 @@
 ---
 title: Rule groups in Azure Monitor Managed Service for Prometheus
 description: Description of rule groups in Azure Monitor managed service for Prometheus which alerting and data computation.
-author: EdB-MSFT
-ms-author: edbaynash
 ms.topic: conceptual
 ms.date: 11/09/2024
 ---

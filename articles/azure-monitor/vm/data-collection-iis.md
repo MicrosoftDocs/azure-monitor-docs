@@ -1,23 +1,30 @@
 ---
-title: Collect IIS logs with Azure Monitor Agent
+title: Collect IIS logs from virtual machine with Azure Monitor
 description: Configure collection of Internet Information Services (IIS) logs on virtual machines with Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 11/14/2024
+ms.date: 03/03/2025
 ms.reviewer: jeffwo
 
 ---
 
-# Collect IIS logs with Azure Monitor Agent
-**IIS Logs** is one of the data sources used in a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md). Details for the creation of the DCR are provided in [Collect data with Azure Monitor Agent](../vm/data-collection.md). This article provides additional details for the Windows events data source type.
-
-Internet Information Services (IIS) stores user activity in log files that can be collected by Azure Monitor agent and sent to a Log Analytics workspace.
+# Collect IIS logs from virtual machine with Azure Monitor
+Internet Information Services (IIS) stores user activity in log files that can be collected by Azure Monitor agent using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **IIS Logs** data source. Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the IIS logs data source type.
 
 
-## Prerequisites
+## Configure IIS log data source
+Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **IIS Logs** from the **Data source type** dropdown. You only need to specify a file pattern to identify the directory where the log files are located if they are stored in a different location than configured in IIS. In most cases, you can leave this value blank.
 
-- [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac). Windows events are sent to the [Event](/azure/azure-monitor/reference/tables/event) table.
-- A data collection endpoint (DCE) if you plan to use Azure Monitor Private Links. The data collection endpoint must be in the same region as the Log Analytics workspace. See [How to set up data collection endpoints based on your deployment](../essentials/data-collection-endpoint-overview.md#how-to-set-up-data-collection-endpoints-based-on-your-deployment) for details.
-- Either a new or existing DCR described in [Collect data with Azure Monitor Agent](../vm/data-collection.md).
+:::image type="content" source="media/data-collection-iis/iis-data-collection-rule.png" lightbox="media/data-collection-iis/iis-data-collection-rule.png" alt-text="Screenshot that shows the Azure portal form to select basic performance counters in a data collection rule.":::
+
+## Add destinations
+IIS logs can only be sent to a Log Analytics workspace where it's stored in the [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. You can only add a single workspace to a DCR for an IIS log data source. If you need multiple destinations, create multiple DCRs. Be aware though that this will send duplicate data to each which will result in additional cost.
+
+:::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::
+
+## Verify data collection
+To verify that data is being collected, check for records in the **W3CIISLog** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Queries** button. Under the **Virtual machines** category, click **Run** next to **List IIS Log entries**. 
+
+:::image type="content" source="media/data-collection-iis/verify-iis.png" lightbox="media/data-collection-iis/verify-iis.png" alt-text="Screenshot that shows records returned from W3CIISLog table." :::
 
 ## Configure collection of IIS logs on client
 Before you can collect IIS logs from the machine, you must ensure that IIS logging has been enabled and is configured correctly.
@@ -31,54 +38,11 @@ The default location for IIS log files is **C:\\inetpub\\logs\\LogFiles\\W3SVC1*
 
 :::image type="content" source="media/data-collection-iis/iis-log-format-setting.png" lightbox="media/data-collection-iis/iis-log-format-setting.png" alt-text="Screenshot of IIS logging configuration dialog box on agent machine.":::
 
-
-## Configure IIS log data source
-
-Create a data collection rule, as described in [Collect data with Azure Monitor Agent](../vm/data-collection.md). In the **Collect and deliver** step, select **IIS Logs** from the **Data source type** dropdown. You only need to specify a file pattern to identify the directory where the log files are located if they are stored in a different location than configured in IIS. In most cases, you can leave this value blank.
-
-:::image type="content" source="media/data-collection-iis/iis-data-collection-rule.png" lightbox="media/data-collection-iis/iis-data-collection-rule.png" alt-text="Screenshot that shows the Azure portal form to select basic performance counters in a data collection rule.":::
-
-## Destinations
-
-IIS log data can be sent to the following locations.
-
-| Destination | Table / Namespace |
-|:---|:---|
-| Log Analytics workspace | [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) |
-    
-
-
-### Sample IIS log queries
-
-- **Count the IIS log entries by URL for the host www.contoso.com.**
-    
-    ```kusto
-    W3CIISLog 
-    | where csHost=="www.contoso.com" 
-    | summarize count() by csUriStem
-    ```
-
-- **Review the total bytes received by each IIS machine.**
-
-    ```kusto
-    W3CIISLog 
-    | summarize sum(csBytes) by Computer
-    ```
-
-- **Identify any records with a return status of 500.**
-    
-    ```kusto
-    W3CIISLog 
-    | where scStatus==500
-    | summarize AggregatedValue = count() by Computer, bin(TimeGenerated, 15m)
-    ```
-
-
 > [!NOTE]
-> The X-Forwarded-For custom field is not supported at this time. If this is a critical field, you can collect the IIS logs as a custom text log.
+> The X-Forwarded-For custom field is not currently supported. If this is a critical field, you can collect the IIS logs as a [custom text log](./data-collection-log-text.md).
 
 ## Troubleshooting
-Go through the following steps if you aren't collecting data from the JSON log that you're expecting.
+Go through the following steps if you aren't collecting data from the IIS log that you're expecting.
 
 - Verify that IIS logs are being created in the location you specified.
 - Verify that IIS logs are configured to be W3C formatted.
@@ -87,8 +51,5 @@ Go through the following steps if you aren't collecting data from the JSON log t
 
 ## Next steps
 
-Learn more about: 
-
-- [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
-- [Data collection rules](../essentials/data-collection-rule-overview.md).
-- [Best practices for cost management in Azure Monitor](../best-practices-cost.md).
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
+- Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
