@@ -48,7 +48,7 @@ You can run two concurrent queries per user.
 Queries of data in Auxiliary tables are unoptimized and might take longer to return results than queries you run on Analytics and Basic tables.
 
 #### Purge
-You can’t [purge personal data](personal-data-mgmt.md#export-delet-or-purge-personal-data) from Basic and Auxiliary tables. 
+You can't [purge personal data](personal-data-mgmt.md#export-delet-or-purge-personal-data) from Basic and Auxiliary tables. 
 
 ## Run a query on a Basic or Auxiliary table
 Running a query on Basic or Auxiliary tables is the same as querying any other table in Log Analytics. See [Get started with Azure Monitor Log Analytics](./log-analytics-tutorial.md) if you aren't familiar with this process.
