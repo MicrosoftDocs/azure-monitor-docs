@@ -15,6 +15,8 @@ A managed workspace is a Log Analytics workspace that Application Insights creat
 
 If you create an Application Insights resource without specifying a Log Analytics workspace, Azure automatically creates a managed workspace. If you attempt to create a classic Application Insights resource, Azure instead creates a workspace-based version that uses a managed workspace.
 
+
+
 ## What happens during managed resource creation?
 
 When Azure creates a managed workspace during Application Insights deployment, the following actions occur:
@@ -29,6 +31,7 @@ Managed resources have the following limitations:
 
 - Managed resources support only the Application Insights resource that created them. For example, a managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.
 - You can modify workspace settings, such as quotas, but you can't repurpose the workspace for other use cases.
+- Managed resources can ony be deleted by deleting the connected Application Insights resource or by connecting the Application Insights resource to a different workspace and then deleting it. 
 
 ## Identify managed resources
 
@@ -45,7 +48,7 @@ You can identify the managing resource by checking the **Managed By** property i
 
 ## Automatically migrated classic resources
 
-Beginning on March 31, 2025, classic Application Insights resources are automatically migrated to workspace-based resources. As part of the migration:
+Beginning on April 2025, classic Application Insights resources are automatically migrated to workspace-based resources. As part of the migration:
 
 - The classic Application Insights resource is converted to a workspace-based resource.
 - A managed Log Analytics workspace is created and linked to the migrated resource.
@@ -53,6 +56,20 @@ Beginning on March 31, 2025, classic Application Insights resources are automati
 
 > [!IMPORTANT]  
 > Each migrated classic resource receives its own managed workspace. To prevent this scenario, [migrate your classic resources manually](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+
+### Limitations of automatic migration
+
+ [!WARNING]
+> Classic Application Insights resources which are not migrated by April 24, 2025, will be disabled and unable to ingest new data. These resources can be reenabled by converting them to workspace-based Application Insights.
+
+In some cases, a classic Application Insights resource cannot be migrated before other actions are taken. These scenarios include:
+
+- Having unicode/non-UTF-8 characters in the resource name.
+- Having a classic Application Insights resource in a subscription that does not allow Log Analytics workspace creation.
+- Policies that prevent the creation of new resources in the subscription.
+
+It is important that you address these issues and migrate your classic Application Insights resources manually to prevent service interruptions.
+
 
 ## Frequently asked questions
 
