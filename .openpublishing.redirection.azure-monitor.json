@@ -7821,7 +7821,7 @@
         },
         {
             "source_path": "articles/azure-monitor/best-practices-alerts.md",
-            "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-alerts",
+            "redirect_url": "/azure/azure-monitor/alerts/best-practices-alerts",
             "redirect_document_id": false
         },
         {
@@ -7831,7 +7831,7 @@
         },
         {
             "source_path": "articles/azure-monitor/best-practices-containers.md",
-            "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-containers",
+            "redirect_url": "/azure/azure-monitor/containers/best-practices-containers",
             "redirect_document_id": false
         },
         {
@@ -7846,7 +7846,7 @@
         },
         {
             "source_path": "articles/azure-monitor/best-practices-logs.md",
-            "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-logs",
+            "redirect_url": "/azure/azure-monitor/logs/best-practices-logs",
             "redirect_document_id": false
         },
         {
@@ -7881,7 +7881,7 @@
         },
         {
             "source_path": "articles/azure-monitor/best-practices-vm.md",
-            "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-vm",
+            "redirect_url": "/azure/azure-monitor/vm/best-practices-vm",
             "redirect_document_id": false
         },
         {

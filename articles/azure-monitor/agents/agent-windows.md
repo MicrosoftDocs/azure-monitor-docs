@@ -39,18 +39,25 @@ The change doesn't require any customer action unless you're running the agent o
     * Windows Server 2008 R2 SP1
 
 1. Install the SHA-2 signing Windows updates for your OS as described in [2019 SHA-2 code signing support requirement for Windows and WSUS](https://support.microsoft.com/help/4472027/2019-sha-2-code-signing-support-requirement-for-windows-and-wsus).
+
 1. Update to the latest version of the Windows agent (version 10.20.18067).
+
 1. We recommend that you configure the agent to [use TLS 1.2](agent-windows.md#configure-agent-to-use-tls-12).
 
 ### Network requirements
+
 See [Log Analytics agent overview](./log-analytics-agent.md#network-requirements) for the network requirements for the Windows agent.
  
 ### Configure Agent to use TLS 1.2
+
 [TLS 1.2](/windows-server/security/tls/tls-registry-settings#tls-12) protocol ensures the security of data in transit for communication between the Windows agent and the Log Analytics service. If you're installing on an operating system without TLS enabled by default, configure TLS 1.2 using the steps below.
 
 1. Locate the following registry subkey: **HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols**.
+
 1. Create a subkey under **Protocols** for TLS 1.2: **HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2**.
+
 1. Create a **Client** subkey under the TLS 1.2 protocol version subkey you created earlier. For example, **HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client**.
+
 1. Create the following DWORD values under **HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client**:
 
     * **Enabled** [Value = 1]
@@ -59,9 +66,13 @@ See [Log Analytics agent overview](./log-analytics-agent.md#network-requirements
 Configure .NET Framework 4.6 or later to support secure cryptography because by default it's disabled. The [strong cryptography](/dotnet/framework/network-programming/tls#schusestrongcrypto) uses more secure network protocols like TLS 1.2 and blocks protocols that aren't secure.
 
 1. Locate the following registry subkey: **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\\.NETFramework\v4.0.30319**.
+
 1. Create the DWORD value **SchUseStrongCrypto** under this subkey with a value of **1**.
+
 1. Locate the following registry subkey: **HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\\.NETFramework\v4.0.30319**.
+
 1. Create the DWORD value **SchUseStrongCrypto** under this subkey with a value of **1**.
+
 1. Restart the system for the settings to take effect.
 
 ### Workspace ID and key
@@ -103,7 +114,7 @@ The following steps install and configure the Log Analytics agent in Azure and A
 
 1. Click **Next** once you have completed providing the necessary configuration settings.
 
-    :::image type="content" source="media/agent-windows/log-analytics-mma-setup-laworkspace.png" lightbox="media/agent-windows/log-analytics-mma-setup-laworkspace.png" alt-text="paste Workspace ID and Primary Key" border="false":::
+    :::image type="content" source="media/agent-windows/log-analytics-mma-setup-laworkspace.png" lightbox="media/agent-windows/log-analytics-mma-setup-laworkspace.png" alt-text="Screenshot that shows where to paste the Workspace ID and Primary Key during setup." border="false":::
 
 1. On the **Ready to Install** page, review your choices and then click **Install**.
 

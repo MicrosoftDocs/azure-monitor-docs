@@ -52,7 +52,7 @@ Ensure the *Windows diagnostics extension* is [installed](./diagnostics-extensio
 
 1. Scroll down and enable the **Event tracing for Windows (ETW) events** option:
 
-    :::image type="content" source="./media/data-sources-event-tracing-windows/enable-event-tracing-windows-collection.png" lightbox="./media/data-sources-event-tracing-windows/enable-event-tracing-windows-collection.png" alt-text="Screenshot of diagnostics settings":::
+    :::image type="content" source="./media/data-sources-event-tracing-windows/enable-event-tracing-windows-collection.png" lightbox="./media/data-sources-event-tracing-windows/enable-event-tracing-windows-collection.png" alt-text="Screenshot that shows diagnostic settings.":::
 
 1. Set the provider GUID or provider class based on the provider you are configuring collection for
 
