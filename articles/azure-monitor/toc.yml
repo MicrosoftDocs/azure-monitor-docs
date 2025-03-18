@@ -1053,11 +1053,14 @@ items:
         - name: Monitor metrics ingestion limits
           displayName: Prometheus Azure Monitor workspace
           href: essentials/azure-monitor-workspace-monitor-ingest-limits.md
-        - name: Best practices for scaling Azure Monitor workspaces  
+          displayName: Azure Monitor workspace
+        - name: Best practices for scaling
           href: essentials/azure-monitor-workspace-scaling-best-practice.md
-        - name: Azure Monitor metrics usage insights
+        - name: Metrics usage insights
+          displayName: Azure Monitor workspace
           href: essentials/metrics-usage-insights.md    
-        - name: Private endpoints for Azure Monitor workspaces
+        - name: Private endpoints
+          displayName: Azure Monitor workspace
           href: essentials/azure-monitor-workspace-private-endpoint.md
         - name: Private link data query of Prometheus metrics
           displayName: Private link data query
