@@ -39,17 +39,17 @@ The **event anomaly** analyzer groups similar events together for easier analysi
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png" alt-text="Screenshot of event anomaly analyzer in Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-event-anomaly.png":::
 
 ### Container optimizer
-The **container optimizer** analyzer shows containers with excessive cpu and memory limits and requests. Each tile can represent multiple containers with the same spec. For example, if a deployment creates 100 identical pods each with a container C1 and C2, then there will be a single tile for all C1 containers and a single tile for all C2 containers. Containers with set limits and requests are color-coded in a gradient from green to red. 
+The **container optimizer** analyzer identifies containers with excessive cpu and memory limits and requests based on actual usage patterns. Each tile can represent multiple containers with the same spec. For example, if a deployment creates 100 identical pods each with a container C1 and C2, then there will be a single tile for all C1 containers and a single tile for all C2 containers. Containers with set limits and requests are color-coded in a gradient from green to red. 
 
 > [!IMPORTANT]
-> This view doesn't include containers in the **kube-system** namespace and doesn't support Windows Server nodes.
+> This view excludes containers in the **kube-system** namespace and doesn't support Windows Server nodes.
 >
 
-The number on each tile represents how far the container limits/requests are from the optimal/suggested value. The closer the number is to 0 the better it is. Each tile has a color to indicate the following:
+The number displayed on each tile represents how far the container limits/requests deviate from the optimal/suggested value. The closer the number is to 0, the better the resource allocation. Each tile has a color to indicate its efficiency:
 
-- green: well set limits and requests
-- red: excessive limits or requests
-- gray: unset limits or requests
+- Green: well set limits and requests
+- Red: excessive limits or requests
+- Gray: unset limits or requests
 
 
 :::image type="content" source="media/container-insights-reports/cluster-optimization-workbook-container-optimizer.png" alt-text="Screenshot of container optimizer analyzer in the Cluster Optimization Workbook." lightbox="media/container-insights-reports/cluster-optimization-workbook-container-optimizer.png":::
