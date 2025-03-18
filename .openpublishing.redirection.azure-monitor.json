@@ -7968,6 +7968,11 @@
             "source_path": "articles/azure-monitor/whats-new.md",
             "redirect_url": "/azure/azure-monitor/fundamentals/whats-new",
             "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/azure-monitor/enterprise-monitoring-architecture.md",
+            "redirect_url": "/azure/azure-monitor/fundamentals/enterprise-monitoring-architecture",
+            "redirect_document_id": false
         }
     ]
 }
