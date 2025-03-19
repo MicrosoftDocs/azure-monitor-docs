@@ -61,6 +61,8 @@
           href: chaos-studio-tutorial-agent-based-portal.md
         - name: CLI installation tutorial
           href: chaos-studio-tutorial-agent-based-cli.md
+        - name: Enable and install agent via ARM template
+          href: chaos-agent-arm-template.md
         - name: Verify agent status
           href: chaos-agent-verify-status.md
         - name: Private Link and network security for agent
