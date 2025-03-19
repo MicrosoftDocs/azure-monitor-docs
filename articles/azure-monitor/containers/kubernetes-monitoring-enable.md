@@ -348,6 +348,9 @@ After the policy is assigned to the subscription, whenever you create a new clus
 ## Enable Container insights
 Use one of the following methods to enable Container insights on your cluster. Once this is complete, see [Configure agent data collection for Container insights](container-insights-data-collection-configmap.md) to customize your configuration to ensure that you aren't collecting more data than you require.
 
+> [!NOTE] 
+> If you have a single Azure Monitor Resource that is private-linked, then Container insights enablement will not work through the Azure Portal.
+> For full instructions on how to configure Container insights with Private Link, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
 
 ### [CLI](#tab/cli)
 
