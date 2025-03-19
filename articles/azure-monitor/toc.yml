@@ -8,38 +8,38 @@ items:
     - name: Insights and curated visualizations
       href: insights/insights-overview.md
     - name: Multicloud monitoring
-      href: best-practices-multicloud.md
+      href: fundamentals/best-practices-multicloud.md
     - name: AIOps and machine learning
       href: logs/aiops-machine-learning.md
     - name: What's new?
-      href: whats-new.md
+      href: fundamentals/whats-new.md
 - name: Getting started
   items:
   - name: Get started with Azure Monitor
-    href: getting-started.md
+    href: fundamentals/getting-started.md
   - name: Plan your implementation
-    href: best-practices-plan.md
+    href: fundamentals/best-practices-plan.md
   - name: Configure data collection
-    href: best-practices-data-collection.md
+    href: fundamentals/best-practices-data-collection.md
   - name: Understand analysis and visualization tools
-    href: best-practices-analysis.md
+    href: fundamentals/best-practices-analysis.md
   - name: Plan alerts and automated actions
     href: alerts/alerts-plan.md
   - name: At-scale monitoring solutions
     displayName: scale, at-scale, monitor at-scale, monitor at scale, enterprise monitoring
-    href: monitor-at-scale.md
+    href: fundamentals/monitor-at-scale.md
   - name: Best practices
     items:
     - name: Reliability
-      href: best-practices-reliability.md
+      href: fundamentals/best-practices-reliability.md
     - name: Security
-      href: best-practices-security.md
+      href: fundamentals/best-practices-security.md
     - name: Cost optimization
-      href: best-practices-cost.md    
+      href: fundamentals/best-practices-cost.md    
     - name: Operational excellence
-      href: best-practices-operation.md
+      href: fundamentals/best-practices-operation.md
     - name: Performance efficiency
-      href: best-practices-performance.md
+      href: fundamentals/best-practices-performance.md
 - name: Monitoring scenarios
   items:
   - name: Monitor an Azure resource
@@ -355,7 +355,7 @@ items:
     - name: Overview
       href: /azure/virtual-machines/monitor-vm?toc=/azure/azure-monitor/toc.json
     - name: Best practices
-      href: best-practices-vm.md
+      href: vm/best-practices-vm.md
     - name: Tutorials
       items:
       - name: Enable recommended alerts
@@ -456,7 +456,7 @@ items:
     - name: System Center
       items:
       - name: Migrate from Operations Manager
-        href: azure-monitor-operations-manager.md
+        href: fundamentals/azure-monitor-operations-manager.md
       - name: Assess Operations Manager
         href: insights/scom-assessment.md
   - name: Monitor containers
@@ -469,7 +469,7 @@ items:
       href: containers/monitor-kubernetes.md
     - name: Best practices
       displayName: containers, kubernetes
-      href: best-practices-containers.md
+      href: containers/best-practices-containers.md
     - name: Analyze and reduce costs
       href: containers/container-insights-cost.md
     - name: Enable Container Insights and Managed Prometheus
@@ -726,13 +726,13 @@ items:
       - name: Encryption at rest
         href: scom-manage-instance/scom-mi-data-encryption-at-rest.md
   - name: Enterprise architecture
-    href: ./enterprise-monitoring-architecture.md
+    href: fundamentals/enterprise-monitoring-architecture.md
   - name: Monitor Azure Monitor
-    href: monitor-azure-monitor.md
+    href: fundamentals/monitor-azure-monitor.md
 - name: Data collection
   items:
   - name: Data sources
-    href: data-sources.md
+    href: fundamentals/data-sources.md
   - name: Data collection methods
     items:
     - name: Data collection rules (DCR)
@@ -1024,7 +1024,7 @@ items:
 - name: Data platform
   items:
   - name: Overview
-    href: data-platform.md
+    href: fundamentals/data-platform.md
   - name: Metrics
     items:
     - name: Overview of Azure Monitor Metrics
@@ -1079,7 +1079,7 @@ items:
       href: logs/data-platform-logs.md
     - name: Best practices
       displayName: Logs, WAF, well architected framework, Azure Customer Lockbox, Customer Lockbox, Lockbox
-      href: best-practices-logs.md
+      href: logs/best-practices-logs.md
     - name: Cost details
       displayName: Log Analytics workspace,Logs
       href: logs/cost-logs.md
@@ -1159,7 +1159,7 @@ items:
     - name: Data security
       items:
         - name: Roles permissions and security
-          href: roles-permissions-security.md
+          href: fundamentals/roles-permissions-security.md
         - name: Customer-managed keys
           href: logs/customer-managed-keys.md
         - name: Private storage
@@ -1187,7 +1187,7 @@ items:
 - name: Security and networking
   items:
   - name: Azure Monitor security overview and guidelines 
-    href: .//best-practices-security.md
+    href: fundamentals/best-practices-security.md
     displayName: Azure Customer Lockbox, Customer Lockbox, Lockbox
   - name: Data security
     items:
@@ -1218,7 +1218,7 @@ items:
     href: /security/benchmark/azure/baselines/azure-monitor-security-baseline?toc=/azure/azure-monitor/toc.json
   - name: Security controls by Azure Policy
     displayName: regulatory, compliance, standards, domains
-    href: .//security-controls-policy.md
+    href: fundamentals/security-controls-policy.md
 - name: Visualize
   items:
   - name: Workbooks
@@ -1450,7 +1450,7 @@ items:
     - name: Choosing the type of alert rule
       href: alerts/alerts-types.md
     - name: Best practices
-      href: best-practices-alerts.md
+      href: alerts/best-practices-alerts.md
     - name: Set up alerts
       items:
         - name: Set up alert rules
@@ -1598,7 +1598,7 @@ items:
   - name: Resource Manager templates
     items:
     - name: Overview
-      href: resource-manager-samples.md
+      href: fundamentals/resource-manager-samples.md
     - name: Alerts
       items:
       - name: Log search alert rules
@@ -1630,16 +1630,16 @@ items:
       - name: Log search alert payloads with webhooks
         href: alerts/alerts-log-webhook.md
   - name: Azure Resource Graph queries
-    href: ./resource-graph-samples.md
+    href: fundamentals/resource-graph-samples.md
   - name: Azure CLI metric alerts
     href: alerts/azure-cli-metrics-alert-sample.md
 - name: Reference
   items:
   - name: IP addresses, ports, and firewall settings
-    href: ip-addresses.md
+    href: fundamentals/ip-addresses.md
     displayName: firewall, firewall exceptions, whitelist
   - name: Service limits
-    href: service-limits.md
+    href: fundamentals/service-limits.md
   - name: Security
     items:
     - name: Security baseline
@@ -1648,7 +1648,7 @@ items:
       displayName: regulatory, compliance, standards, domains
       href: .//security-controls-policy.md
   - name: Self-monitoring data reference
-    href: monitor-azure-monitor-reference.md
+    href: fundamentals/monitor-azure-monitor-reference.md
   - name: Supported metrics
     href: /azure/azure-monitor/reference/metrics-index
   - name: Log sources
@@ -1701,7 +1701,7 @@ items:
   - name: REST API
     items:
     - name: Azure Monitor REST API index
-      href: azure-monitor-rest-api-index.md
+      href: fundamentals/azure-monitor-rest-api-index.md
   - name: Azure alerts management SDK for Python
     href: /python/api/azure-mgmt-monitor/azure.mgmt.monitor.monitormanagementclient
   - name: Resource Manager templates
@@ -1712,7 +1712,7 @@ items:
       href: /azure/templates/microsoft.operationalinsights/allversions
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
-    href: policy-reference.md
+    href: fundamentals/policy-reference.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources
@@ -1722,11 +1722,11 @@ items:
   - name: Pricing
     items:
     - name: Analyze usage and cost
-      href: cost-usage.md
+      href: fundamentals/cost-usage.md
     - name: Billing meters
-      href: cost-meters.md
+      href: fundamentals/cost-meters.md
     - name: Estimate cost
-      href: cost-estimate.md
+      href: fundamentals/cost-estimate.md
     - name: Azure Monitor Pricing page
       href: https://azure.microsoft.com/pricing/details/monitor/
     - name: Pricing calculator

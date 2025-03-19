@@ -83,7 +83,7 @@ Suspend or pause autoscroll for only a short period of time while you're trouble
 
 This section provides answers to common questions.
 
-[!INCLUDE [container-insights-faq-what-does-other-processes-represent](../includes/container-insights-faq-what-does-other-processes-represent.md)]
+[!INCLUDE [container-insights-faq-what-does-other-processes-represent](includes/container-insights-faq-what-does-other-processes-represent.md)]
 
 ## Next steps
 

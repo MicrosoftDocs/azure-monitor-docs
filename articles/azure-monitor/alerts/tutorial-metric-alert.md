@@ -18,17 +18,21 @@ In this tutorial, you learn how to:
 > * Create an action group to define notification details
 
 ## Prerequisites
+
 To complete this tutorial you need the following: 
 
-- An Azure resource to monitor. You can use any resource in your Azure subscription that supports metrics. To determine whether a resource supports metrics, go to its menu in the Azure portal and verify that there's a **Metrics** option in the **Monitoring** section of the menu.
-- Chart in metrics explorer with one or more metrics that you want to alert on. Complete [Tutorial: Analyze metrics for an Azure resource](../essentials/tutorial-metrics.md).
+* An Azure resource to monitor. You can use any resource in your Azure subscription that supports metrics. To determine whether a resource supports metrics, go to its menu in the Azure portal and verify that there's a **Metrics** option in the **Monitoring** section of the menu.
+
+* Chart in metrics explorer with one or more metrics that you want to alert on. Complete [Tutorial: Analyze metrics for an Azure resource](../essentials/tutorial-metrics.md).
 
 ## Create new alert rule
+
 From metrics explorer, click **New alert rule**. The rule will be preconfigured with the target object and the metric that you selected in metrics explorer.
 
 :::image type="content" source="media/tutorial-metric-alert/new-alert-rule.png" alt-text="New alert rule" lightbox="media/tutorial-metric-alert/new-alert-rule.png":::
 
 ## Configure alert logic
+
 The resource will already be selected. You need to modify the signal logic to specify the threshold value and any other details for the alert rule. 
 
 To view these settings, select the **Condition** tab. 
@@ -50,22 +54,24 @@ You can accept the default time granularity or modify it to your requirements. *
 When you're done configuring the signal logic, click **Next: Actions >** or the **Actions** tab to configure actions.
 
 ## Configure actions
-[!INCLUDE [Action groups](../../../includes/azure-monitor-tutorial-action-group.md)]
+
+[!INCLUDE [Action groups](includes/azure-monitor-tutorial-action-group.md)]
 
 ## Configure details
-[!INCLUDE [Alert details](../../../includes/azure-monitor-tutorial-alert-details.md)]
+
+[!INCLUDE [Alert details](includes/azure-monitor-tutorial-alert-details.md)]
 
 :::image type="content" source="./media/tutorial-metric-alert/alert-details.png" lightbox="./media/tutorial-metric-alert/alert-details.png" alt-text="Alert rule details":::
 
 
 Click **Review + create** and then **Create** to create the alert rule.
 
-
 ## View the alert
-[!INCLUDE [View alert](../../../includes/azure-monitor-tutorial-view-alert.md)]
 
+[!INCLUDE [View alert](includes/azure-monitor-tutorial-view-alert.md)]
 
 ## Next steps
+
 Now that you've learned how to create a metric alert for an Azure resource, use one of the following tutorials to collect log data.
 
 > [!div class="nextstepaction"]

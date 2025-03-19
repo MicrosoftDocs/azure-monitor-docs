@@ -305,7 +305,7 @@ Telemetry emitted by Azure SDKS is automatically [collected](https://github.com/
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
+[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
 
 #### [ASP.NET Core](#tab/aspnetcore)
 

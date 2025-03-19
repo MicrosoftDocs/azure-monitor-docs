@@ -340,7 +340,7 @@ The following steps can help to resolve problems when no data appears in your Ap
     If connectivity can't be established, then troubleshoot the network connectivity problem such as a firewall or name resolution issue.
 
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## Next steps
 

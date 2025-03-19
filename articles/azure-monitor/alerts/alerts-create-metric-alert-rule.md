@@ -28,7 +28,6 @@ To create a metric alert rule, you must have the following permissions:
 * Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
 * Read permission on any action group associated to the alert rule, if applicable.
 
-
 ## Create or edit an alert rule from the portal home page
 
 Follow these steps:
@@ -72,7 +71,7 @@ Follow these steps:
 1. On the **Select a resource** pane, set the scope for your alert rule. You can filter by **subscription**, **resource type**, or **resource location**.
 
 1. Select **Apply**.
-        
+
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-select-resource.png" alt-text="Screenshot that shows the select resource pane for creating a new alert rule.":::
 
 ## Configure the alert rule conditions
@@ -111,18 +110,18 @@ Follow these steps:
     | Field | Description |
     |-------|-------------|
     | Threshold | Select if the threshold should be evaluated based on a static value or a dynamic value.<br>A **static threshold** evaluates the rule by using the threshold value that you configure.<br>**Dynamic thresholds** use machine learning algorithms to continuously learn the metric behavior patterns and calculate the appropriate thresholds for unexpected behavior. You can learn more about using [dynamic thresholds for metric alerts](alerts-types.md#apply-advanced-machine-learning-with-dynamic-thresholds). |
-    | Operator | Select the operator for comparing the metric value against the threshold. <br>If you're using dynamic thresholds, alert rules can use tailored thresholds based on metric behavior for both upper and lower bounds in the same alert rule. Select one of these operators: <br> - Greater than the upper threshold or lower than the lower threshold (default) <br> - Greater than the upper threshold <br> - Lower than the lower threshold |
+    | Operator | Select the operator for comparing the metric value against the threshold.<br>If you're using dynamic thresholds, alert rules can use tailored thresholds based on metric behavior for both upper and lower bounds in the same alert rule. Select one of these operators:<br>• Greater than the upper threshold or lower than the lower threshold (default)<br>• Greater than the upper threshold<br>• Lower than the lower threshold |
     | Aggregation type | Select the aggregation function to apply on the data points: Sum, Count, Average, Min, or Max. |
     | Threshold value | If you selected a **static** threshold, enter the threshold value for the condition logic. |
     | Unit | If the selected metric signal supports different units, such as bytes, KB, MB, and GB, and if you selected a **static** threshold, enter the unit for the condition logic. |
-    | Threshold sensitivity | If you selected a **dynamic** threshold, enter the sensitivity level. The sensitivity level affects the amount of deviation from the metric series pattern that's required to trigger an alert. <br> - **High**: Thresholds are tight and close to the metric series pattern. An alert rule is triggered on the smallest deviation, resulting in more alerts. <br> - **Medium**: Thresholds are less tight and more balanced. There are fewer alerts than with high sensitivity (default). <br> - **Low**: Thresholds are loose, allowing greater deviation from the metric series pattern. Alert rules are only triggered on large deviations, resulting in fewer alerts. |
-        
+    | Threshold sensitivity | If you selected a **dynamic** threshold, enter the sensitivity level. The sensitivity level affects the amount of deviation from the metric series pattern that's required to trigger an alert.<br>• **High**: Thresholds are tight and close to the metric series pattern. An alert rule is triggered on the smallest deviation, resulting in more alerts.<br>• **Medium**: Thresholds are less tight and more balanced. There are fewer alerts than with high sensitivity (default).<br>• **Low**: Thresholds are loose, allowing greater deviation from the metric series pattern. Alert rules are only triggered on large deviations, resulting in fewer alerts. |
+
 1. (Optional) You can configure splitting by dimensions.
 
     Dimensions are name-value pairs that contain more data about the metric value. By using dimensions, you can filter the metrics and monitor specific time-series, instead of monitoring the aggregate of all the dimensional values.
     
     If you select more than one dimension value, each time series that results from the combination triggers its own alert and is charged separately. For example, the transactions metric of a storage account can have an API name dimension that contains the name of the API called by each transaction (for example, GetBlob, DeleteBlob, and PutPage). You can choose to have an alert fired when there's a high number of transactions in a specific API (the aggregated data). Or you can use dimensions to alert only when the number of transactions is high for specific APIs.
-        
+
     | Field | Description |
     |-------|-------------|
     | Dimension name | Dimensions can be either number or string columns. Dimensions are used to monitor specific time series and provide context to a fired alert.<br>Splitting on the **Azure Resource ID** column makes the specified resource into the alert target. If detected, the **ResourceID** column is selected automatically and changes the context of the fired alert to the record's resource. |
@@ -154,7 +153,7 @@ Follow these steps:
 (Optional) Follow these steps to add actions to your alert rule:
 
 1. Select the **Actions** tab.
-      
+
 1. Select or create the required [action groups](../alerts/action-groups.md).
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-rule-actions-tab.png" alt-text="Screenshot that shows the Actions tab when creating a new alert rule.":::
@@ -163,7 +162,7 @@ Follow these steps:
 
 Follow these steps:
 
-1.  On the **Details** tab, define the **Project details**.
+1. On the **Details** tab, define the **Project details**.
 
     * Select the **Subscription**.
     * Select the **Resource group**.
@@ -188,9 +187,9 @@ Follow these steps:
     | Field | Description |
     |-------|-------------|
     | Enable upon creation | Select for the alert rule to start running as soon as you're done creating it. |
-    | Automatically resolve alerts | Select to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met.<br> If you don't select this checkbox, metric alerts are stateless. Stateless alerts fire each time the condition is met, even if alert already fired.<br> The frequency of notifications for stateless metric alerts differs based on the alert rule's configured frequency:<br>**Alert frequency of less than 5 minutes**: While the condition continues to be met, a notification is sent somewhere between one and six minutes.<br>**Alert frequency of more than 5 minutes**: While the condition continues to be met, a notification is sent between the configured frequency and doubles the value of the frequency. For example, for an alert rule with a frequency of 15 minutes, a notification is sent somewhere between 15 to 30 minutes. |
+    | Automatically resolve alerts | Select to make the alert stateful. When an alert is stateful, the alert is resolved when the condition is no longer met.<br>If you don't select this checkbox, metric alerts are stateless. Stateless alerts fire each time the condition is met, even if alert already fired.<br>The frequency of notifications for stateless metric alerts differs based on the alert rule's configured frequency:<br>**Alert frequency of less than 5 minutes**: While the condition continues to be met, a notification is sent somewhere between one and six minutes.<br>**Alert frequency of more than 5 minutes**: While the condition continues to be met, a notification is sent between the configured frequency and doubles the value of the frequency. For example, for an alert rule with a frequency of 15 minutes, a notification is sent somewhere between 15 to 30 minutes. |
 
-1. [!INCLUDE [alerts-wizard-custom=properties](../includes/alerts-wizard-custom-properties.md)]
+1. [!INCLUDE [alerts-wizard-custom=properties](includes/alerts-wizard-custom-properties.md)]
 
 1. Once the scope, conditions, and details are configured, you can select the **Review + create** button at any time.
 
