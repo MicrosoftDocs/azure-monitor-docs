@@ -1,17 +1,18 @@
 ---
 title: Resource Manager template samples for agents in Chaos Studio
 description: Sample Azure Resource Manager templates to deploy and configure virtual machine agents in Chaos Studio.
-ms.topic: sample
-ms.custom: devx-track-arm-template
-ms.date: 11/14/2024
-ms.reviewer: jeffwo
+services: chaos-studio
+author: nikhilkaul-msft
+ms.topic: article
+ms.date: 03/03/2025
+ms.author: nikhilkaul
+ms.reviewer: nikhilkaul
+ms.service: azure-chaos-studio
 ---
 
 # Resource Manager template samples for agents in Chaos Studio
 
 This article includes a sample [Azure Resource Manager template](/azure/azure-resource-manager/templates/syntax) to deploy and configure the [Chaos Agent](./chaos-agent-overview.md) on Azure virtual machine scale sets using a user-assigned managed identity. The sample deploys the Chaos Agent extension with all capabilities enabled on a VM scale set.
-
-[!INCLUDE [chaos-studio-samples](../../../includes/chaos-studio-resource-manager-samples.md)]
 
 ## Chaos Agent
 
@@ -28,7 +29,7 @@ To use the template below, you'll need:
 
 | Built-in Role | Scope(s) | Reason |
 |:---|:---|:---|
-| [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor) | Virtual machine scale sets | To deploy the Chaos Agent extension and configure scale set settings |
+| [Virtual Machine Reader](/azure/role-based-access-control/built-in-roles#virtual-machine-reader) | Virtual machine scale sets | To deploy the Chaos Agent extension and configure scale set settings |
 | Any role that includes the action *Microsoft.Resources/deployments/* | Subscription, resource group, or specific resource scope | To deploy ARM templates |
 
 ### Azure Virtual Machine Scale Set
