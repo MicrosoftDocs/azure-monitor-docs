@@ -1,6 +1,6 @@
 ---
 title: Secure your Azure Monitor deployment
-description: Guidelines for optimizing Azure Monitor security based on the Cloud Adoption Framework, Azure Well-Architected Framework, Microsoft cloud security benchmark, and Zero Trust security principles.
+description: This article provides instructions for deploying Azure Monitor securely and explains how Microsoft secures Azure Monitor. 
 ms.topic: conceptual
 ms.date: 03/19/2025
 ms.reviewer: bwren
