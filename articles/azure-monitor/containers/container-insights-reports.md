@@ -11,7 +11,8 @@ Reports in Container insights are recommended out-of-the-box for [Azure workbook
 
 > [!NOTE]
 > The **Reports** tab will not be available if you enable the [Prometheus experience for Container insights](./container-insights-experience-v2.md). You can still access the workbooks from the **Workbooks** page for the cluster.
->
+
+
 > [!NOTE]
 > The workbooks on the Reports tab may not function as expected if the [data being collected in Container insights is configured and filtered](./container-insights-data-collection-configure.md
 ).
