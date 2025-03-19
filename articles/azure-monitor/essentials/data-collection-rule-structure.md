@@ -2,8 +2,6 @@
 title: Structure of a data collection rule (DCR) in Azure Monitor
 description: Details on the structure of different kinds of data collection rule in Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 12/04/2024
 ms.reviwer: nikeist
 ---

@@ -2,8 +2,6 @@
 title: API access and authentication
 description: Learn how to authenticate and access the Azure Monitor Log Analytics API.
 ms.date: 05/30/2024
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
 # Access the Azure Monitor Log Analytics API
@@ -122,7 +120,7 @@ In the client credentials flow, the token is used with the Log Analytics endpoin
 
 Use `resource=https://api.loganalytics.azure.com`.
 
-[!INCLUDE [Get a token](../../includes/get-authentication-token.md)]
+[!INCLUDE [Get a token](../../essentials/includes/get-authentication-token.md)]
 
 
 Use the token in requests to the Log Analytics endpoint:

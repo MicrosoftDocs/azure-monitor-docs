@@ -4,8 +4,6 @@ description: Search jobs are asynchronous log queries in Azure Monitor that make
 ms.topic: conceptual
 ms.date: 07/22/2024
 ms.custom: references_regions
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: adi.biran
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
 ---
@@ -70,7 +68,7 @@ To run a search job, in the Azure portal:
 
     Azure Monitor Logs intellisense supports [KQL query limitations in search job mode](#kql-query-limitations) to help you write your search job query. 
 
-1. Specify the search job date range using the time picker.
+1. Specify the search job date range using the time picker only, as the time changes will not be reflected from the Kusto query.
 
 1. Type the search job query and select the **Search Job** button.
 

@@ -2,7 +2,7 @@
 title: Service Health portal classic experience overview | Microsoft Docs
 description: Learn how the Service Health portal provides you with a customizable dashboard which tracks the health of your Azure services in the regions where you use them. 
 ms.topic: conceptual
-ms.date: 07/31/2024
+ms.date: 01/27/2025
 
 
 ---
@@ -26,9 +26,9 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 
 ## Get started with Service Health portal
 
-To launch your Service Health dashboard, select the Service Health tile on your portal dashboard. If you have previously removed the tile or you're using custom dashboard, search for Service Health service in "More services" (bottom left on your dashboard).
+To launch your Service Health dashboard, select the Service Health icon on your portal dashboard. If you're using custom dashboard, search for Service Health in the  "More services" icon on the right side the dashboard.
 
-![Get started with Service Health](./media/service-health-overview/azure-service-health-overview-1.png)
+![Get started with Service Health](./media/service-health-overview/azure-service-health-overview-1a.png)
 
 ## See current issues which impact your services
 
@@ -62,7 +62,6 @@ Filter Service Health to show your business-critical subscriptions, regions, and
 
 [![Filter personalized health map](./media/service-health-overview/azure-service-health-overview-6a.png)](./media/service-health-overview/azure-service-health-overview-6a.png#lightbox)
 
-![Pin a personalized health map](./media/service-health-overview/azure-service-health-overview-6b.png)
 
 ## Configure service health alerts
 

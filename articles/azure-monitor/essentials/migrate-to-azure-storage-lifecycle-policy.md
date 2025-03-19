@@ -1,9 +1,6 @@
 ---
 title: "Migrate diagnostic settings storage retention to Azure Storage lifecycle management"
 description: "How to Migrate from diagnostic settings storage retention to Azure Storage lifecycle management"
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.topic: how-to
 ms.reviewer: lualderm
 ms.date: 11/07/2024

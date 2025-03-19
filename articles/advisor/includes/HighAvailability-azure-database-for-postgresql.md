@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 03/17/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -65,5 +65,23 @@ Recommendation ID: 6f33a917-418c-4608-b34f-4ff0e7be8637
 Subcategory: Other
 
 <!--6f33a917-418c-4608-b34f-4ff0e7be8637_end-->
+
+<!--7d2149f5-94f7-458d-8171-92cf66832cb2_begin-->
+
+#### Create a read replica from the Azure Database for PostgreSQL flexible server  
+  
+Create a cross region read replica to protect the database from regional failures. A read replica is a read-only replica that asynchronously updates from an Azure Database for PostgreSQL flexible server instance using physical replication technology. A read replica lags the primary server.  
+  
+**Potential benefits**: Recover from a regional failure, disaster, or both.  
+
+**Impact:** High
+  
+For more information, see [Geo-disaster recovery - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/concepts-geo-disaster-recovery)  
+
+ResourceType: microsoft.dbforpostgresql/flexibleservers  
+Recommendation ID: 7d2149f5-94f7-458d-8171-92cf66832cb2  
+Subcategory: DisasterRecovery
+
+<!--7d2149f5-94f7-458d-8171-92cf66832cb2_end-->
 
 <!--articleBody-->

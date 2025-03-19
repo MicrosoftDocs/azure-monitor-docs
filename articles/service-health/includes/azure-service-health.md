@@ -2,14 +2,16 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 04/09/2024
-author: rboucher
-ms.author: robb
+ms.date: 12/12/2024
 ---
 
 ### Active Service Health event subscription impact
 
 Returns all active Service Health events - including service issues, planned maintenance, health advisories, and security advisories – grouped by event type and including count of impacted subscriptions.
+
+[!NOTE:]
+This does not include emerging issues. For more information open "https://rest/api/resourcehealth/emerging-issues".
+
 
 ```kusto
 ServiceHealthResources

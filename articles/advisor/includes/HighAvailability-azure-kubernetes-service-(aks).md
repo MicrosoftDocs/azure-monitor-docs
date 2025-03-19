@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2025
+ms.date: 02/05/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -20,15 +20,10 @@ To allow AKS to efficiently scale out nodes, update the subnet size for node poo
   
 **Potential benefits**: Efficient scaling for demand. Reduced resource constraints.  
 
-**Impact:** High
-  
-For more information, see [Configure Azure CNI networking for dynamic allocation of IPs and enhanced subnet support - Azure Kubernetes Service ](https://aka.ms/configure-azure-cni-dynamic-ip-allocation)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: 29a14bcd-36ad-41ea-9138-70049121eaea  
-Subcategory: HighAvailability
+For more information, see [Configure Azure CNI networking for dynamic allocation of IPs and enhanced subnet support in Azure Kubernetes Service (AKS)](https://aka.ms/configure-azure-cni-dynamic-ip-allocation)  
 
 <!--29a14bcd-36ad-41ea-9138-70049121eaea_end-->
+
 
 
 
@@ -40,15 +35,10 @@ Azure Kubernetes Service (AKS) backup is a cloud-native solution for backing up 
   
 **Potential benefits**: Backups for cluster state and persistent volumes  
 
-**Impact:** Medium
-  
-For more information, see [What is Azure Kubernetes Service (AKS) backup? - Azure Backup ](https://aka.ms/aks-backup)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: 29f2eea3-b0d8-4934-a0f8-171dbd70ba13  
-Subcategory: DisasterRecovery
+For more information, see [What is Azure Kubernetes Service backup?](https://aka.ms/aks-backup)  
 
 <!--29f2eea3-b0d8-4934-a0f8-171dbd70ba13_end-->
+
 
 
 

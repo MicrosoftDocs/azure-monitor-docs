@@ -2,8 +2,6 @@
 title: Transformations Azure Monitor
 description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 12/06/2024
 ms.reviwer: nikeist
 ---
@@ -60,6 +58,7 @@ See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 
 > [!IMPORTANT]
 > If Azure Sentinel is enabled for the Log Analytics workspace, there's no filtering ingestion charge regardless of how much data the transformation filters.
+
 
 ## Next steps
 

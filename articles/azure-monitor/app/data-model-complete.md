@@ -1,7 +1,6 @@
 ---
 title: Application Insights telemetry data model
 description: This article describes the Application Insights telemetry data model including request, dependency, exception, trace, event, metric, PageView, and context.
-services: application-insights
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 01/31/2024
@@ -99,11 +98,11 @@ Partially accepted content `206` might indicate a failure of an overall request.
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Dependency
 
@@ -143,11 +142,11 @@ This field is the indication of a successful or unsuccessful call.
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Exception
 
@@ -169,11 +168,11 @@ This field is the trace severity level. The value can be `Verbose`, `Information
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Trace
 
@@ -193,7 +192,7 @@ Trace severity level.
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ## Event
 
@@ -209,11 +208,11 @@ Semantically, events might or might not be correlated to requests. If used prope
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Metric
 
@@ -267,15 +266,14 @@ This field is the standard deviation of the aggregated metric. It shouldn't be s
 
 The metric with the custom property `CustomPerfCounter` set to `true` indicates that the metric represents the Windows performance counter. These metrics are placed in the `performanceCounters` table, not in `customMetrics`. Also, the name of this metric is parsed to extract category, counter, and instance names.
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ## PageView
 
 PageView telemetry (in [Application Insights](./app-insights-overview.md)) is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action. This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
 > [!NOTE]
-> * By default, Application Insights SDKs log single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#measure-browsertiming-in-application-insights). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
-> * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
+> By default, Application Insights SDKs log single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#measure-browsertiming-in-application-insights). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](./api-custom-events-metrics.md#page-views).
 
 ### Measure browserTiming in Application Insights
 

@@ -1,7 +1,6 @@
 ---
 title: Azure Workbooks composite bar renderer 
 description: Learn about all the Azure Workbooks composite bar renderer visualizations. 
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 09/17/2024

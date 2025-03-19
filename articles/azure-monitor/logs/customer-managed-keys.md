@@ -3,7 +3,7 @@ title: Azure Monitor customer-managed keys
 description: Information and steps to configure Customer-managed key to encrypt data in your Log Analytics workspaces using an Azure Key Vault key.
 ms.topic: conceptual
 ms.reviewer: yossiy
-ms.date: 01/08/2025 
+ms.date: 02/23/2025 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 ---
@@ -72,20 +72,7 @@ The following rules apply:
 2. Updating a dedicated cluster with key identifier details
 3. Linking workspaces
 
-Customer-managed key configuration isn't complete supported in Azure portal currently and provisioning can be performed via [PowerShell](/powershell/module/az.operationalinsights/), [CLI](/cli/azure/monitor/log-analytics), or [REST](/rest/api/loganalytics/) requests.
-
-## Storing encryption key ("KEK")
-
-A [portfolio of Azure Key Management products](/azure/key-vault/managed-hsm/mhsm-control-data#portfolio-of-azure-key-management-products) lists the vaults and managed HSMs that can be used. 
-
-Create or use an existing Azure Key Vault in the region that the cluster is planed. In your Key vault, generate or import a key to be used for logs encryption. The Azure Key Vault must be configured as recoverable, to protect your key and the access to your data in Azure Monitor. You can verify this configuration under properties in your Key Vault, both **Soft delete** and **Purge protection** should be enabled.
-<!-- convertborder later -->
-:::image type="content" source="media/customer-managed-keys/soft-purge-protection.png" lightbox="media/customer-managed-keys/soft-purge-protection.png" alt-text="Screenshot of soft delete and purge protection settings." border="false":::
-
-These settings can be updated in Key Vault via CLI and PowerShell:
-
-- [Soft Delete](/azure/key-vault/general/soft-delete-overview)
-- [Purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) guards against force deletion of the secret, vault even after soft delete
+Customer-managed key configuration doesn't support setting up identity and key identifier details currently. These can be be performed via [PowerShell](/powershell/module/az.operationalinsights/), [CLI](/cli/azure/monitor/log-analytics), or [REST](/rest/api/loganalytics/) requests.
 
 ## Required permissions
 
@@ -102,6 +89,23 @@ To perform cluster-related actions, you need these permissions:
 | Grant the required permissions | Owner or Contributor role that has `*/write` permissions, or the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), which has `Microsoft.OperationalInsights/*` permissions | 
 | Unlink a workspace from cluster | `Microsoft.OperationalInsights/workspaces/linkedServices/delete` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 | Delete a dedicated cluster | `Microsoft.OperationalInsights/clusters/delete` permissions, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
+
+## Storing encryption key ("KEK")
+
+A [portfolio of Azure Key Management products](/azure/key-vault/managed-hsm/mhsm-control-data#portfolio-of-azure-key-management-products) lists the vaults and managed HSMs that can be used. 
+
+Create or use an existing Azure Key Vault in the region that the cluster is planed. In your Key vault, generate or import a key to be used for logs encryption. The Azure Key Vault must be configured as recoverable, to protect your key and the access to your data in Azure Monitor. You can verify this configuration under properties in your Key Vault, both **Soft delete** and **Purge protection** should be enabled.
+
+> [!IMPORTANT]
+> It's recommended to set up notification and respond to Azure Key Vault events such as key nearing expiry, received via [Azure Event Grid](/azure/key-vault/general/event-grid-logicapps). When key expires, ingestion and queries aren't affected, but you can't perform update on the key and will need to contact support.
+
+<!-- convertborder later -->
+:::image type="content" source="media/customer-managed-keys/soft-purge-protection.png" lightbox="media/customer-managed-keys/soft-purge-protection.png" alt-text="Screenshot of soft delete and purge protection settings." border="false":::
+
+These settings can be updated in Key Vault via CLI and PowerShell:
+
+- [Soft Delete](/azure/key-vault/general/soft-delete-overview)
+- [Purge protection](/azure/key-vault/general/soft-delete-overview#purge-protection) guards against force deletion of the secret, vault even after soft delete
 
 ## Create cluster
 
@@ -199,7 +203,7 @@ Get-Job -Command "New-AzOperationalInsightsCluster*" | Format-List -Property *
 # [REST](#tab/rest)
 
 ```rst
-PATCH https://management.azure.com/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/Microsoft.OperationalInsights/clusters/cluster-name?api-version=2022-10-01
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/Microsoft.OperationalInsights/clusters/cluster-name?api-version=2023-09-01
 Authorization: Bearer <token> 
 Content-type: application/json
  

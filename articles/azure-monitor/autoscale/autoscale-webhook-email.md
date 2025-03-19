@@ -1,11 +1,8 @@
 ---
 title: Use autoscale to send email and webhook alert notifications
 description: Learn how to use autoscale actions to call web URLs or send email notifications in Azure Monitor.
-author: EdB-MSFT
-ms.author: edbaynash
 ms.topic: conceptual
 ms.date: 11/01/2024
-ms.subservice: autoscale
 ms.reviewer: akkumari
 ---
 # Use autoscale actions to send email and webhook alert notifications in Azure Monitor

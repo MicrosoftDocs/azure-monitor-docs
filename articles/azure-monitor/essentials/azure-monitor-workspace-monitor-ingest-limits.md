@@ -1,9 +1,6 @@
 ---
 title: Monitor Azure Monitor workspace metrics ingestion
 description: How to monitor Azure Monitor workspace metrics ingestion and set up an alert on Azure Monitor Workspace ingestion limits
-author: EdB-MSFT
-ms.service: azure-monitor
-ms-author: edbaynash
 ms.topic: conceptual
 ms.date: 10/06/2024
 ---
@@ -45,5 +42,5 @@ To open a support ticket:
 ## Next steps
 
 + [Azure Monitor service limits](../service-limits.md#prometheus-metrics)
-+ [Create an alert rule in Azure Monitor](../alerts/alerts-create-metric-alert-rule.yml)
++ [Create an alert rule in Azure Monitor](../alerts/alerts-create-metric-alert-rule.md)
 + [Create a metric alert for an Azure resource](../alerts/tutorial-metric-alert.md)

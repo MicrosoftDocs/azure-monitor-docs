@@ -1,8 +1,6 @@
 ---
 title: Send Prometheus Metrics from Virtual Machines, Scale Sets, or Kubernetes Clusters to an Azure Monitor Workspace
 description: Learn how to configure remote write to send data from self-managed Prometheus to Azure Monitor managed service for Prometheus.
-author: EdB-MSFT
-ms.author: edbaynash 
 ms.topic: conceptual
 ms.custom: devx-track-azurecli
 ms.date: 08/07/2024
@@ -353,7 +351,7 @@ If you're on a Kubernetes cluster that's running Prometheus Operator, use the fo
    kubectl apply -f <remote-write-secret.yaml>
    ```
 
-2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#azuread).
+2. Update the values for the remote write section in Prometheus Operator. Copy the following YAML and save it as a file. For more information on the Azure Monitor workspace specification for remote write in Prometheus Operator, see the [Prometheus Operator documentation](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md).
 
    ```yaml
    prometheus:

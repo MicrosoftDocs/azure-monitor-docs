@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 01/24/2025
-ms.reviewer: jkalis
+ms.date: 02/07/2025
+ms.reviewer: jan.kalis
 ---
 
 # Code Optimizations extensions for Visual Studio (preview)

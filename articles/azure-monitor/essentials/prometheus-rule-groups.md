@@ -1,8 +1,6 @@
 ---
 title: Rule groups in Azure Monitor Managed Service for Prometheus
 description: Description of rule groups in Azure Monitor managed service for Prometheus which alerting and data computation.
-author: EdB-MSFT
-ms-author: edbaynash
 ms.topic: conceptual
 ms.date: 11/09/2024
 ---
@@ -113,7 +111,7 @@ On the rule group  **Details** tab:
   
 1. Select **+ Add recording rule** to open the **Create a recording rule** pane.
 2. Enter the **Name** of the rule. This name is the name of the metric created by the rule.
-3. Enter the PromQL **Expression** for the rule.
+3. Enter the PromQL **Expression** for the rule using the PromQL-sensitive expression editor box. You can see the results of the expression query visualized in the preview chart. You cfan modify the preview time range to zoom in our out on the expression result history.
 4. Select if the rule is to be enabled when created.
 5. You can enter optional **Labels** key/value pairs for the rule. These labels are added to the metric created by the rule.
 6. Select **Create** to add the new rule to the rule list.
@@ -125,8 +123,8 @@ On the rule group  **Details** tab:
 1. Select **+ Add alert rule** to open the "Create an alert rule" pane.
 2. Select the **Severity** of alerts fired by this rule.
 3. Enter the **Name** of the rule. This name is the name of alerts fired by the rule.
-4. Enter the PromQL **Expression** for the rule.
-5. Select the **For** value for the period between the alert expression first becomes true and until the alert is fired.
+4. Enter the PromQL **Expression** for the rule using the PromQL-sensitive expression editor box. You can see the results of the expression query visualized in the preview chart. You cfan modify the preview time range to zoom in our out on the expression result history.
+5. Select the **Wait for** value for the period between the alert expression first becomes true and until the alert is fired.
 6. You can enter optional **Annotations** key/value pairs for the rule. These annotations are added to alerts fired by the rule.
 7. You can enter optional **Labels** key/value pairs for the rule. These labels are added to the alerts fired by the rule.
 8. Select the [action groups](../alerts/action-groups.md) that the rule triggers.
@@ -135,6 +133,9 @@ On the rule group  **Details** tab:
 11. Select **Create** to add the new rule to the rule list.
   
 :::image type="content" source="media/prometheus-metrics-rule-groups/create-new-rule-group-alert.png" alt-text="Screenshot that shows configuration of Prometheus rule group alert rule.":::
+
+> [!NOTE]
+> For alert rules, the expression query typically only return time series that for fulfil the expression condition. If the preview chart is not shown and you get "The query returned no result" message, it is likely that the condition wasn't fulfilled in the preview time range.
 
 #### Finish creating the rule group
 1. On the **Tags** tab, set any required Azure resource tags to be added to the rule group resource.

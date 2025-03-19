@@ -1,24 +1,27 @@
 ---
-title: Data Collection Basics of Azure Monitor Application Insights 
-description: This article provides an overview of how to collect telemetry to send to Azure Monitor Application Insights.
+title: Application Insights OpenTelemetry data collection
+description: Learn how to instrument applications using OpenTelemetry (OTel) with Azure Monitor Application Insights for telemetry data collection and monitoring.
 ms.topic: conceptual
-ms.date: 12/07/2024
+ms.date: 03/23/2025
 ms.reviewer: mmcc
+
+#customer intent: "As a developer or site reliability engineer, I want to instrument my application with OpenTelemetry (OTel) in Application Insights so that I can collect standardized telemetry data for improved observability, performance monitoring, and diagnostics."
+
 ---
 
-# Data Collection Basics of Azure Monitor Application Insights
+# Collect telemetry with OpenTelemetry in Application Insights
 
-Before you can monitor your application, it needs to be instrumented.
+Before you can monitor your application, it needs to be instrumented. In the following sections, we cover some data collection basics of [Azure Monitor Application Insights](app-insights-overview.md).
 
-In the following sections, we cover some data collection basics of Azure Monitor Application Insights.
+Instrumenting applications with OpenTelemetry (OTel) in Application Insights enables standardized telemetry collection across platforms. This improves observability, simplifies performance monitoring, and supports distributed tracing, metrics, and log analysis.
 
-## Instrumentation Options
+## Instrumentation approaches for Application Insights: OpenTelemetry and more
 
 At a basic level, "instrumenting" is simply enabling an application to capture telemetry.
 
 There are two methods to instrument your application:
 
-- Automatic instrumentation (autoinstrumentation)
+- [Automatic instrumentation](codeless-overview.md) (autoinstrumentation)
 - Manual instrumentation
 
 **Autoinstrumentation** enables telemetry collection through configuration without touching the application's code. Although it's more convenient, it tends to be less configurable. It's also not available in all languages. See [Autoinstrumentation supported environments and languages](codeless-overview.md). When autoinstrumentation is available, it's the easiest way to enable Azure Monitor Application Insights.

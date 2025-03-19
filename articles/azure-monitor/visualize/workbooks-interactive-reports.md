@@ -4,7 +4,6 @@ description: This article explains how to create interactive reports in Azure Wo
 ms.topic: conceptual
 ms.custom: devx-track-arm-template
 ms.date: 09/17/2024
-ms.author: abbyweisberg
 ms.reviewer: gardnerjr
 ---
 

@@ -1,11 +1,8 @@
 ---
 title: Send Azure activity log data
 description: Send Azure Monitor activity log data to Azure Monitor Logs, Azure Event Hubs, and Azure Storage.
-author: guywi-ms
-services: azure-monitor
 ms.topic: conceptual
 ms.date: 12/11/2023
-ms.author: guywild
 ms.reviewer: orens
 ---
 
@@ -226,6 +223,7 @@ This sample PowerShell script creates a log profile that writes the activity log
    $subscriptionId = "<your Azure subscription Id>"
    $resourceGroupName = "<resource group name your Event Hub belongs to>"
    $eventHubNamespace = "<Event Hub namespace>"
+   $storageAccountName = "<Storage Account name>"
 
    # Build the service bus rule Id from the settings above
    $serviceBusRuleId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.EventHub/namespaces/$eventHubNamespace/authorizationrules/RootManageSharedAccessKey"

@@ -2,8 +2,6 @@
 title: Manage data collection rule associations in Azure Monitor
 description: Describes different options for viewing data collection rules (DCRs) and data collection rule associations (DCRA) in Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 12/02/2024
 ms.reviewer: nikeist
 ---
@@ -60,7 +58,7 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 
 | Option | Description |
 |:---|:---|
-| Create a data collection rule | Launch the process to create a new DCR for the Azure Monitor agent. The selected resources are automatically added as resources for the new DCR. See [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md) for details on this process. |
+| Create a data collection rule | Launch the process to create a new DCR for the Azure Monitor agent. The selected resources are automatically added as resources for the new DCR. See [Collect data with Azure Monitor Agent](../vm/data-collection.md) for details on this process. |
 | Associate with existing data collection rule | Associate the selected resources with one or more existing DCRs. This opens a list of DCRs that can be associated with the current resource. This list only includes DCRs that are valid for the particular resource. For example, if the resource is a VM with the Azure Monitor agent (AMA) installed, only DCRs that process AMA data are listed.  |
 
 :::image type="content" source="media/data-collection-rule-view/resources-view-associate.png" alt-text="Screenshot of the create association button in the resources view in  the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associate.png":::

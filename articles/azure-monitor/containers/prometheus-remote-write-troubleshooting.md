@@ -1,10 +1,6 @@
 ---
 title: Troubleshooting Remote-write in Azure Monitor Managed Service for Prometheus
 description: Describes how to troubleshoot remote-write in Azure Monitor Managed Service for Prometheus
-author: EdB-MSFT
-ms.service: azure-monitor
-ms.subservice: essentials
-ms-author: edbaynash
 ms.topic: conceptual
 ms.date: 4/18/2024
 

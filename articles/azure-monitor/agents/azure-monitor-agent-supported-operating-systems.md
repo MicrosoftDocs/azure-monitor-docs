@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 01/08/2025
+ms.date: 01/30/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -21,6 +21,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 | Operating system | Support |
 |:---|:---:|
+| Windows Server 2025                                      | ✓ |
 | Windows Server 2022                                      | ✓ |
 | Windows Server 2022 Core                                 | ✓ |
 | Windows Server 2019                                      | ✓ |

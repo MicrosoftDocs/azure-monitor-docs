@@ -180,13 +180,12 @@ Then configure which metrics are routed to which workspace, by adding an extra p
 
 ```yaml
 relabel_configs:
-- source_labels: [__address__]
-  target_label: microsoft_metrics_account
+- target_label: microsoft_metrics_account
   action: replace
   replacement: "MonitoringAccountLabel2"
 ```
 
-The source label is `__address__` because this label will always exist so this relabel config will always be applied. The target label will always be `microsoft_metrics_account` and its value should be replaced with the corresponding label value for the workspace.
+Not specifying `source_labels` or `regex` means that this relabel config will be applied to every metric. The target label will always be `microsoft_metrics_account` and its value should be replaced with the corresponding label value for the workspace.
 
 
 
@@ -222,8 +221,7 @@ scrape_configs:
     - source_labels: [__meta_kubernetes_pod_label_app]
       action: keep
       regex: "prometheus-reference-app-1"
-    - source_labels: [__address__]
-      target_label: microsoft_metrics_account
+    - target_label: microsoft_metrics_account
       action: replace
       replacement: "MonitoringAccountLabel1"
 - job_name: prometheus_ref_app_2
@@ -233,8 +231,7 @@ scrape_configs:
     - source_labels: [__meta_kubernetes_pod_label_app]
       action: keep
       regex: "prometheus-reference-app-2"
-    - source_labels: [__address__]
-      target_label: microsoft_metrics_account
+    - target_label: microsoft_metrics_account
       action: replace
       replacement: "MonitoringAccountLabel2"
 - job_name: prometheus_ref_app_3
@@ -244,8 +241,7 @@ scrape_configs:
     - source_labels: [__meta_kubernetes_pod_label_app]
       action: keep
       regex: "prometheus-reference-app-3"
-    - source_labels: [__address__]
-      target_label: microsoft_metrics_account
+    - target_label: microsoft_metrics_account
       action: replace
       replacement: "MonitoringAccountLabel3"
 ```

@@ -1,12 +1,8 @@
 ---
 title: Understand autoscale settings in Azure Monitor
 description: This article explains autoscale settings, how they work, and how they apply to Azure Virtual Machines, Azure Cloud Services, and the Web Apps feature of Azure App Service.
-author: EdB-MSFT
-ms.service: azure-monitor
 ms.topic: conceptual
-ms.date: 11/01/2024
-ms.subservice: autoscale
-ms.author: edbaynash
+ms.date: 02/13/2025
 ms.reviewer: akkumari
 ---
 # Understand autoscale settings
@@ -159,6 +155,9 @@ There are three types of autoscale profiles:
             }
         ]
     ```
+    > [!NOTE]
+    > The number of days between the `start` and `end` times of a `fixedDate` profile can't exceed 365 days.
+
 
 - **Recurrence profile**: A recurrence profile is used for a day or set of days of the week. The schema for a recurring profile doesn't include an end date. The end of date and time for a recurring profile is set by the start time of the following profile. When the portal is used to configure recurring profiles, the default profile is automatically updated to start at the end time that you specify for the recurring profile. For more information on configuring multiple profiles, see [Autoscale with multiple profiles](./autoscale-multiprofile.md)
 

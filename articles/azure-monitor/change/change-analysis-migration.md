@@ -10,7 +10,7 @@ ms.subservice: change-analysis
 
 # Migrate to the Change Analysis API powered by Azure Resource Graph
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
 
 ## How to migrate
 

@@ -35,7 +35,7 @@ By default, Azure Monitor Agent connects to a public endpoint to connect to your
 
 ## Associate DCEs to target resources
 
-Associate the DCEs to the target resources by editing the DCR in the Azure portal. On the **Resources** tab, select **Enable Data Collection Endpoints**. Select a DCE for each virtual machine. For more information, see [Configure data collection for the Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md).
+Associate the DCEs to the target resources by editing the DCR in the Azure portal. On the **Resources** tab, select **Enable Data Collection Endpoints**. Select a DCE for each virtual machine. For more information, see [Configure data collection for the Azure Monitor Agent](../vm/data-collection.md).
 
 :::image type="content" source="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" lightbox="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" alt-text="Screenshot that shows configuring data collection endpoints for an agent.":::
 

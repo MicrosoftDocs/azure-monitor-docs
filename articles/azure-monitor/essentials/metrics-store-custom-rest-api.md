@@ -1,12 +1,9 @@
 ---
 title: Send metrics to the Azure Monitor metric database by using a REST API
 description: Learn how to send custom metrics for an Azure resource to the Azure Monitor metrics store by using a REST API.
-author: EdB-MSFT
-services: azure-monitor
 ms.reviewer: priyamishra
 ms.topic: how-to
-ms.date: 07/02/2024
-ms.author: edbaynash
+ms.date: 01/27/2025
 ---
 # Ingest custom metrics for an Azure resource using the REST API
 
@@ -47,7 +44,7 @@ To submit custom metrics to Azure Monitor, the entity that submits the metric ne
 Once you have created your managed identity or service principal and assigned **Monitoring Metrics Publisher** permissions, you can get an authorization token.
 When requesting a token specify `resource: https://monitoring.azure.com`.
 
-[!INCLUDE [Get a token](../includes/get-authentication-token.md)]
+[!INCLUDE [Get a token](includes/get-authentication-token.md)]
 
 Save the access token from the response for use in the following HTTP requests.
 

@@ -1,10 +1,6 @@
 ---
 title: Autoscale flapping
 description: "Flapping in Autoscale"
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
-ms.subservice: autoscale
 ms.topic: conceptual
 ms.date: 11/01/2024
 ms.reviewer: akkumari

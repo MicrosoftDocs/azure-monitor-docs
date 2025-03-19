@@ -2,8 +2,6 @@
 title: Custom fields in Azure Monitor (Preview)
 description: The Custom Fields feature of Azure Monitor allows you to create your own searchable fields from records in a Log Analytics workspace that add to the properties of a collected record. This article describes the process to create a custom field and provides a detailed walkthrough with a sample event.
 ms.topic: conceptual
-author: guywild
-ms.author: guywild
 ms.reviewer: roygal
 ms.date: 08/12/2024
 

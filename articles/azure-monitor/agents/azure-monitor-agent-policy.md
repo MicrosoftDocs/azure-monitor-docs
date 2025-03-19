@@ -2,8 +2,6 @@
 title: Use Azure Policy to Install the Azure Monitor Agent
 description: Learn about options for managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 11/14/2024
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo

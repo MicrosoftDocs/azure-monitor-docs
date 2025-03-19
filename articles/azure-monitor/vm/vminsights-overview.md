@@ -2,8 +2,6 @@
 title: Overview of VM insights
 description: Overview of VM insights, which monitors the health and performance of Azure VMs and automatically discovers and maps application components and their dependencies. 
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 01/15/2025
 ---
 
@@ -46,17 +44,15 @@ VM insights supports the following machines:
 VM insights supports the following operating systems:
 
 - VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
-- The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2019, except Azure Stack HCI and Windows IoT Enterprise.
-- For Dependency Agent Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
+- The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. 
+- For the Dependency Agent's Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
 - The Dependency Agent only supports x64 architectures.
 
-> [!IMPORTANT]
-> If the Ethernet device for your virtual machine has more than nine characters, it won't be recognized by VM Insights and data won't be sent to the InsightsMetrics table. The agent will collect data from [other sources](../agents/agent-data-sources.md).
 
 
 ## Limitations
 
-- VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../agents/azure-monitor-agent-data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
+- VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../vm/data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
 - VM insights doesn't support sending data to multiple Log Analytics workspaces (multi-homing).
 
 ## Diagnostic and usage data

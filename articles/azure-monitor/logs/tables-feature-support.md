@@ -2,8 +2,6 @@
 title: Tables that support ingestion-time transformations in Azure Monitor Logs
 description: Reference for tables that support ingestion-time transformations in Azure Monitor Logs.
 ms.topic: reference
-author: bwren
-ms.author: bwren
 ms.date: 07/10/2022
 ---
 
@@ -271,7 +269,7 @@ The following list identifies the tables in a [Log Analytics workspace](log-anal
 | [NWConnectionMonitorPathResult](/azure/azure-monitor/reference/tables/nwconnectionmonitorpathresult) | |
 | [NWConnectionMonitorTestResult](/azure/azure-monitor/reference/tables/nwconnectionmonitortestresult) | |
 | [OfficeActivity](/azure/azure-monitor/reference/tables/officeactivity) | |
-| [Perf](/azure/azure-monitor/reference/tables/perf) | Partial support – only windows perf data is currently supported. |
+| [Perf](/azure/azure-monitor/reference/tables/perf) | |
 | [PowerAppsActivity](/azure/azure-monitor/reference/tables/powerappsactivity) | |
 | [PowerAutomateActivity](/azure/azure-monitor/reference/tables/powerautomateactivity) | |
 | [PowerBIActivity](/azure/azure-monitor/reference/tables/powerbiactivity) | |

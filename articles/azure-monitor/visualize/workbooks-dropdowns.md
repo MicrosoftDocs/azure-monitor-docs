@@ -1,7 +1,6 @@
 ---
 title: Azure Monitor workbook dropdown parameters
 description: Use dropdown parameters to simplify complex reporting with prebuilt and custom parameterized workbooks.
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 09/17/2024

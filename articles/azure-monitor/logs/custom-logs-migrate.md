@@ -1,8 +1,6 @@
 ---
 title: Migrate from the HTTP Data Collector API to the Log Ingestion API
 description: Migrate from the legacy Azure Monitor Data Collector API to the Log Ingestion API, which provides more processing power and greater flexibility.
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: ivankh
 ms.topic: how-to 
 ms.date: 08/12/2024

@@ -1,10 +1,6 @@
 ---
 title: Autoscale diagnostics
 description: This article shows you how to configure diagnostics in autoscale.
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
-ms.subservice: autoscale
 ms.topic: how-to
 ms.date: 11/01/2024
 ms.reviewer: akkumari

@@ -1,11 +1,9 @@
 ---
 title: Azure monitoring REST API walkthrough
 description: How to authenticate requests and use the Azure Monitor REST API to retrieve available metric definitions, metric values, and activity logs.
-author: EdB-MSFT
 ms.topic: conceptual
-ms.date: 06/27/2024
+ms.date: 01/27/2025
 ms.custom: has-adal-ref
-ms.author: edbaynash
 ms.reviewer: priyamishra
 ---
 
@@ -22,14 +20,12 @@ Request submitted using the Azure Monitor API use the Azure Resource Manager aut
 ### Retrieve a token
 Once you've created a service principal, retrieve an access token. Specify `resource=https://management.azure.com` in the token request.
 
-[!INCLUDE [Get a token](../includes/get-authentication-token.md)]
+[!INCLUDE [Get a token](includes/get-authentication-token.md)]
 
-
-After authenticating and retrieving a token, use the access token in your Azure Monitor API requests by including the header  `'Authorization: Bearer <access token>'`
+After authenticating and retrieving a token, use the access token in your Azure Monitor API requests by including the header `'Authorization: Bearer <access token>'`
 
 > [!NOTE]
 > For more information on working with the Azure REST API, see the [Azure REST API reference](/rest/api/azure/).
->
 
 ## Retrieve the resource ID
 
@@ -50,17 +46,15 @@ For example
 
 Use the Azure portal, PowerShell, or the Azure CLI to find the resource ID.
 
-
 ### [Azure portal](#tab/portal)
 
-To find the resourceID in the portal, from the resource's overview page, select **JSON view**
-:::image type="content" source="./media/rest-api-walkthrough/json-view-azure-portal.png" lightbox="./media/rest-api-walkthrough/json-view-azure-portal.png" alt-text="A screenshot showing the overview page for a resource with the JSON view link highlighted.":::
+To find the resourceID in the portal, from the resource's overview page, select **JSON view**.
 
+:::image type="content" source="./media/rest-api-walkthrough/json-view-azure-portal.png" lightbox="./media/rest-api-walkthrough/json-view-azure-portal.png" alt-text="A screenshot showing the overview page for a resource with the JSON view link highlighted.":::
 
 The Resource JSON page is displayed. The resource ID can be copied using the icon on the right of the ID. 
 
 :::image type="content" source="./media/rest-api-walkthrough/resourceid-azure-portal.png" lightbox="./media/rest-api-walkthrough/resourceid-azure-portal.png" alt-text="A screenshot showing the Resource JSON page for a resource.":::
-
 
 ### [PowerShell](#tab/powershell)
 
@@ -138,22 +132,25 @@ The result should be similar to the following example:
 
 > [!NOTE]
 > Azure logic apps aren't yet available via the Azure CLI. For this reason, an Azure Storage account is shown in the preceding example.
->
+
 ---
 
 ## API endpoints
 
-The API endpoints use the following pattern:  
-`/<resource URI>/providers/microsoft.insights/<metrics|metricDefinitions>?api-version=<apiVersion>`  
-The `resource URI` is composed of the following components:  
+The API endpoints use the following pattern:
+
+`/<resource URI>/providers/microsoft.insights/<metrics|metricDefinitions>?api-version=<apiVersion>`
+
+The `resource URI` is composed of the following components:
+
 `/subscriptions/<subscription id>/resourcegroups/<resourceGroupName>/providers/<resourceProviderNamespace>/<resourceType>/<resourceName>/`
 
 > [!IMPORTANT]
 > Be sure to include `/providers/microsoft.insights/` after the resource URI when you make an API call to retrieve metrics or metric definitions.
+
 ## Retrieve metric definitions
 
-Use the [Azure Monitor Metric Definitions REST API](/rest/api/monitor/metricdefinitions) to access the list of metrics that are available for a service.
-Use the following request format to retrieve metric definitions.
+Use the [Azure Monitor Metric Definitions REST API](/rest/api/monitor/metricdefinitions) to access the list of metrics that are available for a service. Use the following request format to retrieve metric definitions.
 
 ```HTTP
 GET /subscriptions/<subscription id>/resourcegroups/<resourceGroupName>/providers/<resourceProviderNamespace>/<resourceType>/<resourceName>/providers/microsoft.insights/metricDefinitions?api-version=<apiVersion>
@@ -163,15 +160,14 @@ Authorization: Bearer <access token>
 
 ```
 
-For example, The following request retrieves the metric definitions for an Azure Storage account.
+For example, The following request retrieves the metric definitions for an Azure Storage account:
 
 ```curl
 curl --location --request GET 'https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/azmon-rest-api-walkthrough/providers/Microsoft.Storage/storageAccounts/ContosoStorage/providers/microsoft.insights/metricDefinitions?api-version=2018-01-01'
 --header 'Authorization: Bearer eyJ0eXAiOi...xYz
 ```
 
-The following JSON shows an example response body. 
-In this example, only the second metric has dimensions.
+The following JSON shows an example response body. In this example, only the second metric has dimensions:
 
 ```json
 {
@@ -268,37 +264,40 @@ In this example, only the second metric has dimensions.
     ]
 }
 ```
+
 > [!NOTE]
-> We recommend using API version "2018-01-01" or later. Older versions of the metric definitions API don't support dimensions.  
+> We recommend using API version "2018-01-01" or later. Older versions of the metric definitions API don't support dimensions.
 
 ## Retrieve dimension values
 
-After the retrieving the available metric definitions,  retrieve the range of values for the metric's dimensions. Use dimension values to filter or segment the metrics in your queries. Use the [Azure Monitor Metrics REST API](/rest/api/monitor/metrics) to find all of the values for a given metric dimension.
+After the retrieving the available metric definitions, retrieve the range of values for the metric's dimensions. Use dimension values to filter or segment the metrics in your queries. Use the [Azure Monitor Metrics REST API](/rest/api/monitor/metrics) to find all of the values for a given metric dimension.
 
 Use the metric's `name.value` element in the filter definitions. If no filters are specified, the default metric is returned. The API only allows one dimension to have a wildcard filter. 
 Specify the request for dimension values using the `"resultType=metadata"` query parameter. The `resultType` is omitted for a metric values request.
 
 > [!NOTE]
 > To retrieve dimension values by using the Azure Monitor REST API, use the API version "2019-07-01" or later.
->
-Use the following request format to retrieve dimension values.
+
+Use the following request format to retrieve dimension values:
+
 ```HTTP
-GET /subscriptions/<subscription-id>/resourceGroups/  
-<resource-group-name>/providers/<resource-provider-namespace>/  
-<resource-type>/<resource-name>/providers/microsoft.insights/  
-metrics?metricnames=<metric>  
-&timespan=<starttime/endtime>  
-&$filter=<filter>  
-&resultType=metadata  
-&api-version=<apiVersion>   HTTP/1.1
+GET /subscriptions/<subscription-id>/resourceGroups/
+<resource-group-name>/providers/<resource-provider-namespace>/
+<resource-type>/<resource-name>/providers/microsoft.insights/
+metrics?metricnames=<metric>
+&timespan=<starttime/endtime>
+&$filter=<filter>
+&resultType=metadata
+&api-version=<apiVersion> HTTP/1.1
 Host: management.azure.com
 Content-Type: application/json
 Authorization: Bearer <access token>
 ```
-The following example retrieves the list of dimension values that were emitted for the `API Name` dimension of the `Transactions` metric, where the `GeoType` dimension has a value of  `Primary`, for the specified time range. 
+
+The following example retrieves the list of dimension values that were emitted for the `API Name` dimension of the `Transactions` metric, where the `GeoType` dimension has a value of `Primary`, for the specified time range. 
 
 ```curl
-curl --location --request GET 'https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/azmon-rest-api-walkthrough/providers/Microsoft.Storage/storageAccounts/ContosoStorage/providers/microsoft.insights/metrics  \
+curl --location --request GET 'https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/azmon-rest-api-walkthrough/providers/Microsoft.Storage/storageAccounts/ContosoStorage/providers/microsoft.insights/metrics \
 ?metricnames=Transactions \
 &timespan=2023-03-01T00:00:00Z/2023-03-02T00:00:00Z \
 &resultType=metadata \
@@ -307,7 +306,8 @@ curl --location --request GET 'https://management.azure.com/subscriptions/123456
 -header 'Content-Type: application/json' \
 --header 'Authorization: Bearer eyJ0e..meG1lWm9Y'
 ```
-The following JSON shows an example response body. 
+
+The following JSON shows an example response body:
 
 ```json
 {
@@ -357,18 +357,20 @@ The following JSON shows an example response body.
 
 After retrieving the metric definitions and dimension values, retrieve the metric values. Use the [Azure Monitor Metrics REST API](/rest/api/monitor/metrics) to retrieve the metric values.
 
-Use the metric's `name.value` element in the filter definitions. If no dimension filters are specified, the rolled up, aggregated metric is returned.  
+Use the metric's `name.value` element in the filter definitions. If no dimension filters are specified, the rolled up, aggregated metric is returned.
 
 ### Multiple time series
-A time series is a set of data points that are ordered by time for a given combination of dimensions. A dimension is an aspect of the metric that describes the data point such as resource Id, region, or ApiName. 
-+ To fetch multiple time series with specific dimension values, specify a filter query parameter that specifies both dimension values such as `"&$filter=ApiName eq 'ListContainers' or ApiName eq 'GetBlobServiceProperties'"`.  In this example, you get a time series where `ApiName` is  `ListContainers` and a second time series where `ApiName` is `GetBlobServiceProperties`.
-+ To return a time series for every value of a given dimension, use an `*` filter such as `"&$filter=ApiName eq '*'"`. Use the `Top` and `OrderBy` query parameters to limit and sort the number of time series returned.  In this example, you get a time series for every value of `ApiName`in the result set. If no data is returned, the API returns an empty time series `"timeseries": []`.
+
+A time series is a set of data points that are ordered by time for a given combination of dimensions. A dimension is an aspect of the metric that describes the data point such as resource Id, region, or ApiName.
+
+* To fetch multiple time series with specific dimension values, specify a filter query parameter that specifies both dimension values such as `"&$filter=ApiName eq 'ListContainers' or ApiName eq 'GetBlobServiceProperties'"`. In this example, you get a time series where `ApiName` is `ListContainers` and a second time series where `ApiName` is `GetBlobServiceProperties`.
+
+* To return a time series for every value of a given dimension, use an `*` filter such as `"&$filter=ApiName eq '*'"`. Use the `Top` and `OrderBy` query parameters to limit and sort the number of time series returned. In this example, you get a time series for every value of `ApiName`in the result set. If no data is returned, the API returns an empty time series `"timeseries": []`.
 
 > [!NOTE]
 > To retrieve multi-dimensional metric values using the Azure Monitor REST API, use the API version "2019-07-01" or later.
->
 
-Use the following request format to retrieve metric values.
+Use the following request format to retrieve metric values:
 
 ```HTTP
 GET /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/<resource-provider-namespace>/<resource-type>/<resource-name>/providers/microsoft.insights/metrics?metricnames=<metric>&timespan=<starttime/endtime>&$filter=<filter>&interval=<timeGrain>&aggregation=<aggreation>&api-version=<apiVersion>
@@ -377,7 +379,7 @@ Content-Type: application/json
 Authorization: Bearer <access token>
 ```
 
-The following example retrieves the top three APIs,  by the number of `Transactions` in descending value order, during a 5-minute range, where the `GeoType` dimension has a value of `Primary`.
+The following example retrieves the top three APIs, by the number of `Transactions` in descending value order, during a 5-minute range, where the `GeoType` dimension has a value of `Primary`:
 
 ```curl
 curl --location --request GET 'https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/azmon-rest-api-walkthrough/providers/Microsoft.Storage/storageAccounts/ContosoStorage/providers/microsoft.insights/metrics \
@@ -385,14 +387,15 @@ curl --location --request GET 'https://management.azure.com/subscriptions/123456
 &timespan=2023-03-01T02:00:00Z/2023-03-01T02:05:00Z \
 & $filter=apiname eq '\''GetBlobProperties'\'
 &interval=PT1M \
-&aggregation=Total  \
+&aggregation=Total \
 &top=3 \
 &orderby=Total desc \
 &api-version=2019-07-01"' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer yJ0eXAiOi...g1dCI6Ii1LS'
 ```
-The following JSON shows an example response body. 
+
+The following JSON shows an example response body:
 
 ```json
 {
@@ -456,32 +459,37 @@ The following JSON shows an example response body.
 In addition to querying for metrics on an individual resource, some resource types also support querying for multiple resources in a single request. These APIs are what power the [Multi-Resource experience in Azure metrics explorer](./metrics-dynamic-scope.md). The set of resources types that support querying for multiple metrics can be seen on the [Metrics blade in Azure monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics) via the resource type drop-down in the scope selector on the context blade. For more information, see the [Multi-Resource UX documentation](./metrics-dynamic-scope.md).
 
 There are some important differences between querying metrics for multiple and individual resources.
-+ Metrics multi-resource APIs operate at the subscription level instead of the resource ID level. This restriction means users querying these APIs must have [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permissions on the subscription itself.
-+ Metrics multi-resource APIs only support a single resourceType per query, which must be specified in the form of a metric namespace query parameter.
-+ Metrics multi-resource APIs only support a single Azure region per query, which must be specified in the form of a region query parameter.
+
+* Metrics multi-resource APIs operate at the subscription level instead of the resource ID level. This restriction means users querying these APIs must have [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permissions on the subscription itself.
+* Metrics multi-resource APIs only support a single resourceType per query, which must be specified in the form of a metric namespace query parameter.
+* Metrics multi-resource APIs only support a single Azure region per query, which must be specified in the form of a region query parameter.
 
 ### Querying metrics for multiple resources examples
 
 The following example shows an individual metric definitions request:
+
 ```
 GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/EASTUS-TESTING/providers/Microsoft.Compute/virtualMachines/TestVM1/providers/microsoft.insights/metricdefinitions?api-version=2021-05-01
 ```
 
-The following request shows the equivalent metric definitions request for multiple resources.
-The only changes are the subscription path instead of a resource ID path, and the addition of `region` and `metricNamespace` query parameters.
+The following request shows the equivalent metric definitions request for multiple resources. The only changes are the subscription path instead of a resource ID path, and the addition of `region` and `metricNamespace` query parameters.
+
 ```
 GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/providers/microsoft.insights/metricdefinitions?api-version=2021-05-01&region=eastus&metricNamespace=microsoft.compute/virtualmachines
 ```
 
-The following example shows an individual metrics request. 
+The following example shows an individual metrics request:
+
 ```
 GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/resourceGroups/EASTUS-TESTING/providers/Microsoft.Compute/virtualMachines/TestVM1/providers/microsoft.Insights/metrics?timespan=2023-06-25T22:20:00.000Z/2023-06-26T22:25:00.000Z&interval=PT5M&metricnames=Percentage CPU&aggregation=average&api-version=2021-05-01
 ```
 
 Below is an equivalent metrics request for multiple resources:
+
 ```
 GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/providers/microsoft.Insights/metrics?timespan=2023-06-25T22:20:00.000Z/2023-06-26T22:25:00.000Z&interval=PT5M&metricnames=Percentage CPU&aggregation=average&api-version=2021-05-01&region=eastus&metricNamespace=microsoft.compute/virtualmachines&$filter=Microsoft.ResourceId eq '*'
 ```
+
 > [!NOTE] 
 > A `Microsoft.ResourceId eq '*'` filter is added in the example for the multi resource metrics requests. The `*` filter tells the API to return a separate time series for each virtual machine resource that has data in the subscription and region. Without the filter the API would return a single time series aggregating the average CPU for all VMs. The times series for each resource is differentiated by the `Microsoft.ResourceId` metadata value on each time series entry, as can be seen in the following sample return value. If there are no resourceIds retrieved by this query an empty time series`"timeseries": []` is returned.
 
@@ -610,25 +618,28 @@ GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef0123
  
 ### Troubleshooting querying metrics for multiple resources
 
-+ Empty time series returned `"timeseries": []` 
-    - An empty time series is returned when no data is available for the specified time range and filter. The most common cause is specifying a time range that doesn't contain any data. For example, if the time range is set to a future date.
-    - Another common cause is specifying a filter that doesn't match any resources. For example, if the filter specifies a dimension value that doesn't exist on any resources in the subscription and region combination, `"timeseries": []` is returned. 
-    
-+  Wildcard filters  
+* Empty time series returned `"timeseries": []`
+
+    * An empty time series is returned when no data is available for the specified time range and filter. The most common cause is specifying a time range that doesn't contain any data. For example, if the time range is set to a future date.
+    * Another common cause is specifying a filter that doesn't match any resources. For example, if the filter specifies a dimension value that doesn't exist on any resources in the subscription and region combination, `"timeseries": []` is returned. 
+
+* Wildcard filters
+
     Using a wildcard filter such as `Microsoft.ResourceId eq '*'` causes the API to return a time series for every resourceId in the subscription and region. If the subscription and region combination contains no resources, an empty time series is returned. The same query without the wildcard filter would return a single time series, aggregating the requested metric over the requested dimensions, for example subscription and region.
  
-+ 401 authorization errors:  
-    The individual resource metrics APIs requires a user have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission on the resource being queried. Because the multi resource metrics APIs are subscription level APIs, users must have the  [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission for the queried subscription to use the multi resource metrics APIs. Even if users have Monitoring Reader on all the resources in a subscription, the request fails if the user doesn't have Monitoring Reader on the subscription itself.
+* 401 authorization errors
 
-+ 529 throttling errors
-    The 529 error code indicates that the metrics backend is currently throttling your requests. The recommended action is to implement an exponential backoff retry scheme.  For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
+    The individual resource metrics APIs requires a user have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission on the resource being queried. Because the multi resource metrics APIs are subscription level APIs, users must have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) permission for the queried subscription to use the multi resource metrics APIs. Even if users have Monitoring Reader on all the resources in a subscription, the request fails if the user doesn't have Monitoring Reader on the subscription itself.
 
+* 529 throttling errors
+
+    The 529 error code indicates that the metrics backend is currently throttling your requests. The recommended action is to implement an exponential backoff retry scheme. For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
 
 ## Next steps
 
-- Review the [overview of monitoring](../overview.md).
-- View the [supported metrics with Azure Monitor](./metrics-supported.md).
-- Review the [Microsoft Azure Monitor REST API reference](/rest/api/monitor/).
-- Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/)
-- Review the [Azure Management Library](/previous-versions/azure/reference/mt417623(v=azure.100)).
-- [Retrieve activity log data using Azure monitor REST API](./rest-activity-log.md).
+* Review the [overview of monitoring](../overview.md).
+* View the [supported metrics with Azure Monitor](./metrics-supported.md).
+* Review the [Microsoft Azure Monitor REST API reference](/rest/api/monitor/).
+* Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/)
+* Review the [Azure Management Library](/previous-versions/azure/reference/mt417623(v=azure.100)).
+* [Retrieve activity log data using Azure monitor REST API](./rest-activity-log.md).

@@ -1,9 +1,6 @@
 ---
 title: Analyze metrics with Azure Monitor metrics explorer
 description: Learn how to analyze metrics with Azure Monitor metrics explorer by creating metrics charts, setting chart dimensions, time ranges, aggregation, filters, splitting, and sharing.
-services: azure-monitor
-author: EdB-MSFT
-ms.author: edbaynash    
 ms.topic: conceptual
 ms.date: 11/20/2024
 ms.reviewer: vitalyg
@@ -367,7 +364,7 @@ This section provides answers to common questions.
 
 [Platform metrics](./monitor-azure-resource.md#monitoring-data) are collected automatically for Azure resources. You must perform some configuration, though, to collect metrics from the guest OS of a virtual machine. For a Windows Virtual Machine, install the diagnostic extension and configure the Azure Monitor sink as described in [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md). For Linux, install the Telegraf agent as described in [Collect custom metrics for a Linux VM with the InfluxData Telegraf agent](./collect-custom-metrics-linux-telegraf.md).
 
-[!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](../includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
+[!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 
 ## Next steps
 

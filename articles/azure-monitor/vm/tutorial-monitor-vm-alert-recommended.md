@@ -1,7 +1,6 @@
 ---
 title: Enable recommended alert rules for Azure virtual machine
 description: Enable set of recommended metric alert rules for an Azure virtual machine.
-ms.service: azure-monitor
 ms.topic: article
 ms.custom: subject-monitoring
 ms.date: 01/14/2024

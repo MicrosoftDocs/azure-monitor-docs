@@ -10,7 +10,7 @@ ms.subservice: change-analysis
 
 # Enable Change Analysis (classic)
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
 
 The Change Analysis (classic) service:
 

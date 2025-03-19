@@ -1,10 +1,7 @@
 ---
 title: 'Monitor virtual machines with Azure Monitor: Analyze monitoring data'
 description: Learn about the different features of Azure Monitor that you can use to analyze the health and performance of your virtual machines.
-ms.service: azure-monitor
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 02/15/2024
 ms.reviewer: Xema Pathak
 
@@ -87,7 +84,7 @@ The following namespaces are used by virtual machines.
 
 | Namespace | Description | Requirement |
 |:----------|:------------|:------------|
-| Virtual Machine Host | Host metrics automatically collected for all Azure virtual machines. Detailed list of metrics at [Microsoft.Compute/virtualMachines](../essentials/metrics-supported.md#microsoftcomputevirtualmachines). | Collected automatically with no configuration required. |
+| Virtual Machine Host | Host metrics automatically collected for all Azure virtual machines. Detailed list of metrics at [Microsoft.Compute/virtualMachines](../reference/supported-metrics/microsoft-compute-virtualmachines-metrics.md). | Collected automatically with no configuration required. |
 | Virtual Machine Guest | Guest operating system and application performance data on Windows machines. | Azure Monitor agent installed with a [Data Collection Rule](monitor-virtual-machine-data-collection.md#collect-performance-counters). |
 | azure.vm.linux.guestmetrics |  Guest operating system and application performance data on Linux machines. | Azure Monitor agent installed with a [Data Collection Rule](monitor-virtual-machine-data-collection.md#collect-performance-counters). |
 

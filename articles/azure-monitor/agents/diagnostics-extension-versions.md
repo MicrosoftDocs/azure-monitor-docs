@@ -2,8 +2,6 @@
 title: Windows Azure Diagnostics (WAD) extension configuration schema version history
 description: Relevant to collecting perf counters in Azure Virtual Machines, VM Scale Sets, Service Fabric, and Cloud Services.
 ms.topic: reference
-author: bwren
-ms.author: bwren
 ms.date: 11/14/2024
 ms.reviewer: luki
 

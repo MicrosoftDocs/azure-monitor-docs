@@ -2,8 +2,6 @@
 title: Query map data from VM Insights
 description: VM Insights solution collects metrics and log data to and this article describes the records and includes sample queries.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 10/29/2024
 ---
 

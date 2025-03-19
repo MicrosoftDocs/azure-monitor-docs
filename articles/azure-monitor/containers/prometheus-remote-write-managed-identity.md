@@ -1,7 +1,6 @@
 ---
 title: Set up Prometheus remote write by using managed identity authentication
-description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use managed identity authentication to send data from a self-managed Prometheus server running in your Azure Kubernetes Server (AKS) cluster or Azure Arc-enabled Kubernetes cluster. 
-author: EdB-MSFT 
+description: Learn how to set up remote write in Azure Monitor managed service for Prometheus. Use managed identity authentication to send data from a self-managed Prometheus server running in your Azure Kubernetes Server (AKS) cluster or Azure Arc-enabled Kubernetes cluster.
 ms.topic: conceptual
 ms.date: 4/18/2024
 ---
@@ -114,14 +113,14 @@ This step isn't required if you're using an AKS identity. An AKS identity alread
 
 1. Copy the following YAML and save it to a file. The YAML uses port 8081 as the listening port. If you use a different port, modify the port in the YAML.
 
-    [!INCLUDE[managed-identity-yaml](../includes/prometheus-sidecar-remote-write-managed-identity-yaml.md)]
+    [!INCLUDE[managed-identity-yaml](includes/prometheus-sidecar-remote-write-managed-identity-yaml.md)]
 
 1. Replace the following values in the YAML:
 
     | Value | Description |
     |:---|:---|
     | `<AKS-CLUSTER-NAME>` | The name of your AKS cluster. |
-    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](../includes/prometheus-remotewrite-image-version.md)]<br> The remote write container image version.   |
+    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](includes/prometheus-remotewrite-image-version.md)]<br> The remote write container image version.   |
     | `<INGESTION-URL>` | The value for **Metrics ingestion endpoint** from the **Overview** page for the Azure Monitor workspace. |
     | `<MANAGED-IDENTITY-CLIENT-ID>` | The value for **Client ID** from the **Overview** page for the managed identity. |
     | `<CLUSTER-NAME>` | Name of the cluster that Prometheus is running on. |

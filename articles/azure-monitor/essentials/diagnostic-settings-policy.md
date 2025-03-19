@@ -1,9 +1,6 @@
 ---
 title: Create diagnostic settings at scale using Azure policies and initiatives
 description: Use Azure Policy to create diagnostic settings in Azure Monitor at scale as each Azure resource is created.
-author: EdB-MSFT
-ms.author: edbaynash
-services: azure-monitor
 ms.topic: conceptual
 ms.date: 01/16/2025
 ms.reviewer: lualderm
@@ -99,7 +96,7 @@ When you create the assignment by using the Azure portal, you have the option of
 <!-- convertborder later -->
 :::image type="content" source="media/diagnostic-settings-policy/initiative-remediation.png" lightbox="media/diagnostic-settings-policy/initiative-remediation.png" alt-text="Screenshot that shows initiative remediation for a Log Analytics workspace." border="false":::
 
-[!INCLUDE [diagnostics-settings-troubleshooting](../includes/diagnostics-settings-troubleshooting.md)]
+[!INCLUDE [diagnostics-settings-troubleshooting](includes/diagnostics-settings-troubleshooting.md)]
 
 ## Next steps
 

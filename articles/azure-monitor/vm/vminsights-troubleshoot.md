@@ -2,8 +2,6 @@
 title: Troubleshoot VM Insights
 description: Get troubleshooting information about agent installation and the use of the VM Insights feature in Azure Monitor.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 11/06/2024
 ms.custom: references_regions
 

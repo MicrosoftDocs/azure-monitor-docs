@@ -4,8 +4,6 @@ description: This article shows you how to connect your ITSM products or service
 ms.topic: conceptual
 ms.date: 12/11/2024
 ms.reviewer: nolavime
-author: AbbyMSFT
-ms.author: abbyweisberg
 ---
 
 # Connect BMC Helix to Azure Monitor

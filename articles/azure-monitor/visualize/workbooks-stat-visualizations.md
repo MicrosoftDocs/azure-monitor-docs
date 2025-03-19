@@ -1,9 +1,6 @@
 ---
 title: Azure Workbooks stat visualizations
 description: Learn about all the Azure Workbooks stat visualizations.
-services: azure-monitor
-author: matteing
-ms.author: sergiomattei
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 10/10/2024

@@ -5,7 +5,7 @@ description: This article describes how to create reports on Power BI for Azure 
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 05/24/2024
+ms.date: 03/05/2025
 ms.custom: UpdateFrequency.5, engagement-fy24
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
@@ -20,20 +20,17 @@ This article describes how to create reports on Power BI for Azure Monitor SCOM 
 
 ## Prerequisites
 
-- Azure Active Directory based authentication: 
+- Microsoft Entra ID based authentication: 
 
-    1. [Create an Azure Active Directory group](/azure/active-directory/roles/groups-create-eligible) for the users to whom you want to provide permissions to read data from the SQL Managed Instance through this Power BI report. 
+    1. [Create a Microsoft Entra ID group](/azure/active-directory/roles/groups-create-eligible) for the users to whom you want to provide permissions to read data from the SQL Managed Instance through this Power BI report. 
 
-    2. Create login credentials for the Azure Active Directory group in the SQL Managed Instance, which adds the user principal of the group in the SQL Managed Instance. To create a login, see [Create Login (Transact-SQL)](/sql/t-sql/statements/create-login-transact-sql?view=azuresqldb-mi-current&preserve-view=true).
+    2. Create login credentials for the Microsoft Entra ID group in the SQL Managed Instance, which adds the user principal of the group in the SQL Managed Instance. To create a login, see [Create Login (Transact-SQL)](/sql/t-sql/statements/create-login-transact-sql?view=azuresqldb-mi-current&preserve-view=true).
             :::image type="Create login" source="media/operations-manager-managed-instance-create-reports-on-power-bi/create-login.png" alt-text="Screenshot showing create login option.":::
     3. Provide **db_datareader** permission to the Login on Data warehouse database.
             :::image type="Login properties" source="media/operations-manager-managed-instance-create-reports-on-power-bi/login-properties.png" alt-text="Screenshot showing login properties.":::
     4. [Download the supported SSMS](/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16&preserve-view=true) and add login to SSMS.
     5. In the network security group of the subnet where the Azure SQL Managed Instance is hosted, create an NSG rule to allow public endpoint traffic on port number 3342. For more information about how to configure public endpoint, see [Configure public endpoint](/azure/azure-sql/managed-instance/public-endpoint-configure?view=azuresql&preserve-view=true).
             :::image type="Destination port range" source="media/operations-manager-managed-instance-create-reports-on-power-bi/destination-port-range.png" alt-text="Screenshot showing destination port range.":::
-- SQL based authentication: 
-
-    - You need the username and password of the SQL Managed Instance.
 
 ## Create reports through public endpoint of SQL MI
 
@@ -50,9 +47,7 @@ This article describes how to create reports on Power BI for Azure Monitor SCOM 
      >[!Note]
      >To update the parameters, go to **Settings** of the dataset, and edit the parameters or select **Connect your data** in the banner.
          :::image type="Connect your data" source="media/operations-manager-managed-instance-create-reports-on-power-bi/connect-your-data.png" alt-text="Screenshot showing Connect your data option.":::
-1. After you enter the parameters, select any one of the following authentication methods: 
-    - SQL username and password-based method 
-    - Azure Active Directory-based method 
+1. After you enter the parameters, select Microsoft Entra ID based method 
     
     The dataset and reports will be refreshed. 
 

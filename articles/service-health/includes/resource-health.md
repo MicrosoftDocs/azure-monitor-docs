@@ -2,8 +2,6 @@
 ms.service: azure-service-health
 ms.topic: include
 ms.date: 07/07/2022
-author: rboucher
-ms.author: robb
 ---
 
 ### Count of virtual machines by availability state and subscription ID

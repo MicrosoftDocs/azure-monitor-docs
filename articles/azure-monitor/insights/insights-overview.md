@@ -2,10 +2,7 @@
 title: Azure Monitor Insights Overview
 description: Lists available Azure Monitor "Insights" and other Azure product integrations 
 ms.topic: conceptual
-author: rboucher
-ms.author: robb
-ms.date: 09/06/2024
-ms.reviewer: robb
+ms.date: 01/29/2025
 ---
 
 # Azure Monitor Insights overview
@@ -53,7 +50,7 @@ The following table lists the available curated visualizations and information a
 | [Azure Monitor for SAP solutions](/azure/virtual-machines/workloads/sap/monitor-sap-on-azure) | GA | No | An Azure-native monitoring product for anyone running their SAP landscapes on Azure. It works with both SAP on Azure Virtual Machines and SAP on Azure Large Instances. Collects telemetry data from Azure infrastructure and databases in one central location and visually correlates the data for faster troubleshooting. You can monitor different components of an SAP landscape, such as Azure virtual machines (VMs), high-availability clusters, SAP HANA database, and SAP NetWeaver, by adding the corresponding provider for that component. |
 |**Other**||||
 | [Azure Virtual Desktop Insights](/azure/virtual-desktop/azure-monitor) | GA | [Yes](https://portal.azure.com/#blade/Microsoft_Azure_WVD/WvdManagerMenuBlade/insights/menuId/insights) | Azure Virtual Desktop Insights is a dashboard built on Azure Monitor Workbooks that helps IT professionals understand their Azure Virtual Desktop environments. |
-| [Azure Stack HCI Insights](/azure-stack/hci/manage/azure-stack-hci-insights) | GA| [Yes](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/azureStackHCIInsights) | Based on Azure Monitor Workbooks. Provides health, performance, and usage insights about registered Azure Stack HCI version 21H2 clusters that are connected to Azure and enrolled in monitoring. It stores its data in a Log Analytics workspace, which allows it to deliver powerful aggregation and filtering and analyze data trends over time.  |
+| [Azure Local Insights](/azure/azure-local/manage/monitor-multi-23h2) | GA| [Yes](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/azureStackHCIInsights) | Based on Azure Monitor Workbooks. Provides health, performance, and usage insights about registered Azure Local clusters that are connected to Azure and enrolled in monitoring. It stores its data in a Log Analytics workspace, which allows it to deliver powerful aggregation and filtering and analyze data trends over time.  |
 | [Windows Update for Business](/windows/deployment/update/wufb-reports-overview) | GA | [Yes](https://ms.portal.azure.com/#view/AppInsightsExtension/WorkbookViewerBlade/Type/updatecompliance-insights/ComponentId/Azure%20Monitor/GalleryResourceType/Azure%20Monitor/ConfigurationId/community-Workbooks%2FUpdateCompliance%2FUpdateComplianceHub) | Detailed deployment monitoring, compliance assessment and failure troubleshooting for all Windows 10/11 devices.|
 |**Not in Azure portal Insight hub**||||
 | [Azure Monitor Workbooks for Microsoft Entra ID](/azure/active-directory/reports-monitoring/howto-use-azure-monitor-workbooks) |GA| [Yes](https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Workbooks) | Microsoft Entra ID provides workbooks to understand the effect of your Conditional Access policies, troubleshoot sign-in failures, and identify legacy authentications. |

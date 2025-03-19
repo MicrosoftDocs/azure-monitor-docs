@@ -5,7 +5,7 @@ description: This article describes the errors that might occur while validating
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 05/22/2024
+ms.date: 03/05/2025
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: troubleshooting-general
@@ -16,6 +16,9 @@ ms.topic: troubleshooting-general
 This article describes the errors that might occur while validating input parameters and how to resolve them.
 
 If you encounter any issues while creating on-premises parameters, use [this script](https://go.microsoft.com/fwlink/?linkid=2221732) for assistance.
+
+>[!DISCLAIMER]
+>Microsoft recommends that you use the most secure authentication flow available. The authentication flow described in this article requires a very high degree of trust in the application, and carries risks that are not present in other flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
 
 This script is designed to help troubleshoot and resolve issues related to on-premises parameter creation. Access the script and utilize its functionalities to address any difficulties you might encounter during the creation of on-premises parameters.
 

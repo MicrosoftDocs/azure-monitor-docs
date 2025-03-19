@@ -4,7 +4,6 @@ description: This article explains how to use link actions in Azure Workbooks.
 ms.topic: conceptual
 ms.custom: devx-track-arm-template
 ms.date: 09/18/2024
-ms.author: abbyweisberg
 ms.reviewer: gardnerjr
 ---
 

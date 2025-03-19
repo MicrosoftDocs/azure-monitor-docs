@@ -1,9 +1,6 @@
 ---
 title: Workspace configuration to DCR config generator
 description: Using the Workspace configuration to DCR config generator to help migrate from MMA to AMA agents
-author: EdB-MSFT
-ms.author: edbaynash
-ms.reviewer: guywild
 ms.topic: conceptual 
 ms.date: 11/14/2024
 

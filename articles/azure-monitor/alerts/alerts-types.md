@@ -1,8 +1,6 @@
 ---
 title: Types of Azure Monitor alerts
 description: This article explains the different types of Azure Monitor alerts and when to use each type.
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 03/10/2024
 ms.custom: template-concept

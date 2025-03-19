@@ -2,13 +2,13 @@
 title: Application Insights IP address collection | Microsoft Docs
 description: Understand how Application Insights handles IP addresses and geolocation.
 ms.topic: conceptual
-ms.date: 07/24/2024
+ms.date: 03/05/2025
 ms.reviewer: mmcc
 ---
 
 # Geolocation and IP address handling
 
-This article explains how geolocation lookup and IP address handling work in [Application Insights](app-insights-overview.md#application-insights-overview).
+This article explains how geolocation lookup and IP address handling work in [Application Insights](app-insights-overview.md).
 
 ## Default behavior
 
@@ -28,44 +28,21 @@ When IP addresses aren't collected, city and other geolocation attributes also a
 ## Storage of IP address data
 
 > [!WARNING]
-> The default and our recommendation is to not collect IP addresses. If you override this behavior, verify the collection doesn't break any compliance requirements or local regulations.
+> The default and our recommendation are to not collect IP addresses. If you override this behavior, verify the collection doesn't break any compliance requirements or local regulations.
 >
 > To learn more about handling personal data, see [Guidance for personal data](../logs/personal-data-mgmt.md).
 
+> [!NOTE]
+> The IP addresses associated with telemetry ingested before enabling the `DisableIpMasking` property continues to be displayed as `0.0.0.0`. Only telemetry ingested after this change reflects the actual IP address information.
+
 To enable IP collection and storage, the `DisableIpMasking` property of the Application Insights component must be set to `true`.
 
-Options to set this property include:
+## Disable IP masking
 
-- [ARM template](#arm-template)
-- [Portal](#portal)
-- [REST API](#rest-api)
-- [PowerShell](#powershell)
+> [!TIP]
+> If you need to modify the behavior for only a single Application Insights resource, use the Azure portal.
 
-### ARM template
-
-```json
-{
-       "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<resource-name>",
-       "name": "<resource-name>",
-       "type": "microsoft.insights/components",
-       "location": "westcentralus",
-       "tags": {
-              
-       },
-       "kind": "web",
-       "properties": {
-              "Application_Type": "web",
-              "Flow_Type": "Redfield",
-              "Request_Source": "IbizaAIExtension",
-              // ...
-              "DisableIpMasking": true
-       }
-}
-```
-
-### Portal
-
-If you need to modify the behavior for only a single Application Insights resource, use the Azure portal.
+### [Portal](#tab/portal)
 
 1. Go to your Application Insights resource, and then select **Automation** > **Export template**.
 
@@ -78,7 +55,7 @@ If you need to modify the behavior for only a single Application Insights resour
     :::image type="content" source="media/ip-collection/edit-template.png" lightbox="media/ip-collection/edit-template.png" alt-text="Screenshot that shows the Edit button, along with a warning about the resource group.":::
 
     > [!NOTE]
-    > If you experience the error shown in the preceding screenshot, you can resolve it. It states: "The resource group is in a location that is not supported by one or more resources in the template. Please choose a different resource group." Temporarily select a different resource group from the dropdown list and then re-select your original resource group.
+    > If you experience the error shown in the preceding screenshot, you can resolve it. It states: "The resource group is in a location that isn't supported by one or more resources in the template. Please choose a different resource group." Temporarily select a different resource group from the dropdown list and then reselect your original resource group.
 
 1. In the JSON template, locate `properties` inside `resources`. Add a comma to the last JSON field, and then add the following new line: `"DisableIpMasking": true`. Then select **Save**.
 
@@ -94,45 +71,91 @@ If you need to modify the behavior for only a single Application Insights resour
     If you select and edit the template again, only the default template without the newly added property. If you aren't seeing IP address data and want to confirm that `"DisableIpMasking": true` is set, run the following PowerShell commands:
     
     ```powershell
-    # Replace `Fabrikam-dev` with the appropriate resource and resource group name.
+    # Replace <application-insights-resource-name> and <resource-group-name> with the appropriate resource and resource group name.
+
     # If you aren't using Azure Cloud Shell, you need to connect to your Azure account
-    # Connect-AzAccount 
-    $AppInsights = Get-AzResource -Name 'Fabrikam-dev' -ResourceType 'microsoft.insights/components' -ResourceGroupName 'Fabrikam-dev'
+    # Connect-AzAccount
+
+    $AppInsights = Get-AzResource -Name '<application-insights-resource-name>' -ResourceType 'microsoft.insights/components' -ResourceGroupName '<resource-group-name>'
     $AppInsights.Properties
     ```
     
     A list of properties is returned as a result. One of the properties should read `DisableIpMasking: true`. If you run the PowerShell commands before you deploy the new property with Azure Resource Manager, the property doesn't exist.
 
-### REST API
+### [Azure CLI](#tab/cli)
 
-The following [REST API](/rest/api/azure/) payload makes the same modifications:
+> [!NOTE]
+> Currently, Azure doesn't provide a way to disable IP masking for Application Insights via the Azure CLI. To disable IP masking programmatically, use Azure PowerShell.
+
+### [PowerShell](#tab/powershell)
+
+To disable IP masking using [Azure PowerShell](/powershell/azure/what-is-azure-powershell), use the following command and replace the placeholders `<application-insights-resource-name>` and `<resource-group-name>` with your specific values:
+
+```powershell
+Update-AzApplicationInsights -Name "<application-insights-resource-name>" -ResourceGroupName "<resource-group-name>" -DisableIPMasking:$true
+```
+
+For more information about the `Update-AzApplicationInsights` cmdlet, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
+
+### [REST API](#tab/rest)
+
+To disable IP masking using the [REST API](/rest/api/azure/), use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, and `<azure-region-name>` with your specific values:
 
 ```json
-PATCH https://management.azure.com/subscriptions/<sub-id>/resourceGroups/<rg-name>/providers/microsoft.insights/components/<resource-name>?api-version=2018-05-01-preview HTTP/1.1
+PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>?api-version=2018-05-01-preview HTTP/1.1
 Host: management.azure.com
-Authorization: AUTH_TOKEN
+Authorization: Bearer <access-token>
 Content-Type: application/json
-Content-Length: 54
 
 {
-       "location": "<resource location>",
-       "kind": "web",
-       "properties": {
-              "Application_Type": "web",
-              "DisableIpMasking": true
-       }
+    "location": "<azure-region-name>",
+    "kind": "web",
+    "properties": {
+        "Application_Type": "web",
+        "DisableIpMasking": true
+    }
 }
 ```
 
-### PowerShell
+For more information about configuring Application Insights resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/create-or-update).
 
-The PowerShell `Update-AzApplicationInsights` cmdlet can disable IP masking with the `DisableIPMasking` parameter.
+### [Bicep](#tab/bicep)
 
-```powershell
-Update-AzApplicationInsights -Name "aiName" -ResourceGroupName "rgName" -DisableIPMasking:$true
+To disable IP masking using [Bicep](/azure/azure-resource-manager/bicep/overview), use the following template and replace the placeholders `<application-insights-resource-name>` and `<azure-region-name>` with your specific values:
+
+```bicep
+resource appInsights 'microsoft.insights/components@2020-02-02' = {
+    name: '<application-insights-resource-name>'
+    location: '<azure-region-name>'
+
+    kind: 'web'
+    properties: {
+        Application_Type: 'web'
+        DisableIpMasking: true
+    }
+}
 ```
 
-For more information on the `Update-AzApplicationInsights` cmdlet, see [Update-AzApplicationInsights](/powershell/module/az.applicationinsights/update-azapplicationinsights)
+### [ARM (JSON)](#tab/arm)
+
+To disable IP masking using [ARM (JSON)](/azure/azure-resource-manager/templates/overview), use the following template and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<azure-region-name>` with your specific values:
+
+```json
+{
+    "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>",
+    "name": "<application-insights-resource-name>",
+    "type": "microsoft.insights/components",
+    "location": "<azure-region-name>",
+
+    "kind": "web",
+    "properties": {
+        "Application_Type": "web",
+        "DisableIpMasking": true
+    }
+}
+```
+
+---
 
 ## Next steps
 

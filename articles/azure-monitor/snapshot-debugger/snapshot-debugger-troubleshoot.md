@@ -6,7 +6,7 @@ author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: conceptual
-ms.date: 01/21/2025
+ms.date: 03/04/2025
 ms.custom: devdivchpfy22, devx-track-dotnet
 ---
 
@@ -78,12 +78,6 @@ The interactive, chat-like interface looks for common problems and guides you to
 :::image type="content" source="./media/snapshot-debugger/health-check.png" alt-text="Screenshot showing the interactive Health Check window listing the problems and suggestions how to fix them.":::
 
 If that doesn't solve the problem, then refer to the following manual troubleshooting steps.
-
-## Verify the instrumentation key
-
-Make sure you're using the correct instrumentation key in your published application. Usually, the instrumentation key is read from the *ApplicationInsights.config* file. Verify the value is the same as the instrumentation key for the Application Insights resource that you see in the portal.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## <a id="SSL"></a>Check TLS/SSL client settings (ASP.NET)
 
@@ -194,35 +188,35 @@ You should see at least one file with a name that begins with `Uploader_` or `Sn
 The file name includes a unique suffix that identifies the App Service instance. If your App Service instance is hosted on more than one machine, there are separate log files for each machine. When the uploader detects a new minidump file, it's recorded in the log file. Here's an example of a successful snapshot and upload:
 
 ```
-SnapshotUploader.exe Information: 0 : Received Fork request ID 139e411a23934dc0b9ea08a626db16c5 from process 6368 (Low pri)
+SnapshotUploader.exe Information: 0 : Received Fork request ID <request-ID> from process <ID> (Low pri)
     DateTime=2018-03-09T01:42:41.8571711Z
-SnapshotUploader.exe Information: 0 : Creating minidump from Fork request ID 139e411a23934dc0b9ea08a626db16c5 from process 6368 (Low pri)
+SnapshotUploader.exe Information: 0 : Creating minidump from Fork request ID <request-ID> from process 6368 (Low pri)
     DateTime=2018-03-09T01:42:41.8571711Z
-SnapshotUploader.exe Information: 0 : Dump placeholder file created: 139e411a23934dc0b9ea08a626db16c5.dm_
+SnapshotUploader.exe Information: 0 : Dump placeholder file created: <request-ID>.dm_
     DateTime=2018-03-09T01:42:41.8728496Z
-SnapshotUploader.exe Information: 0 : Dump available 139e411a23934dc0b9ea08a626db16c5.dmp
+SnapshotUploader.exe Information: 0 : Dump available <request-ID>.dmp
     DateTime=2018-03-09T01:42:45.7525022Z
-SnapshotUploader.exe Information: 0 : Successfully wrote minidump to D:\local\Temp\Dumps\c12a605e73c44346a984e00000000000\139e411a23934dc0b9ea08a626db16c5.dmp
+SnapshotUploader.exe Information: 0 : Successfully wrote minidump to D:\local\Temp\Dumps\<connection-string>\<request-ID>.dmp
     DateTime=2018-03-09T01:42:45.7681360Z
-SnapshotUploader.exe Information: 0 : Uploading D:\local\Temp\Dumps\c12a605e73c44346a984e00000000000\139e411a23934dc0b9ea08a626db16c5.dmp, 214.42 MB (uncompressed)
+SnapshotUploader.exe Information: 0 : Uploading D:\local\Temp\Dumps\<connection-string>\<request-ID>.dmp, 214.42 MB (uncompressed)
     DateTime=2018-03-09T01:42:45.7681360Z
 SnapshotUploader.exe Information: 0 : Upload successful. Compressed size 86.56 MB
     DateTime=2018-03-09T01:42:59.6184651Z
-SnapshotUploader.exe Information: 0 : Extracting PDB info from D:\local\Temp\Dumps\c12a605e73c44346a984e00000000000\139e411a23934dc0b9ea08a626db16c5.dmp.
+SnapshotUploader.exe Information: 0 : Extracting PDB info from D:\local\Temp\Dumps\<connection-string>\<request-ID>.dmp.
     DateTime=2018-03-09T01:42:59.6184651Z
 SnapshotUploader.exe Information: 0 : Matched 2 PDB(s) with local files.
     DateTime=2018-03-09T01:42:59.6809606Z
 SnapshotUploader.exe Information: 0 : Stamp does not want any of our matched PDBs.
     DateTime=2018-03-09T01:42:59.8059929Z
-SnapshotUploader.exe Information: 0 : Deleted D:\local\Temp\Dumps\c12a605e73c44346a984e00000000000\139e411a23934dc0b9ea08a626db16c5.dmp
+SnapshotUploader.exe Information: 0 : Deleted D:\local\Temp\Dumps\<connection-string>\<request-ID>.dmp
     DateTime=2018-03-09T01:42:59.8530649Z
 ```
 
 > [!NOTE]
 > The previous example is from version 1.2.0 of the `Microsoft.ApplicationInsights.SnapshotCollector` NuGet package. In earlier versions, the uploader process is called `MinidumpUploader.exe` and the log is less detailed.
 
-In the previous example, the instrumentation key is `c12a605e73c44346a984e00000000000`. This value should match the instrumentation key for your application.
-The minidump is associated with a snapshot with the ID `139e411a23934dc0b9ea08a626db16c5`. You can use this ID later to locate the associated exception record in Application Insights Analytics.
+In the previous example, the connection string should match the connection string for your application.
+The minidump is associated with a snapshot with the request ID. You can use this ID later to locate the associated exception record in Application Insights Analytics.
 
 The uploader scans for new PDBs about once every 15 minutes. Here's an example:
 
@@ -233,11 +227,11 @@ SnapshotUploader.exe Information: 0 : Scanning D:\home\site\wwwroot for local PD
     DateTime=2018-03-09T01:47:19.4457768Z
 SnapshotUploader.exe Information: 0 : Local PDB scan complete. Found 2 PDB(s).
     DateTime=2018-03-09T01:47:19.4614027Z
-SnapshotUploader.exe Information: 0 : Deleted PDB scan marker : D:\local\Temp\Dumps\c12a605e73c44346a984e00000000000\6368.pdbscan
+SnapshotUploader.exe Information: 0 : Deleted PDB scan marker : D:\local\Temp\Dumps\<connection-string>\<process-ID>.pdbscan
     DateTime=2018-03-09T01:47:19.4614027Z
 ```
 
-For applications that *aren't* hosted in App Service, the uploader logs are in the same folder as the minidumps: `%TEMP%\Dumps\<ikey>` (where `<ikey>` is your instrumentation key).
+For applications that *aren't* hosted in App Service, the uploader logs are in the same folder as the minidumps: `%TEMP%\Dumps\<string>` (where `<string>` is your connection string).
 
 ## Troubleshooting Cloud Services
 
@@ -331,7 +325,7 @@ Or, if you're using *appsettings.json* with a .NET Core application:
 ```json
 {
     "ApplicationInsights": {
-        "InstrumentationKey": "<your instrumentation key>"
+        "ConnectionString": "<your connection string>"
     },
     "SnapshotCollectorConfiguration": {
         "ShadowCopyFolder": "D:\\SnapshotUploader"
@@ -353,7 +347,7 @@ If this search returns no results, no snapshots were reported to Application Ins
 
 To search for a specific snapshot ID from the Uploader logs, type that ID in the Search box. If you can't find records for a snapshot that you know was uploaded, follow these steps:
 
-1. Double-check that you're looking at the right Application Insights resource by verifying the instrumentation key.
+1. Double-check that you're looking at the right Application Insights resource by verifying the connection string.
 
 1. Using the timestamp from the Uploader log, adjust the Time Range filter of the search to cover that time range.
 

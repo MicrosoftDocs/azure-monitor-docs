@@ -4,8 +4,6 @@ description: Learn how to convert ITSM actions that send events to ServiceNow to
 ms.topic: conceptual
 ms.date: 01/30/2024
 ms.reviewer: nolavime
-ms.author: abbyweisberg
-author: AbbyMSFT
 ---
 
 # Convert ITSM actions that send events to ServiceNow to secure webhook actions

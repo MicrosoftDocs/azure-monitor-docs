@@ -14,7 +14,7 @@ This article provides details for configuring the [Log Analytics agent for Linux
 * [MySQL](#mysql)
 * [Apache HTTP Server](#apache-http-server)
 
-[!INCLUDE [Log Analytics agent deprecation](../../../includes/log-analytics-agent-deprecation.md)]
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-agent-deprecation.md)]
 
 ## MySQL
 

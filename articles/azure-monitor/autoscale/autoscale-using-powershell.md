@@ -1,11 +1,8 @@
 ---
 title: Configure autoscale using PowerShell
 description: Configure autoscale for a Virtual Machine Scale Set using PowerShell
-author: EdB-MSFT
-ms.author: edbaynash
 ms.topic: how-to
 ms.date: 11/01/2024
-ms.subservice: autoscale
 ms.custom: devx-track-azurepowershell
 ms.reviewer: akkumari
 

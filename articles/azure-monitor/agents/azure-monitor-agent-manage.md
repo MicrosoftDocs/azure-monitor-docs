@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: conceptual
-ms.date: 01/22/2025
+ms.date: 02/14/2025
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -11,9 +11,6 @@ ms.reviewer: jeffwo
 # Install and manage the Azure Monitor Agent
 
 This article describes the different methods you can use to install, uninstall, update, and configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers.
-
-> [!IMPORTANT]
-> The Azure Monitor Agent requires at least one data collection rule (DCR) to begin collecting data after it's installed on a client machine. Your installation method determines whether a DCR is created automatically. If a DCR isn't created automatically during installation, you must configure data collection by following the guidance in [Collect data with the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
 
 ## Prerequisites
 
@@ -35,7 +32,7 @@ For any machine that isn't in Azure, the [Azure Arc agent](/azure/azure-arc/serv
 | Installation method | Description |
 |:---|:---|
 | Virtual machine (VM) extension | Use any of the methods described in this article to install the agent via the Azure extension framework. This method doesn't create a DCR, so you must create at least one DCR and associate it with the agent before data collection begins. |
-| [Create a DCR](./azure-monitor-agent-data-collection.md) | When you create a DCR in the Azure portal, the Azure Monitor Agent is installed on any machine that's added as a resource for the DCR. The agent immediately begins to collect data as defined in the DCR.
+| [Create a DCR](../vm/data-collection.md) | When you create a DCR in the Azure portal, the Azure Monitor Agent is installed on any machine that's added as a resource for the DCR. The agent immediately begins to collect data as defined in the DCR.
 | [VM insights](../vm/vminsights-enable-overview.md) | When you enable VM insights on a machine, the Azure Monitor Agent is installed and a DCR is created to collect a predefined set of data. You shouldn't modify this DCR, but you can create more DCRs to collect more data. |
 | [Container insights](../containers/kubernetes-monitoring-enable.md#container-insights) | When you enable Container insights on a Kubernetes cluster, a containerized version of the Azure Monitor Agent is installed in the cluster and a DCR is created to immediately begin collecting data. You can modify the DCR by using the guidance in [Configure data collection and cost optimization in Container insights by using DCRs](../containers/container-insights-data-collection-dcr.md).
 | [Client installer](./azure-monitor-agent-windows-client.md) | Install the agent by using a Windows MSI installer for Windows 11 and Windows 10 clients. |
@@ -51,7 +48,7 @@ For any machine that isn't in Azure, the [Azure Arc agent](/azure/azure-arc/serv
 
 ### [Azure portal](#tab/azure-portal)
 
-To install the agent and create a DCR to collect data by using the Azure portal, use the guidance in [Collect data by using the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+To install the agent and create a DCR to collect data by using the Azure portal, use the guidance in [Collect data by using the Azure Monitor Agent](../vm/data-collection.md).
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
@@ -418,7 +415,7 @@ The AgentSettings DCR currently supports setting the following parameters:
 
 | Parameter | Description | Valid values |
 | --------- | ----------- | ----------- |
-| `MaxDiskQuotaInMB` | To provide resiliency, the agent collects data in a local cache when the agent can't send data. The agent sends the data in the cache after the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: `1025` to `51199`<br>Windows: `4000` to `51199` |
+| `MaxDiskQuotaInMB` | To provide resiliency, the agent collects data in a local cache when the agent can't send data. The agent sends the data in the cache after the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: `4,000` to `1,000,000`<br>Windows: `4000` to `1,000,000` |
 | `UseTimeReceivedForForwardedEvents` | Changes the **WEF** column in the Microsoft Sentinel Windows Event Forwarding (WEF) table to use `TimeReceived` instead of `TimeGenerated` data | `0` or `1` |
 
 ### Set up the AgentSettings DCR
@@ -533,4 +530,4 @@ Currently not supported.
 
 ## Related content
 
-[Create a data collection rule](./azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.
+[Create a data collection rule](../vm/data-collection.md) to collect data from the agent and send it to Azure Monitor.

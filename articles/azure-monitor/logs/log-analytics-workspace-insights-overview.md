@@ -1,10 +1,7 @@
 ---
 title: Log Analytics Workspace Insights
 description: An overview of Log Analytics Workspace Insights usage, performance, health, agents, queries, and change log.
-services: azure-monitor 
 ms.topic: conceptual
-author: guywild
-ms.author: guywild
 ms.reviewer: osalzberg
 ms.date: 12/28/2023
 
@@ -151,6 +148,18 @@ The **Users** subtab shows user activity against this workspace:
 
 * **Queries by user**: How many queries each user ran in the selected time range.
 * **Throttled users**: Users that ran queries that were throttled because of over-querying the workspace.
+
+
+## Data Collection Rules tab
+[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) and [Data collection endpoints (DCEs)](../essentials/data-collection-endpoint-overview.md) can be used to configure the types and sources of logs that are ingested to a workspace.
+
+In some cases, a workspace has a unique DCE to control how data is sent to this workspace. For example, if [workspace replication](./workspace-replication.md) is enabled, a workspace-specific DCE is created, to direct log ingestion to the primary or the secondary workspace, as needed.
+
+This tab shows the workspace DCE, if one is set, and all the DCRs that target this workspace.
+
+In principle, if a workspace has a DCE, the DCRs that target this workspace should be linked to the workspace DCE. When that's not the case, a warning is shown in the grid to indicate it.
+
+:::image type="content" source="media/log-analytics-workspace-insights-overview/workspace-data-collection-rules.png" alt-text="Screenshot that shows the workspace data collection rules tab." lightbox="media/log-analytics-workspace-insights-overview/workspace-data-collection-rules.png":::
 
 ## Change Log tab
 

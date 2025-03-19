@@ -3,7 +3,6 @@ title: Azure Monitor Logs
 description: This article explains how Azure Monitor Logs works and how people with different monitoring needs and skills can use the basic and advanced capabilities that Azure Monitor Logs offers.
 ms.topic: conceptual
 ms.date: 07/07/2024
-ms.author: guywild
 
 # Customer intent: As new user or decision-maker evaluating Azure Monitor Logs, I want to understand how Azure Monitor Logs addresses my monitoring and analysis needs.
 ---

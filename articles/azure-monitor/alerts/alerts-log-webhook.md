@@ -1,8 +1,6 @@
 ---
 title: Sample payloads for Azure Monitor log search alerts using webhook actions
 description: This article describes how to configure log search alert rules with webhook actions and available customizations.
-services: monitoring
-ms.author: abbyweisberg
 ms.topic: reference
 ms.date: 11/23/2023
 ms.reviewer: yalavi
