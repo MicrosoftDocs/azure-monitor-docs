@@ -33,7 +33,7 @@ A subset of the availability zones that support data resilience currently also s
 ## Supported regions
 
 | Region | Data resilience - Shared clusters (default) | Data resilience - Dedicated clusters | Service resilience |
-|:---|:---|:---|:---|
+|:---|:---:|:---:|:---:|
 | **Africa** | | | |
 | South Africa North | | :white_check_mark: | |
 | **Americas** | | | |
@@ -57,7 +57,7 @@ A subset of the availability zones that support data resilience currently also s
 | France Central	| :white_check_mark: | :white_check_mark: | |
 | Germany West Central	| | :white_check_mark: | |
 | Italy North	| :white_check_mark: | :white_check_mark: | :white_check_mark: |
-| North Europe <sup>1</sup>	| | :white_check_mark: | :white_check_mark: | :white_check_mark: |
+| North Europe <sup>1</sup> | :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Norway East	| :white_check_mark: | :white_check_mark: | |
 | Poland Central	| :white_check_mark: | :white_check_mark: | |
 | Spain Central	| :white_check_mark: | :white_check_mark: | :white_check_mark: |
