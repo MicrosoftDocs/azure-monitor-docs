@@ -19,18 +19,18 @@ The following types of telemetry are used to monitor the execution of your app. 
 
 | Telemetry type | Description |
 | --- | --- |
-| **[Dependency](#dependency)** | Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`. |
-| **[Exception](#exception)** | Typically represents an exception that causes an operation to fail. |
-| **[Request](#request)** | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives.<br><br>An *operation* is made up of the threads of execution that process a request. You can also [write code](./api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data. Each operation has an ID. The ID can be used to [group](distributed-trace-data.md) all telemetry generated while your app is processing the request. Each operation has a duration of time and either succeeds or fails. |
-| **[PageView](#pageview)** | ... |
+| **[Dependency](#dependency-telemetry)** | Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`. |
+| **[Exception](#exception-telemetry)** | Typically represents an exception that causes an operation to fail. |
+| **[Request](#request-telemetry)** | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives.<br><br>An *operation* is made up of the threads of execution that process a request. You can also [write code](./api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data. Each operation has an ID. The ID can be used to [group](distributed-trace-data.md) all telemetry generated while your app is processing the request. Each operation has a duration of time and either succeeds or fails. |
+| **[PageView](#pageview)** | Tracks and collects data related to the views of web pages or specific content within your web applications |
 
 Application Insights provides three data types for custom telemetry:
 
 | Data type | Description |
 | --- | --- |
-| **[Event](#event)** | Typically used to capture user interaction with your service to analyze usage patterns. |
-| **[Metric](#metric)** | Used to report periodic scalar measurements. |
-| **[Trace](#trace)** | Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`. |
+| **[Event](#event-telemetry)** | Typically used to capture user interaction with your service to analyze usage patterns. |
+| **[Metric](#metric-telemetry)** | Used to report periodic scalar measurements. |
+| **[Trace](#trace-telemetry)** | Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`. |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
@@ -44,17 +44,6 @@ The Application Insights data model is a basic yet powerful way to model your ap
 
 To report data model or schema problems and suggestions, use our [GitHub repository](https://github.com/microsoft/ApplicationInsights-dotnet/issues/new/choose).
 
-## Customization
-
-| Telemetry type | Custom properties | Custom measurements |
-|----------------|-------------------|---------------------|
-| Dependency     | ✅                | ✅                   |
-| Exception      | ✅                | ✅                   |
-| Request        | ✅                | ✅                   |
-| Event          | ✅                | ✅                   |
-| Metric         | ✅                | ❌                   |
-| Trace          | ✅                | ❌                   |
-
 #### Custom properties
 
 [!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
@@ -63,33 +52,50 @@ To report data model or schema problems and suggestions, use our [GitHub reposit
 
 [!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
 
-## Dependency
+## Dependency telemetry
 
 Dependency telemetry (in [Application Insights](./app-insights-overview.md)) represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
-| Field | Description |
-|---------|---------|
-| **Name** | This field is the name of the command initiated with this dependency call. It has a low cardinality value. Examples are stored procedure name and URL path template. |
-| **ID** | ID is the identifier of a dependency call instance. It's used for correlation with the request telemetry item that corresponds to this dependency call. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
-| **Data** | This field is the command initiated by this dependency call. Examples are SQL statement and HTTP URL with all query parameters. |
-| **Type** | This field is the dependency type name. It has a low cardinality value for logical grouping of dependencies and interpretation of other fields like `commandName` and `resultCode`. Examples are SQL, Azure table, and HTTP. |
-| **Target** | This field is the target site of a dependency call. Examples are server name and host address. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
-| **Duration** | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
-| **Result Code** | This field is the result code of a dependency call. Examples are SQL error code and HTTP status code. |
-| **Success** | This field is the indication of a successful or unsuccessful call. |
+### Dependency metrics
 
-## Exception
+| Field | Description | Link |
+|-------|-------------|------|
+| **Count** | The number of external dependency calls. | [Link]() |
+| **Duration** | The average duration of external calls. | [Link]() |
+| **Failure count** | The number of failed dependency calls (e.g., timeouts, errors). | [Link]() |
+| **Success count** | The number of successful dependency calls. | [Link]() |
+| **Response time** | The average response time of external dependencies. | [Link]() |
+
+### Dependency dimensions
+
+| Dimension | Description |
+|-----------|-------------|
+| **Type** | Type of external service (e.g., SQL Database, HTTP API, Cache). It has a low cardinality value for logical grouping of dependencies and interpretation of other fields like `commandName` and `resultCode`. Examples are SQL, Azure table, and HTTP. |
+| **Name** | The name of the command initiated with this dependency call. It has a low cardinality value. Examples are stored procedure name and URL path template. |
+| **Target** | The external target being called (e.g., database, service). For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **Region** | The geographical location of the dependency. |
+
+## Exception telemetry
 
 In [Application Insights](./app-insights-overview.md), an instance of exception represents a handled or unhandled exception that occurred during execution of the monitored application.
 
+### Exception metrics
 
-| Field                 | Description                                                                                                                                                                                 | Max length (characters) |
-|-----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
-| **Problem ID**        | The problem ID identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024                   |
-| **Severity level**    | This field is the trace severity level. The value can be `Verbose`, `Information`, `Warning`, `Error`, or `Critical`.                                                                       |                         |
-| **Exception details** | (to be extended)                                                                                                                                                                            |                         |
+| Metric | Description | Link |
+|--------|-------------|------|
+| **Count** | The number of exceptions thrown by your application within a specified period. | [Link]() |
+| **Duration** |  The average time between the start of the request and the exception being thrown. | [Link]() |
+| **Frequency** | The frequency of specific exceptions over time. | [Link]() |
 
-## Request
+### Exception dimensions
+
+| Dimension | Description |
+|-----------|-------------|
+| **Type** | The type of exception thrown (e.g., `NullReferenceException`, `TimeoutException`). |
+| **Severity (level)** | This field is the trace severity level. The value can be `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. |
+| **Message** | Specific message or description related to the exception. |
+
+## Request telemetry
 
 A request telemetry item in [Application Insights](./app-insights-overview.md) represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
 
@@ -99,15 +105,25 @@ Request telemetry supports the standard extensibility model by using custom `pro
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
-| Field | Description | Max length (characters) |
-|---------|---------|---------|
-| **Name** | This field is the name of the request and it represents the code path taken to process the request. A low cardinality value allows for better grouping of requests. For HTTP requests, it represents the HTTP method and URL path template like `GET /values/{id}` without the actual `id` value.<br>The Application Insights web SDK sends a request name "as is" about letter case. Grouping on the UI is case sensitive, so `GET /Home/Index` is counted separately from `GET /home/INDEX` even though often they result in the same controller and action execution. The reason for that is that URLs in general are [case sensitive](https://www.w3.org/TR/WD-html40-970708/htmlweb.html). You might want to see if all `404` errors happened for URLs typed in uppercase. You can read more about request name collection by the ASP.NET web SDK in the [blog post](https://apmtips.com/posts/2015-02-23-request-name-and-url/). | 1,024 |
-| **ID** | ID is the identifier of a request call instance. It's used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 128 |
-| **URL** | URL is the request URL with all query string parameters. | 2,048 |
-| **Source** | Source is the source of the request. Examples are the instrumentation key of the caller or the IP address of the caller. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 1,024 |
-| **Duration** | The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. |         |
-| **Response code** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. | 1,024 |
-| **Success** | Success indicates whether a call was successful or unsuccessful. This field is required. When a request isn't set explicitly to `false`, it's considered to be successful. If an exception or returned error result code interrupted the operation, set this value to `false`.<br><br>For web applications, Application Insights defines a request as successful when the response code is less than `400` or equal to `401`. However, there are cases when this default mapping doesn't match the semantics of the application.<br><br>Response code `404` might indicate "no records," which can be part of regular flow. It also might indicate a broken link. For broken links, you can implement more advanced logic. You can mark broken links as failures only when those links are located on the same site by analyzing the URL referrer. Or you can mark them as failures when they're accessed from the company's mobile application. Similarly, `301` and `302` indicate failure when they're accessed from the client that doesn't support redirect.<br><br>Partially accepted content `206` might indicate a failure of an overall request. For instance, an Application Insights endpoint might receive a batch of telemetry items as a single request. It returns `206` when some items in the batch weren't processed successfully. An increasing rate of `206` indicates a problem that needs to be investigated. Similar logic applies to `207` Multi-Status, where the success might be the worst of separate response codes. | |
+### Request metrics
+
+| Metric | Description | Link |
+|--------|-------------|------|
+| **Count** | The number of HTTP requests received by your application. | [Link]() |
+| **Duration** | The average time taken to process requests. The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. | [Link]() |
+| **Response time** | The average time to return a response for a request. | [Link]() |
+| **Failure count** | The number of requests that resulted in errors (e.g., HTTP 500, HTTP 404). | [Link]() |
+| **Success count** | The number of successfully completed requests (e.g., HTTP 200). | [Link]() |
+| **Throughput** | The number of requests per unit of time at which requests are received. | [Link]() |
+
+### Request dimensions
+
+| Dimension | Description |
+|-----------|-------------|
+| **Response code** | HTTP status code of the response (e.g., 200, 500). |
+| **Name** | URL or endpoint being requested (e.g., `/api/products`). |
+| **Client Type** | Type of client making the request (e.g., browser, mobile). |
+| **Region** | Geographical location where the request originated. |
 
 ## PageView
 
@@ -141,17 +157,31 @@ If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.or
 
 :::image type="content" source="./media/javascript/page-view-load-time.png" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." lightbox="./media/javascript/page-view-load-time.png" border="false":::
 
-## Event
+## Event telemetry
 
 You can create event telemetry items (in [Application Insights](./app-insights-overview.md)) to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
 
 Semantically, events might or might not be correlated to requests. If used properly, event telemetry is more important than requests or traces. Events represent business telemetry and should be subject to separate, less aggressive [sampling](./api-filtering-sampling.md).
 
-| Field    | Description                                                                                                                                                                                             | Maximum length (characters) |
-|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------|
-| **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512                         |
+### Event metrics
 
-## Metric
+| Metric | Description | Link |
+|--------|-------------|------|
+| **Count** | The number of events triggered (e.g., user logins, transactions). | [Link]() |
+| **Duration** | The average duration or time taken for specific events to occur. | [Link]() |
+| **Frequency** | The frequency of specific events within a time window. | [Link]() |
+
+### Event dimensions
+
+| Dimension | Description |
+|-----------|-------------|
+| **Name** | The name of the event (e.g., `userLogin`, `purchaseCompleted`). |
+| **Properties** | Custom attributes associated with the event (e.g., user ID, purchase amount). |
+| **User type** | Type of user triggering the event (e.g., anonymous user, registered user). |
+| **Region** | Geographical location where the request originated. |
+| **Application** | The application or system generating the event. |
+
+## Metric telemetry
 
 [Application Insights](./app-insights-overview.md) supports two types of metric telemetry:
 
@@ -171,36 +201,50 @@ Application Insights supports several well-known metric names. These metrics are
 
 For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
 
-<!-- Reached out to Timothy Mothra Lee about relevance of this section.
+### Metrics
 
-The following table shows the metrics that represent system and process counters.
+| Metric | Description | Link |
+|--------|-------------|------|
+| **CPU usage** | Percentage of CPU time being used by the application. | [Link]() |
+| **Memory usage** | Amount of memory (in bytes or percentage) being used. | [Link]() |
+| **Disk I/O** | Input/Output operations performed by the disk. | [Link]() |
+| **Network traffic** | The amount of data sent and received over the network. | [Link]() |
+| **Custom metrics** | Any user-defined metric (e.g., specific business metrics like the number of items sold, page load times). | [Link]() |
 
-| .NET name | Platform-agnostic name | Description |
-|-----------|------------------------|-------------|
-| `\Processor(_Total)\% Processor Time` | Work in progress... | Total machine CPU. |
-| `\Memory\Available Bytes` | Work in progress... | Shows the amount of physical memory, in bytes, available to processes running on the computer. It's calculated by summing the amount of space on the zeroed, free, and standby memory lists. Free memory is ready for use. Zeroed memory consists of pages of memory filled with zeros to prevent later processes from seeing data used by a previous process. Standby memory is memory that's been removed from a process's working set (its physical memory) en route to disk but is still available to be recalled. See [Memory Object](/previous-versions/ms804008(v=msdn.10)). |
-| `\Process(??APP_WIN32_PROC??)\% Processor Time` | Work in progress... | CPU of the process hosting the application. |
-| `\Process(??APP_WIN32_PROC??)\Private Bytes` | Work in progress... | Memory used by the process hosting the application. |
-| `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | Work in progress... | Rate of I/O operations run by the process hosting the application. |
-| `\ASP.NET Applications(??APP_W3SVC_PROC??)\Requests/Sec`  | Work in progress... | Rate of requests processed by an application. |
-| `\.NET CLR Exceptions(??APP_CLR_PROC??)\# of Exceps Thrown / sec` | Work in progress... | Rate of exceptions thrown by an application. |
-| `\ASP.NET Applications(??APP_W3SVC_PROC??)\Request Execution Time` | Work in progress... | Average request execution time. |
-| `\ASP.NET Applications(??APP_W3SVC_PROC??)\Requests In Application Queue` | Work in progress... | Number of requests waiting for the processing in a queue. |
+### Metric dimensions
 
--->
+| Dimension | Description |
+|-----------|-------------|
+| **Resource** | The specific resource being measured (e.g., `VM1`, `AppService`). |
+| **Region** | The region of the monitored resource. |
+| **Instance** | The specific instance or component being measured. |
+| **Operating system** | The OS type (e.g., Linux, Windows). |
+| **Service Name** | The name of the service associated with the metric (e.g., `WebApp`). |
 
 ### Custom properties
 
 The metric with the custom property `CustomPerfCounter` set to `true` indicates that the metric represents the Windows performance counter. These metrics are placed in the `performanceCounters` table, not in `customMetrics`. Also, the name of this metric is parsed to extract category, counter, and instance names.
 
-## Trace
+## Trace telemetry
 
 Trace telemetry in [Application Insights](./app-insights-overview.md) represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
-| Field              | Description           | Values                                                                   |
-|--------------------|-----------------------|--------------------------------------------------------------------------|
-| **Message**        | Trace message.        | **Maximum length:** 32,768 characters                                    |
-| **Severity level** | Trace severity level. | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
+### Trace metrics
+
+| Metric | Description | Link |
+|--------|-------------|------|
+| **Count** | The number of trace events logged. | [Link]() |
+| **Duration** | The time span between trace start and end points. | [Link]() |
+| **Frequency** | The number of traces occurring in a specific period. | [Link]() |
+
+### Trace dimensions
+
+| Dimension | Description | Values |
+|-----------|-------------|--------|
+| **Severity level** | The severity of the trace (e.g., Information, Warning, Error). | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
+| **Message** | The content of the log or trace message. | **Maximum length:** 32,768 characters |
+| **Category** | The type or category of the trace (e.g., `database`, `user_activity`). | ... |
+| **Request ID** | Correlation ID for tracking a particular request across telemetry. | ... |
 
 ## Context
 
@@ -241,6 +285,7 @@ This can occur if you're using string values. Only numeric values work with cust
 ## Next steps
 
 Learn how to use the [Application Insights API for custom events and metrics](./api-custom-events-metrics.md), including:
+
 * [Custom request telemetry](./api-custom-events-metrics.md#trackrequest)
 * [Custom dependency telemetry](./api-custom-events-metrics.md#trackdependency)
 * [Custom trace telemetry](./api-custom-events-metrics.md#tracktrace)
@@ -248,6 +293,7 @@ Learn how to use the [Application Insights API for custom events and metrics](./
 * [Custom metric telemetry](./api-custom-events-metrics.md#trackmetric)
 
 Set up dependency tracking for:
+
 * [.NET](./asp-net-dependencies.md)
 * [Java](./opentelemetry-enable.md?tabs=java)
 
