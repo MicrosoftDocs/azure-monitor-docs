@@ -12,7 +12,7 @@ When you create an [Azure Monitor Private Link Scope (AMPLS)](./private-link-sec
 
 ## AMPLS limits
 
-[!INCLUDE [ampls-limitations](../includes/ampls-limitations.md)]
+[!INCLUDE [ampls-limitations](../fundamentals//includes/ampls-limitations.md)]
 
 ## Plan by network topology
 

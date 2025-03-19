@@ -240,7 +240,7 @@ If you want to perform your edits completely in the Azure portal, you can use th
     :::image type="content" source="media/data-collection-rule-edit/deployment-error.png" lightbox="media/data-collection-rule-edit/deployment-error.png" alt-text="Screenshot that shows a failed deployment for a data collection rule in the Azure portal.":::
 
 
-[!INCLUDE [data-collection-rule-troubleshoot](../includes/data-collection-rule-troubleshoot.md)]
+[!INCLUDE [data-collection-rule-troubleshoot](includes/data-collection-rule-troubleshoot.md)]
 
 
 ## Next steps

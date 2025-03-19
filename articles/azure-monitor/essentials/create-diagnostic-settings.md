@@ -197,7 +197,7 @@ For details on using Azure Policy to create diagnostic settings at scale, see [C
 
 ---
 
-[!INCLUDE [diagnostics-settings-troubleshooting](../includes/diagnostics-settings-troubleshooting.md)]
+[!INCLUDE [diagnostics-settings-troubleshooting](includes/diagnostics-settings-troubleshooting.md)]
 
 
 ## Next steps
