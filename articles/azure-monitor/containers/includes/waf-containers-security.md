@@ -14,7 +14,7 @@ ms.date: 03/19/2025
 
 #### Send data from clusters to Azure Monitor through a private endpoint using Azure private link 
 
-Azure managed service for Prometheus stores its data in an Azure Monitor workspace, which uses a public endpoint by default. Microsoft secures connections to public endpoints with end-to-end encryption. If you require a private endpoint, use [Azure private link](../../azure-monitor/logs/private-link-security.md) to allow your cluster to connect to the workspace through authorized private networks. Private link can also be used to force workspace data ingestion through ExpressRoute or a VPN.
+Azure managed service for Prometheus stores its data in an Azure Monitor workspace, which uses a public endpoint by default. Microsoft secures connections to public endpoints with end-to-end encryption. If you require a private endpoint, use [Azure private link](../../../azure-monitor/logs/private-link-security.md) to allow your cluster to connect to the workspace through authorized private networks. Private link can also be used to force workspace data ingestion through ExpressRoute or a VPN.
 
 **Instructions**: See [Enable private link for Kubernetes monitoring in Azure Monitor](../kubernetes-monitoring-private-link.md) for details on configuring your cluster for private link. See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../../essentials/azure-monitor-workspace-private-endpoint.md) for details on querying your data using private link.
 
@@ -32,6 +32,6 @@ Azure managed service for Prometheus stores its data in an Azure Monitor workspa
 
 Container insights sends data to a Log Analytics workspace. Make sure to secure log ingestions and storage in your Log Analytics workspace.
 
-**Instructions**: [Log ingestion and storage](#log-ingestion-and-storage).
+**Instructions**: [Log ingestion and storage](../../fundamentals/best-practices-security.md#log-ingestion-and-storage).
 
 

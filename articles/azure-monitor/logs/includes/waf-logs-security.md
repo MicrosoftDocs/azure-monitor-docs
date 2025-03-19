@@ -36,7 +36,7 @@ Azure Monitor is an append-only data platform, but it includes provisions to del
 1. If you need a fully tamper-proof solution, we recommend you export your data to an [immutable storage solution](/azure/storage/blobs/immutable-storage-overview):
 
     1. Determine the specific data types that should be exported. Not all log types have the same relevance for compliance, auditing, or security.
-    1. Use [data export](../azure-monitor/logs/logs-data-export.md) to send data to an Azure storage account.<br>**Instructions**: [Log Analytics workspace data export in Azure Monitor](../logs-data-export.md)
+    1. Use [data export](../logs-data-export.md) to send data to an Azure storage account.<br>**Instructions**: [Log Analytics workspace data export in Azure Monitor](../logs-data-export.md)
     1. Set immutability policies to protect against data tampering.<br>**Instructions**: [Configure immutability policies for blob versions](/azure/storage/blobs/immutable-policy-configure-version-scope)
 
 #### Filter or obfuscate sensitive data in your workspace
@@ -44,7 +44,7 @@ Azure Monitor is an append-only data platform, but it includes provisions to del
 If your log data includes [sensitive information](../personal-data-mgmt.md): 
 
 1. Filter records that shouldn't be collected using the configuration for the particular data source.
-1. Use a transformation if only particular columns in the data should be removed or obfuscated.<br>**Instructions**: [Transformations in Azure Monitor](../../azure-monitor/essentials/data-collection-transformations.md)
+1. Use a transformation if only particular columns in the data should be removed or obfuscated.<br>**Instructions**: [Transformations in Azure Monitor](../../../azure-monitor/essentials/data-collection-transformations.md)
 1. If you have standards that require the original data to be unmodified, use the 'h' literal in KQL queries to obfuscate query results displayed in workbooks.<br>**Instructions**: [Obfuscated string literals](/azure/data-explorer/kusto/query/scalar-data-types/string#obfuscated-string-literals)
 
 #### Purge sensitive data that was collected accidentally 
