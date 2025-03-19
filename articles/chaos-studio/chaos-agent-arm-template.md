@@ -277,3 +277,4 @@ The following sample installs the Chaos Agent on an Azure virtual machine scale 
         }
     ]
 }
+```
