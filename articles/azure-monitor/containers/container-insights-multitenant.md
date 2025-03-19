@@ -56,7 +56,7 @@ The following logic is used to determine how to process each log entry:
 ### Enable multi-tenancy feature in ConfigMap
 1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
  
-2.  Enable multi-tenancy by changing the `enabled` setting in `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR is sent  to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
+2.  Enable multi-tenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR is sent to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
 
     ```yaml
     log-data-collection-settings: |-
@@ -66,17 +66,6 @@ The following logic is used to determine how to process each log entry:
             disable_fallback_ingestion = false 
     ```
 
-2. Enable collection of internal metrics to populate the Grafana dashboard described below. You can do this by removing the comment character (#) for the lines shown below.
-
-    ```yaml
-    [agent_settings.fbit_config]
-    #   log_flush_interval_secs = "1"
-    #   tail_mem_buf_limit_megabytes = "10"
-    #   tail_buf_chunksize_megabytes = "1"
-    #   tail_buf_maxsize_megabytes = "1"
-      enable_internal_metrics = "true"
-    #   tail_ignore_older = "5m"      
-    ```
 
 3. Apply the ConfigMap to the cluster with the following commands. 
 
@@ -101,40 +90,6 @@ az aks enable-addons -a monitoring -g <clusterRGName> -n <clusterName> --enable-
 
 For a new private AKS cluster, see [Create a private Azure Kubernetes Service (AKS) cluster](/azure/aks/private-clusters?tabs=azure-portal). Use the additional parameters `--enable-high-scale-mode` and `--ampls-resource-id` to configure high log scale mode with Azure Monitor Private Link Scope Resource ID.
 
-
-### Create default DCR
-Once the cluster has been enabled for monitoring with high log scale mode and multi-tenancy, you can create the DCR which enables monitoring for the cluster and serves as the default for any k8s namespaces that don't have a corresponding DCR.
-
-1. Retrieve the following ARM template and parameter file.
-
-    Template file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file)
-    Parameter file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file)
-
-2. Edit the parameter file with values for the following parameters. 
-
-    | Parameter Name | Description |
-    |:---|:---|
-    | `aksResourceId` | Azure Resource ID of the AKS cluster |
-    | `aksResourceLocation` | Azure Region of the AKS cluster |
-    | `workspaceResourceId` | Azure Resource ID of the Azure Log Analytics Workspace |
-    | `workspaceRegion` | 	Azure Region of the Azure Log Analytics Workspace |
-    | `enableContainerLogV2` | Indicates whether to use ContainerLogV2. Must be `true`. |
-    | `enableSyslog` | Indicates whether enable Syslog collection or not. |
-    | `syslogLevels` | Syslog log levels to collect. |
-    | `syslogFacilities` | Syslog facilities to collect. |
-    | `resourceTagValues` | Azure Resource Tags to use on AKS, data collection rule (DCR), and data collection endpoint (DCE). |
-    | `dataCollectionInterval` | Data collection interval for applicable inventory and perf data collection. Default is 1m. |
-    | `namespaceFilteringModeForDataCollection` | Data collection namespace filtering mode for applicable inventory and performance data collection. Default is `Off`. |
-    | `namespacesForDataCollection` | Namespaces for data collection for applicable for inventory and perf data collection. |
-    | `streams` | Streams for data collection.  For high scale mode, use `Microsoft-ContainerLogV2-HighScale` instead of `Microsoft-ContainerLogV2`.  Ensure that you don't have both streams, or you'll cause duplicate logs. |
-    | `useAzureMonitorPrivateLinkScope` | Indicates whether to configure Azure Monitor Private Link Scope.  |
-    | `azureMonitorPrivateLinkScopeResourceId` | Azure Resource ID of the Azure Monitor Private Link Scope. |
-
-3. Deploy the template using the parameter file with the following command. 
-
-    ```azurecli
-    az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file  aks-enable-monitoring-msi-onboarding-template-file --parameters aks-enable-monitoring-msi-onboarding-template-parameter-file
-    ```
 
 ### Create DCR for each application or infrastructure team
 Repeat the following steps to create a separate DCR for application or infrastructure team. Each will include a set of k8s namespaces and a Log Analytics workspace destination.
@@ -161,28 +116,8 @@ Repeat the following steps to create a separate DCR for application or infrastru
 3. Deploy the template using the parameter file with the following command. 
 
     ```azurecli
-    az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file  template-file  aks-enable-monitoring-multitenancy-onboarding-template-file --parameters aks-enable-monitoring-multitenancy-onboarding-template-parameter-file
+    az deployment group create --name AzureMonitorDeployment --resource-group <aksClusterResourceGroup> --template-file  existingClusterOnboarding.json --parameters existingClusterParam.json
     ```
-
-## QoS Grafana Dashboards
-The QoS Grafana dashboard reports on the health and performance of your multi-tenancy clusters. 
-
-1. Ensure that Azure Managed Prometheus and Azure Managed Grafana are enabled for the cluster using the guidance at  [Enable Prometheus and Grafana](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana). 
-
-3. Download the [`ama-metrics-prometheus-config-node` ConfigMap](https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/MultiTenancyLogging/BasicMode/ama-metrics-prometheus-config-node.yaml).
-
-4. Use the following command to determine if you already have an existing `ama-metrics-prometheus-config-node` ConfigMap.
-
-    `kubectl get cm -n kube-system | grep ama-metrics-prometheus-config-node`
-
-5. If you have an existing ConfigMap, then add the `ama-logs-daemonset` scrape config from the downloaded ConfigMap to the existing one.
-
-6. Apply either the downloaded or updated ConfigMap with the following command:
-
-    `kubectl apply -f ama-metrics-prometheus-config-node.yaml`
-
-5.	Download the [Grafana dashboard JSON file](https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/MultiTenancyLogging/BasicMode/AzureMonitorContainers_BasicMode_Grafana.json) and import into to the Azure Managed Grafana Instance.
-
 
 
 ## Disabling multi-tenant logging
@@ -218,11 +153,11 @@ Use the following steps to disable multi-tenant logging on a cluster.
 
 
 ## Firewall requirements
-In addition to the requirements described in [Network firewall requirements for monitoring Kubernetes cluster](./kubernetes-monitoring-firewall.md), multi-tenancy requires access for the logs ingestion endpoint to port 443. Retrieve this from the **Overview** page of the data collection endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
+A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) is created with the [DCR for each application or infrastructure team](#create-dcr-for-each-application-or-infrastructure-team). The logs ingestion endpoint of this DCE must be configured in the firewall to receive data on port 443. Retrieve this from the **Overview** page of the data collection endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
 
 :::image type="content" source="media/container-insights-multitenant/logs-ingestion-endpoint.png" lightbox="media/container-insights-multitenant/logs-ingestion-endpoint.png" alt-text="Screenshot to show the logs ingestion endpoint retrieved from the overview page for the DCE." :::
 
 
 ## Next steps
 
-
+- Read more about [Container insights](./container-insights-overview.md).

@@ -355,7 +355,7 @@ The following table describes the settings you can configure to control data col
 | **[agent_settings]** | | | |
 | `[proxy_config]`<br>`ignore_proxy_settings` | Boolean | true<br>false | When `true`, proxy settings are ignored. For both AKS and Arc-enabled Kubernetes environments, if your cluster is configured with forward proxy, then proxy settings are automatically applied and used for the agent. For certain configurations, such as with AMPLS + Proxy, you might want the proxy configuration to be ignored. If not specified in the ConfigMap, the default value is `false`. |
 | **[agent_settings.fbit_config]** | | | |
-| enable_internal_metrics = "true"
+| `enable_internal_metrics` | Boolean | true<br>false | Controls whether collection of internal metrics are enabled. If not specified in the ConfigMap, the default value is `false`. |
 
 
 ## Next steps
