@@ -33,7 +33,7 @@ A subset of the availability zones that support data resilience currently also s
 ## Supported regions
 
 |	Region	|	Data resilience - Shared clusters (default)	|	Data resilience - Dedicated clusters	|	Service resilience	|
-|	---	|	---	|	---	|	---	|
+|:---|:---|:---|:---|
 |	**Africa**	|		|		|		|
 |	South Africa North	|		|	:white_check_mark:	|		|
 |	**Americas**	|		|		|		|
