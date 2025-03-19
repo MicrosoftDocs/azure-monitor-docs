@@ -3,13 +3,13 @@ title: Multitenant managed logging in Container insights (Preview)
 description: Concepts and onboarding steps for multi-tenant logging in Container insights.
 ms.topic: conceptual
 ms.custom: references_regions
-ms.date: 02/05/2025
+ms.date: 03/18/2025
 ms.reviewer: viviandiec
 ---
 
 # Multi-tenant managed logging in Container insights (Preview)
 
-Multi-tenant logging in Container insights is useful for customers who operate shared cluster platforms using AKS. You may need the ability to configure log collection in a way that segregates logs by different teams so that each has access to the logs of the containers running in k8s namespaces that they own and the ability to access the billing and management associated with the Azure Log analytics workspace. For example, logs from infrastructure namespaces such as kube-system can be directed to a specific Log Analytics workspace for the infrastructure team, while each application team's logs can be sent to their respective workspaces. 
+Multi-tenant logging in Container insights is useful for customers who operate shared cluster platforms using AKS. You may need the ability to configure container console log collection in a way that segregates logs by different teams so that each has access to the container logs of the containers running in k8s namespaces that they own and the ability to access the billing and management associated with the Azure Log analytics workspace. For example, container logs from infrastructure namespaces such as kube-system can be directed to a specific Log Analytics workspace for the infrastructure team, while each application team's container logs can be sent to their respective workspaces. 
 
 This article describes how multi-tenant logging works in Container insights, the scenarios it supports, and how to onboard your cluster to use this feature.
 
@@ -17,7 +17,7 @@ This article describes how multi-tenant logging works in Container insights, the
 ## Scenarios
 The multi-tenant logging feature in Container insights supports the following scenarios:
 
-- **Multi-tenancy.** Sends container logs (stdout & stderr) from each k8s namespaces to their own Log Analytics workspace.  
+- **Multi-tenancy.** Sends container logs (stdout & stderr) from one or more k8s namespaces to corresponding Log Analytics workspace. 
 
     :::image type="content" source="media/container-insights-multitenant/multitenancy.png" lightbox="media/container-insights-multitenant/multitenancy.png" alt-text="Diagram that illustrates multitenancy for Container insights." :::
 
@@ -27,50 +27,36 @@ The multi-tenant logging feature in Container insights supports the following sc
 
 ## How it works
 
-Container insights use a [data collection rule (DCR)](../essentials/data-collection-rule-overview.md) to define the data collection settings for your AKS cluster. This DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights).
+Container insights use a [data collection rule (DCR)](../essentials/data-collection-rule-overview.md) to define the data collection settings for your AKS cluster. A default **ContainerInsights** Extension DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights). This DCR is a singleton meaning there is one DCR per Kubernetes cluster.
 
-For multi-tenant logging, Container Insights adds support for **ContainerLogV2Extension** DCRs, which are used to define collection of container logs for k8s namespaces. Multiple **ContainerLogV2Extension** DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
+For multi-tenant logging, Container Insights adds support for [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs, which are used to define collection of container logs for k8s namespaces. Multiple [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
 
-When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default DCR and the ContainerLogV2Extension DCR. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they'll be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace as usual. 
+When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default **ContainerInsights** extension DCR and the **ContainerLogV2Extension** DCRs associated with the AKS cluster. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they'll be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace in the default **ContainerInsights** DCR as usual. 
 
-- If there is an extension DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
-- If there isn't an extension DCR for the namespace of the log entry, the default DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry isn't collected.
+The following logic is used to determine how to process each log entry:
+
+- If there is a **ContainerLogV2Extension** DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
+- If there isn't a **ContainerLogV2Extension** DCR for the namespace of the log entry, the default **ContainerInsights** DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry isn't collected.
 
 ## Limitations
 
-This feature supports up to 50k logs/sec/node. If this doesn’t meet your log scale requirements, reach out through Microsoft support channel. 
+    - See [Limitations for high scale logs collection in Container Insights](./container-insights-high-scale.md#limitations).
+    - A maximum of 30 **ContainerLogV2Extension** DCR associations are supported per cluster.  
 
 ## Prerequisites 
 
 - An Azure CLI version of 2.63.0 or higher 
 - The AKS-preview CLI extension version must be 7.0.0b4 or higher if an AKS-preview CLI extension is installed. 
 - Cluster meets [firewall requirements](#firewall-requirements).
+- •	High log scale mode must be configured using the guidance at [High scale logs collection in Container Insights (Preview)](./container-insights-high-scale.md).
 
 
 ## Onboarding steps
 
-### Disable Container Insights
-If Container Insights is already enabled on your cluster, then you must first [disable it](./kubernetes-monitoring-disable.md) before you can enable the multi-tenancy feature. You can use the following command to disable the monitoring add-on.
-
-```azurecli
-az aks disable-addons -a monitoring -g <clusterRGName> -n <clusterName> 
-```
-
-
 ### Enable multi-tenancy feature in ConfigMap
-Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the cluster. Ths setting is used when Container insights is enabled.
-
-1. If you don't already have a ConfigMap for Container insights, download the [template ConfigMap YAML file](https://aka.ms/container-azm-ms-agentconfig) and open it in an editor.
-
-2. Enable the high log scale by changing the `enabled` setting in `agent_settings.high_log_scale` as follows:
-
-    ```yaml
-    agent-settings: |-
-      [agent_settings.high_log_scale]
-        enabled = true
-    ```
-    
-3.  Enable multi-tenancy by changing the `enabled` setting in `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR is sent  to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
+1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
+ 
+2.  Enable multi-tenancy by changing the `enabled` setting in `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR is sent  to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
 
     ```yaml
     log-data-collection-settings: |-
@@ -80,7 +66,7 @@ Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the
             disable_fallback_ingestion = false 
     ```
 
-4. Enable collection of internal metrics to populate the Grafana dashboard described below. You can do this by removing the comment character (#) for the lines shown below.
+2. Enable collection of internal metrics to populate the Grafana dashboard described below. You can do this by removing the comment character (#) for the lines shown below.
 
     ```yaml
     [agent_settings.fbit_config]
@@ -92,7 +78,7 @@ Start by enabling high log scale mode and multi-tenancy in the ConfigMap for the
     #   tail_ignore_older = "5m"      
     ```
 
-5. Apply the ConfigMap to the cluster with the following commands. 
+3. Apply the ConfigMap to the cluster with the following commands. 
 
     ```bash
     kubectl config set-context <cluster-name>
