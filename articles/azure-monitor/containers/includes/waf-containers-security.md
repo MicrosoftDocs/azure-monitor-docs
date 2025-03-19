@@ -8,15 +8,15 @@ ms.date: 03/19/2025
 
 #### Connect clusters to Container insights using managed identity authentication 
 
-[Managed identity authentication](../azure-monitor/containers/container-insights-authentication.md) is the default authentication method for new clusters. If you're using legacy authentication, migrate to managed identity to remove the certificate-based local authentication. 
+[Managed identity authentication](../container-insights-authentication.md) is the default authentication method for new clusters. If you're using legacy authentication, migrate to managed identity to remove the certificate-based local authentication. 
 
-**Instructions**: [Migrate to managed identity authentication](../azure-monitor/containers/container-insights-authentication.md)
+**Instructions**: [Migrate to managed identity authentication](../container-insights-authentication.md)
 
 #### Send data from clusters to Azure Monitor through a private endpoint using Azure private link 
 
-Azure managed service for Prometheus stores its data in an Azure Monitor workspace, which uses a public endpoint by default. Microsoft secures connections to public endpoints with end-to-end encryption. If you require a private endpoint, use [Azure private link](../azure-monitor/logs/private-link-security.md) to allow your cluster to connect to the workspace through authorized private networks. Private link can also be used to force workspace data ingestion through ExpressRoute or a VPN.
+Azure managed service for Prometheus stores its data in an Azure Monitor workspace, which uses a public endpoint by default. Microsoft secures connections to public endpoints with end-to-end encryption. If you require a private endpoint, use [Azure private link](../../azure-monitor/logs/private-link-security.md) to allow your cluster to connect to the workspace through authorized private networks. Private link can also be used to force workspace data ingestion through ExpressRoute or a VPN.
 
-**Instructions**: See [Enable private link for Kubernetes monitoring in Azure Monitor](../azure-monitor/containers/kubernetes-monitoring-private-link.md) for details on configuring your cluster for private link. See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../azure-monitor/essentials/azure-monitor-workspace-private-endpoint.md) for details on querying your data using private link.
+**Instructions**: See [Enable private link for Kubernetes monitoring in Azure Monitor](../kubernetes-monitoring-private-link.md) for details on configuring your cluster for private link. See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../../essentials/azure-monitor-workspace-private-endpoint.md) for details on querying your data using private link.
 
 #### Monitor network traffic to and from clusters using traffic analytics 
 
