@@ -41,10 +41,10 @@ A subset of the availability zones that support data resilience currently also s
 |	Canada Central	|	:white_check_mark:	|	:white_check_mark:	|		|
 |	Central US	|		|	:white_check_mark:	|		|
 |	East US	|		|	:white_check_mark:	|		|
-|	East US 2	|		|	:white_check_mark:	|	:white_check_mark:	|
+|	East US 2 <sup>1</sup>	|	|		|	:white_check_mark:	|	:white_check_mark:	|
 |	Mexico Central	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
 |	South Central US	|	:white_check_mark:	|	:white_check_mark:	|		|
-|	West US 2	|		|	:white_check_mark:	|	:white_check_mark:	|
+|	West US 2 <sup>1</sup>	|	|		|	:white_check_mark:	|	:white_check_mark:	|
 |	West US 3	|	:white_check_mark:	|	:white_check_mark:	|		|
 |	**Asia Pacific**	|		|		|		|
 |	Australia East	|	:white_check_mark:	|	:white_check_mark:	|		|
@@ -57,7 +57,7 @@ A subset of the availability zones that support data resilience currently also s
 |	France Central	|	:white_check_mark:	|	:white_check_mark:	|		|
 |	Germany West Central	|		|	:white_check_mark:	|		|
 |	Italy North	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
-|	North Europe	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
+|	North Europe <sup>1</sup>	|	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
 |	Norway East	|	:white_check_mark:	|	:white_check_mark:	|		|
 |	Poland Central	|	:white_check_mark:	|	:white_check_mark:	|		|
 |	Spain Central	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
@@ -69,6 +69,8 @@ A subset of the availability zones that support data resilience currently also s
 |	Israel Central	|	:white_check_mark:	|	:white_check_mark:	|	:white_check_mark:	|
 |	Qatar Central	|		|	:white_check_mark:	|		|
 |	UAE North	|	:white_check_mark:	|	:white_check_mark:	|		|
+
+<sup>1</sup> [Ingestion from Event Hubs](./ingest-logs-event-hub.md) feature is not resilient to zonal outages in these regions.
 
 
 ## Migrate a Log Analytics workspace to availability zone support
