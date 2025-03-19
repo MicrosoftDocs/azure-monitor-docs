@@ -138,7 +138,7 @@ Once cross-region replication is enabled, proceed to enable replication for one 
 > [!IMPORTANT]
 > Once cluster replication is enabled, changing the replication destination requires disabling replication and re-enabling it against a different location.
 
-To enable replication on your dedicated cluster, use the following PUT command. This call returns 201. It's a long running operation which may take time to complete, and you can track its exact state as explained later.
+To enable replication on your dedicated cluster, use the following PUT command. This call returns 202. It's a long running operation which may take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
 
 To enable cluster replication, use this `PUT` command: 
 
@@ -166,6 +166,27 @@ Where:
 - `<cluster_name>`: The name of your dedicated cluster.
 - `<primary_region>`: The primary region for your Log Analytics dedicated cluster.
 - `<secondary_region>`: The region in which Azure Monitor creates the secondary dedicated cluster.
+
+### Check cluster provisioning state
+
+To check the provisioning state of your cluster, run this `GET` command:
+
+```http
+GET
+
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/clusters/<cluster_name>?api-version=2025-02-01
+```
+
+Where:
+
+* `<subscription_id>`: The subscription ID related to your cluster.
+* `<resourcegroup_name>`: The resource group that contains your Log Analytics cluster resource.
+* `<cluster_name>`: The name of your Log Analytics cluster.
+ 
+Use the `GET` command to verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+
+> [!NOTE]
+> When you enable cluster replication, a new cluster is being provisioned on the secondary location. This process can take 1-2 hours.
 
 ### Enable workspace replication
 
@@ -198,14 +219,14 @@ Where:
 
 For the supported `location` values, see [Supported regions](#supported-regions).
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!IMPORTANT]
 > If your workspace is linked to a dedicated cluster, first enable replication on the cluster. Also note that the secondary location of your workspace must be identical to the secondary location of its dedicated cluster.
 
-### Check request provisioning state
+### Check workspace provisioning state
 
-To check the provisioning state of your request, run this `GET` command:
+To check the provisioning state of your workspace, run this `GET` command:
 
 ```http
 GET
@@ -252,7 +273,7 @@ To replicate data you collect using data collection rules, associate your data c
     * East US, East US 2, and South Central US can't replicate to one another.
 * Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can’t have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
 * Do you have the [required permissions](#permissions-required)?
-* Did you allow enough time for replication operation to complete? replication is a long running operation. Monitor the state of the opeation as explained in [Check request provisioning state](#check-request-provisioning-state).
+* Did you allow enough time for replication operation to complete? replication is a long running operation. Monitor the state of the opeation as explained in [Check workspace provisioning state](#check-workspace-provisioning-state).
 * Did you try to re-enable replication in order to change the workspace secondary location? To change the location of your secondary workspace, you must first [disable workspace replication](#disable-workspace-replication), allow the operation to complete and only then eable replication to another secondary location.
 
 ### What to check if workspace replication is set but logs are not replicated?
@@ -289,7 +310,7 @@ Where:
 * `<workspace_name>`: The name of your workspace.
 * `<primary_region>`: The primary region for your workspace.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!IMPORTANT]
 > If you're using a dedicated cluster, you should disable cluster replication after disabling replication for each workspace linked to this cluster.
@@ -322,7 +343,7 @@ Where:
 - `<workspace_name>`: The name of your cluster.
 - `<primary_region>`: The primary region for your cluster.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!NOTE]
 > Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and you won't be able to access them again. Their original copy on your primary location isn't changed in this process.
@@ -383,7 +404,7 @@ Before you switch regions during switchover, your secondary workspace needs to c
 
 ### Trigger switchover
 
-Before you switch over, [confirm that the workspace replication operation completed successfully](#check-request-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
+Before you switch over, [confirm that the workspace replication operation completed successfully](#check-workspace-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
 
 To switch over to your secondary workspace, use this `POST` command:
 
@@ -399,7 +420,7 @@ Where:
 * `<secondary_region>`: The region to switch to during switchover.
 * `<workspace_name>`: The name of the workspace to switch to during switchover.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ### What to check if switchover (failover) fails
 * Did you use the REST API to trigger switchover (failover)?
@@ -452,7 +473,7 @@ Where:
 * `<resourcegroup_name>` : The resource group that contains your workspace resource.
 * `<workspace_name>`: The name of the workspace to switch to during switchback.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ## Audit the inactive workspace
 
