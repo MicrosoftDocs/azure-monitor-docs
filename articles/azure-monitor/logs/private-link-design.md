@@ -12,7 +12,7 @@ When you create an [Azure Monitor Private Link Scope (AMPLS)](./private-link-sec
 
 ## AMPLS limits
 
-[!INCLUDE [ampls-limitations](../includes/ampls-limitations.md)]
+[!INCLUDE [ampls-limitations](../fundamentals//includes/ampls-limitations.md)]
 
 ## Plan by network topology
 
@@ -100,6 +100,7 @@ Following are exceptions to this network access:
 > * VM Insights
 > * Container Insights
 > * Log Analytics **Workspace Summary (deprecated)** pane (that shows the solutions dashboard)
+> * Metrics pane in Application Insights (log-based metrics charting)
 
 ## Special considerations
 

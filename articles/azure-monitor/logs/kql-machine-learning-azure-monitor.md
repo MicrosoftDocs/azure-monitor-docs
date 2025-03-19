@@ -27,7 +27,7 @@ In this tutorial, you learn how to:
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 - A workspace with log data.
 
-[!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
+[!INCLUDE [log-analytics-query-permissions](includes/log-analytics-query-permissions.md)]
 
 ## Create a time series 
 

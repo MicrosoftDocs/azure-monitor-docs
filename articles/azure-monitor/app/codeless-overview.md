@@ -46,7 +46,7 @@ Links are provided to more information for each supported scenario.
 |Azure Functions - basic | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md) ¹ | [ :white_check_mark: :link: ](monitor-functions.md#distributed-tracing-for-python-function-apps) ¹ |
 |Azure Functions - dependencies | :x: | :x: | [ :white_check_mark: :link: ](monitor-functions.md) | :x: | :x: |
 |Azure Spring Apps | :x: | :x: | [ :white_check_mark: :link: ](/azure/spring-apps/enterprise/how-to-application-insights) | :x: | :x: |
-|Azure Kubernetes Service (AKS) | :x: | :x: | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
+|Azure Kubernetes Service (AKS) | :x: | :x: | [ :white_check_mark: :link: ](./kubernetes-codeless.md)² | [ :white_check_mark: :link: ](./kubernetes-codeless.md)² | :x: |
 |Azure VMs Windows | [ :white_check_mark: :link: ](azure-vm-vmss-apps.md) ² ³ | [ :white_check_mark: :link: ](azure-vm-vmss-apps.md) ² ³ | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
 |On-premises VMs Windows | [ :white_check_mark: :link: ](application-insights-asp-net-agent.md) ³ | [ :white_check_mark: :link: ](application-insights-asp-net-agent.md) ² ³ | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
 |Standalone agent - any environment | :x: | :x: | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |

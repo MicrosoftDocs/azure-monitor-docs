@@ -123,6 +123,12 @@ Many community-supported Application Insights SDKs exist, but Microsoft only pro
 
 ---------------------------
 
+## Troubleshooting
+
+For assistance with troubleshooting Application Insights, see [our dedicated troubleshooting documentation](/troubleshoot/azure/azure-monitor/welcome-azure-monitor).
+
+---------------------------
+
 ## Frequently asked questions
 
 This section provides answers to common questions.

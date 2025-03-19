@@ -120,7 +120,7 @@ In the client credentials flow, the token is used with the Log Analytics endpoin
 
 Use `resource=https://api.loganalytics.azure.com`.
 
-[!INCLUDE [Get a token](../../includes/get-authentication-token.md)]
+[!INCLUDE [Get a token](../../essentials/includes/get-authentication-token.md)]
 
 
 Use the token in requests to the Log Analytics endpoint:

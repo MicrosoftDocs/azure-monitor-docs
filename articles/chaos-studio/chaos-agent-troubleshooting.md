@@ -99,9 +99,9 @@ Look for error messages indicating connectivity or dependency issues.
   - Agent location 
     - Agent is installed as Azure VM Extension. Agent location is typically at ```C:\Packages\Plugins\Microsoft.Azure.Chaos.ChaosWindowsAgent\<version>``` . The directory contains both ```AzureChaosAgent.exe``` and ```agentsettings.json``` and libraries.
   - Get Agent log on host: Agent log is pushed to windows service log. 
-    - Example powershell command to check latest 50 lines of agent log: ```Get-EventLog -LogName "Application" -Source "AzureChaosAgent" -Newest 50```` . 
+    - Example PowerShell command to check latest 50 lines of agent log: ```Get-EventLog -LogName "Application" -Source "AzureChaosAgent" -Newest 50```` . 
   - Start/Stop Agent on the host
-    - In Admin powershell, run ```Start-Service AzureChaosAgent``` or ```Stop-Service AzureChaosAgent``` 
+    - In Admin PowerShell, run ```Start-Service AzureChaosAgent``` or ```Stop-Service AzureChaosAgent``` 
 - **Linux agent local debugging**
   - Linux chaos agent is managed by [Systemd](https://www.man7.org/linux/man-pages/man1/systemd.1.html).
   - Agent location
@@ -144,7 +144,6 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 ## More Resources
 
-• If you continue to experience issues after following these steps, consider [creating an incident with the Chaos Studio team](https://portal.microsofticm.com/imp/v3/incidents/create?tmpl=P3i141).<br>
 • This document is intended to help users quickly diagnose and resolve issues with the Chaos Agent. For further assistance, refer to our support channels or visit the Azure Chaos Studio community forums.<br>
 • [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md)<br> 
 • [OS Support and Compatibility](chaos-agent-os-support.md)<br>

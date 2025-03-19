@@ -147,6 +147,7 @@
         "articles/azure-monitor/change/**/*": "hhunter-ms",
         "articles/azure-monitor/containers/**/*": "bwren",
         "articles/azure-monitor/essentials/**/*": "bwren",
+        "articles/azure-monitor/fundamentals/**/*": "bwren",
         "articles/azure-monitor/insights/**/*": "bwren",
         "articles/azure-monitor/logs/**/*": "austinmccollum",
         "articles/azure-monitor/profiler/**/*": "hhunter-ms",
@@ -195,6 +196,7 @@
         "articles/azure-monitor/change/**/*": "hannahhunter",
         "articles/azure-monitor/containers/**/*": "bwren",
         "articles/azure-monitor/essentials/**/*": "bwren",
+        "articles/azure-monitor/fundamentals/**/*": "bwren",
         "articles/azure-monitor/insights/**/*": "bwren",
         "articles/azure-monitor/logs/**/*": "austinmc",
         "articles/azure-monitor/profiler/**/*": "hannahhunter",
@@ -214,7 +216,6 @@
         "articles/advisor/**/*": "ikhapova"
       },
       "ms.subservice": {
-        "articles/azure-monitor/**/*": "general",
         "articles/azure-monitor/agents/**/*": "agents",
         "articles/azure-monitor/alerts/**/*": "alerts",
         "articles/azure-monitor/app/**/*": "application-insights",
@@ -222,6 +223,7 @@
         "articles/azure-monitor/change/**/*": "change-analysis",
         "articles/azure-monitor/containers/**/*": "containers",
         "articles/azure-monitor/essentials/**/*": "essentials",
+        "articles/azure-monitor/fundamentals/**/*": "fundamentals",
         "articles/azure-monitor/insights/**/*": "insights",
         "articles/azure-monitor/logs/**/*": "logs",
         "articles/azure-monitor/profiler/**/*": "profiler",
