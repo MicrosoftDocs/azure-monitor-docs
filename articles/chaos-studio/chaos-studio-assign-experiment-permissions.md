@@ -13,7 +13,7 @@ ms.custom:
 
 # Assigning experiment permissions in Azure Chaos Studio
 
-Proper assignment of permissions is an essential part of configuring your experiments successfully in Azure Chaos Studio. Chaos experiments use managed identities and role-based access control to obtain the necessary permissions to inject faults on experiment targets. You can use Azure built-in roles or a custom role to assign the right permissions to your experiment's managed identity. When creating or editing your experiments in the Azure portal, you may use Chaos Studio's automatic role assignment functionality to easily assign, check, or update your experiment managed identity's permissions.
+Proper assignment of permissions is an essential part of configuring your experiments successfully in Azure Chaos Studio. Chaos experiments use managed identities and role-based access control to obtain the necessary permissions to inject faults on experiment targets. You can use Azure built-in roles or a custom role to assign the right permissions to your experiment's managed identity. When creating or editing your experiments in the Azure portal, you may use Chaos Studio's automatic role assignment functionality to easily assign, check, or update your experiment managed identity's access.
 
 ## Permissions assignment on experiment creation
 
@@ -32,11 +32,11 @@ If you choose to assign your experiment permissions using Azure built-in roles o
 
 ## Check and update experiment permissions
 
-You can check if your experiment has sufficient permissions to run at any time within the **"Experiment permissions"** tab located in the **"Settings"** dropdown on your experiment's overview page:
+You can check if your experiment has sufficient permissions to run at any time within the **"Experiment permissions"** tab located in the **"Settings"** dropdown on your experiment's overview page. If your experiment does not have sufficient permissions to run, you will be shown the specific Azure Resource Manager actions that are missing from its managed identity, along with the target that each action maps to in your experiment:
 
 <br>[![Screenshot that shows the experiment permissions page of an experiment within the Azure portal.](images/permissions-need-remediation.png)](images/permissions-need-remediation.png#lightbox)<br>
 
-If your experiment does not have sufficient permissions to run, you will be shown the specific Azure Resource Manager actions that are missing from its managed identity, along with the target that each action maps to in your experiment. You may remediate your experiment by assigning the necessary permissions to its managed identity using Azure built-in roles or a custom role directly within the **"Experiment permissions"** tab:
+You may remediate your experiment by assigning the necessary permissions to its managed identity using Azure built-in roles or a custom role directly within the **"Experiment permissions"** tab:
 
 <br>[![Screenshot that shows the permissions deployment context pane within the experiment permissions page of an experiment within the Azure portal.](images/permissions-need-remediation-deployment.png)](images/permissions-need-remediation-deployment.png#lightbox)<br>
 
