@@ -46,13 +46,9 @@ The following logic is used to determine how to process each log entry:
 ## Prerequisites 
 
 - High log scale mode must be configured for the cluster using the guidance at [High scale logs collection in Container Insights (Preview)](./container-insights-high-scale.md).
-- An Azure CLI version of 2.63.0 or higher 
-- The AKS-preview CLI extension version must be 7.0.0b4 or higher if an AKS-preview CLI extension is installed. 
-- Cluster meets [firewall requirements](#firewall-requirements).
+- A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) is created with the [DCR for each application or infrastructure team](#create-dcr-for-each-application-or-infrastructure-team). The **Logs Ingestion** endpoint of each DCE must be configured in the firewall as described in [Network firewall requirements for high scale logs collection in Container Insights](./container-insights-high-scale.md#network-firewall-requirements).
+- An Azure CLI version of 2.63.0 or higher. The AKS-preview CLI extension version must be 7.0.0b4 or higher if an AKS-preview CLI extension is installed. 
 
-## Network firewall requirements
-
-A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) is created with the [DCR for each application or infrastructure team](#create-dcr-for-each-application-or-infrastructure-team). The **Logs Ingestion** endpoint of each DCE must be configured in the firewall as described in [Network firewall requirements for high scale logs collection in Container Insights](./container-insights-high-scale.md#network-firewall-requirements).
 
 
 ## Enable multi-tenancy for the cluster
