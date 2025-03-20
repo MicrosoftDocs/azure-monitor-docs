@@ -14,11 +14,40 @@ This article describes how to manage Azure Workbooks in the Azure portal.
 Workbooks are shared resources. They require write access to the parent resource group to be saved.
 
 1. In the Azure portal, select the **Workbook** item from the resource's menu, and create or modify a workbook.
-2. Select **Save**.
+1. Select **Save**.
 1. Enter the **title**, **subscription**, **resource group**, and **location**.
+1. Optionally, choose to save to an **azure storage account**
+
+    This option allows you to save the workbook content into an Azure Storage account you control. You'll need to configure a managed identity to allow workbooks to read and write from that storage account.
+    See [Bring your own storage](workbooks-bring-your-own-storage.md) for more information.
 1. Select **Save**.
 
 By default, the workbook save options are auto-filled with the same subscription and resource group as the resource where you've opened Workbooks.
+
+## Auto-save
+
+When you create or edit a workbook, the changes are saved locally every few minutes, or when you finish editing a step or perform actions that open other Azure Portal views. The auto-save feature is designed to help you avoid losing your work if you close the browser or your sign-in expires while you are away. 
+Auto-save saves locally into your browser storage, auto-saves are not saved into Azure or shared with other users. Auto-saves appear as special items in the gallery to help you identify them. 
+
+:::image type="content" source="media/workbooks-manage/workbooks-autosaves.png" lightbox="media/workbooks-manage/workbooks-autosaves.png" alt-text="Screenshot that shows workbook gallery with auto-save items.":::
+
+Auto-saves can be opened and edited like any other workbook. If the auto-save is for an already saved workbook, saving the auto-save will overwrite the existing workbook. If the auto-save is for a new workbook, or from a template, saving it will prompt you to save it as a new workbook.
+
+If you open a workbook or template that has a corresponding auto-save, you'll get a prompt that indicates you might not be opening the most recent item, showing the auto-save and when it was created, and the item you opened.
+
+:::image type="content" source="media/workbooks-manage/workbooks-autosave-prompt.png" lightbox="media/workbooks-manage/workbooks-autosave-prompt.png" alt-text="Screenshot that shows the auto-save prompt.":::
+
+From the prompt, you can choose between the 3 options:
+1. open the auto-save version of the item
+1. delete the auto-save (and keep the content that was loaded)
+1. keep the item that was loaded, but do not delete the auto-save
+
+### Limitations of auto-save
+
+* Auto-saves are not saved into Azure or shared with other users. They are stored in browser local storage, so clearing your browser cache/storage will delete the auto-saved content.
+* Only 5 autosaves are kept, across all galleries of workbooks. As you create or modify other workbooks, the oldest auto-save will be automatically cleaned up.
+* Auto-save will not attempt to save large workbook content larger than 100kb.
+
 
 ## Share a workbook
 
