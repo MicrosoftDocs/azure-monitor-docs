@@ -40,20 +40,23 @@ The following logic is used to determine how to process each log entry:
 
 ## Limitations
 
-    - See [Limitations for high scale logs collection in Container Insights](./container-insights-high-scale.md#limitations).
-    - A maximum of 30 **ContainerLogV2Extension** DCR associations are supported per cluster.  
+- See [Limitations for high scale logs collection in Container Insights](./container-insights-high-scale.md#limitations).
+- A maximum of 30 **ContainerLogV2Extension** DCR associations are supported per cluster.  
 
 ## Prerequisites 
 
+- High log scale mode must be configured for the cluster using the guidance at [High scale logs collection in Container Insights (Preview)](./container-insights-high-scale.md).
 - An Azure CLI version of 2.63.0 or higher 
 - The AKS-preview CLI extension version must be 7.0.0b4 or higher if an AKS-preview CLI extension is installed. 
 - Cluster meets [firewall requirements](#firewall-requirements).
-- •	High log scale mode must be configured using the guidance at [High scale logs collection in Container Insights (Preview)](./container-insights-high-scale.md).
+
+## Network firewall requirements
+
+A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) is created with the [DCR for each application or infrastructure team](#create-dcr-for-each-application-or-infrastructure-team). The **Logs Ingestion** endpoint of each DCE must be configured in the firewall as described in [Network firewall requirements for high scale logs collection in Container Insights](./container-insights-high-scale.md#network-firewall-requirements).
 
 
-## Onboarding steps
+## Enable multi-tenancy for the cluster
 
-### Enable multi-tenancy feature in ConfigMap
 1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
  
 2.  Enable multi-tenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR is sent to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
@@ -74,32 +77,15 @@ The following logic is used to determine how to process each log entry:
     kubectl apply -f <configmap_yaml_file.yaml>
     ```
 
-### Enable monitoring add-on
-Once the ConfigMap for the cluster is updated, you can enable Container insights by enabling the monitoring add-on. This uses the settings in the ConfigMap to enable high log scale mode and multi-tenancy. For additional onboarding commands, see [Enable Container insights](./kubernetes-monitoring-enable.md#enable-container-insights).
-
-```azurecli
-### Existing AKS cluster
-az aks enable-addons -a monitoring -g <clusterRGName> -n <clusterName> --enable-high-log-scale-mode
-
-### New AKS cluster
-az aks create -g <clusterRGName> -n <clusterName> enable-addons -a monitoring --enable-high-log-scale-mode 
-
-### Existing private AKS Cluster
-az aks enable-addons -a monitoring -g <clusterRGName> -n <clusterName> --enable-high-log-scale-mode --ampls-resource-id <Azure Monitor Private Link Resource Id>
-```
-
-For a new private AKS cluster, see [Create a private Azure Kubernetes Service (AKS) cluster](/azure/aks/private-clusters?tabs=azure-portal). Use the additional parameters `--enable-high-scale-mode` and `--ampls-resource-id` to configure high log scale mode with Azure Monitor Private Link Scope Resource ID.
-
-
 ### Create DCR for each application or infrastructure team
-Repeat the following steps to create a separate DCR for application or infrastructure team. Each will include a set of k8s namespaces and a Log Analytics workspace destination.
+Repeat the following steps to create a separate DCR for each application or infrastructure team. Each will include a set of k8s namespaces and a Log Analytics workspace destination.
 
 1. Retrieve the following ARM template and parameter file.
 
-    Template: [https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-file](https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-file)
+    Template: [https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-file](https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-file)<br>
     Parameter: [https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-multitenancy-onboarding-template-parameter-file)
 
-2. Edit the parameter file with values for the following parameters. 
+2. Edit the parameter file with values for the following values. 
 
     | Parameter Name | Description |
     |:---|:---|
@@ -122,10 +108,10 @@ Repeat the following steps to create a separate DCR for application or infrastru
 
 ## Disabling multi-tenant logging
 
-Use the following steps to disable multi-tenant logging on a cluster.
-
 > [!NOTE]
 > See [Disable monitoring of your Kubernetes cluster](./kubernetes-monitoring-disable.md) if you want to completely disable Container insights for the cluster.
+
+Use the following steps to disable multi-tenant logging on a cluster.
 
 1. Use the following command to list all the DCR associations for the cluster.
     
@@ -152,10 +138,90 @@ Use the following steps to disable multi-tenant logging on a cluster.
     ```
 
 
-## Firewall requirements
-A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) is created with the [DCR for each application or infrastructure team](#create-dcr-for-each-application-or-infrastructure-team). The logs ingestion endpoint of this DCE must be configured in the firewall to receive data on port 443. Retrieve this from the **Overview** page of the data collection endpoint (DCE) resource in the Azure portal. The endpoint should be in the format `<data-collection-endpoint>-<suffix>.<cluster-region-name>-<suffix>.ingest.monitor.azure.com`.
+## Troubleshooting 
 
-:::image type="content" source="media/container-insights-multitenant/logs-ingestion-endpoint.png" lightbox="media/container-insights-multitenant/logs-ingestion-endpoint.png" alt-text="Screenshot to show the logs ingestion endpoint retrieved from the overview page for the DCE." :::
+Perform the following steps to troubleshoot issues with multi-tenant logging in Container insights.
+
+1.  Verify that [high scale logging](./container-insights-high-scale.md) is enabled for the cluster. 
+  
+    ```bash
+      # get the list of ama-logs and these pods should be in Running state
+      # If these are not in Running state, then this needs to be investigated
+      kubectl get po -n kube-system | grep ama-logs
+      # get the logs one of the ama-logs daemonset pod and check for log message indicating high scale enabled
+      kubectl logs ama-logs-xxxxx -n kube-system -c ama-logs | grep high
+      # output should be something like
+       "Using config map value: enabled = true for high log scale config"
+    ```
+
+2. Verify that [ContainerLogV2 schema](./container-insights-logs-schema.md) is enabled for the cluster.
+
+    ```bash
+      # get the list of ama-logs and these pods should be in Running state
+      # If these are not in Running state, then this needs to be investigated
+      kubectl get po -n kube-system | grep ama-logs
+      # exec into any one of the ama-logs daemonset pod and check for the environment variables
+      kubectl exec -it  ama-logs-xxxxx -n kube-system -c ama-logs -- bash
+      # check if the containerlog v2 schema enabled or not
+      env | grep AZMON_CONTAINER_LOG_SCHEMA_VERSION
+      # output should be v2. If not v2, then check whether this is being enabled through DCR
+      AZMON_CONTAINER_LOG_SCHEMA_VERSION=v2
+      # check if its enabled through DCR
+      grep -r "enableContainerLogV2" /etc/mdsd.d/config-cache/configchunks/
+      # validate the enableContainerLogV2 configured with true or not from JSON output
+    ```
+
+3.  Verify that multi-tenancy is enabled for the cluster.
+    
+    ```bash
+      # get the list of ama-logs and these pods should be in Running state
+      # If these are not in Running state, then this needs to be investigated
+      kubectl get po -n kube-system | grep ama-logs
+      # get the logs one of the ama-logs daemonset pod and check for log message indicating high scale enabled
+      kubectl logs ama-logs-xxxxx -n kube-system -c ama-logs  | grep multi_tenancy
+      # output should be something like
+      "config::INFO: Using config map setting multi_tenancy enabled: true, advanced_mode_enabled: false and namespaces: [] for Multi-tenancy log collection"
+    ```
+
+4. Verify that the DCRs and DCEs related to **ContainerInsightsExtension** and **ContainerLogV2Extension** are created.
+   
+    ```bash
+        az account set -s <clustersubscriptionId>
+        az monitor data-collection rule association list-by-resource --resource "<clusterResourceId>"
+        # output should list both ContainerInsightsExtension and ContainerLogV2Extension DCRs associated to the cluster
+        # From the output, for each dataCollectionRuleId and check dataCollectionEndpoint associated or not
+        az monitor data-collection rule show --ids <dataCollectionRuleId>
+        # you can also check the extension settings for the k8s namespace configuration
+   ```
+
+5. Verify that the agent is downloading all the associated DCRs.
+ 
+    ```bash
+      # get the list of ama-logs and these pods should be in Running state
+      # If these are not in Running state, then this needs to be investigated
+      kubectl get po -n kube-system | grep ama-logs
+      # exec into any one of the ama-logs daemonset pod and check for the environment variables
+      kubectl exec -it  ama-logs-xxxxx -n kube-system -c ama-logs -- bash
+      # check if its enabled through DCR
+      grep -r "ContainerLogV2Extension" /etc/mdsd.d/config-cache/configchunks
+      # output should list all the associated DCRs and configuration
+      # if there are no DCRs downloaded then likely Agent has issues to pull associate DCRs and this could be missing network or firewall issue and check for errors in mdsd.err log file
+      cat /var/opt/microsoft/linuxmonagent/log/mdsd.err
+    ```
+
+7. Check if there are any errors in fluent-bit-out-oms-runtime.log file
+
+    ```bash
+      # get the list of ama-logs and these pods should be in Running state
+      # If these are not in Running state, then this needs to be investigated
+      kubectl get po -n kube-system | grep ama-logs
+      # exec into any one of the ama-logs daemonset pod and check for the environment variables
+      kubectl exec -it  ama-logs-xxxxx -n kube-system -c ama-logs -- bash
+      # check for errors
+      cat /var/opt/microsoft/docker-cimprov/log/fluent-bit-out-oms-runtime.log
+    ```
+
+
 
 
 ## Next steps
