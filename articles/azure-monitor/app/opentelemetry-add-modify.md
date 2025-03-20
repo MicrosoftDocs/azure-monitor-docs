@@ -43,6 +43,8 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 * `ILogger`
 
+The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
 #### [.NET](#tab/net)
@@ -74,6 +76,8 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 	})
     .Build();
 ```
+
+The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
 
 #### [Java](#tab/java)
 
@@ -204,6 +208,8 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 
 * Logback
 
+The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+
 For Quartz native applications, look at the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
 
 #### [Node.js](#tab/nodejs)
@@ -229,6 +235,8 @@ The following OpenTelemetry Instrumentation libraries are included as part of th
 <!--
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-winston)
 -->
+
+The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
 
 Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
 
