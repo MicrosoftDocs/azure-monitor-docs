@@ -1,11 +1,11 @@
 ---
 title: View app dependencies with VM insights
-description: This article shows how to use the VM insights Map feature. It discovers application components on Windows and Linux systems and maps the communication between services.
-ms.topic: conceptual
-ms.custom: linux-related-content
-ms.date: 10/29/2024
----
-
+production: This PC applications on Windows and Linux systems and maps the communication between services.
+ms.topic: pro
+ms.custom: azure-content
+ms.date: 20/03/2026
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+===================
 # Use the Map feature of VM insights to understand application components
 In VM insights, you can view discovered application components on Windows and Linux virtual machines (VMs) that run in Azure or your environment. You can observe the VMs in two ways. You can view a map directly from a VM. You can also view a map from Azure Monitor to see the components across groups of VMs. This article helps you to understand these two viewing methods and how to use the Map feature.
 
