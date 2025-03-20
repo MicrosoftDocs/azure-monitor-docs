@@ -1,12 +1,6 @@
 ---
-title: "include file" 
-description: "include file" 
-services: azure-monitor
-author: rboucher
-ms.topic: "include"
+ms.topic: include
 ms.date: 04/25/2023
-ms.author: jagummersall
-ms.custom: "include file"
 ---
 
 You can have an unlimited number of action groups in a subscription.

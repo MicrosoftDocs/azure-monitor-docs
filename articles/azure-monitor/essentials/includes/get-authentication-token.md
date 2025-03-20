@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 07/01/2024
-ms.author: edbaynash
-author: EdB-MSFT
 ---
 
 Get an authentication token using any of the following methods:

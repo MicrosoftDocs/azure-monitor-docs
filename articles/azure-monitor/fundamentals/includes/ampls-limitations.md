@@ -1,7 +1,4 @@
 ---
-author: guywi-ms
-ms.author: guywild
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 10/10/2023
 ---

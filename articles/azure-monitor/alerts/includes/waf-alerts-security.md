@@ -1,7 +1,4 @@
 ---
-author: AbbyMSFT
-ms.author: abbyweisberg
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 03/19/2025
 ---

@@ -1,15 +1,9 @@
 ---
-  title: Create Azure Monitor metric alert rules
-  description: This article shows you how to create a new metric alert rule.
-  author: AbbyMSFT
-  ms.service: azure-monitor
-  ms.subservice: alerts
-  ms.author: abbyweisberg
-  ms.reviewer: harelbr
-  ms.date: 03/07/2024
-  ms.topic: how-to
-  ms.custom:
-    - ge-structured-content-pilot
+title: Create Azure Monitor metric alert rules
+description: This article shows you how to create a new metric alert rule.
+ms.reviewer: harelbr
+ms.date: 03/07/2024
+ms.topic: how-to
 ---
 
 # Create or edit a metric alert rule

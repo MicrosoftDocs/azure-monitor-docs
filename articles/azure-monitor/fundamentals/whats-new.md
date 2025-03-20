@@ -3,8 +3,6 @@ title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: conceptual
 ms.date: 04/03/2025
-author: AaronMaxwell
-ms.author: aaronmax
 ---
 
 # What's new in Azure Monitor documentation
@@ -16,7 +14,7 @@ This article lists significant changes to Azure Monitor documentation.
 >
 > :::image type="content" source="media/whats-new/rss.png" alt-text="An rss icon."::: https://aka.ms/azmon/rss
 
-## [2025](#tab/2025)
+## 2025
 
 ### February 2025
 
@@ -43,9 +41,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Get started with log queries in Azure Monitor](../logs/get-started-queries.md)|Added examples of how to query data in your Log Analytics workspace using simple mode, alongside Kusto Query Language (KQL) examples.|
 |Visualizations|[Azure Monitor Logs overview](../logs/data-platform-logs.md)|We now recommend using summary rules for custom dashboards, workbooks, and reports to improve query performance and reduce query errors and timeouts.|
 
-
-
-## [2024](#tab/2024)
+## 2024
 
 ### December 2024
 
@@ -63,8 +59,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Essentials|[Supported KQL features in Azure Monitor transformations](../essentials/data-collection-transformations-kql.md)|Rewritten to better describe KQL features that are and aren't supported in transformations.|
 |Essentials|[Sample transformations in Azure Monitor](../essentials/data-collection-transformations-samples.md)|New article that describes different common transformation scenarios and provides sample queries.|
 |Essentials|[Transformations in Azure Monitor](../essentials/data-collection-transformations.md)|Rewritten for clarity. Better described difference between standard DCRs and workspace transformation DCR.|
-
-
 
 ### November 2024
 
@@ -379,8 +373,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Enhance data and service resilience in Azure Monitor Logs with availability zones](../logs/availability-zones.md)|Availability zones are now supported in the Israel Central, Poland Central, and Italy North regions.|
 |Virtual-Machines|[Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md)|VM Insights Dependency Agent now supports RHEL 8.6 Linux.|
 |Visualizations|[Composite bar renderer](../visualize/workbooks-composite-bar.md)|We've edited the Workbooks content to make some features and functionality easier to find based on customer feedback. We've also removed legacy content.|
-
-## [2023](#tab/2023)
 
 ### December 2023
 
@@ -735,8 +727,6 @@ Virtual-Machines|[Monitor virtual machines with Azure Monitor: Collect data](../
 Virtual-Machines|[Monitor virtual machines with Azure Monitor: Migrate management pack logic](../vm/monitor-virtual-machine-management-packs.md)|Rewritten for Azure Monitor Agent.|
 Virtual-Machines|[Monitor virtual machines with Azure Monitor](../vm/monitor-virtual-machine.md)|Rewritten for Azure Monitor Agent.|
 Virtual-Machines|[Monitor Azure virtual machines](/azure/virtual-machines/monitor-vm)|VM scenario updates for Azure Monitor Agent.|
-
-## [2022](#tab/2022)
 
 ### December 2022
 

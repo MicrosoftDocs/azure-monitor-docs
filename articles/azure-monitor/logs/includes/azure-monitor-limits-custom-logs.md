@@ -1,12 +1,6 @@
 ---
-title: "include file" 
-description: "include file" 
-services: azure-monitor
-author: rboucher
-ms.topic: "include"
+ms.topic: include
 ms.date: 02/22/2022
-ms.author: bwren
-ms.custom: "include file"
 ---
 
 | Limit | Value | Comments |

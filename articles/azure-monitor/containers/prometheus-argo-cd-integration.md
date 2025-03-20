@@ -2,17 +2,17 @@
 title: Configure Argo CD integration for Prometheus metrics in Azure Monitor
 description: Describes how to configure Argo CD monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
 ms.topic: conceptual
-ms.date: 3/25/2024
+ms.date: 3/10/2025
 ms.reviewer: rashmy
 ---
 # Argo CD
 Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. Argo CD follows the GitOps pattern of using Git repositories as the source of truth for defining the desired application state. It automates the deployment of the desired application states in the specified target environments. Application deployments can track updates to branches, tags, or pinned to a specific version of manifests at a Git commit.
-This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) to monitor Argo CD by scraping prometheus metrics. 
+This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) and Azure Arc-enabled Kubernetes to monitor Argo CD by scraping prometheus metrics. 
 
 ## Prerequisites
 
-+ Argo CD running on AKS
-+ Azure Managed Prometheus enabled on the AKS cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
++ Argo CD running on AKS or Azure Arc-enabled Kubernetes
++ Azure Managed Prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
 
 ### Deploy Service Monitors
 Deploy the following service monitors to configure Azure managed prometheus addon to scrape prometheus metrics from the argocd workload.

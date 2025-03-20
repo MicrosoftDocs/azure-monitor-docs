@@ -1,7 +1,4 @@
 ---
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 11/12/2023
 ---
