@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 10/31/2023
-ms.author: edbaynash
-author: EdB-MSFT
 ---
 
 ### I see some gaps in metric data, why is this occurring?   

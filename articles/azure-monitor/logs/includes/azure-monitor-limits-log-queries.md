@@ -1,12 +1,6 @@
 ---
-title: "include file" 
-description: "include file" 
-services: azure-monitor
-author: rboucher
-ms.topic: "include"
+ms.topic: include
 ms.date: 07/22/2019
-ms.author: bwren
-ms.custom: "include file"
 ---
 
 ### General query limits

@@ -1,12 +1,6 @@
 ---
-title: "include file" 
-description: "include file" 
-services: azure-monitor
-author: rboucher
-ms.topic: "include"
+ms.topic: include
 ms.date: 02/02/2025
-ms.author: abbyweisberg
-ms.custom: "include file"
 ---
 
 | Resource | Default limit | Maximum limit |

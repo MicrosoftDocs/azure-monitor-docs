@@ -1,7 +1,4 @@
 ---
-author: bwren
-ms.author: bwren
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 10/31/2023
 ---

@@ -1,5 +1,4 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 03/12/2024
 ---

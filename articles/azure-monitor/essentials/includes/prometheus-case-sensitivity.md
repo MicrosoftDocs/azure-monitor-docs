@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 01/25/2024
-ms.author: edbaynash
-author: EdB-MSFT
 ---
 
 ## Case sensitivity

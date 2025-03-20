@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 11/05/2024
-ms.author: abbyweisberg
-author: AbbyMSFT
 ---
 
 ## Prerequisites
