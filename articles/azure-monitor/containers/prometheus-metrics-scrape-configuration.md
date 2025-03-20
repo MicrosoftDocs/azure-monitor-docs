@@ -2,7 +2,7 @@
 title: Customize scraping of Prometheus metrics in Azure Monitor
 description: Customize metrics scraping for a Kubernetes cluster with the metrics add-on in Azure Monitor.
 ms.topic: conceptual
-ms.date: 2/28/2024
+ms.date: 03/10/2025
 ms.reviewer: aul
 ---
 
@@ -103,7 +103,7 @@ apiserver = "mymetric.*"
 To further customize the default jobs to change properties like collection frequency or labels, disable the corresponding default target by setting the configmap value for the target to `false`. Then apply the job by using a custom configmap. For details on custom configuration, see [Customize scraping of Prometheus metrics in Azure Monitor](prometheus-metrics-scrape-configuration.md#configure-custom-prometheus-scrape-jobs).
 
 ### Cluster alias
-The cluster label appended to every time series scraped uses the last part of the full AKS cluster's Azure Resource Manager resource ID. For example, if the resource ID is `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-name/providers/Microsoft.ContainerService/managedClusters/myclustername`, the cluster label is `myclustername`.
+The cluster label appended to every time series scraped uses the last part of the full AKS or Azure Arc-enabled Kubernetes cluster's Azure Resource Manager resource ID. For example, if the resource ID is `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-name/providers/Microsoft.ContainerService/managedClusters/myclustername`, the cluster label is `myclustername`.
 
 To override the cluster label in the time series scraped, update the setting `cluster_alias` to any string under `prometheus-collector-settings` in the [configmap](https://aka.ms/azureprometheus-addon-settings-configmap) `ama-metrics-settings-configmap`. You can create this configmap if it doesn't exist in the cluster or you can edit the existing one if it already exists in your cluster.
 
@@ -138,7 +138,8 @@ default-targets-scrape-interval-settings: |-
     prometheuscollectorhealth = "30s"
     podannotations = "30s"
 ```
-and apply the YAML using the following command: `kubectl apply -f .\ama-metrics-settings-configmap.yaml`
+
+Apply the YAML using the following command: `kubectl apply -f .\ama-metrics-settings-configmap.yaml`.
 
 ## Configure custom Prometheus scrape jobs
 

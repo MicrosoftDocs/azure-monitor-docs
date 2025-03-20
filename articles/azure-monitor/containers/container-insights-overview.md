@@ -11,7 +11,7 @@ ms.reviewer: viviandiec
 
 [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) and Container Insights work together for complete monitoring of your Kubernetes environment. This article describes both features and the data they collect.
 
-- [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) is a fully managed service based on the [Prometheus](https://aka.ms/azureprometheus-promio) project from the Cloud Native Computing Foundation. It allows you to collect and analyze metrics from your Kubernetes cluster at scale and analyze them using prebuilt dashboards in [Grafana](/azure/managed-grafana/overview).
+- [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md) is a fully managed service based on the [Prometheus](https://aka.ms/azureprometheus-promio) project from the Cloud Native Computing Foundation. It allows you to collect and analyze metrics from your [Azure Kubernetes clusters](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/overview) at scale and analyze them using prebuilt dashboards in [Grafana](/azure/managed-grafana/overview).
 - Container Insights is a feature of Azure Monitor that collects and analyzes container logs from [Azure Kubernetes clusters](/azure/aks/intro-kubernetes) or [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters and their components.  You can analyze the collected data for the different components in your cluster with a collection of [views](container-insights-analyze.md) and prebuilt [workbooks](container-insights-reports.md).
 
 > [!IMPORTANT]

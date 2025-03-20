@@ -57,7 +57,7 @@ This article provides onboarding guidance for the following types of clusters. A
   - If you previously installed monitoring on a cluster using a script without cluster extensions, follow the instructions at [Disable monitoring of your Kubernetes cluster](kubernetes-monitoring-disable.md) to delete this Helm chart.
 
 > [!NOTE]
-> The Managed Prometheus Arc-Enabled Kubernetes (preview) extension does not support the following configurations:
+> The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations:
 > * Red Hat Openshift distributions, including Azure Red Hat OpenShift (ARO)
 > * Windows nodes
 
@@ -95,11 +95,17 @@ If you don't specify an existing Azure Monitor workspace in the following comman
 - The k8s-extension extension must be installed using the command `az extension add --name k8s-extension`.
 - The k8s-extension version 1.4.1 or higher is required. 
 
+#### Optional parameters
+Each of the commands for AKS and Arc-Enabled Kubernetes allow the following optional parameters. The parameter name is different for each, but their use is the same.
+
+| Parameter | Name and Description |
+|:---|:---|
+| Annotation keys | AKS: `--ksm-metric-annotations-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricAnnotationsAllowList`<br><br>Comma-separated list of Kubernetes annotations keys used in the resource's `kube_resource_annotations` metric. For example, kube_pod_annotations is the annotations metric for the pods resource. By default, this metric contains only name and namespace labels. To include more annotations, provide a list of resource names in their plural form and Kubernetes annotation keys that you want to allow for them. A single `*` can be provided for each resource to allow any annotations, but this has severe performance implications. For example, `pods=[kubernetes.io/team,...],namespaces=[kubernetes.io/team],...`. |
+| Label keys | AKS: `--ksm-metric-labels-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricLabelsAllowlist`<br><br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`. |
+| Recording rules | AKS: `--enable-windows-recording-rules`<br><br>Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
+
 #### AKS cluster
 Use the `-enable-azure-monitor-metrics` option `az aks create` or `az aks update` (depending whether you're creating a new cluster or updating an existing cluster) to install the metrics add-on that scrapes Prometheus metrics.
-
-
-**Sample commands**
 
 ```azurecli
 ### Use default Azure Monitor workspace
@@ -115,7 +121,8 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
 ```
 
-#### Arc-enabled cluster (preview)
+
+#### Arc-enabled cluster
 
 
 ```azurecli
@@ -132,12 +139,14 @@ az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name
 az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id=<workspace-name-resource-id> grafana-resource-id=<grafana-workspace-name-resource-id> AzureMonitorMetrics.KubeStateMetrics.MetricAnnotationsAllowList="pods=[k8s-annotation-1,k8s-annotation-n]" AzureMonitorMetrics.KubeStateMetrics.MetricLabelsAllowlist "namespaces=[k8s-label-1,k8s-label-n]"
 ```
 
-Any of the commands can use the following optional parameters:
+The following additional optional parameters are available for Azure Arc-enabled clusters:
 
-- AKS: `--ksm-metric-annotations-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricAnnotationsAllowList`<br>Comma-separated list of Kubernetes annotations keys used in the resource's kube_resource_annotations metric. For example, kube_pod_annotations is the annotations metric for the pods resource. By default, this metric contains only name and namespace labels. To include more annotations, provide a list of resource names in their plural form and Kubernetes annotation keys that you want to allow for them. A single `*` can be provided for each resource to allow any annotations, but this has severe performance implications. For example, `pods=[kubernetes.io/team,...],namespaces=[kubernetes.io/team],...`.<br>
-- AKS: `--ksm-metric-labels-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricLabelsAllowlist`<br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`.<br>
-- AKS: `--enable-windows-recording-rules` Lets you enable the recording rule groups required for proper functioning of the Windows dashboards.
-
+| Parameter | Description | Default | Upstream Arc cluster setting |
+|:---|:---|:---|:---|
+| `ClusterDistribution` | The distribution of the cluster. | `Azure.Cluster.Distribution` | yes |
+| `CloudEnvironment` | The cloud environment for the cluster. | `Azure.Cluster.Cloud` | yes |
+| `MountCATrustAnchorsDirectory` | Whether to mount CA trust anchors directory. | `true` | no |
+| `MountUbuntuCACertDirectory` | Whether to mount Ubuntu CA certificate directory. | `true` unless an `aks_edge` distro. | no |
 
 
 ### [Azure Resource Manager](#tab/arm)
@@ -192,7 +201,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     - Profile module: [https://aka.ms/nested_azuremonitormetrics_profile_clusterResourceId](https://aka.ms/nested_azuremonitormetrics_profile_clusterResourceId)
     - Azure Managed Grafana Role Assignment module: [https://aka.ms/nested_grafana_amw_role_assignment](https://aka.ms/nested_grafana_amw_role_assignment)
 
-    **Arc-Enabled cluster (preview) ARM**
+    **Arc-Enabled cluster ARM**
 
     - Template file: [https://aka.ms/azureprometheus-arc-arm-template](https://aka.ms/azureprometheus-arc-arm-template)
     - Parameter file: [https://aka.ms/azureprometheus-arc-arm-template-parameters](https://aka.ms/azureprometheus-arc-arm-template-parameters)
@@ -320,7 +329,7 @@ If you're deploying a new AKS cluster using Terraform with managed Prometheus ad
 Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in main.tf only when those values exist. These are optional blocks.
 
 > [!NOTE]
-> Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values gets deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
+> Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values get deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
 
 ### [Azure Policy](#tab/policy)
 
