@@ -17,6 +17,8 @@ Proper assignment of permissions is an essential part of configuring your experi
 
 ## Permissions assignment on experiment creation
 
+When creating your chaos experiment in the Azure portal, you may choose to assign your experiment permissions using Azure built-in roles, a new custom role, or opt out of automatic role assignment within the **"Experiment permissions"** section of the **Permissions** tab.
+
 
 
 ## Check and update experiment permissions
