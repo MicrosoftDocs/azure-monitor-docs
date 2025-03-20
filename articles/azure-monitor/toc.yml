@@ -1186,7 +1186,7 @@ items:
       href: logs/migrate-splunk-to-azure-monitor-logs.md
 - name: Security and networking
   items:
-  - name: Azure Monitor security overview and guidelines 
+  - name: Secure your Azure Monitor deployment 
     href: fundamentals/best-practices-security.md
     displayName: Azure Customer Lockbox, Customer Lockbox, Lockbox
   - name: Data security
