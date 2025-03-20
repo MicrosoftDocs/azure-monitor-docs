@@ -1,6 +1,6 @@
 ---
 title: Assigning experiment permissions in Azure Chaos Studio
-description: Learn about multiple ways to go about assigning experiment permissions in Azure Chaos Studio.
+description: Learn how to go about assigning experiment permissions in Azure Chaos Studio.
 services: chaos-studio
 author: vikramrajumsft
 ms.topic: article
