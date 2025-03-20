@@ -1621,6 +1621,8 @@ items:
             href: tables/acsemailuserengagementoperational.md
           - name: ACSJobRouterIncomingOperations
             href: tables/acsjobrouterincomingoperations.md
+          - name: ACSOptOutManagementOperations
+            href: tables/acsoptoutmanagementoperations.md
           - name: ACSRoomsIncomingOperations
             href: tables/acsroomsincomingoperations.md
           - name: ACSSMSIncomingOperations
@@ -2437,8 +2439,6 @@ items:
             href: tables/heartbeat.md
           - name: HuntingBookmark
             href: tables/huntingbookmark.md
-          - name: IISAssessmentRecommendation
-            href: tables/iisassessmentrecommendation.md
           - name: IdentityDirectoryEvents
             href: tables/identitydirectoryevents.md
           - name: IdentityInfo
@@ -2457,8 +2457,6 @@ items:
             href: tables/intunedevices.md
           - name: IntuneOperationalLogs
             href: tables/intuneoperationallogs.md
-          - name: IoTHubDistributedTracing
-            href: tables/iothubdistributedtracing.md
           - name: KubeEvents
             href: tables/kubeevents.md
           - name: KubeHealth
@@ -2531,8 +2529,6 @@ items:
             href: tables/mawindowscurrencyassessmentdailycounts.md
           - name: MAWindowsDeploymentStatus
             href: tables/mawindowsdeploymentstatus.md
-          - name: MAWindowsDeploymentStatusNRT
-            href: tables/mawindowsdeploymentstatusnrt.md
           - name: MCCEventLogs
             href: tables/mcceventlogs.md
           - name: MCVPAuditLogs
@@ -2701,6 +2697,8 @@ items:
             href: tables/remotenetworkhealthlogs.md
           - name: ResourceManagementPublicAccessLogs
             href: tables/resourcemanagementpublicaccesslogs.md
+          - name: RetinaNetworkFlowLogs
+            href: tables/retinanetworkflowlogs.md
           - name: SCCMAssessmentRecommendation
             href: tables/sccmassessmentrecommendation.md
           - name: SCGPoolExecutionLog
@@ -3337,6 +3335,8 @@ items:
             href: queries/DatabricksBudgetPolicyCentral.md
           - name: DataverseActivity
             href: queries/DataverseActivity.md
+          - name: DevCenterBillingEventLogs
+            href: queries/DevCenterBillingEventLogs.md
           - name: DevCenterDiagnosticLogs
             href: queries/DevCenterDiagnosticLogs.md
           - name: DevCenterResourceOperationLogs
@@ -3483,6 +3483,8 @@ items:
             href: queries/REDConnectionEvents.md
           - name: ResourceManagementPublicAccessLogs
             href: queries/ResourceManagementPublicAccessLogs.md
+          - name: RetinaNetworkFlowLogs
+            href: queries/RetinaNetworkFlowLogs.md
           - name: SCGPoolExecutionLog
             href: queries/SCGPoolExecutionLog.md
           - name: SCGPoolRequestLog
