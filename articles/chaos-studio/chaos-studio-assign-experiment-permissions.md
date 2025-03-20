@@ -26,21 +26,22 @@ The following will happen on experiment deployment depending on the option you s
 * **"Use a new custom role"**: If your experiment's managed identity does not already have the permissions to inject your selected faults, Chaos Studio will perform a role definition and role assignment on your experiment's managed identity using a custom role based on the [faults and targets in your experiment](chaos-studio-fault-providers.md).
 * **"Assign experiment permissions manually"**: No role definitions or role assignments will occur on experiment deployment. You will need to assign the proper permissions to your experiment's managed identity after it has been created.
 
-If you choose to assign your experiment permissions using Azure built-in roles or a custom role, you will get a summary of proposed permissions deployments on the **Review + create** tab:
+If you choose to assign your experiment permissions using Azure built-in roles or a custom role, you will get a summary of proposed permissions deployments within the **"Permissions"** section of the **Review + create** tab:
 
-[ ![Screenshot that shows the review and create tab with an Azure-built-in role to be assigned to the experiment's identity in the Azure portal.]()
+<br>[![Screenshot that shows the review and create tab with an Azure-built-in role to be assigned to the experiment's identity in the Azure portal.](images/review-create-tab-role-assignment.png)](images/review-create-tab-role-assignment.png#lightbox)<br>
 
 ## Check and update experiment permissions
 
 You can check if your experiment has sufficient permissions to run at any time within the **"Experiment permissions"** tab located in the **"Settings"** dropdown on your experiment's overview page:
 
-[ ![Screenshot that shows the experiment permissions page of an experiment within the Azure portal.]()
+<br>[![Screenshot that shows the experiment permissions page of an experiment within the Azure portal.](images/permissions-need-remediation.png)](images/permissions-need-remediation.png#lightbox)<br>
 
 If your experiment does not have sufficient permissions to run, you will be shown the specific Azure Resource Manager actions that are missing from its managed identity, along with the target that each action maps to in your experiment. You may remediate your experiment by assigning the necessary permissions to its managed identity using Azure built-in roles or a custom role directly within the **"Experiment permissions"** tab:
 
-[ ![Screenshot that shows the permissions deployment context pane within the experiment permissions page of an experiment within the Azure portal.]()
+<br>[![Screenshot that shows the permissions deployment context pane within the experiment permissions page of an experiment within the Azure portal.](images/permissions-need-remediation-deployment.png)](images/permissions-need-remediation-deployment.png#lightbox)<br>
 
-If you choose to assign your experiment permissions manually, you 
+> [!NOTE]
+> In order to perform role assignments successfully, you must obtain or already have the [Role Based Access Control Administrator](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) Azure built-in role assigned to you.
 
 ## Next steps
 Now that you understand how to assign experiment permissions within Chaos Studio, you're ready to:
