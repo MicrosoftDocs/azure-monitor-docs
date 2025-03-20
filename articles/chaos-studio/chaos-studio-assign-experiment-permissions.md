@@ -19,7 +19,7 @@ Proper assignment of permissions is an essential part of configuring your experi
 
 When creating your experiment in the Azure portal, you may choose to assign your experiment permissions using Azure built-in roles, a new custom role, or opt out of automatic role assignment within the **"Experiment permissions"** section of the **Permissions** tab:
 
-[ ![Screenshot that shows the permissions tab with a system-assigned identity and Azure-built-in roles selected in the Azure portal.]()
+<br>[![Screenshot that shows the permissions tab with a system-assigned identity and Azure-built-in roles selected in the Azure portal.](images/permissions-tab.png)](images/permissions-tab.png#lightbox)<br>
 
 The following will happen on experiment deployment depending on the option you select to assign your experiment permissions:
 * **"Use Azure built-in roles"**: If your experiment's managed identity does not already have the permissions to inject your selected faults, Chaos Studio will perform role assignments on your experiment's managed identity using one or more Azure built-in roles based on the [faults and targets in your experiment](chaos-studio-fault-providers.md).
@@ -36,7 +36,7 @@ You can check if your experiment has sufficient permissions to run at any time w
 
 [ ![Screenshot that shows the experiment permissions page of an experiment within the Azure portal.]()
 
-If your experiment does not have sufficient permissions to run, you may remediate it by assigning the necessary permissions to its managed identity using Azure built-in roles or a custom role directly within the **"Experiment permissions"** tab:
+If your experiment does not have sufficient permissions to run, you will be shown the specific Azure Resource Manager actions that are missing from its managed identity, along with the target that each action maps to in your experiment. You may remediate your experiment by assigning the necessary permissions to its managed identity using Azure built-in roles or a custom role directly within the **"Experiment permissions"** tab:
 
 [ ![Screenshot that shows the permissions deployment context pane within the experiment permissions page of an experiment within the Azure portal.]()
 
