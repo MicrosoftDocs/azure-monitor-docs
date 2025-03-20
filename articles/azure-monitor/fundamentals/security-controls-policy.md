@@ -3,7 +3,6 @@ title: Azure Policy Regulatory Compliance controls for Azure Monitor
 description: Lists Azure Policy Regulatory Compliance controls available for Azure Monitor. These built-in policy definitions provide common approaches to managing the compliance of your Azure resources.
 ms.date: 02/06/2024
 ms.topic: sample
-ms.service: azure-monitor
 ms.custom: subject-policy-compliancecontrols
 ---
 

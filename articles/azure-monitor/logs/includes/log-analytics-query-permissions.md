@@ -1,7 +1,4 @@
 ---
-author: guywild
-ms.author: guywild
-ms.service: log-analytics
 ms.topic: include
 ms.date: 06/02/2023
 ---

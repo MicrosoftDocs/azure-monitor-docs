@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 08/04/2022
-author: bwren
-ms.author: bwren
 ---
 
 ### View recent Azure Monitor alerts

@@ -1,9 +1,6 @@
 ---
-ms.service: application-insights
 ms.topic: include
 ms.date: 09/25/2023
-author: AaronMaxwell
-ms.author: aaronmax
 ---
 
 **Collection of custom measurements:** Use this collection to report named measurements associated with the telemetry item. Typical use cases are:

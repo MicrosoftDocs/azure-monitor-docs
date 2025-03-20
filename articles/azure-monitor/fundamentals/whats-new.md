@@ -3,8 +3,6 @@ title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: conceptual
 ms.date: 04/03/2025
-author: AaronMaxwell
-ms.author: aaronmax
 ---
 
 # What's new in Azure Monitor documentation

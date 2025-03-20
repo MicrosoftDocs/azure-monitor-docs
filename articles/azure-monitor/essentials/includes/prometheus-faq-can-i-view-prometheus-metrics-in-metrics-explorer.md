@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 4/08/2024
-ms.author: edbaynash
-author: EdB-MSFT
 ---
 
 ### Can I view my Prometheus metrics in Azure Monitor metrics explorer?

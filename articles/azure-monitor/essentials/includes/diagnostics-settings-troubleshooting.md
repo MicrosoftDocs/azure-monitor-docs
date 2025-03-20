@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 01/16/2025
-ms.author: edbayansh
-author: EdB-MSFT
 ---
 
 ## Troubleshooting

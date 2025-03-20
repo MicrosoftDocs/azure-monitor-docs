@@ -1,9 +1,6 @@
 ---
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 10/31/2023
-ms.author: edbaynash
-author: EdB-MSFT
 ---
 
 ### Why am I missing metrics that have two labels with the same name but different casing?
