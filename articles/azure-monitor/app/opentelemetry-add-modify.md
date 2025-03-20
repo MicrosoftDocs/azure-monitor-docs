@@ -1807,7 +1807,7 @@ It's not possible to send custom telemetry using the Application Insights Classi
 
 #### [Node.js](#tab/nodejs)
 
-To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object.
+To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Additional attributes can also be included as needed.
 
 ```typescript
 /**
@@ -1815,9 +1815,10 @@ To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.na
  * The customEvent name uses the value of that attribute.
  */
 logger.emit({
-  body: 'test log message',
+  body: 'Hello World!',
   attributes: {
-      "microsoft.custom_event.name": "test",
+    "microsoft.custom_event.name": "test-event-name",
+    "additional_attrs": "val1"
   },
 });
 ```
