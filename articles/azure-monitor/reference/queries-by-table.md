@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/18/2025
+ms.date: 03/19/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -1232,6 +1232,11 @@ ms.reviewer: lualderm
 
 - [Dataverse events filtered by operation type](./queries/DataverseActivity.md#dataverse-events-filtered-by-operation-type)
 
+## [DevCenterBillingEventLogs](./queries/DevCenterBillingEventLogs.md)
+
+- [DevCenter - DevBox storage and compute usage breakdown by dev box](./queries/DevCenterBillingEventLogs.md#devcenter---devbox-storage-and-compute-usage-breakdown-by-dev-box)
+- [DevCenter - DevBox billing meter breakdown by Pool](./queries/DevCenterBillingEventLogs.md#devcenter---devbox-billing-meter-breakdown-by-pool)
+
 ## [DevCenterDiagnosticLogs](./queries/DevCenterDiagnosticLogs.md)
 
 - [Failed actions query](./queries/DevCenterDiagnosticLogs.md#failed-actions-query)
@@ -1646,6 +1651,11 @@ ms.reviewer: lualderm
 - [Calls based on the target URI](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-the-target-uri)
 - [Calls based on operation name](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-operation-name)
 - [Calls based on user](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-user)
+
+## [RetinaNetworkFlowLogs](./queries/RetinaNetworkFlowLogs.md)
+
+- [Dropped network low Logs](./queries/RetinaNetworkFlowLogs.md#dropped-network-low-logs)
+- [Top 10 network flow log metrics](./queries/RetinaNetworkFlowLogs.md#top-10-network-flow-log-metrics)
 
 ## [SCGPoolExecutionLog](./queries/SCGPoolExecutionLog.md)
 
