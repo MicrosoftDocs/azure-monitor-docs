@@ -138,7 +138,8 @@ default-targets-scrape-interval-settings: |-
     prometheuscollectorhealth = "30s"
     podannotations = "30s"
 ```
-and apply the YAML using the following command: `kubectl apply -f .\ama-metrics-settings-configmap.yaml`
+
+Apply the YAML using the following command: `kubectl apply -f .\ama-metrics-settings-configmap.yaml`.
 
 ## Configure custom Prometheus scrape jobs
 
