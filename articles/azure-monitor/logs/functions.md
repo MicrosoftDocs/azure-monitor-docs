@@ -67,7 +67,7 @@ The following sample uses the [Microsoft.OperationalInsights workspaces/savedSea
 
 To learn more about how to deploy resources from a custom template, go to [Deploy resources with ARM templates and Azure portal](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template).
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ### Template file
 

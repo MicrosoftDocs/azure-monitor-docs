@@ -98,11 +98,11 @@ Partially accepted content `206` might indicate a failure of an overall request.
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Dependency
 
@@ -142,11 +142,11 @@ This field is the indication of a successful or unsuccessful call.
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Exception
 
@@ -168,11 +168,11 @@ This field is the trace severity level. The value can be `Verbose`, `Information
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Trace
 
@@ -192,7 +192,7 @@ Trace severity level.
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ## Event
 
@@ -208,11 +208,11 @@ Semantically, events might or might not be correlated to requests. If used prope
 
 ### Custom properties
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ### Custom measurements
 
-[!INCLUDE [application-insights-data-model-measurements](../includes/application-insights-data-model-measurements.md)]
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Metric
 
@@ -266,7 +266,7 @@ This field is the standard deviation of the aggregated metric. It shouldn't be s
 
 The metric with the custom property `CustomPerfCounter` set to `true` indicates that the metric represents the Windows performance counter. These metrics are placed in the `performanceCounters` table, not in `customMetrics`. Also, the name of this metric is parsed to extract category, counter, and instance names.
 
-[!INCLUDE [application-insights-data-model-properties](../includes/application-insights-data-model-properties.md)]
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
 
 ## PageView
 

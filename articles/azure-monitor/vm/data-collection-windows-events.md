@@ -16,7 +16,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#windows-events).
 
 ## Configure Windows event data source
-Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Windows Event Logs** from the **Data source type** dropdown. Select from a set of logs and severity levels to collect. Only logs with the selected severity level for each log will be collected.
+Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Windows Event Logs** from the **Data source type** dropdown. Select from a set of logs and severity levels to collect. Only logs with the selected severity level for each log are collected.
 
 > [!TIP]
 > If you select the **Security** log in the DCR, the events are sent to the [Event](/azure/azure-monitor/reference/tables/Event) table in your Log Analytics workspace with events from other logs such as System and Application. Another option is to enable [Microsoft Sentinel](/azure/sentinel/) on the workspace and enable the [Windows Security Events via AMA connector for Microsoft Sentinel](/azure/sentinel/data-connectors/windows-security-events-via-ama). This uses the same [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) and collects the same events, but they're sent to the [SecurityEvent](/azure/azure-monitor/reference/tables/SecurityEvent) table which is used by Sentinel.
@@ -29,7 +29,7 @@ Select **Custom** to [filter events by using XPath queries](#filter-events-using
 
 
 ## Add destinations
-Windows event data can only be sent to a Log Analytics workspace where it's stored in the [Event](/azure/azure-monitor/reference/tables/event) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
+Windows event data can only be sent to a Log Analytics workspace where it's stored in the [Event](/azure/azure-monitor/reference/tables/event) table. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. While you can add multiple workspaces, be aware that this sends duplicate data to each which results in additional cost.
 
 
 :::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." :::

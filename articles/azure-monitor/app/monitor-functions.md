@@ -78,7 +78,7 @@ Your Java functions might have slow startup times if you adopted this feature be
     APPLICATIONINSIGHTS_ENABLE_AGENT: true
     ```
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 #### Duplicate logs
 

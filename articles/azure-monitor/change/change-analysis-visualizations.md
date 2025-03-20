@@ -10,7 +10,7 @@ ms.subservice: change-analysis
 
 # View and use Change Analysis (classic)
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
 
 Change Analysis (classic) provides data for various management and troubleshooting scenarios to help you understand what changes to your application caused breaking issues.
 

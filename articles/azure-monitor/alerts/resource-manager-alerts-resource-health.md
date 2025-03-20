@@ -11,7 +11,7 @@ ms.date: 04/01/2024
 
 This article includes samples of [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create and configure resource health alerts in Azure Monitor. 
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 See [Configure resource health alerts using Resource Manager templates](../../service-health/resource-health-alert-arm-template-guide.md) for information about configuring resource health alerts using ARM templates.
 
@@ -37,17 +37,17 @@ You can use this base template as a starting point for creating Resource Health 
       }
     }
   },
-  "resources": [   
+  "resources": [
     {
       "type": "Microsoft.Insights/activityLogAlerts",
       "apiVersion": "2017-04-01",
-      "name": "[parameters('activityLogAlertName')]",      
+      "name": "[parameters('activityLogAlertName')]",
       "location": "Global",
       "properties": {
         "enabled": true,
         "scopes": [
             "[subscription().id]"
-        ],        
+        ],
         "condition": {
           "allOf": [
             {
@@ -73,8 +73,6 @@ You can use this base template as a starting point for creating Resource Health 
   ]
 }
 ```
-
-
 
 ## Template to maximize the signal to noise ratio
 
@@ -207,6 +205,7 @@ See [Configure resource health alerts using Resource Manager templates](../../se
 ## Next steps
 
 Learn more about Resource Health:
--  [Azure Resource Health overview](../../service-health/resource-health-overview.md)
--  [Resource types and health checks available through Azure Resource Health](../../service-health/resource-health-checks-resource-types.md)
--  [Configure Alerts for Service Health](../../service-health/alerts-activity-log-service-notifications-arm.md)
+
+* [Azure Resource Health overview](../../service-health/resource-health-overview.md)
+* [Resource types and health checks available through Azure Resource Health](../../service-health/resource-health-checks-resource-types.md)
+* [Configure Alerts for Service Health](../../service-health/alerts-activity-log-service-notifications-arm.md)

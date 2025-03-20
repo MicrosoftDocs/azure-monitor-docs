@@ -40,6 +40,27 @@ If you're using the Azure portal to enable a private resource as a Chaos Studio 
 
 If you're using the CLI, the container and relay subnets can have any name (subject to the resource naming guidelines). Specify the appropriate IDs when you enable the resource as a target.
 
+## Auto-Tagging of Experiment Resources
+
+When a **Chaos Studio experiment** is configured to run with **private networking enabled**, Chaos Studio automatically provisions two key resources in your subscription:  
+1. An **Azure container instance** that facilitates secure communication.  
+2. An **Azure relay** that manages network routing for the experiment to the Chaos Studio backend.  
+
+Previously, these **created on behalf of resources** did not inherit the **tags** applied to the experiment, which could cause **Azure Policy enforcement conflicts** in environments that require resource tagging.  
+
+With this update, **Chaos Studio now automatically applies the same tags from your experiment to the container and relay resources it creates**. This improvement enhances **resource visibility, compliance, and governance** within your Azure environment.  
+
+### How It Works
+- Pre-requisite: You are creating an experiment that targets resources that are within a virtual network. 
+- When an **experiment** is tagged, those same **tags are automatically propagated** to any resources **Chaos Studio provisions** for private networking.  
+- These tags will be visible in the **Azure portal**, **Azure CLI**, and **ARM API queries**, just like any other Azure resource.  
+- No additional configuration is required—simply applying **tags to your experiment** ensures they are **inherited** by all related resources.  
+
+### Benefits
+✅ **Ensures Compliance** – Resources now meet **Azure Policy** tagging requirements.  
+✅ **Improves Resource Tracking** – All experiment-associated resources carry the same tags for easy identification.  
+✅ **No Extra Setup Required** – Works **automatically** when an experiment is tagged.
+
 ## Example: Use Chaos Studio with a private AKS cluster
 
 This example shows how to configure a private AKS cluster to use with Chaos Studio. It assumes you already have a private AKS cluster within your Azure subscription. To create one, see [Create a private Azure Kubernetes Service cluster](/azure/aks/private-clusters).

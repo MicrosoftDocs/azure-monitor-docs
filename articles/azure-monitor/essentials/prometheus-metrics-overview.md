@@ -121,7 +121,7 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 - During node updates, you might experience gaps that last 1 to 2 minutes in some metric collections from the cluster-level collector. This gap is due to a regular action from Azure Kubernetes Service to update the nodes in your cluster. This behavior doesn't affect recommended alert rules.
 - Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes and pods in your clusters, see [Enable Windows metrics collection (preview)](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview).
 
-[!INCLUDE [case sensitivity](../includes/prometheus-case-sensitivity.md)]
+[!INCLUDE [case sensitivity](includes/prometheus-case-sensitivity.md)]
 
 ## Prometheus references
 

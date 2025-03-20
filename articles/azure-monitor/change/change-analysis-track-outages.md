@@ -10,7 +10,7 @@ ms.subservice: change-analysis
 
 # Tutorial: Track a web app outage by using Change Analysis (classic)
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
 
 When your application runs into an issue, you need configurations and resources to triage breaking changes and discover root-cause issues. Change Analysis (classic) provides a centralized view of the changes in your subscriptions for up to 14 days prior to provide the history of changes for troubleshooting issues.
 

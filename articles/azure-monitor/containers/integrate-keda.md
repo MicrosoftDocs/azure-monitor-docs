@@ -178,7 +178,7 @@ keda-operator-metrics-apiserver-7dc6f59678-745nz   1/1     Running   0          
 
 Scalers define how and when KEDA should scale a deployment. KEDA supports a variety of scalers. For more information on scalers, see [Scalers](https://keda.sh/docs/2.10/scalers/prometheus/). Azure Managed Prometheus utilizes already existing Prometheus scaler to retrieve Prometheus metrics from Azure Monitor Workspace. The following yaml file is an example to use Azure Managed Prometheus. 
 
-[!INCLUDE[managed-identity-yaml](../includes/prometheus-sidecar-keda-scaler-yaml.md)]
+[!INCLUDE[managed-identity-yaml](includes/prometheus-sidecar-keda-scaler-yaml.md)]
 
 + `serverAddress` is the Query endpoint of your Azure Monitor workspace. For more information, see [Query Prometheus metrics using the API and PromQL](../essentials/prometheus-api-promql.md#query-endpoint)
 + `metricName` is the name of the metric you want to scale on. 

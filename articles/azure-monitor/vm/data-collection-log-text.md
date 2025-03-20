@@ -33,7 +33,7 @@ The options available in the **Custom Text Logs** configuration are described in
 | Transform | [Ingestion-time transformation](../essentials/data-collection-transformations.md) to filter records or to format the incoming data for the destination table. Use `source` to leave the incoming data unchanged and sent to the `RawData` column. See [Delimited log files](#delimited-log-files) for an example of using a transformation. |
 
 ## Add destinations
-Custom text logs can only be sent to a Log Analytics workspace where it's stored in the [custom table](#log-analytics-workspace-table) that you create. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace.
+Custom text logs can only be sent to a Log Analytics workspace where it's stored in the [custom table](#log-analytics-workspace-table) that you create. Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. You can only add a single workspace to a DCR for a custom text log data source. If you need multiple destinations, create multiple DCRs. Be aware though that this will send duplicate data to each which will result in additional cost.
 
 :::image type="content" source="media/data-collection/destination-workspace.png" lightbox="media/data-collection/destination-workspace.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule." ::: 
 
@@ -149,6 +149,9 @@ If the time stamp format `YYYY-MM-DD HH:MM:SS` is used in the DCR, then the data
 Many text log files have entries with columns delimited by a character such as a comma. Instead of sending the entire entry to the `RawData` column, you can parse the data into separate columns so that each can be populated in the destination table. Use a transformation with the [split function](/azure/data-explorer/kusto/query/split-function) to perform this parsing.
 
 The sample text file shown above is comma-delimited, and the fields could be described as: `Time`, `Code`, `Severity`, `Module`, and `Message`. To parse this data into separate columns, add each of the columns to the destination table and add the following transformation to the DCR.
+
+> [!IMPORTANT]
+> Prior to adding this transformation to the DCR, you must add these columns to the destination table. You can modify the PowerShell script above to include the additional columns when the table is created. Or use the Azure portal as described in [Add or delete a custom column](../logs/create-custom-table.md#add-or-delete-a-custom-column) to add the columns to an existing table.
 
 Notable details of the transformation query include the following:
 
