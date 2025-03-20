@@ -1,27 +1,27 @@
 ---
 title: Multitenant managed logging in Container insights (Preview)
-description: Concepts and onboarding steps for multi-tenant logging in Container insights.
+description: Concepts and onboarding steps for multitenant logging in Container insights.
 ms.topic: conceptual
 ms.custom: references_regions
 ms.date: 03/18/2025
 ms.reviewer: viviandiec
 ---
 
-# Multi-tenant managed logging in Container insights (Preview)
+# Multitenant managed logging in Container insights (Preview)
 
-Multi-tenant logging in Container insights is useful for customers who operate shared cluster platforms using AKS. You may need the ability to configure container console log collection in a way that segregates logs by different teams so that each has access to the container logs of the containers running in k8s namespaces that they own and the ability to access the billing and management associated with the Azure Log analytics workspace. For example, container logs from infrastructure namespaces such as kube-system can be directed to a specific Log Analytics workspace for the infrastructure team, while each application team's container logs can be sent to their respective workspaces. 
+Multitenant logging in Container insights is useful for customers who operate shared cluster platforms using AKS. You may need the ability to configure container console log collection in a way that segregates logs by different teams so that each has access to the container logs of the containers running in K8s namespaces that they own and the ability to access the billing and management associated with the Azure Log analytics workspace. For example, container logs from infrastructure namespaces such as kube-system can be directed to a specific Log Analytics workspace for the infrastructure team, while each application team's container logs can be sent to their respective workspaces. 
 
-This article describes how multi-tenant logging works in Container insights, the scenarios it supports, and how to onboard your cluster to use this feature.
+This article describes how multitenant logging works in Container insights, the scenarios it supports, and how to onboard your cluster to use this feature.
 
 
 ## Scenarios
-The multi-tenant logging feature in Container insights supports the following scenarios:
+The multitenant logging feature in Container insights supports the following scenarios:
 
-- **Multi-tenancy.** Sends container logs (stdout & stderr) from one or more k8s namespaces to corresponding Log Analytics workspace. 
+- **Multi-tenancy.** Sends container logs (stdout & stderr) from one or more K8s namespaces to corresponding Log Analytics workspace. 
 
     :::image type="content" source="media/container-insights-multitenant/multitenancy.png" lightbox="media/container-insights-multitenant/multitenancy.png" alt-text="Diagram that illustrates multitenancy for Container insights." :::
 
-- **Multi-homing:**  Sends the same set of container logs (stdout & stderr) from one or more k8s namespaces to multiple Log Analytics workspaces. 
+- **Multi-homing:**  Sends the same set of container logs (stdout & stderr) from one or more K8s namespaces to multiple Log Analytics workspaces. 
 
     :::image type="content" source="media/container-insights-multitenant/multihoming.png" lightbox="media/container-insights-multitenant/multihoming.png" alt-text="Diagram that illustrates multihoming for Container insights." :::
 
@@ -29,7 +29,7 @@ The multi-tenant logging feature in Container insights supports the following sc
 
 Container insights use a [data collection rule (DCR)](../essentials/data-collection-rule-overview.md) to define the data collection settings for your AKS cluster. A default **ContainerInsights** Extension DCR is created automatically when you [enable Container insights](./kubernetes-monitoring-enable.md#container-insights). This DCR is a singleton meaning there is one DCR per Kubernetes cluster.
 
-For multi-tenant logging, Container Insights adds support for [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs, which are used to define collection of container logs for k8s namespaces. Multiple [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
+For multitenant logging, Container Insights adds support for [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs, which are used to define collection of container logs for K8s namespaces. Multiple [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
 
 When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default **ContainerInsights** extension DCR and the **ContainerLogV2Extension** DCRs associated with the AKS cluster. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they'll be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace in the default **ContainerInsights** DCR as usual. 
 
@@ -78,7 +78,7 @@ A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overvi
     ```
 
 ### Create DCR for each application or infrastructure team
-Repeat the following steps to create a separate DCR for each application or infrastructure team. Each will include a set of k8s namespaces and a Log Analytics workspace destination.
+Repeat the following steps to create a separate DCR for each application or infrastructure team. Each will include a set of K8s namespaces and a Log Analytics workspace destination.
 
 1. Retrieve the following ARM template and parameter file.
 
@@ -93,7 +93,7 @@ Repeat the following steps to create a separate DCR for each application or infr
     | `aksResourceLocation` | Azure Region of the AKS cluster |
     | `workspaceResourceId` | Azure Resource ID of the Log Analytics workspace |
     | `workspaceRegion` | Azure Region of the Log Analytics workspace  |
-    | `k8sNamespaces` | List of k8s namespaces for logs to be sent to the Log Analytics workspace defined in this parameter file. |
+    | `K8sNamespaces` | List of K8s namespaces for logs to be sent to the Log Analytics workspace defined in this parameter file. |
     | `resourceTagValues` | Azure Resource Tags to use on AKS, data collection rule (DCR), and data collection endpoint (DCE). |
     | `transformKql` | KQL filter for advance filtering using ingestion-time transformation. For example, to exclude the logs for a specific pod, use `source | where PodName != '<podName>'`. See [Transformations in Azure Monitor](../essentials/data-collection-transformations.md) for details. |
     | `useAzureMonitorPrivateLinkScope` | Indicates whether to configure Azure Monitor Private Link Scope. |
@@ -106,12 +106,12 @@ Repeat the following steps to create a separate DCR for each application or infr
     ```
 
 
-## Disabling multi-tenant logging
+## Disabling multitenant logging
 
 > [!NOTE]
 > See [Disable monitoring of your Kubernetes cluster](./kubernetes-monitoring-disable.md) if you want to completely disable Container insights for the cluster.
 
-Use the following steps to disable multi-tenant logging on a cluster.
+Use the following steps to disable multitenant logging on a cluster.
 
 1. Use the following command to list all the DCR associations for the cluster.
     
@@ -140,7 +140,7 @@ Use the following steps to disable multi-tenant logging on a cluster.
 
 ## Troubleshooting 
 
-Perform the following steps to troubleshoot issues with multi-tenant logging in Container insights.
+Perform the following steps to troubleshoot issues with multitenant logging in Container insights.
 
 1.  Verify that [high scale logging](./container-insights-high-scale.md) is enabled for the cluster. 
   
@@ -191,7 +191,7 @@ Perform the following steps to troubleshoot issues with multi-tenant logging in 
         # output should list both ContainerInsightsExtension and ContainerLogV2Extension DCRs associated to the cluster
         # From the output, for each dataCollectionRuleId and check dataCollectionEndpoint associated or not
         az monitor data-collection rule show --ids <dataCollectionRuleId>
-        # you can also check the extension settings for the k8s namespace configuration
+        # you can also check the extension settings for the K8s namespace configuration
    ```
 
 5. Verify that the agent is downloading all the associated DCRs.
