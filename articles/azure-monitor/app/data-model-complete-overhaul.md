@@ -20,17 +20,17 @@ The following types of telemetry are used to monitor the execution of your app. 
 | Collection  | Telemetry type | Table | Description |
 |-------------|----------------|-------|-------------|
 | **Default** | | | |
-| | [Request](#request-telemetry) | `requests` | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives.<br><br>An *operation* is made up of the threads of execution that process a request. You can also [write code](api-custom-events-metrics.md#trackrequest) to monitor other types of operation, such as a "wake up" in a web job or function that periodically processes data. Each operation has an ID. The ID can be used to [group](distributed-trace-data.md) all telemetry generated while your app is processing the request. Each operation has a duration of time and either succeeds or fails. |
+| | [Request](#request-telemetry) | `requests` | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives. |
 | | [Dependency](#dependency-telemetry) | `dependencies` | Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`. |
-| | [Exception](#exception-telemetry)** | `exceptions` | Typically represents an exception that causes an operation to fail. |
-| | [Metric](#metric-telemetry) | `performanceCounters` | ... |
+| | [Exception](#exception-telemetry) | `exceptions` | Typically represents an exception that causes an operation to fail. |
+| | [Metric (Default)](#metric-telemetry) | `performanceCounters` | ... |
 | | [Page view](#pageview-telemetry) | `pageViews` | Tracks and collects data related to the views of web pages or specific content within your web applications. |
-| | [Browser timings](#browser-timings-telemetry) | `browserTimings` | ... |
-| | [Availability](#availability-telemetry) | `availabilityResults` | ... |
+| | [Browser timings](#browser-timing-telemetry) | `browserTimings` | ... |
 | **Custom** | | | |
 | | [Trace](#trace-telemetry) | `traces` | Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`. |
-| | [Metric (customMetrics)](#metric-telemetry) | `customMetrics` | Used to report periodic scalar measurements. |
+| | [Metric (Custom)](#metric-telemetry) | `customMetrics` | Used to report periodic scalar measurements. |
 | | [Event](#event-telemetry) | `customEvents` | Typically used to capture user interaction with your service to analyze usage patterns. |
+| | [Availability](#availability-telemetry) | `availabilityResults` | ... |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
@@ -56,7 +56,7 @@ Request telemetry supports the standard extensibility model by using custom `pro
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
-## Dependeny telemetry
+## Dependency telemetry
 
 Dependency telemetry in Application Insights represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
