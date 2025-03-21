@@ -41,7 +41,7 @@ You may remediate your experiment by assigning the necessary permissions to its 
 <br>[![Screenshot that shows the permissions deployment context pane within the experiment permissions page of an experiment within the Azure portal.](images/permissions-need-remediation-deployment.png)](images/permissions-need-remediation-deployment.png#lightbox)<br>
 
 > [!NOTE]
-> In order to perform role assignments successfully, you must obtain or already have the [Role Based Access Control Administrator](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) Azure built-in role assigned to you.
+> In order to perform role assignments successfully, you must obtain or already have the **Role Based Access Control Administrator** Azure built-in role assigned to you.
 
 ## Next steps
 Now that you understand how to assign experiment permissions within Chaos Studio, you're ready to:
