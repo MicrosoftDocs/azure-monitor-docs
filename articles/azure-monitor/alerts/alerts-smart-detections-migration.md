@@ -16,7 +16,7 @@ With the migration, smart detection now allows you to take advantage of the full
 
 - **Rich notification options for all detectors**: Use [action groups](../alerts/action-groups.md) to configure multiple types of notifications and actions that are triggered when an alert is fired. You can configure notification by email, SMS, voice call, or push notifications. You can configure actions like calling a secure webhook, logic app, and automation runbook. Action groups further management at scale by allowing you to configure actions once and use them across multiple alert rules.
 - **At-scale management**: Smart detection alerts use the Azure Monitor alerts experience and API.
-- **Rule-based suppression of notifications**: Use [action rules](../alerts/alerts-action-rules.md) to define or suppress actions at any Azure Resource Manager scope such as Azure subscription, resource group, or target resource. Filters help you narrow down the specific subset of alert instances that you want to act on.
+- **Rule-based suppression of notifications**: Use [alert processing rules](../alerts/alerts-action-rules.md) to define or suppress actions at any Azure Resource Manager scope such as Azure subscription, resource group, or target resource. Filters help you narrow down the specific subset of alert instances that you want to act on.
 
 ## Migrated smart detection capabilities
 
@@ -54,7 +54,7 @@ As part of migration, each new alert rule is automatically configured with an ac
     - If the migration tool finds an existing action group with that name, it links the new alert rule to that action group.
     - Otherwise, it creates a new action group with that name. The new group is configured for Email Azure Resource Manager Role actions and sends notification to your Azure Resource Manager Monitoring Contributor and Monitoring Reader users.
 
-- If the default email notification was changed before migration, an action group called Application Insights Smart Detection \<n\> is created, with an email action sending notifications to the previously configured email addresses.
+- If the default email notification was changed before migration, an action group called Application Insights Smart Detection is created, with an email action sending notifications to the previously configured email addresses.
 
 Instead of using the default action group, you select an existing action group that will be configured for all the new alert rules.
 
@@ -231,7 +231,7 @@ Use the following templates for this purpose. Edit them as needed to provide you
 		},
 		{
 			"name": "[variables('exceptionVolumeChangedDetectorRuleName')]",
-			"type": "Microsoft.AlertsManagement/smartdetectoralertrules",
+			"type": "Microsoft.AlertsManagement/smartdetectoralert",
 			"location": "global",
 			"apiVersion": "2019-03-01",
 			"properties": {
@@ -254,7 +254,7 @@ Use the following templates for this purpose. Edit them as needed to provide you
 		},
 		{
 			"name": "[variables('memoryLeakRuleName')]",
-			"type": "Microsoft.AlertsManagement/smartdetectoralertrules",
+			"type": "Microsoft.AlertsManagement/smartdetectoralert",
 			"location": "global",
 			"apiVersion": "2019-03-01",
 			"properties": {
@@ -276,22 +276,22 @@ Use the following templates for this purpose. Edit them as needed to provide you
 			}
 		},
 		{
-			"name": "[concat(parameters('applicationInsightsResourceName'),'/migrationToAlertRulesCompleted')]",
+			"name": "[concat(parameters('applicationInsightsResourceName'),'/migrationToAlertCompleted')]",
 			"type": "Microsoft.Insights/components/ProactiveDetectionConfigs",
 			"location": "[resourceGroup().location]",
 			"apiVersion": "2018-05-01-preview",
 			"properties": {
-				"name": "migrationToAlertRulesCompleted",
+				"name": "migrationToAlertCompleted",
 				"sendEmailsToSubscriptionOwners": false,
 				"customEmails": [],
 				"enabled": true
 			},
 			"dependsOn": [
-				"[resourceId('Microsoft.AlertsManagement/smartdetectoralertrules', variables('requestPerformanceDegradationDetectorRuleName'))]",
-				"[resourceId('Microsoft.AlertsManagement/smartdetectoralertrules', variables('dependencyPerformanceDegradationDetectorRuleName'))]",
-				"[resourceId('Microsoft.AlertsManagement/smartdetectoralertrules', variables('traceSeverityDetectorRuleName'))]",
-				"[resourceId('Microsoft.AlertsManagement/smartdetectoralertrules', variables('exceptionVolumeChangedDetectorRuleName'))]",
-				"[resourceId('Microsoft.AlertsManagement/smartdetectoralertrules', variables('memoryLeakRuleName'))]"
+				"[resourceId('Microsoft.AlertsManagement/smartdetectoralert', variables('requestPerformanceDegradationDetectorRuleName'))]",
+				"[resourceId('Microsoft.AlertsManagement/smartdetectoralert', variables('dependencyPerformanceDegradationDetectorRuleName'))]",
+				"[resourceId('Microsoft.AlertsManagement/smartdetectoralert', variables('traceSeverityDetectorRuleName'))]",
+				"[resourceId('Microsoft.AlertsManagement/smartdetectoralert', variables('exceptionVolumeChangedDetectorRuleName'))]",
+				"[resourceId('Microsoft.AlertsManagement/smartdetectoralert', variables('memoryLeakRuleName'))]"
 			]
 		}
 	]
@@ -308,7 +308,7 @@ You can also still see the available detections in the **Smart Detection** feed 
 <!-- convertborder later -->
 :::image type="content" source="media/alerts-smart-detections-migration/smart-detection-feed.png" lightbox="media/alerts-smart-detections-migration/smart-detection-feed.png" alt-text="Screenshot that shows the Smart Detection feed." border="false":::
 
-## Manage smart detection alert rules settings after migration
+## Manage smart detection alert settings after migration
 
 Use the Azure portal or ARM templates to manage smart detection alert rules settings after migration.
 
@@ -317,12 +317,12 @@ Use the Azure portal or ARM templates to manage smart detection alert rules sett
 After the migration is finished, you access the new smart detection alert rules in a similar way to other alert rules defined for the resource.
 
 1. Select **Alerts** under the **Monitoring** heading in your Application Insights resource.
-   <!-- convertborder later -->
+
    :::image type="content" source="media/alerts-smart-detections-migration/application-insights-alerts.png" lightbox="media/alerts-smart-detections-migration/application-insights-alerts.png" alt-text="Screenshot that shows the Alerts menu." border="false":::
 
-1. Select **Manage alert rules**.
-   <!-- convertborder later -->
-   :::image type="content" source="media/alerts-smart-detections-migration/manage-alert-rules.png" lightbox="media/alerts-smart-detections-migration/manage-alert-rules.png" alt-text="Screenshot that shows Manage alert rules." border="false":::
+1. Select **Alert rules**.
+
+   :::image type="content" source="media/alerts-smart-detections-migration/smart-alerts-migrated-manage-alert-rule.png" lightbox="media/alerts-smart-detections-migration/smart-alerts-migrated-manage-alert-rule.png" alt-text="Screenshot that shows 'Alert rules' in the action bar." border="false":::
 
 1. For **Signal type**, select **Smart Detector** to filter and present the smart detection alert rules.
 
