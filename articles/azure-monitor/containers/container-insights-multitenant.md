@@ -36,7 +36,7 @@ When you enable the multi-tenancy feature through a ConfigMap, the Container Ins
 The following logic is used to determine how to process each log entry:
 
 - If there is a **ContainerLogV2Extension** DCR for the namespace of the log entry, that DCR is used to process the entry. This includes the Log Analytics workspace destination and any ingestion-time transformation.
-- If there isn't a **ContainerLogV2Extension** DCR for the namespace of the log entry, the default **ContainerInsights** DCR is used to process the entry. You can disable this behavior by setting the `disable_fallback_ingestion` setting in the ConfigMap to `true`. In this case, the log entry isn't collected.
+- If there isn't a **ContainerLogV2Extension** DCR for the namespace of the log entry, the default **ContainerInsights** DCR is used to process the entry. 
 
 ## Limitations
 
@@ -47,7 +47,6 @@ The following logic is used to determine how to process each log entry:
 
 - High log scale mode must be configured for the cluster using the guidance at [High scale logs collection in Container Insights (Preview)](./container-insights-high-scale.md).
 - A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md) is created with the [DCR for each application or infrastructure team](#create-dcr-for-each-application-or-infrastructure-team). The **Logs Ingestion** endpoint of each DCE must be configured in the firewall as described in [Network firewall requirements for high scale logs collection in Container Insights](./container-insights-high-scale.md#network-firewall-requirements).
-- An Azure CLI version of 2.63.0 or higher. The AKS-preview CLI extension version must be 7.0.0b4 or higher if an AKS-preview CLI extension is installed. 
 
 
 
@@ -55,14 +54,13 @@ The following logic is used to determine how to process each log entry:
 
 1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
  
-2.  Enable multi-tenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. Also set a value for `disable_fallback_ingestion`. If this value is `false` then logs for any Kubernetes namespaces that don't have a corresponding ContainerLogV2 extension DCR is sent to the destination configured in the default ContainerInsights Extension DCR. If set to `true`, this behavior is disabled.
+2.  Enable multi-tenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. 
 
     ```yaml
     log-data-collection-settings: |-
         [log_collection_settings]
            [log_collection_settings.multi_tenancy]
             enabled = true 
-            disable_fallback_ingestion = false 
     ```
 
 
@@ -75,6 +73,9 @@ The following logic is used to determine how to process each log entry:
 
 ### Create DCR for each application or infrastructure team
 Repeat the following steps to create a separate DCR for each application or infrastructure team. Each will include a set of K8s namespaces and a Log Analytics workspace destination.
+
+> [!TIP]
+> For multi-homing, create multiple DCRs with different Log Analytics workspaces but the same set of K8s namespaces. This will enable the same logs sent to multiple Log Analytics workspaces. 
 
 1. Retrieve the following ARM template and parameter file.
 
