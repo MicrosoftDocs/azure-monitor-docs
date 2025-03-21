@@ -7988,6 +7988,11 @@
    "source_path": "articles/azure-monitor/reference/tables/mawindowsdeploymentstatusnrt.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings.md",
+   "redirect_url": "/previous-versions/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings",
+   "redirect_document_id": false
   }
  ]
 }
