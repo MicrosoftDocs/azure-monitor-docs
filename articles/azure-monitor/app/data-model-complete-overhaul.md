@@ -46,7 +46,7 @@ To report data model or schema problems and suggestions, use our [GitHub reposit
 
 ## Telemetry collected by default
 
-### Request telemetry
+### Request
 
 A request telemetry item in [Application Insights](app-insights-overview.md) represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
 
@@ -56,15 +56,15 @@ Request telemetry supports the standard extensibility model by using custom `pro
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
-## Dependency telemetry
+### Dependency
 
 Dependency telemetry in Application Insights represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
-## Exception telemetry
+### Exception
 
 In [Application Insights](app-insights-overview.md), an instance of exception represents a handled or unhandled exception that occurred during execution of the monitored application.
 
-## PageView telemetry
+### PageView
 
 PageView telemetry (in [Application Insights](app-insights-overview.md)) is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action. This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
@@ -72,7 +72,7 @@ PageView telemetry (in [Application Insights](app-insights-overview.md)) is logg
 > * By default, Application Insights SDKs log single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#measure-browsertiming-in-application-insights). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 > * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
 
-## Browser timing telemetry
+### BrowserTimings
 
 Modern browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
 
@@ -96,7 +96,7 @@ If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.or
 
 :::image type="content" source="media/javascript/page-view-load-time.png" lightbox="media/javascript/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
-### Metric telemetry
+### Metric (Default)
 
 [Application Insights](app-insights-overview.md) supports two types of metric telemetry:
 
@@ -107,27 +107,23 @@ Application Insights supports several well-known metric names. These metrics are
 
 For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
 
-### Availability telemetry
-
-Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive.
-
 ## Custom telemetry
 
-### Trace telemetry
+### Trace
 
 Trace telemetry in [Application Insights](app-insights-overview.md) represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
-### Metric telemetry
+### Metric (Custom)
 
 ...
 
-### Event telemetry
+### Event
 
 You can create event telemetry items (in [Application Insights](app-insights-overview.md)) to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
 
 Semantically, events might or might not be correlated to requests. If used properly, event telemetry is more important than requests or traces. Events represent business telemetry and should be subject to separate, less aggressive [sampling](api-filtering-sampling.md).
 
-### Availability telemetry
+### Availability
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive.
 
