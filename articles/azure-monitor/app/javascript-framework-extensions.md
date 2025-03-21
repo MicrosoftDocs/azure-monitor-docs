@@ -82,7 +82,7 @@ To add a plug-in, follow the steps in this section.
 
 ```bash
 
-npm install @microsoft/applicationinsights-react-js
+npm install @microsoft/applicationinsights-react-js @microsoft/applicationinsights-web
 
 ```
 
