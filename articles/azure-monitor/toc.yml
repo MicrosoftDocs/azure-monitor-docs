@@ -204,12 +204,10 @@ items:
             displayName: correlation headers, w3c, distributed tracing, tracing
         - name: SDK support policy
           href: app/sdk-support-guidance.md
-      - name: Upgrade from classic resources and iKey
+      - name: Upgrade from classic resources
         items:
         - name: Migrate to a workspace-based resource
           href: /previous-versions/azure/azure-monitor/app/convert-classic-resource
-        - name: Migrate to connection strings
-          href: app/migrate-from-instrumentation-keys-to-connection-strings.md
     - name: Experiences
       items:
       - name: Application dashboard
