@@ -20,7 +20,7 @@ With the migration, smart detection now allows you to take advantage of the full
 
 ## Migrated smart detection capabilities
 
-A new set of alert rules is created when you migrate an Application Insights resource. One rule is created for each of the migrated smart detection capabilities. The following table maps the pre-migration smart detection capabilities to post-migration alert rules.
+A new set of alert rules is created when you migrate an Application Insights resource. One rule is created for each of the migrated smart detection capabilities. The following table maps the premigration smart detection capabilities to post-migration alert rules.
 
 | Smart detection rule name  <sup>(1)</sup>     | Alert rule name <sup>(2)</sup>                                            |
 |-----------------------------------------------|---------------------------------------------------------------------------|
@@ -37,14 +37,14 @@ A new set of alert rules is created when you migrate an Application Insights res
 
 <sup>(1)</sup> The name of the rule as it appears in the smart detection **Settings** pane.<br>
 <sup>(2)</sup> The name of the new alert rule after migration.<br>
-<sup>(3)</sup> These smart detection capabilities aren't converted to alerts because of low usage and reassessment of detection effectiveness. These detectors will no longer be supported for this resource after its migration is finished.
+<sup>(3)</sup> These smart detection capabilities aren't converted to alerts because of low usage and reassessment of detection effectiveness. These detectors are no longer supported for this resource after its migration is finished.
 
 > [!NOTE]
 > The **Failure Anomalies** smart detector is already created as an alert rule and doesn't require migration. It isn't discussed in this article.
 
 The migration doesn't change the algorithmic design and behavior of smart detection. The same detection performance is expected before and after the change.
 
-You need to apply the migration to each Application Insights resource separately. For resources that aren't explicitly migrated, smart detection will continue to work as before.
+You need to apply the migration to each Application Insights resource separately. For resources that aren't explicitly migrated, smart detection continues to work as before.
 
 ### Action group configuration for the new smart detection alert rules
 
@@ -75,7 +75,7 @@ To migrate smart detection in your resource:
 1. Select the **Migrate all Application Insights resources in this subscription** option. Or you can leave the option cleared if you want to migrate only the current resource you're in.
 
     > [!NOTE]
-    > Selecting this option affects all existing Application Insights resources that weren't migrated yet. As long as the migration to alerts is in preview, new Application Insights resources will still be created with non-alerts smart detection.
+    > Selecting this option affects all existing Application Insights resources that weren't migrated yet. As long as the migration to alerts is in preview, new Application Insights resources are still created with nonalerts smart detection.
 
 1. Select an action group to be configured for the new alert rules. You can use the default action group as explained or use one of your existing action groups.
 
@@ -333,7 +333,7 @@ After the migration is finished, you access the new smart detection alert rules 
 
 Smart detection alert rules can be enabled or disabled through the portal UI or programmatically, like any other alert rule.
 
-If a specific smart detection rule was disabled before the migration, the new alert rule will also be disabled.
+If a specific smart detection rule was disabled before the migration, the new alert rule is also disabled.
 
 ### Configure action groups for your alert rules
 
