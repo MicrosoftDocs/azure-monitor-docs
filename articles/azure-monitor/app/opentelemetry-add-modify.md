@@ -1738,6 +1738,10 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 #### [Java](#tab/java)
 
+It's not possible to send a `customEvent` using the `"microsoft.custom_event.name"` attribute in Java native.
+
+<!--
+
 1. Add `applicationinsights-core` to your application:
 
     ```xml
@@ -1799,15 +1803,16 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
     } catch (Exception e) {
         telemetryClient.trackException(e);
     }
-
+-->
 
 #### [Java native](#tab/java-native)
 
-It's not possible to send custom telemetry using the Application Insights Classic API in Java native.
+It's not possible to send a `customEvent` using the `"microsoft.custom_event.name"` attribute in Java native.
+
 
 #### [Node.js](#tab/nodejs)
 
-To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Additional attributes can also be included as needed.
+To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Other attributes can also be included as needed.
 
 ```typescript
 /**
