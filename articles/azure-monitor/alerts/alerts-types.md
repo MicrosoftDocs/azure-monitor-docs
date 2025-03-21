@@ -25,7 +25,7 @@ The types of alerts are:
 
 | Alert type | When to use | Pricing information |
 |------------|-------------|---------------------|
-| Metric alert | Metric data is stored in the system already pre-computed. Metric alerts are useful when you want to be alerted about data that requires little or no manipulation. Use metric alerts if the data you want to monitor is available in metric data. | Each metric alert rule is charged based on the number of time series that are monitored. |
+| Metric alert | Metric data is stored in the system already precomputed. Metric alerts are useful when you want to be alerted about data that requires little or no manipulation. Use metric alerts if the data you want to monitor is available in metric data. | Each metric alert rule is charged based on the number of time series that are monitored. |
 | Log search alert | You can use log search alerts to perform advanced logic operations on your data. If the data you want to monitor is available in logs, or requires advanced logic, you can use the robust features of Kusto Query Language (KQL) for data manipulation by using log search alerts. | Each log search alert rule is billed based on the interval at which the log query is evaluated. More frequent query evaluation results in a higher cost. For log search alerts configured for at-scale monitoring using splitting by dimensions, the cost also depends on the number of time series created by the dimensions resulting from your query. |
 | Activity log alert | Activity logs provide auditing of all actions that occurred on resources. Use activity log alerts to be alerted when a specific event happens to a resource like a restart, a shutdown, or the creation or deletion of a resource. Service Health alerts and Resource Health alerts let you know when there's an issue with one of your services or resources. | For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
 | Prometheus alerts | Prometheus alerts are used for alerting on Prometheus metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). The alert rules are based on the PromQL open-source query language. | Prometheus alert rules are only charged on the data queried by the rules. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
@@ -82,7 +82,7 @@ The platform metrics for these services in the following Azure clouds are suppor
 | NetApp files volumes | "Microsoft.NetApp/netAppAccounts/capacityPools/volumes" | Yes  | Yes | Yes |
 | Azure Key Vault | "Microsoft.KeyVault/vaults" | Yes | Yes | Yes |
 | Azure Cache for Redis | "Microsoft.Cache/redis" | Yes | Yes | Yes |
-| Azure Stack Edge devices | (There is no specific Resource provider for this resource. Because of how Stack edge devices work, **the metrics are retrieved from several resource providers**. You can check this documentation for more details regarding alerts for this resource: [Review alerts on Azure Stack Edge](/azure/databox-online/azure-stack-edge-alerts)) | Yes | Yes | Yes |
+| Azure Stack Edge devices | (There's no specific Resource provider for this resource. Because of how Stack edge devices work, **the metrics are retrieved from several resource providers**. You can check this documentation for more details regarding alerts for this resource: [Review alerts on Azure Stack Edge](/azure/databox-online/azure-stack-edge-alerts)) | Yes | Yes | Yes |
 | Recovery Services vaults | "Microsoft.RecoveryServices/Vaults" | Yes | No | No |
 | Azure Database for PostgreSQL - Flexible Server | "Microsoft.DBforPostgreSQL/flexibleServers" | Yes | Yes | Yes |
 | Bare Metal Machines (Operator Nexus) | "Microsoft.NetworkCloud/bareMetalMachines" | Yes | Yes | Yes |
@@ -140,10 +140,11 @@ Log search alerts can measure two different things, which can be used for differ
 * **Calculation of a numeric column**: Calculations based on any numeric column can be used to include any number of resources. An example is CPU percentage.
 
 You can configure if log search alerts are [stateful or stateless](alerts-overview.md#alerts-and-state).  
-Note that stateful log search alerts have these limitations:
+
+Stateful log search alerts have these limitations:
 
 * They can trigger up to 300 alerts per evaluation.
-* You can have a maximum of 5000 alerts with the `fired` alert condition.
+* You can have a maximum of 5,000 alerts with the `fired` alert condition.
 
 > [!NOTE]
 > Log search alerts work best when you're trying to detect specific data in the logs, as opposed to when you're trying to detect a lack of data in the logs. Because logs are semi-structured data, they're inherently more latent than metric data on information like a VM heartbeat. To avoid misfires when you're trying to detect a lack of data in the logs, consider using [metric alerts](#metric-alerts). You can send data to the metric store from logs by using [metric alerts for logs](alerts-metric-logs.md).
@@ -210,7 +211,7 @@ Resource Health relies on signals from different Azure services to assess whethe
 
 ## Smart detection alerts
 
-After you set up Application Insights for your project and your app generates a certain amount of data, smart detection takes 24 hours to learn the normal behavior of your app. Your app's performance has a typical pattern of behavior. Some requests or dependency calls will be more prone to failure than others, and the overall failure rate might go up as load increases.
+After you set up Application Insights for your project and your app generates a certain amount of data, smart detection takes 24 hours to learn the normal behavior of your app. Your app's performance has a typical pattern of behavior. Some requests or dependency calls are more prone to failure than others, and the overall failure rate might go up as load increases.
 
 Smart detection uses machine learning to find these anomalies. Smart detection monitors the data received from your app, and in particular the failure rates. Application Insights automatically alerts you in near real time if your web app experiences an abnormal rise in the rate of failed requests.
 
