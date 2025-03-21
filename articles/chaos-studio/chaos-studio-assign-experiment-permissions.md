@@ -22,9 +22,9 @@ When creating your experiment in the Azure portal, you may choose to assign your
 <br>[![Screenshot that shows the permissions tab with a system-assigned identity and Azure-built-in roles selected in the Azure portal.](images/permissions-tab.png)](images/permissions-tab.png#lightbox)<br>
 
 The following will happen on experiment deployment depending on the option you select to assign your experiment permissions:
-* **"Use Azure built-in roles"**: If your experiment's managed identity doesn't already have the permissions to inject your selected faults, Chaos Studio will perform role assignments on your experiment's managed identity using one or more Azure built-in roles based on the [faults and targets in your experiment](chaos-studio-fault-providers.md).
-* **"Use a new custom role"**: If your experiment's managed identity doesn't already have the permissions to inject your selected faults, Chaos Studio will perform a role definition and role assignment on your experiment's managed identity using a custom role based on the [faults and targets in your experiment](chaos-studio-fault-providers.md).
-* **"Assign experiment permissions manually"**: No role definitions or role assignments will occur on experiment deployment. You'll need to assign the proper permissions to your experiment's managed identity after it has been created.
+* **"Use Azure built-in roles"**: If your experiment's managed identity doesn't already have the permissions to inject your selected faults, Chaos Studio performs role assignments on your experiment's managed identity using one or more Azure built-in roles based on the [faults and targets in your experiment](chaos-studio-fault-providers.md).
+* **"Use a new custom role"**: If your experiment's managed identity doesn't already have the permissions to inject your selected faults, Chaos Studio performs a role definition and role assignment on your experiment's managed identity using a custom role based on the [faults and targets in your experiment](chaos-studio-fault-providers.md).
+* **"Assign experiment permissions manually"**: No role definitions or role assignments occur on experiment deployment. You'll need to assign the proper permissions to your experiment's managed identity after it has been created.
 
 If you choose to assign your experiment permissions using Azure built-in roles or a custom role, you'll get a summary of proposed permissions deployments within the **"Permissions"** section of the **Review + create** tab:
 
