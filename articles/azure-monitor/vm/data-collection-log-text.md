@@ -71,6 +71,7 @@ Following is a sample of a typical custom text file that can be collected by Azu
 
 Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
   
+- Don't target more than 10 directories with log files. Polling too many directories leads to poor performance.
 - Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least two days to allow ample time for all logs to be processed.
 - Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
 - Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
