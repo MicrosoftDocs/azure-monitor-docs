@@ -8,8 +8,10 @@ ms.reviewer: harelbr
 
 # Manage your alert instances
 
-The **Alerts** page summarizes all alert instances in all your Azure resources generated in the last 30 days. Alerts are stored for 30 days and are deleted after the 30-day retention period. 
+The **Alerts** page summarizes all alert instances in all your Azure resources generated in the last 30 days. Alerts are stored for 30 days and are automatically deleted after the 30-day retention period. 
+
 For stateful alerts, while the alert itself is deleted after 30 days, and isn't viewable on the alerts page, the alert condition is stored until the alert is resolved, to prevent firing another alert, and so that notifications can be sent when the alert is resolved. For more information, see [Alerts and state](alerts-overview.md#alerts-and-state).
+
 
 ## Access the Alerts page
 
@@ -31,6 +33,11 @@ To see more information about a specific alert instance, select the alert instan
 
   :::image type="content" source="media/alerts-managing-alert-instances/alerts-page.png" lightbox="media/alerts-managing-alert-instances/alerts-page.png" alt-text="Screenshot that shows the Alerts summary page in the Azure portal.":::
 
+
+> [!NOTE]
+> Users cannot delete alert instances manually due correlational integrity reasons even if the parent resource alert rule was previously deleted. There is no feature functionality available to delete an alert instance. Instead, users can update the alert state and then filter based on alert state to remove those alerts from their view until they naturally expunge from the system after 30 days. 
+>
+> Documentation on changing the alert state: [Alert details page](#alert-details-page)
 
 ## View alerts as a timeline (preview)
 
