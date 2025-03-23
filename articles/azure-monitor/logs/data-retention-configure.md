@@ -360,5 +360,5 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 Learn more about:
 
 - [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
-- [Creating a search job to retrieve auxiliary data matching particular criteria](search-jobs.md)
+- [Creating a search job to retrieve data matching particular criteria](search-jobs.md)
 - [Restore data for a specific time range](restore.md)
