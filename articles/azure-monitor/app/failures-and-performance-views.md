@@ -10,7 +10,8 @@ ms.reviewer: cogoodson
 
 [Application Insights](app-insights-overview.md) comes with a curated Application Performance Management (APM) experience to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools:
 
-*  The **Failures** view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability. 
+*  The **Failures** view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
+
 * The **Performance** view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
 Together, they ensure the ongoing health and efficiency of web applications.
@@ -22,9 +23,9 @@ To get to the **Failures** experience in Application Insights, select either the
 :::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the failures view in Application Insights.":::
 
 You can also get to the failures pane from the [Application Map](app-map.md) by selecting **Investigate failures** from the triage pane.
-
+<!--
 :::image type="content" source="media/failures-and-performance-views/failures-app-map.png" lightbox="media/failures-and-performance-views/failures-app-map.png" alt-text="Screenshot showing how to reach the failures view from the application map.":::
-
+-->
 ### [Performance view](#tab/performance-view)
 
 To get to the **Performance** experience in Application Insights, select either the **Server response time** or **Server requests** graph in the **Overview** pane, or the **Performance** option under the **Investigate** category in the resource menu.
@@ -32,16 +33,16 @@ To get to the **Performance** experience in Application Insights, select either 
 :::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the performance view in Application Insights.":::
 
 You can also get to the performance pane from the [Application Map](app-map.md) by selecting **Investigate performance** from the triage pane.
-
+<!--
 :::image type="content" source="media/failures-and-performance-views/performance-app-map.png" lightbox="media/failures-and-performance-views/performance-app-map.png" alt-text="Screenshot showing how to reach the performance view from the application map.":::
-
+-->
 ---
 
 ## Overview
 
 ### [Failures view](#tab/failures-view)
 
-The **Failures** view shows a list of all failed operations collected for your application with the option to drill into each one. It lets you view their frequency as well as the number of users affected, to help you focus your efforts on the issues with the highest impact.
+The **Failures** view shows a list of all failed operations collected for your application with the option to drill into each one. It lets you view their frequency and the number of users affected, to help you focus your efforts on the issues with the highest impact.
 
 You're also prompted with automatically identified anomalies and commonalities across transactions.
 
@@ -59,7 +60,7 @@ You're also prompted with automatically identified anomalies and commonalities a
 
 ---
 
-### Investigate
+## Investigate
 
 ### [Failures view](#tab/failures-view)
 
@@ -80,7 +81,7 @@ To investigate the root cause of an error or exception, you can drill into the p
 
 To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction view that includes dependencies and exception details.
 
-1. Selecting an operation opens a panel to the right, which shows the **Distribution of durations** for different requests for the selected operation, as well as additional **Insights**.
+1. Selecting an operation opens a panel which shows the **Distribution of durations** for different requests for the selected operation, and additional **Insights**.
 
 1. Under **Drill into**, select the button with the number of filtered results to view a list of sample operations.
 
@@ -92,18 +93,6 @@ To investigate the root cause of a performance issue, you can drill into the pro
 	> The **Suggested** samples have related telemetry from all components, even if sampling might have been in effect in any of them.
 
 ---
-
-### Use analytics data
-
-All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
-
-On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
-
-:::image type="content" source="media/failures-and-performance-views/view-in-logs.png" lightbox="media/failures-and-performance-views/view-in-logs.png" alt-text="Screenshot highlighting 'View in logs' in the top action bar.":::
-
-This will take you to the **Logs** view where you can further modify the query or select a different one from the sidebar.
-
-:::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
 
 ## End-to-end transaction details
 
@@ -127,7 +116,19 @@ Select **Create work item** and create a new template or pick an existing one.
 
 The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
 
-### Profiler traces
+## Use analytics data
+
+All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
+
+On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
+
+:::image type="content" source="media/failures-and-performance-views/view-in-logs.png" lightbox="media/failures-and-performance-views/view-in-logs.png" alt-text="Screenshot highlighting 'View in logs' in the top action bar.":::
+
+This takes you to the **Logs** view where you can further modify the query or select a different one from the sidebar.
+
+:::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
+
+## Profiler traces
 
 The Profiler helps get further with code-level diagnostics by showing the actual code that ran for the operation and the time required for each step. Some operations might not have a trace because the Profiler runs periodically. Over time, more operations should have traces.
 
