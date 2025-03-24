@@ -232,9 +232,7 @@ The following OpenTelemetry Instrumentation libraries are included as part of th
 **Logs**
 
 * [Bunyan](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-bunyan)
-<!--
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-winston)
--->
 
 To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
