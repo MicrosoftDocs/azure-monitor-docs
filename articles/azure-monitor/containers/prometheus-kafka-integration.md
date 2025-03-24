@@ -2,19 +2,17 @@
 title: Configure Kafka integration for Prometheus metrics in Azure Monitor
 description: Describes how to configure Kafka monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
 ms.topic: conceptual
-ms.date: 3/19/2024
+ms.date: 3/10/2025
 ms.reviewer: rashmy
-ms.service: azure-monitor
-ms.subservice: containers
 ---
 # Apache Kafka
 Apache Kafka is an open-source distributed event streaming platform used by high-performance data pipelines, streaming analytics, data integration, and mission-critical applications.
-This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) to monitor kafka clusters by scraping prometheus metrics. 
+This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) and Azure Arc-enabled Kubernetes to monitor kafka clusters by scraping prometheus metrics. 
 
 ## Prerequisites
 
-+ Kafka cluster running on AKS
-+ Azure Managed prometheus enabled on the AKS cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
++ Kafka cluster running on AKS or Azure Arc-enabled Kubernetes
++ Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
 
 
 ### Install Kafka Exporter
@@ -53,7 +51,7 @@ To import the Grafana Dashboards using the ID or JSON, follow the instructions t
     |:---|:---|
     | `azureMonitorWorkspace` | Resource ID for the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
     | `location` | Location of the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
-    | `clusterName` | Name of the AKS cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
+    | `clusterName` | Name of the AKS or Azure Arc-enabled Kubernetes cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
     | `actionGroupId` | Resource ID for the alert action group. Retrieve from the **JSON view** on the **Overview** page for the action group. Learn more about [action groups](../alerts/action-groups.md) |
 
 3. Deploy the template by using any standard methods for installing ARM templates. For guidance, see [ARM template samples for Azure Monitor](../resource-manager-samples.md).
@@ -71,7 +69,7 @@ To import the Grafana Dashboards using the ID or JSON, follow the instructions t
 
 
 ### More jmx_exporter metrics using strimzi
-If you are using the [strimzi operator](https://github.com/strimzi/strimzi-kafka-operator.git) for deploying the kafka clusters, deploy the pod monitors to get more jmx_exporter metrics.
+If you're using the [strimzi operator](https://github.com/strimzi/strimzi-kafka-operator.git) for deploying the kafka clusters, deploy the pod monitors to get more jmx_exporter metrics.
 > [!Note] 
 > Metrics need to be exposed by the kafka cluster deployments like the examples [here](https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics). Refer to the kafka-.*-metrics.yaml files to configure metrics to be exposed. 
 >
@@ -179,7 +177,7 @@ spec:
 ```
 
 #### Alerts with strimzi
-Rich set of alerts based off of strimzi metrics can also be configured by refering to the [examples](https://github.com/strimzi/strimzi-kafka-operator/blob/main/examples/metrics/prometheus-install/prometheus-rules.yaml).
+Rich set of alerts based off of strimzi metrics can also be configured by referring to the [examples](https://github.com/strimzi/strimzi-kafka-operator/blob/main/examples/metrics/prometheus-install/prometheus-rules.yaml).
 
 > [!NOTE] 
 > If using any other way of exposing the jmx_exporter on your kafka cluster, please follow the instructions [here](prometheus-metrics-scrape-crd.md) on how to configure the pod or service monitors accordingly.

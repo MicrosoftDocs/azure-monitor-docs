@@ -2,8 +2,6 @@
 title: Overview of VM insights
 description: Overview of VM insights, which monitors the health and performance of Azure VMs and automatically discovers and maps application components and their dependencies. 
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 01/15/2025
 ---
 
@@ -54,7 +52,7 @@ VM insights supports the following operating systems:
 
 ## Limitations
 
-- VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../agents/azure-monitor-agent-data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
+- VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../vm/data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
 - VM insights doesn't support sending data to multiple Log Analytics workspaces (multi-homing).
 
 ## Diagnostic and usage data

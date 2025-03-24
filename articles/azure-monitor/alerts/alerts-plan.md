@@ -1,11 +1,8 @@
 ---
 title: Plan alerts and automated actions
 description: Recommendations for deployment of Azure Monitor alerts and automated actions.
-ms.author: abbyweisberg
 ms.topic: conceptual
-author: bwren
 ms.date: 02/15/2024
-ms.reviewer: bwren
 ---
 
 # Plan alerts and automated actions
@@ -70,7 +67,7 @@ As part of your alerting strategy, you'll want to alert on issues for all your c
 You want to create alerts for any important information in your environment. But you don't want to create excessive alerts and notifications for issues that don't warrant them. To minimize your alert activity to ensure that critical issues are surfaced while you don't generate excess information and notifications for administrators, follow these guidelines:
 
 - See [Successful alerting strategy](/azure/cloud-adoption-framework/manage/monitor/alerting#successful-alerting-strategy) to determine whether a symptom is an appropriate candidate for alerting.
-- Use the **Automatically resolve alerts** option in [metric alert rules](alerts-create-metric-alert-rule.yml) to resolve alerts when the condition has been corrected.
+- Use the **Automatically resolve alerts** option in [metric alert rules](alerts-create-metric-alert-rule.md) to resolve alerts when the condition has been corrected.
 - Use the **Suppress alerts** option in [log search query alert rules](alerts-create-log-alert-rule.md) to avoid creating multiple alerts for the same issue.
 - Ensure that you use appropriate severity levels for alert rules so that high-priority issues are analyzed.
 - Limit notifications for alerts with a severity of Warning or less because they don't require immediate attention.

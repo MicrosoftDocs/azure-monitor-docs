@@ -2,10 +2,7 @@
 title: Monitor Azure resources with Azure Monitor | Microsoft Docs
 description: This article describes how to collect and analyze monitoring data from resources in Azure by using Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 07/17/2023
-ms.reviewer: robb
 
 ---
 

@@ -33,9 +33,9 @@ There are four types of availability tests:
 
 > [!IMPORTANT]
 > There are two upcoming availability tests retirements:
-> * **Multi-step web tests:** On August 31, 2024, multi-step web tests in Application Insights will be retired. We advise users of these tests to transition to alternative availability tests before the retirement date. Following this date, we will be taking down the underlying infrastructure which will break remaining multi-step tests.
+> * **Multi-step web tests:** On August 31, 2024, multi-step web tests in Application Insights will be retired. We advise users of these tests to transition to alternative availability tests before the retirement date. Following this date, we'll be taking down the underlying infrastructure which breaks remaining multi-step tests.
 >
-> * **URL ping tests:** On September 30, 2026, URL ping tests in Application Insights will be retired. Existing URL ping tests will be removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
+> * **URL ping tests:** On September 30, 2026, URL ping tests in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
 
 ## Create an availability test
 
@@ -60,7 +60,7 @@ There are four types of availability tests:
    |---------|---------|-------------|
    | **Basic Information** | | |
    | | **URL** | The URL can be any webpage you want to test, but it must be visible from the public internet. The URL can include a query string. So, for example, you can exercise your database a little. If the URL resolves to a redirect, we follow it up to 10 redirects. |
-   | | **Parse dependent requests** | Test requests images, scripts, style files, and other files that are part of the webpage under test. The recorded response time includes the time taken to get these files. The test fails if any of these resources can't be successfully downloaded within the timeout for the whole test. If the option isn't selected, the test only requests the file at the URL you specified. Enabling this option results in a stricter check. The test could fail for cases, which might not be noticeable when you manually browse the site. We parse only up to 15 dependent requests. |
+   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the time-out. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
    | | **Enable retries for availability test failures** | When the test fails, it retries after a short interval. A failure is reported only if three successive attempts fail. Subsequent tests are then performed at the usual test frequency. Retry is temporarily suspended until the next success. This rule is applied independently at each test location. *We recommend this option*. On average, about 80% of failures disappear on retry. |
    | | **Enable SSL certificate validity** | You can verify the SSL certificate on your website to make sure it's correctly installed, valid, trusted, and doesn't give any errors to any of your users. SSL certificate validation will only be performed on the *final redirected URL*. |
    | | **Proactive lifetime check** | This setting enables you to define a set time period before your SSL certificate expires. After it expires, your test will fail. |
@@ -69,7 +69,7 @@ There are four types of availability tests:
    | **Standard test info** | | |
    | | **HTTP request verb** | Indicate what action you want to take with your request. |
    | | **Request body** | Custom data associated with your HTTP request. You can upload your own files, enter your content, or disable this feature. |
-   | | **Add custom headers** | Key value pairs that define the operating parameters. The "Host" and "User-Agent" headers are reserved in Availability Tests and cannot be modified or overwritten.|
+   | | **Add custom headers** | Key value pairs that define the operating parameters. The "Host" and "User-Agent" headers are reserved in Availability Tests and can't be modified or overwritten.|
    | **Success criteria** | | |
    | | **Test Timeout** | Decrease this value to be alerted about slow responses. The test is counted as a failure if the responses from your site aren't received within this period. If you selected **Parse dependent requests**, all the images, style files, scripts, and other dependent resources must be received within this period. |
    | | **HTTP response** | The returned status code counted as a success. The number 200 is the code that indicates that a normal webpage is returned. |
@@ -78,7 +78,7 @@ There are four types of availability tests:
 ## [TrackAvailability()](#tab/track)
 
 > [!IMPORTANT]
-> [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) requires making a developer investment in writing and maintanining potentially complex custom code.
+> [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) requires making a developer investment in writing and maintaining potentially complex custom code.
 >
 > *Standard tests should always be used if possible*, as they require little investment, no maintenance, and have few prerequisites.
 
@@ -94,9 +94,9 @@ This example is designed only to show you the mechanics of how the `TrackAvailab
 ### Get started
 
 > [!NOTE]
-> To follow these instructions, you must use either the [App Service](/azure/azure-functions/dedicated-plan) plan or Functions Premium plan to allow editing code in App Service Editor.
+> To follow these instructions, you must use either the [App Service](/azure/azure-functions/dedicated-plan) plan or Functions Premium plan to allow editing code in App Service Editor. You also must choose a runtime version that supports the in-process model.
 > 
-> If you're testing behind a virtual network or testing nonpublic endpoints, you'll need to use the Functions Premium plan.
+> If you're testing behind a virtual network or testing nonpublic endpoints, you need to use the Functions Premium plan.
 
 #### Create a timer trigger function
 
@@ -235,7 +235,7 @@ To create a new file, right-click under your timer trigger function (for example
     ```
 
 > [!NOTE]
-> Tests created with `TrackAvailability()` will appear with **CUSTOM** next to the test name.
+> Tests created with `TrackAvailability()` appear with **CUSTOM** next to the test name.
 >
 > :::image type="content" source="media/availability/availability-test-list.png" alt-text="Screenshot showing the Availability experience with two different tests listed.":::
 
@@ -396,7 +396,7 @@ You can use Log Analytics to view your availability results (`availabilityResult
 The following steps walk you through the process of creating [standard tests](#types-of-availability-tests) that replicate the functionality of your [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability). It allows you to more easily start using the advanced features of standard tests using your previously created URL ping tests.
 
 > [!IMPORTANT]
-> A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you will be charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
+> A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you'll be charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
 
 #### Prerequisites
 
@@ -541,7 +541,7 @@ TLS 1.0 and TLS 1.1 are being retired.
 ### Troubleshooting
 
 > [!WARNING]
-> We have recently enabled TLS 1.3 in availability tests. If you are seeing new error messages as a result, ensure that clients running on Windows Server 2022 with TLS 1.3 enabled can connect to your endpoint. If you are unable to do this, you may consider temporarily disabling TLS 1.3 on your endpoint so that availability tests will fall back to older TLS versions.
+> We have recently enabled TLS 1.3 in availability tests. If you're seeing new error messages as a result, ensure that clients running on Windows Server 2022 with TLS 1.3 enabled can connect to your endpoint. If you're unable to do this, you may consider temporarily disabling TLS 1.3 on your endpoint so that availability tests fall back to older TLS versions.
 > 
 > For additional information, check the  [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-availability).
 
@@ -626,7 +626,7 @@ To avoid any impact, each remote endpoint (including dependent requests) your we
 There are several tools available to test what TLS configuration an endpoint supports. One way would be to follow the example detailed on this [page](/security/engineering/solving-tls1-problem#appendix-a-handshake-simulation). If your remote endpoint isn't available via the Public internet, you need to ensure you validate the TLS configuration supported on the remote endpoint from a machine that has access to call your endpoint. 
 
 > [!NOTE]
-> For steps to enable the needed TLS configuration on your web server, it is best to reach out to the team that owns the hosting platform your web server runs on if the process is not known. 
+> For steps to enable the needed TLS configuration on your web server, it's best to reach out to the team that owns the hosting platform your web server runs on if the process isn't known. 
 
 #### After May 1, 2025, what will the web test behavior be for impacted tests?
 

@@ -10,7 +10,7 @@ ms.subservice: change-analysis
 
 # Troubleshoot Change Analysis (classic)
 
-[!INCLUDE [transition](../includes/change/change-analysis-is-moving.md)]
+[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
 
 ## You have trouble registering the Microsoft.ChangeAnalysis resource provider from the Change history tab.
 

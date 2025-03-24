@@ -78,10 +78,7 @@ Your Java functions might have slow startup times if you adopted this feature be
     APPLICATIONINSIGHTS_ENABLE_AGENT: true
     ```
 
-> [!NOTE]
-> If the latest version of the Application Insights Java agent isn't available in Azure Functions, upload it manually by following [these instructions](https://github.com/Azure/azure-functions-java-worker/wiki/Distributed-Tracing-for-Java-Azure-Functions#customize-distribute-agent).
-
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 #### Duplicate logs
 

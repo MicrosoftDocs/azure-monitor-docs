@@ -14,9 +14,9 @@ This article provides guidance on performance that can be expected when collecti
 
 The CPU and memory usage is correlated with the number of bytes of each sample and the number of samples scraped. These benchmarks are based on the [default targets scraped](prometheus-metrics-scrape-default.md), volume of custom metrics scraped, and number of nodes, pods, and containers. These numbers are meant as a reference since usage can still vary significantly depending on the number of time series and bytes per metric.
 
-The upper volume limit per pod is currently about 3-3.5 million samples per minute, depending on the number of bytes per sample. This limitation is addressed when sharding is added in future.
+The upper volume limit per pod is currently about 3-3.5 million samples per minute, depending on the number of bytes per sample. 
 
-The agent consists of a deployment with one replica and DaemonSet for scraping metrics. The DaemonSet scrapes any node-level targets such as cAdvisor, kubelet, and node exporter. You can also configure it to scrape any custom targets at the node level with static configs. The replica set scrapes everything else such as kube-state-metrics or custom scrape jobs that utilize service discovery.
+The agent consists of a deployment with two replicas by default (which will be automatically configured by HPA based on memory utilization) and DaemonSet for scraping metrics. The DaemonSet scrapes any node-level targets such as cAdvisor, kubelet, and node exporter. You can also configure it to scrape any custom targets at the node level with static configs. The replica set scrapes everything else such as kube-state-metrics or custom scrape jobs that utilize service discovery.
 
 ## Comparison between small and large cluster for replica
 
@@ -38,7 +38,7 @@ For more custom metrics, the single pod behaves the same as the replica pod depe
 
 ## Schedule ama-metrics replica pod on a node pool with more resources 
 
-A large volume of metrics per pod needs a node with enough CPU and memory. If the *ama-metrics* replica pod isn't scheduled on a node or node pool with enough resources, it might get OOMKilled and go into CrashLoopBackoff. To fix this, you can add the label `azuremonitor/metrics.replica.preferred=true` to a node or node pool on your cluster with higher resources (in [system node pool](/azure/aks/use-system-pools#system-and-user-node-pools)). This ensures the replica pod gets scheduled on that node. You can also create extra system pools with larger nodes and add the same label. It's better to label node pools rather than individual nodes so new nodes in the pool can also be used for scheduling.
+A large volume of metrics per pod needs a node with enough CPU and memory. If the *ama-metrics* replica pods aren't scheduled on nodes or node pools with enough resources, they might get OOMKilled and go into CrashLoopBackoff. To fix this, you can add the label `azuremonitor/metrics.replica.preferred=true` to nodes or node pools on your cluster with higher resources (in [system node pool](/azure/aks/use-system-pools#system-and-user-node-pools)). This ensures the replica pods get scheduled on those nodes. You can also create extra system pools with larger nodes and add the same label. It's better to label node pools rather than individual nodes so new nodes in the pool can also be used for scheduling.
 
 ```
 kubectl label nodes <node-name> azuremonitor/metrics.replica.preferred="true"

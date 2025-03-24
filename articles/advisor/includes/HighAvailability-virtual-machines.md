@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/05/2025
+ms.date: 02/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -338,10 +338,93 @@ Upgrade the operating system (OS) disk from Standard HDD to Standard SSD for inc
   
 **Potential benefits**: Boost single-instance VM uptime from 95% to 99.5%.  
 
+**Impact:** Medium
+  
 For more information, see [Azure Disks Standard SSD billable transaction cap blog](https://aka.ms/billedcapsblog)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
+Subcategory: HighAvailability
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
 
+
+
+
+<!--7f71b153-c0b7-4e99-a23e-db8179183ec9_begin-->
+
+#### Migrate workload to D-series or better virtual machine  
+  
+Migrate production workload from A-series or B-series virtual machine (VM) to D-series or better VM. A-series and B-series VMs are designed for entry-level workloads.  
+  
+**Potential benefits**: Full CPU performance for heavy workload in production  
+
+**Impact:** High
+  
+For more information, see [Virtual machine sizes overview - Azure Virtual Machines](https://aka.ms/MigrateToHighPerfVMs)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
+Subcategory: Scalability
+
+<!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
+
+
+<!--1670c0af-6536-4cbf-872f-152c91a51a80_begin-->
+
+#### Use Azure Capacity Reservation for virtual machine (VM)  
+  
+Use Azure Capacity Reservation for virtual machine (VM) that runs critical workloads. Azure Capacity Reservations reserve compute capacity in a specific region or availability zone.  
+  
+**Potential benefits**: Guaranteed compute capacity in constrained region or zone.  
+
+**Impact:** High
+  
+For more information, see [On-demand capacity reservation in Azure - Azure Virtual Machines](https://aka.ms/ReserveComputeCapacity)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 1670c0af-6536-4cbf-872f-152c91a51a80  
+Subcategory: HighAvailability
+
+<!--1670c0af-6536-4cbf-872f-152c91a51a80_end-->
+
+
+<!--5f2613df-629f-4b07-9425-2a47ea0dfad3_begin-->
+
+#### Migrate workload to Virtual Machine Scale Sets Flex  
+  
+Migrate production workload on stand-alone virtual machine (VM) to multiple VMs grouped in a Virtual Machine Scale Sets Flex to intelligently distribute across the platform.  
+  
+**Potential benefits**: Enhanced resilience to platform faults and updates.  
+
+**Impact:** Medium
+  
+For more information, see [Orchestration modes for Virtual Machine Scale Sets in Azure - Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#what-has-changed-with-flexible-orchestration-mode)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 5f2613df-629f-4b07-9425-2a47ea0dfad3  
+Subcategory: HighAvailability
+
+<!--5f2613df-629f-4b07-9425-2a47ea0dfad3_end-->
+
+
+<!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_begin-->
+
+#### Migrate to Virtual Machine Scale Sets Flex  
+  
+Migrate workloads from virtual machine (VM) to Virtual Machine Scale Sets Flex for deployment across zones or within the same zone across different fault domains.  
+  
+**Potential benefits**: Availability across zones or across different fault domains.  
+
+**Impact:** Medium
+  
+For more information, see [Migrate deployments and resources to Virtual Machine Scale Sets in Flexible orchestration - Azure Virtual Machine Scale Sets](https://aka.ms/MigrateToVMSSFlex)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 39fb2718-a2ae-4662-a8c9-cd8df23f01eb  
+Subcategory: HighAvailability
+
+<!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_end-->
 
 
 <!--articleBody-->

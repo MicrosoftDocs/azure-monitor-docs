@@ -1,9 +1,6 @@
 ---
 title: Azure Monitor Agent Migration Helper workbook 
 description: Plan your migration from the Log Analytics Agent to the Azure Monitor Agent using the Azure Monitor Agent Migration Helper workbook.
-author: EdB-MSFT
-ms.author: edbaynash
-ms.reviewer: guywild
 ms.topic: conceptual 
 ms.date: 11/14/2024
 

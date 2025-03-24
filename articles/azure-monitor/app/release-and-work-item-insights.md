@@ -19,7 +19,7 @@ With continuous monitoring, release pipelines can incorporate monitoring data fr
 
 ## Configure continuous monitoring
 
-1. In [Azure DevOps](https://dev.azure.com), select an organization and project.
+1. In [Azure DevOps](https://azure.microsoft.com/products/devops), select an organization and project.
 
 1. On the left menu of the project page, select **Pipelines** > **Releases**.
 
@@ -27,22 +27,22 @@ With continuous monitoring, release pipelines can incorporate monitoring data fr
 
 1. On the **Select a template** pane, search for and select **Azure App Service deployment with continuous monitoring**, and then select **Apply**.
 
-   :::image type="content" source="media/release-and-work-item-insights/001.png" lightbox="media/release-and-work-item-insights/001.png" alt-text="Screenshot that shows a new Azure Pipelines release pipeline.":::
+    :::image type="content" source="media/release-and-work-item-insights/001.png" lightbox="media/release-and-work-item-insights/001.png" alt-text="Screenshot that shows a new Azure Pipelines release pipeline.":::
 
 1. In the **Stage 1** box, select the hyperlink to **View stage tasks.**
 
-   :::image type="content" source="media/release-and-work-item-insights/002.png" lightbox="media/release-and-work-item-insights/002.png" alt-text="Screenshot that shows View stage tasks.":::
+    :::image type="content" source="media/release-and-work-item-insights/002.png" lightbox="media/release-and-work-item-insights/002.png" alt-text="Screenshot that shows View stage tasks.":::
 
 1. In the **Stage 1** configuration pane, fill in the following fields:
 
-    | Parameter        | Value |
-   | ------------- |:-----|
-   | **Stage name**      | Provide a stage name or leave it at **Stage 1**. |
-   | **Azure subscription** | Select the dropdown arrow and select the linked Azure subscription you want to use.|
-   | **App type** | Select the dropdown arrow and select your app type. |
-   | **App Service name** | Enter the name of your Azure App Service. |
-   | **Resource Group name for Application Insights**    | Select the dropdown arrow and select the resource group you want to use. |
-   | **Application Insights resource name** | Select the dropdown arrow and select the Application Insights resource for the resource group you selected.
+    | Parameter                                        | Value                                                                                                       |
+    |--------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
+    | **Stage name**                                   | Provide a stage name or leave it at **Stage 1**.                                                            |
+    | **Azure subscription**                           | Select the dropdown arrow and select the linked Azure subscription you want to use.                         |
+    | **App type**                                     | Select the dropdown arrow and select your app type.                                                         |
+    | **App Service name**                             | Enter the name of your Azure App Service.                                                                   |
+    | **Resource Group name for Application Insights** | Select the dropdown arrow and select the resource group you want to use.                                    |
+    | **Application Insights resource name**           | Select the dropdown arrow and select the Application Insights resource for the resource group you selected. |
 
 1. To save the pipeline with default alert rule settings, select **Save** in the upper-right corner of the Azure DevOps window. Enter a descriptive comment and select **OK**.
 
@@ -102,7 +102,7 @@ You can see deployment gate behavior and other release steps in the release logs
 
 ## [Release annotations](#tab/release-annotations)
 
-Annotations show where you deployed a new build or other significant events. Annotations make it easy to see whether your changes had any effect on your application's performance. They can be automatically created by the [Azure Pipelines](/azure/devops/pipelines/tasks/) build system. You can also create annotations to flag any event you want by creating them from PowerShell.
+Annotations show where you deployed a new build or other significant events. Annotations make it easy to see whether your changes had any effect on your application's performance. They can be created automatically by the [Azure Pipelines](/azure/devops/pipelines/tasks/) build system. You can also create annotations to flag any event you want by creating them from PowerShell.
 
 ## Release annotations with Azure Pipelines build
 
@@ -110,9 +110,9 @@ Release annotations are a feature of the cloud-based Azure Pipelines service of 
 
 If all the following criteria are met, the deployment task creates the release annotation automatically:
 
-- The resource to which you're deploying is linked to Application Insights via the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
-- The Application Insights resource is in the same subscription as the resource to which you're deploying.
-- You're using one of the following Azure DevOps pipeline tasks:
+* The resource to which you're deploying is linked to Application Insights via the `APPINSIGHTS_INSTRUMENTATIONKEY` app setting.
+* The Application Insights resource is in the same subscription as the resource to which you're deploying.
+* You're using one of the following Azure DevOps pipeline tasks:
 
     | Task code                 | Task name                     | Versions     |
     |---------------------------|-------------------------------|--------------|
@@ -133,11 +133,15 @@ If you can't use one of the deployment tasks in the previous section, you need t
 1. Go to a new or existing pipeline and select a task.
 
     :::image type="content" source="./media/release-and-work-item-insights/task.png" alt-text="Screenshot that shows a task selected under Stages." lightbox="./media/release-and-work-item-insights/task.png":::
+
 1. Add a new task and select **Azure CLI**.
 
     :::image type="content" source="./media/release-and-work-item-insights/add-azure-cli.png" alt-text="Screenshot that shows adding a new task and selecting Azure CLI." lightbox="./media/release-and-work-item-insights/add-azure-cli.png":::
+
 1. Specify the relevant Azure subscription. Change **Script Type** to **PowerShell** and **Script Location** to **Inline**.
+
 1. Add the [PowerShell script from step 2 in the next section](#create-release-annotations-with-the-azure-cli) to **Inline Script**.
+
 1. Add the following arguments. Replace the angle-bracketed placeholders with your values to **Script Arguments**. The `-releaseProperties` are optional.
 
     ```powershell
@@ -240,8 +244,8 @@ You can use the `CreateReleaseAnnotation` PowerShell script to create annotation
     ```
 
     > [!NOTE]
-    > - Your annotations must have **Category** set to **Deployment** to appear in the Azure portal.
-    > - If you receive an error, "The request contains an entity body but no Content-Type header", try removing the replace parameters in the following line.
+    > * Your annotations must have **Category** set to **Deployment** to appear in the Azure portal.
+    > * If you receive an error, "The request contains an entity body but no Content-Type header", try removing the replace parameters in the following line.
     > 
     > `$body = (ConvertTo-Json $annotation -Compress)`
 
@@ -255,11 +259,11 @@ You can use the `CreateReleaseAnnotation` PowerShell script to create annotation
               "TriggerBy"="<Your name>" }
     ```
 
-    |Argument | Definition | Note|
-    |--------------|-----------------------|--------------------|
-    |`aiResourceId` | The resource ID to the target Application Insights resource. | Example:<br> /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName|
-    |`releaseName` | The name to give the created release annotation. | |
-    |`releaseProperties` | Used to attach custom metadata to the annotation. | Optional|
+    | Argument            | Definition                                                   | Note                                                                                                                                            |
+    |---------------------|--------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+    | `aiResourceId`      | The resource ID to the target Application Insights resource. | Example:<br> /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/MyRGName/providers/microsoft.insights/components/MyResourceName |
+    | `releaseName`       | The name to give the created release annotation.             |                                                                                                                                                 |
+    | `releaseProperties` | Used to attach custom metadata to the annotation.            | Optional                                                                                                                                        |
     
 ## View annotations
 
@@ -268,18 +272,18 @@ You can use the `CreateReleaseAnnotation` PowerShell script to create annotation
 
 Whenever you use the release template to deploy a new release, an annotation is sent to Application Insights. You can view annotations in the following locations:
 
-- **Performance:**
+* **Performance:**
 
     :::image type="content" source="./media/release-and-work-item-insights/performance.png" alt-text="Screenshot that shows the Performance tab with a release annotation selected to show the Release Properties tab." lightbox="./media/release-and-work-item-insights/performance.png":::
 
-- **Failures:**
+* **Failures:**
 
     :::image type="content" source="./media/release-and-work-item-insights/failures.png" alt-text="Screenshot that shows the Failures tab with a release annotation selected to show the Release Properties tab." lightbox="./media/release-and-work-item-insights/failures.png":::
-- **Usage:**
+* **Usage:**
 
     :::image type="content" source="./media/release-and-work-item-insights/usage-pane.png" alt-text="Screenshot that shows the Users tab bar with release annotations selected. Release annotations appear as blue arrows above the chart indicating the moment in time that a release occurred." lightbox="./media/release-and-work-item-insights/usage-pane.png":::
 
-- **Workbooks:**
+* **Workbooks:**
 
     In any log-based workbook query where the visualization displays time along the x-axis:
     
@@ -296,7 +300,7 @@ Select any annotation marker to open details about the release, including reques
 Release annotations are a feature of the cloud-based Azure Pipelines service of Azure DevOps.
 
 > [!IMPORTANT]
-> Annotations using API keys is deprecated. We recommend using the [Azure CLI](#create-release-annotations-with-the-azure-cli) instead.
+> Annotations using API keys are deprecated. We recommend using the [Azure CLI](#create-release-annotations-with-the-azure-cli) instead.
 
 ### Install the annotations extension (one time)
 
@@ -306,7 +310,7 @@ To create release annotations, install one of the many Azure DevOps extensions a
 
 1. On the **Visual Studio Marketplace** [Release Annotations extension](https://marketplace.visualstudio.com/items/ms-appinsights.appinsightsreleaseannotations) page, select your Azure DevOps organization. Select **Install** to add the extension to your Azure DevOps organization.
 
-   :::image type="content" source="./media/release-and-work-item-insights/1-install.png" lightbox="./media/release-and-work-item-insights/1-install.png" alt-text="Screenshot that shows selecting an Azure DevOps organization and selecting Install.":::
+    :::image type="content" source="./media/release-and-work-item-insights/1-install.png" lightbox="./media/release-and-work-item-insights/1-install.png" alt-text="Screenshot that shows selecting an Azure DevOps organization and selecting Install.":::
 
 You only need to install the extension once for your Azure DevOps organization. You can now configure release annotations for any project in your organization.
 
@@ -318,43 +322,44 @@ Create a separate API key for each of your Azure Pipelines release templates.
 
 1. Open the **API Access** tab and copy the **Application Insights ID**.
 
-   :::image type="content" source="./media/release-and-work-item-insights/2-app-id.png" lightbox="./media/release-and-work-item-insights/2-app-id.png" alt-text="Screenshot that shows under API Access, copying the Application ID.":::
+    :::image type="content" source="./media/release-and-work-item-insights/2-app-id.png" lightbox="./media/release-and-work-item-insights/2-app-id.png" alt-text="Screenshot that shows under API Access, copying the Application ID.":::
 
 1. In a separate browser window, open or create the release template that manages your Azure Pipelines deployments.
 
 1. Select **Add task** and then select the **Application Insights Release Annotation** task from the menu.
    
-   :::image type="content" source="./media/release-and-work-item-insights/3-add-task.png" lightbox="./media/release-and-work-item-insights/3-add-task.png" alt-text="Screenshot that shows selecting Add Task and Application Insights Release Annotation.":::
-
-   > [!NOTE]
-   > The Release Annotation task currently supports only Windows-based agents. It won't run on Linux, macOS, or other types of agents.
+    :::image type="content" source="./media/release-and-work-item-insights/3-add-task.png" lightbox="./media/release-and-work-item-insights/3-add-task.png" alt-text="Screenshot that shows selecting Add Task and Application Insights Release Annotation.":::
+    
+    > [!NOTE]
+    > The Release Annotation task currently supports only Windows-based agents. It doesn't run on Linux, macOS, or other types of agents.
 
 1. Under **Application ID**, paste the Application Insights ID you copied from the **API Access** tab.
 
-   :::image type="content" source="./media/release-and-work-item-insights/4-paste-app-id.png" lightbox="./media/release-and-work-item-insights/4-paste-app-id.png" alt-text="Screenshot that shows pasting the Application Insights ID.":::
+    :::image type="content" source="./media/release-and-work-item-insights/4-paste-app-id.png" lightbox="./media/release-and-work-item-insights/4-paste-app-id.png" alt-text="Screenshot that shows pasting the Application Insights ID.":::
 
 1. Back in the Application Insights **API Access** window, select **Create API Key**.
 
-   :::image type="content" source="./media/release-and-work-item-insights/5-create-api-key.png" lightbox="./media/release-and-work-item-insights/5-create-api-key.png" alt-text="Screenshot that shows selecting the Create API Key on the API Access tab.":::
+    :::image type="content" source="./media/release-and-work-item-insights/5-create-api-key.png" lightbox="./media/release-and-work-item-insights/5-create-api-key.png" alt-text="Screenshot that shows selecting the Create API Key on the API Access tab.":::
 
 1. In the **Create API key** window, enter a description, select **Write annotations**, and then select **Generate key**. Copy the new key.
 
-   :::image type="content" source="./media/release-and-work-item-insights/6-create-api-key.png" lightbox="./media/release-and-work-item-insights/6-create-api-key.png" alt-text="Screenshot that shows in the Create API key window, entering a description, selecting Write annotations, and then selecting the Generate key.":::
+    :::image type="content" source="./media/release-and-work-item-insights/6-create-api-key.png" lightbox="./media/release-and-work-item-insights/6-create-api-key.png" alt-text="Screenshot that shows in the Create API key window, entering a description, selecting Write annotations, and then selecting the Generate key.":::
 
 1. In the release template window, on the **Variables** tab, select **Add** to create a variable definition for the new API key.
 
 1. Under **Name**, enter **ApiKey**. Under **Value**, paste the API key you copied from the **API Access** tab.
 
-   :::image type="content" source="./media/release-and-work-item-insights/7-paste-api-key.png" lightbox="./media/release-and-work-item-insights/7-paste-api-key.png" alt-text="Screenshot that shows in the Azure DevOps Variables tab, selecting Add, naming the variable ApiKey, and pasting the API key under Value.":::
+    :::image type="content" source="./media/release-and-work-item-insights/7-paste-api-key.png" lightbox="./media/release-and-work-item-insights/7-paste-api-key.png" alt-text="Screenshot that shows in the Azure DevOps Variables tab, selecting Add, naming the variable ApiKey, and pasting the API key under Value.":::
 
 1. Select **Save** in the main release template window to save the template.
 
-   > [!NOTE]
-   > Limits for API keys are described in the [REST API rate limits documentation](/rest/api/yammer/rest-api-rate-limits).
+    > [!NOTE]
+    > Limits for API keys are described in the [REST API rate limits documentation](/rest/api/yammer/rest-api-rate-limits).
 
 ### Transition to the new release annotation
 
 To use the new release annotations:
+
 1. [Remove the Release Annotations extension](/azure/devops/marketplace/uninstall-disable-extensions).
 1. Remove the Application Insights Release Annotation task in your Azure Pipelines deployment.
 1. Create new release annotations with [Azure Pipelines](#release-annotations-with-azure-pipelines-build) or the [Azure CLI](#create-release-annotations-with-the-azure-cli).
@@ -363,15 +368,14 @@ To use the new release annotations:
 
 Work item integration functionality allows you to easily create work items in GitHub or Azure DevOps that have relevant Application Insights data embedded in them.
 
-
 The new work item integration offers the following features over [classic](#classic-work-item-integration):
-- Advanced fields like assignee, projects, or milestones.
-- Repo icons so you can differentiate between GitHub & Azure DevOps workbooks.
-- Multiple configurations for any number of repositories or work items.
-- Deployment through Azure Resource Manager templates.
-- Pre-built & customizable Keyword Query Language (KQL) queries to add Application Insights data to your work items.
-- Customizable workbook templates.
 
+* Advanced fields like assignee, projects, or milestones.
+* Repo icons so you can differentiate between GitHub & Azure DevOps workbooks.
+* Multiple configurations for any number of repositories or work items.
+* Deployment through Azure Resource Manager templates.
+* Pre-built & customizable Keyword Query Language (KQL) queries to add Application Insights data to your work items.
+* Customizable workbook templates.
 
 ## Create and configure a work item template
 
@@ -383,24 +387,24 @@ The new work item integration offers the following features over [classic](#clas
 
     :::image type="content" source="./media/release-and-work-item-insights/create-template-from-transaction-details.png" alt-text=" Screenshot of  end-to-end transaction details tab with create a work item, start with a workbook template selected." lightbox="./media/release-and-work-item-insights/create-template-from-transaction-details.png":::
 
-2. After you select **create a new template**, you can choose your tracking systems, name your workbook, link to your selected tracking system, and choose a region to storage the template (the default is the region your Application Insights resource is located in). The URL parameters are the default URL for your repository, for example, `https://github.com/myusername/reponame` or `https://dev.azure.com/{org}/{project}`.
+1. After you select **create a new template**, you can choose your tracking systems, name your workbook, link to your selected tracking system, and choose a region to storage the template (the default is the region your Application Insights resource is located in). The URL parameters are the default URL for your repository, for example, `https://github.com/myusername/reponame` or `https://dev.azure.com/{org}/{project}`.
 
     :::image type="content" source="./media/release-and-work-item-insights/create-workbook.png" alt-text=" Screenshot of create a new work item workbook template.":::
 
     You can set specific work item properties directly from the template itself. This includes the assignee, iteration path, projects, & more depending on your version control provider.
 
-   > [!NOTE]
-   > For on-premises Azure DevOps environments, a sample URL such as https://dev.azure.com/test/test can be used as a placeholder for the Azure DevOps Project URL. Once the work item template is created, you can modify the URL and its validation rule within the generated [Azure workbook](/azure/azure-monitor/visualize/workbooks-create-workbook).
+    > [!NOTE]
+    > For on-premises Azure DevOps environments, a sample URL such as https://dev.azure.com/test/test can be used as a placeholder for the Azure DevOps Project URL. Once the work item template is created, you can modify the URL and its validation rule within the generated [Azure workbook](/azure/azure-monitor/visualize/workbooks-create-workbook).
 
 ## Create a work item
 
- You can access your new template from any End-to-end transaction details that you can access from Performance, Failures, Availability, or other tabs.
+You can access your new template from any End-to-end transaction details that you can access from Performance, Failures, Availability, or other tabs.
 
 1. To create a work item go to End-to-end transaction details, select an event then select **Create work item** and choose your work item template.
 
     :::image type="content" source="./media/release-and-work-item-insights/create-work-item.png" alt-text=" Screenshot of end to end transaction details tab with create work item selected." lightbox="./media/release-and-work-item-insights/create-work-item.png":::
 
-1. A new tab in your browser will open up to your select tracking system. In Azure DevOps you can create a bug or task, and in GitHub you can create a new issue in your repository. A new work item is automatically create with contextual information provided by Application Insights.
+1. A new tab in your browser opens up to your select tracking system. In Azure DevOps you can create a bug or task, and in GitHub you can create a new issue in your repository. A new work item is automatically create with contextual information provided by Application Insights.
 
     :::image type="content" source="./media/release-and-work-item-insights/github-work-item.png" alt-text=" Screenshot of automatically created GitHub issue." lightbox="./media/release-and-work-item-insights/github-work-item.png":::
 
@@ -416,11 +420,12 @@ Select edit :::image type="icon" source="./media/release-and-work-item-insights/
 
 :::image type="content" source="./media/release-and-work-item-insights/edit-workbook.png" alt-text=" Screenshot of the work item template workbook in edit mode." lightbox="./media/release-and-work-item-insights/edit-workbook.png":::
 
-You can create more than one work item configuration and have a custom workbook to meet each scenario. The workbooks can also be deployed by Azure Resource Manager ensuring standard implementations across your environments.
+You can create more than one work item configuration and have a custom workbook to meet each scenario. The workbooks can also be deployed with Azure Resource Manager ensuring standard implementations across your environments.
 
 ## Classic work item integration 
 
 1. In your Application Insights resource under *Configure* select **Work Items**.
+
 1. Select **Switch to Classic**, fill out the fields with your information, and authorize. 
 
     :::image type="content" source="./media/release-and-work-item-insights/classic.png" alt-text=" Screenshot of how to configure classic work items." lightbox="./media/release-and-work-item-insights/classic.png":::

@@ -2,8 +2,6 @@
 title: Azure Monitor Agent Overview
 description: Get an overview of the Azure Monitor Agent. Learn how you can use the Azure Monitor Agent to collect monitoring data from the guest operating system of virtual machines.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.date: 01/29/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
@@ -25,7 +23,7 @@ For a short introduction to the Azure Monitor Agent, including a demo of how to 
 
 The Azure Monitor Agent is one method of [data collection for Azure Monitor](../data-sources.md). It's installed on VMs running in Azure, in other clouds, or on-premises, where it has access to local logs and performance data. Without the agent, you can collect data only from the host machine because you would have no access to the client operating system and to running processes.
 
-The agent can be installed by using different methods, as described in [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md). You can install the agent on a single machine or at scale by using Azure Policy or other tools. In some cases, the agent is automatically installed when you enable a feature that requires it, such as Microsoft Sentinel.
+The agent can be installed by using different methods, as described in [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md). You can install the agent on a single machine or at scale by using Azure Policy or other tools. In some cases, the agent is automatically installed when you enable a feature that requires it, such as Microsoft Sentinel. The automatic installation only occurs when the feature is first enabled. For continued automated installation for new VM deployments a policy should be created and enabled following the instructions here: [Using a Policy to Install AMA](/azure/azure-monitor/agents/azure-monitor-agent-policy).
 
 ## Data collection
 
@@ -103,9 +101,9 @@ The following tables identify the different environments and features that are c
 
 ## Supported data sources
 
-For a list of data sources the Azure Monitor Agent can collect and to learn how to configure them, see [Collect data with the Azure Monitor Agent](./azure-monitor-agent-data-collection.md).
+For a list of data sources the Azure Monitor Agent can collect and to learn how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
 
 ## Related content
 
 - [Install the Azure Monitor Agent](azure-monitor-agent-manage.md) on Windows and Linux virtual machines.
-- [Create a data collection rule](./azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.
+- [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and send it to Azure Monitor.

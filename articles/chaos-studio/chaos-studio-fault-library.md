@@ -166,27 +166,29 @@ These actions are building blocks for constructing effective experiments. Use th
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkDisconnect-1.1 |
+| Capability name | NetworkDisconnect-1.2 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux (outbound traffic only) |
 | Description | Blocks network traffic for specified port range and network block. At least one destinationFilter or inboundDestinationFilter array must be provided. |
 | Prerequisites | **Windows:** The agent must run as administrator, which happens by default if installed as a VM extension. |
 | | **Linux:** The `tc` (Traffic Control) package is used for network faults. If it isn't already installed, the agent automatically attempts to install it from the default package manager. |
-| Urn | urn:csci:microsoft:agent:networkDisconnect/1.1 |
+| Urn | urn:csci:microsoft:agent:networkDisconnect/1.2 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | destinationFilters | Delimited JSON array of packet filters defining which outbound packets to target. Maximum of 16.|
 | inboundDestinationFilters | Delimited JSON array of packet filters defining which inbound packets to target. Maximum of 16. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
-The parameters **destinationFilters** and **inboundDestinationFilters** use the following array of packet filters.
+The parameters **destinationFilters** and **inboundDestinationFilters** use the following array of packet filters. 
 
 | Property | Value |
 |-|-|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. `microsoft.com`) to target. |
+| subnetMask | (Optional) Subnet mask to affect for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -196,7 +198,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkDisconnect/1.1",
+      "name": "urn:csci:microsoft:agent:networkDisconnect/1.2",
       "parameters": [
         {
           "key": "destinationFilters",
@@ -229,12 +231,12 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkDisconnectViaFirewall-1.0 |
+| Capability name | NetworkDisconnectViaFirewall-1.1 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows |
 | Description | Applies a Windows Firewall rule to block outbound traffic for specified port range and network block. |
 | Prerequisites | Agent must run as administrator. If the agent is installed as a VM extension, it runs as administrator by default. |
-| Urn | urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.0 |
+| Urn | urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.1 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | destinationFilters | Delimited JSON array of packet filters that define which outbound packets to target for fault injection. |
@@ -252,7 +254,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.0",
+      "name": "urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.1",
       "parameters": [
         {
           "key": "destinationFilters",
@@ -280,13 +282,13 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkLatency-1.1 |
+| Capability name | NetworkLatency-1.2 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux (outbound traffic only) |
 | Description | Increases network latency for a specified port range and network block. At least one destinationFilter or inboundDestinationFilter array must be provided. |
 | Prerequisites | **Windows:** The agent must run as administrator, which happens by default if installed as a VM extension. |
 | | **Linux:** The `tc` (Traffic Control) package is used for network faults. If it isn't already installed, the agent automatically attempts to install it from the default package manager. |
-| Urn | urn:csci:microsoft:agent:networkLatency/1.1 |
+| Urn | urn:csci:microsoft:agent:networkLatency/1.2 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | latencyInMilliseconds | Amount of latency to be applied in milliseconds. |
@@ -298,10 +300,12 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. `microsoft.com`) to target. |
+| subnetMask | (Optional) Subnet mask to affect for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -311,7 +315,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkLatency/1.1",
+      "name": "urn:csci:microsoft:agent:networkLatency/1.2",
       "parameters": [
         {
           "key": "destinationFilters",
@@ -348,22 +352,24 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkPacketLoss-1.0 |
+| Capability name | NetworkPacketLoss-1.2 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux (outbound traffic only) |
 | Description | Introduces packet loss for outbound traffic at a specified rate, between 0.0 (no packets lost) and 1.0 (all packets lost). This action can help simulate scenarios like network congestion or network hardware issues. |
 | Prerequisites | **Windows:** The agent must run as administrator, which happens by default if installed as a VM extension. |
 | | **Linux:** The `tc` (Traffic Control) package is used for network faults. If it isn't already installed, the agent automatically attempts to install it from the default package manager. |
-| Urn | urn:csci:microsoft:agent:networkPacketLoss/1.0 |
+| Urn | urn:csci:microsoft:agent:networkPacketLoss/1.2 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | packetLossRate | The rate at which packets matching the destination filters will be lost, ranging from 0.0 to 1.0. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 | destinationFilters | Delimited JSON array of packet filters (parameters below) that define which outbound packets to target for fault injection. Maximum of three.|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. `microsoft.com`) to target. |
+| subnetMask | (Optional) Subnet mask to affect for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -373,7 +379,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkPacketLoss/1.0",
+      "name": "urn:csci:microsoft:agent:networkPacketLoss/1.2",
       "parameters": [
             {
                 "key": "destinationFilters",
