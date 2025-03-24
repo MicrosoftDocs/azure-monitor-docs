@@ -88,11 +88,11 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 The end-to-end tranasction view shows a Gantt chart of the transaction, which lists all events with their duration and response code. Selecting a specific event reveals its properties in the right-hand pane, including additional information like the underlying command or call stack.
 
-:::image type="content" source="media/failures-and-performance-views/failures-exception.png" lightbox="media/failures-and-performance-views/failures-exception.png" alt-text="Screenshot showing the end-to-end transaction view.":::
+:::image type="content" source="media/failures-and-performance-views/failures-transaction-view.png" lightbox="media/failures-and-performance-views/failures-transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
 
 ### Debug Snapshot
 
-To see code-level debug information of an exception, select **Open debug snapshot**.
+To see code-level debug information of an exception, select the exception in the Gantt chart, then **Open debug snapshot**.
 
 :::image type="content" source="media/failures-and-performance-views/failures-exception-open-debugger.png" lightbox="media/failures-and-performance-views/failures-exception-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction with 'Open debug snapshot' highlighted.":::
 
@@ -145,13 +145,13 @@ The Profiler helps get further with code-level diagnostics by showing the actual
 
 ### Identify slow client operations
 
-If you [instrument your web pages with Application Insights](javascript-sdk.md), you can gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires adding a script to your web pages.
+If you instrument your web pages with Application Insights, you can gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires [adding a script to your web pages](javascript-sdk.md#add-the-javascript-code).
 
 After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** pane. This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
 :::image type="content" source="media/failures-and-performance-views/server-browser-toggle.png" lightbox="media/failures-and-performance-views/server-browser-toggle.png" alt-text="Screenshot highlighting the server/browser toggle below the top action bar.":::
 
-For browser operations, the End-to-end transaction details view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can assist in determining whether there are performance issues related to particular types of clients.
+For browser operations, the [End-to-end transaction details view](#end-to-end-transaction-details) shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can assist in determining whether there are performance issues related to particular types of clients.
 
 :::image type="content" source="media/failures-and-performance-views/page-view-properties.png" lightbox="media/failures-and-performance-views/page-view-properties.png" alt-text="Screenshot highlighting the page view properties.":::
 
