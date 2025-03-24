@@ -8,7 +8,7 @@ ms.reviewer: cogoodson
 
 # Failures and Performance views
 
-[Application Insights](app-insights-overview.md) comes with a curated Application Performance Management (APM) experience to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools: the **Failures** view and the **Performance** view.
+[Application Insights](app-insights-overview.md) comes with a curated Application Performance Management (APM) experience to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools:
 
 *  The **Failures** view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability. 
 * The **Performance** view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
@@ -47,6 +47,22 @@ You're also prompted with automatically identified anomalies and commonalities a
 
 :::image type="content" source="media/failures-and-performance-views/failures-view.png" lightbox="media/failures-and-performance-views/failures-view.png" alt-text="Screenshot of the failures view in Application Insights.":::
 
+### [Performance view](#tab/performance-view)
+
+The **Performance** view shows the count and average duration of each operation for the application. You can use this information to identify those operations that affect users the most.
+
+For example, by identifying the operations with the longest duration, you can diagnose potential problems or target your ongoing development to improve the overall performance of the application.
+
+You're also prompted with automatically identified anomalies and commonalities across transactions.
+
+:::image type="content" source="media/failures-and-performance-views/performance-view.png" lightbox="media/failures-and-performance-views/performance-view.png" alt-text="Screenshot showing the performance view in Application Insights.":::
+
+---
+
+### Investigate
+
+### [Failures view](#tab/failures-view)
+
 To investigate the root cause of an error or exception, you can drill into the problematic operation for a detailed end-to-end transaction view that includes dependencies and exception details.
 
 1. Select an operation to show more information about it in the right pane.
@@ -61,14 +77,6 @@ To investigate the root cause of an error or exception, you can drill into the p
 	> The **Suggested** samples have related telemetry from all components, even if sampling might have been in effect in any of them.
 
 ### [Performance view](#tab/performance-view)
-
-The **Performance** view shows the count and average duration of each operation for the application. You can use this information to identify those operations that affect users the most.
-
-For example, by identifying the operations with the longest duration, you can diagnose potential problems or target your ongoing development to improve the overall performance of the application.
-
-You're also prompted with automatically identified anomalies and commonalities across transactions.
-
-:::image type="content" source="media/failures-and-performance-views/performance-view.png" lightbox="media/failures-and-performance-views/performance-view.png" alt-text="Screenshot showing the performance view in Application Insights.":::
 
 To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction view that includes dependencies and exception details.
 
@@ -113,9 +121,11 @@ The Debug Snapshot view shows the call stack and allows you to inspect variables
 
 If you connect Application Insights to a tracking system, such as Azure DevOps or GitHub, you can create a work item directly from Application Insights.
 
-1. Select **Create work item** and create a new template or pick an existing one.
+Select **Create work item** and create a new template or pick an existing one.
 
-1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
+:::image type="content" source="media/failures-and-performance-views/performance-transaction-view-create-work-item.png" lightbox="media/failures-and-performance-views/performance-transaction-view-create-work-item.png" alt-text="Screenshot showing the 'Create work item' button highlighted.":::
+
+The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
 
 ### Profiler traces
 
