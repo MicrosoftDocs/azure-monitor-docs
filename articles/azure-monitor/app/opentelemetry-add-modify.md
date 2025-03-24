@@ -43,7 +43,8 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 * `ILogger`
 
-To reduce or increase the number of logs that Azure Monitor collects, set the desired logging level. (for example, `WARNING` or `ERROR`) For more information, see [Configure logging](/dotnet/core/extensions/logging#configure-logging)
+To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
+
 
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
@@ -77,7 +78,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-To reduce or increase the number of logs that Azure Monitor collects, set the desired logging level. (for example, `WARNING` or `ERROR`) For more information, see [Configure logging](/dotnet/core/extensions/logging#configure-logging)
+To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
 
 #### [Java](#tab/java)
 
