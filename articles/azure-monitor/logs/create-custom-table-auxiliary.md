@@ -10,9 +10,7 @@ ms.date: 07/21/2024
 
 # Set up a table with the Auxiliary plan in your Log Analytics workspace 
 
-The [Auxiliary table plan](../logs/data-platform-logs.md#table-plans) lets you ingest and retain data in your Log Analytics workspace at a low cost. Azure Monitor Logs currently supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](../logs/manage-logs-tables.md#table-type-and-schema) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](../logs/logs-ingestion-api-overview.md).
-
-This article explains how to create a custom table with the Auxiliary plan in your Log Analytics workspace and set up a data collection rule that sends data to this table.
+The [Auxiliary table plan](../logs/data-platform-logs.md#table-plans) lets you ingest and retain data in your Log Analytics workspace at a low cost. 
 
 Here's a video that explains some of the uses and benefits of the Auxiliary table plan:
 
@@ -21,11 +19,13 @@ Here's a video that explains some of the uses and benefits of the Auxiliary tabl
 
 ## Prerequisites
 
+Azure Monitor Logs currently supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](../logs/manage-logs-tables.md#table-type-and-schema) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](../logs/logs-ingestion-api-overview.md).
+
+This article explains how to create a custom table with the Auxiliary plan in your Log Analytics workspace and set up a data collection rule that sends data to this table.
 To create a custom table and collect log data, you need:
 
 - A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
 - A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md).
-- All tables in a Log Analytics workspace have a column named `TimeGenerated`. If your raw log data has a `TimeGenerated` property, Azure Monitor uses this value to identify the creation time of the record. For a table with the Auxiliary plan, the `TimeGenerated` column currently supports ISO8601 format only. For information about the `TimeGenerated` format, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
     
 
 ## Create a custom table with the Auxiliary plan
@@ -36,8 +36,8 @@ To create a custom table, call the [Tables - Create Or Update API](/rest/api/log
 PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table name_CL}?api-version=2023-01-01-preview
 ```
 
-> [!IMPORTANT]
-> Only version `2023-01-01-preview` of the API currently lets you set the Auxiliary table plan.  
+> [!NOTE]
+> Only version `2023-01-01-preview` of the API currently lets you set the Auxiliary table plan.
 
 Provide this payload - update the table name and adjust the columns based on your table schema: 
 
@@ -86,6 +86,9 @@ Provide this payload - update the table name and adjust the columns based on you
     }
 }
 ```
+> [!NOTE]
+> - The `TimeGenerated` column currently supports only ISO8601 format with 6 precisions (nanoseconds). For information about the `TimeGenerated` format, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
+> - Tables with the Auxiliary plan currenty do not support columns with dynamic data.
 
 ## Send data to a table with the Auxiliary plan
 
@@ -207,25 +210,14 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
         Where:
         - `myworkspace` is the name of your Log Analytics workspace.
         - `table_name_CL` is the name of your table.
-        -  `columns` includes the same columns you set in [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan).
+        -  `columns` includes the same columns you set in [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan). 
     
     1. [Grant your application permission to use your DCR](../logs/tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
 
-## Limitations
-
-- You can set the Auxiliary plan only on data collection rule-based custom tables you create using the [Tables - Create Or Update API](/rest/api/loganalytics/tables/create-or-update), version `2023-01-01-preview`.
-- Tables with the Auxiliary plan: 
-    - Do not support columns with dynamic data.
-    - Support ISO 8601 datetime format only.
-- A data collection rule that sends data to a table with an Auxiliary plan:
-    - Can only send data to a single table.
-    - Can't include a [transformation](../essentials/data-collection-transformations.md). 
-- These features are currently not supported:
-
-    | Feature | Details |
-    | --- | --- |
-    |[Log Analytics workspace replication](workspace-replication.md)| Azure Monitor doesn't replicate data in tables with the Auxiliary plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you swith over to your secondary workspace.|
-    | [Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview) | The Lockbox interface, which lets you review and approve or reject customer data access requests in response to a customer-initiated support ticket or a problem identified by Microsoft does not apply to tables with the Auxiliary plan.|
+    > [!NOTE]
+    > A data collection rule that sends data to a table with an Auxiliary plan:
+    > - Can only send data to a single table.
+    > - Can't include a [transformation](../essentials/data-collection-transformations.md).
 
 
 ## Next steps
