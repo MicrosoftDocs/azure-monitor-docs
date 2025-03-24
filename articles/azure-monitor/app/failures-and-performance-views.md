@@ -110,8 +110,6 @@ If you connect Application Insights to a tracking system, such as Azure DevOps o
 
 1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
 
-    :::image type="content" source="media/failures-and-performance-views/work-item-template.png" lightbox="media/failures-and-performance-views/work-item-template.png" alt-text="Screenshot showing the work item template.":::
-
 ## Use analytics data
 
 All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
