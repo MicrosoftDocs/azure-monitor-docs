@@ -43,7 +43,7 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 * `ILogger`
 
-The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
@@ -77,7 +77,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 #### [Java](#tab/java)
 
@@ -130,7 +130,7 @@ The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlyi
 * JBoss Logging (including MDC properties) ¹
 * java.util.logging ¹
 
-The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 **Default collection**
 
@@ -208,7 +208,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 
 * Logback
 
-The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 For Quartz native applications, look at the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
 
@@ -236,7 +236,7 @@ The following OpenTelemetry Instrumentation libraries are included as part of th
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/plugins/node/opentelemetry-instrumentation-winston)
 -->
 
-The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
 
@@ -292,7 +292,7 @@ useAzureMonitor(options);
 
 * [Python logging library](https://docs.python.org/3/howto/logging.html)
 
-The distro collects logs at the level (INFO, WARNING, ERROR) set in the underlying language logging library.
+To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
 Examples of using the Python logging library can be found on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
 
