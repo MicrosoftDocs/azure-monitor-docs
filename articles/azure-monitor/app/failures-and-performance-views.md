@@ -10,9 +10,9 @@ ms.reviewer: cogoodson
 
 [Application Insights](app-insights-overview.md) comes with a curated Application Performance Management (APM) experience to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools:
 
-*  The **Failures** view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
+* The **Failures** view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability. It provides detailed information on failure rates, response codes, exception types, and failing dependencies.
 
-* The **Performance** view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
+* The **Performance** view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts. You can drill into specific operations to see detailed metrics, identify slow transactions, and understand the dependencies contributing to performance issues.
 
 Together, they ensure the ongoing health and efficiency of web applications.
 
@@ -96,25 +96,31 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 ## End-to-end transaction details
 
-The end-to-end tranasction view shows a Gantt chart of the transaction. Selecting an exception shows more information like **Exception Properties** and the **Call Stack**. Additionally, you can **Open debug snapshot** to see code-level debug information of the exception.
+The end-to-end tranasction view shows a Gantt chart of the transaction, which lists all events with their duration and response code. Selecting a specific event reveals its properties in the right-hand pane, including additional information like the underlying command or call stack.
 
-:::image type="content" source="media/failures-and-performance-views/failures-exception-open-debugger.png" lightbox="media/failures-and-performance-views/failures-exception-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction with 'Open debug snapshot' highlighted.":::
+:::image type="content" source="media/failures-and-performance-views/failures-exception.png" lightbox="media/failures-and-performance-views/failures-exception.png" alt-text="Screenshot showing the end-to-end transaction view.":::
 
 ### Debug Snapshot
+
+To see code-level debug information of an exception, select **Open debug snapshot**.
+
+:::image type="content" source="media/failures-and-performance-views/failures-exception-open-debugger.png" lightbox="media/failures-and-performance-views/failures-exception-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction with 'Open debug snapshot' highlighted.":::
 
 The Debug Snapshot view shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
 
 :::image type="content" source="media/failures-and-performance-views/failures-debug-snapshot-details.png" lightbox="media/failures-and-performance-views/failures-debug-snapshot-details.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
 
-### Add a work item
+### Create a work item
 
 If you connect Application Insights to a tracking system, such as Azure DevOps or GitHub, you can create a work item directly from Application Insights.
 
-Select **Create work item** and create a new template or pick an existing one.
+1. Select **Create work item** and create a new template or pick an existing one.
 
-:::image type="content" source="media/failures-and-performance-views/performance-transaction-view-create-work-item.png" lightbox="media/failures-and-performance-views/performance-transaction-view-create-work-item.png" alt-text="Screenshot showing the 'Create work item' button highlighted.":::
+    :::image type="content" source="media/failures-and-performance-views/create-work-item.png" lightbox="media/failures-and-performance-views/create-work-item.png" alt-text="Screenshot showing the 'Create work item' button highlighted.":::
 
-The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
+1. The **New Work Item** pane opens with details about the exception already populated. You can add more information before you save it.
+
+    :::image type="content" source="media/failures-and-performance-views/work-item-template.png" lightbox="media/failures-and-performance-views/work-item-template.png" alt-text="Screenshot showing the work item template.":::
 
 ## Use analytics data
 
@@ -157,8 +163,6 @@ The End-to-end transaction details open on the right side where you can view the
 
 > [!NOTE]
 > Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
-
-:::image type="content" source="media/failures-and-performance-views/performance-transaction-view.png" lightbox="media/failures-and-performance-views/performance-transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
 
 ## Next steps
 
