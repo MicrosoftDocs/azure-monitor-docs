@@ -14,7 +14,7 @@ Container insights supports monitoring GPU clusters from the following GPU vendo
 - [AMD](https://github.com/RadeonOpenCompute/k8s-device-plugin)
 
 >[!NOTE]
->If you are using **[Nvidia DCGM exporter](https://docs.nvidia.com/datacenter/cloud-native/gpu-telemetry/latest/dcgm-exporter.html)**, you can enable GPU monitoring with Managed Prometheus and Managed Grafana. For details on the setup and instructions, please see [Enable GPU monitoring with Nvidia DCGM exporter](https://techcommunity.microsoft.com/blog/azureobservabilityblog/monitoring-gpu-metrics-in-aks-with-azure-managed-prometheus-dcgm-exporter-and-ma/4210672).
+>If you are using **[Nvidia DCGM exporter](https://docs.nvidia.com/datacenter/cloud-native/gpu-telemetry/latest/dcgm-exporter.html)**, you can enable GPU monitoring with Managed Prometheus and Managed Grafana. For details on the setup and instructions, please see [Enable GPU monitoring with Nvidia DCGM exporter](./prometheus-dcgm-integration.md).
 
 Container insights automatically starts monitoring GPU usage on nodes and GPU requesting pods and workloads by collecting the following metrics at 60-second intervals and storing them in the **InsightMetrics** table.
 
