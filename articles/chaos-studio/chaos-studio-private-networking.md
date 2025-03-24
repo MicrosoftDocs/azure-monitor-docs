@@ -23,7 +23,7 @@ We are also now excited to share that Chaos Studio supports running **agent-base
 Currently, you can only enable certain resource types for Chaos Studio virtual network injection:
 
 * **Azure Kubernetes Service (AKS)** targets can be enabled with virtual network injection through the Azure portal and the Azure CLI. All AKS Chaos Mesh faults can be used.
-* **Azure Key Vault** targets can be enabled with virtual network injection through the Azure CLI. The faults that can be used with virtual network injection are Disable Certificate, Increment Certificate Version, and Update Certificate Policy.
+* **Azure Key Vault** targets can be enabled with virtual network injection through the Azure portal and the Azure CLI. The faults that can be used with virtual network injection are Disable Certificate, Increment Certificate Version, and Update Certificate Policy.
 
 ## Enable virtual network injection
 To use Chaos Studio with virtual network injection, you must meet the following requirements.
@@ -39,6 +39,27 @@ To use Chaos Studio with virtual network injection, you must meet the following 
 If you're using the Azure portal to enable a private resource as a Chaos Studio target, Chaos Studio currently only recognizes subnets named `ChaosStudioContainerSubnet` and `ChaosStudioRelaySubnet`. If these subnets don't exist, the portal workflow can create them automatically.
 
 If you're using the CLI, the container and relay subnets can have any name (subject to the resource naming guidelines). Specify the appropriate IDs when you enable the resource as a target.
+
+## Auto-Tagging of Experiment Resources
+
+When a **Chaos Studio experiment** is configured to run with **private networking enabled**, Chaos Studio automatically provisions two key resources in your subscription:  
+1. An **Azure container instance** that facilitates secure communication.  
+2. An **Azure relay** that manages network routing for the experiment to the Chaos Studio backend.  
+
+Previously, these **created on behalf of resources** did not inherit the **tags** applied to the experiment, which could cause **Azure Policy enforcement conflicts** in environments that require resource tagging.  
+
+With this update, **Chaos Studio now automatically applies the same tags from your experiment to the container and relay resources it creates**. This improvement enhances **resource visibility, compliance, and governance** within your Azure environment.  
+
+### How It Works
+- Pre-requisite: You are creating an experiment that targets resources that are within a virtual network. 
+- When an **experiment** is tagged, those same **tags are automatically propagated** to any resources **Chaos Studio provisions** for private networking.  
+- These tags will be visible in the **Azure portal**, **Azure CLI**, and **ARM API queries**, just like any other Azure resource.  
+- No additional configuration is required—simply applying **tags to your experiment** ensures they are **inherited** by all related resources.  
+
+### Benefits
+✅ **Ensures Compliance** – Resources now meet **Azure Policy** tagging requirements.  
+✅ **Improves Resource Tracking** – All experiment-associated resources carry the same tags for easy identification.  
+✅ **No Extra Setup Required** – Works **automatically** when an experiment is tagged.
 
 ## Example: Use Chaos Studio with a private AKS cluster
 
@@ -158,7 +179,7 @@ Now you can use your private AKS cluster with Chaos Studio. To learn how to inst
 ## Limitations
 * Virtual network injection is currently only possible in subscriptions/regions where Azure Container Instances and Azure Relay are available.
 * When you create a Target resource that you enable with virtual network injection, you need `Microsoft.Network/virtualNetworks/subnets/write` access to the virtual network. For example, if the AKS cluster is deployed to virtual network_A, then you must have permissions to create subnets in virtual network_A to enable virtual network injection for the AKS cluster.
-
+* If your organization has a policy requiring resource tags, this will fail when using Chaos Studio with Private Networking. You will need to disable this policy for the time being until our fix for this issue is rolled out. 
 <!--
 ![Target resource with virtual network injection](images/chaos-studio-rp-vnet-injection.png)
 -->

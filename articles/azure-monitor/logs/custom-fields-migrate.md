@@ -1,7 +1,6 @@
 ---
 title: Migration of custom fields to KQL-based transformations in Azure Monitor
 description: Learn how to migrate custom fields in a Log Analytics workspace in Azure Monitor with KQL-based custom columns using transformations. 
-ms.service: azure-monitor
 ms.topic: tutorial 
 ms.date: 08/12/2024
 ---
@@ -65,7 +64,7 @@ Since there is no way to examine the custom field definition directly, you need 
 1. Locate the columns noted in the previous step and examine their content.
     - If the column *is not empty* and *there are DCRs* associated with the table, then custom field logic has been already implemented with transformation. No action is required
     - If the column *is empty* (or not present in query results) and *there are DCRs* associated with the table, the custom field logic wasn't implemented with the DCR. Add a transformation to the dataflow in the existing DCR.
-    - If the column *isn't empty* and *there are no DCRs* associated with the table, the custom field logic needs to implemented as a transformation in the [workspace DCR](../essentials/data-collection-transformations-workspace.md).
+    - If the column *isn't empty* and *there are no DCRs* associated with the table, the custom field logic needs to implemented as a transformation in the [workspace DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
 
 1. Examine the content of the custom field and determine the logic how it's being calculated. Custom fields usually calculate substrings of other columns in the same table. Determine which column the data comes from and the portion of the string it extracts.
 
@@ -82,8 +81,8 @@ You're now ready to create the required KQL snippet and add it to a DCR. This lo
 
 2. Determine where your new KQL definition of the custom column needs to be placed.
  
-    - For logs collected using [Azure Monitor Agent (AMA)](../agents/agents-overview.md), [edit the DCR](../essentials/data-collection-rule-edit.md) collecting data for the table, adding a transformation. For an example, see [Best practices and samples for transformations in Azure Monitor](../essentials/data-collection-transformations-best-practices.md). The transformation query is defined in the `transformKql` element.
-    - For resource logs collected with [diagnostic settings](../essentials/diagnostic-settings.md), add the transformation to the [workspace default DCR](../essentials/data-collection-transformations-workspace.md). The table must [support transformations](../logs/tables-feature-support.md).
+    - For logs collected using [Azure Monitor Agent (AMA)](../agents/agents-overview.md), [edit the DCR](../essentials/data-collection-rule-create-edit.md) collecting data for the table, adding a transformation. For an example, see [Best practices and samples for transformations in Azure Monitor](../essentials/data-collection-transformations-best-practices.md). The transformation query is defined in the `transformKql` element.
+    - For resource logs collected with [diagnostic settings](../essentials/diagnostic-settings.md), add the transformation to the [workspace default DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr). The table must [support transformations](../logs/tables-feature-support.md).
 
 
 

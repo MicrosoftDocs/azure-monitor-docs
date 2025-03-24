@@ -2,10 +2,8 @@
 title: Integrate Log Analytics and Excel
 description: Get a Log Analytics query into Excel and refresh results inside Excel. 
 ms.topic: conceptual
-author: guywild
-ms.author: guywild
-ms.reviewer: roygal
-ms.date: 06/22/2022
+ms.reviewer: ron.frenkel
+ms.date: 12/08/2024
 
 ---
 
@@ -23,7 +21,7 @@ To integrate Log Analytics and Excel, you need:
 - [Excel](https://www.microsoft.com/en-us/microsoft-365/excel) local client application.
 - A Log Analytics workspace that has some data. If needed, [create a diagnostic setting to send data to a Log Analytics workspace](../essentials/create-diagnostic-settings.md).
 
-[!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
+[!INCLUDE [log-analytics-query-permissions](includes/log-analytics-query-permissions.md)]
 
 ## Create your M query in Log Analytics 
 

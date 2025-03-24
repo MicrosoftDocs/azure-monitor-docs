@@ -2,8 +2,6 @@
 title: Register an App to request authorization tokens and work with APIs
 description: How to register an app and assign a role so it can access request a token and work with APIs
 ms.date: 05/30/2024
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
 
@@ -53,10 +51,10 @@ az ad sp create-for-rbac -n <Service principal display name>
 The response looks as follows:
 ```JSON
 {
-  "appId": "0a123b56-c987-1234-abcd-1a2b3c4d5e6f",
+  "appId": "00001111-aaaa-2222-bbbb-3333cccc4444",
   "displayName": "AzMonAPIApp",
   "password": "123456.ABCDE.~XYZ876123ABcEdB7169",
-  "tenant": "a1234bcd-5849-4a5d-a2eb-5267eae1bbc7"
+  "tenant": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 }
 
 ```
@@ -72,7 +70,7 @@ az role assignment create --assignee <`appId`> --role <Role> --scope <resource U
 The CLI following example assigns the `Reader` role to the service principal for all resources in the `rg-001`resource group:
 
 ```azurecli
- az role assignment create --assignee 0a123b56-c987-1234-abcd-1a2b3c4d5e6f --role Reader --scope '\/subscriptions/a1234bcd-5849-4a5d-a2eb-5267eae1bbc7/resourceGroups/rg-001'
+ az role assignment create --assignee 00001111-aaaa-2222-bbbb-3333cccc4444 --role Reader --scope '\/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001'
 ```
 For more information on creating a service principal using Azure CLI, see [Create an Azure service principal with the Azure CLI](/cli/azure/create-an-azure-service-principal-azure-cli).
 

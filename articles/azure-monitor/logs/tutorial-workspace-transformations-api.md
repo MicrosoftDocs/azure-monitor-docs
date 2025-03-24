@@ -2,9 +2,7 @@
 title: Tutorial - Add ingestion-time transformation to Azure Monitor Logs using Resource Manager templates
 description: Describes how to add a custom transformation to data flowing through Azure Monitor Logs using Resource Manager templates.
 ms.topic: tutorial
-author: bwren
-ms.author: bwren
-ms.date: 08/12/2024
+ms.date: 03/17/2025
 ---
 
 # Tutorial: Add transformation in workspace data collection rule to Azure Monitor using Resource Manager templates
@@ -18,7 +16,7 @@ Workspace transformations are stored together in a single [data collection rule 
 In this tutorial, you learn to:
 
 > [!div class="checklist"]
-> * Configure [workspace transformation](../essentials/data-collection-transformations-workspace.md) for a table in a Log Analytics workspace.
+> * Configure [workspace transformation](../essentials/data-collection-transformations.md#workspace-transformation-dcr) for a table in a Log Analytics workspace.
 > * Write a log query for an ingestion-time transform.
 
 
@@ -31,10 +29,10 @@ To complete this tutorial, you need the following:
 - Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
 - [Permissions to create Data Collection Rule objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
 - The table must already have some data.
-- The table can't already be linked to the [workspace transformation DCR](../essentials/data-collection-transformations-workspace.md).
+- The table can't already be linked to the [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
 
+## Overview
 
-## Overview of tutorial
 In this tutorial, you'll reduce the storage requirement for the `LAQueryLogs` table by filtering out certain records. You'll also remove the contents of a column while parsing the column data to store a piece of data in a custom column. The [LAQueryLogs table](query-audit.md#audit-data) is created when you enable [log query auditing](query-audit.md) in a workspace, but this is only used as a sample for the tutorial. You can use this same basic process to create a transformation for any [supported table](tables-feature-support.md) in a Log Analytics workspace.  
 
 
@@ -147,7 +145,7 @@ Use Log Analytics to test the transformation query before adding it to a data co
    ```
 
 ## Create data collection rule (DCR)
-Since this is the first transformation in the workspace, you need to create a [workspace transformation DCR](../essentials/data-collection-transformations-workspace.md). If you create workspace transformations for other tables in the same workspace, they must be stored in this same DCR.
+Since this is the first transformation in the workspace, you need to create a [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr). If you create workspace transformations for other tables in the same workspace, they must be stored in this same DCR.
 
 1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**.
 

@@ -1,15 +1,15 @@
 ---
-title: Enable Application Insights Profiler for ASP.NET Core web apps hosted in Linux
+title: Enable the .NET Profiler for Azure App Service apps in Linux
 description: Learn how to enable the Profiler on your ASP.NET Core web application hosted in Linux on Azure App Service.
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, linux-related-content
-ms.date: 08/19/2024
+ms.date: 12/17/2024
 ms.reviewer: charles.weininger
 # Customer Intent: As a .NET developer, I'd like to enable Application Insights Profiler for my .NET web application hosted in Linux
 ---
 
-# Enable Profiler for ASP.NET Core web apps hosted in Linux
+# Enable the .NET Profiler for Azure App Service apps in Linux
 
 By using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps that are hosted in Linux on Azure App Service. This article focuses on web apps hosted in Linux. You can also experiment by using Linux, Windows, and Mac development environments.
 
@@ -145,7 +145,7 @@ In this article, you:
 You have three options to add Application Insights to your web app:
 
 - By using the **Application Insights** pane in the Azure portal.
-- By using the **Configuration** pane in the Azure portal.
+- By using the **Environment variables** pane in the Azure portal.
 - By manually adding to your web app settings.
 
 # [Application Insights pane](#tab/enablement)
@@ -165,23 +165,22 @@ You have three options to add Application Insights to your web app:
 
 1. Select **Apply** > **Yes** to apply and confirm.
 
-# [Configuration pane](#tab/config)
+# [Environment variables pane](#tab/config)
 
 1. [Create an Application Insights resource](../app/create-workspace-resource.md) in the same Azure subscription as your App Service instance.
 1. Go to the Application Insights resource.
-1. Copy the **Instrumentation Key** (iKey).
-1. In your web app in the Azure portal, select **Configuration** on the left pane.
-1. Select **New application setting**.
+1. Copy the **Connection String**.
+1. In your web app in the Azure portal, select **Environment variables** on the left pane, then **Add**.
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/new-setting-configuration.png" alt-text="Screenshot that shows adding a new application setting in the Configuration pane.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/new-setting-configuration.png" alt-text="Screenshot that shows adding a new application setting in the Environment variables pane.":::    
 
-1. Add the following settings in the **Add/Edit application setting** pane by using your saved iKey:
+1. Add your connection string as a new setting in the **Add/Edit application setting** pane:
 
    | Name | Value |
    | ---- | ----- |
-   | APPINSIGHTS_INSTRUMENTATIONKEY | [YOUR_APPINSIGHTS_KEY] |
+   | APPLICATIONINSIGHTS_CONNECTION_STRING | [YOUR_CONNECTION_STRING] |
 
-   :::image type="content" source="./media/profiler-aspnetcore-linux/add-ikey-settings.png" alt-text="Screenshot that shows adding the iKey to the Settings pane.":::    
+   :::image type="content" source="./media/profiler-aspnetcore-linux/add-connection-string-setting.png" alt-text="Screenshot that shows adding the connection string to the Settings pane.":::
 
 1. Select **OK**.
 
@@ -193,14 +192,14 @@ You have three options to add Application Insights to your web app:
 
 1. [Create an Application Insights resource](../app/create-workspace-resource.md) in the same Azure subscription as your App Service instance.
 1. Go to the Application Insights resource.
-1. Copy the **Instrumentation Key** (iKey).
+1. Copy the **Connection String**.
 1. In your preferred code editor, go to your ASP.NET Core project's `appsettings.json` file.
-1. Add the following code and insert your copied iKey:
+1. Add the following code and paste your connection string:
 
    ```json
    "ApplicationInsights":
    {
-     "InstrumentationKey": "<your-instrumentation-key>"
+     "ConnectionString": "<your-connection-string>"
    }
    ```
 

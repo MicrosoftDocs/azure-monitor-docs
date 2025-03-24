@@ -2,8 +2,6 @@
 title: Data collection endpoints in Azure Monitor 
 description: Overview of how data collection endpoints work and how to create and set them up based on your deployment.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 03/18/2024
 ms.custom: references_region
 ms.reviwer: nikeist
@@ -20,9 +18,6 @@ A data collection endpoint (DCE) is an Azure resource that defines a unique set 
 
 A DCE isn't always required for data collection since the data source may use a public endpoint or the ingestion endpoints in the DCR. The sections below describes those scenarios where a DCE is required.
 
-> [!IMPORTANT]
-> If you're sending data to a Log Analytics workspace 
-
 ### Azure Monitor agent (AMA) 
 
 [AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../logs/private-link-security.md). 
@@ -34,7 +29,7 @@ You can view the agents associated with a DCE from its **Resources** page. Click
 
 :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-resources.png" alt-text="Screenshot resources for a DCE in the Azure portal." :::
 
-A DCE is required for certain [AMA data sources](../agents/azure-monitor-agent-data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs , a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
+A DCE is required for certain [AMA data sources](../vm/data-collection.md). In this case, the DCE is specified in the DCR using that data source. If an agent is associated with multiple DCRs , a DCE is only required in those DCRs with data sources that require it. Other data sources can continue to use the public endpoint.
 
 > [!IMPORTANT]
 > If the data source is sending to a destination configured for private link, the DCE configured in the DCR for that data source must be added to AMPLS.
@@ -98,7 +93,7 @@ This table describes the components of a data collection endpoint, related regio
      :::image type="content" source="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png" alt-text="A diagram that shows monitored resources in multiple regions sending data to multiple Log Analytics workspaces in different regions using data collection endpoints." lightbox="media/data-collection-endpoint-overview/data-collection-endpoint-regionality-multiple-workspaces.png":::
 
 > [!NOTE]
-> By default, the Microsoft.Insights resource provider isnt registered in a Subscription. Ensure to register it successfully before trying to create a Data Collection Endpoint.
+> By default, the Microsoft.Insights resource provider isn't registered in a Subscription. Ensure to register it successfully before trying to create a Data Collection Endpoint.
 
 ## Create a data collection endpoint
 
@@ -168,4 +163,4 @@ The sample data collection endpoint (DCE) below is for virtual machines with Azu
 
 ## Next steps
 
-- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-azure-monitor-resources)
+- [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-resources-to-the-ampls)

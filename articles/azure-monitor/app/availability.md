@@ -56,25 +56,25 @@ There are four types of availability tests:
 
 1. Input your test name, URL, and other settings described in the following table, then select **Create**.
 
-    | Section | Setting | Description |
-    |---------|---------|-------------|
-    | **Basic Information** | | |
-    | | **URL** | The URL can be any webpage you want to test, but it must be visible from the public internet. The URL can include a query string. So, for example, you can exercise your database a little. If the URL resolves to a redirect, we follow it up to 10 redirects. |
-    | | **Parse dependent requests** | Test requests images, scripts, style files, and other files that are part of the webpage under test. The recorded response time includes the time taken to get these files. The test fails if any of these resources can't be successfully downloaded within the timeout for the whole test. If the option isn't selected, the test only requests the file at the URL you specified. Enabling this option results in a stricter check. The test could fail for cases, which might not be noticeable when you manually browse the site. We parse only up to 15 dependent requests. |
-    | | **Enable retries for availability test failures** | When the test fails, it retries after a short interval. A failure is reported only if three successive attempts fail. Subsequent tests are then performed at the usual test frequency. Retry is temporarily suspended until the next success. This rule is applied independently at each test location. *We recommend this option*. On average, about 80% of failures disappear on retry. |
-    | | **Enable SSL certificate validity** | You can verify the SSL certificate on your website to make sure it's correctly installed, valid, trusted, and doesn't give any errors to any of your users. |
-    | | **Proactive lifetime check** | This setting enables you to define a set time period before your SSL certificate expires. After it expires, your test will fail. |
-    | | **Test frequency** | Sets how often the test is run from each test location. With a default frequency of five minutes and five test locations, your site is tested on average every minute. |
-    | | **Test locations** |  Our servers send web requests to your URL from these locations. *Our minimum number of recommended test locations is five* to ensure that you can distinguish problems in your website from network issues. You can select up to 16 locations. |
-    | **Standard test info** | | |
-    | | **HTTP request verb** | Indicate what action you want to take with your request. |
-    | | **Request body** | Custom data associated with your HTTP request. You can upload your own files, enter your content, or disable this feature. |
-    | | **Add custom headers** | Key value pairs that define the operating parameters. |
-    | **Success criteria** | | |
-    | | **Test Timeout** | Decrease this value to be alerted about slow responses. The test is counted as a failure if the responses from your site aren't received within this period. If you selected **Parse dependent requests**, all the images, style files, scripts, and other dependent resources must be received within this period. |
-    | | **HTTP response** | The returned status code counted as a success. The number 200 is the code that indicates that a normal webpage is returned. |
-    | | **Content match** | A string, like "Welcome!" We test that an exact case-sensitive match occurs in every response. It must be a plain string, without wildcards. Don't forget that if your page content changes, you might have to update it. *Only English characters are supported with content match.* |
-
+   | Section | Setting | Description |
+   |---------|---------|-------------|
+   | **Basic Information** | | |
+   | | **URL** | The URL can be any webpage you want to test, but it must be visible from the public internet. The URL can include a query string. So, for example, you can exercise your database a little. If the URL resolves to a redirect, we follow it up to 10 redirects. |
+   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the timeout. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
+   | | **Enable retries for availability test failures** | When the test fails, it retries after a short interval. A failure is reported only if three successive attempts fail. Subsequent tests are then performed at the usual test frequency. Retry is temporarily suspended until the next success. This rule is applied independently at each test location. *We recommend this option*. On average, about 80% of failures disappear on retry. |
+   | | **Enable SSL certificate validity** | You can verify the SSL certificate on your website to make sure it's correctly installed, valid, trusted, and doesn't give any errors to any of your users. SSL certificate validation will only be performed on the *final redirected URL*. |
+   | | **Proactive lifetime check** | This setting enables you to define a set time period before your SSL certificate expires. After it expires, your test will fail. |
+   | | **Test frequency** | Sets how often the test is run from each test location. With a default frequency of five minutes and five test locations, your site is tested on average every minute. |
+   | | **Test locations** |  Our servers send web requests to your URL from these locations. *Our minimum number of recommended test locations is five* to ensure that you can distinguish problems in your website from network issues. You can select up to 16 locations. |
+   | **Standard test info** | | |
+   | | **HTTP request verb** | Indicate what action you want to take with your request. |
+   | | **Request body** | Custom data associated with your HTTP request. You can upload your own files, enter your content, or disable this feature. |
+   | | **Add custom headers** | Key value pairs that define the operating parameters. The "Host" and "User-Agent" headers are reserved in Availability Tests and cannot be modified or overwritten.|
+   | **Success criteria** | | |
+   | | **Test Timeout** | Decrease this value to be alerted about slow responses. The test is counted as a failure if the responses from your site aren't received within this period. If you selected **Parse dependent requests**, all the images, style files, scripts, and other dependent resources must be received within this period. |
+   | | **HTTP response** | The returned status code counted as a success. The number 200 is the code that indicates that a normal webpage is returned. |
+   | | **Content match** | A string, like "Welcome!" We test that an exact case-sensitive match occurs in every response. It must be a plain string, without wildcards. Don't forget that if your page content changes, you might have to update it. *Only English characters are supported with content match.* |
+   
 ## [TrackAvailability()](#tab/track)
 
 > [!IMPORTANT]
@@ -448,7 +448,7 @@ The following steps walk you through the process of creating [standard tests](#t
     -Location $pingTest.Location -Kind 'standard' -Tag @{ "hidden-link:$componentId" = "Resource" } -TestName $newStandardTestName `
     -RequestUrl $pingTestRequest.Url -RequestHttpVerb "GET" -GeoLocation $pingTest.PropertiesLocations -Frequency $pingTest.Frequency `
     -Timeout $pingTest.Timeout -RetryEnabled:$pingTest.RetryEnabled -Enabled:$pingTest.Enabled `
-    -RequestParseDependent:($pingTestRequest.ParseDependentRequests -eq [bool]::TrueString);
+    -RequestParseDependent:($pingTestRequest.ParseDependentRequests -eq [bool]::TrueString) -RuleSslCheck:$false;
     ```
 
     The new standard test doesn't have alert rules by default, so it doesn't create noisy alerts. No changes are made to your URL ping test so you can continue to rely on it for alerts.
@@ -525,7 +525,7 @@ TLS 1.3 is currently only available in the availability test regions NorthCentra
 ### Deprecating TLS configuration
 
 > [!IMPORTANT]
-> On 1 March 2025, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/), TLS 1.0/1.1 protocol versions and the listed TLS 1.2/1.3 legacy Cipher suites and Elliptical curves will be retired for Application Insights availability tests.
+> On 1 May 2025, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/), TLS 1.0/1.1 protocol versions and the listed TLS 1.2/1.3 legacy Cipher suites and Elliptical curves will be retired for Application Insights availability tests.
 
 #### TLS 1.0 and TLS 1.1
 
@@ -628,7 +628,7 @@ There are several tools available to test what TLS configuration an endpoint sup
 > [!NOTE]
 > For steps to enable the needed TLS configuration on your web server, it is best to reach out to the team that owns the hosting platform your web server runs on if the process is not known. 
 
-#### After March 1, 2025, what will the web test behavior be for impacted tests?
+#### After May 1, 2025, what will the web test behavior be for impacted tests?
 
 There's no one exception type that all TLS handshake failures impacted by this deprecation would present themselves with. However, the most common exception your web test would start failing with would be `The request was aborted: Couldn't create SSL/TLS secure channel`. You should also be able to see any TLS related failures in the TLS Transport [Troubleshooting Step](/troubleshoot/azure/azure-monitor/app-insights/availability/diagnose-ping-test-failure) for the web test result that is potentially impacted. 
 
@@ -638,7 +638,7 @@ The TLS configuration negotiated during a web test execution can't be viewed. As
 
 #### Which components does the deprecation affect in the availability test service?
 
-The TLS deprecation detailed in this document should only affect the availability test web test execution behavior after March 1, 2025. For more information about interacting with the availability test service for CRUD operations, see [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support). This resource provides more details on TLS support and deprecation timelines.
+The TLS deprecation detailed in this document should only affect the availability test web test execution behavior after May 1, 2025. For more information about interacting with the availability test service for CRUD operations, see [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support). This resource provides more details on TLS support and deprecation timelines.
 
 #### Where can I get TLS support?
 

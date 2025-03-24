@@ -1,9 +1,6 @@
 ---
 title: Ingest events from Azure Event Hubs into Azure Monitor Logs (Preview)
 description: Ingest logs from Event Hubs into Azure Monitor Logs 
-services: azure-monitor
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: ilanawaitser
 ms.topic: tutorial 
 ms.date: 12/28/2023
@@ -457,4 +454,4 @@ Learn more about to:
 
 - [Create a custom table](../logs/create-custom-table.md#create-a-custom-table).
 - [Create a data collection endpoint](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint).
-- [Update an existing data collection rule](../essentials/data-collection-rule-edit.md).
+- [Update an existing data collection rule](../essentials/data-collection-rule-create-edit.md).

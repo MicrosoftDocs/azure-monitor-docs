@@ -1,9 +1,6 @@
 ---
 title: Best practices for scaling Azure Monitor Workspaces with Azure Monitor managed service for Prometheus
 description: Learn best practices for organizing your Azure Monitor Workspaces to meet your scale and growing volume of data ingestion 
-author: EdB-MSFT
-ms-service: azure-monitor
-ms-subservice: containers
 ms.topic: conceptual
 ms.date: 07/24/2024
 

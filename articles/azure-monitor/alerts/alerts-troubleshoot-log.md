@@ -1,7 +1,6 @@
 ---
 title: Troubleshoot log alerts in Azure Monitor | Microsoft Docs
 description: Common issues, errors, and resolutions for log alert rules in Azure.
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 02/28/2024
 ms.reviewer: nolavime
@@ -50,7 +49,7 @@ If your log search alert didn't fire when it should have, check the following it
 
 1. **Was the alert rule resource moved or deleted?**
 
-    If an alert rule resource moves, gets renamed, or is deleted, all log alert rules referring to that resource will break. To fix this issue, alert rules need to be recreated using a valid target resource for the scope.
+    If an alert rule target resource moves, gets renamed, or is deleted, all log alert rules referring to that resource will break. To fix this issue, alert rules need to be recreated using a valid target resource for the scope.
 
 1. **Does the alert rule use a system-assigned managed identity?** 
 
@@ -63,18 +62,17 @@ If your log search alert didn't fire when it should have, check the following it
     - Rules were created via the API, and the user skipped validation.
     - The query [runs on multiple resources](../logs/cross-workspace-query.md), and one or more of the resources was deleted or moved.
     - The [query fails](../logs/api/errors.md) because:
-        - The logging solution wasn't [deployed to the workspace](../insights/solutions.md#install-a-monitoring-solution), so tables aren't created.
         - Data stopped flowing to a table in the query for more than 30 days.
         - [Custom logs tables](../agents/data-sources-custom-logs.md) haven't been created because the data flow hasn't started.
     - Changes in the [query language](/azure/kusto/query/) include a revised format for commands and functions, so the query provided earlier is no longer valid.
     
-   Azure Service Health monitors the health of your cloud resources, including log search alert rules. When a log search alert rule is healthy, the rule runs and the query executes successfully. You can use [resource health for log search alert rules](/azure/azure-monitor/alerts/log-alert-rule-health) to learn about the issues affecting your log search alert rules.
+   Azure Resource Health monitors the health of your cloud resources, including log search alert rules. When a log search alert rule is healthy, the rule runs and the query executes successfully. You can use [resource health for log search alert rules](/azure/azure-monitor/alerts/log-alert-rule-health) to learn about the issues affecting your log search alert rules.
 
 1. **Was the the log search alert rule disabled?**
 
     If a log search alert rule query fails to evaluate continuously for a week, Azure Monitor disables it automatically. 
 
-    The following sections list some reasons why Azure Monitor might disable a log search alert rule. Additionally, there's an example of the [Activity log](../../azure-monitor/essentials/activity-log.md) event that is submitted when a rule is disabled.
+Additionally, there's an example of the [Activity log](../../azure-monitor/essentials/activity-log.md) event that is submitted when a rule is disabled.
 
 ### Activity log example when rule is disabled
 
@@ -198,12 +196,11 @@ If you've reached the quota limit, the following steps might help resolve the is
 
     - The Subscription IDs and Resource IDs for which the quota limit needs to be increased
     - The reason for quota increase
-    - The resource type for the quota increase, such as **Log Analytics** or **Application Insights**
     - The requested quota limit
 
 
 ## Incomplete Time Filtering in ARG and ADX Queries
-When using Azure Data Explorer (ADX) or Azure Resource Graph (ARG) queries in log search alerts, you might encounter an issue where the "Aggregation granularity" setting does not apply a time filter to your queries. This can lead to unexpected results and potential performance issues, as the query returns all 30 days of data from the draft, instead of the intended time range.
+When using Azure Data Explorer (ADX) or Azure Resource Graph (ARG) queries in log search alerts, you might encounter an issue where the "Aggregation granularity" setting does not apply a time filter to your queries. This can lead to unexpected results and potential performance issues, as the query returns all 30 days, instead of the intended time range.
 
 To resolve this issue, you need to explicitly apply time filters in your ARG and ADX queries. Here are the steps to ensure: 
 

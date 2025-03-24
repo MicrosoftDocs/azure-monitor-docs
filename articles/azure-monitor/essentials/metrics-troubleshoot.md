@@ -1,11 +1,9 @@
 ---
 title: Troubleshooting Azure Monitor metric charts
 description: Troubleshoot the issues with creating, customizing, or interpreting metric charts
-author: vgorbenko
-services: azure-monitor
 ms.reviewer: vitalyg
 ms.topic: troubleshooting
-ms.date: 01/21/2024
+ms.date: 12/30/2024
 ---
 
 # Troubleshooting metrics charts
@@ -18,7 +16,7 @@ Sometimes the charts might show no data after selecting correct resources and me
 
 ### Microsoft.Insights resource provider isn't registered for your subscription
 
-Exploring metrics requires *Microsoft.Insights* resource provider registered in your subscription. In many cases, it's registered automatically (that is, after you configure an alert rule, customize diagnostic settings for any resource, or configure an autoscale rule). If the Microsoft.Insights resource provider isn't registered, you must manually register it by  following steps described in [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
+Exploring metrics requires *Microsoft.Insights* resource provider registered in your subscription. In many cases, it's registered automatically (that is, after you configure an alert rule, customize diagnostic settings for any resource, or configure an autoscale rule). If the Microsoft.Insights resource provider isn't registered, you must manually register it by following steps described in [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
 
 **Solution:** Open **Subscriptions**, **Resource providers** tab, and verify that *Microsoft.Insights* is registered for your subscription.
 
@@ -48,15 +46,20 @@ Some resources don’t constantly emit their metrics. For example, Azure doesn't
 
 **Solution:** Change the time of the chart to a wider range. You may start from "Last 30 days" using a larger time granularity (or relying on the "Automatic time granularity" option).
 
-### You picked a time range greater than 30 days
+### You specified a time range greater than 30 days
 
 [Most metrics in Azure are stored for 93 days](../essentials/data-platform-metrics.md#retention-of-metrics). However, you can only query for no more than 30 days worth of data on any single chart. This limitation doesn't apply to [log-based metrics](../app/pre-aggregated-metrics-log-metrics.md#log-based-metrics).
 
 **Solution:** If you see a blank chart or your chart only displays part of metric data, verify that the difference between start- and end- dates in the time picker doesn't exceed the 30-day interval. Once you select a 30 day interval, you can [pan](metrics-charts.md#pan) the chart to view the full retention window.
 
+### You specified a time range more than 93 days ago
+[Most metrics in Azure are stored for 93 days](../essentials/data-platform-metrics.md#retention-of-metrics) so you can't query more than 93 days back. 
+
+**Solution:** Export your metrics data to a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview) and query from there. You can [manage data retention](/azure/azure-monitor/logs/data-retention-configure) in your Log analytics workspace. For more information on metrics export, see [Diagnostic settings in Azure Monitor](./diagnostic-settings.md) and [Metrics export through data collection rules (Preview)](./data-collection-metrics.md) .
+
 ### All metric values were outside of the locked y-axis range
 
-By [locking the boundaries of chart y-axis](../essentials/metrics-charts.md#locking-the-range-of-the-y-axis), you can unintentionally  make the chart display area not show the chart line. For example, if the y-axis is locked to a range between 0% and 50%, and the metric has a constant value of 100%, the line is always rendered outside of the visible area, making the chart appear blank.
+By [locking the boundaries of chart y-axis](../essentials/metrics-charts.md#locking-the-range-of-the-y-axis), you can unintentionally make the chart display area not show the chart line. For example, if the y-axis is locked to a range between 0% and 50%, and the metric has a constant value of 100%, the line is always rendered outside of the visible area, making the chart appear blank.
 
 **Solution:** Verify that the y-axis boundaries of the chart aren’t locked outside of the range of the metric values. If the y-axis boundaries are locked, you may want to temporarily reset them to ensure that the metric values don’t fall outside of the chart range. Locking the y-axis range isn’t recommended with automatic granularity for the charts with **sum**, **min**, and **max** aggregation because their values will change with granularity by resizing browser window or going from one screen resolution to another. Switching granularity may leave the display area of your chart empty.
 
@@ -146,7 +149,7 @@ Virtual machines and virtual machine scale sets have two categories of metrics: 
 
 By default, Guest (classic) metrics are stored in Azure Storage account, which you pick from the **Diagnostic settings** tab of your resource. If Guest metrics aren't collected or metrics explorer can't access them, you'll only see the **Virtual Machine Host** metric namespace:
 
-:::image type="content" source="./media/metrics-troubleshoot/vm-metrics.png" lightbox="./media/metrics-troubleshoot/vm-metrics.png" alt-text="metric image":::
+:::image type="content" source="./media/metrics-troubleshoot/vm-metrics.png" lightbox="./media/metrics-troubleshoot/vm-metrics.png" alt-text="metric image.":::
 
 **Solution:** If you don't see **Guest (classic)** namespace and metrics in metrics explorer:
 

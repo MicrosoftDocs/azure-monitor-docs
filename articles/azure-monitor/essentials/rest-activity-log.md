@@ -1,9 +1,8 @@
 ---
 title: Retrieve activity log data using Azure monitor REST API
 description: How to retrieve activity log data using Azure monitor REST API.
-author: EdB-MSFT
 ms.topic: conceptual
-ms.date: 03/10/2024
+ms.date: 11/20/2024
 ms.reviewer: priyamishra
 
 # customer intent: As a developer, I want to learn how to retrieve activity log data using Azure monitor REST API.
@@ -55,14 +54,14 @@ The following sample requests use the Azure Monitor REST API to query an activit
 The following example gets the activity logs for resource group `MSSupportGroup` between the dates `2023-03-21T20:00:00Z` and `2023-03-24T20:00:00Z`
 
 ``` HTTP
-GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/providers/microsoft.insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2023-03-21T20:00:00Z' and eventTimestamp le '2023-03-24T20:00:00Z' and resourceGroupName eq 'MSSupportGroup'
+GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/microsoft.insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2023-03-21T20:00:00Z' and eventTimestamp le '2023-03-24T20:00:00Z' and resourceGroupName eq 'MSSupportGroup'
 ```
 ### Get activity logs with filter and select:
 
 The following example gets the activity logs for resource group `MSSupportGroup`, between the dates `2023-03-21T20:00:00Z` and `2023-03-24T20:00:00Z`, returning the elements eventName, operationName, status, eventTimestamp, correlationId, submissionTimestamp, and level.
 
 ```HTTP
-GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef012345/providers/microsoft.insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2023-03-21T20:00:00Z' and eventTimestamp le '2023-03-24T20:00:00Z'and resourceGroupName eq 'MSSupportGroup'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
+GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/microsoft.insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2023-03-21T20:00:00Z' and eventTimestamp le '2023-03-24T20:00:00Z'and resourceGroupName eq 'MSSupportGroup'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
 ```
 
 ## Next steps

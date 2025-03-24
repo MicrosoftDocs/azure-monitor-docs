@@ -1,11 +1,9 @@
 ---
 title: Metrics in Azure Monitor | Microsoft Docs
 description: Learn about metrics in Azure Monitor, which are lightweight monitoring data capable of supporting near real-time scenarios.
-author: bwren
 ms.reviewer: priyamishra
 ms.topic: conceptual
 ms.date:   03/10/2024
-ms.author: bwren
 ---
 
 # Azure Monitor Metrics overview
@@ -33,7 +31,7 @@ The differences between each of the metrics are summarized in the following tabl
 | Sources | Azure resources | Azure Monitor agent<br>Application insights<br>REST API | Azure Kubernetes service (AKS) cluster<br>Any Kubernetes cluster through remote-write |
 | Configuration | None | Varies by source | Enable Azure Monitor managed service for Prometheus |
 | Stored | Subscription | Subscription | [Azure Monitor workspace](azure-monitor-workspace-overview.md) |
-| Cost | No | Yes | Yes (free during preview) |
+| Cost | No | Yes (free during preview) | Yes (free during preview) |
 | Aggregation | preaggregated | preaggregated | raw data |
 | Analyze | [Metrics Explorer](metrics-charts.md) | [Metrics Explorer](metrics-charts.md) | PromQL<br>Grafana dashboards |
 | Alert  | [metrics alert rule](../alerts/tutorial-metric-alert.md) | [metrics alert rule](../alerts/tutorial-metric-alert.md) | [Prometheus alert rule](../essentials/prometheus-rule-groups.md) |
@@ -64,7 +62,7 @@ Azure Monitor provides REST APIs that allow you to get data in and out of Azure 
 
 All communication between connected systems and the Azure Monitor service is encrypted using the TLS 1.2 (HTTPS) protocol. The Microsoft SDL process is followed to ensure all Azure services are up-to-date with the most recent advances in cryptographic protocols.  
 
-Secure connection is established between the agent and the Azure Monitor service using certificate-based authentication and TLS with port 443. Azure Monitor uses a secret store to generate and maintain keys. Private keys are rotated every 90 days and are stored in Azure and are managed by the Azure operations who follow strict regulatory and compliance practices. For more information on security, see  [Encryption of data in transit](/azure/security/fundamentals/encryption-overview#encryption-of-data-in-transit), [Encryption of data at rest](/azure/security/fundamentals/encryption-atrest), and [Azure Monitor Logs data security](../logs/data-security.md)
+Secure connection is established between the agent and the Azure Monitor service using certificate-based authentication and TLS with port 443. Azure Monitor uses a secret store to generate and maintain keys. Private keys are rotated every 90 days and are stored in Azure and are managed by the Azure operations who follow strict regulatory and compliance practices. For more information on security, see  [Encryption of data in transit](/azure/security/fundamentals/encryption-overview#encryption-of-data-in-transit), [Encryption of data at rest](/azure/security/fundamentals/encryption-atrest), and [Azure Monitor security overview and guidelines](../best-practices-security.md).
 
 ## Metrics Explorer
 

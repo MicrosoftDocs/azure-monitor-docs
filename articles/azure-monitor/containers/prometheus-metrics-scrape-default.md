@@ -2,13 +2,13 @@
 title: Default Prometheus metrics configuration in Azure Monitor
 description: This article lists the default targets, dashboards, and recording rules for Prometheus metrics in Azure Monitor.
 ms.topic: conceptual
-ms.date: 05/15/2024
+ms.date: 03/10/2025
 ms.reviewer: aul
 ---
 
 # Default Prometheus metrics configuration in Azure Monitor
 
-This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped from an Azure Kubernetes Service (AKS) cluster](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) for any AKS cluster.
+This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes.
 
 ## Minimal ingestion profile
 `Minimal ingestion profile` is a setting that helps reduce ingestion volume of metrics, as only metrics used by default dashboards, default recording rules & default alerts are collected. For addon based collection, `Minimal ingestion profile` setting is enabled by default. You can modify collection to enable collecting more metrics, as specified below.
@@ -24,8 +24,22 @@ Following targets are **enabled/ON** by default - meaning you don't have to prov
 - `nodeexporter` (`job=node`)
 - `kubelet` (`job=kubelet`)
 - `kube-state-metrics` (`job=kube-state-metrics`)
+- `networkobservabilityRetina` (`job=networkobservabilityRetina`)
+
+The following targets are **enabled/ON** when you enable control plane metrics (preview) feature. You can use control plane metrics to maximize overall observability and maintain operational excellence for your AKS cluster. For more information, see [Control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview).
+
 - `controlplane-apiserver` (`job=controlplane-apiserver`)
 - `controlplane-etcd` (`job=controlplane-etcd`)
+
+The following targets are **enabled/ON** when you enable Container Network Observability which is a feature of the Advanced Container Networking Services suite and is compatible with all Linux workloads seamlessly integrating with Hubble for both Cilium or non-Cilium based data plane. This allows flexibility for your container networking needs. For more information, see [Advanced Container Networking Services](/azure/aks/advanced-network-observability-concepts).
+
+- `networkobservabilityHubble` (`job=networkobservabilityHubble`)
+- `networkobservabilityCilium` (`job=networkobservabilityCilium`)
+
+The following targets are **enabled/ON** when you enable Azure Container Storage which is a cloud-based volume management, deployment, and orchestration service built natively for containers and natively integrates with AKS. For more information, see [Azure Container Storage](/azure/storage/container-storage/enable-monitoring).
+
+- `acstor-capacity-provisioner` (`job=acstor-capacity-provisioner`)
+- `acstor-metrics-exporter` (`job=acstor-metrics-exporter`)
 
 ## Metrics collected from default targets
 
@@ -159,16 +173,18 @@ The following metrics are collected by default from each default target. All oth
    - `apiserver_cache_list_returned_objects_total`
    - `apiserver_flowcontrol_demand_seats_average`
    - `apiserver_flowcontrol_current_limit_seats`
-   - `apiserver_request_sli_duration_seconds_bucket`
+   - `apiserver_request_sli_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_sli_duration_seconds_count`
    - `apiserver_request_sli_duration_seconds_sum`
    - `process_start_time_seconds`
-   - `apiserver_request_duration_seconds_bucket`
+   - `apiserver_request_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_duration_seconds_count`
    - `apiserver_request_duration_seconds_sum`
    - `apiserver_storage_list_fetched_objects_total`
    - `apiserver_storage_list_returned_objects_total`
    - `apiserver_current_inflight_requests`
+> [!NOTE]
+> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and all series are not collected by default(minimal ingestion profile). Only the sum, count are used for gathering the average latencies
 
    **controlplane-etcd (job=controlplane-etcd)**<br>
    - `etcd_server_has_leader`
@@ -179,6 +195,12 @@ The following metrics are collected by default from each default target. All oth
    - `etcd_server_slow_apply_total`
    - `etcd_network_client_grpc_sent_bytes_total`
    - `etcd_server_heartbeat_send_failures_total`
+
+   **networkobservabilityHubble (job=networkobservabilityHubble)**, and **networkobservabilityCilium (job=networkobservabilityCilium)** <br>
+   For list of metrics collected by these targets, see [Container Network Observability metrics](/azure/aks/advanced-network-observability-concepts#metrics)
+
+   **acstor-capacity-provisioner (job=acstor-capacity-provisioner)** and **acstor-metrics-exporter (job=acstor-metrics-exporter**) <br>
+   For list of metrics collected by these targets, see [Azure Container Storage metrics](/azure/storage/container-storage/enable-monitoring#metrics-collected-for-default-targets).
 
 ## Default targets scraped for Windows
 Following Windows targets are configured to scrape, but scraping isn't enabled (**disabled/OFF**) by default - meaning you don't have to provide any scrape job configuration for scraping these targets but they are disabled/OFF by default and you need to turn ON/enable scraping for these targets using [ama-metrics-settings-configmap](https://aka.ms/azureprometheus-addon-settings-configmap) under `default-scrape-settings-enabled` section.

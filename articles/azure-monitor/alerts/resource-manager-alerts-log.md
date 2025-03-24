@@ -1,18 +1,17 @@
 ---
 title: Resource Manager template samples for log search alerts
 description: Sample Azure Resource Manager templates to deploy Azure Monitor log search alerts.
-ms.author: abbyweisberg
 ms.reviewer: yalavi
 ms.topic: sample
 ms.custom: devx-track-arm-template
-ms.date: 11/07/2023
+ms.date: 11/12/2024
 ---
 
 # Resource Manager template samples for log search alert rules in Azure Monitor
 
 This article includes samples of [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to create and configure log search alerts in Azure Monitor. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 > [!NOTE]
 > The combined size of all data in the log alert rule properties cannot exceed 64KB. This can be caused by too many dimensions, the query being too large, too many action groups, or a long description. When creating a large alert rule, remember to optimize these areas.
@@ -772,5 +771,5 @@ resource metricMeasurementLogQueryAlert 'Microsoft.Insights/scheduledQueryRules@
 
 ## Next steps
 
-- [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
-- [Learn more about alert rules](./alerts-overview.md).
+* [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
+* [Learn more about alert rules](./alerts-overview.md).

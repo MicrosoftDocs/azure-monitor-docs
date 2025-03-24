@@ -1,7 +1,6 @@
 ---
 title: Azure Monitor workbooks bring your own storage
 description: Learn how to secure your workbook by saving the workbook content to your storage.
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 09/17/2024
@@ -41,6 +40,7 @@ There are times when you might have a query or some business logic that you want
 - After a workbook has been saved to custom storage, it will always be saved to custom storage, and this feature can't be turned off. To save elsewhere, you can use **Save As** and elect to not save the copy to custom storage.
 - Workbooks saved to custom storage can't be recovered by the support team. Users might be able to recover the workbook content if soft-delete or blob versioning is enabled on the underlying storage account. See [recovering a deleted workbook](workbooks-manage.md#recover-a-deleted-workbook).
 - Workbooks saved to custom storage don't support versioning. Only the most recent version is stored. Other versions might be available in storage if blob versioning is enabled on the underlying storage account.  See [manage workbook versions](workbooks-manage.md#manage-workbook-versions).
+- Workbooks only supports User Assigned Managed identities and does not support System Assigned identities.
 
 ## Next steps
 

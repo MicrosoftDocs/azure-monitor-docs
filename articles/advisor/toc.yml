@@ -13,7 +13,7 @@
   - name: Roles and permissions
     href: permissions.md
   - name: Advisor score
-    href: azure-advisor-score.md
+    href: ./advisor-score.md
   - name: Configure recommendations view
     href: view-recommendations.md
   - name: Configure alerts for new recommendations
@@ -57,7 +57,42 @@
   - name: Performance
     href: advisor-reference-performance-recommendations.md
   - name: Reliability
-    href: advisor-reference-reliability-recommendations.md    
+    href: advisor-reference-reliability-recommendations.md
+  - name: Security
+    items:
+    - name: AI security recommendations
+      displayName: AI security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-ai
+    - name: API and API management security recommendations
+      displayName: API and API management security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-api
+    - name: Azure App Service security recommendations
+      displayName: Azure App Service security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-app-services
+    - name: Compute security recommendations
+      displayName: Compute security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-compute
+    - name: Container security recommendations
+      displayName: Container security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-container
+    - name: Data security recommendations
+      displayName: Data security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-data
+    - name: Security recommendations for DevOps resources
+      displayName: Security recommendations for DevOps resources
+      href: /azure/defender-for-cloud/recommendations-reference-devops
+    - name: Identity and access security recommendations
+      displayName: Identity and access security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-identity-access
+    - name: IoT security recommendations
+      displayName: IoT security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-iot
+    - name: Networking security recommendations
+      displayName: Networking security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-networking
+    - name: Deprecated security recommendations
+      displayName: Deprecated security recommendations
+      href: /azure/defender-for-cloud/recommendations-reference-deprecated
   - name: Sovereign clouds
     href: advisor-sovereign-clouds.md
 - name: Workbooks
@@ -107,4 +142,4 @@
   - name: Stack Overflow
     href: https://stackoverflow.com/search?q=azure+advisor
   - name: Code samples
-    href: /samples/browse/?products=azure   
+    href: /samples/browse/?products=azure

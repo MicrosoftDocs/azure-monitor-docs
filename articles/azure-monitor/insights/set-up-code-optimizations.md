@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/07/2024
-ms.reviewer: ryankahng
+ms.date: 02/07/2025
+ms.reviewer: jan.kalis
 ---
 
 # Set up Code Optimizations
@@ -15,7 +15,7 @@ ms.reviewer: ryankahng
 Setting up Code Optimizations to identify and analyze CPU and memory bottlenecks in your web applications is a simple process in the Azure portal. In this guide, you learn how to:
 
 - Connect your web app to Application Insights.
-- Enable the Profiler on your web app.
+- Enable the .NET Profiler on your web app.
 
 [You can review your Code Optimizations in the Azure portal.](https://aka.ms/codeoptimizations)
 
@@ -43,16 +43,16 @@ Before setting up Code Optimizations for your web app, ensure that your app is c
 
 1. Click **Apply** at the bottom of the Application Insights pane.
 
-## Enable Profiler on your web app
+## Enable the .NET Profiler on your web app
 
-Profiler collects traces on your web app for Code Optimizations to analyze. In a few hours, if Code Optimization notices any performance bottlenecks in your application, you can see and review Code Optimizations insights. 
+The .NET Profiler collects traces on your web app for Code Optimizations to analyze. In a few hours, if Code Optimization notices any performance bottlenecks in your application, you can see and review Code Optimizations insights. 
 
 1. Still in the Application Insights blade, under **Instrument your application**, select the **.NET** tab.
-1. Under **Profiler**, select the toggle to turn on Profiler for your web app.
+1. Under **Profiler**, select the toggle to turn on the .NET Profiler for your web app.
 
-   :::image type="content" source="media/set-up-code-optimizations/enable-profiler.png" alt-text="Screenshot of how to enable Profiler for your web app.":::
+   :::image type="content" source="media/set-up-code-optimizations/enable-profiler.png" alt-text="Screenshot of how to enable .NET Profiler for your web app.":::
 
-1. Verify the Profiler is collecting traces.
+1. Verify the .NET Profiler is collecting traces.
    1. Navigate to your Application Insights resource.
    1. From the left menu, select **Investigate** > **Performance**. 
    1. In the Performance blade, select **Profiler** from the top menu.

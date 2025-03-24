@@ -3,8 +3,6 @@ title: Connection strings in Application Insights
 description: This article explains the components of connection strings and how to use them.
 ms.topic: conceptual
 ms.date: 10/10/2024
-ms.service: azure-monitor
-ms.subservice: application-insights
 ms.reviewer: cogoodson
 ---
 
@@ -13,9 +11,12 @@ ms.reviewer: cogoodson
 Connection strings specify to which Application Insights resource your instrumented application should send telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
-> The connection string contains an ikey, which is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
->
+> The connection string contains an ikey and an ApplicationId.
+> 
+>The ikey is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
+>Connection strings are enhanced by adding the ApplicationId value. This update is a new feature that supports automatic instrumentation for scenarios utilizing the Open Telemetry SDK.
 > If you want to protect your Application Insights resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
+
 
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
@@ -80,7 +81,7 @@ For more information, see [Regions that require endpoint modification](./create-
 
 * [Telemetry Ingestion](./app-insights-overview.md): `dc`
 * [Live Metrics](./live-stream.md): `live`
-* [Profiler](./profiler-overview.md): `profiler`
+* [Profiler for .NET](./profiler-overview.md): `profiler`
 * [Snapshot](./snapshot-debugger.md): `snapshot`
 
 ## Connection string examples
@@ -97,8 +98,8 @@ In this example, the connection string specifies the endpoint suffix and the SDK
 * Instrumentation key: 00000000-0000-0000-0000-000000000000
 * The regional service Uniform Resource Identifiers (URIs) are based on the provided endpoint suffix:
     * Ingestion: `https://dc.ai.contoso.com`
-    * Live metrics: `https://live.ai.contoso.com`
-    * Profiler: `https://profiler.ai.contoso.com`
+    * Live Metrics: `https://live.ai.contoso.com`
+    * Profiler for .NET: `https://profiler.ai.contoso.com`
     * Debugger: `https://snapshot.ai.contoso.com`
 
 ### Connection string with explicit endpoint overrides
@@ -111,8 +112,8 @@ In this example, the connection string specifies explicit overrides for every se
 * Instrumentation key: 00000000-0000-0000-0000-000000000000
 * The regional service URIs are based on the explicit override values:
     * Ingestion: `https://custom.com:111/`
-    * Live metrics: `https://custom.com:222/`
-    * Profiler: `https://custom.com:333/`
+    * Live Metrics: `https://custom.com:222/`
+    * Profiler for .NET: `https://custom.com:333/`
     * Debugger: `https://custom.com:444/`
 
 ### Connection string with an explicit region

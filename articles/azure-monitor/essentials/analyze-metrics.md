@@ -1,11 +1,8 @@
 ---
 title: Analyze metrics with Azure Monitor metrics explorer
 description: Learn how to analyze metrics with Azure Monitor metrics explorer by creating metrics charts, setting chart dimensions, time ranges, aggregation, filters, splitting, and sharing.
-services: azure-monitor
-author: EdB-MSFT
-ms.author: edbaynash    
 ms.topic: conceptual
-ms.date: 04/07/2024
+ms.date: 11/20/2024
 ms.reviewer: vitalyg
 ---
 
@@ -19,7 +16,7 @@ Azure Monitor metrics explorer is a component of the Azure portal that helps you
 
 Watch the following video for an overview of creating and working with metrics charts in Azure Monitor metrics explorer.
 
-> [!VIDEO https://www.microsoft.com/videoplayer/embed/RE4qO59]
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=01a767db-97ae-4ddf-b842-7fa5390bcf0d]
 
 ## Create a metric chart using PromQL
 
@@ -29,7 +26,7 @@ You can now create charts using Prometheus query language (PromQL) for metrics s
 
 You can open metrics explorer from the **Azure Monitor overview** page, or from the **Monitoring** section of any resource. In the Azure portal, select **Metrics**.
 
-:::image type="content" source="./media/analyze-metrics/metrics-menu.png" alt-text="Screenshot that shows how to open metrics explorer in the Azure portal.":::
+:::image type="content" source="./media/analyze-metrics/metrics-menu.png" lightbox="./media/analyze-metrics/metrics-menu.png"  alt-text="Screenshot that shows how to open metrics explorer in the Azure portal.":::
 
 If you open metrics explorer from Azure Monitor, the **Select a scope** page opens. Set the **Subscription**, **Resource**, and region **Location** fields to the resource to explore. If you open metrics explorer for a specific resource, the scope is prepopulated with information about that resource.
 
@@ -58,17 +55,17 @@ The resource **scope picker** lets you scope your chart to view metrics for a si
 
 1. Choose **Select a scope**.
 
-   :::image source="./media/analyze-metrics/scope-picker.png" alt-text="Screenshot that shows how to open the resource scope picker for metrics explorer.":::
+   :::image source="./media/analyze-metrics/scope-picker.png" lightbox="./media/analyze-metrics/scope-picker.png" alt-text="Screenshot that shows how to open the resource scope picker for metrics explorer.":::
 
 1. Use the scope picker to select the resources whose metrics you want to see. If you open metrics explorer for a specific resource, the scope should be populated.
 
    For some resources, you can view only one resource's metrics at a time. On the **Resource types** menu, these resources are shown in the **All resource types** section.
 
-   :::image source="./media/analyze-metrics/single-resource-scope.png" alt-text="Screenshot that shows available resources in the scope picker." lightbox="./media/analyze-metrics/single-resource-scope.png":::
+   :::image source="./media/analyze-metrics/single-resource-scope.png" lightbox="./media/analyze-metrics/single-resource-scope.png" alt-text="Screenshot that shows available resources in the scope picker." :::
 
 1. Select a resource. The picker updates to show all subscriptions and resource groups that contain the selected resource.
 
-   :::image source="./media/analyze-metrics/available-single-resource.png" alt-text="Screenshot that shows a single resource." lightbox="./media/analyze-metrics/available-single-resource.png":::
+   :::image source="./media/analyze-metrics/available-single-resource.png" lightbox="./media/analyze-metrics/available-single-resource.png" alt-text="Screenshot that shows a single resource." :::
 
    > [!TIP]
    > If you want the capability to view the metrics for multiple resources at the same time, or to view metrics across a subscription or resource group, select **Upvote**.
@@ -79,11 +76,11 @@ The resource **scope picker** lets you scope your chart to view metrics for a si
 
 You can see which metrics can be queried across multiple resources at the top of the **Resource types** menu in the scope picker.
 
-:::image source="./media/analyze-metrics/multiple-resource-compatible.png" alt-text="Screenshot that shows a menu of resources that are compatible for charts with multiple resources." lightbox="./media/analyze-metrics/multiple-resource-compatible.png":::
+:::image source="./media/analyze-metrics/multiple-resource-compatible.png" lightbox="./media/analyze-metrics/multiple-resource-compatible.png" alt-text="Screenshot that shows a menu of resources that are compatible for charts with multiple resources."::: 
 
 1. To visualize metrics over multiple resources, start by selecting multiple resources within the resource scope picker. 
 
-   :::image source="./media/analyze-metrics/select-multiple-resources.png" alt-text="Screenshot that shows how to select multiple resources in the resource scope picker.":::
+   :::image source="./media/analyze-metrics/select-multiple-resources.png" lightbox="./media/analyze-metrics/select-multiple-resources.png" alt-text="Screenshot that shows how to select multiple resources in the resource scope picker.":::
 
    The resources you select must be within the same resource type, location, and subscription. Resources that don't meet these criteria aren't selectable. 
 
@@ -95,15 +92,15 @@ For types that are compatible with multiple resources, you can query for metrics
 
 1. Start by selecting a subscription or one or more resource groups.
 
-   :::image source="./media/analyze-metrics/query-across-multiple-resource-groups.png" alt-text="Screenshot that shows how to query across multiple resource groups.":::
+   :::image source="./media/analyze-metrics/query-across-multiple-resource-groups.png" lightbox="./media/analyze-metrics/query-across-multiple-resource-groups.png" alt-text="Screenshot that shows how to query across multiple resource groups.":::
 
 1. Select a resource type and location. 
 
-   :::image source="./media/analyze-metrics/select-resource-group.png" alt-text="Screenshot that shows how to select resource groups in the resource scope picker.":::
+   :::image source="./media/analyze-metrics/select-resource-group.png" lightbox="./media/analyze-metrics/select-resource-group.png" alt-text="Screenshot that shows how to select resource groups in the resource scope picker.":::
 
 1. Expand the selected scopes to verify the resources your selections apply to.
 
-   :::image source="./media/analyze-metrics/verify-selected-resources.png" alt-text="Screenshot that shows the selected resources within the groups.":::   
+   :::image source="./media/analyze-metrics/verify-selected-resources.png" lightbox="./media/analyze-metrics/verify-selected-resources.png" alt-text="Screenshot that shows the selected resources within the groups.":::   
 
 1. Select **Apply**. 
 
@@ -116,7 +113,7 @@ The **time picker** lets you configure the time range for your metric chart to v
 
 Use the time picker to change the **Time range** for your data, such as the last 12 hours or the last 30 days. 
 
-:::image type="content" source="./media/analyze-metrics/time.png" alt-text="Screenshot that shows how to configure the time range for the resource metric data in the Azure portal." lightbox="./media/analyze-metrics/time.png":::
+:::image type="content" source="./media/analyze-metrics/time.png" lightbox="./media/analyze-metrics/time.png" alt-text="Screenshot that shows how to configure the time range for the resource metric data in the Azure portal." :::
 
 In addition to changing the time range with the time picker, you can pan and zoom by using the controls in the chart area.
 
@@ -126,13 +123,13 @@ In addition to changing the time range with the time picker, you can pan and zoo
 
 To pan, select the left and right arrows at the edge of the chart. The arrow control moves the selected time range back and forward by one half of the chart's time span. If you're viewing the past 24 hours, selecting the left arrow causes the time range to shift to span a day and a half to 12 hours ago.
 
-:::image source="./media/analyze-metrics/metrics-pan-controls.gif" alt-text="Animated screenshot that shows left and right pan controls." lightbox="./media/analyze-metrics/metrics-pan-controls.gif":::
+:::image source="./media/analyze-metrics/metrics-pan-controls.gif" lightbox="./media/analyze-metrics/metrics-pan-controls.gif" alt-text="Animated screenshot that shows left and right pan controls." :::
 
 ### Zoom into metrics data
 
 You can configure the _time granularity_ of the chart data to support zoom in and zoom out for the time range. Use the **time brush** to investigate an interesting area of the chart like a spike or a dip in the data. Select an area on the chart and the chart zooms in to show more detail for the selected area based on your granularity settings. If the time grain is set to **Automatic**, zooming selects a smaller time grain. The new time range applies to all charts in metrics explorer.
 
-:::image source="./media/analyze-metrics/metrics-zoom-control.gif" alt-text="Animated screenshot that shows the zoom feature in metrics explorer." lightbox="./media/analyze-metrics/metrics-zoom-control.gif":::
+:::image source="./media/analyze-metrics/metrics-zoom-control.gif" lightbox="./media/analyze-metrics/metrics-zoom-control.gif" alt-text="Animated screenshot that shows the zoom feature in metrics explorer." :::
 
 ## View multiple metric lines and charts
 
@@ -146,7 +143,7 @@ Suppose you have five storage accounts and you want to know how much space they 
 
 After you create a chart, select **Add metric** to add another metric to the same chart.
 
-:::image source="./media/analyze-metrics/multiple-metrics-chart.png" alt-text="Screenshot that shows multiple metrics." lightbox="./media/analyze-metrics/multiple-metrics-chart.png":::
+:::image source="./media/analyze-metrics/multiple-metrics-chart.png" lightbox="./media/analyze-metrics/multiple-metrics-chart.png" alt-text="Screenshot that shows multiple metrics." :::
 
 ### Add multiple charts
 
@@ -156,13 +153,13 @@ Typically, your charts shouldn't mix metrics that use different units of measure
 
 - To reorder or delete multiple charts, select **More options** (...), and then select the **Move up**, **Move down**, or **Delete** action.
 
-   :::image source="./media/analyze-metrics/multiple-charts.png" alt-text="Screenshot that shows multiple charts." lightbox="./media/analyze-metrics/multiple-charts.png":::
+   :::image source="./media/analyze-metrics/multiple-charts.png" lightbox="./media/analyze-metrics/multiple-charts.png" alt-text="Screenshot that shows multiple charts." :::
 
 ### Use different line colors
 
 Chart lines are automatically assigned a color from a default palette. To change the color of a chart line, select the colored bar in the legend that corresponds to the line on the chart. Use the **color picker** to select the line color.
 
-:::image source="./media/analyze-metrics/line-colors.png" alt-text="Screenshot that shows the line color picker in metrics explorer." lightbox="./media/analyze-metrics/line-colors.png":::
+:::image source="./media/analyze-metrics/line-colors.png" lightbox="./media/analyze-metrics/line-colors.png" alt-text="Screenshot that shows the line color picker in metrics explorer." :::
 
 Customized colors are preserved when you pin the chart to a dashboard. The following section shows how to pin a chart.
 
@@ -176,7 +173,7 @@ You select the size of the time grain by using the time picker in metrics explor
 
 Suppose a chart shows the *Server response time* metric. It uses the average aggregation over the time span of the last 24 hours. 
 
-:::image type="content" source="media/analyze-metrics/time-granularity.png" alt-text="Screenshot that shows the time range and granularity selector.":::
+:::image type="content" source="media/analyze-metrics/time-granularity.png" lightbox="media/analyze-metrics/time-granularity.png"  alt-text="Screenshot that shows the time range and granularity selector.":::
 
 In this scenario, if you set the time granularity to 30 minutes, metrics explorer draws the chart from 48 aggregated data points. That is, it uses two data points per hour for 24 hours. The line chart connects 48 dots in the chart plot area. Each data point represents the average of all captured response times for server requests that occurred during each of the relevant 30-minute time periods. If you switch the time granularity to 15 minutes, you get 96 aggregated data points. That is, you get four data points per hour for 24 hours.
 
@@ -191,7 +188,7 @@ Metrics explorer has five aggregation types:
 - **Min**: The smallest value captured during the aggregation interval.
 - **Max**: The largest value captured during the aggregation interval.
 
-:::image type="content" source="media/analyze-metrics/aggregations.png" alt-text="Screenshot that shows the aggregation dropdown list." lightbox="media/analyze-metrics/aggregations.png":::
+:::image type="content" source="media/analyze-metrics/aggregations.png" lightbox="media/analyze-metrics/aggregations.png" alt-text="Screenshot that shows the aggregation dropdown list." :::
 
 Metrics explorer hides the aggregations that are irrelevant and can't be used.
 
@@ -216,19 +213,22 @@ You can apply filters to charts whose metrics have dimensions. Consider a *Trans
 
 1. Select a dimension from the **Property** dropdown list.
 
-   :::image type="content" source="./media/analyze-metrics/filter-property.png" alt-text="Screenshot that shows the dropdown list for filter properties in metrics explorer." lightbox="./media/analyze-metrics/filter-property.png":::
+   :::image type="content" source="./media/analyze-metrics/filter-property.png" lightbox="./media/analyze-metrics/filter-property.png" alt-text="Screenshot that shows the dropdown list for filter properties in metrics explorer." :::
 
 1. Select the operator that you want to apply against the dimension (or _property_). The default operator is equals (`=`).
   
-   :::image type="content" source="./media/analyze-metrics/filter-operator.png" alt-text="Screenshot that shows the operator that you can use with the filter.":::
+   :::image type="content" source="./media/analyze-metrics/filter-operator.png" lightbox="./media/analyze-metrics/filter-operator.png" alt-text="Screenshot that shows the operator that you can use with the filter.":::
 
 1. Select which dimension values you want to apply to the filter when you're plotting the chart. This example shows filtering out the successful storage transactions.
 
-   :::image type="content" source="./media/analyze-metrics/filter-values.png" alt-text="Screenshot that shows the dropdown list for filter values in metrics explorer.":::
+   :::image type="content" source="./media/analyze-metrics/filter-values.png" lightbox="./media/analyze-metrics/filter-values.png" alt-text="Screenshot that shows the dropdown list for filter values in metrics explorer.":::
+
+   > [!NOTE]
+   > If a dimension value isn't in the result set for the selected time range, it won't be available in the filter values dropdown list.
 
 1. After you select the filter values, click outside the **filter picker** to complete the action. The chart shows how many storage transactions have failed.
 
-   :::image type="content" source="./media/analyze-metrics/filtered-chart.png" alt-text="Screenshot that shows the successful filtered storage transactions in the updated chart in metrics explorer." lightbox="./media/analyze-metrics/filtered-chart.png":::
+   :::image type="content" source="./media/analyze-metrics/filtered-chart.png" lightbox="./media/analyze-metrics/filtered-chart.png" alt-text="Screenshot that shows the successful filtered storage transactions in the updated chart in metrics explorer." :::
 
 1. Repeat these steps to apply multiple filters to the same charts.
 
@@ -240,23 +240,23 @@ You can split a metric by dimension to visualize how different segments of the m
 
 1. Choose the dimensions to use to segment your chart.
 
-   :::image type="content" source="./media/analyze-metrics/apply-splitting.png" alt-text="Screenshot that shows the selected dimension on which to segment the chart for splitting.":::
+   :::image type="content" source="./media/analyze-metrics/apply-splitting.png" lightbox="./media/analyze-metrics/apply-splitting.png" alt-text="Screenshot that shows the selected dimension on which to segment the chart for splitting.":::
 
    The chart shows multiple lines with one line for each dimension segment.
 
-   :::image type="content" source="./media/analyze-metrics/segment-dimension.png" alt-text="Screenshot that shows multiple lines, one for each segment of dimension." lightbox="./media/analyze-metrics/segment-dimension.png":::
+   :::image type="content" source="./media/analyze-metrics/segment-dimension.png" lightbox="./media/analyze-metrics/segment-dimension.png" alt-text="Screenshot that shows multiple lines, one for each segment of dimension." :::
 
 1. Choose a limit on the number of values to display after you split by the selected dimension. The default limit is 10, as shown in the preceding chart. The range of the limit is 1 to 50.
 
-   :::image type="content" source="./media/analyze-metrics/segment-dimension-limit.png" alt-text="Screenshot that shows the split limit, which restricts the number of values after splitting." lightbox="./media/analyze-metrics/segment-dimension-limit.png":::
+   :::image type="content" source="./media/analyze-metrics/segment-dimension-limit.png" lightbox="./media/analyze-metrics/segment-dimension-limit.png" alt-text="Screenshot that shows the split limit, which restricts the number of values after splitting." :::
 
 1. Choose the sort order on segments: **Descending** (default) or **Ascending**.
 
-   :::image type="content" source="./media/analyze-metrics/segment-dimension-sort.png" alt-text="Screenshot that shows the sort order on split values." lightbox="./media/analyze-metrics/segment-dimension-sort.png":::
+   :::image type="content" source="./media/analyze-metrics/segment-dimension-sort.png" lightbox="./media/analyze-metrics/segment-dimension-sort.png" alt-text="Screenshot that shows the sort order on split values." :::
 
 1. Segment by multiple segments by selecting multiple dimensions from the **Values** dropdown list. The legend shows a comma-separated list of dimension values for each segment.
 
-   :::image type="content" source="./media/analyze-metrics/segment-dimension-multiple.png" alt-text="Screenshot that shows multiple segments selected, and the corresponding chart." lightbox="./media/analyze-metrics/segment-dimension-multiple.png":::
+   :::image type="content" source="./media/analyze-metrics/segment-dimension-multiple.png" lightbox="./media/analyze-metrics/segment-dimension-multiple.png" alt-text="Screenshot that shows multiple segments selected, and the corresponding chart." :::
 
 1. Click outside the segment picker to complete the action and update the chart.
 
@@ -264,7 +264,7 @@ You can split a metric by dimension to visualize how different segments of the m
 
 When you plot a metric for multiple resources, you can choose **Apply splitting** to split by resource ID or resource group. The split allows you to compare a single metric across multiple resources or resource groups. The following chart shows the percentage CPU across nine virtual machines. When you split by resource ID, you see how percentage CPU differs by virtual machine. 
 
-:::image type="content" source="./media/analyze-metrics/split-cpu-metric-across-virtual-machines.png" alt-text="Screenshot that shows how to use splitting to see the percentage CPU across multiple virtual machines.":::
+:::image type="content" source="./media/analyze-metrics/split-cpu-metric-across-virtual-machines.png" lightbox="./media/analyze-metrics/split-cpu-metric-across-virtual-machines.png" alt-text="Screenshot that shows how to use splitting to see the percentage CPU across multiple virtual machines.":::
 
 For more examples that use filtering and splitting, see [Metric chart examples](../essentials/metric-chart-samples.md).
 
@@ -276,11 +276,11 @@ Another example is a fluctuation in the available memory. In this scenario, the 
 
 1. To control the y-axis range, browse to the advanced chart settings by selecting **More options** (...) > **Chart settings**.
 
-   :::image source="./media/analyze-metrics/select-chart-settings.png" alt-text="Screenshot that shows the menu option for chart settings." lightbox="./media/analyze-metrics/select-chart-settings.png":::
+   :::image source="./media/analyze-metrics/select-chart-settings.png" lightbox="./media/analyze-metrics/select-chart-settings.png" alt-text="Screenshot that shows the menu option for chart settings." :::
 
 1. Modify the values in the **Y-axis range** section, or select **Auto** to revert to the default values.
 
-   :::image type="content" source="./media/analyze-metrics/chart-settings.png" alt-text="Screenshot that shows the Y-axis range section." lightbox="./media/analyze-metrics/chart-settings.png":::
+   :::image type="content" source="./media/analyze-metrics/chart-settings.png" lightbox="./media/analyze-metrics/chart-settings.png" alt-text="Screenshot that shows the Y-axis range section." :::
 
 If you lock the boundaries of the y-axis for a chart that tracks count, sum, minimum, or maximum aggregations over a period of time, specify a fixed time granularity. Don't rely on the automatic defaults.
 
@@ -292,13 +292,13 @@ You can use your visualization criteria to create a metric-based alert rule. The
 
 1. To create an alert rule, select **New alert rule** in the upper-right corner of the chart.
 
-   :::image source="./media/analyze-metrics/new-alert.png" alt-text="Screenshot that shows the button for creating a new alert rule." lightbox="./media/analyze-metrics/new-alert.png":::
+   :::image source="./media/analyze-metrics/new-alert.png" lightbox="./media/analyze-metrics/new-alert.png" alt-text="Screenshot that shows the button for creating a new alert rule." :::
 
 1. Select the **Condition** tab. The **Signal name** entry defaults to the metric from your chart. You can choose a different metric.
 
 1. Enter a number for **Threshold value**. The threshold value is the value that triggers the alert. The **Preview** chart shows the threshold value as a horizontal line over the metric values. When you're ready, select the **Details** tab.
 
-   :::image source="./media/analyze-metrics/alert-rule-condition.png" alt-text="Screenshot that shows the Condition tab on the pane for creating an alert rule." lightbox="./media/analyze-metrics/alert-rule-condition.png":::
+   :::image source="./media/analyze-metrics/alert-rule-condition.png" lightbox="./media/analyze-metrics/alert-rule-condition.png" alt-text="Screenshot that shows the Condition tab on the pane for creating an alert rule." :::
 
 1. Enter **Name** and **Description** values for the alert rule.
 
@@ -306,7 +306,7 @@ You can use your visualization criteria to create a metric-based alert rule. The
 
 1. Select **Review + create** to review the alert rule.
 
-   :::image source="./media/analyze-metrics/alert-rule-details.png" alt-text="Screenshot that shows the Details tab on the pane for creating an alert rule." lightbox="./media/analyze-metrics/alert-rule-details.png":::
+   :::image source="./media/analyze-metrics/alert-rule-details.png" lightbox="./media/analyze-metrics/alert-rule-details.png" alt-text="Screenshot that shows the Details tab on the pane for creating an alert rule." :::
 
 1. Select **Create** to create the alert rule.
 
@@ -324,15 +324,15 @@ Currently, **Drill into Logs** is available for select resource providers. Resou
 
 1. To diagnose a spike in failed requests, select **Drill into Logs**.
 
-   :::image source="./media/analyze-metrics/drill-into-log-ai.png" alt-text="Screenshot that shows a spike in failures on an Application Insights metrics pane." lightbox="./media/analyze-metrics/drill-into-log-ai.png":::
+   :::image source="./media/analyze-metrics/drill-into-log-ai.png" lightbox="./media/analyze-metrics/drill-into-log-ai.png" alt-text="Screenshot that shows a spike in failures on an Application Insights metrics pane." :::
 
 1. In the dropdown list, select **Failures**.
 
-   :::image source="./media/analyze-metrics/drill-into-logs-dropdown.png" alt-text="Screenshot that shows the dropdown menu for drilling into logs." lightbox="./media/analyze-metrics/drill-into-logs-dropdown.png":::
+   :::image source="./media/analyze-metrics/drill-into-logs-dropdown.png" lightbox="./media/analyze-metrics/drill-into-logs-dropdown.png" alt-text="Screenshot that shows the dropdown menu for drilling into logs." :::
 
 1. On the custom failure pane, check for failed operations, top exception types, and failed dependencies.
 
-   :::image source="./media/analyze-metrics/ai-failure-blade.png" alt-text="Screenshot of the Application Insights failure pane." lightbox="./media/analyze-metrics/ai-failure-blade.png":::
+   :::image source="./media/analyze-metrics/ai-failure-blade.png" lightbox="./media/analyze-metrics/ai-failure-blade.png" alt-text="Screenshot of the Application Insights failure pane." :::
 
 ## Share your charts
 
@@ -342,7 +342,7 @@ After you configure a chart, you can add it to a dashboard or workbook. By addin
 
 - To save a configured chart to a workbook, in the upper-right corner of the chart, select **Save to dashboard** > **Save to workbook**.
 
-:::image type="content" source="media/analyze-metrics/save-chart.png" alt-text="Screenshot that shows the Save to dashboard menu options for your metric chart in the Azure portal.":::
+:::image type="content" source="media/analyze-metrics/save-chart.png" lightbox="media/analyze-metrics/save-chart.png" alt-text="Screenshot that shows the Save to dashboard menu options for your metric chart in the Azure portal.":::
 
 The Azure Monitor metrics explorer **Share** menu includes several options for sharing your metric chart.
 
@@ -354,7 +354,7 @@ The Azure Monitor metrics explorer **Share** menu includes several options for s
 
 - In the **Pin to Grafana** window, pin your chart to a new or existing Grafana dashboard.
 
-:::image type="content" source="media/analyze-metrics/share-chart.png" alt-text="Screenshot that shows the Share menu options for your metric chart in the Azure portal.":::
+:::image type="content" source="media/analyze-metrics/share-chart.png" lightbox="media/analyze-metrics/share-chart.png" alt-text="Screenshot that shows the Share menu options for your metric chart in the Azure portal.":::
 
 ## Frequently asked questions
 
@@ -362,9 +362,9 @@ This section provides answers to common questions.
 
 ###  Why are metrics from the guest OS of my Azure virtual machine not showing up in metrics explorer?
 
-[Platform metrics](./monitor-azure-resource.md#monitoring-data) are collected automatically for Azure resources. You must perform some configuration, though, to collect metrics from the guest OS of a virtual machine. For a Windows VM, install the diagnostic extension and configure the Azure Monitor sink as described in [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md). For Linux, install the Telegraf agent as described in [Collect custom metrics for a Linux VM with the InfluxData Telegraf agent](./collect-custom-metrics-linux-telegraf.md).
+[Platform metrics](./monitor-azure-resource.md#monitoring-data) are collected automatically for Azure resources. You must perform some configuration, though, to collect metrics from the guest OS of a virtual machine. For a Windows Virtual Machine, install the diagnostic extension and configure the Azure Monitor sink as described in [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md). For Linux, install the Telegraf agent as described in [Collect custom metrics for a Linux VM with the InfluxData Telegraf agent](./collect-custom-metrics-linux-telegraf.md).
 
-[!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](../includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
+[!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 
 ## Next steps
 

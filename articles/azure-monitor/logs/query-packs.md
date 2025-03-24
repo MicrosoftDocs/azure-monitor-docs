@@ -3,8 +3,6 @@ title: Query packs in Azure Monitor
 description: Query packs in Azure Monitor provide a way to share collections of log queries in multiple Log Analytics workspaces. 
 ms.subservice: logs
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: roygal
 ms.date: 09/17/2024
 
@@ -113,7 +111,7 @@ Each query in the query pack has the following properties:
 Use the following request to create a new query pack by using the REST API. The request should use bearer token authorization. The content type should be `application/json`.
 
 ```rest
-POST https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/querypacks/my-query-pack?api-version=2019-09-01
+POST https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/querypacks/my-query-pack?api-version=2019-09-01
 ```
 
 Use a tool that can submit a REST API request, such as curl, Insomnia, or Bruno, to submit the request by using the payload described in the previous section. The query ID will be generated and returned in the payload.
@@ -122,7 +120,7 @@ Use a tool that can submit a REST API request, such as curl, Insomnia, or Bruno,
 To update a query pack, submit the following request with an updated payload. This command requires the query pack ID.
 
 ```rest
-POST https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.Insights/querypacks/my-query-pack/queries/query-id/?api-version=2019-09-01
+POST https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/querypacks/my-query-pack/queries/query-id/?api-version=2019-09-01
 ```
 
 ## Next steps

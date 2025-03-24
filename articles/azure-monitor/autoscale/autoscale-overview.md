@@ -1,10 +1,6 @@
 ---
 title: Autoscale in Azure Monitor
 description: This article describes the autoscale feature in Azure Monitor and its benefits.
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
-ms.subservice: autoscale
 ms.topic: conceptual
 ms.date: 11/01/2024
 
@@ -112,7 +108,7 @@ The full list of configurable fields and descriptions is available in the [Autos
 For code examples, see:
 
 * [Tutorial: Automatically scale a virtual machine scale set with the Azure CLI](/azure/virtual-machine-scale-sets/tutorial-autoscale-cli)
-* [Tutorial: Automatically scale a virtual machine scale set with an Azure template](/azure/virtual-machine-scale-sets/tutorial-autoscale-powershell)
+* [Tutorial: Automatically scale a virtual machine scale set with PowerShell](/azure/virtual-machine-scale-sets/tutorial-autoscale-powershell)
 
 ## Supported services for autoscale
 

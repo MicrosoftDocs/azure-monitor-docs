@@ -2,8 +2,6 @@
 title: Querying logs for Azure resources
 description: In Log Analytics, queries typically execute in the context of a workspace. A workspace may contain data for many resources, making it difficult to isolate data for a particular resource.
 ms.date: 08/12/2024
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
 
@@ -65,12 +63,13 @@ Here's a brief listing of common failure scenarios when querying Azure resources
 
 ### Azure resource doesn't exist
 
-```json
-HTTP/1.1 404 Not Found
-{ 
-    "error": { 
-        "message": "The resource /subscriptions/7fd50ca7-1e78-4144-ab9c-0ec2faafa046/resourcegroups/test-rg/providers/microsoft.storage/storageaccounts/exampleResource was not found", 
-        "code": "ResourceNotFoundError" 
+```
+    HTTP/1.1 404 Not Found 
+    { 
+        "error": { 
+            "message": "The resource /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-rg/providers/microsoft.storage/storageaccounts/exampleResource was not found", 
+            "code": "ResourceNotFoundError" 
+        }
     }
 }
 ```

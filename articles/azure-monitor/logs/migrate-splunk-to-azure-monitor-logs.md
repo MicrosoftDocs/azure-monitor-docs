@@ -1,8 +1,6 @@
 ---
 title: Migrate from Splunk to Azure Monitor Logs - Get started
 description: Plan the phases of your migration from Splunk to Azure Monitor Logs and get started importing, collecting, and analyzing log data. 
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: MeirMen
 ms.topic: how-to 
 ms.date: 03/20/2024

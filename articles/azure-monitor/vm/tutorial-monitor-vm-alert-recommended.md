@@ -1,7 +1,6 @@
 ---
 title: Enable recommended alert rules for Azure virtual machine
 description: Enable set of recommended metric alert rules for an Azure virtual machine.
-ms.service: azure-monitor
 ms.topic: article
 ms.custom: subject-monitoring
 ms.date: 01/14/2024
@@ -18,7 +17,7 @@ In this article, you learn how to:
 
 > [!div class="checklist"]
 > * Enable recommended alerts for a new Azure virtual machine.
-> * Specify an email address to be notified when an alert files.
+> * Specify an email address to be notified when an alert fires.
 > * View the resulting alert rules.
 
 ## Prerequisites

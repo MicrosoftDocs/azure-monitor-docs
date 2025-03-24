@@ -1,10 +1,7 @@
 ---
 title: Monitor virtual machines with Azure Monitor
 description: Learn how to use Azure Monitor to monitor the health and performance of virtual machines and their workloads.
-ms.service: azure-monitor
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 02/15/2024
 ms.reviewer: Xema Pathak
 

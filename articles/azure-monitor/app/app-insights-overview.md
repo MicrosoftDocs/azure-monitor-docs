@@ -1,21 +1,24 @@
 ---
-title: Application Insights overview
-description: Learn how Application Insights in Azure Monitor provides performance management and usage tracking of your live web application.
+title: Application Insights OpenTelemetry overview
+description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview
-ms.date: 11/16/2024
+ms.date: 03/23/2025
+
+#customer intent: As a developer or site reliability engineer, I want to use OpenTelemetry (OTel), often searched as 'Open Telemetry', with Application Insights so that I can collect, analyze, and monitor application telemetry in a standardized way for improved observability and performance diagnostics.
+
 ---
 
-# Application Insights overview
+# Introduction to Application Insights with OpenTelemetry
 
-Azure Monitor Application Insights, a feature of [Azure Monitor](..\overview.md), excels in application performance monitoring (APM) for live web applications.
+Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor](..\overview.md) that offers application performance monitoring (APM) for live web applications. By integrating with OpenTelemetry (OTel), it provides a vendor-neutral approach to collecting and analyzing telemetry data, enabling comprehensive observability of your applications.
 
 :::image type="content" source="media/app-insights-overview/app-insights-overview-screenshot.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map." lightbox="media/app-insights-overview/app-insights-overview-screenshot.png":::
 
 ---------------------------
 
-## Experiences
+## Application Insights Experiences
 
-Application Insights provides many experiences to enhance the performance, reliability, and quality of your applications.
+Application Insights supports OpenTelemetry (OTel) to collect telemetry data in a standardized format across platforms. Integration with Azure services allows for efficient monitoring and diagnostics, improving application observability and performance.
 
 ### Investigate
 
@@ -44,7 +47,7 @@ Application Insights provides many experiences to enhance the performance, relia
 
 ### Code analysis
 
-* [Profiler](../profiler/profiler-overview.md): Capture, identify, and view performance traces for your application.
+* [.NET Profiler](../profiler/profiler-overview.md): Capture, identify, and view performance traces for your application.
 * [Code optimizations](../insights/code-optimizations.md): Harness AI to create better and more efficient applications.
 * [Snapshot debugger](../snapshot-debugger/snapshot-debugger.md): Automatically collect debug snapshots when exceptions occur in .NET application
 
@@ -120,6 +123,12 @@ Many community-supported Application Insights SDKs exist, but Microsoft only pro
 
 ---------------------------
 
+## Troubleshooting
+
+For assistance with troubleshooting Application Insights, see [our dedicated troubleshooting documentation](/troubleshoot/azure/azure-monitor/welcome-azure-monitor).
+
+---------------------------
+
 ## Frequently asked questions
 
 This section provides answers to common questions.
@@ -139,7 +148,7 @@ From server web apps:
 * HTTP requests.
 * [Dependencies](./asp-net-dependencies.md). Calls to SQL databases, HTTP calls to external services, Azure Cosmos DB, Azure Table Storage, Azure Blob Storage, and Azure Queue Storage.
 * [Exceptions](./asp-net-exceptions.md) and stack traces.
-* [Performance counters](./performance-counters.md): Performance counters are available when using:
+* [Performance counters](./asp-net-counters.md): Performance counters are available when using:
   * [Azure Monitor Application Insights agent](application-insights-asp-net-agent.md)
   * [Azure monitoring for VMs or virtual machine scale sets](./azure-vm-vmss-apps.md)
   * [Application Insights `collectd` writer](/previous-versions/azure/azure-monitor/app/deprecated-java-2x#collectd-linux-performance-metrics-in-application-insights-deprecated).

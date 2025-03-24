@@ -1,8 +1,6 @@
 ---
 title: Create Azure Monitor alert rules using the CLI, PowerShell or an ARM template
 description: This article shows you how to create a new alert rule using the CLI, PowerShell or an ARM template.
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 ms.date: 01/03/2024

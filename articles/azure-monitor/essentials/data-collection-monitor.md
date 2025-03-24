@@ -1,13 +1,11 @@
 ---
-title: Monitor and troubleshoot DCR data collection in Azure Monitor
-description: Configure log collection for monitoring and troubleshooting of DCR-based data collection in Azure Monitor.
+title: Monitor DCR data collection in Azure Monitor
+description: Configure log collection for monitoring of DCR-based data collection in Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
-ms.date: 03/01/2024
+ms.date: 12/04/2024
 ---
 
-# Monitor and troubleshoot DCR data collection in Azure Monitor
+# Monitor DCR data collection in Azure Monitor
 This article provides detailed metrics and logs that you can use to monitor performance and troubleshoot any issues related to data collection in Azure Monitor. This telemetry is currently available for data collection scenarios defined by a [data collection rules (DCR)](./data-collection-rule-overview.md) such as Azure Monitor agent and Logs ingestion API.
 
 > [!IMPORTANT]
@@ -15,7 +13,7 @@ This article provides detailed metrics and logs that you can use to monitor perf
 > 
 > - Logs collected using [Azure Monitor Agent (AMA)](../agents/agents-overview.md)
 > - Logs ingested using [Log Ingestion API](../logs/logs-ingestion-api-overview.md)
-> - Logs collected by other methods that use a [workspace transformation DCR](./data-collection-transformations-workspace.md)
+> - Logs collected by other methods that use a [workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr)
 >
 > See the documentation for other scenarios for any monitoring and troubleshooting information that may be available.
 
@@ -43,6 +41,11 @@ Some log ingestion errors will not be logged because they can't be associated wi
 ### Enable DCR error logs
 DCR error logs are implemented as [resource logs](./resource-logs.md) in Azure Monitor. Enable log collection by creating a [diagnostic setting](./diagnostic-settings.md) for the DCR. Each DCR will require its own diagnostic setting. See [Create diagnostic settings in Azure Monitor](./create-diagnostic-settings.md) for the detailed process. Select the category **Log Errors** and **Send to Log Analytics workspace**. You may want to select the same workspace that's used by the DCR, or you may want to consolidate all of your error logs in a single workspace.
 
+:::image type="content" source="media/data-collection-monitor/diagnostic-settings.png" lightbox="media/data-collection-monitor/diagnostic-settings.png" alt-text="Screenshot that shows diagnostic settings for a DCR.":::
+
+:::image type="content" source="media/data-collection-monitor/diagnostic-settings-detail.png" lightbox="media/data-collection-monitor/diagnostic-settings-detail.png" alt-text="Screenshot that shows detail of a diagnostic setting for a DCR.":::
+
+
 ### Retrieve DCR error logs
 Error logs are written to the [DCRLogErrors](/azure/azure-monitor/reference/tables/dcrlogerrors) table in the Log Analytics workspace you specified in the diagnostic setting. Following are sample queries you can use in [Log Analytics](../logs/log-analytics-overview.md) to retrieve these logs.
 
@@ -50,14 +53,14 @@ Error logs are written to the [DCRLogErrors](/azure/azure-monitor/reference/tabl
 
 ```kusto
 DCRLogErrors
-| where _ResourceId == "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
+| where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
 ```
 
 **Retrieve all error logs for a particular input stream in a particular DCR**
 
 ```kusto
 DCRLogErrors
-| where _ResourceId == "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
+| where _ResourceId == "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
 | where InputStreamId == "Custom-MyTable_CL"
 ```
 
@@ -74,16 +77,6 @@ DCR metrics are collected automatically for all DCRs, and you can analyze them u
 | Logs Rows Received per Min | Input stream | Number of log rows received for processing per minute. |
 | Logs Transformation Duration per Min | Input stream | Average KQL transformation runtime per minute. Represents KQL transformation code efficiency. Data flows with longer transformation run time can experience delays in data processing and greater data latency. |
 | Logs Transformation Errors per Min | Input stream<br>Error type | Number of processing errors encountered per minute |
-
-
-## Troubleshooting common issues
-If you're missing expected data in your Log Analytics workspace, follow these basic steps to troubleshoot the issue. This assumes that you enabled DCR logging as described above.
-
-- Check metrics such as `Logs Ingestion Bytes per Min` and `Logs Rows Received per Min` to ensure that the data is reaching Azure Monitor. If not, then check your data source to ensure that it's sending data as expected.
-- Check `Logs Rows Dropped per Min` to see if any rows are being dropped. This may not indicate an error since the rows could be dropped by a transformation. If the rows dropped is the same as `Logs Rows Dropped per Min` though, then no data will be ingested in the workspace. Examine the `Logs Transformation Errors per Min` to see if there are any transformation errors.
-- Check `Logs Transformation Errors per Min` to determine if there are any errors from transformations applied to the incoming data. This could be due to changes in the data structure or the transformation itself.
-- Check `DCRLogErrors` for any ingestion errors that may have been logged. This can provide additional detail in identifying the root cause of the issue.
-
 
 
 ## Monitoring your log ingestion
@@ -110,4 +103,3 @@ Rather than reactively troubleshooting issues, create alert rules to be proactiv
 ## Next steps
 - [Read more about data collection rules.](./data-collection-rule-overview.md)
 - [Read more about ingestion-time transformations.](./data-collection-transformations.md)
-

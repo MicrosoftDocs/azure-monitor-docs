@@ -1,11 +1,9 @@
 ---
 title: AIOps and machine learning in Azure Monitor
 description: Use machine learning to improve your ability to predict IT needs and identify and respond to anomalous patterns in log data. 
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: ilanawaitser
 ms.topic: conceptual 
-ms.date: 02/14/2024
+ms.date: 11/17/2024
 ms.collection: ce-skilling-ai-copilot
 
 # Customer intent: As a DevOps manager or data scientist, I want to understand which AIOps features Azure Monitor offers and how to implement a machine learning pipeline on data in Azure Monitor Logs so that I can use artifical intelligence to improve service quality and reliability of my IT environment.

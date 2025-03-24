@@ -6,8 +6,8 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 10/11/2024
-ms.reviewer: jkalis
+ms.date: 02/07/2025
+ms.reviewer: jan.kalis
 ---
 
 # Code Optimizations extensions for Visual Studio (preview)
@@ -18,7 +18,7 @@ This article guides you through using the extension with GitHub Copilot in Visua
 
 ## Prerequisites
 
-- [Install versions 17.10 or 17.11 of Visual Studio](https://visualstudio.microsoft.com/downloads/)
+- [Install version 17.12 or higher of Visual Studio](https://visualstudio.microsoft.com/downloads/). 
 - Sign up for and log into a GitHub account with [a valid GitHub Copilot subscription](https://docs.github.com/en/copilot/about-github-copilot/subscription-plans-for-github-copilot).
 - Enable the following services for your .NET application:
   - [Application Insights](../app/create-workspace-resource.md)
@@ -36,6 +36,7 @@ To get started, make sure Code Optimizations are identified for your application
 
 1. Make note of:  
     - The Application Insights resource name.
+    - The Application Insights Application ID, found on the API Access blade.
     - The account with which you're signed into the Azure portal.
 
 ## Install the Code Optimizations extension (preview)
@@ -48,10 +49,10 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 
 1. In Visual Studio, open the repo holding your .NET application with Code Optimizations enabled. 
 1. Open the GitHub Copilot chat. 
-1. Invoke the extension by executing the following command, replacing the placeholder with your own Application Insights resource name.
+1. Invoke the extension by executing the following command, replacing the placeholder with your own Application Insights resource name or with the Application Insights Application ID.
 
     ```bash
-    @code_optimizations /connect <YOUR_APPLICATION_INSIGHTS_RESOURCE_NAME>
+    @code_optimizations /connect <YOUR_APPLICATION_INSIGHTS_RESOURCE_NAME_OR_APPLICATION_ID>
     ```
 
     The command pulls the top issues from Code Optimizations, maps them to source code in your local repo, and suggests fixes/recommendations. It automatically generates the top recommendation. 

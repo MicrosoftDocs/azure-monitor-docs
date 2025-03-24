@@ -2,7 +2,7 @@
 title: Dependency tracking in Application Insights | Microsoft Docs
 description: Monitor dependency calls from your on-premises or Azure web application with Application Insights.
 ms.topic: conceptual
-ms.date: 08/11/2023
+ms.date: 01/31/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, build-2023
 ms.reviewer: mmcc
@@ -10,7 +10,7 @@ ms.reviewer: mmcc
 
 # Dependency tracking in Application Insights
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 A *dependency* is a component that's called by your application. It's typically a service called by using HTTP, a database, or a file system. [Application Insights](./app-insights-overview.md) measures the duration of dependency calls and whether it's failing or not, along with information like the name of the dependency. You can investigate specific dependency calls and correlate them to requests and exceptions.
 
@@ -150,7 +150,7 @@ Select the **Samples** button at the bottom right. Then select a sample to see t
 
 ### Profile your live site
 
-The [Application Insights profiler](../../azure-monitor/app/profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
+The [.NET Profiler](../../azure-monitor/app/profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
 
 ## Failed requests
 

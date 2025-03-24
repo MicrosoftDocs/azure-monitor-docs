@@ -9,7 +9,7 @@ ms.date: 08/14/2024
 # Analyze usage in a Log Analytics workspace
 Azure Monitor costs can vary significantly based on the volume of data being collected in your Log Analytics workspace. This volume is affected by the set of solutions using the workspace and the amount of data that each solution collects. This article provides guidance on analyzing your collected data to assist in controlling your data ingestion costs. It helps you determine the cause of higher-than-expected usage. It also helps you to predict your costs as you monitor more resources and configure different Azure Monitor features.
 
-[!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
+[!INCLUDE [azure-monitor-cost-optimization](../fundamentals/includes/azure-monitor-cost-optimization.md)]
 
 ## Causes for higher-than-expected usage
 Each Log Analytics workspace is charged as a separate service and contributes to the bill for your Azure subscription. The amount of data ingestion can be considerable, depending on the:
@@ -330,7 +330,7 @@ find where TimeGenerated > ago(24h) project _BilledSize, Computer
 ## Nodes billed by the legacy Per Node pricing tier
 The [legacy Per Node pricing tier](cost-logs.md#legacy-pricing-tiers) bills for nodes with hourly granularity. It also doesn't count nodes that are only sending a set of security data types. To get a list of computers that will be billed as nodes if the workspace is in the legacy Per Node pricing tier, look for nodes that are sending billed data types because some data types are free. In this case, use the leftmost field of the fully qualified domain name.
 
-The following queries return the count of computers with billed data per hour. The number of units on your bill is in units of node months, which is represented by `billableNodeMonthsPerDay` in the query. If the workspace has the Update Management solution installed, add the **Update** and **UpdateSummary** data types to the list in the `where` clause.
+The following queries return the count of computers with billed data per hour. The number of units on your bill is in units of node months, which is represented by `billableNodeMonthsPerDay` in the query. If the workspace has the Update Management solution installed, add the **Update** and **UpdateSummary** data types to the list in the `where` clause. 
 
 ```kusto
 find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(now()) project Computer, _IsBillable, Type, TimeGenerated
@@ -345,42 +345,6 @@ find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(n
 
 > [!NOTE]
 > Some complexity in the actual billing algorithm when solution targeting is used isn't represented in the preceding query.
-
-## Security and automation node counts
-
-**Count of distinct security nodes**
-
-```kusto
-union
-(
-    Heartbeat
-    | where (Solutions has 'security' or Solutions has 'antimalware' or Solutions has 'securitycenter')
-    | project Computer
-),
-(
-    ProtectionStatus
-    | where Computer !in (Heartbeat | project Computer)
-    | project Computer
-)
-| distinct Computer
-| project lowComputer = tolower(Computer)
-| distinct lowComputer
-| count
-```
-
-**Number of distinct automation nodes**
-
-```kusto
- ConfigurationData 
- | where (ConfigDataType == "WindowsServices" or ConfigDataType == "Software" or ConfigDataType =="Daemons") 
- | extend lowComputer = tolower(Computer) | summarize by lowComputer 
- | join (
-     Heartbeat 
-       | where SCAgentChannel == "Direct"
-       | extend lowComputer = tolower(Computer) | summarize by lowComputer, ComputerEnvironment
- ) on lowComputer
- | summarize count() by ComputerEnvironment | sort by ComputerEnvironment asc
-```
 
 ## Late-arriving data
 If you observe high data ingestion reported by using `Usage` records, but you don't observe the same results summing `_BilledSize` directly on the data type, it's possible that you have late-arriving data. This situation occurs when data is ingested with old timestamps.
