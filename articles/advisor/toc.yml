@@ -13,7 +13,7 @@
   - name: Roles and permissions
     href: permissions.md
   - name: Advisor score
-    href: azure-advisor-score.md
+    href: ./advisor-score.md
   - name: Configure recommendations view
     href: view-recommendations.md
   - name: Configure alerts for new recommendations

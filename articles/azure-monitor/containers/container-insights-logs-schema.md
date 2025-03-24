@@ -1,9 +1,6 @@
 ---
 title: Configure the ContainerLogV2 schema for Container Insights
 description: Switch your ContainerLog table to the ContainerLogV2 schema.
-author: aul
-ms.author: bwren
-ms.subservice: logs
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.reviewer: aul

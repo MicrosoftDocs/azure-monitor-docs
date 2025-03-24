@@ -79,4 +79,4 @@ The Azure Monitor Agent does not work on Linux virtual machines when the systemw
 
 ## Related content
 
-- [Create a data collection rule](azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.
+- [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and send it to Azure Monitor.

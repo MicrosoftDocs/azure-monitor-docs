@@ -3,8 +3,6 @@ title: Chart performance with VM insights
 description: This article discusses the VM insights Performance feature that discovers application components on Windows and Linux systems and maps the communication between services.
 ms.topic: conceptual
 ms.custom: linux-related-content
-author: guywi-ms
-ms.author: guywild
 ms.date: 10/29/2024
 ---
 

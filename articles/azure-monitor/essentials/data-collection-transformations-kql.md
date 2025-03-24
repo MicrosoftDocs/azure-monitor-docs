@@ -1,8 +1,6 @@
 ---
 title: Supported KQL features in Azure Monitor transformations
 description: Supported KQL features in Azure Monitor transformations
-author: bwren
-ms.author: bwren
 ms.topic: conceptual
 ms.date: 10/15/2024
 ms.reviwer: nikeist
@@ -291,4 +289,4 @@ Use [Identifier quoting](/azure/data-explorer/kusto/query/schema-entities/entity
 
 ## Next steps
 
-- [Create a data collection rule](../agents/azure-monitor-agent-data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.
+- [Create a data collection rule](../vm/data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.

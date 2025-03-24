@@ -12,7 +12,7 @@ ms.date: 08/09/2023
 
 This article includes sample [Azure Resource Manager templates](/azure/azure-resource-manager/templates/syntax) to enable SQL Insights (preview) for monitoring SQL running in Azure. See the [SQL Insights (preview) documentation](/azure/azure-sql/database/sql-insights-overview) for details on the offering and versions of SQL we support. Each sample includes a template file and a parameters file with sample values to provide to the template.
 
-[!INCLUDE [azure-monitor-samples](../../../includes/azure-monitor-resource-manager-samples.md)]
+[!INCLUDE [azure-monitor-samples](../fundamentals/includes/azure-monitor-resource-manager-samples.md)]
 
 ## Create a SQL Insights (preview) monitoring profile
 

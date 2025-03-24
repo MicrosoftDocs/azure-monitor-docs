@@ -2,19 +2,17 @@
 title: Configure Elasticsearch integration for Prometheus metrics in Azure Monitor
 description: Describes how to configure Elasticsearch monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
 ms.topic: conceptual
-ms.date: 3/19/2024
+ms.date: 3/10/2025
 ms.reviewer: rashmy
-ms.service: azure-monitor
-ms.subservice: containers
 ---
 # Elasticsearch
-Elasticsearch is the distributed search and analytics engine at the heart of the Elastic Stack. It is where the indexing, search, and analysis magic happen.
-This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) to monitor elastic search clusters by scraping prometheus metrics. 
+Elasticsearch is the distributed search and analytics engine at the heart of the Elastic Stack. It's where the indexing, search, and analysis magic happen.
+This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) and Azure Arc-enabled Kubernetes to monitor elastic search clusters by scraping prometheus metrics. 
 
 ## Prerequisites
 
-+ Elasticsearch cluster running on AKS
-+ Azure Managed prometheus enabled on the AKS cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
++ Elasticsearch cluster running on AKS or Azure Arc-enabled Kubernetes
++ Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
 
 
 ### Install Elasticsearch Exporter
@@ -28,11 +26,11 @@ helm install azmon-elasticsearch-exporter --version 5.7.0 prometheus-community/p
 > Managed prometheus pod/service monitor configuration with helm chart installation is only supported with the helm chart version >=5.7.0.
 >
 > The [prometheus-elasticsearch-exporter](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-elasticsearch-exporter) helm chart can be configured with [values](https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-elasticsearch-exporter/values.yaml) yaml.
-Please specify the right server address where the Elasticsearch server can be reached. Based on your configuration set the username,password or certs used to authenticate with the Elasticsearch server. Set the address where Elasticsearch is reachable using the argument "es.uri" ex - .
+Specify the right server address where the Elasticsearch server can be reached. Based on your configuration set the username, password or certs used to authenticate with the Elasticsearch server. Set the address where Elasticsearch is reachable using the argument `es.uri`.
 >
 > You could also use service monitor, instead of pod monitor by using the **--set serviceMonitor.enabled=true** helm chart paramaters. Make sure to use the api version supported by Azure Managed Prometheus using the parameter **serviceMonitor.apiVersion=azmonitoring.coreos.com/v1**.
 >
-> If you want to configure any other service or pod monitors, please follow the instructions [here](prometheus-metrics-scrape-crd.md#create-a-pod-or-service-monitor).
+> If you want to configure any other service or pod monitors, follow the instructions [here](prometheus-metrics-scrape-crd.md#create-a-pod-or-service-monitor).
 
 
 ### Deploy Rules
@@ -53,7 +51,7 @@ Please specify the right server address where the Elasticsearch server can be re
     |:---|:---|
     | `azureMonitorWorkspace` | Resource ID for the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
     | `location` | Location of the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
-    | `clusterName` | Name of the AKS cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
+    | `clusterName` | Name of the cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
     | `actionGroupId` | Resource ID for the alert action group. Retrieve from the **JSON view** on the **Overview** page for the action group. Learn more about [action groups](../alerts/action-groups.md) |
 
 3. Deploy the template by using any standard methods for installing ARM templates. For guidance, see [ARM template samples for Azure Monitor](../resource-manager-samples.md).
@@ -63,11 +61,11 @@ Please specify the right server address where the Elasticsearch server can be re
 > [!Note] 
 > Review the alert thresholds to make sure it suits your cluster/worklaods and update it accordingly.
 >
-> Please note that the above rules are not scoped to a cluster. If you would like to scope the rules to a specific cluster, see [Limiting rules to a specific cluster](../essentials/prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster) for more details.
+> Note that the above rules are not scoped to a cluster. If you would like to scope the rules to a specific cluster, see [Limiting rules to a specific cluster](../essentials/prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster) for more details.
 >
 > Learn more about [Prometheus Alerts](../essentials/prometheus-rule-groups.md).
 >
-> If you want to use any other OSS prometheus alerting/recording rules please use the converter here to create the azure equivalent prometheus rules [az-prom-rules-converter](https://aka.ms/az-prom-rules-converter)
+> If you want to use any other OSS prometheus alerting/recording rules, use the converter here to create the azure equivalent prometheus rules [az-prom-rules-converter](https://aka.ms/az-prom-rules-converter)
 
 ### Import the Grafana Dashboard
 
@@ -78,5 +76,5 @@ Follow the instructions on [Import a dashboard from Grafana Labs](/azure/managed
 
 
 ### Troubleshooting
-When the service monitors is successfully applied, if you want to make sure that the service monitor targets get picked up by the addon, follow the instructions [here](prometheus-metrics-troubleshoot.md#prometheus-interface). 
+When the service monitor is successfully applied, if you want to make sure that the service monitor targets get picked up by the addon, follow the instructions [here](prometheus-metrics-troubleshoot.md#prometheus-interface). 
 

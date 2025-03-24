@@ -2,8 +2,6 @@
 title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: noakuper
 ms.date: 11/26/2023
 ---

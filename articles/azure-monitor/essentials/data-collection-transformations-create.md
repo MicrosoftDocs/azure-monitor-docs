@@ -1,8 +1,6 @@
 ---
 title: Create a transformation in Azure Monitor
 description: Create a transformation in Azure Monitor and add it to a data collection rule (DCR).
-author: bwren
-ms.author: bwren
 ms.topic: conceptual
 ms.date: 12/06/2024
 ms.reviwer: nikeist
@@ -136,7 +134,7 @@ Use one of the following methods to create a workspace transformation DCR for yo
 > It may take up to 60 minutes for a new transformation query to be activated.
 
 
-### [Azure Portal](#tab/portal)
+### [Azure portal](#tab/portal)
 You can create a workspace transformation DCR in the Azure portal by adding a transformation to a supported table.
 
 1. On the Log Analytics workspaces menu in the Azure portal, select **Tables**. Click to the right of the table you're interested in and select Create transformation.
@@ -215,7 +213,7 @@ Transformations run a KQL query against every record collected with the DCR, so 
 
 Because transformations don't run interactively, it's important to continuously monitor them to ensure that they're running properly and not taking excessive time to process data. See [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) for details on logs and metrics that monitor the health and performance of transformations. This includes identifying any errors that occur in the KQL and metrics to track their running duration.
 
-The following metrics are automatically collected for transformations and should be reviewed regularly to verify that your transformations are still running as expected. Create [metric alert rules](../alerts/alerts-create-metric-alert-rule.yml) to be automatically notified when one of these metrics exceeds a threshold.
+The following metrics are automatically collected for transformations and should be reviewed regularly to verify that your transformations are still running as expected. Create [metric alert rules](../alerts/alerts-create-metric-alert-rule.md) to be automatically notified when one of these metrics exceeds a threshold.
 
 - Logs Transformation Duration per Min
 - Logs Transformation Errors per Min
@@ -244,4 +242,4 @@ There are multiple methods to create transformations depending on the data colle
 
 ## Next steps
 
-- [Create a data collection rule](../agents/azure-monitor-agent-data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.
+- [Create a data collection rule](../vm/data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.

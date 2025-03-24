@@ -2,14 +2,12 @@
 title: "Log Analytics tutorial"
 description: Learn how to use Log Analytics in Azure Monitor to build and run a log query and analyze its results in the Azure portal.
 ms.topic: tutorial
-author: guywild
-ms.author: guywild
 ms.reviewer: ilanawaitser
-ms.date: 09/05/2024
+ms.date: 03/17/2025
 
 ---
 
-# Log Analytics tutorial
+# Tutorial: Use Log Analytics 
 
 Log Analytics is a tool in the Azure portal to edit and run log queries from data collected by Azure Monitor logs and interactively analyze their results. You can use Log Analytics queries to retrieve records that match particular criteria, identify trends, analyze patterns, and provide various insights into your data.
 
