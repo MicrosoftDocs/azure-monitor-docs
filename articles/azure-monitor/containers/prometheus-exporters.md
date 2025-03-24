@@ -23,6 +23,9 @@ This document lists a set of commonly used workloads which have curated configur
 - [Elastic Search](./prometheus-elasticsearch-integration.md)
 - [Istio](./prometheus-istio-integration.md)
 
+>[!NOTE]
+>If you are using **[Nvidia DCGM exporter](https://docs.nvidia.com/datacenter/cloud-native/gpu-telemetry/latest/dcgm-exporter.html)**, you can enable GPU monitoring with Managed Prometheus and Managed Grafana. For details on the setup and instructions, please see [Enable GPU monitoring with Nvidia DCGM exporter](https://techcommunity.microsoft.com/blog/azureobservabilityblog/monitoring-gpu-metrics-in-aks-with-azure-managed-prometheus-dcgm-exporter-and-ma/4210672).
+
 ## Next steps
 
 [Customize collection using CRDs (Service and Pod Monitors)](./prometheus-metrics-scrape-crd.md)
