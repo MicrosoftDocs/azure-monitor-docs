@@ -43,7 +43,7 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 * `ILogger`
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
+To reduce or increase the number of logs that Azure Monitor collects, set the desired logging level. (for example, `WARNING` or `ERROR`) For more information, see [Configure logging](/dotnet/core/extensions/logging#configure-logging)
 
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
@@ -77,7 +77,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
+To reduce or increase the number of logs that Azure Monitor collects, set the desired logging level. (for example, `WARNING` or `ERROR`) For more information, see [Configure logging](/dotnet/core/extensions/logging#configure-logging)
 
 #### [Java](#tab/java)
 
