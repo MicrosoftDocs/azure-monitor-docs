@@ -41,6 +41,11 @@
    "redirect_document_id": false
   },
   {
+    "source_path": "articles/azure-monitor/insights/resource-manager-sql-insights.md",
+    "redirect_url": "/azure/azure-sql/database/monitoring-sql-database-azure-monitor",
+    "redirect_document_id": false
+   },
+  {
    "source_path": "articles/azure-monitor/alerts/alerts-metric-near-real-time.md",
    "redirect_url": "/azure/azure-monitor/reference/metrics-index",
    "redirect_document_id": false
