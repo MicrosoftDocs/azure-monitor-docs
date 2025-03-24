@@ -8,30 +8,30 @@ ms.reviewer: cogoodson
 
 # Failures and Performance views
 
-[Application Insights](./app-insights-overview.md) features two key tools: the Failures view and the Performance view.
+[Application Insights](app-insights-overview.md) comes with a curated Application Performance Management (APM) experience to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools: the **Failures** view and the **Performance** view.
 
-* **Failures view -** Tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
-* **Performance view -** Quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
+*  The **Failures** view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability. 
+* The **Performance** view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
 Together, they ensure the ongoing health and efficiency of web applications.
 
 ### [Failures view](#tab/failures-view)
 
-To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** experience, or the **Failures** option under the **Investigate** category in the resource menu.
+To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** pane, or the **Failures** option under the **Investigate** category in the resource menu.
 
 :::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the failures view in Application Insights.":::
 
-You can also get to the failures experience from the [Application Map](app-map.md) by selecting **Investigate failures** from the triage pane.
+You can also get to the failures pane from the [Application Map](app-map.md) by selecting **Investigate failures** from the triage pane.
 
 :::image type="content" source="media/failures-and-performance-views/failures-app-map.png" lightbox="media/failures-and-performance-views/failures-app-map.png" alt-text="Screenshot showing how to reach the failures view from the application map.":::
 
 ### [Performance view](#tab/performance-view)
 
-To get to the **Performance** experience in Application Insights, select either the **Server response time** or **Server requests** graph in the **Overview** experience, or the **Performance** option under the **Investigate** category in the resource menu on the left.
+To get to the **Performance** experience in Application Insights, select either the **Server response time** or **Server requests** graph in the **Overview** pane, or the **Performance** option under the **Investigate** category in the resource menu.
 
 :::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the performance view in Application Insights.":::
 
-You can also analyze performance in your application or its components from the application map, by selecting **Investigate performance** from the triage pane of [Application Map](app-map.md).
+You can also get to the performance pane from the [Application Map](app-map.md) by selecting **Investigate performance** from the triage pane.
 
 :::image type="content" source="media/failures-and-performance-views/performance-app-map.png" lightbox="media/failures-and-performance-views/performance-app-map.png" alt-text="Screenshot showing how to reach the performance view from the application map.":::
 
@@ -87,9 +87,13 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 ### Use analytics data
 
-All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the data in various ways. You can use this data to analyze the requests that generated the exception you're researching.
+All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
 
-On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu. This will take you to the Logs view where you can further modify the query or select a different one from the sidebar.
+On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
+
+:::image type="content" source="media/failures-and-performance-views/view-in-logs.png" lightbox="media/failures-and-performance-views/view-in-logs.png" alt-text="Screenshot highlighting 'View in logs' in the top action bar.":::
+
+This will take you to the **Logs** view where you can further modify the query or select a different one from the sidebar.
 
 :::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
 
@@ -115,37 +119,30 @@ If you connect Application Insights to a tracking system, such as Azure DevOps o
 
 ### Profiler traces
 
-The Profiler helps get further with code-level diagnostics by showing the actual code that ran for the operation and the time required for each step. Some operations might not have a trace because the Profiler runs periodically. Over time, more operations should have traces. 
-
-:::image type="content" source="media/failures-and-performance-views/performance-profiler-traces.png" lightbox="media/failures-and-performance-views/performance-profiler-traces.png" alt-text="Screenshot showing the profiler traces feature.":::
+The Profiler helps get further with code-level diagnostics by showing the actual code that ran for the operation and the time required for each step. Some operations might not have a trace because the Profiler runs periodically. Over time, more operations should have traces.
 
 1. To start the Profiler for the operation, select **Profiler traces**.
 
+    :::image type="content" source="media/failures-and-performance-views/performance-profiler-traces-button.png" lightbox="media/failures-and-performance-views/performance-profiler-traces-button.png" alt-text="Screenshot highlighting the 'Profiler traces' button on the Performance pane.":::
+
 1. The trace shows the individual events for each operation so that you can diagnose the root cause for the duration of the overall operation. Select one of the top examples that has the longest duration.
 
-1. Select **Hot path** to highlight the specific path of events that contribute the most to the total duration of the operation. In this example, you can see that the slowest call is from the `FabrikamFiberAzureStorage.GetStorageTableData` method. The part that takes the most time is the `CloudTable.CreateIfNotExist` method. If this line of code is executed every time the function gets called, unnecessary network call and CPU resources will be consumed. The best way to fix your code is to put this line in some startup method that executes only once.
+    :::image type="content" source="media/failures-and-performance-views/performance-profiler-traces.png" lightbox="media/failures-and-performance-views/performance-profiler-traces.png" alt-text="Screenshot showing the profiler traces feature.":::
 
-	<!-- Screenshot showing Profiler details. -->
+    > [!NOTE]
+    > **Hot path** is selected by default. It highlights (indicated by the flame icon to the left of the event name) the specific path of events that contribute to the issue you're investigating.
 
-1. The **Performance Tip** at the top of the screen supports the assessment that the excessive duration is because of waiting. Select the **waiting** link for documentation on interpreting the different types of events.
-
-	<!-- Screenshot showing a Performance Tip. -->
+1. Select the link in the **Performance Tip** (in this example, **CPU time**) for documentation on interpreting the event.
 
 1. For further analysis, select **Download Trace** to download the trace. You can view this data by using [PerfView](https://github.com/Microsoft/perfview#perfview-overview).
 
 ### Identify slow client operations
 
-If you instrument your web pages with Application Insights, you can also gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires adding a script to your web pages. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle.
+If you instrument your web pages with Application Insights, you can also gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires adding a script to your web pages.
 
-In addition to identifying server processes to optimize, Application Insights can analyze the perspective of client browsers. This information can help you identify potential improvements to client components and even identify issues with different browsers or different locations.
+After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** pane. This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
-1. Select **Browser** under **Investigate** and then select **Browser Performance**. Alternatively, select **Performance** under **Investigate** and switch to the **Browser** tab by selecting the **Server/Browser** toggle button in the upper-right corner to open the browser performance summary. This view provides a visual summary of various telemetries of your application from the perspective of the browser.
-
-	<!-- Screenshot showing the Browser summary. -->
-
-1. Select one of the operation names, select the **Samples** button at the bottom right, and then select an operation. End-to-end transaction details open on the right side where you can view the **Page View Properties**. You can view details of the client requesting the page including the type of browser and its location. This information can assist you in determining whether there are performance issues related to particular types of clients.
-
-	<!-- Screenshot showing Page View Properties. -->
+The End-to-end transaction details open on the right side where you can view the **Page View Properties**. You can view details of the client requesting the page including the type of browser and its location. This information can assist you in determining whether there are performance issues related to particular types of clients.
 
 > [!NOTE]
 > Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
