@@ -98,6 +98,13 @@ The diagram and table below compare the Analytics, Basic, and Auxiliary table pl
 > [!NOTE]
 > The Basic and Auxiliary table plans aren't available for workspaces in [legacy pricing tiers](cost-logs.md#legacy-pricing-tiers).
 
+
+> [!NOTE]
+> These features are currently not supported in the Auxiliary table plan:
+> - [Log Analytics workspace replication](workspace-replication.md); Azure Monitor doesn't replicate data in tables with the Auxiliary plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you swith over to your secondary workspace.
+> - [Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview).
+
+
 ## Kusto Query Language (KQL) and Log Analytics 
 
 You retrieve data from a Log Analytics workspace using a [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) query, which is a read-only request to process data and return results. KQL is a powerful tool that can analyze millions of records quickly. Use KQL to explore your logs, transform and aggregate data, discover patterns, identify anomalies and outliers, and more.  
