@@ -314,7 +314,7 @@ For example, if a search on a Basic table spans 30 days and the table holds 500 
 
 > [!NOTE]
 > Billing for search job on Auxiliary Logs table is not yet enabled.
-> Details on billing start date will be announced on [Azure Updates](https://azure.microsoft.com/en-us/updates/?query=Azure%20Monitor).
+> Details on billing start date will be announced on [Azure Updates](https://azure.microsoft.com/updates/?query=Azure%20Monitor).
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
