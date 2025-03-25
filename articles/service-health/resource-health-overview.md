@@ -2,7 +2,7 @@
 title: Azure Resource Health overview
 description: Learn how Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources.
 ms.topic: concept-article
-ms.date: 02/14/2023
+ms.date: 03/25/2025
 
 ---
 # Resource Health overview
@@ -19,13 +19,13 @@ For more information on how health is assessed, see the list of resource types a
 
 ## Health status
 
-The health of a resource is displayed as one of the following statuses.
+The health of a resource is displayed with a status as shown below.
 
 ### Available
 
 *Available* means that there are no events detected that affect the health of the resource. In cases where the resource recovered from unplanned downtime during the last 24 hours, you'll see a "Recently resolved" notification.
 
-![Status of *Available* for a virtual machine that has a "Recently resolved" notification](./media/resource-health-overview/Available.png)
+![Status of *Available* for a gateway](./media/resource-health-overview/resource-health-available.png)
 
 ### Unavailable
 
@@ -53,7 +53,7 @@ If the resource is running as expected, the status of the resource will change t
 
 If you experience problems with the resource, the *Unknown* health status might mean that an event in the platform is affecting the resource.
 
-![Status of *Unknown* for a virtual machine](./media/resource-health-overview/Unknown.png)
+![Status of *Unknown* for an app service plan](./media/resource-health-overview/resource-health-unknown.png)
 
 ### Degraded
 
