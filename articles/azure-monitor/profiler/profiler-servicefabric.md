@@ -2,7 +2,6 @@
 title: Enable Application Insights Profiler for .NET for Azure Service Fabric applications
 description: Profile live Azure Service Fabric apps with Application Insights.
 ms.topic: how-to
-ms.custom:
 ms.date: 08/16/2024
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Configure Application Insights Profiler for .NET | Microsoft Docs
 description: Use the Application Insights Profiler for .NET settings pane to see the Profiler status and start profiling sessions
-ms.contributor: Charles.Weininger
 ms.topic: conceptual
 ms.date: 08/23/2024
 ---

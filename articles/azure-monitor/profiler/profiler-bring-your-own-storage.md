@@ -1,8 +1,6 @@
 ---
 title: Configure Bring Your Own Storage (BYOS) for the .NET Profiler and Snapshot Debugger
 description: Configure Bring Your Own Storage (BYOS) for Azure Monitor Application Insights Profiler for .NET and Snapshot Debugger.
-ms.author: hannahhunter
-author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
