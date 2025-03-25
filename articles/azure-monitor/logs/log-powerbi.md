@@ -2,8 +2,6 @@
 title: Log Analytics integration with Power BI and Excel
 description: Learn how to send results from a query in Log Analytics to Power BI.
 ms.topic: how-to
-author: guywild
-ms.author: guywild
 ms.reviewer: ilanawaitser
 ms.date: 05/26/2024
 

@@ -2,8 +2,6 @@
 title: Sample transformations in Azure Monitor
 description: Sample transformations for common scenarios in Azure Monitor.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 12/04/2024
 ms.reviwer: nikeist
 ---

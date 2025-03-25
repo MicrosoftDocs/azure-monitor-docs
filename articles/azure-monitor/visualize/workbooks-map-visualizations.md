@@ -1,7 +1,6 @@
 ---
 title: Azure Workbooks map visualizations
 description: Learn about Azure Workbooks map visualizations.
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 09/17/2024

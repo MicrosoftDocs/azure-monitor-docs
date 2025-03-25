@@ -1,8 +1,6 @@
 ---
 title: Manage your alert rules
 description: Manage your alert rules in the Azure portal, or using the CLI or PowerShell.Learn how to enable recommended alert rules.
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.date: 11/28/2024

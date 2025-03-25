@@ -48,24 +48,6 @@ Recommendation ID: 201fb2fe-989f-45c1-8533-785ee8a4a08f
 
 <!--201fb2fe-989f-45c1-8533-785ee8a4a08f_end-->
 
-<!--87b2486c-1198-4f08-9508-e4b7d0743dba_begin-->
-
-#### Underutilized Disks Identified  
-  
-You have disks that are utilized less than 10%, please Right-size to save cost.  
-  
-**Potential benefits**: Cost saving.  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.compute/disks  
-Recommendation ID: 87b2486c-1198-4f08-9508-e4b7d0743dba  
-
-
-<!--87b2486c-1198-4f08-9508-e4b7d0743dba_end-->
-
 <!--702b474d-698f-4029-9f9d-4782c626923e_begin-->
 
 #### Use Standard Storage to store Managed Disks snapshots  

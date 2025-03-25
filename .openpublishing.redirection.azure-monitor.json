@@ -1,6 +1,11 @@
 {
  "redirections": [
   {
+   "source_path_from_root": "/articles/azure-monitor/profiler/profiler-cloudservice.md",
+   "redirect_url": "/azure/azure-monitor/profiler/profiler-overview",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/insights/code-optimizations.md",
    "redirect_url": "/azure/azure-monitor/insights/code-optimizations-profiler-overview",
    "redirect_document_id": false
@@ -3697,7 +3702,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/platform/usage-estimated-costs.md",
-   "redirect_url": "/azure/azure-monitor//usage-estimated-costs",
+   "redirect_url": "/azure/azure-monitor/fundamentals/cost-usage",
    "redirect_document_id": false
   },
   {
@@ -4897,7 +4902,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/usage-estimated-costs.md",
-   "redirect_url": "/azure/azure-monitor/cost-usage",
+   "redirect_url": "/azure/azure-monitor/fundamentals/cost-usage",
    "redirect_document_id": false
   },
   {
@@ -7227,7 +7232,7 @@
   },
   {
    "source_path_from_root": "/articles/monitoring-and-diagnostics/monitoring-usage-and-estimated-costs.md",
-   "redirect_url": "/azure/azure-monitor/platform/usage-estimated-costs",
+   "redirect_url": "/azure/azure-monitor/fundamentals/cost-usage",
    "redirect_document_id": false
   },
   {
@@ -7566,11 +7571,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-providerhub-providerregistrations-logs.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/vm/vminsights-enable-overview.md",
    "redirect_url": "/azure/azure-monitor/vm/vminsights-enable",
    "redirect_document_id": false
@@ -7697,7 +7697,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/powershell.md",
-   "redirect_url": "/azure/azure-monitor/app/create-workspace-resource",
+   "redirect_url": "/azure/azure-monitor/app/create-workspace-resource"
   },
   {
    "source_path_from_root": "/articles/azure-monitor/logs/data-security.md",
@@ -7741,6 +7741,251 @@
   },
   {
    "source_path": "articles/azure-monitor/reference/tables/databricksworkspacelogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-data-collection.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-windows-events.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-windows-events",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-iis.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-iis",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-log-json.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-log-json",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-log-text.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-log-text",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-performance.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-performance",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-syslog.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-syslog",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-collection-snmp-data.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-snmp-data",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/data-sources-firewall-logs.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-firewall-logs",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md",
+   "redirect_url": "/azure/azure-monitor/vm/send-event-hubs-storage",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-transformation.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-log-text",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/virtual-machine-guest-metrics.md",
+   "redirect_url": "/azure/azure-monitor/vm/data-collection-performance",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/overview.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/azure-monitor-operations-manager.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-operations-manager",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/azure-monitor-rest-api-index.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-rest-api-index",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-alerts.md",
+   "redirect_url": "/azure/azure-monitor/alerts/best-practices-alerts",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-analysis.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-analysis",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-containers.md",
+   "redirect_url": "/azure/azure-monitor/containers/best-practices-containers",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-cost.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-cost",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-data-collection.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-data-collection",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-logs.md",
+   "redirect_url": "/azure/azure-monitor/logs/best-practices-logs",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-multicloud.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-multicloud",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-operation.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-operation",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-performance.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-performance",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-plan.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-plan",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-reliability.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-reliability",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-security.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/best-practices-security",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/best-practices-vm.md",
+   "redirect_url": "/azure/azure-monitor/vm/best-practices-vm",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/cost-estimate.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/cost-estimate",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/cost-meters.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/cost-meters",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/cost-usage.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/cost-usage",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/data-platform.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/data-platform",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/data-sources.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/data-sources",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/getting-started.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/getting-started",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/ip-addresses.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/ip-addresses",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/monitor-at-scale.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/monitor-at-scale",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/monitor-azure-monitor-reference.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/monitor-azure-monitor-reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/monitor-azure-monitor.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/monitor-azure-monitor",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/policy-reference.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/policy-reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/resource-graph-samples.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/resource-graph-samples",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/resource-manager-samples.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/resource-manager-samples",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/roles-permissions-security.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/roles-permissions-security",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/security-controls-policy.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/security-controls-policy",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/service-limits.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/service-limits",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/whats-new.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/whats-new",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/enterprise-monitoring-architecture.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/enterprise-monitoring-architecture",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/iisassessmentrecommendation.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/iothubdistributedtracing.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/mawindowsdeploymentstatusnrt.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }

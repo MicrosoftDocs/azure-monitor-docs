@@ -614,13 +614,14 @@ items:
             displayName: Login Events,RepositoryEvent logs
           - name: Microsoft.ContainerService/fleets
             href: supported-logs/microsoft-containerservice-fleets-logs.md
-            displayName: Kubernetes Cloud Controller Manager,guard,Kubernetes API
-              Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
-              Controller Manager,Kubernetes Scheduler
+            displayName: Kubernetes Cloud Controller
+              Manager,fleet-hub-agent,guard,Kubernetes API Server,Kubernetes
+              Audit,Kubernetes Audit Admin Logs,Kubernetes Controller
+              Manager,Kubernetes Scheduler
           - name: Microsoft.ContainerService/managedClusters
             href: supported-logs/microsoft-containerservice-managedclusters-logs.md
             displayName: Kubernetes Cloud Controller Manager,Kubernetes Cluster
-              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,guard,Kubernetes
+              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-member-agent,guard,Kubernetes
               API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
               Controller Manager,Kubernetes Scheduler
           - name: Microsoft.CustomProviders/resourceproviders
@@ -1015,6 +1016,10 @@ items:
             href: supported-logs/microsoft-providerhub-providermonitorsettings-logs.md
             displayName: UserRP Http Incoming Requests,UserRP Http Outgoing Requests,UserRP
               Provisioning Operations
+          - name: Microsoft.ProviderHub/providerRegistrations
+            href: supported-logs/microsoft-providerhub-providerregistrations-logs.md
+            displayName: Provisioning Operations,UserRP Http Incoming Requests,UserRP Http
+              Outgoing Requests
           - name: microsoft.purview/accounts
             href: supported-logs/microsoft-purview-accounts-logs.md
             displayName: DataSensitivity,ScanStatus,PurviewAccountAuditEvents
@@ -1616,6 +1621,8 @@ items:
             href: tables/acsemailuserengagementoperational.md
           - name: ACSJobRouterIncomingOperations
             href: tables/acsjobrouterincomingoperations.md
+          - name: ACSOptOutManagementOperations
+            href: tables/acsoptoutmanagementoperations.md
           - name: ACSRoomsIncomingOperations
             href: tables/acsroomsincomingoperations.md
           - name: ACSSMSIncomingOperations
@@ -1946,6 +1953,12 @@ items:
             href: tables/appcentererror.md
           - name: AppDependencies
             href: tables/appdependencies.md
+          - name: AppEnvSessionConsoleLogs
+            href: tables/appenvsessionconsolelogs.md
+          - name: AppEnvSessionLifecycleLogs
+            href: tables/appenvsessionlifecyclelogs.md
+          - name: AppEnvSessionPoolEventLogs
+            href: tables/appenvsessionpooleventlogs.md
           - name: AppEnvSpringAppConsoleLogs
             href: tables/appenvspringappconsolelogs.md
           - name: AppEvents
@@ -2426,8 +2439,6 @@ items:
             href: tables/heartbeat.md
           - name: HuntingBookmark
             href: tables/huntingbookmark.md
-          - name: IISAssessmentRecommendation
-            href: tables/iisassessmentrecommendation.md
           - name: IdentityDirectoryEvents
             href: tables/identitydirectoryevents.md
           - name: IdentityInfo
@@ -2446,8 +2457,6 @@ items:
             href: tables/intunedevices.md
           - name: IntuneOperationalLogs
             href: tables/intuneoperationallogs.md
-          - name: IoTHubDistributedTracing
-            href: tables/iothubdistributedtracing.md
           - name: KubeEvents
             href: tables/kubeevents.md
           - name: KubeHealth
@@ -2520,8 +2529,6 @@ items:
             href: tables/mawindowscurrencyassessmentdailycounts.md
           - name: MAWindowsDeploymentStatus
             href: tables/mawindowsdeploymentstatus.md
-          - name: MAWindowsDeploymentStatusNRT
-            href: tables/mawindowsdeploymentstatusnrt.md
           - name: MCCEventLogs
             href: tables/mcceventlogs.md
           - name: MCVPAuditLogs
@@ -2690,6 +2697,8 @@ items:
             href: tables/remotenetworkhealthlogs.md
           - name: ResourceManagementPublicAccessLogs
             href: tables/resourcemanagementpublicaccesslogs.md
+          - name: RetinaNetworkFlowLogs
+            href: tables/retinanetworkflowlogs.md
           - name: SCCMAssessmentRecommendation
             href: tables/sccmassessmentrecommendation.md
           - name: SCGPoolExecutionLog
@@ -3326,6 +3335,8 @@ items:
             href: queries/DatabricksBudgetPolicyCentral.md
           - name: DataverseActivity
             href: queries/DataverseActivity.md
+          - name: DevCenterBillingEventLogs
+            href: queries/DevCenterBillingEventLogs.md
           - name: DevCenterDiagnosticLogs
             href: queries/DevCenterDiagnosticLogs.md
           - name: DevCenterResourceOperationLogs
@@ -3472,6 +3483,8 @@ items:
             href: queries/REDConnectionEvents.md
           - name: ResourceManagementPublicAccessLogs
             href: queries/ResourceManagementPublicAccessLogs.md
+          - name: RetinaNetworkFlowLogs
+            href: queries/RetinaNetworkFlowLogs.md
           - name: SCGPoolExecutionLog
             href: queries/SCGPoolExecutionLog.md
           - name: SCGPoolRequestLog

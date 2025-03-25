@@ -3,8 +3,6 @@ title: Enable application monitoring in Azure App Service for .NET, Node.js, Pyt
 description: Application performance monitoring for Azure App Service. Chart load and response time, dependency information, and set alerts on performance.
 ms.topic: conceptual
 ms.date: 02/28/2025
-ms.custom:
-ms.author: aaronmax
 ms.reviewer: abinetabate
 ---
 
@@ -185,7 +183,7 @@ For more information, see the [Django documentation](https://docs.djangoproject.
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
+[!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
 
 To add the community OpenTelemetry Instrumentation Library, install it via your app's `requirements.txt` file. OpenTelemetry autoinstrumentation automatically picks up and instruments all installed libraries. Find the list of community libraries [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
@@ -463,7 +461,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ---
 
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
+[!INCLUDE [azure-web-apps-arm-automation](includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
 ## Frequently asked questions
 
@@ -492,11 +490,11 @@ The details depend on the type of project. The following list is an example for 
 
 * Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*. For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).
 
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
+[!INCLUDE [azure-web-apps-troubleshoot](includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
 
 ## Troubleshooting
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## [ASP.NET Core](#tab/aspnetcore)
 

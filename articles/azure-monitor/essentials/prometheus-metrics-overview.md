@@ -1,9 +1,6 @@
 ---
 title: Overview of Azure Monitor with Prometheus
 description: Get an overview of Azure Monitor with Prometheus, which provides Prometheus-compatible interfaces called Azure Monitor workspaces for storing and retrieving metric data.
-author: EdB-MSFT
-ms.service: azure-monitor
-ms-author: edbaynash
 ms.topic: conceptual
 ms.date: 10/06/2024
 ---
@@ -21,7 +18,7 @@ Prometheus metrics are stored in an Azure Monitor workspace. You can analyze and
 
 ## Azure Monitor managed service for Prometheus
 
-Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md) that provides a fully managed and scalable environment for running Prometheus. It simplifies the deployment, management, and scaling of Prometheus in AKS, so you can focus on monitoring your applications and infrastructure.
+Azure Monitor managed service for Prometheus is a component of [Azure Monitor Metrics](data-platform-metrics.md) that provides a fully managed and scalable environment for running Prometheus. It simplifies the deployment, management, and scaling of Prometheus in AKS and Azure Arc-enabled Kubernetes, so you can focus on monitoring your applications and infrastructure.
 
 As a fully managed service, Azure Monitor managed service for Prometheus automatically deploys Prometheus in AKS or Azure Arc-enabled Kubernetes. The service provides high availability, service-level agreement (SLA) guarantees, and automatic software updates. It provides a highly scalable metrics store that retains data for up to 18 months.
 
@@ -30,8 +27,7 @@ Azure Monitor managed service for Prometheus provides preconfigured alerts, rule
 Pricing is based on ingestion and query with no additional storage cost. For more information, see the **Metrics** tab in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 > [!NOTE]
-> Azure Managed Prometheus supports Horizontal Pod Autoscaling for replicaset pods in AKS Kubernetes clusters.
-See [Autoscaling](../containers/prometheus-metrics-scrape-autoscaling.md) to learn more.
+> Azure Managed Prometheus supports Horizontal Pod Autoscaling for replicaset pods in AKS Kubernetes clusters. See [Autoscaling](../containers/prometheus-metrics-scrape-autoscaling.md) to learn more.
 
 ### Enable Azure Monitor managed service for Prometheus
 
@@ -125,7 +121,7 @@ The following limitations apply to Azure Monitor managed service for Prometheus:
 - During node updates, you might experience gaps that last 1 to 2 minutes in some metric collections from the cluster-level collector. This gap is due to a regular action from Azure Kubernetes Service to update the nodes in your cluster. This behavior doesn't affect recommended alert rules.
 - Managed Prometheus for Windows nodes isn't automatically enabled. To enable monitoring for Windows nodes and pods in your clusters, see [Enable Windows metrics collection (preview)](../containers/kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview).
 
-[!INCLUDE [case sensitivity](../includes/prometheus-case-sensitivity.md)]
+[!INCLUDE [case sensitivity](includes/prometheus-case-sensitivity.md)]
 
 ## Prometheus references
 

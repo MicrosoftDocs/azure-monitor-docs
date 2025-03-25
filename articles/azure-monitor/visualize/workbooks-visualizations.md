@@ -1,9 +1,6 @@
 ---
 title: Workbook visualizations
 description: Learn about the types of visualizations you can use to create rich visual reports with Azure Workbooks.
-services: azure-monitor
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 10/10/2024
 ms.reviewer: gardnerjr
