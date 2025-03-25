@@ -8,7 +8,7 @@ ms.reviewer: cogoodson
 
 # Failures and Performance views
 
-[Application Insights](app-insights-overview.md) collects telemetry from your application to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools:
+[Application Insights](app-insights-overview.md) collects telemetry from your application to help you diagnose failures and investigate slow transactions. It includes two essential tools:
 
 * The **Failures** view, which tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
 
@@ -100,9 +100,9 @@ To see code-level debug information of an exception:
 
 1. [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request.
 
-1. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
+1. Afterwards, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
 
-:::image type="content" source="media/failures-and-performance-views/debug-snapshot.png" lightbox="media/failures-and-performance-views/debug-snapshot.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
+    :::image type="content" source="media/failures-and-performance-views/debug-snapshot.png" lightbox="media/failures-and-performance-views/debug-snapshot.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
 
 ### Create a work item
 
