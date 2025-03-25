@@ -70,7 +70,7 @@ To share a workbook or workbook template:
 ## Recover a deleted workbook
 When you delete an Azure Workbook, it is soft-deleted and can be recovered by using the recycle bin. After the soft-delete period, the workbook and its content are nonrecoverable.
 
-To use the recycle bin, from either the Azure Workbooks browse view, or from any workbook gallery view, select the **Open recycle bin** item from the toolbar. The recycle bin view appears. The recycle binshows workbooks that were recently deleted and can be restored. Deleted workbooks are retained for approximately 90 days.
+To use the recycle bin, from either the Azure Workbooks browse view, or from any workbook gallery view, select the **Open recycle bin** item from the toolbar. The recycle bin view appears. The recycle bin shows workbooks that were recently deleted and can be restored. Deleted workbooks are retained for approximately 90 days.
 
 In the recycle bin view, use the Subscription and Resource Group filters to find the workbook you want to recover. Select the workbook, then select **Recover** from the toolbar. If the workbook was deleted as part of a Resource Group deletion, the Resource Group must be re-created first. Restoring a workbook does not restore a resource group or any other resources that are referenced by the workbook.
  
