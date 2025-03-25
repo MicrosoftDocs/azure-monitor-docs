@@ -635,7 +635,7 @@ When the agent can't send telemetry to Azure Monitor, it stores telemetry files 
 
 The agent handles offline storage as follows:
 
-- Stores up to 50 MB of telemetry data by default and allows [configuration of the storage limit](./java-standalone-config#recovery-from-ingestion-failures).
+- Stores up to 50 MB of telemetry data by default and allows [configuration of the storage limit](./java-standalone-config.md#recovery-from-ingestion-failures).
 - Sends cached telemetry every 10 seconds when data is available, and checks for new data every 30 seconds when the cache is empty.
 - Deletes telemetry files older than 48 hours and discards the oldest events when the storage limit is reached.
 
