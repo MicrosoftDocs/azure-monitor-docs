@@ -8,13 +8,13 @@ ms.reviewer: cogoodson
 
 # Failures and Performance views
 
-[Application Insights](app-insights-overview.md) comes with a curated Application Performance Management (APM) experience to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools:
+[Application Insights](app-insights-overview.md) collects telemetry from your application to help you diagnose failures and investigate slow transactions in your monitored applications. It includes two essential tools:
 
-* The **Failures** view tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
+* The **Failures** view, which tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
 
-* The **Performance** view quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
+* The **Performance** view, which quickly identifies and helps resolve application bottlenecks by displaying response times and operation counts.
 
-Together, they ensure the ongoing health and efficiency of web applications.
+Together, these tools ensure the ongoing health and efficiency of web applications. You can use them to identify problems or improvements to the application that would most affect users.
 
 ### [Failures view](#tab/failures-view)
 
@@ -22,7 +22,7 @@ To get to the **Failures** experience in Application Insights, select either the
 
 :::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the failures view in Application Insights.":::
 
-You can also get to the failures pane from the [Application Map](app-map.md) by selecting **Investigate failures** from the triage pane.
+You can also get to the failures pane from the [Application Map](app-map.md) by selecting a resource, then **Investigate failures** from the triage pane.
 
 ### [Performance view](#tab/performance-view)
 
@@ -30,7 +30,7 @@ To get to the **Performance** experience in Application Insights, select either 
 
 :::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the performance view in Application Insights.":::
 
-You can also get to the performance pane from the [Application Map](app-map.md) by selecting **Investigate performance** from the triage pane.
+You can also get to the performance pane from the [Application Map](app-map.md) by selecting a resource, then **Investigate performance** from the triage pane.
 
 ---
 
@@ -88,7 +88,7 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 The end-to-end tranasction view shows a Gantt chart of the transaction, which lists all events with their duration and response code. Selecting a specific event reveals its properties in the right-hand pane, including additional information like the underlying command or call stack.
 
-:::image type="content" source="media/failures-and-performance-views/failures-transaction-view.png" lightbox="media/failures-and-performance-views/failures-transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
+:::image type="content" source="media/failures-and-performance-views/transaction-view.png" lightbox="media/failures-and-performance-views/transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
 
 ### Debug Snapshot
 
@@ -96,13 +96,13 @@ To see code-level debug information of an exception, select the exception in the
 
 :::image type="content" source="media/failures-and-performance-views/failures-exception-open-debugger.png" lightbox="media/failures-and-performance-views/failures-exception-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction with 'Open debug snapshot' highlighted.":::
 
-The Debug Snapshot view shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
+[Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
 
 :::image type="content" source="media/failures-and-performance-views/failures-debug-snapshot-details.png" lightbox="media/failures-and-performance-views/failures-debug-snapshot-details.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
 
 ### Create a work item
 
-If you connect Application Insights to a tracking system, such as Azure DevOps or GitHub, you can create a work item directly from Application Insights.
+If you connect Application Insights to a tracking system such as Azure DevOps or GitHub, you can create a work item directly from Application Insights.
 
 1. Select **Create work item** and create a new template or pick an existing one.
 
@@ -124,22 +124,26 @@ This takes you to the **Logs** view where you can further modify the query or se
 
 ## Profiler traces
 
-The Profiler helps get further with code-level diagnostics by showing the actual code that ran for the operation and the time required for each step. Some operations might not have a trace because the Profiler runs periodically. Over time, more operations should have traces.
+The [.NET Profiler](../profiler/profiler.md) helps get further with code-level diagnostics by showing the actual code that ran for the operation and the time required for each step. Some operations might not have a trace because the Profiler runs periodically. Over time, more operations should have traces.
 
-1. To start the Profiler for the operation, select **Profiler traces**.
+1. To start .NET Profiler, select an operation on the **Performance** view, then go to **Profiler traces**.
 
     :::image type="content" source="media/failures-and-performance-views/performance-profiler-traces-button.png" lightbox="media/failures-and-performance-views/performance-profiler-traces-button.png" alt-text="Screenshot highlighting the 'Profiler traces' button on the Performance pane.":::
 
+    Alternatively, you can do so on the end-to-end transaction details view.
+
+    :::image type="content" source="media/failures-and-performance-views/transaction-view.png" lightbox="media/failures-and-performance-views/transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
+
 1. The trace shows the individual events for each operation so that you can diagnose the root cause for the duration of the overall operation. Select one of the top examples that has the longest duration.
-
-    :::image type="content" source="media/failures-and-performance-views/performance-profiler-traces.png" lightbox="media/failures-and-performance-views/performance-profiler-traces.png" alt-text="Screenshot showing the profiler traces feature.":::
-
-    > [!NOTE]
-    > **Hot path** is selected by default. It highlights (indicated by the flame icon to the left of the event name) the specific path of events that contribute to the issue you're investigating.
 
 1. Select the link in the **Performance Tip** (in this example, **CPU time**) for documentation on interpreting the event.
 
 1. For further analysis, select **Download Trace** to download the trace. You can view this data by using [PerfView](https://github.com/Microsoft/perfview#perfview-overview).
+
+    :::image type="content" source="media/failures-and-performance-views/performance-profiler-traces.png" lightbox="media/failures-and-performance-views/performance-profiler-traces.png" alt-text="Screenshot showing the profiler traces feature.":::
+
+    > [!NOTE]
+    > **Hot path** is selected by default. It highlights the specific path of events that contribute to the issue you're investigating, indicated by the flame icon to the left of the event name.
 
 ### Identify slow client operations
 
