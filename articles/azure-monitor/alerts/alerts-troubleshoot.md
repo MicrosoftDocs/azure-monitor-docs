@@ -23,7 +23,7 @@ Otherwise, use the information in the rest of this article to troubleshoot your 
 
 ## Log search alert rule creation failed 
 
-### Log search alert rule creation failed with error – “Failed to create alert rule `<Rule Name>`. There was a problem with the server, Please try again in a few minutes.”
+In the Azure portal you received the error "The log search alert rule creation failed with error – “Failed to create alert rule `<Rule Name>`. There was a problem with the server, Please try again in a few minutes.”"
 
 This could happen if the combined size of all data in the log alert rule properties exceeds 64KB (or 32K string characters). Check if the alert rule is using a big query, has many dimensions, action group or a long description, whose combined size could be greater than 64KB.
 
