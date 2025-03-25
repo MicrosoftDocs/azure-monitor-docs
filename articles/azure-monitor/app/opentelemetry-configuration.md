@@ -631,20 +631,18 @@ To disable this feature, you should set `AzureMonitorExporterOptions.DisableOffl
 
 ### [Java](#tab/java)
 
-### Java
-
 The Java agent supports offline storage and automatic retries, but the configuration options are limited compared to other SDKs.
 
 When the agent can't send telemetry to Application Insights, it stores encrypted telemetry files on disk. The files are saved in a `telemetry` folder under the directory specified by the `java.io.tmpdir` system property. Each file name starts with a timestamp and ends with the `.trn` extension.
 
 The agent handles offline storage as follows:
 
-- Stores up to 50 MB of telemetry data by default  
-- Allows configuration of the storage limit using the `otel.javaagent.streaming.telemetry.disk.capacity.megabytes` property  
-- Attempts to resend cached telemetry every 10 seconds if data is available  
-- Checks for new data every 30 seconds when the cache is empty  
-- Deletes telemetry files that are older than 48 hours  
-- Keeps recent telemetry and discards older events when the storage limit is reached  
+- Stores up to 50 MB of telemetry data by default
+- Allows [configuration of the storage limit](./java-standalone-config#recovery-from-ingestion-failures)
+- Attempts to resend cached telemetry every 10 seconds if data is available
+- Checks for new data every 30 seconds when the cache is empty
+- Deletes telemetry files that are older than 48 hours
+- Keeps recent telemetry and discards older events when the storage limit is reached
 
 This offline storage mechanism helps ensure telemetry is retained during temporary network outages or ingestion failures.
 
