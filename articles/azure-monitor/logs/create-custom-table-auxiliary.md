@@ -87,8 +87,8 @@ Provide this payload - update the table name and adjust the columns based on you
 }
 ```
 > [!NOTE]
-> - The `TimeGenerated` column currently supports only ISO8601 format with 6 precisions (nanoseconds). For information about the `TimeGenerated` format, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
-> - Tables with the Auxiliary plan currenty do not support columns with dynamic data.
+> - The `TimeGenerated` column currently only supports the ISO8601 format with 6 decimal places for precision (nanoseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
+> - Tables with the Auxiliary plan currently don't support columns with dynamic data.
 
 ## Send data to a table with the Auxiliary plan
 
@@ -210,7 +210,7 @@ There are currently two ways to ingest data to a custom table with the Auxiliary
         Where:
         - `myworkspace` is the name of your Log Analytics workspace.
         - `table_name_CL` is the name of your table.
-        -  `columns` includes the same columns you set in [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan). 
+        - `columns` includes the same columns you set in [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan). 
     
     1. [Grant your application permission to use your DCR](../logs/tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
 
