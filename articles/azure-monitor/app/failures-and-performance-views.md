@@ -132,7 +132,7 @@ The [.NET Profiler](../profiler/profiler.md) helps get further with code-level d
 
     Alternatively, you can do so on the end-to-end transaction details view.
 
-    :::image type="content" source="media/failures-and-performance-views/transaction-view.png" lightbox="media/failures-and-performance-views/transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
+    :::image type="content" source="media/failures-and-performance-views/transaction-view-traces-button.png" lightbox="media/failures-and-performance-views/transaction-view-traces-button.png" alt-text="Screenshot showing the highlighted 'Profiler traces' button on the end-to-end transaction details view.":::
 
 1. The trace shows the individual events for each operation so that you can diagnose the root cause for the duration of the overall operation. Select one of the top examples that has the longest duration.
 
@@ -145,7 +145,7 @@ The [.NET Profiler](../profiler/profiler.md) helps get further with code-level d
     > [!NOTE]
     > **Hot path** is selected by default. It highlights the specific path of events that contribute to the issue you're investigating, indicated by the flame icon to the left of the event name.
 
-### Identify slow client operations
+### Analyze client-side performance and failures
 
 If you instrument your web pages with Application Insights, you can gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires [adding a script to your web pages](javascript-sdk.md#add-the-javascript-code).
 
