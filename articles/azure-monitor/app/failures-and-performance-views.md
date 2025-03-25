@@ -54,7 +54,7 @@ The **Performance** view shows a list of all operations collected for your appli
 
 ### [Failures view](#tab/failures-view)
 
-To investigate the root cause of an error or exception, you can drill into the problematic operation for a detailed end-to-end transaction view that includes dependencies and exception details.
+To investigate the root cause of an error or exception, you can drill into the problematic operation for a detailed end-to-end transaction details view that includes dependencies and exception details.
 
 1. Select an operation to show more information about it in the right pane.
 
@@ -69,7 +69,7 @@ To investigate the root cause of an error or exception, you can drill into the p
 
 ### [Performance view](#tab/performance-view)
 
-To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction view that includes dependencies and exception details.
+To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction details view that includes dependencies and exception details.
 
 1. Selecting an operation opens a panel which shows the **Distribution of durations** for different requests for the selected operation, and additional **Insights**.
 
@@ -86,17 +86,21 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 ## End-to-end transaction details
 
-The end-to-end tranasction view shows a Gantt chart of the transaction, which lists all events with their duration and response code. Selecting a specific event reveals its properties in the right-hand pane, including additional information like the underlying command or call stack.
+The end-to-end transaction details view shows a Gantt chart of the transaction, which lists all events with their duration and response code. Selecting a specific event reveals its properties in the right-hand pane, including additional information like the underlying command or call stack.
 
-:::image type="content" source="media/failures-and-performance-views/transaction-view.png" lightbox="media/failures-and-performance-views/transaction-view.png" alt-text="Screenshot showing the end-to-end transaction view.":::
+:::image type="content" source="media/failures-and-performance-views/transaction-view.png" lightbox="media/failures-and-performance-views/transaction-view.png" alt-text="Screenshot showing the end-to-end transaction details view.":::
 
 ### Debug Snapshot
 
-To see code-level debug information of an exception, select the exception in the Gantt chart, then **Open debug snapshot**.
+To see code-level debug information of an exception:
 
-:::image type="content" source="media/failures-and-performance-views/transaction-view-open-debugger.png" lightbox="media/failures-and-performance-views/transaction-view-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction with 'Open debug snapshot' highlighted.":::
+1. Select the exception in the Gantt chart, then **Open debug snapshot**.
 
-[Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
+    :::image type="content" source="media/failures-and-performance-views/transaction-view-open-debugger.png" lightbox="media/failures-and-performance-views/transaction-view-open-debugger.png" alt-text="Screenshot showing the end-to-end transaction details view with 'Open debug snapshot' highlighted.":::
+
+1. [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) shows the call stack and allows you to inspect variables at each call stack frame. By selecting a method, you can view the values of all local variables at the time of the request.
+
+1. Afterward, you can debug the source code by downloading the snapshot and opening it in Visual Studio.
 
 :::image type="content" source="media/failures-and-performance-views/debug-snapshot.png" lightbox="media/failures-and-performance-views/debug-snapshot.png" alt-text="Screenshot showing the debug snapshot view with the 'Download snapshot' button highlighted.":::
 
@@ -112,13 +116,16 @@ If you connect Application Insights to a tracking system such as Azure DevOps or
 
 ## Use analytics data
 
-All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
+All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md), which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
+
+> [!TIP]
+> [Simple mode](../logs/log-analytics-simple-mode.md) in Log Analytics offers an intuitive point-and-click interface for analyzing and visualizing log data.
 
 1. On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
 
     :::image type="content" source="media/failures-and-performance-views/logs-view-go-to.png" lightbox="media/failures-and-performance-views/logs-view-go-to.png" alt-text="Screenshot highlighting 'View in logs' in the top action bar.":::
 
-2. This takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
+1. This takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
 
     :::image type="content" source="media/failures-and-performance-views/logs-view.png" lightbox="media/failures-and-performance-views/logs-view.png" alt-text="Screenshot showing logs when reached from the performance view.":::
 
@@ -130,7 +137,7 @@ The [.NET Profiler](../profiler/profiler.md) helps get further with code-level d
 
     :::image type="content" source="media/failures-and-performance-views/performance-view-profiler.png" lightbox="media/failures-and-performance-views/performance-view-profiler.png" alt-text="Screenshot highlighting the 'Profiler traces' button on the Performance pane.":::
 
-    Alternatively, you can do so on the [end-to-end transaction details view](#end-to-end-transaction-details).
+    Alternatively, you can do so on the [end-to-end transaction details](#end-to-end-transaction-details)  view.
 
     :::image type="content" source="media/failures-and-performance-views/transaction-view-profiler.png" lightbox="media/failures-and-performance-views/transaction-view-profiler.png" alt-text="Screenshot showing the highlighted 'Profiler traces' button on the end-to-end transaction details view.":::
 
@@ -155,7 +162,7 @@ If you instrument your web pages with Application Insights, you can gain visibil
 
     This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
-2. For browser operations, the [End-to-end transaction details view](#end-to-end-transaction-details) shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can assist in determining whether there are performance issues related to particular types of clients.
+1. For browser operations, the [end-to-end transaction details](#end-to-end-transaction-details) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can assist in determining whether there are performance issues related to particular types of clients.
 
     :::image type="content" source="media/failures-and-performance-views/transaction-view-page-view-properties.png" lightbox="media/failures-and-performance-views/transaction-view-page-view-properties.png" alt-text="Screenshot highlighting the page view properties.":::
 
