@@ -231,7 +231,7 @@ SnapshotUploader.exe Information: 0 : Deleted PDB scan marker : D:\local\Temp\Du
 
 For applications that *aren't* hosted in App Service, the uploader logs are in the same folder as the minidumps: `%TEMP%\Dumps\<string>` (where `<string>` is your connection string).
 
-## Troubleshooting Cloud Services
+## Troubleshoot Cloud Services
 
 In Cloud Services, the default temporary folder could be too small to hold the minidump files, leading to lost snapshots. The space needed depends on the total working set of your application and the number of concurrent snapshots.
 
@@ -360,3 +360,5 @@ The IPs used by Application Insights Snapshot Debugger are included in the Azure
 ## Are there any billing costs when using snapshots?
 
 There are no charges against your subscription specific to Snapshot Debugger. The snapshot files collected are stored separately from the telemetry collected by the Application Insights SDKs and there are no charges for the snapshot ingestion or storage. 
+
+[!INCLUDE [bring-your-own-storage-troubleshooting](../profiler/includes/bring-your-own-storage-troubleshooting.md)]

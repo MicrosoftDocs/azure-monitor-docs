@@ -2,7 +2,7 @@
 title: Troubleshoot Application Insights Profiler for .NET
 description: Walk through troubleshooting steps and information to enable and use Application Insights Profiler for .NET.
 ms.topic: conceptual
-ms.date: 08/19/2024
+ms.date: 03/25/2025
 ms.reviewer: charles.weininger
 ---
 
@@ -21,7 +21,7 @@ Currently, the only regions that require endpoint modifications are [Azure Gover
 
 ## Is your app running on the right version?
 
-The Profiler is supported on the [.NET Framework later than 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework).
+The Profiler is supported on [.NET Framework versions later than 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework).
 
 If your web app is an ASP.NET Core application, it must be running on the [latest supported ASP.NET Core runtime](https://dotnet.microsoft.com/download/dotnet/8.0).
 
@@ -269,6 +269,8 @@ If your application connects to the internet via a proxy or a firewall, you migh
 
 The IPs used by Application Insights Profiler for .NET are included in the Azure Monitor service tag. For more information, see [Service tags documentation](/azure/virtual-network/service-tags-overview).
 
+[!INCLUDE [bring-your-own-storage-troubleshooting](./includes/bring-your-own-storage-troubleshooting.md)]
+
 ## Support
 
-If you still need help, submit a support ticket in the Azure portal. Include the correlation ID from the error message.
+If you still need help, submit a support ticket by clicking the question mark icon in the Azure portal. Include the correlation ID from the error message.
