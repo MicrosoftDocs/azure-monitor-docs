@@ -9,11 +9,6 @@ ms.date: 04/03/2025
 
 This article lists significant changes to Azure Monitor documentation.
 
-> [!TIP]
-> Get notified when this page is updated by copying and pasting the following URL into your feed reader:
->
-> :::image type="content" source="media/whats-new/rss.png" alt-text="An rss icon."::: https://aka.ms/azmon/rss
-
 ## 2025
 
 ### February 2025
