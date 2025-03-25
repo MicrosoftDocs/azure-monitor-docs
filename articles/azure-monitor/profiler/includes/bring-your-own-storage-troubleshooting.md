@@ -9,9 +9,6 @@ ms.date: 03/25/2025
 
 Troubleshoot common issues in configuring BYOS. 
 
-- For general .NET Profiler troubleshooting, see the [Profiler troubleshooting documentation](profiler-troubleshooting.md).
-- For general Snapshot Debugger troubleshooting, see the [Snapshot Debugger troubleshooting documentation](/troubleshoot/azure/azure-monitor/app-insights/snapshot-debugger-troubleshoot).
-
 ### Scenario: `Template schema '{schema_uri}' isn't supported`
 
 You received an error similar to the following example:
