@@ -631,7 +631,9 @@ To disable this feature, you should set `AzureMonitorExporterOptions.DisableOffl
 
 ### [Java](#tab/java)
 
-Configuring Offline Storage and Automatic Retries isn't available in Java.
+When the agent can't send telemetry to Azure Monitor, it stores telemetry files on disk. The files are saved in a `telemetry` folder under the directory specified by the `java.io.tmpdir` system property. Each file name starts with a timestamp and ends with the `.trn` extension. This offline storage mechanism helps ensure telemetry is retained during temporary network outages or ingestion failures.
+
+The agent stores up to 50 MB of telemetry data by default and allows [configuration of the storage limit](./java-standalone-config.md#recovery-from-ingestion-failures). Attempts to send stored telemetry are made periodically. Telemetry files older than 48 hours are deleted and the oldest events are discarded when the storage limit is reached.
 
 For a full list of available configurations, see [Configuration options](./java-standalone-config.md).
 
