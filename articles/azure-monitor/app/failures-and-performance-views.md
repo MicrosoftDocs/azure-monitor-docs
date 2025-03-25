@@ -114,13 +114,13 @@ If you connect Application Insights to a tracking system such as Azure DevOps or
 
 All data collected by Application Insights is stored in Log Analytics, which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
 
-On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
+1. On either the performance or failures view, select **View in Logs** in the top navigation bar and pick a query from the dropdown menu.
 
-:::image type="content" source="media/failures-and-performance-views/view-in-logs.png" lightbox="media/failures-and-performance-views/view-in-logs.png" alt-text="Screenshot highlighting 'View in logs' in the top action bar.":::
+    :::image type="content" source="media/failures-and-performance-views/view-in-logs.png" lightbox="media/failures-and-performance-views/view-in-logs.png" alt-text="Screenshot highlighting 'View in logs' in the top action bar.":::
 
-This takes you to the **Logs** view where you can further modify the query or select a different one from the sidebar.
+2. This takes you to the **Logs** view, where you can further modify the query or select a different one from the sidebar.
 
-:::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
+    :::image type="content" source="media/failures-and-performance-views/performance-logs.png" lightbox="media/failures-and-performance-views/performance-logs.png" alt-text="Screenshot showing logs when reached from the performance view.":::
 
 ## Profiler traces
 
@@ -130,7 +130,7 @@ The [.NET Profiler](../profiler/profiler.md) helps get further with code-level d
 
     :::image type="content" source="media/failures-and-performance-views/performance-profiler-traces-button.png" lightbox="media/failures-and-performance-views/performance-profiler-traces-button.png" alt-text="Screenshot highlighting the 'Profiler traces' button on the Performance pane.":::
 
-    Alternatively, you can do so on the end-to-end transaction details view.
+    Alternatively, you can do so on the [end-to-end transaction details view](#end-to-end-transaction-details).
 
     :::image type="content" source="media/failures-and-performance-views/transaction-view-traces-button.png" lightbox="media/failures-and-performance-views/transaction-view-traces-button.png" alt-text="Screenshot showing the highlighted 'Profiler traces' button on the end-to-end transaction details view.":::
 
@@ -145,17 +145,19 @@ The [.NET Profiler](../profiler/profiler.md) helps get further with code-level d
     > [!NOTE]
     > **Hot path** is selected by default. It highlights the specific path of events that contribute to the issue you're investigating, indicated by the flame icon to the left of the event name.
 
-### Analyze client-side performance and failures
+## Analyze client-side performance and failures
 
 If you instrument your web pages with Application Insights, you can gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires [adding a script to your web pages](javascript-sdk.md#add-the-javascript-code).
 
-After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** pane. This view provides a visual summary of various telemetries of your application from the perspective of the browser.
+1. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** pane.
 
-:::image type="content" source="media/failures-and-performance-views/server-browser-toggle.png" lightbox="media/failures-and-performance-views/server-browser-toggle.png" alt-text="Screenshot highlighting the server/browser toggle below the top action bar.":::
+    :::image type="content" source="media/failures-and-performance-views/server-browser-toggle.png" lightbox="media/failures-and-performance-views/server-browser-toggle.png" alt-text="Screenshot highlighting the server/browser toggle below the top action bar.":::
 
-For browser operations, the [End-to-end transaction details view](#end-to-end-transaction-details) shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can assist in determining whether there are performance issues related to particular types of clients.
+    This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
-:::image type="content" source="media/failures-and-performance-views/page-view-properties.png" lightbox="media/failures-and-performance-views/page-view-properties.png" alt-text="Screenshot highlighting the page view properties.":::
+2. For browser operations, the [End-to-end transaction details view](#end-to-end-transaction-details) shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can assist in determining whether there are performance issues related to particular types of clients.
+
+    :::image type="content" source="media/failures-and-performance-views/page-view-properties.png" lightbox="media/failures-and-performance-views/page-view-properties.png" alt-text="Screenshot highlighting the page view properties.":::
 
 > [!NOTE]
 > Like the data collected for server performance, Application Insights makes all client data available for deep analysis by using logs.
