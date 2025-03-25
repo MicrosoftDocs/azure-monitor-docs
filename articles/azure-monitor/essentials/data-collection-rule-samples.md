@@ -505,6 +505,72 @@ The following sample DCR performs the following actions:
 }
 ```
 
+## VM insights
+DCRs for VM insights are create for you when you [enable VM insights for a virtual machine](../vm/vminsights-enable.md), and you shouldn't modify them. The sample here is provided for reference only if you're trying to understand how different DCRs are constructed. 
+
+- In this example, **processes and dependencies** is enabled for the virtual machine which adds it to the Map feature in VM insights. The `extensions` section 
+
+
+```json
+{
+    "location": "eastus",
+    "properties": {
+        "description": "Data collection rule for VM Insights.",
+        "dataSources": {
+            "performanceCounters": [
+                {
+                    "streams": [
+                        "Microsoft-InsightsMetrics"
+                    ],
+                    "samplingFrequencyInSeconds": 60,
+                    "counterSpecifiers": [
+                        "\\VmInsights\\DetailedMetrics"
+                    ],
+                    "name": "VMInsightsPerfCounters"
+                }
+            ],
+            "extensions": [
+                {
+                    "streams": [
+                        "Microsoft-ServiceMap"
+                    ],
+                    "extensionName": "DependencyAgent",
+                    "extensionSettings": {},
+                    "name": "DependencyAgentDataSource"
+                }
+            ]
+        },
+        "destinations": {
+            "logAnalytics": [
+                {
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",,
+                    "workspaceId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
+                    "name": "VMInsightsPerf-Logs-Dest"
+                }
+            ]
+        },
+        "dataFlows": [
+            {
+                "streams": [
+                    "Microsoft-InsightsMetrics"
+                ],
+                "destinations": [
+                    "VMInsightsPerf-Logs-Dest"
+                ]
+            },
+            {
+                "streams": [
+                    "Microsoft-ServiceMap"
+                ],
+                "destinations": [
+                    "VMInsightsPerf-Logs-Dest"
+                ]
+            }
+        ],
+        "provisioningState": "Succeeded"
+    },
+}
+```
 
 
 ## Logs ingestion API
@@ -548,7 +614,7 @@ The sample DCR below has the following details:
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
                     "name": "LogAnalyticsDest"
                 }
             ]
