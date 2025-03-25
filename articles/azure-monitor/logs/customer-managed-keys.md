@@ -461,7 +461,7 @@ Customer-Managed key is provided on dedicated cluster and these operations are r
 
 - Lockbox isn't available in China currently. 
 
-- Lockbox doesn't apply to tables with the Auxiliary plan.
+- Lockbox doesn't apply to tables with the [Auxiliary table plan](data-platform-logs.md#table-plans).
 
 - [Double encryption](/azure/storage/common/storage-service-encryption#doubly-encrypt-data-with-infrastructure-encryption) is configured automatically for clusters created from October 2020 in supported regions. You can verify if your cluster is configured for double encryption by sending a GET request on the cluster and observing that the `isDoubleEncryptionEnabled` value is `true` for clusters with Double encryption enabled. 
   - If you create a cluster and get an error—"region-name doesn’t support Double Encryption for clusters", you can still create the cluster without Double encryption, by adding `"properties": {"isDoubleEncryptionEnabled": false}` in the REST request body.
@@ -480,8 +480,6 @@ Customer-Managed key is provided on dedicated cluster and these operations are r
 - Setting the cluster's `identity` `type` to `None` also revokes access to your data, but this approach isn't recommended since you can't revert it without contacting support. The recommended way to revoke access to your data is [key revocation](#key-revocation).
 
 - You can't use Customer-managed key with User-assigned managed identity if your Key Vault is in Private-Link (vNet). You can use System-assigned managed identity in this scenario.
-
-- The [Auxiliary table plan](data-platform-logs.md#table-plans) doesn't support customer-managed keys. Data in tables with the Auxiliary plan is encrypted with Microsoft-managed keys, even if you protect the data in the rest of your Log Analytics workspace using your own encryption key. 
 
 
 ## Troubleshooting

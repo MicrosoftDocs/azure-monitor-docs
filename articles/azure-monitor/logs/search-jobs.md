@@ -312,6 +312,10 @@ The search job charge is based on:
 
 For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 
 
+> [!NOTE]
+> Billing for search job on Auxiliary Logs table is not yet enabled.
+> Details on billing start date will be announced on [Azure Updates](https://azure.microsoft.com/en-us/updates/?query=Azure%20Monitor).
+
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Next steps
