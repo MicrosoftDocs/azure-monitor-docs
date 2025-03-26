@@ -2,15 +2,13 @@
 title: Integrate common workloads with Azure Managed Prometheus
 description: Describes how to integrate Azure Kubernetes Service workloads with Azure Managed Prometheus and list of available workloads that are ready to be integrated.
 ms.topic: conceptual
-ms.date: 6/20/2024
+ms.date: 03/10/2025
 ms.reviewer: rashmy
-ms.service: azure-monitor
-ms.subservice: containers
 ---
 
 # Use Prometheus exporters for common workloads with Azure Managed Prometheus
 
-You can use Prometheus exporters to collect metrics from third-party workloads or other applications and send them to Azure Monitor Workspace along with other metrics collected by Azure Managed Prometheus running on AKS.
+You can use Prometheus exporters to collect metrics from third-party workloads or other applications and send them to Azure Monitor Workspace along with other metrics collected by Azure Managed Prometheus running on AKS or Azure Arc-enabled Kubernetes.
 
 The enablement of Managed Prometheus automatically deploys the custom resource definitions (CRD) for [pod monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-podmonitor-crd.yaml) and [service monitors](https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/addon-chart/azure-monitor-metrics-addon/templates/ama-metrics-servicemonitor-crd.yaml).
 
@@ -23,6 +21,8 @@ This document lists a set of commonly used workloads which have curated configur
 - [Apache Kafka](./prometheus-kafka-integration.md)
 - [Argo CD](./prometheus-argo-cd-integration.md)
 - [Elastic Search](./prometheus-elasticsearch-integration.md)
+- [Istio](./prometheus-istio-integration.md)
+- [GPU - Nvidia DCGM exporter](./prometheus-dcgm-integration.md)
 
 ## Next steps
 

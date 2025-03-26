@@ -2,8 +2,6 @@
 title: Manage personal data in Azure Monitor Logs
 description: This article describes how to manage personal data stored in Azure Monitor Log Analytics and the methods to identify and remove it.
 ms.topic: conceptual
-author: guywild
-ms.author: guywild
 ms.reviewer: meirm
 ms.date: 11/11/2024
 # Customer intent: As an Azure Monitor admin user, I want to understand how to manage personal data in logs that Azure Monitor collects.

@@ -2,15 +2,13 @@
 title: Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications - Azure Monitor | Microsoft Docs
 description: Application performance monitoring for Azure App Service. Chart load and response time, dependency information, and set alerts on performance.
 ms.topic: conceptual
-ms.date: 10/03/2024
-ms.custom:
-ms.author: v-nawrothkai
+ms.date: 02/28/2025
 ms.reviewer: abinetabate
 ---
 
 # Enable application monitoring in Azure App Service for .NET, Node.js, Python, and Java applications
 
-Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Service without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md#instrumentation-options).
+Autoinstrumentation, also referred to as *runtime* monitoring, is the easiest way to enable Application Insights for Azure App Service without requiring any code changes or advanced configurations. Based on your specific scenario, evaluate whether you require more advanced monitoring through [manual instrumentation](opentelemetry-overview.md).
 
 [!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
@@ -130,7 +128,9 @@ Application Insights for Node.js is integrated with Azure App Service on Linux -
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 > [!NOTE]
-> Only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
+> * Only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
+>
+> * [Live Metrics](live-stream.md) isn't available for autoinstrumented Python applications running on Azure App Service. To use this feature, manually instrument your application with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) instead.
 
 Application Insights for Python integrates with code-based Linux Azure App Service. The integration is in public preview and adds the Python SDK, which is in GA. It instruments popular Python libraries in your code, letting you automatically gather and correlate dependencies, logs, and metrics. To see which calls and metrics are collected, see [Python libraries](#python-libraries)
 
@@ -183,7 +183,7 @@ For more information, see the [Django documentation](https://docs.djangoproject.
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](../includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
+[!INCLUDE [azure-monitor-app-insights-opentelemetry-community-library-warning](includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
 
 To add the community OpenTelemetry Instrumentation Library, install it via your app's `requirements.txt` file. OpenTelemetry autoinstrumentation automatically picks up and instruments all installed libraries. Find the list of community libraries [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
@@ -274,8 +274,6 @@ If you encounter an issue that got fixed in the latest version of the [Applicati
 ## [Python (Preview)](#tab/python)
 
 The Application Insights Python version is updated automatically as part of App Service updates and *can't be updated manually*.
-
-If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
 
 ---
 
@@ -463,7 +461,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 ---
 
-[!INCLUDE [azure-web-apps-arm-automation](../includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
+[!INCLUDE [azure-web-apps-arm-automation](includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
 ## Frequently asked questions
 
@@ -492,11 +490,11 @@ The details depend on the type of project. The following list is an example for 
 
 * Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*. For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).
 
-[!INCLUDE [azure-web-apps-troubleshoot](../includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
+[!INCLUDE [azure-web-apps-troubleshoot](includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
 
 ## Troubleshooting
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## [ASP.NET Core](#tab/aspnetcore)
 

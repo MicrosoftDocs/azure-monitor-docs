@@ -2,8 +2,6 @@
 title: Monitor the health of log search alert rules
 description: This article how to monitor the health of a log search alert rule.
 ms.topic: how-to
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.reviewer: nolavime
 ms.date: 02/08/2024
 

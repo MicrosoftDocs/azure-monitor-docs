@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2025
+ms.date: 02/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -236,15 +236,10 @@ Using Traffic Manager as one of the origins for Front Door isn't recommended, as
   
 **Potential benefits**: Increase your workload resiliency  
 
-**Impact:** Medium
-  
-For more information, see [Azure Front Door - Best practices ](https://aka.ms/afd-avoid-tm-frontdoor)  
-
-ResourceType: microsoft.network/frontdoors  
-Recommendation ID: 825ff735-ed9a-4335-b132-321df86b0e81  
-Subcategory: Other
+For more information, see [Best practices for Front Door](https://aka.ms/afd-avoid-tm-frontdoor)  
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
+
 
 
 
@@ -256,15 +251,10 @@ Private Endpoint not in a succeeded state potentially influences application ava
   
 **Potential benefits**: Resume private connectivity and availability of application  
 
-**Impact:** Medium
-  
-For more information, see [Troubleshoot Azure Private Link Service connectivity problems ](https://aka.ms/pe-troubleshooting)  
-
-ResourceType: microsoft.network/privateendpoints  
-Recommendation ID: 5db013ba-e657-4b80-93f7-8c5b5f9e780a  
-Subcategory: BusinessContinuity
+For more information, see [Troubleshoot Azure Private Link Service connectivity problems](https://aka.ms/pe-troubleshooting)  
 
 <!--5db013ba-e657-4b80-93f7-8c5b5f9e780a_end-->
+
 
 
 
@@ -450,5 +440,24 @@ Recommendation ID: 56f0c458-521d-4b8b-a704-c0a099483d19
 Subcategory: HighAvailability
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
+
+<!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_begin-->
+
+#### Use a health probe for monitoring the health of servers  
+  
+Use a health probe of the application gateway for monitoring the health of servers in the backend pool. The health probe of the application gateway stops traffic from sending to a server the health probe considers unhealthy.  
+  
+**Potential benefits**: Prevent sending traffic to unhealthy server.  
+
+**Impact:** High
+  
+For more information, see [Health monitoring overview for Azure Application Gateway](/azure/application-gateway/application-gateway-probe-overview)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32  
+Subcategory: Scalability
+
+<!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
+
 
 <!--articleBody-->

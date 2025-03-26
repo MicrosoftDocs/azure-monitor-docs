@@ -1,6 +1,4 @@
 ---
-author: KennedyDenMSFT
-ms.author: rboucher
 ms.service: azure-service-health
 ms.topic: include
 ms.date: 2/12/2024

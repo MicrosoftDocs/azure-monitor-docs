@@ -4,10 +4,10 @@ description: Learn how to use Application Insights Code Optimizations on Azure. 
 author: hhunter-ms 
 ms.author: hannahhunter
 editor: v-jsitser
-ms.reviewer: hannahhunter
+ms.reviewer: jan.kalis
 ms.service: azure-monitor
 ms.topic: troubleshooting
-ms.date: 10/07/2024
+ms.date: 02/07/2025
 ms.custom: sap:Availability Tests
 ---
 

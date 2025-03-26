@@ -1,7 +1,6 @@
 ---
 title: Send classic Windows VM metrics to Azure Monitor metrics database
 description: Send Guest OS metrics to the Azure Monitor data store for a Windows virtual machine (classic)
-services: azure-monitor
 ms.reviewer: shijain
 ms.topic: conceptual
 ms.date: 05/31/2024

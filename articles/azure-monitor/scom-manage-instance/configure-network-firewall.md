@@ -104,4 +104,5 @@ To function properly, SCOM Managed Instance must have access to the following po
 
 ## Next steps
 
-- [Verify Azure and internal GPO policies](verify-azure-internal-group-policy-object-policies.md)
+[Verify Azure and internal GPO policies](verify-azure-internal-group-policy-object-policies.md).
+  

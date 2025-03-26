@@ -1,6 +1,6 @@
 ---
 title: Azure Chaos Studio compatibility
-description: Understand the compatibility of Azure Chaos Studio with operating systems and tools.
+description: Understand the compatibility of Azure Chaos Studio with Chaos Mesh operating systems and tools.
 services: chaos-studio
 author: rsgel 
 ms.topic: overview
@@ -10,30 +10,9 @@ ms.reviewer: carlsonr
 ms.service: azure-chaos-studio
 ---
 
-# Azure Chaos Studio version compatibility
+# Azure Chaos Studio Chaos Mesh version compatibility
 
-The following reference shows relevant version support and compatibility for features within Chaos Studio. 
-
-## Operating systems supported by the agent
-
-The Chaos Studio agent is tested for compatibility with the following operating systems on Azure virtual machines. This testing involves deploying an Azure virtual machine with the specified SKU, installing the agent as a virtual machine extension, and validating the output of the available agent-based faults.
-
-| Operating system | Chaos agent compatibility | Notes |
-|:---:|:---:|:---:|
-| Windows Server 2019             | ✓ |   |
-| Windows Server 2016             | ✓ |   |
-| Azure Linux (Mariner)           | ✓ | Installing `stress-ng` [manually](https://github.com/ColinIanKing/stress-ng) required for CPU Pressure, Physical Memory Pressure, Disk I/O Pressure, and Stress-ng faults |
-| Red Hat Enterprise Linux 8      | ✓ | Currently tested up to 8.9 |
-| openSUSE Leap 15.2              | ✓ |   |
-| Debian 10 Buster                | ✓ | Installation of `unzip` utility required |
-| Oracle Linux 8.3                | ✓ |   |
-| Ubuntu Server 20.04/22.04 LTS         | ✓ |   |
-
-The agent isn't currently tested against custom Linux distributions or hardened Linux distributions (for example, FIPS or SELinux).
-
-If an operating system isn't currently listed, you may still attempt to install, use, and troubleshoot the virtual machine extension, agent, and agent-based capabilities, but Chaos Studio cannot guarantee behavior or support for an unlisted operating system.
-
-To request validation and support on more operating systems or versions, use the [Chaos Studio Feedback Community](https://aka.ms/ChaosStudioFeedback).
+The following reference shows relevant version support and compatibility for chaos mesh within Chaos Studio.
 
 ## Chaos Mesh compatibility
 

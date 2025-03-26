@@ -20,7 +20,7 @@ This article provides guidance on how to track custom operations with the Applic
 - Application Insights for web applications (running ASP.NET) version 2.4+.
 - Application Insights for ASP.NET Core version 2.1+.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## Overview
 

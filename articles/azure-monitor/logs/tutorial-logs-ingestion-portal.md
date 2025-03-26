@@ -2,12 +2,8 @@
 title: 'Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Azure portal)'
 description: Tutorial on how sending data to a Log Analytics workspace in Azure Monitor using the Logs ingestion API. Supporting components configured using the Azure portal.
 ms.topic: tutorial
-ms.date: 11/26/2024
-author: bwren
-ms.author: bwren
-
-ms.reviewer: ivkhrul 
-ms.service: azure-monitor
+ms.date: 03/17/2025
+ms.reviewer: ivkhrul
 ---
 
 # Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Azure portal)
@@ -33,7 +29,7 @@ To complete this tutorial, you need:
 - [Permissions to create DCR objects](../essentials/data-collection-rule-create-edit.md#permissions) in the workspace.
 - PowerShell 7.2 or later.
 
-## Overview of the tutorial
+## Overview
 In this tutorial, you'll use a PowerShell script to send sample Apache access logs over HTTP to the API endpoint. This approach requires a script to convert this data to the JSON format that's required for the Azure Monitor Logs Ingestion API. The data will further be converted with a transformation in a DCR that filters out records that shouldn't be ingested. It also creates the columns required for the table where the data will be sent. 
 
 After the configuration is finished, you'll send sample data from the command line, and then inspect the results in Log Analytics.
@@ -100,7 +96,7 @@ Before you can send data to the workspace, you need to create the custom table w
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" lightbox="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" alt-text="Screenshot that shows the new DCR.":::
 
-1. Select the DCR that you created, and then select **Next**.
+1. Select a DCE that you already created from the pull-down menu and select **Next**.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-table-name.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-table-name.png" alt-text="Screenshot that shows the custom log table name.":::
 

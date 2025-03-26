@@ -1,8 +1,6 @@
 ---
 title: Correlate data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace 
 description: Run cross-service queries to correlated data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace.
-author: guywi-ms
-ms.author: guywild
 ms.topic: conceptual
 ms.date: 08/12/2024
 ms.reviewer: osalzberg
@@ -55,7 +53,7 @@ To run a cross-service query that correlates data in Azure Data Explorer or Azur
     * The query returns the first 1,000 records only.
     * Azure Monitor doesn't return Azure Resource Graph query errors.
     * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors.
-    * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`.
+    * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`, `bin_at`.
 * Microsoft Sentinel doesn't support cross-service queries to Azure Resource Graph.
 
 ## Query data in Azure Data Explorer by using adx()

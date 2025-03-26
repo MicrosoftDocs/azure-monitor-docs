@@ -1,17 +1,15 @@
 ---
-title: Get started with log queries in Azure Monitor | Microsoft Docs
-description: This article provides a tutorial for getting started writing log queries in Azure Monitor.
+title: Get started with log queries in Azure Monitor Logs
+description: This article provides a tutorial for getting started writing log queries in Azure Monitor Logs.
 ms.topic: tutorial
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: ilanawaitser
 ms.date: 01/08/2025
 
 ---
 
-# Get started with log queries in Azure Monitor
+# Get started with log queries in Azure Monitor Logs
 
-This tutorial shows you how to:
+This article explains the fundamentals of writing log queries in Azure Monitor Logs, including how to:
 
 * [Structure a query](#structure-a-query).
 * [Sort query results](#sort-results).
@@ -21,14 +19,10 @@ This tutorial shows you how to:
 * [Define and use custom fields](#define-and-use-custom-fields).
 * [Aggregate and group results](#aggregate-and-group-results).
 
-For a tutorial on using Log Analytics in the Azure portal, see [Get started with Azure Monitor Log Analytics](./log-analytics-tutorial.md).
-
-For more information about log queries in Azure Monitor, see [Overview of log queries in Azure Monitor](../logs/log-query-overview.md).
+Where applicable, the article provides examples of querying data using both Kusto Query Language (KQL) and [Log Analytics simple mode](log-analytics-simple-mode.md).
 
 > [!NOTE]
 > If you're collecting data from at least one virtual machine, you can work through this exercise in your own environment. For other scenarios, use our [demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), which includes plenty of sample data.
->
-> If you already know how to query in Kusto Query Language (KQL) but need to quickly create useful queries based on resource types, see the saved example queries pane in [Use queries in Azure Monitor Log Analytics](../logs/queries.md).
 
 ## Tutorial video
 
@@ -39,7 +33,7 @@ For more information about log queries in Azure Monitor, see [Overview of log qu
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=ea873b8b-3e6e-4459-989b-26a2b664acae]
 
-[!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
+[!INCLUDE [log-analytics-query-permissions](includes/log-analytics-query-permissions.md)]
 
 ## Structure a query
 
@@ -97,7 +91,7 @@ To search for records that include a specific value in any of their columns:
 
     :::image type="content" source="media/get-started-queries/logs-simple-search-select.png" lightbox="media/get-started-queries/logs-simple-search-select.png" alt-text="Screenshot shows the Search field in simple mode.":::
 
-1. To only show 10 results, see [Limit results in simple mode](/azure/azure-monitor/logs/get-started-queries&tabs=simple#limit-results).
+1. To only show 10 results, see [Limit results](#limit-results).
 
 > [!IMPORTANT]
 > We recommend using **Filter** if you know which column holds the data you're searching for. The [search operator is substantially less performant](../logs/query-optimization.md#avoid-unnecessary-use-of-search-and-union-operators) than filtering, and might not function well on large volumes of data.
@@ -467,7 +461,7 @@ To calculate the average `CounterValue` for each computer:
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
-However, it's currently not possible to define groups by multiple dimensions in simple mode. [Switch to the KQL mode tab](/azure/azure-monitor/logs/get-started-queries&tabs=kql#perform-mathematical-or-statistical-calculations) to see how this can be done using a Kusto query.
+However, it's currently not possible to define groups by multiple dimensions in simple mode. Switch to the KQL mode tab to see how this can be done using a Kusto query.
 
 ---
 
