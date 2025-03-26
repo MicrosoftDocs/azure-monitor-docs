@@ -10,7 +10,14 @@ ms.topic: article
 
 # Migrate from using batch and beta queries to the standard Log Analytics query API
 
-Azure Monitor Logs is deprecating the batch query and beta query APIs and will no longer provide support for these APIs as of March 31, 2028. This article explains how to use the [standard Log Analytics query API](overview.md) for existing queries that currently use the batch query and beta query APIs.
+Azure Monitor Logs is deprecating the batch query and beta query APIs. Support for these APIs is available according to the following timelines:
+
+| Deprecated API | Identifier | Support cutoff date |
+|---|---|
+| Beta | `https://api.loganalytics.io/beta/` | March 31, 2026 |
+| Batch | `https://api.loganalytics.azure.com/v1/$batch` | March 31, 2028 |
+
+This article explains how to use the [standard Log Analytics query API](overview.md) for existing queries that currently use the batch query and beta query APIs.
 
 
 ## Migrate batch queries to single queries
