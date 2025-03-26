@@ -29,12 +29,12 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 2.  (Optional) If you selected **See all signals** in the previous step, use the **Select a signal** pane to search for the signal name or filter the list of signals. Filter by:
     -   **Signal type**: Select **Log search**.
     -   **Signal source**: The service that sends the **Custom log search** and **Log (saved query)** signals. Select the signal name, and then select **Apply**.
-3.  In order to create a “Simple Log Alerts”:
-    -   You should close the Log pane
-    -   Select “Single event” in the query type radio button
-    -   On the **Logs** pane, write a query that returns the log events for which you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features).
+3.  To create a simple log alerts:
+    -   Close the Log pane.
+    -   Select **Single event** in the query type radio button.
+    -   On the **Logs** pane, write a query that returns the log events you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features).
 
-        Simple log alert rule queries don't support print, datatable and let.
+        Simple log alert rule queries don't support print, datatable, and let.
 
 4.  Select **Run** to run the alert.
 5.  The **Preview** section shows you the query results. When you finish editing your query, select **Continue Editing Alert**.
@@ -43,10 +43,10 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     -   Alert per every row that matches the query
     -   When the condition is met at least once in the minute – one row matches
     -   When the condition is met at least twice in the minute - two rows match
-    -   When the condition is met at least 3 times in the minute - three rows match
-    -   Custom definition of how many rows needs to match in order to have an alert on a certain minute
+    -   When the condition is met at least three times in the minute - three rows match
+    -   Custom definition of how many rows need to match in order to have an alert on a certain minute
 
-        Note: in the output we limit the number of rows that will be shown in the email or in the alert consumption. The 5 first column of the query will be displayed in the output. Therefore, if you would like to show different columns please change the order of the columns in the KQL query that is in the log pane.
+        Note: in the output, we limit the number of rows that are shown in the email or in the alert consumption. The five first column of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
 
         [Configure alert rule actions](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-actions) – the same
 
