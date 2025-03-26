@@ -35,7 +35,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 1.  Select **Run** to run the alert.
 1.  The **Preview** section shows you the query results. When you finish editing your query, select **Continue Editing Alert**.
 1.  The **Condition** tab opens and is populated with your log query. By default, the rule counts the number of results in the last five minutes. If the system detects summarized query results, the rule is automatically updated with that information.
-1.  Optional: in the “When to trigger the alert” section you can define the number of rows that should match to trigger an alert for a certain minute. For example:
+1.  Optional: in the **When to trigger the alert** section you can define the number of rows that should match to trigger an alert for a certain minute. For example:
     -   Alert per every row that matches the query
     -   When the condition is met at least once in the minute – one row matches
     -   When the condition is met at least twice in the minute - two rows match
