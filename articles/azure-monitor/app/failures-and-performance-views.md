@@ -1,14 +1,14 @@
 ---
-title: Failures and Performance views in Application Insights | Microsoft Docs
+title: Failures and performance views in Application Insights | Microsoft Docs
 description: Monitor application performance and failures with Application Insights.
 ms.topic: conceptual
-ms.date: 03/25/2025
-ms.reviewer: cogoodson 
+ms.date: 03/26/2025
+ms.reviewer: cogoodson
 ---
 
-# Failures and Performance views
+# Failures and performance views
 
-[Application Insights](app-insights-overview.md) collects telemetry from your application to assist in diagnosing failures and investigating slow transactions. It includes two essential tools:
+[Application Insights](app-insights-overview.md) collects telemetry from your application to help diagnosing failures and investigating slow transactions. It includes two essential tools:
 
 * The **Failures** experience, which tracks errors, exceptions, and faults, offering clear insights for fast problem-solving and enhanced stability.
 
@@ -116,7 +116,7 @@ If you connect Application Insights to a tracking system such as Azure DevOps or
 
 ## Use analytics data
 
-All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md), which provides a rich query language that you can use to analyze the requests that generated the exception you're researching.
+All data collected by Application Insights is stored in [Log Analytics](../logs/log-analytics-overview.md), which provides a rich query language to analyze the requests that generated the exception you're investigating.
 
 > [!TIP]
 > [Simple mode](../logs/log-analytics-simple-mode.md) in Log Analytics offers an intuitive point-and-click interface for analyzing and visualizing log data.
