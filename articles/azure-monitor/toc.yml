@@ -188,7 +188,7 @@ items:
           - name: Connection strings
             href: app/sdk-connection-string.md
             displayName: connection string, instrumentation key
-          - name: Sampling
+          - name: Classic API sampling
             href: app/sampling-classic-api.md
             displayName: adaptive sampling, fixed rate sample, fixed sampling, ingestion sampling
           - name: Application Insights API summary
@@ -326,6 +326,8 @@ items:
           href: alerts/proactive-email-notification.md
     - name: Terms and concepts
       items:
+      - name: OpenTelemetry sampling
+        href: app/opentelemetry-sampling.md
       - name: Connection strings
         href: app/connection-strings.md
       - name: Geolocation and IP address handling
