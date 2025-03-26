@@ -18,19 +18,19 @@ Together, these tools ensure the ongoing health and efficiency of web applicatio
 
 ### [Failures view](#tab/failures-view)
 
-To get to the **Failures** experience in Application Insights, select either the **Failed requests** graph on the **Overview** pane, or the **Failures** option under the **Investigate** category in the resource menu.
+To get to the **Failures** view in Application Insights, select either the **Failed requests** graph on the **Overview** pane, or **Failures** under the **Investigate** category in the resource menu.
 
 :::image type="content" source="media/failures-and-performance-views/failures-view-go-to.png" lightbox="media/failures-and-performance-views/failures-view-go-to.png" alt-text="Screenshot showing how to reach the 'Failures' view in Application Insights.":::
 
-You can also get to the failures pane from the [Application Map](app-map.md) by selecting a resource, then **Investigate failures** from the triage pane.
+You can also get to the failures view from the [Application Map](app-map.md) by selecting a resource, then **Investigate failures** from the triage section.
 
 ### [Performance view](#tab/performance-view)
 
-To get to the **Performance** experience in Application Insights, select either the **Server response time** or **Server requests** graph in the **Overview** pane, or the **Performance** option under the **Investigate** category in the resource menu.
+To get to the **Performance** view in Application Insights, select either the **Server response time** or **Server requests** graph in the **Overview** pane, or **Performance** under the **Investigate** category in the resource menu.
 
 :::image type="content" source="media/failures-and-performance-views/performance-view-go-to.png" lightbox="media/failures-and-performance-views/performance-view-go-to.png" alt-text="Screenshot showing how to reach the 'Performance' view in Application Insights.":::
 
-You can also get to the performance pane from the [Application Map](app-map.md) by selecting a resource, then **Investigate performance** from the triage pane.
+You can also get to the performance view from the [Application Map](app-map.md) by selecting a resource, then **Investigate performance** from the triage section.
 
 ---
 
@@ -56,7 +56,7 @@ The **Performance** view shows a list of all operations collected for your appli
 
 To investigate the root cause of an error or exception, you can drill into the problematic operation for a detailed end-to-end transaction details view that includes dependencies and exception details.
 
-1. Select an operation to show more information about it in the right pane.
+1. Select an operation to view the **Top 3 response codes**, **Top 3 exception types**, and **Top 3 failed dependencies** for that operation.
 
 1. Under **Drill into**, select the button with the number of filtered results to view a list of sample operations.
 
@@ -71,7 +71,7 @@ To investigate the root cause of an error or exception, you can drill into the p
 
 To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction details view that includes dependencies and exception details.
 
-1. Selecting an operation opens a panel which shows the **Distribution of durations** for different requests for the selected operation, and additional **Insights**.
+1. Select an operation to view the **Distribution of durations** for different requests of that operation, and additional **Insights**.
 
 1. Under **Drill into**, select the button with the number of filtered results to view a list of sample operations.
 
@@ -86,7 +86,7 @@ To investigate the root cause of a performance issue, you can drill into the pro
 
 ## End-to-end transaction details
 
-The end-to-end transaction details view shows a Gantt chart of the transaction, which lists all events with their duration and response code. Selecting a specific event reveals its properties in the right-hand pane, including additional information like the underlying command or call stack.
+The **End-to-end transaction details** view shows a Gantt chart of the transaction, which lists all events with their duration and response code. Selecting a specific event reveals its properties, including additional information like the underlying command or call stack.
 
 :::image type="content" source="media/failures-and-performance-views/transaction-view.png" lightbox="media/failures-and-performance-views/transaction-view.png" alt-text="Screenshot showing the 'End-to-end transaction details' view.":::
 
@@ -131,7 +131,7 @@ All data collected by Application Insights is stored in [Log Analytics](../logs/
 
 ## Profiler traces
 
-The [.NET Profiler](../profiler/profiler.md) helps get further with code-level diagnostics by showing the actual code that ran for the operation and the time required for each step. Some operations might not have a trace because the Profiler runs periodically. Over time, more operations should have traces.
+The [.NET Profiler](../insights/code-optimizations-profiler-overview.md#enabling-net-profiler) helps get further with code-level diagnostics by showing the actual code that ran for the operation and the time required for each step. Some operations might not have a trace because the Profiler runs periodically. Over time, more operations should have traces.
 
 1. To start .NET Profiler, select an operation on the **Performance** view, then go to **Profiler traces**.
 
@@ -150,13 +150,13 @@ The [.NET Profiler](../profiler/profiler.md) helps get further with code-level d
     :::image type="content" source="media/failures-and-performance-views/profiler-traces.png" lightbox="media/failures-and-performance-views/profiler-traces.png" alt-text="Screenshot showing .NET Profiler.":::
 
     > [!NOTE]
-    > **Hot path** is selected by default. It highlights the specific path of events that contribute to the issue you're investigating, indicated by the flame icon to the left of the event name.
+    > **Hot path** is selected by default. It highlights the specific path of events that contribute to the issue you're investigating, indicated by the flame icon next the event name.
 
 ## Analyze client-side performance and failures
 
 If you instrument your web pages with Application Insights, you can gain visibility into page views, browser operations, and dependencies. Collecting this browser data requires [adding a script to your web pages](javascript-sdk.md#add-the-javascript-code).
 
-1. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** pane.
+1. After you add the script, you can access page views and their associated performance metrics by selecting the **Browser** toggle on the **Performance** or **Failures** view.
 
     :::image type="content" source="media/failures-and-performance-views/server-browser-toggle.png" lightbox="media/failures-and-performance-views/server-browser-toggle.png" alt-text="Screenshot highlighting the 'Server / Browser' toggle below the top action bar.":::
 
