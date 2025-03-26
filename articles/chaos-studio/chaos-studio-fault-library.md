@@ -1892,6 +1892,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 #### Limitations
 
 * The Virtual Machine Redeploy operation is throttled within an interval of 10 hours. If your experiment fails with a "Too many redeploy requests" error, wait for 10 hours to retry the experiment.
+* VM extension errors that occur during the restart operation are ignored. This means if the VM successfully restarts but a VM extension fails to load, the fault will be considered successful. Ignored extension errors include VMExtensionProvisioningError, VMExtensionProvisioningTimeout, VMExtensionManagementInternalError, and VMExtensionHandlerNonTransientError.
 
 
 ### Virtual Machine Shutdown
@@ -1929,6 +1930,10 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
   ]
 }
 ```
+
+#### Limitations
+
+* VM extension errors that occur during the restart operation are ignored. This means if the VM successfully restarts but a VM extension fails to load, the fault will be considered successful. Ignored extension errors include VMExtensionProvisioningError, VMExtensionProvisioningTimeout, VMExtensionManagementInternalError, and VMExtensionHandlerNonTransientError.
 
 
 ### Virtual Machine Scale Set Shutdown
@@ -1975,6 +1980,10 @@ This fault has two available versions that you can use, Version 1.0 and Version 
   ]
 }
 ```
+
+##### Limitations
+
+* VM extension errors that occur during the restart operation are ignored. This means if the VM scale set instances successfully restart but VM extensions fail to load, the fault will be considered successful. Ignored extension errors include VMExtensionProvisioningError, VMExtensionProvisioningTimeout, VMExtensionManagementInternalError, and VMExtensionHandlerNonTransientError.
 
 #### Virtual Machine Scale Set Shutdown Version 2.0
 
@@ -2040,10 +2049,9 @@ Configure the shutdown fault:
 }
 ```
 
-#### Limitations
-Currently, only virtual machine scale sets configured with the **Uniform** orchestration mode are supported. If your virtual machine scale set uses **Flexible** orchestration, you can use the Azure Resource Manager virtual machine shutdown fault to shut down selected instances.
-
-
+##### Limitations
+* Currently, only virtual machine scale sets configured with the **Uniform** orchestration mode are supported. If your virtual machine scale set uses **Flexible** orchestration, you can use the Azure Resource Manager virtual machine shutdown fault to shut down selected instances.
+* VM extension errors that occur during the restart operation are ignored. This means if the VM scale set instances successfully restart but VM extensions fail to load, the fault will be considered successful. Ignored extension errors include VMExtensionProvisioningError, VMExtensionProvisioningTimeout, VMExtensionManagementInternalError, and VMExtensionHandlerNonTransientError.
 
 
 ## Details: Orchestration actions
