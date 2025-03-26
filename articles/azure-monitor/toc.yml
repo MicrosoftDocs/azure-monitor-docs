@@ -1428,6 +1428,8 @@ items:
             href: logs/api/prefer-options.md
           - name: Errors
             href: logs/api/errors.md
+          - name: Migrate from using batch and beta query APIs
+            href: logs/api/migrate-batch-and-beta.md
   - name: Get the Activity log using the REST API
     href: essentials/rest-activity-log.md
   - name: Change Analysis (classic)
