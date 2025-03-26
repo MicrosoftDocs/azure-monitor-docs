@@ -20,7 +20,12 @@ To create a new Azure workbook:
 
 1. From the Azure Workbooks page, select an empty template or select **New** in the top toolbar.
 1. Combine any of these elements to add to your workbook:
-    * [Text](#add-text)
+   * [Text](#add-text)
+      
+   * [Image](#add-image)
+      
+   * [Video](#add-video)
+      
     * [Parameters](#add-parameters)
     * [Queries](#add-queries)
     * [Metric charts](#add-metric-charts)
@@ -46,9 +51,9 @@ Text is added through a markdown control into which an author can add their cont
 
 To add text to an Azure workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a query by doing either of these steps:
+1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add text by doing either of these steps:
 
-    * Select **Add**, and **Add text** below an existing element, or at the bottom of the workbook.
+* Select **Add**, and **Add text** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add text**.
 
 1. Enter markdown text into the editor field.
@@ -266,25 +271,25 @@ This is a metric chart in edit mode:
 ### Metric chart examples
 
 **Transactions split by API name as a line chart**
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-metric-chart-storage-split-line.png" lightbox="media/workbooks-create-workbook/workbooks-metric-chart-storage-split-line.png" alt-text="Screenshot showing a metric line chart for Storage transactions split by API name." border="false":::
-
-
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-metric-chart-storage-split-line.png" lightbox="media/workbooks-create-workbook/workbooks-metric-chart-storage-split-line.png" alt-text="Screenshot showing a metric line chart for Storage transactions split by API name." border="false":::
+```
 **Transactions split by response type as a large bar chart**
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-metric-chart-storage-bar-large.png" lightbox="media/workbooks-create-workbook/workbooks-metric-chart-storage-bar-large.png" alt-text="Screenshot showing a large metric bar chart for Storage transactions split by response type." border="false":::
-
-**Average latency as a scatter chart**
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-metric-chart-storage-scatter.png" lightbox="media/workbooks-create-workbook/workbooks-metric-chart-storage-scatter.png" alt-text="Screenshot showing a metric scatter chart for storage latency." border="false":::
-
-## Add links
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-metric-chart-storage-bar-large.png" lightbox="media/workbooks-create-workbook/workbooks-metric-chart-storage-bar-large.png" alt-text="Screenshot showing a large metric bar chart for Storage transactions split by response type." border="false":::
+```**Average latency as a scatter chart**
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-metric-chart-storage-scatter.png" lightbox="media/workbooks-create-workbook/workbooks-metric-chart-storage-scatter.png" alt-text="Screenshot showing a metric scatter chart for storage latency." border="false":::
+```## Add links
 
 You can use links to create links to other views, workbooks, other items inside a workbook, or to create tabbed views within a workbook. The links can be styled as hyperlinks, buttons, and tabs.
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-empty-links.png" lightbox="media/workbooks-create-workbook/workbooks-empty-links.png" alt-text="Screenshot of adding a link to a workbook." border="false":::
-
-Watch this video to learn how to use tabs, groups, and contextual links in Azure Workbooks:
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-empty-links.png" lightbox="media/workbooks-create-workbook/workbooks-empty-links.png" alt-text="Screenshot of adding a link to a workbook." border="false":::
+```Watch this video to learn how to use tabs, groups, and contextual links in Azure Workbooks:
 
 > [!VIDEO https://learn-video.azurefd.net/vod/player?id=cec26cb0-4912-42d3-b006-d49ee70c2f3c]
 
@@ -325,18 +330,18 @@ Links can use all of the link actions available in [link actions](workbooks-link
 ### Tabs
 
 Most of the time, tab links are combined with the **Set a parameter value** action. Here's an example showing the links step configured to create 2 tabs, where selecting either tab sets a **selectedTab** parameter to a different value (the example shows a third tab being edited to show the parameter name and parameter value placeholders):
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-creating-tabs.png" lightbox="media/workbooks-create-workbook/workbooks-creating-tabs.png" alt-text="Screenshot of creating tabs in workbooks." border="false":::
-
-You can then add other items in the workbook that are conditionally visible if the **selectedTab** parameter value is "1" by using the advanced settings:
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab.png" alt-text="Screenshot of conditionally visible tab in workbooks." border="false":::
-
-The first tab is selected by default, initially setting **selectedTab** to 1, and making that step visible. Selecting the second tab changes the value of the parameter to "2", and different content is displayed:
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab2.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab2.png" alt-text="Screenshot of workbooks with content displayed when selected tab is 2.":::
-
-A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-creating-tabs.png" lightbox="media/workbooks-create-workbook/workbooks-creating-tabs.png" alt-text="Screenshot of creating tabs in workbooks." border="false":::
+```You can then add other items in the workbook that are conditionally visible if the **selectedTab** parameter value is "1" by using the advanced settings:
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab.png" alt-text="Screenshot of conditionally visible tab in workbooks." border="false":::
+```The first tab is selected by default, initially setting **selectedTab** to 1, and making that step visible. Selecting the second tab changes the value of the parameter to "2", and different content is displayed:
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab2.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab2.png" alt-text="Screenshot of workbooks with content displayed when selected tab is 2.":::
+```A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
 
 ### Tabs limitations
 
@@ -373,11 +378,10 @@ To add a group to your workbook:
 
 1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a parameter by doing either of these steps:
 
-    * Select **Add**, and **Add group** below an existing element, or at the bottom of the workbook.
+* Select **Add**, and **Add group** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add group**.
-    <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-add-group.png" lightbox="media/workbooks-create-workbook/workbooks-add-group.png" alt-text="Screenshot showing selecting adding a group to a workbook. " border="false":::
-
+   
 1. Select items for your group.
 
 1. Select **Done editing.**
@@ -416,19 +420,19 @@ For groups created from a template, the content of the template isn't retrieved 
 In this mode, a button is displayed where the group would be, and no content is retrieved or created until the user explicitly selects the button to load the content. This is useful in scenarios where the content might be expensive to compute or rarely used. The author can specify the text to appear on the button.
 
 This screenshot shows explicit load settings with a configured "Load more" button.
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded.png" lightbox="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded.png" alt-text="Screenshot of explicit load settings for a group in workbooks." border="false":::
-
-This is the group before being loaded in the workbook:
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-before.png" lightbox="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-before.png" alt-text="Screenshot showing an explicit group before being loaded in the workbook." border="false":::
-
-
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded.png" lightbox="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded.png" alt-text="Screenshot of explicit load settings for a group in workbooks." border="false":::
+```This is the group before being loaded in the workbook:
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-before.png" lightbox="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-before.png" alt-text="Screenshot showing an explicit group before being loaded in the workbook." border="false":::
+```
 The group after being loaded in the workbook:
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-after.png" lightbox="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-after.png" alt-text="Screenshot showing an explicit group after being loaded in the workbook.":::
-
-#### Always mode
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-after.png" lightbox="media/workbooks-create-workbook/workbooks-groups-explicitly-loaded-after.png" alt-text="Screenshot showing an explicit group after being loaded in the workbook.":::
+```#### Always mode
 
 In **Always** mode, the content of the group is always loaded and created as soon as the workbook loads. This is most frequently used when you're using a group only for layout purposes, where the content will always be visible.
 
@@ -441,26 +445,26 @@ When a template is loaded into a group, the workbook attempts to merge any param
 #### Example 1: All parameters have identical names
 
 Suppose you have a template that has two parameters at the top, a time range parameter and a text parameter named "**Filter**":
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-top-level-params.png" lightbox="media/workbooks-create-workbook/workbooks-groups-top-level-params.png" alt-text="Screenshot showing top level parameters in a workbook." border="false":::
-
-Then a group item loads a second template that has its own two parameters and a text step, where the parameters are named the same:
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-merged-away.png" lightbox="media/workbooks-create-workbook/workbooks-groups-merged-away.png" alt-text="Screenshot of a workbook template with top level parameters." border="false":::
-
-When the second template is loaded into the group, the duplicate parameters are merged out. Since all of the parameters are merged away, the inner parameters step is also merged out, resulting in the group containing only the text step.
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-groups-top-level-params.png" lightbox="media/workbooks-create-workbook/workbooks-groups-top-level-params.png" alt-text="Screenshot showing top level parameters in a workbook." border="false":::
+```Then a group item loads a second template that has its own two parameters and a text step, where the parameters are named the same:
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-groups-merged-away.png" lightbox="media/workbooks-create-workbook/workbooks-groups-merged-away.png" alt-text="Screenshot of a workbook template with top level parameters." border="false":::
+```When the second template is loaded into the group, the duplicate parameters are merged out. Since all of the parameters are merged away, the inner parameters step is also merged out, resulting in the group containing only the text step.
 
 ### Example 2: One parameter has an identical name
 
 Suppose you have a template that has two parameters at the top, a **time range** parameter and a text parameter named "**FilterB**" ():
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-wont-merge-away.png" lightbox="media/workbooks-create-workbook/workbooks-groups-wont-merge-away.png" alt-text="Screenshot of a group item with the result of parameters merged away." border="false":::
-
-When the group's item's template is loaded, the **TimeRange** parameter is merged out of the group. The workbook contains the initial parameters step with **TimeRange** and **Filter**, and the group's parameter only includes **FilterB**.
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-groups-wont-merge-away-result.png" lightbox="media/workbooks-create-workbook/workbooks-groups-wont-merge-away-result.png" alt-text="Screenshot of workbook group where parameters won't merge away." border="false":::
-
-If the loaded template had contained **TimeRange** and **Filter** (instead of **FilterB**), then the resulting workbook would have a parameters step and a group with only the text step remaining.
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-groups-wont-merge-away.png" lightbox="media/workbooks-create-workbook/workbooks-groups-wont-merge-away.png" alt-text="Screenshot of a group item with the result of parameters merged away." border="false":::
+```When the group's item's template is loaded, the **TimeRange** parameter is merged out of the group. The workbook contains the initial parameters step with **TimeRange** and **Filter**, and the group's parameter only includes **FilterB**.
+```
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-groups-wont-merge-away-result.png" lightbox="media/workbooks-create-workbook/workbooks-groups-wont-merge-away-result.png" alt-text="Screenshot of workbook group where parameters won't merge away." border="false":::
+```If the loaded template had contained **TimeRange** and **Filter** (instead of **FilterB**), then the resulting workbook would have a parameters step and a group with only the text step remaining.
 
 ### Splitting a large template into many templates
 
@@ -474,9 +478,9 @@ To turn a larger template into multiple subtemplates:
 
 1. Create a copy of the shared parameters step, and then use **move into group** to move the copy into the group created in step 1. This parameter allows the subtemplate to work independently of the outer template, and will get merged out when loaded inside the outer template.
 
-    > [!NOTE]
-    > Subtemplates don't technically need to have the parameters that get merged out if you never plan on the subtemplates being visible by themselves. However, if the subtemplates don't have the parameters, it will make them very hard to edit or debug if you need to do so later.
-
+   > [!NOTE]
+   > Subtemplates don't technically need to have the parameters that get merged out if you never plan on the subtemplates being visible by themselves. However, if the subtemplates don't have the parameters, it will make them very hard to edit or debug if you need to do so later.
+   
 1. Move each item in the workbook you want to be in the subtemplate into the group created in step 1.
 
 1. If the individual steps moved in step 3 had conditional visibilities, that becomes the visibility of the outer group (like used in tabs). Remove them from the items inside the group and add that visibility setting to the group itself. Save here to avoid losing changes and/or export and save a copy of the json content.
@@ -484,3 +488,33 @@ To turn a larger template into multiple subtemplates:
 1. If you want that group to be loaded from a template, you can use the **Edit** toolbar button in the group. This opens just the content of that group as a workbook in a new window. You can then save it as appropriate and close this workbook view (don't close the browser, just that view to go back to the previous workbook you were editing).
 
 1. You can then change the group step to load from template and set the template ID field to the workbook/template you created in step 5. To work with workbooks IDs, the source needs to be the full Azure Resource ID of a shared workbook. Press *Load* and the content of that group will now be loaded from that subtemplate instead of saved inside this outer workbook.
+## Add image
+
+Workbooks allow authors to include images in their content. Images can enhance the workbook by providing visual aids such as diagrams, screenshots, and other visual information.
+
+To add an image in your workbook:
+
+1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add an image by doing either of these steps:
+
+   - Select **Add**, and **Add image** below an existing element, or at the bottom of the workbook.
+   - Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add video**.
+      
+1. Enter the image URL in the provided field.
+
+1. Provide additional settings such as the image title, size, and alternative text. Setting the image size to full will set the image to its original size.
+
+# Add video
+
+Workbooks allows you to easily embed video content within your workbook. This feature enhances the interactivity and informational value of your workbook by integrating video content seamlessly.
+
+To add a video in your workbook:
+
+1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a video by doing either of these steps:
+
+   - Select **Add**, and **Add video** below an existing element, or at the bottom of the workbook.
+   - Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add video**.
+      
+1. Enter the video URL in the provided field.
+
+1. Provide additional settings such as the video title, size, and alternative text.
+
