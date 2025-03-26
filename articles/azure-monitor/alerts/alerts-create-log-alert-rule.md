@@ -73,9 +73,9 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-logs-conditions-tab.png" alt-text="Screenshot that shows the Condition tab for creating a new log search alert rule.":::
 
     > [!NOTE]
-    > You must use a managed identity when using Azure resource graph queries in log search alerts.
-    > Each managed identity supports a maximum of 50 log search alert rules using Azure resource graph queries.
-    > Ensure that the alerting configuration doesn't exceed this limit to maintain proper functionality.
+    > - You must use a managed identity when using Azure resource graph queries in log search alerts.
+    > - Each managed identity supports a maximum of 50 log search alert rules using Azure resource graph queries.
+    > - Ensure that the alerting configuration doesn't exceed this limit to maintain proper functionality.
     >
 
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
