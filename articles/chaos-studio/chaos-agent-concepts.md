@@ -85,8 +85,10 @@ For more details on installation and identity requirements see the [Chaos Studio
 The agent attempts to install itself and its dependencies in the following filepaths:
 
 - **Windows:** ```C:\Packages\Plugins\Microsoft.Azure.Chaos.ChaosWindowsAgent\<version>```
+---
 - **Linux:** ```/var/lib/waagent/Microsoft.Azure.Chaos.ChaosLinuxAgent-<version>```
 - **Linux Dependencies:** Installed in the linux-x64 folder at the above location
+- **Linux ```tc``` scripts:** Some scripts needed for our networking faults are installed at the following filepath: ```/.azure-chaos-agent/scripts/```
 
 <br>[![Screenshot of terminal example showing filepath of Chaos agent on a linux machine](images/chaos-agent-linux-filepath-example.png)](images/chaos-agent-linux-filepath-example.png#lightbox)<br>
 
