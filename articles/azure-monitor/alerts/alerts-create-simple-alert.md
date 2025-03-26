@@ -5,6 +5,7 @@ ms.topic: how-to
 ms.date: 03/26/2025
 ms.author: inhenkel
 author: IngridAtMicrosoft
+ms.custom: poke
 ---
 
 # Create a simple alert
