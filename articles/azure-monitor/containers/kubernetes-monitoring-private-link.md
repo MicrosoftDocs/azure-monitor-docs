@@ -78,6 +78,8 @@ Follow the steps below **only if your AKS cluster is not in the same region as y
 
 :::image type="content" source="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr-dce.png" alt-text="A screenshot showing association of the DCE." lightbox="media/kubernetes-monitoring-private-link/amp-private-ingestion-dcr-dce.png" :::
 
+5. Go to the AMPLS overview page, click on **Azure Monitor Resources**, click **Add**, and then connect the created DCE.
+
 ### 3. Connect AMPLS to private endpoint of AKS cluster
 
 A private endpoint is a special network interface for an Azure service in your Virtual Network (VNet). We will now create a private endpoint in the VNet of your private AKS cluster and connect it to the AMPLS for secure ingestion of metrics.
