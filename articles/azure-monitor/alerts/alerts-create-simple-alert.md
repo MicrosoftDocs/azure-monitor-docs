@@ -31,7 +31,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 1.  To create a simple log alerts:
     -   Close the Log pane.
     -   Select **Single event** in the query type radio button.
-    -   On the **Logs** pane, write a query that returns the log events you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features).**Note**: Simple log alert rule queries don't support print, datatable, and let.
+    -   On the **Logs** pane, write a query that returns the log events you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features). **Note**: Simple log alert rule queries don't support print, datatable, and let.
 1.  Select **Run** to run the alert.
 1.  The **Preview** section shows you the query results. When you finish editing your query, select **Continue Editing Alert**.
 1.  The **Condition** tab opens and is populated with your log query. By default, the rule counts the number of results in the last five minutes. If the system detects summarized query results, the rule is automatically updated with that information.
@@ -42,7 +42,8 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     -   When the condition is met at least three times in the minute - three rows match
     -   Custom definition of how many rows need to match to have an alert on a certain minute
 
-> [!NOTE] in the output, we limit the number of rows that are shown in the email or in the alert consumption. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
+> [!NOTE] 
+> In the output, the number of rows that are shown in the email or in the alert consumption is limited. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
 
 ## Related content
 
