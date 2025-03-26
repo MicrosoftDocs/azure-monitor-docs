@@ -531,6 +531,11 @@
    "redirect_document_id": false
   },
   {
+    "source_path_from_root": "/articles/azure-monitor/app/classic-api-sampling.md",
+    "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling-classic-api",
+    "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/app/tutorial-runtime-exceptions.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/tutorial-runtime-exceptions",
    "redirect_document_id": false
