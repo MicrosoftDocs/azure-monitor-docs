@@ -45,7 +45,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     -   When the condition is met at least three times in the minute - three rows match
     -   Custom definition of how many rows need to match to have an alert on a certain minute
 
-        > [!NOTE] in the output, we limit the number of rows that are shown in the email or in the alert consumption. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
+    > [!NOTE] in the output, we limit the number of rows that are shown in the email or in the alert consumption. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
 
 ## Related content
 
@@ -53,4 +53,3 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 - [Configure alert rule details](alerts-create-log-alert-rule.md#configure-alert-rule-details)
 - [Configure alert rule tags](alerts-create-log-alert-rule.md#configure-alert-rule-tags)
 - [Review and create the alert rule](alerts-create-log-alert-rule.md#review-and-create-the-alert-rule)
-- [Create a log alert rule](alerts-create-log-alert-rule#related-content)
