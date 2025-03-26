@@ -5,7 +5,7 @@ ms.topic: include
 ms.date: 02/25/2025
 ---
 
-### Active Service Health event subscription affect
+### Active Service Health event subscription affects
 
 Returns all active Service Health events - including service issues, planned maintenance, health advisories, and security advisories – grouped by event type and including count of impacted subscriptions.
 
