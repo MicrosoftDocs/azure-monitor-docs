@@ -5,6 +5,7 @@ ms.topic: how-to
 ms.date: 03/26/2025
 ms.author: inhenkel
 author: IngridAtMicrosoft
+description: "This article shows you how to create a new simple log alert rule or edit an existing simple log alert rule in Azure Monitor."
 ---
 
 # Create a simple alert
@@ -45,7 +46,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     -   When the condition is met at least three times in the minute - three rows match
     -   Custom definition of how many rows need to match to have an alert on a certain minute
 
-    > [!NOTE] in the output, we limit the number of rows that are shown in the email or in the alert consumption. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
+> [!NOTE] in the output, we limit the number of rows that are shown in the email or in the alert consumption. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
 
 ## Related content
 
