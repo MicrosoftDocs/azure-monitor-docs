@@ -17,8 +17,6 @@ Alert rules combine the resources to be monitored, the monitoring data from the 
 
 Alerts triggered by these alert rules contain a payload that uses the [common alert schema](alerts-common-schema.md).
 
-## Prerequisites
-
 [!INCLUDE [alerts-rule-prerequisites](includes/alerts-rule-prerequisites.md)]
 
 [!INCLUDE [alerts-wizard-access](includes/alerts-wizard-access.md)]
@@ -32,7 +30,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 3.  To create a simple log alerts:
     -   Close the Log pane.
     -   Select **Single event** in the query type radio button.
-    -   On the **Logs** pane, write a query that returns the log events you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features).
+    -   On the **Logs** pane, write a query that returns the log events you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features).
 
         Simple log alert rule queries don't support print, datatable, and let.
 
@@ -46,14 +44,14 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     -   When the condition is met at least three times in the minute - three rows match
     -   Custom definition of how many rows need to match in order to have an alert on a certain minute
 
-        Note: in the output, we limit the number of rows that are shown in the email or in the alert consumption. The five first column of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
+        Note: in the output, we limit the number of rows that are shown in the email or in the alert consumption. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
 
-        [Configure alert rule actions](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-actions) – the same
+        [Configure alert rule actions](alerts-create-log-alert-rule.md#configure-alert-rule-actions)
 
-        [Configure alert rule details](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-details) – the same
+        [Configure alert rule details](alerts-create-log-alert-rule.md#configure-alert-rule-details)
 
-        [Configure alert rule tags](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#configure-alert-rule-tags) – the same
+        [Configure alert rule tags](alerts-create-log-alert-rule.md#configure-alert-rule-tags)
 
-        [Review and create the alert rule](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#review-and-create-the-alert-rule) – the same
+        [Review and create the alert rule](alerts-create-log-alert-rule.md#review-and-create-the-alert-rule)
 
-        [Related content](https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-create-log-alert-rule#related-content) – the same
+        [Related content](alerts-create-log-alert-rule#related-content)
