@@ -29,7 +29,7 @@ We strongly recommend that you always update to the latest version, or opt in to
 - We will post any significant delays here.
 
 ## Version details
-| Release Date | Release notes | Windows | Linux |
+| Deployment Start Date | Release notes | Windows | Linux |
 |:---|:---|:---|:---|
 | February 2025 | **Windows Features** <ul><li>Use fallback API version only if token endpoint was not provided by AMCS</li><li>**Bug Fixes**<ul><li>Report actual date and time values from the W3C logs when collecting IIS logs</li><li>Use non-cached OS Name for Heartbeat</li><li>Compatibility with Dependency Agent for Client install scenarios.</li><li>Ignore extra newline character in custom logs collection</li><li>AMA: Bug fix to escape '&' in perf counters data source</li></ul></li></ul>**Linux Features**<ul><li>Coming soon.</li></ul>| 1.34.0| 1.34.4|
 | January 2025 | **Windows Features**<ul><li>Added the ability to tune the disk quota for the windows agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul>**Linux Features**<ul><li>Added the ability to tune the disk quota for the Linux agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul>| 1.32.0| 1.33.3|
