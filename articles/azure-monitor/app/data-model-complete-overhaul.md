@@ -13,9 +13,11 @@ ms.reviewer: mmcc
 
 Data collected by Application Insights models this typical application execution pattern:
 
-:::image type="content" source="media/data-model-complete/application-insights-data-model.png" lightbox="media/data-model-complete/application-insights-data-model.png" alt-text="Diagram that shows an Application Insights telemetry data model.":::
+:::image type="content" source="media/data-model-complete/application-insights-data-model-new.png" lightbox="media/data-model-complete/application-insights-data-model-new.png" alt-text="Diagram that shows the Application Insights telemetry data model.":::
 
-The following types of telemetry are used to monitor the execution of your app. The Azure Monitor OpenTelemetry Distro and Application Insights SDKs automatically collect these types:
+## Option 1
+
+The following types of telemetry are used to monitor the execution of your app. The Azure Monitor OpenTelemetry Distro and Application Insights JavaScript SDK collect:
 
 | Collection  | Telemetry type | Table | Description |
 |-------------|----------------|-------|-------------|
@@ -31,6 +33,33 @@ The following types of telemetry are used to monitor the execution of your app. 
 | | [Metric (Custom)](#metric-telemetry) | `customMetrics` | Used to report periodic scalar measurements. |
 | | [Event](#event-telemetry) | `customEvents` | Typically used to capture user interaction with your service to analyze usage patterns. |
 | | [Availability](#availability-telemetry) | `availabilityResults` | ... |
+
+## Option 2
+
+The following types of telemetry are used to monitor the execution of your app. The Azure Monitor OpenTelemetry Distro collects:
+
+| Telemetry type | Table | Description | Example |
+|----------------|-------|-------------|---------|
+| [Request](#request-telemetry) | `requests` | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives. | HTTP requests |
+| [Dependency](#dependency-telemetry) | `dependencies` | Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`. | Outbound calls to databases |
+| [Exception](#exception-telemetry) | `exceptions` | Typically represents an exception that causes an operation to fail. | Error stack traces |
+| [Metric (Default)](#metric-telemetry) | `performanceCounters` | ... | CPU usage |
+
+For browser telemetry, the Application Insights JavaScript SDK is required which collects:
+
+| Telemetry type | Table | Description |
+|----------------|-------|-------------|
+| [Page view](#pageview-telemetry) | `pageViews` | Tracks and collects data related to the views of web pages or specific content within your web applications. |
+| [Browser timings](#browser-timing-telemetry) | `browserTimings` | ... |
+
+Additionally, the following data types are available for custom telemetry:
+
+| Telemetry type | Table | Description | Example |
+|----------------|-------|-------------|---------|
+| [Trace](#trace-telemetry) | `traces` | Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`. | Custom diagnostic messages |
+| [Metric (Custom)](#metric-telemetry) | `customMetrics` | Used to report periodic scalar measurements. | ... |
+| [Event](#event-telemetry) | `customEvents` | Typically used to capture user interaction with your service to analyze usage patterns. | User interactions |
+| [Availability](#availability-telemetry) | `availabilityResults` | ... | Synthetic test results |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
