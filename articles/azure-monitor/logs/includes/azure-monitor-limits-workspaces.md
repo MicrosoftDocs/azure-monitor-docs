@@ -4,7 +4,7 @@ ms.date: 01/07/2025
 ---
 
 
-###Data collection volume and retention
+### Data collection volume and retention
 
 | Pricing tier | Limit per day | Data retention | Comment |
 |:-------------|:--------------|:---------------|:--------|
@@ -16,7 +16,7 @@ ms.date: 01/07/2025
 | [Legacy Standard tier](../cost-logs.md#standard-and-premium-pricing-tiers) | No limit | 30 days | Retention can't be adjusted. This tier hasn't been available to any new workspaces since October 1, 2016. |
 | [Legacy Premium tier](../cost-logs.md#standard-and-premium-pricing-tiers) | No limit | 365 days | Retention can't be adjusted. This tier hasn't been available to any new workspaces since October 1, 2016. |
 
-###Number of workspaces per subscription
+### Number of workspaces per subscription
 
 | Pricing tier | Workspace limit | Comments |
 |:-------------|:----------------|:---------|
@@ -25,13 +25,13 @@ ms.date: 01/07/2025
 
 <a name="azure-portal"></a>
 
-###Azure portal
+### Azure portal
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
 | Maximum records returned by a log query | 30,000 | Reduce results by using query scope, time range, and filters in the query. |
 
-##Data Collector API
+### Data Collector API
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
@@ -40,7 +40,7 @@ ms.date: 01/07/2025
 
 <a name="la-query-api"></a>
 
-###Query API
+### Query API
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
@@ -49,7 +49,7 @@ ms.date: 01/07/2025
 | Maximum query running time | 10 minutes | See [Timeouts](../api/timeouts.md) for details.|
 | Maximum request rate | 200 requests per 30 seconds per Microsoft Entra user or client IP address | See [Log queries and language](../../fundamentals/service-limits.md#log-queries-and-language).|
 
-###Azure Monitor Logs connector
+### Azure Monitor Logs connector
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
@@ -59,7 +59,7 @@ ms.date: 01/07/2025
 | Maximum query timeout | 100 second |  |
 | Charts |  | The Logs page and the connector use different charting libraries for visualization. Some functionality isn't currently available in the connector. |
 
-###Summary rules
+### Summary rules
 
 | Category | Limit |
 |:---------|:------|
@@ -68,7 +68,7 @@ ms.date: 01/07/2025
 | Maximum results set volume | 100 MB |
 | Query time-out for bin processing | 10 minutes |
 
-###General workspace limits
+### General workspace limits
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
