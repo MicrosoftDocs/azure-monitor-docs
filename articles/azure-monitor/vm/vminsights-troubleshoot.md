@@ -2,7 +2,7 @@
 title: Troubleshoot VM Insights
 description: Get troubleshooting information about agent installation and the use of the VM Insights feature in Azure Monitor.
 ms.topic: conceptual
-ms.date: 11/06/2024
+ms.date: 03/27/2025
 ms.custom: references_regions
 ---
 
@@ -69,7 +69,7 @@ If you have multiple virtual machines using the same DCR, you can edit the DCR t
 
 The following sections help you resolve problems with the **Map** view.
 
-## Verify that the map feature was enabled for the virtual machine
+### Verify that the map feature was enabled for the virtual machine
 The virtual machine is only added to the map if you selected **Processes and dependencies (Map)** when you enabled VM insights on the virtual machine. Click the **Enable** button next to the virtual machine on the **Overview** pane of VM insights view the current configuration. If **Processes and dependencies (Map)** isn't enabled, click **Edit** to either select a different data collection rule (DCR) with this feature enabled or create a new DCR. See [Enable VM Insights](./vminsights-enable.md) for details.
 
 
@@ -93,4 +93,4 @@ If the virtual machine is in the Map view and the Dependency Agent is installed 
 
 ## Related content
 
-* For more information on installing VM Insights agents, see [Enable VM Insights overview](vminsights-enable-overview.md)
+* For more information on installing VM Insights, see [Enable VM Insights overview](vminsights-enable-overview.md)
