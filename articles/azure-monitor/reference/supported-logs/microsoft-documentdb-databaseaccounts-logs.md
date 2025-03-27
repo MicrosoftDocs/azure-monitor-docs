@@ -2,9 +2,6 @@
 title: Supported log categories - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 

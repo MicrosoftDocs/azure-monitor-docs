@@ -2,9 +2,6 @@
 title: Supported log categories - Microsoft.Cache/redisEnterprise/databases
 description: Reference for Microsoft.Cache/redisEnterprise/databases in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: Microsoft.Cache/redisEnterprise/databases, naam
 

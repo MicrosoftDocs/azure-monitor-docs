@@ -2,9 +2,6 @@
 title: Supported log categories - Microsoft.ContainerInstance/containerGroups
 description: Reference for Microsoft.ContainerInstance/containerGroups in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: Microsoft.ContainerInstance/containerGroups, naam
 
