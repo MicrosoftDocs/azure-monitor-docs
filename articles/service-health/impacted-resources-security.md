@@ -2,7 +2,7 @@
 title: Resource impact from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
 ms.topic: conceptual
-ms.date: 2/26/2025
+ms.date: 3/27/2025
 ---
 
 # Resource impact from Azure security incidents
