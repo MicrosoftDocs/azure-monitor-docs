@@ -75,7 +75,12 @@ The following logic is used to determine how to process each log entry:
 Repeat the following steps to create a separate DCR for each application or infrastructure team. Each will include a set of K8s namespaces and a Log Analytics workspace destination.
 
 > [!TIP]
-> For multi-homing, create multiple DCRs with different Log Analytics workspaces but the same set of K8s namespaces. This will enable the same logs sent to multiple Log Analytics workspaces. 
+> For multi-homing, deploy a separate DCR template and parameter file for each Log Analytics workspace and include the same set of K8s namespaces. This will enable the same logs to be sent to multiple workspaces. For example, if you want to send logs for app-team-1, app-team-2 to both LAW1 and LAW2, 
+>
+> - Create DCR1 and include LAW1 for app-team-1 and app-team-2 namespaces
+> - Create DCR2 and include LAW2 for app-team-1 and app-team-2 namespaces
+
+
 
 1. Retrieve the following ARM template and parameter file.
 
