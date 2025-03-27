@@ -1,0 +1,31 @@
+"supportedValues": [
+    {
+        "recommendationCategory": "HighAvailability",
+        "recommendationDataSourceQuery": "resources | where type == '<Azure-Resource-Manager-Resource-Details>' and properties.kind == 'ping' | project subscriptionId, id",
+        "recommendationImpact": "Medium",
+        "supportedResourceType": "<Azure-Resource-Manager-Resource-Details>",
+        "recommendationControl": "ServiceUpgradeAndRetirement",
+        "id": "<Recommendation-Type-Id-Guid>",
+        "displayName": "<Description-Of-The-Recommendation",
+        "properties": [
+            {
+                "name": "recommendationCategory",
+                "value": "HighAvailability"
+            },
+            {
+                "name": "recommendationImpact",
+                "value": "Medium"
+            },
+            {
+                "name": "supportedResourceType",
+                "value": "<Azure-Resource-Manager-Resource-Details>"
+            }
+        ],
+        "sourceProperties": {
+            "serviceRetirement": {
+                "retirementDate": "<Retirement-Date-YYY-MM-dd>",
+                "retirementFeatureName": "<Name-Of-The-Retiring-Feature>"
+            }
+        }
+    }
+]
