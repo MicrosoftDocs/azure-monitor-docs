@@ -188,9 +188,6 @@ items:
           - name: Connection strings
             href: app/sdk-connection-string.md
             displayName: connection string, instrumentation key
-          - name: Classic API sampling
-            href: app/sampling-classic-api.md
-            displayName: adaptive sampling, fixed rate sample, fixed sampling, ingestion sampling
           - name: Application Insights API summary
             displayName: SDK, API, custom events, custom metrics, trackevent, trackmetric, getmetric, trackrequest, trackexception, tracktrace, trackdependency
             href: app/api-custom-events-metrics.md
@@ -218,7 +215,7 @@ items:
       - name: Application Map
         displayName: appmap, app map, dependency map, dependencies, hotspots, cloud role name, cloudrolename, cloud_rolename, cloud.rolename, cloud role instance, node
         href: app/app-map.md
-      - name: Failures and Performance Views
+      - name: Failures and Performance views
         href: app/failures-and-performance-views.md
       - name: Availability
         href: app/availability.md
