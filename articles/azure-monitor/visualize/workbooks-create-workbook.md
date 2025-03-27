@@ -30,13 +30,16 @@ To create a new Azure workbook:
     * [Groups](#add-groups)
     * Configuration options
 
+> [!NOTE]
+> To add new elements to your workbook, make sure you are in **Edit** mode by selecting the **Edit** in the toolbar.
+
 ## Add text
 
 Workbooks allow authors to include text blocks in their workbooks. The text can be human analysis of the data, information to help users interpret the data, section headings, etc.
 
 :::image type="content" source="media/workbooks-create-workbook/workbooks-text-example.png" lightbox="media/workbooks-create-workbook/workbooks-text-example.png" alt-text="Screenshot of adding text to a workbook.":::
 
-Text is added through a markdown control into which an author can add their content. An author can use the full formatting capabilities of markdown. These include different heading and font styles, hyperlinks, tables, etc. Markdown allows authors to create rich Word- or Portal-like reports or analytic narratives. Text can contain parameter values in the markdown text, and those parameter references are updated as the parameters change.
+Text is added through a markdown control into which an author can add their content. An author can use the full formatting capabilities of markdown. These capabilities include different heading and font styles, hyperlinks, tables, etc. Markdown allows authors to create rich Word- or Portal-like reports or analytic narratives. Text can contain parameter values in the markdown text, and those parameter references are updated as the parameters change.
 
 **Edit mode**:
     <!-- convertborder later -->
@@ -48,7 +51,7 @@ Text is added through a markdown control into which an author can add their cont
 
 To add text to an Azure workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a text step by doing either of these steps:
+1. Add a text step by doing either of these steps:
 
     * Select **Add**, and **Add text** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add text**.
@@ -97,7 +100,7 @@ For example, you can query Azure Resource Health to help you view any service pr
 
 To add a query to an Azure Workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a query by doing either of these steps:
+1. Add a query by doing either of these steps:
     * Select **Add**, and **Add query** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add query**.
 
@@ -209,7 +212,7 @@ Watch this video to learn how to use parameters and log data in Azure Workbooks.
 
 To add a parameter to an Azure Workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a parameter by doing either of these steps:
+1. Add a parameter by doing either of these steps:
 
     * Select **Add**, and **Add parameter** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add parameter**.
@@ -235,7 +238,7 @@ The example below shows the number of transactions in a storage account over the
 
 To add a metric chart to an Azure Workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a metric chart by doing either of these steps:
+1. Add a metric chart by doing either of these steps:
 
     * Select **Add**, and **Add metric** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add metric**.
@@ -321,8 +324,8 @@ Links can use all of the link actions available in [link actions](workbooks-link
 
 | Action                | Description                                                                                                                                                                                              |
 |:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Set a parameter value | A parameter can be set to a value when selecting a link, button, or tab. Tabs are often configured to set a parameter to a value, which hides and shows other parts of the workbook based on that value. |
-| Scroll to a step      | When selecting a link, the workbook will move focus and scroll to make another step visible. This action can be used to create a "table of contents", or a "go back to the top" style experience.        |
+| Set a parameter value | A parameter can be set to a value when the workbook user selects a link, button, or tab. Tabs are often configured to set a parameter to a value, which hides and shows other parts of the workbook based on that value. |
+| Scroll to a step      | When the workbook user selects a link, the workbook will move focus and scroll to make another step visible. This action can be used to create a "table of contents", or a "go back to the top" style experience.        |
 
 ### Tabs
 
@@ -373,7 +376,7 @@ Groups in workbooks are useful for several things:
 
 To add a group to your workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a parameter by doing either of these steps:
+1. Add a parameter by doing either of these steps:
 
     * Select **Add**, and **Add group** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add group**.
@@ -489,26 +492,26 @@ To turn a larger template into multiple subtemplates:
 
 ## Add image
 
-Workbooks allow authors to include images in their content. Images can enhance the workbook by providing visual aids such as diagrams, screenshots, and other visual information.
+Workbooks allow authors to include images in their content. Use the image element to provide visual aids such as diagrams, screenshots, and other visual information.
 
 To add an image in your workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add an image by doing either of these steps:
+1. Add an image by doing either of these steps:
 
    - Select **Add**, and **Add image** below an existing element, or at the bottom of the workbook.
-   - Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add video**.
+   - Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add image**.
       
 1. Enter the image URL in the provided field.
 
-1. Provide additional settings such as the image title, size, and alternative text. Setting the image size to full will set the image to its original size.
+1. Provide additional settings such as the image title, size, and alternative text. Setting the image size to full size sets the image to its original size.
 
 ## Add video
 
-Workbooks allows you to easily embed video content within your workbook. This feature enhances the interactivity and informational value of your workbook by integrating video content seamlessly.
+Workbooks allow authors to embed video content within your workbook.
 
 To add a video in your workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a video by doing either of these steps:
+1. Add a video by doing either of these steps:
 
    - Select **Add**, and **Add video** below an existing element, or at the bottom of the workbook.
    - Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add video**.
