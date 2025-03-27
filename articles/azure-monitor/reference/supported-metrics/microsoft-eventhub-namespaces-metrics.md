@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.EventHub/Namespaces
 description: Reference for Microsoft.EventHub/Namespaces metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.EventHub/Namespaces, naam
 

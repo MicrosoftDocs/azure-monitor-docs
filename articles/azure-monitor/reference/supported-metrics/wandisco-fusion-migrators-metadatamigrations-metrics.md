@@ -2,9 +2,6 @@
 title: Supported metrics - Wandisco.Fusion/migrators/metadataMigrations
 description: Reference for Wandisco.Fusion/migrators/metadataMigrations metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Wandisco.Fusion/migrators/metadataMigrations, naam
 

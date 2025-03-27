@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts/tableServices
 description: Reference for Microsoft.Storage/storageAccounts/tableServices metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.Storage/storageAccounts/tableServices, naam
 

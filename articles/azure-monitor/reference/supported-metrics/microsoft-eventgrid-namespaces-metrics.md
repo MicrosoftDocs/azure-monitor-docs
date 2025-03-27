@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.EventGrid/namespaces
 description: Reference for Microsoft.EventGrid/namespaces metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.EventGrid/namespaces, naam
 

@@ -2,9 +2,6 @@
 title: Supported metrics - Oracle.Database/cloudVmClusters
 description: Reference for Oracle.Database/cloudVmClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Oracle.Database/cloudVmClusters, naam
 

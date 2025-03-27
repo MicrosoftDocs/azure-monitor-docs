@@ -2,9 +2,6 @@
 title: Supported metrics - Private.MessagingConnectors/connectors
 description: Reference for Private.MessagingConnectors/connectors metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Private.MessagingConnectors/connectors, naam
 
