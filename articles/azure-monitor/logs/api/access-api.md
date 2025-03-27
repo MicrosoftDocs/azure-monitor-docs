@@ -49,7 +49,7 @@ where:
  - **workspaceId**: Your workspace ID.
 
 >[!NOTE]
->The `beta` api-version has been deprecated. For more information, see [Migrate from using batch and beta query APIs](migrate-batch-and-beta).
+>The `beta` api-version has been deprecated. For more information, see [Migrate from using batch and beta query APIs](migrate-batch-and-beta.md).
 
 The query is passed in the request body.
  
