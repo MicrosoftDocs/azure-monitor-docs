@@ -62,7 +62,7 @@ To enable the same, customize the Managed Prometheus configmap: ama-metrics-sett
 
 ```yaml
 pod-annotation-based-scraping: |-
-    podannotationnamespaceregex = "istio-system|my-namespace"
+    podannotationnamespaceregex = "aks-istio-system|my-namespace"
 ```
 
 
