@@ -18,7 +18,7 @@ Here's a video that explains some of the uses and benefits of the Auxiliary tabl
 
 Azure Monitor Logs currently supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](../logs/manage-logs-tables.md#table-type-and-schema) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](../logs/logs-ingestion-api-overview.md).
 
-This article explains how to create a custom table with the Auxiliary plan in your Log Analytics workspace and set up a data collection rule that sends data to this table.
+This article explains how to create a new custom table with the Auxiliary plan in your Log Analytics workspace and set up a data collection rule that sends data to this table.
 
 ## Prerequisites
 
@@ -26,13 +26,14 @@ To create a custom table and collect log data, you need:
 
 - A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
 - A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md).
+- Setting up a table with the auxiliary plan is only supported on new tables. Switching an analytics or basic plan table to auxiliary isn't supported.
 
 >[!NOTE]
 > Auxiliary logs are generally available (GA) for all public cloud regions, but not available for Azure Government or China clouds.
 
 ## Create a custom table with the Auxiliary plan
 
-To create a custom table, call the [Tables - Create Or Update API](/rest/api/loganalytics/tables/create-or-update) by using this command:
+To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
 
 ```http
 PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table name_CL}?api-version=2023-01-01-preview
@@ -41,7 +42,7 @@ PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/
 > [!NOTE]
 > Only version `2023-01-01-preview` of the API currently lets you set the Auxiliary table plan.
 
-Provide this payload - update the table name and adjust the columns based on your table schema: 
+Provide this payload as the body of your request. Update the table name and adjust the columns based on your table schema. This sample lists all the supported column data types. 
 
 ```json
  {
