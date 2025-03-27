@@ -22,6 +22,7 @@ This document lists a set of commonly used workloads which have curated configur
 - [Argo CD](./prometheus-argo-cd-integration.md)
 - [Elastic Search](./prometheus-elasticsearch-integration.md)
 - [Istio](./prometheus-istio-integration.md)
+- [GPU - Nvidia DCGM exporter](./prometheus-dcgm-integration.md)
 
 ## Next steps
 

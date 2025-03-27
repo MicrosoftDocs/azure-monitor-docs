@@ -52,7 +52,7 @@ Queries of data in Auxiliary tables are unoptimized and might take longer to ret
 
 ### Purge
 
-You can't [purge personal data](personal-data-mgmt.md#exporting-and-deleting-personal-data) from Basic and Auxiliary tables. 
+You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-personal-data) from Basic and Auxiliary tables. 
 
 ## Run a query on a Basic or Auxiliary table
 

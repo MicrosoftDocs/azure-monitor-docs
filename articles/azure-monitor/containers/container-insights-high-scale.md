@@ -26,7 +26,7 @@ High scale logs collection is suited for environments sending more than 2,000 lo
 
 ```kusto
 ContainerLogV2 
-| where _ResourceId = "<cluster-resource-id>" 
+| where _ResourceId =~ "<cluster-resource-id>" 
 | summarize count() by bin(TimeGenerated, 1s), Computer 
 | render timechart 
 ```
@@ -35,7 +35,7 @@ ContainerLogV2
 
 ```kusto
  ContainerLogV2 
-| where _ResourceId = "<cluster-resource-id>"
+| where _ResourceId =~ "<cluster-resource-id>"
 | summarize BillableDataMB = sum(_BilledSize)/1024/1024 by bin(TimeGenerated, 1s), Computer 
 | render timechart 
 ```

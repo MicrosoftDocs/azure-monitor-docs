@@ -2,7 +2,7 @@
 title: Troubleshooting Azure Monitor alerts and notifications
 description: Troubleshoot common problems with Azure Monitor alerts and possible solutions. 
 ms.topic: troubleshooting
-ms.date: 02/28/2024
+ms.date: 03/25/2025
 ms.reviewer: nolavime
 ---
 
@@ -20,6 +20,12 @@ For specific information about troubleshooting Azure metric or log search alerts
 If the alert fires as intended, but the proper notifications don't perform as expected, [test your action group](./action-groups.md#test-an-action-group-in-the-azure-portal) first to ensure it's properly configured.
 
 Otherwise, use the information in the rest of this article to troubleshoot your issue.
+
+## Log search alert rule creation failed 
+
+In the Azure portal you received the error "The log search alert rule creation failed with error – “Failed to create alert rule `<Rule Name>`. There was a problem with the server, Please try again in a few minutes.”"
+
+This could happen if the combined size of all data in the log alert rule properties exceeds 64KB (or 32K string characters). Check if the alert rule is using a big query, has many dimensions, action group or a long description, whose combined size could be greater than 64KB.
 
 ## I didn't receive the expected email
 

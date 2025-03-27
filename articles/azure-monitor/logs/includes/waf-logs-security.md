@@ -47,7 +47,7 @@ If your log data includes [sensitive information](../personal-data-mgmt.md):
 #### Purge sensitive data that was collected accidentally 
 
 1. Check periodically for private data that might accidentally be collected in your workspace.
-1. Use [data purge](../personal-data-mgmt.md#exporting-and-deleting-personal-data) to remove unwanted data. Note that data in tables with the [Auxiliary plan](../data-platform-logs.md#table-plans) can't currently be purged. <br>**Instructions**: [Managing personal data in Azure Monitor Logs and Application Insights](../personal-data-mgmt.md#exporting-and-deleting-personal-data) 
+1. Use [data purge](../personal-data-mgmt.md#export-delete-or-purge-personal-data) to remove unwanted data. Note that data in tables with the [Auxiliary plan](../data-platform-logs.md#table-plans) can't currently be purged. <br>**Instructions**: [Managing personal data in Azure Monitor Logs and Application Insights](../personal-data-mgmt.md#export-delete-or-purge-personal-data) 
 
 #### Link your workspace to a dedicated cluster for enhanced security
 
