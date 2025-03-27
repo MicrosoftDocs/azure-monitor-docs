@@ -17,61 +17,24 @@ The telemetry data model is standardized, making it possible to create platform-
 
 ## Types of telemetry
 
-<details>
-
-<summary>Option 1</summary>
-
-The following types of telemetry are used to monitor the execution of your application. The Azure Monitor OpenTelemetry Distro and Application Insights JavaScript SDK collect:
+The following types of telemetry are used to monitor the execution of your application. The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Application Insights JavaScript SDK](javascript-sdk.md) collect:
 
 | Collection | Telemetry type | Table | Description |
 |------------|----------------|-------|-------------|
 | **Server only** | | | |
-| | [Metric (Default)](#metric) | `performanceCounters` | Numerical data that can help measure various aspects of application and system performance, such as CPU usage and memory consumption. |
-| | [Dependency](#dependency) | `dependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
+| | [Metric (Default)](#metric) | [`performanceCounters`](../reference/tables/appperformancecounters.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. |
+| | [Dependency](#dependency) | [`dependencies`](../reference/tables/appdependencies.md) | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
 | **Server and browser** | | | |
-| | [Exception](#exception) | `exceptions` | Typically represents an exception that causes an operation to fail. |
-| | [Request](#request) | `requests` | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives. |
+| | [Exception](#exception) | [`exceptions`](../reference/tables/appexceptions.md) | Captures error information crucial for troubleshooting and understanding failures. |
+| | [Request](#request) | [`requests`](../reference/tables/apprequests.md) | Logs HTTP requests received by your application, providing details such as operation ID, duration, and success or failure status. |
 | **Browser only** | | | |
-| | [Browser timings](#browsertimings) | `browserTimings` | ... |
-| | [Page view](#pageview) | `pageViews` | Tracks and collects data related to the views of web pages or specific content within your web applications. |
+| | [Browser timings](#browsertimings) | [`browserTimings`](../reference/tables/appbrowsertimings.md) | Measures the performance of web pages from the user's browser, including page load times and network durations |
+| | [Page view](#pageview) | [`pageViews`](../reference/tables/apppageviews.md) | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
 | **Custom** | | | |
-| | [Availability](#availability) | `availabilityResults` | ... |
-| | [Event](#event) | `customEvents` | Typically used to capture user interaction with your service to analyze usage patterns. |
-| | [Metric (Custom)](#metric) | `customMetrics` | Used to report periodic scalar measurements. |
-| | [Trace](#trace) | `traces` | Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`. |
-
-</details>
-
-<details>
-
-<summary>Option 2</summary>
-
-The following types of telemetry are used to monitor the execution of your app. The Azure Monitor OpenTelemetry Distro collects:
-
-| Telemetry type | Table | Description | Example |
-|----------------|-------|-------------|---------|
-| [Request](#request) | `requests` | Generated to log a request received by your app. For example, the Application Insights web SDK automatically generates a Request telemetry item for each HTTP request that your web app receives. | HTTP requests |
-| [Dependency](#dependency) | `dependencies` | Represents a call from your app to an external service or storage, such as a REST API or SQL. In ASP.NET, dependency calls to SQL are defined by `System.Data`. Calls to HTTP endpoints are defined by `System.Net`. | Outbound calls to databases |
-| [Exception](#exception) | `exceptions` | Typically represents an exception that causes an operation to fail. | Error stack traces |
-| [Metric (Default)](#metric) | `performanceCounters` | ... | CPU usage |
-
-For browser telemetry, the Application Insights JavaScript SDK is required, which collects:
-
-| Telemetry type | Table | Description |
-|----------------|-------|-------------|
-| [Page view](#pageview) | `pageViews` | Tracks and collects data related to the views of web pages or specific content within your web applications. |
-| [Browser timings](#browsertimings) | `browserTimings` | ... |
-
-Additionally, the following data types are available for custom telemetry:
-
-| Telemetry type | Table | Description | Example |
-|----------------|-------|-------------|---------|
-| [Trace](#trace) | `traces` | Used either directly or through an adapter to implement diagnostics logging by using an instrumentation framework that's familiar to you, such as `Log4Net` or `System.Diagnostics`. | Custom diagnostic messages |
-| [Metric (Custom)](#metric) | `customMetrics` | Used to report periodic scalar measurements. | ... |
-| [Event](#event) | `customEvents` | Typically used to capture user interaction with your service to analyze usage patterns. | User interactions |
-| [Availability](#availability) | `availabilityResults` | ... | Synthetic test results |
-
-</details>
+| | [Availability](#availability) | [`availabilityResults`](../reference/tables/appavailabilityresults.md) | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
+| | [Event](#event) | [`customEvents`](../reference/tables/appevents.md) | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts. |
+| | [Metric (Custom)](#metric) | [`customMetrics`](../reference/tables/appmetrics.md) | Custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
+| | [Trace](#trace) | [`traces`](../reference/tables/apptraces.md) | Logs application-specific events, such as custom diagnostic messages or logs, which are useful for debugging and monitoring application behavior over time. |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
@@ -91,13 +54,11 @@ To report data model or schema problems and suggestions, use our [GitHub reposit
 
 Request telemetry represents information related to incoming HTTP requests to your application. This type of telemetry helps you monitor the performance and success of your application's web-based services.
 
-A request telemetry item in [Application Insights](app-insights-overview.md) represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
+A request telemetry item in Application Insights represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
 
 You can group requests by logical `name` and define the `source` of this request. Code execution can result in `success` or `fail` and has a certain `duration`. You can further group success and failure executions by using `resultCode`. Start time for the request telemetry is defined on the envelope level.
 
-Request telemetry supports the standard extensibility model by using custom `properties` and `measurements`.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+Request telemetry supports the standard extensibility model by using [custom `properties` and `measurements`](#custom-properties-and-measurements).
 
 ### Dependency
 
@@ -165,6 +126,16 @@ Semantically, events might or might not be correlated to requests. If used prope
 ### Availability
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive.
+
+## Custom properties and measurements
+
+### Custom properties
+
+[!INCLUDE [application-insights-data-model-properties](includes/application-insights-data-model-properties.md)]
+
+### Custom measurements
+
+[!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
 
 ## Context
 
