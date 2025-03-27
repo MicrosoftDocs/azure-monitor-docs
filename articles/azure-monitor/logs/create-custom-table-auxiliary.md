@@ -26,7 +26,7 @@ To create a custom table and collect log data, you need:
 
 - A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
 - A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md).
-- Setting up a table with the Auxiliary plan is only supported on new tables. Switching an Analytics or Basic plan table to Auxiliary isn't supported.
+- Setting up a table with the Auxiliary plan is only supported on new tables. After you create a table with an Auxiliary plan, you can't switch the table's plan.
 
 >[!NOTE]
 > Auxiliary logs are generally available (GA) for all public cloud regions, but not available for Azure Government or China clouds.
