@@ -48,7 +48,7 @@ Text is added through a markdown control into which an author can add their cont
 
 To add text to an Azure workbook:
 
-1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a query by doing either of these steps:
+1. Make sure you are in **Edit** mode by selecting the **Edit** in the toolbar. Add a text step by doing either of these steps:
 
     * Select **Add**, and **Add text** below an existing element, or at the bottom of the workbook.
     * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add text**.
