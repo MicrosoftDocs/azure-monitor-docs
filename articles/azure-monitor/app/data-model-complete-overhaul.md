@@ -19,22 +19,17 @@ The telemetry data model is standardized, making it possible to create platform-
 
 The following types of telemetry are used to monitor the execution of your application. The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Application Insights JavaScript SDK](javascript-sdk.md) collect:
 
-| Collection | Telemetry type | Table | Description |
-|------------|----------------|-------|-------------|
-| **Server only** | | | |
-| | [Metric (Default)](#metric) | [`performanceCounters`](../reference/tables/appperformancecounters.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. |
-| | [Dependency](#dependency) | [`dependencies`](../reference/tables/appdependencies.md) | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
-| **Server and browser** | | | |
-| | [Exception](#exception) | [`exceptions`](../reference/tables/appexceptions.md) | Captures error information crucial for troubleshooting and understanding failures. |
-| | [Request](#request) | [`requests`](../reference/tables/apprequests.md) | Logs HTTP requests received by your application, providing details such as operation ID, duration, and success or failure status. |
-| **Browser only** | | | |
-| | [Browser timings](#browsertimings) | [`browserTimings`](../reference/tables/appbrowsertimings.md) | Measures the performance of web pages from the user's browser, including page load times and network durations |
-| | [Page view](#pageview) | [`pageViews`](../reference/tables/apppageviews.md) | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
-| **Custom** | | | |
-| | [Availability](#availability) | [`availabilityResults`](../reference/tables/appavailabilityresults.md) | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
-| | [Event](#event) | [`customEvents`](../reference/tables/appevents.md) | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts. |
-| | [Metric (Custom)](#metric) | [`customMetrics`](../reference/tables/appmetrics.md) | Custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
-| | [Trace](#trace) | [`traces`](../reference/tables/apptraces.md) | Logs application-specific events, such as custom diagnostic messages or logs, which are useful for debugging and monitoring application behavior over time. |
+| Telemetry type | Table | Description |
+|----------------|-------|-------------|
+| [Metric (Default)](#metric) | [`performanceCounters`](../reference/tables/appperformancecounters.md)<br>[`customMetrics`](../reference/tables/appmetrics.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
+| [Dependency](#dependency) | [`dependencies`](../reference/tables/appdependencies.md) | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
+| [Exception](#exception) | [`exceptions`](../reference/tables/appexceptions.md) | Captures error information crucial for troubleshooting and understanding failures. |
+| [Request](#request) | [`requests`](../reference/tables/apprequests.md) | Logs HTTP requests received by your application, providing details such as operation ID, duration, and success or failure status. |
+| [Browser timings](#browsertimings) | [`browserTimings`](../reference/tables/appbrowsertimings.md) | Measures the performance of web pages from the user's browser, including page load times and network durations |
+| [Page view](#pageview) | [`pageViews`](../reference/tables/apppageviews.md) | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
+| [Availability](#availability) | [`availabilityResults`](../reference/tables/appavailabilityresults.md) | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
+| [Event](#event) | [`customEvents`](../reference/tables/appevents.md) | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts. |
+| [Trace](#trace) | [`traces`](../reference/tables/apptraces.md) | Logs application-specific events, such as custom diagnostic messages or logs, which are useful for debugging and monitoring application behavior over time. |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
