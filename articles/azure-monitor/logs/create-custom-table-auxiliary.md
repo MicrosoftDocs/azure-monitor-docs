@@ -26,7 +26,9 @@ To create a custom table and collect log data, you need:
 
 - A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
 - A [data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md).
-    
+
+>[!NOTE]
+> Auxiliary logs are generally available (GA) for all public cloud regions, but not available for Azure Government or China clouds.
 
 ## Create a custom table with the Auxiliary plan
 
@@ -87,8 +89,8 @@ Provide this payload - update the table name and adjust the columns based on you
 }
 ```
 > [!NOTE]
-> - The `TimeGenerated` column currently only supports the ISO8601 format with 6 decimal places for precision (nanoseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
-> - Tables with the Auxiliary plan currently don't support columns with dynamic data.
+> - The `TimeGenerated` column only supports the ISO8601 format with 6 decimal places for precision (nanoseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
+> - Tables with the Auxiliary plan don't support columns with dynamic data.
 
 ## Send data to a table with the Auxiliary plan
 
