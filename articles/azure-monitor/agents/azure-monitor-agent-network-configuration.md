@@ -34,7 +34,7 @@ The following table provides the endpoints that firewalls must provide access to
 |`<log-analytics-workspace-id>.ods.opinsights.azure.com` | Ingest log data | `1234a123-aa1a-123a-aaa1-a1a345aa6789.ods.opinsights.azure.com` |
 | `management.azure.com` | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../essentials/metrics-custom-overview.md) database  | Not applicable |
 | `<virtual-machine-region-name>.monitoring.azure.com`  | Needed only if you send time series data (metrics) to an Azure Monitor [custom metrics](../essentials/metrics-custom-overview.md) database | `westus2.monitoring.azure.com` |
-| `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` | Needed only if you send data to a Log Analytics [custom logs](./data-collection-text-log.md) table | `275test-01li.eastus2euap-1.canary.ingest.monitor.azure.com` |
+| `<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` |Ingest log data | `275test-01li.eastus2euap-1.canary.ingest.monitor.azure.com` |
 
 Replace the suffix in the endpoints with the suffix in the following table for respective clouds:
 
