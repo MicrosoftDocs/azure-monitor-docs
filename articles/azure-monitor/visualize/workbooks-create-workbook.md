@@ -329,17 +329,37 @@ Links can use all of the link actions available in [link actions](workbooks-link
 
 ### Tabs
 
-Most of the time, tab links are combined with the **Set a parameter value** action. Here's an example showing the links step configured to create 2 tabs, where selecting either tab sets a **selectedTab** parameter to a different value (the example shows a third tab being edited to show the parameter name and parameter value placeholders):
+Most of the time, tab links are combined with the **Set a parameter value** action.
+
+To add tabs to an Azure Workbook:
+
+1. Select **Add** > **Add links/tabs**.
+
+1. Enter a **Tab Name** for each tab.
+
+1. In the **Action** column, select **Set a parameter value** for each tab.
+
+1. In the **Value** column, set *the same* parameter name (for example, *selectedTab*) for each tab.
+
+1. In the **Settings** column, enter a different value for each tab.
+
+    Here's an example configured to create 2 tabs, where selecting either tab sets a **selectedTab** parameter to a different value.
+
+    > [!NOTE]
+    > The example only shows a third tab being edited to show the parameter name and parameter value placeholders.
+
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-creating-tabs.png" lightbox="media/workbooks-create-workbook/workbooks-creating-tabs.png" alt-text="Screenshot of creating tabs in workbooks." border="false":::
 
-You can then add other items in the workbook that are conditionally visible if the **selectedTab** parameter value is "1" by using the advanced settings:
+1. Under **Advanced Settings**, you can then add other items in the workbook that are conditionally visible if the **selectedTab** parameter value is `1`:
+
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab.png" alt-text="Screenshot of conditionally visible tab in workbooks." border="false":::
 
-The first tab is selected by default, initially setting **selectedTab** to 1, and making that step visible. Selecting the second tab changes the value of the parameter to "2", and different content is displayed:
-    <!-- convertborder later -->
-    :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab2.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab2.png" alt-text="Screenshot of workbooks with content displayed when selected tab is 2.":::
+The first tab is selected by default, initially setting **selectedTab** to `1`, and making that step visible. Selecting the second tab changes the value of the parameter to `2`, and different content is displayed:
+
+<!-- convertborder later -->
+:::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab2.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab2.png" alt-text="Screenshot of workbooks with content displayed when selected tab is 2.":::
 
 A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
 
