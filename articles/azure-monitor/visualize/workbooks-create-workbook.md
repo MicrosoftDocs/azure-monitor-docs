@@ -351,15 +351,15 @@ To add tabs to an Azure Workbook:
 
 1. In the **Settings** column, *enter a different value* for each tab.
 
-Here's an example configured to create two tabs, where selecting either tab sets a **selectedTab** parameter to a different value.
-
-<!-- convertborder later -->
-:::image type="content" source="media/workbooks-create-workbook/workbooks-creating-tabs.png" lightbox="media/workbooks-create-workbook/workbooks-creating-tabs.png" alt-text="Screenshot of creating tabs in workbooks." border="false":::
-
-> [!NOTE]
-> The example only shows a third tab being edited to show the parameter name and parameter value placeholders.
-
-A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
+    Here's an example configured to create two tabs, where selecting either tab sets a **selectedTab** parameter to a different value.
+    
+    <!-- convertborder later -->
+    :::image type="content" source="media/workbooks-create-workbook/workbooks-creating-tabs.png" lightbox="media/workbooks-create-workbook/workbooks-creating-tabs.png" alt-text="Screenshot of creating tabs in workbooks." border="false":::
+    
+    > [!NOTE]
+    > The example only shows a third tab being edited to show the parameter name and parameter value placeholders.
+    
+    A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
 
 #### Add content to tabs
 
@@ -367,15 +367,15 @@ A sample workbook with the above tabs is available in [sample Azure Workbooks wi
 
 1. Under **Advanced Settings**, select **Make this item conditionally visible**.
 
-1. Select **Add condition**, enter the **Parameter name** (for example, `selectedTab`), set **Comparison** to *equals*, and set **Parameter value** to the value you assigned to the tab.
+1. Select **Add condition**, enter the **Parameter name** (for example, `selectedTab`), set **Comparison** to *equals*, and set **Parameter value** to the value you assigned to the tab (for example, `1`).
 
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab.png" alt-text="Screenshot of conditionally visible tab in workbooks." border="false":::
 
-The first tab is selected by default, initially setting **selectedTab** to `1`, and making that step visible. Selecting the second tab changes the value of the parameter to `2`, and different content is displayed:
-
-<!-- convertborder later -->
-:::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab2.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab2.png" alt-text="Screenshot of workbooks with content displayed when selected tab is 2.":::
+    The first tab is selected by default, initially setting **selectedTab** to `1`, and making that step visible. Selecting the second tab changes the value of the parameter to `2`, and different content is displayed.
+    
+    <!-- convertborder later -->
+    :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab2.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab2.png" alt-text="Screenshot of workbooks with content displayed when selected tab is 2.":::
 
 #### Tabs limitations
 
