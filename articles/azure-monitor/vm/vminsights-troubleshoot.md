@@ -6,7 +6,7 @@ ms.date: 03/27/2025
 ms.custom: references_regions
 ---
 
-# Troubleshoot VM Insights
+# Troubleshoot VM insights
 
 This article provides troubleshooting information to help you with problems that you might experience when you try to enable or use VM Insights in Azure Monitor.
 
@@ -21,16 +21,16 @@ When you enable VM insights from the Azure portal, the following actions are per
 
 Configuration of the workspace and the agent installation may take up to 10 minutes, and it may take up to an additional 10 minutes for data to become available to view in the portal. If you receive a message that the virtual machine needs to be onboarded after you perform the onboarding process, allow up to 30 minutes for the process to finish. If the problem persists, see the following sections for possible causes.
 
-### Verify that the virtual machine is running.
+### Verify that the virtual machine is running
 The virtual machines must be running for the onboarding process to complete. If the virtual machine is stopped before the installation is complete, the process may fail and must be restarted.
 
-### Verify that the operating system supported.
+### Verify that the operating system supported
 If the operating system isn't in the [list of supported operating systems](vminsights-enable-overview.md#supported-operating-systems), installation of the extension fails and you get a message about waiting for data to arrive.
 
 > [!IMPORTANT]
 > If a virtual machine that you onboarded on or after April 11, 2022, doesn't appear in VM Insights, you might be running an older version of the Dependency Agent. For more information, see the blog post [Potential breaking changes for VM Insights Linux customers](https://techcommunity.microsoft.com/t5/azure-monitor-status/potential-breaking-changes-for-vm-insights-linux-customers/ba-p/3271989). This consideration doesn't apply for Windows machines and for virtual machines that you onboarded before April 11, 2022.
 
-### Verify that the extension is installed.
+### Verify that the extension is installed
 In the Azure portal, on the **Extensions** pane for your virtual machine, verify that the following extensions appear:
 
 | Operating system | Agents |
@@ -46,10 +46,10 @@ If you don't see both extensions in the list of installed extensions, then attem
 
 If the agents appear to be installed correctly but no data appears in the **Performance** view, see the following sections for possible causes.
 
-### Check the daily cap for the Log Analytics workspace.
+### Check the daily cap for the Log Analytics workspace
 When you set a daily cap for a Log Analytics workspace, it stops collecting data when the cap is reached and then resumes again the next day. See [Set daily cap on Log Analytics workspace](../logs/daily-cap.md) for details on how to set the daily cap and to determine whether it has been reached.
 
-### Verify that the agent is connected to the Log Analytics workspace.
+### Verify that the agent is connected to the Log Analytics workspace
 When the agent is communicating properly with the Log Analytics workspace, it sends a heartbeat every minute. You can verify that the agent is connected by checking the **Heartbeat** table for these entries.
 
 In the Azure portal, on the **Azure Monitor** menu, select **Logs** to open the Log Analytics workspace. Run the following query for your computer:
@@ -60,7 +60,7 @@ Heartbeat
 | sort by TimeGenerated desc 
 ```
 
-### Verify that the DCR hasn't been modified.
+### Verify that the DCR hasn't been modified
 When you enable VM insights, a data collection rule (DCR) is created to collect performance data from the virtual machine. If the DCR was modified after it was created, it may not be collecting the data that you expect. Create a new DCR for the virtual machine and delete the old one.
 
 If you have multiple virtual machines using the same DCR, you can edit the DCR to remove the modifications so you don't have to reconfigure each machine. Create a new VM insights DCR and compare it to the DCR that was potentially modified. Use guidance at [Create or edit a DCR using JSON](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to edit your DCR to match the new one.
