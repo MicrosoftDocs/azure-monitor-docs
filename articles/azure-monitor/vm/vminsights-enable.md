@@ -272,6 +272,8 @@ az vm extension list --resource-group <resource group> --vm-name <VM name>  -o t
 
 ---
 
+## Edit VM insights configuration
+To edit the VM insights configuration for a virtual machine after it's been onboarded, click on **Enabled** next to the VM on the VM insights **Overview** page. This will display the current configuration. Click **Edit** to open the configuration page as described in the previous section. You can select another DCR for the VM or create a new one. You can't modify the existing DCR from this page.
 
 ## Next steps
 

@@ -506,7 +506,6 @@ The following sample DCR performs the following actions:
 ```
 
 
-
 ## Logs ingestion API
 DCRs for the Logs ingestion API must define the schema of the incoming stream in the `streamDeclarations` section of the DCR definition. The incoming data must be formatted in JSON with a schema matching the columns in this definition. No transformation is required if this schema matches the schema of the target table. If the schemas don't match, then you must add a transformation to the `dataFlows` property to format the data. See [Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md) for more details.
 
@@ -548,7 +547,7 @@ The sample DCR below has the following details:
         "destinations": {
             "logAnalytics": [
                 {
-                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/cefingestion/providers/microsoft.operationalinsights/workspaces/my-workspace",
+                    "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
                     "name": "LogAnalyticsDest"
                 }
             ]
