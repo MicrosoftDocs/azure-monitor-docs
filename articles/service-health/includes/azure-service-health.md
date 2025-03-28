@@ -9,7 +9,7 @@ ms.date: 02/25/2025
 
 Returns all active Service Health events - including service issues, planned maintenance, health advisories, and security advisories – grouped by event type and including count of impacted subscriptions.
 
-[!NOTE:]
+[!NOTE]
 This event subscription doesn't include emerging issues. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
 
 
