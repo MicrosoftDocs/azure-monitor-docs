@@ -76,7 +76,7 @@ The virtual machine is only added to the map if you selected **Processes and dep
 ### Verify that the Dependency agent is installed
 The Dependency agent is required on VMs in order to collect process and dependency data which is required for a VM to appear in the **Map** view. Use the information in [Verify that the extension is installed](#verify-that-the-extension-is-installed) to determine if the Dependency Agent is installed and working properly.
 
-### Very performance data is being collected
+### Verify performance data is being collected
 
 Use the log query in the [Performance view has no data](#performance-view-has-no-data) section to determine if data is being collected for the virtual machine.
 
