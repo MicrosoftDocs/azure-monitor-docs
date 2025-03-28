@@ -238,8 +238,7 @@ The legacy Per Node has very complex pricing calculations. It is recommended to 
 
 If you have a workspace in the legacy Per Node tier, you can compare your costs from operating in this pricing tier by [exporting your detailed usage](../cost-usage.md#export-usage-details) with the monthly cost estimates provided for the Pay-as-you-go or a Commitment Tiers in your workspace's [Usage and estimated cost](change-pricing-tier.md) page. 
 
-
-Note that when a workspace is in the legacy Per Node pricing tier, retention is billed on the **Standard Data Retention** meter (see [Azure Monitor billing meters](../cost-meters.md)). This meter has a single global price, not have the regional pricing variation of the current Data Retention meter used by Pay-as-you-go and Commitment Tier billing.  
+Note that when a workspace is in the legacy Per Node pricing tier, retention is billed on the **Standard Data Retention** meter (see [Azure Monitor billing meters](../cost-meters.md)). This meter has a single global price, not the regional pricing variation of the current Data Retention meter used by Pay-as-you-go and Commitment Tier billing.  
 
 ## Next steps
 
