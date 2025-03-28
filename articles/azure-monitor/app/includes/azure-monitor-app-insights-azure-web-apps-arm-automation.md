@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 09/03/2021
+ms.date: 03/31/2025
 ---
 
 ### App Service application settings with Azure Resource Manager
@@ -46,7 +46,9 @@ To create a Resource Manager template with the default Application Insights sett
 In the following sample, replace all instances of `AppMonitoredSite` with your site name:
 
 > [!NOTE]
-> If using Windows, set `ApplicationInsightsAgent_EXTENSION_VERSION` to `~2`. If using Linux, set `ApplicationInsightsAgent_EXTENSION_VERSION` to `~3`.
+> For Windows, set `ApplicationInsightsAgent_EXTENSION_VERSION` to `~2`.
+>
+> For Linux, set `ApplicationInsightsAgent_EXTENSION_VERSION` to `~3`.
 
 ```json
 {
@@ -57,10 +59,6 @@ In the following sample, replace all instances of `AppMonitoredSite` with your s
             "properties": {
                 "siteConfig": {
                     "appSettings": [
-                        {
-                            "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-                            "value": "[reference('microsoft.insights/components/AppMonitoredSite', '2015-05-01').InstrumentationKey]"
-                        },
                         {
                             "name": "APPLICATIONINSIGHTS_CONNECTION_STRING",
                             "value": "[reference('microsoft.insights/components/AppMonitoredSite', '2015-05-01').ConnectionString]"
@@ -145,18 +143,19 @@ In the following sample, replace all instances of `AppMonitoredSite` with your s
 
 ### Enable through PowerShell
 
-To enable the application monitoring through PowerShell, only the underlying application settings must be changed. The following sample enables application monitoring for a website called `AppMonitoredSite` in the resource group `AppMonitoredRG`. It configures data to be sent to the `012345678-abcd-ef01-2345-6789abcd` instrumentation key.
+To enable the application monitoring through PowerShell, only the underlying application settings must be changed. The following sample enables application monitoring for a website called `AppMonitoredSite` in the resource group `AppMonitoredRG`. It configures data to be sent to the `InstrumentationKey=012345678-abcd-ef01-2345-6789abcd` connection string.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 > [!NOTE]
-> If using Windows, set ApplicationInsightsAgent_EXTENSION_VERSION to `~2`. If using Linux, set ApplicationInsightsAgent_EXTENSION_VERSION to `~3`.
+> For Windows, set ApplicationInsightsAgent_EXTENSION_VERSION to `~2`.
+>
+> For Linux, set ApplicationInsightsAgent_EXTENSION_VERSION to `~3`.
 
 ```powershell
 $app = Get-AzWebApp -ResourceGroupName "AppMonitoredRG" -Name "AppMonitoredSite" -ErrorAction Stop
 $newAppSettings = @{} # case-insensitive hash map
 $app.SiteConfig.AppSettings | %{$newAppSettings[$_.Name] = $_.Value} # preserve non Application Insights application settings.
-$newAppSettings["APPINSIGHTS_INSTRUMENTATIONKEY"] = "012345678-abcd-ef01-2345-6789abcd"; # set the Application Insights instrumentation key
 $newAppSettings["APPLICATIONINSIGHTS_CONNECTION_STRING"] = "InstrumentationKey=012345678-abcd-ef01-2345-6789abcd"; # set the Application Insights connection string
 $newAppSettings["ApplicationInsightsAgent_EXTENSION_VERSION"] = "~2"; # enable the ApplicationInsightsAgent
 $app = Set-AzWebApp -AppSettings $newAppSettings -ResourceGroupName $app.ResourceGroup -Name $app.Name -ErrorAction Stop
