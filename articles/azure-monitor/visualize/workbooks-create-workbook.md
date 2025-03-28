@@ -331,15 +331,19 @@ Links can use all of the link actions available in [link actions](workbooks-link
 
 Most of the time, tab links are combined with the **Set a parameter value** action.
 
+#### Create tabs
+
 To add tabs to an Azure Workbook:
 
 1. Select **Add** > **Add links/tabs**.
+
+1. Set **Style** to **Tabs**.
 
 1. Enter a **Tab Name** for each tab.
 
 1. In the **Action** column, select **Set a parameter value** for each tab.
 
-1. In the **Value** column, set *the same* parameter name (for example, *selectedTab*) for each tab.
+1. In the **Value** column, set *the same parameter name* (for example, `selectedTab`) for each tab.
 
 1. In the **Settings** column, enter a different value for each tab.
 
@@ -351,7 +355,13 @@ To add tabs to an Azure Workbook:
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-creating-tabs.png" lightbox="media/workbooks-create-workbook/workbooks-creating-tabs.png" alt-text="Screenshot of creating tabs in workbooks." border="false":::
 
-1. Under **Advanced Settings**, you can then add other items in the workbook that are conditionally visible if the **selectedTab** parameter value is `1`:
+#### Add content to tabs
+
+1. **Edit** the workbook content which you want to add to a specific tab.
+
+1. Under **Advanced Settings**, select **Make this item conditionally visible**.
+
+1. Select **Add condition**, enter the **Parameter name** (for example, `selectedTab`), set **Comparison** to *equals*, and set to **Parameter value** to the value you assigned to the tab.
 
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab.png" alt-text="Screenshot of conditionally visible tab in workbooks." border="false":::
@@ -363,7 +373,7 @@ The first tab is selected by default, initially setting **selectedTab** to `1`, 
 
 A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
 
-### Tabs limitations
+#### Tabs limitations
 
 * URL links aren't supported in tabs. A URL link in a tab appears as a disabled tab.
 * No item styling is supported in tabs. Items are displayed as tabs, and only the tab name (link text) field is displayed. Fields that aren't used in tab style are hidden while in edit mode.
