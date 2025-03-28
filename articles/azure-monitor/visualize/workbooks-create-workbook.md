@@ -122,31 +122,35 @@ To add a query to an Azure Workbook:
 ### Best practices for querying logs
 
 * **Predefine summary rules to aggregate data you want to visualize.** Instead of executing queries on large data sets or long time ranges, [create summary rules](../logs/summary-rules.md) to aggregate the data you need from one or more tables as the data arrives at your Log Analytics workspace. Visualizing the aggregated data directly from a custom table of summarized data, instead of querying raw data from one or more tables, improves query performance and reduces query errors and time-outs.
+
 * **Use the smallest possible time ranges.** The longer the time ranges, the slower the queries, and the more data returned. For longer time ranges, the query might have to go to slower "cold" storage, making the query even slower. Default to the shortest useful time range, but allow the user to pick a larger time range that may be slower.
+
 * **Use the "All" special value in dropdowns.** You can add an **All** special item in the dropdown parameter settings. You can use a special value. Using an **All** special item correctly can dramatically simplify queries.
+
 * **Protect against missing columns.** If you're using a custom table or custom columns, design your template so that it works if the column is missing in a workspace. See the [column_ifexists](/azure/kusto/query/columnifexists) function.
+
 * **Protect against a missing table.** If your template is installed as part of a solution, or in other cases where the tables are guaranteed to exist, checking for missing columns is unnecessary. If you're creating generic templates that could be visible on any resource or workspace, it's a good idea to protect for tables that don't exist.
 
     The log analytics query language doesn't have a **table_ifexists** function like the function for testing for columns. However, there are some ways to check if a table exists. For example, you can use a [fuzzy union](/azure/kusto/query/unionoperator?pivots=azuredataexplorer). When doing a union, you can use the **isfuzzy=true** setting to let the union continue if some of the tables don't exist. You can add a parameter query in your workbook that checks for existence of the table, and hides some content if it doesn't. Items that aren't visible aren't run, so you can design your template so that other queries in the workbook that would fail if the table doesn't exist, don't run until after the test verifies that the table exists.
-    
+
     For example:
-    
+
     ```kusto
     let MissingTable = view () { print isMissing=1 };
     union isfuzzy=true MissingTable, (AzureDiagnostics | getschema | summarize c=count() | project isMissing=iff(c > 0, 0, 1))
     | top 1 by isMissing asc
     ```
-    
+
     This query returns a **1** if the **AzureDiagnostics** table doesn't exist in the workspace. If the real table doesn't exist, the fake row of the **MissingTable** is returned. If any columns exist in the schema for the **AzureDiagnostics** table, a **0** is returned. You could use this as a parameter value, and conditionally hide your query steps unless the parameter value is 0. You could also use conditional visibility to show text that says that the current workspace doesn't have the missing table, and send the user to documentation on how to onboard.
-    
+
     Instead of hiding steps, you may just want to have no rows as a result. You can change the **MissingTable** to be an empty data table with the appropriate matching schema:
-    
+
     ```kusto
     let MissingTable = datatable(ResourceId: string) [];
     union isfuzzy=true MissingTable, (AzureDiagnostics
     | extend ResourceId = column_ifexists('ResourceId', '')
     ```
-    
+
     In this case, the query returns no rows if the **AzureDiagnostics** table is missing, or if the **ResourceId** column is missing from the table.
 
 ### Tutorial - resource centric logs queries in workbooks
@@ -174,7 +178,7 @@ Resources
 | summarize Subs = dcount(subscriptionId), resourceGroups = dcount(resourceGroup), resourceCount = count()
 | extend jkey = 1) on jkey
 | project x, label = 'x',
-      selected = case(
+    selected = case(
         x in ('microsoft.compute/virtualmachinescalesets', 'microsoft.compute/virtualmachines') and resourceCount <= 5, true,
         x == 'microsoft.resources/resourcegroups' and resourceGroups <= 3 and resourceCount > 5, true,
         x == 'microsoft.resources/subscriptions' and resourceGroups > 3 and resourceCount > 5, true,
@@ -197,7 +201,7 @@ Resources
 | where type =~ 'microsoft.compute/virtualmachines' or type =~ 'microsoft.compute/virtualmachinescalesets'
 | where resourceGroup in~({ResourceGroups})
 | project value = id, label = id, selected = false,
-      group = iff(type =~ 'microsoft.compute/virtualmachines', 'Virtual machines', 'Virtual machine scale sets')
+    group = iff(type =~ 'microsoft.compute/virtualmachines', 'Virtual machines', 'Virtual machine scale sets')
 ```
 
 ## Add parameters
@@ -265,7 +269,7 @@ This is a metric chart in edit mode:
 | Time Range    | The time window to view the metric in                                              | Last hour, Last 24 hours, etc. |
 | Visualization | The visualization to use                                                           | Area, Bar, Line, Scatter, Grid |
 | Split By      | Optionally split the metric on a dimension                                         | Transactions by Geo type       |
-| Size          | The vertical size of the control                                                   | Small, medium or large         |
+| Size          | The vertical size of the control                                                   | Small, medium, or large        |
 | Color palette | The color palette to use in the chart. Ignored if the `Split by` parameter is used | Blue, green, red, etc.         |
 
 ### Metric chart examples
@@ -312,7 +316,7 @@ You can apply styles to the link element itself and to individual links.
 
 | Style              | Description                                                                                                                                                  |
 |:-------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Link               | By default links appear as a hyperlink.  URL links can only be link style.                                                                                   |
+| Link               | By default links appear as a hyperlink. URL links can only be link style.                                                                                    |
 | Button (Primary)   | The link appears as a "primary" button in the portal, usually a blue color                                                                                   |
 | Button (Secondary) | The links appear as a "secondary" button in the portal, usually a "transparent" color, a white button in light themes and a dark gray button in dark themes. |
 
@@ -322,28 +326,58 @@ If required parameters are used in button text, tooltip text, or value fields, a
 
 Links can use all of the link actions available in [link actions](workbooks-link-actions.md), and have two more available actions:
 
-| Action                | Description                                                                                                                                                                                              |
-|:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Action                | Description                                                                                                                                                                                                              |
+|:----------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Set a parameter value | A parameter can be set to a value when the workbook user selects a link, button, or tab. Tabs are often configured to set a parameter to a value, which hides and shows other parts of the workbook based on that value. |
 | Scroll to a step      | When the workbook user selects a link, the workbook will move focus and scroll to make another step visible. This action can be used to create a "table of contents", or a "go back to the top" style experience.        |
 
 ### Tabs
 
-Most of the time, tab links are combined with the **Set a parameter value** action. Here's an example showing the links step configured to create 2 tabs, where selecting either tab sets a **selectedTab** parameter to a different value (the example shows a third tab being edited to show the parameter name and parameter value placeholders):
+Most of the time, tab links are combined with the **Set a parameter value** action.
+
+#### Create tabs
+
+To add tabs to an Azure Workbook:
+
+1. Select **Add** > **Add links/tabs**.
+
+1. Set **Style** to **Tabs**.
+
+1. Enter a **Tab Name** for each tab.
+
+1. In the **Action** column, select **Set a parameter value** for each tab.
+
+1. In the **Value** column, *set the same parameter name* (for example, `selectedTab`) for each tab.
+
+1. In the **Settings** column, *enter a different value* for each tab.
+
+    Here's an example configured to create two tabs, where selecting either tab sets a **selectedTab** parameter to a different value.
+    
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-creating-tabs.png" lightbox="media/workbooks-create-workbook/workbooks-creating-tabs.png" alt-text="Screenshot of creating tabs in workbooks." border="false":::
+    
+    > [!NOTE]
+    > The example only shows a third tab being edited to show the parameter name and parameter value placeholders.
+    
+    A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
 
-You can then add other items in the workbook that are conditionally visible if the **selectedTab** parameter value is "1" by using the advanced settings:
+#### Add content to tabs
+
+1. **Edit** the workbook content which you want to add to a specific tab.
+
+1. Under **Advanced Settings**, select **Make this item conditionally visible**.
+
+1. Select **Add condition**, enter the **Parameter name** (for example, `selectedTab`), set **Comparison** to *equals*, and set **Parameter value** to the value you assigned to the tab (for example, `1`).
+
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab.png" alt-text="Screenshot of conditionally visible tab in workbooks." border="false":::
 
-The first tab is selected by default, initially setting **selectedTab** to 1, and making that step visible. Selecting the second tab changes the value of the parameter to "2", and different content is displayed:
+    The first tab is selected by default, initially setting **selectedTab** to `1`, and making that step visible. Selecting the second tab changes the value of the parameter to `2`, and different content is displayed.
+    
     <!-- convertborder later -->
     :::image type="content" source="media/workbooks-create-workbook/workbooks-selected-tab2.png" lightbox="media/workbooks-create-workbook/workbooks-selected-tab2.png" alt-text="Screenshot of workbooks with content displayed when selected tab is 2.":::
 
-A sample workbook with the above tabs is available in [sample Azure Workbooks with links](workbooks-sample-links.md#sample-workbook-with-links).
-
-### Tabs limitations
+#### Tabs limitations
 
 * URL links aren't supported in tabs. A URL link in a tab appears as a disabled tab.
 * No item styling is supported in tabs. Items are displayed as tabs, and only the tab name (link text) field is displayed. Fields that aren't used in tab style are hidden while in edit mode.
@@ -498,9 +532,9 @@ To add an image in your workbook:
 
 1. Add an image by doing either of these steps:
 
-   - Select **Add**, and **Add image** below an existing element, or at the bottom of the workbook.
-   - Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add image**.
-      
+    * Select **Add**, and **Add image** below an existing element, or at the bottom of the workbook.
+    * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add image**.
+
 1. Enter the image URL in the provided field.
 
 1. Provide additional settings such as the image title, size, and alternative text. Setting the image size to full size sets the image to its original size.
@@ -513,9 +547,9 @@ To add a video in your workbook:
 
 1. Add a video by doing either of these steps:
 
-   - Select **Add**, and **Add video** below an existing element, or at the bottom of the workbook.
-   - Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add video**.
-      
+    * Select **Add**, and **Add video** below an existing element, or at the bottom of the workbook.
+    * Select the ellipses (...) to the right of the **Edit** button next to one of the elements in the workbook, then select **Add** and then **Add video**.
+
 1. Enter the video URL in the provided field.
 
 1. Provide additional settings such as the video title, size, and alternative text.
