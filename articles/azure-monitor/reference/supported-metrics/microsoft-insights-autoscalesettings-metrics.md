@@ -2,9 +2,6 @@
 title: Supported metrics - microsoft.insights/autoscalesettings
 description: Reference for microsoft.insights/autoscalesettings metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: microsoft.insights/autoscalesettings, naam
 

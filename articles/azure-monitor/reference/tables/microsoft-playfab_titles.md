@@ -2,10 +2,6 @@
 title: Azure Monitor tables for microsoft.playfab/titles
 description: Azure Monitor tables for resource type microsoft.playfab/titles
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.subservice: logs
-ms.author: edbaynash
-author: EdB-MSFT
    
 ms.date: 02/18/2025
 

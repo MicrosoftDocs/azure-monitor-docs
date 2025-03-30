@@ -2,9 +2,6 @@
 title: Supported log categories - microsoft.insights/autoscalesettings
 description: Reference for microsoft.insights/autoscalesettings in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: microsoft.insights/autoscalesettings, naam
 

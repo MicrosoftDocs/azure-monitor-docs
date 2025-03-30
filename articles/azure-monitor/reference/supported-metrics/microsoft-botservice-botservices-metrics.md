@@ -2,9 +2,6 @@
 title: Supported metrics - microsoft.botservice/botservices
 description: Reference for microsoft.botservice/botservices metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: microsoft.botservice/botservices, naam
 

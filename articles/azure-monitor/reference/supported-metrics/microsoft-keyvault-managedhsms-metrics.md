@@ -2,9 +2,6 @@
 title: Supported metrics - microsoft.keyvault/managedhsms
 description: Reference for microsoft.keyvault/managedhsms metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: microsoft.keyvault/managedhsms, naam
 

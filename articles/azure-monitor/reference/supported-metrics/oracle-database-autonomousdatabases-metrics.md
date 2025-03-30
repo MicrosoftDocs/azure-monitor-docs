@@ -2,9 +2,6 @@
 title: Supported metrics - Oracle.Database/autonomousDatabases
 description: Reference for Oracle.Database/autonomousDatabases metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Oracle.Database/autonomousDatabases, naam
 

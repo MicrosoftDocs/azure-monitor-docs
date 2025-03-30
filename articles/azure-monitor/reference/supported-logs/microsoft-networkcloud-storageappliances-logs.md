@@ -2,9 +2,6 @@
 title: Supported log categories - Microsoft.NetworkCloud/storageAppliances
 description: Reference for Microsoft.NetworkCloud/storageAppliances in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: Microsoft.NetworkCloud/storageAppliances, naam
 

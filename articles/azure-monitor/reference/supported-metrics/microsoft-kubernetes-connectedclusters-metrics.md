@@ -2,9 +2,6 @@
 title: Supported metrics - microsoft.kubernetes/connectedClusters
 description: Reference for microsoft.kubernetes/connectedClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: microsoft.kubernetes/connectedClusters, naam
 
