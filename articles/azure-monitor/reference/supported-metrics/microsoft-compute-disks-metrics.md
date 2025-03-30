@@ -2,9 +2,6 @@
 title: Supported metrics - microsoft.compute/disks
 description: Reference for microsoft.compute/disks metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: microsoft.compute/disks, naam
 

@@ -2,9 +2,6 @@
 title: Supported log categories - Microsoft.DesktopVirtualization/scalingplans
 description: Reference for Microsoft.DesktopVirtualization/scalingplans in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: Microsoft.DesktopVirtualization/scalingplans, naam
 

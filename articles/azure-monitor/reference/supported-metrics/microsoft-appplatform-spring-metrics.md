@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.AppPlatform/spring
 description: Reference for Microsoft.AppPlatform/spring metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.AppPlatform/spring, naam
 

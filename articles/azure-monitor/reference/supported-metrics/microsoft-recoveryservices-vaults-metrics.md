@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.RecoveryServices/Vaults
 description: Reference for Microsoft.RecoveryServices/Vaults metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.RecoveryServices/Vaults, naam
 

@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.CustomProviders/resourceproviders
 description: Reference for Microsoft.CustomProviders/resourceproviders metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.CustomProviders/resourceproviders, arm
 

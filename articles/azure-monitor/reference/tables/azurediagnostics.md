@@ -2,10 +2,6 @@
 title: Azure Monitor Logs reference - AzureDiagnostics
 description: Reference for AzureDiagnostics table in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.subservice: logs
-ms.author: edbaynash
-author: EdB-MSFT
 ms.date: 03/27/2025
 custom: Hardcoded description from azurediagnostics-stub.md.
 

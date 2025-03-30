@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.HealthcareApis/services
 description: Reference for Microsoft.HealthcareApis/services metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.HealthcareApis/services, arm
 
