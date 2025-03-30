@@ -19,7 +19,7 @@ This article explains how to delete log entries from a specific table in your Lo
 
 ## How the Delete Data API works
 
-The Delete Data API is ideal for unplanned deletions of individual records. For example, when you discover that corrupt telemetry data was ingested to the workspace and you want to prevent it from skewing query results. The Delete Data API mark records that meet the specified filter criteria as deleted without physically removing them from storage. 
+The Delete Data API is ideal for unplanned deletions of individual records. For example, when you discover that corrupt telemetry data was ingested to the workspace and you want to prevent it from skewing query results. The Delete Data API mark records that meet the specified filter criteria as deleted without physically removing them from storage.
 
 To specify which rows of the table you want to delete, you send one or more filters in the body of the API call.
 
@@ -63,6 +63,7 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 
 - You can submit up to 10 Delete Data requests per hour in a single Log Analytics workspace. 
 - The Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. The Auxiliary plan doesn't support data deletion.
+- Delete-data doesn't affect retention billing. Retention charge is governed by the retention period configured in [tables](./data-retention-configure.md#configure-table-level-retention), or your [workspace](./data-retention-configure.md#configure-the-default-interactive-retention-period-of-analytics-tables).
 
 ## Call the Delete Data API to delete data from a specific table
 
