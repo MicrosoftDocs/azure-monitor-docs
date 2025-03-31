@@ -855,7 +855,7 @@ For more information, see the [Authentication](./azure-ad-authentication.md) doc
 
 ## HTTP proxy
 
-If your application is behind a firewall and can't connect directly to Application Insights, refer to [IP addresses used by Application Insights](../ip-addresses.md).
+If your application is behind a firewall and can't connect directly to Application Insights, refer to [Azure Monitor endpoint access and firewall configuration](../fundamentals/azure-monitor-network-access.md).
 
 To work around this issue, you can configure Application Insights Java 3.x to use an HTTP proxy.
 

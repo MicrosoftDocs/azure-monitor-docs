@@ -498,7 +498,7 @@ To simplify enabling Azure services without authorizing individual IPs or mainta
 
 1. Next, select *Service Tag* as the **Source** and *ApplicationInsightsAvailability* as the **Source service tag**. Use open ports 80 (http) and 443 (https) for incoming traffic from the service tag.
 
-To manage access when your endpoints are outside Azure or when service tags aren't an option, allowlist the [IP addresses of our web test agents](ip-addresses.md). You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
+To manage access when your endpoints are outside Azure or when service tags aren't an option, allowlist the [IP addresses of our web test agents](../fundamentals/azure-monitor-network-access.md). You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
   
 1. In your network security group resource, under **Settings**, open the **Inbound security rules** experience, then select **Add**.
 
@@ -571,7 +571,7 @@ This section provides answers to common questions.
 
 Availability tests run on points of presence that are distributed around the globe. There are two solutions:
           
-* **Firewall door**: Allow requests to your server from [the long and changeable list of web test agents](../ip-addresses.md).
+* **Firewall door**: Allow requests to your server from [the long and changeable list of web test agents](../fundamentals/azure-monitor-network-access.md).
 * **Custom code**: Write your own code to send periodic requests to your server from inside your intranet. You could run Visual Studio web tests for this purpose. The tester could send the results to Application Insights by using the `TrackAvailability()` API.
 
 #### What is the user agent string for availability tests?
