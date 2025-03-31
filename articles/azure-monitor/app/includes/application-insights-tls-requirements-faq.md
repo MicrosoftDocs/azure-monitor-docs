@@ -8,8 +8,8 @@ Affected Application Insights resources stop ingesting data and can't access req
 
 #### Which components does the deprecation affect?
 
-The TLS deprecation detailed in this document should only affect the behavior after May 1, 2025. For more information about CRUD operations, see [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support). This resource provides more details on TLS support and deprecation timelines.
+The Transport Layer Security (TLS) deprecation detailed in this document should only affect the behavior after May 1, 2025. For more information about CRUD operations, see [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support). This resource provides more details on TLS support and deprecation timelines.
 
-#### Where can I get TLS support?
+#### Where can I get Transport Layer Security (TLS) support?
 
 For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem).

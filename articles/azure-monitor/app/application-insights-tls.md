@@ -22,4 +22,4 @@ This section provides answers to common questions.
 
 - [Azure-wide legacy TLS retirement](https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/)
 - [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support)
-- [Solving TLS problems](/security/engineering/solving-tls1-problem)
+- [2nd Edition Solving the TLS 1.0 Problem](/security/engineering/solving-tls1-problem)
