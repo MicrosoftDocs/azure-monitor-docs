@@ -83,21 +83,16 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region Group  | Regions              | Notes                                                                          |
-|---------------|----------------------|--------------------------------------------------------------------------------|
-| North America | East US              | East US can't replicate to or from the East US 2 and South Central US regions. |
-|               | East US 2            | East US 2 can't replicate to or from the East US and South Central US regions. |
-|               | West US              |                                                                                |
-|               | West US 2            |                                                                                |
-|               | Central US           |                                                                                |
-|               | South Central US     | South Central US can't replicate to or from the East US and East US 2 regions. |
-|               | Central Canada       |                                                                                |
-| Europe        | West Europe          |                                                                                |
-|               | North Europe         |                                                                                |
-|               | South UK             |                                                                                |
-|               | West UK              |                                                                                |
-|               | Germany West Central |                                                                                |
-|               | France Central       |                                                                                |
+| Region Group              | Primary regions               | Secondary regions (replication locations) |
+|---------------------------|-------------------------------|----------------------------|
+| North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2    
+| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | North Europe <br> West Europe 
+| Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East  |
+| Asia Pacific   | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | Japan East <br> Korea Central
+
+
+> [!NOTE]
+> Workspaces located in East US, East US 2, and South Central US can only replicate to secondary regions outside that set of three. Please select another secondary location from the North America region group.
 
 ### Data residency requirements
 
