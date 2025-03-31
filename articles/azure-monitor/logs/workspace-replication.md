@@ -64,7 +64,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
 
 * The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents.
 
-* The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up the DNS updated DNS. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel.
+* The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up on DNS updates. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel.
 
 * These features are currently not supported or only partially supported:
 
@@ -86,9 +86,10 @@ These region groups and regions are currently supported:
 | Region Group              | Primary regions               | Secondary regions (replication locations) |
 |---------------------------|-------------------------------|----------------------------|
 | North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2    
-| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | North Europe <br> West Europe 
+| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | France Central <br> North Europe <br> West Europe 
+| Asia Pacific   | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Korea Central
 | Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East  |
-| Asia Pacific   | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | Japan East <br> Korea Central
+| Africa   | South Africa North <br> South Africa West  | South Africa West
 
 
 > [!NOTE]
