@@ -338,7 +338,8 @@ items:
       - name: Managed workspaces
         href: app/managed-workspaces.md
       - name: Transport Layer Security (TLS) compliance
-        href: app/managed-workspaces.md
+        href: app/application-insights-tls.md
+        displayName: TLS, transport layer security, compliance, security
     - name: Help and support
       items:
       - name: Create an Azure support ticket
