@@ -1,13 +1,13 @@
 ---
-title: IP hosts used by Azure Monitor | Microsoft Docs
-description: This article discusses server firewall exceptions required by Azure Monitor
+title: Azure Monitor endpoint access and firewall configuration | Microsoft Docs
+description: Ensure your Azure resources can connect to Azure Monitor by configuring firewall rules and understanding endpoint access requirements.
 ms.topic: reference
-ms.date: 03/27/2025
+ms.date: 03/31/2025
 ms.servce: azure-monitor
 ms.reviewer: rofrenke
 ---
 
-# IP addresses used by Azure Monitor
+# Azure Monitor endpoint access and firewall configuration
 
 If your monitored application or infrastructure is behind a firewall, you need to configure network access to allow communication with [Azure Monitor](overview.md) services.
 
