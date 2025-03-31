@@ -101,7 +101,7 @@ The diagram and table below compare the Analytics, Basic, and Auxiliary table pl
 
 > [!NOTE]
 > These features are currently not supported in the Auxiliary table plan:
-> - [Log Analytics workspace replication](workspace-replication.md); Azure Monitor doesn't replicate data in tables with the Auxiliary plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you swith over to your secondary workspace.
+> - [Log Analytics workspace replication](workspace-replication.md); Azure Monitor doesn't replicate data in tables with the Auxiliary plan to your secondary workspace. Therefore, this data isn't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace.
 > - [Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview); The Lockbox interface, which lets you review and approve or reject customer data access requests in response to a customer-initiated support ticket or a problem identified by Microsoft does not apply to tables with the Auxiliary plan.
 
 
