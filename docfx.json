@@ -153,6 +153,7 @@
         "articles/azure-monitor/profiler/**/*": "hhunter-ms",
         "articles/azure-monitor/snapshot-debugger/**/*": "hhunter-ms",
         "articles/azure-monitor/visualize/**/*": "IngridAtMicrosoft",
+        "articles/azure-monitor/reference/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/vm/**/*": "bwren",
         "articles/chaos-studio/**/*": "",
         "articles/service-health/**/*": "jocalland"
