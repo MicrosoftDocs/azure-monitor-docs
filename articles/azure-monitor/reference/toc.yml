@@ -2267,6 +2267,10 @@ items:
             href: tables/deviceappcrash.md
           - name: DeviceAppLaunch
             href: tables/deviceapplaunch.md
+          - name: DeviceBehaviorEntities
+            href: tables/devicebehaviorentities.md
+          - name: DeviceBehaviorInfo
+            href: tables/devicebehaviorinfo.md
           - name: DeviceCalendar
             href: tables/devicecalendar.md
           - name: DeviceCleanup

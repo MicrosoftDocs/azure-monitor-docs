@@ -45,14 +45,17 @@ The public API endpoint is:
     https://api.loganalytics.azure.com/{api-version}/workspaces/{workspaceId}
 ```
 where:
- - **api-version**: The API version. The current version is "v1."
+ - **api-version**: The API version. The current version is `v1`.
  - **workspaceId**: Your workspace ID.
- 
+
+>[!NOTE]
+>The `beta` api-version has been deprecated. For more information, see [Migrate from using batch and beta query APIs](migrate-batch-and-beta.md).
+
 The query is passed in the request body.
  
 For example:
  ```
-    https://api.loganalytics.azure.com/v1/workspaces/1234abcd-def89-765a-9abc-def1234abcde
+    https://api.loganalytics.azure.com/v1/workspaces/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
     
     Body:
     {

@@ -2,9 +2,6 @@
 title: Supported log categories - Microsoft.DataShare/accounts
 description: Reference for Microsoft.DataShare/accounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: Microsoft.DataShare/accounts, naam
 

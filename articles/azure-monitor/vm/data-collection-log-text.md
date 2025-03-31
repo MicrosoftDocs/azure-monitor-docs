@@ -15,7 +15,7 @@ Details for the creation of the DCR are provided in [Collect data from VM client
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#text-logs).
 
 ## Prerequisites
-In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for details about the requirements of this table.
+In addition to the prerequisites listed in [Collect data from virtual machine client with Azure Monitor](./data-collection.md#prerequisites), you need a custom table in a Log Analytics workspace to receive the data. See [Log Analytics workspace table](#log-analytics-workspace-table) for details about the requirements of this table. Note that Aarch64 is not supported.
 
 ## Configure custom text file data source
 Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Custom Text Logs** from the **Data source type** dropdown.
@@ -71,6 +71,7 @@ Following is a sample of a typical custom text file that can be collected by Azu
 
 Adhere to the following recommendations to ensure that you don't experience data loss or performance issues:
   
+- Don't target more than 10 directories with log files. Polling too many directories leads to poor performance.
 - Continuously clean up log files in the monitored directory. Tracking many log files can drive up agent CPU and Memory usage. Wait for at least two days to allow ample time for all logs to be processed.
 - Don't rename a file that matches the file scan pattern to another name that also matches the file scan pattern. This will cause duplicate data to be ingested. 
 - Don't rename or copy large log files that match the file scan pattern into the monitored directory. If you must, do not exceed 50MB per minute.
@@ -126,6 +127,8 @@ $tableParams = @'
     }
 }
 '@
+
+Invoke-AzRestMethod -Path "/subscriptions/{subscription}/resourcegroups/{resourcegroup}/providers/microsoft.operationalinsights/workspaces/{workspace}/tables/MyTable_CL?api-version=2021-12-01-preview" -Method PUT -payload $tableParams
 ```
 
 ## Multiline log files

@@ -2,9 +2,6 @@
 title: Supported log categories - microsoft.videoindexer/accounts
 description: Reference for microsoft.videoindexer/accounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
 ms.date: 02/18/2025
 ms.custom: microsoft.videoindexer/accounts, naam
 

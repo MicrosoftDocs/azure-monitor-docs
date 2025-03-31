@@ -12,22 +12,26 @@ ms.reviewer: JeffWo
 
 This article describes the version details for the Azure Monitor Agent virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
-> [!Note]
-> Microsoft only supports Azure Monitoring Agent versions within the last 1 year. Customers should update to a version within this period. Microsoft will release all bug fixes in the latest version only.
+[//]: # "> [!Note]"
+Microsoft only supports Azure Monitoring Agent versions within the last 1 year. Customers should update to a version within this period. Microsoft will release all bug fixes in the latest version only.
 
 We strongly recommend that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. Automatic extension roll out follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to rollout the latest version. Upgrades are issued in batches, so you may see some of your virtual machines, scale-sets or Arc-enabled servers get upgraded before others.
 
 
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
+[//]: # "> [!CAUTION]"
+[//]: # "> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life)."
 
 
 [//]: # "DON'T change the format (column schema, etc.) of the table without consulting glinuxagent alias. The [Azure Monitor Linux Agent Troubleshooting Tool](https://github.com/Azure/azure-linux-extensions/blob/master/AzureMonitorAgent/ama_tst/AMA-Troubleshooting-Tool.md) parses the table at runtime to determine the latest version of AMA; altering the format could degrade some of the functions of the tool."
+## Current Versions
+- Deployment of version 1.34.0 for Windows started on March 15, 2025. It will be available for manual update when it has rolled out to your public region in ~10 days. Automatic updates will start in ~20 days.
+- The current versions for automatic update are 1.32.0 for Windows and 1.33.3 for Linux.
+- We will post any significant delays here.
 
 ## Version details
-| Release Date | Release notes | Windows | Linux |
+| Deployment Start Date | Release notes | Windows | Linux |
 |:---|:---|:---|:---|
-| February 2025 | **Windows Features** <ul><li>Deployment of Azure Monitor Agent version 1.34.0 has started, and will be available for manual update when it has rolled to your region. It normally takes 10 days to roll out to all public Azure regions. We expect to start automatic updates no sooner than April 11th. Any significant delays will be posted accordingly</li><li>Use fallback API version only if token endpoint was not provided by AMCS</li><li>**Bug Fixes**<ul><li>Report actual date and time values from the W3C logs when collecting IIS logs</li><li>Use non-cached OS Name for Heartbeat</li><li>Compatibility with Dependency Agent for Client install scenarios.</li><li>Ignore extra newline character in custom logs collection</li><li>AMA: Bug fix to escape '&' in perf counters data source</li></ul></li></ul>**Linux Features**<ul><li>Coming soon.</li></ul>| 1.34.0| 1.34.3|
+| February 2025 | **Windows Features** <ul><li>Use fallback API version only if token endpoint was not provided by AMCS</li><li>**Bug Fixes**<ul><li>Report actual date and time values from the W3C logs when collecting IIS logs</li><li>Use non-cached OS Name for Heartbeat</li><li>Compatibility with Dependency Agent for Client install scenarios.</li><li>Ignore extra newline character in custom logs collection</li><li>AMA: Bug fix to escape '&' in perf counters data source</li></ul></li></ul>**Linux Features**<ul><li>Coming soon.</li></ul>| 1.34.0| 1.34.4|
 | January 2025 | **Windows Features**<ul><li>Added the ability to tune the disk quota for the windows agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul>**Linux Features**<ul><li>Added the ability to tune the disk quota for the Linux agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul>| 1.32.0| 1.33.3|
 | November 2024 | **Windows Features**<ul><li>Update priorities for selection of ARC/AMA/System Proxy. Some customers have had difficulties with the default proxy selections</li><li>Populate SourceHostname column in Sentinel's Windows Firewall Logs (ASimNetworkSessionLogs table)</li><li>Resolve data latency issues for Sentinel's DNS activity logs (ASimDnsActivityLogs table)</li><li>Update Troubleshooter to version 1.6.37</li><li>Update Metric Extension to version 2.2024.930.1245</li></ul>| 1.31.0| |
 | October 2024 | **Windows Features**<ul><li>AMA: Updating AMA proxy settings to allow the Arc proxy to be bypassed</li><li>AMA: Custom Logs support Timestamp as delimiter (for MMA parity). You must deploy it using a DCR template or through the CLI. UI support is coming in the December release.</li><li>Enhance security for file operation when data folder contains redirection</li><li>Update MetricsExtension version to v2.2024.726.1005</li></ul>| 1.30.0| |

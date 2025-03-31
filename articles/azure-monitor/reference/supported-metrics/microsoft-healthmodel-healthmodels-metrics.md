@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.HealthModel/healthmodels
 description: Reference for Microsoft.HealthModel/healthmodels metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.HealthModel/healthmodels, naam
 

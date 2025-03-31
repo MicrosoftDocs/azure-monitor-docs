@@ -9,11 +9,6 @@ ms.date: 04/03/2025
 
 This article lists significant changes to Azure Monitor documentation.
 
-> [!TIP]
-> Get notified when this page is updated by copying and pasting the following URL into your feed reader:
->
-> :::image type="content" source="media/whats-new/rss.png" alt-text="An rss icon."::: https://aka.ms/azmon/rss
-
 ## 2025
 
 ### February 2025
@@ -286,7 +281,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Migrate from the Node.js Application Insights SDK 2.X to Azure Monitor OpenTelemetry](../app/opentelemetry-nodejs-migrate.md)|Node.js OpenTelemetry migration guidance is available, providing a choice of either clean installing our Distro (recommended) or upgrading to Node.js SDK 3.X as an interim solution.|
 |Application-Insights|[Application monitoring for Azure App Service and Python (Preview)](../app/azure-web-apps-python.md)|Codeless OpenTelemetry automatic instrumentation for Python is available in preview.|
 |Application-Insights|[Configuration options: Azure Monitor Application Insights for Java](../app/java-standalone-config.md)|Java Custom Instrumentation (preview) is available. Starting from version 3.3.1, you can capture spans for a method in your application.|
-|Application-Insights|[Sampling in Application Insights](../app/sampling-classic-api.md)|Conflicting`ExcludedTypes` and `IncludedTypes` guidance has been added.|
+|Application-Insights|[Sampling in Application Insights](/previous-versions/azure/azure-monitor/app/sampling-classic-api)|Conflicting`ExcludedTypes` and `IncludedTypes` guidance has been added.|
 |Change-Analysis|[Enable Change Analysis](../change/change-analysis-enable.md)|Add note to AzMon Change Analysis documentation to point users to the new ARG Change Analysis public preview, which will replace AzMon Change Analysis in GA.|
 |Change-Analysis|[Tutorial: Track a web app outage using Change Analysis](../change/change-analysis-track-outages.md)|Add note to AzMon Change Analysis documentation to point users to the new ARG Change Analysis public preview, which will replace AzMon Change Analysis in GA.|
 |Change-Analysis|[Troubleshoot Azure Monitor's Change Analysis](../change/change-analysis-troubleshoot.md)|Add note to AzMon Change Analysis documentation to point users to the new ARG Change Analysis public preview, which will replace AzMon Change Analysis in GA.|

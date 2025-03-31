@@ -2,9 +2,6 @@
 title: Supported metrics - microsoft.network/bastionHosts
 description: Reference for microsoft.network/bastionHosts metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: microsoft.network/bastionHosts, naam
 

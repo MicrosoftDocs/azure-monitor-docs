@@ -202,3 +202,7 @@ When you create an Azure Monitor workspace, by default a data collection rule an
 If you are collecting metrics at high scale, check the sections below for HPA and high scale guidance.
 - [Check considerations for collecting metrics at high scale](prometheus-metrics-scrape-scale.md).
 - [Horizontal Pod Autoscaling for collector replicaset](prometheus-metrics-scrape-autoscaling.md)
+
+## Charts are stuck in a loading state
+
+This issue occurs if the network traffic for the Azure Monitor Workspace is blocked. The root cause of this is typically related to network policies, such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.

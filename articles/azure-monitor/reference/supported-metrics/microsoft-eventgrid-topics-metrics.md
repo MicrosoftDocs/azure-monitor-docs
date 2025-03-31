@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.EventGrid/topics
 description: Reference for Microsoft.EventGrid/topics metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.EventGrid/topics, naam
 

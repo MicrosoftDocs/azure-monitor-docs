@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.SecurityDetonation/SecurityDetonationChambers
 description: Reference for Microsoft.SecurityDetonation/SecurityDetonationChambers metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.SecurityDetonation/SecurityDetonationChambers, arm
 

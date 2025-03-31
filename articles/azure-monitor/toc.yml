@@ -185,13 +185,7 @@ items:
           href: /previous-versions/azure/azure-monitor/app/opencensus-python
         - name: Advanced SDK topics
           items:
-          - name: Connection strings
-            href: app/sdk-connection-string.md
-            displayName: connection string, instrumentation key
-          - name: Sampling
-            href: app/sampling-classic-api.md
-            displayName: adaptive sampling, fixed rate sample, fixed sampling, ingestion sampling
-          - name: Application Insights API summary
+          - name: Application Insights Classic API summary
             displayName: SDK, API, custom events, custom metrics, trackevent, trackmetric, getmetric, trackrequest, trackexception, tracktrace, trackdependency
             href: app/api-custom-events-metrics.md
           - name: Log traces
@@ -212,7 +206,7 @@ items:
       - name: Application Map
         displayName: appmap, app map, dependency map, dependencies, hotspots, cloud role name, cloudrolename, cloud_rolename, cloud.rolename, cloud role instance, node
         href: app/app-map.md
-      - name: Failures and Performance Views
+      - name: Failures and Performance views
         href: app/failures-and-performance-views.md
       - name: Availability
         href: app/availability.md
@@ -320,6 +314,8 @@ items:
           href: alerts/proactive-email-notification.md
     - name: Terms and concepts
       items:
+      - name: OpenTelemetry sampling
+        href: app/opentelemetry-sampling.md
       - name: Connection strings
         href: app/connection-strings.md
       - name: Geolocation and IP address handling
@@ -332,6 +328,9 @@ items:
         displayName: azure ad authentication
       - name: Managed workspaces
         href: app/managed-workspaces.md
+      - name: Transport Layer Security (TLS) compliance
+        href: app/application-insights-tls.md
+        displayName: TLS, transport layer security, compliance, security
     - name: Help and support
       items:
       - name: Create an Azure support ticket
@@ -546,6 +545,9 @@ items:
           - name: Monitor Istio
             displayName: Prometheus
             href: containers/prometheus-istio-integration.md
+          - name: Monitor Nvidia GPU
+            displayName: Prometheus
+            href: containers/prometheus-dcgm-integration.md
         - name: Scale using KEDA based on Prometheus metrics
           displayName: Prometheus
           href: containers/integrate-keda.md
@@ -1117,10 +1119,12 @@ items:
             displayName: Log retention, log archive, cost optimization
           - name: Add or delete tables and columns
             href: logs/create-custom-table.md
-          - name: Set up a table with the Auxiliary plan
-            href: logs/create-custom-table-auxiliary.md
+          - name: Delete data from a log table
+            href: logs/delete-log-data.md
           - name: Manage table-level read access
             href: logs/manage-table-access.md
+          - name: Set up a table with the Auxiliary plan
+            href: logs/create-custom-table-auxiliary.md
         - name: Search jobs and data restore
           items:
           - name: Run a search job
@@ -1419,6 +1423,8 @@ items:
             href: logs/api/prefer-options.md
           - name: Errors
             href: logs/api/errors.md
+          - name: Migrate from using batch and beta query APIs
+            href: logs/api/migrate-batch-and-beta.md
   - name: Get the Activity log using the REST API
     href: essentials/rest-activity-log.md
   - name: Change Analysis (classic)
@@ -1453,6 +1459,8 @@ items:
             href: alerts/alerts-create-metric-alert-rule.md
           - name: Log search alert rules
             href: alerts/alerts-create-log-alert-rule.md
+          - name: Create a simple alert
+            href: alerts/alerts-create-simple-alert.md
           - name: Activity log, service health or resource health alert rules
             href: alerts/alerts-create-activity-log-alert-rule.md
           - name: Prometheus alert rules
@@ -1611,8 +1619,6 @@ items:
       href: essentials/resource-manager-diagnostic-settings.md
     - name: Log queries
       href: logs/resource-manager-log-queries.md
-    - name: SQL Insights (preview)
-      href: insights/resource-manager-sql-insights.md
     - name: Workbooks
       href: visualize/resource-manager-workbooks.md
   - name: Alerts

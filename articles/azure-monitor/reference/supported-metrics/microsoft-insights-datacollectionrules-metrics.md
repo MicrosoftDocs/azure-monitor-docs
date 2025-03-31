@@ -2,9 +2,6 @@
 title: Supported metrics - Microsoft.Insights/datacollectionrules
 description: Reference for Microsoft.Insights/datacollectionrules metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: Microsoft.Insights/datacollectionrules, naam
 

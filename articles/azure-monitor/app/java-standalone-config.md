@@ -444,7 +444,7 @@ Starting from verion 3.3.1, you can capture spans for a method in your applicati
 ## Locally disabling ingestion sampling (preview)
 
 By default, when the effective sampling percentage in the Java agent is 100%
-and [ingestion sampling](./sampling-classic-api.md#ingestion-sampling) has been configured on your Application Insights resource,
+and [ingestion sampling](./opentelemetry-sampling.md#ingestion-sampling-not-recommended) has been configured on your Application Insights resource,
 then the ingestion sampling percentage will be applied.
 
 Note that this behavior applies to both fixed-rate sampling of 100% and also applies to rate-limited sampling when the

@@ -17,6 +17,11 @@ The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) has 
 
 We recommend that you do NOT explicitly set your agent to only use TLS 1.3 unless necessary. Allowing the agent to automatically detect, negotiate, and take advantage of future security standards is preferable. Otherwise, you might miss the added security of the newer standards and possibly experience problems if TLS 1.3 is ever deprecated in favor of those newer standards.
 
+> [!IMPORTANT]
+>  On 1 July 2025, in alignment with the [Azure wide legacy TLS retirement](https://azure.microsoft.com/updates?id=update-retirement-tls1-0-tls1-1-versions-azure-services), TLS 1.0/1.1 protocol versions will be retired for Azure Monitor Logs. To provide best-in-class encryption, Azure Monitor Logs uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. 
+
+For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
+
 #### Set up log query auditing
 
 1. Configure log query auditing to record the details of each query that's run in a workspace. <br>**Instructions**: [Audit queries in Azure Monitor Logs](../query-audit.md)
@@ -47,7 +52,7 @@ If your log data includes [sensitive information](../personal-data-mgmt.md):
 #### Purge sensitive data that was collected accidentally 
 
 1. Check periodically for private data that might accidentally be collected in your workspace.
-1. Use [data purge](../personal-data-mgmt.md#exporting-and-deleting-personal-data) to remove unwanted data. Note that data in tables with the [Auxiliary plan](../data-platform-logs.md#table-plans) can't currently be purged. <br>**Instructions**: [Managing personal data in Azure Monitor Logs and Application Insights](../personal-data-mgmt.md#exporting-and-deleting-personal-data) 
+1. Use [data purge](../personal-data-mgmt.md#export-delete-or-purge-personal-data) to remove unwanted data. Note that data in tables with the [Auxiliary plan](../data-platform-logs.md#table-plans) can't currently be purged. <br>**Instructions**: [Managing personal data in Azure Monitor Logs and Application Insights](../personal-data-mgmt.md#export-delete-or-purge-personal-data) 
 
 #### Link your workspace to a dedicated cluster for enhanced security
 

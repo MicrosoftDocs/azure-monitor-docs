@@ -2,9 +2,6 @@
 title: Supported metrics - NGINX.NGINXPLUS/nginxDeployments
 description: Reference for NGINX.NGINXPLUS/nginxDeployments metrics in Azure Monitor.
 ms.topic: generated-reference
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
 ms.date: 02/18/2025
 ms.custom: NGINX.NGINXPLUS/nginxDeployments, naam
 
