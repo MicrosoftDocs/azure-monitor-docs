@@ -94,7 +94,7 @@ These region groups and regions are currently supported:
 
 
 > [!NOTE]
-> Workspaces located in East US, East US 2, and South Central US can't replicate to these three region. Please select another secondary location from the North America region group.
+> Workspaces located in East US, East US 2, and South Central US can only replicate to secondary regions outside that set of three. Please select another secondary location from the North America region group.
 
 ### Data residency requirements
 
