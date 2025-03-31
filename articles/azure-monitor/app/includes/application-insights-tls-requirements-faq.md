@@ -1,3 +1,8 @@
+---
+ms.topic: include
+ms.date: 03/31/2025
+---
+
 #### How do I ensure my resources aren't affected?
 
 To avoid service disruptions, each remote endpoint (including dependent requests) your resource interacts with needs to support at least one combination of the same Protocol Version, Cipher Suite, and Elliptical Curve mentioned earlier. If the remote endpoint doesn't support the needed TLS configuration, it needs to be updated with support for some combination of the above-mentioned post-deprecation TLS configuration.

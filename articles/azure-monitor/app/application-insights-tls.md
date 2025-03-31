@@ -6,7 +6,7 @@ ms.date: 04/01/2025
 ms.reviewer: cogoodson
 ---
 
-# TLS Support in Application Insights
+# TLS support in Application Insights
 
 Learn how Application Insights uses Transport Layer Security (TLS), which configurations are supported, and how to keep your resources compliant with Azure TLS requirements.
 
