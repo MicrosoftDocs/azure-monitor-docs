@@ -51,8 +51,6 @@ If you write your own client to send log data to your Log Analytics workspace, e
 
 ## Deployment considerations
 
-* Replication of Log Analytics workspaces linked to a dedicated cluster is currently not supported.
-
 * The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
 
 * Azure Monitor supports querying of the inactive region. Query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. Replication of alert rules across regions is currently not supported.
@@ -85,21 +83,16 @@ Workspace replication is currently supported for workspaces in a limited set of 
 
 These region groups and regions are currently supported:
 
-| Region Group  | Regions              | Notes                                                                          |
-|---------------|----------------------|--------------------------------------------------------------------------------|
-| North America | East US              | East US can't replicate to or from the East US 2 and South Central US regions. |
-|               | East US 2            | East US 2 can't replicate to or from the East US and South Central US regions. |
-|               | West US              |                                                                                |
-|               | West US 2            |                                                                                |
-|               | Central US           |                                                                                |
-|               | South Central US     | South Central US can't replicate to or from the East US and East US 2 regions. |
-|               | Central Canada       |                                                                                |
-| Europe        | West Europe          |                                                                                |
-|               | North Europe         |                                                                                |
-|               | South UK             |                                                                                |
-|               | West UK              |                                                                                |
-|               | Germany West Central |                                                                                |
-|               | France Central       |                                                                                |
+| Region Group              | Primary regions               | Secondary regions (replication locations) |
+|---------------------------|-------------------------------|----------------------------|
+| North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2    
+| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | North Europe <br> West Europe 
+| Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East  |
+| Asia Pacific   | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | Japan East <br> Korea Central
+
+
+> [!NOTE]
+> Workspaces located in East US, East US 2, and South Central US can only replicate to secondary regions outside that set of three. Please select another secondary location from the North America region group.
 
 ### Data residency requirements
 
@@ -133,6 +126,63 @@ When you enable workspace replication, you're charged for the replication of all
 
 You enable and disable workspace replication by using a REST command. The command triggers a long running operation, which means that it can take a few minutes for the new settings to apply. After you enable replication, it can take up to one hour for all tables (data types) to begin replicating, and some data types might start replicating before others. Changes you make to table schemas after you enable workspace replication - for example, new custom log tables or custom fields you create, or diagnostic logs set up for new resource types - can take up to one hour to start replicating.
 
+### Using a dedicated cluster?
+If your workspace is linked to a dedicated cluster, you must first enable replication on the cluster, and only then on the workspace. This operation creates a second cluster on your secondary region (no extra charge beyond replication charges), in order to allow your workspace to keep using a dedicated cluster even if you failover. This also means features like cluster managed keys (CMK) continue to work (with the same key) during failover.
+Once cross-region replication is enabled, proceed to enable replication for one or more of the workspaces linked to this cluster.
+
+> [!IMPORTANT]
+> Once cluster replication is enabled, changing the replication destination requires disabling replication and re-enabling it against a different location.
+
+To enable replication on your dedicated cluster, use the following PUT command. This call returns 202. It's a long running operation which may take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
+
+To enable cluster replication, use this `PUT` command: 
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": true,
+            "location": "<secondary_region>"
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+- `<subscription_id>`: The subscription ID related to your cluster.
+- `<resourcegroup_name>` : The resource group that contains your Log Analytics cluster resource.
+- `<cluster_name>`: The name of your dedicated cluster.
+- `<primary_region>`: The primary region for your Log Analytics dedicated cluster.
+- `<secondary_region>`: The region in which Azure Monitor creates the secondary dedicated cluster.
+
+### Check cluster provisioning state
+
+To check the provisioning state of your cluster, run this `GET` command:
+
+```http
+GET
+
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/clusters/<cluster_name>?api-version=2025-02-01
+```
+
+Where:
+
+* `<subscription_id>`: The subscription ID related to your cluster.
+* `<resourcegroup_name>`: The resource group that contains your Log Analytics cluster resource.
+* `<cluster_name>`: The name of your Log Analytics cluster.
+ 
+Use the `GET` command to verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+
+> [!NOTE]
+> When you enable cluster replication, a new cluster is being provisioned on the secondary location. This process can take 1-2 hours.
+
 ### Enable workspace replication
 
 To enable replication on your Log Analytics workspace, use this `PUT` command:
@@ -140,7 +190,7 @@ To enable replication on your Log Analytics workspace, use this `PUT` command:
 ```http
 PUT 
 
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01
 
 body:
 {
@@ -164,16 +214,19 @@ Where:
 
 For the supported `location` values, see [Supported regions](#supported-regions).
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
-### Check request provisioning state
+> [!IMPORTANT]
+> If your workspace is linked to a dedicated cluster, first enable replication on the cluster. Also note that the secondary location of your workspace must be identical to the secondary location of its dedicated cluster.
 
-To check the provisioning state of your request, run this `GET` command:
+### Check workspace provisioning state
+
+To check the provisioning state of your workspace, run this `GET` command:
 
 ```http
 GET
 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>?api-version=2025-02-01
 ```
 
 Where:
@@ -205,6 +258,26 @@ To replicate data you collect using data collection rules, associate your data c
 > [!IMPORTANT]
 > Data collection rules connected to a workspace data collection endpoint can target only that specific workspace. The data collection rules **must not** target other destinations, such as other workspaces or Azure Storage accounts.
 
+### What to check if workspace replication fails
+* Is the workspace linked to a dedicated cluster? 
+    * Replication must be enabled on the cluster before it can be enabled on the workspace. 
+    * Both cluster and workspace replication must be set to the same secondary location. For example, if the cluster is replicated to  North Europe, the workspaces linked to it can only be replicated to North Europe too.
+* Did you use the REST API to enable replication?
+    * Verify you used API version 2025-02-01 or later.
+* Is the primary workspace located in East US, East US 2, or South Central US?
+    * East US, East US 2, and South Central US can't replicate to one another.
+* Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can’t have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
+* Do you have the [required permissions](#permissions-required)?
+* Did you allow enough time for replication operation to complete? replication is a long running operation. Monitor the state of the opeation as explained in [Check workspace provisioning state](#check-workspace-provisioning-state).
+* Did you try to re-enable replication in order to change the workspace secondary location? To change the location of your secondary workspace, you must first [disable workspace replication](#disable-workspace-replication), allow the operation to complete and only then eable replication to another secondary location.
+
+### What to check if workspace replication is set but logs are not replicated?
+
+* Replication can take up to an hour to start applying, and some data types may start replicating before others.
+* Logs ingested to the workspace before replication was enabled are **not** copied over to the seconary workspace. Only logs ingested after replication was enabled - will be replicated.
+* If some logs are replicated and other are not - verify all the data collection rules (DCRs) that stream logs to the workspace are [configured properly](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). To review the DCRs that target the workspace, see the [Log Analytics Workspace Insights](log-analytics-workspace-insights-overview.md) Data Collection tab, in the Azure Portal.
+
+
 ### Disable workspace replication
 
 To disable replication for a workspace, use this `PUT` command:
@@ -212,7 +285,7 @@ To disable replication for a workspace, use this `PUT` command:
 ```http
 PUT 
 
-https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01
 
 body:
 {
@@ -232,8 +305,47 @@ Where:
 * `<workspace_name>`: The name of your workspace.
 * `<primary_region>`: The primary region for your workspace.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
+> [!IMPORTANT]
+> If you're using a dedicated cluster, you should disable cluster replication after disabling replication for each workspace linked to this cluster.
+
+### Disable cluster replication
+
+Disabling cluster replication can be done only after disabling replication for all workspaces linked to this cluster (if previously enabled).
+To disable replication for a workspace, use this `PUT` command:
+
+```http
+PUT 
+
+https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01
+
+body:
+{
+    "properties": {
+        "replication": {
+            "enabled": false
+        }
+    },
+    "location": "<primary_region>"
+}
+```
+
+Where:
+
+- `<subscription_id>`: The subscription ID related to your cluster.
+- `<resourcegroup_name>` : The resource group that contains your cluster resource.
+- `<workspace_name>`: The name of your cluster.
+- `<primary_region>`: The primary region for your cluster.
+
+The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+
+> [!NOTE]
+> Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and you won't be able to access them again. Their original copy on your primary location isn't changed in this process.
+
+> [!IMPORTANT]
+> The process of removing cluster replication takes 14 days. If you require an immediate handling of this process, please create an [Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
+> 
 ## Monitor workspace and service health
 
 Ingestion latency or query failures are examples of issues that can often be handled by failing over to your secondary region. Such issues can be detected by using Service Health notifications and log queries.
@@ -287,13 +399,13 @@ Before you switch regions during switchover, your secondary workspace needs to c
 
 ### Trigger switchover
 
-Before you switch over, [confirm that the workspace replication operation completed successfully](#check-request-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
+Before you switch over, [confirm that the workspace replication operation completed successfully](#check-workspace-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
 
 To switch over to your secondary workspace, use this `POST` command:
 
 ```http
 POST 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/locations/<secondary_region>/workspaces/<workspace_name>/failover?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/locations/<secondary_region>/workspaces/<workspace_name>/failover?api-version=2025-02-01
 ```
 
 Where:
@@ -303,7 +415,13 @@ Where:
 * `<secondary_region>`: The region to switch to during switchover.
 * `<workspace_name>`: The name of the workspace to switch to during switchover.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+
+### What to check if switchover (failover) fails
+* Did you use the REST API to trigger switchover (failover)?
+    * Verify you used API version 2025-02-01 or later.
+    * Verify the secondary location provided in the failover command is the secondary location set for this workspace. This information is available in the Azure Portal view of the workspace, and over API.
+* Switching regions requires a Log Analytics Contributor role **on the resource group of the workspace**, and not just on the workspace itsef.
 
 ## Switch back to your primary workspace
 
@@ -341,7 +459,7 @@ To switch back to your primary workspace, use this `POST` command:
 ```http
 POST
 
-https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>/failback?api-version=2023-01-01-preview
+https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>/failback?api-version=2025-02-01
 ```
 
 Where:
@@ -350,7 +468,7 @@ Where:
 * `<resourcegroup_name>` : The resource group that contains your workspace resource.
 * `<workspace_name>`: The name of the workspace to switch to during switchback.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check request provisioning state](#check-request-provisioning-state).
+The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ## Audit the inactive workspace
 
