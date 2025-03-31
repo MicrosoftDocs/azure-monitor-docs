@@ -334,6 +334,9 @@ items:
         displayName: azure ad authentication
       - name: Managed workspaces
         href: app/managed-workspaces.md
+      - name: Transport Layer Security (TLS) compliance
+        href: app/application-insights-tls.md
+        displayName: TLS, transport layer security, compliance, security
     - name: Help and support
       items:
       - name: Create an Azure support ticket
