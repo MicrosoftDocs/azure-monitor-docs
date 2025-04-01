@@ -6,22 +6,26 @@ ms.date: 01/05/2025
 ms.reviewer: luki
 ---
 
-# Send data to Event Hubs and Storage (Preview)
+# Send virtual machine client data to Event Hubs and Storage (Preview)
 
-This article describes how to send data described in [Collect data from virtual machine client with Azure Monitor](./data-collection.md) to Azure Storage and Event Hubs. This feature is currently in public preview.
+[Collect data from virtual machine client with Azure Monitor](./data-collection.md) describes how to collect data from virtual machines (VMs) with Azure Monitor. This article describes how to send that data described to Azure Storage and Event Hubs. This feature is currently in public preview.
 
 > [!NOTE]
 > This feature is only supported for Azure VMs. Arc-enabled VMs are not supported.
 
+The following table lists the data sources that are supported by this feature. The link 
+
 ## Supported data types
+
+The data types in the following table are supported by this feature. Each has a link to an article describing the details of that source.
 
 | Data source | Operating Systems | Supported destinations |
 |:---|:---|:---|
 | [Windows Event Logs](./data-collection-windows-events.md) | Windows | Eventhub<br>Storage |
 | [Syslog](./data-collection-syslog.md) | Linux | Eventhub<br>Storage |
 | [Performance counters](./data-collection-performance.md) | Windows<br>Linux | Eventhub<br>Storage |
-| [IIS logs](./data-collection-iis.md) |  Windows<br>Linux | Storage |
-| [Text logs](./data-collection-log-text.md) |  Windows<br>Linux | Storage |
+| [IIS logs](./data-collection-iis.md) |  Windows<br>Linux | Storage Blob |
+| [Text logs](./data-collection-log-text.md) |  Windows<br>Linux | Storage Blob |
 
 The following logs are not supported:
 
@@ -49,7 +53,10 @@ The following RBAC roles must be assigned to the managed identity depending on t
 
 ## Create a data collection rule
 
-There is no UI experience for creating a data collection rule (DCR) that sends data to Event Hubs or storage. The following process describes the steps for creating a DCR that sends to an event hub and storage account using an ARM template in the Azure portal. Alternatively, ou can use the sample DCR here to [create a new DCR or modify an existing one using any other methods](../essentials/data-collection-rule-create-edit.md).
+There's not currently a UI experience for creating a data collection rule (DCR) that sends data to Event Hubs or storage. The following process describes the steps for creating a DCR using an ARM template in the Azure portal. Alternatively, you can use the sample DCR here to [create a new DCR using any other methods](../essentials/data-collection-rule-create-edit.md).
+
+> [!IMPORTANT]
+> You can't edit an existing DCR 
 
 1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**.
 
