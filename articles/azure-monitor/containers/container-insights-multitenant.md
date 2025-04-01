@@ -19,11 +19,11 @@ The multitenant logging feature in Container insights supports the following sce
 
 - **Multi-tenancy.** Sends container logs (stdout & stderr) from one or more K8s namespaces to corresponding Log Analytics workspace. 
 
-    :::image type="content" source="media/container-insights-multitenant/multitenancy.png" lightbox="media/container-insights-multitenant/multitenancy.png" alt-text="Diagram that illustrates multitenancy for Container insights." :::
+    :::image type="content" source="media/container-insights-multitenant/multitenancy.png" lightbox="media/container-insights-multitenant/multitenancy.png" alt-text="Diagram that illustrates multitenancy for Container insights." border="false" :::
 
 - **Multi-homing:**  Sends the same set of container logs (stdout & stderr) from one or more K8s namespaces to multiple Log Analytics workspaces. 
 
-    :::image type="content" source="media/container-insights-multitenant/multihoming.png" lightbox="media/container-insights-multitenant/multihoming.png" alt-text="Diagram that illustrates multihoming for Container insights." :::
+    :::image type="content" source="media/container-insights-multitenant/multihoming.png" lightbox="media/container-insights-multitenant/multihoming.png" alt-text="Diagram that illustrates multihoming for Container insights." border="false" :::
 
 ## How it works
 
