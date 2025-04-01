@@ -77,10 +77,6 @@ spec:
     matchLabels:
       app: reference-app
 
-	# [Optional] Filter by pod namespace. Required if service is in another namespace.
-	namespaceSelector
-	  matchNames
-
   # Multiple endpoints can be specified. Port requires a named port.
   endpoints:
   - port: metrics
