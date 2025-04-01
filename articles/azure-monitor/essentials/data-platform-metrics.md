@@ -49,7 +49,7 @@ Azure Monitor collects metrics from the following sources. After these metrics a
 - **Kubernetes clusters**: Kubernetes clusters typically send metric data to a local Prometheus server that you must maintain. [Azure Monitor managed service for Prometheus ](prometheus-metrics-overview.md) provides a managed service that collects metrics from Kubernetes clusters and store them in Azure Monitor Metrics.
 
 > [!NOTE]
-> Metrics collected from different sources and by different methods may be aggregated differently. For example, platform metrics are preaggregated and stored in a time-series database, while Prometheus metrics are stored as raw data.Resource metrics may also have a different latency than other metrics. This can lead to differences in metric values for a specific sample time. Over time when latency ceases to be an issue, and when analyzing the metrics at the same time granularity, these differences disappear.
+> Metrics collected from different sources and by different methods might be aggregated differently. For example, platform metrics are preaggregated and stored in a time-series database, while Prometheus metrics are stored as raw data. Resource metrics might also have a different latency than other metrics. This can lead to differences in metric values for a specific sample time. Over time when latency ceases to be an issue, and when analyzing the metrics at the same time granularity, these differences disappear.
 
 ## REST API
 
@@ -140,7 +140,7 @@ Platform and custom metrics are stored for **93 days** with the following except
 While platform and custom metrics are stored for 93 days, you can only query (in the **Metrics** tile) for a maximum of 30 days' worth of data on any single chart. This limitation doesn't apply to log-based metrics. If you see a blank chart or your chart displays only part of metric data, verify that the difference between start and end dates in the time picker doesn't exceed the 30-day interval. After you've selected a 30-day interval, you can [pan](./metrics-charts.md#pan) the chart to view the full retention window.
 
 > [!NOTE]
-> Moving or renaming an Azure Resource may result in a lost of metric history for that resource.
+> Moving or renaming an Azure Resource may result in a loss of metric history for that resource.
 
 ### Prometheus metrics
 Prometheus metrics are stored for **18 months**, but a PromQL query can only span a maximum of 32 days.
