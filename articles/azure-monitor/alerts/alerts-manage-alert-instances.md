@@ -35,9 +35,8 @@ To see more information about a specific alert instance, select the alert instan
 
 
 > [!NOTE]
-> Users cannot delete alert instances manually due correlational integrity reasons even if the parent resource alert rule was previously deleted. There is no feature functionality available to delete an alert instance. Instead, users can update the alert state and then filter based on alert state to remove those alerts from their view until they naturally expunge from the system after 30 days. 
->
-> Documentation on changing the alert state: [Alert details page](#alert-details-page)
+> You cannot delete alert instances manually due correlational integrity reasons even if the parent resource alert rule was previously deleted. There is no feature functionality available to delete an alert instance. Instead, you can update the [alert state](#alert-details-page) and then filter based on alert state to remove those alerts from your view until you naturally expunge from the system after 30 days. 
+
 
 ## View alerts as a timeline (preview)
 
