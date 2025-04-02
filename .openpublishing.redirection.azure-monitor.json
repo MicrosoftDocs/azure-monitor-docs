@@ -7995,9 +7995,14 @@
    "redirect_document_id": false
   },
   {
-    "source_path_from_root": "/articles/azure-monitor/app/sampling-classic-api.md",
-    "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling-classic-api",
-    "redirect_document_id": false
-   }
+   "source_path": "articles/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings.md",
+   "redirect_url": "/previous-versions/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/app/sampling-classic-api.md",
+   "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling-classic-api",
+   "redirect_document_id": false
+  }
  ]
 }
