@@ -41,10 +41,10 @@
    "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/insights/resource-manager-sql-insights.md",
-    "redirect_url": "/azure/azure-sql/database/monitoring-sql-database-azure-monitor",
-    "redirect_document_id": false
-   },
+   "source_path": "articles/azure-monitor/insights/resource-manager-sql-insights.md",
+   "redirect_url": "/azure/azure-sql/database/monitoring-sql-database-azure-monitor",
+   "redirect_document_id": false
+  },
   {
    "source_path": "articles/azure-monitor/alerts/alerts-metric-near-real-time.md",
    "redirect_url": "/azure/azure-monitor/reference/metrics-index",
@@ -7995,9 +7995,14 @@
    "redirect_document_id": false
   },
   {
-    "source_path_from_root": "/articles/azure-monitor/app/sampling-classic-api.md",
-    "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling-classic-api",
-    "redirect_document_id": false
-   }
+   "source_path_from_root": "/articles/azure-monitor/app/sampling-classic-api.md",
+   "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling-classic-api",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-netapp-netappaccounts-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  }
  ]
 }
