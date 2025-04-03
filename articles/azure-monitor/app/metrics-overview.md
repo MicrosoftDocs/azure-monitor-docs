@@ -154,6 +154,11 @@ When you plot the same metric in [metrics explorer](./../essentials/analyze-metr
 
 ---
 
+> [!NOTE]
+> * **Cardinality Limit:** Each dimension can only have a certain number of unique values within 24 hours. Once this limit is reached, the dimension value is replaced by `Other values`.
+>
+> * **Time Series Limit:** Each metric can only have a certain number of time series within 24 hours. Once this limit is reached, all dimension values of that metric point are replaced by `Maximum values reached`.
+
 ### Availability metrics
 
 Metrics in the Availability category enable you to see the health of your web application as observed from points around the world. [Configure the availability tests](../app/availability-overview.md) to start using any metrics from this category.
