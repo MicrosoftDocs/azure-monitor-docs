@@ -61,7 +61,7 @@ Private links for data ingestion for Managed Prometheus are configured on the Da
 ### 2a. Configure DCEs
 
 > [!NOTE]
-> If your AKS cluster isn't in the same region as your Azure Monitor Workspace, then you need to configure the Data Collection Rule for the Azure Monitor Workspace. 
+> If your AKS cluster isn't in the same region as your Azure Monitor Workspace, then you need to configure a new Data Collection Endpoint for the Azure Monitor Workspace. 
 
 Follow the steps below **only if your AKS cluster is not in the same region as your Azure Monitor Workspace**. If your cluster is in the same region, skip this step and move to step 3.
 
