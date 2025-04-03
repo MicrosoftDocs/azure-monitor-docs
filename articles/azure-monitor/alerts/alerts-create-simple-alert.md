@@ -1,14 +1,11 @@
 ---
-title: Create a simple alert in Azure Monitor
+title: Create a simple log search alert in Azure Monitor
 description: "This article shows you how to create a new simple log alert rule or edit an existing simple log alert rule in Azure Monitor."
 ms.topic: how-to 
 ms.date: 03/27/2025
-ms.author: inhenkel
-author: IngridAtMicrosoft
-ms.custom: poke
 ---
 
-# Create a simple alert
+# Create a simple log search alert
 
 This article shows you how to create a new simple log alert rule or edit an existing simple log alert rule in Azure Monitor. To learn more about alerts, see the [alerts overview](alerts-overview.md).
 
@@ -22,7 +19,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
 [!INCLUDE [alerts-wizard-access](includes/alerts-wizard-access.md)]
 
-## Configure the simple alert rule conditions
+## Configure the simple log alert rule conditions
 
 1. Select the **Condition** tab.  
 1. Select **Custom log search** for the **Signal name** field. Alternatively, select **See all signals** if you want to choose a different signal for the condition.

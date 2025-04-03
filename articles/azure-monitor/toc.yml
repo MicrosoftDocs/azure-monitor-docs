@@ -181,7 +181,7 @@ items:
                 href: app/asp-net-dependencies.md
         - name: Node.js
           href: app/nodejs.md
-        - name: Python OpenCensus (deprecated)
+        - name: Python OpenCensus (retired)
           href: /previous-versions/azure/azure-monitor/app/opencensus-python
         - name: Advanced SDK topics
           items:
@@ -198,12 +198,6 @@ items:
             displayName: correlation headers, w3c, distributed tracing, tracing
         - name: SDK support policy
           href: app/sdk-support-guidance.md
-      - name: Upgrade from classic resources and iKey
-        items:
-        - name: Migrate to a workspace-based resource
-          href: /previous-versions/azure/azure-monitor/app/convert-classic-resource
-        - name: Migrate to connection strings
-          href: app/migrate-from-instrumentation-keys-to-connection-strings.md
     - name: Experiences
       items:
       - name: Application dashboard
