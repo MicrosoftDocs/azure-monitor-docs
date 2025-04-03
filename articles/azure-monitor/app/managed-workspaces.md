@@ -48,8 +48,8 @@ You can identify the managing resource by checking the **Managed By** property i
 ## Removing managed workspaces
 
 Removing a managed workspace requires that it is not longer connected to any other resoruces or resource groups.  If you want to delete a manage workspace, you must do the following:
-- **Remove the connected workspace-based Application Insights resource**: This can be done by connecting the Application Insights resource to a different Log Analytics workspace or deleting the Application Insights resource.
-- **Delete the resource group**
+1. **Remove the connected workspace-based Application Insights resource**: This can be done by connecting the Application Insights resource to a different Log Analytics workspace or deleting the Application Insights resource.
+1. **Delete the resource group**
 
 Once both actions are completed, the managed workspace can be deleted.
 
