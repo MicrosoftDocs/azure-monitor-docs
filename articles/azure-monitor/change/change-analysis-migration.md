@@ -2,15 +2,17 @@
 title: Migrate to the Change Analysis API powered by Azure Resource Graph
 description: Learn how to migrate to the Azure Monitor Change Analysis API powered by Azure Resource Graph and what it has to offer.
 ms.topic: conceptual
-ms.author: hannahhunter
-author: hhunter-ms
-ms.date: 10/29/2024
-ms.subservice: change-analysis
+ms.date: 03/25/2025
 ---
 
 # Migrate to the Change Analysis API powered by Azure Resource Graph
 
-[!INCLUDE [transition](includes/change-analysis-is-moving.md)]
+Azure Monitor Change Analysis (classic) is moving to [Azure Resource Graph](/azure/governance/resource-graph/changes/get-resource-changes) on 10/31/2025. In this guide, you learn:
+
+> [!div class="checklist"]
+> - How to migrate your services to the Change Analysis API powered by Azure Resource Graph. 
+> - What the Azure Resource Graph Change Analysis API provides.
+> - How the Change Analysis API compares with Change Analysis (classic).
 
 ## How to migrate
 

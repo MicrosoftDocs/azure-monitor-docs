@@ -1,5 +1,5 @@
 ---
-title: Enhance resilience by replicating your Log Analytics workspace across regions (Preview)
+title: Enhance resilience by replicating your Log Analytics workspace across regions
 description: Use the workspace replication feature in Log Analytics to create copies of a workspace in different regions for data resiliency.
 ms.topic: how-to
 ms.reviewer: noakuper
@@ -9,7 +9,7 @@ ms.custom: references_regions
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
 ---
 
-# Enhance resilience by replicating your Log Analytics workspace across regions (Preview)
+# Enhance resilience by replicating your Log Analytics workspace across regions
 
 Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces.
 
@@ -55,12 +55,14 @@ If you write your own client to send log data to your Log Analytics workspace, e
 
 * Azure Monitor supports querying of the inactive region. Query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. Replication of alert rules across regions is currently not supported.
 
-* When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
+* Workspace replication fully replicates all table schemas, but only sends **new** logs ingested since replication was activated. Logs ingested to the workspace before you enable workspace replication aren't copied over.
+
+* Microsoft Sentinel refreshes logs in the Watchlist and Threat Intelligence tables every 12 days. So, because only new logs are ingested to the replicated workspace, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary location.
 
 * Workspace management operations can't be initiated during switchover, including:
-    * Change workspace retention, pricing tier, daily cap, and so on
-    * Change network settings
-    * Change schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
+    * Change of workspace retention, pricing tier, daily cap, and so on
+    * Change of network settings
+    * Change of schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
 
 * The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents.
 
@@ -85,11 +87,14 @@ These region groups and regions are currently supported:
 
 | Region Group              | Primary regions               | Secondary regions (replication locations) |
 |---------------------------|-------------------------------|----------------------------|
-| North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2    
-| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | France Central <br> North Europe <br> West Europe 
+| North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2  
+| South America     | Brazil South  <br> Brazil Southeast | Brazil South  <br> Brazil Southeast
+| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | France Central <br> North Europe <br> South UK <br> West Europe 
+| Middle East       | Qatar Central <br> UAE Central <br> UAE North | Qatar Central <br> UAE Central <br> UAE North
+| India     | Central India <br> South India | Central India <br> South India
 | Asia Pacific   | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Korea Central
-| Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East  |
-| Africa   | South Africa North <br> South Africa West  | South Africa West
+| Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East <br> Australia Southeast |
+| Africa   | South Africa North <br> South Africa West  | South Africa North <br> South Africa West
 
 
 > [!NOTE]
@@ -275,7 +280,7 @@ To replicate data you collect using data collection rules, associate your data c
 ### What to check if workspace replication is set but logs are not replicated?
 
 * Replication can take up to an hour to start applying, and some data types may start replicating before others.
-* Logs ingested to the workspace before replication was enabled are **not** copied over to the seconary workspace. Only logs ingested after replication was enabled - will be replicated.
+* Logs ingested to the workspace before replication was enabled are **not** copied over to the seconary workspace. Only logs ingested after replication was enabled are replicated.
 * If some logs are replicated and other are not - verify all the data collection rules (DCRs) that stream logs to the workspace are [configured properly](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). To review the DCRs that target the workspace, see the [Log Analytics Workspace Insights](log-analytics-workspace-insights-overview.md) Data Collection tab, in the Azure Portal.
 
 
