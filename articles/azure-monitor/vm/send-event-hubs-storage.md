@@ -2,7 +2,7 @@
 title: Send data to Event Hubs and Storage (Preview)
 description: This article describes how to use Azure Monitor Agent to upload data to Azure Storage and Event Hubs.
 ms.topic: conceptual
-ms.date: 01/05/2025
+ms.date: 04/03/2025
 ms.reviewer: luki
 ---
 
@@ -10,10 +10,10 @@ ms.reviewer: luki
 
 [Collect data from virtual machine client with Azure Monitor](./data-collection.md) describes how to collect data from virtual machines (VMs) with Azure Monitor. This article describes how to send that data described to Azure Storage and Event Hubs. This feature is currently in public preview.
 
-> [!NOTE]
-> This feature is only supported for Azure VMs. Arc-enabled VMs are not supported.
+> [!TIP]
+> As an alternative to storage, you should create a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
 
-The following table lists the data sources that are supported by this feature. The link 
+The following table lists the data sources that are supported by this feature.
 
 ## Supported data types
 
@@ -34,10 +34,9 @@ The following logs are not supported:
 - Application Logs. These are collected by Application insights which doesn't use DCRs.
 - .NET event source logs
 
+> [!NOTE]
+> This feature is only supported for Azure VMs. Arc-enabled VMs are not supported.
 
-## Prerequisites
-
-- An existing [storage account](/azure/storage/common/storage-account-create) or [Event Hub](/azure/event-hubs/event-hubs-create).
 
 ## Permissions
 
@@ -55,18 +54,14 @@ The following RBAC roles must be assigned to the managed identity depending on t
 
 There's not currently a UI experience for creating a data collection rule (DCR) that sends data to Event Hubs or storage. The following process describes the steps for creating a DCR using an ARM template in the Azure portal. Alternatively, you can use the sample DCR here to [create a new DCR using any other methods](../essentials/data-collection-rule-create-edit.md).
 
-> [!IMPORTANT]
-> You can't edit an existing DCR 
+> [!WARNING]
+> Don't edit an existing DCR that you created using [Collect data from virtual machine client with Azure Monitor](./data-collection.md) to add Event Hubs or storage. These destinations require a DCR with a `kind` of `AgentDirectToStore`. Inst can create multiple DCRs using the same data sources that send to different destinations.
 
-1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**.
+1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**. Select **Build your own template in the editor**.
 
     :::image type="content" source="../logs/media/tutorial-workspace-transformations-api/deploy-custom-template.png" lightbox="../logs/media/tutorial-workspace-transformations-api/deploy-custom-template.png" alt-text="Screenshot that shows the Azure portal with template entered in the search box and Deploy a custom template highlighted in the search results.":::
 
-1. Select **Build your own template in the editor**.
-
-    :::image type="content" source="../logs/media/tutorial-workspace-transformations-api/build-custom-template.png" lightbox="../logs/media/tutorial-workspace-transformations-api/build-custom-template.png" alt-text="Screenshot that shows portal screen to build template in the editor.":::
-
-1. Paste the following template definition into the editor:
+2. Paste the following template definition into the editor:
 
     ### [Windows](#tab/windows)
 
@@ -484,15 +479,15 @@ There's not currently a UI experience for creating a data collection rule (DCR) 
 
     ---
 
-1. Edit the template according to your requirements using the details in the following table. The template uses parameters to accept the names of the storage account and event hub, so you can provide these when you save the template or in a parameter file depending on how you deploy the template.
+3. Edit the template according to your requirements using details of the DCR sections in the following table. The template uses parameters to accept the names of the storage account and event hub, so you can provide these when you save the template or in a parameter file depending on how you deploy the template. See [Structure of a data collection rule (DCR) in Azure Monitor](../essentials/data-collection-rule-structure.md) for more details on DCR structure.
 
    | Value | Description |
    |:---|:---|
-   | `dataSources` | Entry for each data source collected by the DCR. The template includes definitions for logs and performance counters. See [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data) for details on configuring these data sources and on others that you can add to the template. |
+   | `dataSources` | Entry for each data source collected by the DCR. The sample template includes definitions for logs and performance counters. See [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data) for details on configuring these data sources and on others that you can add to the template. |
    | `destinations` | Single entry for each destination.<br><br>  **Event Hubs**<br> Use `eventHubsDirect` for direct upload to the event hub. `eventHubResourceId` includes the Resource ID of the event hub instance.<br><br>**Storage blob**<br>Use `storageBlobsDirect` for direct upload to blob storage. `storageAccountResourceId` includes the Resource ID of the storage account. `containerName` includes the name of the container.<br><br>**Storage table**<br>Use `storageTablesDirect` for direct upload to table storage. `storageAccountResourceId` includes the Resource ID of the storage account. `tableName` includes an optional name of the table.  |
    | `dataFlows` | A `dataflow` to match each incoming stream with at least one destination. The data from that source is sent to each destination in the data flow. |
 
-1. Select **Save** and provide values for the required parameters.
+4. Select **Save** and provide values for the required parameters.
 
 ## Create DCR association and deploy Azure Monitor Agent
 
@@ -666,8 +661,6 @@ Use the process above or any other valid method to deploy this template. It incl
 
 - To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
 - Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
-- As an alternative to storage, we highly recommend you set up a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
-
 
 
 ## Troubleshoot
@@ -677,8 +670,6 @@ If data isn't being sent to Event Hubs or storage, check the following:
 - The appropriate built-in role listed in [Permissions](#permissions) is assigned with managed identity on the storage account or event hub.
 - Managed identity is assigned to the VM.
 - AMA settings have managed identity parameter.
-
-
 
 
 
