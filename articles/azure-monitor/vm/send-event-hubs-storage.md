@@ -29,9 +29,9 @@ The data types in the following table are supported by this feature. Each has a 
 
 The following logs are not supported:
 
-- ETW Logs. This is planned a for later release.
+- ETW Logs. This is planned for later release.
 - Windows Crash Dumps. The Azure Monitoring Agent is meant for telemetry logs and not large file types.
-- Application Logs. These are collected by Application insights which doesn't use DCRs.
+- Application Logs. These are collected by Application insights, which doesn't use DCRs.
 - .NET event source logs
 
 > [!NOTE]
@@ -55,7 +55,7 @@ The following RBAC roles must be assigned to the managed identity depending on t
 There's not currently a UI experience for creating a data collection rule (DCR) that sends data to Event Hubs or storage. The following process describes the steps for creating a DCR using an ARM template in the Azure portal. Alternatively, you can use the sample DCR here to [create a new DCR using any other methods](../essentials/data-collection-rule-create-edit.md).
 
 > [!WARNING]
-> Don't edit an existing DCR that you created using [Collect data from virtual machine client with Azure Monitor](./data-collection.md) to add Event Hubs or storage. These destinations require a DCR with a `kind` of `AgentDirectToStore`. Inst can create multiple DCRs using the same data sources that send to different destinations.
+> Don't edit an existing DCR that you created using [Collect data from virtual machine client with Azure Monitor](./data-collection.md) to add Event Hubs or storage. These destinations require a DCR with a `kind` of `AgentDirectToStore`. Instead, create multiple DCRs using the same data sources that send to different destinations.
 
 1. In the Azure portal's search box, type in *template* and then select **Deploy a custom template**. Select **Build your own template in the editor**.
 
@@ -491,7 +491,7 @@ There's not currently a UI experience for creating a data collection rule (DCR) 
 
 ## Create DCR association and deploy Azure Monitor Agent
 
-To use the DCR, it must have an data collection rule association (DCRA) with one or more virtual machines with the Azure Monitor agent (AMA) installed. See [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md) for different options to install the agent and [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md) for different options to create the DCRA.
+To use the DCR, it must have a data collection rule association (DCRA) with one or more virtual machines with the Azure Monitor agent (AMA) installed. See [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md) for different options to install the agent and [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md) for different options to create the DCRA.
 
 The following ARM template can be used to deploy the Azure Monitor Agent create the DCRA for a particular VM. The template uses a user-assigned managed identity (UAI) for authentication. The UAI must be created before you deploy the template. You can also use a system-assigned managed identity, but this is not recommended for production workloads.
 
