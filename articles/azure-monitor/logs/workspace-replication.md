@@ -1,5 +1,5 @@
 ---
-title: Enhance resilience by replicating your Log Analytics workspace across regions (Preview)
+title: Enhance resilience by replicating your Log Analytics workspace across regions
 description: Use the workspace replication feature in Log Analytics to create copies of a workspace in different regions for data resiliency.
 ms.topic: how-to
 ms.reviewer: noakuper
@@ -9,7 +9,7 @@ ms.custom: references_regions
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
 ---
 
-# Enhance resilience by replicating your Log Analytics workspace across regions (Preview)
+# Enhance resilience by replicating your Log Analytics workspace across regions
 
 Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces.
 
@@ -85,11 +85,14 @@ These region groups and regions are currently supported:
 
 | Region Group              | Primary regions               | Secondary regions (replication locations) |
 |---------------------------|-------------------------------|----------------------------|
-| North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2    
-| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | France Central <br> North Europe <br> West Europe 
+| North America             | Canada Central <br> Canada East <br> Central US <br> East US* <br> East US 2* <br> North Central US <br> South Central US* <br> West Central US <br> West US <br> West US 2 <br> West US 3        | Canada Central <br> Central US <br> East US* <br> East US 2* <br> West US <br> West US 2  
+| South America     | Brazil South  <br> Brazil Southeast | Brazil South  <br> Brazil Southeast
+| Europe          | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK       | France Central <br> North Europe <br> South UK <br> West Europe 
+| Middle East       | Qatar Central <br> UAE Central <br> UAE North | Qatar Central <br> UAE Central <br> UAE North
+| India     | Central India <br> South India | Central India <br> South India
 | Asia Pacific   | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Korea Central
-| Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East  |
-| Africa   | South Africa North <br> South Africa West  | South Africa West
+| Oceania                   | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast  | Australia Central <br> Australia East <br> Australia Southeast |
+| Africa   | South Africa North <br> South Africa West  | South Africa North <br> South Africa West
 
 
 > [!NOTE]
