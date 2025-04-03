@@ -2,7 +2,10 @@
 title: Supported metrics - Microsoft.HybridContainerService/provisionedClusters
 description: Reference for Microsoft.HybridContainerService/provisionedClusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 02/18/2025
+author: EdB-MSFT
+ms.author: edbaynash
+ms.service: azure-monitor
+ms.date: 04/02/2025
 ms.custom: Microsoft.HybridContainerService/provisionedClusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
