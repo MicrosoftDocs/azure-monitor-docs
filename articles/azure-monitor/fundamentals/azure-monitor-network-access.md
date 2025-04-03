@@ -23,9 +23,6 @@ If you're using [Azure network security groups](/azure/virtual-network/network-s
 
 You need to open some outgoing ports in your server's firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal.
 
-> [!NOTE]
-> These addresses are listed by using Classless Interdomain Routing notation. As an example, an entry like `51.144.56.112/28` is equivalent to 16 IPs that start at `51.144.56.112` and end at `51.144.56.127`.
-
 | Purpose | URL | Type | Ports |
 |---------|-----|------|-------|
 | Telemetry | `dc.applicationinsights.azure.com`<br>`dc.applicationinsights.microsoft.com`<br>`dc.services.visualstudio.com`<br><br>`{region}.in.applicationinsights.azure.com`<br><br> | Global<br>Global<br>Global<br><br>Regional<br> | 443 |
