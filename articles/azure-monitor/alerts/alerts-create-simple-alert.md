@@ -29,7 +29,11 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 1.  To create a simple log alerts:
     -   Close the Log pane.
     -   Select **Single event** in the query type radio button.
-    -   On the **Logs** pane, write a query that returns the log events you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features). **Note**: Simple log alert rule queries don't support print, datatable, and let.
+    -   On the **Logs** pane, write a query that returns the log events you want to create an alert. Notice the simple log alert is based on a simple KQL query that is based on [Transformation KQL language](/azure/azure-monitor/essentials/data-collection-transformations-structure#supported-kql-features). 
+    
+    > [!NOTE] 
+    > Simple log alert rule queries don't support print, datatable, and let.
+
 1.  Select **Run** to run the alert.
 1.  The **Preview** section shows you the query results. When you finish editing your query, select **Continue Editing Alert**.
 1.  The **Condition** tab opens and is populated with your log query. By default, the rule counts the number of results in the last five minutes. If the system detects summarized query results, the rule is automatically updated with that information.
