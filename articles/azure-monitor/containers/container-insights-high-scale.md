@@ -81,12 +81,29 @@ Follow the two steps in the following sections to enable high scale mode for you
 ### Update configmap
 The first step is to update configmap for the cluster to instruct the container insights ama-logs deamonset pods to run in high scale mode. 
 
-Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. The only change you need to make for high scale logs is to enable `agent_settings.high_log_scale` under `agent-settings` as in the following: 
+1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
+   
+2. Enable high scale mode with the following setting under `agent-settings`.
 
-```yml
-[agent_settings.high_log_scale] 
-  enabled = true 
-```
+    ```yml
+    [agent_settings.high_log_scale] 
+      enabled = true 
+    ```
+
+3. Enable collection of internal metrics to populate the QoS Grafana dashboard described below with the following setting under `agent-settings`.
+
+    ```yaml
+    [agent_settings.fbit_config]
+      enable_internal_metrics = "true"
+    ```
+
+4. Apply the ConfigMap to the cluster with the following commands. 
+
+    ```bash
+    kubectl config set-context <cluster-name>
+    kubectl apply -f <configmap_yaml_file.yaml>
+    ```
+
 
 After applying this configmap, `ama-logs-*` pods will get restarted automatically and configure the ama-logs daemonset pods to run in high scale mode. 
 
@@ -124,6 +141,25 @@ If Container insights is already enabled for your cluster, then you need to disa
 
 - Since high scale mode uses a different data pipeline, you must ensure that pipeline endpoints are not blocked by a firewall or other network connections.
 - High scale mode requires a data collection endpoint (DCE) for ingestion in addition to the standard DCR for data collection. If you've created any DCRs that use `Microsoft.ContainerLogV2`, you must replace this with `Microsoft.ContainerLogV2-HighScale` or data will be duplicated. You should also create a DCE for ingestion and link it to the DCR if the DCR isn't already using one. Refer to Container Insights onboarding through Azure Resource Manager for reference for the dependencies. 
+- 
+## QoS Grafana dashboards
+The QoS Grafana dashboard reports on QoS metrics related to input records/sec, dropped records/sec, and output records/sec. 
+
+1. Ensure that Azure Managed Prometheus and Azure Managed Grafana are enabled for the cluster using the guidance at  [Enable Prometheus and Grafana](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana). 
+
+3. Download the [`ama-metrics-prometheus-config-node` ConfigMap](https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/MultiTenancyLogging/BasicMode/ama-metrics-prometheus-config-node.yaml).
+
+4. Use the following command to determine if you already have an existing `ama-metrics-prometheus-config-node` ConfigMap.
+
+    `kubectl get cm -n kube-system | grep ama-metrics-prometheus-config-node`
+
+5. If you have an existing ConfigMap, then add the `ama-logs-daemonset` scrape config from the downloaded ConfigMap to the existing one.
+
+6. Apply either the downloaded or updated ConfigMap with the following command:
+
+    `kubectl apply -f ama-metrics-prometheus-config-node.yaml`
+
+5.	Download the [Grafana dashboard JSON file](https://raw.githubusercontent.com/microsoft/Docker-Provider/refs/heads/ci_prod/Documentation/MultiTenancyLogging/BasicMode/AzureMonitorContainers_BasicMode_Grafana.json) and import into to the Azure Managed Grafana Instance.
 
 
 ## Next steps
