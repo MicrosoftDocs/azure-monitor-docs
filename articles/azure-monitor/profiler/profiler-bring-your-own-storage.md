@@ -73,7 +73,7 @@ You have three options for configuring BYOS for code-level diagnostics like the 
 
 Before you begin, [install Azure PowerShell 4.2.0 or greater](/powershell/azure/install-azure-powershell).
 
-1. Install the Application Insights PowerShell extension.
+1. In the PowerShell terminal, install the Application Insights PowerShell extension.
 
     ```powershell
     Install-Module -Name Az.ApplicationInsights -Force
@@ -107,14 +107,14 @@ Before you begin, [install Azure PowerShell 4.2.0 or greater](/powershell/azure/
 
     ```powershell
     $storageAccount = Get-AzStorageAccount -ResourceGroupName "{resource_group_name}" -Name "{storage_account_name}"
-    Get-AzApplicationInsights -ResourceGroupName "{resource_group_name}" -Name "{application_insights_name}" | New-AzApplicationInsightsLinkedStorageAccount -LinkedStorageAccountResourceId $storageAccount.Id
+    New-AzApplicationInsightsLinkedStorageAccount -Name "{application_insights_name}" -LinkedStorageAccountResourceId $storageAccount.Id
     ```
 
     Example:
 
     ```powershell
     $storageAccount = Get-AzStorageAccount -ResourceGroupName "byos-test" -Name "byosteststoragewestus2"
-    Get-AzApplicationInsights -ResourceGroupName "byos-test" -Name "byos-test-westus2-ai" | New-AzApplicationInsightsLinkedStorageAccount -LinkedStorageAccountResourceId $storageAccount.Id
+    New-AzApplicationInsightsLinkedStorageAccount -Name "byos-test-westus2-ai" -LinkedStorageAccountResourceId $storageAccount.Id
     ```
 
 #### [Azure CLI](#tab/azure-cli)
