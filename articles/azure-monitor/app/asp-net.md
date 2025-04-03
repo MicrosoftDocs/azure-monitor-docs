@@ -10,7 +10,7 @@ ms.devlang: csharp
 
 This procedure configures your ASP.NET web app to send telemetry to [Application Insights](./app-insights-overview.md). It works for ASP.NET apps hosted either in your own Internet Information Servers (IIS) on-premises or in the cloud.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
@@ -560,7 +560,7 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 
 There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *applicationinsights.config* file to work around this bug. This article is designed to avoid this issue entirely, by not using user secrets.
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## Open-source SDK
 

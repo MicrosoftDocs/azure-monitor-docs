@@ -12,7 +12,7 @@ When you create an [Azure Monitor Private Link Scope (AMPLS)](./private-link-sec
 
 ## AMPLS limits
 
-[!INCLUDE [ampls-limitations](../includes/ampls-limitations.md)]
+[!INCLUDE [ampls-limitations](../fundamentals//includes/ampls-limitations.md)]
 
 ## Plan by network topology
 
@@ -100,6 +100,7 @@ Following are exceptions to this network access:
 > * VM Insights
 > * Container Insights
 > * Log Analytics **Workspace Summary (deprecated)** pane (that shows the solutions dashboard)
+> * Metrics pane in Application Insights (log-based metrics charting)
 
 ## Special considerations
 
@@ -116,6 +117,8 @@ Following are exceptions to this network access:
 
 * Private Link ingestion settings are made using AMPLS and settings on the Data Collection Endpoints (DCEs) that reference the Azure Monitor workspace used to store Prometheus metrics.
 * Private Link query settings are made directly on the Azure Monitor workspace used to store Prometheus metrics and aren't handled with AMPLS.
+
+To set up ingestion of Managed Prometheus metrics using AMPLS, see [Enable ingestion of metrics from AKS with AMPLS](../containers/kubernetes-monitoring-private-link.md).
 
 ## Next steps
 

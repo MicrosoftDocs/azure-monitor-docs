@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/27/2025
+ms.date: 03/31/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -50,21 +50,22 @@ Subcategory: HighAvailability
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_begin-->
 
-#### Enable virtual machine replication to protect your applications from regional outage  
+#### Enable virtual machine replication to protect applications from regional outage  
   
-Virtual machines are resilient to regional outages when replication to another region is enabled. To reduce adverse business impact during an Azure region outage, we recommend enabling replication of all business-critical virtual machines.  
+Virtual machines are resilient to regional outages when replication to another region is enabled. To reduce adverse business effect during an Azure region outage, the platform recommends enabling replication of all business-critical virtual machines.  
   
-**Potential benefits**: Ensure business continuity in case of any Azure region outage  
+**Potential benefits**: Ensure business continuity during an Azure region outage.  
 
 **Impact:** Medium
   
-For more information, see [Set up Azure VM disaster recovery to a secondary region with Azure Site Recovery - Azure Site Recovery ](https://aka.ms/azure-site-recovery-dr-azure-vms)  
+For more information, see [Set up Azure VM disaster recovery to a secondary region with Azure Site Recovery - Azure Site Recovery](https://aka.ms/azure-site-recovery-dr-azure-vms)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: ed651749-cd37-4fd5-9897-01b416926745  
 Subcategory: DisasterRecovery
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_end-->
+
 
 <!--bcfeb92b-fe93-4cea-adc6-e747055518e9_begin-->
 
@@ -200,9 +201,16 @@ Use a Premium SSD managed disk in a Single Instance virtual machine for the high
   
 **Potential benefits**: Enhanced performance, configurability, and uptime  
 
-For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
+**Impact:** Low
+  
+For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines](https://aka.ms/disks-high-availability)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 2b5cf6e5-2792-49b2-9ec0-0e901be6488b  
+Subcategory: BusinessContinuity
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_end-->
+
 
 
 
@@ -426,5 +434,23 @@ Subcategory: HighAvailability
 
 <!--39fb2718-a2ae-4662-a8c9-cd8df23f01eb_end-->
 
+
+<!--3b587048-b04b-4f81-aaed-e43793652b0f_begin-->
+
+#### Enable Azure Virtual Machine Scale Set (VMSS) application health monitoring  
+  
+Configuring Virtual Machine Scale Set application health monitoring using the Application Health extension or load balancer health probes enables the Azure platform to improve the resiliency of your application by responding to changes in application health.  
+  
+**Potential benefits**: Increase resiliency by exposing application health to Azure  
+
+**Impact:** Medium
+  
+For more information, see [Use Application Health extension with Azure Virtual Machine Scale Sets - Azure Virtual Machine Scale Sets](https://aka.ms/vmss-app-health-monitoring)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 3b587048-b04b-4f81-aaed-e43793652b0f  
+Subcategory: MonitoringAndAlerting
+
+<!--3b587048-b04b-4f81-aaed-e43793652b0f_end-->
 
 <!--articleBody-->

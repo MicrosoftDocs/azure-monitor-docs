@@ -1,7 +1,6 @@
 ---
 title: Aggregate data in a Log Analytics workspace by using summary rules (Preview)
 description: Aggregate data in Log Analytics workspace with summary rules feature in Azure Monitor, including creating, starting, stopping, and troubleshooting rules. 
-ms.service: azure-monitor
 ms.subservice: logs
 ms.topic: how-to
 ms.reviewer: yossi-y
@@ -83,6 +82,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Querying a Log Analytics workspace in another tenant by using Lighthouse isn't supported.
+- Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
 
 ## Pricing model
 
