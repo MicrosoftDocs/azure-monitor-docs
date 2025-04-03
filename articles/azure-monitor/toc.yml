@@ -502,7 +502,7 @@ items:
         href: containers/container-insights-data-collection-filter.md
       - name: Container log schema
         href: containers/container-insights-logs-schema.md
-      - name: Multi-tenant logging
+      - name: Multitenant logging
         href: containers/container-insights-multitenant.md 
       - name: High scale
         href: containers/container-insights-high-scale.md

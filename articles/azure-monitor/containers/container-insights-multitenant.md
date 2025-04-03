@@ -17,11 +17,11 @@ This article describes how multitenant logging works in Container insights, the 
 ## Scenarios
 The multitenant logging feature in Container insights supports the following scenarios:
 
-- **Multi-tenancy.** Sends container logs (stdout & stderr) from one or more K8s namespaces to corresponding Log Analytics workspace. 
+- **Multitenancy.** Sends container logs (stdout & stderr) from one or more K8s namespaces to corresponding Log Analytics workspace. 
 
     :::image type="content" source="media/container-insights-multitenant/multitenancy.png" lightbox="media/container-insights-multitenant/multitenancy.png" alt-text="Diagram that illustrates multitenancy for Container insights." border="false" :::
 
-- **Multi-homing:**  Sends the same set of container logs (stdout & stderr) from one or more K8s namespaces to multiple Log Analytics workspaces. 
+- **Multihoming:**  Sends the same set of container logs (stdout & stderr) from one or more K8s namespaces to multiple Log Analytics workspaces. 
 
     :::image type="content" source="media/container-insights-multitenant/multihoming.png" lightbox="media/container-insights-multitenant/multihoming.png" alt-text="Diagram that illustrates multihoming for Container insights." border="false" :::
 
@@ -31,7 +31,7 @@ Container insights use a [data collection rule (DCR)](../essentials/data-collect
 
 For multitenant logging, Container Insights adds support for [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs, which are used to define collection of container logs for K8s namespaces. Multiple [ContainerLogV2Extension](https://github.com/microsoft/Docker-Provider/blob/ci_prod/scripts/onboarding/aks/multi-tenancy/existingClusterOnboarding.json) DCRs can be created with different settings for different namespaces and all associated with the same AKS cluster. 
 
-When you enable the multi-tenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default **ContainerInsights** extension DCR and the **ContainerLogV2Extension** DCRs associated with the AKS cluster. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they'll be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace in the default **ContainerInsights** DCR as usual. 
+When you enable the multitenancy feature through a ConfigMap, the Container Insights agent periodically fetches both the default **ContainerInsights** extension DCR and the **ContainerLogV2Extension** DCRs associated with the AKS cluster. This fetch is performed every 5 minutes beginning when the container is started. If any additional **ContainerLogV2Extension** DCRs are added, they'll be recognized the next time the fetch is performed. All configured streams in the default DCR aside from container logs continue to be sent to the Log Analytics workspace in the default **ContainerInsights** DCR as usual. 
 
 The following logic is used to determine how to process each log entry:
 
@@ -50,11 +50,11 @@ The following logic is used to determine how to process each log entry:
 
 
 
-## Enable multi-tenancy for the cluster
+## Enable multitenancy for the cluster
 
 1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
  
-2.  Enable multi-tenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. 
+2.  Enable multitenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. 
 
     ```yaml
     log-data-collection-settings: |-
@@ -173,7 +173,7 @@ Perform the following steps to troubleshoot issues with multitenant logging in C
       # validate the enableContainerLogV2 configured with true or not from JSON output
     ```
 
-3.  Verify that multi-tenancy is enabled for the cluster.
+3.  Verify that multitenancy is enabled for the cluster.
     
     ```bash
       # get the list of ama-logs and these pods should be in Running state
@@ -182,7 +182,7 @@ Perform the following steps to troubleshoot issues with multitenant logging in C
       # get the logs one of the ama-logs daemonset pod and check for log message indicating high scale enabled
       kubectl logs ama-logs-xxxxx -n kube-system -c ama-logs  | grep multi_tenancy
       # output should be something like
-      "config::INFO: Using config map setting multi_tenancy enabled: true, advanced_mode_enabled: false and namespaces: [] for Multi-tenancy log collection"
+      "config::INFO: Using config map setting multi_tenancy enabled: true, advanced_mode_enabled: false and namespaces: [] for Multitenancy log collection"
     ```
 
 4. Verify that the DCRs and DCEs related to **ContainerInsightsExtension** and **ContainerLogV2Extension** are created.
