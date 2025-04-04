@@ -66,7 +66,7 @@ Ensure the *Windows diagnostics extension* is [installed](./diagnostics-extensio
 
 1. Save the provider and log settings
 
-Once matching events are generated, you should start to see the ETW events appearing in the **WADetweventtable** table in Azure Storage. You can use Azure Storage Explorer to confirm this.
+Once matching events are generated, the **WADetweventtable** table in Azure Storage is created and begins to populate the ETW events. Use Azure Storage Explorer to confirm this.
 
 ### Step 4: Configure Log Analytics storage account collection
 
