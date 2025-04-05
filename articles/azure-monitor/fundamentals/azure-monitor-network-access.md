@@ -1,13 +1,13 @@
 ---
-title: IP hosts used by Azure Monitor | Microsoft Docs
-description: This article discusses server firewall exceptions required by Azure Monitor
+title: Azure Monitor endpoint access and firewall configuration | Microsoft Docs
+description: Ensure your Azure resources can connect to Azure Monitor by configuring firewall rules and understanding endpoint access requirements.
 ms.topic: reference
-ms.date: 03/27/2025
+ms.date: 03/31/2025
 ms.servce: azure-monitor
 ms.reviewer: rofrenke
 ---
 
-# IP addresses used by Azure Monitor
+# Azure Monitor endpoint access and firewall configuration
 
 If your monitored application or infrastructure is behind a firewall, you need to configure network access to allow communication with [Azure Monitor](overview.md) services.
 
@@ -22,9 +22,6 @@ If you're using [Azure network security groups](/azure/virtual-network/network-s
 ## Outgoing ports
 
 You need to open some outgoing ports in your server's firewall to allow the Application Insights SDK or Application Insights Agent to send data to the portal.
-
-> [!NOTE]
-> These addresses are listed by using Classless Interdomain Routing notation. As an example, an entry like `51.144.56.112/28` is equivalent to 16 IPs that start at `51.144.56.112` and end at `51.144.56.127`.
 
 | Purpose | URL | Type | Ports |
 |---------|-----|------|-------|
