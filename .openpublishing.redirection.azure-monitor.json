@@ -522,7 +522,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/ip-addresses.md",
-   "redirect_url": "/azure/azure-monitor/ip-addresses",
+   "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-network-access",
    "redirect_document_id": false
   },
   {
@@ -5597,7 +5597,7 @@
   },
   {
    "source_path_from_root": "/articles/application-insights/app-insights-ip-addresses.md",
-   "redirect_url": "/azure/azure-monitor/app/ip-addresses",
+   "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-network-access",
    "redirect_document_id": false
   },
   {
@@ -7921,7 +7921,7 @@
   },
   {
    "source_path": "articles/azure-monitor/ip-addresses.md",
-   "redirect_url": "/azure/azure-monitor/fundamentals/ip-addresses",
+   "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-network-access",
    "redirect_document_id": false
   },
   {
@@ -7998,6 +7998,11 @@
    "source_path_from_root": "/articles/azure-monitor/app/sampling-classic-api.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/sampling-classic-api",
    "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/fundamentals/ip-addresses.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-network-access",
+   "redirect_document_id": false    
   },
   {
    "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-netapp-netappaccounts-metrics.md",

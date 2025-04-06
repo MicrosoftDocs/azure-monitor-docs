@@ -1637,8 +1637,8 @@ items:
     href: alerts/azure-cli-metrics-alert-sample.md
 - name: Reference
   items:
-  - name: IP addresses, ports, and firewall settings
-    href: fundamentals/ip-addresses.md
+  - name: Azure Monitor network access requirements
+    href: fundamentals/azure-monitor-network-access.md
     displayName: firewall, firewall exceptions, whitelist
   - name: Service limits
     href: fundamentals/service-limits.md
