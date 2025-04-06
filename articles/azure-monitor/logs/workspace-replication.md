@@ -30,6 +30,9 @@ The secondary workspace is a "shadow" workspace for resilience purposes only. Yo
 
 When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren’t copied over. 
 
+> [!NOTE]
+> Workspace replication fully replicates all table schemas, but only sends **new** logs ingested since replication was activated. Logs ingested to the workspace before you enable workspace replication aren't copied over.
+
 If an outage affects your primary region, you can switch over and reroute all ingestion and query requests to your secondary region. After Azure mitigates the outage and your primary workspace is healthy again, you can switch back over to your primary region.
 
 When you switch over, the secondary workspace becomes active and your primary becomes inactive. Azure Monitor then ingests new data through the ingestion pipeline in your secondary region, rather than the primary region. When you switch over to your secondary region, Azure Monitor replicates all data you ingest from the secondary region to the primary region. The process is asynchronous and doesn't affect your ingestion latency.
@@ -51,22 +54,24 @@ If you write your own client to send log data to your Log Analytics workspace, e
 
 ## Deployment considerations
 
-* The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
-
-* Azure Monitor supports querying of the inactive region. Query-based alerts continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. Replication of alert rules across regions is currently not supported.
-
-* Workspace replication fully replicates all table schemas, but only sends **new** logs ingested since replication was activated. Logs ingested to the workspace before you enable workspace replication aren't copied over.
-
-* Microsoft Sentinel refreshes logs in the Watchlist and Threat Intelligence tables every 12 days. So, because only new logs are ingested to the replicated workspace, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary location.
+> [!NOTE]
+> Workspace replication currently doesn't support replication of [Auxiliary tables](./create-custom-table-auxiliary.md), and shouldn't be enabled on workspaces that include Auxiliary tables.
 
 * Workspace management operations can't be initiated during switchover, including:
     * Change of workspace retention, pricing tier, daily cap, and so on
     * Change of network settings
     * Change of schema through new custom logs or connecting platform logs from new resource providers, such as sending diagnostic logs from a new resource type
 
-* The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents.
-
 * The failover process updates your Domain Name System (DNS) records to reroute all ingestion requests to your secondary region for processing. Some HTTP clients have "sticky connections" and might take longer to pick up on DNS updates. During switchover, these clients might attempt to ingest logs through the primary region for some time. You might be ingesting logs to your primary workspace using various clients, including the legacy Log Analytics Agent, Azure Monitor Agent, code (using the Logs Ingestion API or the legacy HTTP data collection API), and other services, such as Microsoft Sentinel.
+
+> [!IMPORTANT]
+> [Log search alert rules](../alerts/alerts-types.md#log-search-alerts) continue to work when you switch between regions unless the Alerts service in the active region isn't working properly or the alert rules aren't available. This can happen, for example, if the region in which the alert rules were created is entirely down. Replication of alert rules across regions isn't done automatically as part of workspace replication, but can be done by the user (for example by exporting from the primary region and importing to the secondary).
+
+* The [purge operation](personal-data-mgmt.md#delete), which deletes records from a workspace, removes the relevant records from both the primary and the secondary workspaces. If one of the workspace instances isn't available, the purge operation fails.
+
+* Microsoft Sentinel refreshes logs in the Watchlist and Threat Intelligence tables every 12 days. So, because only new logs are ingested to the replicated workspace, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary location.
+
+* The solution targeting capability of the legacy Log Analytics agent isn't supported during switchover. During switchover, solution data is ingested from **all** agents.
 
 * These features are currently not supported or only partially supported:
 
