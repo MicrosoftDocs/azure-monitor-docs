@@ -11,6 +11,34 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
 
+### March 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Alerts|[Create a simple alert](alerts/alerts-create-simple-alert.md)|New alert types are documented as part of creating simple alerts.|
+|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](app/kubernetes-codeless.md)|Prerequisites for AKS autoinstrumentation have been updated.|
+|Application-Insights|[Configure Azure Monitor OpenTelemetry](app/opentelemetry-configuration.md)|New information is available on how both Java and Java native handle offline storage.|
+|Application-Insights|[Create and configure Application Insights resources](app/create-workspace-resource.md)|Configuration of IP masking has been documented across all modalities.|
+|Application-Insights|[Failures and performance views](app/failures-and-performance-views.md)|We revamped our Failures and Performance Views documentation with extensive new information, updated screenshots, and a better comparison of functionality between tabs.|
+|Application-Insights|[Managed workspaces in Application Insights](app/managed-workspaces.md)|Learn about upcoming automatically created managed workspaces.|
+|Application-Insights|[Sampling in Azure Monitor Application Insights with OpenTelemetry](app/opentelemetry-sampling.md)|New sampling documentation is available for OpenTelemetry, with extensive information on how the Application Insights custom sampler works.|
+|Application-Insights|[TLS support in Application Insights](app/application-insights-tls.md)|New documentation on how Application Insights uses Transport Layer Security (TLS), which configurations are supported, and how to keep your resources compliant with Azure TLS requirements.|
+|Application-Insights|[What is autoinstrumentation for Azure Monitor Application Insights?](app/codeless-overview.md)|The autoinstrumentation support matrix is updated to include AKS Autoinstrumentation scenarios.|
+|Essentials|[Azure Monitor and Prometheus](essentials/prometheus-metrics-overview.md)|Managed Prometheus for Arc-enabled clusters now GA.|
+|General|[Azure Monitor enterprise monitoring architecture](enterprise-monitoring-architecture.md)|New article with sample enterprise architecture for Azure Monitor.|
+|Logs|[Delete data from a Log Analytics workspace by using the Delete Data API](logs/delete-log-data.md)|New Delete data API to make async requests to remove sensitive, personal or corrupt log entries from LA tables.|
+|Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](logs/workspace-replication.md)|Log Analytics workspace replication now GA|
+|Logs|[Log Analytics workspace data export in Azure Monitor](logs/logs-data-export.md)|Added permissions prerequisite and updated API version for data export calls.|
+|Logs|[Tutorial: Use Log Analytics](logs/log-analytics-tutorial.md)|Our tutorial page title are now consistent, making it easier to find what you're looking for.|
+|Virtual-Machines|[Collect IIS logs from virtual machine with Azure Monitor](vm/data-collection-iis.md)|Rewritten for clarity and simplicity.|
+|Virtual-Machines|[Collect JSON file from virtual machine with Azure Monitor](vm/data-collection-log-json.md)|Rewritten for clarity and simplicity.|
+|Virtual-Machines|[Collect performance counters from virtual machine with Azure Monitor](vm/data-collection-performance.md)|Rewritten for clarity and simplicity.|
+|Virtual-Machines|[Collect Syslog events from virtual machine client with Azure Monitor](vm/data-collection-syslog.md)|Rewritten for clarity and simplicity.|
+|Virtual-Machines|[Collect text file from virtual machine with Azure Monitor](vm/data-collection-log-text.md)|Rewritten for clarity and simplicity.|
+|Virtual-Machines|[Collect Windows events from virtual machine with Azure Monitor](vm/data-collection-windows-events.md)|Rewritten for clarity and simplicity.|
+|Virtual-Machines|[Collect Windows Firewall logs from virtual machine with Azure Monitor](vm/data-collection-firewall-logs.md)|Rewritten for clarity and simplicity.|
+|Virtual-Machines|[Troubleshoot VM insights](vm/vminsights-troubleshoot.md)|Rewritten for clarity and simplicity.|
+
 ### February 2025
 
 |Subservice | Article | Description |
