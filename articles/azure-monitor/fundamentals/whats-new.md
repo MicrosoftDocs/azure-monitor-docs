@@ -26,10 +26,12 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md)|The autoinstrumentation support matrix is updated to include AKS Autoinstrumentation scenarios.|
 |Essentials|[Azure Monitor and Prometheus](../essentials/prometheus-metrics-overview.md)|Managed Prometheus for Arc-enabled clusters now GA.|
 |General|[Azure Monitor enterprise monitoring architecture](../enterprise-monitoring-architecture.md)|New article with sample enterprise architecture for Azure Monitor.|
+|Logs|[Migrate from using batch and beta queries to the standard Log Analytics query API](../logs/api/migrate-batch-and-beta.md)|Announcement of deprecation for Beta and Batch APIs|
+|Logs|[Set up a table with the Auxiliary plan in your Log Analytics workspace](../logs/create-custom-table-auxiliary.md)|Auxiliary logs now GA|
 |Logs|[Delete data from a Log Analytics workspace by using the Delete Data API](../logs/delete-log-data.md)|New Delete data API to make async requests to remove sensitive, personal or corrupt log entries from LA tables.|
-|Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Log Analytics workspace replication now GA|
-|Logs|[Log Analytics workspace data export in Azure Monitor](../logs/logs-data-export.md)|Added permissions prerequisite and updated API version for data export calls.|
 |Logs|[Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)|Our tutorial page title are now consistent, making it easier to find what you're looking for.|
+|Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Log Analytics workspace replication now GA with additional regions added.|
+|Logs|[Log Analytics workspace data export in Azure Monitor](../logs/logs-data-export.md)|Added permissions prerequisite and updated API version for data export calls.|
 |Virtual-Machines|[Collect IIS logs from virtual machine with Azure Monitor](../vm/data-collection-iis.md)|Rewritten for clarity and simplicity.|
 |Virtual-Machines|[Collect JSON file from virtual machine with Azure Monitor](../vm/data-collection-log-json.md)|Rewritten for clarity and simplicity.|
 |Virtual-Machines|[Collect performance counters from virtual machine with Azure Monitor](../vm/data-collection-performance.md)|Rewritten for clarity and simplicity.|
