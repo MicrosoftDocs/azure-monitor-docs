@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/31/2025
+ms.date: 04/07/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -452,5 +452,23 @@ Recommendation ID: 3b587048-b04b-4f81-aaed-e43793652b0f
 Subcategory: MonitoringAndAlerting
 
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_end-->
+
+<!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_begin-->
+
+#### Validate Virtual Machine reliability with a Site Recovery test failover  
+  
+Perform a test failover to validate Business Continuity and Disaster Recovery strategy and ensure that the applications are functioning correctly in the target region without impacting production environment.  
+  
+**Potential benefits**: Ensure business continuity. Verify disaster recovery plan.  
+
+**Impact:** High
+  
+For more information, see [Tutorial to run an Azure VM disaster recovery drill with Azure Site Recovery - Azure Site Recovery](https://aka.ms/TestFailoverA2A)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 01c715f6-426a-47d3-87be-9f26e2ab2d8e  
+Subcategory: DisasterRecovery
+
+<!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_end-->
 
 <!--articleBody-->
