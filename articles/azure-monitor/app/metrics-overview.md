@@ -213,8 +213,6 @@ The *Availability tests* metric reflects the count of the web tests runs by Azur
 
 Metrics in the Availability category enable you to see the health of your web application as observed from points around the world. [Configure the availability tests](../app/availability-overview.md) to start using any metrics from this category.
 
-### [Standard](#tab/standard)
-
 | Dimension name (Metrics Explorer) | Dimension name (Log Analytics) | Cardinality limit |
 |-----------------------------------|--------------------------------|-------------------|
 | Run location                      | `availabilityResult/location`  | 50                |
