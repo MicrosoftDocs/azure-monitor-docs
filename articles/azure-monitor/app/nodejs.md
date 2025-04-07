@@ -465,6 +465,12 @@ These properties are client specific, so you can configure `appInsights.defaultC
 
 To disable telemetry correlation, use the `correlationHeaderExcludedDomains` property in configuration. For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js#configuration).
 
+#### How can I configure the desired log level?
+
+To configure the desired log level that Application Insights will use, use the `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL` environment variable.
+The supported values are NONE, ERROR, WARN, INFO, DEBUG, VERBOSE and ALL.
+For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js?tab=readme-ov-file#applicationinsights-3x-sdk-unsupported-properties).
+
 ## Troubleshooting
 
 For troubleshooting information, including "no data" scenarios and customizing logs, see [Troubleshoot Application Insights monitoring of Node.js apps and services](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-app-insights-nodejs).
