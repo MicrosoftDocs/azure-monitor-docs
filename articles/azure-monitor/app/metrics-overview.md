@@ -961,11 +961,13 @@ The count of PageView events logged with the TrackPageView() Application Insight
 
 The count of trace statements logged with the TrackTrace() Application Insights API call.
 
+**Option 1**
+
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer)                                                     | Dimension name<br>(Log Analytics)                                                          | Cardinality limit       |
 |-----------------|--------------|------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|------------------------:|
 | Count           | Count        | `Cloud role instance`<br>`Cloud role name`<br>`Is traffic synthetic`<br>`Severity level` | `cloud/roleInstance`<br>`cloud/roleName`<br>`operation/synthetic`<br>`trace/severityLevel` | 100<br>100<br>10<br>100 |
 
-
+**Option 2**
 
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -975,8 +977,17 @@ The count of trace statements logged with the TrackTrace() Application Insights 
 |                 |              | `Is traffic synthetic`               | `operation/synthetic`             | 10                |
 |                 |              | `Severity level`                     | `trace/severityLevel`             | 100               |
 
+**Option 3**
 
+Unit of measure: Count
+Aggregations: Count
 
+| Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|--------------------------------------|-----------------------------------|------------------:|
+| `Cloud role instance`                | `cloud/roleInstance`              | 100               |
+| `Cloud role name`                    | `cloud/roleName`                  | 100               |
+| `Is traffic synthetic`               | `operation/synthetic`             | 10                |
+| `Severity level`                     | `trace/severityLevel`             | 100               |
 
 ### [Log-based](#tab/log-based)
 <!--
