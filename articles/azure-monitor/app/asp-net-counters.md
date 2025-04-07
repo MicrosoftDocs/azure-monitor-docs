@@ -2,7 +2,7 @@
 title: ASP.NET performance and event counters
 description: Monitor .NET system and event counters in Application Insights.
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 04/08/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.reviewer: rijolly
@@ -12,7 +12,7 @@ ms.reviewer: rijolly
 
 [Azure Monitor](..\overview.md) [Application Insights](app-insights-overview.md) supports performance counters and event counters. This guide provides an overview of both, including their purpose, configuration, and usage in .NET applications.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 ## Overview
 

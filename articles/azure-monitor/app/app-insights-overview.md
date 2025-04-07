@@ -1,21 +1,24 @@
 ---
-title: Application Insights overview
-description: Learn how Application Insights in Azure Monitor provides performance management and usage tracking of your live web application.
+title: Application Insights OpenTelemetry overview
+description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview
-ms.date: 11/16/2024
+ms.date: 03/23/2025
+
+#customer intent: As a developer or site reliability engineer, I want to use OpenTelemetry (OTel), often searched as 'Open Telemetry', with Application Insights so that I can collect, analyze, and monitor application telemetry in a standardized way for improved observability and performance diagnostics.
+
 ---
 
-# Application Insights overview
+# Introduction to Application Insights with OpenTelemetry
 
-Azure Monitor Application Insights, a feature of [Azure Monitor](..\overview.md), excels in application performance monitoring (APM) for live web applications.
+Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor](..\overview.md) that offers application performance monitoring (APM) for live web applications. By integrating with OpenTelemetry (OTel), it provides a vendor-neutral approach to collecting and analyzing telemetry data, enabling comprehensive observability of your applications.
 
 :::image type="content" source="media/app-insights-overview/app-insights-overview-screenshot.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map." lightbox="media/app-insights-overview/app-insights-overview-screenshot.png":::
 
 ---------------------------
 
-## Experiences
+## Application Insights Experiences
 
-Application Insights provides many experiences to enhance the performance, reliability, and quality of your applications.
+Application Insights supports OpenTelemetry (OTel) to collect telemetry data in a standardized format across platforms. Integration with Azure services allows for efficient monitoring and diagnostics, improving application observability and performance.
 
 ### Investigate
 
@@ -57,7 +60,7 @@ The logic model diagram visualizes components of Application Insights and how th
 :::image type="content" source="media/app-insights-overview/app-insights-overview-blowout.svg" alt-text="Diagram that shows the path of data as it flows through the layers of the Application Insights service." lightbox="media/app-insights-overview/app-insights-overview-blowout.svg":::
 
 > [!Note]
-> Firewall settings must be adjusted for data to reach ingestion endpoints. For more information, see [IP addresses used by Azure Monitor](../ip-addresses.md).
+> Firewall settings must be adjusted for data to reach ingestion endpoints. For more information, see [Azure Monitor endpoint access and firewall configuration](../fundamentals/azure-monitor-network-access.md).
 
 ---------------------------
 
@@ -117,6 +120,12 @@ This section lists all supported platforms and frameworks.
 ### Unsupported Software Development Kits (SDKs)
 
 Many community-supported Application Insights SDKs exist, but Microsoft only provides support for instrumentation options listed in this article.
+
+---------------------------
+
+## Troubleshooting
+
+For assistance with troubleshooting Application Insights, see [our dedicated troubleshooting documentation](/troubleshoot/azure/azure-monitor/welcome-azure-monitor).
 
 ---------------------------
 

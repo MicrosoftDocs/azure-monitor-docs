@@ -1,7 +1,6 @@
 ---
 title: Azure Monitor workbook text visualizations
 description: Learn about all the Azure Monitor workbook text visualizations.
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 09/17/2024

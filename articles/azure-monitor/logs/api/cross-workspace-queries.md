@@ -2,8 +2,6 @@
 title: Cross workspace queries
 description: The API supports the ability to query across multiple workspaces.
 ms.date: 07/21/2024
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
 # Cross workspace queries

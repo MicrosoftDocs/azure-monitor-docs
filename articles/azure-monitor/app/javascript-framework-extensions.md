@@ -1,7 +1,6 @@
 ---
 title: Enable a framework extension for Application Insights JavaScript SDK
 description: Learn how to install and use JavaScript framework extensions for the Application Insights JavaScript SDK. 
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 01/31/2025
@@ -83,7 +82,7 @@ To add a plug-in, follow the steps in this section.
 
 ```bash
 
-npm install @microsoft/applicationinsights-react-js
+npm install @microsoft/applicationinsights-react-js @microsoft/applicationinsights-web
 
 ```
 

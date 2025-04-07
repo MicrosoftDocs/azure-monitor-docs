@@ -2,8 +2,6 @@
 title: Request format
 description: The Azure Monitor Log Analytics API request format.
 ms.date: 08/12/2024
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
 # Azure Monitor Log Analytics API request format

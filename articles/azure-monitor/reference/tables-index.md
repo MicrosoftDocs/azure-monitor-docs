@@ -2,9 +2,9 @@
 title: Azure Monitor Resource log / log analytics tables
 description: Field definitions for Azure Monitor resource log / log analytics tables.
 author: EdB-MSFT
-ms.topic: reference
+ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/11/2025
+ms.date: 03/19/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -653,6 +653,7 @@ Microsoft.Communication/CommunicationServices
 - [AzureMetrics](./tables/azuremetrics.md)
 - [ACSChatIncomingOperations](./tables/acschatincomingoperations.md)
 - [ACSSMSIncomingOperations](./tables/acssmsincomingoperations.md)
+- [ACSOptOutManagementOperations](./tables/acsoptoutmanagementoperations.md)
 - [ACSAuthIncomingOperations](./tables/acsauthincomingoperations.md)
 - [ACSBillingUsage](./tables/acsbillingusage.md)
 - [ACSCallDiagnostics](./tables/acscalldiagnostics.md)
@@ -683,6 +684,9 @@ Microsoft.App/managedEnvironments
 - [ContainerAppConsoleLogs](./tables/containerappconsolelogs.md)
 - [ContainerAppSystemLogs](./tables/containerappsystemlogs.md)
 - [AppEnvSpringAppConsoleLogs](./tables/appenvspringappconsolelogs.md)
+- [AppEnvSessionConsoleLogs](./tables/appenvsessionconsolelogs.md)
+- [AppEnvSessionPoolEventLogs](./tables/appenvsessionpooleventlogs.md)
+- [AppEnvSessionLifecycleLogs](./tables/appenvsessionlifecyclelogs.md)
 
 ### Container Registries  
 
@@ -1021,7 +1025,6 @@ Microsoft.Devices/IotHubs
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
-- [IoTHubDistributedTracing](./tables/iothubdistributedtracing.md)
 - [InsightsMetrics](./tables/insightsmetrics.md)
 
 ### Key Vaults  
@@ -1038,6 +1041,7 @@ Microsoft.KeyVault/vaults
 
 Microsoft.ContainerService/managedClusters  
 
+- [RetinaNetworkFlowLogs](./tables/retinanetworkflowlogs.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
@@ -1072,6 +1076,7 @@ Microsoft.Network/LoadBalancers
 
 Microsoft.OperationalInsights/Workspaces  
 
+- [AzureMetrics](./tables/azuremetrics.md)
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
 - [AzureMetricsV2](./tables/azuremetricsv2.md)

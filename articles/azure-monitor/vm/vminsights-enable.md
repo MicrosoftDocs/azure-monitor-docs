@@ -2,8 +2,6 @@
 title: Enable VM Insights
 description: Describes different methods for enabling VM Insights on virtual machines and virtual machine scale sets.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: xpathak
 ms.date: 10/03/2024
 ms.custom: references_regions
@@ -39,7 +37,7 @@ When you enable VM Insights for a machine, the following agents are installed.
 
 The only configuration in a VM insights DCR is the Log Analytics workspace and whether or not to collect processes and dependencies data. Instead of creating a separate DCR for each machine, you should use a single DCR for each Log Analytics workspace you use for VM insights and associate that DCR with multiple machines. You may want to create separate DCRs if you want to collect processes and dependencies from some machines but not from others. 
 
-You shouldn't modify the VM insights DCR. If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCRs from [Collect data with Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md).
+You shouldn't modify the VM insights DCR. If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCRs from [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 :::image type="content" source="media/vminsights-enable-portal/vminsights-dcr.png" lightbox="media/vminsights-enable-portal/vminsights-dcr.png" alt-text="Diagram showing the operation of VM insights DCR compared to other DCRs associated with the same agents.":::
 
@@ -274,6 +272,8 @@ az vm extension list --resource-group <resource group> --vm-name <VM name>  -o t
 
 ---
 
+## Edit VM insights configuration
+To edit the VM insights configuration for a virtual machine after it's been onboarded, click on **Enabled** next to the VM on the VM insights **Overview** page. This will display the current configuration. Click **Edit** to open the configuration page as described in the previous section. You can select another DCR for the VM or create a new one. You can't modify the existing DCR from this page.
 
 ## Next steps
 

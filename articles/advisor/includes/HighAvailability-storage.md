@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 02/27/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -47,5 +47,24 @@ Recommendation ID: 8ef907f4-f8e3-4bf1-962d-27e005a7d82d
 Subcategory: DisasterRecovery
 
 <!--8ef907f4-f8e3-4bf1-962d-27e005a7d82d_end-->
+
+<!--4346d0ad-b591-479a-9c87-e01afe9188b6_begin-->
+
+#### Configure a backup for Azure Blob in the Azure Storage account  
+  
+Configure a backup for the Azure Blob in the Azure Storage account. Protect Azure Blob data with an offsite, vaulted, secure, managed, and compliant backup solution.  
+  
+**Potential benefits**: Secure, managed, and compliant backup solution.  
+
+**Impact:** Medium
+  
+For more information, see [Quickstart - Configure vaulted backup for Azure Blobs using Azure Backup - Azure Backup](/azure/backup/blob-backup-configure-quick)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 4346d0ad-b591-479a-9c87-e01afe9188b6  
+Subcategory: DisasterRecovery
+
+<!--4346d0ad-b591-479a-9c87-e01afe9188b6_end-->
+
 
 <!--articleBody-->

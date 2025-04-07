@@ -1,7 +1,6 @@
 ---
 title: Export data from a Log Analytics workspace to a storage account by using Logic Apps
 description: This article describes a method to use Azure Logic Apps to query data from a Log Analytics workspace and send it to Azure Storage.
-ms.service: azure-monitor
 ms.topic: conceptual
 ms.reviewer: yossiy
 ms.date: 08/12/2024

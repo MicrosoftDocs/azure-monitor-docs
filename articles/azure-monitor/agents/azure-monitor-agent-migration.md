@@ -1,9 +1,6 @@
 ---
 title: Migrate to Azure Monitor Agent from Log Analytics agent 
 description: Guidance for migrating to Azure Monitor Agent from MMA
-author: EdB-MSFT
-ms.author: edbaynash
-ms.reviewer: guywild
 ms.topic: conceptual 
 ms.date: 11/14/2024
 
@@ -21,10 +18,10 @@ Migration is a complex task. Start planning your migration to Azure Monitor Agen
 > The Log Analytics agent was [retired on **August 31, 2024**](https://azure.microsoft.com/updates/were-retiring-the-log-analytics-agent-in-azure-monitor-on-31-august-2024/). This deprecation does not apply to MMA agent connected exclusively to an on-premises SCOM installation.
 > 
 > You can expect the following when you use the MMA or OMS agent after August 31, 2024.
-> - **Data upload:** Ingestion for MMA will be unchanged until February 1, 2025. After this date, cloud ingestion services will gradually reduce support for MMA agents, which will result in loss of ingestion support and potential compatibility issues for MMA agents over time. 
+> - **Data upload:** Cloud ingestion services will gradually reduce support for MMA agents, which will result in loss of ingestion support and potential compatibility issues for MMA agents over time. Upload capabilities will not be deployed to new regions
 > - **Installation:** The ability to install the legacy agents will be removed from the Azure Portal and installation policies for legacy agents will be removed. You can still install the MMA agents extension as well as perform offline installations.
 > - **Customer Support:** You will not be able to get support for legacy agent issues.
-> - **OS Support:** Support for new Linux or Windows distros, including service packs, won't be added after the deprecation of the legacy agents.
+> - **OS Support:** Support for new Linux or Windows distros, including service packs, won't be available after the deprecation of the legacy agents.
 > - Log Analytics Agent can coexist with Azure Monitor Agent. Expect to see duplicate data if both agents are collecting the same data.
 
 ## Before you begin

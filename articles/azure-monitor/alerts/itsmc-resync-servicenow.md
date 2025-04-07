@@ -1,7 +1,6 @@
 ---
 title: How to manually fix ServiceNow sync problems 
 description: Reset the connection to ServiceNow so alerts in Microsoft Azure can again call ServiceNow  
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 07/30/2024
 ms.reviewer: nolavime

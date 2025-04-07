@@ -4,8 +4,6 @@ description: Search jobs are asynchronous log queries in Azure Monitor that make
 ms.topic: conceptual
 ms.date: 07/22/2024
 ms.custom: references_regions
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: adi.biran
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
 ---
@@ -70,7 +68,7 @@ To run a search job, in the Azure portal:
 
     Azure Monitor Logs intellisense supports [KQL query limitations in search job mode](#kql-query-limitations) to help you write your search job query. 
 
-1. Specify the search job date range using the time picker.
+1. Specify the search job date range using the time picker only, as the time changes will not be reflected from the Kusto query.
 
 1. Type the search job query and select the **Search Job** button.
 
@@ -314,9 +312,13 @@ The search job charge is based on:
 
 For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 
 
+> [!NOTE]
+> Billing for search jobs on an Auxiliary Logs table is not enabled at this time.
+> Details on billing start date will be announced on [Azure Updates](https://azure.microsoft.com/updates/?query=Azure%20Monitor).
+
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Next steps
 
-- [Learn more about managing data retention in a Log Analytics worksapce.](data-retention-configure.md)
+- [Learn more about managing data retention in a Log Analytics workspace.](data-retention-configure.md)
 - [Learn about directly querying Basic and Auxiliary tables.](basic-logs-query.md)

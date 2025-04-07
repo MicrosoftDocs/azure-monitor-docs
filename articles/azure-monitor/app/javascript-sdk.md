@@ -26,7 +26,7 @@ We provide the [Debug plugin](https://github.com/microsoft/ApplicationInsights-J
 ## Prerequisites
 
 * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
-* Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-a-workspace-based-resource)
+* Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 * An application that uses [JavaScript](/visualstudio/javascript)
 
 ## Get started

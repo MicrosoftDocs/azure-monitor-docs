@@ -2,8 +2,6 @@
 title: API access and authentication
 description: Learn how to authenticate and access the Azure Monitor Log Analytics API.
 ms.date: 05/30/2024
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
 # Access the Azure Monitor Log Analytics API
@@ -47,14 +45,17 @@ The public API endpoint is:
     https://api.loganalytics.azure.com/{api-version}/workspaces/{workspaceId}
 ```
 where:
- - **api-version**: The API version. The current version is "v1."
+ - **api-version**: The API version. The current version is `v1`.
  - **workspaceId**: Your workspace ID.
- 
+
+>[!NOTE]
+>The `beta` api-version has been deprecated. For more information, see [Migrate from using batch and beta query APIs](migrate-batch-and-beta.md).
+
 The query is passed in the request body.
  
 For example:
  ```
-    https://api.loganalytics.azure.com/v1/workspaces/1234abcd-def89-765a-9abc-def1234abcde
+    https://api.loganalytics.azure.com/v1/workspaces/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
     
     Body:
     {
@@ -122,7 +123,7 @@ In the client credentials flow, the token is used with the Log Analytics endpoin
 
 Use `resource=https://api.loganalytics.azure.com`.
 
-[!INCLUDE [Get a token](../../includes/get-authentication-token.md)]
+[!INCLUDE [Get a token](../../essentials/includes/get-authentication-token.md)]
 
 
 Use the token in requests to the Log Analytics endpoint:

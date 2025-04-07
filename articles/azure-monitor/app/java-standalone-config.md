@@ -2,7 +2,7 @@
 title: Configuration options - Azure Monitor Application Insights for Java
 description: This article shows you how to configure Azure Monitor Application Insights for Java.
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 02/28/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
 ms.reviewer: mmcc
@@ -34,7 +34,7 @@ More information and configuration options are provided in the following section
 
 ### Default configuration
 
-By default, Application Insights Java 3  expects the configuration file to be named applicationinsights.json and located in the same directory as applicationinsights-agent-3.7.0.jar.
+By default, Application Insights Java 3  expects the configuration file to be named applicationinsights.json and located in the same directory as applicationinsights-agent-3.7.1.jar.
  
 ### Alternative configurations
 
@@ -44,7 +44,7 @@ You can specify a custom configuration file with
 *	the APPLICATIONINSIGHTS_CONFIGURATION_FILE environment variable, or
 *	the applicationinsights.configuration.file system property
 
-If you provide a relative path, it will resolve relative to the directory where applicationinsights-agent-3.7.0.jar is located.
+If you provide a relative path, it will resolve relative to the directory where applicationinsights-agent-3.7.1.jar is located.
 
 #### JSON configuration
 
@@ -71,7 +71,7 @@ Or you can set the connection string by using the Java system property `applicat
 
 You can also set the connection string by specifying a file to load the connection string from.
 
-If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.0.jar` is located.
+If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.1.jar` is located.
 
 ```json
 {
@@ -337,7 +337,7 @@ Add `applicationinsights-core` to your application:
 <dependency>
   <groupId>com.microsoft.azure</groupId>
   <artifactId>applicationinsights-core</artifactId>
-  <version>3.7.0</version>
+  <version>3.7.1</version>
 </dependency>
 ```
 
@@ -345,8 +345,7 @@ Use the static `configure(String)` method in the class
 `com.microsoft.applicationinsights.connectionstring.ConnectionString`.
 
 > [!NOTE]
-> Any telemetry that is captured prior to configuring the connection string will be dropped,
-> so it is best to configure it as early as possible in your application startup.
+> Any telemetry that is captured prior to configuring the connection string will be dropped, so it's best to configure it as early as possible in your application startup.
 
 ## Autocollect InProc dependencies (preview)
 
@@ -426,7 +425,7 @@ For more information, see the [Telemetry processor](./java-standalone-telemetry-
 
 ## Custom instrumentation (preview)
 
-Starting from verion 3.3.1, you can capture spans for a method in your application:
+Starting from version 3.3.1, you can capture spans for a method in your application:
 
 ```json
 {
@@ -444,7 +443,7 @@ Starting from verion 3.3.1, you can capture spans for a method in your applicati
 ## Locally disabling ingestion sampling (preview)
 
 By default, when the effective sampling percentage in the Java agent is 100%
-and [ingestion sampling](./sampling-classic-api.md#ingestion-sampling) has been configured on your Application Insights resource,
+and [ingestion sampling](./opentelemetry-sampling.md#ingestion-sampling-not-recommended) has been configured on your Application Insights resource,
 then the ingestion sampling percentage will be applied.
 
 Note that this behavior applies to both fixed-rate sampling of 100% and also applies to rate-limited sampling when the
@@ -592,7 +591,7 @@ To send custom metrics using micrometer:
    [metrics explorer](../essentials/metrics-getting-started.md) under the `Log-based metrics` metric namespace.
 
     > [!NOTE]
-    > Application Insights Java replaces all non-alphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
+    > Application Insights Java replaces all nonalphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
 
 To disable autocollection of Micrometer metrics and Spring Boot Actuator metrics:
 
@@ -855,7 +854,7 @@ For more information, see the [Authentication](./azure-ad-authentication.md) doc
 
 ## HTTP proxy
 
-If your application is behind a firewall and can't connect directly to Application Insights, refer to [IP addresses used by Application Insights](../ip-addresses.md).
+If your application is behind a firewall and can't connect directly to Application Insights, refer to [Azure Monitor endpoint access and firewall configuration](../fundamentals/azure-monitor-network-access.md).
 
 To work around this issue, you can configure Application Insights Java 3.x to use an HTTP proxy.
 
@@ -913,7 +912,7 @@ In the preceding configuration example:
 
 * `level` can be one of `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`, or `TRACE`.
 * `path` can be an absolute or relative path. Relative paths are resolved against the directory where
-`applicationinsights-agent-3.7.0.jar` is located.
+`applicationinsights-agent-3.7.1.jar` is located.
 
 Starting from version 3.0.2, you can also set the self-diagnostics `level` by using the environment variable
 `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL`. It then takes precedence over the self-diagnostics level specified in the JSON configuration.

@@ -1,11 +1,11 @@
 ---
 title: Supported metrics - Microsoft.Cdn/profiles
 description: Reference for Microsoft.Cdn/profiles metrics in Azure Monitor.
-ms.topic: reference
+ms.topic: generated-reference
 author: EdB-MSFT
 ms.author: edbaynash
 ms.service: azure-monitor
-ms.date: 11/19/2024
+ms.date: 04/02/2025
 ms.custom: Microsoft.Cdn/profiles, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 

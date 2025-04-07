@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/05/2025
+ms.date: 03/31/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -391,19 +391,20 @@ Subcategory: BusinessContinuity
 
 #### Implement Site Resiliency for ExpressRoute  
   
-To ensure maximum resiliency, Microsoft recommends that you connect to two ExpressRoute circuits in two peering locations. The goal of Maximum Resiliency is to enhance availability and ensure the highest level of resilience for critical workloads.  
+To ensure maximum resiliency, the platform recommends connecting to two ExpressRoute circuits in two peering locations. The goal of maximum resiliency is to enhance availability and ensure the highest level of resilience for critical workloads.  
   
-**Potential benefits**: Maximum Resiliency in ExpressRoute is designed to ensure there isn’t a single point of failure within the Microsoft network path. This is achieved by offering dual (2) circuits across two different locations for site diversity in ExpressRoute. The goal of Maximum Resiliency is to enhance availability and ensure the highest level of resilience for critical workloads.  
+**Potential benefits**: Improve ExpressRoute uptime with Site Resilient Connectivity  
 
 **Impact:** High
   
-For more information, see [Design and architect Azure ExpressRoute for resiliency ](https://aka.ms/ersiteresiliency)  
+For more information, see [Design and architect Azure ExpressRoute for resiliency](https://aka.ms/ersiteresiliency)  
 
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: 8d61a7d4-5405-4f43-81e3-8c6239b844a6  
-Subcategory: null
+Subcategory: HighAvailability
 
 <!--8d61a7d4-5405-4f43-81e3-8c6239b844a6_end-->
+
 
 <!--c9af1ef6-55bc-48af-bfe4-2c80490159f8_begin-->
 
@@ -440,5 +441,24 @@ Recommendation ID: 56f0c458-521d-4b8b-a704-c0a099483d19
 Subcategory: HighAvailability
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
+
+<!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_begin-->
+
+#### Use a health probe for monitoring the health of servers  
+  
+Use a health probe of the application gateway for monitoring the health of servers in the backend pool. The health probe of the application gateway stops traffic from sending to a server the health probe considers unhealthy.  
+  
+**Potential benefits**: Prevent sending traffic to unhealthy server.  
+
+**Impact:** High
+  
+For more information, see [Health monitoring overview for Azure Application Gateway](/azure/application-gateway/application-gateway-probe-overview)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32  
+Subcategory: Scalability
+
+<!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
+
 
 <!--articleBody-->

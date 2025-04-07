@@ -2,8 +2,6 @@
 title: Overview
 description: This article describes the REST API that makes the data collected by Azure Log Analytics easily available.
 ms.date: 09/17/2024
-author: guywi-ms
-ms.author: guywild
 ms.topic: article
 ---
 # Azure Monitor Log Analytics API overview
@@ -38,7 +36,7 @@ To quickly explore the API without using Microsoft Entra authentication, we prov
 
 ## Log Analytics API query limits
 
-For information about query limits, see the [Query API section of this webpage](../../service-limits.md).
+For information about query limits, see the [Query API section of this webpage](../../service-limits.md#query-api).
 
 ## Try the Log Analytics API
 

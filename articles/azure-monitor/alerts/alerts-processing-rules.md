@@ -1,7 +1,6 @@
 ---
 title: Alert processing rules for Azure Monitor alerts
 description: Understand Azure Monitor alert processing rules and how to configure and manage them.
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 ms.date: 7/30/2024

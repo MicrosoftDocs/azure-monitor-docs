@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 02/07/2025
+ms.date: 03/07/2025
 ms.reviewer: jan.kalis
 ms.collection: ce-skilling-ai-copilot
 ---
@@ -36,11 +36,11 @@ The .NET Profiler and Code Optimizations work together to provide a holistic app
 
 #### Identify
 
-Using the [Code Optimizations consolidated oveview page](./view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
+Using the [Code Optimizations consolidated overview page](./view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
 
 #### Analyze
 
-Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identitified issues, with a 30-day history for you to review and analyze past events.
+Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
 
 #### Resolve
 
@@ -76,21 +76,28 @@ Code Optimizations are generated automatically after [Application Insights Profi
 
 Some Code Optimization features (such as code-level fix suggestions) require [Copilot for GitHub](https://docs.github.com/copilot/about-github-copilot/what-is-github-copilot) and/or [Copilot for Azure](/azure/copilot/overview). 
 
-## Supported services
+## Enabling .NET Profiler
 
-The Profiler and Code Optimizations work with .NET applications deployed on the following Azure services. View specific instructions for enabling Profiler for each service type in the following links.
+As frameworks and Azure services evolve, you can enable .NET Profiler for your .NET apps running on Azure via a number of options.
 
-| Compute platform | .NET (>= 4.6) | .NET Core |
-| ---------------- | ------------- | --------- |
-| [Azure App Service - .NET app on Windows](../profiler/profiler.md) | Yes | Yes |
-| [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md) | No | Yes |
-| [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md) | Yes | Yes |
-| [Azure Cloud Services](../profiler/profiler-cloudservice.md) | Yes | Yes |
-| [Azure Container Instances for Windows](../profiler/profiler-containers.md) | No | Yes |
-| [Azure Container Instances for Linux](../profiler/profiler-containers.md) | No | Yes |
-| Kubernetes | No | Yes |
-| [Azure Functions](../profiler/profiler-azure-functions.md) | Yes | Yes |
-| [Azure Service Fabric](../profiler/profiler-servicefabric.md) | Yes | Yes |
+| Azure service | How to enable            | Details |
+| ------------- | ------------------------ | ------- |
+| Most Azure services | Code change in your application<br>(most universal)   | If your .NET app runs on variants of Azure PaaS services or Containers, you can choose between two options for enabling .NET Profiler:<br>- [Application Insights Profiler for ASP.NET Core](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore) that uses the [Application Insights SDK](../app/asp-net-core.md), or<br>- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net) that uses [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-help-support-feedback.md#why-should-i-use-the-azure-monitor-opentelemetry-distro)  |
+| Azure App Service | No code change for your application | Since the Profiler is pre-installed, you can enable Profiler for .NET in the portal for:<br>- [Azure App Service - .NET app on Windows](../profiler/profiler.md)<br>- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md) |
+| Virtual Machines | No code change for your application | Once you've enabled the Application Insights SDK in your application code, you can enable the Profiler for .NET in your ARM template.<br>- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)<br>- [Azure Service Fabric](../profiler/profiler-servicefabric.md) | 
+
+
+### Details and examples for enabling Profiler for .NET
+
+- [Azure App Service - .NET app on Windows](../profiler/profiler-containers.md)
+- [Azure App Service - .NET app on Linux](../profiler/profiler-aspnetcore-linux.md)
+- [Containers](../profiler/profiler-containers.md):
+  - Azure Container Apps
+  - Azure Kubernetes Services
+  - Azure Container Instances
+- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)
+- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md)
+- [Azure Service Fabric](../profiler/profiler-servicefabric.md)
 
 > [!NOTE]
 > You can also use the [Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md), currently in preview.
@@ -124,7 +131,6 @@ Learn how to enable the .NET Profiler with Code Optimizations on your Azure serv
 - [ASP.NET Core application hosted in Windows on Azure App Service](../profiler/profiler.md)
 - [ASP.NET Core application hosted in Linux on Azure App Service](../profiler/profiler-aspnetcore-linux.md)
 - [Azure Functions app](../profiler/profiler-azure-functions.md)
-- [Azure Cloud Services](../profiler/profiler-cloudservice.md)
 - [Azure Service Fabric app](../profiler/profiler-servicefabric.md)
 - [Azure Virtual Machines](../profiler/profiler-vm.md)
 - [ASP.NET Core application running in containers](../profiler/profiler-containers.md)
