@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/27/2025
+ms.date: 04/07/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -70,7 +70,7 @@ Subcategory: Other
 
 #### Configure a snapshot for the Azure NetApp Files volume  
   
-Configure a snapshot for the Azure NetApp Files volume. Restore a snapshot to a new volume, restore a single file by using a client, or revert an existing volume by using a snapshot.  
+Configure a snapshot for the Azure NetApp Files volume. Restore a snapshot to a new volume, restore a single file using a client, or revert an existing volume using a snapshot.  
   
 **Potential benefits**: Add data protection for the Azure NetApp Files volume.  
 
@@ -78,11 +78,12 @@ Configure a snapshot for the Azure NetApp Files volume. Restore a snapshot to a 
   
 For more information, see [How Azure NetApp Files snapshots work](/azure/azure-netapp-files/snapshots-introduction)  
 
-ResourceType: microsoft.netapp/netappaccounts  
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: cda11061-35a8-4ca3-aa03-b242dcdf7319  
 Subcategory: DisasterRecovery
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_end-->
+
 
 
 
