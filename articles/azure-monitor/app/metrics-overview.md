@@ -169,25 +169,25 @@ Metrics in the Availability category enable you to see the health of your web ap
 
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
-| Unit of measure | Supported aggregations | Supported dimensions        | Max time series |
-|-----------------|------------------------|-----------------------------|-----------------|
-| Percentage      | Avg                    | `Run location`, `Test name` | 5000            |
+| Unit of measure | Supported aggregations | Supported dimensions          | Cardinality limit |
+|-----------------|------------------------|------------------------------:|-------------------|
+| Percentage      | Avg                    | `Run location`<br>`Test name` | 50<br>100         |
 
 #### Availability test duration (availabilityResults/duration)
 
 The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
 
-| Unit of measure | Supported aggregations | Supported dimensions                       | Max time series |
-|-----------------|------------------------|--------------------------------------------|-----------------|
-| Milliseconds    | Avg, Max, Min          | `Run location`, `Test name`, `Test result` | 5000            |
+| Unit of measure | Supported aggregations | Supported dimensions                           | Cardinality limit |
+|-----------------|------------------------|-----------------------------------------------:|-------------------|
+| Milliseconds    | Avg, Max, Min          | `Run location`<br>`Test name`<br>`Test result` | 50<br>100<br>2    |
 
 #### Availability tests (availabilityResults/count)
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
 
-| Unit of measure | Supported aggregations | Supported dimensions                       |
-|-----------------|------------------------|--------------------------------------------|
-| Count           | Count                  | `Run location`, `Test name`, `Test result` |
+| Unit of measure | Supported aggregations | Supported dimensions                       | Cardinality limit |
+|-----------------|------------------------|--------------------------------------------|-------------------|
+| Count           | Count                  | `Run location`, `Test name`, `Test result` | 50<br>100<br>2    |
 
 ### [Log-based](#tab/log-based)
 
