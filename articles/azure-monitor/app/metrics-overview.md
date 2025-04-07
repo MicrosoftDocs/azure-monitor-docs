@@ -132,6 +132,11 @@ Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dime
 
 The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements.
 
+> [!IMPORTANT]
+> * **Time Series Limit:** Each metric can only have up to **5,000** time series within 24 hours. Once this limit is reached, all dimension values of that metric point are replaced by `Maximum values reached`.
+>
+> * **Cardinality limit:** Each dimension can only have a certain number of unique values within 24 hours. Once this limit is reached, the dimension value is replaced by `Other values`. The cardinality limit for each dimension is listed in the tables below.
+
 ### [Log-based](#tab/log-based)
 
 The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements. For convenience, each query uses defaults for time granularity, chart type, and sometimes splitting dimension which simplifies using the query in Log Analytics without any need for modification.
@@ -154,31 +159,6 @@ When you plot the same metric in [metrics explorer](./../essentials/analyze-metr
 
 ---
 
-### Cardinality limit and time series limit
-
-> [!NOTE]
-> * **Time Series Limit:** Each metric can only have up to **5,000** time series within 24 hours. Once this limit is reached, all dimension values of that metric point are replaced by `Maximum values reached`.
-
-Each dimension can only have a certain number of unique values within 24 hours. Once this limit is reached, the dimension value is replaced by `Other values`. The cardinality limit for each dimension is listed in the tables below.
-
-| Dimension name (Metrics Explorer) | Dimension name (Log Analytics)                  | Cardinality limit |
-|-----------------------------------|-------------------------------------------------|-------------------|
-| Cloud role instance               | `cloud/roleInstance`                            | 100               |
-| Cloud role name                   | `cloud/roleName`                                | 100               |
-| Dependency performance            | `dependency/performanceBucket`                  | 20                |
-| Dependency type                   | `dependency/type`                               | 100               |
-| Device type                       | `client/type`                                   | 2                 |
-| Is traffic synthetic              | `operation/synthetic`                           | 10                |
-| Request performance               | `request/performanceBucket`                     | 20                |
-| Result code                       | `dependency/resultCode`<br>`request/resultCode` | 100               |
-| Run location                      | `availabilityResult/location`                   | 50                |
-| Severity level                    | `trace/severityLevel`                           | 100               |
-| Successfull call                  | `dependency/success`                            | 2                 |
-| Successfull request               | `request/success`                               | 2                 |
-| Target of dependency call         | `dependency/target`                             | 100               |
-| Test name                         | `availabilityResult/name`                       | 100               |
-| Test result                       | `availabilityResult/success`                    | 2                 |
-
 ### Availability metrics
 
 Metrics in the Availability category enable you to see the health of your web application as observed from points around the world. [Configure the availability tests](../app/availability-overview.md) to start using any metrics from this category.
@@ -189,59 +169,25 @@ Metrics in the Availability category enable you to see the health of your web ap
 
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
-| Unit of measure | Supported aggregations | Supported dimensions          | Cardinality limit |
-|-----------------|------------------------|------------------------------:|------------------:|
-| Percentage      | Avg                    | `Run location`<br>`Test name` | 50<br>100         |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics)                          | Cardinality limit |
+|-----------------|--------------|--------------------------------------|------------------------------------------------------------|------------------:|
+| Percentage      | Avg          | `Run location`<br>`Test name`        | `availabilityResult/location`<br>`availabilityResult/name` | 50<br>100         |
 
 #### Availability test duration (availabilityResults/duration)
 
 The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
 
-| Unit of measure | Supported aggregations | Supported dimensions                           | Cardinality limit |
-|-----------------|------------------------|-----------------------------------------------:|------------------:|
-| Milliseconds    | Avg, Max, Min          | `Run location`<br>`Test name`<br>`Test result` | 50<br>100<br>2    |
+| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer)           | Dimension name<br>(Log Analytics)                                                          | Cardinality limit |
+|-----------------|---------------|------------------------------------------------|--------------------------------------------------------------------------------------------|------------------:|
+| Milliseconds    | Avg, Max, Min | `Run location`<br>`Test name`<br>`Test result` | `availabilityResult/location`<br>`availabilityResult/name`<br>`availabilityResult/success` | 50<br>100<br>2    |
 
 #### Availability tests (availabilityResults/count)
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
 
-| Unit of measure | Supported aggregations | Supported dimensions                           | Cardinality limit |
-|-----------------|------------------------|-----------------------------------------------:|------------------:|
-| Count           | Count                  | `Run location`<br>`Test name`<br>`Test result` | 50<br>100<br>2    |
-
-### Availability metrics
-
-Metrics in the Availability category enable you to see the health of your web application as observed from points around the world. [Configure the availability tests](../app/availability-overview.md) to start using any metrics from this category.
-
-| Dimension name (Metrics Explorer) | Dimension name (Log Analytics) | Cardinality limit |
-|-----------------------------------|--------------------------------|-------------------|
-| Run location                      | `availabilityResult/location`  | 50                |
-| Test name                         | `availabilityResult/name`      | 100               |
-| Test result                       | `availabilityResult/success`   | 2                 |
-
-#### Availability (availabilityResults/availabilityPercentage)
-
-The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
-
-| Unit of measure | Supported aggregations | Supported dimensions          |
-|-----------------|------------------------|------------------------------|
-| Percentage      | Avg                    | `Run location`, `Test name` |
-
-#### Availability test duration (availabilityResults/duration)
-
-The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
-
-| Unit of measure | Supported aggregations | Supported dimensions                           |
-|-----------------|------------------------|-----------------------------------------------|
-| Milliseconds    | Avg, Max, Min          | `Run location`, `Test name`, `Test result` |
-
-#### Availability tests (availabilityResults/count)
-
-The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
-
-| Unit of measure | Supported aggregations | Supported dimensions                           |
-|-----------------|------------------------|-----------------------------------------------|
-| Count           | Count                  | `Run location`, `Test name`, `Test result` |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer)           | Dimension name<br>(Log Analytics)                                                          | Cardinality limit |
+|-----------------|--------------|------------------------------------------------|--------------------------------------------------------------------------------------------|------------------:|
+| Count           | Count        | `Run location`<br>`Test name`<br>`Test result` | `availabilityResult/location`<br>`availabilityResult/name`<br>`availabilityResult/success` | 50<br>100<br>2    |
 
 ### [Log-based](#tab/log-based)
 
@@ -434,41 +380,41 @@ The metrics in **Failures** show problems with processing requests, dependency c
 
 This metric reflects the number of thrown exceptions from your application code running in browser. Only exceptions that are tracked with a `trackException()` Application Insights API call are included in the metric.
 
-| Unit of measure | Supported aggregations | Supported dimensions | Cardinality limit |
-|-----------------|------------------------|---------------------:|------------------:|
-| Count           | Count                  | `Cloud role name`    | 100               |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Count           | Count        | `Cloud role name`                    | `cloud/roleName`                  | 100               |
 
 #### Dependency call failures (dependencies/failed)
 
 The number of failed dependency calls.
 
-| Unit of measure | Supported aggregations | Supported dimensions | Cardinality limit |
-|-----------------|------------------------|---------------------:|------------------:|
-| Count | Count | `Cloud role instance`<br>`Cloud role name`<br>`Dependency performance`<br>`Dependency type`<br>`Is traffic synthetic`<br>`Result code`<br>`Target of dependency call` | 100<br>100<br>20<br>100<br>10<br>100<br>100 |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Count | Count | `Cloud role instance`<br>`Cloud role name`<br>`Dependency performance`<br>`Dependency type`<br>`Is traffic synthetic`<br>`Result code`<br>`Target of dependency call` | `cloud/roleInstance`<br>`cloud/roleName`<br>`dependency/performanceBucket`<br>`dependency/type`<br>`operation/synthetic`<br>`dependency/resultCode`<br>`dependency/target` |100<br>100<br>20<br>100<br>10<br>100<br>100 |
 
 #### Exceptions (exceptions/count)
 
 Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
-| Unit of measure | Supported aggregations | Supported dimensions                                        | Cardinality limit |
-|-----------------|------------------------|------------------------------------------------------------:|------------------:|
-| Count           | Count                  | `Cloud role instance`<br>`Cloud role name`<br>`Device type` | 100<br>100<br>2   |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer)                        | Dimension name<br>(Log Analytics)                         | Cardinality limit |
+|-----------------|--------------|-------------------------------------------------------------|-----------------------------------------------------------|------------------:|
+| Count           | Count        | `Cloud role instance`<br>`Cloud role name`<br>`Device type` | `cloud/roleInstance`<br>`cloud/roleName`<br>`client/type` | 100<br>100<br>2   |
 
 #### Failed requests (requests/failed)
 
 The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx (except for 401) as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](../app/api-filtering-sampling.md#addmodify-properties-itelemetryinitializer). For more information about various response codes, see [Application Insights telemetry data model](data-model-complete.md#success).
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                                           | Cardinality limit             |
-|-----------------|------------------------|---------------------------------------------------------------------------------------------------------------:|------------------------------:|
-| Count           | Count                  | `Cloud role instance`<br>`Cloud role name`<br>`Is synthetic traffic`<br>`Request performance`<br>`Result code` | 100<br>100<br>10<br>20<br>100 |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Count | Count | `Cloud role instance`<br>`Cloud role name`<br>`Is synthetic traffic`<br>`Request performance`<br>`Result code` | `cloud/roleInstance`<br>`cloud/roleName`<br>`operation/synthetic`<br>`request/performanceBucket`<br>`request/resultCode` | 100<br>100<br>10<br>20<br>100 |
 
 #### Server exceptions (exceptions/server)
 
 This metric shows the number of server exceptions.
 
-| Unit of measure | Supported aggregations | Supported dimensions                       | Cardinality limit |
-|-----------------|------------------------|-------------------------------------------:|------------------:|
-| Count           | Count                  | `Cloud role instance`<br>`Cloud role name` | 100<br>100        |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer)       | Dimension name<br>(Log Analytics)        | Cardinality limit |
+|-----------------|--------------|--------------------------------------------|------------------------------------------|------------------:|
+| Count           | Count        | `Cloud role instance`<br>`Cloud role name` | `cloud/roleInstance`<br>`cloud/roleName` | 100<br>100        |
 
 ### [Log-based](#tab/log-based)
 
@@ -557,68 +503,68 @@ Use metrics in the **Performance counters** category to access [system performan
 
 ### [Standard](#tab/standard)
 
-#### Available memory (performanceCounters/availableMemory) <!-- performanceCounters/memoryAvailableBytes -->
+#### Available memory (performanceCounters/availableMemory)
 
-| Unit of measure                        | Supported aggregations | Supported dimensions  | Max time series |
-|----------------------------------------|------------------------|-----------------------|-----------------|
-| Megabytes / Gigabytes (data dependent) | Avg, Max, Min          | `Cloud role instance` | 5000            |
+| Unit of measure                        | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|----------------------------------------|---------------|--------------------------------------|-----------------------------------|------------------:|
+| Megabytes / Gigabytes (data dependent) | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
-#### Exception rate (performanceCounters/exceptionRate) <!-- performanceCounters/exceptionsPerSecond -->
+#### Exception rate (performanceCounters/exceptionRate)
 
-| Unit of measure | Supported aggregations | Supported dimensions  | Max time series |
-|-----------------|------------------------|-----------------------|-----------------|
-| Count           | Avg, Max, Min          | `Cloud role instance` | 5000            |
+| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
+| Count           | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 #### HTTP request execution time (performanceCounters/requestExecutionTime)
 
-| Unit of measure | Supported aggregations | Supported dimensions  | Max time series |
-|-----------------|------------------------|-----------------------|-----------------|
-| Milliseconds    | Avg, Max, Min          | `Cloud role instance` | 5000            |
+| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
+| Milliseconds    | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 #### HTTP request rate (performanceCounters/requestsPerSecond)
 
-| Unit of measure     | Supported aggregations | Supported dimensions  | Max time series |
-|---------------------|------------------------|-----------------------|-----------------|
-| Requests per second | Avg, Max, Min          | `Cloud role instance` | 5000            |
+| Unit of measure     | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|---------------------|---------------|--------------------------------------|-----------------------------------|------------------:|
+| Requests per second | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 #### HTTP requests in application queue (performanceCounters/requestsInQueue)
 
-| Unit of measure | Supported aggregations | Supported dimensions  | Max time series |
-|-----------------|------------------------|-----------------------|-----------------|
-| Count           | Avg, Max, Min          | `Cloud role instance` | 5000            |
+| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
+| Count           | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 #### Process CPU (performanceCounters/processCpuPercentage)
 
 The metric shows how much of the total processor capacity is consumed by the process that is hosting your monitored app.
 
-| Unit of measure | Supported aggregations | Supported dimensions  | Max time series |
-|-----------------|------------------------|-----------------------|-----------------|
-| Percentage      | Avg, Max, Min          | `Cloud role instance` | 5000            |
+| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
+| Percentage      | Avg, Max, Min | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 > [!NOTE]
 > The range of the metric is between 0 and 100 * n, where n is the number of available CPU cores. For example, the metric value of 200% could represent full utilization of two CPU core or half utilization of 4 CPU cores and so on. The *Process CPU Normalized* is an alternative metric collected by many SDKs which represents the same value but divides it by the number of available CPU cores. Thus, the range of *Process CPU Normalized* metric is 0 through 100.
 
 #### Process IO rate (performanceCounters/processIOBytesPerSecond)
 
-| Unit of measure  | Supported aggregations | Supported dimensions  | Max time series |
-|------------------|------------------------|-----------------------|-----------------|
-| Bytes per second | Average, Min, Max      | `Cloud role instance` | 5000            |
+| Unit of measure  | Aggregations      | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|------------------|-------------------|--------------------------------------|-----------------------------------|------------------:|
+| Bytes per second | Average, Min, Max | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 #### Process private bytes (performanceCounters/processPrivateBytes)
 
 Amount of nonshared memory that the monitored process allocated for its data.
 
-| Unit of measure | Supported aggregations | Supported dimensions  | Max time series |
-|-----------------|------------------------|-----------------------|-----------------|
-| Bytes           | Average, Min, Max      | `Cloud role instance` | 5000            |
+| Unit of measure | Aggregations      | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|-------------------|--------------------------------------|-----------------------------------|------------------:|
+| Bytes           | Average, Min, Max | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 #### Processor time (performanceCounters/processorCpuPercentage)
 
 CPU consumption by *all* processes running on the monitored server instance.
 
-| Unit of measure | Supported aggregations | Supported dimensions  | Max time series |
-|-----------------|------------------------|-----------------------|-----------------|
-| Percentage      | Average, Min, Max      | `Cloud role instance` | 5000            |
+| Unit of measure | Aggregations      | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|-------------------|--------------------------------------|-----------------------------------|------------------:|
+| Percentage      | Average, Min, Max | `Cloud role instance`                | `cloud/roleInstance`              | 100               |
 
 >[!NOTE]
 > The processor time metric is not available for the applications hosted in Azure App Services. Use the  [Process CPU](#process-cpu-performancecountersprocesscpupercentage) metric to track CPU utilization of the web applications hosted in App Services.
@@ -886,39 +832,40 @@ performanceCounters
 
 This metric is in relation to the number of dependency calls.
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                                                                                                           |
-|-----------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Dependency performance`, `Dependency type`, `Is traffic synthetic`, `Result code`, `Successful call`, `Target of a dependency call` |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Count | Count | `Cloud role instance`<br>`Cloud role name`<br>`Dependency performance`<br>`Dependency type`<br>`Is traffic synthetic`<br>`Result code`<br>`Successful call`<br>`Target of a dependency call` | `cloud/roleInstance`<br>`cloud/roleName`<br>`dependency/performanceBucket`<br>`dependency/type`<br>`operation/synthetic`<br>`dependency/resultCode`<br>`dependency/success`<br>`dependency/target` | 100<br>100<br>20<br>100<br>10<br>100<br>2<br>100 |
 
 #### Dependency duration (dependencies/duration)
 
 This metric refers to duration of dependency calls.
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                                                                                                           |
-|-----------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Milliseconds    | Avg, Max, Min          | `Cloud role instance`, `Cloud role name`, `Dependency performance`, `Dependency type`, `Is traffic synthetic`, `Result code`, `Successful call`, `Target of a dependency call` |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Milliseconds | Avg, Max, Min | `Cloud role instance`<br>`Cloud role name`<br>`Dependency performance`<br>`Dependency type`<br>`Is traffic synthetic`<br>`Result code`<br>`Successful call`<br>`Target of a dependency call` | `cloud/roleInstance`<br>`cloud/roleName`<br>`dependency/performanceBucket`<br>`dependency/type`<br>`operation/synthetic`<br>`dependency/resultCode`<br>`dependency/success`<br>`dependency/target` | 100<br>100<br>20<br>100<br>10<br>100<br>2<br>100 |
 
 #### Server request rate (requests/rate)
 
 This metric reflects the number of incoming server requests that were received by your web application.
 
-| Unit of measure  | Supported aggregations | Supported dimensions                                                                                                        | Max time series |
-|------------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------|
-| Count per second | Avg                    | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Request performance` `Result code`, `Successful request` | 5000            |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Count per second | Avg | `Cloud role instance`<br>`Cloud role name`<br>`Is traffic synthetic`<br>`Request performance`<br>`Result code`<br>`Successful request` | `cloud/roleInstance`<br>`cloud/roleName`<br>`operation/synthetic`<br>`request/performanceBucket`<br>`request/resultCode`<br>`request/success` | 100<br>100<br>10<br>20<br>100<br>2 |
 
 #### Server requests (requests/count)
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                                                        |
-|-----------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Request performance` `Result code`, `Successful request` |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Count | Count | `Cloud role instance`<br>`Cloud role name`<br>`Is traffic synthetic`<br>`Request performance`<br>`Result code`<br>`Successful request` | `cloud/roleInstance`<br>`cloud/roleName`<br>`operation/synthetic`<br>`request/performanceBucket`<br>`request/resultCode`<br>`request/success` | 100<br>100<br>10<br>20<br>100<br>2 |
+
 
 #### Server response time (requests/duration)
 
 This metric reflects the time it took for the servers to process incoming requests.
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                                                                        | Max time series |
-|-----------------|------------------------|-----------------------------------------------------------------------------------------------------------------------------|-----------------|
-| Milliseconds    | Avg, Max, Min          | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Request performance` `Result code`, `Successful request` | 5000            |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
+|-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
+| Milliseconds | Avg, Max, Min | `Cloud role instance`<br>`Cloud role name`<br>`Is traffic synthetic`<br>`Request performance`<br>`Result code`<br>`Successful request` | `cloud/roleInstance`<br>`cloud/roleName`<br>`operation/synthetic`<br>`request/performanceBucket`<br>`request/resultCode`<br>`request/success` | 100<br>100<br>10<br>20<br>100<br>2 |
 
 ### [Log-based](#tab/log-based)
 
@@ -998,25 +945,25 @@ requests
 
 This metric refers to the amount of time it took for PageView events to load.
 
-| Unit of measure | Supported aggregations | Supported dimensions                      | Max time series |
-|-----------------|------------------------|-------------------------------------------|-----------------|
-| Milliseconds    | Avg, Max, Min          | `Cloud role name`, `Is traffic synthetic` | 5000            |
+| Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer)        | Dimension name<br>(Log Analytics)         | Cardinality limit |
+|-----------------|---------------|---------------------------------------------|-------------------------------------------|------------------:|
+| Milliseconds    | Avg, Max, Min | `Cloud role name`<br>`Is traffic synthetic` | `cloud/roleName`<br>`operation/synthetic` | 100<br>10         |
 
 #### Page views (pageViews/count)
 
 The count of PageView events logged with the TrackPageView() Application Insights API.
 
-| Unit of measure | Supported aggregations | Supported dimensions                      | Max time series |
-|-----------------|------------------------|-------------------------------------------|-----------------|
-| Count           | Count                  | `Cloud role name`, `Is traffic synthetic` | 5000            |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer)        | Dimension name<br>(Log Analytics)         | Cardinality limit |
+|-----------------|--------------|---------------------------------------------|-------------------------------------------|------------------:|
+| Count           | Count        | `Cloud role name`<br>`Is traffic synthetic` | `cloud/roleName`<br>`operation/synthetic` | 100<br>10         |
 
 #### Traces (traces/count)
 
 The count of trace statements logged with the TrackTrace() Application Insights API call.
 
-| Unit of measure | Supported aggregations | Supported dimensions                                                               | Max time series |
-|-----------------|------------------------|------------------------------------------------------------------------------------|-----------------|
-| Count           | Count                  | `Cloud role instance`, `Cloud role name`, `Is traffic synthetic`, `Severity level` | 5000            |
+| Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer)                                                     | Dimension name<br>(Log Analytics)                                 | Cardinality limit |
+|-----------------|--------------|------------------------------------------------------------------------------------------|-------------------------------------------------------------------|------------------:|
+| Count           | Count        | `Cloud role instance`<br>`Cloud role name`<br>`Is traffic synthetic`<br>`Severity level` | `cloud/roleInstance`<br>`cloud/roleName`<br>`operation/synthetic` | 100<br>100<br>10  |
 
 ### [Log-based](#tab/log-based)
 <!--
