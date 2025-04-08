@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/07/2025
+ms.date: 04/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -259,9 +259,16 @@ Add a second instance VM to Availability Set or upgrade to Premium SSD managed d
   
 **Potential benefits**: Enhanced performance, configurability, and uptime  
 
-For more information, see [Best practices for achieving high availability with Azure virtual machines and managed disks](https://aka.ms/disks-high-availability)  
+**Impact:** Medium
+  
+For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines](https://aka.ms/disks-high-availability)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: e5e707f2-f41f-4aa6-bccf-3fb9748e5b66  
+Subcategory: BusinessContinuity
 
 <!--e5e707f2-f41f-4aa6-bccf-3fb9748e5b66_end-->
+
 
 
 
