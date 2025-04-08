@@ -84,7 +84,7 @@ Operation: POST
 **Security Advisories Subscription List Events** 
 
 
-<!--With API version 2023-10-01-preview (and future API versions),--> The existing Events API endpoint which returns the list of events (including security events with event Type: “Security”) will be restricted to pass only nonsensitive properties listed below for security events. 
+<!--With API version 2023-10-01-preview (and future API versions),--> The existing Events API endpoint which returns the list of events (including security events with event Type: `Security`) will be restricted to pass only nonsensitive properties listed below for security events. 
 
 ```HTTP
 https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/microsoft.ResourceHealth/events?api-version=2023-10-01-preview&$filter= "eventType eq SecurityAdvisory"

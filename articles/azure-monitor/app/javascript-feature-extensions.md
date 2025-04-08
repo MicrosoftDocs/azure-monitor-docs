@@ -425,7 +425,7 @@ var behaviorMap = {
   VIDEORESOLUTIONCONTROL: 259, // Click to change resolution
 
   ///////////////////////////////////////////////////////////////////////////////////////////////////
-  // 	Advertisement Engagement [280-299]
+  //     Advertisement Engagement [280-299]
   ///////////////////////////////////////////////////////////////////////////////////////////////////
   ADBUFFERING: 283, // Ad is buffering
   ADERROR: 284, // Ad error
@@ -489,7 +489,7 @@ export const clickPluginConfigWithUseDefaultContentNameOrId = {
 </div>
 ```
 
-For clicked element `<Button>` the value of `parentId` is `“not_specified”`, because no `parentDataTag` details are defined and no parent element ID is provided within the current element.
+For clicked element `<Button>` the value of `parentId` is `not_specified`, because no `parentDataTag` details are defined and no parent element ID is provided within the current element.
 
 ### Example 2
 

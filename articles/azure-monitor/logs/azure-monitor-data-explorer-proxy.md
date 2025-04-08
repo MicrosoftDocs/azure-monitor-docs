@@ -128,7 +128,7 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
     ```
 
 - Create an alert rule that applies only to certain resources taken from an ARG query:
-   - Exclude resources based on tags – for example, not to trigger alerts for VMs with a “Test” tag.
+   - Exclude resources based on tags – for example, not to trigger alerts for VMs with a `Test` tag.
 
        ```kusto
        arg("").Resources
@@ -136,7 +136,7 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
        | project name 
        ```
 
-   - Retrieve performance data related to CPU utilization and filter to resources with the “prod” tag.
+   - Retrieve performance data related to CPU utilization and filter to resources with the `prod` tag.
     
        ```kusto
        InsightsMetrics
@@ -151,8 +151,8 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
        ```
 
 More use cases:
--	Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
--	Show alerts on any server that contains a certain number of cores.
+-    Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
+-    Show alerts on any server that contains a certain number of cores.
 
 ## Create an alert based on a cross-service query from your Log Analytics workspace
 

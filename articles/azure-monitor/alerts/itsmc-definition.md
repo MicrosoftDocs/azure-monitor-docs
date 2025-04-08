@@ -116,7 +116,7 @@ When you create or edit an Azure alert rule, use an action group, which has an I
 >
 > * If you have policies for inbound traffic for your ServiceNow instances, add ActionGroup service tag to allowList.
 > 
-> * Notice that when you are defining a query in Log Search alerts you need to have in the query result the Configuration items names with one of the label names "Computer",  "Resource", "_ResourceId" or "ResourceId”. This mapping will enable to map the configuration items to the ITSM payload
+> * Notice that when you are defining a query in Log Search alerts you need to have in the query result the Configuration items names with one of the label names "Computer",  "Resource", "_ResourceId" or "ResourceId". This mapping will enable to map the configuration items to the ITSM payload
 
 ## Next steps
 
