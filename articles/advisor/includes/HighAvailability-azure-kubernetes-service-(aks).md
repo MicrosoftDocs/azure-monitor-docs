@@ -97,7 +97,7 @@ Subcategory: HighAvailability
 
 #### Ensure B-series Virtual Machine's (VMs) aren't used in production environments  
   
-When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VM's aren't used in production environments.  
+When a cluster has one or more node pools using a non-recommended burstable VM SKU, full vCPU capability 100% is unguaranteed. Ensure B-series VMs aren't used in production environments.  
   
 **Potential benefits**: Best practice for consistent performance  
 
