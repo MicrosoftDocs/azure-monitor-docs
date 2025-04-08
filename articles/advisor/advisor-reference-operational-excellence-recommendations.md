@@ -4,7 +4,7 @@ description: Operational excellence recommendations
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 03/31/2025
+ms.date: 04/08/2025
 ---
 
 # Operational Excellence recommendations
@@ -32,6 +32,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 [!INCLUDE [OperationalExcellence-application-gateway.md](./includes/OperationalExcellence-application-gateway.md)]
 
 [!INCLUDE [OperationalExcellence-automation.md](./includes/OperationalExcellence-automation.md)]
+
+[!INCLUDE [OperationalExcellence-azure-ai-search.md](./includes/OperationalExcellence-azure-ai-search.md)]
 
 [!INCLUDE [OperationalExcellence-azure-arc-enabled-kubernetes.md](./includes/OperationalExcellence-azure-arc-enabled-kubernetes.md)]
 
