@@ -380,7 +380,7 @@ Subcategory: HighAvailability
 
 #### Enable Active-Active gateways for redundancy  
   
-In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premise VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
+In active-active configuration, both instances of the VPN gateway establish site-to-site (S2S) VPN tunnels to your on-premises VPN device. When a planned maintenance or unplanned event happens to one gateway instance, traffic is automatically switched over to the other active IPsec tunnel.  
   
 **Potential benefits**: Ensure business continuity through connection resilience  
 
