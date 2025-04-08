@@ -92,11 +92,11 @@ This article describes the errors that might occur when you deploy or use Azure 
 
 **Resolution**: Provide an available IP from the subnet range and retry the operation.
 
-### Issue: Identity isn’t a system admin on SQL Managed Instance: '%instance'.
+### Issue: Identity isn't a system admin on SQL Managed Instance: '%instance'.
 
 **Cause**: Occurs due to the following reasons:
 
-1.	User Managed Identity isn’t SQL Admin on the SQL MI.
+1.	User Managed Identity isn't SQL Admin on the SQL MI.
 2.	User Managed Identity is confirmed as SQL Admin on the SQL MI, and this is deployed using ARM, BICEP, Terraform or other deployment solution.
 
 **Resolution**: Ensure that the User Managed Identity is deployed using the AppId and not the ObjectId. You can confirm if this is applicable by navigating to the SQL MI, Microsoft Entra ID admin pane. Check if the guid that is listed with the User Managed Identity is the ObjectId or AppId of the Service Principal. When this is the ObjectId:

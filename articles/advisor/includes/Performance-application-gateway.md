@@ -124,7 +124,7 @@ Recommendation ID: db00ef71-91ab-418a-a2ea-da45a678bb34
 
 #### Use HEAD health probes  
   
-Health probes can use either the GET or HEAD HTTP methods. It’s a good practice to use the HEAD method for health probes, which reduces the amount of traffic load on your origins.  
+Health probes can use either the GET or HEAD HTTP methods. It's a good practice to use the HEAD method for health probes, which reduces the amount of traffic load on your origins.  
   
 **Potential benefits**: Reduce traffic load on your origins  
 

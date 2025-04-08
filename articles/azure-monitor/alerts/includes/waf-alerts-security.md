@@ -5,13 +5,13 @@ ms.date: 03/19/2025
 
 #### Control log search alert rule permissions using managed identities
 
-A common challenge for developers is the management of secrets, credentials, certificates, and keys used to secure communication between services. Managed identities eliminate the need for developers to manage these credentials. Setting a managed identity for your log search alert rules gives you control and visibility into the exact permissions of your alert rule. At any time, you can view your rule’s query permissions and add or remove permissions directly from its managed identity. 
+A common challenge for developers is the management of secrets, credentials, certificates, and keys used to secure communication between services. Managed identities eliminate the need for developers to manage these credentials. Setting a managed identity for your log search alert rules gives you control and visibility into the exact permissions of your alert rule. At any time, you can view your rule's query permissions and add or remove permissions directly from its managed identity. 
 
-Using a managed identity is required if your rule’s query is accessing Azure Data Explorer (ADX) or Azure Resource Graph (ARG).
+Using a managed identity is required if your rule's query is accessing Azure Data Explorer (ADX) or Azure Resource Graph (ARG).
 
 **Instructions**: [Create or edit a log search alert rule](../alerts-create-log-alert-rule.md#configure-alert-rule-details). 
 
-#### Assign the Monitoring Reader role to all users who don’t need configuration privileges
+#### Assign the Monitoring Reader role to all users who don't need configuration privileges
 
 Enhance security by giving users the least privileges required for their role.
 

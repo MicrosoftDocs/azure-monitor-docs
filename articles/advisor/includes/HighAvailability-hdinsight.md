@@ -124,7 +124,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 #### Gateway or virtual machine not reachable  
   
-We have detected a Network prob failure, it indicates unreachable gateway or a virtual machine. Verify all cluster hosts’ availability.  Restart virtual machine to recover. If you need further assistance, don't hesitate to contact Azure support for help.  
+We have detected a Network prob failure, it indicates unreachable gateway or a virtual machine. Verify all cluster hosts' availability.  Restart virtual machine to recover. If you need further assistance, don't hesitate to contact Azure support for help.  
   
 **Potential benefits**: Improved availability  
 

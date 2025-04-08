@@ -17,7 +17,7 @@ Azure Service Health monitors:
 - [Service health](../../service-health/service-health-overview.md): information about the health of the Azure services and regions you're using, which might affect your log search alert rule, including communications about outages, planned maintenance activities, and other health advisories.
 
  > [!NOTE]
-> Today, the report health status is supported only for rules with a frequency of 15 minutes or lower. For rules that run at a frequency greater than 15 minutes (such as 30 minutes, 1 hour, etc.), the status in the resource health blade will be ‘Unavailable’.
+> Today, the report health status is supported only for rules with a frequency of 15 minutes or lower. For rules that run at a frequency greater than 15 minutes (such as 30 minutes, 1 hour, etc.), the status in the resource health blade will be `Unavailable`.
 
 ## Permissions required
 
@@ -50,7 +50,7 @@ This table describes the possible resource health status values for a log search
 |Resource health status|Description|Recommended steps|
 |----|----|----|
 |Available|There are no known issues affecting this log search alert rule.|  |
-|Unknown|If your rule runs less frequently than every 15 minutes (for example, if it is set to run every 30 minutes or 1 hour), it won’t provide health status updates. An ‘Unknown’ status is to be expected and is not indicative of an issue.|To get the health status of an alert rule, set the frequency of the alert rule to 15 min or less.|
+|Unknown|If your rule runs less frequently than every 15 minutes (for example, if it is set to run every 30 minutes or 1 hour), it won't provide health status updates. An 'Unknown' status is to be expected and is not indicative of an issue.|To get the health status of an alert rule, set the frequency of the alert rule to 15 min or less.|
 |Unavailable|This log search alert rule is currently disabled or in an unavailable state.|Check if this log alert rule has been disabled. See [Log alert was disabled](alerts-troubleshoot-log.md) for more information.|
 |Unknown reason|This log search alert rule is currently unavailable due to an unknown reason.|Check if the alert rule was recently created. Health status is updated after the rule completes its first evaluation.|
 |Degraded due to unknown reason|This log search alert rule is currently degraded due to an unknown reason.|     |

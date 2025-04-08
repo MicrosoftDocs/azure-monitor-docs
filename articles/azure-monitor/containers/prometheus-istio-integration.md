@@ -7,7 +7,7 @@ ms.reviewer: sunasing
 ---
 # Collect Istio metrics with Azure Managed Prometheus
 
-[Istio](https://istio.io/) is an open-source service mesh that layers transparently onto existing distributed applications. Istio’s powerful features provide a uniform and more efficient way to secure, connect, and monitor services especially in a distributed application architecture. It helps developers handle service-to-service interactions by providing features like traffic management, observability, security, and policy enforcement without modifying application code. Istio is widely used in modern cloud-native applications, especially on Kubernetes.
+[Istio](https://istio.io/) is an open-source service mesh that layers transparently onto existing distributed applications. Istio's powerful features provide a uniform and more efficient way to secure, connect, and monitor services especially in a distributed application architecture. It helps developers handle service-to-service interactions by providing features like traffic management, observability, security, and policy enforcement without modifying application code. Istio is widely used in modern cloud-native applications, especially on Kubernetes.
 
 Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on](/azure/aks/istio-about) that is officially supported and tested for integration with AKS and Azure Arc-enabled Kubernetes.
 
@@ -103,7 +103,7 @@ To import the Grafana Dashboards using the ID or JSON, follow the instructions t
 
 ## Summary
 
-In this tutorial, we demonstrated how to configure Azure Managed Prometheus for collecting metrics from open-source Istio or AKS service-mesh Istio add-on. We then showed how to query the collected metrics in Azure Monitor. By following these steps, you can effectively monitor Istio using Managed Prometheus on Azure, gaining valuable insights into your applications’ performance and behavior.
+In this tutorial, we demonstrated how to configure Azure Managed Prometheus for collecting metrics from open-source Istio or AKS service-mesh Istio add-on. We then showed how to query the collected metrics in Azure Monitor. By following these steps, you can effectively monitor Istio using Managed Prometheus on Azure, gaining valuable insights into your applications' performance and behavior.
 
 ## Troubleshooting
 

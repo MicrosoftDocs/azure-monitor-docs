@@ -25,7 +25,7 @@ Use the following synchronization process to reactivate the connection and refre
 
 1. In the **Edit ITSM** window,
 
-    1. If this ITSM connector isn’t being used, delete the connector.
+    1. If this ITSM connector isn't being used, delete the connector.
     1. Make sure that all of the fields are configured correctly. See the instructions [here](./itsmc-overview.md) for the correct settings. 
     1. Select **Sync**.
     1. Select **Save**.

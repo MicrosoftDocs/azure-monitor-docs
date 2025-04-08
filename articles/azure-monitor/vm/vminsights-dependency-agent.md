@@ -131,7 +131,7 @@ If Dependency Agent fails to start, check the logs for detailed error informatio
 ## Uninstall Dependency Agent
 
 > [!NOTE]
-> If Dependency Agent was installed manually, it won’t show in the Azure portal and has to be uninstalled manually. It will only show if it was installed via the [Azure portal](vminsights-enable-portal.md), [PowerShell](vminsights-enable-powershell.md), [ARM template deployment](vminsights-enable-resource-manager.md), or [Azure policy](vminsights-enable-policy.md).
+> If Dependency Agent was installed manually, it won't show in the Azure portal and has to be uninstalled manually. It will only show if it was installed via the [Azure portal](vminsights-enable-portal.md), [PowerShell](vminsights-enable-powershell.md), [ARM template deployment](vminsights-enable-resource-manager.md), or [Azure policy](vminsights-enable-policy.md).
 
 1. From the **Virtual Machines** menu in the Azure portal, select your virtual machine.
 

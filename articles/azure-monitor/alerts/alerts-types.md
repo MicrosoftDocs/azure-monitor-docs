@@ -119,7 +119,7 @@ Dynamic thresholds help you:
 * Create scalable alerts for hundreds of metric series with one alert rule. If you have fewer alert rules, you spend less time creating and managing alerts rules.
 * Create rules without having to know what threshold to configure.
 * Configure metric alerts by using high-level concepts without extensive domain knowledge about the metric.
-* Prevent noisy (low precision) or wide (low recall) thresholds that don’t have an expected pattern.
+* Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
 * Handle noisy metrics (such as machine CPU or memory) and metrics with low dispersion (such as availability and error rate).
 
 See [dynamic thresholds](alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in metric alert rules.

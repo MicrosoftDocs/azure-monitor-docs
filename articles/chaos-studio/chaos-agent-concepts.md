@@ -32,7 +32,7 @@ Without this connectivity, the agent won't receive instructions or be able to re
 Security is a primary consideration in the design of the Chaos Agent:
 
 - **Managed Identity:** The agent uses Azure Managed Identity for authentication, eliminating the need to store secrets on the VM.
-- **Role-based access Controls (RBAC):** All chaos actions are initiated by the user’s experiment, and Azure RBAC ensures that only authorized fault operations are executed.
+- **Role-based access Controls (RBAC):** All chaos actions are initiated by the user's experiment, and Azure RBAC ensures that only authorized fault operations are executed.
 
 For more security best practices and troubleshooting tips, refer to the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 

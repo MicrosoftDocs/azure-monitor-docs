@@ -264,7 +264,7 @@ Three different `behaviorValidator` callback functions are exposed as part of th
 
 #### Passing in string vs. numerical values
 
-To reduce the bytes you pass, pass in the number value instead of the full text string. If cost isn’t an issue, you can pass in the full text string (for example, NAVIGATIONBACK).
+To reduce the bytes you pass, pass in the number value instead of the full text string. If cost isn't an issue, you can pass in the full text string (for example, NAVIGATIONBACK).
 
 #### Sample usage with behaviorValidator
 
@@ -518,7 +518,7 @@ For clicked element `<Button>`, the value of `parentId` is `parentid2`. Even tho
        
 ### Example 3
 
-In example 3, `parentDataTag` is declared and the `data-parentid` or `data-*-parentid` attribute isn’t defined. This example shows how declaring `parentDataTag` can be helpful to collect a value for `parentId` for cases when dynamic elements don't have an `id` or `data-*-id`.
+In example 3, `parentDataTag` is declared and the `data-parentid` or `data-*-parentid` attribute isn't defined. This example shows how declaring `parentDataTag` can be helpful to collect a value for `parentId` for cases when dynamic elements don't have an `id` or `data-*-id`.
 
 ```javascript
 export const clickPluginConfigWithParentDataTag = {
@@ -555,5 +555,5 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 * See the [documentation on utilizing HEART workbook](usage.md#heart---five-dimensions-of-customer-experience) for expanded product analytics.
 * See the [GitHub repository](https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-clickanalytics-js) and [npm Package](https://www.npmjs.com/package/@microsoft/applicationinsights-clickanalytics-js) for the Click Analytics Autocollection Plug-in.
 * Use [Events Analysis in the Usage experience](usage.md#users-sessions-and-events---analyze-telemetry-from-three-perspectives) to analyze top clicks and slice by available dimensions.
-* See [Log Analytics](../logs/log-analytics-tutorial.md#write-a-query) if you aren’t familiar with the process of writing a query. 
+* See [Log Analytics](../logs/log-analytics-tutorial.md#write-a-query) if you aren't familiar with the process of writing a query. 
 * Build a [workbook](../visualize/workbooks-overview.md) or [export to Power BI](../logs/log-powerbi.md) to create custom visualizations of click data.

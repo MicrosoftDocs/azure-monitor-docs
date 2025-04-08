@@ -27,7 +27,7 @@ There are several ways to resolve this:
 
 ### Use Service Tags with AKS preview feature
 
-A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren’t sufficient to secure traffic.
+A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren't sufficient to secure traffic.
 
 You can use a preview AKS feature to add Service Tags directly to the authorized IP ranges: [Use Service Tags for API Server authorized IP ranges](/azure/aks/api-server-authorized-ip-ranges#use-service-tags-for-api-server-authorized-ip-ranges---preview?tabs=azure-cli).
 

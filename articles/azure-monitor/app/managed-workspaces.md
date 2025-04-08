@@ -59,7 +59,7 @@ Beginning in April 2025, classic Application Insights resources are automaticall
 
 - The classic Application Insights resource is converted to a workspace-based resource.
 - A managed Log Analytics workspace is created and linked to the migrated resource.
-- The workspace is placed in a new resource group. This new group doesn't inherit access permissions from the Application Insights resource’s group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
+- The workspace is placed in a new resource group. This new group doesn't inherit access permissions from the Application Insights resource group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
 
 > [!IMPORTANT]  
 > Each migrated classic resource receives its own managed workspace. To prevent this scenario, [migrate your classic resources manually](/previous-versions/azure/azure-monitor/app/convert-classic-resource).

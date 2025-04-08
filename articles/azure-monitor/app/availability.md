@@ -123,7 +123,7 @@ To create a new file, right-click under your timer trigger function (for example
             <TargetFramework>netstandard2.0</TargetFramework> 
         </PropertyGroup> 
         <ItemGroup> 
-            <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" /> <!-- Ensure you’re using the latest version --> 
+            <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" /> <!-- Ensure you're using the latest version --> 
         </ItemGroup> 
     </Project> 
     ```

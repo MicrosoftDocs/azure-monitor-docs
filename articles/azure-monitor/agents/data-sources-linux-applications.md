@@ -51,7 +51,7 @@ The entries in the authentication file are described in the following table.
 
 ### Default instance
 
-The MySQL OMI authentication file can define a default instance and port number to make managing multiple MySQL instances on one Linux host easier. The default instance is denoted by an instance with port 0. All other instances inherit properties set from the default instance unless they specify different values. For example, if MySQL instance listening on port 3308 is added, the default instance’s bind-address, username, and Base64 encoded password are used to try to monitor the instance listening on 3308. If the instance on 3308 is bound to another address and uses the same MySQL username and password pair, only the bind-address is needed and the other properties are inherited.
+The MySQL OMI authentication file can define a default instance and port number to make managing multiple MySQL instances on one Linux host easier. The default instance is denoted by an instance with port 0. All other instances inherit properties set from the default instance unless they specify different values. For example, if MySQL instance listening on port 3308 is added, the default instance's bind-address, username, and Base64 encoded password are used to try to monitor the instance listening on 3308. If the instance on 3308 is bound to another address and uses the same MySQL username and password pair, only the bind-address is needed and the other properties are inherited.
 
 The following table has example instance settings.
 
@@ -104,12 +104,12 @@ The MySQL user also requires SELECT access to the following default tables.
 These privileges can be granted by running the following grant commands.
 
 ```sql
-GRANT SELECT ON information_schema.* TO ‘monuser’@’localhost’;
-GRANT SELECT ON mysql.* TO ‘monuser’@’localhost’;
+GRANT SELECT ON information_schema.* TO 'monuser'@'localhost';
+GRANT SELECT ON mysql.* TO 'monuser'@'localhost';
 ```
 
 > [!NOTE]
-> To grant permissions to a MySQL monitoring user the granting user must have the ‘GRANT option’ privilege as well as the privilege being granted.
+> To grant permissions to a MySQL monitoring user the granting user must have the 'GRANT option' privilege as well as the privilege being granted.
 
 ### Define performance counters
 

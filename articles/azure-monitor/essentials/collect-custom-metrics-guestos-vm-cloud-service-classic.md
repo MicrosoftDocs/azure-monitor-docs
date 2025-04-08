@@ -96,7 +96,7 @@ In the "SinksConfig" section of your diagnostics file, define a new Azure Monito
   <SinksConfig> 
     <Sink name="AzMonSink"> 
     <AzureMonitor> 
-      <ResourceId>-Provide ClassicCloudService’s Resource ID-</ResourceId> 
+      <ResourceId>-Provide ClassicCloudService's Resource ID-</ResourceId> 
       <Region>-Azure Region your Cloud Service is deployed in-</Region> 
     </AzureMonitor> 
     </Sink> 

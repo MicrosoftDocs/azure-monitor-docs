@@ -195,7 +195,7 @@ The two queries above can be paired with any other Application Insights table ot
 ### Resources that stop responding
 In some cases, a resource could stop sending data. To understand if a resource is sending data or not, look at its most recent record, which can be identified by the standard `TimeGenerated` field.
 
-Use the `Heartbeat` table to check the availability of a VM because a heartbeat is sent once a minute by the agent. Use the following query to list the active computers that haven’t reported heartbeat recently:
+Use the `Heartbeat` table to check the availability of a VM because a heartbeat is sent once a minute by the agent. Use the following query to list the active computers that haven't reported heartbeat recently:
 
 ``` Kusto
 Heartbeat  

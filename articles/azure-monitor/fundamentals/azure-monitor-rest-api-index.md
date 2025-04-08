@@ -37,7 +37,7 @@ Organized by subject area.
 | [Metadata](/rest/api/application-insights/metadata) | Retrieve and export the metadata information for an application. |
 | [Metrics](/rest/api/application-insights/metrics) | Retrieve or export the metric data for an application and retrieve the metadata describing the available metrics for an application. |
 | [Query](/rest/api/application-insights/query) | The Query operation group, which includes Execute and Get operations, enables running analytics queries on resources and retrieving the results, even for large data sets that require extended processing time. |
-| [Web Tests](/rest/api/application-insights/web-tests) | Set up web tests to monitor a web endpoint’s availability and responsiveness. |
+| [Web Tests](/rest/api/application-insights/web-tests) | Set up web tests to monitor a web endpoint's availability and responsiveness. |
 | [Workbooks](/rest/api/application-insights/workbooks) | Manage Azure workbooks for an Application Insights component resource and retrieve workbooks within resource group or subscription by category. |
 | ***Autoscale Settings*** |  |
 | [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
