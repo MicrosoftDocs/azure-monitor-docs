@@ -11,7 +11,7 @@ This article describes how to configure Azure Managed Prometheus with Azure Kube
 
 ## Prerequisites
 
-+ Kafka cluster running on AKS or Azure Arc-enabled Kubernetes
++ Kafka cluster running on AKS or Azure Arc-enabled Kubernetes - [Deploy Kafka cluster running on AKS](https://learn.microsoft.com/en-us/azure/aks/kafka-infrastructure?pivots=azure-cli)
 + Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
 
 
