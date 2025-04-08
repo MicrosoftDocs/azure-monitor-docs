@@ -964,7 +964,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 
 ### Stop App Service
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Stop-1.0 |
@@ -1410,12 +1410,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 ```
 
 ### Change Event Hub State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeEventHubState-1.0 |
 | Target type | Microsoft-EventHub |
-| Description | Sets individual event hubs to the desired state within an Azure Event Hubs namespace. You can affect specific event hub names or use “*” to affect all within the namespace. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets individual event hubs to the desired state within an Azure Event Hubs namespace. You can affect specific event hub names or use `*` to affect all within the namespace. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | An Azure Event Hubs namespace with at least one [event hub entity](/azure/event-hubs/event-hubs-create). |
 | Urn | urn:csci:microsoft:eventHub:changeEventHubState/1.0 |
 | Fault type | Discrete. |
@@ -1520,7 +1520,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 ```
 
 ### Key Vault: Increment Certificate Version
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | IncrementCertificateVersion-1.0 |
@@ -1728,12 +1728,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 
 ### Service Bus: Change Queue State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeQueueState-1.0 |
 | Target type | Microsoft-ServiceBus |
-| Description | Sets Queue entities within a Service Bus namespace to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets Queue entities within a Service Bus namespace to the desired state. You can affect specific entity names or use `*` to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | A Service Bus namespace with at least one [Queue entity](/azure/service-bus-messaging/service-bus-quickstart-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeQueueState/1.0 |
 | Fault type | Discrete. |
@@ -1771,12 +1771,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 * A maximum of 1000 queue entities can be passed to this fault.
 
 ### Service Bus: Change Subscription State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeSubscriptionState-1.0 |
 | Target type | Microsoft-ServiceBus |
-| Description | Sets Subscription entities within a Service Bus namespace and Topic to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets Subscription entities within a Service Bus namespace and Topic to the desired state. You can affect specific entity names or use `*` to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | A Service Bus namespace with at least one [Subscription entity](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeSubscriptionState/1.0 |
 | Fault type | Discrete. |
@@ -1819,12 +1819,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 * A maximum of 1000 subscription entities can be passed to this fault.
 
 ### Service Bus: Change Topic State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeTopicState-1.0 |
 | Target type | Microsoft-ServiceBus |
-| Description | Sets the specified Topic entities within a Service Bus namespace to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets the specified Topic entities within a Service Bus namespace to the desired state. You can affect specific entity names or use `*` to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | A Service Bus namespace with at least one [Topic entity](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeTopicState/1.0 |
 | Fault type | Discrete. |
@@ -1862,7 +1862,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 * A maximum of 1000 topic entities can be passed to this fault.
 
 ### VM Redeploy
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Redeploy-1.0 |
@@ -2075,7 +2075,7 @@ Currently, only virtual machine scale sets configured with the **Uniform** orche
 ```
 
 ### Start Load Test (Azure Load Testing)
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Start-1.0 |
@@ -2109,7 +2109,7 @@ Currently, only virtual machine scale sets configured with the **Uniform** orche
 ```
 
 ### Stop Load Test (Azure Load Testing)
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Stop-1.0 |

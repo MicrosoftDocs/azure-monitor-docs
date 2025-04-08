@@ -1177,7 +1177,7 @@ To access your data directly, pass the parameter `ai.include-query-payload` to t
 api.applicationinsights.io/v1/apps/DEMO_APP/metrics/users/authenticated?api_key=DEMO_KEY&prefer=ai.include-query-payload
 ```
 
-The following is an example of a return KQL statement for the metric "Authenticated Users.” (In this example, `"users/authenticated"` is the metric ID.)
+The following is an example of a return KQL statement for the metric `Authenticated Users`. (In this example, `"users/authenticated"` is the metric ID.)
 
 ```Kusto
 output

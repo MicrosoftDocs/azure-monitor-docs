@@ -17,8 +17,8 @@ This document provides step-by-step guide on how you can use Azure Monitor manag
 
 ## Prerequisites
 
-1.	Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli). If you are using AKS Istio add-on, you need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
-2.	Kubectl installed to interact with your Kubernetes cluster. 
+1.    Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli). If you are using AKS Istio add-on, you need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
+2.    Kubectl installed to interact with your Kubernetes cluster. 
 
 ## Limitations
 
@@ -58,7 +58,7 @@ az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 
 To collect metrics from your Istio setup with Managed Prometheus, you can use pod annotations which are automatically set up with Istio. You need to enable pod annotation based scraping in Managed Prometheus.
 
-To enable the same, customize the Managed Prometheus configmap: ama-metrics-settings-configmap.yaml to include the istio-system namespace and the namespaces that istio sidecar is set up. For example, if you have set up istio to inject the sidecar in “my-namespace”, update the configmap as below:
+To enable the same, customize the Managed Prometheus configmap: ama-metrics-settings-configmap.yaml to include the istio-system namespace and the namespaces that istio sidecar is set up. For example, if you have set up istio to inject the sidecar in `my-namespace`, update the configmap as below:
 
 ```yaml
 pod-annotation-based-scraping: |-
@@ -83,8 +83,8 @@ The metrics scraped from Istio are stored in the Azure Monitor workspace that is
 
 View Istio metrics in the Azure Monitor Workspace using the following steps:
 
-1.	In the Azure portal, navigate to your AKS cluster.
-2.	Under Monitoring, select Insights and then Monitor Settings.
+1.    In the Azure portal, navigate to your AKS cluster.
+2.    Under Monitoring, select Insights and then Monitor Settings.
 
 :::image type="content" source="./media/monitor-kubernetes/amp-istio-query.png" lightbox="./media/monitor-kubernetes/amp-istio-query.png" alt-text="Diagram that shows how to view the Azure Monitor Workspace.":::
 

@@ -63,7 +63,7 @@ You can retrieve information about impacted resources for security incidents usi
 **Subscription**
 
 ```HTTP
-https://management.azure.com/subscriptions/(“Subscription ID”)/providers/microsoft.resourcehealth/events/("Tracking ID")/listSecurityAdvisoryImpactedResources?api-version=2022-10-01
+https://management.azure.com/subscriptions/<Subscription ID>/providers/microsoft.resourcehealth/events/<Tracking ID>/listSecurityAdvisoryImpactedResources?api-version=2022-10-01
 ```
 
 **Tenant**
