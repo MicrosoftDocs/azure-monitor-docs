@@ -144,7 +144,7 @@ Give this app “Monitoring Metrics Publisher” permissions to the resource tha
 1. Start by setting the context for your classic VM.
 
     ```powershell
-    $VM = Get-AzureVM -ServiceName <VM’s Service_Name> -Name <VM Name>
+    $VM = Get-AzureVM -ServiceName <VM's Service_Name> -Name <VM Name>
     ```
 
 1. Set the context of the classic storage account that was created with the VM.

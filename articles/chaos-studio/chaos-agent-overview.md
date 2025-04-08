@@ -15,7 +15,7 @@ ms.custom:
 
 ## Introduction
 
-The **Chaos Agent** is a key component of [Azure Chaos Studio](https://azure.microsoft.com/services/chaos-studio/). It enables agent-based fault injection by running directly inside your target virtual machines (VMs). This approach allows you to simulate failure conditions that cannot be achieved through Azure’s control plane alone.
+The **Chaos Agent** is a key component of [Azure Chaos Studio](https://azure.microsoft.com/services/chaos-studio/). It enables agent-based fault injection by running directly inside your target virtual machines (VMs). This approach allows you to simulate failure conditions that cannot be achieved through Azure's control plane alone.
 
 ## Purpose
 

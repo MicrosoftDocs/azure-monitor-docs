@@ -325,7 +325,7 @@ The following steps can help to resolve problems when no data appears in your Ap
     
     If the annotation **is present**, then the deployment is instrumented and you should proceed to the next step.
 
-3. Check for networking errors in the SDK log located in the pod’s logs volume, `/var/log/applicationinsights`.
+3. Check for networking errors in the SDK log located in the pod's logs volume, `/var/log/applicationinsights`.
     
     As an example, the following errors indicate a connectivity problem.
     

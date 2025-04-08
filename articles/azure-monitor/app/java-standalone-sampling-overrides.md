@@ -436,7 +436,7 @@ For autoinstrumentation, no manual agent upload is required. However, for manual
 
 #### What is the difference between "local development" and "application server" in the context of manual instrumentation?
 
-Local development refers to the environment where the app is being built or tested, such as a developer’s machine or an Azure Cloud Shell instance. Application server refers to the web server running the application, such as Tomcat 11 in an Azure App Service environment. When using manual instrumentation, you must ensure that the agent JAR file is correctly placed on the application server.
+Local development refers to the environment where the app is being built or tested, such as a developer's machine or an Azure Cloud Shell instance. Application server refers to the web server running the application, such as Tomcat 11 in an Azure App Service environment. When using manual instrumentation, you must ensure that the agent JAR file is correctly placed on the application server.
 
 #### If I'm using an Azure App Service with a Java runtime (for example, Tomcat 11), how do I configure Sampling Overrides?
 

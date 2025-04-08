@@ -17,7 +17,7 @@ This article provides detailed metrics and logs that you can use to monitor perf
 >
 > See the documentation for other scenarios for any monitoring and troubleshooting information that may be available.
 
-DCR diagnostic features include metrics and error logs emitted during log processing. [DCR metrics](#dcr-metrics) provide information about the volume of data being ingested, the number and nature of any processing errors, and statistics related to data transformation. [DCR error logs](#dcr-metrics) are generated any time data processing is not successful and the data doesn’t reach its destination.
+DCR diagnostic features include metrics and error logs emitted during log processing. [DCR metrics](#dcr-metrics) provide information about the volume of data being ingested, the number and nature of any processing errors, and statistics related to data transformation. [DCR error logs](#dcr-metrics) are generated any time data processing is not successful and the data doesn't reach its destination.
 
 ## DCR Error Logs
 

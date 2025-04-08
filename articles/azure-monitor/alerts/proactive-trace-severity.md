@@ -14,7 +14,7 @@ ms.reviewer: yagil
 > For more information, see [Smart Detection Alerts migration](./alerts-smart-detections-migration.md).
 > 
 
-Traces are widely used in applications, and they help tell the story of what happens behind the scenes. When things go wrong, traces provide crucial visibility into the sequence of events leading to the undesired state. While traces are mostly unstructured, their severity level can still provide valuable information. In an application’s steady state, we would expect the ratio between “good” traces (*Info* and *Verbose*) and “bad” traces (*Warning*, *Error*, and *Critical*) to remain stable. 
+Traces are widely used in applications, and they help tell the story of what happens behind the scenes. When things go wrong, traces provide crucial visibility into the sequence of events leading to the undesired state. While traces are mostly unstructured, their severity level can still provide valuable information. In an application's steady state, we would expect the ratio between “good” traces (*Info* and *Verbose*) and “bad” traces (*Warning*, *Error*, and *Critical*) to remain stable. 
 
 It's normal to expect some level of “Bad” traces because of any number of reasons, such as transient network issues. But when a real problem begins growing, it usually manifests as an increase in the relative proportion of “bad” traces vs “good” traces. Smart detection automatically analyzes the trace telemetry that your application logs, and can warn you about unusual patterns in their severity.
 

@@ -342,7 +342,7 @@ Use the following code to manually track HTTP GET requests:
 
 > [!NOTE]
 > - All requests are tracked by default. To disable automatic collection, call `.setAutoCollectRequests(false)` before calling `start()`.
-> - Native fetch API requests aren’t automatically tracked by classic Application Insights; manual dependency tracking is required.
+> - Native fetch API requests aren't automatically tracked by classic Application Insights; manual dependency tracking is required.
 
 ```javascript
 appInsights.defaultClient.trackRequest({name:"GET /customers", url:"http://myserver/customers", duration:309, resultCode:200, success:true});

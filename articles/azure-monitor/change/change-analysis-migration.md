@@ -30,7 +30,7 @@ To query the Change Analysis API powered by Resource Graph:
 1. Use Kusto Query Language (KQL).
     Resource Graph queries use the full power of KQL, which provides granular filtering so that you can see specific values. The classic method returns all values.
 
-To review how you’re using the classic experience, refer to the following links. You can perform queries within a specified time range and scope them by subscription, resource group, or resource.
+To review how you're using the classic experience, refer to the following links. You can perform queries within a specified time range and scope them by subscription, resource group, or resource.
 
 - **PowerShell**: [`Get-AzChangeAnalysis` (`Az.ChangeAnalysis`)](/powershell/module/az.changeanalysis/get-azchangeanalysis)
 - **Azure CLI**: [`az change-analysis`](/cli/azure/change-analysis)

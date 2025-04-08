@@ -27,7 +27,7 @@ The number of selected resources has a limit of 200, regardless of the number of
 * When you save a workbook, it lets you create a new copy of the workbook with your edits and changes the title. Saving doesn't overwrite the workbook, the current workbook will always be the default view.
 * An **unsaved** workbook is just the default view.
 
-## Why don’t I see all my subscriptions in the portal
+## Why don't I see all my subscriptions in the portal
 
 The portal will show data only for selected subscriptions on portal launch. To change what subscriptions are selected, go to the top right and select the notebook with a filter icon. This option will show the **Directory + subscriptions** tab.
 <!-- convertborder later -->
