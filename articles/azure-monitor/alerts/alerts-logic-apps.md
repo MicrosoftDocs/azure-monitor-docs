@@ -10,7 +10,6 @@ ms.date: 03/10/2024
 # Customize alert notifications by using Logic Apps
 
 This article shows you how to create a logic app and integrate it with an Azure Monitor alert.
-
 You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration. Use Logic Apps to customize your alert notifications. You can:
 
 * Customize the alerts email by using your own email subject and body format.
@@ -152,7 +151,7 @@ This example creates a logic app that uses the [common alerts schema](./alerts-c
         | Subscription | `variables('AffectedResource')[2]` |
         | Resource Group | `variables('AffectedResource')[4]` |
         | Resource Provider | `variables('AffectedResource')[6]` |
-        | Short Resource ID | `concat(variables('AffectedResource')[7], '/', variables('AffectedResource')[8]` |
+        | Short Resource ID | `concat(variables('AffectedResource')[7], '/', variables('AffectedResource')[8])`|
         | Client Api Version | Resource type's API version |
     
         To find your resource type's API version, select the **JSON view** link on the top right-hand side of the resource overview page.
