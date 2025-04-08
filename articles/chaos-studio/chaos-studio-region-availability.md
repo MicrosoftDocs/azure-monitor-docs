@@ -38,7 +38,7 @@ A chaos experiment can target a resource in a different region than the experime
 | Sweden Central | Available  | Available |
 | Germany West Central | Not Available  | Available |
 | France Central | Not Available  | Available |
-| France Central | Not Available  | Available |
+|Italy North | Not Available  | Coming soon |
 | Brazil South | Available  | Available |
 | Australia East | Available  | Available |
  
