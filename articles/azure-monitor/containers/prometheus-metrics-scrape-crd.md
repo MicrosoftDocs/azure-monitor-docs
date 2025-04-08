@@ -53,7 +53,7 @@ spec:
 
   # Multiple pod endpoints can be specified. Port requires a named port.
   podMetricsEndpoints:
-    - port: metrics
+    - port: metricscs from the exa
 ```
 
 ### Example Service Monitor
@@ -100,23 +100,23 @@ podmonitor.azmonitoring.coreos.com/my-pod-monitor created
 Deploy a sample application exposing prometheus metrics to be configured by pod/service monitor.
 
 ```bash
-kubectl apply -f https://github.com/Azure/prometheus-collector/blob/main/internal/referenceapp/prometheus-reference-app.yaml
+kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/refs/heads/main/internal/referenceapp/prometheus-reference-app.yaml
 ```
 
 #### Create a pod monitor and/or service monitor to scrape metrics 
 
-Deploy a pod monitor that is configured to scrape metrics from the example application from the previous step.
+Deploy a pod monitor that is configured to scrape metrimple application from the previous step.
 
 ##### Pod Monitor
 
 ```bash
-kubectl apply -f https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/example-custom-resources/pod-monitor/pod-monitor-reference-app.yaml
+kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/refs/heads/main/otelcollector/deploy/example-custom-resources/pod-monitor/pod-monitor-reference-app.yaml
 ```
 
 ##### Service Monitor
 
 ```bash
-kubectl apply -f https://github.com/Azure/prometheus-collector/blob/main/otelcollector/deploy/example-custom-resources/service-monitor/service-monitor-reference-app.yaml
+kubectl apply -f https://raw.githubusercontent.com/Azure/prometheus-collector/refs/heads/main/otelcollector/deploy/example-custom-resources/service-monitor/service-monitor-reference-app.yaml
 ```
 
 ### Troubleshooting

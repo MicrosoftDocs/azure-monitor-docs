@@ -42,7 +42,7 @@ az login
 Next you must set your subscription.
 
 ``` PowerShell
-Az account set --subscription {subscription_id or “subscription_name”}
+Az account set --subscription {subscription_id or subscription_name}
    ```
 ## Step 2 Copy the script
 
