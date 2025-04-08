@@ -1461,7 +1461,7 @@ items:
             href: alerts/alerts-create-metric-alert-rule.md
           - name: Log search alert rules
             href: alerts/alerts-create-log-alert-rule.md
-          - name: Create a simple alert
+          - name: Simple alert
             href: alerts/alerts-create-simple-alert.md
           - name: Activity log, service health or resource health alert rules
             href: alerts/alerts-create-activity-log-alert-rule.md
