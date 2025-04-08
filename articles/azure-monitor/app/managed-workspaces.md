@@ -74,9 +74,6 @@ Some classic Application Insights resources can't be migrated until you take oth
 - Using Unicode or non-UTF-8 characters in the Application Insights resource name or resource group name.
 - Restricting Log Analytics workspace creation in the subscription.
 - Enforcing policies that prevent new resource creation in the subscription.
-
-In addition to the above, the following scenarios can prevent the automatic migration process from being completed on your subscription:
-
 - If your subsctipion has a high number of resource groups and/or classic Application Insights resources, there might not be enough remaining resource group quota to fully migrate your subscription. Azure subscriptions are [limited to 980 total resource groups](/azure-resource-manager/management/azure-subscription-service-limits#azure-subscription-limits). 
 
 To prevent service interruptions, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
