@@ -81,7 +81,7 @@ All user interactions with Chaos Studio happen through Azure Resource Manager. I
 * **Agent-based private networking**: The Chaos Studio agent now supports private networking. Please see [Private networking for Chaos Agent](chaos-studio-private-link-agent-service.md). 
 
 ## Service tags
-A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren’t sufficient to secure traffic.
+A [service tag](/azure/virtual-network/service-tags-overview) is a group of IP address prefixes that can be assigned to inbound and outbound rules for network security groups. It automatically handles updates to the group of IP address prefixes without any intervention. Since service tags primarily enable IP address filtering, service tags alone aren't sufficient to secure traffic.
 
 You can use service tags to explicitly allow inbound traffic from Chaos Studio without the need to know the IP addresses of the platform. Chaos Studio's service tag is `ChaosStudio`.
 
@@ -98,7 +98,7 @@ By specifying the `ChaosStudio` Service Tag in security rules, traffic can be al
 
 ### Security considerations
 
-When evaluating and using service tags, it’s important to note that they don’t provide granular control over individual IP addresses and shouldn’t be relied on as the sole method for securing a network. They aren’t a replacement for proper network security measures.
+When evaluating and using service tags, it's important to note that they don't provide granular control over individual IP addresses and shouldn't be relied on as the sole method for securing a network. They aren't a replacement for proper network security measures.
 
 ## Data encryption
 

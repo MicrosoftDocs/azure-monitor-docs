@@ -56,7 +56,7 @@ For more detailed information and sampling edge cases, see [Frequently Asked Que
 
 Ingestion sampling is a fallback when source-level control isn't possible. It drops data at the Azure Monitor ingestion point and offers no control over which traces and spans are retained. This increases the likelihood of encountering broken traces.
 
-Scenarios where it’s the only viable or most practical option include:
+Scenarios where it's the only viable or most practical option include:
 
 - You can't modify the application source code.
 - You need to reduce telemetry volume immediately without redeploying applications.
@@ -106,7 +106,7 @@ The Application Insights custom sampler propagates sampling decisions using the 
 
 ### Does the Application Insights custom sampler respect sampling decisions from upstream services?
 
-No, the Application Insights custom sampler always makes an independent sampling decision, even if the upstream service uses the same sampling algorithm. Sampling decisions from upstream services, including those using W3C Trace Context headers, don't influence the downstream service’s decision. However, it does sample based on a hash of the Trace ID to ensure trace completeness. To improve consistency and reduce the chance of broken traces, configure all components in the system to use the same sampler and sampling rate.
+No, the Application Insights custom sampler always makes an independent sampling decision, even if the upstream service uses the same sampling algorithm. Sampling decisions from upstream services, including those using W3C Trace Context headers, don't influence the downstream service's decision. However, it does sample based on a hash of the Trace ID to ensure trace completeness. To improve consistency and reduce the chance of broken traces, configure all components in the system to use the same sampler and sampling rate.
 
 ### Why do some traces appear incomplete even when using the Application Insights custom sampler?
 

@@ -26,9 +26,9 @@ Your original workspace and region are referred to as the **primary**. The repli
 
 The workspace replication process creates an instance of your workspace in the secondary region. The process creates the secondary workspace with the same configuration as your primary workspace, and Azure Monitor automatically updates the secondary workspace with any future changes you make to your primary workspace configuration. 
 
-The secondary workspace is a "shadow" workspace for resilience purposes only. You can’t see the secondary workspace in the Azure portal, and you can't manage or access it directly.
+The secondary workspace is a "shadow" workspace for resilience purposes only. You can't see the secondary workspace in the Azure portal, and you can't manage or access it directly.
 
-When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren’t copied over. 
+When you enable workspace replication, Azure Monitor sends new logs ingested to your primary workspace to your secondary region also. Logs you ingest to the workspace before you enable workspace replication aren't copied over. 
 
 If an outage affects your primary region, you can switch over and reroute all ingestion and query requests to your secondary region. After Azure mitigates the outage and your primary workspace is healthy again, you can switch back over to your primary region.
 
@@ -41,7 +41,7 @@ When you switch over, the secondary workspace becomes active and your primary be
 
 #### Protection against loss of data in transit during a regional failure
 
-Azure Monitor has several mechanisms to ensure that data in transit isn’t lost when there's a failure in the primary region. 
+Azure Monitor has several mechanisms to ensure that data in transit isn't lost when there's a failure in the primary region. 
 
 Azure Monitor protects data that reaches the primary region's ingestion endpoint when the primary region's pipeline is unavailable to process the data. When the pipeline becomes available, it continues to process data in transit, and Azure Monitor ingests and replicates the data to the secondary region.
 
@@ -272,7 +272,7 @@ To replicate data you collect using data collection rules, associate your data c
     * Verify you used API version 2025-02-01 or later.
 * Is the primary workspace located in East US, East US 2, or South Central US?
     * East US, East US 2, and South Central US can't replicate to one another.
-* Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can’t have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
+* Where is the primary workspace located and where is the secondary? Both locations must be in the same region group. For example, workspaces located in US regions can't have a replication (secondary region) in Europe, and vice versa. For the list of region groups, see [Supported regions](#supported-regions).
 * Do you have the [required permissions](#permissions-required)?
 * Did you allow enough time for replication operation to complete? replication is a long running operation. Monitor the state of the opeation as explained in [Check workspace provisioning state](#check-workspace-provisioning-state).
 * Did you try to re-enable replication in order to change the workspace secondary location? To change the location of your secondary workspace, you must first [disable workspace replication](#disable-workspace-replication), allow the operation to complete and only then eable replication to another secondary location.
@@ -478,9 +478,9 @@ The `POST` command is a long running operation that can take some time to comple
 
 ## Audit the inactive workspace
 
-By default, your workspace’s active region is the region where you create the workspace, and the inactive region is the secondary region, where Azure Monitor creates the replicated workspace.
+By default, your workspace's active region is the region where you create the workspace, and the inactive region is the secondary region, where Azure Monitor creates the replicated workspace.
 
-When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it’s not the direct target of log ingestion and query requests.
+When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it's not the direct target of log ingestion and query requests.
 
 It's useful to query the inactive region before you switch between regions to verify that the workspace in the inactive region has the logs you expect to see there.
 

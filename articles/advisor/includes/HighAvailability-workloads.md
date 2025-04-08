@@ -232,7 +232,7 @@ Subcategory: HighAvailability
 
 #### Set the stonith timeout to 144 for the cluster configuration in ASCS HA setup in SAP workloads  
   
-The ‘stonith-timeout’ specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
+The `stonith-timeout` specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 
@@ -772,7 +772,7 @@ Subcategory: HighAvailability
 
 #### Set the stonith timeout to 144 for the cluster configuration in HA enabled SAP workloads  
   
-The ‘stonith-timeout’ specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
+The 'stonith-timeout' specifies how long the cluster waits for a STONITH action to complete. Setting it to '144' seconds allows more time for fencing actions to complete. We recommend this setting for HA clusters for SAP on Azure.  
   
 **Potential benefits**: Reliability of HA setup in SAP workloads  
 

@@ -19,7 +19,7 @@ With Azure Monitor SCOM Managed Instance Service Health Dashboard, you can now v
 
 Resource Health capability allows you to do the following:
 
-- Monitors your resource and lets you know if it’s running as expected.
+- Monitors your resource and lets you know if it's running as expected.
 - Help you diagnose and get support for service problems that affect your Azure resources.
 - Reports on the current and past health of your resources.
 

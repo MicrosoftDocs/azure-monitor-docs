@@ -3,7 +3,7 @@ ms.topic: include
 ms.date: 08/24/2023
 ---
 
-Log Analytics workspaces offer a high degree of reliability. The ingestion pipeline, which sends collected data to the Log Analytics workspace, validates that the Log Analytics workspace successfully processes each log record before it removes the record from the pipe. If the ingestion pipeline isn’t available, the agents that send the data buffer and retry sending the logs for many hours.
+Log Analytics workspaces offer a high degree of reliability. The ingestion pipeline, which sends collected data to the Log Analytics workspace, validates that the Log Analytics workspace successfully processes each log record before it removes the record from the pipe. If the ingestion pipeline isn't available, the agents that send the data buffer and retry sending the logs for many hours.
 
 ### Azure Monitor Logs features that enhance resilience
 
@@ -23,7 +23,7 @@ You can [continuously export data sent to specific tables in your Log Analytics 
 
 The storage account you export data to must be in the same region as your Log Analytics workspace. To protect and have access to your ingested logs, even if the workspace region is down, use a geo-redundant storage account, as explained in [Configuration recommendations](#configuration-recommendations).
 
-The export mechanism doesn’t provide protection from incidents impacting the ingestion pipeline or the export process itself.
+The export mechanism doesn't provide protection from incidents impacting the ingestion pipeline or the export process itself.
 
 > [!NOTE]
 > You can access data in a storage account from Azure Monitor Logs using the [externaldata operator](/kusto/query/externaldata-operator?view=azure-monitor&preserve-view=true). However, the exported data is stored in five-minute blobs and analyzing data spanning multiple blobs can be cumbersome. Therefore, exporting data to a storage account is a good data backup mechanism, but having the backed up data in a storage account is not ideal if you need it for analysis in Azure Monitor Logs. You can query large volumes of blob data using [Azure Data Explorer](/azure/data-explorer/query-exported-azure-monitor-data), [Azure Data Factory](/azure/data-factory/introduction#connect-and-collect), or any other storage access tool. 

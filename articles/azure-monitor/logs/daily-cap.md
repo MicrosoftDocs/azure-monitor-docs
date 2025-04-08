@@ -42,7 +42,7 @@ Daily caps are typically used by organizations that are particularly cost consci
 When data collection stops, you effectively have no monitoring of features and resources relying on that workspace. Instead of relying on the daily cap alone, you can [create an alert rule](#alert-when-daily-cap-is-reached) to notify you when data collection reaches some level before the daily cap. Notification allows you to address any increases before data collection shuts down, or even to temporarily disable collection for less critical resources.
 
 ## Application Insights
-You should configure the daily cap setting for both Application Insights and Log Analytics to limit the amount of telemetry data ingested by your service. For workspace-based Application Insights resources, the effective daily cap is the minimum of the two settings. For classic Application Insights resources, only the Application Insights daily cap applies since their data doesn’t reside in a Log Analytics workspace. 
+You should configure the daily cap setting for both Application Insights and Log Analytics to limit the amount of telemetry data ingested by your service. For workspace-based Application Insights resources, the effective daily cap is the minimum of the two settings. For classic Application Insights resources, only the Application Insights daily cap applies since their data doesn't reside in a Log Analytics workspace. 
 
 > [!TIP]
 > If you're concerned about the amount of billable data collected by Application Insights, you should configure [sampling](../app/sampling.md) to tune its data volume to the level you want. Use the daily cap as a safety method in case your application unexpectedly begins to send much higher volumes of telemetry.

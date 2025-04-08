@@ -337,7 +337,7 @@ This article lists significant changes to Azure Monitor documentation.
 
 |Subservice | Article | Description |
 |---|---|---|
-|Alerts|[Improve the reliability of your application by using Azure Advisor](../../advisor/advisor-reference-reliability-recommendations.md)|We’ve updated the alerts troubleshooting articles to remove out of date content and include common support issues.|
+|Alerts|[Improve the reliability of your application by using Azure Advisor](../../advisor/advisor-reference-reliability-recommendations.md)|We've updated the alerts troubleshooting articles to remove out of date content and include common support issues.|
 |Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](../app/opentelemetry-enable.md)|OpenTelemetry sample applications are now provided in a centralized location.|
 |Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Classic Application Insights resources have been retired. For more information, see this article for migration information and frequently asked questions.|
 |Application-Insights|[Sampling overrides - Azure Monitor Application Insights for Java](../app/java-standalone-sampling-overrides.md)|The sampling overrides feature has reached general availability (GA), starting from 3.5.0.|
@@ -667,7 +667,7 @@ Snapshot-Debugger|[Enable Snapshot Debugger for .NET apps in Azure Service Fabri
 |---|---|---|
 Agents|[Azure Monitor Agent extension versions](../agents/azure-monitor-agent-extension-versions.md)|Added release notes for the Azure Monitor Agent Linux 1.25 release.|
 Agents|[Migrate to Azure Monitor Agent from the Log Analytics agent](../agents/azure-monitor-agent-migration.md)|Updated guidance for migrating from Log Analytics agent to Azure Monitor Agent.|
-Alerts|[Manage your alert rules](../alerts/alerts-manage-alert-rules.md)|Included limitation and workaround for resource health alerts. If you apply a target resource type scope filter to the **Alerts rules** page, the alerts rules list doesn’t include resource health alert rules.|
+Alerts|[Manage your alert rules](../alerts/alerts-manage-alert-rules.md)|Included limitation and workaround for resource health alerts. If you apply a target resource type scope filter to the **Alerts rules** page, the alerts rules list doesn't include resource health alert rules.|
 Alerts|[Customize alert notifications by using Azure Logic Apps](../alerts/alerts-logic-apps.md)|Added instructions for other customizations that you can include when you use Logic Apps to create alert notifications. You can extract information about the affected resource from the resource's tags. Then you can include the resource tags in the alert payload and use the information in your logical expressions that are used for creating the notifications.|
 Alerts|[Create and manage action groups in the Azure portal](../alerts/action-groups-create-resource-manager-template.md)|Combined two articles about creating action groups into one article.|
 Alerts|[Create and manage action groups in the Azure portal](../alerts/action-groups.md)|Clarified that you can't pass security certificates in a webhook action in action groups.|
