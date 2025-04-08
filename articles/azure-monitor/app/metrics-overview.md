@@ -168,12 +168,38 @@ Metrics in the Availability category enable you to see the health of your web ap
 #### Availability (availabilityResults/availabilityPercentage)
 
 The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs have failed. The value of 100 means that all of the web test runs passed the validation criteria.
-
+<!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
 | Percentage      | Avg          |                                      |                                   |                   |
 |                 |              | `Run location`                       | `availabilityResult/location`     | 50                |
 |                 |              | `Test name`                          | `availabilityResult/name`         | 100               |
+-->
+<table>
+    <thead>
+        <tr>
+            <th>Unit of measure</th>
+            <th>Aggregations</th>
+            <th>Dimension name<br>(Metrics Explorer)</th>
+            <th>Dimension name<br>(Log Analytics)</th>
+            <th>Cardinality limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2>Percentage</td>
+            <td rowspan=2>Avg</td>
+            <td>Run location</td>
+            <td>availabilityResult/location</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>Test name</td>
+            <td>availabilityResult/name</td>
+            <td>100</td>
+        </tr>
+    </tbody>
+</table>
 
 #### Availability test duration (availabilityResults/duration)
 
@@ -395,7 +421,7 @@ This metric reflects the number of thrown exceptions from your application code 
 #### Dependency call failures (dependencies/failed)
 
 The number of failed dependency calls.
-
+<!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
 | Count           | Count        |                                      |                                   |                   |
@@ -406,6 +432,57 @@ The number of failed dependency calls.
 |                 |              | `Is traffic synthetic`               | `operation/synthetic`             | 10                |
 |                 |              | `Result code`                        | `dependency/resultCode`           | 100               |
 |                 |              | `Target of dependency call`          | `dependency/target`               | 100               |
+-->
+<table>
+    <thead>
+        <tr>
+            <th>Unit of measure</th>
+            <th>Aggregations</th>
+            <th>Dimension name<br>(Metrics Explorer)</th>
+            <th>Dimension name<br>(Log Analytics)</th>
+            <th>Cardinality limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=7>Count</td>
+            <td rowspan=7>Count</td>
+            <td>Cloud role instance</td>
+            <td>cloud/roleInstance</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Cloud role name</td>
+            <td>cloud/roleName</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Dependency performance</td>
+            <td>dependency/performanceBucket</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>Dependency type</td>
+            <td>dependency/type</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Is traffic synthetic</td>
+            <td>operation/synthetic</td>
+            <td>10</td>
+        </tr>
+        <tr>
+            <td>Result code</td>
+            <td>dependency/resultCode</td>
+            <td>100</td>
+        </tr>
+        <tr>
+            <td>Target of dependency call</td>
+            <td>dependency/target</td>
+            <td>100</td>
+        </tr>
+    </tbody>
+</table>
 
 #### Exceptions (exceptions/count)
 
