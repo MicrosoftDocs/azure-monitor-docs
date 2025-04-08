@@ -139,6 +139,7 @@ All our OpenTelemetry offerings and the following SDK versions onwards support c
 * JavaScript v2.3.0
 * NodeJS v1.5.0
 * Python v1.0.0
+* Java v3.1.1
 
 You can set a connection string in code, by using an environment variable, or a configuration file.
 

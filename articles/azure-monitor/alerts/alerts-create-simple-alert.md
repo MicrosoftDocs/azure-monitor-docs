@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.date: 03/27/2025
 ---
 
-# Create a simple log search alert
+# Create a simple log search alert (Preview)
 
 This article shows you how to create a new simple log alert rule or edit an existing simple log alert rule in Azure Monitor. To learn more about alerts, see the [alerts overview](alerts-overview.md).
 
