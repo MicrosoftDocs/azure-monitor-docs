@@ -109,6 +109,8 @@ After you set up a diagnostic setting, data should start flowing to your selecte
 
 If you're experiencing an issue, you can try disabling the configuration and then reenabling it. Contact Azure support through the Azure portal if you continue to have issues. 
 
+When specifying a Log Analytics Workspace as the diagnostic setting log destination, there's no need to explicitly define an identity. This is managed within the Azure platform.
+
 ### Metrics as a source
 
 There are certain limitations with exporting metrics:
