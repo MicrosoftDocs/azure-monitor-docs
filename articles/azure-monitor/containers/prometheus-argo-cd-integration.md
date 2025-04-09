@@ -5,20 +5,24 @@ ms.topic: conceptual
 ms.date: 3/10/2025
 ms.reviewer: rashmy
 ---
-# Argo CD
-Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. Argo CD follows the GitOps pattern of using Git repositories as the source of truth for defining the desired application state. It automates the deployment of the desired application states in the specified target environments. Application deployments can track updates to branches, tags, or pinned to a specific version of manifests at a Git commit.
-This article describes how to configure Azure Managed Prometheus with Azure Kubernetes Service(AKS) and Azure Arc-enabled Kubernetes to monitor Argo CD by scraping prometheus metrics. 
+
+# Collect Argo CD metrics by using managed service for Prometheus
+
+Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. Argo CD follows the GitOps pattern of using Git repositories as the source of truth for defining the desired application state. It automates the deployment of the desired application states in the specified target environments. Application deployments can track updates to branches or tags, or they can be pinned to a specific version of manifests at a Git commit.
+
+This article describes how to configure the Azure Monitor *managed service for Prometheus* feature with Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes to monitor Argo CD by scraping Prometheus metrics.
 
 ## Prerequisites
 
 + Argo CD running on AKS or Azure Arc-enabled Kubernetes
-+ Azure Managed Prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
++ Managed service for Prometheus enabled on the cluster. For more information, see [Enable Prometheus and Grafana](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
 
-### Deploy Service Monitors
-Deploy the following service monitors to configure Azure managed prometheus addon to scrape prometheus metrics from the argocd workload.
+## Deploy service monitors
 
-> [!NOTE] 
-> Please specify the right labels in the matchLabels for the service monitors if they do not match the configured ones in the sample.
+Deploy the following service monitors to configure the managed service for Prometheus add-on to scrape Prometheus metrics from the Argo CD workload.
+
+> [!NOTE]
+> Specify the right labels in `matchLabels` for the service monitors if they don't match the configured ones in the sample.
 
 ```yaml
 apiVersion: azmonitoring.coreos.com/v1
@@ -70,16 +74,12 @@ spec:
   - port: metrics
   ```
 
-> [!NOTE] 
-> If you want to configure any other service or pod monitors, please follow the instructions [here](prometheus-metrics-scrape-crd.md#create-a-pod-or-service-monitor).
+> [!NOTE]
+> If you want to configure any other service or pod monitors, follow [these instructions](prometheus-metrics-scrape-crd.md#create-a-pod-or-service-monitor).
 
-### Deploy Rules
-1. Download the template and parameter files
+## Deploy rules
 
-    **Alerting Rules**
-   - [Template file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Argo/argocd-alerting-rules.json)
-   - [Parameter file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Alert-Rules-Parameters.json)
-
+1. Download the [template file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Argo/argocd-alerting-rules.json) and the [parameter file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Alert-Rules-Parameters.json).
 
 2. Edit the following values in the parameter files. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
 
@@ -94,7 +94,7 @@ spec:
 
 4. Once deployed, you can view the rules in the Azure portal as described in - [Prometheus Alerts](../essentials/prometheus-rule-groups.md#view-prometheus-rule-groups)
 
-> [!Note] 
+> [!NOTE]
 > Review the alert thresholds to make sure it suits your cluster/workloads and update it accordingly.
 >
 > Please note that the above rules are not scoped to a cluster. If you would like to scope the rules to a specific cluster, see [Limiting rules to a specific cluster](../essentials/prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster) for more details.
@@ -103,15 +103,10 @@ spec:
 >
 > If you want to use any other OSS prometheus alerting/recording rules please use the converter here to create the azure equivalent prometheus rules [az-prom-rules-converter](https://aka.ms/az-prom-rules-converter)
 
+## Import the Grafana dashboard
 
-### Import the Grafana Dashboard
+To import the [Grafana dashboard for Argo CD (ID 14191)](https://grafana.com/grafana/dashboards/14584-argocd/) by using the ID or JSON, follow the instructions in [Import a dashboard from Grafana Labs](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard).
 
-To import the grafana dashboards using the ID or JSON, follow the instructions to [Import a dashboard from Grafana Labs](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard). </br>
+## Troubleshoot
 
-[ArgoCD](https://grafana.com/grafana/dashboards/14584-argocd/)(ID-14191)
-
-
-### Troubleshooting
-When the service monitors is successfully applied, if you want to make sure that the service monitor targets get picked up by the addon, follow the instructions [here](prometheus-metrics-troubleshoot.md#prometheus-interface). 
-
-
+When the service monitors is successfully applied, if you want to make sure that the service monitor targets get picked up by the addon, follow the instructions [here](prometheus-metrics-troubleshoot.md#prometheus-interface).
