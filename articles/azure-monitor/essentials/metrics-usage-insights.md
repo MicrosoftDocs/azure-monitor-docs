@@ -20,15 +20,16 @@ During the Preview, Azure Monitor metrics usage insights is available in the fol
 
 ## Enabling Azure Monitor metrics usage insights
 
-Azure Monitor metrics usage insights can be enabled when you create a new workspace, or you can enable it on an existing workspace. 
+To enable metrics usage insights, you create a diagnostic setting to send  on the AMW to send insights data to Log Analytics Workspace (LAW).
+
+Customers will be guided to enable metrics usage insights as part of the standard out of the box experience during new AMW resource creation where diagnostic settings will be created behind the scenes. For existing AMWs this will have to be configured using diagnostic settings as explained in the further sections.
+
 
 ### Enable Azure Monitor metrics usage insights at creation time
 
 ### [Portal](#tab/portal)
 
-When you create a new Azure Monitor workspace, enable metrics usage insights on the **Monitoring** tab of the **Create Azure Monitor workspace** page.
-
-Select **Enable insights** and then select the Log analytics workspace where you want to send the data.
+When you create a new Azure Monitor workspace, select **Enable insights** on the **Monitoring** tab of the **Create Azure Monitor workspace** page and specify a Log Analytics workspace. This will cause the diagnostic setting to be created when the Azure Monitor workspace is created.
 
 :::image type="content" source="./media/metrics-usage-insights/enable-insights.png" lightbox="./media/metrics-usage-insights/enable-insights.png"  alt-text="A screenshot showing the monitoring tab of the Create Azure Monitor workspace page.":::
 
@@ -118,10 +119,10 @@ parameters('am_workspace_name'))]"
 
 ### [Portal](#tab/portal)
 
-To enable metrics usage insights for an existing Azure Monitor workspace, you must enable diagnostic settings.
+To enable metrics usage insights for an existing Azure Monitor workspace, you need to create a diagnostic setting.
 
-1. In the Azure portal, navigate to the Azure Monitor workspace you want to enable metrics usage insights for.
-1. In the **Monitoring** section, select **Diagnostic settings**.
+1. In the Azure portal, navigate to the Azure Monitor workspace.
+1. In the **Monitoring** section of the menu, select **Diagnostic settings**.
 1. Select **Add diagnostic setting**.
 
     :::image type="content" source="./media/metrics-usage-insights/diagnostic-settings.png" lightbox="./media/metrics-usage-insights/diagnostic-settings.png" alt-text="A Screenshot showing the Diagnostic settings page.":::
@@ -206,7 +207,6 @@ Parameter File:
 
 ## Azure Monitor metrics usage insights pages
 
-  
 The Azure Monitor metrics usage insights pages show data for time series and events.
 
 + **Time Series**  
