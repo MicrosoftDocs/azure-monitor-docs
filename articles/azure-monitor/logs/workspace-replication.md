@@ -55,7 +55,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
 ## Deployment considerations
 
 > [!NOTE]
-> Workspace replication currently doesn't support replication of [Auxiliary tables](./create-custom-table-auxiliary.md), and shouldn't be enabled on workspaces that include Auxiliary tables.
+> Workspace replication currently doesn't support replication of [Auxiliary tables](./create-custom-table-auxiliary.md), and shouldn't be enabled on workspaces that include Auxiliary tables. Auxiliary tables aren't replicated, and therefore aren't protected against data loss in the event of a regional failure and isn't available when you switch over to your secondary workspace.
 
 * Workspace management operations can't be initiated during switchover, including:
     * Change of workspace retention, pricing tier, daily cap, and so on
