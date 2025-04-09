@@ -259,7 +259,10 @@ In September 2018, Microsoft combined Azure Monitor, Log Analytics, and Applicat
 
 ### How much does Azure Monitor cost?
 
-The cost of Azure Monitor is based on your usage of different features and is primarily determined by the amount of data you collect. See [Azure Monitor cost and usage](cost-usage.md) for details on how costs are determined and [Cost optimization in Azure Monitor](best-practices-cost.md) for recommendations on reducing your overall spend.
+The cost of Azure Monitor is based on your usage of different features and is primarily determined by the amount of data you collect. For more information, see the following articles:
+- [Azure Monitor cost and usage](cost-usage.md)
+- [View Azure Monitor usage and charges](cost-usage.md#view-azure-monitor-usage-and-charges)
+- [Cost optimization in Azure Monitor](best-practices-cost.md)
 
 ### Is there an on-premises version of Azure Monitor?
 
