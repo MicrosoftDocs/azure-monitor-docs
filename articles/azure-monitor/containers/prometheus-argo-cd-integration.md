@@ -1,6 +1,6 @@
 ---
-title: Configure Argo CD integration for Prometheus metrics in Azure Monitor
-description: Describes how to configure Argo CD monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
+title: Configure Argo CD Integration for Prometheus Metrics in Azure Monitor
+description: This article describes how to configure Argo CD monitoring by using Prometheus metrics in Azure Monitor to a Kubernetes cluster.
 ms.topic: conceptual
 ms.date: 3/10/2025
 ms.reviewer: rashmy
@@ -8,7 +8,7 @@ ms.reviewer: rashmy
 
 # Collect Argo CD metrics by using managed service for Prometheus
 
-Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. Argo CD follows the GitOps pattern of using Git repositories as the source of truth for defining the desired application state. It automates the deployment of the desired application states in the specified target environments. Application deployments can track updates to branches or tags, or they can be pinned to a specific version of manifests at a Git commit.
+Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. Argo CD follows the GitOps pattern of using Git repositories as the source of truth for defining the desired application states. It automates the deployment of the desired application states in the specified target environments. Application deployments can track updates to branches or tags, or they can be pinned to a specific version of manifests at a Git commit.
 
 This article describes how to configure the Azure Monitor *managed service for Prometheus* feature with Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes to monitor Argo CD by scraping Prometheus metrics.
 
@@ -81,27 +81,23 @@ spec:
 
 1. Download the [template file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Argo/argocd-alerting-rules.json) and the [parameter file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Alert-Rules-Parameters.json).
 
-2. Edit the following values in the parameter files. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
+2. Edit the following values in the parameter file.
 
     | Parameter | Value |
     |:---|:---|
-    | `azureMonitorWorkspace` | Resource ID for the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
-    | `location` | Location of the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
-    | `clusterName` | Name of the AKS cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
-    | `actionGroupId` | Resource ID for the alert action group. Retrieve from the **JSON view** on the **Overview** page for the action group. Learn more about [action groups](../alerts/action-groups.md) |
+    | `azureMonitorWorkspace` | Resource ID for the Azure Monitor workspace. Retrieve it from **JSON view** on the **Overview** page for the Azure Monitor workspace. |
+    | `location` | Location of the Azure Monitor workspace. Retrieve it from **JSON view** on the **Overview** page for the Azure Monitor workspace. |
+    | `clusterName` | Name of the AKS cluster. Retrieve it from **JSON view** on the **Overview** page for the cluster. |
+    | `actionGroupId` | Resource ID for the alert action group. Retrieve it from **JSON view** on the **Overview** page for the action group. [Learn more about action groups](../alerts/action-groups.md). |
 
-3. Deploy the template by using any standard methods for installing ARM templates. For guidance, see [ARM template samples for Azure Monitor](../resource-manager-samples.md).
+3. Deploy the template by using any standard methods for installing Azure Resource Manager templates. For guidance, see [Resource Manager template samples for Azure Monitor](../resource-manager-samples.md).
 
-4. Once deployed, you can view the rules in the Azure portal as described in - [Prometheus Alerts](../essentials/prometheus-rule-groups.md#view-prometheus-rule-groups)
+4. After you deploy the template, you can view the rules in the Azure portal, as described in [View Prometheus rule groups](../essentials/prometheus-rule-groups.md#view-prometheus-rule-groups). Review the alert thresholds to make sure that they suit your cluster and workloads. Update the thresholds accordingly.
 
 > [!NOTE]
-> Review the alert thresholds to make sure it suits your cluster/workloads and update it accordingly.
->
-> Please note that the above rules are not scoped to a cluster. If you would like to scope the rules to a specific cluster, see [Limiting rules to a specific cluster](../essentials/prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster) for more details.
->
-> Learn more about [Prometheus Alerts](../essentials/prometheus-rule-groups.md).
->
-> If you want to use any other OSS prometheus alerting/recording rules please use the converter here to create the azure equivalent prometheus rules [az-prom-rules-converter](https://aka.ms/az-prom-rules-converter)
+> The rules aren't scoped to a cluster. If you want to scope the rules to a specific cluster, see [Limiting rules to a specific cluster](../essentials/prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster).
+
+You can [learn more about Prometheus alerts](../essentials/prometheus-rule-groups.md). If you want to use any other open-source Prometheus alerting/recording rules, use [az-prom-rules-converter](https://aka.ms/az-prom-rules-converter) to create the Azure-equivalent Prometheus rules.
 
 ## Import the Grafana dashboard
 
@@ -109,4 +105,4 @@ To import the [Grafana dashboard for Argo CD (ID 14191)](https://grafana.com/gra
 
 ## Troubleshoot
 
-When the service monitors is successfully applied, if you want to make sure that the service monitor targets get picked up by the addon, follow the instructions [here](prometheus-metrics-troubleshoot.md#prometheus-interface).
+When the service monitors are successfully applied, if you want to make sure that the add-on picks up the service monitor targets, follow [these instructions](prometheus-metrics-troubleshoot.md#prometheus-interface).
