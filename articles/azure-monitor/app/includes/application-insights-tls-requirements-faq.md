@@ -12,12 +12,14 @@ To confirm the TLS version in use:
 - Review the documentation for your operating system and runtime or framework.
 - Contact the appropriate support team if you need further help. Don't open a support request with Application Insights.
 
-**Runtime examples:**
+**Example language and runtime support for TLS 1.2+**
 
-- **.NET / .NET Core**: Applications targeting .NET Framework 4.6.2 or later, or .NET Core, use TLS 1.2+ by default. Older versions require explicit configuration using `ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12`.
-- **Java**: Applications must run on Java 8u161 or newer. Use `System.setProperty("https.protocols", "TLSv1.2");` to enforce TLS 1.2.
-- **Python**: Use a Python distribution built with OpenSSL 1.0.1 or newer. Enforce TLS 1.2 with `ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)`.
-- **Node.js**: Use Node.js version 10 or later. Check the OpenSSL version with `process.versions.openssl` and enforce TLS 1.2 in HTTPS request configurations.
+The following versions include integrated support for TLS 1.2 or higher:
+
+- **.NET / .NET Core**: .NET Framework 4.6.2 or later, and all versions of .NET Core
+- **Java**: Java 8 update 161 (8u161) or later
+- **Python**: Python distributions built with OpenSSL 1.0.1 or later
+- **Node.js**: Node.js version 10 or later
 
 #### How do I ensure my resources aren't affected?
 
