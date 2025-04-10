@@ -1,7 +1,7 @@
 ---
 title: Configure Elasticsearch Integration for Prometheus Metrics in Azure Monitor
 description: This article describes how to configure Elasticsearch monitoring by using Prometheus metrics in Azure Monitor to a Kubernetes cluster.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/10/2025
 ms.reviewer: rashmy
 ---

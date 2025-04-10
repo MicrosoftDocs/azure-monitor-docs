@@ -1,7 +1,7 @@
 ---
 title: Configure Argo CD Integration for Prometheus Metrics in Azure Monitor
 description: This article describes how to configure Argo CD monitoring by using Prometheus metrics in Azure Monitor to a Kubernetes cluster.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/10/2025
 ms.reviewer: rashmy
 ---
@@ -94,8 +94,8 @@ spec:
 
 4. After you deploy the template, you can view the rules in the Azure portal, as described in [View Prometheus rule groups](../essentials/prometheus-rule-groups.md#view-prometheus-rule-groups). Review the alert thresholds to make sure that they suit your cluster and workloads. Update the thresholds accordingly.
 
-> [!NOTE]
-> The rules aren't scoped to a cluster. If you want to scope the rules to a specific cluster, see [Limiting rules to a specific cluster](../essentials/prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster).
+   > [!NOTE]
+   > The rules aren't scoped to a cluster. If you want to scope the rules to a specific cluster, see [Limiting rules to a specific cluster](../essentials/prometheus-rule-groups.md#limiting-rules-to-a-specific-cluster).
 
 You can [learn more about Prometheus alerts](../essentials/prometheus-rule-groups.md). If you want to use any other open-source Prometheus alerting/recording rules, use [az-prom-rules-converter](https://aka.ms/az-prom-rules-converter) to create the Azure-equivalent Prometheus rules.
 
