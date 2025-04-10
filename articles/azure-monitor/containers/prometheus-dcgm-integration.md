@@ -1,34 +1,34 @@
 ---
-title: Collect GPU metrics from Nvidia DCGM exporter with Azure Managed Prometheus
-description: Describes how to configure GPU monitoring using Prometheus metrics in Azure Monitor to Kubernetes cluster.
+title: Collect GPU Metrics from the NVIDIA DCGM Exporter with Managed Service for Prometheus
+description: This article describes how to configure GPU monitoring by using Prometheus metrics in Azure Monitor to a Kubernetes cluster.
 ms.topic: conceptual
 ms.date: 3/24/2025
 ms.reviewer: sunasing
 ---
-# Collect GPU metrics from Nvidia DCGM exporter with Azure Managed Prometheus
+# Collect GPU metrics from NVIDIA DCGM Exporter by using managed service for Prometheus
 
-**[Nvidia's DCGM exporter](https://docs.nvidia.com/datacenter/cloud-native/gpu-telemetry/latest/dcgm-exporter.html)** enables collecting and exporting Nvidia GPU metrics, such as utilization, memory usage, power consumption etc. You can use this exporter and enable GPU monitoring with Azure Managed Prometheus and Azure Managed Grafana. Follow the instructions in below link to deploy the exporter and set up metrics collection.
+[NVIDIA DCGM Exporter](https://docs.nvidia.com/datacenter/cloud-native/gpu-telemetry/latest/dcgm-exporter.html) enables collecting and exporting NVIDIA GPU metrics, such as utilization, memory usage, and power consumption. You can use this exporter and enable GPU monitoring through the Azure Monitor *managed service for Prometheus* feature and through Azure Managed Grafana.
 
-[Monitor GPU metrics from NVIDIA DCGM exporter with Azure Managed Prometheus and Azure Managed Grafana](/azure/aks/monitor-gpu-metrics)
-
+To deploy the exporter and set up the collection of metrics, follow the instructions in [Monitor GPU metrics from NVIDIA DCGM Exporter with managed service for Prometheus and Azure Managed Grafana on AKS](/azure/aks/monitor-gpu-metrics).
 
 ## Query GPU metrics
 
-The metrics scraped are stored in the Azure Monitor workspace that is associated with Managed Prometheus. You can query the metrics directly from the workspace or through the Azure managed Grafana instance connected to the workspace.
+The scraped metrics are stored in the Azure Monitor workspace that's associated with managed service for Prometheus. You can query the metrics directly from the workspace or through the Azure Managed Grafana instance that's connected to the workspace.
 
-View Istio metrics in the Azure Monitor Workspace using the following steps:
+To view NVIDIA GPU metrics in the Azure Monitor workspace:
 
-1.	In the Azure portal, navigate to your AKS cluster.
-2.	Under Monitoring, select Insights and then Monitor Settings.
+1. In the Azure portal, go to your Azure Kubernetes Service cluster.
 
-:::image type="content" source="./media/monitor-kubernetes/amp-istio-query.png" lightbox="./media/monitor-kubernetes/amp-istio-query.png" alt-text="Diagram that shows how to view the Azure Monitor Workspace.":::
+2. Under **Monitoring**, select **Insights** > **Monitor Settings**.
 
-3. Click on the Azure Monitor Workspace instance and on the instance overview page, click on the **Metrics** section to query metrics to query for the metrics.
-4. Alternatively, you can click on the Managed Grafana instance, and on the instance overview page, click on the Endpoint URL. This will navigate to the Grafana portal where you can query the Azure Container Storage metrics. The data source is automatically configured for you to query metrics from the associated Azure Monitor Workspace.
+   :::image type="content" source="./media/monitor-kubernetes/amp-istio-query.png" lightbox="./media/monitor-kubernetes/amp-istio-query.png" alt-text="Diagram that shows selections for viewing the Azure Monitor workspace.":::
 
-To learn more about querying Prometheus metrics from Azure Monitor Workspace, see [Query Prometheus metrics](../essentials/prometheus-grafana.md).
+3. Select the Azure Monitor workspace instance. On the instance overview page, select the **Metrics** section to query metrics.
 
-## Troubleshooting
+   Alternatively, you can select the Managed Grafana instance. Then, on the instance overview page, select the endpoint URL. This action opens to the Grafana portal, where you can query the Azure Container Storage metrics. The data source is automatically configured for you to query metrics from the associated Azure Monitor workspace.
 
-To troubleshoot any issues, see [here](prometheus-metrics-troubleshoot.md#prometheus-interface).
+To learn more about querying Prometheus metrics from an Azure Monitor workspace, see [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
 
+## Troubleshoot
+
+If you have any problems, see the [troubleshooting information for the Prometheus interface](prometheus-metrics-troubleshoot.md#prometheus-interface).

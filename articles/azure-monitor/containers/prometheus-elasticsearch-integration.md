@@ -68,10 +68,10 @@ You can [learn more about Prometheus alerts](../essentials/prometheus-rule-group
 
 ## Import the Grafana dashboards
 
-To import the following Grafana dashboards by using the ID or JSON, follow the instructions in [Import a dashboard from Grafana Labs](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard):
+To import the following Grafana dashboards by using the ID or JSON, use the instructions in [Import a dashboard from Grafana Labs](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard):
 
-- [Elasticsearch overview (ID 2322)](https://github.com/grafana/jsonnet-libs/blob/master/elasticsearch-mixin/dashboards/elasticsearch-overview.json)
-- [Elasticsearch Exporter quickstart and dashboard (ID 14191)](https://grafana.com/grafana/dashboards/14191-elasticsearch-overview/)
+- [Elasticsearch Overview (ID 2322)](https://github.com/grafana/jsonnet-libs/blob/master/elasticsearch-mixin/dashboards/elasticsearch-overview.json)
+- [Elasticsearch Exporter Quickstart and Dashboard (ID 14191)](https://grafana.com/grafana/dashboards/14191-elasticsearch-overview/)
 
 ## Troubleshoot
 

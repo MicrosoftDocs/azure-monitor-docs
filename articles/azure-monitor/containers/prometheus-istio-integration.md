@@ -16,7 +16,7 @@ Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on]
 
 With the Azure Monitor *managed service for Prometheus* feature, you can collect and analyze metrics at scale. Prometheus metrics are stored in Azure Monitor workspaces. The workspaces support analysis tools like Azure Managed Grafana, Azure Monitor metrics explorer with PromQL, and open-source tools such as PromQL and Grafana.
 
-This article provides step-by-step guidance on using Azure Monitor managed service for Prometheus to collect Istio metrics via the open-source Istio-based service mesh add-on for AKS or for Azure Arc-enabled Kubernetes. You can then visualize the metrics in Azure Managed Grafana.
+This article provides step-by-step guidance on using Azure Monitor managed service for Prometheus to collect Istio metrics via the Istio-based service mesh add-on for AKS or for Azure Arc-enabled Kubernetes. You can then visualize the metrics in Azure Managed Grafana.
 
 ## Prerequisites
 
@@ -48,8 +48,8 @@ az aks create --resource-group myResourceGroup --name myAKSCluster --node-count 
 
 You can use managed service for Prometheus to collect metrics from both open-source Istio and the Istio-based service mesh add-on for AKS:
 
-- To set up the Istio-based service mesh add-on for AKS, see [Deploy Istio-based service mesh add-on for Azure Kubernetes Service](/azure/aks/istio-deploy-addon).
 - To set up open-source Istio, see the [Istio installation guides](https://istio.io/latest/docs/setup/install/).
+- To set up the Istio-based service mesh add-on for AKS, see [Deploy Istio-based service mesh add-on for Azure Kubernetes Service](/azure/aks/istio-deploy-addon).
 
 ### Get AKS credentials
 
@@ -62,7 +62,7 @@ az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 
 To collect metrics from your Istio setup with managed service for Prometheus, you can use pod annotations. These annotations are automatically set up with Istio. You need to enable pod annotation-based scraping in managed service for Prometheus.
 
-To enable the scraping, customize the managed service for Prometheus configuration map (ama-metrics-settings-configmap.yaml) to include the `istio-system` namespace and the namespaces for the Istio sidecar setup. For example, if you set up Istio to inject the sidecar in `my-namespace`, update the configuration map as follows:
+To enable the scraping, customize the managed service for Prometheus configuration map (`ama-metrics-settings-configmap.yaml`) to include the `istio-system` namespace and the namespaces for the Istio sidecar setup. For example, if you set up Istio to inject the sidecar in `my-namespace`, update the configuration map as follows:
 
 ```yaml
 pod-annotation-based-scraping: |-
@@ -82,33 +82,35 @@ kubectl apply -f ama-metrics-settings-configmap.yaml
 
 ## Query Istio metrics
 
-The metrics scraped from Istio are stored in the Azure Monitor workspace that'is associated with managed service for Prometheus. You can query the metrics directly from the workspace or through the Azure Managed Grafana instance that's connected to the workspace.
+The metrics scraped from Istio are stored in the Azure Monitor workspace that's associated with managed service for Prometheus. You can query the metrics directly from the workspace or through the Azure Managed Grafana instance that's connected to the workspace.
 
-View Istio metrics in the Azure Monitor workspace by using the following steps:
+To view Istio metrics in the Azure Monitor workspace:
 
 1. In the Azure portal, go to your AKS cluster.
 
 2. Under **Monitoring**, select **Insights** > **Monitor Settings**.
 
-   :::image type="content" source="./media/monitor-kubernetes/amp-istio-query.png" lightbox="./media/monitor-kubernetes/amp-istio-query.png" alt-text="Diagram that shows selections for viewing the Azure Monitor Workspace.":::
+   :::image type="content" source="./media/monitor-kubernetes/amp-istio-query.png" lightbox="./media/monitor-kubernetes/amp-istio-query.png" alt-text="Diagram that shows selections for viewing the Azure Monitor workspace.":::
 
-3. Select the Azure Monitor Workspace instance. On the instance overview page, select the **Metrics** section to query metrics to query for *istio_requests_total*.
+3. Select the Azure Monitor workspace instance. On the instance overview page, select the **Metrics** section to query metrics for **istio_requests_total**.
 
-4. Alternatively, you can click on the Azure Managed Grafana instance, and on the instance overview page, click on the Endpoint URL. This will navigate to the Grafana portal where you can query the Azure Container Storage metrics. The data source is automatically configured for you to query metrics from the associated Azure Monitor Workspace.
+   Alternatively, you can select the Azure Managed Grafana instance. Then, on the instance overview page, select the endpoint URL. This action opens the Grafana portal, where you can query the Azure Container Storage metrics. The data source is automatically configured for you to query metrics from the associated Azure Monitor workspace.
 
-To learn more about querying Prometheus metrics from Azure Monitor Workspace, see [Query Prometheus metrics](../essentials/prometheus-grafana.md).
+To learn more about querying Prometheus metrics from an Azure Monitor workspace, see [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
 
-## Import Grafana dashboard for istiod
+## Import the Grafana dashboards for Istio
 
-To import the Grafana Dashboards using the ID or JSON, follow the instructions to [Import a dashboard in Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard).
+To import the following Grafana dashboards by using the ID or JSON, follow the instructions to [Import a dashboard in Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-grafana-dashboard):
 
-- [Istio Control Plane Dashboard | Grafana Labs](https://grafana.com/grafana/dashboards/7645-istio-control-plane-dashboard/) (ID: 7645)
-- [Istio Service SLO Demo | Grafana Labs](https://grafana.com/grafana/dashboards/21793-service-slo/) (ID: 21793)
+- [Istio Control Plane Dashboard (ID 7645)](https://grafana.com/grafana/dashboards/7645-istio-control-plane-dashboard/)
+- [Istio Service SLO Demo (ID 21793)](https://grafana.com/grafana/dashboards/21793-service-slo/)
 
 ## Summary
 
-In this tutorial, we demonstrated how to configure managed service for Prometheus for collecting metrics from open-source Istio or AKS service-mesh Istio add-on. We then showed how to query the collected metrics in Azure Monitor. By following these steps, you can effectively monitor Istio using managed service for Prometheus on Azure, gaining valuable insights into your applications' performance and behavior.
+This article demonstrated how to configure managed service for Prometheus for collecting metrics from the open-source Istio-based service mesh add-on. It then showed how to query the collected metrics in Azure Monitor.
 
-## Troubleshooting
+By following the steps in this article, you can effectively monitor Istio by using managed service for Prometheus on Azure. This monitoring can give you valuable insights into your applications' performance and behavior.
 
-To troubleshoot any issues, see [here](prometheus-metrics-troubleshoot.md#prometheus-interface).
+## Troubleshoot
+
+If you have any problems, see the [troubleshooting information for the Prometheus interface](prometheus-metrics-troubleshoot.md#prometheus-interface).
