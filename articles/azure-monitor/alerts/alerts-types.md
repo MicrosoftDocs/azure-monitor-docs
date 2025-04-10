@@ -2,7 +2,7 @@
 title: Types of Azure Monitor alerts
 description: This article explains the different types of Azure Monitor alerts and when to use each type.
 ms.topic: conceptual
-ms.date: 03/10/2024
+ms.date: 04/10/2024
 ---
 
 # Choosing the right type of alert rule
@@ -124,7 +124,7 @@ Dynamic thresholds help you:
 
 See [dynamic thresholds](alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in metric alert rules.
 
-## <a name="log-alerts"></a>Log search alerts
+## Log search alerts
 
 A log search alert rule monitors a resource by using a Log Analytics query to evaluate resource logs at a set frequency. If the conditions are met, an alert is fired. Because you can use Log Analytics queries, you can perform advanced logic operations on your data and use the robust KQL features to manipulate log data.
 
@@ -177,9 +177,9 @@ Log search alerts are listed under resource provider `microsoft.insights/schedul
 > [!Note]
 > Unsupported resource characters like <, >, %, &, \, ? and / are replaced with an underscore (_) in the hidden resource names. This character change is also reflected in the billing information.
 
-## Simple Log Alert
+## Simple log search alert
 
-A simple log  alert rule is a log search alert rules that is using a Log Analytics query to evaluate resource logs. If the conditions are met, an alert is fired. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.
+A simple log alert rule is a log search alert rules that is using a Log Analytics query to evaluate resource logs. If the conditions are met, an alert is fired. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.
 
 The target of the log search alert rule can be:
 
