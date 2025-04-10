@@ -129,7 +129,7 @@ Simple log search alerts use the Kusto Query Language (KQL) but the feature is d
 
 Simple search alerts provide faster alerting compared to traditional log search alerts By evaluating each row individually. Alerts are triggered almost in real-time, allowing for quicker incident response.
 
-[Create a simple log search alert](alerts-create-simple-alert.md)
+[Create a simple log search alert](alerts-create-simple-alert.md).
 
 ### Using Azure policies for alerting at scale
 
