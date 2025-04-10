@@ -21,6 +21,8 @@ The Log Ingestion API provides the following advantages over the Data Collector 
 - Supports [transformations](../essentials/data-collection-transformations.md), which enable you to modify the data before it's ingested into the destination table, including filtering and data manipulation.
 - Lets you send data to multiple destinations.  
 - Enables you to manage the destination table schema, including column names, and whether to add new columns to the destination table when the source data schema changes.
+- Supports role-based access controls (RBAC) to restrict data ingestion by data collection rule and identity.
+  
 ## Prerequisites
 
 The migration procedure described in this article assumes you have:
