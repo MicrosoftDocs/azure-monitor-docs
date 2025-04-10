@@ -53,8 +53,16 @@ The following logic is used to determine how to process each log entry:
 ## Enable multitenancy for the cluster
 
 1. Follow the guidance in [Configure and deploy ConfigMap](./container-insights-data-collection-configmap.md#configure-and-deploy-configmap) to download and update ConfigMap for the cluster. 
- 
-2.  Enable multitenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. 
+
+2.  Enable high scale mode by changing the `enabled` setting under `agent_settings.high_log_scale` as follows. 
+
+    ```yaml
+    agent-settings: |-
+        [agent_settings.high_log_scale]
+            enabled = true
+    ```
+
+3.  Enable multitenancy by changing the `enabled` setting under `log_collection_settings.multi_tenancy` as follows. 
 
     ```yaml
     log-data-collection-settings: |-
@@ -64,7 +72,7 @@ The following logic is used to determine how to process each log entry:
     ```
 
 
-3. Apply the ConfigMap to the cluster with the following commands. 
+4. Apply the ConfigMap to the cluster with the following commands. 
 
     ```bash
     kubectl config set-context <cluster-name>

@@ -26,7 +26,7 @@ The types of alerts are:
 |------------|-------------|---------------------|
 | Metric alert | Metric data is stored in the system already precomputed. Metric alerts are useful when you want to be alerted about data that requires little or no manipulation. Use metric alerts if the data you want to monitor is available in metric data. | Each metric alert rule is charged based on the number of time series that are monitored. |
 | Log search alert | You can use log search alerts to perform advanced logic operations on your data. If the data you want to monitor is available in logs, or requires advanced logic, you can use the robust features of Kusto Query Language (KQL) for data manipulation by using log search alerts. | Each log search alert rule is billed based on the interval at which the log query is evaluated. More frequent query evaluation results in a higher cost. For log search alerts configured for at-scale monitoring using splitting by dimensions, the cost also depends on the number of time series created by the dimensions resulting from your query. |
-| Simple log search alert | Ideal for monitoring applications, or network traffic where unaggregated real-time monitoring and quick incident response are critical. Each error triggers an alert, allowing you to take immediate action. For example, alerting for every failed job either backup job or any other automation, ability to alert on windows events that effects our system as storage or security. | |
+| Simple log search alert | Ideal for monitoring applications, or network traffic where unaggregated real-time monitoring and quick incident response are critical. Each error triggers an alert, allowing you to take immediate action. For example, alerting for every failed job either backup job or any other automation, ability to alert on windows events that effects our system as storage or security. | Each simple log  alert rule is billed based is the same as 1-min frequency alerts. |
 | Activity log alert | Activity logs provide auditing of all actions that occurred on resources. Use activity log alerts to be alerted when a specific event happens to a resource like a restart, a shutdown, or the creation or deletion of a resource. Service Health alerts and Resource Health alerts let you know when there's an issue with one of your services or resources. | For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
 | Prometheus alerts | Prometheus alerts are used for alerting on Prometheus metrics stored in [Azure Monitor managed services for Prometheus](../essentials/prometheus-metrics-overview.md). The alert rules are based on the PromQL open-source query language. | Prometheus alert rules are only charged on the data queried by the rules. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/). |
 
@@ -148,6 +148,16 @@ Stateful log search alerts have these limitations:
 
 > [!NOTE]
 > Log search alerts work best when you're trying to detect specific data in the logs, as opposed to when you're trying to detect a lack of data in the logs. Because logs are semi-structured data, they're inherently more latent than metric data on information like a VM heartbeat. To avoid misfires when you're trying to detect a lack of data in the logs, consider using [metric alerts](#metric-alerts). You can send data to the metric store from logs by using [metric alerts for logs](alerts-metric-logs.md).
+
+### Simple Log Alert
+
+A simple log  alert rule is a log search alert rules that is using a Log Analytics query to evaluate resource logs. If the conditions are met, an alert is fired. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.
+
+The target of the log search alert rule can be:
+
+* A single resource, such as a VM.
+* A Workspace
+* A single container of resources, like a resource group or subscription.
 
 ### Monitor multiple instances of a resource using dimensions
 
