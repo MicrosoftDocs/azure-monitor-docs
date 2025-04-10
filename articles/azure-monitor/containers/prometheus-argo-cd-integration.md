@@ -79,7 +79,7 @@ spec:
 
 ## Deploy rules
 
-1. Download the [template file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Argo/argocd-alerting-rules.json) and the [parameter file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Alert-Rules-Parameters.json).
+1. Download the [template file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Argo/argocd-alerting-rules.json) and the [parameter file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Alert-Rules-Parameters.json) for alerting rules.
 
 2. Edit the following values in the parameter file.
 

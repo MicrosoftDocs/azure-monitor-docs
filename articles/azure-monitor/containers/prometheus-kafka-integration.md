@@ -25,7 +25,7 @@ Install the [Prometheus Kafka Exporter](https://github.com/prometheus-community/
 helm install azmon-kafka-exporter --namespace=azmon-kafka-exporter --create-namespace --version 2.10.0 prometheus-community/prometheus-kafka-exporter --set kafkaServer="{kafka-server.namespace.svc:9092,.....}" --set prometheus.serviceMonitor.enabled=true --set prometheus.serviceMonitor.apiVersion=azmonitoring.coreos.com/v1
 ```
 
-You can configure the Kafka Exporter Helm chart with [values](https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml). Be sure to specify the right server addresses where the Kafka servers can be reached. Set the server addresses by using the argument `kafkaServer`.
+You can configure the Kafka Exporter Helm chart with [values](https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-kafka-exporter/values.yaml). Specify the right server addresses where the Kafka servers can be reached. Set the server addresses by using the argument `kafkaServer`.
 
 > [!NOTE]
 > A managed Prometheus service/pod monitor configuration with Helm chart installation is supported only with the Helm chart version 2.10.0 or later. If you want to configure any other service or pod monitors, follow [these instructions](prometheus-metrics-scrape-crd.md#create-a-pod-or-service-monitor).
@@ -36,7 +36,7 @@ To import the [Grafana dashboard (ID 7589) in the Kafka Exporter](https://grafan
 
 ## Deploy rules
 
-1. Download the [template file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Kafka/kafka-alerting-rules.json) and the [parameter file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Alert-Rules-Parameters.json).
+1. Download the [template file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Kafka/kafka-alerting-rules.json) and the [parameter file](https://github.com/Azure/prometheus-collector/blob/main/Azure-ARM-templates/Workload-Rules/Alert-Rules-Parameters.json) for alerting rules.
 
 2. Edit the following values in the parameter file.
 
