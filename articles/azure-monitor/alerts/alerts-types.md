@@ -2,7 +2,7 @@
 title: Types of Azure Monitor alerts
 description: This article explains the different types of Azure Monitor alerts and when to use each type.
 ms.topic: conceptual
-ms.date: 03/10/2024
+ms.date: 04/10/2024
 ---
 
 # Choosing the right type of alert rule
@@ -149,16 +149,6 @@ Stateful log search alerts have these limitations:
 > [!NOTE]
 > Log search alerts work best when you're trying to detect specific data in the logs, as opposed to when you're trying to detect a lack of data in the logs. Because logs are semi-structured data, they're inherently more latent than metric data on information like a VM heartbeat. To avoid misfires when you're trying to detect a lack of data in the logs, consider using [metric alerts](#metric-alerts). You can send data to the metric store from logs by using [metric alerts for logs](alerts-metric-logs.md).
 
-### Simple Log Alert
-
-A simple log  alert rule is a log search alert rules that is using a Log Analytics query to evaluate resource logs. If the conditions are met, an alert is fired. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.
-
-The target of the log search alert rule can be:
-
-* A single resource, such as a VM.
-* A Workspace
-* A single container of resources, like a resource group or subscription.
-
 ### Monitor multiple instances of a resource using dimensions
 
 You can use dimensions when you create log search alert rules to monitor the values of multiple instances of a resource with one rule. For example, you can monitor CPU usage on multiple instances running your website or app. Each instance is monitored individually. Notifications are sent for each instance.
@@ -186,6 +176,16 @@ Log search alerts are listed under resource provider `microsoft.insights/schedul
 
 > [!Note]
 > Unsupported resource characters like <, >, %, &, \, ? and / are replaced with an underscore (_) in the hidden resource names. This character change is also reflected in the billing information.
+
+## Simple log search alerts
+
+A simple log alert rule is a log search alert rules that is using a Log Analytics query to evaluate resource logs. If the conditions are met, an alert is fired. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.
+
+The target of the log search alert rule can be:
+
+* A single resource, such as a VM.
+* A Workspace
+* A single container of resources, like a resource group or subscription.
 
 ## Activity log alerts
 
