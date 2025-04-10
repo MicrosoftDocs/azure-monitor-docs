@@ -30,9 +30,9 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Windows Server 2016 Core                                 | ✓ |
 | Windows 11 Client and Pro                                | ✓<sup>1, 2</sup> |
 | Windows 11 Enterprise<br>(including multi-session)       | ✓ |
-| Windows 10 1803 (RS4) and later                         | ✓<sup>1</sup> |
+| Windows 10 1803 (RS4) and later                          | ✓<sup>1</sup> |
 | Windows 10 Enterprise<br>(including multi-session) and Pro<br>(server scenarios only)  | ✓ |
-| Azure Stack HCI                                          | ✓ |
+| Azure Local                                              | ✓ |
 | Windows IoT Enterprise                                   | ✓ |
 
 <sup>1</sup> Requires the Azure Monitor Agent [client installer](./azure-monitor-agent-windows-client.md) for Windows client devices.<br>
