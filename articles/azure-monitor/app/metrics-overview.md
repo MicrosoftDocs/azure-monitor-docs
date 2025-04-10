@@ -182,21 +182,21 @@ The *Availability* metric shows the percentage of the web test runs that didn't 
             <th>Aggregations</th>
             <th>Dimension name<br>(Metrics Explorer)</th>
             <th>Dimension name<br>(Log Analytics)</th>
-            <th>Cardinality limit</th>
+            <th align='right'>Cardinality limit</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td rowspan=2 style="justify-content: center">Percentage</td>
-            <td rowspan=2 style="justify-content: center">Avg</td>
-            <td>Run location</td>
-            <td>availabilityResult/location</td>
-            <td>50</td>
+            <td rowspan=2>Percentage</td>
+            <td rowspan=2>Avg</td>
+            <td><code>Run location</code></td>
+            <td><code>availabilityResult/location</code></td>
+            <td align='right'>50</td>
         </tr>
         <tr>
-            <td>Test name</td>
-            <td>availabilityResult/name</td>
-            <td>100</td>
+            <td><code>Test name</code></td>
+            <td><code>availabilityResult/name</code></td>
+            <td align='right'>100</td>
         </tr>
     </tbody>
 </table>
@@ -204,24 +204,86 @@ The *Availability* metric shows the percentage of the web test runs that didn't 
 #### Availability test duration (availabilityResults/duration)
 
 The *Availability test duration* metric shows how much time it took for the web test to run. For the [multi-step web tests](/previous-versions/azure/azure-monitor/app/availability-multistep), the metric reflects the total execution time of all steps.
-
+<!--
 | Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
 | Milliseconds    | Avg, Max, Min |                                      |                                   |                   |
 |                 |               | `Run location`                       | `availabilityResult/location`     | 50                |
 |                 |               | `Test name`                          | `availabilityResult/name`         | 100               |
 |                 |               | `Test result`                        | `availabilityResult/success`      | 2                 |
+-->
+<table>
+    <thead>
+        <tr>
+            <th>Unit of measure</th>
+            <th>Aggregations</th>
+            <th>Dimension name<br>(Metrics Explorer)</th>
+            <th>Dimension name<br>(Log Analytics)</th>
+            <th align='right'>Cardinality limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3>Milliseconds</td>
+            <td rowspan=3>Avg<br>Max<br>Min</td>
+            <td><code>Run location</code></td>
+            <td><code>availabilityResult/location</code></td>
+            <td align='right'>50</td>
+        </tr>
+        <tr>
+            <td><code>Test name</code></td>
+            <td><code>availabilityResult/name</code></td>
+            <td align='right'>100</td>
+        </tr>
+        <tr>
+            <td><code>Test result</code></td>
+            <td><code>availabilityResult/success</code></td>
+            <td align='right'>2</td>
+        </tr>
+    </tbody>
+</table>
 
 #### Availability tests (availabilityResults/count)
 
 The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
-
+<!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
 | Count           | Count        |                                      |                                   |                   |
 |                 |              | `Run location`                       | `availabilityResult/location`     | 50                |
 |                 |              | `Test name`                          | `availabilityResult/name`         | 100               |
 |                 |              | `Test result`                        | `availabilityResult/success`      | 2                 |
+-->
+<table>
+    <thead>
+        <tr>
+            <th>Unit of measure</th>
+            <th>Aggregations</th>
+            <th>Dimension name<br>(Metrics Explorer)</th>
+            <th>Dimension name<br>(Log Analytics)</th>
+            <th align='right'>Cardinality limit</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=3>Count</td>
+            <td rowspan=3>Count</td>
+            <td><code>Run location</code></td>
+            <td><code>availabilityResult/location</code></td>
+            <td align='right'>50</td>
+        </tr>
+        <tr>
+            <td><code>Test name</code></td>
+            <td><code>availabilityResult/name</code></td>
+            <td align='right'>100</td>
+        </tr>
+        <tr>
+            <td><code>Test result</code></td>
+            <td><code>availabilityResult/success</code></td>
+            <td align='right'>2</td>
+        </tr>
+    </tbody>
+</table>
 
 ### [Log-based](#tab/log-based)
 
