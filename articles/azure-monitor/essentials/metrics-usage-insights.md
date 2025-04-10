@@ -118,7 +118,7 @@ parameters('am_workspace_name'))]"
 
 In the **Monitoring** section of the menu for your Azure Monitor workspace, select **Diagnostic settings** and then **Add diagnostic setting**.
 
-    :::image type="content" source="./media/metrics-usage-insights/diagnostic-settings.png" lightbox="./media/metrics-usage-insights/diagnostic-settings.png" alt-text="A Screenshot showing the Diagnostic settings page.":::
+:::image type="content" source="./media/metrics-usage-insights/diagnostic-settings.png" lightbox="./media/metrics-usage-insights/diagnostic-settings.png" alt-text="A Screenshot showing the Diagnostic settings page.":::
 
 Perform the following configuration on the diagnostic setting page and select **Save**:
 
@@ -207,7 +207,7 @@ For a single Azure Monitor workspace, select **Insights (preview)** under **Moni
 
 To view a summary of all Azure Monitor workspaces in your subscription, select **Insights Hub** from the **Monitor** menu and then select **Azure Monitor workspaces**. Click on a workspace to view more details.
 
-:::image type="content" source="./media/metrics-usage-insights/azure-monitor-insights.png" lightbox="./media/metrics-usage-insights/azure-monitor-overview.png" alt-text="A screenshot showing the Azure Monitor Insights page.":::
+:::image type="content" source="./media/metrics-usage-insights/azure-monitor-insights.png" lightbox="./media/metrics-usage-insights/azure-monitor-insights.png" alt-text="A screenshot showing the Azure Monitor Insights page.":::
 
 The summary table of your Azure Monitor workspaces includes a table with the following columns:
 
