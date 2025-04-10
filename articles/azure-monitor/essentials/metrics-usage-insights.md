@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.date: 03/18/2025
 ---
 
-# Azure Monitor metrics usage insights (Preview)
+# Metrics usage insights (Preview)
 
 Azure Monitor metrics usage insights gives you actionable insights into metrics usage and cost optimization opportunities for your Azure monitor workspace. By providing information on time series and event usage, throttling limits, metrics usage trends, and unused metrics, you can take such actions as removing unused metrics and right-sizing resources. 
 
