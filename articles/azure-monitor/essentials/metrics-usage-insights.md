@@ -59,8 +59,7 @@ Use the following template and parameter file to create a new Azure Monitor work
         {
             "apiVersion": "2021-05-01-preview",
             "type": "Microsoft.Insights/diagnosticSettings",
-            "scope": "[format('microsoft.monitor/accounts/{0}', 
-parameters('am_workspace_name'))]",
+            "scope": "[format('microsoft.monitor/accounts/{0}', parameters('am_workspace_name'))]",
             "name": "MyDiagnosticSetting",
             "properties": {
                 "workspaceId": "/subscriptions/<subscriPtion ID>/resourcegroups/<resource group name>/providers/microsoft.operationalinsights/workspaces/<workspace name>",
@@ -88,8 +87,7 @@ parameters('am_workspace_name'))]",
                 "logAnalyticsDestinationType": null
             },
             "dependsOn": [
-                "[resourceId('microsoft.monitor/accounts', 
-parameters('am_workspace_name'))]"
+                "[resourceId('microsoft.monitor/accounts', parameters('am_workspace_name'))]"
             ]
         }
     ]
@@ -149,8 +147,7 @@ Template File:
         {
             "apiVersion": "2021-05-01-preview",
             "type": "Microsoft.Insights/diagnosticSettings",
-            "scope": "[format('microsoft.monitor/accounts/{0}', 
-parameters('am_workspace_name'))]",
+            "scope": "[format('microsoft.monitor/accounts/{0}', parameters('am_workspace_name'))]",
             "name": "MyDiagnosticSetting",
             "properties": {
                 "workspaceId": "/subscriptions/<subscription ID>/resourcegroups/<resourcegroup name>/providers/microsoft.operationalinsights/workspaces/<workspace name>",
