@@ -24,10 +24,7 @@ landingContent:
         links:
           - text: Learn about Azure Advisor
             url: advisor-overview.md
-      - linkListType: video
-        links:
-          - text: Azure Advisor videos
-            url: https://azure.microsoft.com/resources/videos/index/?services=advisor
+
   # Card 
   - title: Get started   
     linkLists:     
