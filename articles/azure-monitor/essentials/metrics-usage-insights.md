@@ -7,9 +7,9 @@ ms.date: 03/18/2025
 
 # Azure Monitor metrics usage insights (Preview)
 
-Azure Monitor metrics usage insights gives you actionable insights into metrics usage and cost optimization opportunities. Metrics usage insights monitors your Azure monitor workspace providing information on time series and event usage, throttling limits, metrics usage trends, and unused metrics. By providing an insight into metrics usage, it helps identify opportunities for optimization, such as removing unused metrics and right-sizing resources by analyzing usage patterns.
+Azure Monitor metrics usage insights gives you actionable insights into metrics usage and cost optimization opportunities for your Azure monitor workspace. By providing information on time series and event usage, throttling limits, metrics usage trends, and unused metrics, you can take such actions as removing unused metrics and right-sizing resources. 
 
-Azure Monitor metrics usage insights sends usage data to a Log analytics workspace for analysis. There's no extra cost for using metrics usage insights, and no charge for the data sent to the Log Analytics workspace, the queries, or the storage.
+Metrics usage insights sends usage data to a Log analytics workspace for analysis. There's no extra cost and no charge for the data sent to the Log Analytics workspace, the queries, or the storage.
 
 ## Supported regions
 
@@ -18,18 +18,15 @@ During the Preview, Azure Monitor metrics usage insights is available in the fol
 + TBD
 
 
-## Enabling Azure Monitor metrics usage insights
+## Enable metrics usage insights
 
-To enable metrics usage insights, you create a diagnostic setting to send  on the AMW to send insights data to Log Analytics Workspace (LAW).
+To enable metrics usage insights, you create a [diagnostic setting](../essentials/diagnostic-settings.md), which instructs the AMW to send data supporting the insights queries and workbooks to a [Log Analytics Workspace (LAW)](../logs/log-analytics-workspace-overview.md). You can either enable metrics usage insights at the time of creating a new Azure Monitor workspace, or enable it for an existing Azure Monitor workspace.
 
-Customers will be guided to enable metrics usage insights as part of the standard out of the box experience during new AMW resource creation where diagnostic settings will be created behind the scenes. For existing AMWs this will have to be configured using diagnostic settings as explained in the further sections.
-
-
-### Enable Azure Monitor metrics usage insights at creation time
+### Enable at creation time
 
 ### [Portal](#tab/portal)
 
-When you create a new Azure Monitor workspace, select **Enable insights** on the **Monitoring** tab of the **Create Azure Monitor workspace** page and specify a Log Analytics workspace. This will cause the diagnostic setting to be created when the Azure Monitor workspace is created.
+When you create a new Azure Monitor workspace, select **Enable insights** on the **Monitoring** tab of the **Create Azure Monitor workspace** page and specify a Log Analytics workspace. The required diagnostic setting will be created along with the Azure Monitor workspace.
 
 :::image type="content" source="./media/metrics-usage-insights/enable-insights.png" lightbox="./media/metrics-usage-insights/enable-insights.png"  alt-text="A screenshot showing the monitoring tab of the Create Azure Monitor workspace page.":::
 
@@ -115,23 +112,19 @@ parameters('am_workspace_name'))]"
 
 
 
-### Enable Azure Monitor metrics usage insights for an existing workspace
+### Enable for an existing workspace
 
 ### [Portal](#tab/portal)
 
-To enable metrics usage insights for an existing Azure Monitor workspace, you need to create a diagnostic setting.
-
-1. In the Azure portal, navigate to the Azure Monitor workspace.
-1. In the **Monitoring** section of the menu, select **Diagnostic settings**.
-1. Select **Add diagnostic setting**.
+In the **Monitoring** section of the menu for your Azure Monitor workspace, select **Diagnostic settings** and then **Add diagnostic setting**.
 
     :::image type="content" source="./media/metrics-usage-insights/diagnostic-settings.png" lightbox="./media/metrics-usage-insights/diagnostic-settings.png" alt-text="A Screenshot showing the Diagnostic settings page.":::
 
-1. On the diagnostic setting page, enter a **Diagnostic setting name**
-1. Select **allLogs**
-1. Under **Destination details**, select **Send to Log Analytics workspace**.
-1. Select a **Subscription** and a **Log Analytics workspace**.
-1. Select ** Save**.
+Perform the following configuration on the diagnostic setting page and select **Save**:
+
+- Provide a descriptive name for the **Diagnostic setting name**
+- Select **Send to Log Analytics workspace** and select a workspace to receive the data.
+- Select **allLogs** to send all logs for the Azure Monitor workspace to the Log Analytics workspace.
 
     :::image type="content" source="./media/metrics-usage-insights/configure-diagnostic-settings.png" lightbox="./media/metrics-usage-insights/configure-diagnostic-settings.png" alt-text="A screenshot showing the add diagnostic setting page.":::
 
@@ -205,77 +198,50 @@ Parameter File:
 ```
 ---
 
-## Azure Monitor metrics usage insights pages
+## Open metrics usage insights
+You can open metrics usage insights either for a single Azure Monitor workspace or for all Azure Monitor workspaces in your subscription.
 
-The Azure Monitor metrics usage insights pages show data for time series and events.
+For a single Azure Monitor workspace, select **Insights (preview)** under **Monitoring** or **Metrics usage insights** from the **Overview page**.
 
-+ **Time Series**  
-A time series is a set of data points or metric values for a given time.
+:::image type="content" source="./media/metrics-usage-insights/workspace-overview.png" lightbox="./media/metrics-usage-insights/workspace-overview.png" alt-text="A screenshot showing the Azure Monitor workspace overview page.":::
 
-+ **Active Time Series**  
- An active time series is a time series that was ingested into the workspace in the last 12 hours.
+To view a summary of all Azure Monitor workspaces in your subscription, select **Insights Hub** from the **Monitor** menu and then select **Azure Monitor workspaces**. Click on a workspace to view more details.
 
-+ **Events**  
-An event is a discrete metric value for a given time and set of dimensions.
+:::image type="content" source="./media/metrics-usage-insights/azure-monitor-insights.png" lightbox="./media/metrics-usage-insights/azure-monitor-overview.png" alt-text="A screenshot showing the Azure Monitor Insights page.":::
 
-### View Azure Monitor metrics usage insights
+The summary table of your Azure Monitor workspaces includes a table with the following columns:
 
-View the Azure Monitor metrics usage insights either directly form the Azure Monitor workspace resource page, or from in the Azure Monitor portal page.
+| Column | Description |
+|:---|:---|
+| Time series limit | The maximum number of time series you can ingest per minute. |
+| Active time series | The number of time series ingested per minute. |
+| Active time series timeline | A chart showing the active time series over time. |
+| Time series utilization (%) | The active time series as a percentage of the limit. |
+| Event limit | The maximum number of events you can ingest per minute. |
+| Events per minute ingested | The number of individual metric values ingested per minute. |
+| Events per minute ingested timeline | A chart showing the number of metric samples events ingested per minute over time. |
+| Events per minute utilization (%)| The number of metric samples events ingested per minute as a percentage of the limit. |
 
-1. To view the Azure Monitor workspace metrics from the Azure Monitor workspace resource page, navigate to the Azure Monitor workspace resource page. Under **Monitoring** select **Insights (preview)**.
 
-    :::image type="content" source="./media/metrics-usage-insights/workspace-overview.png" lightbox="./media/metrics-usage-insights/workspace-overview.png" alt-text="A screenshot showing the Azure Monitor workspace overview page.":::
+## Dashboards
+Metrics usage insights includes the dashboards described in the following sections.
 
+### Limits & usage
 
-1. To view the Azure Monitor metrics usage insights from the Azure Monitor workspace resource page, navigate to the Azure monitor overview page and select **View all insights**
-
-    :::image type="content" source="./media/metrics-usage-insights/azure-monitor-overview.png" lightbox="./media/metrics-usage-insights/azure-monitor-overview.png" alt-text="A screenshot showing the Azure Monitor overview page.":::
-
-1. Scroll down ans select **Azure Monitor workspaces**
-    :::image type="content" source="./media/metrics-usage-insights/azure-monitor-insights.png" lightbox="./media/metrics-usage-insights/azure-monitor-overview.png" alt-text="A screenshot showing the Azure Monitor Insights page.":::
-
-    The workbooks page shows a summary table of your Azure Monitor workspaces.
-    The table includes the following columns:
-
-    | Column                           | Description                                                                                           |
-    |----------------------------------|-------------------------------------------------------------------------------------------------------|
-    | Time series limit                | The maximum number of time series you can ingest per minute.                                          |
-    | Active time series               | The number of time series ingested per minute. |
-    | Active time series timeline      | A chart showing the active time series over time.                                                     |
-    | Time series utilization (%)      | The active time series as a percentage of the limit.                                                  |
-    | Event limit                      | The maximum number of events you can ingest per minute. |
-    | Events per minute ingested       | The number of individual metric values ingested per minute.                                           |
-    | Events per minute ingested timeline   | A chart showing the number of metric samples events ingested per minute over time.                    |
-    | Events per minute utilization (%)| The number of metric samples events ingested per minute as a percentage of the limit.                 |
-
- 1. Select a workspace to view more details.
-
-    :::image type="content" source="./media/metrics-usage-insights/insights-workbook.png" lightbox="./media/metrics-usage-insights/insights-workbook.png" alt-text="A screenshot showing the workbooks page.":::
-
-### Limits and usage page
-
-The limits and usage page gives you an overview of your Azure monitor workspace's current usage and throttling limits The page shows your time series and event ingestion against their limits and the percentage of the limit used. 
+**Limits & Usage** includes an overview of your Azure monitor workspace's current usage and throttling limits. This page shows the time series and event ingestion against their limits and the percentage of the limit used. 
 
 :::image type="content" source="./media/metrics-usage-insights/limits-and-usage.png" lightbox="./media/metrics-usage-insights/insights-workbook.png" alt-text="A screenshot showing the limits and usage page.":::
 
-## Account exploration page
+### Account Exploration
 
-The Account exploration page allows you to delve deeper into your workspace data and gain valuable 
-insights. Examine individual metrics to evaluate their financial implications, 
-observing their quantity, ingestion volume, and their role in the total cost of ingestion and storage.
-
+**Account Exploration** allows you to delve deeper into your workspace data and gain valuable insights. Examine individual metrics to evaluate their financial implications. Analyze their quantity, ingestion volume, and their role in the total cost of ingestion and storage.
 
 :::image type="content" source="./media/metrics-usage-insights/account-exploration.png" lightbox="./media/metrics-usage-insights/account-exploration.png" alt-text="A screenshot showing the account exploration page.":::
 
-The dashboard has three views:
-
-### Exploratory Table view
-
-The Exploratory table provides a high-level overview of the metrics ingested into the workspace. The 
-exploratory table has the following columns:
+The table on this page provides a high-level overview of the metrics ingested into the workspace. It has the following columns:
  
 | Column Name | Description|
-|------------|------------|
+|:---|:---|
 | Namespace |Namespace in the Azure Monitor the metric belongs to.|
 | Metric | The name of the metric that the insights are generated for|
 | Dimensions | The set of labels/dimensions being described. `*` indicates All Dimensions are included |
@@ -284,36 +250,30 @@ exploratory table has the following columns:
 | Last Queried (days ago) | The number of days from "Insights as of" date on the report when the a query was last run on the metric.
 | Number of Queries | The number of queries run on the metric as of the "Insights as of" date on the report.
 
-The table can be sorted by any of the columns by selecting the column header.
+
+**Top 10 metrics by recent growth view**<br>
+The bar chart gives insight into the disproportionate growth of a metric relative to other metrics. If you receive throttling alerts or want to check the growth of your workspace, use this chart to see which metrics are growing disproportionate to others and then check sampling and scraping frequencies. Unexpected negative growth may indicate a problem in the collection pipeline.
 
 
-### Top 10 metrics by recent growth view
-
-The bar chart gives an insight into the disproportionate growth of a metric or metrics relative to other metrics. 
-If you receive throttling alerts, or want to check the growth of your workspace, use this chart to see which metrics are growing the more than others, then check sampling and scraping frequencies. Unexpected negative growth may indicate a problem in the collection pipeline.
+**Daily time series trend by baseline period view**<br>
+The daily time series trend line for each metric can be used to identify sudden spikes or dips over a baseline period. A 28-day time range is used to establish a baseline for the number of daily time series for a metric and is compared to the average over 7 days.
 
 
-### Daily time series trend by baseline period view
+### Unused Metrics
 
-The daily time series trend line for each metric can be used to identify sudden spikes or dips over a baseline period. A 28-day time range is used to establish a baseline for the number of daily time series for a metric, and is compared to the average over 7 days
-
-
-## Unused metrics
-
-The unused page shows the metrics that haven't been used in a query for the specified duration. Select duration of 30, 60, and 90 days from the **Not Used In days** filter. The longer a metric remains unused, the more confident you can be that it will continue to be unused. Unused metrics don't provide value, and can be removed from the ingest processes to reduce ingestion and storage costs.
-Multiplying the ingested samples count that are unused by the meter rate gives an indicative cost of potential saving after deleting the unused metrics.
+**Unused Metrics** shows the metrics that haven't been used in a query for the duration specified in **Not Used In days**. The longer a metric remains unused, the more confident you can be that it can be removed from the ingest processes to reduce ingestion and storage costs. Multiplying the ingested samples count that are unused by the meter rate gives an indicative cost of potential saving after deleting the unused metrics.
 
 :::image type="content" source="./media/metrics-usage-insights/unused-metrics.png" lightbox="./media/metrics-usage-insights/unused-metrics.png" alt-text="A screenshot showing the unused metrics page.":::
 
 
 ## Advanced Analytics
 
-If you want to personalize the insights pages, you can modify the underlying queries behind the pages in a workbook.  
-
-Select **Workbooks** from the navigation pane, then select the **Usage Insights** workbook. When your changes are complete, save the customized workbook for reuse.
-
-For more information on workbooks, see [Azure Monitor workbooks](/azure/azure-monitor/visualize/workbooks-overview).
+If you want to personalize the insights pages, you can modify the underlying queries behind the pages in a workbook. Select **Workbooks** from the navigation pane, then select the **Usage Insights** workbook. When your changes are complete, save the customized workbook for reuse. For details on workbooks and guidance , see [Azure Monitor workbooks](/azure/azure-monitor/visualize/workbooks-overview).
 
 :::image type="content" source="./media/metrics-usage-insights/workbooks.png" lightbox="./media/metrics-usage-insights/workbooks.png" alt-text="A screenshot showing the workbooks gallery page.":::
+
+You can query historical data beyond the data range of the insights pages by accessing the Log Analytics workspace directly. The data is stored in the `AMWMetricsUsageDetails` table. See [Overview of Log Analytics in Azure Monitor](../logs/log-analytics-overview.md) if you aren't familiar with Log Analytics and [Log queries in Azure Monitor](../logs/log-query-overview.md) for guidance on writing queries.
+
+
 
 

@@ -1053,7 +1053,6 @@ items:
         - name: Monitor metrics ingestion limits
           displayName: Prometheus Azure Monitor workspace
           href: essentials/azure-monitor-workspace-monitor-ingest-limits.md
-          displayName: Azure Monitor workspace
         - name: Best practices for scaling
           href: essentials/azure-monitor-workspace-scaling-best-practice.md
         - name: Metrics usage insights
