@@ -21,6 +21,13 @@ The following versions include integrated support for TLS 1.2 or higher:
 - **Python**: Python distributions built with OpenSSL 1.0.1 or later
 - **Node.js**: Node.js version 10 or later
 
+**Example operating system support for TLS 1.2+**
+
+The following operating systems include integrated support for TLS 1.2 or higher:
+
+- **Windows**: Windows 8, Windows Server 2012, and later
+- **Linux**: Most modern Linux distributions that use OpenSSL 1.0.1 or later
+
 #### How do I ensure my resources aren't affected?
 
 To avoid service disruptions, each remote endpoint (including dependent requests) your resource interacts with needs to support at least one combination of the same Protocol Version, Cipher Suite, and Elliptical Curve mentioned earlier. If the remote endpoint doesn't support the needed TLS configuration, it needs to be updated with support for some combination of the above-mentioned post-deprecation TLS configuration.
