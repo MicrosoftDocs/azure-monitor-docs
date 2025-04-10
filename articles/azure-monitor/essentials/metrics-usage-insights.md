@@ -229,11 +229,11 @@ Metrics usage insights includes the dashboards described in the following sectio
 
 :::image type="content" source="./media/metrics-usage-insights/limits-and-usage.png" lightbox="./media/metrics-usage-insights/insights-workbook.png" alt-text="A screenshot showing the limits and usage page.":::
 
-### Account Exploration
+### Workspace Exploration
 
-**Account Exploration** allows you to delve deeper into your workspace data and gain valuable insights. Examine individual metrics to evaluate their financial implications. Analyze their quantity, ingestion volume, and their role in the total cost of ingestion and storage.
+**Workspace Exploration** allows you to delve deeper into your workspace data and gain valuable insights. Examine individual metrics to evaluate their financial implications. Analyze their quantity, ingestion volume, and their role in the total cost of ingestion and storage.
 
-:::image type="content" source="./media/metrics-usage-insights/account-exploration.png" lightbox="./media/metrics-usage-insights/account-exploration.png" alt-text="A screenshot showing the account exploration page.":::
+:::image type="content" source="./media/metrics-usage-insights/workspace-exploration.png" lightbox="./media/metrics-usage-insights/workspace-exploration.png" alt-text="A screenshot showing the workspace exploration page.":::
 
 The table on this page provides a high-level overview of the metrics ingested into the workspace. It has the following columns:
  
