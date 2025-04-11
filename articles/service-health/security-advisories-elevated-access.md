@@ -93,9 +93,9 @@ https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/
 ```
 Operation: GET
 
-The following properties in the events object response are not populated for sensitive Security Advisories events using this endpoint:
+The following properties in the events object response aren't populated for sensitive Security Advisories events using this endpoint:
 
-* Sumary
+* Summary
 * Description
 * Updates
 
