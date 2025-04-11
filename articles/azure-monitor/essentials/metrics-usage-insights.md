@@ -2,7 +2,7 @@
 title: Azure Monitor metrics usage insights (Preview)
 description: What is Azure Monitor metrics usage insights, and how to set it up.
 ms.topic: conceptual
-ms.date: 03/18/2025
+ms.date: 04/11/2025
 ---
 
 # Metrics usage insights (Preview)
@@ -10,6 +10,9 @@ ms.date: 03/18/2025
 Azure Monitor metrics usage insights gives you actionable insights into metrics usage and cost optimization opportunities for your Azure monitor workspace. By providing information on time series and event usage, throttling limits, metrics usage trends, and unused metrics, you can take such actions as removing unused metrics and right-sizing resources. 
 
 Metrics usage insights sends usage data to a Log analytics workspace for analysis. There's no extra cost and no charge for the data sent to the Log Analytics workspace, the queries, or the storage.
+
+> [!TIP]
+> Send data for multiple Azure Monitor workspaces to a single Log Analytics workspace. This simplifies your environment and allows you to analyze metrics usage across multiple workspaces and get a consolidated view of your Azure Monitor workspace usage. See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on when to create multiple workspaces.
 
 ## Supported regions
 
@@ -20,7 +23,7 @@ During the Preview, Azure Monitor metrics usage insights is available in the fol
 
 ## Enable metrics usage insights
 
-To enable metrics usage insights, you create a [diagnostic setting](../essentials/diagnostic-settings.md), which instructs the AMW to send data supporting the insights queries and workbooks to a [Log Analytics Workspace (LAW)](../logs/log-analytics-workspace-overview.md). You can either enable metrics usage insights at the time of creating a new Azure Monitor workspace, or enable it for an existing Azure Monitor workspace.
+To enable metrics usage insights, you create a [diagnostic setting](../essentials/diagnostic-settings.md), which instructs the AMW to send data supporting the insights queries and workbooks to a [Log Analytics Workspace (LAW)](../logs/log-analytics-workspace-overview.md). You'll be prompted to enable it automatically when you create a new Azure Monitor workspace. You can enable it later for an existing Azure Monitor workspace.
 
 ### Enable at creation time
 
@@ -233,8 +236,12 @@ Metrics usage insights includes the dashboards described in the following sectio
 
 **Workspace Exploration** allows you to delve deeper into your workspace data and gain valuable insights. Examine individual metrics to evaluate their financial implications. Analyze their quantity, ingestion volume, and their role in the total cost of ingestion and storage.
 
+> [!NOTE]
+> The data in this dashboard is calculated once per day for each metric. The data is current as of the previous day.
+
 :::image type="content" source="./media/metrics-usage-insights/workspace-exploration.png" lightbox="./media/metrics-usage-insights/workspace-exploration.png" alt-text="A screenshot showing the workspace exploration page.":::
 
+**Metric summary table**
 The table on this page provides a high-level overview of the metrics ingested into the workspace. It has the following columns:
  
 | Column Name | Description|
@@ -258,7 +265,7 @@ The daily time series trend line for each metric can be used to identify sudden 
 
 ### Unused Metrics
 
-**Unused Metrics** shows the metrics that haven't been used in a query for the duration specified in **Not Used In days**. The longer a metric remains unused, the more confident you can be that it can be removed from the ingest processes to reduce ingestion and storage costs. Multiplying the ingested samples count that are unused by the meter rate gives an indicative cost of potential saving after deleting the unused metrics.
+**Unused Metrics** shows the metrics that haven't been used in a query for the duration specified in **Not Used In days**. The longer a metric remains unused, the more confident you can be that it can be removed from the ingest processes to reduce ingestion and storage costs. Multiplying the ingested samples count that are unused by the meter rate gives an indication of potential saving after deleting the unused metrics. Adjust your scrape job settings in the Prometheus settings to stop collecting unused data.
 
 :::image type="content" source="./media/metrics-usage-insights/unused-metrics.png" lightbox="./media/metrics-usage-insights/unused-metrics.png" alt-text="A screenshot showing the unused metrics page.":::
 
