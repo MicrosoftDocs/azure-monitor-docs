@@ -23,7 +23,7 @@ This article explains what is communicated to users, and where they can view inf
 Given the sensitive nature of security incidents, role-based access is used to limit the audience of their impacted resource information. <!--
 Along with resource information, Service Health provides the information shown here to users whose resources are impacted from a security incident: -->
 
-Users authorized with the following roles can view security impacted resource information and sensitive details such as description, summary and updates:
+Users authorized with the following roles can view security impacted resource information and sensitive details such as description, summary, and updates:
 
 **Subscription level**
 - Subscription Owner
@@ -37,7 +37,7 @@ Users authorized with the following roles can view security impacted resource in
 - Custom Roles with <br>Microsoft.ResourceHealth/events/fetchEventDetails/action <br>Microsoft.ResourceHealth/events/listSecurityAdvisoryImpactedResources/action <br>Microsoft.ResourceHealth/events/action permissions
 ## Viewing Impacted Resources for Security Incidents on the Service Health Portal
 
-In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Security Advisories** displays resources impacted from a security incident. Along with resource information, Service Health provides the information shown here to users whose resources are impacted by a security incident:
+In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Security Advisories** displays resources impacted from a security incident. Along with resource information, Service Health provides the information shown here to users whose resources are impacted from a security incident:
 
 |Column  |Description |
 |---------|---------|
