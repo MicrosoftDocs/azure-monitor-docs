@@ -34,7 +34,7 @@ Subcategory: Other
 
 #### Add subnet delegation for 'Microsoft.Kusto/clusters'  
   
-If a subnet isn’t delegated, the associated Azure service won’t be able to operate within it. Your subnet doesn’t have the required delegation. Delegate your subnet for 'Microsoft.Kusto/clusters'.  
+If a subnet isn't delegated, the associated Azure service won't be able to operate within it. Your subnet doesn't have the required delegation. Delegate your subnet for 'Microsoft.Kusto/clusters'.  
   
 **Potential benefits**: Improve reliability, availability, performance, and new feature capabilities  
 

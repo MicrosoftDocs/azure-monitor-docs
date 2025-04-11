@@ -42,7 +42,7 @@ Create a service principal in your Microsoft Entra tenant by using the instructi
 - Create new client secret for this app.
 - Save the key and the client ID for use in later steps.
 
-Give this app “Monitoring Metrics Publisher” permissions to the resource that you want to emit metrics against. You can use a resource group or an entire subscription.  
+Give this app **Monitoring Metrics Publisher** permissions to the resource that you want to emit metrics against. You can use a resource group or an entire subscription.  
 
 > [!NOTE]
 > The Diagnostics extension uses the service principal to authenticate against Azure Monitor and emit metrics for your classic VM.
@@ -95,7 +95,7 @@ Give this app “Monitoring Metrics Publisher” permissions to the resource tha
     <IsEnabled>true</IsEnabled>
     </DiagnosticsConfiguration>
     ```
-1. In the “SinksConfig” section of your diagnostics file, define a new Azure Monitor sink, as follows:
+1. In the `SinksConfig` section of your diagnostics file, define a new Azure Monitor sink, as follows:
 
     ```xml
     <SinksConfig>
@@ -144,7 +144,7 @@ Give this app “Monitoring Metrics Publisher” permissions to the resource tha
 1. Start by setting the context for your classic VM.
 
     ```powershell
-    $VM = Get-AzureVM -ServiceName <VM’s Service_Name> -Name <VM Name>
+    $VM = Get-AzureVM -ServiceName <VM's Service_Name> -Name <VM Name>
     ```
 
 1. Set the context of the classic storage account that was created with the VM.
@@ -153,19 +153,19 @@ Give this app “Monitoring Metrics Publisher” permissions to the resource tha
     $StorageContext = New-AzStorageContext -StorageAccountName <name of your storage account from earlier steps> -storageaccountkey "<storage account key from earlier steps>"
     ```
 
-1.	Set the Diagnostics file path to a variable by using the following command:
+1. Set the Diagnostics file path to a variable by using the following command:
 
     ```powershell
-    $diagconfig = “<path of the diagnostics configuration file with the Azure Monitor sink configured>”
+    $diagconfig = "<path of the diagnostics configuration file with the Azure Monitor sink configured>"
     ```
 
-1.	Prepare the update for your classic VM with the diagnostics file that has the Azure Monitor sink configured.
+1. Prepare the update for your classic VM with the diagnostics file that has the Azure Monitor sink configured.
 
     ```powershell
     $VM_Update = Set-AzureVMDiagnosticsExtension -DiagnosticsConfigurationPath $diagconfig -VM $VM -StorageContext $Storage_Context
     ```
 
-1.	Deploy the update to your VM by running the following command:
+1. Deploy the update to your VM by running the following command:
 
     ```powershell
     Update-AzureVM -ServiceName "ClassicVMWAD7216" -Name "ClassicVMWAD" -VM $VM_Update.VM
@@ -176,19 +176,20 @@ Give this app “Monitoring Metrics Publisher” permissions to the resource tha
 
 ## Plot the metrics in the Azure portal
 
-1.	Go to the Azure portal. 
+1. Go to the Azure portal. 
 
-1.	On the left menu, select **Monitor.**
+1. On the left menu, select **Monitor.**
 
-1.	On the **Monitor** pane on the left, select **Metrics**.
+1. On the **Monitor** pane on the left, select **Metrics**.
 
-    :::image type="content" source="./media/collect-custom-metrics-guestos-vm-classic/navigate-metrics.png" lightbox="./media/collect-custom-metrics-guestos-vm-classic/navigate-metrics.png" alt-text="Navigate metrics":::
+   :::image type="content" source="./media/collect-custom-metrics-guestos-vm-classic/navigate-metrics.png" lightbox="./media/collect-custom-metrics-guestos-vm-classic/navigate-metrics.png" alt-text="Navigate metrics":::
 
 1. In the resources drop-down menu, select your classic VM.
 
 1. In the namespaces drop-down menu, select **azure.vm.windows.guest**.
 
 1. In the metrics drop-down menu, select **Memory\Committed Bytes in Use**.
+
    :::image type="content" source="./media/collect-custom-metrics-guestos-vm-classic/plot-metrics.png" lightbox="./media/collect-custom-metrics-guestos-vm-classic/plot-metrics.png" alt-text="Plot metrics":::
 
 

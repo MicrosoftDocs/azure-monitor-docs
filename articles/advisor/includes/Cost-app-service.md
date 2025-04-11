@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 04/01/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost App Service
@@ -22,7 +22,7 @@ Your App Service plan has no apps running. Consider deleting the resource to sav
 
 **Impact:** Medium
   
-For more information, see [Cost recommendations - Azure Advisor ](https://aka.ms/appsvcplan)  
+  
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: 39a8510f-5bbf-4304-9bcd-4106c996473b  
@@ -40,7 +40,7 @@ We've analyzed the usage patterns of your app service plan over the past 7 days 
 
 **Impact:** Medium
   
-For more information, see [Cost recommendations - Azure Advisor ](https://aka.ms/appsvcplan)  
+  
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: cc9d34f5-f9b8-4d4f-9de7-98b45c698a49  

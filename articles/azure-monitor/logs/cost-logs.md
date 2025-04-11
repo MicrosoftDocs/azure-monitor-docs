@@ -10,7 +10,7 @@ ms.date: 12/09/2024
 
 The most significant charges for most Azure Monitor implementations are typically ingestion and retention of data in your Log Analytics workspaces. Several features in Azure Monitor don't have a direct cost but add to the workspace data that's collected. This article describes how data charges are calculated for your Log Analytics workspaces and the various configuration options that affect your costs.
 
-[!INCLUDE [azure-monitor-cost-optimization](../../../includes/azure-monitor-cost-optimization.md)]
+[!INCLUDE [azure-monitor-cost-optimization](../fundamentals/includes/azure-monitor-cost-optimization.md)]
 
 
 ## Pricing model
@@ -166,10 +166,11 @@ In some scenarios, combining this data can result in cost savings. Typically, th
 - [SecurityDetection](/azure/azure-monitor/reference/tables/securitydetection)
 - [SecurityEvent](/azure/azure-monitor/reference/tables/securityevent)
 - [WindowsFirewall](/azure/azure-monitor/reference/tables/windowsfirewall)
-- [SysmonEvent](/azure/azure-monitor/reference/tables/sysmonevent)
 - [ProtectionStatus](/azure/azure-monitor/reference/tables/protectionstatus)
 - [Update](/azure/azure-monitor/reference/tables/update) and [UpdateSummary](/azure/azure-monitor/reference/tables/updatesummary) when the Update Management solution isn't running in the workspace or solution targeting is enabled.
 - [MDCFileIntegrityMonitoringEvents](/azure/azure-monitor/reference/tables/mdcfileintegritymonitoringevents)
+- [WindowsEvent](/azure/azure-monitor/reference/tables/windowsevent)
+- [LinuxAuditLog](/azure/azure-monitor/reference/tables/linuxauditlog)
 
 If the workspace is in the legacy Per Node pricing tier, the Defender for Cloud and Log Analytics allocations are combined and applied jointly to all billable ingested data. If the workspace has Microsoft Sentinel enabled on it, if Sentinel is using a classic pricing tier, the Defender data allocation applies only for the Log Analytics data ingestion billing, but not the classic Sentinel billing. If Sentinel is using a [simplified pricing tier](/azure/sentinel/enroll-simplified-pricing-tier), the Defender data allocation applies to the unified Sentinel billing. To learn more on how Microsoft Sentinel customers can benefit, see the [Microsoft Sentinel Pricing page](https://azure.microsoft.com/pricing/details/microsoft-sentinel/).
 
@@ -238,6 +239,7 @@ The legacy Per Node has very complex pricing calculations. It is recommended to 
 
 If you have a workspace in the legacy Per Node tier, you can compare your costs from operating in this pricing tier by [exporting your detailed usage](../cost-usage.md#export-usage-details) with the monthly cost estimates provided for the Pay-as-you-go or a Commitment Tiers in your workspace's [Usage and estimated cost](change-pricing-tier.md) page. 
 
+Note that when a workspace is in the legacy Per Node pricing tier, retention is billed on the **Standard Data Retention** meter (see [Azure Monitor billing meters](../cost-meters.md)). This meter has a single global price, not the regional pricing variation of the current Data Retention meter used by Pay-as-you-go and Commitment Tier billing.  
 
 ## Next steps
 

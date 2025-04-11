@@ -160,7 +160,7 @@ Subcategory: Other
 
 #### Upgrade your App Service to a Standard plan to avoid request rejects  
   
-When an application is part of a shared App Service plan and meets its quota multiple times, incoming requests might be rejected. Your web application can’t accept incoming requests after meeting a quota. To remove the quota, upgrade to a Standard plan.  
+When an application is part of a shared App Service plan and meets its quota multiple times, incoming requests might be rejected. Your web application can't accept incoming requests after meeting a quota. To remove the quota, upgrade to a Standard plan.  
   
 **Potential benefits**: Keep your app healthy  
 

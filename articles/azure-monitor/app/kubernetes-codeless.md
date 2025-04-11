@@ -325,7 +325,7 @@ The following steps can help to resolve problems when no data appears in your Ap
     
     If the annotation **is present**, then the deployment is instrumented and you should proceed to the next step.
 
-3. Check for networking errors in the SDK log located in the pod’s logs volume, `/var/log/applicationinsights`.
+3. Check for networking errors in the SDK log located in the pod's logs volume, `/var/log/applicationinsights`.
     
     As an example, the following errors indicate a connectivity problem.
     
@@ -340,7 +340,7 @@ The following steps can help to resolve problems when no data appears in your Ap
     If connectivity can't be established, then troubleshoot the network connectivity problem such as a firewall or name resolution issue.
 
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## Next steps
 

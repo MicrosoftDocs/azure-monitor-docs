@@ -208,11 +208,11 @@ Configure Prometheus as a data source using the following steps:
 
 This section provides answers to common questions.
 
-[!INCLUDE [prometheus-faq-i-am-missing-some-metrics](../includes/prometheus-faq-i-am-missing-some-metrics.md)]
+[!INCLUDE [prometheus-faq-i-am-missing-some-metrics](includes/prometheus-faq-i-am-missing-some-metrics.md)]
 
-[!INCLUDE [prometheus-faq-i-am-missing-metrics-with-same-name-different-casing](../includes/prometheus-faq-i-am-missing-metrics-with-same-name-different-casing.md)]
+[!INCLUDE [prometheus-faq-i-am-missing-metrics-with-same-name-different-casing](includes/prometheus-faq-i-am-missing-metrics-with-same-name-different-casing.md)]
 
-[!INCLUDE [prometheus-faq-i-see-gaps-in-metric-data](../includes/prometheus-faq-i-see-gaps-in-metric-data.md)]
+[!INCLUDE [prometheus-faq-i-see-gaps-in-metric-data](includes/prometheus-faq-i-see-gaps-in-metric-data.md)]
 
 ## Next steps
 - [Collect Prometheus metrics for your AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).

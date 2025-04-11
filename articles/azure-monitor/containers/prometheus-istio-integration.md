@@ -7,18 +7,18 @@ ms.reviewer: sunasing
 ---
 # Collect Istio metrics with Azure Managed Prometheus
 
-[Istio](https://istio.io/) is an open-source service mesh that layers transparently onto existing distributed applications. Istio’s powerful features provide a uniform and more efficient way to secure, connect, and monitor services especially in a distributed application architecture. It helps developers handle service-to-service interactions by providing features like traffic management, observability, security, and policy enforcement without modifying application code. Istio is widely used in modern cloud-native applications, especially on Kubernetes.
+[Istio](https://istio.io/) is an open-source service mesh that layers transparently onto existing distributed applications. Istio's powerful features provide a uniform and more efficient way to secure, connect, and monitor services especially in a distributed application architecture. It helps developers handle service-to-service interactions by providing features like traffic management, observability, security, and policy enforcement without modifying application code. Istio is widely used in modern cloud-native applications, especially on Kubernetes.
 
-Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on](/azure/aks/istio-about) that is officially supported and tested for integration with AKS.
+Azure Kubernetes Service (AKS) now provides an [Istio-based service mesh add-on](/azure/aks/istio-about) that is officially supported and tested for integration with AKS and Azure Arc-enabled Kubernetes.
 
 Azure Monitor managed service for Prometheus allows you to collect and analyze metrics at scale. Prometheus metrics are stored in Azure Monitor Workspaces. The workspace supports analysis tools like Azure Managed Grafana, Azure Monitor metrics explorer with PromQL, and open source tools such as PromQL and Grafana.
 
-This document provides step-by-step guide on how you can use Azure Monitor managed service for Prometheus to collect Istio metrics, either using open-source Istio or AKS service-mesh Istio add-on, and visualize them in Azure Managed Grafana.
+This document provides step-by-step guide on how you can use Azure Monitor managed service for Prometheus to collect Istio metrics, either using open-source Istio service-mesh Istio add-on with AKS or Azure Arc-enabled Kubernetes, and visualize them in Azure Managed Grafana.
 
 ## Prerequisites
 
-1.	Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli). If you are using AKS Istio add-on, you need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
-2.	Kubectl installed to interact with your Kubernetes cluster. 
+1.    Azure CLI installed and configured. To install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli). If you are using AKS Istio add-on, you need Azure CLI version 2.57.0 or later installed. You can run az --version to verify version.
+2.    Kubectl installed to interact with your Kubernetes cluster. 
 
 ## Limitations
 
@@ -58,11 +58,11 @@ az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 
 To collect metrics from your Istio setup with Managed Prometheus, you can use pod annotations which are automatically set up with Istio. You need to enable pod annotation based scraping in Managed Prometheus.
 
-To enable the same, customize the Managed Prometheus configmap: ama-metrics-settings-configmap.yaml to include the istio-system namespace and the namespaces that istio sidecar is set up. For example, if you have set up istio to inject the sidecar in “my-namespace”, update the configmap as below:
+To enable the same, customize the Managed Prometheus configmap: ama-metrics-settings-configmap.yaml to include the istio-system namespace and the namespaces that istio sidecar is set up. For example, if you have set up istio to inject the sidecar in `my-namespace`, update the configmap as below:
 
 ```yaml
 pod-annotation-based-scraping: |-
-    podannotationnamespaceregex = "istio-system|my-namespace"
+    podannotationnamespaceregex = "aks-istio-system|my-namespace"
 ```
 
 
@@ -83,8 +83,8 @@ The metrics scraped from Istio are stored in the Azure Monitor workspace that is
 
 View Istio metrics in the Azure Monitor Workspace using the following steps:
 
-1.	In the Azure portal, navigate to your AKS cluster.
-2.	Under Monitoring, select Insights and then Monitor Settings.
+1.    In the Azure portal, navigate to your AKS cluster.
+2.    Under Monitoring, select Insights and then Monitor Settings.
 
 :::image type="content" source="./media/monitor-kubernetes/amp-istio-query.png" lightbox="./media/monitor-kubernetes/amp-istio-query.png" alt-text="Diagram that shows how to view the Azure Monitor Workspace.":::
 
@@ -103,7 +103,7 @@ To import the Grafana Dashboards using the ID or JSON, follow the instructions t
 
 ## Summary
 
-In this tutorial, we demonstrated how to configure Azure Managed Prometheus for collecting metrics from open-source Istio or AKS service-mesh Istio add-on. We then showed how to query the collected metrics in Azure Monitor. By following these steps, you can effectively monitor Istio using Managed Prometheus on Azure, gaining valuable insights into your applications’ performance and behavior.
+In this tutorial, we demonstrated how to configure Azure Managed Prometheus for collecting metrics from open-source Istio or AKS service-mesh Istio add-on. We then showed how to query the collected metrics in Azure Monitor. By following these steps, you can effectively monitor Istio using Managed Prometheus on Azure, gaining valuable insights into your applications' performance and behavior.
 
 ## Troubleshooting
 

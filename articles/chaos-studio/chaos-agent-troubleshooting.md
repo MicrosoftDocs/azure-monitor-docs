@@ -43,7 +43,7 @@ If the Chaos Agent fails to install or appears unhealthy, follow these debugging
 Even when the agent is installed, it may not communicate properly if network connectivity is disrupted.
 
 - **Symptoms:**  
-  - The agent’s **Handler status** doesn't show `Ready`.
+  - The agent's **Handler status** doesn't show `Ready`.
   - Logs indicate failure to reach the Chaos Studio agent service endpoint.
 
 - **Troubleshooting Steps:**
@@ -59,14 +59,14 @@ Even when the agent is installed, it may not communicate properly if network con
   4. **Private Link Configuration:**  
      For environments configured with Private Link, ensure that:
      a. The Private Endpoint is correctly set up and approved.
-     b. DNS resolution is updated so that the Chaos Agent service domain resolves to the Private Endpoint’s IP.
-     c. The agent’s configuration is updated accordingly.
+     b. DNS resolution is updated so that the Chaos Agent service domain resolves to the Private Endpoint's IP.
+     c. The agent's configuration is updated accordingly.
   
 ---
 
 ## Agent Status and Health Checks
 
-The agent reports two key statuses on the VM’s **Extensions + applications** blade:
+The agent reports two key statuses on the VM's **Extensions + applications** blade:
 
 - **Status Field:**  
   - `Provisioning succeeded`: Indicates the extension was deployed successfully.
@@ -121,7 +121,7 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 | **Error Message** | **Cause** | **Solution** |
 |-------------------|-----------|--------------|
-| "Failed to register agent due to credential error." | The VM’s managed identity isn't configured correctly. | Verify that the VM has the correct user-assigned managed identity attached and that it has the required permissions. Refer to the [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) page for detailed steps. |
+| "Failed to register agent due to credential error." | The VM's managed identity isn't configured correctly. | Verify that the VM has the correct user-assigned managed identity attached and that it has the required permissions. Refer to the [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md) page for detailed steps. |
 
 ### Missing Prerequisites for Fault Execution
 
@@ -133,9 +133,9 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 | **Error Message** | **Cause** | **Solution** |
 |-------------------|-----------|--------------|
-| "The agent log shows an inability to connect to ```https://<region>.agents.chaos-prod.azure.com.```" | Outbound network traffic is blocked. | Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint’s IP. |
+| "The agent log shows an inability to connect to ```https://<region>.agents.chaos-prod.azure.com.```" | Outbound network traffic is blocked. | Update NSG rules to allow HTTPS traffic to the Chaos Agent service endpoint. Consider using the ChaosStudio service tag for outbound rules. For environments with Private Link, ensure DNS resolves correctly to the Private Endpoint's IP. |
 
-### Extension time-out or “ExtensionHandlerFailed”
+### Extension time-out or `ExtensionHandlerFailed`
 
 | **Error Message** | **Cause** | **Solution** |
 |-------------------|-----------|--------------|
@@ -144,10 +144,10 @@ Some other issues and their accompanying solutions for the Chaos agent.
 
 ## More Resources
 
-• This document is intended to help users quickly diagnose and resolve issues with the Chaos Agent. For further assistance, refer to our support channels or visit the Azure Chaos Studio community forums.<br>
-• [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md)<br> 
-• [OS Support and Compatibility](chaos-agent-os-support.md)<br>
-• [Private Link and Network Security](chaos-studio-private-link-agent-service.md)<br>
-• [Chaos Agent Known Issues](chaos-agent-known-issues.md)<br>
+* This document is intended to help users quickly diagnose and resolve issues with the Chaos Agent. For further assistance, refer to our support channels or visit the Azure Chaos Studio community forums.<br>
+* [Install and Configure Chaos Agent](chaos-studio-tutorial-agent-based-portal.md)<br> 
+* [OS Support and Compatibility](chaos-agent-os-support.md)<br>
+* [Private Link and Network Security](chaos-studio-private-link-agent-service.md)<br>
+* [Chaos Agent Known Issues](chaos-agent-known-issues.md)<br>
 
 ---

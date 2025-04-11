@@ -141,7 +141,7 @@ ALTER ROLE [db_owner] ADD MEMBER [UserName]
 
 ### Configure the health check rule
 
-The System Center Operations Manager Health Check solution’s management pack includes a rule named *Microsoft System Center Operations Manager Run Health Check Rule*. This rule is responsible for running the health check. To enable the rule and configure the frequency, use the procedures below.
+The System Center Operations Manager Health Check solution's management pack includes a rule named *Microsoft System Center Operations Manager Run Health Check Rule*. This rule is responsible for running the health check. To enable the rule and configure the frequency, use the procedures below.
 
 By default, the Microsoft System Center Operations Manager Run Health Check Rule is disabled. To run the health check, you must enable the rule on a management server. Use the following steps.
 
@@ -266,7 +266,7 @@ If you have recommendations that you want to ignore, you can create a text file 
 
 ## Frequently asked questions
 
-*I added the Health Check solution to my Log Analytics workspace. But I don’t see the recommendations. Why not?* After adding the solution, use the following steps view the recommendations on the Log Analytics dashboard.  
+*I added the Health Check solution to my Log Analytics workspace. But I don't see the recommendations. Why not?* After adding the solution, use the following steps view the recommendations on the Log Analytics dashboard.  
 
 - [Set the Run As account for System Center Operations Manager Health Check](#operations-manager-run-as-accounts-for-log-analytics)  
 - [Configure the System Center Operations Manager Health Check rule](#configure-the-health-check-rule)
@@ -274,7 +274,7 @@ If you have recommendations that you want to ignore, you can create a text file 
 
 *Is there a way to configure how often the check runs?* Yes. See [Configure the run frequency](#configure-the-run-frequency).
 
-*If another server is discovered after I’ve added the System Center Operations Manager Health Check solution, will it be checked?* Yes, after discovery it is checked from then on, by default every seven days.
+*If another server is discovered after I've added the System Center Operations Manager Health Check solution, will it be checked?* Yes, after discovery it is checked from then on, by default every seven days.
 
 *What is the name of the process that does the data collection?* AdvisorAssessment.exe
 

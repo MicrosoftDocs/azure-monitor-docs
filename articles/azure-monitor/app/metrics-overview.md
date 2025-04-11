@@ -16,7 +16,7 @@ Standard metrics in Application Insights are predefined metrics which are automa
 
 #### Log-based metrics
 
-Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. The underlying logs **aren't preaggregated** at the collection or storage time and retain all properties of each log entry. This retention makes it possible to use log properties as dimensions on log-based metrics at query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](sampling-classic-api.md) and [telemetry filtering](api-filtering-sampling.md#filtering), commonly used with monitoring applications generating large volumes of telemetry, impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
+Log-based metrics in Application Insights are a query-time concept, represented as a time series on top of the log data of your application. The underlying logs **aren't preaggregated** at the collection or storage time and retain all properties of each log entry. This retention makes it possible to use log properties as dimensions on log-based metrics at query time for [metric chart filtering](../essentials/analyze-metrics.md#add-filters) and [metric splitting](../essentials/analyze-metrics.md#apply-metric-splitting), giving log-based metrics superior analytical and diagnostic value. However, telemetry volume reduction techniques such as [sampling](opentelemetry-sampling.md) and [telemetry filtering](api-filtering-sampling.md#filtering), commonly used with monitoring applications generating large volumes of telemetry, impacts the quantity of the collected log entries and therefore reduce the accuracy of log-based metrics.
 
 #### Custom metrics (preview)
 
@@ -1177,7 +1177,7 @@ To access your data directly, pass the parameter `ai.include-query-payload` to t
 api.applicationinsights.io/v1/apps/DEMO_APP/metrics/users/authenticated?api_key=DEMO_KEY&prefer=ai.include-query-payload
 ```
 
-The following is an example of a return KQL statement for the metric "Authenticated Users.” (In this example, `"users/authenticated"` is the metric ID.)
+The following is an example of a return KQL statement for the metric `Authenticated Users`. (In this example, `"users/authenticated"` is the metric ID.)
 
 ```Kusto
 output

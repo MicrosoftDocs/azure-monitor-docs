@@ -11,7 +11,7 @@ ms.reviewer: cithomas
 
 # Filter and preprocess telemetry in the Application Insights SDK
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 You can write code to filter, modify, or enrich your telemetry before it's sent from the SDK. The processing includes data that's sent from the standard telemetry modules, such as HTTP request collection and dependency collection.
 
@@ -79,7 +79,7 @@ To filter telemetry, you write a telemetry processor and register it with `Telem
     }
     ```
 
-2. Add your processor.
+1. Add your processor.
 
     #### [ASP.NET](#tab/dotnet)
     
@@ -182,8 +182,6 @@ If you want to diagnose only calls that are slow, filter out the fast ones.
 
 > [!NOTE]
 > This filtering will skew the statistics you see on the portal.
->
->
 
 ```csharp
 public void Process(ITelemetry item)
@@ -223,11 +221,11 @@ You can filter telemetry from JavaScript web applications by using ITelemetryIni
     };
     ```
 
-2. Add your telemetry initializer callback:
+1. Add your telemetry initializer callback:
 
-   ```js
-   appInsights.addTelemetryInitializer(filteringFunction);
-   ```
+    ```js
+    appInsights.addTelemetryInitializer(filteringFunction);
+    ```
 
 ## Add/modify properties: ITelemetryInitializer
 
@@ -278,7 +276,7 @@ If you provide a telemetry initializer, it's called whenever any of the Track*()
     }
     ```
 
-2. Load your initializer
+1. Load your initializer
 
     #### [ASP.NET](#tab/dotnet)
     
@@ -361,7 +359,7 @@ const appInsights = new ApplicationInsights({ config: {
 } });
 appInsights.loadAppInsights();
 // To insert a telemetry initializer, uncomment the following code.
-/** var telemetryInitializer = (envelope) => {   envelope.data = envelope.data || {}; envelope.data.someField = 'This item passed through my telemetry initializer'; 
+/** var telemetryInitializer = (envelope) => { envelope.data = envelope.data || {}; envelope.data.someField = 'This item passed through my telemetry initializer'; 
  };
 appInsights.addTelemetryInitializer(telemetryInitializer); **/ 
 appInsights.trackPageView();
@@ -548,12 +546,12 @@ What's the difference between telemetry processors and telemetry initializers?
 
 ## Azure Monitor Telemetry Data Types Reference
 
- * [ASP.NET Core SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
- * [ASP.NET SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
- * [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes)
- * [Java SDK (via config)](/azure/azure-monitor/app/java-in-process-agent#modify-telemetry)
- * [Python SDK](https://github.com/census-instrumentation/opencensus-python/blob/master/contrib/opencensus-ext-azure/opencensus/ext/azure/common/protocol.py)
- * [JavaScript SDK](https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon/src/Telemetry)
+* [ASP.NET Core SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
+* [ASP.NET SDK](/dotnet/api/microsoft.applicationinsights.datacontracts)
+* [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-node.js/tree/develop/Declarations/Contracts/TelemetryTypes)
+* [Java SDK (via config)](/azure/azure-monitor/app/java-in-process-agent#modify-telemetry)
+* [Python SDK](https://github.com/census-instrumentation/opencensus-python/blob/master/contrib/opencensus-ext-azure/opencensus/ext/azure/common/protocol.py)
+* [JavaScript SDK](https://github.com/microsoft/ApplicationInsights-JS/tree/master/shared/AppInsightsCommon/src/Telemetry)
 
 ## Reference docs
 
@@ -566,6 +564,7 @@ What's the difference between telemetry processors and telemetry initializers?
 * [ASP.NET SDK](https://github.com/Microsoft/ApplicationInsights-dotnet)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 
-## <a name="next"></a>Next steps
+## Next steps
+
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
 * [sampling](./sampling.md)

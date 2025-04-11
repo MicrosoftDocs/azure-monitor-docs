@@ -52,7 +52,7 @@ Recommendation ID: f1a7425d-69fa-463e-a2b0-f1d37cb995cf
 
 #### Avoid mounting issue by specifying NFSv4.1 mount options  
   
-To avoid any issues with clients mounting NFSv4.2 and to comply with supportability, ensure the NFSv4.1 version is specified in mount options or the client’s NFS client configuration is set to cap the NFS version at NFSv4.1.  
+To avoid any issues with clients mounting NFSv4.2 and to comply with supportability, ensure the NFSv4.1 version is specified in mount options or the client's NFS client configuration is set to cap the NFS version at NFSv4.1.  
   
 **Potential benefits**: Avoid Mounting Issues  
 

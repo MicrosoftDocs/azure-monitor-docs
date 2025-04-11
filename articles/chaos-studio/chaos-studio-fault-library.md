@@ -166,27 +166,29 @@ These actions are building blocks for constructing effective experiments. Use th
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkDisconnect-1.1 |
+| Capability name | NetworkDisconnect-1.2 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux (outbound traffic only) |
 | Description | Blocks network traffic for specified port range and network block. At least one destinationFilter or inboundDestinationFilter array must be provided. |
 | Prerequisites | **Windows:** The agent must run as administrator, which happens by default if installed as a VM extension. |
 | | **Linux:** The `tc` (Traffic Control) package is used for network faults. If it isn't already installed, the agent automatically attempts to install it from the default package manager. |
-| Urn | urn:csci:microsoft:agent:networkDisconnect/1.1 |
+| Urn | urn:csci:microsoft:agent:networkDisconnect/1.2 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | destinationFilters | Delimited JSON array of packet filters defining which outbound packets to target. Maximum of 16.|
 | inboundDestinationFilters | Delimited JSON array of packet filters defining which inbound packets to target. Maximum of 16. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
-The parameters **destinationFilters** and **inboundDestinationFilters** use the following array of packet filters.
+The parameters **destinationFilters** and **inboundDestinationFilters** use the following array of packet filters. 
 
 | Property | Value |
 |-|-|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. `microsoft.com`) to target. |
+| subnetMask | (Optional) Subnet mask to affect for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -196,7 +198,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkDisconnect/1.1",
+      "name": "urn:csci:microsoft:agent:networkDisconnect/1.2",
       "parameters": [
         {
           "key": "destinationFilters",
@@ -229,12 +231,12 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkDisconnectViaFirewall-1.0 |
+| Capability name | NetworkDisconnectViaFirewall-1.1 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows |
 | Description | Applies a Windows Firewall rule to block outbound traffic for specified port range and network block. |
 | Prerequisites | Agent must run as administrator. If the agent is installed as a VM extension, it runs as administrator by default. |
-| Urn | urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.0 |
+| Urn | urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.1 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | destinationFilters | Delimited JSON array of packet filters that define which outbound packets to target for fault injection. |
@@ -252,7 +254,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.0",
+      "name": "urn:csci:microsoft:agent:networkDisconnectViaFirewall/1.1",
       "parameters": [
         {
           "key": "destinationFilters",
@@ -280,13 +282,13 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkLatency-1.1 |
+| Capability name | NetworkLatency-1.2 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux (outbound traffic only) |
 | Description | Increases network latency for a specified port range and network block. At least one destinationFilter or inboundDestinationFilter array must be provided. |
 | Prerequisites | **Windows:** The agent must run as administrator, which happens by default if installed as a VM extension. |
 | | **Linux:** The `tc` (Traffic Control) package is used for network faults. If it isn't already installed, the agent automatically attempts to install it from the default package manager. |
-| Urn | urn:csci:microsoft:agent:networkLatency/1.1 |
+| Urn | urn:csci:microsoft:agent:networkLatency/1.2 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | latencyInMilliseconds | Amount of latency to be applied in milliseconds. |
@@ -298,10 +300,12 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. `microsoft.com`) to target. |
+| subnetMask | (Optional) Subnet mask to affect for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -311,7 +315,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkLatency/1.1",
+      "name": "urn:csci:microsoft:agent:networkLatency/1.2",
       "parameters": [
         {
           "key": "destinationFilters",
@@ -348,22 +352,24 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 
 | Property | Value |
 |-|-|
-| Capability name | NetworkPacketLoss-1.0 |
+| Capability name | NetworkPacketLoss-1.2 |
 | Target type | Microsoft-Agent |
 | Supported OS types | Windows, Linux (outbound traffic only) |
 | Description | Introduces packet loss for outbound traffic at a specified rate, between 0.0 (no packets lost) and 1.0 (all packets lost). This action can help simulate scenarios like network congestion or network hardware issues. |
 | Prerequisites | **Windows:** The agent must run as administrator, which happens by default if installed as a VM extension. |
 | | **Linux:** The `tc` (Traffic Control) package is used for network faults. If it isn't already installed, the agent automatically attempts to install it from the default package manager. |
-| Urn | urn:csci:microsoft:agent:networkPacketLoss/1.0 |
+| Urn | urn:csci:microsoft:agent:networkPacketLoss/1.2 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
 | packetLossRate | The rate at which packets matching the destination filters will be lost, ranging from 0.0 to 1.0. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 | destinationFilters | Delimited JSON array of packet filters (parameters below) that define which outbound packets to target for fault injection. Maximum of three.|
-| address | IP address that indicates the start of the IP range. |
-| subnetMask | Subnet mask for the IP address range. |
+| address | IP address or hostname (e.g. `microsoft.com`) to target. |
+| subnetMask | (Optional) Subnet mask to affect for the address range. Defaults to `255.255.255.255` if not provided. |
 | portLow | (Optional) Port number of the start of the port range. |
 | portHigh | (Optional) Port number of the end of the port range. |
+
+The `address` parameter accepts either the IP address at the start of the IP range, or a hostname (e.g. `microsoft.com`). If a hostname is provided, the DNS A-record is resolved to a corresponding IP address (or addresses) and a default subnet mask of 255.255.255.255 is applied. The corresponding IP information is only retrieved at the start of the fault, so if the hostname-to-IP mapping changes during the experiment, the fault won't detect the change.
 
 #### Sample JSON
 
@@ -373,7 +379,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
   "actions": [
     {
       "type": "continuous",
-      "name": "urn:csci:microsoft:agent:networkPacketLoss/1.0",
+      "name": "urn:csci:microsoft:agent:networkPacketLoss/1.2",
       "parameters": [
             {
                 "key": "destinationFilters",
@@ -505,7 +511,7 @@ The parameters **destinationFilters** and **inboundDestinationFilters** use the 
 | Urn | urn:csci:microsoft:agent:cpuPressure/1.0 |
 | Fault type | Continuous. |
 | Parameters (key, value)  | |
-| pressureLevel | An integer between 1 and 95 that indicates how much CPU pressure (%) is applied to the VM in terms of **% CPU Usage** |
+| pressureLevel | An integer between 1 and 99 that indicates how much CPU pressure (%) is applied to the VM in terms of **% CPU Usage** |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
 #### Sample JSON
@@ -550,7 +556,7 @@ Known issues on Linux:
 | Urn | urn:csci:microsoft:agent:physicalMemoryPressure/1.0 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
-| pressureLevel | An integer between 1 and 95 that indicates how much physical memory pressure (%) is applied to the VM. |
+| pressureLevel | An integer between 1 and 99 that indicates how much physical memory pressure (%) is applied to the VM. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
 #### Sample JSON
@@ -594,7 +600,7 @@ Currently, the Windows agent doesn't reduce memory pressure when other applicati
 | Urn | urn:csci:microsoft:agent:virtualMemoryPressure/1.0 |
 | Fault type | Continuous. |
 | Parameters (key, value) |  |
-| pressureLevel | An integer between 1 and 95 that indicates how much physical memory pressure (%) is applied to the VM. |
+| pressureLevel | An integer between 1 and 99 that indicates how much physical memory pressure (%) is applied to the VM. |
 | virtualMachineScaleSetInstances | An array of instance IDs when you apply this fault to a virtual machine scale set. Required for virtual machine scale sets in uniform orchestration mode. [Learn more about instance IDs](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-instance-ids#scale-set-instance-id-for-uniform-orchestration-mode). |
 
 #### Sample JSON
@@ -958,7 +964,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 
 ### Stop App Service
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Stop-1.0 |
@@ -1404,12 +1410,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 ```
 
 ### Change Event Hub State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeEventHubState-1.0 |
 | Target type | Microsoft-EventHub |
-| Description | Sets individual event hubs to the desired state within an Azure Event Hubs namespace. You can affect specific event hub names or use “*” to affect all within the namespace. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets individual event hubs to the desired state within an Azure Event Hubs namespace. You can affect specific event hub names or use `*` to affect all within the namespace. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | An Azure Event Hubs namespace with at least one [event hub entity](/azure/event-hubs/event-hubs-create). |
 | Urn | urn:csci:microsoft:eventHub:changeEventHubState/1.0 |
 | Fault type | Discrete. |
@@ -1514,7 +1520,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 ```
 
 ### Key Vault: Increment Certificate Version
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | IncrementCertificateVersion-1.0 |
@@ -1722,12 +1728,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 
 
 ### Service Bus: Change Queue State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeQueueState-1.0 |
 | Target type | Microsoft-ServiceBus |
-| Description | Sets Queue entities within a Service Bus namespace to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets Queue entities within a Service Bus namespace to the desired state. You can affect specific entity names or use `*` to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | A Service Bus namespace with at least one [Queue entity](/azure/service-bus-messaging/service-bus-quickstart-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeQueueState/1.0 |
 | Fault type | Discrete. |
@@ -1765,12 +1771,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 * A maximum of 1000 queue entities can be passed to this fault.
 
 ### Service Bus: Change Subscription State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeSubscriptionState-1.0 |
 | Target type | Microsoft-ServiceBus |
-| Description | Sets Subscription entities within a Service Bus namespace and Topic to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets Subscription entities within a Service Bus namespace and Topic to the desired state. You can affect specific entity names or use `*` to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | A Service Bus namespace with at least one [Subscription entity](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeSubscriptionState/1.0 |
 | Fault type | Discrete. |
@@ -1813,12 +1819,12 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 * A maximum of 1000 subscription entities can be passed to this fault.
 
 ### Service Bus: Change Topic State
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | ChangeTopicState-1.0 |
 | Target type | Microsoft-ServiceBus |
-| Description | Sets the specified Topic entities within a Service Bus namespace to the desired state. You can affect specific entity names or use “*” to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
+| Description | Sets the specified Topic entities within a Service Bus namespace to the desired state. You can affect specific entity names or use `*` to affect all. This action can help test your messaging infrastructure for maintenance or failure scenarios. This is a discrete fault, so the entity will not be returned to the starting state automatically. |
 | Prerequisites | A Service Bus namespace with at least one [Topic entity](/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal). |
 | Urn | urn:csci:microsoft:serviceBus:changeTopicState/1.0 |
 | Fault type | Discrete. |
@@ -1856,7 +1862,7 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
 * A maximum of 1000 topic entities can be passed to this fault.
 
 ### VM Redeploy
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Redeploy-1.0 |
@@ -2069,7 +2075,7 @@ Currently, only virtual machine scale sets configured with the **Uniform** orche
 ```
 
 ### Start Load Test (Azure Load Testing)
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Start-1.0 |
@@ -2103,7 +2109,7 @@ Currently, only virtual machine scale sets configured with the **Uniform** orche
 ```
 
 ### Stop Load Test (Azure Load Testing)
-	
+    
 | Property  | Value |
 | ---- | --- |
 | Capability name | Stop-1.0 |

@@ -172,13 +172,13 @@ In the Users, Sessions, and Events tools, you can slice and dice custom events b
 
 :::image type="content" source="./media/usage-overview/events.png" alt-text="Screenshot that shows the Events tab filtered by AnalyticsItemsOperation and split by AppID." lightbox="./media/usage-overview/events.png":::
 
-Whenever you’re in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
+Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
 
 :::image type="content" source="./media/usage-overview/open-last-run-query-icon.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." lightbox="./media/usage-overview/open-last-run-query-icon.png":::
 
-You can then modify the underlying query to get the kind of information you’re looking for. 
+You can then modify the underlying query to get the kind of information you're looking for. 
 
-Here’s an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
+Here's an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
 
 ```kusto
 // average pageView duration by name

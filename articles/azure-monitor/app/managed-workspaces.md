@@ -45,27 +45,36 @@ Managed workspaces created by Application Insights follow specific naming conven
 
 You can identify the managing resource by checking the **Managed By** property in the Azure portal.
 
+## Removing managed workspaces
+
+Removing a managed workspace requires that it is not longer connected to any other resoruces or resource groups.  If you want to delete a manage workspace, you must do the following:
+1. **Remove the connected workspace-based Application Insights resource**: This can be done by connecting the Application Insights resource to a different Log Analytics workspace or deleting the Application Insights resource.
+1. **Delete the resource group**
+
+Once both actions are completed, the managed workspace can be deleted.
+
 ## Automatically migrated classic resources
 
 Beginning in April 2025, classic Application Insights resources are automatically migrated to workspace-based resources. As part of the migration:
 
 - The classic Application Insights resource is converted to a workspace-based resource.
 - A managed Log Analytics workspace is created and linked to the migrated resource.
-- The workspace is placed in a new resource group with the same access permissions as the Application Insights resource.
+- The workspace is placed in a new resource group. This new group doesn't inherit access permissions from the Application Insights resource group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
 
 > [!IMPORTANT]  
-> Each migrated classic resource receives its own managed workspace. To prevent this scenario, [migrate your classic resources manually](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+> Each migrated classic resource receives its own managed workspace and resource group.  Due to an Azure limit on the number of resource groups allowed in a subscription, the auto-migration process may cause your subscription to reach or come close to that limit and prevent additional resource groups from being created. To prevent this scenario, [migrate your classic resources manually](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
 ### Limitations of automatic migration
 
 > [!WARNING]
-> Classic Application Insights resources that aren't migrated by April 24, 2025, will be disabled and can't ingest new data. To reenable a resource, convert it to a workspace-based Application Insights resource.
+> Classic Application Insights resources that aren't migrated by April 24, 2025, will be disabled, and can't ingest new data. To reenable a resource, convert it to a workspace-based Application Insights resource.
 
-Some classic Application Insights resources can't be migrated until you take other actions. These scenarios include:
+Some classic Application Insights resources can't be migrated until you take other actions. Examples scenarios that will affect your ability to migrate include but are not limited to:
 
-- Using Unicode or non-UTF-8 characters in the resource name.
+- Using Unicode or non-UTF-8 characters in the Application Insights resource name or resource group name.
 - Restricting Log Analytics workspace creation in the subscription.
 - Enforcing policies that prevent new resource creation in the subscription.
+- If your subscription has a high number of resource groups and/or classic Application Insights resources, there might not be enough remaining resource group quota to fully migrate your subscription. Azure subscriptions are [limited to 980 total resource groups](/azure-resource-manager/management/azure-subscription-service-limits#azure-subscription-limits). 
 
 To prevent service interruptions, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 

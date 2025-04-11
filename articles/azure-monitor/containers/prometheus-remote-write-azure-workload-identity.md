@@ -176,14 +176,14 @@ az ad app federated-credential create --id ${APPLICATION_OBJECT_ID} --parameters
 
 1. Copy the following YAML and save it to a file. The YAML uses port 8081 as the listening port. If you use a different port, modify that value in the YAML.
 
-   [!INCLUDE [prometheus-sidecar-remote-write-workload-identity-yaml](../includes/prometheus-sidecar-remote-write-workload-identity-yaml.md)]
+   [!INCLUDE [prometheus-sidecar-remote-write-workload-identity-yaml](includes/prometheus-sidecar-remote-write-workload-identity-yaml.md)]
 
 1. Replace the following values in the YAML:
   
     | Value | Description |
     |:---|:---|
     | `<CLUSTER-NAME>` | The name of your AKS cluster. |
-    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](../includes/prometheus-remotewrite-image-version.md)]<br>The remote write container image version.| 
+    | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](includes/prometheus-remotewrite-image-version.md)]<br>The remote write container image version.| 
     | `<INGESTION-URL>` | The value for **Metrics ingestion endpoint** from the **Overview** page for the Azure Monitor workspace. |
    
 
