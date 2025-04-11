@@ -234,10 +234,7 @@ Metrics usage insights includes the dashboards described in the following sectio
 
 ### Workspace Exploration
 
-**Workspace Exploration** allows you to delve deeper into your workspace data and gain valuable insights. Examine individual metrics to evaluate their financial implications. Analyze their quantity, ingestion volume, and their role in the total cost of ingestion and storage.
-
-> [!NOTE]
-> The data in this dashboard is calculated once per day for each metric. The data is current as of the previous day.
+**Workspace Exploration** allows you to delve deeper into your workspace data and gain valuable insights. Examine individual metrics to evaluate their financial implications. Analyze their quantity, ingestion volume, and their role in the total cost of ingestion and storage. The data in this dashboard is calculated once per day for each metric. The data is current as of the previous day.
 
 :::image type="content" source="./media/metrics-usage-insights/workspace-exploration.png" lightbox="./media/metrics-usage-insights/workspace-exploration.png" alt-text="A screenshot showing the workspace exploration page.":::
 
