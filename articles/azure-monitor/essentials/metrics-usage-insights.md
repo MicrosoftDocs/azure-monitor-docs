@@ -236,6 +236,9 @@ Metrics usage insights includes the dashboards described in the following sectio
 
 **Workspace Exploration** allows you to delve deeper into your workspace data and gain valuable insights. Examine individual metrics to evaluate their financial implications. Analyze their quantity, ingestion volume, and their role in the total cost of ingestion and storage. The data in this dashboard is calculated once per day for each metric. The data is current as of the previous day.
 
+> [!TIP]
+> Click on the icon above each view to open Log Analytics with the query supporting that view. This allows you to view the data in more detail.
+
 :::image type="content" source="./media/metrics-usage-insights/workspace-exploration.png" lightbox="./media/metrics-usage-insights/workspace-exploration.png" alt-text="A screenshot showing the workspace exploration page.":::
 
 **Metric summary table**
@@ -276,5 +279,5 @@ If you want to personalize the insights pages, you can modify the underlying que
 You can query historical data beyond the data range of the insights pages by accessing the Log Analytics workspace directly. The data is stored in the `AMWMetricsUsageDetails` table. See [Overview of Log Analytics in Azure Monitor](../logs/log-analytics-overview.md) if you aren't familiar with Log Analytics and [Log queries in Azure Monitor](../logs/log-query-overview.md) for guidance on writing queries.
 
 
-
+:::image type="content" source="./media/metrics-usage-insights/log-query.png" lightbox="./media/metrics-usage-insights/log-query.png" alt-text="A screenshot showing Azure Monitor workspace historical data.":::
 
