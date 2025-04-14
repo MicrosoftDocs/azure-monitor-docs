@@ -45,16 +45,18 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 
 ## Other Azure Monitor logs meters
 
-| ServiceName           | MeterName                               | Regional Meter? |
-|-----------------------|-----------------------------------------|-----------------|
-| Log Analytics         | Pay-as-you-go Data Retention            | yes             |
-| Insight and Analytics | Standard Data Retention                 | no              |
-| Azure Monitor         | Data Archive                            | yes             |
-| Azure Monitor         | Search Queries Scanned                  | yes             |
-| Azure Monitor         | Search Jobs Scanned                     | yes             |
-| Azure Monitor         | Data Restore                            | yes             |
-| Azure Monitor         | Log Analytics data export Data Exported | yes             |
-| Azure Monitor         | Platform Logs Data Processed            | yes             |
+| ServiceName           | MeterName                                | Regional Meter? |
+|-----------------------|------------------------------------------|-----------------|
+| Log Analytics         | Pay-as-you-go Data Retention             | yes             |
+| Insight and Analytics | Standard Data Retention                  | no              |
+| Azure Monitor         | Data Archive                             | yes             |
+| Azure Monitor         | Search Queries Scanned                   | yes             |
+| Azure Monitor         | Search Jobs Scanned                      | yes             |
+| Azure Monitor         | Data Restore                             | yes             |
+| Azure Monitor         | Log Analytics data export Data Exported  | yes             |
+| Azure Monitor         | Data Replication Data Replicated         | yes             |
+| Azure Monitor         | Log data ingestion and transformation GB | yes             |
+| Azure Monitor         | Platform Logs Data Processed             | yes             |
 
 **Pay-as-you-go Data Retention** is interactive retention for workspaces in all modern pricing tiers (Pay-as-you-go and Commitment Tiers).  **Standard Data Retention** is interactive retention for workspaces in the legacy Per Node and Standalone pricing tiers.  **Data Archive** is the meter for long-term data retention.
 
