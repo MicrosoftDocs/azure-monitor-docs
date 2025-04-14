@@ -170,6 +170,10 @@ New Azure regions *require* the use of connection strings instead of instrumenta
 
 We recommend that you use connection strings instead of instrumentation keys.
 
+#### When do I need to set the environment variable?
+
+Manually set the `APPLICATIONINSIGHTS_CONNECTION_STRING` in all scenarios where it's not automatically provided. These scenarios include, but are not limited to: local development and .NET Isolated Functions using ASP.NET Core integration. In these cases, the environment variable ensures the OpenTelemetry pipeline can send telemetry to Application Insights. For more information on configuring connection strings with an environment variable, see [Configuring OpenTelemetry in Application Insights](./opentelemetry-configuration.md#connection-string).
+
 ## Next steps
 
 Get started at runtime with:
