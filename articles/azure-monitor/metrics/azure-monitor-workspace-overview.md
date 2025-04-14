@@ -3,6 +3,7 @@ title: Azure Monitor workspace overview
 description: Overview of Azure Monitor workspace, which is a unique environment for data collected by Azure Monitor.
 ms.reviewer: poojaa
 ms.topic: conceptual
+ms.custom: references_regions
 ms.date: 07/24/2024
 ---
 
