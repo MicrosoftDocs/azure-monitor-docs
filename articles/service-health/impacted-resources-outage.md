@@ -57,7 +57,7 @@ You can get information about outage-impacted resources programmatically by usin
 ### Frequently Asked Questions
 |Question|Answer|
 |--------|------|
-|Are the Impacted resources only available for 'Active' service health events?|Yes, Azure Portal shows Impacted resources only for Active events in Service Issues.|
+|Are the Impacted resources only available for 'Active' service health events?|Yes, the Azure Portal shows Impacted resources only for Active events in Service Issues.|
 |Is there a retention period for impacted resources? |The retention period is 90 days in Azure Resource Graph.|
 
 
