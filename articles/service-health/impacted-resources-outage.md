@@ -2,7 +2,7 @@
 title: Resource impact from Azure outages
 description: This article details where to find information from Azure Service Health about how Azure outages might affect your resources.
 ms.topic: conceptual
-ms.date: 01/27/2025
+ms.date: 04/14/2025
 ---
 
 # Resource impact from Azure outages
@@ -53,6 +53,15 @@ To export the list of impacted resources to an Excel file, select the **Export t
 ### Access impacted resources programmatically via an API
 
 You can get information about outage-impacted resources programmatically by using the Events API. For details on how to access this data, see [API documentation](/rest/api/resourcehealth/2022-10-01/impacted-resources).
+
+### Frequently Asked Questions
+|Question|Answer|
+|--------|------|
+|Is the Impacted resources only available for 'Active' service health events?|Yes, AzurePortal will show Impacted resources only for Active events in Service Issues.|
+|Is there a retention period for impacted resources? |The retention period is 90 days in Azuure Resource Graph.|
+
+
+
 
 ### Next steps
 - [Introduction to the Azure Service Health dashboard](service-health-overview.md)
