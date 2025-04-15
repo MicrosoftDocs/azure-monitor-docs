@@ -158,7 +158,7 @@ By default, the Microsoft System Center Operations Manager Run Health Check Rule
 
 1. Ensure that you change override value to **True** for the **Enabled** parameter value. 
     <!-- convertborder later -->
-    :::image type="content" source="media/scom-assessment/rule.png" lightbox="media/scom-assessment/rule.png" alt-text="override parameter" border="false":::
+    :::image type="content" source="media/scom-assessment/rule.png" lightbox="media/scom-assessment/rule.png" alt-text="Screenshot of override parameter." border="false":::
 
     While still in this window, configure the run frequency using the next procedure.
 
@@ -174,7 +174,7 @@ The assessment is configured to run every 10,080 minutes (or seven days) by defa
 
 1. Change the **Interval** parameter value to your desired interval value. In the example below, the value is set to 1440 minutes (one day).
     <!-- convertborder later -->
-    :::image type="content" source="media/scom-assessment/interval.png" lightbox="media/scom-assessment/interval.png" alt-text="interval parameter" border="false"::: 
+    :::image type="content" source="media/scom-assessment/interval.png" lightbox="media/scom-assessment/interval.png" alt-text="Screenshot of interval parameter." border="false"::: 
     
     If the value is set to less than 1440 minutes, then the rule runs on a one day interval. In this example, the rule ignores the interval value and runs at a frequency of one day.
 
@@ -230,7 +230,7 @@ View the summarized compliance assessments for your infrastructure and then dril
 1. On any of the focus area pages, you can view the prioritized recommendations made for your environment. Click a recommendation under **Affected Objects** to view details about why the recommendation is made.
 
    <!-- convertborder later -->
-   :::image type="content" source="media/scom-assessment/log-analytics-scom-healthcheck-dashboard-02.png" lightbox="media/scom-assessment/log-analytics-scom-healthcheck-dashboard-02.png" alt-text="focus area" border="false":::
+   :::image type="content" source="media/scom-assessment/log-analytics-scom-healthcheck-dashboard-02.png" lightbox="media/scom-assessment/log-analytics-scom-healthcheck-dashboard-02.png" alt-text="Screenshot of focus area." border="false":::
 
 1. You can take corrective actions suggested in **Suggested Actions**. When the item has been addressed, later assessments will record that recommended actions were taken and your compliance score will increase. Corrected items appear as **Passed Objects**.
 
@@ -255,7 +255,7 @@ If you have recommendations that you want to ignore, you can create a text file 
 
     Here's a screenshot showing the Log Search query:
     <!-- convertborder later -->
-    :::image type="content" source="media/scom-assessment/scom-log-search.png" lightbox="media/scom-assessment/scom-log-search.png" alt-text="log search" border="false":::<br>
+    :::image type="content" source="media/scom-assessment/scom-log-search.png" lightbox="media/scom-assessment/scom-log-search.png" alt-text="Screenshot of log search." border="false":::<br>
 
 1. Choose recommendations that you want to ignore. You'll use the values for RecommendationId in the next procedure.
 
