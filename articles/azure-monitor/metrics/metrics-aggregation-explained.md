@@ -51,21 +51,21 @@ For time granularity = 30 minutes and the time range = 24 hours:
 * The line chart connects 48 dots in the chart plot area.
 * Each datapoint represents the sum of all network out bytes sent out during each of the relevant 30-min time periods.
 
-:::image type="content" source="media/metrics-aggregation-explained/24-hour-30-min-gran.png" lightbox="media/metrics-aggregation-explained/24-hour-30-min-gran.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 30-minute time granularity." border="true":::
+:::image type="content" source="media/metrics-aggregation-explained/24-hour-30-min-granularity.png" lightbox="media/metrics-aggregation-explained/24-hour-30-min-granularity.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 30-minute time granularity." border="true":::
 
 *Click on the images in this section to see larger versions.*
 
 If you switch the time granularity to 15 minutes, the chart is drawn from 96 aggregated data points. That is, 60min/15min = 4 datapoints per hour x 24 hours.
 
-:::image type="content" source="media/metrics-aggregation-explained/24-hour-15-min-gran.png" lightbox="media/metrics-aggregation-explained/24-hour-15-min-gran.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 15-minute time granularity." border="true":::
+:::image type="content" source="media/metrics-aggregation-explained/24-hour-15-min-granularity.png" lightbox="media/metrics-aggregation-explained/24-hour-15-min-granularity.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 15-minute time granularity." border="true":::
 
 For time granularity of 5 minutes, you get 24 x (60/5) = 288 points.
 
-:::image type="content" source="media/metrics-aggregation-explained/24-hour-5-min-gran.png" lightbox="media/metrics-aggregation-explained/24-hour-15-min-gran.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 5-minute time granularity." border="true":::
+:::image type="content" source="media/metrics-aggregation-explained/24-hour-5-min-granularity.png" lightbox="media/metrics-aggregation-explained/24-hour-15-min-granularity.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 5-minute time granularity." border="true":::
 
 For time granularity of 1 minute (the smallest possible on the chart), you get 24 x 60/1 = 1440 points.
 
-:::image type="content" source="media/metrics-aggregation-explained/24-hour-1-min-gran.png" lightbox="media/metrics-aggregation-explained/24-hour-1-min-gran.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 1-minute time granularity." border="true":::
+:::image type="content" source="media/metrics-aggregation-explained/24-hour-1-min-granularity.png" lightbox="media/metrics-aggregation-explained/24-hour-1-min-granularity.png" alt-text="Screenshot showing data on a line graph set to 24-hour time range and 1-minute time granularity." border="true":::
 
 The charts look different for these summations as shown in the previous screenshots. Notice how this VM has numerous outputs in a small time period relative to the rest of the time window.
 
