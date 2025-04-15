@@ -8015,7 +8015,7 @@
    "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/alerts/create-simple-alert.md",
+    "source_path": "articles/azure-monitor/alerts/alerts-create-simple-alert.md",
     "redirect_url": "articles/azure-monitor/alerts-overview",
     "redirect_document_id": false
    }
