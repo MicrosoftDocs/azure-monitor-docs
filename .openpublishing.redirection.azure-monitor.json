@@ -8013,6 +8013,11 @@
    "source_path": "articles/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings.md",
    "redirect_url": "/previous-versions/azure/azure-monitor/app/migrate-from-instrumentation-keys-to-connection-strings",
    "redirect_document_id": false
-  }
+  },
+  {
+    "source_path": "articles/azure-monitor/alerts/create-simple-alert.md",
+    "redirect_url": "articles/azure-monitor/alerts-overview",
+    "redirect_document_id": false
+   }
  ]
 }

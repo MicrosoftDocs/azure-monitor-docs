@@ -13,7 +13,6 @@ The types of alerts are:
 
 * [Metric alerts](#metric-alerts)
 * [Log search alerts](#log-alerts)
-    * [Simple log search alerts](alerts-create-simple-alert.md)
 * [Activity log alerts](#activity-log-alerts)
     * [Service Health alerts](#service-health-alerts)
     * [Resource Health alerts](#resource-health-alerts)
