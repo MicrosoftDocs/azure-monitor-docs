@@ -18,12 +18,6 @@ Microsoft only supports Azure Monitoring Agent versions within the last 1 year b
 We strongly recommend that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature. Automatic extension roll out follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to rollout the latest version. Upgrades are issued in batches, so you may see some of your virtual machines, scale-sets or Arc-enabled servers get upgraded before others.
 
 
-[//]: # "> [!CAUTION]"
-[//]: # "> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life)."
-
-
-[//]: # "DON'T change the format (column schema, etc.) of the table without consulting glinuxagent alias. The [Azure Monitor Linux Agent Troubleshooting Tool](https://github.com/Azure/azure-linux-extensions/blob/master/AzureMonitorAgent/ama_tst/AMA-Troubleshooting-Tool.md) parses the table at runtime to determine the latest version of AMA; altering the format could degrade some of the functions of the tool."
-## Current Versions
 - New versions will be available for manual update ~10 days after the release date and automatic updates will start ~30 days after the release date.
 - The current versions for automatic update are 1.32.0 for Windows and 1.33.4 for Linux.
 - We will post any significant delays here.
