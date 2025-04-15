@@ -177,16 +177,6 @@ Log search alerts are listed under resource provider `microsoft.insights/schedul
 > [!Note]
 > Unsupported resource characters like <, >, %, &, \, ? and / are replaced with an underscore (_) in the hidden resource names. This character change is also reflected in the billing information.
 
-## Simple log search alerts
-
-A simple log alert rule is a log search alert rules that is using a Log Analytics query to evaluate resource logs. If the conditions are met, an alert is fired. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.
-
-The target of the log search alert rule can be:
-
-* A single resource, such as a VM.
-* A Workspace
-* A single container of resources, like a resource group or subscription.
-
 ## Activity log alerts
 
 An activity log alert monitors a resource by checking the activity logs for a new activity log event that matches the defined conditions.
