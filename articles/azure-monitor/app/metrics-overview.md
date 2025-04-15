@@ -502,7 +502,7 @@ The number of failed dependency calls.
             <th>Aggregations</th>
             <th>Dimension name<br>(Metrics Explorer)</th>
             <th>Dimension name<br>(Log Analytics)</th>
-            <th>Cardinality limit</th>
+            <th align='right'>Cardinality limit</th>
         </tr>
     </thead>
     <tbody>
@@ -511,37 +511,37 @@ The number of failed dependency calls.
             <td rowspan=7>Count</td>
             <td><code>Cloud role instance</code></td>
             <td><code>cloud/roleInstance</code></td>
-            <td>100</td>
+            <td align='right'>100</td>
         </tr>
         <tr>
             <td><code>Cloud role name</code></td>
             <td><code>cloud/roleName</code></td>
-            <td>100</td>
+            <td align='right'>100</td>
         </tr>
         <tr>
             <td><code>Dependency performance</code></td>
             <td><code>dependency/performanceBucket</code></td>
-            <td>20</td>
+            <td align='right'>20</td>
         </tr>
         <tr>
             <td><code>Dependency type</code></td>
             <td><code>dependency/type</code></td>
-            <td>100</td>
+            <td align='right'>100</td>
         </tr>
         <tr>
             <td><code>Is traffic synthetic</code></td>
             <td><code>operation/synthetic</code></td>
-            <td>10</td>
+            <td align='right'>10</td>
         </tr>
         <tr>
             <td><code>Result code</code></td>
             <td><code>dependency/resultCode</code></td>
-            <td>100</td>
+            <td align='right'>100</td>
         </tr>
         <tr>
             <td><code>Target of dependency call</code></td>
             <td><code>dependency/target</code></td>
-            <td>100</td>
+            <td align='right'>100</td>
         </tr>
     </tbody>
 </table>
