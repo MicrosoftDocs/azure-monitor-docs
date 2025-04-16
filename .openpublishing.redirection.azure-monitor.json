@@ -8023,6 +8023,11 @@
    "source_path": "articles/azure-monitor/reference/queries/containerappconsolelogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/alerts/alerts-create-simple-alert.md",
+    "redirect_url": "/azure/azure-monitor/alerts/alerts-overview",
+    "redirect_document_id": false
   }
  ]
 }
