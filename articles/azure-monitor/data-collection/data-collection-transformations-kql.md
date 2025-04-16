@@ -93,7 +93,7 @@ Given a string containing a CEF message, `parse_cef_dictionary` parses the Exten
 | project TimeGenerated, cefMessage, parsecefDictionaryExtension
 ```
 
-:::image type="content" source="media/data-collection-transformations-structure/parse_cef_dictionary.png" lightbox="media/data-collection-transformations-structure/parse_cef_dictionary.png" alt-text="Sample output of parse_cef_dictionary function.":::
+:::image type="content" source="media/data-collection-transformations-structure/parse-cef-dictionary.png" lightbox="media/data-collection-transformations-structure/parse-cef-dictionary.png" alt-text="Sample output of parse_cef_dictionary function.":::
 
 ### `geo_location`
 
@@ -109,7 +109,7 @@ Given a string containing IP address (IPv4 and IPv6 are supported), `geo_locatio
 | extend GeoLocation = geo_location("1.0.0.5")
 ```
 
-:::image type="content" source="media/data-collection-transformations-structure/geo-location.png" lightbox="media/data-collection-transformations-structure/parse_cef_dictionary.png" alt-text="Screenshot of sample output of geo_location function.":::
+:::image type="content" source="media/data-collection-transformations-structure/geo-location.png" lightbox="media/data-collection-transformations-structure/geo-location.png" alt-text="Screenshot of sample output of geo_location function.":::
 
 > [!IMPORTANT]
 > Due to nature of IP geolocation service utilized by this function, it may introduce data ingestion latency if used excessively. Exercise caution when using this function more than several times per transformation.
