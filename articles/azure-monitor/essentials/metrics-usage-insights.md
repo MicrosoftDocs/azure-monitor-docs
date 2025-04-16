@@ -1,13 +1,13 @@
 ---
-title: Azure Monitor metrics usage insights (Preview)
-description: What is Azure Monitor metrics usage insights, and how to set it up.
+title: Metrics usage insights in Azure Monitor (Preview)
+description: Describes the 
 ms.topic: conceptual
 ms.date: 04/11/2025
 ---
 
 # Metrics usage insights (Preview)
 
-Azure Monitor metrics usage insights gives you actionable insights into metrics usage and cost optimization opportunities for your Azure monitor workspace. By providing information on time series and event usage, throttling limits, metrics usage trends, and unused metrics, you can take such actions as removing unused metrics and right-sizing resources. 
+Metrics usage insights gives you actionable insights into metrics usage and cost optimization opportunities for your Azure monitor workspace. By providing information on time series and event usage, throttling limits, metrics usage trends, and unused metrics, you can take such actions as removing unused metrics and right-sizing resources. 
 
 Metrics usage insights sends usage data to a Log analytics workspace for analysis. There's no extra cost and no charge for the data sent to the Log Analytics workspace, the queries, or the storage.
 
@@ -16,9 +16,31 @@ Metrics usage insights sends usage data to a Log analytics workspace for analysi
 
 ## Supported regions
 
-During the Preview, Azure Monitor metrics usage insights is available in the following regions:
-+ East US
-+ TBD
+During public preview, metrics usage insights is available only in the following regions:
+
+| Geo           | Regions                                                                 |
+| ------------- | ----------------------------------------------------------------------- |
+| Africa        | South Africa North                                                      |
+| Asia Pacific  | East Asia, Southeast Asia                                               |
+| Australia     | Australia East, Australia Southeast                                     |
+| Brazil        | Brazil South                                                            |
+| Canada        | Canada Central, Canada East                                             |
+| Europe        | North Europe, West Europe                                               |
+| France        | France Central, France South                                            |
+| Germany       | Germany West Central                                                    |
+| India         | Central India, South India                                              |
+| Israel        | Israel Central                                                          |
+| Italy         | Italy North                                                             |
+| Japan         | Japan East, Japan West                                                  |
+| Korea         | Korea Central                                                           |
+| Norway        | Norway East                                                             |
+| Spain         | Spain Central                                                           |
+| Sweden        | Sweden South, Sweden Central                                            |
+| Switzerland   | Switzerland North                                                       |
+| UAE           | UAE North                                                               |
+| UK            | UK South, UK West                                                       |
+| US            | Central US, East US, East US 2, South Central US, West Central US, West US, West US 2, West US 3 |
+
 
 
 ## Enable metrics usage insights
@@ -125,7 +147,7 @@ Perform the following configuration on the diagnostic setting page and select **
 
 - Provide a descriptive name for the **Diagnostic setting name**
 - Select **Send to Log Analytics workspace** and select a workspace to receive the data.
-- Select **allLogs** to send all logs for the Azure Monitor workspace to the Log Analytics workspace.
+- Select **Metrics Usage Details** to send the metrics usage logs for the Azure Monitor workspace to the Log Analytics workspace.
 
     :::image type="content" source="./media/metrics-usage-insights/configure-diagnostic-settings.png" lightbox="./media/metrics-usage-insights/configure-diagnostic-settings.png" alt-text="A screenshot showing the add diagnostic setting page.":::
 
@@ -265,7 +287,7 @@ The daily time series trend line for each metric can be used to identify sudden 
 
 ### Unused Metrics
 
-**Unused Metrics** shows the metrics that haven't been used in a query for the duration specified in **Not Used In days**. The longer a metric remains unused, the more confident you can be that it can be removed from the ingest processes to reduce ingestion and storage costs. Multiplying the ingested samples count that are unused by the meter rate gives an indication of potential saving after deleting the unused metrics. Adjust your scrape job settings in the Prometheus settings to stop collecting unused data.
+**Unused Metrics** shows the metrics that haven't been used in a query for the duration specified in **Not Used In days**. The longer a metric remains unused, the more confident you can be that it can be removed from the ingest processes to reduce ingestion and storage costs. Multiplying the ingested samples count that are unused by the meter rate gives an indication of potential saving after deleting the unused metrics. Adjust the scrape job settings in your Prometheus settings to stop collecting unused data. For details on metrics relabeling, see [Configure custom Prometheus scrape jobs](../containers/prometheus-metrics-scrape-configuration.md).
 
 :::image type="content" source="./media/metrics-usage-insights/unused-metrics.png" lightbox="./media/metrics-usage-insights/unused-metrics.png" alt-text="A screenshot showing the unused metrics page.":::
 
