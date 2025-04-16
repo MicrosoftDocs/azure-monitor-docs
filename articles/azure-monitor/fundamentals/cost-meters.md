@@ -37,6 +37,7 @@ The following table lists the meters used to bill for data ingestion in your Log
 | Standard (legacy tier)         | Log Analytics         | Standard Data Analyzed                               | no              |
 | Premium (legacy tier)          | Log Analytics         | Premium Data Analyzed                                | no              |
 | (any)                          | Azure Monitor         | Free Benefit - Microsoft 365 Defender Data Ingestion | yes             |
+| (any)                          | Azure Monitor         | Free Benefit - Az Sentinel Trial Data Ingestion      | yes             |
 
 
 The **Standard Data Included per Node** meter is used both, for the Log Analytics [Per Node tier](../logs/cost-logs.md#per-node-pricing-tier) data allowance, and also for the [Defender for Servers data allowance](../logs/cost-logs.md#workspaces-with-microsoft-defender-for-cloud), for workspaces in any pricing tier.
@@ -45,16 +46,18 @@ The **Free Benefit - M365 Defender Data Ingestion** meter is used to record the 
 
 ## Other Azure Monitor logs meters
 
-| ServiceName           | MeterName                               | Regional Meter? |
-|-----------------------|-----------------------------------------|-----------------|
-| Log Analytics         | Pay-as-you-go Data Retention            | yes             |
-| Insight and Analytics | Standard Data Retention                 | no              |
-| Azure Monitor         | Data Archive                            | yes             |
-| Azure Monitor         | Search Queries Scanned                  | yes             |
-| Azure Monitor         | Search Jobs Scanned                     | yes             |
-| Azure Monitor         | Data Restore                            | yes             |
-| Azure Monitor         | Log Analytics data export Data Exported | yes             |
-| Azure Monitor         | Platform Logs Data Processed            | yes             |
+| ServiceName           | MeterName                                | Regional Meter? |
+|-----------------------|------------------------------------------|-----------------|
+| Log Analytics         | Pay-as-you-go Data Retention             | yes             |
+| Insight and Analytics | Standard Data Retention                  | no              |
+| Azure Monitor         | Data Archive                             | yes             |
+| Azure Monitor         | Search Queries Scanned                   | yes             |
+| Azure Monitor         | Search Jobs Scanned                      | yes             |
+| Azure Monitor         | Data Restore                             | yes             |
+| Azure Monitor         | Log Analytics data export Data Exported  | yes             |
+| Azure Monitor         | Data Replication Data Replicated         | yes             |
+| Azure Monitor         | Log data ingestion and transformation GB | yes             |
+| Azure Monitor         | Platform Logs Data Processed             | yes             |
 
 **Pay-as-you-go Data Retention** is interactive retention for workspaces in all modern pricing tiers (Pay-as-you-go and Commitment Tiers).  **Standard Data Retention** is interactive retention for workspaces in the legacy Per Node and Standalone pricing tiers.  **Data Archive** is the meter for long-term data retention.
 
