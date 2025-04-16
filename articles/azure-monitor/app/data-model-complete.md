@@ -21,8 +21,8 @@ Data collected by Application Insights models this typical application execution
 
 The following types of telemetry are used to monitor the execution of your application. The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Application Insights JavaScript SDK](javascript-sdk.md) collect:
 
-| Telemetry type | Table name in Log Analytics | Table name in Application Insights | Description |
-|----------------|-----------------------------|------------------------------------|-------------|
+| Telemetry type | Table name<br>(Log Analytics) | Table name<br>(Application Insights) | Description |
+|----------------|-------------------------------|--------------------------------------|-------------|
 | [Availability](#availability) | [AppAvailabilityResults](../reference/tables/appavailabilityresults.md) | `availabilityResults` | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
 | [Browser timings](#browsertimings) | [AppBrowserTimings](../reference/tables/appbrowsertimings.md) | `browserTimings` | Measures the performance of web pages, including page load times and network durations. |
 | [Dependency](#dependency) | [AppDependencies](../reference/tables/appdependencies.md) | `dependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
@@ -45,7 +45,7 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 
 ### BrowserTimings
 
-Modern browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
+Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
 
 1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
 1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
@@ -69,7 +69,7 @@ If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.or
 
 ### Dependency
 
-Dependency telemetry in Application Insights represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
+A dependency telemetry item represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
 | Field | Description |
 |-------|-------------|
@@ -84,7 +84,7 @@ Dependency telemetry in Application Insights represents an interaction of the mo
 
 ### Event
 
-You can create event telemetry items (in [Application Insights](app-insights-overview.md)) to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
+You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
 
 Semantically, events might or might not be correlated to requests. If used properly, event telemetry is more important than requests or traces. Events represent business telemetry and should be subject to separate, less aggressive [sampling](api-filtering-sampling.md).
 
@@ -94,35 +94,35 @@ Semantically, events might or might not be correlated to requests. If used prope
 
 ### Exception
 
-In [Application Insights](app-insights-overview.md), an instance of exception represents a handled or unhandled exception that occurred during execution of the monitored application.
+An exception telemetry item represents a handled or unhandled exception that occurred during execution of the monitored application.
 
 | Field | Description | Max length (characters) |
 |-------|-------------|-------------------------|
-| **Exception details** | (to be extended) | |
-| **Problem ID** | The problem ID identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024 |
-| **Severity level** | This field is the trace severity level. The value can be `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
+| **Exception details** | Contains exception information such as the exception message and the call stack. | |
+| **Problem ID** | Identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024 |
+| **Severity level** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
 
 ### Metric
 
-[Application Insights](app-insights-overview.md) supports two types of metric telemetry:
+Application Insights supports two types of metric telemetry:
 
-* **Single measurement** is a *name* and a *value*.
-* **Preaggregated metric** specifies the minimum (*min*) and maximum (*max*) value of the metric in the aggregation interval and the *standard deviation* of it. It assumes that the aggregation period was one minute.
+* A **single measurement** has a *name* and a *value*.
+* A **preaggregated metric** has a *name* and a *value*, but also specifies the minimum (*min*) and maximum (*max*) value, the number of values (*count*), and the *sum* of all values of the metric in the aggregation interval. It assumes that the aggregation period was one minute.
 
-| Field | Description |
-|-------|-------------|
-| **Count** | This field is the metric weight of the aggregated metric. It shouldn't be set for a measurement. |
-| **Max** | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement. |
-| **Min** | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement. |
-| **Name** | This field is the name of the metric you want to see in the Application Insights portal and UI. |
-| **Standard deviation** | This field is the standard deviation of the aggregated metric. It shouldn't be set for a measurement. |
-| **Value** | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. |
+| Field | Description | Single measurement | Preaggregated metric |
+|-------|-------------|--------------------|----------------------|
+| **Name** | This field is the name of the metric you want to see in the Application Insights portal and UI. | ✅ | ✅ |
+| **Value** | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. | ✅ | ✅ |
+| **Max** | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
+| **Min** | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
+| **Count** | This field is the metric weight of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
+| **Sum** | This field is the sum of all values of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
 
 Application Insights supports several well-known metric names. These metrics are placed into the `performanceCounters` table.
 
 For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
 
-The following table shows the metrics that represent system and process counters.
+#### System and process counter metrics
 
 | .NET name | Description |
 |-----------|-------------|
@@ -142,17 +142,17 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
 
 ### PageView
 
-PageView telemetry (in [Application Insights](app-insights-overview.md)) is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action. This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
+PageView telemetry is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action. This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
 > [!NOTE]
-> * By default, Application Insights SDKs log single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#measure-browsertiming-in-application-insights). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
+> * By default, the Application Insights JavaScript SDK logs single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#browsertimings). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 > * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
 
 ### Request
 
 Request telemetry represents information related to incoming HTTP requests to your application. This type of telemetry helps you monitor the performance and success of your application's web-based services.
 
-A request telemetry item in Application Insights represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
+A request telemetry item represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
 
 You can group requests by logical `name` and define the `source` of this request. Code execution can result in `success` or `fail` and has a certain `duration`. You can further group success and failure executions by using `resultCode`. Start time for the request telemetry is defined on the envelope level.
 
@@ -170,7 +170,7 @@ Request telemetry supports the standard extensibility model by using [custom `pr
 
 ### Trace
 
-Trace telemetry in [Application Insights](app-insights-overview.md) represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
+Trace telemetry represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
 | Field | Description | Values |
 |-------|-------------|--------|
@@ -237,7 +237,7 @@ Learn how to use the [Application Insights API for custom events and metrics](ap
 * [Custom event telemetry](api-custom-events-metrics.md#trackevent)
 * [Custom metric telemetry](api-custom-events-metrics.md#trackmetric)
 
-Set up dependency tracking for:
+Examples to set up dependency tracking:
 
 * [.NET](asp-net-dependencies.md)
 * [Java](opentelemetry-enable.md?tabs=java)
@@ -249,7 +249,6 @@ To learn more:
 * Explore [.NET trace logs in Application Insights](asp-net-trace-logs.md).
 * Explore [Java trace logs in Application Insights](opentelemetry-add-modify.md?tabs=java#send-custom-telemetry-using-the-application-insights-classic-api).
 * Learn about the [Azure Functions built-in integration with Application Insights](/azure/azure-functions/functions-monitoring?toc=/azure/azure-monitor/toc.json) to monitor functions executions.
-* Learn how to [configure an ASP.NET Core](asp-net.md) application with Application Insights.
 * Learn how to [diagnose exceptions in your web apps with Application Insights](asp-net-exceptions.md).
 * Learn how to [extend and filter telemetry](api-filtering-sampling.md).
-* Use [sampling](sampling.md) to minimize the amount of telemetry based on data model.
+* Learn how to use [sampling](sampling.md) to minimize the amount of telemetry based on data model.
