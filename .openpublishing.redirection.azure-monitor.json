@@ -8002,7 +8002,7 @@
   {
    "source_path_from_root": "/articles/azure-monitor/fundamentals/ip-addresses.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/azure-monitor-network-access",
-   "redirect_document_id": false    
+   "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-netapp-netappaccounts-metrics.md",
@@ -8015,9 +8015,19 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/reference/queries/appenvspringappconsolelogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/queries/containerappconsolelogs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
     "source_path": "articles/azure-monitor/alerts/alerts-create-simple-alert.md",
     "redirect_url": "/azure/azure-monitor/alerts/alerts-overview",
     "redirect_document_id": false
-   }
+  }
  ]
 }
