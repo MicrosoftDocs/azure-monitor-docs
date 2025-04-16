@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 03/19/2025
+ms.date: 04/14/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -660,6 +660,7 @@ Microsoft.Communication/CommunicationServices
 - [ACSCallDiagnosticsUpdates](./tables/acscalldiagnosticsupdates.md)
 - [ACSCallingMetrics](./tables/acscallingmetrics.md)
 - [ACSCallSurvey](./tables/acscallsurvey.md)
+- [ACSCallClientServiceRequestAndOutcome](./tables/acscallclientservicerequestandoutcome.md)
 - [ACSCallClientOperations](./tables/acscallclientoperations.md)
 - [ACSCallClientMediaStatsTimeSeries](./tables/acscallclientmediastatstimeseries.md)
 - [ACSCallSummary](./tables/acscallsummary.md)
@@ -1128,6 +1129,7 @@ Microsoft.MachineLearningServices/registries
 Microsoft.DevOpsInfrastructure/pools  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [MDPResourceLog](./tables/mdpresourcelog.md)
 
 ### Media Services  
 
@@ -1729,6 +1731,15 @@ Microsoft.WorkloadMonitor/monitors
 Microsoft.Insights/WorkloadMonitoring  
 
 - [InsightsMetrics](./tables/insightsmetrics.md)
+
+### workload orchestration  
+
+Microsoft.Edge/diagnostics  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
+- [WOUserAudits](./tables/wouseraudits.md)
+- [WOUserDiagnostics](./tables/wouserdiagnostics.md)
 
 ## Next steps
 
