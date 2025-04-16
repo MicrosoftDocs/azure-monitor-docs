@@ -107,16 +107,61 @@ An exception telemetry item represents a handled or unhandled exception that occ
 Application Insights supports two types of metric telemetry:
 
 * A **single measurement** has a *name* and a *value*.
-* A **preaggregated metric** has a *name* and a *value*, but also specifies the minimum (*min*) and maximum (*max*) value, the number of values (*count*), and the *sum* of all values of the metric in the aggregation interval. It assumes that the aggregation period was one minute.
+* A **preaggregated metric** takes multiple measurements in a 1-minute aggregation period.
+<!--
+| Field | Single measurement | Preaggregated metric |
+|-------|--------------------|----------------------|
+| **Name** | This field is the name of the metric you want to see in the Application Insights portal and UI. | |
+| **Value** | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. | For a preaggregated metric, **Value** equals **Sum**. |
+| **Max** | **Max** equals **Value**. | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement. |
+| **Min** | **Min** equals **Value**. | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement. |
+| **Sum** | **Sum** equals **Value**. | The sum of all values of the aggregated metric. It shouldn't be set for a measurement. |
+| **Count** | For a single measurement metric, **Count** is always `1`. | The amount of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement. |
+-->
 
-| Field | Description | Single measurement | Preaggregated metric |
-|-------|-------------|--------------------|----------------------|
-| **Name** | This field is the name of the metric you want to see in the Application Insights portal and UI. | ✅ | ✅ |
-| **Value** | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. | ✅ | ✅ |
-| **Max** | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
-| **Min** | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
-| **Count** | This field is the metric weight of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
-| **Sum** | This field is the sum of all values of the aggregated metric. It shouldn't be set for a measurement. | ❌ | ✅ |
+<table>
+    <thead>
+        <tr>
+            <th>Field</th>
+            <th>Single measurement</th>
+            <th>Preaggregated metric</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>Name</b></td>
+            <td colspan = "2">This field is the name of the metric you want to see in the Application Insights portal and UI.</td>
+        </tr>
+        <tr>
+            <td><b>Value</b></td>
+            <td>This field is the single value for measurement. It's the sum of individual measurements for the aggregation.</td>
+            <td>For a preaggregated metric, <b>Value</b> equals <b>Sum</b>.</td>
+        </tr>
+        <tr>
+            <td><b>Max</b></td>
+            <td>For a single measurement metric, <b>Max</b> equals <b>Value</b>.</td>
+            <td>This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement.</td>
+        </tr>
+        <tr>
+            <td><b>Min</b></td>
+            <td>For a single measurement metric, <b>Min</b> equals <b>Value</b>.</td>
+            <td>This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement.</td>
+        </tr>
+        <tr>
+            <td><b>Sum</b></td>
+            <td>For a single measurement metric, <b>Sum</b> equals <b>Value</b>.</td>
+            <td>The sum of all values of the aggregated metric. It shouldn't be set for a measurement.</td>
+        </tr>
+        <tr>
+            <td><b>Count</b></td>
+            <td>For a single measurement metric, <b>Count</b> is <code>1</code>.</td>
+            <td>The amount of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement.</td>
+        </tr>
+    </tbody>
+</table>
+
+> [!NOTE]
+> To calculate the average, divide **Sum** by **Count**.
 
 Application Insights supports several well-known metric names. These metrics are placed into the `performanceCounters` table.
 
