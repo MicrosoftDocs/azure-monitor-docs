@@ -1818,7 +1818,7 @@ The Application Insights REST API enables programmatic retrieval of log-based me
 To access your data directly, pass the parameter `ai.include-query-payload` to the Application Insights API in a query using KQL.
 
 > [!NOTE]
-> To retrieve the underlying logs query, `DEMO_APP` and `DEMO_KEY` ***don't*** have to replaced. If you just want to retrieve the KQL statement and not the time series data of your own application, you can copy and paste it directly into your browser search bar.
+> To retrieve the underlying logs query, `DEMO_APP` and `DEMO_KEY` ***don't*** have to be replaced. If you just want to retrieve the KQL statement and not the time series data of your own application, you can copy and paste it directly into your browser search bar.
 
 ```Kusto
 api.applicationinsights.io/v1/apps/DEMO_APP/metrics/users/authenticated?api_key=DEMO_KEY&prefer=ai.include-query-payload
