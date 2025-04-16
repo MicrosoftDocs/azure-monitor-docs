@@ -42,7 +42,7 @@ Only users with elevated access roles can access sensitive information on the **
 
 ### 2. Service Health API Changes
 
-Events API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details. If users have the above-mentioned roles, they can view event sensitive details for a specific event with the new endpoint. The existing endpoint **(/events)** that returns all Service Health event types impacting a subscription or tenant, don't return sensitive security notification details. <!--This update will be made to API version 2023-10-01-preview and future versions.-->
+Events API users need to update their code to use the new **ARM endpoint (/fetchEventDetails)** to receive sensitive Security Advisories notification details. If users have the above-mentioned roles, they can view sensitive event details for a specific event with the new endpoint. The existing endpoint **(/events)** that returns all Service Health event types impacting a subscription or tenant, doesn't return sensitive security notification details. <!--This update will be made to API version 2023-10-01-preview and future versions.-->
 
 The <!--new and existing--> endpoints listed here <!--will--> return the security notification details for a specific event.
 
@@ -99,28 +99,6 @@ The following properties in the events object response aren't populated for sens
 * Description
 * Updates
 
-Only the following are populated in the properties object:
-
-* eventType
-* eventSource
-* status
-* title
-* platformInitiated
-* level
-* eventLevel
-* isHIR
-* priority
-* subscriptionId
-* lastUpdateTime
-* impact
-
-The impactedService property is populated for the impact object, but only the following properties in the impactedServiceRegion object in the impact object are populated:
-
-* impactedService
-* impactedSubscriptions
-* impactedTenants
-* impactedRegion
-* status
 
 ## Next steps
 
