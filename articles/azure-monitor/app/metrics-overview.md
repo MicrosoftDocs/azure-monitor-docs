@@ -133,9 +133,9 @@ Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dime
 The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements.
 
 > [!IMPORTANT]
-> * **Time Series Limit:** Each metric can only have up to **5,000** time series within 24 hours. Once this limit is reached, all dimension values of that metric point are replaced with the constant `Maximum values reached`.
+> * **Time Series Limit:** Each metric can only have up to **5,000** time series within *24 hours*. Once this limit is reached, all dimension values of that metric point are replaced with the constant `Maximum values reached`.
 >
-> * **Cardinality limit:** Each dimension can only have a certain number of unique values within 24 hours. Once this limit is reached, the dimension value is replaced with the constant `Other values`. The cardinality limit for each dimension is listed in the tables below.
+> * **Cardinality limit:** Each dimension can only have a certain number of unique values within *7 days*. Once this limit is reached, the dimension value is replaced with the constant `Other values`. The cardinality limit for each dimension is listed in the tables below.
 
 ### [Log-based](#tab/log-based)
 
