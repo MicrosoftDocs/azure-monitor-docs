@@ -1,12 +1,8 @@
 ---
 title: Supported Resource log categories for Azure Monitor
 description: Understand the supported services and event schemas for Azure Monitor resource logs.
-author: EdB-MSFT
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.date: 04/02/2025
-ms.author: edbaynash
-ms.reviewer: lualderm
+ms.date: 04/16/2025
 
 # NOTE This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 ---
@@ -49,7 +45,7 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.Batch <a name="microsoftbatch"></a>|[batchaccounts](./supported-metrics/Microsoft-Batch-batchaccounts-metrics.md)<br>|[batchaccounts](./supported-logs/Microsoft-Batch-batchaccounts-logs.md)<br>|
 |microsoft.botservice <a name="microsoftbotservice"></a>|[botservices](./supported-metrics/microsoft-botservice-botservices-metrics.md)<br>|[botservices](./supported-logs/microsoft-botservice-botservices-logs.md)<br>|
 |Microsoft.Cache <a name="microsoftcache"></a>|[redis](./supported-metrics/Microsoft-Cache-redis-metrics.md)<br>[redisEnterprise](./supported-metrics/Microsoft-Cache-redisEnterprise-metrics.md)<br>|[redis](./supported-logs/Microsoft-Cache-redis-logs.md)<br>[redisEnterprise/databases](./supported-logs/Microsoft-Cache-redisEnterprise-databases-logs.md)<br>|
-|Microsoft.Cdn <a name="microsoftcdn"></a>|[cdnwebapplicationfirewallpolicies](./supported-metrics/Microsoft-Cdn-cdnwebapplicationfirewallpolicies-metrics.md)<br>[profiles](./supported-metrics/Microsoft-Cdn-profiles-metrics.md)<br>|[cdnwebapplicationfirewallpolicies](./supported-logs/Microsoft-Cdn-cdnwebapplicationfirewallpolicies-logs.md)<br>[profiles](./supported-logs/Microsoft-Cdn-profiles-logs.md)<br>[profiles/endpoints](./supported-logs/Microsoft-Cdn-profiles-endpoints-logs.md)<br>|
+|Microsoft.Cdn <a name="microsoftcdn"></a>|[cdnwebapplicationfirewallpolicies](./supported-metrics/Microsoft-Cdn-cdnwebapplicationfirewallpolicies-metrics.md)<br>[edgeactions](./supported-metrics/Microsoft-Cdn-edgeactions-metrics.md)<br>[profiles](./supported-metrics/Microsoft-Cdn-profiles-metrics.md)<br>|[cdnwebapplicationfirewallpolicies](./supported-logs/Microsoft-Cdn-cdnwebapplicationfirewallpolicies-logs.md)<br>[profiles](./supported-logs/Microsoft-Cdn-profiles-logs.md)<br>[profiles/endpoints](./supported-logs/Microsoft-Cdn-profiles-endpoints-logs.md)<br>|
 |Microsoft.Chaos <a name="microsoftchaos"></a>|N/A|[experiments](./supported-logs/Microsoft-Chaos-experiments-logs.md)<br>|
 |Microsoft.ClassicNetwork <a name="microsoftclassicnetwork"></a>|N/A|[networksecuritygroups](./supported-logs/Microsoft-ClassicNetwork-networksecuritygroups-logs.md)<br>|
 |Microsoft.CodeSigning <a name="microsoftcodesigning"></a>|[codesigningaccounts](./supported-metrics/Microsoft-CodeSigning-codesigningaccounts-metrics.md)<br>|[codesigningaccounts](./supported-logs/Microsoft-CodeSigning-codesigningaccounts-logs.md)<br>|
