@@ -55,7 +55,7 @@ To find the resourceID in the portal, from the resource's overview page, select 
 
 The Resource JSON page is displayed. The resource ID can be copied using the icon on the right of the ID. 
 
-:::image type="content" source="media/rest-api-walkthrough/resourceid-azure-portal.png" lightbox="media/rest-api-walkthrough/resourceid-azure-portal.png" alt-text="A screenshot showing the Resource JSON page for a resource.":::
+:::image type="content" source="media/rest-api-walkthrough/resource-id-azure-portal.png" lightbox="media/rest-api-walkthrough/resource-id-azure-portal.png" alt-text="A screenshot showing the Resource JSON page for a resource.":::
 
 ### [PowerShell](#tab/powershell)
 
