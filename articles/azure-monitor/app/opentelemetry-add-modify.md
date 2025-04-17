@@ -1612,71 +1612,6 @@ with tracer.start_as_current_span("my request span", kind=SpanKind.SERVER) as sp
 
 ---
 
-<!--
-
-### Add Custom Events
-
-#### Span Events
-
-The OpenTelemetry Logs/Events API is still under development. In the meantime, you can use the OpenTelemetry Span API to create "Span Events", which populate the traces table in Application Insights. The string passed in to addEvent() is saved to the message field within the trace.
-
-> [!CAUTION]
-> Span Events are only recommended for when you need additional diagnostic metadata associated with your span. For other scenarios, such as describing business events, we recommend you wait for the release of the OpenTelemetry Events API.
-
-#### [ASP.NET Core](#tab/aspnetcore)
-  
-Currently unavailable.
-  
-#### [.NET](#tab/net)
-
-Currently unavailable.
-
-#### [Java](#tab/java)
-
-You can use `opentelemetry-api` to create span events, which populate the `traces` table in Application Insights. The string passed in to `addEvent()` is saved to the `message` field within the trace.
-
-1. Add `opentelemetry-api-1.0.0.jar` (or later) to your application:
-
-   ```xml
-   <dependency>
-     <groupId>io.opentelemetry</groupId>
-     <artifactId>opentelemetry-api</artifactId>
-     <version>1.0.0</version>
-   </dependency>
-   ```
-
-1. Add span events in your code:
-
-   ```java
-    import io.opentelemetry.api.trace.Span;
-
-    Span.current().addEvent("eventName");
-   ```
-
-#### [Java native](#tab/java-native)
-
-You can use OpenTelemetry API to create span events, which populate the `traces` table in Application Insights. The string passed in to `addEvent()` is saved to the `message` field within the trace.
-
-Add span events in your code:
-
-   ```java
-    import io.opentelemetry.api.trace.Span;
-
-    Span.current().addEvent("eventName");
-   ```
-
-#### [Node.js](#tab/nodejs)
-
-Currently unavailable.
-  
-#### [Python](#tab/python)
-
-Currently unavailable.
-
----
-
--->
-  
 ### Send custom events
 
 This section provides guidance on instrumenting your application to capture and send custom events.
@@ -1739,75 +1674,9 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 It's not possible to send a `customEvent` using the `"microsoft.custom_event.name"` attribute in Java native.
 
-<!--
-
-1. Add `applicationinsights-core` to your application:
-
-    ```xml
-    <dependency>
-      <groupId>com.microsoft.azure</groupId>
-      <artifactId>applicationinsights-core</artifactId>
-      <version>3.4.18</version>
-    </dependency>
-    ```
-
-1. Create a `TelemetryClient` instance:
-    
-    ```java
-    static final TelemetryClient telemetryClient = new TelemetryClient();
-    ```
-
-1. Use the client to send custom telemetry:
-
-    **Events**
-    
-    ```java
-    telemetryClient.trackEvent("WinGame");
-    ```
-
-    **Logs**
-    
-    ```java
-    telemetryClient.trackTrace(message, SeverityLevel.Warning, properties);
-    ```
-
-    **Metrics**
-    
-    ```java
-    telemetryClient.trackMetric("queueLength", 42.0);
-    ```
-
-    **Dependencies**
-    
-    ```java
-    boolean success = false;
-    long startTime = System.currentTimeMillis();
-    try {
-        success = dependency.call();
-    } finally {
-        long endTime = System.currentTimeMillis();
-        RemoteDependencyTelemetry telemetry = new RemoteDependencyTelemetry();
-        telemetry.setSuccess(success);
-        telemetry.setTimestamp(new Date(startTime));
-        telemetry.setDuration(new Duration(endTime - startTime));
-        telemetryClient.trackDependency(telemetry);
-    }
-    ```
-
-    **Exceptions**
-    
-    ```java
-    try {
-        ...
-    } catch (Exception e) {
-        telemetryClient.trackException(e);
-    }
--->
-
 #### [Java native](#tab/java-native)
 
 It's not possible to send a `customEvent` using the `"microsoft.custom_event.name"` attribute in Java native.
-
 
 #### [Node.js](#tab/nodejs)
 
@@ -1832,20 +1701,36 @@ logger.emit({
 To send a `customEvent` in Python, use the logging library with the `"microsoft.custom_event.name"` attribute in the `extra` parameter.
 
 ```python
-...
 import logging
 from azure.monitor.opentelemetry import configure_azure_monitor
 
+# Set up your application logger
 logger = logging.getLogger("my-app-logger")
+
+# Configure Azure Monitor to collect logs from the specified logger name
 configure_azure_monitor(
     logger_name="my-app-logger",  # Collect logs from your namespaced logger
 )
 
-# Use the logging library with "microsoft.custom_event.name" attribute key
-# The value of the attribute will become the name of the `customEvent`
-logger.warning("Hello World!", extra={"microsoft.custom_event.name": "test-event-name", "additional_attrs": "val1"})
+# Example 1: Log a custom event with a custom name and additional attribute
+# The 'microsoft.custom_event.name' value will be used as the name of the `customEvent`
+logger.warning(
+    "Hello World!",
+    extra={
+        "microsoft.custom_event.name": "test-event-name",
+        "additional_attrs": "val1"
+    }
+)
 
-...
+# Example 2: Log a custom event with a client IP address
+# The 'client.address' value will be included as part of the telemetry context
+logger.info(
+    "This entry will have a custom client_Ip",
+    extra={
+        "microsoft.custom_event.name": "test_event",
+        "client.address": "192.168.1.1"
+    }
+)
 ```
 
 ---
