@@ -1683,15 +1683,23 @@ It's not possible to send a `customEvent` using the `"microsoft.custom_event.nam
 To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Other attributes can also be included as needed.
 
 ```typescript
-/**
- * Send a customEvent by including the microsoft attribute key in the log.
- * The customEvent name uses the value of that attribute.
- */
+
+// Send a customEvent by including the microsoft attribute key in the log.
+// The customEvent name uses the value of that attribute.
 logger.emit({
   body: 'Hello World!',
   attributes: {
     "microsoft.custom_event.name": "test-event-name",
     "additional_attrs": "val1"
+  },
+});
+
+// You can also populate fields like client_IP with attribute `client.address`
+logger.emit({
+  body: 'This entry will have a custom client_IP',
+  attributes: {
+    "microsoft.custom_event.name": "test_event",
+    "client.address": "192.168.1.1"
   },
 });
 ```
@@ -1712,8 +1720,8 @@ configure_azure_monitor(
     logger_name="my-app-logger",  # Collect logs from your namespaced logger
 )
 
-# Example 1: Log a custom event with a custom name and additional attribute
-# The 'microsoft.custom_event.name' value will be used as the name of the `customEvent`
+# Log a custom event with a custom name and additional attribute
+# The 'microsoft.custom_event.name' value will be used as the name of the customEvent
 logger.warning(
     "Hello World!",
     extra={
@@ -1722,15 +1730,15 @@ logger.warning(
     }
 )
 
-# Example 2: Log a custom event with a client IP address
-# The 'client.address' value will appear as a custom dimension in Azure Monitor (not part of trace context)
+# You can also populate fields like client_IP with attribute `client.address`
 logger.info(
-    "This entry will have a custom client_Ip",
+    "This entry will have a custom client_IP",
     extra={
         "microsoft.custom_event.name": "test_event",
         "client.address": "192.168.1.1"
     }
 )
+
 ```
 
 ---
