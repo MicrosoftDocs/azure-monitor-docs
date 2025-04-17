@@ -1723,7 +1723,7 @@ logger.warning(
 )
 
 # Example 2: Log a custom event with a client IP address
-# The 'client.address' value will be included as part of the telemetry context
+# The 'client.address' value will appear as a custom dimension in Azure Monitor (not part of trace context)
 logger.info(
     "This entry will have a custom client_Ip",
     extra={
