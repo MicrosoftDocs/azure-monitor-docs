@@ -21,7 +21,7 @@ Each entry in the activity log has a severity level. Severity level can have one
 |Critical     |Events that demand the immediate attention of a system administrator. Might indicate that an application or system failed or stopped responding.  |
 |Error     |Events that indicate a problem, but don't require immediate attention.  |
 |Warning     | Events that provide forewarning of potential problems, although not an actual error. Indicate that a resource isn't in an ideal state and may degrade later into showing errors or critical events.         |
-|Informational     | Events that pass noncritical information to the administrator. Similar to a note that says: "For your information".        |
+|Information or Informational     | Events that pass noncritical information to the administrator. Similar to a note that says: "For your information".        |
 
 The developers of each resource provider choose the severity levels of their resource entries. As a result, the actual severity to you can vary depending on how your application is built. For example, items that are "critical" to a particular resource taken in isolation might not be as important as "errors" in a resource type that is central to your Azure application. Be sure to consider this fact when deciding what events to alert on. 
 
