@@ -15,7 +15,6 @@ This article lists significant changes to Azure Monitor documentation.
 
 |Subservice | Article | Description |
 |---|---|---|
-|Alerts|[Create a simple alert](../alerts/alerts-create-simple-alert.md)|New alert types are documented as part of creating simple alerts.|
 |Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../app/kubernetes-codeless.md)|Prerequisites for AKS autoinstrumentation have been updated.|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md)|New information is available on how both Java and Java native handle offline storage.|
 |Application-Insights|[Create and configure Application Insights resources](../app/create-workspace-resource.md)|Configuration of IP masking has been documented across all modalities.|

@@ -57,6 +57,8 @@ items:
             href: supported-metrics/microsoft-cache-redisenterprise-metrics.md
           - name: Microsoft.Cdn/cdnwebapplicationfirewallpolicies
             href: supported-metrics/microsoft-cdn-cdnwebapplicationfirewallpolicies-metrics.md
+          - name: Microsoft.Cdn/edgeactions
+            href: supported-metrics/microsoft-cdn-edgeactions-metrics.md
           - name: Microsoft.Cdn/profiles
             href: supported-metrics/microsoft-cdn-profiles-metrics.md
           - name: Microsoft.ClassicCompute/domainNames/slots/roles
@@ -617,13 +619,13 @@ items:
           - name: Microsoft.ContainerService/fleets
             href: supported-logs/microsoft-containerservice-fleets-logs.md
             displayName: Kubernetes Cloud Controller
-              Manager,fleet-hub-agent,guard,Kubernetes API Server,Kubernetes
-              Audit,Kubernetes Audit Admin Logs,Kubernetes Controller
-              Manager,Kubernetes Scheduler
+              Manager,fleet-hub-agent,fleet-hub-net-controller-manager,guard,Kubernetes
+              API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
+              Controller Manager,Kubernetes Scheduler
           - name: Microsoft.ContainerService/managedClusters
             href: supported-logs/microsoft-containerservice-managedclusters-logs.md
             displayName: Kubernetes Cloud Controller Manager,Kubernetes Cluster
-              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-member-agent,guard,Kubernetes
+              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-mcs-controller-manager,fleet-member-agent,fleet-member-net-controller-manager,guard,Kubernetes
               API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
               Controller Manager,Kubernetes Scheduler
           - name: Microsoft.CustomProviders/resourceproviders
@@ -1335,6 +1337,8 @@ items:
             href: tables/microsoft-documentdb_databaseaccounts.md
           - name: microsoft.documentdb/mongoclusters
             href: tables/microsoft-documentdb_mongoclusters.md
+          - name: microsoft.edge/diagnostics
+            href: tables/microsoft-edge_diagnostics.md
           - name: microsoft.eventgrid/domains
             href: tables/microsoft-eventgrid_domains.md
           - name: microsoft.eventgrid/namespaces
@@ -1568,6 +1572,8 @@ items:
             href: tables/aaddomainservicespolicychange.md
           - name: AADDomainServicesPrivilegeUse
             href: tables/aaddomainservicesprivilegeuse.md
+          - name: AADFirstPartyToFirstPartySignInLogs
+            href: tables/aadfirstpartytofirstpartysigninlogs.md
           - name: AADManagedIdentitySignInLogs
             href: tables/aadmanagedidentitysigninlogs.md
           - name: AADNonInteractiveUserSignInLogs
@@ -1616,6 +1622,8 @@ items:
             href: tables/acscallclientmediastatstimeseries.md
           - name: ACSCallClientOperations
             href: tables/acscallclientoperations.md
+          - name: ACSCallClientServiceRequestAndOutcome
+            href: tables/acscallclientservicerequestandoutcome.md
           - name: ACSCallClosedCaptionsSummary
             href: tables/acscallclosedcaptionssummary.md
           - name: ACSCallDiagnostics
@@ -2572,6 +2580,8 @@ items:
             href: tables/mdcfileintegritymonitoringevents.md
           - name: MDECustomCollectionDeviceFileEvents
             href: tables/mdecustomcollectiondevicefileevents.md
+          - name: MDPResourceLog
+            href: tables/mdpresourcelog.md
           - name: MNFDeviceUpdates
             href: tables/mnfdeviceupdates.md
           - name: MNFSystemSessionHistoryUpdates
@@ -2954,6 +2964,10 @@ items:
             href: tables/wdavstatus.md
           - name: WDAVThreat
             href: tables/wdavthreat.md
+          - name: WOUserAudits
+            href: tables/wouseraudits.md
+          - name: WOUserDiagnostics
+            href: tables/wouserdiagnostics.md
           - name: WUDOAggregatedStatus
             href: tables/wudoaggregatedstatus.md
           - name: WUDOStatus
@@ -3268,8 +3282,6 @@ items:
             href: queries/ApiManagementGatewayLogs.md
           - name: AppDependencies
             href: queries/AppDependencies.md
-          - name: AppEnvSpringAppConsoleLogs
-            href: queries/AppEnvSpringAppConsoleLogs.md
           - name: AppExceptions
             href: queries/AppExceptions.md
           - name: AppPageViews
@@ -3332,8 +3344,6 @@ items:
             href: queries/ConfigurationChange.md
           - name: ConfigurationData
             href: queries/ConfigurationData.md
-          - name: ContainerAppConsoleLogs
-            href: queries/ContainerAppConsoleLogs.md
           - name: ContainerImageInventory
             href: queries/ContainerImageInventory.md
           - name: ContainerInventory
@@ -3576,6 +3586,10 @@ items:
             href: queries/VIIndexing.md
           - name: W3CIISLog
             href: queries/W3CIISLog.md
+          - name: WOUserAudits
+            href: queries/WOUserAudits.md
+          - name: WOUserDiagnostics
+            href: queries/WOUserDiagnostics.md
           - name: WVDAgentHealthStatus
             href: queries/WVDAgentHealthStatus.md
           - name: WVDCheckpoints

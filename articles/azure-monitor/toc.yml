@@ -1461,8 +1461,6 @@ items:
             href: alerts/alerts-create-metric-alert-rule.md
           - name: Set up a log search alert
             href: alerts/alerts-create-log-alert-rule.md
-          - name: Set up a simple alert
-            href: alerts/alerts-create-simple-alert.md
           - name: Set up an activity log, service health or resource health alert
             href: alerts/alerts-create-activity-log-alert-rule.md
           - name: Set up a Prometheus alert
