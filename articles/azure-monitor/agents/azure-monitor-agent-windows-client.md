@@ -11,12 +11,12 @@ ms.reviewer: jeffwo
 
 Use the client installer to install the Azure Monitor Agent on Windows client devices and send monitoring data to your Log Analytics workspace.
 
-Both the [Azure Monitor Agent extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
+Both the [Azure Monitor Agent extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
 
 This article explains how to install the Azure Monitor Agent on Windows client devices by using the client installer, and how to associate DCRs to your Windows client devices.
 
 > [!NOTE]
-> This article provides specific guidance for installing the Azure Monitor Agent on Windows client devices, subject to [limitations](#limitations). For standard installation and management guidance for the agent, see the [agent extension management guidance](./azure-monitor-agent-manage.md).
+> This article provides specific guidance for installing the Azure Monitor Agent on Windows client devices, subject to [limitations](#limitations). For standard installation and management guidance for the agent, see the [agent extension management guidance](azure-monitor-agent-manage.md).
 
 ## Comparison with the virtual machine extension
 
@@ -30,8 +30,8 @@ Here's a comparison between using the client installer and using the virtual mac
 | Central configuration | DCRs | DCRs |
 | Associating config rules to agents | DCRs associate directly to individual VM resources | DCRs associate to a monitored object, which maps to all devices in the Microsoft Entra tenant |
 | Data upload to Log Analytics | Log Analytics endpoints | Log Analytics endpoints |
-| Feature support | All [documented features](./azure-monitor-agent-overview.md) | Features dependent on the Azure Monitor Agent extension that don't require more extensions (includes support for Microsoft Sentinel Windows Event filtering) |
-| [Networking options](./azure-monitor-agent-network-configuration.md) | Proxy support, private link support | Proxy support only |
+| Feature support | All [documented features](azure-monitor-agent-overview.md) | Features dependent on the Azure Monitor Agent extension that don't require more extensions (includes support for Microsoft Sentinel Windows Event filtering) |
+| [Networking options](azure-monitor-agent-network-configuration.md) | Proxy support, private link support | Proxy support only |
 
 ## Supported device types
 
@@ -39,8 +39,8 @@ Here's a comparison between using the client installer and using the virtual mac
 |:------------|:-----------|:--------------------|:-----------------------|
 | Windows 11, 10 desktops, workstations | Yes | Client installer | Installs the agent by using a Windows MSI installer. |
 | Windows 11, 10 laptops | Yes | Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent *isn't yet optimized* for battery or network consumption). |
-| VMs, scale sets | No | [VM extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent by using the Azure extension framework. |
-| On-premises servers | No | [VM extension](./azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
+| VMs, scale sets | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent by using the Azure extension framework. |
+| On-premises servers | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
 
 > [!IMPORTANT] 
 > The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data.
@@ -65,7 +65,7 @@ Here's a comparison between using the client installer and using the virtual mac
     
     (Example: `12345a01-b1cd-1234-e1f2-1234567g8h99.ods.opinsights.azure.com`)
 
-    If you use private links on the agent, you must also add the [data collection endpoints](../essentials/data-collection-endpoint-overview.md#components-of-a-dce).
+    If you use private links on the agent, you must also add the [data collection endpoints](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).
 
 * A DCR that you want to associate with the devices. If it doesn't exist already, [create a data collection rule](../vm/data-collection.md). *Don't associate the rule to any resources yet*.
 
@@ -91,7 +91,7 @@ Here's a comparison between using the client installer and using the virtual mac
     msiexec /i AzureMonitorAgentClientSetup.msi /qn
     ```
 
-1. To install with custom file paths, [network proxy settings](./azure-monitor-agent-network-configuration.md), or on a nonpublic cloud, use the following command. Use the values from the next table.
+1. To install with custom file paths, [network proxy settings](azure-monitor-agent-network-configuration.md), or on a nonpublic cloud, use the following command. Use the values from the next table.
 
     ```cli
     msiexec /i AzureMonitorAgentClientSetup.msi /qn DATASTOREDIR="C:\example\folder"
@@ -588,7 +588,7 @@ Make sure that you start the installer by using the **Run as administrator** opt
 
 ### Post-installation and operational issues
 
-After the agent is installed successfully (that is, you see the agent service running, but you don't see the data you expect), follow standard troubleshooting steps listed for a [Windows VM](./azure-monitor-agent-troubleshoot-windows-vm.md) and a [Windows Arc-enabled server](azure-monitor-agent-troubleshoot-windows-arc.md) respectively.
+After the agent is installed successfully (that is, you see the agent service running, but you don't see the data you expect), follow standard troubleshooting steps listed for a [Windows VM](azure-monitor-agent-troubleshoot-windows-vm.md) and a [Windows Arc-enabled server](azure-monitor-agent-troubleshoot-windows-arc.md) respectively.
 
 ## FAQs
 

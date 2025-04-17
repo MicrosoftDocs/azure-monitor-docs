@@ -20,23 +20,23 @@ This article provides guidance on collecting the most common types of telemetry 
 
 ## Data collection rules
 
-Data collection from Azure Monitor Agent is defined by one or more [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that are stored in your Azure subscription and associated with your virtual machines.
+Data collection from Azure Monitor Agent is defined by one or more [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) that are stored in your Azure subscription and associated with your virtual machines.
 
-For virtual machines, DCRs define data such as events and performance counters to collect and specify the Log Analytics workspaces where data should be sent. The DCR can also use [transformations](../essentials/data-collection-transformations.md) to filter out unwanted data and to add calculated columns. A single machine can be associated with multiple DCRs, and a single DCR can be associated with multiple machines. DCRs are delivered to any machines they're associated with where Azure Monitor Agent processes them.
+For virtual machines, DCRs define data such as events and performance counters to collect and specify the Log Analytics workspaces where data should be sent. The DCR can also use [transformations](../data-collection/data-collection-transformations.md) to filter out unwanted data and to add calculated columns. A single machine can be associated with multiple DCRs, and a single DCR can be associated with multiple machines. DCRs are delivered to any machines they're associated with where Azure Monitor Agent processes them.
 
 ### View data collection rules
 
 You can view the DCRs in your Azure subscription from **Data Collection Rules** on the **Monitor** menu in the Azure portal. DCRs support other data collection scenarios in Azure Monitor, so all of your DCRs aren't necessarily for virtual machines.
 
-:::image type="content" source="../essentials/media/data-collection-rule-overview/view-data-collection-rules.png" lightbox="../essentials/media/data-collection-rule-overview/view-data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
+:::image type="content" source="../data-collection/media/data-collection-rule-overview/view-data-collection-rules.png" lightbox="../data-collection/media/data-collection-rule-overview/view-data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
 
 ### Create data collection rules
 
 There are multiple methods to create DCRs depending on the data collection scenario. In some cases, the Azure portal walks you through the configuration. Other scenarios require you to edit a DCR directly. When you configure VM insights, it creates a preconfigured DCR for you automatically. The following sections identify common data to collect and how to configure data collection.
 
-In some cases, you might need to [edit an existing DCR](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to add functionality. For example, you might use the Azure portal to create a DCR that collects Windows or Syslog events. You then want to add a transformation to that DCR to filter out columns in the events that you don't want to collect.
+In some cases, you might need to [edit an existing DCR](../data-collection/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to add functionality. For example, you might use the Azure portal to create a DCR that collects Windows or Syslog events. You then want to add a transformation to that DCR to filter out columns in the events that you don't want to collect.
 
-As your environment matures and grows in complexity, you should implement a strategy for organizing your DCRs to help their management. For guidance on different strategies, see [Best practices for data collection rule creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md).
+As your environment matures and grows in complexity, you should implement a strategy for organizing your DCRs to help their management. For guidance on different strategies, see [Best practices for data collection rule creation and management in Azure Monitor](../data-collection/data-collection-rule-best-practices.md).
 
 ## Control costs
 
@@ -53,9 +53,9 @@ Evaluate collected data and filter out any that meets the following criteria to 
 * Not required by regulators.
 * Not used in any dashboards or workbooks.
 
-You can also use [transformations](../essentials/data-collection-transformations.md) to implement more granular filtering and also to filter data from columns that provide little value. For example, you might have a Windows event that's valuable for alerting, but it includes columns with redundant or excessive data. You can create a transformation that allows the event to be collected but removes this excessive data.
+You can also use [transformations](../data-collection/data-collection-transformations.md) to implement more granular filtering and also to filter data from columns that provide little value. For example, you might have a Windows event that's valuable for alerting, but it includes columns with redundant or excessive data. You can create a transformation that allows the event to be collected but removes this excessive data.
 
-Filter data as much as possible before it's sent to Azure Monitor to avoid a [potential charge for filtering too much data using transformations](../essentials/data-collection-transformations.md#cost-for-transformations). Use [transformations](../essentials/data-collection-transformations.md) for record filtering using complex logic and for filtering columns with data that you don't require. 
+Filter data as much as possible before it's sent to Azure Monitor to avoid a [potential charge for filtering too much data using transformations](../data-collection/data-collection-transformations.md#cost-for-transformations). Use [transformations](../data-collection/data-collection-transformations.md) for record filtering using complex logic and for filtering columns with data that you don't require. 
 
 ## Default data collection
 
@@ -66,14 +66,14 @@ Azure Monitor automatically performs the following data collection without requi
 Platform metrics for Azure virtual machines include important host metrics such as CPU, network, and disk utilization. They can be:
 
 * Viewed on the [Overview page](monitor-virtual-machine-analyze.md#single-machine-experience).
-* Analyzed with [metrics explorer](../essentials/tutorial-metrics.md) for the machine in the Azure portal.
+* Analyzed with [metrics explorer](../platform/tutorial-metrics.md) for the machine in the Azure portal.
 * Used for [metric alerts](tutorial-monitor-vm-alert-recommended.md).
 
 ### Activity log
 
-The [activity log](../essentials/activity-log.md) is collected automatically. It includes the recent activity of the machine, such as any configuration changes and when it was stopped and started. You can view the platform metrics and activity log collected for each virtual machine host in the Azure portal.
+The [activity log](../platform/activity-log.md) is collected automatically. It includes the recent activity of the machine, such as any configuration changes and when it was stopped and started. You can view the platform metrics and activity log collected for each virtual machine host in the Azure portal.
 
-You can [view the activity log](../essentials/activity-log-insights.md#view-the-activity-log) for an individual machine or for all resources in a subscription. [Create a diagnostic setting](../essentials/diagnostic-settings.md) to send this data into the same Log Analytics workspace used by Azure Monitor Agent to analyze it with the other monitoring data collected for the virtual machine. There's no cost for ingestion or retention of activity log data.
+You can [view the activity log](../platform/activity-log-insights.md#view-the-activity-log) for an individual machine or for all resources in a subscription. [Create a diagnostic setting](../platform/diagnostic-settings.md) to send this data into the same Log Analytics workspace used by Azure Monitor Agent to analyze it with the other monitoring data collected for the virtual machine. There's no cost for ingestion or retention of activity log data.
 
 ### VM availability information in Azure Resource Graph
 
@@ -94,15 +94,15 @@ When you enable VM insights, it creates a DCR with the *_MSVMI-_* prefix that co
     * [VMConnection](/azure/azure-monitor/reference/tables/vmconnection): Traffic for inbound and outbound connections to and from the machine
     * [VMProcess](/azure/azure-monitor/reference/tables/vmprocess): Processes running on the machine
 
-By default, [VM insights](../vm/vminsights-overview.md) won't enable collection of processes and dependencies to save data ingestion costs. This data is required for the Map feature and also deploys the dependency agent to the machine. [Enable this collection](vminsights-enable-portal.md#enable-vm-insights) if you want to use this feature.
+By default, [VM insights](vminsights-overview.md) won't enable collection of processes and dependencies to save data ingestion costs. This data is required for the Map feature and also deploys the dependency agent to the machine. [Enable this collection](vminsights-enable-portal.md#enable-vm-insights) if you want to use this feature.
 
 ## Collect Windows and Syslog events
 
 The operating system and applications in virtual machines often write to the Windows event log or Syslog. You might create an alert as soon as a single event is found or wait for a series of matching events within a particular time window. You might also collect events for later analysis, such as identifying particular trends over time, or for performing troubleshooting after a problem occurs.
 
-For guidance on how to create a DCR to collect Windows and Syslog events, see [Collect data with Azure Monitor Agent](../vm/data-collection.md). You can quickly create a DCR by using the most common Windows event logs and Syslog facilities filtering by event level.
+For guidance on how to create a DCR to collect Windows and Syslog events, see [Collect data with Azure Monitor Agent](data-collection.md). You can quickly create a DCR by using the most common Windows event logs and Syslog facilities filtering by event level.
 
-For more granular filtering by criteria such as event ID, you can create a custom filter by using [XPath queries](../agents/data-collection-windows-events.md#filter-events-using-xpath-queries). You can further filter the collected data by [editing the DCR](../essentials/data-collection-rule-edit.md) to add a [transformation](../essentials/data-collection-transformations.md).
+For more granular filtering by criteria such as event ID, you can create a custom filter by using [XPath queries](../agents/data-collection-windows-events.md#filter-events-using-xpath-queries). You can further filter the collected data by [editing the DCR](../data-collection/data-collection-rule-overview.md#viewing-dcrs) to add a [transformation](../data-collection/data-collection-transformations.md).
 
 Use the following guidance as a recommended starting point for event collection. Modify the DCR settings to filter unneeded events and add other events depending on your requirements.
 
@@ -131,23 +131,23 @@ Use the following guidance as a recommended starting point for event collection.
 
 ## Collect performance counters
 
-Performance data from the client can be sent to either [Azure Monitor Metrics](../essentials/data-platform-metrics.md) or [Azure Monitor Logs](../logs/data-platform-logs.md), and you typically send them to both destinations. If you enabled VM insights, a common set of performance counters is collected in Logs to support its performance charts. You can't modify this set of counters, but you can create other DCRs to collect more counters and send them to different destinations.
+Performance data from the client can be sent to either [Azure Monitor Metrics](../metrics/data-platform-metrics.md) or [Azure Monitor Logs](../logs/data-platform-logs.md), and you typically send them to both destinations. If you enabled VM insights, a common set of performance counters is collected in Logs to support its performance charts. You can't modify this set of counters, but you can create other DCRs to collect more counters and send them to different destinations.
 
 There are multiple reasons why you would want to create a DCR to collect guest performance:
 
 * You aren't using VM insights, so client performance data isn't already being collected.
 * Collect other performance counters that VM insights isn't collecting.
 * Collect performance counters from other workloads running on your client.
-* Send performance data to [Azure Monitor Metrics](../essentials/data-platform-metrics.md) where you can use them with metrics explorer and metrics alerts.
+* Send performance data to [Azure Monitor Metrics](../metrics/data-platform-metrics.md) where you can use them with metrics explorer and metrics alerts.
 
-For guidance on creating a DCR to collect performance counters, see [Collect events and performance counters from virtual machines with Azure Monitor Agent](../vm/data-collection.md). You can quickly create a DCR by using the most common counters. For more granular filtering by criteria such as event ID, you can create a custom filter by using [XPath queries](../agents/data-collection-windows-events.md#filter-events-using-xpath-queries).
+For guidance on creating a DCR to collect performance counters, see [Collect events and performance counters from virtual machines with Azure Monitor Agent](data-collection.md). You can quickly create a DCR by using the most common counters. For more granular filtering by criteria such as event ID, you can create a custom filter by using [XPath queries](../agents/data-collection-windows-events.md#filter-events-using-xpath-queries).
 
 > [!NOTE]
 > You might choose to combine performance and event collection in the same DCR.
 
 | Destination | Description |
 |:------------|:------------|
-| Metrics | Host metrics are automatically sent to Azure Monitor Metrics. You can use a DCR to collect client metrics so that they can be analyzed together with [metrics explorer](../essentials/metrics-getting-started.md) or used with [metrics alerts](../alerts/alerts-create-new-alert-rule.md?tabs=metric). This data is stored for 93 days. |
+| Metrics | Host metrics are automatically sent to Azure Monitor Metrics. You can use a DCR to collect client metrics so that they can be analyzed together with [metrics explorer](../metrics/analyze-metrics.md) or used with [metrics alerts](../alerts/alerts-create-new-alert-rule.md?tabs=metric). This data is stored for 93 days. |
 | Logs | Performance data stored in Azure Monitor Logs can be stored for extended periods. The data can be analyzed along with your event data by using [log queries](../logs/log-query-overview.md) with [Log Analytics](../logs/log-analytics-overview.md) or [log search alerts](../alerts/alerts-create-new-alert-rule.md?tabs=log). You can also correlate data by using complex logic across multiple machines, regions, and subscriptions.<br><br>Performance data is sent to the following tables:<br>• VM insights: [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>• Other performance data: [Perf](/azure/azure-monitor/reference/tables/perf) |
 
 ### Sample log queries
