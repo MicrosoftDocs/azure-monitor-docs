@@ -17,7 +17,7 @@ Data collected by Application Insights models this typical application execution
 
 :::image type="content" source="media/data-model-complete/application-insights-data-model.png" lightbox="media/data-model-complete/application-insights-data-model.png" alt-text="Diagram that shows the Application Insights telemetry data model.":::
 
-<sup>1</sup> `availabilityResults` aren't available by default and require availability tests to be set up.
+<sup>1</sup> `availabilityResults` aren't available by default and require availability tests to be set up.<br>
 <sup>2</sup> `customEvents`, `customMetrics`, and `traces` are only available with custom instrumentation.
 
 > [!NOTE]
@@ -59,18 +59,25 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
 1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
 1. **Client ↔ Web Server:** Client sends request payload, waits for the server to execute the request, and receives the first response packet.
-1. **Client ↔ Web Server:** Client receives the rest of the response payload bytes from the web server.
+1. **Client ← Web Server:** Client receives the rest of the response payload bytes from the web server.
 1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
 
 * `browserTimings/networkDuration` = 1. + 2.
+
 * `browserTimings/sendDuration` = 3.
+
 * `browserTimings/receiveDuration` = 4.
+
 * `browserTimings/processingDuration` = 5.
+
 * `browsertimings/totalDuration` = 1. + 2. + 3. + 4. + 5.
+
 * `pageViews/duration`
+
     * The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).
-    * If `PerformanceNavigationTiming` is available, that duration is used.
-        If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
+
+    * If `PerformanceNavigationTiming` is available, that duration is used. If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
+
     * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 
     See [PageView](#pageview) for more information about PageView telemetry.
@@ -118,16 +125,6 @@ Application Insights supports two types of metric telemetry:
 
 * A **single measurement** has a *name* and a *value*.
 * A **preaggregated metric** takes multiple measurements in a 1-minute aggregation period.
-<!--
-| Field | Single measurement | Preaggregated metric |
-|-------|--------------------|----------------------|
-| **Name** | This field is the name of the metric you want to see in the Application Insights portal and UI. | |
-| **Value** | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. | For a preaggregated metric, **Value** equals **Sum**. |
-| **Max** | **Max** equals **Value**. | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement. |
-| **Min** | **Min** equals **Value**. | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement. |
-| **Sum** | **Sum** equals **Value**. | The sum of all values of the aggregated metric. It shouldn't be set for a measurement. |
-| **Count** | For a single measurement metric, **Count** is always `1`. | The number of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement. |
--->
 
 <table>
     <thead>
