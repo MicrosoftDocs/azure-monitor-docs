@@ -1,6 +1,6 @@
 ---
 title: Application Insights telemetry data model
-description: This article describes the Application Insights telemetry data model including request, dependency, exception, trace, event, metric, PageView, and context.
+description: This article describes the Application Insights telemetry data model including availabilityResults, browserTimings, dependencies, customEvents, exceptions, performanceCounters, customMetrics, pageViews, requests, and traces.
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 01/31/2024
@@ -21,7 +21,7 @@ Data collected by Application Insights models this typical application execution
 <sup>2</sup> `customEvents`, `customMetrics`, and `traces` are only available with custom instrumentation.
 
 > [!NOTE]
-> Application Insights stores logs in the `traces` table for legacy reasons. The spans for *distributed* traces are stored in the `requests` and `dependencies` table. We plan to resolve this in a future release to avoid any confusion.
+> Application Insights stores logs in the `traces` table for legacy reasons. The spans for *distributed* traces are stored in the `requests` and `dependencies` tables. We plan to resolve this in a future release to avoid any confusion.
 
 ## Types of telemetry
 
@@ -80,7 +80,7 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 
     * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 
-    See [PageView](#pageview) for more information about PageView telemetry.
+    For more information, see [PageView](#pageview).
 
 :::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
