@@ -328,6 +328,8 @@ items:
         displayName: azure ad authentication
       - name: Managed workspaces
         href: app/managed-workspaces.md
+      - name: Telemetry data model
+        href: app/data-model-complete.md        
       - name: Transport Layer Security (TLS) compliance
         href: app/application-insights-tls.md
         displayName: TLS, transport layer security, compliance, security
@@ -1673,8 +1675,6 @@ items:
     href: agents/azure-monitor-agent-extension-versions.md
   - name: Application Insights
     items:
-    - name: Application Insights data model
-      href: app/data-model-complete.md
     - name: Statsbeat
       href: app/statsbeat.md
   - name: Azure PowerShell
