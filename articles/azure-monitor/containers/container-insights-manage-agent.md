@@ -102,7 +102,7 @@ With the rise of Kubernetes and the OSS ecosystem, Container Insights migrate to
 
 ## Repair duplicate or obsolete agents on AKS or Azure Arc Kubernetes cluster
 
-If you manually enabled Container Insights using custom methods such as HELM or yaml, you could end up with multiple versions of the agent or an old version of the agent that doesn’t get updated automatically. Follow the steps below to ensure your cluster remains secure and continues to receive all critical security and quality updates for the agent.
+If you manually enabled Container Insights using custom methods such as HELM or yaml, you could end up with multiple versions of the agent or an old version of the agent that doesn't get updated automatically. Follow the steps below to ensure your cluster remains secure and continues to receive all critical security and quality updates for the agent.
 
 
 1.	Gather details of any custom settings, such as memory and CPU limits on your omsagent containers. 

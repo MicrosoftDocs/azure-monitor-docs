@@ -37,7 +37,7 @@ Organized by subject area.
 | [Metadata](/rest/api/application-insights/metadata) | Retrieve and export the metadata information for an application. |
 | [Metrics](/rest/api/application-insights/metrics) | Retrieve or export the metric data for an application and retrieve the metadata describing the available metrics for an application. |
 | [Query](/rest/api/application-insights/query) | The Query operation group, which includes Execute and Get operations, enables running analytics queries on resources and retrieving the results, even for large data sets that require extended processing time. |
-| [Web Tests](/rest/api/application-insights/web-tests) | Set up web tests to monitor a web endpoint’s availability and responsiveness. |
+| [Web Tests](/rest/api/application-insights/web-tests) | Set up web tests to monitor a web endpoint's availability and responsiveness. |
 | [Workbooks](/rest/api/application-insights/workbooks) | Manage Azure workbooks for an Application Insights component resource and retrieve workbooks within resource group or subscription by category. |
 | ***Autoscale Settings*** |  |
 | [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
@@ -67,7 +67,7 @@ Organized by subject area.
 | [Metadata](/rest/api/loganalytics/metadata) | Retrieve the metadata information for a Log Analytics workspace. |
 | [Operation Statuses](/rest/api/loganalytics/operation-statuses) | Retrieve the status of a long running azure asynchronous operation. |
 | [Operations](/rest/api/loganalytics/operations) | Retrieve all of the available OperationalInsights Rest API operations. |
-| [Query](/rest/api/loganalytics/query) | Execute a batch of Analytics queries for data. |
+| [Query](/rest/api/loganalytics/query) | Query the full set of data collected by Azure Monitor logs using KQL. |
 | [Query pack queries](/rest/api/monitor/query-pack-queries) | Manage a query defined within a Log Analytics QueryPack and retrieve or search the list of queries defined within a Log Analytics QueryPack. |
 | [Query packs](/rest/api/monitor/query-packs) | Manage a Log Analytics QueryPack including updating its tags and retrieve a list of all Log Analytics QueryPacks within a subscription or resource group. |
 | [Saved Searches](/rest/api/loganalytics/saved-searches) | Create or update saved searches. |

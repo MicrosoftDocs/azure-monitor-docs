@@ -77,7 +77,7 @@ sections:
           The list of health checks and resource types supported through Resource Health can be found [here](resource-health-checks-resource-types.md).
           
       - question: |
-          What should I do if my resource is showing available but I believe it is not?”
+          What should I do if my resource is showing available but I believe it is not?
         answer: |
           When checking the health of a resource, right under the health status you can click **Report incorrect health status**. Before submitting the report, you have the option of providing additional details on why you believe the current health status is incorrect.
 

@@ -66,7 +66,7 @@ Links are provided to more information for each supported scenario.
 
 We follow the [Microsoft Style Guide](/style-guide/punctuation/dashes-hyphens/hyphens#prefixes) for product documentation published to the [Microsoft Learn](/) platform.
 
-In general, we don’t include a hyphen after the "auto" prefix.
+In general, we don't include a hyphen after the "auto" prefix.
 
 ## Next steps
 

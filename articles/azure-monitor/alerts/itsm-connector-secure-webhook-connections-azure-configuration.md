@@ -44,7 +44,7 @@ To learn more about action groups, see [Create and manage action groups in the A
 > - "Computer"
 > - "Resource"
 > - "_ResourceId"
-> - "ResourceId”
+> - "ResourceId"
 
 To add a webhook to an action, follow these instructions for Secure Webhook:
 

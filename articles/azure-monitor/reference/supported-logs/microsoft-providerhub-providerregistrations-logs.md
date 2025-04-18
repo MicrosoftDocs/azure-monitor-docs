@@ -2,10 +2,7 @@
 title: Supported log categories - Microsoft.ProviderHub/providerRegistrations
 description: Reference for Microsoft.ProviderHub/providerRegistrations in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
-ms.date: 03/03/2025
+ms.date: 04/16/2025
 ms.custom: Microsoft.ProviderHub/providerRegistrations, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 

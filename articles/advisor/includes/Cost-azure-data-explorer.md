@@ -88,7 +88,7 @@ Recommendation ID: 354D7BBB-A243-4BE1-A8B9-43DBFC05C44A
 
 #### Cleanup unused storage in Data Explorer resources  
   
-Over time, internal extents merge operations can accumulate redundant and unused storage artifacts that remain beyond the data retention period. While this unreferenced data doesn’t negatively impact the performance, it can lead to more storage use and larger costs than necessary. This recommendation surfaces Data Explorer resources that have unused storage artifacts. The recommended action is to run the cleanup command to detect and delete unused storage artifacts and reduce cost. Note that data recoverability will be reset to the cleanup time and will not be available on data that was created before running the cleanup.  
+Over time, internal extents merge operations can accumulate redundant and unused storage artifacts that remain beyond the data retention period. While this unreferenced data doesn't negatively impact the performance, it can lead to more storage use and larger costs than necessary. This recommendation surfaces Data Explorer resources that have unused storage artifacts. The recommended action is to run the cleanup command to detect and delete unused storage artifacts and reduce cost. Note that data recoverability will be reset to the cleanup time and will not be available on data that was created before running the cleanup.  
   
 **Potential benefits**: Optimize cost  
 

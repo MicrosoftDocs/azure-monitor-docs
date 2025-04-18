@@ -1,10 +1,9 @@
 ---
 title: Profile Azure containers with Application Insights Profiler for .NET
 description: Learn how to enable the Application Insights Profiler for your ASP.NET Core application running in Azure containers.
-ms.contributor: charles.weininger
 ms.topic: how-to
-ms.date: 08/19/2024
-ms.reviewer: ryankahng
+ms.date: 03/24/2025
+ms.reviewer: charles.weininger
 # Customer Intent: As a .NET developer, I'd like to learn how to enable the Profiler on my ASP.NET Core application running in my container.
 ---
 
@@ -14,17 +13,17 @@ You can enable the Application Insights Profiler for .NET on applications runnin
 
 - Add the reference to the `Microsoft.ApplicationInsights.Profiler.AspNetCore` NuGet package.
 - Update the code to enable the Profiler for .NET.
-- Set up the Application Insights instrumentation key.
+- Set up the Application Insights connection string.
 
 In this article, you learn about the various ways that you can:
 > [!div class="checklist"]
 > - Install the NuGet package in the project.
 > - Set the environment variable via the orchestrator (like Kubernetes).
-> - Learn security considerations around production deployment, like protecting your Application Insights instrumentation key.
+> - Learn security considerations around production deployment, like protecting your Application Insights connection string.
 
 ## Prerequisites
 
-- [An Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the instrumentation key.
+- [An Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the connection string.
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) to build Docker images.
 - [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0) installed.
 
@@ -48,7 +47,7 @@ In this article, you learn about the various ways that you can:
    dotnet new mvc -n EnableServiceProfilerForContainerApp
    ```
 
-   We've added delay in the `Controllers/WeatherForecastController.cs` project to simulate the bottleneck.
+   A delay is in the `Controllers/WeatherForecastController.cs` project to simulate the bottleneck.
 
    ```csharp
    [HttpGet(Name = "GetWeatherForecast")]
@@ -122,17 +121,17 @@ In this article, you learn about the various ways that you can:
 
 ## Add your Application Insights key
 
-1. Via your Application Insights resource in the Azure portal, take note of your Application Insights instrumentation key.
+1. Via your Application Insights resource in the Azure portal, take note of your Application Insights connection string.
 
-   :::image type="content" source="./media/profiler-containerinstances/application-insights-key.png" alt-text="Screenshot that shows finding the instrumentation key in the Azure portal.":::
+   :::image type="content" source="./media/profiler-containerinstances/application-insights-key.png" alt-text="Screenshot that shows finding the connection string in the Azure portal.":::
 
-1. Open `appsettings.json` and add your Application Insights instrumentation key to this code section:
+1. Open `appsettings.json` and add your Application Insights connection string to this code section:
 
    ```json
    {
        "ApplicationInsights":
        {
-           "InstrumentationKey": "Your instrumentation key"
+           "InstrumentationKey": "Your connection string"
        }
    }
    ```
@@ -175,7 +174,7 @@ docker logs testapp
 In the local logs, note the following events:
    
 ```output
-Starting application insights profiler with instrumentation key: your-instrumentation key # Double check the instrumentation key
+Starting application insights profiler with connection string: your-connection string # Double check the connection string
 Service Profiler session started.               # Profiler started.
 Finished calling trace uploader. Exit code: 0   # Uploader is called with exit code 0.
 Service Profiler session finished.              # A profiling session is completed.

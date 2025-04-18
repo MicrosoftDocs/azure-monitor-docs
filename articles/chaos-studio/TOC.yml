@@ -40,6 +40,9 @@
   items:
     - name: Permissions and security
       href: chaos-studio-permissions-security.md
+      items:
+        - name: Assigning experiment permissions
+          href: chaos-studio-assign-experiment-permissions.md
     - name: Private networking
       href: chaos-studio-private-networking.md
       items:

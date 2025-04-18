@@ -139,6 +139,7 @@ All our OpenTelemetry offerings and the following SDK versions onwards support c
 * JavaScript v2.3.0
 * NodeJS v1.5.0
 * Python v1.0.0
+* Java v3.1.1
 
 You can set a connection string in code, by using an environment variable, or a configuration file.
 
@@ -168,6 +169,10 @@ New Azure regions *require* the use of connection strings instead of instrumenta
 ### Should I use connection strings or instrumentation keys?
 
 We recommend that you use connection strings instead of instrumentation keys.
+
+#### When do I need to set the environment variable?
+
+Manually set the `APPLICATIONINSIGHTS_CONNECTION_STRING` in all scenarios where it's not automatically provided. These scenarios include, but are not limited to: local development and .NET Isolated Functions using ASP.NET Core integration. In these cases, the environment variable ensures the OpenTelemetry pipeline can send telemetry to Application Insights. For more information on configuring connection strings with an environment variable, see [Configuring OpenTelemetry in Application Insights](./opentelemetry-configuration.md#connection-string).
 
 ## Next steps
 

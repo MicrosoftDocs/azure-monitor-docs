@@ -87,7 +87,7 @@ Because the SDK batches data for submission, there might be a delay before items
 
 * Continue to use the application. Take more actions to generate more telemetry.
 * Select **Refresh** in the portal resource view. Charts periodically refresh on their own, but manually refreshing forces them to refresh immediately.
-* Verify that [required outgoing ports](../ip-addresses.md) are open.
+* Verify that [required outgoing ports](../fundamentals/azure-monitor-network-access.md) are open.
 * Use [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) to look for specific events.
 * Check the [FAQ][FAQ].
 
@@ -342,7 +342,7 @@ Use the following code to manually track HTTP GET requests:
 
 > [!NOTE]
 > - All requests are tracked by default. To disable automatic collection, call `.setAutoCollectRequests(false)` before calling `start()`.
-> - Native fetch API requests aren’t automatically tracked by classic Application Insights; manual dependency tracking is required.
+> - Native fetch API requests aren't automatically tracked by classic Application Insights; manual dependency tracking is required.
 
 ```javascript
 appInsights.defaultClient.trackRequest({name:"GET /customers", url:"http://myserver/customers", duration:309, resultCode:200, success:true});
@@ -464,6 +464,12 @@ These properties are client specific, so you can configure `appInsights.defaultC
 #### How can I disable telemetry correlation?
 
 To disable telemetry correlation, use the `correlationHeaderExcludedDomains` property in configuration. For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js#configuration).
+
+#### How can I configure the desired log level?
+
+To configure the desired log level that Application Insights will use, use the `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL` environment variable.
+The supported values are NONE, ERROR, WARN, INFO, DEBUG, VERBOSE and ALL.
+For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js?tab=readme-ov-file#applicationinsights-3x-sdk-unsupported-properties).
 
 ## Troubleshooting
 

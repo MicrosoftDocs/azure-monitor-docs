@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/18/2025
+ms.date: 04/14/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -805,10 +805,6 @@ ms.reviewer: lualderm
 
 - [Failing dependencies](./queries/AppDependencies.md#failing-dependencies)
 
-## [AppEnvSpringAppConsoleLogs](./queries/AppEnvSpringAppConsoleLogs.md)
-
-- [Latest Container App first party Spring App errors](./queries/AppEnvSpringAppConsoleLogs.md#latest-container-app-first-party-spring-app-errors)
-
 ## [AppExceptions](./queries/AppExceptions.md)
 
 - [Top 3 browser exceptions](./queries/AppExceptions.md#top-3-browser-exceptions)
@@ -1167,10 +1163,6 @@ ms.reviewer: lualderm
 
 - [Recent stopped auto services](./queries/ConfigurationData.md#recent-stopped-auto-services)
 
-## [ContainerAppConsoleLogs](./queries/ContainerAppConsoleLogs.md)
-
-- [Latest Container App user errors](./queries/ContainerAppConsoleLogs.md#latest-container-app-user-errors)
-
 ## [ContainerImageInventory](./queries/ContainerImageInventory.md)
 
 - [Image inventory](./queries/ContainerImageInventory.md#image-inventory)
@@ -1231,6 +1223,11 @@ ms.reviewer: lualderm
 ## [DataverseActivity](./queries/DataverseActivity.md)
 
 - [Dataverse events filtered by operation type](./queries/DataverseActivity.md#dataverse-events-filtered-by-operation-type)
+
+## [DevCenterBillingEventLogs](./queries/DevCenterBillingEventLogs.md)
+
+- [DevCenter - DevBox storage and compute usage breakdown by dev box](./queries/DevCenterBillingEventLogs.md#devcenter---devbox-storage-and-compute-usage-breakdown-by-dev-box)
+- [DevCenter - DevBox billing meter breakdown by Pool](./queries/DevCenterBillingEventLogs.md#devcenter---devbox-billing-meter-breakdown-by-pool)
 
 ## [DevCenterDiagnosticLogs](./queries/DevCenterDiagnosticLogs.md)
 
@@ -1647,6 +1644,11 @@ ms.reviewer: lualderm
 - [Calls based on operation name](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-operation-name)
 - [Calls based on user](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-user)
 
+## [RetinaNetworkFlowLogs](./queries/RetinaNetworkFlowLogs.md)
+
+- [Dropped network low Logs](./queries/RetinaNetworkFlowLogs.md#dropped-network-low-logs)
+- [Top 10 network flow log metrics](./queries/RetinaNetworkFlowLogs.md#top-10-network-flow-log-metrics)
+
 ## [SCGPoolExecutionLog](./queries/SCGPoolExecutionLog.md)
 
 - [Settings Updated Pool Events](./queries/SCGPoolExecutionLog.md#settings-updated-pool-events)
@@ -1889,6 +1891,15 @@ ms.reviewer: lualderm
 - [Bytes received by each IIS computer](./queries/W3CIISLog.md#bytes-received-by-each-iis-computer)
 - [Bytes responded to clients by each IIS server IP](./queries/W3CIISLog.md#bytes-responded-to-clients-by-each-iis-server-ip)
 - [Average HTTP request time by client IP](./queries/W3CIISLog.md#average-http-request-time-by-client-ip)
+
+## [WOUserAudits](./queries/WOUserAudits.md)
+
+- [Auditing workload orchestration Operations](./queries/WOUserAudits.md#auditing-workload-orchestration-operations)
+- [Auditing workload orchestration API requests](./queries/WOUserAudits.md#auditing-workload-orchestration-api-requests)
+
+## [WOUserDiagnostics](./queries/WOUserDiagnostics.md)
+
+- [workload orchestration target provider and solution deployment failures](./queries/WOUserDiagnostics.md#workload-orchestration-target-provider-and-solution-deployment-failures)
 
 ## [WVDAgentHealthStatus](./queries/WVDAgentHealthStatus.md)
 

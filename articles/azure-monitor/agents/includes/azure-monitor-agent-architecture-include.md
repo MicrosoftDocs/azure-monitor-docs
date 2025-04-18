@@ -1,6 +1,4 @@
 ---
-author: shseth
-ms.author: shseth
 ms.topic: include
 ms.date: 3/22/2022
 ---

@@ -1,7 +1,6 @@
 ---
 title: Configure the ContainerLogV2 schema for Container Insights
 description: Switch your ContainerLog table to the ContainerLogV2 schema.
-ms.subservice: logs
 ms.topic: conceptual
 ms.date: 11/19/2024
 ms.reviewer: aul
@@ -35,7 +34,10 @@ The following table highlights the key differences between using ContainerLogV2 
 <sup>3</sup> DCR configuration requires [managed identity authentication](./container-insights-authentication.md).
 
 >[!NOTE]
-> [Export](../logs/logs-data-export.md) to Event Hub and Storage Account is not supported if the incoming `LogMessage` is not valid JSON. For best performance, emit container logs in JSON format.
+> The `LogMessage` field is dynamic and supports ingesting both JSON and plaintext string formats. 
+[Log data export](../logs/logs-data-export.md) to Event Hub and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
+>
+> If the `LogMessage` is malformed JSON then those log messages will be ingested with escaping. By default, log messages larger than 16KB are truncated. With [multi-line logging](#multi-line-logging) enabled, log messages larger than 64KB are truncated.
 
 
 ## Enable the ContainerLogV2 schema

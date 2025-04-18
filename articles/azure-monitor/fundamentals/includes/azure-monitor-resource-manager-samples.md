@@ -1,12 +1,6 @@
 ---
-title: "include file" 
-description: "include file" 
-services: azure-monitor
-author: bwren
-ms.topic: "include"
+ms.topic: include
 ms.date: 05/18/2020
-ms.author: bwren
-ms.custom: "include file"
 ---
 
 > [!NOTE]

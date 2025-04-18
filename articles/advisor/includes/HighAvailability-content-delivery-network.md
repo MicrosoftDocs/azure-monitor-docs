@@ -72,7 +72,7 @@ Subcategory: BusinessContinuity
   
 Configure the Azure Front Door (AFD) customer certificate secret to 'Latest' for the AFD to refer to the latest secret version in Azure Key Vault, allowing the secret can be automatically rotated.  
   
-**Potential benefits**: Latest’ version can be automatically rotated.  
+**Potential benefits**: Latest version can be automatically rotated.  
 
 **Impact:** Medium
   

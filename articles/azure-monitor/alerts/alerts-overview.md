@@ -2,9 +2,7 @@
 title: Overview of Azure Monitor alerts
 description: Learn about Azure Monitor alerts, alert rules, action processing rules, and action groups, and how they work together to monitor your system.
 ms.topic: overview 
-ms.date: 01/14/2024
-ms.custom: template-overview 
-ms.reviewer: harelbr
+ms.date: 04/10/2025
 ---
 
 # What are Azure Monitor alerts?
@@ -92,7 +90,7 @@ You can [enable recommended out-of-the-box alert rules in the Azure portal](aler
 
 The system compiles a list of recommended alert rules based on:
 
-- The resource provider’s knowledge of important signals and thresholds for monitoring the resource.
+- The resource provider's knowledge of important signals and thresholds for monitoring the resource.
 - Data that tells us what customers commonly alert on for this resource.
 
 > [!NOTE]

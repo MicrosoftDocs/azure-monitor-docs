@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 02/18/2025
+ms.date: 04/14/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -653,12 +653,14 @@ Microsoft.Communication/CommunicationServices
 - [AzureMetrics](./tables/azuremetrics.md)
 - [ACSChatIncomingOperations](./tables/acschatincomingoperations.md)
 - [ACSSMSIncomingOperations](./tables/acssmsincomingoperations.md)
+- [ACSOptOutManagementOperations](./tables/acsoptoutmanagementoperations.md)
 - [ACSAuthIncomingOperations](./tables/acsauthincomingoperations.md)
 - [ACSBillingUsage](./tables/acsbillingusage.md)
 - [ACSCallDiagnostics](./tables/acscalldiagnostics.md)
 - [ACSCallDiagnosticsUpdates](./tables/acscalldiagnosticsupdates.md)
 - [ACSCallingMetrics](./tables/acscallingmetrics.md)
 - [ACSCallSurvey](./tables/acscallsurvey.md)
+- [ACSCallClientServiceRequestAndOutcome](./tables/acscallclientservicerequestandoutcome.md)
 - [ACSCallClientOperations](./tables/acscallclientoperations.md)
 - [ACSCallClientMediaStatsTimeSeries](./tables/acscallclientmediastatstimeseries.md)
 - [ACSCallSummary](./tables/acscallsummary.md)
@@ -683,6 +685,9 @@ Microsoft.App/managedEnvironments
 - [ContainerAppConsoleLogs](./tables/containerappconsolelogs.md)
 - [ContainerAppSystemLogs](./tables/containerappsystemlogs.md)
 - [AppEnvSpringAppConsoleLogs](./tables/appenvspringappconsolelogs.md)
+- [AppEnvSessionConsoleLogs](./tables/appenvsessionconsolelogs.md)
+- [AppEnvSessionPoolEventLogs](./tables/appenvsessionpooleventlogs.md)
+- [AppEnvSessionLifecycleLogs](./tables/appenvsessionlifecyclelogs.md)
 
 ### Container Registries  
 
@@ -1021,7 +1026,6 @@ Microsoft.Devices/IotHubs
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
-- [IoTHubDistributedTracing](./tables/iothubdistributedtracing.md)
 - [InsightsMetrics](./tables/insightsmetrics.md)
 
 ### Key Vaults  
@@ -1038,6 +1042,7 @@ Microsoft.KeyVault/vaults
 
 Microsoft.ContainerService/managedClusters  
 
+- [RetinaNetworkFlowLogs](./tables/retinanetworkflowlogs.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
 - [AzureMetrics](./tables/azuremetrics.md)
@@ -1072,6 +1077,7 @@ Microsoft.Network/LoadBalancers
 
 Microsoft.OperationalInsights/Workspaces  
 
+- [AzureMetrics](./tables/azuremetrics.md)
 - [LAQueryLogs](./tables/laquerylogs.md)
 - [LASummaryLogs](./tables/lasummarylogs.md)
 - [AzureMetricsV2](./tables/azuremetricsv2.md)
@@ -1123,6 +1129,7 @@ Microsoft.MachineLearningServices/registries
 Microsoft.DevOpsInfrastructure/pools  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [MDPResourceLog](./tables/mdpresourcelog.md)
 
 ### Media Services  
 
@@ -1724,6 +1731,15 @@ Microsoft.WorkloadMonitor/monitors
 Microsoft.Insights/WorkloadMonitoring  
 
 - [InsightsMetrics](./tables/insightsmetrics.md)
+
+### workload orchestration  
+
+Microsoft.Edge/diagnostics  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AzureDiagnostics](./tables/azurediagnostics.md)
+- [WOUserAudits](./tables/wouseraudits.md)
+- [WOUserDiagnostics](./tables/wouserdiagnostics.md)
 
 ## Next steps
 

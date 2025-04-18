@@ -26,13 +26,14 @@ Without this connectivity, the agent won't receive instructions or be able to re
 - **NSG Configuration:** Use the **ChaosStudio** service tag to allow outbound traffic in Network Security Groups.
   - Regularly verify that NSG rules and firewall settings permit outbound traffic to the required Chaos Agent service endpoints.
 - **Private Connectivity:** Private Link can be configured for fully private connectivity. For more details, review the [Chaos Studio private link for agent documentation](chaos-studio-private-link-agent-service.md).
+- **Explicit Outbound Access Required:** The agent requires explicit outbound network access. Ensure your VM has a NAT Gateway, Load Balancer outbound rule, or public IP configured, as default outbound access may not be available in future deployments.
 
 ## Security
 
 Security is a primary consideration in the design of the Chaos Agent:
 
 - **Managed Identity:** The agent uses Azure Managed Identity for authentication, eliminating the need to store secrets on the VM.
-- **Role-based access Controls (RBAC):** All chaos actions are initiated by the user’s experiment, and Azure RBAC ensures that only authorized fault operations are executed.
+- **Role-based access Controls (RBAC):** All chaos actions are initiated by the user's experiment, and Azure RBAC ensures that only authorized fault operations are executed.
 
 For more security best practices and troubleshooting tips, refer to the [Chaos Studio permissions security](chaos-studio-permissions-security.md).
 
@@ -85,8 +86,10 @@ For more details on installation and identity requirements see the [Chaos Studio
 The agent attempts to install itself and its dependencies in the following filepaths:
 
 - **Windows:** ```C:\Packages\Plugins\Microsoft.Azure.Chaos.ChaosWindowsAgent\<version>```
+---
 - **Linux:** ```/var/lib/waagent/Microsoft.Azure.Chaos.ChaosLinuxAgent-<version>```
 - **Linux Dependencies:** Installed in the linux-x64 folder at the above location
+- **Linux ```tc``` scripts:** Some scripts needed for our networking faults are installed at the following filepath: ```/.azure-chaos-agent/scripts/```
 
 <br>[![Screenshot of terminal example showing filepath of Chaos agent on a linux machine](images/chaos-agent-linux-filepath-example.png)](images/chaos-agent-linux-filepath-example.png#lightbox)<br>
 

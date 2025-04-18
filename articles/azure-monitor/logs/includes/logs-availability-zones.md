@@ -1,7 +1,4 @@
 ---
-author: guywi-ms
-ms.author: guywild
-ms.service: azure-monitor
 ms.topic: include
 ms.date: 08/28/2024
 ---
@@ -14,4 +11,4 @@ In most regions, Azure Monitor Logs availability zones support **data resilience
 
 A subset of the availability zones that support data resilience also support **service resilience**, which means that Azure Monitor Logs service operations - for example, log ingestion, queries, and alerts - can continue in the event of a zone failure. 
 
-Availability zones protect against infrastructure-related incidents, such as storage failures. They don’t protect against application-level issues, such as faulty code deployments or certificate failures, which impact the entire region.
+Availability zones protect against infrastructure-related incidents, such as storage failures. They don't protect against application-level issues, such as faulty code deployments or certificate failures, which impact the entire region.
