@@ -17,6 +17,12 @@ Data collected by Application Insights models this typical application execution
 
 :::image type="content" source="media/data-model-complete/application-insights-data-model.png" lightbox="media/data-model-complete/application-insights-data-model.png" alt-text="Diagram that shows the Application Insights telemetry data model.":::
 
+<sup>1</sup> `availabilityResults` aren't available by default and require availability tests to be set up.
+<sup>2</sup> `customEvents`, `customMetrics`, and `traces` are only available with custom instrumentation.
+
+> [!NOTE]
+> Application Insights stores logs in the 'traces' table for legacy reasons. The spans for *distributed* traces are stored in the `requests` and `dependencies` table. We plan to resolve this in a future release to avoid any confusion.
+
 ## Types of telemetry
 
 The following types of telemetry are used to monitor the execution of your application. The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Application Insights JavaScript SDK](javascript-sdk.md) collect:
@@ -43,7 +49,7 @@ The Application Insights telemetry model defines a way to [correlate](distribute
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive.
 
-> [!TIPP]
+> [!TIP]
 > We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
 
 ### BrowserTimings
@@ -64,11 +70,12 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 * `pageViews/duration`
     * The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).
     * If `PerformanceNavigationTiming` is available, that duration is used.
-     
-If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
+        If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
     * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 
-:::image type="content" source="media/javascript/page-view-load-time.png" lightbox="media/javascript/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
+    See [PageView](#pageview) for more information about PageView telemetry.
+
+:::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
 ### Dependency
 
@@ -119,7 +126,7 @@ Application Insights supports two types of metric telemetry:
 | **Max** | **Max** equals **Value**. | This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement. |
 | **Min** | **Min** equals **Value**. | This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement. |
 | **Sum** | **Sum** equals **Value**. | The sum of all values of the aggregated metric. It shouldn't be set for a measurement. |
-| **Count** | For a single measurement metric, **Count** is always `1`. | The amount of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement. |
+| **Count** | For a single measurement metric, **Count** is always `1`. | The number of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement. |
 -->
 
 <table>
@@ -158,7 +165,7 @@ Application Insights supports two types of metric telemetry:
         <tr>
             <td><b>Count</b></td>
             <td>For a single measurement metric, <b>Count</b> is <code>1</code>.</td>
-            <td>The amount of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement.</td>
+            <td>The number of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement.</td>
         </tr>
     </tbody>
 </table>
@@ -235,7 +242,7 @@ Every telemetry item might have a strongly typed context field. Every field enab
 | **Anonymous user ID** | The anonymous user ID (User.Id) represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use an authenticated user ID. | 128 |
 | **Application version** | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. | 1,024 |
 | **Authenticated user ID** | An authenticated user ID is the opposite of an anonymous user ID. This field represents the user with a friendly name. This ID is only collected by default with the ASP.NET Framework SDK's [`AuthenticatedUserIdTelemetryInitializer`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/WEB/Src/Web/Web/AuthenticatedUserIdTelemetryInitializer.cs).<br><br>Use the Application Insights SDK to initialize the authenticated user ID with a value that identifies the user persistently across browsers and devices. In this way, all telemetry items are attributed to that unique ID. This ID enables querying for all telemetry collected for a specific user (subject to [sampling configurations](sampling.md) and [telemetry filtering](api-filtering-sampling.md)).<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration. | 1,024 |
-| **Client IP address** | This field is the IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncate it. The client IP by itself can't be used as user identifiable information. | 46 |
+| **Client IP address** | This field is the IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. | 46 |
 | **Cloud role** | This field is the name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. | 256 |
 | **Cloud role instance** | This field is the name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. | 256 |
 | **Device type** | Originally, this field was used to indicate the type of the device the user of the application is using. Today it's used primarily to distinguish JavaScript telemetry with the device type `Browser` from server-side telemetry with the device type `PC`. | 64 |
