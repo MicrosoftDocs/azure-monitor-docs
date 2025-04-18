@@ -170,7 +170,7 @@ Application Insights supports two types of metric telemetry which are placed int
 > [!NOTE]
 > To calculate the average, divide **Sum** by **Count**.
 
-For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
+To learn more, see [Metrics in Application Insights](metrics-overview.md). For more information about the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
 
 #### System and process counter metrics
 
