@@ -21,7 +21,7 @@ Data collected by Application Insights models this typical application execution
 <sup>2</sup> `customEvents`, `customMetrics`, and `traces` are only available with custom instrumentation.
 
 > [!NOTE]
-> Application Insights stores logs in the 'traces' table for legacy reasons. The spans for *distributed* traces are stored in the `requests` and `dependencies` table. We plan to resolve this in a future release to avoid any confusion.
+> Application Insights stores logs in the `traces` table for legacy reasons. The spans for *distributed* traces are stored in the `requests` and `dependencies` table. We plan to resolve this in a future release to avoid any confusion.
 
 ## Types of telemetry
 
