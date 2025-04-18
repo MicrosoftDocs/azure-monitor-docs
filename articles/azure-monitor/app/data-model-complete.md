@@ -121,7 +121,7 @@ An exception telemetry item represents a handled or unhandled exception that occ
 
 ### Metric
 
-Application Insights supports two types of metric telemetry:
+Application Insights supports several well-known metric names. These metrics are placed into the `performanceCounters` table. It also supports two types of metric telemetry:
 
 * A **single measurement** has a *name* and a *value*.
 * A **preaggregated metric** takes multiple measurements in a 1-minute aggregation period.
@@ -170,8 +170,6 @@ Application Insights supports two types of metric telemetry:
 > [!NOTE]
 > To calculate the average, divide **Sum** by **Count**.
 
-Application Insights supports several well-known metric names. These metrics are placed into the `performanceCounters` table.
-
 For more information on the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
 
 #### System and process counter metrics
@@ -194,10 +192,13 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
 
 ### PageView
 
-PageView telemetry is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action. This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
+PageView telemetry is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action.
+
+This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
 > [!NOTE]
 > * By default, the Application Insights JavaScript SDK logs single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#browsertimings). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
+>
 > * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
 
 ### Request
