@@ -121,7 +121,7 @@ An exception telemetry item represents a handled or unhandled exception that occ
 
 ### Metric
 
-Application Insights supports several well-known metric names. These metrics are placed into the `performanceCounters` table. It also supports two types of metric telemetry:
+Application Insights supports two types of metric telemetry which are placed into the `performanceCounters` table:
 
 * A **single measurement** has a *name* and a *value*.
 * A **preaggregated metric** takes multiple measurements in a 1-minute aggregation period.
