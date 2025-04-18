@@ -1639,8 +1639,12 @@ var loggerFactory = LoggerFactory.Create(builder =>
 // Create a logger for the specified category
 var logger = loggerFactory.CreateLogger(logCategoryName);
 
-// Send a custom event with the event name and additional attributes
+// Log a custom event with a custom name and additional attribute
+// The 'microsoft.custom_event.name' value will be used as the name of the customEvent
 logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
+
+// You can also populate fields like client_IP with attribute `client.address`
+logger.LogInformation("{microsoft.custom_event.name} {client.address}", "test_event", "192.168.1.1");
 ```
 
 #### [.NET](#tab/net)
@@ -1666,8 +1670,12 @@ var loggerFactory = LoggerFactory.Create(builder =>
 // Create a logger for the specified category
 var logger = loggerFactory.CreateLogger(logCategoryName);
 
-// Send a custom event with the event name and additional attributes
+// Log a custom event with a custom name and additional attribute
+// The 'microsoft.custom_event.name' value will be used as the name of the customEvent
 logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
+
+// You can also populate fields like client_IP with attribute `client.address`
+logger.LogInformation("{microsoft.custom_event.name} {client.address}", "test_event", "192.168.1.1");
 ```
 
 #### [Java](#tab/java)
@@ -1683,7 +1691,6 @@ It's not possible to send a `customEvent` using the `"microsoft.custom_event.nam
 To send a `customEvent` using `logger.emit`, set the `"microsoft.custom_event.name"` attribute in the log's `attributes` object. Other attributes can also be included as needed.
 
 ```typescript
-
 // Send a customEvent by including the microsoft attribute key in the log.
 // The customEvent name uses the value of that attribute.
 logger.emit({
@@ -1738,7 +1745,6 @@ logger.info(
         "client.address": "192.168.1.1"
     }
 )
-
 ```
 
 ---
