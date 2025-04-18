@@ -1642,9 +1642,6 @@ var logger = loggerFactory.CreateLogger(logCategoryName);
 // Log a custom event with a custom name and additional attribute
 // The 'microsoft.custom_event.name' value will be used as the name of the customEvent
 logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
-
-// You can also populate fields like client_IP with attribute `client.address`
-logger.LogInformation("{microsoft.custom_event.name} {client.address}", "test_event", "192.168.1.1");
 ```
 
 #### [.NET](#tab/net)
@@ -1673,9 +1670,6 @@ var logger = loggerFactory.CreateLogger(logCategoryName);
 // Log a custom event with a custom name and additional attribute
 // The 'microsoft.custom_event.name' value will be used as the name of the customEvent
 logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-event-name", "val1");
-
-// You can also populate fields like client_IP with attribute `client.address`
-logger.LogInformation("{microsoft.custom_event.name} {client.address}", "test_event", "192.168.1.1");
 ```
 
 #### [Java](#tab/java)
