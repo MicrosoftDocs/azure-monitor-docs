@@ -5,7 +5,6 @@ services: chaos-studio
 author: prasha-microsoft
 ms.topic: quickstart
 ms.date: 09/26/2024
-ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio
 ---

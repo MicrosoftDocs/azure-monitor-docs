@@ -5,7 +5,6 @@ services: chaos-studio
 author: rsgel 
 ms.topic: overview
 ms.date: 01/26/2024
-ms.author: abbyweisberg
 ms.reviewer: carlsonr
 ms.service: azure-chaos-studio
 ---

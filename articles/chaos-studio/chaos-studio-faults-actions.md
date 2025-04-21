@@ -2,7 +2,6 @@
 title: Faults and actions in Azure Chaos Studio
 description: Understand what faults and actions are in Azure Chaos Studio. What is the difference between a fault and an action? How do you define a fault?
 author: prasha-microsoft
-ms.author: abbyweisberg
 ms.reviewer: prashabora
 ms.service: azure-chaos-studio
 ms.topic: conceptual

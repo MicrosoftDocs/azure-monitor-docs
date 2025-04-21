@@ -5,7 +5,6 @@ description: Learn how to configure customer-managed keys (preview) for your Azu
 services: chaos-studio
 ms.service: azure-chaos-studio
 ms.custom: devx-track-azurecli
-ms.author: abbyweisberg
 ms.reviewer: ninallam
 author: nikhilkaul-msft
 ms.date: 11/07/2024

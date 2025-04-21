@@ -5,7 +5,6 @@ services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: article
 ms.date: 03/03/2025
-ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.service: azure-chaos-studio
 ms.custom: 

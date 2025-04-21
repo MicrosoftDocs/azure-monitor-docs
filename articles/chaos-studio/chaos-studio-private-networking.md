@@ -5,7 +5,6 @@ services: chaos-studio
 author: prashabora
 ms.topic: conceptual
 ms.date: 10/14/2024
-ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.service: azure-chaos-studio
 ms.custom: devx-track-azurecli

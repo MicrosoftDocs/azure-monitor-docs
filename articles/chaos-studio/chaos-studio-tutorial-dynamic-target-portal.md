@@ -2,7 +2,6 @@
 title: Create a chaos experiment to shut down all targets in a zone
 description: Use the Azure portal to create an experiment that uses dynamic targeting to select hosts in a zone.
 author: rsgel
-ms.author: abbyweisberg
 ms.reviewer: carlsonr
 ms.service: azure-chaos-studio
 ms.topic: how-to

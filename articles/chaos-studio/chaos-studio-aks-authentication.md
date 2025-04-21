@@ -6,7 +6,6 @@ author: rsgel
 ms.topic: article
 ms.date: 2/5/2025
 ms.author: carlsonr
-ms.reviewer: abbyweisberg
 ms.service: azure-chaos-studio
 ---
 
