@@ -8,7 +8,6 @@ metadata:
   description: Learn about Azure Chaos Studio, a solution for building resilience of your services by using chaos engineering and fault injection on Azure.
   ms.service: azure-chaos-studio
   ms.topic: landing-page
-  author: AbbyMSFT
   ms.date: 09/05/2024
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
