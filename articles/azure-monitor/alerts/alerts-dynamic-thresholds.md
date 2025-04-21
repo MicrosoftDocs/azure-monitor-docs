@@ -1,16 +1,14 @@
 ---
 title: Create an Azure Monitor metric alert with dynamic thresholds
 description: Get information about creating metric alerts with dynamic thresholds that are based on machine learning.
-author: AbbyMSFT
-ms.author: abbyweisberg
-ms.reviewer: yalavi
+ms.reviewer: harelbr
 ms.topic: conceptual
-ms.date: 06/19/2024
+ms.date: 11/28/2024
 ---
 
 # Create a metric alert with dynamic thresholds
 
-Dynamic thresholds apply advanced machine learning and use a set of algorithms and methods to:
+You may be unsure of the correct numbers to use as the thresholds for your alert rules. Dynamic thresholds apply advanced machine learning and use a set of algorithms and methods to:
 
 - Learn the historical behavior of metrics.
 - Analyze metrics over time and identify patterns such as hourly, daily, or weekly patterns.
@@ -58,6 +56,39 @@ The system automatically recognizes prolonged outages and removes them from the 
 - Dynamic thresholds need at least three weeks of historical data to detect weekly seasonality. Some detailed patterns, such as bihourly or semiweekly patterns, might not be detected.
 - If the behavior of a metric changed recently, the changes aren't immediately reflected in the dynamic threshold's upper and lower bounds. The borders are calculated based on metric data from the last 10 days. When you view the dynamic threshold's borders for a particular metric, look at the metric trend in the last week and not only for recent hours or days.
 - Dynamic thresholds are good for detecting significant deviations, as opposed to slowly evolving issues. Slow behavior changes probably won't trigger an alert.
+- You cannot use dynamic thresholds in alert rules that monitor multiple conditions.
+
+## Configure dynamic thresholds
+
+To configure dynamic thresholds, follow the [procedure for creating an alert rule](alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). Use these settings on the **Condition** tab:
+
+- For **Threshold**, select **Dynamic**.
+- For **Aggregation type**, we recommend that you don't select **Maximum**.
+- For **Operator**, select **Greater than** unless the behavior represents the application usage.
+- For **Threshold sensitivity**, select **Medium** or **Low** to reduce alert noise.
+- For **Check every**, select how often the alert rule checks if the condition is met. To minimize the business impact of the alert, consider using a lower frequency. Make sure that this value is less than or equal to the **Lookback period** value.
+- For **Lookback period**, set the time period to look back at each time that the data is checked. Make sure that this value is greater than or equal to the **Check every** value.
+- For **Advanced options**, choose how many violations will trigger the alert within a specific time period. Optionally, set the date from which to start learning the metric historical data and calculate the dynamic thresholds.
+
+> [!NOTE]
+> Metric alert rules that you create through the portal are created in the same resource group as the target resource.
+
+## Dynamic threshold chart
+
+The following chart shows a metric, its dynamic threshold limits, and some alerts that fired when the value was outside the allowed thresholds.
+
+:::image type="content" source="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" lightbox="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" alt-text="Screenshot of a chart that shows a metric, its dynamic threshold limits, and some alerts that fired.":::
+
+Use the following information to interpret the chart:
+
+- **Blue line**: The metric measured over time.
+- **Blue shaded area**: The allowed range for the metric. If the metric values stay within this range, no alert is triggered.
+- **Blue dots**: Aggregated metric values. If you select part of the chart and then hover over the blue line, a blue dot appears under your cursor to indicate an individual aggregated metric value.
+- **Pop-up box with blue dot**: The measured metric value (blue dot) and the upper and lower values of the allowed range.  
+- **Red dot with a black circle**: The first metric value outside the allowed range. This value fires a metric alert and puts it in an active state.
+- **Red dots**: Other measured values outside the allowed range. They don't trigger more metric alerts, but the alert stays in the active state.
+- **Red area**: The time when the metric value was outside the allowed range. The alert remains in the active state as long as subsequent measured values are outside the allowed range, but no new alerts are fired.
+- **End of red area**: A return to allowed values. When the blue line is back inside the allowed values, the red area stops and the measured value line turns blue. The status of the metric alert fired at the time of the red dot with a black circle is set to resolved.
 
 ## Known issues with dynamic threshold sensitivity
 
@@ -79,38 +110,6 @@ The system automatically recognizes prolonged outages and removes them from the 
   - The metric exhibits an irregular behavior with high variance, which appears as spikes or dips in the data.
 
   Consider making the model less sensitive by choosing a higher sensitivity or selecting a larger **Lookback period** value. You can also use the **Ignore data before** option to exclude a recent irregularity from the historical data that's used to build the model.
-
-## Configuration of dynamic thresholds
-
-To configure dynamic thresholds, follow the [procedure for creating an alert rule](alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). Use these settings on the **Condition** tab:
-
-- For **Threshold**, select **Dynamic**.
-- For **Aggregation type**, we recommend that you don't select **Maximum**.
-- For **Operator**, select **Greater than** unless the behavior represents the application usage.
-- For **Threshold sensitivity**, select **Medium** or **Low** to reduce alert noise.
-- For **Check every**, select how often the alert rule checks if the condition is met. To minimize the business impact of the alert, consider using a lower frequency. Make sure that this value is less than or equal to the **Lookback period** value.
-- For **Lookback period**, set the time period to look back at each time that the data is checked. Make sure that this value is greater than or equal to the **Check every** value.
-- For **Advanced options**, choose how many violations will trigger the alert within a specific time period. Optionally, set the date from which to start learning the metric historical data and calculate the dynamic thresholds.
-
-> [!NOTE]
-> Metric alert rules that you create through the portal are created in the same resource group as the target resource.
-
-## Chart for dynamic thresholds
-
-The following chart shows a metric, its dynamic threshold limits, and some alerts that fired when the value was outside the allowed thresholds.
-
-:::image type="content" source="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" lightbox="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" alt-text="Screenshot of a chart that shows a metric, its dynamic threshold limits, and some alerts that fired.":::
-
-Use the following information to interpret the chart:
-
-- **Blue line**: The metric measured over time.
-- **Blue shaded area**: The allowed range for the metric. If the metric values stay within this range, no alert is triggered.
-- **Blue dots**: Aggregated metric values. If you select part of the chart and then hover over the blue line, a blue dot appears under your cursor to indicate an individual aggregated metric value.
-- **Pop-up box with blue dot**: The measured metric value (blue dot) and the upper and lower values of the allowed range.  
-- **Red dot with a black circle**: The first metric value outside the allowed range. This value fires a metric alert and puts it in an active state.
-- **Red dots**: Other measured values outside the allowed range. They don't trigger more metric alerts, but the alert stays in the active state.
-- **Red area**: The time when the metric value was outside the allowed range. The alert remains in the active state as long as subsequent measured values are outside the allowed range, but no new alerts are fired.
-- **End of red area**: A return to allowed values. When the blue line is back inside the allowed values, the red area stops and the measured value line turns blue. The status of the metric alert fired at the time of the red dot with a black circle is set to resolved.
 
 ## Metrics not supported by dynamic thresholds
 

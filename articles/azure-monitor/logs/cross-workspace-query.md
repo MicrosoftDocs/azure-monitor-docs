@@ -2,8 +2,6 @@
 title: Query across resources with Azure Monitor  
 description: Query and correlated data from multiple Log Analytics workspaces, applications, or resources using the `workspace()`, `app()`, and `resource()` Kusto Query Language (KQL) expressions.
 ms.topic: how-to
-author: guywi-ms
-ms.author: guywild
 ms.date: 12/28/2023
 # Customer intent: As a data analyst, I want to write KQL queries that correlate data from multiple Log Analytics workspaces, applications, or resources, to enable my analysis.
 
@@ -32,7 +30,7 @@ If you manage subscriptions in other Microsoft Entra tenants through [Azure Ligh
 
 ## Limitations
 
-* Cross-resource and cross-service queries don’t support parameterized functions and functions whose definition includes other cross-workspace or cross-service expressions, including `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
+* Cross-resource and cross-service queries don't support parameterized functions and functions whose definition includes other cross-workspace or cross-service expressions, including `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
 * You can include up to 100 Log Analytics workspaces or classic Application Insights resources in a single query.
 * Querying across a large number of resources can substantially slow down the query.
 * Cross-resource queries in log search alerts are only supported in the current [scheduledQueryRules API](/rest/api/monitor/scheduledqueryrule-2018-04-16/scheduled-query-rules). If you're using the legacy Log Analytics Alerts API, you'll need to [switch to the current API](../alerts/alerts-log-api-switch.md).
@@ -103,7 +101,7 @@ Use the `workspace()` expression to retrieve data from a specific workspace in t
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the workspace | workspace("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
+| Azure Resource ID | Identifier for the Azure resource | workspace("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail") |
 
 ### Examples
 
@@ -111,7 +109,7 @@ Use the `workspace()` expression to retrieve data from a specific workspace in t
 workspace("00000000-0000-0000-0000-000000000000").Update | count
 ```
 ```Kusto
-workspace("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail").Event | count
+workspace("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Contoso/providers/Microsoft.OperationalInsights/workspaces/contosoretail").Event | count
 ```
 ```Kusto
 union 
@@ -139,7 +137,7 @@ Use the `app` expression to retrieve data from a specific classic Application In
 | Identifier | Description | Example
 |:---|:---|:---|
 | ID | GUID of the app | app("00000000-0000-0000-0000-000000000000") |
-| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
+| Azure Resource ID | Identifier for the Azure resource |app("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp") |
 
 ### Examples
 
@@ -147,7 +145,7 @@ Use the `app` expression to retrieve data from a specific classic Application In
 app("00000000-0000-0000-0000-000000000000").requests | count
 ```
 ```Kusto
-app("/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp").requests | count
+app("/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Fabrikam/providers/microsoft.insights/components/fabrikamapp").requests | count
 ```
 ```Kusto
 union 

@@ -1,41 +1,38 @@
 ---
-title: Use Blob Storage for IIS and Table Storage for events in Azure Monitor | Microsoft Docs
+title: Send data from Azure Diagnostics extension to Azure Monitor Logs using Azure Diagnostics extension
 description: Azure Monitor can read the logs for Azure services that write diagnostics to Azure Table Storage or IIS logs written to Azure Blob Storage.
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 11/14/2024
 ms.reviewer: luki
 
 ---
 
-# Send data from Azure Diagnostics extension to Azure Monitor Logs
+# Send data from Azure Diagnostics extension to Azure Monitor Logs using Azure Diagnostics extension
 
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article describes how to collect data collected by the diagnostics extension from Azure Storage to Azure Monitor Logs.
 
-> [!NOTE]
-> The Log Analytics agent in Azure Monitor is typically the preferred method to collect data from the guest operating system into Azure Monitor Logs. For a comparison of the agents, see [Overview of the Azure Monitor agents](../agents/agents-overview.md).
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 ## Supported data types
 
 Azure Diagnostics extension stores data in an Azure Storage account. For Azure Monitor Logs to collect this data, it must be in the following locations:
 
 | Log type | Resource type | Location |
-| --- | --- | --- |
-| IIS logs |Virtual machines <br> Web roles <br> Worker roles |wad-iis-logfiles (Azure Blob Storage) |
-| Syslog |Virtual machines |LinuxsyslogVer2v0 (Azure Table Storage) |
-| Azure Service Fabric Operational Events |Service Fabric nodes |WADServiceFabricSystemEventTable |
-| Service Fabric Reliable Actor Events |Service Fabric nodes |WADServiceFabricReliableActorEventTable |
-| Service Fabric Reliable Service Events |Service Fabric nodes |WADServiceFabricReliableServiceEventTable |
-| Windows Event logs |Service Fabric nodes <br> Virtual machines <br> Web roles <br> Worker roles |WADWindowsEventLogsTable (Table Storage) |
-| Windows ETW logs |Service Fabric nodes <br> Virtual machines <br> Web roles <br> Worker roles |WADETWEventTable (Table Storage) |
+|----------|---------------|----------|
+| IIS logs | Virtual machines<br>Web roles<br>Worker roles | wad-iis-logfiles (Azure Blob Storage) |
+| Syslog | Virtual machines | LinuxsyslogVer2v0 (Azure Table Storage) |
+| Azure Service Fabric Operational Events | Service Fabric nodes | WADServiceFabricSystemEventTable |
+| Service Fabric Reliable Actor Events | Service Fabric nodes | WADServiceFabricReliableActorEventTable |
+| Service Fabric Reliable Service Events | Service Fabric nodes | WADServiceFabricReliableServiceEventTable |
+| Windows Event logs | Service Fabric nodes<br>Virtual machines<br>Web roles<br>Worker roles | WADWindowsEventLogsTable (Table Storage) |
+| Windows ETW logs | Service Fabric nodes<br>Virtual machines<br>Web roles<br>Worker roles | WADETWEventTable (Table Storage) |
 
 ## Data types not supported
 
 The following data types aren't supported:
 
-- Performance data from the guest operating system
-- IIS logs from Azure websites
+* Performance data from the guest operating system
+* IIS logs from Azure websites
 
 ## Enable Azure Diagnostics extension
 

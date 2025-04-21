@@ -12,42 +12,47 @@ The following table lists the proxy and firewall configuration information requi
 
 ## Azure public cloud
 
-| Endpoint| Purpose | Port |
-|:---|:---|:---|
-| `*.ods.opinsights.azure.com` | | 443 |
-| `*.oms.opinsights.azure.com` | | 443 |
-| `dc.services.visualstudio.com` | | 443 |
-| `*.monitoring.azure.com` | | 443 |
-| `login.microsoftonline.com` | | 443 |
-| `global.handler.control.monitor.azure.com` | Access control service | 443 |
-| `*.ingest.monitor.azure.com` | Container Insights - logs ingestion endpoint (DCE) | 443 |
-| `*.metrics.ingest.monitor.azure.com` | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443 |
-| `<cluster-region-name>.handler.control.monitor.azure.com` | Fetch data collection rules for specific cluster | 443 |
+| Endpoint                                                  | Purpose                                                                         | Port |
+|:----------------------------------------------------------|:--------------------------------------------------------------------------------|:-----|
+| `*.ods.opinsights.azure.com`                              |                                                                                 | 443  |
+| `*.oms.opinsights.azure.com`                              |                                                                                 | 443  |
+| `dc.services.visualstudio.com`                            |                                                                                 | 443  |
+| `*.monitoring.azure.com`                                  |                                                                                 | 443  |
+| `login.microsoftonline.com`                               |                                                                                 | 443  |
+| `global.handler.control.monitor.azure.com`                | Access control service                                                          | 443  |
+| `*.ingest.monitor.azure.com`                              | Container Insights - logs ingestion endpoint (DCE)                              | 443  |
+| `*.metrics.ingest.monitor.azure.com`                      | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443  |
+| `<cluster-region-name>.handler.control.monitor.azure.com` | Fetch data collection rules for specific cluster                                | 443  |
+
+>[!NOTE]
+> If you use private links, you must **only** add the [private data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce). The containerized agent doesn't use the nonprivate endpoints listed above when using private links/data collection endpoints.
+
+> [!NOTE]
+> When using AMA with AMPLS, all of your Data Collection Rules must use Data Collection Endpoints. Those DCEs must be added to the AMPLS configuration using [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls)
 
 ## Microsoft Azure operated by 21Vianet cloud
 
-| Endpoint| Purpose | Port |
-|:---|:---|:---|
-| `*.ods.opinsights.azure.cn` | Data ingestion | 443 |
-| `*.oms.opinsights.azure.cn` | Azure Monitor agent (AMA) onboarding | 443 |
-| `dc.services.visualstudio.com` | For agent telemetry that uses Azure Public Cloud Application Insights | 443 |
-| `global.handler.control.monitor.azure.cn` | Access control service | 443 |
-| `<cluster-region-name>.handler.control.monitor.azure.cn` | Fetch data collection rules for specific cluster | 443 |
-| `*.ingest.monitor.azure.cn` | Container Insights - logs ingestion endpoint (DCE) | 443 |
-| `*.metrics.ingest.monitor.azure.cn` | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443 |
+| Endpoint                                                 | Purpose                                                                         | Port |
+|:---------------------------------------------------------|:--------------------------------------------------------------------------------|:-----|
+| `*.ods.opinsights.azure.cn`                              | Data ingestion                                                                  | 443  |
+| `*.oms.opinsights.azure.cn`                              | Azure Monitor agent (AMA) onboarding                                            | 443  |
+| `dc.services.visualstudio.com`                           | For agent telemetry that uses Azure Public Cloud Application Insights           | 443  |
+| `global.handler.control.monitor.azure.cn`                | Access control service                                                          | 443  |
+| `<cluster-region-name>.handler.control.monitor.azure.cn` | Fetch data collection rules for specific cluster                                | 443  |
+| `*.ingest.monitor.azure.cn`                              | Container Insights - logs ingestion endpoint (DCE)                              | 443  |
+| `*.metrics.ingest.monitor.azure.cn`                      | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443  |
 
 ## Azure Government cloud
 
-| Endpoint| Purpose | Port |
-|:---|:---|:---|
-| `*.ods.opinsights.azure.us` | Data ingestion | 443 |
-| `*.oms.opinsights.azure.us` | Azure Monitor agent (AMA) onboarding | 443 |
-| `dc.services.visualstudio.com` | For agent telemetry that uses Azure Public Cloud Application Insights | 443 |
-| `global.handler.control.monitor.azure.us` | Access control service | 443 |
-| `<cluster-region-name>.handler.control.monitor.azure.us` | Fetch data collection rules for specific cluster | 443 |
-| `*.ingest.monitor.azure.us` | Container Insights - logs ingestion endpoint (DCE) | 443 |
-| `*.metrics.ingest.monitor.azure.us` | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443 |
-
+| Endpoint                                                 | Purpose                                                                         | Port |
+|:---------------------------------------------------------|:--------------------------------------------------------------------------------|:-----|
+| `*.ods.opinsights.azure.us`                              | Data ingestion                                                                  | 443  |
+| `*.oms.opinsights.azure.us`                              | Azure Monitor agent (AMA) onboarding                                            | 443  |
+| `dc.services.visualstudio.com`                           | For agent telemetry that uses Azure Public Cloud Application Insights           | 443  |
+| `global.handler.control.monitor.azure.us`                | Access control service                                                          | 443  |
+| `<cluster-region-name>.handler.control.monitor.azure.us` | Fetch data collection rules for specific cluster                                | 443  |
+| `*.ingest.monitor.azure.us`                              | Container Insights - logs ingestion endpoint (DCE)                              | 443  |
+| `*.metrics.ingest.monitor.azure.us`                      | Azure monitor managed service for Prometheus - metrics ingestion endpoint (DCE) | 443  |
 
 ## Next steps
 

@@ -152,7 +152,7 @@ Set-AzOperationalInsightsWorkspace -ResourceGroupName "myResourceGroup" -Name "M
 
 By default, all tables with the Analytics data plan inherit the [Log Analytics workspace's default interactive retention setting](#configure-the-default-interactive-retention-period-of-analytics-tables) and have no long-term retention. You can increase the interactive retention period of Analytics tables to up to 730 days at an [extra cost](https://azure.microsoft.com/pricing/details/monitor/). 
 
-To add long-term retention to a table with any data plan, set **total retention** to up to 12 years (4,383 days). The Auxiliary table plan is currently in public preview, during which the plan's total retention is fixed at 365 days.
+To add long-term retention to a table with any data plan, set **total retention** to up to 12 years (4,383 days). 
 
 > [!NOTE]
 > Currently, you can set total retention to up to 12 years through the Azure portal and API. CLI and PowerShell are limited to seven years; support for 12 years will follow.
@@ -192,7 +192,7 @@ The request body includes the values in the following table.
 
 |Name | Type | Description |
 | --- | --- | --- |
-|properties.retentionInDays | integer  | The table's data retention in days. This value can be between 4 and 730. <br/>Setting this property to null applies the workspace retention period. For a Basic Logs table, the value is always 8. |
+|properties.retentionInDays | integer  | The table's data retention in days. This value can be between 4 and 730. <br/>Setting this property to null applies the workspace retention period. For a Basic and Auxiliary Logs table, the value is always 30. |
 |properties.totalRetentionInDays | integer  | The table's total data retention including long-term retention. This value can be between 4 and 730; or 1095, 1460, 1826, 2191, 2556, 2922, 3288, 3653, 4018, or 4383. Set this property to null if you don't want long-term retention.  |
 
 **Example**
@@ -360,5 +360,5 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 Learn more about:
 
 - [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
-- [Creating a search job to retrieve auxiliary data matching particular criteria](search-jobs.md)
-- [Restore data from the auxiliary tier for a specific time range](restore.md)
+- [Creating a search job to retrieve data matching particular criteria](search-jobs.md)
+- [Restore data for a specific time range](restore.md)

@@ -3,9 +3,7 @@ title: Dependency Agent in Azure Monitor VM insights
 description: This article describes how to upgrade the VM Insights Dependency Agent using command-line, setup wizard, and other methods.
 ms.topic: conceptual
 ms.custom: linux-related-content
-author: guywi-ms
-ms.author: guywild
-ms.date: 11/06/2024
+ms.date: 01/29/2025
 ---
 
 # Dependency Agent in Azure Monitor VM insights
@@ -18,10 +16,17 @@ Dependency Agent collects data about processes running on the virtual machine an
 ## Dependency Agent requirements
 
 - Azure Monitor agent must be installed on the same machine.
-- Requires a connection from the virtual machine to the address 169.254.169.254. This address identifies the Azure metadata service endpoint. 
-- Currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2019, except Windows Server 2008 SP2 and Azure Stack HCI. For Linux, see [Dependency Agent Linux support](#dependency-agent-linux-support).
+- Requires a connection from the virtual machine to the address 169.254.169.254. This address identifies the Azure metadata service endpoint.
 
-## Linux considerations
+## Operating systems supported
+
+VM insights supports the following operating systems:
+- VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
+- The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. 
+- For the Dependency Agent's Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
+- The Dependency Agent only supports x64 architectures.
+
+### Linux considerations
 
 Consider the following before you install Dependency agent for VM Insights on a Linux machine:
 
@@ -126,7 +131,7 @@ If Dependency Agent fails to start, check the logs for detailed error informatio
 ## Uninstall Dependency Agent
 
 > [!NOTE]
-> If Dependency Agent was installed manually, it won’t show in the Azure portal and has to be uninstalled manually. It will only show if it was installed via the [Azure portal](vminsights-enable-portal.md), [PowerShell](vminsights-enable-powershell.md), [ARM template deployment](vminsights-enable-resource-manager.md), or [Azure policy](vminsights-enable-policy.md).
+> If Dependency Agent was installed manually, it won't show in the Azure portal and has to be uninstalled manually. It will only show if it was installed via the [Azure portal](vminsights-enable-portal.md), [PowerShell](vminsights-enable-powershell.md), [ARM template deployment](vminsights-enable-resource-manager.md), or [Azure policy](vminsights-enable-policy.md).
 
 1. From the **Virtual Machines** menu in the Azure portal, select your virtual machine.
 

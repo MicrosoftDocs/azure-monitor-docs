@@ -1,5 +1,5 @@
 ---
-title: Collect IIS logs with the Log Analytics agent in Azure Monitor
+title: Collect IIS logs with the Log Analytics agent
 description: This article describes how to configure collection of IIS log files that store user activity and the details of the records they create in Azure Monitor.
 ms.topic: conceptual
 ms.date: 11/14/2024
@@ -7,7 +7,7 @@ ms.reviewer: JeffWo
 
 ---
 
-# Collect IIS logs with the Log Analytics agent in Azure Monitor
+# Collect IIS logs with the Log Analytics agent
 Internet Information Services (IIS) stores user activity in log files that can be collected by the Log Analytics agent and stored in [Azure Monitor Logs](../data-platform.md).
 
 :::image type="content" source="media/data-sources-iis-logs/overview.png" lightbox="media/data-sources-iis-logs/overview.png" alt-text="Diagram that shows IIS logs.":::
@@ -59,16 +59,6 @@ IIS log records have a type of **W3CIISLog** and have the properties shown in th
 | csHost | Host name. |
 | csBytes | Number of bytes that the server received. |
 
-## Log queries with IIS logs
-Different examples of log queries that retrieve IIS log records are shown in the following table:
-
-| Query | Description |
-|:--- |:--- |
-| W3CIISLog |All IIS log records. |
-| W3CIISLog &#124; where scStatus==500 |All IIS log records with a return status of 500. |
-| W3CIISLog &#124; summarize count() by cIP |Count of IIS log entries by client IP address. |
-| W3CIISLog &#124; where csHost=="www\.contoso.com" &#124; summarize count() by csUriStem |Count of IIS log entries by URL for the host www\.contoso.com. |
-| W3CIISLog &#124; summarize sum(csBytes) by Computer &#124; take 500000 |Total bytes received by each IIS computer. |
 
 ## Next steps
 * Configure Azure Monitor to collect other [data sources](../agents/agent-data-sources.md) for analysis.

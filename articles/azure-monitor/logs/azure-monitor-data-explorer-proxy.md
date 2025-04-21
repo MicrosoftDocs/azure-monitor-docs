@@ -1,8 +1,6 @@
 ---
 title: Correlate data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace 
 description: Run cross-service queries to correlated data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace.
-author: guywi-ms
-ms.author: guywild
 ms.topic: conceptual
 ms.date: 08/12/2024
 ms.reviewer: osalzberg
@@ -21,6 +19,42 @@ To run a cross-service query that correlates data in Azure Data Explorer or Azur
 - `Microsoft.OperationalInsights/workspaces/query/*/read` permissions to the Log Analytics workspaces you query, as provided by the [Log Analytics Reader built-in role](../logs/manage-access.md#log-analytics-reader), for example.
 - Reader permissions to the resources you query in Azure Resource Graph.
 - Viewer permissions to the tables you query in Azure Data Explorer.
+
+## Implementation considerations
+
+### General cross-service considerations
+* Database names are case sensitive.
+* Use non-parameterized functions and functions whose definition does not include other cross-workspace or cross-service expressions, including `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
+* Cross-service queries support data retrieval only. 
+* Cross-service queries support **only ".show"** commands.
+    This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
+    The following commands are supported with the cross-service query:
+    * `.show functions`
+    * `.show function {FunctionName}`
+    * `.show database {DatabaseName} schema as json`
+* `mv-expand` supports up to 2,000 records.
+* Azure Monitor Logs doesn't support the `external_table()` function, which lets you query external tables in Azure Data Explorer. To query an external table, define `external_table(<external-table-name>)` as a parameterless function in Azure Data Explorer. You can then call the function using the expression `adx("").<function-name>`.
+* When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you need to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine data in Azure Data Explorer or Azure Resource Graph with data in the Log Analytics workspace. Use `Hint.remote={direction of the Log Analytics workspace}`. 
+
+    For example:
+    
+    ```kusto
+    AzureDiagnostics
+    | join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
+    ```
+
+* Identifying the Timestamp column in a cluster isn't supported. The Log Analytics Query API doesn't pass the time filter.
+* Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../logs/private-link-security.md) (private endpoints) don't support cross-service queries.
+    
+### Azure Resource Graph cross-service query considerations
+
+* When you query Azure Resource Graph data from Azure Monitor:
+    * The `join` operator lets you combine data from one Azure Resource Graph table with one table in your Log Analytics workspace.  
+    * The query returns the first 1,000 records only.
+    * Azure Monitor doesn't return Azure Resource Graph query errors.
+    * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors.
+    * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`, `bin_at`.
+* Microsoft Sentinel doesn't support cross-service queries to Azure Resource Graph.
 
 ## Query data in Azure Data Explorer by using adx()
 
@@ -48,14 +82,6 @@ union customEvents, CL1 | take 10
 > [!TIP]
 > Shorthand format is allowed: *ClusterName*/*InitialCatalog*. For example, `adx('help/Samples')` is translated to `adx('help.kusto.windows.net/Samples')`.
 
-When you use the [`join` operator](/azure/data-explorer/kusto/query/joinoperator) instead of union, you're required to use a [`hint`](/azure/data-explorer/kusto/query/joinoperator#join-hints) to combine the data in the Azure Data Explorer cluster with the Log Analytics workspace. Use `Hint.remote={Direction of the Log Analytics Workspace}`. 
-
-For example:
-
-```kusto
-AzureDiagnostics
-| join hint.remote=left adx("cluster=ClusterURI").AzureDiagnostics on (ColumnName)
-```
 
 ### Join data from an Azure Data Explorer cluster in one tenant with an Azure Monitor resource in another
 
@@ -102,7 +128,7 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
     ```
 
 - Create an alert rule that applies only to certain resources taken from an ARG query:
-   - Exclude resources based on tags – for example, not to trigger alerts for VMs with a “Test” tag.
+   - Exclude resources based on tags – for example, not to trigger alerts for VMs with a `Test` tag.
 
        ```kusto
        arg("").Resources
@@ -110,7 +136,7 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
        | project name 
        ```
 
-   - Retrieve performance data related to CPU utilization and filter to resources with the “prod” tag.
+   - Retrieve performance data related to CPU utilization and filter to resources with the `prod` tag.
     
        ```kusto
        InsightsMetrics
@@ -125,8 +151,8 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
        ```
 
 More use cases:
--	Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
--	Show alerts on any server that contains a certain number of cores.
+-    Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
+-    Show alerts on any server that contains a certain number of cores.
 
 ## Create an alert based on a cross-service query from your Log Analytics workspace
 
@@ -134,34 +160,6 @@ To create an alert rule based on a cross-service query from your Log Analytics w
 
 > [!NOTE]
 > You can also run cross-service queries from Azure Data Explorer and Azure Resource Graph to a Log Analytics workspace, by selecting the relevant resource as the scope of your alert.  
-
-## Limitations
-
-### General cross-service query limitations
-* Cross-service queries don’t support parameterized functions and functions whose definition includes other cross-workspace or cross-service expressions, including `adx()`, `arg()`, `resource()`, `workspace()`, and `app()`.
-* Cross-service queries support **only ".show"** functions.
-    This capability enables cross-cluster queries to reference an Azure Monitor, Azure Data Explorer, or Azure Resource Graph tabular function directly.
-    The following commands are supported with the cross-service query:
-    * `.show functions`
-    * `.show function {FunctionName}`
-    * `.show database {DatabaseName} schema as json`
-* Database names are case sensitive.
-* Identifying the Timestamp column in the cluster isn't supported. The Log Analytics Query API won't pass the time filter.
-* Cross-service queries support data retrieval only. 
-* [Private Link](../logs/private-link-security.md) (private endpoints) and [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) don't support cross-service queries.
-* `mv-expand` is limited to 2,000 records.
-* Azure Monitor Logs doesn't support the `external_table()` function, which lets you query external tables in Azure Data Explorer. To query an external table, define `external_table(<external-table-name>)` as a parameterless function in Azure Data Explorer. You can then call the function using the expression `adx("").<function-name>`.
-
-### Azure Resource Graph cross-service query limitations
-
-* Microsoft Sentinel doesn't support cross-service queries to Azure Resource Graph.
-* When you query Azure Resource Graph data from Azure Monitor:
-    * The query returns the first 1,000 records only.
-    * Azure Monitor doesn't return Azure Resource Graph query errors.
-    * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors.
-    * Joins are not supported when not using Hint.
-    * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`.
-
 
 ### Combine Azure Resource Graph tables with a Log Analytics workspace
 

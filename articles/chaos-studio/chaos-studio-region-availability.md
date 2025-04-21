@@ -2,11 +2,9 @@
 title: Regional availability of Azure Chaos Studio
 description: Understand how Azure Chaos Studio makes chaos experiments and chaos targets available in Azure regions.
 author: prasha-microsoft 
-ms.author: abbyweisberg
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ms.topic: conceptual
-ms.date: 11/13/2024
+ms.date: 2/27/2025
 ms.custom: template-concept, references_regions
 ---
 
@@ -36,8 +34,11 @@ A chaos experiment can target a resource in a different region than the experime
 | West Europe | Available  | Available |
 | North Europe | Not Available  | Available |
 | Sweden Central | Available  | Available |
-| Germany West Central | Not Available  | Coming soon |
+| Germany West Central | Not Available  | Available |
+| France Central | Not Available  | Available |
+|Italy North | Not Available  | Coming soon |
 | Brazil South | Available  | Available |
+| Australia East | Available  | Available |
  
 You can also view the list of regions where Chaos Studio is available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
 

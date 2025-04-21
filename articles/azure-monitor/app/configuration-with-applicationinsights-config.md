@@ -2,7 +2,7 @@
 title: ApplicationInsights.config reference - Azure | Microsoft Docs
 description: Enable or disable data collection modules and add performance counters and other parameters.
 ms.topic: conceptual
-ms.date: 01/31/2024
+ms.date: 3/21/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.reviewer: mmcc
@@ -13,7 +13,7 @@ ms.reviewer: mmcc
 
 The Application Insights .NET SDK consists of many NuGet packages. The [core package](https://www.nuget.org/packages/Microsoft.ApplicationInsights) provides the API for sending telemetry to the Application Insights. [More packages](https://www.nuget.org/packages?q=Microsoft.ApplicationInsights) provide telemetry *modules* and *initializers* for automatically tracking telemetry from your application and its context. By adjusting the configuration file, you can enable or disable telemetry modules and initializers. You can also set parameters for some of them.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 The configuration file is named `ApplicationInsights.config` or `ApplicationInsights.xml`. The name depends on the type of your application. It's automatically added to your project when you [install most versions of the SDK][start]. By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. When it's compiled, it's copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server][redfield]. The configuration file is ignored if the [extension for Azure websites](azure-web-apps.md) or the [extension for Azure VMs and virtual machine scale sets](azure-vm-vmss-apps.md) is used.
 
@@ -43,7 +43,7 @@ Dependencies can be autocollected without modifying your code by using agent-bas
 
 ### Performance collector
 
-The performance collector [collects system performance counters](./performance-counters.md), such as CPU, memory, and network load from IIS installations. You can specify which counters to collect, including performance counters you've set up yourself.
+The performance collector [collects system performance counters](./asp-net-counters.md), such as CPU, memory, and network load from IIS installations. You can specify which counters to collect, including performance counters you've set up yourself.
 
 * `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`
 * [Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet package
@@ -53,7 +53,7 @@ The performance collector [collects system performance counters](./performance-c
 The `DiagnosticsTelemetryModule` class reports errors in the Application Insights instrumentation code itself. Examples are if the code can't access performance counters or if `ITelemetryInitializer` throws an exception. Trace telemetry tracked by this module appears in the [Diagnostic Search][diagnostic].
 
 * `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`
-* [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you only install this package, the ApplicationInsights.config file is not automatically created.
+* [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet package. If you only install this package, the ApplicationInsights.config file isn't automatically created.
 
 ### Developer mode
 
@@ -182,17 +182,15 @@ There's also a standard [sampling telemetry processor](./api-filtering-sampling.
 
 ## ConnectionString
 
-See connection string [code samples](connection-strings.md#code-samples).
-
-## InstrumentationKey
-
 [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
-This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate key, for each of your applications.
+This setting determines the Application Insights resource in which your data appears. Typically, you create a separate resource, with a separate connection string, for each of your applications.
 
-If you want to set the key dynamically, for example, if you want to send results from your application to different resources, you can omit the key from the configuration file and set it in code instead.
+See [Connection strings in Application Insights](connection-strings.md#code-samples) for code samples.
 
-To set the key for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
+If you want to set the connection string dynamically, for example, to send results from your application to different resources, you can omit the connection string from the configuration file and set it in code instead.
+
+To set the connection string for all instances of `TelemetryClient`, including standard telemetry modules, do this step in an initialization method, such as global.aspx.cs in an ASP.NET service:
 
 ```csharp
 using Microsoft.ApplicationInsights.Extensibility;
@@ -201,7 +199,7 @@ using Microsoft.ApplicationInsights;
     protected void Application_Start()
     {
         TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
-        configuration.InstrumentationKey = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx";
+        configuration.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
         var telemetryClient = new TelemetryClient(configuration);
 
 ```
@@ -211,7 +209,7 @@ If you want to send a specific set of events to a different resource, you can se
 ```csharp
 
     var tc = new TelemetryClient();
-    tc.Context.InstrumentationKey = "----- my key ----";
+    tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
     tc.TrackEvent("myEvent");
     // ...
 
@@ -223,7 +221,7 @@ To get a new key, [create a new resource in the Application Insights portal][new
 
 _The provider is available starting in v2.6.0_.
 
-The purpose of this provider is to look up an application ID based on an instrumentation key. The application ID is included in `RequestTelemetry` and `DependencyTelemetry` and is used to determine correlation in the portal.
+The purpose of this provider is to look up an application ID based on a connection string. The application ID is included in `RequestTelemetry` and `DependencyTelemetry` and is used to determine correlation in the portal.
 
 This functionality is available by setting `TelemetryConfiguration.ApplicationIdProvider` either in code or in the config file.
 
@@ -240,7 +238,7 @@ We provide two implementations in the [Microsoft.ApplicationInsights](https://ww
 
 ### ApplicationInsightsApplicationIdProvider
 
-This wrapper is for our Profile API. It will throttle requests and cache results.
+This wrapper is for our Profile API. It throttles requests and cache results.
 
 This provider is added to your config file when you install either [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) or [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web/).
 
@@ -270,7 +268,7 @@ This static provider relies on your configured instrumentation key/application I
 
 This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
 
-This class has the optional property `Next`, which can be used to configure another provider to use when an instrumentation key is requested that doesn't exist in your configuration.
+This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
 
 #### Example configuration via ApplicationInsights.config
 

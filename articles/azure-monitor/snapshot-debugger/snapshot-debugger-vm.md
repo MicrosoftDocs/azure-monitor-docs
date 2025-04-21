@@ -1,12 +1,10 @@
 ---
 title: Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines | Microsoft Docs
 description: Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Azure Cloud Services, and Azure Virtual Machines.
-ms.author: hannahhunter
-author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
-ms.date: 11/17/2023
+ms.date: 03/04/2025
 ms.custom: devdivchpfy22, devx-track-dotnet
 ---
 
@@ -65,19 +63,19 @@ Snapshot Collector's default configuration looks similar to the following exampl
 </TelemetryProcessors>
 ```
 
-Snapshots are collected _only_ on exceptions reported to Application Insights. In some cases (for example, older versions of the .NET platform), you might need to [configure exception collection](../app/asp-net-exceptions.md#exceptions) to see exceptions with snapshots in the portal.
+Snapshots are collected _only_ on exceptions reported to Application Insights. In some cases (like on older versions of the .NET platform), you might need to [configure exception collection](../app/asp-net-exceptions.md#exceptions) to see exceptions with snapshots in the portal.
 
 ## Configure snapshot collection for ASP.NET Core applications or Worker Services
 
 ### Prerequisites
 
 Your application should already reference one of the following Application Insights NuGet packages:
-- [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore)
-- [Microsoft.ApplicationInsights.WorkerService](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService)
+- [`Microsoft.ApplicationInsights.AspNetCore`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore)
+- [`Microsoft.ApplicationInsights.WorkerService`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WorkerService)
 
 ### Add the NuGet package
 
-Add the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package to your app.
+Add the [`Microsoft.ApplicationInsights.SnapshotCollector`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package to your app.
 
 ### Update the services collection
 
@@ -103,7 +101,7 @@ builder.Services.Configure<SnapshotCollectorConfiguration>(builder.Configuration
 
 Next, add a `SnapshotCollector` section to _`appsettings.json`_ where you can override the defaults. 
 
-Snapshot Collector's default `appsettings.json` configuration looks similar to the following example:
+Snapshot Collector's default *appsettings.json* configuration looks similar to the following example:
 
 ```json
 {
@@ -205,8 +203,6 @@ internal class LoggerExample
 By default, the Application Insights Logger (`ApplicationInsightsLoggerProvider`) forwards exceptions to the Snapshot Debugger via `TelemetryClient.TrackException`. This behavior is controlled via the `TrackExceptionsAsExceptionTelemetry` property on the `ApplicationInsightsLoggerOptions` class. 
 
 If you set `TrackExceptionsAsExceptionTelemetry` to `false` when configuring the Application Insights Logger, the preceding example will not trigger the Snapshot Debugger. In this case, modify your code to call `TrackException` manually.
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
 
 ## Next steps
 

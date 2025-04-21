@@ -2,8 +2,6 @@
 title: MMA Discovery and Removal Utility
 description: This article describes a PowerShell script to remove the legacy agent from systems that migrated to the Azure Monitor Agent.
 ms.topic: conceptual
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: jeffwo
 ms.date: 11/14/2024
 ms.custom:
@@ -44,7 +42,7 @@ az login
 Next you must set your subscription.
 
 ``` PowerShell
-Az account set --subscription {subscription_id or “subscription_name”}
+Az account set --subscription {subscription_id or subscription_name}
    ```
 ## Step 2 Copy the script
 

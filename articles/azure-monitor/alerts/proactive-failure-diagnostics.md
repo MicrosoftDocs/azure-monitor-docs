@@ -1,7 +1,6 @@
 ---
 title: Smart Detection of Failure Anomalies in Application Insights | Microsoft Docs
 description: Alerts you to unusual changes in the rate of failed requests to your web app, and provides diagnostic analysis. No configuration is needed.
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 04/01/2024
 ms.reviewer: yagil
@@ -50,7 +49,7 @@ Failure Anomalies detection relies on a proprietary machine learning algorithm, 
 
 * Analysis of the failure percentage of requests/dependencies in a rolling time window of 20 minutes.
 * A comparison of the failure percentage in the last 20 minutes, to the rate in the last 40 minutes and the past seven days. The algorithm is looking for significant deviations that exceed X-times of the standard deviation.
-* The algorithm is using an adaptive limit for the minimum failure percentage, which varies based on the app’s volume of requests/dependencies.
+* The algorithm is using an adaptive limit for the minimum failure percentage, which varies based on the app's volume of requests/dependencies.
 * The algorithm includes logic that can automatically resolve the fired alert, if the issue is no longer detected for 8-24 hours.
   Note: in the current design. a notification or action isn't sent when a Smart Detection alert is resolved. You can check if a Smart Detection alert was resolved in the Azure portal.
 

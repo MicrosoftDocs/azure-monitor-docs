@@ -9,7 +9,7 @@ ms.devlang: csharp
 
 # Live metrics: Monitor and diagnose with 1-second latency
 
-Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. The live metrics experience is a powerful diagnostic tool when combined with [Profiler](./profiler.md) and [Snapshot Debugger](./snapshot-debugger.md).
+Use live metrics from [Application Insights](./app-insights-overview.md) to monitor web applications. Select and filter metrics and performance counters to watch in real time and inspect stack traces from sample failed requests and exceptions. The live metrics experience is a powerful diagnostic tool when combined with [.NET Profiler](./profiler-overview.md) and [Snapshot Debugger](./snapshot-debugger.md).
 
 With live metrics, you can:
 
@@ -133,7 +133,7 @@ The following section discusses common troubleshooting scenarios for the live me
 
 ### Missing live metrics data
 
-The live metrics experience uses different IP addresses than other Application Insights telemetry. Make sure [those IP addresses](../ip-addresses.md) are open in your firewall. Also check that [outgoing ports for live metrics](../ip-addresses.md#outgoing-ports) are open in the firewall of your servers.
+The live metrics experience uses different endpoints than other Application Insights telemetry. Make sure [live metrics endpoints and outgoing ports](../fundamentals/azure-monitor-network-access.md) are open in the firewall of your servers.
 
 As described in the [Azure TLS 1.2 migration announcement](https://azure.microsoft.com/updates/azuretls12/), live metrics now only support TLS 1.2. If you're using an older version of TLS, the live metrics pane doesn't display any data. For applications based on .NET Framework 4.5.1, see [Enable Transport Layer Security (TLS) 1.2 on clients - Configuration Manager](/mem/configmgr/core/plan-design/security/enable-tls-1-2-client#bkmk_net) to support the newer TLS version.
 
@@ -193,5 +193,5 @@ If you open live metrics, the SDKs switch to a higher frequency mode and send ne
 
 * [Monitor usage with Application Insights](./usage.md)
 * [Use Diagnostic Search](./transaction-search-and-diagnostics.md?tabs=transaction-search)
-* [Profiler](./profiler.md)
+* [Application Insights Profiler for .NET](./profiler-overview.md)
 * [Snapshot Debugger](./snapshot-debugger.md)

@@ -11,7 +11,7 @@ ms.reviewer: mmcc
 
 This article describes how to enable and configure Application Insights for an [ASP.NET Core](/aspnet/core) application.
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../includes/azure-monitor-app-insights-otel-available-notification.md)]
+[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
 
 Application Insights can collect the following telemetry from your ASP.NET Core application:
 
@@ -117,7 +117,7 @@ For Visual Studio for Mac, use the [manual guidance](#enable-application-insight
             },
             "AllowedHosts": "*",
             "ApplicationInsights": {
-                "ConnectionString": "Copy connection string from Application Insights Resource Overview"
+                "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
             }
         }
         ```
@@ -171,7 +171,7 @@ using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPuls
 
 // Create a TelemetryConfiguration instance.
 TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-config.InstrumentationKey = "INSTRUMENTATION-KEY-HERE";
+config.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
 QuickPulseTelemetryProcessor quickPulseProcessor = null;
 config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
     .Use((next) =>
@@ -221,7 +221,7 @@ Dependency collection is enabled by default. [Dependency tracking in Application
 
 ### Performance counters
 
-Support for [performance counters](./performance-counters.md) in ASP.NET Core is limited:
+Support for [performance counters](./asp-net-counters.md) in ASP.NET Core is limited:
 
 * SDK versions 2.4.1 and later collect performance counters if the application is running in Web Apps (Windows).
 * SDK versions 2.7.1 and later collect performance counters if the application is running in Windows and targets `netstandard2.0` or later.
@@ -230,7 +230,7 @@ Support for [performance counters](./performance-counters.md) in ASP.NET Core is
 
 ### EventCounter
 
-By default, `EventCounterCollectionModule` is enabled. To learn how to configure the list of counters to be collected, see [EventCounters introduction](eventcounters.md).
+By default, `EventCounterCollectionModule` is enabled. To learn how to configure the list of counters to be collected, see [EventCounters introduction](asp-net-counters.md).
 
 ### Enrich data through HTTP
 
@@ -322,7 +322,7 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 ```json
 {
     "ApplicationInsights": {
-    "ConnectionString": "Copy connection string from Application Insights Resource Overview",
+    "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
     "EnableAdaptiveSampling": false,
     "EnablePerformanceCounterCollectionModule": false
     }
@@ -407,7 +407,7 @@ By default, the following automatic-collection modules are enabled. These module
 * `QuickPulseTelemetryModule`: Collects telemetry to show in the live metrics pane.
 * `AppServicesHeartbeatTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the App Service environment where the application is hosted.
 * `AzureInstanceMetadataTelemetryModule`: Collects heartbeats (which are sent as custom metrics), about the Azure VM environment where the application is hosted.
-* `EventCounterCollectionModule`: Collects [EventCounters](eventcounters.md). This module is a new feature and is available in SDK version 2.8.0 and later.
+* `EventCounterCollectionModule`: Collects [EventCounters](asp-net-counters.md). This module is a new feature and is available in SDK version 2.8.0 and later.
 
 To configure any default `TelemetryModule`, use the extension method `ConfigureTelemetryModule<T>` on `IServiceCollection`, as shown in the following example:
 
@@ -597,7 +597,7 @@ If the SDK is installed at build time as shown in this article, you don't need t
 
 Yes. Feature support for the SDK is the same in all platforms, with the following exceptions:
 
-* The SDK collects [event counters](./eventcounters.md) on Linux because [performance counters](./performance-counters.md) are only supported in Windows. Most metrics are the same.
+* The SDK collects [event counters](./asp-net-counters.md) on Linux because [performance counters](./asp-net-counters.md) are only supported in Windows. Most metrics are the same.
 
 ### Is this SDK supported for Worker Services?
 
@@ -640,7 +640,7 @@ When you add Application Insights Telemetry to a Visual Studio ASP.NET Core temp
 
     ```json
     "ApplicationInsights": {
-        "InstrumentationKey": "00000000-0000-0000-0000-000000000000"
+        "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
     }
     ```
 
@@ -673,7 +673,7 @@ To disable telemetry correlation in code, see `<ExcludeComponentCorrelationHttpH
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/asp-net-troubleshoot-no-data).
 
-[!INCLUDE [azure-monitor-app-insights-test-connectivity](../includes/azure-monitor-app-insights-test-connectivity.md)]
+[!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
 
 ## Open-source SDK
 

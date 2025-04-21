@@ -1,12 +1,8 @@
 ---
 title: Overview of Azure Monitor alerts
 description: Learn about Azure Monitor alerts, alert rules, action processing rules, and action groups, and how they work together to monitor your system.
-author: AbbyMSFT
-ms.author: abbyweisberg
 ms.topic: overview 
-ms.date: 01/14/2024
-ms.custom: template-overview 
-ms.reviewer: harelbr
+ms.date: 04/10/2025
 ---
 
 # What are Azure Monitor alerts?
@@ -94,7 +90,7 @@ You can [enable recommended out-of-the-box alert rules in the Azure portal](aler
 
 The system compiles a list of recommended alert rules based on:
 
-- The resource provider’s knowledge of important signals and thresholds for monitoring the resource.
+- The resource provider's knowledge of important signals and thresholds for monitoring the resource.
 - Data that tells us what customers commonly alert on for this resource.
 
 > [!NOTE]
@@ -108,7 +104,7 @@ The system compiles a list of recommended alert rules based on:
 You can use any of the following methods for creating alert rules at-scale. Each choice has advantages and disadvantages that could have an effect on cost and on maintenance of the alert rules. 
 
 ### Metric alerts
-You can use [one metric alert rule to monitor multiple resources](alerts-metric-multiple-time-series-single-rule.md) of the same type that exist in the same Azure region. Individual notifications are sent for each monitored resource. For a list of Azure services that are currently supported for this feature, see [Supported resources for metric alerts in Azure Monitor](alerts-metric-near-real-time.md).
+You can use [one metric alert rule to monitor multiple resources](alerts-metric-multiple-time-series-single-rule.md) of the same type that exist in the same Azure region. Individual notifications are sent for each monitored resource.
 
 For metric alert rules for Azure services that don't support multiple resources, use automation tools such as the Azure CLI, PowerShell, or Azure Resource Manager templates to create the same alert rule for multiple resources. For sample ARM templates, see [Resource Manager template samples for metric alert rules in Azure Monitor](resource-manager-alerts-metric.md).
 

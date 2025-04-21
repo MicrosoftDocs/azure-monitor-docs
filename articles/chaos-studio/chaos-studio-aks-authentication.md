@@ -4,10 +4,8 @@ description: Learn about the different ways for Chaos Studio to authenticate wit
 services: chaos-studio
 author: rsgel
 ms.topic: article
-ms.date: 10/11/2024
+ms.date: 2/5/2025
 ms.author: carlsonr
-ms.reviewer: abbyweisberg
-ms.service: azure-chaos-studio
 ---
 
 # Use Microsoft Entra authentication with Chaos Studio AKS faults
@@ -23,7 +21,6 @@ Azure Chaos Studio integrates with Chaos Mesh to run faults on Azure Kubernetes 
 > Local account permissions grant access as long as the credentials are on the client machine, while AKS-Managed Microsoft Entra authentication allows more scoped assignment and management of permissions. Learn more about this best practice: [Best practices for cluster security and upgrades](/azure/aks/operator-best-practices-cluster-security?tabs=azure-cli).
 
 Chaos Studio previously only supported using Chaos Mesh with local accounts, but Version 2.2 of all AKS faults now support both local accounts and Microsoft Entra authentication.
-
 
 ## Update targets
 

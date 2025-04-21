@@ -1,10 +1,9 @@
 ---
 title: Enable a framework extension for Application Insights JavaScript SDK
 description: Learn how to install and use JavaScript framework extensions for the Application Insights JavaScript SDK. 
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 11/15/2023
+ms.date: 01/31/2025
 ms.devlang: javascript
 ms.custom: devx-track-js
 ms.reviewer: mmcc
@@ -83,7 +82,7 @@ To add a plug-in, follow the steps in this section.
 
 ```bash
 
-npm install @microsoft/applicationinsights-react-js
+npm install @microsoft/applicationinsights-react-js @microsoft/applicationinsights-web
 
 ```
 
@@ -540,7 +539,7 @@ Use [Azure Monitor metrics explorer](../essentials/analyze-metrics.md) to plot a
 
 :::image type="content" source="./media/javascript-react-plugin/chart.png" lightbox="./media/javascript-react-plugin/chart.png" alt-text="Screenshot that shows a chart that displays the custom metric React Component Engaged Time (seconds) split by Component Name":::
 
-You can also run [custom queries](../logs/log-analytics-tutorial.md) to divide Application Insights data to generate reports and visualizations as per your requirements. Here’s an example of a custom query. Go ahead and paste it directly into the query editor to test it out.
+You can also run [custom queries](../logs/log-analytics-tutorial.md) to divide Application Insights data to generate reports and visualizations as per your requirements. Here's an example of a custom query. Go ahead and paste it directly into the query editor to test it out.
 
 ```Kusto
 customMetrics
@@ -666,7 +665,7 @@ When the Hook is used, a data payload can be provided to it to add more data to 
 
 #### Disable automatic device info collection
 
-If you don’t want to collect the device information, you can set `disableDeviceCollection` to `true`. 
+If you don't want to collect the device information, you can set `disableDeviceCollection` to `true`. 
 
 ```typescript
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
@@ -684,7 +683,7 @@ appInsights.loadAppInsights();
 
 #### Use your own device info collection class
 
-If you want to override your own device’s information, you can use `myDeviceInfoModule` to collect your own device information. 
+If you want to override your own device's information, you can use `myDeviceInfoModule` to collect your own device information. 
 
 ```typescript
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';

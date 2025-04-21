@@ -1,7 +1,6 @@
 ---
 title: Smart detection - performance anomalies | Microsoft Docs
 description: Smart detection analyzes your app telemetry and warns you of potential problems. This feature needs no setup.
-ms.author: abbyweisberg
 ms.reviewer: yagil
 ms.topic: conceptual
 ms.date: 04/01/2024
@@ -44,7 +43,7 @@ The notifications include diagnostic information. Here's an example:
 2. **Scope**. Is the problem affecting all traffic, or just some pages? Is it restricted to particular browsers or locations? This information can be obtained from the notification.
 3. **Diagnose**. Often, the diagnostic information in the notification will suggest the nature of the problem. For example, if response time slows down when request rate is high, it may indicate that your server or dependencies are beyond their capacity. 
 
-    Otherwise, open the Performance pane in Application Insights. You'll find there [Profiler](../profiler/profiler.md) data. If exceptions are thrown, you can also try the [snapshot debugger](../snapshot-debugger/snapshot-debugger.md).
+    Otherwise, open the **Performance** pane in Application Insights where you find [.NET Profiler](../profiler/profiler.md) data. If exceptions are thrown, you can also try the [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
 
 ## Configure Email Notifications
 
@@ -98,7 +97,7 @@ Where is the problem? Is the server slow to respond, is the page too long, or do
 
 Open the Browsers metric pane. The segmented display of browser page load time shows where the time is going. 
 
-* If **Send Request Time** is high, either the server is responding slowly, or the request is a post with large amount of data. Look at the [performance metrics](../app/performance-counters.md) to investigate response times.
+* If **Send Request Time** is high, either the server is responding slowly, or the request is a post with large amount of data. Look at the [performance metrics](../app/asp-net-counters.md) to investigate response times.
 * Set up [dependency tracking](../app/asp-net-dependencies.md) to see whether the slowness is because of external services or your database.
 * If **Receiving Response** is predominant, your page and its dependent parts - JavaScript, CSS, images, and so on (but not asynchronously loaded data) are long. Set up an [availability test](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability), and be sure to set the option to load dependent parts. When you get some results, open the detail of a result and expand it to see the load times of different files.
 * High **Client Processing time** suggests scripts are running slowly. If the reason isn't obvious, consider adding some timing code and send the times in trackMetric calls.
@@ -121,7 +120,7 @@ The response time degradation notification tells you:
 * Count of this operation requests on the day of the detection and seven days before.
 * Correlation between degradation in this operation and degradations in related dependencies. 
 * Links to help you diagnose the problem.
-  * Profiler traces can help you view where operation time is spent. The link is available if Profiler trace examples exist for this operation. 
+  * .NET Profiler traces can help you view where operation time is spent. The link is available if .NET Profiler trace examples exist for this operation. 
   * Performance reports in Metric Explorer, where you can slice and dice time range/filters for this operation.
   * Search for this call to view specific call properties.
   * Failure reports - If count > 1, it means that there were failures in this operation that might have contributed to performance degradation.
@@ -169,8 +168,8 @@ Modify the time range and filters to explore the telemetry.
 ## Next steps
 These diagnostic tools help you inspect the telemetry from your app:
 
-* [Profiler](../profiler/profiler.md) 
-* [snapshot debugger](../snapshot-debugger/snapshot-debugger.md)
+* [Enable the .NET Profiler for Azure App Service apps](../profiler/profiler.md) 
+* [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)
 * [Analytics](../logs/log-analytics-tutorial.md)
 * [Analytics smart diagnostics](../logs/log-query-overview.md)
 

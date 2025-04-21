@@ -5,9 +5,7 @@ services: chaos-studio
 author: prasha-microsoft
 ms.topic: article
 ms.date: 10/14/2024
-ms.author: abbyweisberg
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ---
 
 # Supported resource types and role assignments for Chaos Studio
@@ -39,7 +37,7 @@ More information about role assignments can be found on the [Azure built-in role
 
 If you prefer not to use the listed built-in roles, you can create custom roles and assign the exact operations needed for each fault. There are two ways to do this. 
 
-While creating an experiment within the Azure portal, you can select **"Enable custom role creation and assignment"** in the **Permissions** tab to allow Chaos Studio to deploy a custom role with the necessary operations.
+While creating an experiment within the Azure portal, you can select **"Use a new custom role"** within the **"Experiment permissions"** section of the **Permissions** tab to allow Chaos Studio to deploy a custom role with the necessary operations.
 
 Alternatively, if you aren't using the Azure portal or you prefer to manage operations individually, you can find the operations needed for each fault and manually assign them to a custom role. To see what roles are needed for a Chaos Studio fault, run the following Azure CLI REST command:
 

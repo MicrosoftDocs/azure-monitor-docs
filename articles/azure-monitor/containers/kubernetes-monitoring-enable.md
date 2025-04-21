@@ -1,10 +1,10 @@
 ---
-title: Enable monitoring for Azure Kubernetes Service (AKS) cluster
+title: Enable monitoring for Kubernetes clusters
 description: Learn how to enable Container insights and Managed Prometheus on an Azure Kubernetes Service (AKS) cluster.
 ms.topic: conceptual
-ms.date: 03/11/2024
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
+ms.date: 03/11/2024
 ---
 
 # Enable monitoring for Kubernetes clusters
@@ -40,21 +40,20 @@ This article provides onboarding guidance for the following types of clusters. A
 
 **Managed Prometheus prerequisites**
 
-  - The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
-  - The following resource providers must be registered in the subscription of the AKS cluster and the Azure Monitor workspace:
+- The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
+- The following resource providers must be registered in the subscription of the cluster and the Azure Monitor workspace:
     - Microsoft.ContainerService
     - Microsoft.Insights
     - Microsoft.AlertsManagement
     - Microsoft.Monitor
-  - The following resource providers must be registered in the subscription of the Grafana workspace subscription:
-    - Microsoft.Dashboard
+    - The following resource providers must be registered in the subscription of the Grafana workspace subscription:
+        - Microsoft.Dashboard
 
 **Arc-Enabled Kubernetes clusters prerequisites**
 
-- Prerequisites for [Azure Arc-enabled Kubernetes cluster extensions](/azure/azure-arc/kubernetes/extensions#prerequisites).
-  - Verify the [firewall requirements](kubernetes-monitoring-firewall.md) in addition to the [Azure Arc-enabled Kubernetes network requirements](/azure/azure-arc/kubernetes/network-requirements).
-  - If you previously installed monitoring for AKS, ensure that you have [disabled monitoring](kubernetes-monitoring-disable.md) before proceeding to avoid issues during the extension install.
-  - If you previously installed monitoring on a cluster using a script without cluster extensions, follow the instructions at [Disable monitoring of your Kubernetes cluster](kubernetes-monitoring-disable.md) to delete this Helm chart.
+- Verify the [firewall requirements](kubernetes-monitoring-firewall.md) in addition to the [Azure Arc-enabled Kubernetes network requirements](/azure/azure-arc/kubernetes/network-requirements).
+- If you previously installed monitoring for AKS, ensure that you have [disabled monitoring](kubernetes-monitoring-disable.md) before proceeding to avoid issues during the extension install.
+- If you previously installed monitoring on a cluster using a script without cluster extensions, follow the instructions at [Disable monitoring of your Kubernetes cluster](kubernetes-monitoring-disable.md) to delete this Helm chart.
 
 > [!NOTE]
 > The Managed Prometheus Arc-Enabled Kubernetes extension does not support the following configurations:
@@ -69,17 +68,20 @@ The following table describes the workspaces that are required to support Manage
 | Feature | Workspace | Notes |
 |:---|:---|:---|
 | Managed Prometheus | [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md) | `Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You will need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics. |
-| Container insights | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach an AKS cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing AKS cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). |
+| Container insights | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). |
 | Managed Grafana | [Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal#create-an-azure-managed-grafana-workspace) | [Link your Grafana workspace to your Azure Monitor workspace](/azure/managed-grafana/how-to-connect-azure-monitor-workspace) to make the Prometheus metrics collected from your cluster available to Grafana dashboards. |
 
 
 ## Enable Prometheus and Grafana
 Use one of the following methods to enable scraping of Prometheus metrics from your cluster and enable Managed Grafana to visualize the metrics. See [Link a Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) for options to connect your Azure Monitor workspace and Azure Managed Grafana workspace.
 
+> [!NOTE]
+> If the deployment is done using an ARM, Bicep or Terraform template or Azure Policy, and you are not using the provided examples, ensure that the Data Collection Endpoints, Data Collection Rules and the Data Collection Rule Associations are named `MSProm-<Location of Azure Monitor Workspace>-<Name of cluster resource>`. Failure to do so will result in the onboarding process not completing successfully.
+
 > [!NOTE] 
 > If you have a single Azure Monitor Resource that is private-linked, then Prometheus enablement won't work if the AKS cluster and Azure Monitor Workspace are in different regions.
 > The configuration needed for the Prometheus add-on isn't available cross region because of the private link constraint.
-> To resolve this, create a new DCE in the AKS cluster location and a new DCRA (association) in the same AKS cluster region. Associate the new DCE with the AKS cluster and name the new association (DCRA) as configurationAccessEndpoint.
+> To resolve this, create a new DCE in the cluster location and a new DCRA (association) in the same cluster region. Associate the new DCE with the cluster and name the new association (DCRA) as configurationAccessEndpoint.
 > For full instructions on how to configure the DCEs associated with your Azure Monitor workspace to use a Private Link for data ingestion, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
 
 ### [CLI](#tab/cli)
@@ -95,11 +97,17 @@ If you don't specify an existing Azure Monitor workspace in the following comman
 - The k8s-extension extension must be installed using the command `az extension add --name k8s-extension`.
 - The k8s-extension version 1.4.1 or higher is required. 
 
+#### Optional parameters
+Each of the commands for AKS and Arc-Enabled Kubernetes allow the following optional parameters. The parameter name is different for each, but their use is the same.
+
+| Parameter | Name and Description |
+|:---|:---|
+| Annotation keys | AKS: `--ksm-metric-annotations-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricAnnotationsAllowList`<br><br>Comma-separated list of Kubernetes annotations keys used in the resource's `kube_resource_annotations` metric. For example, kube_pod_annotations is the annotations metric for the pods resource. By default, this metric contains only name and namespace labels. To include more annotations, provide a list of resource names in their plural form and Kubernetes annotation keys that you want to allow for them. A single `*` can be provided for each resource to allow any annotations, but this has severe performance implications. For example, `pods=[kubernetes.io/team,...],namespaces=[kubernetes.io/team],...`. |
+| Label keys | AKS: `--ksm-metric-labels-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricLabelsAllowlist`<br><br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`. |
+| Recording rules | AKS: `--enable-windows-recording-rules`<br><br>Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
+
 #### AKS cluster
 Use the `-enable-azure-monitor-metrics` option `az aks create` or `az aks update` (depending whether you're creating a new cluster or updating an existing cluster) to install the metrics add-on that scrapes Prometheus metrics.
-
-
-**Sample commands**
 
 ```azurecli
 ### Use default Azure Monitor workspace
@@ -114,6 +122,7 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 ### Use optional parameters
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
 ```
+
 
 #### Arc-enabled cluster
 
@@ -132,12 +141,14 @@ az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name
 az k8s-extension create --name azuremonitor-metrics --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers.Metrics --configuration-settings azure-monitor-workspace-resource-id=<workspace-name-resource-id> grafana-resource-id=<grafana-workspace-name-resource-id> AzureMonitorMetrics.KubeStateMetrics.MetricAnnotationsAllowList="pods=[k8s-annotation-1,k8s-annotation-n]" AzureMonitorMetrics.KubeStateMetrics.MetricLabelsAllowlist "namespaces=[k8s-label-1,k8s-label-n]"
 ```
 
-Any of the commands can use the following optional parameters:
+The following additional optional parameters are available for Azure Arc-enabled clusters:
 
-- AKS: `--ksm-metric-annotations-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricAnnotationsAllowList`<br>Comma-separated list of Kubernetes annotations keys used in the resource's kube_resource_annotations metric. For example, kube_pod_annotations is the annotations metric for the pods resource. By default, this metric contains only name and namespace labels. To include more annotations, provide a list of resource names in their plural form and Kubernetes annotation keys that you want to allow for them. A single `*` can be provided for each resource to allow any annotations, but this has severe performance implications. For example, `pods=[kubernetes.io/team,...],namespaces=[kubernetes.io/team],...`.<br>
-- AKS: `--ksm-metric-labels-allow-list`<br>Arc: `--AzureMonitorMetrics.KubeStateMetrics.MetricLabelsAllowlist`<br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`.<br>
-- AKS: `--enable-windows-recording-rules` Lets you enable the recording rule groups required for proper functioning of the Windows dashboards.
-
+| Parameter | Description | Default | Upstream Arc cluster setting |
+|:---|:---|:---|:---|
+| `ClusterDistribution` | The distribution of the cluster. | `Azure.Cluster.Distribution` | yes |
+| `CloudEnvironment` | The cloud environment for the cluster. | `Azure.Cluster.Cloud` | yes |
+| `MountCATrustAnchorsDirectory` | Whether to mount CA trust anchors directory. | `true` | no |
+| `MountUbuntuCACertDirectory` | Whether to mount Ubuntu CA certificate directory. | `true` unless an `aks_edge` distro. | no |
 
 
 ### [Azure Resource Manager](#tab/arm)
@@ -320,7 +331,7 @@ If you're deploying a new AKS cluster using Terraform with managed Prometheus ad
 Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in main.tf only when those values exist. These are optional blocks.
 
 > [!NOTE]
-> Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values gets deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
+> Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values get deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
 
 ### [Azure Policy](#tab/policy)
 
@@ -348,6 +359,9 @@ After the policy is assigned to the subscription, whenever you create a new clus
 ## Enable Container insights
 Use one of the following methods to enable Container insights on your cluster. Once this is complete, see [Configure agent data collection for Container insights](container-insights-data-collection-configmap.md) to customize your configuration to ensure that you aren't collecting more data than you require.
 
+> [!NOTE] 
+> If you have a single Azure Monitor Resource that is private-linked, then Container insights enablement will not work through the Azure Portal.
+> For full instructions on how to configure Container insights with Private Link, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
 
 ### [CLI](#tab/cli)
 
@@ -529,7 +543,7 @@ Both ARM and Bicep templates are provided in this section.
 > [!TIP]
 > - Edit the `main.tf` file appropriately before running the terraform template
 > - Data will start flowing after 10 minutes since the cluster needs to be ready first
-> - WorkspaceID needs to match the format `/subscriptions/12345678-1234-9876-4563-123456789012/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
+> - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
 > - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
 
 ### [Azure Policy](#tab/policy)
@@ -584,7 +598,8 @@ When you create a new AKS cluster in the Azure portal, you can enable Prometheus
 
 ### Existing cluster (Prometheus, Container insights, and Grafana)
 
-1. Navigate to your AKS cluster in the Azure portal.
+1. Navigate to your cluster in the Azure portal.
+
 2. In the service menu, under **Monitoring**, select **Insights** > **Configure monitoring**.
 3. Container insights is already enabled. Select the **Enable Prometheus metrics** and **Enable Grafana** checkboxes. If you have existing Azure Monitor workspace and Grafana workspace, then they're selected for you.
 4. Select **Advanced settings** if you want to select alternate workspaces or create new ones. The **Cost presets** setting allows you to modify the default collection details to reduce your monitoring costs. See [Enable cost optimization settings in Container insights](./container-insights-cost-config.md) for details.
@@ -592,7 +607,8 @@ When you create a new AKS cluster in the Azure portal, you can enable Prometheus
 
 ### Existing cluster (Prometheus only)
 
-1. Navigate to your AKS cluster in the Azure portal.
+1. Navigate to your cluster in the Azure portal.
+
 2. In the service menu, under **Monitoring**, select **Insights** > **Configure monitoring**.
 3. Select the **Enable Prometheus metrics** checkbox.
 4. Select **Advanced settings** if you want to select alternate workspaces or create new ones. The **Cost presets** setting allows you to modify the default collection details to reduce your monitoring costs.
@@ -608,7 +624,7 @@ When you create a new AKS cluster in the Azure portal, you can enable Prometheus
 > Scheduling pods without limits may over-provision the Windows nodes and in extreme cases can cause the nodes to become unhealthy.
 
 
-As of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container (prometheus_collector), Windows metric collection has been enabled for the AKS clusters. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
+As of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container (prometheus_collector), Windows metric collection has been enabled for AKS clusters. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
 
 1. Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors:
 
@@ -744,7 +760,7 @@ The command will return JSON-formatted information about the solution. The `addo
 "addonProfiles": {
     "omsagent": {
         "config": {
-            "logAnalyticsWorkspaceResourceID": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
+            "logAnalyticsWorkspaceResourceID": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace",
             "useAADAuth": "true"
         },
         "enabled": true,

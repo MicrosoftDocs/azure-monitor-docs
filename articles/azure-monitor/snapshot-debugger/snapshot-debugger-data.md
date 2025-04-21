@@ -1,13 +1,11 @@
 ---
 title: View Application Insights Snapshot Debugger data
 description: View snapshots collected by the Snapshot Debugger in either the Azure portal or Visual Studio 
-ms.author: hannahhunter
-author: hhunter-ms
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
 ms.custom: devdivchpfy22
-ms.date: 11/17/2023
+ms.date: 01/21/2025
 ---
 
 # View Application Insights Snapshot Debugger data
@@ -54,13 +52,14 @@ To view snapshots in Visual Studio 2017 Enterprise or greater:
    - **For Visual Studio 2017 Enterprise and greater:** The required Snapshot Debugger component can be selected from the **Individual Component** list in the Visual Studio installer. 
    - **For a version older than Visual Studio 2017 version 15.5:** Install the extension from the [Visual Studio Marketplace](https://aka.ms/snapshotdebugger).
 
-1. Open the `.diagsession` file. The Minidump Debugging page in Visual Studio appears. 
+1. Open the `.diagsession` file i Visual Studio to generate the Minidump Debugging page. 
 
 1. Click **Debug Managed Code** to start debugging the snapshot. The snapshot opens to the line of code where the exception was thrown.
 
     :::image type="content" source="./media/snapshot-debugger/open-snapshot-visual-studio.png" alt-text="Screenshot showing the debug snapshot in Visual Studio.":::
 
-The downloaded snapshot includes any symbol files found on your web application server. These symbol files are required to associate snapshot data with source code. For App Service apps, make sure to enable symbol deployment when you publish your web apps.
+> [!NOTE]
+> The downloaded snapshot includes any symbol files found on your web application server. These symbol files are required to associate snapshot data with source code. For App Service apps, make sure to enable symbol deployment when you publish your web apps.
 
 ## Next steps 
 

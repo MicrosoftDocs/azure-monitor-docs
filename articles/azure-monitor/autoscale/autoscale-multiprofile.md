@@ -1,10 +1,6 @@
 ---
 title: Autoscale with multiple profiles
 description: "Using multiple and recurring profiles in autoscale"
-author: EdB-MSFT
-ms.author: edbaynash
-ms.service: azure-monitor
-ms.subservice: autoscale
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.topic: conceptual
 ms.date: 11/01/2024
