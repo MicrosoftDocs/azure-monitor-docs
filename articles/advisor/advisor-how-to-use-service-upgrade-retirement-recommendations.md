@@ -87,7 +87,7 @@ To get list of **Impacted Resources** in a subscription by the retirement and re
 The following code sample uses `2025-01-01`  for the `api-version`.
 
 ```https
-https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01$filter=Category eq 'HighAvailability' and Control eq 'ServiceUpgradeAndRetirement'
+https://management.azure.com/subscriptions/<Subscription-Id-Guid>/providers/Microsoft.Advisor/recommendations?api-version=2025-01-01&$filter=Category eq 'HighAvailability' and Control eq 'ServiceUpgradeAndRetirement'
 ```
 
 #### Sample Recommendations - List API response

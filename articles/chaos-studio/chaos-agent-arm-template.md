@@ -7,7 +7,6 @@ ms.topic: article
 ms.date: 03/03/2025
 ms.author: nikhilkaul
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ---
 
 # Resource Manager template samples for agents in Chaos Studio

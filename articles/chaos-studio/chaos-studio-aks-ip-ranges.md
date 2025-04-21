@@ -6,8 +6,6 @@ author: rsgel
 ms.topic: article
 ms.date: 12/4/2024
 ms.author: carlsonr
-ms.reviewer: abbyweisberg
-ms.service: azure-chaos-studio
 ---
 
 # Add Chaos Studio IPs as Authorized IPs on AKS
