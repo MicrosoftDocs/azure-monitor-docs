@@ -2,7 +2,6 @@
 title: Troubleshoot common Azure Chaos Studio problems
 description: Learn to troubleshoot common problems when you use Azure Chaos Studio.
 author: c-ashton
-ms.service: azure-chaos-studio
 ms.reviewer: nikhilkaul
 ms.topic: troubleshooting
 ms.date: 10/14/2024

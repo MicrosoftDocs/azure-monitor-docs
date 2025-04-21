@@ -6,7 +6,6 @@ author: prasha-microsoft
 ms.topic: article
 ms.date: 10/14/2024
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ---
 
 # Understand chaos engineering and resilience

@@ -3,7 +3,6 @@ title: Use a chaos experiment template to induce an outage on a Microsoft Entra 
 description: Use the Azure portal to create an experiment from the Microsoft Entra ID outage experiment template.
 author: prasha-microsoft
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ms.topic: how-to
 ms.date: 10/14/2024
 ms.custom: template-how-to

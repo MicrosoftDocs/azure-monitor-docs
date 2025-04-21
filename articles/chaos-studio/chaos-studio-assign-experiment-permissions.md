@@ -6,7 +6,6 @@ author: vikramrajumsft
 ms.topic: article
 ms.date: 03/20/2025
 ms.reviewer: vikramraju
-ms.service: azure-chaos-studio
 ms.custom: 
 ---
 

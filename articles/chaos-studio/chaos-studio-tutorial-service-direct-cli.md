@@ -3,7 +3,6 @@ title: Create an experiment using a service-direct fault with Azure CLI
 description: Create an experiment that uses a service-direct fault with the Azure CLI.
 author: prasha-microsoft
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ms.topic: how-to
 ms.date: 10/14/2024
 ms.custom: template-how-to, devx-track-azurecli

@@ -6,7 +6,6 @@ author: prasha-microsoft
 ms.topic: overview
 ms.date: 09/05/2024
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ms.custom: template-overview, kr2b-contr-experiment
 ---
 

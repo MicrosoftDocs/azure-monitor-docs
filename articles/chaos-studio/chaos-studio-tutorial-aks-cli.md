@@ -5,7 +5,6 @@ author: prasha-microsoft
 ms.topic: how-to
 ms.date: 04/25/2024
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ms.custom: template-how-to, devx-track-azurecli
 ms.devlang: azurecli
 ---

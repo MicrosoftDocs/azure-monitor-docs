@@ -3,7 +3,6 @@ title: Use an Azure Chaos Studio experiment template to take down Virtual Machin
 description: Use the Azure portal to create an experiment from the Availability Zone Down experiment template.
 author: prasha-microsoft
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ms.topic: how-to
 ms.date: 10/14/2024
 ms.custom: template-how-to

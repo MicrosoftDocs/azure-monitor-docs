@@ -6,7 +6,6 @@ author: nikhilkaul-msft
 ms.topic: how-to
 ms.date: 12/04/2023
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ms.custom: ignite-fall-2023
 ---
 

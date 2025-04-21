@@ -6,7 +6,6 @@ author: nikhilkaul-msft
 ms.topic: article
 ms.date: 03/03/2025
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ---
 
 # Troubleshooting Chaos Agent

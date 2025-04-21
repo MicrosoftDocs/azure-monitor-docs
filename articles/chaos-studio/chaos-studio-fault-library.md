@@ -6,7 +6,6 @@ author: rsgel
 ms.topic: article
 ms.date: 01/02/2024
 ms.reviewer: prashabora
-ms.service: azure-chaos-studio
 ms.custom: linux-related-content
 ---
 

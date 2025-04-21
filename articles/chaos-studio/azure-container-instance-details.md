@@ -6,7 +6,6 @@ author: nikhilkaul
 ms.topic: reference
 ms.date: 10/01/2024
 ms.reviewer: nikhilkaul
-ms.service: azure-chaos-studio
 ms.custom: devx-track-azurecli
 ---
 
