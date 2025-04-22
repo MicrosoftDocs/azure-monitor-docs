@@ -10,9 +10,8 @@ ms.reviewer: mmcc
 
 [Application Insights](./app-insights-overview.md) includes a custom sampler and integrates with [OpenTelemetry](./opentelemetry-enable.md) to reduce telemetry volume, lower costs, and retain the diagnostic data you care about.
 
-> [!NOTE]
+> [!IMPORTANT]
 > For information on sampling when using the Application Insights Classic API Software Development Kits (SDKs), see [Classic API Sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
-> If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 ## Prerequisites
 
@@ -34,6 +33,9 @@ Without sampling, excessive data ingestion can:
 Effective sampling keeps enough data for meaningful diagnostics while controlling cost.
 
 Sampling is **not enabled by default** in Application Insights OpenTelemetry distros. You must explicitly enable and configure sampling to manage your telemetry volume.
+
+> [!NOTE]
+> If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 ## Application Insights custom sampler
 
