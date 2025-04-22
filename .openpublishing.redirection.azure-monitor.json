@@ -7990,11 +7990,6 @@
    "redirect_document_id": false
   },
   {
-    "source_path": "articles/azure-monitor/alerts/alerts-create-simple-alert.md",
-    "redirect_url": "/azure/azure-monitor/alerts/alerts-overview",
-    "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/essentials/collect-custom-metrics-guestos-resource-manager-vm.md",
    "redirect_url": "/azure/azure-monitor/agents/collect-custom-metrics-guestos-resource-manager-vm",
    "redirect_document_id": false
