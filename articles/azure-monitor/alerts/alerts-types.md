@@ -4,7 +4,7 @@ description: This article explains the different types of Azure Monitor alerts a
 ms.topic: conceptual
 ms.date: 04/10/2024
 ---
-
+FILENAME: alert-types
 # Choosing the right type of alert rule
 
 This article describes the kinds of Azure Monitor alerts you can create. It helps you understand when to use each type of alert. For more information about pricing, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
@@ -13,6 +13,7 @@ The types of alerts are:
 
 * [Metric alerts](#metric-alerts)
 * [Log search alerts](#log-alerts)
+    * [Simple log search alerts](alerts-create-simple-alert.md)
 * [Activity log alerts](#activity-log-alerts)
     * [Service Health alerts](#service-health-alerts)
     * [Resource Health alerts](#resource-health-alerts)
@@ -175,6 +176,16 @@ Log search alerts are listed under resource provider `microsoft.insights/schedul
 
 > [!Note]
 > Unsupported resource characters like <, >, %, &, \, ? and / are replaced with an underscore (_) in the hidden resource names. This character change is also reflected in the billing information.
+
+## Simple log search alerts
+
+A simple log alert rule is a log search alert rules that is using a Log Analytics query to evaluate resource logs. If the conditions are met, an alert is fired. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.
+
+The target of the log search alert rule can be:
+
+* A single resource, such as a VM.
+* A Workspace
+* A single container of resources, like a resource group or subscription.
 
 ## Activity log alerts
 

@@ -4,7 +4,8 @@ description: Learn about Azure Monitor alerts, alert rules, action processing ru
 ms.topic: overview 
 ms.date: 04/22/2025
 ---
-FILENAME: alerts-overview
+
+FINENAME: alerts-create-simple-alert, also check toc and whats-new, remove redirection
 # What are Azure Monitor alerts?
 
 Alerts help you detect and address issues before users notice them by proactively notifying you when Azure Monitor data indicates there might be a problem with your infrastructure or application.
