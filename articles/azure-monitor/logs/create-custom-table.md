@@ -47,7 +47,7 @@ To create a custom table, you need:
 
 ## Create a custom table
 
-Azure tables have predefined schemas. To store log data in a different schema, use data collection rules to define how to collect, transform, and send the data to a custom table in your Log Analytics workspace. To create a custom table with the Auxiliary plan, see [Set up a table with the Auxiliary plan (Preview)](create-custom-table-auxiliary.md).
+Azure tables have predefined schemas. To store log data in a different schema, use data collection rules to define how to collect, transform, and send the data to a custom table in your Log Analytics workspace. To create a custom table with the Auxiliary plan, see [Set up a table with the Auxiliary plan](create-custom-table-auxiliary.md).
 
 > [!IMPORTANT]
 > Custom tables have a suffix of **_CL**; for example, *tablename_CL*. The Azure portal adds the **_CL** suffix to the table name automatically. When you create a custom table using a different method, you need to add the **_CL** suffix yourself. The *tablename_CL* in the [DataFlows Streams](../data-collection/data-collection-rule-structure.md#data-flows) properties in your data collection rules must match the *tablename_CL* name in the Log Analytics workspace.

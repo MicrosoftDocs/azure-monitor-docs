@@ -173,7 +173,7 @@ From [client webpages](./javascript-sdk.md):
 * Device information (for example, Browser, OS, version, language, model)
 * Session information
 
-  > [!Note]
+  > [!NOTE]
   > For some applications, such as single-page applications (SPAs), the duration may not be recorded and will default to 0.
 
     For more information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
@@ -244,8 +244,9 @@ This answer depends on the distribution of our endpoints, *not* on where your Ap
 
 ### Do I incur network costs if my Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region?
 
-Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going.
-Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+
+If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 ### What TLS versions does Application Insights support
 
