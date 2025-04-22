@@ -43,8 +43,13 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     -   When the condition is met at least three times in the minute - three rows match
     -   Custom definition of how many rows need to match to have an alert on a certain minute
 
-> [!NOTE] 
-> In the output, the number of rows that are shown in the email or in the alert consumption is limited. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
+## Show different output columns
+
+In the output, the number of rows that are shown in the email or in the alert consumption is limited. The first five columns of the query are displayed in the output. Therefore, if you would like to show different columns, change the order of the columns in the KQL query that is in the log pane.
+
+## Remaining steps
+
+The remaining steps are the same as log search.
 
 ## Related content
 
