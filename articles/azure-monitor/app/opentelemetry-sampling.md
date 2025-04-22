@@ -12,6 +12,7 @@ ms.reviewer: mmcc
 
 > [!NOTE]
 > For information on sampling when using the Application Insights Classic API Software Development Kits (SDKs), see [Classic API Sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+> If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 ## Prerequisites
 
@@ -122,3 +123,4 @@ If one component applies head-based sampling without propagating the sampling de
 - [OpenTelemetry Sampling Concepts](https://opentelemetry.io/docs/concepts/sampling/).
 - [Enable Sampling in Application Insights](./opentelemetry-configuration.md#enable-sampling)
 - [Application Insights Overview](./app-insights-overview.md)
+- [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
