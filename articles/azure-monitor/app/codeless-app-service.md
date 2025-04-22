@@ -122,10 +122,7 @@ Application Insights for Node.js is integrated with Azure App Service on Linux -
 
     :::image type="content"source="./media/codeless-app-service/app-service-node.png" alt-text="Screenshot of instrument your application."::: 
 
-## [Python (Preview)](#tab/python)
-
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+## [Python](#tab/python)
 
 > [!NOTE]
 > * Only use autoinstrumentation on App Service if you aren't using manual instrumentation of OpenTelemetry in your code, such as the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md?tabs=python) or the [Azure Monitor OpenTelemetry Exporter](/python/api/overview/azure/monitor-opentelemetry-exporter-readme). This is to prevent duplicate data from being sent. To learn more about this, check out the [troubleshooting section](#troubleshooting) in this article.
@@ -139,8 +136,12 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 ### Prerequisites
 
 > [!div class="checklist"]
-> * Python version 3.11 or earlier.
-> * App Service must be deployed as code. Custom containers aren't supported.
+> * Python version 3.12 or earlier.
+> * Linux OS
+> * Autoinstrummentation for App Service Deploy as Code is in General Availability (GA). However, Autoinstrumentation for App Service Custom Containers is still in Preview.
+
+> [!IMPORTANT]
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ### Autoinstrumentation in the Azure portal
 
@@ -271,7 +272,7 @@ The Application Insights Node.js version is updated automatically as part of App
 
 If you encounter an issue that got fixed in the latest version of the [Application Insights SDK](nodejs.md), you can remove autoinstrumentation and manually instrument your application with the most recent SDK version.
 
-## [Python (Preview)](#tab/python)
+## [Python](#tab/python)
 
 The Application Insights Python version is updated automatically as part of App Service updates and *can't be updated manually*.
 
@@ -325,7 +326,7 @@ The Node.js agent can be configured using JSON. Set the `APPLICATIONINSIGHTS_CON
 
 The full [set of configurations](https://github.com/microsoft/ApplicationInsights-node.js#configuration) is available. You just need to use a valid json file.
 
-## [Python (Preview)](#tab/python)
+## [Python](#tab/python)
 
 You can configure with [OpenTelemetry environment variables](https://opentelemetry.io/docs/reference/specification/sdk-environment-variables/) such as:
 
@@ -382,7 +383,7 @@ For more information, go to [Configuration options: Azure Monitor Application In
 
 To enable client-side monitoring for your Node.js application, you need to [manually add the client-side JavaScript SDK to your application](./javascript.md).
 
-## [Python (Preview)](#tab/python)
+## [Python](#tab/python)
 
 To enable client-side monitoring for your Python application, you need to [manually add the client-side JavaScript SDK to your application](./javascript.md).
 
@@ -445,7 +446,7 @@ In order to enable telemetry collection with Application Insights, only the foll
 > [!NOTE]
 > Snapshot Debugger isn't available for Node.js applications.
 
-## [Python (Preview)](#tab/python)
+## [Python](#tab/python)
 
 :::image type="content"source="./media/codeless-app-service/application-settings-python.png" alt-text="Screenshot of App Service Application Settings with available Application Insights settings." lightbox="./media/codeless-app-service/application-settings-python.png":::
 
@@ -691,7 +692,7 @@ As a temporary workaround, you could set the app setting `ApplicationInsightsAge
 
     If `SDKPresent` is true, it means the extension detected that some aspect of the SDK is already present in the Application, and will back-off.
 
-## [Python (Preview)](#tab/python)
+## [Python](#tab/python)
 
 ### Duplicate telemetry
 
