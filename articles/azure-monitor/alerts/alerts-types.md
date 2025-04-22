@@ -4,7 +4,7 @@ description: This article explains the different types of Azure Monitor alerts a
 ms.topic: conceptual
 ms.date: 04/10/2024
 ---
-FILENAME: alert-types
+
 # Choosing the right type of alert rule
 
 This article describes the kinds of Azure Monitor alerts you can create. It helps you understand when to use each type of alert. For more information about pricing, see the [pricing page](https://azure.microsoft.com/pricing/details/monitor/).
