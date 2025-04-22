@@ -18,7 +18,7 @@ Data collected by Application Insights models this typical application execution
 :::image type="content" source="media/data-model-complete/application-insights-data-model.png" lightbox="media/data-model-complete/application-insights-data-model.png" alt-text="Diagram that shows the Application Insights telemetry data model.":::
 
 <sup>1</sup> `availabilityResults` aren't available by default and require availability tests to be set up.<br>
-<sup>2</sup> `customEvents`, `customMetrics`, and `traces` are only available with custom instrumentation.
+<sup>2</sup> `customEvents` and `customMetrics` are only available with custom instrumentation.
 
 > [!NOTE]
 > Application Insights stores logs in the `traces` table for legacy reasons. The spans for *distributed* traces are stored in the `requests` and `dependencies` tables. We plan to resolve this in a future release to avoid any confusion.
@@ -47,14 +47,30 @@ The Application Insights telemetry model defines a way to [correlate](distribute
 
 ### Availability
 
-Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive.
+Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive. We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
 
-> [!TIP]
-> We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **id** | **Id** | ... |
+| **name** | **Name** | ... |
+| **location** | **Location** | ... |
+| **success** | **Success** | ... |
+| **message** | **Message** | ... |
+| **duration** | **Duration** | ... |
 
 ### BrowserTimings
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
+
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **name** | **Name** | ... |
+| **url** | **Url** | ... |
+| **networkDuration** | **NetworkDurationMs** | 1. + 2. |
+| **sendDuration** | **SendDurationMs** | 3. |
+| **receiveDuration** | **ReceiveDurationMs** | 4. |
+| **processingDuration** | **ProcessingDurationMs** | 5. |
+| **totalDuration** | **TotalDurationMs** | 1. + 2. + 3. + 4. + 5. |
 
 1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
 1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
@@ -62,42 +78,22 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 1. **Client ← Web Server:** Client receives the rest of the response payload bytes from the web server.
 1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
 
-* `browserTimings/networkDuration` = 1. + 2.
-
-* `browserTimings/sendDuration` = 3.
-
-* `browserTimings/receiveDuration` = 4.
-
-* `browserTimings/processingDuration` = 5.
-
-* `browsertimings/totalDuration` = 1. + 2. + 3. + 4. + 5.
-
-* `pageViews/duration`
-
-    * The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).
-
-    * If `PerformanceNavigationTiming` is available, that duration is used. If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.
-
-    * The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
-
-    For more information, see [PageView](#pageview).
-
 :::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
 ### Dependency
 
 A dependency telemetry item represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
-| Field | Description |
-|-------|-------------|
-| **Data** | This field is the command initiated by this dependency call. Examples are SQL statement and HTTP URL with all query parameters. |
-| **Duration** | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
-| **ID** | ID is the identifier of a dependency call instance. It's used for correlation with the request telemetry item that corresponds to this dependency call. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
-| **Name** | This field is the name of the command initiated with this dependency call. It has a low cardinality value. Examples are stored procedure name and URL path template. |
-| **Result Code** | This field is the result code of a dependency call. Examples are SQL error code and HTTP status code. |
-| **Success** | This field is the indication of a successful or unsuccessful call. |
-| **Target** | This field is the target site of a dependency call. Examples are server name and host address. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
-| **Type** | This field is the dependency type name. It has a low cardinality value for logical grouping of dependencies and interpretation of other fields like `commandName` and `resultCode`. Examples are SQL, Azure table, and HTTP. |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **id** | **Id** | ID is the identifier of a dependency call instance. It's used for correlation with the request telemetry item that corresponds to this dependency call. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **target** | **Target** | This field is the target site of a dependency call. Examples are server name and host address. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **type** | **DependencyType** | This field is the dependency type name. It has a low cardinality value for logical grouping of dependencies and interpretation of other fields like `commandName` and `resultCode`. Examples are SQL, Azure table, and HTTP. |
+| **name** | **Name** | This field is the name of the command initiated with this dependency call. It has a low cardinality value. Examples are stored procedure name and URL path template. |
+| **data** | **Data** | This field is the command initiated by this dependency call. Examples are SQL statement and HTTP URL with all query parameters. |
+| **success** | **Success** | This field is the indication of a successful or unsuccessful call. |
+| **resultCode** | **ResultCode** | This field is the result code of a dependency call. Examples are SQL error code and HTTP status code. |
+| **duration** | **DurationMs** | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
 
 ### Event
 
@@ -105,21 +101,28 @@ You can create event telemetry items to represent an event that occurred in your
 
 Semantically, events might or might not be correlated to requests. If used properly, event telemetry is more important than requests or traces. Events represent business telemetry and should be subject to separate, less aggressive [sampling](api-filtering-sampling.md).
 
-| Field | Description | Maximum length (characters) |
-|-------|-------------|-----------------------------|
-| **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512 |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Maximum length (characters) |
+|--------------------------------------|-------------------------------|-------------|-----------------------------|
+| **name** | **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512 |
 
 ### Exception
 
 An exception telemetry item represents a handled or unhandled exception that occurred during execution of the monitored application.
 
-| Field | Description | Max length (characters) |
-|-------|-------------|-------------------------|
-| **Exception details** | Contains exception information such as the exception message and the call stack. | |
-| **Problem ID** | Identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024 |
-| **Severity level** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
+|--------------------------------------|-------------------------------|-------------|-------------------------|
+| **problemId** | **ProblemId** | Identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024 |
+| **type** | **ExceptionType** | | |
+| **assembly** | **Assembly** | | |
+| **method** | **Method** | | |
+| **outerType** | **OuterType** | | |
+| **outerMessage** | **OuterMessage** | | |
+| **outerAssembly** | **OuterAssembly** | | |
+| **outerMethod** | **OuterMethod** | | |
+| **severityLevel** | **SeverityLevel** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
+| **details** | **Details** | Contains exception information such as the exception message and the call stack. | |
 
-### Metric
+### Metric (Performance Counters and Custom Metrics)
 
 Application Insights supports two types of metric telemetry which are placed into the `performanceCounters` table:
 
@@ -196,6 +199,13 @@ PageView telemetry is logged when an application user opens a new page of a moni
 
 This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **id** | ? | ... |
+| **name** | **Name** | ... |
+| **url** | **Url** | ... |
+| **duration** | **DurationMs** | The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).<br><br>If `PerformanceNavigationTiming` is available, that duration is used. If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.<br><br>The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views). |
+
 > [!NOTE]
 > * By default, the Application Insights JavaScript SDK logs single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#browsertimings). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 >
@@ -211,24 +221,24 @@ You can group requests by logical `name` and define the `source` of this request
 
 Request telemetry supports the standard extensibility model by using [custom `properties` and `measurements`](#custom-properties-and-measurements).
 
-| Field | Description | Max length (characters) |
-|-------|-------------|-------------------------|
-| **Duration** | The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. | |
-| **ID** | ID is the identifier of a request call instance. It's used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 128 |
-| **Name** | This field is the name of the request and it represents the code path taken to process the request. A low cardinality value allows for better grouping of requests. For HTTP requests, it represents the HTTP method and URL path template like `GET /values/{id}` without the actual `id` value.<br>The Application Insights web SDK sends a request name "as is" about letter case. Grouping on the UI is case sensitive, so `GET /Home/Index` is counted separately from `GET /home/INDEX` even though often they result in the same controller and action execution. The reason for that is that URLs in general are [case sensitive](https://www.w3.org/TR/WD-html40-970708/htmlweb.html). You might want to see if all `404` errors happened for URLs typed in uppercase. You can read more about request name collection by the ASP.NET web SDK in the [blog post](https://apmtips.com/posts/2015-02-23-request-name-and-url/). | 1,024 |
-| **Response code** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. | 1,024 |
-| **Source** | Source is the source of the request. Examples are the instrumentation key of the caller or the IP address of the caller. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 1,024 |
-| **Success** | Success indicates whether a call was successful or unsuccessful. This field is required. When a request isn't set explicitly to `false`, it's considered to be successful. If an exception or returned error result code interrupted the operation, set this value to `false`.<br><br>For web applications, Application Insights defines a request as successful when the response code is less than `400` or equal to `401`. However, there are cases when this default mapping doesn't match the semantics of the application.<br><br>Response code `404` might indicate "no records," which can be part of regular flow. It also might indicate a broken link. For broken links, you can implement more advanced logic. You can mark broken links as failures only when those links are located on the same site by analyzing the URL referrer. Or you can mark them as failures when they're accessed from the company's mobile application. Similarly, `301` and `302` indicate failure when they're accessed from the client that doesn't support redirect.<br><br>Partially accepted content `206` might indicate a failure of an overall request. For instance, an Application Insights endpoint might receive a batch of telemetry items as a single request. It returns `206` when some items in the batch weren't processed successfully. An increasing rate of `206` indicates a problem that needs to be investigated. Similar logic applies to `207` Multi-Status, where the success might be the worst of separate response codes. | |
-| **URL** | URL is the request URL with all query string parameters. | 2,048 |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
+|--------------------------------------|-------------------------------|-------------|-------------------------|
+| **id** | **Id** | ID is the identifier of a request call instance. It's used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 128 |
+| **source** | **Source** | Source is the source of the request. Examples are the instrumentation key of the caller or the IP address of the caller. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 1,024 |
+| **name** | **Name** | This field is the name of the request and it represents the code path taken to process the request. A low cardinality value allows for better grouping of requests. For HTTP requests, it represents the HTTP method and URL path template like `GET /values/{id}` without the actual `id` value.<br>The Application Insights web SDK sends a request name "as is" about letter case. Grouping on the UI is case sensitive, so `GET /Home/Index` is counted separately from `GET /home/INDEX` even though often they result in the same controller and action execution. The reason for that is that URLs in general are [case sensitive](https://www.w3.org/TR/WD-html40-970708/htmlweb.html). You might want to see if all `404` errors happened for URLs typed in uppercase. You can read more about request name collection by the ASP.NET web SDK in the [blog post](https://apmtips.com/posts/2015-02-23-request-name-and-url/). | 1,024 |
+| **url** | **Url** | URL is the request URL with all query string parameters. | 2,048 |
+| **success** | **Success** | Success indicates whether a call was successful or unsuccessful. This field is required. When a request isn't set explicitly to `false`, it's considered to be successful. If an exception or returned error result code interrupted the operation, set this value to `false`.<br><br>For web applications, Application Insights defines a request as successful when the response code is less than `400` or equal to `401`. However, there are cases when this default mapping doesn't match the semantics of the application.<br><br>Response code `404` might indicate "no records," which can be part of regular flow. It also might indicate a broken link. For broken links, you can implement more advanced logic. You can mark broken links as failures only when those links are located on the same site by analyzing the URL referrer. Or you can mark them as failures when they're accessed from the company's mobile application. Similarly, `301` and `302` indicate failure when they're accessed from the client that doesn't support redirect.<br><br>Partially accepted content `206` might indicate a failure of an overall request. For instance, an Application Insights endpoint might receive a batch of telemetry items as a single request. It returns `206` when some items in the batch weren't processed successfully. An increasing rate of `206` indicates a problem that needs to be investigated. Similar logic applies to `207` Multi-Status, where the success might be the worst of separate response codes. | |
+| **resultCode** | **ResultCode** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. | 1,024 |
+| **duration** | **DurationMs** | The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. | |
 
 ### Trace
 
 Trace telemetry represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
-| Field | Description | Values |
-|-------|-------------|--------|
-| **Message** | Trace message. | **Maximum length:** 32,768 characters |
-| **Severity level** | Trace severity level. | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Values |
+|--------------------------------------|-------------------------------|-------------|--------|
+| **message** | **Message** | Trace message. | **Maximum length:** 32,768 characters |
+| **severityLevel** | **SeverityLevel** | Trace severity level. | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
 
 ## Context
 
