@@ -585,6 +585,8 @@ The following are sample metric alert payloads.
 
 ## Sample payloads for test actions
 
+![Screenshot showing available alert types when testing an Azure Action Group](./media/alerts-payload-samples/test-action-group-alert-types.png)
+
 When configuring an **Azure Action Group** to route alert notifications (e.g., via webhook, Logic App, Azure Function, or Event Hub), it's important to verify that the receiving endpoint can handle the **Common Alert Schema** payload structure.
 
 Azure provides a **"Test Action"** feature to simulate an alert and send a sample payload to the configured endpoints. This helps validate the integration without needing to trigger an actual resource condition.
