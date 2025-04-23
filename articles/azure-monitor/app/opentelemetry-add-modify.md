@@ -1676,6 +1676,9 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 To send a `customEvent` with the Java agent, set the `"microsoft.custom_event.name"` attribute on the OpenTelemetry log record.
 
+Depending on whether the application insights java agent is in use, or the autoconfigure SDK, the manner of fetching the opentelemetry logger is slightly different. This is explained further in examples below.
+
+For the application insights java agent: 
 ```java
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.logs.Logger;
@@ -1688,6 +1691,33 @@ Logger logger = GlobalOpenTelemetry.get().getLogsBridge().get("opentelemetry-log
 
 logger.logRecordBuilder() 
 	  .setAttribute(AttributeKey.stringKey("microsoft.custom_event.name"),"test-event-name") 
+      .setSeverity(Severity.INFO)
+      .emit();
+```
+
+
+For autoconfigure SDK:
+```java 
+import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigure;
+import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigureOptions;
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.api.common.AttributeKey;
+import io.opentelemetry.api.logs.Logger;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdkBuilder;
+```
+```java
+AutoConfiguredOpenTelemetrySdkBuilder sdkBuilder = AutoConfiguredOpenTelemetrySdk.builder();
+AzureMonitorAutoConfigureOptions options = new AzureMonitorAutoConfigureOptions();
+options.connectionString("<your connection string>");
+     
+AzureMonitorAutoConfigure.customize(sdkBuilder, options);
+OpenTelemetry openTelemetry = sdkBuilder.build().getOpenTelemetrySdk();
+      
+Logger logger = openTelemetry.getLogsBridge().get("opentelemetry-logger");
+logger.logRecordBuilder() 
+	  .setAttribute(AttributeKey.stringKey("microsoft.custom_event.name"),"test-event-name") 
+      .setSeverity(Severity.INFO)
       .emit();
 ```
 
