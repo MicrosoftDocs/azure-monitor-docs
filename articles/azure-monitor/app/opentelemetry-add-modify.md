@@ -1676,7 +1676,7 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 To send a `customEvent` with the Java agent, set the `"microsoft.custom_event.name"` attribute on the OpenTelemetry log record.
 
-Depending on whether the application insights java agent is in use, or the autoconfigure SDK, the manner of fetching the opentelemetry logger is slightly different. This is explained further in examples below.
+Depending on whether the application insights java agent is in use, or the automatic configuration SDK, the manner of fetching the OpenTelemetry logger is slightly different. This detail is explained further in the following examples.
 
 For the application insights java agent: 
 ```java
