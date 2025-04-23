@@ -76,7 +76,7 @@ To run a search job, in the Azure portal:
 
     Azure Monitor Logs runs the search job and creates a new table in your workspace for your search job results. 
 
-1. When the new table is ready, select **View *<searchtablename>*_SRCH** to view the table in Log Analytics.
+1. When the new table is ready, select **View *\<searchtablename\>*_SRCH** to view the table in Log Analytics.
 
     Search job results are available as they begin flowing into the newly created search job results table.
 
