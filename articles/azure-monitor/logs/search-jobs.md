@@ -68,7 +68,7 @@ To run a search job, in the Azure portal:
 
     Azure Monitor Logs intellisense supports [KQL query limitations in search job mode](#kql-query-limitations) to help you write your search job query. 
 
-1. Specify the search job date range using the time picker only, as the time changes will not be reflected from the Kusto query.
+1. Specify the search job date range using the time picker. If your Kusto query also selects a time range, the search job will use the union of the time ranges, making the selection more restrictive.
 
 1. Type the search job query and select the **Search Job** button.
 
