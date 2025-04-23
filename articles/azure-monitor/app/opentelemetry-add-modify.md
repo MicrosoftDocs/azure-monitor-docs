@@ -1674,7 +1674,32 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 #### [Java](#tab/java)
 
-It's not possible to send a `customEvent` using the `"microsoft.custom_event.name"` attribute in Java native.
+To send a `customEvent` with the Java agent, set the `"microsoft.custom_event.name"` attribute on the OpenTelemetry log record.
+
+```java
+import io.opentelemetry.api.GlobalOpenTelemetry;
+import io.opentelemetry.api.logs.Logger;
+import io.opentelemetry.api.common.AttributeKey;
+import io.opentelemetry.api.logs.Severity;
+```
+
+```java
+Logger logger = GlobalOpenTelemetry.get().getLogsBridge().get("opentelemetry-logger");
+
+logger.logRecordBuilder() 
+	  .setAttribute(AttributeKey.stringKey("microsoft.custom_event.name"),"test-event-name") 
+      .emit();
+```
+
+The Application Insights Java agent collects logs from common logging frameworks such as `java.util.logging`, Log4j2, and Logback. To reliably emit custom events, use the OpenTelemetry API directly.
+
+Some logging frameworks don't support appending or parsing the custom event name attribute. These limitations exist in both the upstream OpenTelemetry Java agent and the Application Insights Java agent.
+
+To ensure consistent custom event telemetry:
+
+- Use the OpenTelemetry API to emit custom events
+- Avoid relying on framework-specific logging behavior
+- Verify that emitted events include required attributes
 
 #### [Java native](#tab/java-native)
 
