@@ -1,7 +1,6 @@
 ---
 title: Azure Monitor workbooks bring your own storage
 description: Learn how to secure your workbook by saving the workbook content to your storage.
-services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 09/17/2024

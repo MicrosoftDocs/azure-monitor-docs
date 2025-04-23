@@ -2,8 +2,6 @@
 title: Troubleshoot common Azure Chaos Studio problems
 description: Learn to troubleshoot common problems when you use Azure Chaos Studio.
 author: c-ashton
-ms.service: azure-chaos-studio
-ms.author: abbyweisberg
 ms.reviewer: nikhilkaul
 ms.topic: troubleshooting
 ms.date: 10/14/2024
@@ -157,7 +155,6 @@ There are several common errors you may encounter when using AKS Chaos Mesh faul
 | Getting static credential is not allowed because this cluster is set to disable local accounts. | The AKS Chaos Mesh faults can use either Kubernetes local accounts or Microsoft Entra authentication as of version 2.2. Learn how to migrate your experiments here: [Using Microsoft Entra authentication with Chaos Studio AKS faults](chaos-studio-aks-authentication.md). |
 | The Chaos Mesh experiment could not be started because the provided configuration was invalid | Ensure the `jsonSpec` contains all the required fields. |
 | Chaos Mesh version 'x.x.x' is not currently supported by Chaos Studio | Verify the installed version against the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page and submit a [feature request](https://feedback.azure.com/d365community/forum/18f8dc01-dc37-ec11-b6e6-000d3a9c7101) if the desired version isn't listed. |
-| Object reference not set to an instance of an object. | This is a known bug with the version 2.2 faults. A fix is expected to finish deploying in early January 2025. This happens when using the new AKS Chaos Mesh fault version (2.2) on a cluster with local accounts enabled. The workaround is to use the v2.1 faults, which are marked "(deprecated)" in the UI, or use an AKS cluster with Entra authentication enabled. |
 
 ## Problems when setting up a managed identity
 

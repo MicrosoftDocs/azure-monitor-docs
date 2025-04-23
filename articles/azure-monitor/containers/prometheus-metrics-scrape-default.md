@@ -2,13 +2,13 @@
 title: Default Prometheus metrics configuration in Azure Monitor
 description: This article lists the default targets, dashboards, and recording rules for Prometheus metrics in Azure Monitor.
 ms.topic: conceptual
-ms.date: 05/15/2024
+ms.date: 03/10/2025
 ms.reviewer: aul
 ---
 
 # Default Prometheus metrics configuration in Azure Monitor
 
-This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped from an Azure Kubernetes Service (AKS) cluster](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) for any AKS cluster.
+This article lists the default targets, dashboards, and recording rules when you [configure Prometheus metrics to be scraped](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes.
 
 ## Minimal ingestion profile
 `Minimal ingestion profile` is a setting that helps reduce ingestion volume of metrics, as only metrics used by default dashboards, default recording rules & default alerts are collected. For addon based collection, `Minimal ingestion profile` setting is enabled by default. You can modify collection to enable collecting more metrics, as specified below.
@@ -173,16 +173,18 @@ The following metrics are collected by default from each default target. All oth
    - `apiserver_cache_list_returned_objects_total`
    - `apiserver_flowcontrol_demand_seats_average`
    - `apiserver_flowcontrol_current_limit_seats`
-   - `apiserver_request_sli_duration_seconds_bucket`
+   - `apiserver_request_sli_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_sli_duration_seconds_count`
    - `apiserver_request_sli_duration_seconds_sum`
    - `process_start_time_seconds`
-   - `apiserver_request_duration_seconds_bucket`
+   - `apiserver_request_duration_seconds_bucket{le=+inf}`
    - `apiserver_request_duration_seconds_count`
    - `apiserver_request_duration_seconds_sum`
    - `apiserver_storage_list_fetched_objects_total`
    - `apiserver_storage_list_returned_objects_total`
    - `apiserver_current_inflight_requests`
+> [!NOTE]
+> `apiserver_request_duration_seconds` and `apiserver_request_sli_duration_seconds` are histogram metrics which have high cardinality and all series are not collected by default(minimal ingestion profile). Only the sum, count are used for gathering the average latencies
 
    **controlplane-etcd (job=controlplane-etcd)**<br>
    - `etcd_server_has_leader`

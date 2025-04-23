@@ -22,7 +22,7 @@ When Azure Cosmos DB nonpartitioned collections reach their provisioned storage 
 
 **Impact:** High
   
-For more information, see [Partitioning and horizontal scaling - Azure Cosmos DB ](/azure/cosmos-db/partitioning-overview#choose-partitionkey)  
+For more information, see [Partitioning and horizontal scaling - Azure Cosmos DB](/azure/cosmos-db/partitioning-overview#choose-partitionkey).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 5e4e9f04-9201-4fd9-8af6-a9539d13d8ec  
@@ -40,7 +40,7 @@ A high number of metadata operations on an account can result in rate limiting. 
 
 **Impact:** Medium
   
-For more information, see [Azure Cosmos DB performance tips for .NET SDK v2 ](/azure/cosmos-db/performance-tips)  
+For more information, see [Azure Cosmos DB performance tips for .NET SDK v2](/azure/cosmos-db/performance-tips).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bdb595a4-e148-41f9-98e8-68ec92d1932e  
@@ -58,7 +58,7 @@ When an Azure Cosmos DB account can't access its linked Azure Key Vault hosting 
 
 **Impact:** Medium
   
-For more information, see [Configure customer-managed keys - Azure Cosmos DB ](/azure/cosmos-db/how-to-setup-cmk)  
+For more information, see [Configure customer-managed keys - Azure Cosmos DB](/azure/cosmos-db/how-to-setup-cmk).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d  
@@ -76,7 +76,7 @@ Azure Cosmos containers configured with the Lazy indexing mode update asynchrono
 
 **Impact:** Medium
   
-For more information, see [Manage indexing policies in Azure Cosmos DB ](/azure/cosmos-db/how-to-manage-indexing-policy)  
+For more information, see [Manage indexing policies in Azure Cosmos DB](/azure/cosmos-db/how-to-manage-indexing-policy).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 213974c8-ed9c-459f-9398-7cdaa3c28856  
@@ -90,11 +90,11 @@ Subcategory: Other
   
 There's a critical bug in version 2.6.13 (and lower) of the Azure Cosmos DB Async Java SDK v2 causing errors when a Global logical sequence number (LSN) greater than the Max Integer value is reached. The error happens transparently to you by the service after a large volume of transactions occur in the lifetime of an Azure Cosmos DB container. Note: While this is a critical hotfix for the Async Java SDK v2, we still highly recommend you migrate to the [Java SDK v4](/azure/cosmos-db/sql/sql-api-sdk-java-v4).  
   
-**Potential benefits**: If action isn’t taken, all create, read, update, and delete operations may begin to fail with NumberFormatException  
+**Potential benefits**: If action isn't taken, all create, read, update, and delete operations may begin to fail with NumberFormatException  
 
 **Impact:** High
   
-For more information, see [Azure Cosmos DB: SQL Async Java API, SDK & resources ](/azure/cosmos-db/sql/sql-api-sdk-async-java)  
+For more information, see [Azure Cosmos DB: SQL Async Java API, SDK & resources](/azure/cosmos-db/sql/sql-api-sdk-async-java).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bc9e5110-a220-4ab9-8bc9-53f92d3eef70  
@@ -108,11 +108,11 @@ Subcategory: ServiceUpgradeAndRetirement
   
 There's a critical bug in version 4.15 and lower of the Azure Cosmos DB Java SDK v4 causing errors when a Global logical sequence number (LSN) greater than the Max Integer value is reached. This happens transparently to you by the service after a large volume of transactions occur in the lifetime of an Azure Cosmos DB container. Avoid this problem by upgrading to the current recommended version of the Java SDK v4  
   
-**Potential benefits**: If action isn’t taken, all create, read, update, and delete operations may begin to fail with NumberFormatException  
+**Potential benefits**: If action isn't taken, all create, read, update, and delete operations may begin to fail with NumberFormatException  
 
 **Impact:** High
   
-For more information, see [Azure Cosmos DB Java SDK v4 for API for NoSQL release notes and resources ](/azure/cosmos-db/sql/sql-api-sdk-java-v4)  
+For more information, see [Azure Cosmos DB Java SDK v4 for API for NoSQL release notes and resources](/azure/cosmos-db/sql/sql-api-sdk-java-v4).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 38942ae5-3154-4e0b-98d9-23aa061c334b  
@@ -130,7 +130,7 @@ Some of your applications are connecting to your upgraded Azure Cosmos DB's API 
 
 **Impact:** Medium
   
-For more information, see [4.0 server version supported features and syntax in Azure Cosmos DB for MongoDB ](/azure/cosmos-db/mongodb-feature-support-40)  
+For more information, see [4.0 server version supported features and syntax in Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb-feature-support-40).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 123039b5-0fda-4744-9a17-d6b5d5d122b2  
@@ -148,7 +148,7 @@ Your Azure Cosmos DB API for MongoDB account is eligible to upgrade to version 4
 
 **Impact:** Medium
   
-For more information, see [Upgrade the Mongo version - Azure Cosmos DB for MongoDB ](/azure/cosmos-db/mongodb-version-upgrade)  
+For more information, see [Upgrade the Mongo version - Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb-version-upgrade).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 0da795d9-26d2-4f02-a019-0ec383363c88  
@@ -184,7 +184,7 @@ Production workloads on Azure Cosmos DB run in a single region might have availa
 
 **Impact:** Medium
   
-For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL ](/azure/cosmos-db/high-availability)  
+For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: b57f7a29-dcc8-43de-86fa-18d3f9d3764d  
@@ -202,7 +202,7 @@ An Azure Cosmos DB account using an old version of the SDK lacks the latest fixe
 
 **Impact:** Medium
   
-For more information, see [Azure Cosmos DB ](/azure/cosmos-db/)  
+For more information, see [Azure Cosmos DB](/azure/cosmos-db/).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 51a4e6bd-5a95-4a41-8309-40f5640fdb8b  
@@ -220,7 +220,7 @@ An Azure Cosmos DB account using an old version of the SDK lacks the latest fixe
 
 **Impact:** High
   
-For more information, see [Azure Cosmos DB ](/azure/cosmos-db/)  
+For more information, see [Azure Cosmos DB](/azure/cosmos-db/).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 60a55165-9ccd-4536-81f6-e8dc6246d3d2  
@@ -238,7 +238,7 @@ Enable service managed failover for Cosmos DB account to ensure high availabilit
 
 **Impact:** Medium
   
-For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL ](/azure/cosmos-db/high-availability)  
+For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 5de9f2e6-087e-40da-863a-34b7943beed4  
@@ -256,7 +256,7 @@ Many clusters with consistent workloads do not have high availability (HA) enabl
 
 **Impact:** High
   
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore ](https://aka.ms/enableHAformongovcore)  
+For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](https://aka.ms/enableHAformongovcore).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 64fbcac1-f652-4b6f-8170-2f97ffeb5631  
@@ -274,7 +274,7 @@ This recommendation suggests enabling zone redundancy for multi-region Cosmos DB
 
 **Impact:** High
   
-For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL ](/azure/cosmos-db/high-availability#replica-outages)  
+For more information, see [High availability (Reliability)  in Azure Cosmos DB for NoSQL](/azure/cosmos-db/high-availability#replica-outages).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 8034b205-167a-4fd5-a133-0c8cb166103c  
@@ -292,7 +292,7 @@ Your Azure Managed Instance for Apache Cassandra cluster is designated as a prod
 
 **Impact:** Medium
   
-For more information, see [Building resilient applications - Azure Managed Instance for Apache Cassandra ](/azure/managed-instance-apache-cassandra/resilient-applications)  
+For more information, see [Building resilient applications - Azure Managed Instance for Apache Cassandra](/azure/managed-instance-apache-cassandra/resilient-applications).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 92056ca3-8fab-43d1-bebf-f9c377ef20e9  
@@ -310,7 +310,7 @@ We found high number of Control Plane operations on your account through resourc
 
 **Impact:** Medium
   
-For more information, see [Service quotas and default limits - Azure Cosmos DB ](https://docs.microsoft.com/azure/cosmos-db/concepts-limits#control-plane)  
+For more information, see [Service quotas and default limits - Azure Cosmos DB](/azure/cosmos-db/concepts-limits#control-plane).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: a030f8ab-4dd4-4751-822b-f231a0df5f5a  

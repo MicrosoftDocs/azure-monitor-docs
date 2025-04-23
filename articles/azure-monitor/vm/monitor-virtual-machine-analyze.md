@@ -1,10 +1,7 @@
 ---
 title: 'Monitor virtual machines with Azure Monitor: Analyze monitoring data'
 description: Learn about the different features of Azure Monitor that you can use to analyze the health and performance of your virtual machines.
-ms.service: azure-monitor
 ms.topic: conceptual
-author: bwren
-ms.author: bwren
 ms.date: 02/15/2024
 ms.reviewer: Xema Pathak
 

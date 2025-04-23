@@ -1,17 +1,20 @@
 ---
-title: Enable Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
-description: This article provides guidance on how to enable Azure Monitor on applications by using OpenTelemetry.
+title: Enable OpenTelemetry in Application Insights
+description: Learn how to enable OpenTelemetry (OTel) data collection in Application Insights for .NET, Java, Node.js, and Python applications using the Azure Monitor OpenTelemetry Distro.
 ms.topic: conceptual
-ms.date: 01/28/2025
+ms.date: 02/28/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 ms.reviewer: mmcc
+
+#customer intent: As a developer or site reliability engineer, I want to enable OpenTelemetry (OTel) data collection in Application Insights so that I can automatically collect telemetry data from my .NET, Java, Node.js, or Python applications without extensive configuration.
+
 ---
 
 # Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications
 
-This article describes how to enable and configure OpenTelemetry-based data collection within [Application Insights](app-insights-overview.md#application-insights-overview). The Azure Monitor OpenTelemetry Distro:
+This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md). The Azure Monitor OpenTelemetry Distro:
 
 * Provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution) which includes support for features specific to Azure Monitor.
 * Enables [automatic](opentelemetry-add-modify.md#automatic-data-collection) telemetry by including OpenTelemetry instrumentation libraries for collecting traces, metrics, logs, and exceptions.
@@ -37,7 +40,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 
 > [!div class="checklist"]
 > * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
-> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-a-workspace-based-resource)
+> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
 
@@ -75,7 +78,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > [!NOTE]
 > If you don't rely on any properties listed in the [not-supported table](https://github.com/microsoft/ApplicationInsights-node.js/blob/beta/README.md#ApplicationInsights-Shim-Unsupported-Properties), the *ApplicationInsights shim* will be your easiest path forward once out of beta.
 >
-> If you rely on any those properties, proceed with the Azure Monitor OpenTelemetry Distro. We'll provide a migration guide soon.
+> If you rely on any of those properties, proceed with the Azure Monitor OpenTelemetry Distro. We'll provide a migration guide soon.
 
 > [!Tip]
 > If you're migrating from the Application Insights Classic API, see our [migration documentation](./opentelemetry-nodejs-migrate.md).
@@ -110,7 +113,7 @@ dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 
 #### [Java](#tab/java)
 
-Download the latest [applicationinsights-agent-3.7.0.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.0/applicationinsights-agent-3.7.0.jar) file.
+Download the latest [applicationinsights-agent-3.7.1.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.1/applicationinsights-agent-3.7.1.jar) file.
 
 > [!WARNING]
 >
@@ -223,10 +226,11 @@ var loggerFactory = LoggerFactory.Create(builder =>
 
 Autoinstrumentation is enabled through configuration changes. *No code changes are required.*
 
-Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.0.jar"` to your application's JVM args.
+Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.1.jar"` to your application's JVM args.
 
 > [!NOTE]
 > Sampling is enabled by default at a rate of 5 requests per second, aiding in cost management. Telemetry data may be missing in scenarios exceeding this rate. For more information on modifying sampling configuration, see [sampling overrides](./java-standalone-sampling-overrides.md).
+> If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 > [!TIP]
 > For scenario-specific guidance, see [Get Started (Supplemental)](./java-get-started-supplemental.md).
@@ -272,7 +276,7 @@ logger = logging.getLogger("<your_logger_namespace>")  # Logging telemetry will 
 The connection string is unique and specifies where the Azure Monitor OpenTelemetry Distro sends the telemetry it collects.
 
 > [!TIP]
-> If you don't already have an Application Insights resource, create one following [this guide](create-workspace-resource.md#create-a-workspace-based-resource). We recommend you create a new resource rather than [using an existing one](create-workspace-resource.md#when-to-use-a-single-application-insights-resource).
+> If you don't already have an Application Insights resource, create one following [this guide](create-workspace-resource.md#create-an-application-insights-resource). We recommend you create a new resource rather than [using an existing one](create-workspace-resource.md#when-to-use-a-single-application-insights-resource).
 
 To copy the connection string:
 
@@ -301,7 +305,7 @@ To paste your connection string, select from the following options:
 
 * **Set via configuration file** - *Java only*
     
-    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.0.jar` with the following content:
+    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.1.jar` with the following content:
     
     ```json
     {

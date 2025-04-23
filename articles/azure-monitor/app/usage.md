@@ -54,7 +54,7 @@ Three of the **Usage** panes use the same tool to slice and dice telemetry from 
     A custom event represents one occurrence of something happening in your app. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](./api-custom-events-metrics.md#trackevent) or use the [Click Analytics](javascript-feature-extensions.md) extension.
 
 > [!NOTE]
-> For information on an alternatives to using [anonymous IDs](./data-model-complete.md#anonymous-user-id) and ensuring an accurate count, see the documentation for [authenticated IDs](./data-model-complete.md#authenticated-user-id).
+> For information on an alternative to using [anonymous IDs](./data-model-complete.md#anonymous-user-id) and ensuring an accurate count, see the documentation for [authenticated IDs](./data-model-complete.md#authenticated-user-id).
 
 Clicking **View More Insights** displays the following information:
 
@@ -172,13 +172,13 @@ In the Users, Sessions, and Events tools, you can slice and dice custom events b
 
 :::image type="content" source="./media/usage-overview/events.png" alt-text="Screenshot that shows the Events tab filtered by AnalyticsItemsOperation and split by AppID." lightbox="./media/usage-overview/events.png":::
 
-Whenever you’re in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
+Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
 
 :::image type="content" source="./media/usage-overview/open-last-run-query-icon.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." lightbox="./media/usage-overview/open-last-run-query-icon.png":::
 
-You can then modify the underlying query to get the kind of information you’re looking for. 
+You can then modify the underlying query to get the kind of information you're looking for. 
 
-Here’s an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
+Here's an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
 
 ```kusto
 // average pageView duration by name
@@ -544,7 +544,7 @@ These dimensions are measured independently, but they interact with each other.
 
 * **Azure subscription**: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
 
-* **Application Insights resource**: [Create an Application Insights resource](create-workspace-resource.md#create-a-workspace-based-resource)
+* **Application Insights resource**: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
 * **Click Analytics**: Set up the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md).
 
@@ -621,7 +621,7 @@ The tabs are:
 * **Feature metrics**: Enables understanding of HEART metrics at feature granularity.
 
 > [!WARNING]
-> The HEART workbook is currently built on logs and effectively are [log-based metrics](pre-aggregated-metrics-log-metrics.md). The accuracy of these metrics are negatively affected by sampling and filtering.
+> The HEART workbook is currently built on logs and effectively are [log-based metrics](pre-aggregated-metrics-log-metrics.md). The accuracy of these metrics is negatively affected by sampling and filtering.
 
 ### How HEART dimensions are defined and measured
 

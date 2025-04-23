@@ -14,11 +14,11 @@ By default, Azure Monitor Agent connects to a public endpoint to connect to your
 
 ## Prerequisites
 
-- A [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md), which defines the data Azure Monitor Agent collects and where the agent sends the data.
+* A [data collection rule (DCR)](../data-collection/data-collection-rule-create-edit.md), which defines the data Azure Monitor Agent collects and where the agent sends the data.
 
 ## Create a data collection endpoint
 
-[Create a data collection endpoint (DCE)](../essentials/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for each of your regions for agents to connect to instead of using the public endpoint. An agent can connect only to a DCE that's in the same region as the agent. If you have agents in multiple regions, create a DCE in each of the relevant regions.
+[Create a data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for each of your regions for agents to connect to instead of using the public endpoint. An agent can connect only to a DCE that's in the same region as the agent. If you have agents in multiple regions, create a DCE in each of the relevant regions.
 
 ## Configure a private link
 
@@ -35,10 +35,10 @@ By default, Azure Monitor Agent connects to a public endpoint to connect to your
 
 ## Associate DCEs to target resources
 
-Associate the DCEs to the target resources by editing the DCR in the Azure portal. On the **Resources** tab, select **Enable Data Collection Endpoints**. Select a DCE for each virtual machine. For more information, see [Configure data collection for the Azure Monitor Agent](../agents/azure-monitor-agent-data-collection.md).
+Associate the DCEs to the target resources by editing the DCR in the Azure portal. On the **Resources** tab, select **Enable Data Collection Endpoints**. Select a DCE for each virtual machine. For more information, see [Configure data collection for the Azure Monitor Agent](../vm/data-collection.md).
 
 :::image type="content" source="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" lightbox="media/azure-monitor-agent-dce/data-collection-rule-virtual-machines-with-endpoint.png" alt-text="Screenshot that shows configuring data collection endpoints for an agent.":::
 
 ## Related content
 
-- Learn more about [best practices for monitoring virtual machines in Azure Monitor](../best-practices-vm.md).
+* Learn more about [best practices for monitoring virtual machines in Azure Monitor](../best-practices-vm.md).

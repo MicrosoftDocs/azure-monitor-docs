@@ -1,8 +1,6 @@
 ---
 title: Correlate data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace 
 description: Run cross-service queries to correlated data in Azure Data Explorer and Azure Resource Graph with data in a Log Analytics workspace.
-author: guywi-ms
-ms.author: guywild
 ms.topic: conceptual
 ms.date: 08/12/2024
 ms.reviewer: osalzberg
@@ -55,7 +53,7 @@ To run a cross-service query that correlates data in Azure Data Explorer or Azur
     * The query returns the first 1,000 records only.
     * Azure Monitor doesn't return Azure Resource Graph query errors.
     * The Log Analytics query editor marks valid Azure Resource Graph queries as syntax errors.
-    * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`.
+    * These operators aren't supported: `smv-apply()`, `rand()`, `arg_max()`, `arg_min()`, `avg()`, `avg_if()`, `countif()`, `sumif()`, `percentile()`, `percentiles()`, `percentilew()`, `percentilesw()`, `stdev()`, `stdevif()`, `stdevp()`, `variance()`, `variancep()`, `varianceif()`, `bin_at`.
 * Microsoft Sentinel doesn't support cross-service queries to Azure Resource Graph.
 
 ## Query data in Azure Data Explorer by using adx()
@@ -130,7 +128,7 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
     ```
 
 - Create an alert rule that applies only to certain resources taken from an ARG query:
-   - Exclude resources based on tags – for example, not to trigger alerts for VMs with a “Test” tag.
+   - Exclude resources based on tags – for example, not to trigger alerts for VMs with a `Test` tag.
 
        ```kusto
        arg("").Resources
@@ -138,7 +136,7 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
        | project name 
        ```
 
-   - Retrieve performance data related to CPU utilization and filter to resources with the “prod” tag.
+   - Retrieve performance data related to CPU utilization and filter to resources with the `prod` tag.
     
        ```kusto
        InsightsMetrics
@@ -153,8 +151,8 @@ Here are some sample Azure Log Analytics queries that use the new Azure Resource
        ```
 
 More use cases:
--	Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
--	Show alerts on any server that contains a certain number of cores.
+-    Use a tag to determine whether VMs should be running 24x7 or should be shut down at night.
+-    Show alerts on any server that contains a certain number of cores.
 
 ## Create an alert based on a cross-service query from your Log Analytics workspace
 

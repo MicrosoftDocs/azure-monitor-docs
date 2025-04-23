@@ -4,8 +4,6 @@ description: Understand the common alert schema, why you should use it, and how 
 ms.topic: conceptual
 ms.date: 12/24/2023
 ms.reviewer: harelbr
-author: AbbyMSFT
-ms.author: abbyweisberg
 ---
 
 # Common alert schema
@@ -677,7 +675,7 @@ See [Azure Monitor managed service for Prometheus rule groups](../essentials/pro
 ```
 ## Custom properties fields
 
-If the alert rule that generated your alert contains action groups, custom properties can contain additional information about the alert. The custom properties section contains “key: value” objects that are added to webhook notifications. 
+If the alert rule that generated your alert contains action groups, custom properties can contain additional information about the alert. The custom properties section contains "key: value" objects that are added to webhook notifications. 
 
 If custom properties aren't set in the alert rule, the field is null.
 ## Enable the common alert schema

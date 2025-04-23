@@ -1,7 +1,6 @@
 ---
 title: Manage tables in a Log Analytics workspace 
 description: Learn how to manage table settings in a Log Analytics workspace based on your data analysis and cost management needs.
-ms.author: guywild
 ms.reviewer: adi.biran
 ms.topic: conceptual
 ms.date: 07/21/2024
@@ -52,7 +51,7 @@ To access data in long-term retention, [run a search job](../logs/search-jobs.md
 Reduce costs and analysis effort by using data collection rules to [filter out and transform data before ingestion](../essentials/data-collection-transformations.md) based on the schema you define for your custom table.    
 
 > [!NOTE]
-> Tables with the [Auxiliary table plan](data-platform-logs.md) do not currently support data transformation. For more details, see [Auxiliary table plan public preview limitations](create-custom-table-auxiliary.md#public-preview-limitations).
+> Tables with the [Auxiliary table plan](data-platform-logs.md) do not currently support data transformation. For more details, see [Send data to a table with the Auxiliary plan](create-custom-table-auxiliary.md#send-data-to-a-table-with-the-auxiliary-plan).
 
 ## View table properties
 

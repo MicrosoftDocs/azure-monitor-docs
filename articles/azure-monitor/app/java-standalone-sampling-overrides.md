@@ -88,7 +88,7 @@ If no sampling overrides match:
 
 ## Span attributes available for sampling
 
-OpenTelemetry span attributes are auto-collected and based on the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
+OpenTelemetry span attributes are autocollected and based on the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
 You can also programmatically add span attributes and use them for sampling.
 
@@ -199,7 +199,7 @@ they're also collected for all '/login' requests.
 
 ### Exposing span attributes to suppress SQL dependency calls
 
-This example walks through the experience of finding available attributes to suppress noisy SQL calls. The query below depicts the different SQL calls and associated record counts in the last 30 days: 
+This example walks through the experience of finding available attributes to suppress noisy SQL calls. The following query depicts the different SQL calls and associated record counts in the last 30 days: 
 
 ```kusto
 dependencies
@@ -216,13 +216,13 @@ SQL: DB Query    POST /CheckOutForm      DECLARE @MyVar varbinary(20); SET @MyVa
 SQL: DB Query    GET /ClientInfo         DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    37064
 ```
 
-From the results above, it can be observed that all operations share the same value in the `data` field: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it a good candidate for a sampling override. 
+From the results, it can be observed that all operations share the same value in the `data` field: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it a good candidate for a sampling override. 
 
-By setting the self-diagnostics to debug, the following log entries will become visible in the output:
+By setting the self-diagnostics to debug, the following log entries become visible in the output:
 
 `2023-10-26 15:48:25.407-04:00 DEBUG c.m.a.a.i.exporter.AgentSpanExporter - exporting span: SpanData{spanContext=ImmutableSpanContext...`
 
-The area of interest from those logs is the "attributes" section: 
+The area of interest from those logs is the "attributes" section:
 
 ```json
 {
@@ -239,7 +239,7 @@ The area of interest from those logs is the "attributes" section:
 }
 ```
 
-Using that output, you can configure a sampling override similar to the one below that will filter our noisy SQL calls: 
+Using that output, you can configure a sampling override similar to the following example that filters noisy SQL calls: 
 
 ```json
 {
@@ -280,7 +280,7 @@ DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World')
 
 ### Suppress collecting telemetry for log
 
-With SL4J you can add log attributes:
+With SL4J, you can add log attributes:
 
 ```java
 import org.slf4j.Logger;
@@ -329,7 +329,7 @@ You can then remove the log having the added attribute:
 
 ### Suppress collecting telemetry for a Java method
 
-We are going to add a span to a Java method and remove this span with sampling override. 
+We're going to add a span to a Java method and remove this span with sampling override. 
 
 Let's first add the `opentelemetry-instrumentation-annotations` dependency:
 ```xml
@@ -390,9 +390,9 @@ The following sampling override configuration allows you to remove the span adde
 
 The attribute value is the name of the Java method.
 
-This configuration will remove all the telemetry data created from the `findPaginated` method. SQL dependencies won't be created for the SQL executions coming from the `findPaginated` method.
+This configuration removes all the telemetry data created from the `findPaginated` method. SQL dependencies aren't created for the SQL executions coming from the `findPaginated` method.
 
-The following configuration will remove all telemetry data emitted from methods of the `VetController` class having the `WithSpan` annotation:
+The following configuration removes all telemetry data emitted from methods of the `VetController` class having the `WithSpan` annotation:
 
 ```json
  "sampling": {
@@ -420,3 +420,24 @@ you have an issue with the first regex and read [this regex documentation](https
 If it doesn't work with `.*`, you might have a syntax issue in your `application-insights.json file`. Look at the Application Insights logs and see if you notice
 warning messages.
 
+## Frequently asked questions
+
+#### Do I need to use manual instrumentation to enable Sampling Overrides?
+
+No, Sampling Overrides is now generally available (GA) and can be used with both autoinstrumentation and manual instrumentation.
+
+#### How do I configure Sampling Overrides when using Azure App Service with autoinstrumentation?
+
+If you use autoinstrumentation, update the `applicationinsights.json` file in the Azure portal.
+
+#### Is it necessary to manually upload the Application Insights agent file for Sampling Overrides?
+
+For autoinstrumentation, no manual agent upload is required. However, for manual instrumentation, you still need to include the Application Insights agent JAR file and configuration files in your deployment package.
+
+#### What is the difference between "local development" and "application server" in the context of manual instrumentation?
+
+Local development refers to the environment where the app is being built or tested, such as a developer's machine or an Azure Cloud Shell instance. Application server refers to the web server running the application, such as Tomcat 11 in an Azure App Service environment. When using manual instrumentation, you must ensure that the agent JAR file is correctly placed on the application server.
+
+#### If I'm using an Azure App Service with a Java runtime (for example, Tomcat 11), how do I configure Sampling Overrides?
+
+For autoinstrumentation, you can configure Sampling Overrides via the Azure portal. If using manual instrumentation, you should place the Application Insights agent JAR in the appropriate directory and include the applicationinsights.json file with your desired sampling settings.

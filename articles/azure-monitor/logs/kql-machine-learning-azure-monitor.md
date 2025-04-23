@@ -1,10 +1,7 @@
 ---
 title: Detect and analyze anomalies with KQL in Azure Monitor
 description: Learn how to use KQL machine learning tools for time series analysis and anomaly detection in Azure Monitor Log Analytics. 
-ms.service: azure-monitor
-ms.topic: tutorial 
-author: guywild
-ms.author: guywild
+ms.topic: tutorial
 ms.reviewer: ilanawaitser
 ms.date: 08/12/2024
 # Customer intent: As a data analyst, I want to use the native machine learning capabilities of Azure Monitor Logs to gain insights from my log data without having to export data outside of Azure Monitor.
@@ -30,7 +27,7 @@ In this tutorial, you learn how to:
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 - A workspace with log data.
 
-[!INCLUDE [log-analytics-query-permissions](../../../includes/log-analytics-query-permissions.md)]
+[!INCLUDE [log-analytics-query-permissions](includes/log-analytics-query-permissions.md)]
 
 ## Create a time series 
 
@@ -46,7 +43,7 @@ This query uses `make-series` to chart the total amount of billable data ingeste
 let starttime = 21d; // The start date of the time series, counting back from the current date
 let endtime = 0d; // The end date of the time series, counting back from the current date
 let timeframe = 1d; // How often to sample data
-Usage // The table we’re analyzing
+Usage // The table we're analyzing
 | where TimeGenerated between (startofday(ago(starttime))..startofday(ago(endtime))) // Time range for the query, beginning at 12:00 AM of the first day and ending at 12:00 AM of the last day in the time range
 | where IsBillable == "true" // Include only billable data in the result set
 | make-series ActualUsage=sum(Quantity) default = 0 on TimeGenerated from startofday(ago(starttime)) to startofday(ago(endtime)) step timeframe by DataType // Creates the time series, listed by data type 
@@ -74,7 +71,7 @@ Let's give the result set of our time series query as input to the `series_decom
 let starttime = 21d; // Start date for the time series, counting back from the current date
 let endtime = 0d; // End date for the time series, counting back from the current date
 let timeframe = 1d; // How often to sample data
-Usage // The table we’re analyzing
+Usage // The table we're analyzing
 | where TimeGenerated between (startofday(ago(starttime))..startofday(ago(endtime))) // Time range for the query, beginning at 12:00 AM of the first day and ending at 12:00 AM of the last day in the time range
 | where IsBillable == "true" // Includes only billable data in the result set
 | make-series ActualUsage=sum(Quantity) default = 0 on TimeGenerated from startofday(ago(starttime)) to startofday(ago(endtime)) step timeframe by DataType // Creates the time series, listed by data type
@@ -129,7 +126,7 @@ To exclude the last data point, set `Test_points` to `1`:
 let starttime = 21d; // Start date for the time series, counting back from the current date
 let endtime = 0d; // End date for the time series, counting back from the current date
 let timeframe = 1d; // How often to sample data
-Usage // The table we’re analyzing
+Usage // The table we're analyzing
 | where TimeGenerated between (startofday(ago(starttime))..startofday(ago(endtime))) // Time range for the query, beginning at 12:00 AM of the first day and ending at 12:00 AM of the last day in the time range
 | where IsBillable == "true" // Includes only billable data in the result set
 | make-series ActualUsage=sum(Quantity) default = 0 on TimeGenerated from startofday(ago(starttime)) to startofday(ago(endtime)) step timeframe by DataType // Creates the time series, listed by data type

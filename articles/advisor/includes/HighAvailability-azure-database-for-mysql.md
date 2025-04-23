@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2025
+ms.date: 04/08/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for MySQL
@@ -76,7 +76,7 @@ Upgrade to Transport Layer Security (TLS) 1.2 from TLS 1.0 or TLS 1.1 for the ap
 
 **Impact:** High
   
-For more information, see [Networking Overview - Azure Database for MySQL - Flexible Server ](/azure/mysql/flexible-server/concepts-networking#tls-and-ssl)  
+For more information, see [Networking Overview - Azure Database for MySQL - Flexible Server](/azure/mysql/flexible-server/concepts-networking#tls-and-ssl)  
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: f259e897-9924-45db-a1ea-788f768548da  
@@ -85,5 +85,26 @@ Subcategory: ServiceUpgradeAndRetirement
 <!--f259e897-9924-45db-a1ea-788f768548da_end-->
 
 
+
+
+
+
+<!--f51c5bce-c771-42c0-97c8-5c6676bad17c_begin-->
+
+#### Globally set the value of the innodb_strict_mode server parameter to OFF  
+  
+Globally set the value of the innodb_strict_mode  server parameter to OFF. The platform identified a critical issue with the High Availability server. The platform isn't able to process data from the source server due to an error: Table Row Size Too Large.  
+  
+**Potential benefits**: Uninterrupted replication. Improved data consistency  
+
+**Impact:** High
+  
+For more information, see [Server Parameters in Azure Database for MySQL - Flexible Server - Azure Database for MySQL - Flexible Server](https://aka.ms/innodb_strict_mode_serverpara)  
+
+ResourceType: microsoft.dbformysql/flexibleservers  
+Recommendation ID: f51c5bce-c771-42c0-97c8-5c6676bad17c  
+Subcategory: HighAvailability
+
+<!--f51c5bce-c771-42c0-97c8-5c6676bad17c_end-->
 
 <!--articleBody-->

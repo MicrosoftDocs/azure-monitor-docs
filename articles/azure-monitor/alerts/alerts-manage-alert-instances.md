@@ -1,7 +1,6 @@
 ---
 title: Manage your alert instances
 description: The alerts page summarizes all alert instances in all your Azure resources generated in the last 30 days and allows you to manage your alert instances.
-ms.author: abbyweisberg
 ms.topic: conceptual
 ms.date: 01/21/2024
 ms.reviewer: harelbr
@@ -9,8 +8,10 @@ ms.reviewer: harelbr
 
 # Manage your alert instances
 
-The **Alerts** page summarizes all alert instances in all your Azure resources generated in the last 30 days. Alerts are stored for 30 days and are deleted after the 30-day retention period. 
+The **Alerts** page summarizes all alert instances in all your Azure resources generated in the last 30 days. Alerts are stored for 30 days and are automatically deleted after the 30-day retention period. 
+
 For stateful alerts, while the alert itself is deleted after 30 days, and isn't viewable on the alerts page, the alert condition is stored until the alert is resolved, to prevent firing another alert, and so that notifications can be sent when the alert is resolved. For more information, see [Alerts and state](alerts-overview.md#alerts-and-state).
+
 
 ## Access the Alerts page
 
@@ -31,6 +32,10 @@ The **Alerts** summary pane summarizes the alerts fired in the last 24 hours. Yo
 To see more information about a specific alert instance, select the alert instance to open the **Alert details** page.
 
   :::image type="content" source="media/alerts-managing-alert-instances/alerts-page.png" lightbox="media/alerts-managing-alert-instances/alerts-page.png" alt-text="Screenshot that shows the Alerts summary page in the Azure portal.":::
+
+
+> [!NOTE]
+> You cannot delete alert instances manually due correlational integrity reasons even if the parent resource alert rule was previously deleted. There is no feature functionality available to delete an alert instance. Instead, you can update the [alert state](#alert-details-page) and then filter based on alert state to remove those alerts from your view until you naturally expunge from the system after 30 days. 
 
 
 ## View alerts as a timeline (preview)

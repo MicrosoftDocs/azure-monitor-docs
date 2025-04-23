@@ -12,6 +12,9 @@ ms.reviewer: jeffwo
 
 This article provides requirements and prerequisites for using the Azure Monitor Agent. Before you follow guidance to install the agent in [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md), review the information in this article.
 
+> [!NOTE]
+> See [Azure Monitor Agent supported operating systems and environments](./azure-monitor-agent-supported-operating-systems.md) for the operating systems supported by Azure Monitor agent.
+
 ## Virtual machine extension details
 
 The Azure Monitor Agent is implemented as an [Azure virtual machine (VM) extension](/azure/virtual-machines/extensions/overview). Extension details are listed in the following table. You can install the extension by using any of the methods that you use to install a VM extension in Azure. For version information, see [Azure Monitor Agent extension versions](./azure-monitor-agent-extension-versions.md).
@@ -57,11 +60,7 @@ For methods other than installing by using the Azure portal, you must have the f
 
 ## Disk space
 
-> [!NOTE]
-> Azure Monitor Agent installation requires 500 MB in each of the following paths:
-> - */var* 
-> - */etc* 
-> - */opt*
+This table lists the Azure Monitor Agent disk space requirements. Azure Monitor Agent expects to cache and log data to a local filesystem.
 
 | Purpose | Environment | Path | Suggested space |
 |:---|:---|:---|:---|
@@ -83,4 +82,4 @@ The Azure Monitor Agent does not work on Linux virtual machines when the systemw
 
 ## Related content
 
-- [Create a data collection rule](azure-monitor-agent-data-collection.md) to collect data from the agent and send it to Azure Monitor.
+- [Create a data collection rule](../vm/data-collection.md) to collect data from the agent and send it to Azure Monitor.

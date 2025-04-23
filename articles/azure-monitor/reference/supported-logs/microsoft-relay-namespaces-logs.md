@@ -1,11 +1,8 @@
 ---
 title: Supported log categories - Microsoft.Relay/namespaces
 description: Reference for Microsoft.Relay/namespaces in Azure Monitor Logs.
-ms.topic: reference
-ms.service: azure-monitor
-ms.author: orens
-author: osalzberg
-ms.date: 11/19/2024
+ms.topic: generated-reference
+ms.date: 04/16/2025
 ms.custom: Microsoft.Relay/namespaces, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
