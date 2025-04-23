@@ -143,11 +143,11 @@ In the **Monitoring** section of the menu for your Azure Monitor workspace, sele
 
 :::image type="content" source="./media/metrics-usage-insights/diagnostic-settings.png" lightbox="./media/metrics-usage-insights/diagnostic-settings.png" alt-text="A Screenshot showing the Diagnostic settings page.":::
 
-Perform the following configuration on the diagnostic setting page and select **Save**:
+Perform the following configurations on the diagnostic setting page and select **Save**:
 
-- Provide a descriptive name for the **Diagnostic setting name**
-- Select **Send to Log Analytics workspace** and select a workspace to receive the data.
-- Select **Metrics Usage Details** to send the metrics usage logs for the Azure Monitor workspace to the Log Analytics workspace.
+1. Provide a descriptive name for the **Diagnostic setting name**
+2. Select **Send to Log Analytics workspace** and select a workspace to receive the data.
+3. Select **Metrics Usage Details** to send the metrics usage logs for the Azure Monitor workspace to the Log Analytics workspace.
 
     :::image type="content" source="./media/metrics-usage-insights/configure-diagnostic-settings.png" lightbox="./media/metrics-usage-insights/configure-diagnostic-settings.png" alt-text="A screenshot showing the add diagnostic setting page.":::
 
@@ -294,7 +294,7 @@ The daily time series trend line for each metric can be used to identify sudden 
 
 ## Advanced Analytics
 
-If you want to personalize the insights pages, you can modify the underlying queries behind the pages in a workbook. Select **Workbooks** from the navigation pane, then select the **Usage Insights** workbook. When your changes are complete, save the customized workbook for reuse. For details on workbooks and guidance , see [Azure Monitor workbooks](/azure/azure-monitor/visualize/workbooks-overview).
+If you want to personalize the insights pages, you can modify the underlying queries behind the pages in a workbook. Select **Workbooks** from the navigation pane, then select the **Usage Insights** workbook. When your changes are complete, save the customized workbook for reuse. For details on workbooks and guidance, see [Azure Monitor workbooks](/azure/azure-monitor/visualize/workbooks-overview).
 
 :::image type="content" source="./media/metrics-usage-insights/workbooks.png" lightbox="./media/metrics-usage-insights/workbooks.png" alt-text="A screenshot showing the workbooks gallery page.":::
 
