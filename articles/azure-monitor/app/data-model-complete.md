@@ -30,14 +30,14 @@ The following types of telemetry are used to monitor the execution of your appli
 | Telemetry type | Table name<br>(Application Insights) | Table name<br>(Log Analytics) | Description |
 |----------------|--------------------------------------|-------------------------------|-------------|
 | [Availability](#availability) | `availabilityResults` | [AppAvailabilityResults](../reference/tables/appavailabilityresults.md) | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
-| [Browser timings](#browsertimings) | `browserTimings` | [AppBrowserTimings](../reference/tables/appbrowsertimings.md) | Measures the performance of web pages, including page load times and network durations. |
-| [Dependency](#dependency) | `dependencies` | [AppDependencies](../reference/tables/appdependencies.md) | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
-| [Event](#event) | `customEvents` | [AppEvents](../reference/tables/appevents.md) | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
-| [Exception](#exception) | `exceptions` | [AppExceptions](../reference/tables/appexceptions.md) | Captures error information crucial for troubleshooting and understanding failures. |
-| [Metric](#metric) | `performanceCounters`<br><br>`customMetrics` | [AppPerformanceCounters](../reference/tables/appperformancecounters.md)<br><br>[AppMetrics](../reference/tables/appmetrics.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
-| [Page view](#pageview) | `pageViews` | [AppPageViews](../reference/tables/apppageviews.md) | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
-| [Request](#request) | `requests` | [AppRequests](../reference/tables/apprequests.md) | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
-| [Trace](#trace) | `traces` | [AppTraces](../reference/tables/apptraces.md) | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
+| [Browser timings](#browser-timings) | `browserTimings` | [AppBrowserTimings](../reference/tables/appbrowsertimings.md) | Measures the performance of web pages, including page load times and network durations. |
+| [Dependencies](#dependencies) | `dependencies` | [AppDependencies](../reference/tables/appdependencies.md) | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
+| [Events](#events) | `customEvents` | [AppEvents](../reference/tables/appevents.md) | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
+| [Exceptions](#exceptions) | `exceptions` | [AppExceptions](../reference/tables/appexceptions.md) | Captures error information crucial for troubleshooting and understanding failures. |
+| [Metrics](#metrics) | `performanceCounters`<br><br>`customMetrics` | [AppPerformanceCounters](../reference/tables/appperformancecounters.md)<br><br>[AppMetrics](../reference/tables/appmetrics.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
+| [Page views](#page-views) | `pageViews` | [AppPageViews](../reference/tables/apppageviews.md) | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
+| [Requests](#requests) | `requests` | [AppRequests](../reference/tables/apprequests.md) | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
+| [Traces](#traces) | `traces` | [AppTraces](../reference/tables/apptraces.md) | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
@@ -45,7 +45,7 @@ You can use session ID to calculate an outage or an issue impact on users. Calcu
 
 The Application Insights telemetry model defines a way to [correlate](distributed-trace-data.md) telemetry to the operation of which it's a part. For example, a request can make a SQL Database call and record diagnostics information. You can set the correlation context for those telemetry items that tie it back to the request telemetry.
 
-### Availability
+## Availability
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive. We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
 
@@ -58,7 +58,7 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 | **message** | **Message** | A descriptive message with details about the outcome of the test. It often contains exception details or error responses. |
 | **duration** | **Duration** | The amount of time the availability test took to execute. It helps measuring the performance and identifying response time issues. The duration is typically measured in milliseconds. |
 
-### BrowserTimings
+## Browser timings
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
 
@@ -80,9 +80,10 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 1. **Client ← Web Server:** Client receives the rest of the response payload bytes from the web server.
 1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
 
+<br>
 :::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
-### Dependency
+## Dependencies
 
 A dependency telemetry item represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
@@ -97,7 +98,7 @@ A dependency telemetry item represents an interaction of the monitored component
 | **resultCode** | **ResultCode** | The result code of a dependency call. Examples are SQL error code and HTTP status code. |
 | **duration** | **DurationMs** | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
 
-### Event
+## Events
 
 You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
 
@@ -107,7 +108,7 @@ Semantically, events might or might not be correlated to requests. If used prope
 |--------------------------------------|-------------------------------|-------------|-----------------------------|
 | **name** | **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512 |
 
-### Exception
+## Exceptions
 
 An exception telemetry item represents a handled or unhandled exception that occurred during execution of the monitored application.
 
@@ -124,7 +125,9 @@ An exception telemetry item represents a handled or unhandled exception that occ
 | **severityLevel** | **SeverityLevel** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
 | **details** | **Details** | Contains exception information such as the exception message and the call stack. | |
 
-### Metric (Performance Counters and Custom Metrics)
+## Metrics
+
+### Performance counters
 
 Application Insights supports two types of metric telemetry which are placed into the `performanceCounters` table:
 
@@ -195,9 +198,13 @@ To learn more, see [Metrics in Application Insights](metrics-overview.md). For m
 
 The metric with the custom property `CustomPerfCounter` set to `true` indicates that the metric represents the Windows performance counter. These metrics are placed in the `performanceCounters` table, not in `customMetrics`. Also, the name of this metric is parsed to extract category, counter, and instance names.
 
-### PageView
+### Custom metrics
 
-PageView telemetry is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action.
+...
+
+## Page views
+
+Page view telemetry is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action.
 
 This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
@@ -213,7 +220,7 @@ This distinction can be further understood in the context of single-page applica
 >
 > * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
 
-### Request
+## Requests
 
 Request telemetry represents information related to incoming HTTP requests to your application. This type of telemetry helps you monitor the performance and success of your application's web-based services.
 
@@ -233,7 +240,7 @@ Request telemetry supports the standard extensibility model by using [custom `pr
 | **resultCode** | **ResultCode** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. | 1,024 |
 | **duration** | **DurationMs** | The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. | |
 
-### Trace
+## Traces
 
 Trace telemetry represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
