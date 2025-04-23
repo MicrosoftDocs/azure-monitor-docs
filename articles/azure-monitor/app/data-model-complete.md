@@ -27,17 +27,17 @@ Data collected by Application Insights models this typical application execution
 
 The following types of telemetry are used to monitor the execution of your application. The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and [Application Insights JavaScript SDK](javascript-sdk.md) collect:
 
-| Telemetry type | Table name<br>(Log Analytics) | Table name<br>(Application Insights) | Description |
-|----------------|-------------------------------|--------------------------------------|-------------|
-| [Availability](#availability) | [AppAvailabilityResults](../reference/tables/appavailabilityresults.md) | `availabilityResults` | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
-| [Browser timings](#browsertimings) | [AppBrowserTimings](../reference/tables/appbrowsertimings.md) | `browserTimings` | Measures the performance of web pages, including page load times and network durations. |
-| [Dependency](#dependency) | [AppDependencies](../reference/tables/appdependencies.md) | `dependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
-| [Event](#event) | [AppEvents](../reference/tables/appevents.md) | `customEvents` | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
-| [Exception](#exception) | [AppExceptions](../reference/tables/appexceptions.md) | `exceptions` | Captures error information crucial for troubleshooting and understanding failures. |
-| [Metric](#metric) | [AppPerformanceCounters](../reference/tables/appperformancecounters.md)<br><br>[AppMetrics](../reference/tables/appmetrics.md) | `performanceCounters`<br><br>`customMetrics` | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
-| [Page view](#pageview) | [AppPageViews](../reference/tables/apppageviews.md) | `pageViews` | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
-| [Request](#request) | [AppRequests](../reference/tables/apprequests.md) | `requests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
-| [Trace](#trace) | [AppTraces](../reference/tables/apptraces.md) | `traces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
+| Telemetry type | Table name<br>(Application Insights) | Table name<br>(Log Analytics) | Description |
+|----------------|--------------------------------------|-------------------------------|-------------|
+| [Availability](#availability) | `availabilityResults` | [AppAvailabilityResults](../reference/tables/appavailabilityresults.md) | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
+| [Browser timings](#browsertimings) | `browserTimings` | [AppBrowserTimings](../reference/tables/appbrowsertimings.md) | Measures the performance of web pages, including page load times and network durations. |
+| [Dependency](#dependency) | `dependencies` | [AppDependencies](../reference/tables/appdependencies.md) | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
+| [Event](#event) | `customEvents` | [AppEvents](../reference/tables/appevents.md) | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
+| [Exception](#exception) | `exceptions` | [AppExceptions](../reference/tables/appexceptions.md) | Captures error information crucial for troubleshooting and understanding failures. |
+| [Metric](#metric) | `performanceCounters`<br><br>`customMetrics` | [AppPerformanceCounters](../reference/tables/appperformancecounters.md)<br><br>[AppMetrics](../reference/tables/appmetrics.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
+| [Page view](#pageview) | `pageViews` | [AppPageViews](../reference/tables/apppageviews.md) | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
+| [Request](#request) | `requests` | [AppRequests](../reference/tables/apprequests.md) | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
+| [Trace](#trace) | `traces` | [AppTraces](../reference/tables/apptraces.md) | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
 Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
@@ -51,12 +51,12 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| **id** | **Id** | ... |
-| **name** | **Name** | ... |
-| **location** | **Location** | ... |
-| **success** | **Success** | ... |
-| **message** | **Message** | ... |
-| **duration** | **Duration** | ... |
+| **id** | **Id** | The unique identifier of an availability test, used for correlation between the availability test and other telemetry items. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **name** | **Name** | The name of an availability test. |
+| **location** | **Location** | The geographical location from which an availability test was executed. It helps to understand the performance and availability from different regions. |
+| **success** | **Success** | This field indicates whether an availability test was successful or not. It is a boolean value where `true` means the test was successful and `false` means it failed. |
+| **message** | **Message** | Any additional information or error messages related to an availability test. |
+| **duration** | **Duration** | The duration of an availability test. It's typically measured in milliseconds and indicates how long the test took to complete. |
 
 ### BrowserTimings
 
@@ -64,13 +64,15 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| **name** | **Name** | ... |
-| **url** | **Url** | ... |
+| **name** | **Name** | The name of the browserTimings instance. |
+| **url** | **Url** | The full URL of the webpage. This field is crucial to understand which pages might be experiencing performance issues. |
 | **networkDuration** | **NetworkDurationMs** | 1. + 2. |
 | **sendDuration** | **SendDurationMs** | 3. |
 | **receiveDuration** | **ReceiveDurationMs** | 4. |
 | **processingDuration** | **ProcessingDurationMs** | 5. |
 | **totalDuration** | **TotalDurationMs** | 1. + 2. + 3. + 4. + 5. |
+
+**Context:**
 
 1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
 1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
@@ -86,13 +88,13 @@ A dependency telemetry item represents an interaction of the monitored component
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| **id** | **Id** | ID is the identifier of a dependency call instance. It's used for correlation with the request telemetry item that corresponds to this dependency call. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
-| **target** | **Target** | This field is the target site of a dependency call. Examples are server name and host address. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
-| **type** | **DependencyType** | This field is the dependency type name. It has a low cardinality value for logical grouping of dependencies and interpretation of other fields like `commandName` and `resultCode`. Examples are SQL, Azure table, and HTTP. |
-| **name** | **Name** | This field is the name of the command initiated with this dependency call. It has a low cardinality value. Examples are stored procedure name and URL path template. |
-| **data** | **Data** | This field is the command initiated by this dependency call. Examples are SQL statement and HTTP URL with all query parameters. |
-| **success** | **Success** | This field is the indication of a successful or unsuccessful call. |
-| **resultCode** | **ResultCode** | This field is the result code of a dependency call. Examples are SQL error code and HTTP status code. |
+| **id** | **Id** | The unique identifier of a dependency call instance, used for correlation with the request telemetry item that corresponds to this dependency call. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **target** | **Target** | The target site of a dependency call. Examples are server name and host address. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **type** | **DependencyType** | The dependency type name. It has a low cardinality value for logical grouping of dependencies and interpretation of other fields like `commandName` and `resultCode`. Examples are SQL, Azure table, and HTTP. |
+| **name** | **Name** | The name of the command initiated with this dependency call. It has a low cardinality value. Examples are stored procedure name and URL path template. |
+| **data** | **Data** | The command initiated by this dependency call. Examples are SQL statement and HTTP URL with all query parameters. |
+| **success** | **Success** | This field indicates whether a call was successful or not. It is a boolean value where `true` means the call was successful and `false` means it failed. |
+| **resultCode** | **ResultCode** | The result code of a dependency call. Examples are SQL error code and HTTP status code. |
 | **duration** | **DurationMs** | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
 
 ### Event
@@ -112,13 +114,13 @@ An exception telemetry item represents a handled or unhandled exception that occ
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
 |--------------------------------------|-------------------------------|-------------|-------------------------|
 | **problemId** | **ProblemId** | Identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024 |
-| **type** | **ExceptionType** | | |
-| **assembly** | **Assembly** | | |
-| **method** | **Method** | | |
-| **outerType** | **OuterType** | | |
-| **outerMessage** | **OuterMessage** | | |
-| **outerAssembly** | **OuterAssembly** | | |
-| **outerMethod** | **OuterMethod** | | |
+| **type** | **ExceptionType** | The type of the exception that occurred. This typically includes the namespace and class name, such as `System.NullReferenceException` or `System.InvalidOperationException`. | 256 |
+| **assembly** | **Assembly** | The assembly where the exception was thrown. This is useful for pinpointing the component of the application responsible for the exception. | 256 |
+| **method** | **Method** | The method name within the assembly where the exception was thrown. This provides detailed information about the exact point of failure within the code. | 256 |
+| **outerType** | **OuterType** | The type of the outer exception, if the current exception is nested within another exception. This is useful for understanding the context in which the inner exception occurred and can help in tracing the sequence of errors. | 256 |
+| **outerMessage** | **OuterMessage** | The message of the outer exception. This message provides additional context about the error, which can be helpful in understanding the broader issue. | 32,768 |
+| **outerAssembly** | **OuterAssembly** | The assembly of the outer exception. Similar to the assembly field, this helps in identifying the location in the codebase where the outer exception originated. | 256 |
+| **outerMethod** | **OuterMethod** | The method of the outer exception. This provides detailed information about the point of failure within the outer exception. | 256 |
 | **severityLevel** | **SeverityLevel** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
 | **details** | **Details** | Contains exception information such as the exception message and the call stack. | |
 
@@ -201,7 +203,7 @@ This distinction can be further understood in the context of single-page applica
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| **id** | ? | ... |
+| **id** | N/A | The unique identifier of a PageView instance, used for correlation between the PageView and other telemetry items. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
 | **name** | **Name** | ... |
 | **url** | **Url** | ... |
 | **duration** | **DurationMs** | The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).<br><br>If `PerformanceNavigationTiming` is available, that duration is used. If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.<br><br>The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views). |
@@ -223,7 +225,7 @@ Request telemetry supports the standard extensibility model by using [custom `pr
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
 |--------------------------------------|-------------------------------|-------------|-------------------------|
-| **id** | **Id** | ID is the identifier of a request call instance. It's used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 128 |
+| **id** | **Id** | The unique identifier of a request call instance, used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 128 |
 | **source** | **Source** | Source is the source of the request. Examples are the instrumentation key of the caller or the IP address of the caller. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 1,024 |
 | **name** | **Name** | This field is the name of the request and it represents the code path taken to process the request. A low cardinality value allows for better grouping of requests. For HTTP requests, it represents the HTTP method and URL path template like `GET /values/{id}` without the actual `id` value.<br>The Application Insights web SDK sends a request name "as is" about letter case. Grouping on the UI is case sensitive, so `GET /Home/Index` is counted separately from `GET /home/INDEX` even though often they result in the same controller and action execution. The reason for that is that URLs in general are [case sensitive](https://www.w3.org/TR/WD-html40-970708/htmlweb.html). You might want to see if all `404` errors happened for URLs typed in uppercase. You can read more about request name collection by the ASP.NET web SDK in the [blog post](https://apmtips.com/posts/2015-02-23-request-name-and-url/). | 1,024 |
 | **url** | **Url** | URL is the request URL with all query string parameters. | 2,048 |
