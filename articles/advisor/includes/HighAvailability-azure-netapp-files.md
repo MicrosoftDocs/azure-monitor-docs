@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/07/2025
+ms.date: 04/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -163,5 +163,23 @@ Subcategory: DisasterRecovery
 
 <!--7a48f43e-8615-4ce0-8039-83b9d24f945a_end-->
 
+
+<!--64936c6e-8236-4875-8234-109ab34576fe_begin-->
+
+#### End of Support for increase to IP route limit for Basic network features  
+  
+An Azure NetApp Files volume using Basic network features is subject to an IP route limit of 1600. IP route limits aren't adjustable. To prevent the IP route limit, migrate volumes to Standard network features from Basic network features.  
+  
+**Potential benefits**: Increase the number of IP routes.  
+
+**Impact:** High
+  
+For more information, see [Configure network features for an Azure NetApp Files volume](https://aka.ms/standardnetwork)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 64936c6e-8236-4875-8234-109ab34576fe  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--64936c6e-8236-4875-8234-109ab34576fe_end-->
 
 <!--articleBody-->
