@@ -60,33 +60,25 @@ Run a search job to fetch records from large datasets into a new search results 
 
 To run a search job, in the Azure portal:
 
-1. From the **Log Analytics workspace** menu, select **Logs**. 
+1. From the **Log Analytics workspace** menu, select **Logs**.
 
-1. Select the ellipsis menu on the right-hand side of the screen and toggle **Search job mode** on. 
+1. Select the ellipsis menu on the right-hand side of the screen and select **Search job**. 
 
-    :::image type="content" source="media/search-job/switch-to-search-job-mode.png" alt-text="Screenshot of the Logs screen with the Search job mode switch highlighted." lightbox="media/search-job/switch-to-search-job-mode.png":::
-
-    Azure Monitor Logs intellisense supports [KQL query limitations in search job mode](#kql-query-limitations) to help you write your search job query. 
+    :::image type="content" source="media/search-job/search-job-menu-selection.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-menu-selection.png"::: 
 
 1. Specify the search job date range using the time picker. If your Kusto query also selects a time range, the search job will use the union of the time ranges, making the selection more restrictive.
 
-1. Type the search job query and select the **Search Job** button.
-
     Azure Monitor Logs prompts you to provide a name for the result set table and informs you that the search job is subject to billing.
     
-    :::image type="content" source="media/search-job/run-search-job.png" alt-text="Screenshot that shows the Azure Monitor Logs prompt to provide a name for the search job results table." lightbox="media/search-job/run-search-job.png":::
+    :::image type="content" source="media/search-job/search-job-time-selector.png" alt-text="Screenshot that shows the Azure Monitor Logs prompt to provide a name for the search job results table." lightbox="media/search-job/search-job-time-selector.png":::
 
 1. Enter a name for the search job result table and select **Run a search job**.
 
     Azure Monitor Logs runs the search job and creates a new table in your workspace for your search job results. 
 
-    :::image type="content" source="media/search-job/search-job-execution-1.png" alt-text="Screenshot that shows an Azure Monitor Logs message that the search job is running and the search job results table will be available shortly." lightbox="media/search-job/search-job-execution-1.png":::
-
 1. When the new table is ready, select **View tablename_SRCH** to view the table in Log Analytics.
 
-    :::image type="content" source="media/search-job/search-job-execution-2.png" alt-text="Screenshot that shows an Azure Monitor Logs message that the search job results table is available to view." lightbox="media/search-job/search-job-execution-2.png":::
-
-    You can see the search job results as they begin flowing into the newly created search job results table.
+    Search job results are available as they begin flowing into the newly created search job results table.
 
     :::image type="content" source="media/search-job/search-job-execution-3.png" alt-text="Screenshot that shows search job results table with data." lightbox="media/search-job/search-job-execution-3.png":::
 
