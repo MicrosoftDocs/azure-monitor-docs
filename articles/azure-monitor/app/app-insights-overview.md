@@ -1,16 +1,16 @@
 ---
-title: Application Insights OpenTelemetry overview
+title: Application Insights OpenTelemetry observability overview
 description: Learn how Azure Monitor Application Insights integrates with OpenTelemetry (OTel) for comprehensive application observability.
 ms.topic: overview
-ms.date: 03/23/2025
+ms.date: 04/22/2025
 
 #customer intent: As a developer or site reliability engineer, I want to use OpenTelemetry (OTel), often searched as 'Open Telemetry', with Application Insights so that I can collect, analyze, and monitor application telemetry in a standardized way for improved observability and performance diagnostics.
 
 ---
 
-# Introduction to Application Insights with OpenTelemetry
+# Introduction to Application Insights - OpenTelemetry observability
 
-Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor](..\overview.md) that offers application performance monitoring (APM) for live web applications. By integrating with OpenTelemetry (OTel), it provides a vendor-neutral approach to collecting and analyzing telemetry data, enabling comprehensive observability of your applications.
+Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor](..\overview.md) that offers application performance monitoring (APM) for live web applications. Integrating with OpenTelemetry (OTel) provides a vendor-neutral approach to collecting and analyzing telemetry data, enabling comprehensive observability of your applications.
 
 :::image type="content" source="media/app-insights-overview/app-insights-overview-screenshot.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map." lightbox="media/app-insights-overview/app-insights-overview-screenshot.png":::
 
@@ -173,8 +173,8 @@ From [client webpages](./javascript-sdk.md):
 * Device information (for example, Browser, OS, version, language, model)
 * Session information
 
-  > [!Note]
-  > For some applications, such as single-page applications (SPAs), the duration may not be recorded and will default to 0.
+  > [!NOTE]
+  > For some applications, such as single-page applications (SPAs), the duration isn't always recorded and, in those cases, defaults to 0.
 
     For more information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
           
@@ -244,14 +244,16 @@ This answer depends on the distribution of our endpoints, *not* on where your Ap
 
 ### Do I incur network costs if my Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region?
 
-Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going.
-Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
 
-### What TLS versions does Application Insights support
+If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
+
+### What TLS versions are supported?
+
+Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3.
 
 > [!IMPORTANT]
->  On 1 March 2025, in alignment with the Azure wide legacy TLS retirement, TLS 1.0/1.1 protocol versions and the listed TLS 1.2/1.3 legacy Cipher suites and Elliptical curves will be retired for Application Insights.
-To provide best-in-class encryption, Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3 as the encryption mechanisms of choice. 
+>  On 1 March 2025, Azure will retire legacy versions of TLS across all services. At that time, Application Insights no longer supports TLS 1.0, TLS 1.1, and the listed legacy TLS 1.2/1.3 cipher suites and elliptic curves.
 
 For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
@@ -261,11 +263,11 @@ For any general questions around the legacy TLS problem, see [Solving TLS proble
 
 For Azure support issues, open an [Azure support ticket](https://azure.microsoft.com/support/create-ticket/).
 
-### Microsoft Questions and Answers forum
+### General Questions
 
 Post general questions to the [Microsoft Questions and Answers forum](/answers/topics/24223/azure-monitor.html).
 
-### Stack Overflow
+### Coding Questions
 
 Post coding questions to [Stack Overflow](https://stackoverflow.com/questions/tagged/azure-application-insights) by using an `azure-application-insights` tag.
 

@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 03/19/2025
+ms.date: 04/14/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -805,10 +805,6 @@ ms.reviewer: lualderm
 
 - [Failing dependencies](./queries/AppDependencies.md#failing-dependencies)
 
-## [AppEnvSpringAppConsoleLogs](./queries/AppEnvSpringAppConsoleLogs.md)
-
-- [Latest Container App first party Spring App errors](./queries/AppEnvSpringAppConsoleLogs.md#latest-container-app-first-party-spring-app-errors)
-
 ## [AppExceptions](./queries/AppExceptions.md)
 
 - [Top 3 browser exceptions](./queries/AppExceptions.md#top-3-browser-exceptions)
@@ -1166,10 +1162,6 @@ ms.reviewer: lualderm
 ## [ConfigurationData](./queries/ConfigurationData.md)
 
 - [Recent stopped auto services](./queries/ConfigurationData.md#recent-stopped-auto-services)
-
-## [ContainerAppConsoleLogs](./queries/ContainerAppConsoleLogs.md)
-
-- [Latest Container App user errors](./queries/ContainerAppConsoleLogs.md#latest-container-app-user-errors)
 
 ## [ContainerImageInventory](./queries/ContainerImageInventory.md)
 
@@ -1899,6 +1891,15 @@ ms.reviewer: lualderm
 - [Bytes received by each IIS computer](./queries/W3CIISLog.md#bytes-received-by-each-iis-computer)
 - [Bytes responded to clients by each IIS server IP](./queries/W3CIISLog.md#bytes-responded-to-clients-by-each-iis-server-ip)
 - [Average HTTP request time by client IP](./queries/W3CIISLog.md#average-http-request-time-by-client-ip)
+
+## [WOUserAudits](./queries/WOUserAudits.md)
+
+- [Auditing workload orchestration Operations](./queries/WOUserAudits.md#auditing-workload-orchestration-operations)
+- [Auditing workload orchestration API requests](./queries/WOUserAudits.md#auditing-workload-orchestration-api-requests)
+
+## [WOUserDiagnostics](./queries/WOUserDiagnostics.md)
+
+- [workload orchestration target provider and solution deployment failures](./queries/WOUserDiagnostics.md#workload-orchestration-target-provider-and-solution-deployment-failures)
 
 ## [WVDAgentHealthStatus](./queries/WVDAgentHealthStatus.md)
 

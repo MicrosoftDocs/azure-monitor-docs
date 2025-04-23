@@ -2,8 +2,6 @@
 title: Migrate from using batch and beta queries to the standard Log Analytics query API 
 description: Migrate from using batch and beta queries to the standard query API.
 ms.date: 04/01/2025
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: ron.frenkel
 ms.topic: article
 ---

@@ -6,7 +6,7 @@ items:
     - name: Azure Monitor overview
       href: fundamentals/overview.md
     - name: Insights and curated visualizations
-      href: insights/insights-overview.md
+      href: visualize/insights-overview.md
     - name: Multicloud monitoring
       href: fundamentals/best-practices-multicloud.md
     - name: AIOps and machine learning
@@ -45,13 +45,13 @@ items:
   - name: Monitor an Azure resource
     items:
     - name: Use Azure Monitor to monitor an Azure resource
-      href: essentials/monitor-azure-resource.md
+      href: platform/monitor-azure-resource.md
     - name: Analyze metric data
-      href: essentials/tutorial-metrics.md
+      href: platform/tutorial-metrics.md
     - name: Collect and view resource logs
-      href: essentials/tutorial-resource-logs.md
+      href: platform/tutorial-resource-logs.md
     - name: Monitor resources using Activity log insights
-      href: essentials/activity-log-insights.md
+      href: platform/activity-log-insights.md
     - name: Create alerts
       href: alerts/alert-options.md
   - name: Monitor applications with Application Insights
@@ -225,7 +225,7 @@ items:
         displayName: opt insights, optimization insights, code optimization, perflens
         items:
         - name: Overview
-          href: insights/code-optimizations-profiler-overview.md
+          href: optimization-insights/code-optimizations-profiler-overview.md
         - name: Enable using .NET Profiler
           items:
           - name: Enable Profiler on specific Azure resources
@@ -253,22 +253,22 @@ items:
         - name: View insights and data
           items:
             - name: View insights
-              href: insights/view-code-optimizations.md
+              href: optimization-insights/view-code-optimizations.md
             - name: View .NET Profiler data
               displayName: profiling, debugging, code performance, perf
               href: profiler/profiler-data.md
         - name: Fix with GitHub Copilot (preview)
           items:
           - name: Overview
-            href: insights/code-optimizations-extensions.md
+            href: optimization-insights/code-optimizations-extensions.md
           - name: Visual Studio
-            href: insights/code-optimizations-vs-extension.md
+            href: optimization-insights/code-optimizations-vs-extension.md
           - name: Visual Studio Code
-            href: insights/code-optimizations-vscode-extension.md
+            href: optimization-insights/code-optimizations-vscode-extension.md
         - name: Troubleshooting
           items:
           - name: Code Optimizations
-            href: insights/code-optimizations-troubleshoot.md
+            href: optimization-insights/code-optimizations-troubleshoot.md
           - name: Profiler
             href: profiler/profiler-troubleshooting.md
       - name: Snapshot Debugger
@@ -451,7 +451,7 @@ items:
       - name: Migrate from Operations Manager
         href: fundamentals/azure-monitor-operations-manager.md
       - name: Assess Operations Manager
-        href: insights/scom-assessment.md
+        href: scom-manage-instance/scom-assessment.md
   - name: Monitor containers
     items:
     - name: Azure Monitor features
@@ -737,54 +737,54 @@ items:
       items:
       - name: Overview
         displayName: data collection rule, dcr, Azure Monitor pipeline
-        href: essentials/data-collection-rule-overview.md
+        href: data-collection/data-collection-rule-overview.md
       - name: Create DCRs
         items: 
         - name: Create and edit
           displayName: Data collection rules, DCR
-          href: essentials/data-collection-rule-create-edit.md         
+          href: data-collection/data-collection-rule-create-edit.md         
         - name: Manage associations
           displayName: data collection rules, DCR
-          href: essentials/data-collection-rule-associations.md
+          href: data-collection/data-collection-rule-associations.md
         - name: DCR structure
           displayName: Data collection rules, DCR
-          href: essentials/data-collection-rule-structure.md
+          href: data-collection/data-collection-rule-structure.md
         - name: Best practices
           displayName: data collection rules, DCR
-          href: essentials/data-collection-rule-best-practices.md
+          href: data-collection/data-collection-rule-best-practices.md
       - name: Transformations
         items:
         - name: Overview
           displayName: Transformations
-          href: essentials/data-collection-transformations.md
+          href: data-collection/data-collection-transformations.md
         - name: Create
           displayName: Transformations
-          href: essentials/data-collection-transformations-create.md
+          href: data-collection/data-collection-transformations-create.md
         - name: Supported KQL
           displayName: Transformations
-          href: essentials/data-collection-transformations-kql.md
+          href: data-collection/data-collection-transformations-kql.md
         - name: Best practices and samples
           displayName: Transformations
-          href: essentials/data-collection-transformations-samples.md
+          href: data-collection/data-collection-transformations-samples.md
       - name: Metrics export
         items:
         - name: Metrics export using DCRs
           displayName: data collection rules, metrics
-          href: essentials/data-collection-metrics.md
+          href: data-collection/data-collection-metrics.md
         - name: Create metrics export DCR
           displayName: metrics export
-          href: essentials/metrics-export-create.md
+          href: data-collection/metrics-export-create.md
         - name: Data plane batch query versus Metrics export
-          href: essentials/data-plane-versus-metrics-export.md
+          href: data-collection/data-plane-versus-metrics-export.md
       - name: Monitor DCRs
         displayName: Data collection rules
-        href: essentials/data-collection-monitor.md
+        href: data-collection/data-collection-monitor.md
       - name: Samples and scenarios
-        href: essentials/data-collection-rule-samples.md 
+        href: data-collection/data-collection-rule-samples.md 
       - name: Data collection endpoints
-        href: essentials/data-collection-endpoint-overview.md
+        href: data-collection/data-collection-endpoint-overview.md
       - name: Edge pipeline configuration
-        href: essentials/edge-pipeline-configure.md
+        href: data-collection/edge-pipeline-configure.md
       - name: Tutorials
         items:
         - name: Workspace transformation in Azure portal
@@ -797,19 +797,19 @@ items:
       items:
       - name: Overview
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: essentials/diagnostic-settings.md
+        href: platform/diagnostic-settings.md
       - name: Create Diagnostic Settings in Azure Monitor
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: essentials/create-diagnostic-settings.md
+        href: platform/create-diagnostic-settings.md
       - name: Create Diagnostic Settings with Azure Policy
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: essentials/diagnostic-settings-policy.md
+        href: platform/diagnostic-settings-policy.md
       - name: Enable Diagnostics settings using built-in policies.
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: essentials/diagnostics-settings-policies-deployifnotexists.md
+        href: platform/diagnostics-settings-policies-deployifnotexists.md
       - name: Migrate retention to Azure Storage lifecycle
         displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: essentials/migrate-to-azure-storage-lifecycle-policy.md
+        href: platform/migrate-to-azure-storage-lifecycle-policy.md
     - name: Azure Monitor Agent
       items:
       - name: Overview
@@ -930,13 +930,13 @@ items:
             - name: Send to Azure Monitor Metrics
               items:
                 - name: Virtual Machine
-                  href: essentials/collect-custom-metrics-guestos-resource-manager-vm.md
+                  href: agents/collect-custom-metrics-guestos-resource-manager-vm.md
                 - name: Virtual Machine Scale Set
-                  href: essentials/collect-custom-metrics-guestos-resource-manager-vmss.md
+                  href: agents/collect-custom-metrics-guestos-resource-manager-vmss.md
                 - name: VM classic
-                  href: essentials/collect-custom-metrics-guestos-vm-classic.md
+                  href: agents/collect-custom-metrics-guestos-vm-classic.md
                 - name: Cloud service
-                  href: essentials/collect-custom-metrics-guestos-vm-cloud-service-classic.md
+                  href: agents/collect-custom-metrics-guestos-vm-cloud-service-classic.md
             - name: Send to Event Hubs
               href: agents/diagnostics-extension-stream-event-hubs.md
             - name: Send to Logs
@@ -957,9 +957,9 @@ items:
                 href: /azure/virtual-machines/extensions/diagnostics-linux-v3
                 maintainContext: true
               - name: Collect metrics with Telegraf
-                href: essentials/collect-custom-metrics-linux-telegraf.md
+                href: agents/collect-custom-metrics-linux-telegraf.md
     - name: Custom metrics ingestion using REST
-      href: essentials/metrics-store-custom-rest-api.md
+      href: metrics/metrics-store-custom-rest-api.md
     - name: Logs ingestion API
       items:
       - name: Overview
@@ -986,11 +986,11 @@ items:
   - name: Send data
     items:
     - name: Send resource log data
-      href: essentials/resource-logs.md
+      href: platform/resource-logs.md
     - name: Send activity log data
-      href: essentials/activity-log.md
+      href: platform/activity-log.md
     - name: Stream monitoring data to Event Hubs
-      href: essentials/stream-monitoring-data-event-hubs.md
+      href: platform/stream-monitoring-data-event-hubs.md
   - name: Troubleshoot
     items:
      - name: Data collection
@@ -1026,54 +1026,54 @@ items:
   - name: Metrics
     items:
     - name: Overview of Azure Monitor Metrics
-      href: essentials/data-platform-metrics.md
+      href: metrics/data-platform-metrics.md
     - name: Custom metrics
-      href: essentials/metrics-custom-overview.md
+      href: metrics/metrics-custom-overview.md
     - name: Prometheus metrics
       items:
       - name: Overview
         displayName: Prometheus
-        href: essentials/prometheus-metrics-overview.md
+        href: metrics/prometheus-metrics-overview.md
       - name: Prometheus remote-write from virtual machines
         displayName: Prometheus remote-write
-        href: essentials/prometheus-remote-write-virtual-machines.md
+        href: metrics/prometheus-remote-write-virtual-machines.md
       - name: Connect Grafana to Azure Monitor Prometheus metrics
         displayName: Prometheus Grafana
-        href: essentials/prometheus-grafana.md
+        href: metrics/prometheus-grafana.md
       - name: Azure Monitor workspace
         items:
         - name: Overview
           displayName: Prometheus
-          href: essentials/azure-monitor-workspace-overview.md
+          href: metrics/azure-monitor-workspace-overview.md
         - name: Manage
           displayName: Prometheus
-          href: essentials/azure-monitor-workspace-manage.md
+          href: metrics/azure-monitor-workspace-manage.md
         - name: Monitor metrics ingestion limits
           displayName: Prometheus Azure Monitor workspace
-          href: essentials/azure-monitor-workspace-monitor-ingest-limits.md
+          href: metrics/azure-monitor-workspace-monitor-ingest-limits.md
         - name: Best practices for scaling
-          href: essentials/azure-monitor-workspace-scaling-best-practice.md
+          href: metrics/azure-monitor-workspace-scaling-best-practice.md
         - name: Metrics usage insights
           displayName: Azure Monitor workspace
-          href: essentials/metrics-usage-insights.md    
+          href: metrics/metrics-usage-insights.md    
         - name: Private endpoints
           displayName: Azure Monitor workspace
-          href: essentials/azure-monitor-workspace-private-endpoint.md
+          href: metrics/azure-monitor-workspace-private-endpoint.md
         - name: Private link data query of Prometheus metrics
           displayName: Private link data query
           href: /azure/managed-grafana/how-to-connect-to-data-source-privately
           maintainContext: true
       - name: Alerting and rule groups
         displayName: Prometheus
-        href: essentials/prometheus-rule-groups.md
+        href: metrics/prometheus-rule-groups.md
       - name: Query Prometheus metrics
         items:
         - name: Query using Azure workbooks
           displayName: Prometheus
-          href: essentials/prometheus-workbooks.md
+          href: metrics/prometheus-workbooks.md
         - name: Query using the API and PromQL
           displayName: Prometheus
-          href: essentials/prometheus-api-promql.md
+          href: metrics/prometheus-api-promql.md
   - name: Logs
     items:
     - name: Overview
@@ -1217,7 +1217,7 @@ items:
         displayName: Private Link
         href: logs/private-link-configure.md
     - name: Network security perimeter
-      href: essentials/network-security-perimeter.md
+      href: fundamentals/network-security-perimeter.md
   - name: Security baseline
     href: /security/benchmark/azure/baselines/azure-monitor-security-baseline?toc=/azure/azure-monitor/toc.json
   - name: Security controls by Azure Policy
@@ -1310,7 +1310,7 @@ items:
     - name: Workbook Samples
       href: visualize/workbooks-samples.md
     - name: Troubleshoot insights
-      href: insights/troubleshoot-workbooks.md
+      href: visualize/troubleshoot-workbooks.md
     - name: Dashboard Preview
       href: visualize/workbooks-dashboard-preview.md
   - name: Grafana
@@ -1326,23 +1326,23 @@ items:
   - name: Metrics explorer
     items:
       - name: Analyze metrics
-        href: essentials/analyze-metrics.md
+        href: metrics/analyze-metrics.md
       - name: Metrics explorer with PromQL
         displayName: Prometheus, metrics explorer
-        href: essentials/metrics-explorer.md  
+        href: metrics/metrics-explorer.md  
       - name: Understanding metrics aggregation
-        href: essentials/metrics-aggregation-explained.md
+        href: metrics/metrics-aggregation-explained.md
       - name: Examples of metric charts
-        href: essentials/metric-chart-samples.md
+        href: metrics/metric-chart-samples.md
       - name: Troubleshooting metric charts
-        href: essentials/metrics-troubleshoot.md
+        href: metrics/metrics-troubleshoot.md
   - name: REST API for metrics
     items:
     - name: Metrics REST API Walkthrough
       displayName: metrics, analyze
-      href: essentials/rest-api-walkthrough.md
+      href: platform/rest-api-walkthrough.md
     - name: Migrate to the metrics getBatch API
-      href: essentials/migrate-to-batch-api.md
+      href: metrics/migrate-to-batch-api.md
   - name: Log Analytics
     items:
     - name: Overview
@@ -1432,7 +1432,7 @@ items:
           - name: Migrate from using batch and beta query APIs
             href: logs/api/migrate-batch-and-beta.md
   - name: Get the Activity log using the REST API
-    href: essentials/rest-activity-log.md
+    href: platform/rest-activity-log.md
   - name: Change Analysis (classic)
     items:
     - name: Overview
@@ -1465,8 +1465,6 @@ items:
             href: alerts/alerts-create-metric-alert-rule.md
           - name: Set up a log search alert
             href: alerts/alerts-create-log-alert-rule.md
-          - name: Set up a simple alert
-            href: alerts/alerts-create-simple-alert.md
           - name: Set up an activity log, service health or resource health alert
             href: alerts/alerts-create-activity-log-alert-rule.md
           - name: Set up a Prometheus alert
@@ -1622,7 +1620,7 @@ items:
       - name: Action groups
         href: alerts/resource-manager-action-groups.md
     - name: Diagnostic settings
-      href: essentials/resource-manager-diagnostic-settings.md
+      href: platform/resource-manager-diagnostic-settings.md
     - name: Log queries
       href: logs/resource-manager-log-queries.md
     - name: Workbooks
@@ -1662,9 +1660,9 @@ items:
     - name: Supported resource log categories
       href: /azure/azure-monitor/reference/logs-index
     - name: Resource log schemas
-      href: essentials/resource-logs-schema.md
+      href: platform/resource-logs-schema.md
     - name: Activity log schema
-      href: essentials/activity-log-schema.md
+      href: platform/activity-log-schema.md
   - name: Azure Monitor Logs
     items:
     - name: Logs tables reference

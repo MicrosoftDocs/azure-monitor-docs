@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 04/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -196,7 +196,7 @@ Recommendation ID: 8cf57fc1-66ee-4089-a92f-29b9fdb27ea7
 
 #### Migrate Azure Front Door (classic) to Standard/Premium tier  
   
-In March 2027, Azure Front Door (classic) will be retired, and you'll need to migrate to Front Door Standard or Premium by that date. It combines the capabilities of static/dynamic content delivery with turnkey security, enhanced DevOps experiences, simplified pricing, and better Azure integrations.  
+In March 2027, Azure Front Door (classic) will be retired, and you’ll need to migrate to Front Door Standard or Premium by that date. It combines the capabilities of static/dynamic content delivery with turnkey security, enhanced DevOps experiences, simplified pricing, and better Azure integrations.  
   
 **Potential benefits**: Avoid potential disruptions and leverage new capabilities  
 
@@ -209,6 +209,7 @@ Recommendation ID: 14368063-38db-4dd6-a755-9c49ff123a5e
 
 
 <!--14368063-38db-4dd6-a755-9c49ff123a5e_end-->
+
 
 <!--3f0e3a98-0a69-4798-b780-efeaa6c44810_begin-->
 

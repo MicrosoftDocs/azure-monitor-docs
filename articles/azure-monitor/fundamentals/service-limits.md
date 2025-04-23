@@ -23,7 +23,7 @@ This article lists limits in different areas of Azure Monitor.
 
 ## Prometheus metrics
 
-[!INCLUDE [monitoring-limits-metrics](../essentials/includes/azure-monitor-limits-metrics.md)]
+[!INCLUDE [monitoring-limits-metrics](includes/azure-monitor-limits-metrics.md)]
 
 ## Logs Ingestion API
 

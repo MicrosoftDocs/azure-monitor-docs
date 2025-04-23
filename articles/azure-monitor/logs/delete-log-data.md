@@ -1,8 +1,6 @@
 ---
 title: Delete data from a Log Analytics workspace by using the Delete Data API 
 description: Delete data from a table in your Log Analytics workspace. 
-author: guywi-ms
-ms.author: guywild
 ms.reviewer: yossiy
 ms.service: azure-monitor
 ms.topic: how-to 

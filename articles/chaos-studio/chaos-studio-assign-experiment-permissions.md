@@ -5,9 +5,7 @@ services: chaos-studio
 author: vikramrajumsft
 ms.topic: article
 ms.date: 03/20/2025
-ms.author: abbyweisberg
 ms.reviewer: vikramraju
-ms.service: azure-chaos-studio
 ms.custom: 
 ---
 
