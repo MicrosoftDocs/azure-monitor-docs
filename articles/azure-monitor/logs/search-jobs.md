@@ -68,7 +68,9 @@ To run a search job, in the Azure portal:
 
     :::image type="content" source="media/search-job/search-job-menu-selection.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-menu-selection.png"::: 
 
-1. Specify the search job date range using the time picker, keeping the range to a one year period. If your Kusto query also selects a time range, the search job uses the union of the time ranges, making the selection more restrictive.
+1. Specify the search job date range using the time picker. The maximum range is one year, but can be any one year period the data retention period allows.
+
+    If your Kusto query also selects a time range, the union of the time ranges is used for the search job.
     
     :::image type="content" source="media/search-job/search-job-time-selector.png" alt-text="Screenshot that shows the search job interface prompting for time range and the search job results table." lightbox="media/search-job/search-job-time-selector.png":::
 
@@ -76,7 +78,7 @@ To run a search job, in the Azure portal:
 
     Azure Monitor Logs runs the search job and creates a new table in your workspace for your search job results. 
 
-1. When the new table is ready, select **View *\<searchtablename\>*_SRCH** to view the table in Log Analytics.
+1. When the new table is ready, select **View '*\<searchtablename\>*_SRCH'** to view the table in Log Analytics.
 
     Search job results are available as they begin flowing into the newly created search job results table.
 
