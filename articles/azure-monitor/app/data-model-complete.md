@@ -66,8 +66,6 @@ For a list of all available fields, see [AppAvailabilityResults](../reference/ta
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
 
-:::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
-
 <!--
 1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
 1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
@@ -85,6 +83,8 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 | **totalDuration** | **TotalDurationMs** | The sum of all browser timings. |
 
 For a list of all available fields, see [AppBrowserTimings](../reference/tables/appbrowsertimings.md).
+
+:::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
 ## Dependencies
 
@@ -113,9 +113,9 @@ Semantically, events might or might not be correlated to requests. If used prope
 
 ### Event-specific fields
 
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Maximum length (characters) |
-|--------------------------------------|-------------------------------|-------------|-----------------------------|
-| **name** | **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512 |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **name** | **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. |
 
 For a list of all available fields, see [AppEvents](../reference/tables/appevents.md).
 
@@ -125,18 +125,18 @@ An exception telemetry item represents a handled or unhandled exception that occ
 
 ### Exception-specific fields
 
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
-|--------------------------------------|-------------------------------|-------------|-------------------------|
-| **problemId** | **ProblemId** | Identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. | 1,024 |
-| **type** | **ExceptionType** | The specific kind of exception that occurred. This typically includes the namespace and class name, such as `System.NullReferenceException` or `System.InvalidOperationException`. | 256 |
-| **assembly** | **Assembly** | The assembly where the exception was thrown. This is useful for pinpointing the component of the application responsible for the exception. | 256 |
-| **method** | **Method** | The method name within the assembly where the exception was thrown. This provides contextual information about where in the code the error occured. | 256 |
-| **outerType** | **OuterType** | The type of the outer (wrapping) exception, if the current exception is nested within another exception. This is useful for understanding the context in which the inner exception occurred and can help in tracing the sequence of errors. | 256 |
-| **outerMessage** | **OuterMessage** | This message provides a human-readable explanation of the outer exception and can be helpful in understanding the broader issue. | 32,768 |
-| **outerAssembly** | **OuterAssembly** | The assembly where the outer exception originated. | 256 |
-| **outerMethod** | **OuterMethod** | The method of the outer exception. This provides detailed information about the point of failure within the outer exception. | 256 |
-| **severityLevel** | **SeverityLevel** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
-| **details** | **Details** | Contains exception information such as the exception message and the call stack. | |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **problemId** | **ProblemId** | Identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. |
+| **type** | **ExceptionType** | The specific kind of exception that occurred. This typically includes the namespace and class name, such as `System.NullReferenceException` or `System.InvalidOperationException`. |
+| **assembly** | **Assembly** | The assembly where the exception was thrown. This is useful for pinpointing the component of the application responsible for the exception. |
+| **method** | **Method** | The method name within the assembly where the exception was thrown. This provides contextual information about where in the code the error occured. |
+| **outerType** | **OuterType** | The type of the outer (wrapping) exception, if the current exception is nested within another exception. This is useful for understanding the context in which the inner exception occurred and can help in tracing the sequence of errors. |
+| **outerMessage** | **OuterMessage** | This message provides a human-readable explanation of the outer exception and can be helpful in understanding the broader issue. |
+| **outerAssembly** | **OuterAssembly** | The assembly where the outer exception originated. |
+| **outerMethod** | **OuterMethod** | The method of the outer exception. This provides detailed information about the point of failure within the outer exception. |
+| **severityLevel** | **SeverityLevel** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. |
+| **details** | **Details** | Contains exception information such as the exception message and the call stack. |
 
 For a list of all available fields, see [AppExceptions](../reference/tables/appexceptions.md).
 
@@ -257,15 +257,15 @@ Request telemetry supports the standard extensibility model by using [custom `pr
 
 ### Request-specific fields
 
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
-|--------------------------------------|-------------------------------|-------------|-------------------------|
-| **id** | **Id** | The unique identifier of a request call instance, used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 128 |
-| **source** | **Source** | Source is the source of the request. Examples are the instrumentation key of the caller or the IP address of the caller. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 1,024 |
-| **name** | **Name** | This field is the name of the request and it represents the code path taken to process the request. A low cardinality value allows for better grouping of requests. For HTTP requests, it represents the HTTP method and URL path template like `GET /values/{id}` without the actual `id` value.<br>The Application Insights web SDK sends a request name "as is" about letter case. Grouping on the UI is case sensitive, so `GET /Home/Index` is counted separately from `GET /home/INDEX` even though often they result in the same controller and action execution. The reason for that is that URLs in general are [case sensitive](https://www.w3.org/TR/WD-html40-970708/htmlweb.html). You might want to see if all `404` errors happened for URLs typed in uppercase. You can read more about request name collection by the ASP.NET web SDK in the [blog post](https://apmtips.com/posts/2015-02-23-request-name-and-url/). | 1,024 |
-| **url** | **Url** | URL is the request URL with all query string parameters. | 2,048 |
-| **success** | **Success** | Success indicates whether a call was successful or unsuccessful. This field is required. When a request isn't set explicitly to `false`, it's considered to be successful. If an exception or returned error result code interrupted the operation, set this value to `false`.<br><br>For web applications, Application Insights defines a request as successful when the response code is less than `400` or equal to `401`. However, there are cases when this default mapping doesn't match the semantics of the application.<br><br>Response code `404` might indicate "no records," which can be part of regular flow. It also might indicate a broken link. For broken links, you can implement more advanced logic. You can mark broken links as failures only when those links are located on the same site by analyzing the URL referrer. Or you can mark them as failures when they're accessed from the company's mobile application. Similarly, `301` and `302` indicate failure when they're accessed from the client that doesn't support redirect.<br><br>Partially accepted content `206` might indicate a failure of an overall request. For instance, an Application Insights endpoint might receive a batch of telemetry items as a single request. It returns `206` when some items in the batch weren't processed successfully. An increasing rate of `206` indicates a problem that needs to be investigated. Similar logic applies to `207` Multi-Status, where the success might be the worst of separate response codes. | |
-| **resultCode** | **ResultCode** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. | 1,024 |
-| **duration** | **DurationMs** | The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. | |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **id** | **Id** | The unique identifier of a request call instance, used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **source** | **Source** | Source is the source of the request. Examples are the instrumentation key of the caller or the IP address of the caller. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| **name** | **Name** | This field is the name of the request and it represents the code path taken to process the request. A low cardinality value allows for better grouping of requests. For HTTP requests, it represents the HTTP method and URL path template like `GET /values/{id}` without the actual `id` value.<br>The Application Insights web SDK sends a request name "as is" about letter case. Grouping on the UI is case sensitive, so `GET /Home/Index` is counted separately from `GET /home/INDEX` even though often they result in the same controller and action execution. The reason for that is that URLs in general are [case sensitive](https://www.w3.org/TR/WD-html40-970708/htmlweb.html). You might want to see if all `404` errors happened for URLs typed in uppercase. You can read more about request name collection by the ASP.NET web SDK in the [blog post](https://apmtips.com/posts/2015-02-23-request-name-and-url/). |
+| **url** | **Url** | URL is the request URL with all query string parameters. |
+| **success** | **Success** | Success indicates whether a call was successful or unsuccessful. This field is required. When a request isn't set explicitly to `false`, it's considered to be successful. If an exception or returned error result code interrupted the operation, set this value to `false`.<br><br>For web applications, Application Insights defines a request as successful when the response code is less than `400` or equal to `401`. However, there are cases when this default mapping doesn't match the semantics of the application.<br><br>Response code `404` might indicate "no records," which can be part of regular flow. It also might indicate a broken link. For broken links, you can implement more advanced logic. You can mark broken links as failures only when those links are located on the same site by analyzing the URL referrer. Or you can mark them as failures when they're accessed from the company's mobile application. Similarly, `301` and `302` indicate failure when they're accessed from the client that doesn't support redirect.<br><br>Partially accepted content `206` might indicate a failure of an overall request. For instance, an Application Insights endpoint might receive a batch of telemetry items as a single request. It returns `206` when some items in the batch weren't processed successfully. An increasing rate of `206` indicates a problem that needs to be investigated. Similar logic applies to `207` Multi-Status, where the success might be the worst of separate response codes. |
+| **resultCode** | **ResultCode** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. |
+| **duration** | **DurationMs** | The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. |
 
 For a list of all available fields, see [AppRequests](../reference/tables/apprequests.md).
 
@@ -275,10 +275,10 @@ Trace telemetry represents `printf`-style trace statements that are text searche
 
 ### Trace-specific fields
 
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Values |
-|--------------------------------------|-------------------------------|-------------|--------|
-| **message** | **Message** | Trace message. | **Maximum length:** 32,768 characters |
-| **severityLevel** | **SeverityLevel** | Trace severity level. | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **message** | **Message** | Trace message. |
+| **severityLevel** | **SeverityLevel** | Trace severity level. |
 
 For a list of all available fields, see [AppTraces](../reference/tables/apptraces.md).
 
@@ -289,18 +289,21 @@ For a list of all available fields, see [AppTraces](../reference/tables/apptrace
 
 Every telemetry item might have a strongly typed context field. Every field enables a specific monitoring scenario. Use the custom properties collection to store custom or application-specific contextual information.
 
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Maximum length (characters) |
-|--------------------------------------|-------------------------------|-------------|-----------------------------|
-| **operation_Name** | **OperationName** | The name (group) of the operation. Either a request or a page view creates the operation name. All other telemetry items set this field to the value for the containing request or page view. The operation name is used for finding all the telemetry items for a group of operations (for example, `GET Home/Index`). This context property is used to answer questions like What are the typical exceptions thrown on this page? | 1,024 |
-| **operation_Id** | **OperationId** | The unique identifier of the root operation. This identifier allows grouping telemetry across multiple components. For more information, see [Telemetry correlation](distributed-trace-data.md). Either a request or a page view creates the operation ID. All other telemetry sets this field to the value for the containing request or page view. | 128 |
-| **operation_ParentId** | **ParentId** | The unique identifier of the telemetry item's immediate parent. For more information, see [Telemetry correlation](distributed-trace-data.md). | 128 |
-| **operation_SyntheticSource** | **SyntheticSource** | The name of the synthetic source. Some telemetry from the application might represent synthetic traffic. It might be the web crawler indexing the website, site availability tests, or traces from diagnostic libraries like the Application Insights SDK itself. | 1,024 |
-| **session_Id** | **SessionId** | Session ID is the instance of the user's interaction with the app. Information in the session context fields is always about the user. When telemetry is sent from a service, the session context is about the user who initiated the operation in the service. | 64 |
-| **application_Version** | **AppVersion** | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. | 1,024 |
-| **client_IP** | **ClientIP** | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. | 46 |
-| **cloud_RoleName** | **AppRoleName** | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. | 256 |
-| **cloud_RoleInstance** | **AppRoleInstance** | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. | 256 |
-| **sdkVersion** | **SDKVersion** | For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). | ... |
+> [!NOTE]
+> Some context fields are only available in Application Insights or Log Analytics.
+
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **operation_Name** | **OperationName** | The name (group) of the operation. Either a request or a page view creates the operation name. All other telemetry items set this field to the value for the containing request or page view. The operation name is used for finding all the telemetry items for a group of operations (for example, `GET Home/Index`). This context property is used to answer questions like What are the typical exceptions thrown on this page? |
+| **operation_Id** | **OperationId** | The unique identifier of the root operation. This identifier allows grouping telemetry across multiple components. For more information, see [Telemetry correlation](distributed-trace-data.md). Either a request or a page view creates the operation ID. All other telemetry sets this field to the value for the containing request or page view. |
+| **operation_ParentId** | **ParentId** | The unique identifier of the telemetry item's immediate parent. For more information, see [Telemetry correlation](distributed-trace-data.md). |
+| **operation_SyntheticSource** | **SyntheticSource** | The name of the synthetic source. Some telemetry from the application might represent synthetic traffic. It might be the web crawler indexing the website, site availability tests, or traces from diagnostic libraries like the Application Insights SDK itself. |
+| **session_Id** | **SessionId** | Session ID is the instance of the user's interaction with the app. Information in the session context fields is always about the user. When telemetry is sent from a service, the session context is about the user who initiated the operation in the service. |
+| **application_Version** | **AppVersion** | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. |
+| **client_IP** | **ClientIP** | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. |
+| **cloud_RoleName** | **AppRoleName** | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. |
+| **cloud_RoleInstance** | **AppRoleInstance** | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. |
+| **sdkVersion** | **SDKVersion** | For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). |
 
 For a list of all available fields, navigate to a specific telemetry type 
 
