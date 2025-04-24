@@ -48,7 +48,7 @@ The Application Insights telemetry model defines a way to [correlate](distribute
 ## Availability
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive. We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
-<!--
+
 ### Availability-specific fields
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
@@ -61,25 +61,10 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 | `duration` | `Duration` | The amount of time the availability test took to execute. It helps measuring the performance and identifying response time issues. The duration is typically measured in milliseconds. |
 
 For a list of all available fields, see [AppAvailabilityResults](../reference/tables/appavailabilityresults.md).
--->
-
-[!INCLUDE [appavailabilityresults](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appavailabilityresults-include.md)]
 
 ## Browser timings
 
-[!INCLUDE [appbrowsertimings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appbrowsertimings-include.md)]
-
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
-
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
-|--------------------------------------|-------------------------------|-------------|
-| **networkDuration** | **NetworkDurationMs** | 1. + 2. |
-| **sendDuration** | **SendDurationMs** | 3. |
-| **receiveDuration** | **ReceiveDurationMs** | 4. |
-| **processingDuration** | **ProcessingDurationMs** | 5. |
-| **totalDuration** | **TotalDurationMs** | 1. + 2. + 3. + 4. + 5. |
-
-**Context:**
 
 1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
 1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
@@ -87,7 +72,19 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 1. **Client ← Web Server:** Client receives the rest of the response payload bytes from the web server.
 1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
 
-<br>
+### Browser timing-specific fields
+
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **name** | **Name** | The name of the page view associated with the browser timing event. |
+| **url** | **Url** | The full URL of the web page where the browser timing data was collected. This field is crucial to understand which pages might be experiencing performance issues. |
+| **networkDuration** | **NetworkDurationMs** | 1. + 2. |
+| **sendDuration** | **SendDurationMs** | 3. |
+| **receiveDuration** | **ReceiveDurationMs** | 4. |
+| **processingDuration** | **ProcessingDurationMs** | 5. |
+| **totalDuration** | **TotalDurationMs** | 1. + 2. + 3. + 4. + 5. |
+
+For a list of all available fields, see [AppBrowserTimings](../reference/tables/appbrowsertimings.md).
 
 :::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
@@ -95,9 +92,8 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 
 A dependency telemetry item represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
-[!INCLUDE [appdependencies](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appdependencies-include.md)]
+### Dependency-specific fields
 
-<!--
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
 | **id** | **Id** | The unique identifier of a dependency call instance, used for correlation with the request telemetry item that corresponds to this dependency call. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
@@ -108,7 +104,8 @@ A dependency telemetry item represents an interaction of the monitored component
 | **success** | **Success** | This field indicates whether a call was successful or not. It is a boolean value where `true` means the call was successful and `false` means it failed. |
 | **resultCode** | **ResultCode** | The result code of a dependency call. Examples are SQL error code and HTTP status code. |
 | **duration** | **DurationMs** | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
--->
+
+For a list of all available fields, see [AppDependencies](../reference/tables/appdependencies.md).
 
 ## Events
 
@@ -116,13 +113,19 @@ You can create event telemetry items to represent an event that occurred in your
 
 Semantically, events might or might not be correlated to requests. If used properly, event telemetry is more important than requests or traces. Events represent business telemetry and should be subject to separate, less aggressive [sampling](api-filtering-sampling.md).
 
+### Event-specific fields
+
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Maximum length (characters) |
 |--------------------------------------|-------------------------------|-------------|-----------------------------|
 | **name** | **Name** | To allow proper grouping and useful metrics, restrict your application so that it generates a few separate event names. For example, don't use a separate name for each generated instance of an event. | 512 |
 
+For a list of all available fields, see [AppEvents](../reference/tables/appevents.md).
+
 ## Exceptions
 
 An exception telemetry item represents a handled or unhandled exception that occurred during execution of the monitored application.
+
+### Exception-specific fields
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
 |--------------------------------------|-------------------------------|-------------|-------------------------|
@@ -137,6 +140,8 @@ An exception telemetry item represents a handled or unhandled exception that occ
 | **severityLevel** | **SeverityLevel** | The trace severity level can be one of the following values: `Verbose`, `Information`, `Warning`, `Error`, or `Critical`. | |
 | **details** | **Details** | Contains exception information such as the exception message and the call stack. | |
 
+For a list of all available fields, see [AppExceptions](../reference/tables/appexceptions.md).
+
 ## Metrics
 
 ### Performance counters
@@ -145,6 +150,8 @@ Application Insights supports two types of metric telemetry which are placed int
 
 * A **single measurement** has a *name* and a *value*.
 * A **preaggregated metric** takes multiple measurements in a 1-minute aggregation period.
+
+#### Performance counter-specific fields
 
 <table>
     <thead>
@@ -190,7 +197,9 @@ Application Insights supports two types of metric telemetry which are placed int
 > [!NOTE]
 > To calculate the average, divide **Sum** by **Count**.
 
-To learn more, see [Metrics in Application Insights](metrics-overview.md). For more information about the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
+For a list of all available fields, see [AppPerformanceCounters](../reference/tables/appperformancecounters.md).
+
+To learn more about metrics, see [Metrics in Application Insights](metrics-overview.md). For more information about the Metrics REST API, see [Metrics - Get](/rest/api/application-insights/metrics/get).
 
 #### System and process counter metrics
 
@@ -214,11 +223,15 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
 
 ...
 
+For a list of all available fields, see [AppMetrics](../reference/tables/appmetrics.md).
+
 ## Page views
 
 Page view telemetry is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action.
 
 This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
+
+### Page view-specific fields
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -226,6 +239,8 @@ This distinction can be further understood in the context of single-page applica
 | **name** | **Name** | The name of the page that was viewed by the user (for example, `"Home"` or `"Shopping Cart"`). |
 | **url** | **Url** | The full URL of the page that was viewed. This field is crucial for analyzing traffic and user behavior across the application. |
 | **duration** | **DurationMs** | The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).<br><br>If `PerformanceNavigationTiming` is available, that duration is used. If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.<br><br>The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views). |
+
+For a list of all available fields, see [AppPageViews](../reference/tables/apppageviews.md).
 
 > [!NOTE]
 > * By default, the Application Insights JavaScript SDK logs single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#browsertimings). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
@@ -242,6 +257,8 @@ You can group requests by logical `name` and define the `source` of this request
 
 Request telemetry supports the standard extensibility model by using [custom `properties` and `measurements`](#custom-properties-and-measurements).
 
+### Request-specific fields
+
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Max length (characters) |
 |--------------------------------------|-------------------------------|-------------|-------------------------|
 | **id** | **Id** | The unique identifier of a request call instance, used for correlation between the request and other telemetry items. The ID should be globally unique. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). | 128 |
@@ -252,15 +269,25 @@ Request telemetry supports the standard extensibility model by using [custom `pr
 | **resultCode** | **ResultCode** | The response code is the result of a request execution. It's the HTTP status code for HTTP requests. It might be an `HRESULT` value or an exception type for other request types. | 1,024 |
 | **duration** | **DurationMs** | The request duration is formatted as `DD.HH:MM:SS.MMMMMM`. It must be positive and less than `1000` days. This field is required because request telemetry represents the operation with the beginning and the end. | |
 
+For a list of all available fields, see [AppRequests](../reference/tables/apprequests.md).
+
 ## Traces
 
 Trace telemetry represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
+
+### Trace-specific fields
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description | Values |
 |--------------------------------------|-------------------------------|-------------|--------|
 | **message** | **Message** | Trace message. | **Maximum length:** 32,768 characters |
 | **severityLevel** | **SeverityLevel** | Trace severity level. | **Values:** `Verbose`, `Information`, `Warning`, `Error`, and `Critical` |
 
+For a list of all available fields, see [AppTraces](../reference/tables/apptraces.md).
+
+> [!NOTE]
+> Values for `severityLevel` are enumerated and platform-specific.
+
+<!--
 ## Context
 
 Every telemetry item might have a strongly typed context field. Every field enables a specific monitoring scenario. Use the custom properties collection to store custom or application-specific contextual information.
@@ -296,6 +323,7 @@ Every telemetry item might have a strongly typed context field. Every field enab
 | **Device type** |  | Originally, this field was used to indicate the type of the device the user of the application is using. Today it's used primarily to distinguish JavaScript telemetry with the device type `Browser` from server-side telemetry with the device type `PC`. | 64 |
 | **Internal: Node name** |  | The node name used for billing purposes. Use it to override the standard detection of nodes. | 256 |
 | **Internal: SDK version** |  | For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). | 64 |
+-->
 
 ## Custom properties and measurements
 
