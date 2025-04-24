@@ -6,31 +6,52 @@ ms.date: 4/24/2025
 ---
 
 # Overview
-The In-portal billing communication in Service Health keeps you informed about your billing updates if you are the subscription owners, or subscription admin and have access to the billing updates blade in the service health portal and API. 
-This will help you understand any billing changes that affect your subscription. If you don’t have access to either of these roles, you won’t see the new blade. 
 
-![Screenshot of in-portal billing main pane](./media/billing-elevated-access/in-portal-billing-main.png "main blade.")
+The in-portal billing communication in [Service Health](https://learn.microsoft.com/en-us/azure/service-health/service-health-overview) shows billing updates for users with the **subscription owner** or **subscription admin** roles. These users can view updates in both the **Billing Updates** pane and the Service Health API.
 
-It covers various billing communication types such as overbilling, underbilling, tax rate changes, foreign exchange rate changes, and price changes in a new blade in ASH called **Billing updates**. 
+To help you track billing changes, the communication includes updates that relate to your subscription. Users without these roles can’t access the **Billing Updates** pane.
+
+The **Billing Updates** pane includes billing communication types such as:
+
+- Overbilling notifications
+- Underbilling notifications
+- Tax rate changes
+- Foreign exchange rate changes
+- Price changes
+
+You can view up to three months of billing updates in the user interface and retrieve up to 12 months through the API. Billing communication events are available through the Service Health portal and the API.
+
+**Requirements:**
+
+- Subscription owner or subscription admin role
+- Access to the Service Health portal or API
+
+![Screenshot of in-portal billing main pane](./media/billing-elevated-access/in-portal-billing-main.png "main pane.")
 
 ![Screenshot of in-portal billing main pane with more information](./media/billing-elevated-access/in-portal-billing-2.png "billing communication events.")
 
-You can view up to 3 months of billing updates on the user interface and retrieve up to 12 months from the API. 
-The billing communication events can be viewed through the Service Health portal or using the application programming interface (API). 
+## Access requirements
 
+The detail pages for billing communication event types appear in the **Billing Updates** pane in [Service Health](https://learn.microsoft.com/en-us/azure/service-health/service-health-overview). Only users with elevated access can open the pane.
 
-## Who can use this
-The detail pages for billing communication event types are available in the Billing updates blade. The blade can only be accessed by users with the following elevated access:
+To view the **Billing Updates** pane, you need one of the following roles:
+
 - Subscription owner
 - Subscription administrator
-- Custom roles with the required permissions
+- Custom role with the required permissions
 
-If you don't have access to the blade you will see a message on your screen.
+Users without access see a message instead of the pane.
 
 ![Screenshot of in-portal billing access](./media/billing-elevated-access/in-portal-billing-access.png "no access to event details.")
 
-## How to view Billing Events
-Azure customers with any of the elevated accesses defined above can view billing communication events through the Billing updates blade in the ASH portal, via the API.<br>
-![Screenshot of the in-portal billing details](./media/billing-elevated-access/in-portal-billing-details.png "billing event details.")
-<br>or in Azure Resource Graph (ARG) as shown here.<br>
-![Screenshot of the in-portal billing argument query](./media/billing-elevated-access/in-portal-billing-argquery.png "sample ARG query")
+## How to view billing events
+
+Azure customers with the required elevated access can view billing communication events in the following ways:
+
+- **Billing Updates pane** in the [Service Health](https://learn.microsoft.com/en-us/azure/service-health/service-health-overview) portal  
+  ![Screenshot of the in-portal billing details](./media/billing-elevated-access/in-portal-billing-details.png "billing event details.")
+
+- **API access** to retrieve billing event data
+
+- **Azure Resource Graph (ARG)** using supported queries  
+  ![Screenshot of the in-portal billing argument query](./media/billing-elevated-access/in-portal-billing-argquery.png "sample ARG query")
