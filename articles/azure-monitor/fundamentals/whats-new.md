@@ -434,7 +434,7 @@ Application-Insights|[Application Insights availability tests](../app/availabili
 Containers|[Data transformations in Container insights](../containers/container-insights-transformations.md)|New article describes how to transform data using a DCR transformation in Container insights|
 Containers|[Enable Container insights](../containers/container-insights-onboard.md)|New article: Enable private link with Container insights|
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)|Create or edit Prometheus rule group in the Azure portal (preview)|
-Logs|[Detect and mitigate potential issues using AIOps and machine learning in Azure Monitor](../logs/aiops-machine-learning.md)|Microsoft Copilot in Azure now helps you write KQL queries to analyze data and troubleshoot issues based on prompts, such as "Are there any errors in container logs?". |
+Logs|[Detect and mitigate potential issues using AIOps and machine learning in Azure Monitor](../aiops/aiops-machine-learning.md)|Microsoft Copilot in Azure now helps you write KQL queries to analyze data and troubleshoot issues based on prompts, such as "Are there any errors in container logs?". |
 Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|More guidance on Azure Monitor Logs features that provide enhanced resilience.|
 Logs|[Data retention and archive in Azure Monitor Logs](../logs/data-retention-configure.md)|Azure Monitor Logs extended archiving of data to up to 12 years.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Added Basic logs support for Network managers tables.|
@@ -549,7 +549,7 @@ Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthro
 Essentials|[Azure Monitor managed service for Prometheus rule groups](../metrics/prometheus-rule-groups.md)| Added CLI & PowerShell reference and examples|
 Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|New article. Run a PowerShell script to set up resources required to send data to Azure Monitor using the Logs Ingestion API.|
 Logs|[Migrate from the HTTP Data Collector API to the Log Ingestion API to send data to Azure Monitor Logs](../logs/custom-logs-migrate.md)|Updated guidance for migrating from the legacy Azure Monitor Data Collector API to the Log Ingestion API.|
-Logs|[Detect and mitigate potential issues using AIOps and machine learning in Azure Monitor](../logs/aiops-machine-learning.md)|New article. Lists Azure Monitor AIOps features and explains how to implement a machine learning pipeline on data in Azure Monitor Logs.|
+Logs|[Detect and mitigate potential issues using AIOps and machine learning in Azure Monitor](../aiops/aiops-machine-learning.md)|New article. Lists Azure Monitor AIOps features and explains how to implement a machine learning pipeline on data in Azure Monitor Logs.|
 Logs|[Tutorial: Analyze data in Azure Monitor Logs using a notebook](../logs/notebooks-azure-monitor-logs.md)|New tutorial. Explains how to integrate a notebook with a Log Analytics workspace to create a machine learning pipeline or perform advanced analysis on data in Azure Monitor Logs. |
 Virtual-Machines|[Tutorial: Create availability alert rule for multiple Azure virtual machines (preview)](../vm/tutorial-monitor-vm-alert-availability.md)|New article with consolidated list of best practices for monitoring VMs organized by WAF pillar.|
 

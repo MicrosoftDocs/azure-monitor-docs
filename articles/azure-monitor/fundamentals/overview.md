@@ -202,7 +202,7 @@ An effective monitoring solution proactively responds to critical events, withou
 
 :::image type="content" source="media/overview/respond-box-opt.svg" alt-text="Diagram that shows the 'respond' part of the consumption section of the Azure Monitor system." border="false" lightbox="media/overview/respond-blowup-type-2-opt.svg":::
 
-[**Artificial Intelligence for IT Operations (AIOps)**](../logs/aiops-machine-learning.md) can improve service quality and reliability by using machine learning to process and automatically act on data you collect from applications, services, and IT resources into Azure Monitor. It automates data-driven tasks, predicts capacity usage, identifies performance issues, and detects anomalies across applications, services, and IT resources. These features simplify IT monitoring and operations without requiring machine learning expertise. 
+[**Artificial Intelligence for IT Operations (AIOps)**](../aiops/aiops-machine-learning.md) can improve service quality and reliability by using machine learning to process and automatically act on data you collect from applications, services, and IT resources into Azure Monitor. It automates data-driven tasks, predicts capacity usage, identifies performance issues, and detects anomalies across applications, services, and IT resources. These features simplify IT monitoring and operations without requiring machine learning expertise. 
 
 **[Azure Monitor Alerts](../alerts/alerts-overview.md)** notify you of critical conditions and can take corrective action. Alert rules can be based on metric or log data.
 

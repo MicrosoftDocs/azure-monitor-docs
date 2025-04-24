@@ -9,8 +9,10 @@ items:
       href: visualize/insights-overview.md
     - name: Multicloud monitoring
       href: fundamentals/best-practices-multicloud.md
-    - name: AIOps and machine learning
-      href: logs/aiops-machine-learning.md
+    - name: Azure Monitor AIOPs
+      items:
+      - name: AIOps and machine learning
+        href: aiops/aiops-machine-learning.md
     - name: What's new?
       href: fundamentals/whats-new.md
 - name: Getting started
