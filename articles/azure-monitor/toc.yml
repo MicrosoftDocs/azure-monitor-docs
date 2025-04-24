@@ -13,6 +13,10 @@ items:
       items:
       - name: AIOps and machine learning
         href: aiops/aiops-machine-learning.md
+      - name: Issue and investigation
+        items:
+        - name: Issue and investigation responsible use
+          href: aiops/issue-and-investigation-responsible-use.md
     - name: What's new?
       href: fundamentals/whats-new.md
 - name: Getting started
