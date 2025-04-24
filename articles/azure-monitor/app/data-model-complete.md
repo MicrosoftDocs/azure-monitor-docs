@@ -48,8 +48,9 @@ The Application Insights telemetry model defines a way to [correlate](distribute
 ## Availability
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive. We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
-
 <!--
+### Availability-specific fields
+
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
 | `id` | `Id` | The unique identifier of an availability test result, used for correlation between individual test executions which can help trace specific failures or patterns over time. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
@@ -58,29 +59,20 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 | `success` | `Success` | This field indicates whether an availability test was successful or not. It is a boolean value where `true` means the test was successful and `false` means it failed. |
 | `message` | `Message` | A descriptive message with details about the outcome of the test. It often contains exception details or error responses. |
 | `duration` | `Duration` | The amount of time the availability test took to execute. It helps measuring the performance and identifying response time issues. The duration is typically measured in milliseconds. |
+
+For a list of all available fields, see [AppAvailabilityResults](../reference/tables/appavailabilityresults.md).
 -->
 
-**Availability-specific fields**
-
-| Application Insights | Log Analytics |
-|----------------------|---------------|
-| `id`                 | `Id`          |
-| `name`               | `Name`        |
-| `location`           | `Location`    |
-| `success`            | `Success`     |
-| `message`            | `Message`     |
-| `duration`           | `Duration`    |
-
-For a list of all available fields with description, see [AppAvailabilityResults](../reference/tables/appavailabilityresults.md).
+[!INCLUDE [appavailabilityresults](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appavailabilityresults-include.md)]
 
 ## Browser timings
+
+[!INCLUDE [appbrowsertimings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appbrowsertimings-include.md)]
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| **name** | **Name** | The name of the page view associated with the browser timing event. |
-| **url** | **Url** | The full URL of the web page where the browser timing data was collected. This field is crucial to understand which pages might be experiencing performance issues. |
 | **networkDuration** | **NetworkDurationMs** | 1. + 2. |
 | **sendDuration** | **SendDurationMs** | 3. |
 | **receiveDuration** | **ReceiveDurationMs** | 4. |
@@ -103,6 +95,9 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 
 A dependency telemetry item represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
+[!INCLUDE [appdependencies](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appdependencies-include.md)]
+
+<!--
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
 | **id** | **Id** | The unique identifier of a dependency call instance, used for correlation with the request telemetry item that corresponds to this dependency call. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
@@ -113,6 +108,7 @@ A dependency telemetry item represents an interaction of the monitored component
 | **success** | **Success** | This field indicates whether a call was successful or not. It is a boolean value where `true` means the call was successful and `false` means it failed. |
 | **resultCode** | **ResultCode** | The result code of a dependency call. Examples are SQL error code and HTTP status code. |
 | **duration** | **DurationMs** | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
+-->
 
 ## Events
 
