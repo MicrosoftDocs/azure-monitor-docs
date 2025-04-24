@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 04/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -119,5 +119,77 @@ Recommendation ID: 2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--2c9e3f2a-7373-45e1-ab8b-f361e5f0c37f_end-->
+
+<!--825ff735-ed9a-4335-b132-321df86b0e81_begin-->
+
+#### Avoid placing Traffic Manager behind Front Door  
+  
+Using Traffic Manager as one of the origins for Front Door isn't recommended, as this can lead to routing issues. If you need both services in a high availability architecture, always place Traffic Manager in front of Azure Front Door.  
+  
+**Potential benefits**: Increase your workload resiliency  
+
+**Impact:** Medium
+  
+For more information, see [Azure Front Door - Best practices](https://aka.ms/afd-avoid-tm-frontdoor)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 825ff735-ed9a-4335-b132-321df86b0e81  
+Subcategory: Other
+
+<!--825ff735-ed9a-4335-b132-321df86b0e81_end-->
+
+<!--589ab0b0-1362-44fd-8551-0e7847767600_begin-->
+
+#### Consider having at least two origins  
+  
+Multiple origins support redundancy by distributing traffic across multiple instances of the application. If one instance is unavailable, then other backend origins can still receive traffic.  
+  
+**Potential benefits**: Increase your workload resiliency  
+
+**Impact:** High
+  
+For more information, see [Architecture Best Practices for Azure Front Door - Microsoft Azure Well-Architected Framework](https://aka.ms/afd-reliability-checklist)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 589ab0b0-1362-44fd-8551-0e7847767600  
+Subcategory: HighAvailability
+
+<!--589ab0b0-1362-44fd-8551-0e7847767600_end-->
+
+<!--79f543f9-60e6-4ef6-ae42-2095f6149cba_begin-->
+
+#### Use the same domain name on Front Door and your origin  
+  
+When you rewrite the Host header, request cookies and URL redirections might break. When you use platforms like Azure App Service, features like session affinity and authentication and authorization might not work correctly. Make sure to validate whether your application is going to work correctly.  
+  
+**Potential benefits**: Ensure application integrity by preserving original host name  
+
+**Impact:** Medium
+  
+For more information, see [Azure Front Door - Best practices](https://aka.ms/afd-same-domain-origin)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 79f543f9-60e6-4ef6-ae42-2095f6149cba  
+Subcategory: Other
+
+<!--79f543f9-60e6-4ef6-ae42-2095f6149cba_end-->
+
+<!--5185d64e-46fd-4ed2-8633-6d81f5e3ca59_begin-->
+
+#### Use managed TLS certificates  
+  
+When Front Door manages your TLS certificates, it reduces your operational costs, and helps you to avoid costly outages caused by forgetting to renew a certificate. Front Door automatically issues and rotates the managed TLS certificates.  
+  
+**Potential benefits**: Ensure service availability by having Front Door manage and rotate your certificates  
+
+**Impact:** Medium
+  
+For more information, see [Azure Front Door - Best practices](https://aka.ms/afd-use-managed-tls)  
+
+ResourceType: microsoft.cdn/profiles  
+Recommendation ID: 5185d64e-46fd-4ed2-8633-6d81f5e3ca59  
+Subcategory: Other
+
+<!--5185d64e-46fd-4ed2-8633-6d81f5e3ca59_end-->
 
 <!--articleBody-->
