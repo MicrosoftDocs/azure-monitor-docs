@@ -39,12 +39,17 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Requests](#requests) | `requests` | `AppRequests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
 | [Traces](#traces) | `traces` | `AppTraces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
-Every telemetry item can define the [context information](#context) like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment. Visit 
+Every telemetry item can define the context information like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
 
 > [!TIP]
 > You can use session ID to calculate an outage or an issue impact on users. Calculating the distinct count of session ID values for a specific failed dependency, error trace, or critical exception gives you a good understanding of an impact.
 
 The Application Insights telemetry model defines a way to [correlate](distributed-trace-data.md) telemetry to the operation of which it's a part. For example, a request can make a SQL Database call and record diagnostics information. You can set the correlation context for those telemetry items that tie it back to the request telemetry.
+
+> [!IMPORTANT]
+> Table and field names in Application Insights are different from Log Analytics due to compabitility reasons with classic Application Insights resources.
+
+This article covers all telemetry-type-specific fields. To get a full list of all available fields (including context fields) for a specific telemetry type, visit the link under the respective table in this document.
 
 ## Availability
 
@@ -67,14 +72,6 @@ For a list of all available fields, see [AppAvailabilityResults](../reference/ta
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents).
 
-<!-- as defined by these processing time definitions:
-1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
-1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
-1. **Client ↔ Web Server:** Client sends request payload, waits for the server to execute the request, and receives the first response packet.
-1. **Client ← Web Server:** Client receives the rest of the response payload bytes from the web server.
-1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
--->
-
 ### Browser-timing-specific fields
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
@@ -86,8 +83,6 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 | `totalDuration` | `TotalDurationMs` | The sum of all browser timings. |
 
 For a list of all available fields, see [AppBrowserTimings](../reference/tables/appbrowsertimings.md).
-
-:::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
 ## Dependencies
 
@@ -313,13 +308,6 @@ For a list of all available fields, see [AppTraces](../reference/tables/apptrace
 
 > [!NOTE]
 > Values for `severityLevel` are enumerated and platform-specific.
-
-## Context
-
-Every telemetry item might have a strongly typed context field. Every field enables a specific monitoring scenario. Use the custom properties collection to store custom or application-specific contextual information.
-
-> [!NOTE]
-> Some context fields are only available in Application Insights or Log Analytics.
 
 ## Custom properties and measurements
 
