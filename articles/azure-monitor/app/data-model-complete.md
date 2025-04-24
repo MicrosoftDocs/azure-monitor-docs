@@ -49,6 +49,7 @@ The Application Insights telemetry model defines a way to [correlate](distribute
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive. We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
 
+<!--
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
 | `id` | `Id` | The unique identifier of an availability test result, used for correlation between individual test executions which can help trace specific failures or patterns over time. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
@@ -57,6 +58,20 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 | `success` | `Success` | This field indicates whether an availability test was successful or not. It is a boolean value where `true` means the test was successful and `false` means it failed. |
 | `message` | `Message` | A descriptive message with details about the outcome of the test. It often contains exception details or error responses. |
 | `duration` | `Duration` | The amount of time the availability test took to execute. It helps measuring the performance and identifying response time issues. The duration is typically measured in milliseconds. |
+-->
+
+**Availability-specific fields**
+
+| Application Insights | Log Analytics |
+|----------------------|---------------|
+| `id`                 | `Id`          |
+| `name`               | `Name`        |
+| `location`           | `Location`    |
+| `success`            | `Success`     |
+| `message`            | `Message`     |
+| `duration`           | `Duration`    |
+
+For a list of all available fields with description, see [AppAvailabilityResults](../reference/tables/appavailabilityresults.md).
 
 ## Browser timings
 
