@@ -11,7 +11,7 @@ ms.date: 03/11/2025
 
 # Delete data from a Log Analytics workspace by using the Delete Data API 
 
-The Delete Data API lets you make asynchronous requests to remove data, such as sensitive, personal, corrupt, or incorrect log entries.
+The Delete Data API lets you remove data such as sensitive, personal, corrupt, or incorrect log entries.
 
 This article explains how to delete log entries from a specific table in your Log Analytics workspace by calling the Delete Data API.
 
@@ -57,11 +57,13 @@ If you enable [workspace replication](workspace-replication.md) on your Log Anal
 |:-------|:---------------------|
 | Delete data from a table in a Log Analytics workspace | `Microsoft.OperationalInsights/workspaces/tables/deleteData/action` permissions to the Log Analytics workspace, as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example |
 
-## Implementation considerations
+> [!NOTE]
+> Delete-data doesn't affect retention billing. Retention charge is governed by the retention period configured in [tables](./data-retention-configure.md#configure-table-level-retention), or your [workspace](./data-retention-configure.md#configure-the-default-interactive-retention-period-of-analytics-tables).
+
+## Considerations
 
 - You can submit up to 10 Delete Data requests per hour in a single Log Analytics workspace. 
-- The Analytics table plan supports data deletion. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. The Auxiliary plan doesn't support data deletion.
-- Delete-data doesn't affect retention billing. Retention charge is governed by the retention period configured in [tables](./data-retention-configure.md#configure-table-level-retention), or your [workspace](./data-retention-configure.md#configure-the-default-interactive-retention-period-of-analytics-tables).
+- Delete data API operates on data in Analytics plan. To delete data from a table with the Basic plan, change the plan to Analytics and then delete the data. The Auxiliary plan isn't supported.
 
 ## Call the Delete Data API to delete data from a specific table
 

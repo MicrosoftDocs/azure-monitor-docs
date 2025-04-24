@@ -591,11 +591,11 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
     "claims": null,
     "caller": null,
     "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee",
-    "eventSource": 2,
+    "eventSource": "ServiceHealth,
     "eventTimestamp": "2019-06-24T11:31:19.0312699+00:00",
     "httpRequest": null,
     "eventDataId": "<GUID>",
-    "level": 3,
+    "level": "Informational",
     "operationName": "Microsoft.ServiceHealth/maintenance/action",
     "operationId": "<GUID>",
     "properties": {
