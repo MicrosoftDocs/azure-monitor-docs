@@ -34,7 +34,7 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Dependencies](#dependencies) | `dependencies` | [AppDependencies](../reference/tables/appdependencies.md) | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
 | [Events](#events) | `customEvents` | [AppEvents](../reference/tables/appevents.md) | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
 | [Exceptions](#exceptions) | `exceptions` | [AppExceptions](../reference/tables/appexceptions.md) | Captures error information crucial for troubleshooting and understanding failures. |
-| [Metrics](#metrics) | `performanceCounters`<br><br>`customMetrics` | [AppPerformanceCounters](../reference/tables/appperformancecounters.md)<br><br>[AppMetrics](../reference/tables/appmetrics.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption. Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
+| [Metrics](#metrics) | `performanceCounters`<br><br>`customMetrics` | [AppPerformanceCounters](../reference/tables/appperformancecounters.md)<br><br>[AppMetrics](../reference/tables/appmetrics.md) | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption.<br><br>Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
 | [Page views](#page-views) | `pageViews` | [AppPageViews](../reference/tables/apppageviews.md) | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
 | [Requests](#requests) | `requests` | [AppRequests](../reference/tables/apprequests.md) | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
 | [Traces](#traces) | `traces` | [AppTraces](../reference/tables/apptraces.md) | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
@@ -66,27 +66,25 @@ For a list of all available fields, see [AppAvailabilityResults](../reference/ta
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents) as defined by these processing time definitions:
 
+:::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
+
+<!--
 1. **Client ↔ DNS:** Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.
 1. **Client ↔ Web Server:** Client creates TCP and then TLS handshakes with the web server.
 1. **Client ↔ Web Server:** Client sends request payload, waits for the server to execute the request, and receives the first response packet.
 1. **Client ← Web Server:** Client receives the rest of the response payload bytes from the web server.
 1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
-
-### Browser timing-specific fields
+-->
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| **name** | **Name** | The name of the page view associated with the browser timing event. |
-| **url** | **Url** | The full URL of the web page where the browser timing data was collected. This field is crucial to understand which pages might be experiencing performance issues. |
-| **networkDuration** | **NetworkDurationMs** | 1. + 2. |
-| **sendDuration** | **SendDurationMs** | 3. |
-| **receiveDuration** | **ReceiveDurationMs** | 4. |
-| **processingDuration** | **ProcessingDurationMs** | 5. |
-| **totalDuration** | **TotalDurationMs** | 1. + 2. + 3. + 4. + 5. |
+| **networkDuration** | **NetworkDurationMs** | Client reaches out to DNS to resolve website hostname, and DNS responds with the IP address.<br><br>Client creates TCP and then TLS handshakes with the web server. |
+| **sendDuration** | **SendDurationMs** | Client sends request payload, waits for the server to execute the request, and receives the first response packet. |
+| **receiveDuration** | **ReceiveDurationMs** | Client receives the rest of the response payload bytes from the web server. |
+| **processingDuration** | **ProcessingDurationMs** | Client now has full response payload and has to render contents into the browser and load the DOM. |
+| **totalDuration** | **TotalDurationMs** | The sum of all browser timings. |
 
 For a list of all available fields, see [AppBrowserTimings](../reference/tables/appbrowsertimings.md).
-
-:::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
 ## Dependencies
 
@@ -287,7 +285,6 @@ For a list of all available fields, see [AppTraces](../reference/tables/apptrace
 > [!NOTE]
 > Values for `severityLevel` are enumerated and platform-specific.
 
-<!--
 ## Context
 
 Every telemetry item might have a strongly typed context field. Every field enables a specific monitoring scenario. Use the custom properties collection to store custom or application-specific contextual information.
@@ -299,30 +296,35 @@ Every telemetry item might have a strongly typed context field. Every field enab
 | **operation_ParentId** | **ParentId** | The unique identifier of the telemetry item's immediate parent. For more information, see [Telemetry correlation](distributed-trace-data.md). | 128 |
 | **operation_SyntheticSource** | **SyntheticSource** | The name of the synthetic source. Some telemetry from the application might represent synthetic traffic. It might be the web crawler indexing the website, site availability tests, or traces from diagnostic libraries like the Application Insights SDK itself. | 1,024 |
 | **session_Id** | **SessionId** | Session ID is the instance of the user's interaction with the app. Information in the session context fields is always about the user. When telemetry is sent from a service, the session context is about the user who initiated the operation in the service. | 64 |
-| **user_Id** | **UserId** | ... | ... |
 | **application_Version** | **AppVersion** | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. | 1,024 |
+| **client_IP** | **ClientIP** | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. | 46 |
+| **cloud_RoleName** | **AppRoleName** | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. | 256 |
+| **cloud_RoleInstance** | **AppRoleInstance** | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. | 256 |
+| **sdkVersion** | **SDKVersion** | For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). | ... |
+
+For a list of all available fields, navigate to a specific telemetry type 
+
+<!-- No description
+| **user_Id** | **UserId** | ... | ... |
 | **client_Type** | **ClientType** | ... | ... |
 | **client_OS** | **ClientOS** | ... | ... |
-| **client_IP** | **ClientIP** | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. | 46 |
 | **client_City** | **ClientCity** | ... | ... |
 | **client_StateorProvince** | **ClientStateOrProvince** | ... | ... |
 | **client_CountryOrRegion** | **ClientCountryOrRegion** | ... | ... |
 | ... | **ClientBrowser** | ... | ... |
-| **cloud_RoleName** | **AppRoleName** | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. | 256 |
-| **cloud_RoleInstance** | **AppRoleInstance** | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. | 256 |
 | **appId** | **ResourceGUID** | ... | ... |
 | **appName** | N/A | In Application Insights, `appName` is the same as `_ResourceId`. | ... |
 | **iKey** | **IKey** | ... | ... |
-| **sdkVersion** | **SDKVersion** | ... | ... |
 | **itemId** | N/A | ... | ... |
 | **itemCount** | **ItemCount** | ... | ... |
 | **_ResourceId** | **_ResourceId** | ... | ... |
+-->
+
+<!-- Previous doc
 | **Account ID** |  | The account ID, in multitenant applications, is the tenant account ID or name that the user is acting with. It's used for more user segmentation when a user ID and an authenticated user ID aren't sufficient. Examples might be a subscription ID for the Azure portal or the blog name for a blogging platform. | 1,024 |
 | **Anonymous user ID** |  | The anonymous user ID (User.Id) represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use an authenticated user ID. | 128 |
 | **Authenticated user ID** |  | An authenticated user ID is the opposite of an anonymous user ID. This field represents the user with a friendly name. This ID is only collected by default with the ASP.NET Framework SDK's [`AuthenticatedUserIdTelemetryInitializer`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/WEB/Src/Web/Web/AuthenticatedUserIdTelemetryInitializer.cs).<br><br>Use the Application Insights SDK to initialize the authenticated user ID with a value that identifies the user persistently across browsers and devices. In this way, all telemetry items are attributed to that unique ID. This ID enables querying for all telemetry collected for a specific user (subject to [sampling configurations](sampling.md) and [telemetry filtering](api-filtering-sampling.md)).<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration. | 1,024 |
 | **Device type** |  | Originally, this field was used to indicate the type of the device the user of the application is using. Today it's used primarily to distinguish JavaScript telemetry with the device type `Browser` from server-side telemetry with the device type `PC`. | 64 |
-| **Internal: Node name** |  | The node name used for billing purposes. Use it to override the standard detection of nodes. | 256 |
-| **Internal: SDK version** |  | For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). | 64 |
 -->
 
 ## Custom properties and measurements
