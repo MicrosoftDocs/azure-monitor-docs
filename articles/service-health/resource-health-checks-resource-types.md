@@ -2,7 +2,7 @@
 title: Supported Resource Types through Azure Resource Health | Microsoft Docs
 description: Supported Resource Types through Azure Resource health
 ms.topic: conceptual
-ms.date: 01/23/2023
+ms.date: 04/24/2026
 ---
 
 # Resource types and health checks in Azure resource health
@@ -106,6 +106,11 @@ Below is a complete list of all the checks executed through resource health by r
 | - Is the server unavailable due to maintenance?<br> - Is the server unavailable due to reconfiguration?|
 
 ## Microsoft.DBforMySQL/servers
+|Executed Checks|
+|---|
+| - Is the server unavailable due to maintenance?<br> - Is the server unavailable due to reconfiguration?|
+
+## Microsoft.dbforpostgresql/flexibleservers
 |Executed Checks|
 |---|
 | - Is the server unavailable due to maintenance?<br> - Is the server unavailable due to reconfiguration?|
