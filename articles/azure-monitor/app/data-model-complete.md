@@ -51,12 +51,12 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| **id** | **Id** | The unique identifier of an availability test result, used for correlation between individual test executions which can help trace specific failures or patterns over time. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
-| **name** | **Name** | The name of an availability test. It's defined when creating the test (for example, "Homepage ping test"). |
-| **location** | **Location** | The geographical location or data center region from which an availability test was executed (for example, West US, Northern Europe). It helps to identify regional outages or latency issues. |
-| **success** | **Success** | This field indicates whether an availability test was successful or not. It is a boolean value where `true` means the test was successful and `false` means it failed. |
-| **message** | **Message** | A descriptive message with details about the outcome of the test. It often contains exception details or error responses. |
-| **duration** | **Duration** | The amount of time the availability test took to execute. It helps measuring the performance and identifying response time issues. The duration is typically measured in milliseconds. |
+| `id` | `Id` | The unique identifier of an availability test result, used for correlation between individual test executions which can help trace specific failures or patterns over time. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
+| `name` | `Name` | The name of an availability test. It's defined when creating the test (for example, "Homepage ping test"). |
+| `location` | `Location` | The geographical location or data center region from which an availability test was executed (for example, West US, Northern Europe). It helps to identify regional outages or latency issues. |
+| `success` | `Success` | This field indicates whether an availability test was successful or not. It is a boolean value where `true` means the test was successful and `false` means it failed. |
+| `message` | `Message` | A descriptive message with details about the outcome of the test. It often contains exception details or error responses. |
+| `duration` | `Duration` | The amount of time the availability test took to execute. It helps measuring the performance and identifying response time issues. The duration is typically measured in milliseconds. |
 
 ## Browser timings
 
@@ -81,6 +81,7 @@ Browsers expose measurements for page load actions with the [Performance API](ht
 1. **Client:** Client now has full response payload and has to render contents into the browser and load the DOM.
 
 <br>
+
 :::image type="content" source="media/data-model-complete/page-view-load-time.png" lightbox="media/data-model-complete/page-view-load-time.png" border="false" alt-text="Screenshot that shows the Metrics page in Application Insights showing graphic displays of metrics data for a web application." :::
 
 ## Dependencies
