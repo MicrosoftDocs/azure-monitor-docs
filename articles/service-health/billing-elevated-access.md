@@ -7,7 +7,7 @@ ms.date: 4/24/2025
 
 # Overview
 
-The in-portal billing communication in [Service Health](https://learn.microsoft.com/en-us/azure/service-health/service-health-overview) shows billing updates for users with the **subscription owner** or **subscription admin** roles. These users can view updates in both the **Billing Updates** pane and the Service Health API.
+The in-portal billing communication in [Service Health](service-health-overview.md) shows billing updates for users with the **subscription owner** or **subscription admin** roles. These users can view updates in both the **Billing Updates** pane and the Service Health API.
 
 To help you track billing changes, the communication includes updates that relate to your subscription. Users without these roles can’t access the **Billing Updates** pane.
 
@@ -32,7 +32,7 @@ You can view up to three months of billing updates in the user interface and ret
 
 ## Access requirements
 
-The detail pages for billing communication event types appear in the **Billing Updates** pane in [Service Health](https://learn.microsoft.com/en-us/azure/service-health/service-health-overview). Only users with elevated access can open the pane.
+The detail pages for billing communication event types appear in the **Billing Updates** pane in [Service Health](service-health-overview.md). Only users with elevated access can open the pane.
 
 To view the **Billing Updates** pane, you need one of the following roles:
 
@@ -48,7 +48,7 @@ Users without access see a message instead of the pane.
 
 Azure customers with the required elevated access can view billing communication events in the following ways:
 
-- **Billing Updates pane** in the [Service Health](https://learn.microsoft.com/en-us/azure/service-health/service-health-overview) portal  
+- **Billing Updates pane** in the [Service Health](service-health-overview.md) portal  
   ![Screenshot of the in-portal billing details](./media/billing-elevated-access/in-portal-billing-details.png "billing event details.")
 
 - **API access** to retrieve billing event data
