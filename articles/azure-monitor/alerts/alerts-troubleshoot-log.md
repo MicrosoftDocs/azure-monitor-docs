@@ -211,13 +211,13 @@ Identify the Time Range: Determine the specific time range you want to query. Fo
 
 ```json
     // Original query without time filter
-    resources
+    resourcechanges
     | where type == "microsoft.compute/virtualmachines"
 
     // Modified query with time filter
-    resources
+    resourcechanges
     | where type == "microsoft.compute/virtualmachines"
-    | where timestamp >= ago(24h)
+    | where properties.changeAttributes.timestamp > ago(1d)
 ```
 
 3) Test the Query: Run the modified query to ensure it returns the expected results within the specified time range.
