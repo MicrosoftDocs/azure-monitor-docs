@@ -60,11 +60,11 @@ Azure Monitor investigation makes suggestions for which resources to analyze bas
     3.  Alerts associated with the issue
     4.  Resources associated with the issue.
 
-        ![A screenshot of a computer AI-generated content may be incorrect.](media/dce6122928de06e8b346a1d87914e86b.png)
+        ![A screenshot of the issue page in the Azure portal](media/dce6122928de06e8b346a1d87914e86b.png)
 
 4.  Every finding in an investigation presents more details on the cause and present next steps to choose from.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](media/c21e9b9d0d9afc8536419f56cf170b1f.png)
+    ![A screenshot of the investigation tab of the issue page in the Azure portal.](media/c21e9b9d0d9afc8536419f56cf170b1f.png)
 
 ## Application Insights alerts investigation
 
