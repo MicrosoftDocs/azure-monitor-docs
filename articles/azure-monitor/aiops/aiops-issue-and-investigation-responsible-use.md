@@ -1,8 +1,18 @@
+---
+title: Responsible AI FAQ for Azure Monitor investigation (preview)
+description: This article explains the responsible use of Azure Monitor issue and investigation.
+ms.topic: conceptual
+ms.date: 04/25/2025
+ms.servce: azure-monitor
+---
+
 # Responsible AI FAQ for Azure Monitor investigation (preview)
+
+This article explains the responsible use of Azure Monitor issue and investigation.
 
 ## What is Azure Monitor Investigator (preview)?
 
-Azure Monitor Investigator is an advanced AIOps solution that helps IT operations teams efficiently find, troubleshoot, and resolve incidents. It uses AI and machine learning to automate the investigation process, offering insights and recommendations for issue mitigation based on data such as platform metrics and custom metrics. For an overview of how Azure Monitor Investigator works and a summary of its capabilities, see the <https://learn.microsoft.com/en-us/azure/azure-monitor/ai-ops/investigator-overview>[Azure Monitor Investigator (preview) overview](https://learn.microsoft.com/en-us/azure/azure-monitor/ai-ops/investigator-overview)[.](https://learn.microsoft.com/en-us/azure/azure-monitor/ai-ops/investigator-overview)
+Azure Monitor Investigator is an advanced AIOps solution that helps IT operations teams efficiently find, troubleshoot, and resolve incidents. It uses AI and machine learning to automate the investigation process, offering insights and recommendations for issue mitigation based on data such as platform metrics and custom metrics. For an overview of how Azure Monitor Investigator works and a summary of its capabilities, see the [Azure Monitor issue and investigation overview](aiops-issue-and-investigation-overview.md)
 
 ## Are Azure Monitor Investigator's (preview) results reliable?
 
@@ -14,11 +24,11 @@ Azure Monitor Investigator analyzes data within your Azure environment to genera
 
 ## What data does Azure Monitor Investigator (preview) collect?
 
-Azure Monitor Investigator doesn't use user-provided prompts or its own responses to train or improve the underlying AI models. User engagement data, such as the number of sessions, session duration, selected skills, and feedback, might be collected to improve Microsoft products and services, subject to the <https://privacy.microsoft.com/privacystatement>[Microsoft Privacy](https://privacy.microsoft.com/privacystatement) <https://privacy.microsoft.com/privacystatement>[Statement](https://privacy.microsoft.com/privacystatement) <https://privacy.microsoft.com/privacystatement>and explicit user consent.
+Azure Monitor Investigator doesn't use user-provided prompts or its own responses to train or improve the underlying AI models. User engagement data, such as the number of sessions, session duration, selected skills, and feedback, might be collected to improve Microsoft products and services, subject to the [Microsoft Privacy Statement](https://privacy.microsoft.com/privacystatement) and explicit user consent.
 
 ## What should I do if I see unexpected or offensive content?
 
-Azure Monitor Investigator development is guided by our <https://www.microsoft.com/ai/principles-and-approach>[AI principles](https://www.microsoft.com/ai/principles-and-approach) <https://www.microsoft.com/ai/principles-and-approach>and <https://aka.ms/RAIStandardPDF>[Responsible](https://aka.ms/RAIStandardPDF) <https://aka.ms/RAIStandardPDF>[AI Standard](https://aka.ms/RAIStandardPDF)[.](https://aka.ms/RAIStandardPDF) We have prioritized mitigating exposing customers to offensive content. However, you might still see unexpected results. We continually work to improve the technology to prevent such content.
+Azure Monitor Investigator development is guided by our [AI principles](https://www.microsoft.com/ai/principles-and-approach) and [Responsible AI Standard](https://aka.ms/RAIStandardPDF). We have prioritized mitigating exposing customers to offensive content. However, you might still see unexpected results. We continually work to improve the technology to prevent such content.
 
 ## How current is the information Azure Monitor Investigator (preview) provides?
 
@@ -38,7 +48,5 @@ To integrate Azure Monitor Investigator effectively into your operations, it's i
 
 ## Related content
 
--   [Azure Monitor issue (preview) overview](link to overview doc)
--   [How to use Azure Monitor issue](link to issue how to)
--   [Azure Monitor investigation](link to investigation overview)
--   [How to use Azure Monitor investigation](link to investigation how to)
+-   [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation-overview.md)
+-   [Use Azure Monitor issue and investigation (preview)](aiops-issue-and-investigation-how-to.md)
