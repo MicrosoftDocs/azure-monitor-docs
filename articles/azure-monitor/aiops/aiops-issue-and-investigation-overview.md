@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.date: 04/25/2025
 ms.servce: azure-monitor
 ---
-
+<!-- goodbye -->
 # Azure Monitor issue and investigation (preview)
 
 This article explains what Azure Monitor issue and investigation is and how it is used to triage and mitigate problems with an Azure resource.
