@@ -2,7 +2,7 @@
 title: In-portal Billing Communications
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 4/24/2025
+ms.date: 4/25/2025
 ---
 
 # Overview
@@ -50,7 +50,7 @@ Users without access see a message instead of the pane.
 
 Azure customers with any of the elevated accesses defined above can view billing communication events through the **Billing Updates pane**  in the [Service Health](service-health-overview.md) portal, as well as through the API access to retrieve billing event data,
   
-  ![Screenshot of the in-portal billing details](./media/billing-elevated-access/in-portal-billing-details.png "Billing event details.")
+  ![Screenshot of the in-portal billing details.](./media/billing-elevated-access/in-portal-billing-details.png "Billing event details.")
 or use an **Azure Resource Graph (ARG)** using supported queries.
   
-  ![Screenshot of the in-portal billing argument query](./media/billing-elevated-access/in-portal-billing-azure-resource-graph-query.png "sample azure graph query.")
+  ![Screenshot of the in-portal billing argument query.](./media/billing-elevated-access/in-portal-billing-azure-resource-graph-query.png "sample azure graph query.")
