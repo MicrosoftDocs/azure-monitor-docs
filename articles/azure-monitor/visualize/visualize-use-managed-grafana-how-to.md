@@ -1,6 +1,6 @@
 ---
 title: Use Azure Managed Grafana
-description: This article is an overview of how you can use Grafana with Azure Monitor.
+description: This article shows you how to use Azure Managed Grafana.
 ms.topic: conceptual
 ms.date: 04/25/2025
 ---

@@ -23,6 +23,6 @@ You can also use the plug-in to query and visualize data from Azure Monitor mana
 
 You can then display this performance and availability data on your Grafana dashboard.
 
-# Next steps
+## Next steps
 
 - [Use managed grafana](visualize-use-managed-grafana-how-to.md)
