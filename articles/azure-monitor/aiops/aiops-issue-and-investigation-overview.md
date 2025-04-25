@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor issue and investigation (preview)
-description: This article shows you how to use Azure Monitor issue and investigation to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+description: This article explains what Azure Monitor issue and investigation is and how it is used to triage and mitigate problems with an Azure resource.
 ms.topic: conceptual
 ms.date: 04/25/2025
 ms.servce: azure-monitor

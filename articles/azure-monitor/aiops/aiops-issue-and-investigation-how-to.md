@@ -15,7 +15,7 @@ This article shows you how to use Azure Monitor issue and investigation to trigg
 
 ## Prerequisites
 
--   Read the [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation_overview.md).
+-   Read the [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation-overview.md).
 -   Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigation.
 -   Assign either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role to the resource you’re investigating.
 -   Trigger an alert.
