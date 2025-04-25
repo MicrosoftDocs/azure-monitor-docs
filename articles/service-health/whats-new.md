@@ -19,7 +19,7 @@ See [In-Portal Billing Communications](billing-elevated-access.md).
 
 ## Azure Copilot for Microsoft in Service Health
 You can now use Azure Copilot for Microsoft to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the service health portal. 
-<br>See [Understand service health events and status using Microsoft Copilot in Azure](./copilot/understand-service-health.md).
+<br>See [Understand service health events and status using Microsoft Copilot in Azure](/copilot/understand-service-health.md).
 
 
 ## What's coming
