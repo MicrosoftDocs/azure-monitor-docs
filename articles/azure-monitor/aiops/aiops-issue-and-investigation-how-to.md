@@ -1,15 +1,22 @@
-# Use Azure issue and investigation (preview)
+---
+title: Use Azure issue and investigation (preview)
+description: This article shows you how to use Azure Monitor issue and investigation to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+ms.topic: how-to
+ms.date: 04/25/2025
+ms.servce: azure-monitor
+---
+
+# Use Azure Monitor issue and investigation (preview)
 
 This article shows you how to use Azure Monitor issue and investigation to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
 
-NOTE:
-
-For preview, the only alert supported is an Application Insights resource alert.
+> [!NOTE:]
+> For preview, the only alert supported is an Application Insights resource alert.
 
 ## Prerequisites
 
--   Read the [Azure Monitor issue and investigation (preview) overview](https://microsoft-my.sharepoint.com/personal/inhenkel_microsoft_com/Documents/Documents/SME%20Review/Issue%20and%20investigation/V2/issue_and_investigation_how_to.docx).
--   Learn about the [responsible use](https://microsoft-my.sharepoint.com/personal/inhenkel_microsoft_com/Documents/Documents/SME%20Review/Issue%20and%20investigation/V2/issue_and_investigation_responsible_use.docx) of Azure Monitor investigation.
+-   Read the [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation_overview.md).
+-   Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigation.
 -   Assign either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role to the resource you’re investigating.
 -   Trigger an alert.
 
@@ -54,4 +61,4 @@ An investigation will present findings based on the evidence it analyzed.
 
 ## Related content
 
--   [Azure Monitor issue (preview) and investigation overview](link to overview doc)
+-   [Azure Monitor issue (preview) and investigation overview](aiops-issue-and-investigation-overview.md)
