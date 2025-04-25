@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.date: 04/25/2025
 ---
 
-## Use Grafana with Azure Monitor Dashboards
+# Use Grafana with Azure Monitor Dashboards
 
 Summary goes here.
 
