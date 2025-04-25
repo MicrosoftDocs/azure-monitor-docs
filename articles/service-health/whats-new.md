@@ -12,8 +12,9 @@ This article lists recent changes in the Azure Service Health service.
 ## New Metadata information
 In February 2025, there's a new field called Event Level which indicates the significance of each communication in Service Health Communications. 
 You can use this field to sort events. See [Service Health Event Level Filter notifications](metadata-filter.md)
+
 ## In-portal Billing communications
-There are new Billing communication events available in-portal for subscribers to find more information about their billing events such as overbilling, underbilling, price changes, etc. <br>
+There are new Billing communication events available in-portals for subscribers to find more information about their billing events such as overbilling, underbilling, price changes, etc. <br>
 See [In-Portal Billing Communications](billing-elevated-access.md).
 
 ## Azure Copilot for Microsoft in Service Health
