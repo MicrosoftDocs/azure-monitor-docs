@@ -1318,9 +1318,13 @@ items:
     - name: Grafana overview
       href: visualize/visualize-grafana-overview.md
     - name: Grafana Dashboards
-      href: visualize/visualize-use-graphana-dashboards.md
+      href: visualize/visualize-use-grafana-dashboards.md
     - name: Managed Grafana
-      href: visualize/grafana-plugin.md 
+      items:
+      - name: Managed Grafana overview
+        href: visualize/grafana-plugin.md
+      - name: Use managed Grafana
+        href: visualize/visualize-use-managed-grafana-how-to.md 
   - name: Azure Monitor Dashboards
     items:
      - name: Dashboard using log data
