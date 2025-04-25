@@ -15,6 +15,10 @@ items:
         href: aiops/aiops-machine-learning.md
       - name: Issue and investigation
         items:
+        - name: Issue and investigation overview
+          href: issue-and-investigation-overview.md
+        - name: Use issue and investigation
+          href: issue-and-investigation-how-to.md
         - name: Issue and investigation responsible use
           href: aiops/issue-and-investigation-responsible-use.md
     - name: What's new?
