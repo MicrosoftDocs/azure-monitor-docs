@@ -9,11 +9,11 @@ ms.date: 4/24/2025
 
 The in-portal billing communication in [Service Health](service-health-overview.md) shows billing updates for users with the **subscription owner** or **subscription admin** roles. These users can view updates in both the **Billing Updates** pane and the Service Health API.
 
-![Screenshot of in-portal billing main pane](./media/billing-elevated-access/in-portal-billing-main.png "main pane.")
+![Screenshot of in-portal billing main pane.](./media/billing-elevated-access/in-portal-billing-main.png "In-portal billing main pane.")
 
 To help you track billing changes, the communication includes updates that relate to your subscription. Users without these roles can’t access the **Billing Updates** pane.
 
-![Screenshot of in-portal billing main pane with more information](./media/billing-elevated-access/in-portal-billing-2.png "billing communication events.")
+![Screenshot of in-portal billing main pane with more information.](./media/billing-elevated-access/in-portal-billing-2.png "Billing communication events.")
 
 The **Billing Updates** pane includes billing communication types such as:
 
@@ -44,13 +44,13 @@ To view the **Billing Updates** pane, you need one of the following roles:
 
 Users without access see a message instead of the pane.
 
-![Screenshot of in-portal billing access](./media/billing-elevated-access/in-portal-billing-access.png "no access to event details.")
+![Screenshot of no in-portal billing access.](./media/billing-elevated-access/in-portal-billing-access.png "No access to billing event details.")
 
 ## How to view billing events
 
 Azure customers with any of the elevated accesses defined above can view billing communication events through the **Billing Updates pane**  in the [Service Health](service-health-overview.md) portal, as well as through the API access to retrieve billing event data,
   
-  ![Screenshot of the in-portal billing details](./media/billing-elevated-access/in-portal-billing-details.png "billing event details.")
+  ![Screenshot of the in-portal billing details](./media/billing-elevated-access/in-portal-billing-details.png "Billing event details.")
 or use an **Azure Resource Graph (ARG)** using supported queries.
   
-  ![Screenshot of the in-portal billing argument query](./media/billing-elevated-access/in-portal-billing-argquery.png "sample ARG query")
+  ![Screenshot of the in-portal billing argument query](./media/billing-elevated-access/in-portal-billing-azure-resource-graph-query.png "sample azure graph query.")
