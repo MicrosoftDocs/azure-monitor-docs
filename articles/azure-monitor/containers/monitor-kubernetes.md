@@ -251,7 +251,7 @@ Following are common scenarios for monitoring your Kubernetes objects and worklo
 - Under **Reports**, use the **Deployments** workbook to see deployment metrics. For more information, see [Deployment & HPA metrics with Container Insights](container-insights-deployment-hpa-metrics.md).
 
 **Grafana dashboards**<br>
-- Use the [prebuilt dashboards](../visualize/visualize-use-manged-grafana-how-to.md) in Managed Grafana for **Nodes** and **Pods** to view their health and performance.
+- Use the [prebuilt dashboards](../visualize/visualize-use-managed-grafana-how-to.md) in Managed Grafana for **Nodes** and **Pods** to view their health and performance.
 - Multiple [Kubernetes dashboards](https://grafana.com/grafana/dashboards/?search=kubernetes) are available that visualize the performance and health of your nodes based on data stored in Prometheus.
 
 
