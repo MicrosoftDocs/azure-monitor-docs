@@ -46,8 +46,10 @@ To create a Resource Manager template with the default Application Insights sett
 In the following sample, replace all instances of `my-net-app` with your site name:
 
 > [!NOTE]
-> The following template is for a .NET 8 (LTS) application running on Linux. For Windows, make the appropriate changes based comments in the template. If you want to use a different runtime stack (for example, Java 21 or Node.js 22 LTS), we recommend creating your own template based on the instructions above.
-,
+> The following template is for a .NET 8 (LTS) application running on Linux. For Windows, make the appropriate changes based comments in the template.
+> 
+> If you want to use a different runtime stack (for example, Java or Node.js), we recommend creating a new template based on the instructions above.
+
 ```json
 {
     "resources": [
