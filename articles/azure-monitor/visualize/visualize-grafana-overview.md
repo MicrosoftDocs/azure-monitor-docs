@@ -36,11 +36,11 @@ The following is a list of related managed Grafana documentation.
 ### Containers
 - [Monitor Kubernetes](../containers/monitor-kubernetes.md)
 - [Eanable monitoring for Kubernetes clusters, Enable Prometheus and Grafana](../containers/kubernetes-monitoring-enable.md?tabs=cli#enable-prometheus-and-grafana)
-- [Default Grafana dashboard configuration for Prometheus](../containers/prometheus-metrics-scrape-default#dashboards)
+- [Default Grafana dashboard configuration for Prometheus](../containers/prometheus-metrics-scrape-default.md#dashboards)
 - [Container insights log schema, Install Grafana dashboard](../containers/container-insights-logs-schema.md#install-grafana-dashboard)
 - Importing specific Grafana dashboards
     - [Argo CD](../containers/prometheus-argo-cd-integration.md)
-    - [Elastisearch](../containers/prometheus-elastisearch-integration.md)
+    - [Elastisearch](../containers/prometheus-elasticsearch-integration.md)
     - [Istio](../containers/prometheus-istio-integration.md)
     - [Kafka](../containers/prometheus-kafka-integration.md)
 
