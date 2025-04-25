@@ -3686,7 +3686,7 @@
    "redirect_document_id": false
   },
   {
-   "source_path_from_root": "/articles/azure-monitor/platform/grafana-plugin.md",
+   "source_path_from_root": "/articles/azure-monitor/platform/visualize-grafana-overview.md",
    "redirect_url": "/azure/azure-monitor/visualize/grafana-plugin",
    "redirect_document_id": false
   },
