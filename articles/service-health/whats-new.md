@@ -15,7 +15,7 @@ You can use this field to sort events. See [Service Health Event Level Filter no
 
 ## In-portal Billing communications
 There are new Billing communication events available in-portals for subscribers to find more information about their billing events such as overbilling, underbilling, price changes, etc. <br>
-See [In-Portal Billing Communications](billing-elevated-access).
+See [In-Portal Billing Communications](billing-elevated-access.md).
 
 ## Azure Copilot for Microsoft in Service Health
 You can now use Azure Copilot for Microsoft to find outage details, ask questions about subscriptions and resources, and access more details about outages through links to the service health portal. 
