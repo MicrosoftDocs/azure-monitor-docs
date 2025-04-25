@@ -1314,6 +1314,13 @@ items:
     - name: Dashboard Preview
       href: visualize/workbooks-dashboard-preview.md
   - name: Grafana
+    items:
+    - name: Grafana overview
+      href: visualize-grafana-overview.md
+    - name: Grafana Dashboards
+      href: visualize-use-graphana-dashboards-with-grafana.md
+    - name: Managed Grafana
+      href: visualize/grafana-plugin.md 
     href: visualize/grafana-plugin.md
   - name: Dashboards
     items:
