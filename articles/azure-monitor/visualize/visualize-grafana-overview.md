@@ -7,11 +7,25 @@ ms.date: 04/25/2025
 
 # Visualize with Grafana
 
-This article is an overview of how you can use Grafana with Azure Monitor. There are two main ways to use Grafana with Azure Monitor, Grafana dashboards and Managed Grafana.
+This article is an overview of how you can use Grafana with Azure Monitor. There are two main ways to use Grafana with Azure Monitor, Azure Monitor dashboards with Grafana and Managed Grafana.
 
-## Grafana dashboards
+## Dashboards with Grafana
 
-Description of new content goes here.
+Azure Monitor doards with [Grafana](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/) enable you to use Grafana's query, transformation, and visualization capability of Azure Monitor metrics, logs, traces, Azure Managed Prometheus and Azure Resource Graph in the Azure portal. You can:
+
+- Create and edit dashboards directly in the Azure portal without additional cost or administrative overhead.
+- Import dashboards from thousands of publicly available [Grafana community dashboards](https://grafana.com/grafana/dashboards/?dataSource=prometheus).
+- Apply a wide range of Grafana [visualizations](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/) and client-side [transformations](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/) to Azure monitoring data.
+- Manage Grafana dashboards as native Azure resources, including using Azure [RBAC](/azure/role-based-access-control/overview.md) and automation via ARM and Bicep templates. 
+
+You can access Azure Monitor dashboards with Grafana through the Azure portal, or from Azure Kubernetes Services.
+
+You can create and edit dashboards and create your own copy to modify them without directly editing the original. You can also tag the dashboards.
+
+### Limitations
+
+- **Preview limitations**. Support for Grafana Explore, Dashboard links and Exemplars is not yet available.
+- **Unsupported features**. Grafana evaluated alerts, reports, library panels, snapshots, playlists, app plugins and copying panels across different dashboards.  
 
 ## Managed Grafana
 
@@ -51,3 +65,35 @@ The following is a list of related managed Grafana documentation.
 ### Sysetm Center Operations Manager(SCOM)
 - [Dashboards on Azure Managed Grafana](../scom-manage-instance/dashboards-on-azure-managed-grafana.md)
 - [Query Azure Monitor SCOM Managed Instance data from Azure Managed Grafana dashboards](../scom-manage-instance/query-scom-managed-instance-data-on-grafana.md)
+
+## When to use
+
+If you store observability and telemetry data exclusively in Azure, choose Azure Monitor with Grafana. 
+
+If you need access to additional data source and automation, including open-source and Grafana enterprise data sources, Grafana alerts, scheduled reports, and the ability to share access to dashboards without sharing access to the underlying data store, choose Managed Grafana.
+
+## Solution comparison
+
+|  | **Azure Monitor dashboards with Grafana** | **Azure Managed Grafana** |
+|--|--|--|
+| Access | Azure Portal | Grafana Web Interface |
+| Pricing | No cost | [Per user pricing](https://azure.microsoft.com/pricing/details/managed-grafana/?msockid=01a84dc8ec106f122df65931ed6b6e5d) plus compute costs for Standard SKU |
+| Data Sources | Azure Monitor and Azure Prometheus | Azure Monitor, Azure Prometheus, Azure Data Explorer, [OSS data sources](/azure/managed-grafana/how-to-data-source-plugins-managed-identity.md?tabs=azure-portal), [Enterprise data sources](/azure/managed-grafana/how-to-grafana-enterprise.md) available with license |
+| Data source authentication | Current-user only | User-configurable: Current-user, Managed Identity, App registration |
+| Data source administration | N/A – depends on user RBAC roles | User-managed data sources |
+| Compute resources | Shared | Dedicated |
+| Grafana Enterprise | Not supported | Available with [license](/azure/managed-grafana/how-to-grafana-enterprise.md#update-a-grafana-enterprise-plan) |
+| Additional Plugins | Azure-managed only | Azure-managed, open-source and optional 3rd party with Enterprise |
+| Grafana Alerts | Not supported | Supported |
+| Grafana Email Notification | Not supported | Supported |
+| Reporting | Not supported | Supported |
+| Private networking | Not supported | Private link and managed private endpoint |
+| Deterministic outbound IP | Not supported | Supported |
+| Zone redundancy | Enabled by default | Supported |
+| SLA | Not yet available | 99.9% availability |
+
+## Next steps
+
+- [Use Azure Monitor dashbaords with Grafana](visualize-use-grafana-dashboards.md)
+- [Use Manged Grafana](visualize-use-managed-grafana-how-to.md)
+ 
