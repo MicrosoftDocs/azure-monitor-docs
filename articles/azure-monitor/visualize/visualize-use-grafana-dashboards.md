@@ -26,25 +26,25 @@ The following steps are for using Grafana dashboards that are already available 
 1.  Select a dashboard for example .
 1.  Choose a *subscription* and *resource group* where the target resource exists. The dashboard loads based on the dashboard your chose and the selected resources.
 
-## Use dashboards with Azure Kubernetes Service (AKS)
-
-> [!Note]
-> The Kubernetes cluster must be onboarded to Azure Managed Prometheus.
-
-1.  Navigate to the AKS cluster you want to work with in the Azure portal.
-1.  Select **Dashboards with Grafana (Preview)**.
-1.  Select the Kubernetes cluster you want to work with.
-1.  Select a dashboard using *Azure Monitor Workspace* as the data source.
-1.  To apply filters, select the **Workspace**, **Cluster**, and any additional, needed filters. The dashboard visuals update to reflect selections.
-
-## Use Save as to customize a dashboard
-
 ## Create a new Grafana dashboard
 
 1.  Select **New Dashboard** from within the Grafana interface.
 1.  Add panels using built-in or code-based query editors.
 1.  Choose a supported data source (*Azure Monitor* or *Prometheus*).
 1.  Save the dashboard to a *subscription*, *resource group*, and *region*.
+
+## Save a copy of a dashboard
+
+You can choose **Save As** to save the dashboard to your subscription and make edits without affecting the original dashboard.
+
+1. Open the dashboard.
+1. Choose **Save As**.
+1. Enter a title in the **Title** field.
+1. Choose the subscription for the dashboard from the **Subscription** dropdown list.
+1. Choose the reosurce group from the **Resource Group** dropdown list.
+1. Choose the location (region) from the **Location** dropdown list.
+1. Select **Save**.
+1. Select **Yes** to open the dashboard copy and begin editing.
 
 ## Edit a dashboard
 
@@ -85,19 +85,6 @@ Follow the above steps then:
 > [!NOTE]
 > Only dashboards using supported data sources can be imported.
 
-## Save a copy of a dashboard
-
-You can choose **Save As** to save the dashboard to your subscription and make edits without affecting the original dashboard.
-
-1. Open the dashboard.
-1. Choose **Save As**.
-1. Enter a title in the Title field.
-1. Choose the subscription for the dashboard from the **Subscription** dropdown list.
-1. Choose the reosurce group from the **Resource Group** dropdown list.
-1. Choose the location (region) from the **Location** dropdown list.
-1. Select **Save**.
-1. Select **Yes** to open the dashboard copy and begin editing.
-
 ## Share links to dashboards
 
 Dashboards that you import or create require RBAC access configuration to share them with specific people or groups.
@@ -106,3 +93,19 @@ Dashboards that you import or create require RBAC access configuration to share 
 1. Select **Share**. The Sare Dashboard pane opens. Copy the link to the dashboard to your clipboard.
 1. Select **Manage sharing options** to use the RBAC workflow for sharing.
 1. Paste the link into your preferred communication method to share it with the intended people or groups.
+
+## Use dashboards with Azure Kubernetes Service (AKS)
+
+> [!Note]
+> The Kubernetes cluster must be onboarded to Azure Managed Prometheus.
+
+1.  Navigate to the AKS cluster you want to work with in the Azure portal.
+1.  Select **Dashboards with Grafana (Preview)**.
+1.  Select the Kubernetes cluster you want to work with.
+1.  Select a dashboard using *Azure Monitor Workspace* as the data source.
+1.  To apply filters, select the **Workspace**, **Cluster**, and any additional, needed filters. The dashboard visuals update to reflect selections.
+
+## Related content
+
+- [Azure Monitor Grafana overview](visualize-grafana-overview.md)
+- [Use Manged Grafana](visualize-use-managed-grafana-how-to.md)
