@@ -1,13 +1,13 @@
 ---
 title: Use Grafana dashboards
-description: Summary goes here.
+description: This article provides guidance on using Grafana dashboards with Azure Monitor. It covers prerequisites, such as having Azure resources and appropriate RBAC roles, and explains how to use pre-existing dashboard templates, create new dashboards, and customize or edit dashboards. It also details importing dashboards from JSON files or the Grafana public gallery, saving copies of dashboards, and sharing them with others using RBAC configurations.
 ms.topic: conceptual
 ms.date: 04/25/2025
 ---
 
 # Use Grafana with Azure Monitor Dashboards
 
-Summary goes here.
+This article provides guidance on using Grafana dashboards with Azure Monitor. It covers prerequisites, such as having Azure resources and appropriate RBAC roles, and explains how to use pre-existing dashboard templates, create new dashboards, and customize or edit dashboards. It also details importing dashboards from JSON files or the Grafana public gallery, saving copies of dashboards, and sharing them with others using RBAC configurations.
 
 ## Prerequisites
 
@@ -41,23 +41,22 @@ The following steps are for using Grafana dashboards that are already available 
 
 ## Create a new Grafana dashboard
 
-1.  Select *\*New Dashboard\** from within the Grafana interface.
+1.  Select **New Dashboard** from within the Grafana interface.
 1.  Add panels using built-in or code-based query editors.
 1.  Choose a supported data source (*Azure Monitor* or *Prometheus*).
 1.  Save the dashboard to a *subscription*, *resource group*, and *region*.
 
 ## Edit a dashboard
 
-Note
-
-Editing tools and behavior follow standard Grafana open-source controls.
+> [!NOTE]
+> Editing tools and behavior follow standard Grafana open-source controls.
 
 1.  Open an editable dashboard (created or imported).
 1.  Select **Edit** to modify panels, queries, and visualizations.
 
 ## Import Grafana dashboards using JSON
 
-The following instructions assume that you signed in to your Grafana account in one browser window or tab and, in another window or tab, you signed in to your Azure account, are in the Azure Monitor area of the Azure portal, and selected **Dashboards with Grafana (Preview)**.
+The following instructions assume that you signed in to your Grafana account in one browser window or tab and, in another window or tab, you signed in to your Azure account, are in the Azure Monitor area of the Azure portal, and selected **Dashboards with Grafana (preview)**.
 
 Using the Grafana website window or tab, navigate to the dashboard you want to import.
 
@@ -86,8 +85,24 @@ Follow the above steps then:
 > [!NOTE]
 > Only dashboards using supported data sources can be imported.
 
-SEE VIDEO FROM LAST WEEK FOR THESE EDITS.
+## Save a copy of a dashboard
 
-## Generate and share links to dashboards
+You can choose **Save As** to save the dashboard to your subscription and make edits without affecting the original dashboard.
 
-SEE VIDEO FROM LAST WEEK FOR THESE EDITS.
+1. Open the dashboard.
+1. Choose **Save As**.
+1. Enter a title in the Title field.
+1. Choose the subscription for the dashboard from the **Subscription** dropdown list.
+1. Choose the reosurce group from the **Resource Group** dropdown list.
+1. Choose the location (region) from the **Location** dropdown list.
+1. Select **Save**.
+1. Select **Yes** to open the dashboard copy and begin editing.
+
+## Share links to dashboards
+
+Dashboards that you import or create require RBAC access configuration to share them with specific people or groups.
+
+1. Open the dashboard.
+1. Select **Share**. The Sare Dashboard pane opens. Copy the link to the dashboard to your clipboard.
+1. Select **Manage sharing options** to use the RBAC workflow for sharing.
+1. Paste the link into your preferred communication method to share it with the intended people or groups.
