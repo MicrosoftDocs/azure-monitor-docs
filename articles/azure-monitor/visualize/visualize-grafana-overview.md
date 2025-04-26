@@ -83,7 +83,7 @@ Choose managed Grafana if you need access to external data sources and automatio
 | Data source administration | N/A – depends on user RBAC roles | User-managed data sources |
 | Compute resources | Shared | Dedicated |
 | Grafana Enterprise | Not supported | Available with [license](/azure/managed-grafana/how-to-grafana-enterprise#update-a-grafana-enterprise-plan) |
-| Additional Plugins | Azure-managed only | Azure-managed, open-source, and optional third party with Enterprise |
+| Additional Plugins | Azure-managed only | Azure-managed, open-source, and optional third-party with Enterprise |
 | Grafana Alerts | Not supported | Supported |
 | Grafana Email Notification | Not supported | Supported |
 | Reporting | Not supported | Supported |
