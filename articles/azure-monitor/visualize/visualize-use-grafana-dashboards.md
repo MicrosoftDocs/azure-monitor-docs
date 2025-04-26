@@ -33,6 +33,17 @@ The following steps are for using Grafana dashboards that are already available 
 1.  Choose a supported data source (*Azure Monitor* or *Prometheus*).
 1.  Save the dashboard to a *subscription*, *resource group*, and *region*.
 
+## Tag a dashboard
+
+Azure Monitor dashboards with Grafana tags are managed using Azure tags. Open-source Grafana dashboard tags remain in the dashboard JSON during import and export but are not used for populating Azure tags.
+
+**THIS NEEDS TO BE DONE IN STEPS LIKE THE REST OF THE DOC.**
+To add Dashboard tags to a saved dashboard, add or update the Azure tag with the key GrafanaDashboardTags with your tag names using commas to separate entries.
+
+Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters added.  
+
+You can also add this tag GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters to a saved dashboard to be able to access and view the dashboard in the context of AKS clusters.
+
 ## Save a copy of a dashboard
 
 You can choose **Save As** to save the dashboard to your subscription and make edits without affecting the original dashboard.
@@ -41,7 +52,7 @@ You can choose **Save As** to save the dashboard to your subscription and make e
 1. Choose **Save As**.
 1. Enter a title in the **Title** field.
 1. Choose the subscription for the dashboard from the **Subscription** dropdown list.
-1. Choose the reosurce group from the **Resource Group** dropdown list.
+1. Choose the resource group from the **Resource Group** dropdown list.
 1. Choose the location (region) from the **Location** dropdown list.
 1. Select **Save**.
 1. Select **Yes** to open the dashboard copy and begin editing.
