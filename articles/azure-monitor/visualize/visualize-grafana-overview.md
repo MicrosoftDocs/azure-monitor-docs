@@ -74,7 +74,7 @@ Choose managed Grafana if you need access to external data sources and automatio
 
 ## Solution comparison
 
-|  | **Azure Monitor dashboards with Grafana** | **Azure Managed Grafana** |
+| **Feature** | **Azure Monitor dashboards with Grafana** | **Azure Managed Grafana** |
 |--|--|--|
 | Access | Azure portal | Grafana Web Interface |
 | Pricing | No cost | [Per user pricing](https://azure.microsoft.com/pricing/details/managed-grafana/?msockid=01a84dc8ec106f122df65931ed6b6e5d) plus compute costs for Standard SKU |
