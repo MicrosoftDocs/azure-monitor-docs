@@ -16,7 +16,7 @@ Azure Monitor doards with [Grafana](https://grafana.com/docs/grafana/latest/dash
 - Create and edit dashboards directly in the Azure portal without additional cost or administrative overhead.
 - Import dashboards from thousands of publicly available [Grafana community dashboards](https://grafana.com/grafana/dashboards/?dataSource=prometheus).
 - Apply a wide range of Grafana [visualizations](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/) and client-side [transformations](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/) to Azure monitoring data.
-- Manage Grafana dashboards as native Azure resources, including using Azure [RBAC](/azure/role-based-access-control/overview.md) and automation via ARM and Bicep templates. 
+- Manage Grafana dashboards as native Azure resources, including using Azure [RBAC](/azure/role-based-access-control/overview) and automation via ARM and Bicep templates. 
 
 You can access Azure Monitor dashboards with Grafana through the Azure portal, or from Azure Kubernetes Services.
 
@@ -78,11 +78,11 @@ If you need access to additional data source and automation, including open-sour
 |--|--|--|
 | Access | Azure Portal | Grafana Web Interface |
 | Pricing | No cost | [Per user pricing](https://azure.microsoft.com/pricing/details/managed-grafana/?msockid=01a84dc8ec106f122df65931ed6b6e5d) plus compute costs for Standard SKU |
-| Data Sources | Azure Monitor and Azure Prometheus | Azure Monitor, Azure Prometheus, Azure Data Explorer, [OSS data sources](/azure/managed-grafana/how-to-data-source-plugins-managed-identity.md?tabs=azure-portal), [Enterprise data sources](/azure/managed-grafana/how-to-grafana-enterprise.md) available with license |
+| Data Sources | Azure Monitor and Azure Prometheus | Azure Monitor, Azure Prometheus, Azure Data Explorer, [OSS data sources](/azure/managed-grafana/how-to-data-source-plugins-managed-identity?tabs=azure-portal), [Enterprise data sources](/azure/managed-grafana/how-to-grafana-enterprise) available with license |
 | Data source authentication | Current-user only | User-configurable: Current-user, Managed Identity, App registration |
 | Data source administration | N/A – depends on user RBAC roles | User-managed data sources |
 | Compute resources | Shared | Dedicated |
-| Grafana Enterprise | Not supported | Available with [license](/azure/managed-grafana/how-to-grafana-enterprise.md#update-a-grafana-enterprise-plan) |
+| Grafana Enterprise | Not supported | Available with [license](/azure/managed-grafana/how-to-grafana-enterprise#update-a-grafana-enterprise-plan) |
 | Additional Plugins | Azure-managed only | Azure-managed, open-source and optional 3rd party with Enterprise |
 | Grafana Alerts | Not supported | Supported |
 | Grafana Email Notification | Not supported | Supported |
