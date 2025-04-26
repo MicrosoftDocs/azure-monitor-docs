@@ -1321,7 +1321,7 @@ items:
     items:
     - name: Grafana overview
       href: visualize/visualize-grafana-overview.md
-    - name: Grafana Dashboards
+    - name: Use Grafana dashboards
       href: visualize/visualize-use-grafana-dashboards.md
     - name: Use managed Grafana
       href: visualize/visualize-use-managed-grafana-how-to.md
