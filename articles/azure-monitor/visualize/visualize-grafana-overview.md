@@ -1,13 +1,13 @@
 ---
 title: Visualize with Grafana
-description: This article is an overview of how you can use Grafana with Azure Monitor. There are two main ways to use Grafana with Azure Monitor, Azure Monitor dashboards with Grafana and Managed Grafana.
+description: This document provides an overview of using Grafana with Azure Monitor, highlighting two approaches - Azure Monitor dashboards with Grafana for free, integrated visualization of Azure data in the Azure portal, and Managed Grafana for advanced features like external data sources, alerts, reports, and private networking. It includes a comparison table of features, pricing, and use cases, helping users choose the best solution for their needs.
 ms.topic: conceptual
 ms.date: 04/25/2025
 ---
 
 # Visualize with Grafana
 
-This article is an overview of how you can use Grafana with Azure Monitor. There are two main ways to use Grafana with Azure Monitor, Azure Monitor dashboards with Grafana and Managed Grafana.
+This document provides an overview of using Grafana with Azure Monitor, highlighting two approaches: Azure Monitor dashboards with Grafana for free, integrated visualization of Azure data in the Azure portal, and Managed Grafana for advanced features like external data sources, alerts, reports, and private networking. It includes a comparison table of features, pricing, and use cases, helping you choose the best solution for your needs.
 
 ## Dashboards with Grafana
 

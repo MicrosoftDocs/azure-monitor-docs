@@ -11,8 +11,8 @@ This article provides guidance on using Grafana dashboards with Azure Monitor. I
 
 ## Prerequisites
 
--   Running Azure resources that have created data over at least a 15-minute period.
--   Assigned *Monitoring Data Reader* for access to Azure Managed Prometheus (Azure Monitor Workspace).
+- Running Azure resources that have created data over at least a 15-minute period.
+- Assigned *Monitoring Data Reader* for access to Azure Managed Prometheus (Azure Monitor Workspace).
 
 For more information about RBAC and assigning roles, see [Azure RBAC]().
 
