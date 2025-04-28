@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 04/14/2025
+ms.date: 04/28/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -32,6 +32,7 @@ microsoft.analysisservices/servers
 Microsoft.ApiManagement/service  
 
 - [APIMDevPortalAuditDiagnosticLog](./tables/apimdevportalauditdiagnosticlog.md)
+- [ApiManagementGatewayLlmLog](./tables/apimanagementgatewayllmlog.md)
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 - [AzureDiagnostics](./tables/azurediagnostics.md)
@@ -235,6 +236,8 @@ Microsoft.DocumentDb/databaseAccounts
 
 - [AzureActivity](./tables/azureactivity.md)
 - [CDBDataPlaneRequests](./tables/cdbdataplanerequests.md)
+- [CDBDataPlaneRequests5M](./tables/cdbdataplanerequests5m.md)
+- [CDBDataPlaneRequests15M](./tables/cdbdataplanerequests15m.md)
 - [CDBPartitionKeyStatistics](./tables/cdbpartitionkeystatistics.md)
 - [CDBPartitionKeyRUConsumption](./tables/cdbpartitionkeyruconsumption.md)
 - [CDBQueryRuntimeStatistics](./tables/cdbqueryruntimestatistics.md)
@@ -496,6 +499,17 @@ Microsoft.Dashboard/grafana
 - [AGSGrafanaLoginEvents](./tables/agsgrafanaloginevents.md)
 - [AGSGrafanaUsageInsightsEvents](./tables/agsgrafanausageinsightsevents.md)
 
+### Azure Migrate Data Replication  
+
+Microsoft.DataReplication/ReplicationVaults  
+
+- [ASRv2JobEvents](./tables/asrv2jobevents.md)
+- [ASRv2HealthEvents](./tables/asrv2healthevents.md)
+- [ASRv2ReplicationVaults](./tables/asrv2replicationvaults.md)
+- [ASRv2ReplicationPolicies](./tables/asrv2replicationpolicies.md)
+- [ASRv2ReplicationExtensions](./tables/asrv2replicationextensions.md)
+- [ASRv2ProtectedItems](./tables/asrv2protecteditems.md)
+
 ### Azure Monitor autoscale settings  
 
 Microsoft.Insights/AutoscaleSettings  
@@ -549,6 +563,7 @@ microsoft.securityinsights
 - [ASimProcessEventLogs](./tables/asimprocesseventlogs.md)
 - [ThreatIntelObjects](./tables/threatintelobjects.md)
 - [ThreatIntelIndicators](./tables/threatintelindicators.md)
+- [ThreatIntelExportOperation](./tables/threatintelexportoperation.md)
 
 ### Azure Sphere  
 
@@ -808,6 +823,8 @@ Microsoft.DevCenter/devcenters
 - [DevCenterDiagnosticLogs](./tables/devcenterdiagnosticlogs.md)
 - [DevCenterResourceOperationLogs](./tables/devcenterresourceoperationlogs.md)
 - [DevCenterBillingEventLogs](./tables/devcenterbillingeventlogs.md)
+- [DevCenterAgentHealthLogs](./tables/devcenteragenthealthlogs.md)
+- [DevCenterConnectionLogs](./tables/devcenterconnectionlogs.md)
 
 ### Device Provisioning Services  
 
