@@ -44,7 +44,7 @@ To create a Resource Manager template with the default Application Insights sett
 > [!NOTE]
 > The following example template is for a .NET 8 (LTS) application running on Windows. It uses the placeholders `my-monitored-web-app` for the name of the application and `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e` for the subscription ID.
 >
-> It's prupose is to showcase the template structure. We *don't* recommend copying and using it directly. Instead, generate your own template based on the instructions above.
+> We *don't* recommend copying and using it directly. Instead, generate your own template based on the instructions above.
 
 ```json
 {
