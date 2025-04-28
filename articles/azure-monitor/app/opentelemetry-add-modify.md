@@ -1625,7 +1625,7 @@ Combine custom events with authenticated user IDs and session context to enable:
 > - Analyzing conversion funnels based on user actions.
 > - Segmenting users by how they interact with your app.
 
-If you want to automate the collection of client-side interaction events, you can use the [plugin in the JavaScript SDK](https://learn.microsoft.com/azure/azure-monitor/app/javascript-feature-extensions).
+If you want to automate the collection of client-side interaction events, you can use the [plugin in the JavaScript SDK](./javascript-feature-extensions.md).
 
 #### [ASP.NET Core](#tab/aspnetcore)
 
