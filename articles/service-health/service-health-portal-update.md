@@ -62,9 +62,15 @@ On this blade, you can see a list of all planned maintenance events. For more in
 :::image type="content" source="media/service-health-portal-update/services-issue-planned-maintenance.png" alt-text="A screenshot of the Planned maintenance blade." lightbox="media/service-health-portal-update/services-issue-planned-maintenance.png":::
 
 ## Health Advisories
-Open this blade to see all the Health Advisories based on your access level.
+Open this blade to see all the Health Advisories based on your access level. For more information, see [View service health notifications by using the Azure portal](service-notifications.md)
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the health advisories blade." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
+
+## Securitiy Advisories
+This blade all the current security advisories based on your subscription. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md)
+
+:::image type="content" source="media/service-health-portal-update/health-alerts-security.png" alt-text="A screenshot of the security advisories blade." lightbox="media/service-health-portal-update/health-alerts-security.png":::
+
 
 ## Billing Updates
 If you have access as a subscription owner or contributor, you'll see the billing updates on this page. For more information, see [In-Portal Billing](billing-elevated-access.md)
