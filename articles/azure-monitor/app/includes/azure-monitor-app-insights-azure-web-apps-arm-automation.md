@@ -35,11 +35,9 @@ To create a Resource Manager template with the default Application Insights sett
 
 1. In the Azure portal, create a new Web App resource with your desired information. **Enable Application Insights** on the **Monitor + secure** tab.
 
-1. Go to **Review + create**, then select **Download a template for automation**.
+1. Go to **Review + create**, then select **Download a template for automation**. This option generates the latest Resource Manager template with all required settings configured.
 
     :::image type="content" source="../media/codeless-app-service/create-web-app.png" alt-text="Screenshot that shows the App Service web app creation menu." lightbox="../media/codeless-app-service/create-web-app.png":::
-
-    This option generates the latest Resource Manager template with all required settings configured.
 
 > [!NOTE]
 > The following example template is for a .NET 8 (LTS) application running on Windows. It uses the placeholders `my-monitored-web-app` for the name of the application and `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e` for the subscription ID.
@@ -243,7 +241,7 @@ To create a Resource Manager template with the default Application Insights sett
 
 ### Enable through PowerShell
 
-To enable the application monitoring through PowerShell, only the underlying application settings must be changed. The following sample enables application monitoring for a website called `AppMonitoredSite` in the resource group `AppMonitoredRG`. It configures data to be sent to the `InstrumentationKey=012345678-abcd-ef01-2345-6789abcd` connection string.
+To enable the application monitoring through PowerShell, only the underlying application settings must be changed. The following sample enables application monitoring for a website called `my-monitored-web-app` in the resource group `my-resource-group`. It configures data to be sent to the `InstrumentationKey=012345678-abcd-ef01-2345-6789abcd` connection string.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
@@ -253,10 +251,10 @@ To enable the application monitoring through PowerShell, only the underlying app
 > For Linux, set ApplicationInsightsAgent_EXTENSION_VERSION to `~3`.
 
 ```powershell
-$app = Get-AzWebApp -ResourceGroupName "AppMonitoredRG" -Name "AppMonitoredSite" -ErrorAction Stop
+$app = Get-AzWebApp -ResourceGroupName "my-resource-group" -Name "my-monitored-web-app" -ErrorAction Stop
 $newAppSettings = @{} # Case-insensitive hash map
 $app.SiteConfig.AppSettings | %{$newAppSettings[$_.Name] = $_.Value} # Preserve non-Application-Insights application settings.
-$newAppSettings["APPLICATIONINSIGHTS_CONNECTION_STRING"] = "InstrumentationKey=012345678-abcd-ef01-2345-6789abcd"; # Set the Application Insights connection string
+$newAppSettings["APPLICATIONINSIGHTS_CONNECTION_STRING"] = "InstrumentationKey=aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"; # Set the Application Insights connection string
 $newAppSettings["ApplicationInsightsAgent_EXTENSION_VERSION"] = "~3"; # Enable the ApplicationInsightsAgent.
 $app = Set-AzWebApp -AppSettings $newAppSettings -ResourceGroupName $app.ResourceGroup -Name $app.Name -ErrorAction Stop
 ```
