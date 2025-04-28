@@ -1297,6 +1297,8 @@ items:
             href: tables/microsoft-datalakeanalytics_accounts.md
           - name: microsoft.datalakestore/accounts
             href: tables/microsoft-datalakestore_accounts.md
+          - name: microsoft.datareplication/replicationvaults
+            href: tables/microsoft-datareplication_replicationvaults.md
           - name: microsoft.datashare/accounts
             href: tables/microsoft-datashare_accounts.md
           - name: microsoft.dbformariadb/servers
@@ -1788,6 +1790,18 @@ items:
             href: tables/asrjobs.md
           - name: ASRReplicatedItems
             href: tables/asrreplicateditems.md
+          - name: ASRv2HealthEvents
+            href: tables/asrv2healthevents.md
+          - name: ASRv2JobEvents
+            href: tables/asrv2jobevents.md
+          - name: ASRv2ProtectedItems
+            href: tables/asrv2protecteditems.md
+          - name: ASRv2ReplicationExtensions
+            href: tables/asrv2replicationextensions.md
+          - name: ASRv2ReplicationPolicies
+            href: tables/asrv2replicationpolicies.md
+          - name: ASRv2ReplicationVaults
+            href: tables/asrv2replicationvaults.md
           - name: ASimAuditEventLogs
             href: tables/asimauditeventlogs.md
           - name: ASimAuthenticationEventLogs
@@ -1972,6 +1986,8 @@ items:
             href: tables/amlrunstatuschangedevent.md
           - name: Anomalies
             href: tables/anomalies.md
+          - name: ApiManagementGatewayLlmLog
+            href: tables/apimanagementgatewayllmlog.md
           - name: ApiManagementGatewayLogs
             href: tables/apimanagementgatewaylogs.md
           - name: ApiManagementWebSocketConnectionLogs
@@ -2088,6 +2104,10 @@ items:
             href: tables/cdbcontrolplanerequests.md
           - name: CDBDataPlaneRequests
             href: tables/cdbdataplanerequests.md
+          - name: CDBDataPlaneRequests15M
+            href: tables/cdbdataplanerequests15m.md
+          - name: CDBDataPlaneRequests5M
+            href: tables/cdbdataplanerequests5m.md
           - name: CDBGremlinRequests
             href: tables/cdbgremlinrequests.md
           - name: CDBMongoRequests
@@ -2104,6 +2124,8 @@ items:
             href: tables/cieventsaudit.md
           - name: CIEventsOperational
             href: tables/cieventsoperational.md
+          - name: CampaignInfo
+            href: tables/campaigninfo.md
           - name: CassandraAudit
             href: tables/cassandraaudit.md
           - name: CassandraLogs
@@ -2288,8 +2310,12 @@ items:
             href: tables/dataverseactivity.md
           - name: DefenderIoTRawEvent
             href: tables/defenderiotrawevent.md
+          - name: DevCenterAgentHealthLogs
+            href: tables/devcenteragenthealthlogs.md
           - name: DevCenterBillingEventLogs
             href: tables/devcenterbillingeventlogs.md
+          - name: DevCenterConnectionLogs
+            href: tables/devcenterconnectionlogs.md
           - name: DevCenterDiagnosticLogs
             href: tables/devcenterdiagnosticlogs.md
           - name: DevCenterResourceOperationLogs
@@ -2396,12 +2422,16 @@ items:
             href: tables/exchangeonlineassessmentrecommendation.md
           - name: FailedIngestion
             href: tables/failedingestion.md
+          - name: FileMaliciousContentInfo
+            href: tables/filemaliciouscontentinfo.md
           - name: FunctionAppLogs
             href: tables/functionapplogs.md
           - name: GCPAuditLogs
             href: tables/gcpauditlogs.md
           - name: GCPFirewallLogs
             href: tables/gcpfirewalllogs.md
+          - name: GCPLoadBalancer
+            href: tables/gcploadbalancer.md
           - name: GoogleCloudSCC
             href: tables/googlecloudscc.md
           - name: HDInsightAmbariClusterAlerts
@@ -2686,6 +2716,8 @@ items:
             href: tables/olpsupplychainevents.md
           - name: OfficeActivity
             href: tables/officeactivity.md
+          - name: OktaSystemLogs
+            href: tables/oktasystemlogs.md
           - name: Operation
             href: tables/operation.md
           - name: PFTitleAuditLogs
@@ -2886,6 +2918,8 @@ items:
             href: tables/touserdiagnostics.md
           - name: TSIIngress
             href: tables/tsiingress.md
+          - name: ThreatIntelExportOperation
+            href: tables/threatintelexportoperation.md
           - name: ThreatIntelIndicators
             href: tables/threatintelindicators.md
           - name: ThreatIntelObjects
@@ -3496,6 +3530,8 @@ items:
             href: queries/OLPSupplyChainEntityOperations.md
           - name: OfficeActivity
             href: queries/OfficeActivity.md
+          - name: OktaSystemLogs
+            href: queries/OktaSystemLogs.md
           - name: Perf
             href: queries/Perf.md
           - name: PowerAppsActivity
