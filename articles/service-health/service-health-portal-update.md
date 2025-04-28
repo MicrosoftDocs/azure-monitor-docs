@@ -22,7 +22,7 @@ The Service Issues blade shows a map with all the user services across the world
 The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 
-ATn alert is triggered when the specified conditions are met. You can click directly on any alert rule for more information, and details and see the alert firing history. 
+An alert is triggered when the specified conditions are met. You can click directly on any alert rule for more information, and details and see the alert firing history. 
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-history.png" alt-text="A screenshot highlighting alerts history" lightbox="media/service-health-portal-update/health-alerts-history.png":::
 
@@ -32,7 +32,7 @@ ATn alert is triggered when the specified conditions are met. You can click dire
 > [!IMPORTANT]
 >Customers are observing a mismatch in the number of health advisories between the Azure Resource Graph query results and the service health blade.
 > 
->Thisbehavior is expected as the backend query for the service health blade on the portal merges the results by tracking ID. So, from Resource Graph, the responses contain multiple communications for one tracking ID.
+>This behavior is expected as the backend query for the service health blade on the portal merges the results by tracking ID. So, from Resource Graph, the responses contain multiple communications for one tracking ID.
 >
 >Although the Resource Graph query returns multiple responses for each tracking ID, the service health blade on the portal aggregates the results into one event.
 >
