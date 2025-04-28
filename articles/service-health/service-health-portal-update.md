@@ -16,13 +16,13 @@ The Azure Service Health portal experience lets users engage with service events
 
 
 ##### Service Issues Blade
-The Service Issues blade shows a map with all the user services across the world. This helps you find services that might be impacted by an outage easily based on your subscription or tenant admin access.
+The Service Issues blade shows a map with all the user services across the world. The information on this blade helps you find services that might be impacted from an outage based on your subscription or tenant admin access.
 
 ##### Health Alerts Blade
 The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 
-An alert is triggered when the specified conditions are met. You can click directly on any alert rule for additional details and see the alert firing history. 
+ATn alert is triggered when the specified conditions are met. You can click directly on any alert rule for more information, and details and see the alert firing history. 
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-history.png" alt-text="A screenshot highlighting alerts history" lightbox="media/service-health-portal-update/health-alerts-history.png":::
 
@@ -32,7 +32,7 @@ An alert is triggered when the specified conditions are met. You can click direc
 > [!IMPORTANT]
 >Customers are observing a mismatch in the number of health advisories between the Azure Resource Graph query results and the service health blade.
 > 
->This is an expected behavior as the backend query for the service health blade on the portal merges the results by tracking ID. So, from Resource Graph, the responses contain multiple communications for one tracking ID.
+>Thisbehavior is expected as the backend query for the service health blade on the portal merges the results by tracking ID. So, from Resource Graph, the responses contain multiple communications for one tracking ID.
 >
 >Although the Resource Graph query returns multiple responses for each tracking ID, the service health blade on the portal aggregates the results into one event.
 >
@@ -57,7 +57,7 @@ The issues details look and feel has been updated, for better readability.
 
 ## Planned Maintenance
 
-On this blade you can see a list of all planned maintenance events. For more information see [Viewing Impacted Resources for planned maintenance events](impacted-resources-planned-maintenance.md).
+On this blade, you can see a list of all planned maintenance events. For more information, see [Viewing Impacted Resources for planned maintenance events](impacted-resources-planned-maintenance.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-planned-maintenance.png" alt-text="A screenshot of the Planned maintenance blade." lightbox="media/service-health-portal-update/services-issue-planned-maintenance.png":::
 
@@ -67,18 +67,18 @@ Open this blade to see all the Health Advisories based on your access level.
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the health advisories blade." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
 
 ## Billing Updates
-If you have access as a subscription owner or contributor you will see the billing updates on this page. For more information see [In-Portal Billing](billing-elevated-access.md)
+If you have access as a subscription owner or contributor, you'll see the billing updates on this page. For more information, see [In-Portal Billing](billing-elevated-access.md)
 
 :::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates blade." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
 
 
 ## Resource health
-This page watches your resource and tells you if it's running as expected. There are links that will open directly to information about the health of your selected resource. 
+This page watches your resource and tells you if it's running as expected. There are links that open directly to information about the health of your selected resource. 
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health blade." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
 ## Health alerts
-Click on this blade to view any active Health Alerts based on your resources. Click on the link of the alert to see more details. For more information on Service Health Alerts see [Configure Service Health alerts using Azure Portal](alerts-activity-log-service-notifications-portal.md)
+Click on this blade to view any active Health Alerts based on your resources. You can click on the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure Portal](alerts-activity-log-service-notifications-portal.md)
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the health alerts blade." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
