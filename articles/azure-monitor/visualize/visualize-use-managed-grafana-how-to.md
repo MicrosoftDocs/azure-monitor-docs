@@ -3,6 +3,7 @@ title: Use Azure Managed Grafana
 description: This article covers setting up Azure Managed Grafana or a local Grafana server, configuring Azure Monitor data source plug-ins, and building dashboards with metrics and logs. It highlights advanced features like basic logs, exemplars, and dashboard playlists, along with pinning charts from the Azure portal. Steps for monitoring additional data sources, cleaning up resources, and further exploration of Azure Monitor metrics are also included.
 ms.topic: conceptual
 ms.date: 04/25/2025
+ms.reviewer: yegu-ms
 ---
 
 # Use Azure Managed Grafana
