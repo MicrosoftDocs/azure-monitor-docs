@@ -2,23 +2,27 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 ms.topic: overview
-ms.date: 1/27/2025
+ms.date: 4/28/2025
 ---
 
 # Azure Service Health Portal
 
-The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
+The Azure Service Health portal experience lets users engage with service events and manage actions and alerts to maintain the business continuity of impacted applications.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the services issue user interface highlighting the switch to classic button." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
 
 
 ## Highlights
 
+
+##### Service Issues Blade
+The Service Issues blade shows a map with all the user services across the world. This helps you find services that might be impacted by an outage easily based on your subscription or tenant admin access.
+
 ##### Health Alerts Blade
 The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 
-You can click directly on any alert rule for additional details and see the alert firing history. 
+An alert is triggered when the specified conditions are met. You can click directly on any alert rule for additional details and see the alert firing history. 
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-history.png" alt-text="A screenshot highlighting alerts history" lightbox="media/service-health-portal-update/health-alerts-history.png":::
 
@@ -46,22 +50,36 @@ You can filter on the scope (tenant or subscription) within the blades. The scop
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-3.png" alt-text="A screenshot of the services issue user interface highlighting the scope column." lightbox="media/service-health-portal-update/services-issue-window-3.png":::
 
-##### Enhanced Map
-The Service Issues blade shows an enhanced version of the map with all the user services across the world. This helps you find services that might be impacted by an outage easily. 
-
+<!--
 ##### Issues Details
 The issues details look and feel has been updated, for better readability. 
+-->
 
 ## Planned Maintenance
 
-You can view all planned maintenance.
+On this blade you can see a list of all planned maintenance events. For more information see [Viewing Impacted Resources for planned maintenance events](impacted-resources-planned-maintenance.md).
+
+:::image type="content" source="media/service-health-portal-update/services-issue-planned-maintenance.png" alt-text="A screenshot of the Planned maintenance blade." lightbox="media/service-health-portal-update/services-issue-planned-maintenance.png":::
 
 ## Health Advisories
-You will see Health Advisories based on your access level.
+Open this blade to see all the Health Advisories based on your access level.
 
-## Resource Health
+:::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the health advisories blade." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
+
+## Billing Updates
+If you have access as a subscription owner or contributor you will see the billing updates on this page. For more information see [In-Portal Billing](billing-elevated-access.md)
+
+:::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates blade." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
+
+
+## Resource health
 This page watches your resource and tells you if it's running as expected. There are links that will open directly to information about the health of your selected resource. 
 
-## Alerts
-Open this page to view any active Health Alerts and click on the link supplied for more details.
+:::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health blade." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
+
+## Health alerts
+Click on this blade to view any active Health Alerts based on your resources. Click on the link of the alert to see more details. For more information on Service Health Alerts see [Configure Service Health alerts using Azure Portal](alerts-activity-log-service-notifications-portal.md)
+
+:::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the health alerts blade." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
+
 
