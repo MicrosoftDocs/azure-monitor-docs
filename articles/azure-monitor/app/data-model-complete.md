@@ -3,13 +3,13 @@ title: Application Insights telemetry data model
 description: This article describes the Application Insights telemetry data model including availabilityResults, browserTimings, dependencies, customEvents, exceptions, performanceCounters, customMetrics, pageViews, requests, and traces.
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 01/31/2024
+ms.date: 04/30/2025
 ms.reviewer: mmcc
 ---
 
 # Application Insights telemetry data model
 
-[Application Insights](app-insights-overview.md) sends telemetry from your web application to the Azure portal to provide insights into the performance and usage of your application and infrastructure. To help you better understand and organize the telemetry data, we categorize it into distinct types. 
+[Application Insights](app-insights-overview.md) sends telemetry from your web application to the Azure portal to provide insights into the performance and usage of your application and infrastructure. To help you better understand and organize telemetry data, we categorize it into distinct types. 
 
 The telemetry data model is standardized, making it possible to create platform- and language-independent monitoring. We strive to keep the model simple and slim to support essential scenarios and allow the schema to be extended for advanced use.
 
@@ -39,17 +39,16 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Requests](#requests) | `requests` | `AppRequests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
 | [Traces](#traces) | `traces` | `AppTraces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
-Every telemetry item can define the context information like application version or user session ID. Context is a set of strongly typed fields that unblocks certain scenarios. When application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment.
-
-> [!TIP]
-> You can use session ID to calculate an outage or an issue impact on users. Calculating the distinct count of session ID values for a specific failed dependency, error trace, or critical exception gives you a good understanding of an impact.
-
-The Application Insights telemetry model defines a way to [correlate](distributed-trace-data.md) telemetry to the operation of which it's a part. For example, a request can make a SQL Database call and record diagnostics information. You can set the correlation context for those telemetry items that tie it back to the request telemetry.
-
 > [!IMPORTANT]
-> Table and field names in Application Insights are different from Log Analytics due to compabitility reasons with classic Application Insights resources.
+> You can query application telemetry from both Application Insights and Log Analytics (recommended), but the table and field names differ between the two. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created prior to the Log Analytics naming convention continue to function correctly.
 
-This article covers all telemetry-type-specific fields. To get a full list of all available fields (including context fields) for a specific telemetry type, visit the link under the respective table in this document.
+Each telemetry item can include context information such as the application version or user session ID. Context consists of a set of strongly typed fields that enable different analysis scenarios. 
+
+For example, when application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment. Similarly, you can use session ID to assess the impact of outages or issues on users. By calculating the number of unique session IDs associated with failed dependencies, error traces, or critical exceptions, you gain a clearer picture of user impact.
+
+The Application Insights telemetry model also supports [correlation of telemetry items](distributed-trace-data.md) to the operations they belong to. For example, if a request triggers a SQL Database call, both the request and the dependency call can include diagnostic data and be linked through a shared correlation context, allowing you to trace the full flow of the operation.
+
+This article covers the fields specific to each telemetry type. To view the complete list of available fields (including context fields) for any telemetry type, follow the link provided beneath each relevant table.
 
 ## Availability
 
@@ -105,11 +104,7 @@ For a list of all available fields, see [AppDependencies](../reference/tables/ap
 
 ## Events
 
-You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
-
-Semantically, events might or might not be correlated to requests. If used properly, event telemetry is more important than requests or traces. Events represent business telemetry and should be subject to separate, less aggressive [sampling](api-filtering-sampling.md).
-
-### Event-specific fields
+You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update. To learn more about creating custom event telemetry, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events). Event-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -147,17 +142,15 @@ Application Insights supports two types of metric telemetry:
 
 ### Performance counters
 
-Performance counters are always single measurement metrics with a *name* and a *value*, but come with the additional fields *category* (for example, `Process`), *counter* (for example, `IO Data Bytes/sec`), and for Windows applications also *instance* (for example, `??APP_WIN32_PROC??`).
-
-#### Performance-counter-specific fields
+Performance counters are always single measurement metrics with a *name* and a *value*, but come with the additional fields *category*, *counter*, and for Windows applications also *instance*. Performance-counter-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| `name` | `Name` | This field is the name of the metric you want to see in the Application Insights portal. |
-| `category` | `Category` | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. |
-| `counter` | `Counter` | ... |
-| `instanc` | `Instance` | ... |
-| `value` | `Value` | ... |
+| `name` | `Name` | The name of the metric you want to see in the Application Insights portal. |
+| `value` | `Value` | The single value for measurement. It's the sum of individual measurements for the aggregation. |
+| `category` | `Category` | Represents a group of related performance counters (for example, `Process`). |
+| `counter` | `Counter` | Specifies the particular performance metric being measured within a category (for example, `IO Data Bytes/sec`). |
+| `instance` | `Instance` | Identifies a specific occurrence of a counter within a category (for example, `??APP_WIN32_PROC??`). |
 
 For a list of all available fields, see [AppPerformanceCounters](../reference/tables/appperformancecounters.md).
 
@@ -183,7 +176,7 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
 
 ### Custom metrics
 
-#### Custom-metric-specific fields
+Custom metrics are performance indicators or business-specific metrics that you define and collect to gain insights that aren't covered by standard metrics. To learn more about custom metrics, see [Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md). Custom-metric-specific fields include:
 
 <table>
     <thead>
@@ -233,19 +226,10 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
     </tbody>
 </table>
 
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
-|--------------------------------------|-------------------------------|-------------|
-| `name` | `Name` | This field is the name of the metric you want to see in the Application Insights portal. |
-| `value` | `Value` | This field is the single value for measurement. It's the sum of individual measurements for the aggregation. |
-| `valueCount` | `Count` |  |
-| `valueSum` | `Sum` |  |
-| `valueMin` | `Min` |  |
-| `valueMax` | `Max` |  |
+For a list of all available fields, see [AppMetrics](../reference/tables/appmetrics.md).
 
 > [!NOTE]
 > To calculate the average, divide **Sum** by **Count**.
-
-For a list of all available fields, see [AppMetrics](../reference/tables/appmetrics.md).
 
 ## Page views
 
