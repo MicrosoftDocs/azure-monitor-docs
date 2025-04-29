@@ -12,10 +12,6 @@ The Azure Service Health portal experience lets you engage with service events a
 
 When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage service health alerts which proactively notify you when service issues are affecting you.
 
-This article goes through the whole portal experience.
-
-
-The Azure Service Health portal experience lets users engage with service events and manage actions and alerts to maintain the business continuity of impacted applications.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the services issue user interface highlighting the switch to classic button." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
 
