@@ -3,26 +3,24 @@ title: Granular RBAC in Log Analytics
 description: Granular RBAC in Log Analytics enables you to define data access in a fine-grained manner.
 services: azure-monitor
 sub-service: logs
-author: EdB-MSFT
-ms.author: edbaynash
+author: austinmccollum
+ms.author: austinmc
 ms.reviewer: rofrenke
 ms.topic: conceptual 
-ms.date: 09/15/2024
+ms.date: 05/08/2025
 
 
-# Customer intent: As an Azure administrator, I want to understand how to use granular RBAC in Log Analytics
+# Customer intent: As an Azure administrator, I want to understand how to use attribute-based RBAC in Log Analytics
 ---
 
 # Granular RBAC (Preview)
 
-Limited public preview: This feature is currently in limited public preview. To participate in the preview, you must register your subscription. For more information, see [????Granular RBAC in Log Analytics preview](https://aka.ms/??????).
-
 Granular RBAC (Roles Based Access Control) is a feature of Log Analytics that enables you to define data access in a fine-grained manner. Define access to your data such that each user can view or query, based on the conditions and expressions you specify for the role. For example, define access at the data record level giving access according to the value of a specific field. You can maintain all your data in a single Log Analytics workspace and provide least privilege access at any level, including records.
 
 Granular RBAC can help you achieve various scenarios, such as
--	Data segregation: Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to them.
--	Data privacy: Protect the sensitive or confidential data of your organization, such as personal information, health records, or financial transactions, and restrict the access to only authorized users.
--	Data compliance: Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region, such as GDPR, HIPAA, or PCI DSS. Enforce the appropriate policies and controls on the data access and usage.
+-    Data segregation: Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to them.
+-    Data privacy: Protect the sensitive or confidential data of your organization, such as personal information, health records, or financial transactions, and restrict the access to only authorized users.
+-    Data compliance: Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region, such as GDPR, HIPAA, or PCI DSS. Enforce the appropriate policies and controls on the data access and usage.
 
 Granular RBAC controls data access such as querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformation, and data export. 
 
@@ -80,7 +78,7 @@ ABAC conditions defined for column values in Log Analytics are based on the data
  `StringNotEquals` / `StringNotEqualsIgnoreCase`            | `!=` / `!~`                   | Negation of StringEquals (or StringEqualsIgnoreCase). 
  `StringLike` / `StringLikeIgnoreCase`                      | `has_cs` / `has`              | Case-sensitive (or case-insensitive) matching. Right-hand-side of the operator (RHS) is a whole term in left-hand-side (LHS). 
  `StringNotLike` / `StringNotLikeIgnoreCase`                | `!has_cs` / `!has`            | Negation of StringLike (or StringLikeIgnoreCase) operator 
- `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | 	Case-sensitive (or case-insensitive) matching. The values start with the string. 
+ `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` |     Case-sensitive (or case-insensitive) matching. The values start with the string. 
  `StringNotStartsWith`  / `StringNotStartsWithIgnoreCase`   | `!startswith_cs` / `!startswith`  | Negation of StringStartsWith (or StringStartsWithIgnoreCase) operator. 
  `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true. Format: ForAllOfAnyValues:<BooleanFunction>. Supports multiple strings and numbers. 
 
@@ -137,9 +135,9 @@ Transformation can be used to create new columns with data that you can use to d
 
 **I'm accessing my logs via resource context. Is my condition be enforced?**
 RBAC and ABAC are enforced for resource-context queries, but require the workspaces containing the resource logs meet two prerequisites:
-1.	Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. 
+1.    Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. 
     If set to *Use resources or workspace permissions*, the Azure read permission assigned to a resource provides access to all logs. Workspace and ABAC permissions are ignored. 
-1.	Setting ABAC on all relevant workspaces
+1.    Setting ABAC on all relevant workspaces
 
 For more information, on resource context, see [Manage access to Log Analytics workspaces, access mode](../logs/manage-access.md#access-mode).
 
