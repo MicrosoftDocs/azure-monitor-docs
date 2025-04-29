@@ -18,7 +18,7 @@ Once you've analyzed your collected data and determined if there's any data that
 
 To identify your best opportunities for cost savings, analyze the amount of data being collected in different tables. This information will help you identify which tables are consuming the most data and help you make informed decisions about how to reduce costs.
 
-You can visualize how much data is ingested in each workspace by using the **Container Insights Usage** runbook, which is available from the **Workspace** page of a monitored cluster. 
+You can visualize how much data is ingested in each workspace by using the **Container Insights Usage** runbook, which is available from the **Workbooks** page of a monitored cluster. 
 
 :::image type="content" source="media/container-insights-cost/workbooks-page.png" lightbox="media/container-insights-cost/workbooks-page.png" alt-text="Screenshot that shows the View Workbooks dropdown list.":::
 
