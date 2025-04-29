@@ -15,17 +15,17 @@ ms.date: 05/08/2025
 
 # Granular RBAC (Preview)
 
-Granular RBAC (Roles Based Access Control) is a feature of Log Analytics that enables you to define data access in a fine-grained manner. Define access to your data such that each user can view or query, based on the conditions and expressions you specify for the role. For example, define access at the data record level giving access according to the value of a specific field. You can maintain all your data in a single Log Analytics workspace and provide least privilege access at any level, including records.
+Granular RBAC (Roles Based Access Control) is a feature of Log Analytics that enables you to finely tune data access. Define access to your data such that each user can view or query based on the conditions and expressions you specify for their role. For example, define access at the data record level to give access according to the value of a specific field. This feature allows you to maintain all your data in a single Log Analytics workspace and still provide least privilege access at any level, including records.
 
 Granular RBAC can help you achieve various scenarios, such as
 -    Data segregation: Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to them.
 -    Data privacy: Protect the sensitive or confidential data of your organization, such as personal information, health records, or financial transactions, and restrict the access to only authorized users.
--    Data compliance: Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region, such as GDPR, HIPAA, or PCI DSS. Enforce the appropriate policies and controls on the data access and usage.
+-    Data compliance: Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region. Enforce the appropriate policies and controls on the data access and usage.
 
 Granular RBAC controls data access such as querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformation, and data export. 
 
 > [!NOTE]
-> Azure RBAC is an additive model. Your effective permissiacess is the sum of your permissions. For example, if a you have two role assignments on the same scope, one set with a */read action and the other with conditions that limit access to specific records, the applicable permission is */read action granting access to all logs in this scope. For the conditions to take effect, you must remove the role assignment whit higher access privileges. 
+> Azure RBAC is an additive model. Your effective permissions are the sum of your role assignments. For example, if a you have two role assignments on the same scope, one set with a */read action and the other with conditions that limit access to specific records, the applicable permission is */read action granting access to all logs in this scope. For the conditions to take effect, you must remove the role assignment with higher access privileges. 
 
 ## Azure ABAC
 
