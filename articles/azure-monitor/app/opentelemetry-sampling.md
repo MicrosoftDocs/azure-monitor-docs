@@ -95,7 +95,7 @@ To make sampling decisions based on the outcome of an entire trace (for example,
 
 | Sampling Method             | Point of decision              | Strengths                                   | Weaknesses                                                               |
 |-----------------------------|--------------------------------|---------------------------------------------|--------------------------------------------------------------------------|
-| Head-based                  | Before a span starts           | Low latency, minimal overhead               | Samples out desired traces including those that fail                     |
+| Head-based                  | Before a span starts           | Low latency, minimal overhead               | May sample out desired traces including failures                         |
 | Tail-based                  | After spans are buffered based on time or volume thresholds | Allows highly selective trace sampling criteria | Higher cost and added processing delay  |
 | App Insights custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics and Classic API compatibility                  |
 
