@@ -146,7 +146,7 @@ Application Insights supports two types of metric telemetry:
 
 ### Performance counters
 
-Performance counters are always single measurement metrics with a *name* and a *value*, but come with the additional fields *category*, *counter*, and for Windows applications also *instance*.
+Performance counters are always single measurement metrics with a `name` and a `value`, but come with the additional fields `category`, `counter`, and for Windows applications also `instance`.
 
 **Performance-counter-specific fields:**
 
