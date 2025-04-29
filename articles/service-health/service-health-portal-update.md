@@ -18,13 +18,6 @@ The Azure Service Health portal experience lets users engage with service events
 ##### Service Issues Blade
 The Service Issues blade shows a map with all the user services across the world. The information on this blade helps you find services that might be impacted from an outage based on your subscription or tenant admin access.
 
-##### Health Alerts Blade
-The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
-:::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
-
-An alert is triggered when the specified conditions are met. You can click directly on any alert rule for more information, and details and see the alert firing history. 
-
-:::image type="content" source="media/service-health-portal-update/health-alerts-history.png" alt-text="A screenshot highlighting alerts history" lightbox="media/service-health-portal-update/health-alerts-history.png":::
 
 >[!Note]
 >The classic experience for the Health Alerts blade will be retired. Users will not be able to switch back from the new experience once it is rolled out.
@@ -62,12 +55,13 @@ On this blade, you can see a list of all planned maintenance events. For more in
 :::image type="content" source="media/service-health-portal-update/services-issue-planned-maintenance.png" alt-text="A screenshot of the Planned maintenance blade." lightbox="media/service-health-portal-update/services-issue-planned-maintenance.png":::
 
 ## Health Advisories
-Open this blade to see all the Health Advisories based on your access level. For more information, see [View service health notifications by using the Azure portal](service-notifications.md)
+Health Advisories in Azure Service Health are notifications that inform users about changes in Azure services that require attention. These advisories can include information about the deprecation of Azure features, upgrade requirements, or other actions needed to maintain the health and performance of your Azure resources 
+<br>Open this blade to see all the Health Advisories based on your access level. For more information on how to configure alerts for service health events, see [Create Service Health alert using the Azure portal](alerts-activity-log-service-notifications.md) or [Create activity log alerts using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts using an ARM template](alerts-activity-log-service-notifications-arm.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the health advisories blade." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
 
-## Securitiy Advisories
-This blade all the current security advisories based on your subscription. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md)
+## Security Advisories
+This blade lists all the current security advisories based on your subscription. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md)
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-security.png" alt-text="A screenshot of the security advisories blade." lightbox="media/service-health-portal-update/health-alerts-security.png":::
 
@@ -84,8 +78,15 @@ This page watches your resource and tells you if it's running as expected. There
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health blade." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
 ## Health alerts
+
+The Health Alerts blade allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status. 
+<br>An alert is triggered when the specified conditions are met. You can click directly on any alert rule for more information, and details and see the alert firing history. 
+
+:::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts blade filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
+
 Click on this blade to view any active Health Alerts based on your resources. You can click on the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure Portal](alerts-activity-log-service-notifications-portal.md)
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-alerts.png" alt-text="A screenshot of the health alerts blade." lightbox="media/service-health-portal-update/services-issue-resource-health-alerts.png":::
+
 
 
