@@ -25,7 +25,7 @@ The data types in the following table are supported by this feature. Each has a 
 | [Syslog](./data-collection-syslog.md) | Linux | Eventhub<br>Storage |
 | [Performance counters](./data-collection-performance.md) | Windows<br>Linux | Eventhub<br>Storage |
 | [IIS logs](./data-collection-iis.md) |  Windows<br>Linux | Storage Blob |
-| [Text logs](./data-collection-log-text.md) |  Windows<br>Linux | Storage Blob |
+| [Text logs](./data-collection-log-text.md) |  Windows<br>Linux | Eventhub</br>Storage Blob |
 
 The following logs are not supported:
 
