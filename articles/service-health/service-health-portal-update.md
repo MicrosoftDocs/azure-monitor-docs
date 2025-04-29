@@ -37,7 +37,11 @@ The Service Issues blade shows a map with all the user services across the world
 
 
 ##### Tenant and Subscription access
-Tenant access refers to the ability to view events that impact the entire organization, requiring tenant admin roles. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription. This distinction ensures that users can manage and monitor Azure services effectively based on their roles and the scope of their responsibilities. The Service Issues, Health Advisories, Security Advisories, and Health History blades show events both at tenant and subscription levels.
+Tenant access refers to the ability to view events that impact the entire organization, requiring tenant admin roles. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription. 
+
+This distinction ensures that users can manage and monitor Azure services effectively based on their roles and the scope of their responsibilities. 
+
+The Service Issues, Health Advisories, Security Advisories, and Health History blades show events both at tenant and subscription levels.
 For more information about the roles, see [Role Based Access (RBAC) for security Incident Resource Impact](impacted-resources-security.md).  
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the services issue user interface highlighting the scope selection boxes of tenant and subscription." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
