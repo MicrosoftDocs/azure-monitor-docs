@@ -93,11 +93,11 @@ To make sampling decisions based on the outcome of an entire trace (for example,
 
 ### How does the Application Insights custom sampler compare to OpenTelemetry head-based or tail-based sampling?
 
-| Sampling Method             | Point of decision              | Strengths                                   | Weaknesses                                                 |
-|-----------------------------|--------------------------------|---------------------------------------------|------------------------------------------------------------|
-| Head-based                  | Before a span starts           | Low latency, minimal overhead               | Can result in broken traces                                |
-| Tail-based                  | After spans are buffered based on time or volume thresholds | Ensures complete traces | Higher cost and added processing delay            |
-| App Insights custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics and Classic API compatibility    |
+| Sampling Method             | Point of decision              | Strengths                                   | Weaknesses                                                               |
+|-----------------------------|--------------------------------|---------------------------------------------|--------------------------------------------------------------------------|
+| Head-based                  | Before a span starts           | Low latency, minimal overhead               | Samples out desired traces including those that fail                     |
+| Tail-based                  | After spans are buffered based on time or volume thresholds | Allows highly selective trace sampling criteria | Higher cost and added processing delay  |
+| App Insights custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics and Classic API compatibility                  |
 
 ### Can I sample dependencies, requests, or other telemetry types at different rates?
 
