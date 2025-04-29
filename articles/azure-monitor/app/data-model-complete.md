@@ -1,6 +1,6 @@
 ---
 title: Application Insights telemetry data model
-description: This article describes the Application Insights telemetry data model including availabilityResults, browserTimings, dependencies, customEvents, exceptions, performanceCounters, customMetrics, pageViews, requests, and traces.
+description: This article describes the Application Insights telemetry data model and its different telemetry types.
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
 ms.date: 04/30/2025
@@ -9,7 +9,7 @@ ms.reviewer: mmcc
 
 # Application Insights telemetry data model
 
-[Application Insights](app-insights-overview.md) sends telemetry from your web application to the Azure portal to provide insights into the performance and usage of your application and infrastructure. To help you better understand and organize telemetry data, we categorize it into distinct types. 
+[Application Insights](app-insights-overview.md) sends telemetry from your web application to the Azure portal to provide insights into the performance and usage of your application and infrastructure. To help you better understand and organize telemetry data, we categorize it into distinct types.
 
 The telemetry data model is standardized, making it possible to create platform- and language-independent monitoring. We strive to keep the model simple and slim to support essential scenarios and allow the schema to be extended for advanced use.
 
@@ -40,9 +40,9 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Trace](#trace-telemetry) | `traces` | `AppTraces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
 > [!IMPORTANT]
-> You can query application telemetry from both Application Insights and Log Analytics (recommended), but the table and field names differ between the two. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created prior to the Log Analytics naming convention continue to function correctly.
+> You can query application telemetry from both Application Insights and Log Analytics (recommended), but the table and field names differ between the two. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created before the Log Analytics naming convention continue to function correctly.
 
-Each telemetry item can include context information such as the application version or user session ID. Context consists of a set of strongly typed fields that enable different analysis scenarios. 
+Each telemetry item can include [context information](#context) such as the application version or user session ID. Context consists of a set of strongly typed fields that enable different analysis scenarios.
 
 For example, when application version is properly initialized, Application Insights can detect new patterns in application behavior correlated with redeployment. Similarly, you can use session ID to assess the impact of outages or issues on users. By calculating the number of unique session IDs associated with failed dependencies, error traces, or critical exceptions, you gain a clearer picture of user impact.
 
@@ -61,7 +61,7 @@ Availability telemetry involves synthetic monitoring, where tests simulate user 
 | `id` | `Id` | The unique identifier of an availability test result, used for correlation between individual test executions which can help trace specific failures or patterns over time. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
 | `name` | `Name` | The name of an availability test. It's defined when creating the test (for example, "Homepage ping test"). |
 | `location` | `Location` | The geographical location or data center region from which an availability test was executed (for example, West US, Northern Europe). It helps to identify regional outages or latency issues. |
-| `success` | `Success` | This field indicates whether an availability test was successful or not. It is a boolean value where `true` means the test was successful and `false` means it failed. |
+| `success` | `Success` | This field indicates whether an availability test was successful or not. It's a boolean value where `true` means the test was successful and `false` means it failed. |
 | `message` | `Message` | A descriptive message with details about the outcome of the test. It often contains exception details or error responses. |
 | `duration` | `Duration` | The amount of time the availability test took to execute. It helps measuring the performance and identifying response time issues. The duration is typically measured in milliseconds. |
 
@@ -96,7 +96,7 @@ A dependency telemetry item represents an interaction of the monitored component
 | `type` | `DependencyType` | The dependency type name. It has a low cardinality value for logical grouping of dependencies and interpretation of other fields like `commandName` and `resultCode`. Examples are SQL, Azure table, and HTTP. |
 | `name` | `Name` | The name of the command initiated with this dependency call. It has a low cardinality value. Examples are stored procedure name and URL path template. |
 | `data` | `Data` | The command initiated by this dependency call. Examples are SQL statement and HTTP URL with all query parameters. |
-| `success` | `Success` | This field indicates whether a call was successful or not. It is a boolean value where `true` means the call was successful and `false` means it failed. |
+| `success` | `Success` | This field indicates whether a call was successful or not. It's a boolean value where `true` means the call was successful and `false` means it failed. |
 | `resultCode` | `ResultCode` | The result code of a dependency call. Examples are SQL error code and HTTP status code. |
 | `duration` | `DurationMs` | The request duration is in the format `DD.HH:MM:SS.MMMMMM`. It must be less than `1000` days. |
 
@@ -127,7 +127,7 @@ An exception telemetry item represents a handled or unhandled exception that occ
 | `problemId` | `ProblemId` | Identifies where the exception was thrown in code. It's used for exceptions grouping. Typically, it's a combination of an exception type and a function from the call stack. |
 | `type` | `ExceptionType` | The specific kind of exception that occurred. This typically includes the namespace and class name, such as `System.NullReferenceException` or `System.InvalidOperationException`. |
 | `assembly` | `Assembly` | The assembly where the exception was thrown. This is useful for pinpointing the component of the application responsible for the exception. |
-| `method` | `Method` | The method name within the assembly where the exception was thrown. This provides contextual information about where in the code the error occured. |
+| `method` | `Method` | The method name within the assembly where the exception was thrown. This provides contextual information about where in the code the error occurred. |
 | `outerType` | `OuterType` | The type of the outer (wrapping) exception, if the current exception is nested within another exception. This is useful for understanding the context in which the inner exception occurred and can help in tracing the sequence of errors. |
 | `outerMessage` | `OuterMessage` | This message provides a human-readable explanation of the outer exception and can be helpful in understanding the broader issue. |
 | `outerAssembly` | `OuterAssembly` | The assembly where the outer exception originated. |
@@ -314,7 +314,7 @@ Every telemetry item might have a strongly typed context field. Every field enab
 |--------------------------------------|-------------------------------|-------------|
 | `account_ID` | `user_AccountId` | The account ID, in multitenant applications, is the tenant account ID or name that the user is acting with. It's used for more user segmentation when a user ID and an authenticated user ID aren't sufficient. Examples might be a subscription ID for the Azure portal or the blog name for a blogging platform. |
 | `application_Version` | `AppVersion` | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. |
-| `appId` | `ResourceGUID` | A unique identifier for your Application Insights resource distinguish telemetry from different applications. |
+| `appId` | `ResourceGUID` | A unique identifier for your Application Insights resource to distinguish telemetry from different applications. |
 | `appName` | N/A | In Application Insights, `appName` is the same as `_ResourceId`. |
 | `client_Browser` | `ClientBrowser` | The name of the web browser used by the client. |
 | `client_City` | `ClientCity` | The city where the client was located when the telemetry was collected (based on IP geolocation). |
