@@ -6,6 +6,14 @@ ms.date: 4/29/2025
 ---
 
 # Azure Service Health Portal
+The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard which tracks the health of your Azure services in the regions where you use them. 
+
+The Azure Service Health portal experience lets you engage with service events and manage actions and alerts to maintain the business continuity of impacted applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, or billing updates. 
+
+When events become inactive, they get placed in your health history for up to 90 days. Finally, you can use the Service Health dashboard to create and manage service health alerts which proactively notify you when service issues are affecting you.
+
+This article goes through the whole portal experience.
+
 
 The Azure Service Health portal experience lets users engage with service events and manage actions and alerts to maintain the business continuity of impacted applications.
 
@@ -18,7 +26,7 @@ The Azure Service Health portal experience lets users engage with service events
 ##### Service Issues Blade
 The Service Issues blade shows a map with all the user services across the world. The information on this blade helps you find services that might be impacted from an outage based on your subscription or tenant admin access.
 
-
+<!--
 >[!Note]
 >The classic experience for the Health Alerts blade will be retired. Users will not be able to switch back from the new experience once it is rolled out.
 
@@ -30,7 +38,7 @@ The Service Issues blade shows a map with all the user services across the world
 >Although the Resource Graph query returns multiple responses for each tracking ID, the service health blade on the portal aggregates the results into one event.
 >
 >As a result, the Resource Graph query returns a significantly higher number of health advisories compared to what is shown on the portal, leading to confusion, and concerns regarding the accuracy of the service health information.
-
+-->
 
 ##### Tenant Level View
 Users with [tenant admin access](admin-access-reference.md#roles-with-tenant-admin-access), can view events at the tenant scope. The Service Issues, Health Advisories, Security Advisories, and Health History blades show events both at tenant and subscription levels. 
