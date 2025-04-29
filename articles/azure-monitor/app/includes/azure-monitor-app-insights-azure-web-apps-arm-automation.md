@@ -44,8 +44,9 @@ To create a Resource Manager template with the default Application Insights sett
 >
 > We *don't* recommend copying and using it directly. Instead, generate your own template based on the instructions above.
 
+<br>
 <details>
-<summary><b>Example template</b></summary>
+<summary><b>Expand to view example template</b></summary>
 
 ```json
 {
