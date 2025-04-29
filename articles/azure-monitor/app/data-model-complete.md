@@ -54,7 +54,7 @@ This article covers the fields specific to each telemetry type. To view the comp
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive. We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
 
-### Availability-specific fields
+Availability-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -71,7 +71,7 @@ For a list of all available fields, see [AppAvailabilityResults](../reference/ta
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents).
 
-### Browser-timing-specific fields
+Browser-timing-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -87,7 +87,7 @@ For a list of all available fields, see [AppBrowserTimings](../reference/tables/
 
 A dependency telemetry item represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
-### Dependency-specific fields
+Dependency-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -104,7 +104,9 @@ For a list of all available fields, see [AppDependencies](../reference/tables/ap
 
 ## Events
 
-You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update. To learn more about creating custom event telemetry, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events). Event-specific fields include:
+You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update. To learn more about creating custom event telemetry, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
+
+Event-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -116,7 +118,7 @@ For a list of all available fields, see [AppEvents](../reference/tables/appevent
 
 An exception telemetry item represents a handled or unhandled exception that occurred during execution of the monitored application.
 
-### Exception-specific fields
+Exception-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -142,7 +144,9 @@ Application Insights supports two types of metric telemetry:
 
 ### Performance counters
 
-Performance counters are always single measurement metrics with a *name* and a *value*, but come with the additional fields *category*, *counter*, and for Windows applications also *instance*. Performance-counter-specific fields include:
+Performance counters are always single measurement metrics with a *name* and a *value*, but come with the additional fields *category*, *counter*, and for Windows applications also *instance*.
+
+Performance-counter-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -176,7 +180,9 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
 
 ### Custom metrics
 
-Custom metrics are performance indicators or business-specific metrics that you define and collect to gain insights that aren't covered by standard metrics. To learn more about custom metrics, see [Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md). Custom-metric-specific fields include:
+Custom metrics are performance indicators or business-specific metrics that you define and collect to gain insights that aren't covered by standard metrics. To learn more about custom metrics, see [Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md).
+
+Custom-metric-specific fields include:
 
 <table>
     <thead>
@@ -237,7 +243,7 @@ Page view telemetry is logged when an application user opens a new page of a mon
 
 This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
-### Page view-specific fields
+Page view-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -255,15 +261,11 @@ For a list of all available fields, see [AppPageViews](../reference/tables/apppa
 
 ## Requests
 
-Request telemetry represents information related to incoming HTTP requests to your application. This type of telemetry helps you monitor the performance and success of your application's web-based services.
+Request telemetry represents information related to incoming HTTP requests to your application. This type of telemetry helps you monitor the performance and success of your application's web-based services. A request telemetry item represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
 
-A request telemetry item represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
+You can group requests by logical `name` and define the `source` of this request. Code execution can result in `success` or `fail` and has a certain `duration`. You can further group success and failure executions by using `resultCode`. Start time for the request telemetry is defined on the envelope level. Request telemetry supports the standard extensibility model by using [custom `properties` and `measurements`](#custom-properties-and-measurements).
 
-You can group requests by logical `name` and define the `source` of this request. Code execution can result in `success` or `fail` and has a certain `duration`. You can further group success and failure executions by using `resultCode`. Start time for the request telemetry is defined on the envelope level.
-
-Request telemetry supports the standard extensibility model by using [custom `properties` and `measurements`](#custom-properties-and-measurements).
-
-### Request-specific fields
+Request-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -281,7 +283,7 @@ For a list of all available fields, see [AppRequests](../reference/tables/appreq
 
 Trace telemetry represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
-### Trace-specific fields
+Trace-specific fields include:
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -323,27 +325,8 @@ This can occur if you're using string values. Only numeric values work with cust
 
 ## Next steps
 
-Learn how to use the [Application Insights API for custom events and metrics](api-custom-events-metrics.md), including:
-
-* [Custom request telemetry](api-custom-events-metrics.md#trackrequest)
-* [Custom dependency telemetry](api-custom-events-metrics.md#trackdependency)
-* [Custom trace telemetry](api-custom-events-metrics.md#tracktrace)
-* [Custom event telemetry](api-custom-events-metrics.md#trackevent)
-* [Custom metric telemetry](api-custom-events-metrics.md#trackmetric)
-
-Examples to set up dependency tracking:
-
-* [.NET](asp-net-dependencies.md)
-* [Java](opentelemetry-enable.md?tabs=java)
-
-To learn more:
-
 * Check out [platforms](app-insights-overview.md#supported-languages) supported by Application Insights.
-* Check out standard context properties collection [configuration](configuration-with-applicationinsights-config.md#telemetry-initializers-aspnet).
-* Explore [.NET trace logs in Application Insights](asp-net-trace-logs.md).
-* Explore [Java trace logs in Application Insights](opentelemetry-add-modify.md?tabs=java#send-custom-telemetry-using-the-application-insights-classic-api).
-
-* Learn about the [Azure Functions built-in integration with Application Insights](/azure/azure-functions/functions-monitoring?toc=/azure/azure-monitor/toc.json) to monitor functions executions.
-* Learn how to [diagnose exceptions in your web apps with Application Insights](asp-net-exceptions.md).
+* Learn how to [collect custom telemetry using the Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#collect-custom-telemetry).
+* Learn how to use the [Application Insights API for custom events and metrics](api-custom-events-metrics.md).
 * Learn how to [extend and filter telemetry](api-filtering-sampling.md).
 * Learn how to use [sampling](sampling.md) to minimize the amount of telemetry based on data model.
