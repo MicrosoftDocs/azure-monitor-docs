@@ -55,8 +55,9 @@ On this blade, you can see a list of all planned maintenance events. For more in
 :::image type="content" source="media/service-health-portal-update/services-issue-planned-maintenance.png" alt-text="A screenshot of the Planned maintenance blade." lightbox="media/service-health-portal-update/services-issue-planned-maintenance.png":::
 
 ## Health Advisories
-Health Advisories in Azure Service Health are notifications that inform users about changes in Azure services that require attention. These advisories can include information about the deprecation of Azure features, upgrade requirements, or other actions needed to maintain the health and performance of your Azure resources 
-<br>Open this blade to see all the Health Advisories based on your access level. For more information on how to configure alerts for service health events, see [Create Service Health alert using the Azure portal](alerts-activity-log-service-notifications.md) or [Create activity log alerts using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts using an ARM template](alerts-activity-log-service-notifications-arm.md).
+Health Advisories in Azure Service Health are notifications that inform users about changes in Azure services that require attention. These advisories can include information about the deprecation of Azure features, upgrade requirements, or other actions needed to maintain the health and performance of your Azure resources.
+
+<br>Open this blade to see all the Health Advisories based on your subscription access. For more information on how to configure alerts for service health events, see [Create Service Health alert using the Azure portal](alerts-activity-log-service-notifications.md) or [Create activity log alerts using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts using an ARM template](alerts-activity-log-service-notifications-arm.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the health advisories blade." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
 
@@ -73,7 +74,7 @@ If you have access as a subscription owner or contributor, you'll see the billin
 
 
 ## Resource health
-This page watches your resource and tells you if it's running as expected. There are links that open directly to information about the health of your selected resource. 
+This page watches your resource and tells you if it's running as expected. There are links that open directly to information about the health of your selected resource. For more information, see [Resource Health overview](resource-health-overview.md)
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health blade." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
