@@ -63,9 +63,9 @@ The OpenCensus website maintains API reference documentation for [Python](https:
 
 Application Insights defines a [data model](../../azure-monitor/app/data-model-complete.md) for distributed telemetry correlation. To associate telemetry with a logical operation, every telemetry item has a context field called `operation_Id`. Every telemetry item in the distributed trace shares this identifier. So even if you lose telemetry from a single layer, you can still associate telemetry reported by other components.
 
-A distributed logical operation typically consists of a set of smaller operations that are requests processed by one of the components. [Request telemetry](../../azure-monitor/app/data-model-complete.md#request) defines these operations. Every request telemetry item has its own `id` that identifies it uniquely and globally. And all telemetry items (such as traces and exceptions) that are associated with the request should set the `operation_parentId` to the value of the request `id`.
+A distributed logical operation typically consists of a set of smaller operations that are requests processed by one of the components. [Request telemetry](../../azure-monitor/app/data-model-complete.md#request-telemetry) defines these operations. Every request telemetry item has its own `id` that identifies it uniquely and globally. And all telemetry items (such as traces and exceptions) that are associated with the request should set the `operation_parentId` to the value of the request `id`.
 
-[Dependency telemetry](../../azure-monitor/app/data-model-complete.md#dependency) represents every outgoing operation, such as an HTTP call to another component. It also defines its own `id` that's globally unique. Request telemetry, initiated by this dependency call, uses this `id` as its `operation_parentId`.
+[Dependency telemetry](../../azure-monitor/app/data-model-complete.md#dependency-telemetry) represents every outgoing operation, such as an HTTP call to another component. It also defines its own `id` that's globally unique. Request telemetry, initiated by this dependency call, uses this `id` as its `operation_parentId`.
 
 You can build a view of the distributed logical operation by using `operation_Id`, `operation_parentId`, and `request.id` with `dependency.id`. These fields also define the causality order of telemetry calls.
 

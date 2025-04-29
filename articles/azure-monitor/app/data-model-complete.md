@@ -29,15 +29,15 @@ The following types of telemetry are used to monitor the execution of your appli
 
 | Telemetry type | Table name<br>(Application Insights) | Table name<br>(Log Analytics) | Description |
 |----------------|--------------------------------------|-------------------------------|-------------|
-| [Availability](#availability) | `availabilityResults` | `AppAvailabilityResults` | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
-| [Browser timings](#browser-timings) | `browserTimings` | `AppBrowserTimings` | Measures the performance of web pages, including page load times and network durations. |
-| [Dependencies](#dependencies) | `dependencies` | `AppDependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
-| [Events](#events) | `customEvents` | `AppEvents` | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
-| [Exceptions](#exceptions) | `exceptions` | `AppExceptions` | Captures error information crucial for troubleshooting and understanding failures. |
-| [Metrics](#metrics) | `performanceCounters`<br><br>`customMetrics` | `AppPerformanceCounters`<br><br>`AppMetrics` | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption.<br><br>Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
-| [Page views](#page-views) | `pageViews` | `AppPageViews` | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
-| [Requests](#requests) | `requests` | `AppRequests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
-| [Traces](#traces) | `traces` | `AppTraces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
+| [Availability](#availability-telemetry) | `availabilityResults` | `AppAvailabilityResults` | Monitors the availability and responsiveness of your application by sending web requests at regular intervals and alerting you if the application isn't responding or if the response time is too slow. |
+| [Browser timing](#browser-timing-telemetry) | `browserTimings` | `AppBrowserTimings` | Measures the performance of web pages, including page load times and network durations. |
+| [Dependency](#dependency-telemetry) | `dependencies` | `AppDependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
+| [Event](#event-telemetry) | `customEvents` | `AppEvents` | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
+| [Exception](#exception-telemetry) | `exceptions` | `AppExceptions` | Captures error information crucial for troubleshooting and understanding failures. |
+| [Metric](#metric-telemetry) | `performanceCounters`<br><br>`customMetrics` | `AppPerformanceCounters`<br><br>`AppMetrics` | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption.<br><br>Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
+| [Page view](#page-view-telemetry) | `pageViews` | `AppPageViews` | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
+| [Request](#request-telemetry) | `requests` | `AppRequests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
+| [Trace](#trace-telemetry) | `traces` | `AppTraces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
 > [!IMPORTANT]
 > You can query application telemetry from both Application Insights and Log Analytics (recommended), but the table and field names differ between the two. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created prior to the Log Analytics naming convention continue to function correctly.
@@ -50,11 +50,11 @@ The Application Insights telemetry model also supports [correlation of telemetry
 
 This article covers the fields specific to each telemetry type. To view the complete list of available fields (including context fields) for any telemetry type, follow the link provided beneath each relevant table.
 
-## Availability
+## Availability telemetry
 
 Availability telemetry involves synthetic monitoring, where tests simulate user interactions to verify that the application is available and responsive. We recommend setting up [standard availability tests](availability.md) to monitor the availability of your application from various points around the globe, and send your own test information to Application Insights.
 
-Availability-specific fields include:
+**Availability-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -67,11 +67,11 @@ Availability-specific fields include:
 
 For a list of all available fields, see [AppAvailabilityResults](../reference/tables/appavailabilityresults.md).
 
-## Browser timings
+## Browser timing telemetry
 
 Browsers expose measurements for page load actions with the [Performance API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API). Application Insights simplifies these measurements by consolidating related timings into [standard browser metrics](../essentials/metrics-supported.md#microsoftinsightscomponents).
 
-Browser-timing-specific fields include:
+**Browser-timing-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -83,11 +83,11 @@ Browser-timing-specific fields include:
 
 For a list of all available fields, see [AppBrowserTimings](../reference/tables/appbrowsertimings.md).
 
-## Dependencies
+## Dependency telemetry
 
 A dependency telemetry item represents an interaction of the monitored component with a remote component such as SQL or an HTTP endpoint.
 
-Dependency-specific fields include:
+**Dependency-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -102,11 +102,13 @@ Dependency-specific fields include:
 
 For a list of all available fields, see [AppDependencies](../reference/tables/appdependencies.md).
 
-## Events
+## Event telemetry
 
-You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update. To learn more about creating custom event telemetry, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
+You can create event telemetry items to represent an event that occurred in your application. Typically, it's a user interaction such as a button click or an order checkout. It can also be an application lifecycle event like initialization or a configuration update.
 
-Event-specific fields include:
+To learn more about creating custom event telemetry, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
+
+**Event-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -114,11 +116,11 @@ Event-specific fields include:
 
 For a list of all available fields, see [AppEvents](../reference/tables/appevents.md).
 
-## Exceptions
+## Exception telemetry
 
 An exception telemetry item represents a handled or unhandled exception that occurred during execution of the monitored application.
 
-Exception-specific fields include:
+**Exception-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -135,7 +137,7 @@ Exception-specific fields include:
 
 For a list of all available fields, see [AppExceptions](../reference/tables/appexceptions.md).
 
-## Metrics
+## Metric telemetry
 
 Application Insights supports two types of metric telemetry:
 
@@ -146,7 +148,7 @@ Application Insights supports two types of metric telemetry:
 
 Performance counters are always single measurement metrics with a *name* and a *value*, but come with the additional fields *category*, *counter*, and for Windows applications also *instance*.
 
-Performance-counter-specific fields include:
+**Performance-counter-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -182,7 +184,7 @@ The metric with the custom property `CustomPerfCounter` set to `true` indicates 
 
 Custom metrics are performance indicators or business-specific metrics that you define and collect to gain insights that aren't covered by standard metrics. To learn more about custom metrics, see [Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md).
 
-Custom-metric-specific fields include:
+**Custom-metric-specific fields:**
 
 <table>
     <thead>
@@ -237,13 +239,13 @@ For a list of all available fields, see [AppMetrics](../reference/tables/appmetr
 > [!NOTE]
 > To calculate the average, divide **Sum** by **Count**.
 
-## Page views
+## Page view telemetry
 
 Page view telemetry is logged when an application user opens a new page of a monitored application. The `Page` in this context is a logical unit that's defined by the developer to be an application tab or a screen and isn't necessarily correlated to a browser webpage load or a refresh action.
 
 This distinction can be further understood in the context of single-page applications (SPAs), where the switch between pages isn't tied to browser page actions. The [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) is the time it takes for the application to present the page to the user.
 
-Page view-specific fields include:
+**Page view-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -255,17 +257,17 @@ Page view-specific fields include:
 For a list of all available fields, see [AppPageViews](../reference/tables/apppageviews.md).
 
 > [!NOTE]
-> * By default, the Application Insights JavaScript SDK logs single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#browsertimings). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
+> * By default, the Application Insights JavaScript SDK logs single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#browser-timing-telemetry). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 >
 > * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
 
-## Requests
+## Request telemetry
 
 Request telemetry represents information related to incoming HTTP requests to your application. This type of telemetry helps you monitor the performance and success of your application's web-based services. A request telemetry item represents the logical sequence of execution triggered by an external request to your application. Every request execution is identified by a unique `id` and `url` that contain all the execution parameters.
 
 You can group requests by logical `name` and define the `source` of this request. Code execution can result in `success` or `fail` and has a certain `duration`. You can further group success and failure executions by using `resultCode`. Start time for the request telemetry is defined on the envelope level. Request telemetry supports the standard extensibility model by using [custom `properties` and `measurements`](#custom-properties-and-measurements).
 
-Request-specific fields include:
+**Request-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -279,11 +281,11 @@ Request-specific fields include:
 
 For a list of all available fields, see [AppRequests](../reference/tables/apprequests.md).
 
-## Traces
+## Trace telemetry
 
 Trace telemetry represents `printf`-style trace statements that are text searched. `Log4Net`, `NLog`, and other text-based log file entries are translated into instances of this type. The trace doesn't have measurements as an extensibility.
 
-Trace-specific fields include:
+**Trace-specific fields:**
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
@@ -294,6 +296,38 @@ For a list of all available fields, see [AppTraces](../reference/tables/apptrace
 
 > [!NOTE]
 > Values for `severityLevel` are enumerated and platform-specific.
+
+## Context
+
+Every telemetry item might have a strongly typed context field. Every field enables a specific monitoring scenario. Use the custom properties collection to store custom or application-specific contextual information.
+
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| **operation_Name** | **OperationName** | The name (group) of the operation. Either a request or a page view creates the operation name. All other telemetry items set this field to the value for the containing request or page view. The operation name is used for finding all the telemetry items for a group of operations (for example, `GET Home/Index`). This context property is used to answer questions like What are the typical exceptions thrown on this page? |
+| **operation_Id** | **OperationId** | The unique identifier of the root operation. This identifier allows grouping telemetry across multiple components. For more information, see [Telemetry correlation](distributed-trace-data.md). Either a request or a page view creates the operation ID. All other telemetry sets this field to the value for the containing request or page view. |
+| **operation_ParentId** | **ParentId** | The unique identifier of the telemetry item's immediate parent. For more information, see [Telemetry correlation](distributed-trace-data.md). |
+| **operation_SyntheticSource** | **SyntheticSource** | The name of the synthetic source. Some telemetry from the application might represent synthetic traffic. It might be the web crawler indexing the website, site availability tests, or traces from diagnostic libraries like the Application Insights SDK itself. |
+| **session_Id** | **SessionId** | Session ID is the instance of the user's interaction with the app. Information in the session context fields is always about the user. When telemetry is sent from a service, the session context is about the user who initiated the operation in the service. |
+| **user_Id** | **UserId** | The anonymous user ID represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use an authenticated user ID. |
+| **user_AuthenticatedId** |**UserAuthenticatedId** | An authenticated user ID is the opposite of an anonymous user ID. This field represents the user with a friendly name. This ID is only collected by default with the ASP.NET Framework SDK's [`AuthenticatedUserIdTelemetryInitializer`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/WEB/Src/Web/Web/AuthenticatedUserIdTelemetryInitializer.cs).<br><br>Use the Application Insights SDK to initialize the authenticated user ID with a value that identifies the user persistently across browsers and devices. In this way, all telemetry items are attributed to that unique ID. This ID enables querying for all telemetry collected for a specific user (subject to [sampling configurations](sampling.md) and [telemetry filtering](api-filtering-sampling.md)).<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration. |
+| **application_Version** | **AppVersion** | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. |
+| **client_Type** | **ClientType** | Describes the type of client device that sent the telemetry (for example, `Browser`, `PC`, `Mobile`, or `Other`). |
+| **client_OS** | **ClientOS** | Indicates the operating system of the client that generated the telemetry (for example, `Windows 10`, `iOS`, `Android`, `macOS`). |
+| **client_IP** | **ClientIP** | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. |
+| **client_City** | **ClientCity** | The city where the client was located when the telemetry was collected (based on IP geolocation). |
+| **client_StateorProvince** | **ClientStateOrProvince** | The state or province of the client location, inferred from the client’s IP address. |
+| **client_CountryOrRegion** | **ClientCountryOrRegion** | The country or region of the client (based on IP), formatted as a full country name (for example, `United States`, `Germany`). |
+| **client_Browser** | **ClientBrowser** | The name of the web browser used by the client. |
+| **cloud_RoleName** | **AppRoleName** | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. |
+| **cloud_RoleInstance** | **AppRoleInstance** | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. |
+| **appId** | **ResourceGUID** | A unique identifier for your Application Insights resource distinguish telemetry from different applications. |
+| **appName** | N/A | In Application Insights, `appName` is the same as `_ResourceId`. |
+| **iKey** | **IKey** | A legacy unique identifier used to associate telemetry data with a specific Application Insights resource. |
+| **sdkVersion** | **SDKVersion** | For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). |
+| **itemId** | N/A | A unique identifier for a specific telemetry item. |
+| **itemCount** | **ItemCount** | The number of occurrences or counts associated with a single telemetry event. |
+| **_ResourceId** | **_ResourceId** | The full Azure Resource ID of the Application Insights component, which includes the subscription, resource group, and resource name. |
+| **account_ID** | **user_AccountId** | The account ID, in multitenant applications, is the tenant account ID or name that the user is acting with. It's used for more user segmentation when a user ID and an authenticated user ID aren't sufficient. Examples might be a subscription ID for the Azure portal or the blog name for a blogging platform. |
 
 ## Custom properties and measurements
 
