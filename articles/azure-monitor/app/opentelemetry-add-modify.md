@@ -1614,7 +1614,7 @@ with tracer.start_as_current_span("my request span", kind=SpanKind.SERVER) as sp
 
 ### Send custom events
 
-[Application Insights](./app-insights-overview.md) stores custom events in the `customEvents` table. You can **analyze, filter, and visualize** them by using [Azure Monitor tools](../fundamentals/overview.md).
+[Application Insights](./app-insights-overview.md) stores custom events in the `customEvents` table. You can **analyze, filter, and visualize** them by using [Azure Monitor tools](./usage.md#slice-and-dice-events).
 
 Use custom events to track important actions that support business goals. Examples include **selecting a button, submitting a form, and completing a purchase**.
 
