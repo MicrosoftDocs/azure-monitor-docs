@@ -890,6 +890,9 @@ To set the daily cap for Log Analytics, paste the following code into your templ
 
 The pricing plan for Application Insights resources can be set in the associated Log Analytics workspace. For more information about available pricing plans, see [Azure Monitor Logs cost calculations and options](./../logs/cost-logs.md).
 
+> [!NOTE]
+> If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
+
 ### [Portal](#tab/portal)
 
 To learn how to set the pricing plan in the Azure portal, see [Application Insights billing](./../logs/cost-logs.md#application-insights-billing).

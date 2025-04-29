@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: conceptual
-ms.date: 01/30/2025
+ms.date: 03/07/2025
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
@@ -46,7 +46,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
-| AlmaLinux 9                                                 | ✓<sup>2</sup> |
+| AlmaLinux 9                                                 | ✓ |
 | AlmaLinux 8                                                 | ✓<sup>2</sup> |
 | Amazon Linux 2                                              | ✓ |
 | Amazon Linux 2023                                           | ✓ |
