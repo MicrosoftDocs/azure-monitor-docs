@@ -22,7 +22,7 @@ When events become inactive, they get placed in your health history for up to 90
 ##### Service Issues
 The Service Issues blade shows a map with all the user services across the world. The information on this blade helps you find services that might be impacted from an outage based on your subscription or tenant admin access.
 
-<!--
+
 >[!Note]
 >The classic experience for the Health Alerts blade will be retired. Users will not be able to switch back from the new experience once it is rolled out.
 
@@ -34,10 +34,11 @@ The Service Issues blade shows a map with all the user services across the world
 >Although the Resource Graph query returns multiple responses for each tracking ID, the service health blade on the portal aggregates the results into one event.
 >
 >As a result, the Resource Graph query returns a significantly higher number of health advisories compared to what is shown on the portal, leading to confusion, and concerns regarding the accuracy of the service health information.
--->
 
-##### Tenant Level view
-Users with [tenant admin access](admin-access-reference.md#roles-with-tenant-admin-access), can view events at the tenant scope. The Service Issues, Health Advisories, Security Advisories, and Health History blades show events both at tenant and subscription levels. 
+
+##### Tenant and Subscription access
+Tenant access refers to the ability to view events that impact the entire organization, requiring tenant admin roles. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription. This distinction ensures that users can manage and monitor Azure services effectively based on their roles and the scope of their responsibilities. The Service Issues, Health Advisories, Security Advisories, and Health History blades show events both at tenant and subscription levels.
+For more information about the roles, see [Role Based Access (RBAC) for security Incident Resource Impact](impacted-resources-security.md).  
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the services issue user interface highlighting the scope selection boxes of tenant and subscription." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
 
