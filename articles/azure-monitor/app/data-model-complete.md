@@ -197,37 +197,37 @@ Custom metrics are performance indicators or business-specific metrics that you 
     </thead>
     <tbody>
         <tr>
-            <td><b>name</b></td>
-            <td><b>Name</b></td>
+            <td><code>name</code></td>
+            <td><code>Name</code></td>
             <td colspan = "2">This field is the name of the metric you want to see in the Application Insights portal and UI.</td>
         </tr>
         <tr>
-            <td><b>value</b></td>
-            <td><b>Value</b></td>
+            <td><code>value</code></td>
+            <td><code>Value</code></td>
             <td>This field is the single value for measurement. It's the sum of individual measurements for the aggregation.</td>
             <td>For a preaggregated metric, <b>Value</b> equals <b>Sum</b>.</td>
         </tr>
         <tr>
-            <td><b>Max</b></td>
-            <td><b>Max</b></td>
+            <td><code>Max</code></td>
+            <td><code>Max</code></td>
             <td>For a single measurement metric, <b>Max</b> equals <b>Value</b>.</td>
             <td>This field is the maximum value of the aggregated metric. It shouldn't be set for a measurement.</td>
         </tr>
         <tr>
-            <td><b>Min</b></td>
-            <td><b>Min</b></td>
+            <td><code>Min</code></td>
+            <td><code>Min</code></td>
             <td>For a single measurement metric, <b>Min</b> equals <b>Value</b>.</td>
             <td>This field is the minimum value of the aggregated metric. It shouldn't be set for a measurement.</td>
         </tr>
         <tr>
-            <td><b>Sum</b></td>
-            <td><b>Sum</b></td>
+            <td><code>Sum</code></td>
+            <td><code>Sum</code></td>
             <td>For a single measurement metric, <b>Sum</b> equals <b>Value</b>.</td>
             <td>The sum of all values of the aggregated metric. It shouldn't be set for a measurement.</td>
         </tr>
         <tr>
-            <td><b>Count</b></td>
-            <td><b>Count</b></td>
+            <td><code>Count</code></td>
+            <td><code>Count</code></td>
             <td>For a single measurement metric, <b>Count</b> is <code>1</code>.</td>
             <td>The number of measurements in a 1-minute aggregation period. It shouldn't be set for a measurement.</td>
         </tr>
@@ -249,7 +249,6 @@ This distinction can be further understood in the context of single-page applica
 
 | Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
 |--------------------------------------|-------------------------------|-------------|
-| `id` | N/A | The unique identifier of a PageView instance, used for correlation between the PageView and other telemetry items. For more information, see [Telemetry correlation in Application Insights](distributed-trace-data.md). |
 | `name` | `Name` | The name of the page that was viewed by the user (for example, `"Home"` or `"Shopping Cart"`). |
 | `url` | `Url` | The full URL of the page that was viewed. This field is crucial for analyzing traffic and user behavior across the application. |
 | `duration` | `DurationMs` | The `PageView` duration is from the browser's performance timing interface, [`PerformanceNavigationTiming.duration`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/duration).<br><br>If `PerformanceNavigationTiming` is available, that duration is used. If it's not, the *deprecated* [`PerformanceTiming`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming) interface is used and the delta between [`NavigationStart`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/navigationStart) and [`LoadEventEnd`](https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming/loadEventEnd) is calculated.<br><br>The developer specifies a duration value when logging custom `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views). |
@@ -297,38 +296,6 @@ For a list of all available fields, see [AppTraces](../reference/tables/apptrace
 > [!NOTE]
 > Values for `severityLevel` are enumerated and platform-specific.
 
-## Context
-
-Every telemetry item might have a strongly typed context field. Every field enables a specific monitoring scenario. Use the custom properties collection to store custom or application-specific contextual information.
-
-| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
-|--------------------------------------|-------------------------------|-------------|
-| **operation_Name** | **OperationName** | The name (group) of the operation. Either a request or a page view creates the operation name. All other telemetry items set this field to the value for the containing request or page view. The operation name is used for finding all the telemetry items for a group of operations (for example, `GET Home/Index`). This context property is used to answer questions like What are the typical exceptions thrown on this page? |
-| **operation_Id** | **OperationId** | The unique identifier of the root operation. This identifier allows grouping telemetry across multiple components. For more information, see [Telemetry correlation](distributed-trace-data.md). Either a request or a page view creates the operation ID. All other telemetry sets this field to the value for the containing request or page view. |
-| **operation_ParentId** | **ParentId** | The unique identifier of the telemetry item's immediate parent. For more information, see [Telemetry correlation](distributed-trace-data.md). |
-| **operation_SyntheticSource** | **SyntheticSource** | The name of the synthetic source. Some telemetry from the application might represent synthetic traffic. It might be the web crawler indexing the website, site availability tests, or traces from diagnostic libraries like the Application Insights SDK itself. |
-| **session_Id** | **SessionId** | Session ID is the instance of the user's interaction with the app. Information in the session context fields is always about the user. When telemetry is sent from a service, the session context is about the user who initiated the operation in the service. |
-| **user_Id** | **UserId** | The anonymous user ID represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use an authenticated user ID. |
-| **user_AuthenticatedId** |**UserAuthenticatedId** | An authenticated user ID is the opposite of an anonymous user ID. This field represents the user with a friendly name. This ID is only collected by default with the ASP.NET Framework SDK's [`AuthenticatedUserIdTelemetryInitializer`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/WEB/Src/Web/Web/AuthenticatedUserIdTelemetryInitializer.cs).<br><br>Use the Application Insights SDK to initialize the authenticated user ID with a value that identifies the user persistently across browsers and devices. In this way, all telemetry items are attributed to that unique ID. This ID enables querying for all telemetry collected for a specific user (subject to [sampling configurations](sampling.md) and [telemetry filtering](api-filtering-sampling.md)).<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration. |
-| **application_Version** | **AppVersion** | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. |
-| **client_Type** | **ClientType** | Describes the type of client device that sent the telemetry (for example, `Browser`, `PC`, `Mobile`, or `Other`). |
-| **client_OS** | **ClientOS** | Indicates the operating system of the client that generated the telemetry (for example, `Windows 10`, `iOS`, `Android`, `macOS`). |
-| **client_IP** | **ClientIP** | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. |
-| **client_City** | **ClientCity** | The city where the client was located when the telemetry was collected (based on IP geolocation). |
-| **client_StateorProvince** | **ClientStateOrProvince** | The state or province of the client location, inferred from the client’s IP address. |
-| **client_CountryOrRegion** | **ClientCountryOrRegion** | The country or region of the client (based on IP), formatted as a full country name (for example, `United States`, `Germany`). |
-| **client_Browser** | **ClientBrowser** | The name of the web browser used by the client. |
-| **cloud_RoleName** | **AppRoleName** | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. |
-| **cloud_RoleInstance** | **AppRoleInstance** | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. |
-| **appId** | **ResourceGUID** | A unique identifier for your Application Insights resource distinguish telemetry from different applications. |
-| **appName** | N/A | In Application Insights, `appName` is the same as `_ResourceId`. |
-| **iKey** | **IKey** | A legacy unique identifier used to associate telemetry data with a specific Application Insights resource. |
-| **sdkVersion** | **SDKVersion** | For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). |
-| **itemId** | N/A | A unique identifier for a specific telemetry item. |
-| **itemCount** | **ItemCount** | The number of occurrences or counts associated with a single telemetry event. |
-| **_ResourceId** | **_ResourceId** | The full Azure Resource ID of the Application Insights component, which includes the subscription, resource group, and resource name. |
-| **account_ID** | **user_AccountId** | The account ID, in multitenant applications, is the tenant account ID or name that the user is acting with. It's used for more user segmentation when a user ID and an authenticated user ID aren't sufficient. Examples might be a subscription ID for the Azure portal or the blog name for a blogging platform. |
-
 ## Custom properties and measurements
 
 ### Custom properties
@@ -338,6 +305,38 @@ Every telemetry item might have a strongly typed context field. Every field enab
 ### Custom measurements
 
 [!INCLUDE [application-insights-data-model-measurements](includes/application-insights-data-model-measurements.md)]
+
+## Context
+
+Every telemetry item might have a strongly typed context field. Every field enables a specific monitoring scenario. Use the custom properties collection to store custom or application-specific contextual information.
+
+| Field name<br>(Application Insights) | Field name<br>(Log Analytics) | Description |
+|--------------------------------------|-------------------------------|-------------|
+| `account_ID` | `user_AccountId` | The account ID, in multitenant applications, is the tenant account ID or name that the user is acting with. It's used for more user segmentation when a user ID and an authenticated user ID aren't sufficient. Examples might be a subscription ID for the Azure portal or the blog name for a blogging platform. |
+| `application_Version` | `AppVersion` | Information in the application context fields is always about the application that's sending the telemetry. The application version is used to analyze trend changes in the application behavior and its correlation to the deployments. |
+| `appId` | `ResourceGUID` | A unique identifier for your Application Insights resource distinguish telemetry from different applications. |
+| `appName` | N/A | In Application Insights, `appName` is the same as `_ResourceId`. |
+| `client_Browser` | `ClientBrowser` | The name of the web browser used by the client. |
+| `client_City` | `ClientCity` | The city where the client was located when the telemetry was collected (based on IP geolocation). |
+| `client_CountryOrRegion` | `ClientCountryOrRegion` | The country or region of the client (based on IP), formatted as a full country name (for example, `United States`, `Germany`). |
+| `client_IP` | `ClientIP` | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. |
+| `client_OS` | `ClientOS` | Indicates the operating system of the client that generated the telemetry (for example, `Windows 10`, `iOS`, `Android`, `macOS`). |
+| `client_StateorProvince` | `ClientStateOrProvince` | The state or province of the client location, inferred from the client’s IP address. |
+| `client_Type` | `ClientType` | Describes the type of client device that sent the telemetry (for example, `Browser`, `PC`, `Mobile`, or `Other`). |
+| `cloud_RoleInstance` | `AppRoleInstance` | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. |
+| `cloud_RoleName` | `AppRoleName` | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. |
+| `iKey` | `IKey` | A legacy unique identifier used to associate telemetry data with a specific Application Insights resource. |
+| `itemId` | N/A | A unique identifier for a specific telemetry item. |
+| `itemCount` | `ItemCount` | The number of occurrences or counts associated with a single telemetry event. |
+| `operation_Id` | `OperationId` | The unique identifier of the root operation. This identifier allows grouping telemetry across multiple components. For more information, see [Telemetry correlation](distributed-trace-data.md). Either a request or a page view creates the operation ID. All other telemetry sets this field to the value for the containing request or page view. |
+| `operation_Name` | `OperationName` | The name (group) of the operation. Either a request or a page view creates the operation name. All other telemetry items set this field to the value for the containing request or page view. The operation name is used for finding all the telemetry items for a group of operations (for example, `GET Home/Index`). This context property is used to answer questions like What are the typical exceptions thrown on this page? |
+| `operation_ParentId` | `ParentId` | The unique identifier of the telemetry item's immediate parent. For more information, see [Telemetry correlation](distributed-trace-data.md). |
+| `operation_SyntheticSource` | `SyntheticSource` | The name of the synthetic source. Some telemetry from the application might represent synthetic traffic. It might be the web crawler indexing the website, site availability tests, or traces from diagnostic libraries like the Application Insights SDK itself. |
+| `sdkVersion` | `SDKVersion` | The version of the Application Insights SDK that is sending telemetry data. For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). |
+| `session_Id` | `SessionId` | Session ID is the instance of the user's interaction with the app. Information in the session context fields is always about the user. When telemetry is sent from a service, the session context is about the user who initiated the operation in the service. |
+| `user_AuthenticatedId` | `UserAuthenticatedId` | An authenticated user ID is the opposite of an anonymous user ID. This field represents the user with a friendly name. This ID is only collected by default with the ASP.NET Framework SDK's [`AuthenticatedUserIdTelemetryInitializer`](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/WEB/Src/Web/Web/AuthenticatedUserIdTelemetryInitializer.cs).<br><br>Use the Application Insights SDK to initialize the authenticated user ID with a value that identifies the user persistently across browsers and devices. In this way, all telemetry items are attributed to that unique ID. This ID enables querying for all telemetry collected for a specific user (subject to [sampling configurations](sampling.md) and [telemetry filtering](api-filtering-sampling.md)).<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration. |
+| `user_Id` | `UserId` | The anonymous user ID represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use an authenticated user ID. |
+| `_ResourceId` | `_ResourceId` | The full Azure Resource ID of the Application Insights component, which includes the subscription, resource group, and resource name. |
 
 ## Frequently asked questions
 
