@@ -19,7 +19,7 @@ When events become inactive, they get placed in your health history for up to 90
 ## Highlights
 
 
-##### Service Issues Blade
+##### Service Issues
 The Service Issues blade shows a map with all the user services across the world. The information on this blade helps you find services that might be impacted from an outage based on your subscription or tenant admin access.
 
 <!--
