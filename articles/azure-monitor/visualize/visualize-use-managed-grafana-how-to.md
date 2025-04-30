@@ -12,7 +12,7 @@ This article covers setting up Azure Managed Grafana or a local Grafana server, 
 
 ## Prerequisites
 
-PREREQUISITES GO HERE.
+None.
 
 ## Set up Azure Managed Grafana
 
