@@ -111,7 +111,7 @@ The following steps must be performed to enable Log Analytics data export.
 
 - [Register the resource provider](#register-the-resource-provider)
 - [Allow trusted Microsoft services](#allow-trusted-microsoft-services)
-- (Recommended) [Monitor destinations](#monitor-destinations)
+- [Monitor destinations](#monitor-destinations) (Recommended)
 - [Create or update a data export rule](#create-or-update-a-data-export-rule)
 
 ### Register the resource provider
