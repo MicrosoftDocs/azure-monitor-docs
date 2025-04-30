@@ -2,7 +2,7 @@
 title: Visualize with Grafana
 description: This document provides an overview of using Grafana with Azure Monitor, highlighting two approaches - Azure Monitor dashboards with Grafana for free, integrated visualization of Azure data in the Azure portal, and Managed Grafana for advanced features like external data sources, alerts, reports, and private networking. It includes a comparison table of features, pricing, and use cases, helping users choose the best solution for their needs.
 ms.topic: conceptual
-ms.date: 04/25/2025
+ms.date: 04/30/2025
 ---
 
 # Visualize with Grafana
@@ -11,16 +11,25 @@ This document provides an overview of using Grafana with Azure Monitor, highligh
 
 ## Dashboards with Grafana
 
-Azure Monitor dashboards with [Grafana](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/) enable you to use Grafana's query, transformation, and visualization capability of Azure Monitor metrics, logs, traces, Azure Managed Prometheus, and Azure Resource Graph in the Azure portal. You can:
+Azure Monitor dashboards with [Grafana](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/) enable you to use Grafana's query, transformation, and visualization capability on: 
+
+- Azure Monitor 
+    - Metrics
+    - Logs
+    - Traces
+- Azure Monitor managed service for Prometheus
+- Azure Resource Graph in the Azure portal. 
+
+You can:
 
 - Create and edit dashboards directly in the Azure portal for free and without administrative overhead.
 - Import dashboards from thousands of publicly available [Grafana community dashboards](https://grafana.com/grafana/dashboards/?dataSource=prometheus).
 - Apply a wide range of Grafana [visualizations](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/) and client-side [transformations](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/) to Azure monitoring data.
 - Manage Grafana dashboards as native Azure resources, including using Azure [RBAC](/azure/role-based-access-control/overview) and automation via ARM template and Bicep templates. 
 
-You can access Azure Monitor dashboards with Grafana through the Azure portal, or from Azure Kubernetes Services.
+You can access Azure Monitor dashboards with Grafana through the Azure portal from Azure Monitor or Azure Kubernetes Services.
 
-You can create and edit dashboards and create your own copy to modify them without directly editing the original. You can also tag the dashboards.
+You can create and edit dashboards and create your own copy to modify them without editing the original. You can also tag the dashboards.
 
 ### Limitations
 
