@@ -40,7 +40,7 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Trace](#trace-telemetry) | `traces` | `AppTraces` | Logs application-specific events, such as custom diagnostic messages or trace statements, which are useful for debugging and monitoring application behavior over time. |
 
 > [!IMPORTANT]
-> You can query application telemetry from both Application Insights and Log Analytics (recommended), but the table and field names differ between the two. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created before the Log Analytics naming convention continue to function correctly.
+> You can query application telemetry from both Application Insights and Log Analytics *(recommended)*, but the table and field names differ between the two. This distinction preserves backward compatibility, for example to ensure that customer dashboards with custom queries created before the Log Analytics naming convention continue to function correctly.
 
 Each telemetry item can include [context information](#context) such as the application version or user session ID. Context consists of a set of strongly typed fields that enable different analysis scenarios.
 
@@ -318,11 +318,11 @@ Every telemetry item might have a strongly typed context field. Every field enab
 | `appName` | N/A | In Application Insights, `appName` is the same as `_ResourceId`. |
 | `client_Browser` | `ClientBrowser` | The name of the web browser used by the client. |
 | `client_City` | `ClientCity` | The city where the client was located when the telemetry was collected (based on IP geolocation). |
-| `client_CountryOrRegion` | `ClientCountryOrRegion` | The country or region of the client (based on IP), formatted as a full country name (for example, `United States`, `Germany`). |
+| `client_CountryOrRegion` | `ClientCountryOrRegion` | The country or region where the client was located when the telemetry was collected (based on IP geolocation). |
 | `client_IP` | `ClientIP` | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. |
-| `client_OS` | `ClientOS` | Indicates the operating system of the client that generated the telemetry (for example, `Windows 10`, `iOS`, `Android`, `macOS`). |
-| `client_StateorProvince` | `ClientStateOrProvince` | The state or province of the client location, inferred from the client’s IP address. |
-| `client_Type` | `ClientType` | Describes the type of client device that sent the telemetry (for example, `Browser`, `PC`, `Mobile`, or `Other`). |
+| `client_OS` | `ClientOS` | Indicates the operating system of the client that generated the telemetry. |
+| `client_StateorProvince` | `ClientStateOrProvince` | The state or province where the client was located when the telemetry was collected (based on IP geolocation). |
+| `client_Type` | `ClientType` | Describes the type of client device that sent the telemetry (for example, `Browser` or `PC`.) |
 | `cloud_RoleInstance` | `AppRoleInstance` | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. |
 | `cloud_RoleName` | `AppRoleName` | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. |
 | `iKey` | `IKey` | A legacy unique identifier used to associate telemetry data with a specific Application Insights resource. |
