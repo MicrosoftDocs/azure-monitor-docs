@@ -206,7 +206,7 @@ This section provides answers to common questions.
 
 ### How does the automatic dependency collector report failed calls to dependencies?
 
-Failed dependency calls have the `success` field set to False. The module `DependencyTrackingTelemetryModule` doesn't report `ExceptionTelemetry`. The full data model for dependency is described in [Application Insights telemetry data model](data-model-complete.md#dependency).
+Failed dependency calls have the `success` field set to False. The module `DependencyTrackingTelemetryModule` doesn't report `ExceptionTelemetry`. The full data model for dependency is described in [Application Insights telemetry data model](data-model-complete.md#dependency-telemetry).
 
 ### How do I calculate ingestion latency for my dependency telemetry?
 
