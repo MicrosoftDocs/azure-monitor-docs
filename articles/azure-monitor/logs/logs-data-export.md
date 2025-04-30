@@ -54,25 +54,26 @@ Log Analytics workspace data export continuously exports data that's sent to you
 
 ## Data completeness
 
-Data export is optimized to move large data volume to your destinations. In the event of of destination with insufficient scale or availability, a retry process continues for up to 12 hours and may a result with a fraction of duplication of the exported records. Follow recommendations for [Storage Account](#storage-account) and [Event Hubs](#event-hubs) destinations to improve reliability.
-For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule). If the destinations are still unavailable after the retry period, the data is discarded.
+Data export is optimized to move large data volumes to your destinations. In the event of a destination with insufficient scale or availability, a retry process continues for up to 12 hours and may a result in a fraction of the exported records duplicated. Follow the recommendations for [Storage Account](#storage-account) and [Event Hubs](#event-hubs) destinations to improve reliability. If the destinations are still unavailable after the retry period, the data is discarded.
+
+For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule).
 
 ## Pricing model
-Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Size calculation in workspace query can't correspond with export charges since doesn't include the JSON formatted data. You can use PowerShell to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell). There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
+Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Data export size calculations can't be done with a workspace query since the size calculation doesn't include the JSON formatting overhead. Use the method in this sample PowerShell script to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell). There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
 
 For more information, including the data export billing timeline, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/). Billing for Data Export was enabled in early October 2023. 
 
 ## Export destinations
 
-The data export destination must be available before you create export rules in your workspace. Destinations can be in different subscriptions, and when using Azure Lighthouse, it's also possible to send data to destinations in another Microsoft Entra tenant.
+The data export destination must be available before you create export rules in your workspace. Destinations can be in different subscriptions. With Azure Lighthouse, it's also possible to send data to destinations in another Microsoft Entra tenant.
 
 ### Storage Account
 
-Avoid using existing Storage Account that has other non-monitoring data, to better control access to the data, prevent reaching storage ingress rate limit failures, and latency.
+Prevent storage ingress failures due to latency or exceeding rate limits by using an existing Storage Account that doesn't have other non-monitoring data. This helps you better control access to the data and improves data export reliability.
 
 To send data to an immutable Storage Account, set the immutable policy for the Storage Account as described in [Set and manage immutability policies for Azure Blob Storage](/azure/storage/blobs/immutable-policy-configure-version-scope). You must follow all steps in this article, including enabling protected append blobs writes.
 
-The Storage Account can't be Premium, must be StorageV1 or later, and located in the same region as your workspace. If you need to replicate your data to other Storage Accounts in other regions, you can use any of the [Azure Storage redundancy options](/azure/storage/common/storage-redundancy#redundancy-in-a-secondary-region), including GRS and GZRS.
+The Storage Account can't be Premium, must be StorageV1 or later, and located in the same region as your workspace. If you need to replicate your data to other Storage Accounts in other regions, use any of the [Azure Storage redundancy options](/azure/storage/common/storage-redundancy#redundancy-in-a-secondary-region), including GRS and GZRS.
 
 Data is sent to Storage Accounts as it reaches Azure Monitor and exported to destinations located in a workspace region. A container is created for each table in the Storage Account with the name *am-* followed by the name of the table. For example, the table *SecurityEvent* would send to a container named *am-SecurityEvent*.
 
@@ -87,9 +88,9 @@ The format of blobs in a Storage Account is in [JSON lines](/previous-versions/a
 
 ### Event Hubs
 
-Avoid using existing Event Hub that has non-monitoring data to prevent reaching the Event Hubs namespace ingress rate limit failures, and latency.
+Avoid using an Event Hub that has existing, non-monitoring data. This best practice helps prevent ingress failures due to latency or exceeding rate limits.
 
-Data is sent to your Event Hub as it reaches Azure Monitor and is exported to destinations located in a workspace region. You can create multiple export rules to the same Event Hubs namespace by providing a different `Event Hub name` in the rule. When an `Event Hub name` isn't provided, a default Event Hub is created for tables that you export with the name *am-* followed by the name of the table. For example, the table *SecurityEvent* would be sent to an Event Hub named *am-SecurityEvent*.
+Data is sent to your Event Hub as it reaches Azure Monitor and is exported to destinations located in a workspace region. Create multiple export rules to the same Event Hub namespace by providing a different `Event Hub name` in the rule. When an `Event Hub name` isn't provided, a default Event Hub is created for tables that you export with the name *am-* followed by the name of the table. For example, the table *SecurityEvent* would be sent to an Event Hub named *am-SecurityEvent*.
 
 The [number of supported Event Hubs in Basic and Standard namespace tiers is 10](/azure/event-hubs/event-hubs-quotas#common-limits-for-all-tiers). When you're exporting more than 10 tables to these tiers, either split the tables between several export rules to different Event Hubs namespaces or provide an Event Hub name to export all tables to it.
 
@@ -102,15 +103,16 @@ The [number of supported Event Hubs in Basic and Standard namespace tiers is 10]
 Exporting data from workspaces to Storage Accounts help satisfy various scenarios mentioned in [overview](#overview), and can be consumed by tools that can read blobs from Storage Accounts. The following methods let you query data using Log Analytics query language, which is the same for Azure Data Explorer.
 1. Use Azure Data Explorer to [query data in Azure Data Lake](/azure/data-explorer/data-lake-query-data).
 2. Use Azure Data Explorer to [ingest data from a Storage Account](/azure/data-explorer/ingest-from-container).
-3. Use Log Analytics workspace to query [ingested data using Logs Ingestion API ](./logs-ingestion-api-overview.md). Ingested data is to a custom log table and not to the original table.
+3. Use Log Analytics workspace to query [ingested data using Logs Ingestion API ](./logs-ingestion-api-overview.md). Ingested data is sent to a custom log table and not to the original table.
    
 
 ## Enable data export
-The following steps must be performed to enable Log Analytics data export. For more information on each, see the following sections:
+The following steps must be performed to enable Log Analytics data export.
 
-- Register the resource provider
-- Allow trusted Microsoft services
-- Create or update a data export rule
+- [Register the resource provider](#register-the-resource-provider)
+- [Allow trusted Microsoft services](#allow-trusted-microsoft-services)
+- (Recommended) [Monitor destinations](#monitor-destinations)
+- [Create or update a data export rule](#create-or-update-a-data-export-rule)
 
 ### Register the resource provider
 The Azure resource provider **Microsoft.Insights** needs to be registered in your subscription to enable Log Analytics data export.
