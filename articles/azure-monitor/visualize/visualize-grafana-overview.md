@@ -31,6 +31,12 @@ You can access Azure Monitor dashboards with Grafana through the Azure portal fr
 
 You can create and edit dashboards and create your own copy to modify them without editing the original. You can also tag the dashboards.
 
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-azure-insights-applications.png" alt-text="dashboards with grafana kubernetes api server screenshot":::
+
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" alt-text="dashboards with grafana kubernetes api server screenshot":::
+
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespacepods.png" alt-text="dashboards with grafana kubernetes api server screenshot":::
+
 ### Limitations
 
 - **Preview limitations**. Support for Grafana Explore, Dashboard links and Exemplars isn't yet available.

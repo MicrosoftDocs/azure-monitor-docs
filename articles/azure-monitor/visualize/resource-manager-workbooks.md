@@ -149,3 +149,23 @@ output workbookId string = workbook.id
 
 * [Get other sample templates for Azure Monitor](../resource-manager-samples.md).
 * [Learn more about action groups](../visualize/workbooks-overview.md).
+
+```mermaid
+graph TD
+    A[Resource Manager template samples for workbooks] --> B[Azure Resource Manager templates]
+    A --> C[Azure Monitor workbooks]
+    B --> D[Template file]
+    B --> E[Parameter file]
+    D --> F[Bicep]
+    D --> G[JSON]
+    E --> H[workbookDisplayName]
+    E --> I[workbookType]
+    E --> J[workbookSourceId]
+    C --> K[Create a workbook]
+    K --> L[SerializedData]
+    K --> M[Resource Group]
+    K --> N[Resource ID]
+    A --> O[Next steps]
+    O --> P[Get other sample templates for Azure Monitor]
+    O --> Q[Learn more about action groups]
+```
