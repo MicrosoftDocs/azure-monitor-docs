@@ -2,6 +2,18 @@
 title: Use Azure Monitor Dashboards with Grafana
 description: This article provides guidance on using Azure Monitor dasbhoards with Grafana. It covers prerequisites, such as having Azure resources and appropriate RBAC roles, and explains how to use pre-existing dashboard templates, create new dashboards, and customize or edit dashboards. It also details importing dashboards from JSON files or the Grafana public gallery, saving copies of dashboards, and sharing them with others using RBAC configurations.
 ms.topic: conceptual
+
+
+
+
+
+
+
+
+
+
+
+
 ms.date: 04/30/2025
 ---
 
