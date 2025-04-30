@@ -2,10 +2,9 @@
 title: Create a simple log search alert in Azure Monitor
 description: "This article shows you how to create a new simple log alert rule or edit an existing simple log alert rule in Azure Monitor."
 ms.topic: how-to 
-ms.date: 04/22/2025
+ms.date: 04/30/2025
 ms.author: inhenkel
 author: IngridAtMicrosoft
-ms.custom: poke
 ---
 
 # Create a simple log search alert
@@ -29,6 +28,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 1. (Optional) If you selected **See all signals** in the previous step, use the **Select a signal** pane to search for the signal name or filter the list of signals. Filter by:
     -   **Signal type**: Select **Log search**.
     -   **Signal source**: The service that sends the **Custom log search** and **Log (saved query)** signals. Select the signal name, and then select **Apply**.
+    -  **Query type**: Select **Aggregated logs**.
 1.  To create a simple log alerts:
     -   Close the Log pane.
     -   Select **Single event** in the query type radio button.
@@ -54,8 +54,6 @@ In the output, the number of rows that are shown in the email or in the alert co
 ## Remaining steps
 
 The remaining steps are the same as log search.
-
-## Related content
 
 - [Configure alert rule actions](alerts-create-log-alert-rule.md#configure-alert-rule-actions)
 - [Configure alert rule details](alerts-create-log-alert-rule.md#configure-alert-rule-details)
