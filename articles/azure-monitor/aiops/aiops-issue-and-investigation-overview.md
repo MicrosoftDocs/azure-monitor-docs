@@ -96,11 +96,11 @@ Investigation also offers smart scoping for application insight resources. In th
     1. Alerts associated with the issue
     1. Resources associated with the issue.
 
-        ![A screenshot of a computer AI-generated content may be incorrect.](media/dce6122928de06e8b346a1d87914e86b.png)
+        ![A screenshot of resources associated with the issue.](media/dce6122928de06e8b346a1d87914e86b.png)
 
 1.  Every finding in an investigation presents more details on the cause and present next steps to choose from.
 
-    ![A screenshot of a computer AI-generated content may be incorrect.](media/c21e9b9d0d9afc8536419f56cf170b1f.png)
+    ![A screenshot of a details on the cause.](media/c21e9b9d0d9afc8536419f56cf170b1f.png)
 
 ## Regions
 
