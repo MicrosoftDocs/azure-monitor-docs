@@ -1,11 +1,3 @@
----
-title: Azure Monitor issue and investigation (preview)
-description: This article explains what Azure Monitor issue and investigation is and how it is used to triage and mitigate problems with an Azure resource.
-ms.topic: conceptual
-ms.date: 04/25/2025
-ms.servce: azure-monitor
----
-<!-- goodbye -->
 # Azure Monitor issue and investigation (preview)
 
 This article explains what Azure Monitor issue and investigation is and how it is used to triage and mitigate problems with an Azure resource.
@@ -14,8 +6,9 @@ This article explains what Azure Monitor issue and investigation is and how it i
 
 Azure Monitor issue and investigation is an AIOPs feature of Azure Monitor that can be triggered by an Azure Monitor alert.
 
-> [!NOTE:]
-> For preview, the only alert supported is an Application Insights resource alert.
+NOTE:
+
+For preview, the only alert supported is an Application Insights resource alert.
 
 ## What is an issue?
 
@@ -35,20 +28,55 @@ Findings identify anomalous behavior that could explain an issue. They summarize
 
 A finding contains a summary that can include:
 
--   A hypotheses
--   Suggested actions to take
--   A transaction pattern with dependency mapping
--   A possible root cause
+-   **What happened.** A description of the issues with the resources included in the investigation.
+-   **A possible explanation.** A description of what might be causing problems.
+-   **Next steps.** Suggestions for digging deeper into the problems.
+-   **Evidence.** Every finding presents supporting evidence. Evidence is the data supporting the finding, such as anomalies, diagnostics insights, health data, resource changes, and related resources, related alerts and data you define such as with a query.
 
-Every finding presents supporting evidence such as anomalies, insights, and data you define such as through a query.
+Note
 
-### Evidence
+Up to five findings groups are displayed and all other anomalies are grouped into Additional data.
 
-Evidence is the data supporting the finding, such as anomalies, diagnostics insights, health data, resource changes, and related resources, related alerts and so on.​
+## Evidence types
 
-## Configurable scope
+### Metric anomalies
+
+-   Scans the Azure resources in the investigation target and scope for anomalies in platform metrics and custom metrics.
+-   Assigns scores to metrics that show a correlation with the incident start time.
+-   Generates explanations for the incident by conducting sub-pattern analysis to explain anomalies based on metric dimensions or labels that generate the most impact.
+-   Groups and ranks explanations to present the most likely causes
+
+### Application logs Analysis
+
+The investigation scans the application data for anomalies. The top three fail events (For dependencies, requests and exceptions) are analyzed. For each event:
+
+-   **Explanation**: An explanation of what happened is generated for the failure.
+-   **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Pressing on the example will display the end-to-end transaction in Application Insights.
+-   **Exceptions**: If there are specific exception problem IDs that correlate with the failure, they will be displayed with the count of appearance in the logs. The problem IDs are explained in natural language and an example is provided.
+-   **Transaction Pattern**: If there is a specific pattern the failure, it will be displayed. This can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
+-   **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they will be displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
+
+### Diagnostic insights
+
+Provides actionable solutions and diagnostics based on abnormal telemetry from Azure support best practices, enhancing issue resolution efficiency.
+
+### Related Alerts
+
+Contains data from related alerts on the target resource that occurred in the last 15 minutes.
+
+### Resource Health
+
+Provides data from Azure Resource Health.
+
+## Capabilities
+
+### Configurable scope
 
 Azure Monitor investigation makes suggestions for which resources to analyze based on the scope of the investigation. The default scope of an investigation includes all metrics of the resource. You can change the scope to include up to five resources. See Scope the investigation in [Use issue and investigation](link to anchor in how to).
+
+### Smart scoping
+
+Investigation also offers smart scoping for application insight resources. In this case we will automatically identify possible suspected resources from looking at the dependencies in Application Insights and run analysis on them as well.
 
 ## Issue and investigation initial workflow example
 
@@ -60,28 +88,26 @@ Azure Monitor investigation makes suggestions for which resources to analyze bas
     3.  Alerts associated with the issue
     4.  Resources associated with the issue.
 
-        ![A screenshot of the issue page in the Azure portal](media/dce6122928de06e8b346a1d87914e86b.png)
+        ![A screenshot of a computer AI-generated content may be incorrect.](media/dce6122928de06e8b346a1d87914e86b.png)
 
 4.  Every finding in an investigation presents more details on the cause and present next steps to choose from.
 
-    ![A screenshot of the investigation tab of the issue page in the Azure portal.](media/c21e9b9d0d9afc8536419f56cf170b1f.png)
+    ![A screenshot of a computer AI-generated content may be incorrect.](media/c21e9b9d0d9afc8536419f56cf170b1f.png)
 
-## Application Insights alerts investigation
+## Regions
 
-For preview, issues and investigation supports Application Insights alerts. The following is a description of an Application Insights alert investigation.
-
-The investigation scans the application data for anomalies. The top three failure events, dependencies, requests, and exceptions are analyzed. For each event, the system generates:
-
--   **An explanation**: What happened that generated the failure.
--   **Transaction examples**: A list of example transactions where the specific failure event exists. Selecting the example displays the end-to-end transaction in Application Insights.
--   **Exceptions:** If there are specific exception problem IDs correlated with the failure, they're displayed with a count of appearances in the logs. The problem IDs are explained in natural language and an example is provided.
--   **Transaction patterns:** Specific transaction patterns for the failure are displayed. The display helps to explain the issue and shows the root cause. If there are multiple transaction patterns, no pattern is displayed.
--   **Trace message patterns:** If there are specific trace message patterns that correlate with failure, they're displayed with the count of appearances in the logs. The patterns are explained in natural language and an example is provided.
-
-### Application Insights smart scoping
-
-Azure Monitor investigation also offers smart scoping for *Application Insights* resources. It automatically identifies potentially related resources by analyzing dependencies in Application Insights and runs analysis on them as well.
+| **Public preview region availability** |
+|----------------------------------------|
+| australiaeast                          |
+| centralindia                           |
+| centralus                              |
+| eastasia                               |
+| eastus                                 |
+| eastus2euap                            |
+| uksouth                                |
+| westeurope                             |
+| westus                                 |
 
 ## Next steps
 
--   [Use Azure Monitor issue (preview) and investigation](aiops-issue-and-investigation-how-to.md)
+[How to use Azure Monitor issues and investigation](link to how to)
