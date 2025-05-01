@@ -51,7 +51,7 @@ The investigation:
 
 - Scans the Azure resources in the investigation target and scope for anomalies in platform metrics and custom metrics.
 - Assigns scores to metrics that show a correlation with the incident start time.
-- Generates explanations for the incident by conducting sub-pattern analysis to explain anomalies based on metric dimensions or labels that generate the most impact.
+- Generates explanations for the incident by conducting subpattern analysis to explain anomalies based on metric dimensions or labels that generate the most impact.
 -  Groups and ranks explanations to present the most likely causes
 
 ### Application logs Analysis
@@ -59,10 +59,10 @@ The investigation:
 The investigation scans the application data for anomalies. The top three fail events (For dependencies, requests and exceptions) are analyzed. For each event:
 
 - **Explanation**: An explanation of what happened is generated for the failure.
-- **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Pressing on the example will display the end-to-end transaction in Application Insights.
-- **Exceptions**: If there are specific exception problem IDs that correlate with the failure, they will be displayed with the count of appearance in the logs. The problem IDs are explained in natural language and an example is provided.
-- **Transaction Pattern**: If there is a specific pattern the failure, it will be displayed. This can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
-- **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they will be displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
+- **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Pressing on the example displays the end-to-end transaction in Application Insights.
+- **Exceptions**: If there are specific exception problem IDs that correlate with the failure, they'll be displayed with the count of appearance in the logs. The problem IDs are explained in natural language and an example is provided.
+- **Transaction Pattern**: If there's a specific pattern the failure, it is displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
+- **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they'll be displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
 
 ### Diagnostic insights
 
@@ -84,13 +84,13 @@ Azure Monitor investigation makes suggestions for which resources to analyze bas
 
 ### Smart scoping
 
-Investigation also offers smart scoping for application insight resources. In this case we will automatically identify possible suspected resources from looking at the dependencies in Application Insights and run analysis on them as well.
+Investigation also offers smart scoping for application insight resources. In this case, we'll automatically identify possible suspected resources from looking at the dependencies in Application Insights and run analysis on them as well.
 
 ## Issue and investigation initial workflow example
 
 1. An alert email from Azure Monitor is received.
-1. A click on the investigate button in the email creates an issue and starts an investigation. The issue page on the Azure portal opens in your browser.
-1. On the Issue page, you are presented with:
+1. A select on the investigate button in the email creates an issue and starts an investigation. The issue page on the Azure portal opens in your browser.
+1. On the Issue page, you're presented with:
     1. The issue overview where the findings are presented as well as the evidence.
     1. The investigation which contains the AI analysis summary, suggested actions to take and the evidence used for the analysis.
     1. Alerts associated with the issue
