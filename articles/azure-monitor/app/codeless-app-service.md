@@ -138,7 +138,7 @@ Logging telemetry is collected at the level of the root logger. To learn more ab
 > [!div class="checklist"]
 > * Python version 3.12 or earlier.
 > * Linux OS
-> * Autoinstrummentation for App Service Deploy as Code is in General Availability (GA). However, Autoinstrumentation for App Service Custom Containers is still in Preview.
+> * Autoinstrummentation for App Service Publish as Code is in General Availability (GA). However, Autoinstrumentation for App Service Publish as Container is still in Preview.
 
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
