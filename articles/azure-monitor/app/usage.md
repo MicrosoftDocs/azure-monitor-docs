@@ -2,15 +2,13 @@
 title: Usage analysis with Application Insights | Azure Monitor
 description: Understand your users and what they do with your application.
 ms.topic: conceptual
-ms.date: 07/16/2024
+ms.date: 05/05/2025
 ms.reviewer: mmcc
 ---
 
 # Usage analysis with Application Insights
 
-Which features of your web or mobile app are most popular? Do your users achieve their goals with your app? Do they drop out at particular points, and do they return later?
-
-[Application Insights](./app-insights-overview.md) is a powerful tool for monitoring the performance and usage of your applications. It provides insights into how users interact with your app, identifies areas for improvement, and helps you understand the impact of changes. With this knowledge, you can make data-driven decisions about your next development cycles.
+[Application Insights](./app-insights-overview.md) is a powerful observability tool that helps you monitor the performance and usage of your applications. It collects telemetry data that shows how users interact with your application, including information about which features are most popular, if users achieve their goals, where they drop off, and whether they return later. These insights help you understand user behavior, identify areas for improvement, and measure the impact of recent changes. With this information, you can make data-driven decisions about your next development cycles.
 
 This article covers the following areas:
 
@@ -23,23 +21,25 @@ This article covers the following areas:
 
 ## Send telemetry from your application
 
-To optimize your experience, consider integrating Application Insights into both your app server code and your webpages. This dual implementation enables telemetry collection from both the client and server components of your application.
+### Prerequisites
 
-1. **Server code:** Install the appropriate module for your [ASP.NET](./asp-net.md), [Azure](./app-insights-overview.md), [Java](./opentelemetry-enable.md?tabs=java), [Node.js](./nodejs.md), or [other](./app-insights-overview.md#supported-languages) app.
+> [!div class="checklist"]
+> * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
+> * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
-    If you don't want to install server code, [create an Application Insights resource](./create-workspace-resource.md).
+### Instrument your web application
 
-1. **Webpage code:** Use the JavaScript SDK to collect data from webpages, see [Get started with the JavaScript SDK](./javascript-sdk.md).
+To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md). This dual implementation enables telemetry collection from both the client and server components of your application. Besides usage monitoring, you'll get:
 
-   [!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+* Backend performance monitoring (requests, dependencies)
+* Correlation between frontend and backend
+* Server-side exceptions
+* End-to-end tracing
 
-   To learn more advanced configurations for monitoring websites, check out the [JavaScript SDK reference article](./javascript.md).
+If you only want to collect data from your web pages, use the [JavaScript SDK](javascript-sdk.md).
 
-1. **Mobile app code:** Use the App Center SDK to collect events from your app. Then send copies of these events to Application Insights for analysis by [following this guide](https://github.com/Microsoft/appcenter).
-
-1. **Get telemetry:** Run your project in debug mode for a few minutes. Then look for results in the **Overview** pane in Application Insights.
-
-    Publish your app to monitor your app's performance and find out what your users are doing with your app.
+> [!TIP]
+> To verify if telemetry is being collected from your browser, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
 
 ## Users, Sessions, and Events - Analyze telemetry from three perspectives
 
