@@ -511,6 +511,10 @@ To manage access when your endpoints are outside Azure or when service tags aren
 1. Write custom code to periodically test your internal server or endpoints. Send the results to Application Insights using the [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API in the core SDK package.
 
 [!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements.md)]
+> [!IMPORTANT]
+> TLS 1.3 is currently only available in the availability test regions NorthCentralUS, CentralUS, EastUS, SouthCentralUS, and WestUS
+
+[!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements-deprecating.md)]
 
 ## Downtime & Outages workbook
 
