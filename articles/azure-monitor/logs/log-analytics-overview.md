@@ -2,7 +2,7 @@
 title: Overview of Log Analytics in Azure Monitor
 description: This overview describes Log Analytics, which is a tool in the Azure portal used to edit and run log queries for analyzing data in Azure Monitor logs.
 ms.topic: conceptual
-ms.date: 12/28/2023
+ms.date: 05/03/2025
 ---
 
 # Overview of Log Analytics in Azure Monitor
@@ -17,14 +17,9 @@ Whether you work with the results of your queries interactively or use them with
 
 This article describes the Log Analytics user interface and its features. If you want to jump right into a tutorial, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
-## Tutorial video
+## Introduction video
 
-> [!NOTE]
-> This video shows an earlier version of the user interface, but the screenshots throughout this article are up to date and reflect the current UI.
-
-<br>
-
-> [!VIDEO https://www.youtube.com/embed/-aMecR2Nrfc]
+> [!VIDEO 6c27b6e7-83a5-4562-a47a-ebff9b931585]
 
 ## Open Log Analytics
 
@@ -193,3 +188,4 @@ Log Analytics adds features specific to Azure Monitor, such as filtering by time
 
 * Walk through a [tutorial on using Log Analytics in the Azure portal](./log-analytics-tutorial.md).
 * Walk through a [tutorial on writing queries](./get-started-queries.md).
+* View the longer [tutorial video](https://youtu.be/-aMecR2Nrfc) replaced by the [Intro video](#introduction-video).
