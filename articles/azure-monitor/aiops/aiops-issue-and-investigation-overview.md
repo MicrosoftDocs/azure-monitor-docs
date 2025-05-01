@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor issue and investigation (preview)
-description: This article explains what Azure Monitor issue and investigation is and how it is used to triage and mitigate problems with an Azure resource.
+description: This article explains what Azure Monitor issue and investigation is and how it's used to triage and mitigate problems with an Azure resource.
 ms.reviewer: enauerman
 ms.topic: conceptual 
 ms.date: 05/01/2025
@@ -8,7 +8,7 @@ ms.date: 05/01/2025
 
 # Azure Monitor issue and investigation (preview)
 
-This article explains what Azure Monitor issue and investigation is and how it is used to triage and mitigate problems with an Azure resource.
+This article explains what Azure Monitor issue and investigation is and how it's used to triage and mitigate problems with an Azure resource.
 
 ## What is Azure Monitor issue and investigation?
 
@@ -23,7 +23,7 @@ An issue contains all observability related data and processes for troubleshooti
 
 An issue presents an overview, the investigation, details about the alerts, and the resources involved.
 
-You can set the severity, status and impact time of an issue.
+You can set the severity, status, and impact time of an issue.
 
 ## What is an investigation?
 
@@ -31,18 +31,17 @@ An investigation is an analysis of a set of findings within the context of an is
 
 ### Findings
 
-Findings identify anomalous behavior that could explain an issue. They summarize the analysis of multiple anomalies (e.g., 'VM performance is low due to possible memory leak’) based on relevant signals (metrics, logs, etc.) and may suggest further investigation steps and potential mitigations.​
+Findings identify anomalous behavior that could explain an issue. They summarize the analysis of multiple anomalies (for example, 'VM performance is low due to possible memory leak’) based on relevant signals (metrics, logs, etc.) and might suggest further investigation steps and potential mitigations.​
 
 A finding contains a summary that can include:
 
 - **What happened.** A description of the issues with the resources included in the investigation.
 - **A possible explanation.** A description of what might be causing problems.
 - **Next steps.** Suggestions for digging deeper into the problems.
-- **Evidence.** Every finding presents supporting evidence. Evidence is the data supporting the finding, such as anomalies, diagnostics insights, health data, resource changes, and related resources, related alerts and data you define such as with a query.
+- **Evidence.** Every finding presents supporting evidence. Evidence is the data supporting the finding, such as anomalies, diagnostics insights, health data, resource changes, and related resources, related alerts, and data you define such as with a query.
 
-Note
-
-Up to five findings groups are displayed and all other anomalies are grouped into Additional data.
+> [!Note]
+> Up to five findings groups are displayed and all other anomalies are grouped into **Additional data**.
 
 ## Evidence types
 
