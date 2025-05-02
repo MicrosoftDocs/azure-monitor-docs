@@ -212,7 +212,7 @@ If you're getting started with Application Insights and don't need to migrate fr
     Remove the `Microsoft.ApplicationInsights.WorkerService` package from your `csproj`.
 
     ```terminal
-    dotnet remove package Microsoft.ApplicationInsights.AspNetCore
+    dotnet remove package Microsoft.ApplicationInsights.WorkerService
     ```
 
 2. Remove Initialization Code and customizations
