@@ -82,7 +82,7 @@ Explore different groups of users by adjusting the query options at the top of t
 | Option          | Description                                                                                                                               |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | During          | Choose a time range.                                                                                                                      |
-| Show            | Choose a cohort of users to analyze.                                                                                                       |
+| Show            | Choose a cohort of users to analyze.                                                                                                      |
 | Who used        | Choose custom events, requests, and page views.                                                                                           |
 | Events          | Choose multiple events, requests, and page views that will show users who did at least one, not necessarily all, of the selected options. |
 | By value x-axis | Choose how to categorize the data, either by time range or by another property, such as browser or city.                                  |
@@ -111,9 +111,7 @@ For more information about the Retention workbook, see the section below.
 
 #### The retention workbook
 
-To use the retention workbook in Application Insights, navigate to the **Workbooks** pane, select **Public Templates** at the top, and locate the **User Retention Analysis** workbook listed under the **Usage** category.
-
-:::image type="content" source="./media/usage-retention/workbooks-gallery.png" alt-text="Screenshot that shows the Workbooks Gallery on the Public Templates tab." lightbox="./media/usage-retention/workbooks-gallery.png":::
+To use the retention workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Retention Analysis** workbook listed under the **Usage** category.
 
 **Workbook capabilities:**
 
@@ -460,9 +458,7 @@ Analyzing performance is only a subset of Impact's capabilities. Impact supports
 
 ### Impact analysis workbook
 
-To use the Impact analysis workbook, in your Application Insights resources go to **Usage** > **More** and select **User Impact Analysis Workbook**. Or on the **Workbooks** tab, select **Public Templates**. Then under **Usage**, select **User Impact Analysis**.
-
-:::image type="content" source="./media/usage-impact/workbooks-gallery.png" alt-text="Screenshot that shows the Workbooks Gallery on public templates." lightbox="./media/usage-impact/workbooks-gallery.png":::
+To use the impact analysis workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Impact Analysis** workbook listed under the **Usage** category.
 
 #### Use the workbook
 
@@ -519,7 +515,7 @@ How Impact is ultimately calculated varies based on whether we're analyzing by m
 
 ## HEART - Five dimensions of customer experience
 
-This article describes how to enable and use the Heart Workbook on Azure Monitor. The HEART workbook is based on the HEART measurement framework, which was originally introduced by Google. Several Microsoft internal teams use HEART to deliver better software.
+This section describes how to enable and use the HEART Workbook in Azure Monitor. The HEART workbook is based on the HEART measurement framework, which was originally introduced by Google. Several Microsoft internal teams use HEART to deliver better software.
 
 ### Overview
 
@@ -536,9 +532,7 @@ These dimensions are measured independently, but they interact with each other.
 :::image type="content" source="media/usage-overview/heart-funnel.png" alt-text="Diagram that shows the funnel relationship between HEART dimensions. The funnel path is Adoption to Engagement to Retention to Happiness. Task Success is a driver of this funnel.":::
 
 * Adoption, engagement, and retention form a user activity funnel. Only a portion of users who adopt the tool come back to use it.
-
 * Task success is the driver that progresses users down the funnel and moves them from adoption to retention.
-
 * Happiness is an outcome of the other dimensions and not a stand-alone measurement. Users who have progressed down the funnel and are showing a higher level of activity are ideally happier.
 
 ### Get started
@@ -571,30 +565,32 @@ These dimensions are measured independently, but they interact with each other.
     | pageViews      | operation_Id         | Correlate telemetry events                 |
     | pageViews      | user_Id              | Unique user identifier                     |
 
+    ¹: To emit these attributes, use the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) via npm.
+
 * If you're setting up the authenticated user context, instrument the below attributes:
 
-| Source       | Attribute            | Description                                |
-|--------------|----------------------|--------------------------------------------|
-| customEvents | user_AuthenticatedId | Unique authenticated user identifier       |
-
-**Footnotes**
-
-¹: To emit these attributes, use the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) via npm.
+    | Source       | Attribute            | Description                           |
+    |--------------|----------------------|---------------------------------------|
+    | customEvents | user_AuthenticatedId | Unique authenticated user identifier. |
 
 >[!TIP]
 > To understand how to effectively use the Click Analytics plug-in, see [Feature extensions for the Application Insights JavaScript SDK (Click Analytics)](javascript-feature-extensions.md#use-the-plug-in).
 
 #### Open the workbook
 
-You can find the workbook in the gallery under **Public Templates**. The workbook appears in the section **Product Analytics using the Click Analytics Plugin**.
+To use the HEART workbook in Application Insights, navigate to the **Workbooks** pane and locate the **Product Analytics using the Click Analytics Plugin** category.
 
-:::image type="content" source="media/usage-overview/workbook-gallery.png" alt-text="Screenshot that shows the location of the HEART workbooks in Azure Application Insights.":::
+There are seven workbooks:
 
-There are seven workbooks.
+* HEART Analytics - All sections
+* HEART Analytics Section - Adoption
+* HEART Analytics Section - Engagement
+* HEART Analytics Section - Retention
+* HEART Analytics Section - Task Success
+* HEART Analytics Section - Happiness
+* HEART Analytics Section - Feature Drill-Down
 
-:::image type="content" source="media/usage-overview/heart-workbook-templates.png" alt-text="Screenshot that shows the names of the seven HEART workbooks under Public Templates in the Azure Application Insights Workbooks section.":::
-
-You only have to interact with the main workbook, **HEART Analytics - All Sections**. This workbook contains the other six workbooks as tabs. You can also access the individual workbooks related to each tab through the gallery.
+You only have to interact with the main workbook, **HEART Analytics - All Sections**. This workbook contains the other six workbooks as tabs.
 
 #### Confirm that data is flowing
 
