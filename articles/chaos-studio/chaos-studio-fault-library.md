@@ -1024,6 +1024,22 @@ Currently, a maximum of 4 process names can be listed in the processNames parame
  ] 
 } 
 ```
+#### Limitations
+> **Application Insights custom metrics are not supported**
+>
+> The **Disable Autoscale** fault currently fails when the target autoscale setting
+> contains rules based on **Application Insights custom metrics**.  
+> Executing the fault requires the ability to read the custom‑metric definition
+> in the Application Insights component (`Microsoft.Insights/components/*` data‑plane
+> actions). These permissions are **not** part of the fault’s managed identity
+> scope, so the operation is rejected at runtime.
+>
+> **Work‑around**  
+> Use a standard platform metric (e.g., CPU Percentage) or a Log Analytics
+> query‑based custom metric instead of an Application Insights custom metric.
+> Alternately, grant the Chaos Studio managed identity the required
+> `Application Insights Component Contributor` role on the Application Insights
+> resource and retry the fault.
 
 
 ### AKS Chaos Mesh Network Chaos
