@@ -71,8 +71,8 @@ The following image shows the logs category groups on the **Add diagnostics sett
 
 :::image type="content" source="./media/diagnostic-settings/audit-category-group.png" alt-text="A screenshot showing the logs category groups."::: 
 
-> [!NOTE] 
-> Enabling *Audit* for Azure SQL Database does not enable auditing for Azure SQL Database. To enable database auditing, you have to enable it from the auditing blade for Azure Database. 
+> [!NOTE]
+> Enabling the Audit category in the diagnostic settings for Azure SQL Database does not activate auditing for the database. To enable database auditing, you have to enable it from the auditing blade for Azure Database. 
 
 ### Activity log
 
