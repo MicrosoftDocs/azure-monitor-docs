@@ -8,16 +8,21 @@ ms.reviewer: mmcc
 
 # Usage analysis with Application Insights
 
-[Application Insights](./app-insights-overview.md) is a powerful observability tool that helps you monitor the performance and usage of your applications. It collects telemetry data that shows how users interact with your application, including information about which features are most popular, if users achieve their goals, where they drop off, and whether they return later. These insights help you understand user behavior, identify areas for improvement, and measure the impact of recent changes. With this information, you can make data-driven decisions about your next development cycles.
+[Application Insights](app-insights-overview.md) is a powerful observability tool that helps you monitor the performance and usage of your applications. It collects telemetry data that shows how users interact with your application. This includes information about which features are most popular, if users achieve their goals, where they drop off, and whether they return later. These insights help you understand user behavior, identify areas for improvement, and measure the impact of recent changes. With this information, you can make data-driven decisions about your next development cycles.
 
 This article covers the following areas:
 
-* [Users, Sessions & Events](#users-sessions-and-events---analyze-telemetry-from-three-perspectives) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
-* [Funnels](#funnels---discover-how-customers-use-your-application) - Understand how users progress through a series of steps in your application and where they might be dropping off.
-* [User Flows](#user-flows---analyze-user-navigation-patterns) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
-* [Cohorts](#cohorts---analyze-a-specific-set-of-users-sessions-events-or-operations) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
-* [Impact Analysis](#impact-analysis---discover-how-different-properties-influence-conversion-rates) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
-* [HEART](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
+* [**Users, Sessions & Events**](#users-sessions-and-events---analyze-telemetry-from-three-perspectives) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
+
+* [**Funnels**](#funnels---discover-how-customers-use-your-application) - Understand how users progress through a series of steps in your application and where they might be dropping off.
+
+* [**User Flows**](#user-flows---analyze-user-navigation-patterns) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
+
+* [**Cohorts**](#cohorts---analyze-a-specific-set-of-users-sessions-events-or-operations) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
+
+* [**Impact Analysis**](#impact-analysis---discover-how-different-properties-influence-conversion-rates) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+
+* [**HEART**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
 
 ## Send telemetry from your application
 
@@ -29,17 +34,12 @@ This article covers the following areas:
 
 ### Instrument your web application
 
-To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md). This dual implementation enables telemetry collection from both the client and server components of your application. Besides usage monitoring, you'll get:
+If you only want to collect telemetry about the usage of your web application, use the [Application Insights JavaScript SDK](javascript-sdk.md). No server-side instrumentation is required.
 
-* Backend performance monitoring (requests, dependencies)
-* Correlation between frontend and backend
-* Server-side exceptions
-* End-to-end tracing
-
-If you only want to collect data from your web pages, use the [JavaScript SDK](javascript-sdk.md).
+To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md). This dual implementation enables telemetry collection from both the client and server components of your application.
 
 > [!TIP]
-> To verify if telemetry is being collected from your browser, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
+> To verify if browser telemetry is being collected, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
 
 ## Users, Sessions, and Events - Analyze telemetry from three perspectives
 
@@ -49,12 +49,12 @@ Three of the **Usage** panes use the same tool to slice and dice telemetry from 
 
 * **Sessions tool**: How many sessions of user activity have included certain pages and features of your app? A session is reset after half an hour of user inactivity, or after 24 hours of continuous use.
 
-* **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you've [instrumented it](./javascript.md).
+* **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you've [instrumented it](javascript-sdk.md).
 
-    A custom event represents one occurrence of something happening in your app. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](./api-custom-events-metrics.md#trackevent) or use the [Click Analytics](javascript-feature-extensions.md) extension.
+    A custom event represents one occurrence of something happening in your application. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](opentelemetry-add-modify.md#send-custom-events) or use the [Click Analytics](javascript-feature-extensions.md) extension.
 
 > [!NOTE]
-> For information on an alternative to using anonymous IDs and ensuring an accurate count, see the documentation for [authenticated IDs](./data-model-complete.md#context).
+> For information on an alternative to using anonymous IDs and ensuring an accurate count, see the documentation for [authenticated IDs](data-model-complete.md#context).
 
 Clicking **View More Insights** displays the following information:
 
@@ -66,9 +66,12 @@ Clicking **View More Insights** displays the following information:
 
 Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use. Analyze business and usage telemetry by using Application Insights.
 
-:::image type="content" source="./media/usage-overview/users.png" alt-text="Screenshot that shows the Users tab with a bar chart." lightbox="./media/usage-overview/users.png":::
+:::image type="content" source="media/usage-overview/users.png" alt-text="Screenshot that shows the Users tab with a bar chart." lightbox="media/usage-overview/users.png":::
 
-* The **Users** report counts the numbers of unique users that access your pages within your chosen time periods. For web apps, users are counted by using cookies. If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
+* The **Users** report counts the numbers of unique users that access your pages within your chosen time periods. For web apps, users are counted by using cookies.
+
+    > [!IMPORTANT]
+    > If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
 
 * The **Sessions** report tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour.
 
@@ -697,11 +700,11 @@ Set up a custom task by using the following parameters.
 
 ## Frequently asked questions
 
-### Does the initial event represent the first time the event appears in a session or any time it appears in a session?
+#### Does the initial event represent the first time the event appears in a session or any time it appears in a session?
 
 The initial event on the visualization only represents the first time a user sent that page view or custom event during a session. If users can send the initial event multiple times in a session, then the **Step 1** column only shows how users behave after the *first* instance of an initial event, not all instances.
 
-### Some of the nodes in my visualization have a level that's too high. How can I get more detailed nodes?
+#### Some of the nodes in my visualization have a level that's too high. How can I get more detailed nodes?
 
 Use the **Split by** options on the **Edit** menu:
 
@@ -709,7 +712,7 @@ Use the **Split by** options on the **Edit** menu:
 
 1. Select a dimension on the **Dimension** menu. For example, if you have an event called **Button Clicked**, try a custom property called **Button Name**.
 
-### I defined a cohort of users from a certain country/region. When I compare this cohort in the Users tool to setting a filter on that country/region, why do I see different results?
+#### I defined a cohort of users from a certain country/region. When I compare this cohort in the Users tool to setting a filter on that country/region, why do I see different results?
 
 Cohorts and filters are different. Suppose you have a cohort of users from the United Kingdom (defined like the previous example), and you compare its results to setting the filter `Country or region = United Kingdom`:
 
@@ -717,37 +720,33 @@ Cohorts and filters are different. Suppose you have a cohort of users from the U
 
 * The filters version only shows events from the United Kingdom. If you split by country or region, you see only the United Kingdom.
 
-### How do I view the data at different grains (daily, monthly, or weekly)?
+#### How do I view the data at different grains (daily, monthly, or weekly)?
 
 You can select the **Date Grain** filter to change the grain. The filter is available across all the dimension tabs.
 
 :::image type="content" source="media/usage-overview/date-grain-monthly.png" alt-text="Screenshot that shows the filter to change date grain to daily, monthly, or weekly in the workbook.":::
 
-### How do I access insights from my application that aren't available on the HEART workbooks?
+#### How do I access insights from my application that aren't available on the HEART workbooks?
 
-You can dig into the data that feeds the HEART workbook if the visuals don't answer all your questions. To do this task, under the **Monitoring** section, select **Logs** and query the `customEvents` table. Some of the Click Analytics attributes are contained within the `customDimensions` field. A sample query is shown here.
+You can dig into the data that feeds the HEART workbook if the visuals don't answer all your questions. To do this task, under the **Monitoring** section in Application Insights, select **Logs** and query the `customEvents` table. Some of the Click Analytics attributes are contained within the `customDimensions` field.
 
-:::image type="content" source="media/usage-overview/log-query-faq.png" alt-text="Screenshot that shows the Log section under Monitoring in Application Insights. Also displays a sample query in the log section to retrieve application data.":::
+An example query is shown here:
+
+```kusto
+customEvents
+| where isnotnull(customDimensions.actionType)
+| extend parentid=tostring(customDimensions.parenId),
+pagename=tostring(customDimensions.pageName),
+actiontype=tostring(customDimensions.actionType)
+| project actiontype,parentid,pagename,
+user_AuthenticatedId,user_Id,session_Id,itemType,timestamp
+```
 
 To learn more about Logs in Azure Monitor, see [Azure Monitor Logs overview](../logs/data-platform-logs.md).
 
-### Can I edit visuals in the workbook?
+#### Can I edit visuals in the workbook?
 
-Yes. When you select the public template of the workbook:
-
-1. Select **Edit** and make your changes.
-
-   :::image type="content" source="media/usage-overview/workbook-edit-faq.png" alt-text="Screenshot that shows the Edit button in the upper-left corner of the workbook template.":::
-
-1. After you make your changes, select **Done Editing**, and then select the **Save** icon.
-
-   :::image type="content" source="media/usage-overview/workbook-save-faq.png" alt-text="Screenshot that shows the Save icon at the top of the workbook template that becomes available after you make edits.":::
-
-1. To view your saved workbook, under **Monitoring**, go to the **Workbooks** section and then select the **Workbooks** tab. A copy of your customized workbook appears there. You can make any further changes you want in this copy.
-
-   :::image type="content" source="media/usage-overview/workbook-view-faq.png" alt-text="Screenshot that shows the Workbooks tab next to the Public Templates tab, where the edited copy of the workbook is located.":::
-
-For more on editing workbook templates, see [Azure Workbooks templates](../visualize/workbooks-templates.md).
+Yes. To learn how to edit workbook templates, see [Azure Workbooks templates](../visualize/workbooks-templates.md#edit-a-template).
 
 ## Next steps
 
