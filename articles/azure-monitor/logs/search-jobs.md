@@ -70,7 +70,7 @@ To run a search job, in the Azure portal:
 
 1. Specify the search job date range using the time picker. The maximum range is one year, but can be any one year period the data retention period allows.
 
-    If your Kusto query also selects a time range, the union of the time ranges is used for the search job.
+    If your Kusto query also specifies a time range, the union of the time ranges is used for the search job.
     
     :::image type="content" source="media/search-job/search-job-time-selector.png" alt-text="Screenshot that shows the search job interface prompting for time range and the search job results table." lightbox="media/search-job/search-job-time-selector.png":::
 
@@ -84,7 +84,7 @@ To run a search job, in the Azure portal:
 
     :::image type="content" source="media/search-job/search-job-running.png" alt-text="Screenshot that shows search job results table with data." lightbox="media/search-job/search-job-running.png":::
 
-    Azure Monitor Logs shows a **Search job is done** message when it's completed. When you see that message or the progress shows 100%, the results table is for a full featured query. 
+    Azure Monitor Logs shows a **Search job is done** message when it's completed. When you see that message or the progress shows 100%, the results table is now ready with all the records that match the search query.
 
 ### [API](#tab/api-1)
 
@@ -298,15 +298,12 @@ The search job charge is based on:
   - **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in interactive retention in Analytics tables.
   - **Basic or Auxiliary plans** - All data the search job scans in both interactive and long-term retention. 
     
-    The data scanned is defined as the volume of data that was ingested for the table within the time range specified by the query. For more information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
+    The data scanned is defined as the volume of data in the table that you run the search job on, within the time range you specified. For more information about interactive and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
   
 * Search job results - The amount of data the search job finds and is ingested into the results table, based on the data ingestion rate for Analytics tables.
 
 For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table. 
 
-> [!NOTE]
-> Billing for search jobs on an Auxiliary Logs table isn't enabled at this time.
-> Details on billing start date will be announced on [Azure Updates](https://azure.microsoft.com/updates/?query=Azure%20Monitor).
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
