@@ -70,7 +70,7 @@ To run a search job, in the Azure portal:
 
 1. Specify the search job date range using the time picker. The maximum range is one year, but can be any one year period the data retention period allows.
 
-    If your Kusto query also selects a time range, the union of the time ranges is used for the search job.
+    If your Kusto query also specifies a time range, the union of the time ranges is used for the search job.
     
     :::image type="content" source="media/search-job/search-job-time-selector.png" alt-text="Screenshot that shows the search job interface prompting for time range and the search job results table." lightbox="media/search-job/search-job-time-selector.png":::
 
