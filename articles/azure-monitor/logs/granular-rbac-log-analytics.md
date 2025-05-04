@@ -3,8 +3,6 @@ title: Granular RBAC in Log Analytics
 description: Granular RBAC in Log Analytics enables you to define data access in a fine-grained manner.
 services: azure-monitor
 sub-service: logs
-author: austinmccollum
-ms.author: austinmc
 ms.reviewer: rofrenke
 ms.topic: conceptual 
 ms.date: 05/08/2025
@@ -22,7 +20,7 @@ Granular RBAC can help you achieve various scenarios, such as
 -    Data privacy: Protect the sensitive or confidential data of your organization, such as personal information, health records, or financial transactions, and restrict the access to only authorized users.
 -    Data compliance: Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region. Enforce the appropriate policies and controls on the data access and usage.
 
-Granular RBAC controls data access such as querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformation, and data export. 
+Granular RBAC controls data access such as querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformations, and data export. 
 
 > [!NOTE]
 > Azure RBAC is an additive model. Your effective permissions are the sum of your role assignments. For example, if a you have two role assignments on the same scope, one set with a */read action and the other with conditions that limit access to specific records, the applicable permission is */read action granting access to all logs in this scope. For the conditions to take effect, you must remove the role assignment with higher access privileges. 
@@ -43,7 +41,7 @@ Azure ABAC is supported in the following environments:
 
 ### Conditions and expressions
 
-A condition is an addition to your role assignment, providing a fine-grained access control. In Log Analytics, you can set a condition on tables and records, based on the data in each record. For example, restrict access to the activity logs so that users can only see records where the `caller` column is their user ID.
+A condition is an addition to your role assignment, providing finely tuned access control. In Log Analytics, you can set a condition on tables and records, based on the data in each record. For example, restrict access to the activity logs so that users can only see records where the `caller` column is their user ID.
 
 A condition consists of expressions. An expression is a logic statement with the format of <attribute> <operator> <value>.
 
@@ -53,7 +51,6 @@ Attribute source | Display Name | Type | Description | Attribute Name
 -----------------|--------------|------|-------------|----------------
 Resource         | Table Name   | String | Table names used to grant/limit to. | Microsoft.OperationalInsights/ workspaces/tables:name
 Resource         | Column value (Key is the column name) | Dictionary (Key-value) |Column name and value. Column name is the key. The data value in the column is the value. | Microsoft.OperationalInsights /workspaces/tables/record:<Key><case_sensitive column name>
-
 
 Conditions are added at same scope as the role assignments you wish to set it for. Set the condition at a scope of a table, workspace, or subscription. 
 
@@ -131,9 +128,9 @@ When enabling conditions for users who currently have access, you must remove an
 
 
 **My data doesn't have a column that I can use for conditions. How can I change my data to fit the conditions I wish to apply?**
-Transformation can be used to create new columns with data that you can use to define conditions. For example for dat with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
+Transformation can be used to create new columns with data that you can use to define conditions. For example for data with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
 
-**I'm accessing my logs via resource context. Is my condition be enforced?**
+**I'm accessing my logs via resource context. Can my condition be enforced?**
 RBAC and ABAC are enforced for resource-context queries, but require the workspaces containing the resource logs meet two prerequisites:
 1.    Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. 
     If set to *Use resources or workspace permissions*, the Azure read permission assigned to a resource provides access to all logs. Workspace and ABAC permissions are ignored. 

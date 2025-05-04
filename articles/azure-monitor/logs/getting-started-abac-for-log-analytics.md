@@ -3,14 +3,12 @@ title: Getting started with granular RBAC in Log Analytics
 description: Learn how to use granular row-level access control in Log Analytics.
 services: azure-monitor
 sub-service: logs
-author: EdB-MSFT
-ms.author: edbaynash
 ms.reviewer: rofrenke
-ms.topic: get-started
-ms.date: 09/15/2024
+ms.topic: how-to
+ms.date: 05/08/2025
 
 
-# Customer intent: As an Azure administrator, I want to understand how to use granular RBAC in Log Analytics
+# Customer intent: As an Azure administrator, I want to understand how to use granular RBAC in Log Analytics for the use case scenario of separating custom log table access at the row level.
 ---
 
 # Getting started with granular RBAC in Log Analytics
@@ -93,9 +91,9 @@ This configuration allows the group of users to access all tables in the workspa
 
 For general troubleshooting for ABAC, see (Troubleshoot Azure role assignment conditions)(/azure/role-based-access-control/conditions-troubleshoot).
 
-•	The values used for table names and column values are case-sensitive. If a table name or value is incorrectly specified, the condition may fail, or yield unexpected behavior, and access to the requested data may be denied.
+*    The values used for table names and column values are case-sensitive. If a table name or value is incorrectly specified, the condition may fail, or yield unexpected behavior, and access to the requested data may be denied.
 
-•	Invalid conditions that cause a logic error trigger a "400 Bad Request" error message for all affected users. The condition must be revised by the administrator.
+*    Invalid conditions that cause a logic error trigger a "400 Bad Request" error message for all affected users. The condition must be revised by the administrator.
 
 ## Next steps
 TBD
