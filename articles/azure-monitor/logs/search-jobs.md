@@ -84,7 +84,7 @@ To run a search job, in the Azure portal:
 
     :::image type="content" source="media/search-job/search-job-running.png" alt-text="Screenshot that shows search job results table with data." lightbox="media/search-job/search-job-running.png":::
 
-    Azure Monitor Logs shows a **Search job is done** message when it's completed. When you see that message or the progress shows 100%, the results table is for a full featured query. 
+    Azure Monitor Logs shows a **Search job is done** message when it's completed. When you see that message or the progress shows 100%, the results table is now ready with all the records that match the search query.
 
 ### [API](#tab/api-1)
 
