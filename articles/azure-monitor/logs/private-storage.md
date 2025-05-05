@@ -8,12 +8,12 @@ ms.date: 05/05/2025
 
 # Use customer-managed storage accounts in Azure Monitor Logs
 
-Azure Monitor typically manages storage automatically, but some scenarios require you to configure a customer-managed storage account. This article describes the use cases, requirements and procedures for setting up customer-managed storage for to link to a Log Analytics workspace.
+Azure Monitor typically manages storage automatically, but some scenarios require you to configure a customer-managed storage account. This article describes the use cases, requirements and procedures for setting up a customer-managed storage connection to a Log Analytics workspace.
 
 > [!WARNING]
 > Starting June 30th, 2025, creating or updating custom logs and IIS logs will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
-Content uploaded to customer-managed storage might change in formatting or other unexpected ways, so carefully consider what is dependent on this content and understand the special circumstances for each scenario.
+Content uploaded to customer-managed storage might change in formatting or other unexpected ways, so carefully consider your dependencies on this content and understand the special circumstances for each scenario.
 
 ## Private links
 Customer-managed storage accounts are used to ingest custom logs when private links are used to connect to Azure Monitor resources. The ingestion process of these data types first uploads logs to an intermediary Azure Storage account, and only then ingests them to a workspace.
@@ -55,24 +55,30 @@ A customer-managed storage account is required for:
 Follow this guidance to apply CMKs to customer-managed storage accounts.
 
 #### Storage account requirements
+
 The storage account and the key vault must be in the same region. They don't need to be from the same subscription though. For more information, see [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
 
 #### Apply CMKs to your storage accounts
-To configure your Azure Storage account to use CMKs with Key Vault, use the [Azure portal](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json), [PowerShell](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json), or the [Azure CLI](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json).
+
+Configure your storage account to use CMKs with Key Vault in one of the following ways:
+- [Azure portal](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json)
+- [PowerShell](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json)
+- [Azure CLI](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json)
 
 > [!NOTE]
 > Carefully consider these special circumstances when configuring customer managed storage with CMK.
 
 | Special case | Remediation |
 |---|---|
-| When linking storage account for queries, existing saved queries in a workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an example using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
+| When linking a storage account for queries, existing saved queries in a workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
 | Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK.
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
-| A single storage account can be used for all purposes - queries, alerts, custom logs and IIS logs. | Linking storage for custom log and IIS logs might require more storage accounts for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025. You can link up to five storage accounts to a workspace. |
+| A single storage account can be used for all purposes - queries, alerts, custom logs and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025.|
 
 ## Link storage accounts to your Log Analytics workspace
 
 ### Use the Azure portal
+
 On the Azure portal, open your workspace menu and select **Linked storage accounts**. A pane shows the linked storage accounts by the use cases previously mentioned (ingestion over Private Link, applying CMKs to saved queries or to alerts).
 
 :::image type="content" source="./media/private-storage/all-linked-storage-accounts.png" lightbox="./media/private-storage/all-linked-storage-accounts.png" alt-text="Screenshot that shows the Linked storage accounts pane.":::
@@ -83,6 +89,7 @@ Selecting an item on the table opens its storage account details, where you can 
 You can use the same account for different use cases if you prefer.
 
 ### Use the Azure CLI or REST API
+
 You can also link a storage account to your workspace via the [Azure CLI](/cli/azure/monitor/log-analytics/workspace/linked-storage) or [REST API](/rest/api/loganalytics/linkedstorageaccounts).
 
 The applicable `dataSourceType` values are:
@@ -96,15 +103,18 @@ The applicable `dataSourceType` values are:
 Follow this guidance to manage your linked storage accounts.
 
 ### Create or modify a link
+
 When you link a storage account to a workspace, Azure Monitor Logs starts using it instead of the storage account owned by the service. You can:
 
 * Register multiple storage accounts to spread the load of logs between them.
 * Reuse the same storage account for multiple workspaces.
 
 ### Unlink a storage account
+
 To stop using a storage account, unlink the storage from the workspace. When you unlink all storage accounts from a workspace, Azure Monitor Logs uses service-managed storage accounts. If your network has limited access to the internet, these storage accounts might not be available and any scenario that relies on storage will fail.
 
 ### Replace a storage account
+
 To replace a storage account used for ingestion:
 
 1. **Create a link to a new storage account**. The logging agents will get the updated configuration and start sending data to the new storage. The process could take a few minutes.
@@ -115,14 +125,17 @@ To replace a storage account used for ingestion:
 Follow this guidance to maintain your storage accounts.
 
 #### Manage log retention
+
 When you use your own storage account, retention is up to you. Azure Monitor Logs doesn't delete logs stored on your private storage. Instead, you should set up a policy to handle the load according to your preferences.
 
 #### Consider load
+
 Storage accounts can handle a certain load of read and write requests before they start throttling requests. For more information, see [Scalability and performance targets for Azure Blob Storage](/azure/storage/common/scalability-targets-standard-account).
 
 Throttling affects the time it takes to ingest logs. If your storage account is overloaded, register another storage account to spread the load between them. To monitor your storage account's capacity and performance, review its [Insights in the Azure portal](/azure/storage/common/storage-insights-overview?toc=%2fazure%2fazure-monitor%2ftoc.json).
 
 ### Related charges
+
 You're charged for storage accounts based on the volume of stored data, the type of storage, and the type of redundancy. For more information, see [Block blob pricing](https://azure.microsoft.com/pricing/details/storage/blobs) and [Azure Table Storage pricing](https://azure.microsoft.com/pricing/details/storage/tables).
 
 ## Next steps
