@@ -626,7 +626,6 @@ This page contains a complete list of all the checks executed through resource h
 |---|
 | - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
 
-
 ## Microsoft.VoiceServices/communicationsgateway
 
 | Executed Checks |
