@@ -8,7 +8,7 @@ ms.date: 05/05/2025
 
 # Use customer-managed storage accounts in Azure Monitor Logs
 
-Azure Monitor typically manages storage automatically, but some scenarios require you to configure a customer-managed storage account. This article describes the use cases, requirements and procedures for setting up a customer-managed storage connection to a Log Analytics workspace.
+Azure Monitor typically manages storage automatically, but some scenarios require you to configure a customer-managed storage account. This article describes the use cases, requirements and procedures for setting up a customer-managed storage account link to a Log Analytics workspace.
 
 > [!WARNING]
 > Starting June 30th, 2025, creating or updating custom logs and IIS logs will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
