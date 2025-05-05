@@ -338,7 +338,7 @@ Use this sample ARM template and parameter file to update the retention period f
     }
   }
 }
-
+```
 ---
 
 ## Get retention settings by table
