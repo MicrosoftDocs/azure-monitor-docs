@@ -267,6 +267,8 @@ Update-AzOperationalInsightsTable -ResourceGroupName ContosoRG -WorkspaceName Co
 ```
 # [Resource Manager template](#tab/azure-resource-manager-1)
 
+Use this sample ARM template and parameter file to update the retention period for a specific table.
+
 ### Template file
 
 ```json
