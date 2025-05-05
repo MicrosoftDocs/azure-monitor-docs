@@ -187,7 +187,6 @@ This page contains a complete list of all the checks executed through resource h
 ## Microsoft.DBforPostgreSQL/servers
 
 |Executed Checks|
-
 |---|
 | - Is the server unavailable due to maintenance?<br> - Is the server unavailable due to reconfiguration?|
 
