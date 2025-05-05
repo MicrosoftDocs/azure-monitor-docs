@@ -12,8 +12,7 @@ Azure Monitor Logs relies on Azure Storage in various scenarios. Azure Monitor t
 
 > [!NOTE]
 > Starting June 30th, 2025, creating or updating custom logs and IIS logs will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview).
->
-> Starting August 31st, Log Analytics Workspaces must have a manageed identity assigned to them to add or update linked storage accounts for saved queries and saved log alert queries.
+
 
 ## Private links
 Customer-managed storage accounts are used to ingest custom logs when private links are used to connect to Azure Monitor resources. The ingestion process of these data types first uploads logs to an intermediary Azure Storage account, and only then ingests them to a workspace.
