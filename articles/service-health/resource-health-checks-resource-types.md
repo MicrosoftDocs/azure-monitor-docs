@@ -28,23 +28,22 @@ This page contains a complete list of all the checks executed through resource h
 
 
 ## Microsoft.AppPlatform/Spring
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is the Azure Spring Cloud instance available?|
 
 
 ## Microsoft.AVS/PrivateClouds
+
 |Executed Checks|
-
-
 |---|
 | - Is the Service Fabric cluster up and running?<br> - Can the Service Fabric cluster be managed through Azure Resource Manager?|
 
+
 ## Microsoft.ClassicCompute/virtualMachines
+
 |Executed Checks|
-
-
 |---|
 | - Is the Service Fabric cluster up and running?<br> - Can the Service Fabric cluster be managed through Azure Resource Manager?|
 
@@ -173,19 +172,20 @@ This page contains a complete list of all the checks executed through resource h
 | - Is the server unavailable due to maintenance?<br> - Is the server unavailable due to reconfiguration?|
 
 ## Microsoft.DBforPostgreSQL/flexibleservers
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is the server unavailable due to maintenance?<br> - Is the server unavailable due to reconfiguration?|
 
 ## Microsoft.DBforMySQL/servers
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is the server unavailable due to maintenance?<br> - Is the server unavailable due to reconfiguration?|
 
 
 ## Microsoft.DBforPostgreSQL/servers
+
 |Executed Checks|
 
 |---|
@@ -382,7 +382,6 @@ This page contains a complete list of all the checks executed through resource h
 |---|
 | - Is the ExpressRoute Gateway up and running?|
 
-
 ## Microsoft.network/frontdoors
 
 |Executed Checks|
@@ -394,7 +393,6 @@ This page contains a complete list of all the checks executed through resource h
 |Executed Checks|
 |---|
 | - Are the load balancing endpoints available?|
-
 
 ## Microsoft.network/natGateways
 
@@ -489,7 +487,6 @@ This page contains a complete list of all the checks executed through resource h
 |---|
 | - Are there ingestion delays in the workspace?|
 
-
 ## Microsoft.Orbital/contactprofiles
 
 |Executed Checks|
@@ -513,7 +510,6 @@ This page contains a complete list of all the checks executed through resource h
 |Executed Checks|
 |---|
 | - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
-
 
 ## Microsoft.RedHatOpenShift/openShiftClusters
 
@@ -548,7 +544,6 @@ This page contains a complete list of all the checks executed through resource h
 ## Microsoft.ServiceFabric/clusters
 
 |Executed Checks|
-
 |---|
 | - Is the Service Fabric cluster up and running?<br> - Can the Service Fabric cluster be managed through Azure Resource Manager?|
 
