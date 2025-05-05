@@ -6,20 +6,21 @@ ms.topic: conceptual
 ms.date: 05/01/2025
 ---
 
-# Azure Monitor issue and investigation (preview)
+# Azure Monitor issues and investigations (preview)
 
-This article explains what Azure Monitor issue and investigation is and how it's used to triage and mitigate problems with an Azure resource.
+This article explains what Azure Monitor issues and investigations are and how they are used to triage and mitigate problems with an Azure resource.
 
-## What is Azure Monitor issue and investigation?
+## What is Azure Monitor issues and investigations?
 
-Azure Monitor issue and investigation is an AIOPs feature of Azure Monitor that can be triggered by an Azure Monitor alert.
+Azure Monitor issues and investigations is an AIOPs capability that automates an investigation process for an [Azure monitor alert](). It provides actionable information and next steps for mitigating the service issue that resulted from the alert.
+
 
 > [!NOTE]
 > For preview, the only alert supported is an Application Insights resource alert.
 
 ## What is an issue?
 
-An issue contains all observability related data and processes for troubleshooting a service health degradation. It allows for keeping track of the mitigation of problems with resources. It can be shared and used by multiple people.
+An issue is a holistic view of service-related problems providing a structured framework for managing incidents. It uses AI for automated analysis and diagnostic processes to deliver high-quality insights using all observability-related data for fast and accurate troubleshooting service health degradations.
 
 An issue presents an overview, the investigation, details about the alerts, and the resources involved.
 
@@ -27,41 +28,38 @@ You can set the severity, status, and impact time of an issue.
 
 ## What is an investigation?
 
-An investigation is an analysis of a set of findings within the context of an issue. The analysis uses AI-based triage and diagnostic processes.
+An investigation is an analysis of a set of findings within the context of an issue. The analysis uses AI-based, iterative triage and diagnostic processes. The investigation minimizes manual effort to enable faster and more accurate troubleshooting.
+
+Only the latest investigation is displayed. Users can edit the scope and impact time and run a new investigation. An investigation scans up to twp hours of telemetry from the issue impact time.
 
 ### Findings
 
-Findings identify anomalous behavior that could explain an issue. They summarize the analysis of multiple anomalies (for example, 'VM performance is low due to possible memory leak’) based on relevant signals (metrics, logs, etc.) and might suggest further investigation steps and potential mitigations.​
+Findings identify anomalous behavior that could explain a problem with a service resource. They summarize the analysis of multiple anomalies (for example, 'VM performance is low due to possible memory leak’) based on relevant signals (metrics, logs, etc.) and might suggest further investigation steps and potential mitigations.​
 
 A finding contains a summary that can include:
 
-- **What happened.** A description of the issues with the resources included in the investigation.
-- **A possible explanation.** A description of what might be causing problems.
-- **Next steps.** Suggestions for digging deeper into the problems.
-- **Evidence.** Every finding presents supporting evidence. Evidence is the data supporting the finding, such as anomalies, diagnostics insights, health data, resource changes, and related resources, related alerts, and data you define such as with a query.
+- **What happened.** A description of the finding with the resources included in the investigation.
+- **A possible explanation.** A description of what might be causing problems for the specific finding and related evidence.
+- **Next steps.** Suggestions for continuing the investigation or mitigating the problems.
+- **Evidence.** Evidence is the data justifying the finding, such as anomalies, diagnostics insights, health data, resource changes, related resources, and related alerts.
 
 > [!Note]
-> Up to five findings groups are displayed and all other anomalies are grouped into **Additional data**.
+> Up to five findings are displayed and all other anomalies are grouped into **Additional data**.
 
 ## Evidence types
 
-### Metric anomalies
+### Metric anomaly explanations
 
-The investigation:
-
-- Scans the Azure resources in the investigation target and scope for anomalies in platform metrics and custom metrics.
-- Assigns scores to metrics that show a correlation with the incident start time.
-- Generates explanations for the incident by conducting subpattern analysis to explain anomalies based on metric dimensions or labels that generate the most impact.
--  Groups and ranks explanations to present the most likely causes
+In addition to detecting anomalies, explanations are created based the metric dimensions, for example, the specific region or error code of the anomaly.
 
 ### Application logs Analysis
 
-The investigation scans the application data for anomalies. The top three fail events (For dependencies, requests and exceptions) are analyzed. For each event:
+The investigation scans the application logs for anomalies. The top three failure events (for dependencies, requests and exceptions) are analyzed. For each event:
 
 - **Explanation**: An explanation of what happened is generated for the failure.
-- **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Pressing on the example displays the end-to-end transaction in Application Insights.
+- **Transaction Examples**: A list of examples of transactions in which the specific failure event exists. Selecting the example displays the end-to-end transaction in Application Insights.
 - **Exceptions**: If there are specific exception problem IDs that correlate with the failure, they'll be displayed with the count of appearance in the logs. The problem IDs are explained in natural language and an example is provided.
-- **Transaction Pattern**: If there's a specific pattern the failure, it is displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
+- **Transaction Pattern**: If there's a specific transaction pattern the failure, it is displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
 - **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they'll be displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
 
 ### Diagnostic insights
@@ -70,11 +68,11 @@ Provides actionable solutions and diagnostics based on abnormal telemetry from A
 
 ### Related Alerts
 
-Contains data from related alerts on the target resource that occurred in the last 15 minutes.
+Contains data from related, high-severity alerts on the issue scoped resource that occurred in the last 15 minutes. Those alerts are synced back to the issue and appear in the Alerts tab.
 
 ### Resource Health
 
-Provides data from Azure Resource Health.
+Provides events data from [Azure Resource Health](/azure/service-health/resource-health-overview) about resource health degredation in the investigated period.
 
 ## Capabilities
 
@@ -84,30 +82,24 @@ Azure Monitor investigation makes suggestions for which resources to analyze bas
 
 ### Smart scoping
 
-Investigation also offers smart scoping for application insight resources. In this case, we'll automatically identify possible suspected resources from looking at the dependencies in Application Insights and run analysis on them as well.
+An investigation also offers smart scoping for Application Insight resources. In this case, possible suspected resources are automatically identified by looking at the dependencies and the infrastructure where the service is running then includes them in the analysis. This happens during an investigation and the results are synced to the issue.
 
 ## Issue and investigation initial workflow example
 
 1. An alert email from Azure Monitor is received.
 1. A select on the investigate button in the email creates an issue and starts an investigation. The issue page on the Azure portal opens in your browser.
 1. On the Issue page, you're presented with:
-    1. The issue overview where the findings are presented as well as the evidence.
-    1. The investigation which contains the AI analysis summary, suggested actions to take and the evidence used for the analysis.
-    1. Alerts associated with the issue
-    1. Resources associated with the issue.
-
-        ![A screenshot of resources associated with the issue.](media/dce6122928de06e8b346a1d87914e86b.png)
-
-1.  Every finding in an investigation presents more details on the cause and present next steps to choose from.
-
-    ![A screenshot of a details on the cause.](media/c21e9b9d0d9afc8536419f56cf170b1f.png)
+    1. The issue overview where the findings of the last investigation are presented with summarized evidence.
+    1. Each finding contains the AI analysis summary, suggested actions to take and the evidence used for the analysis.
+1.  Every finding in an investigation presents more details on the potential cause and present next steps to choose from.
 
 ## Regions
+
+These are the supported zure regions for issues and investigatation services:
 
 | **Public preview region availability** |
 |----------------------------------------|
 | australiaeast                          |
-| centralindia                           |
 | centralus                              |
 | eastasia                               |
 | eastus                                 |
