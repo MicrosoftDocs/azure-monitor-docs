@@ -265,7 +265,79 @@ For example:
 ```powershell
 Update-AzOperationalInsightsTable -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName Syslog -RetentionInDays -1 -TotalRetentionInDays -1
 ```
+# [Resource Manager template](#tab/azure-resource-manager-1)
 
+Use this sample ARM template and parameter file to update the retention period for a specific table.
+
+### Template file
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "sampleWorkspace",
+      "metadata": {
+        "description": "The number of days to retain the data."
+      }
+    },
+    "tableName": {
+      "type": "string",
+      "defaultValue": "sampleTable",
+      "metadata": {
+        "description": "The name of the Log Analytics table to modify."
+      }
+    },
+    "retentionInDays": {
+      "type": "int",
+      "defaultValue": 30,
+      "metadata": {
+        "description": "The number of days to retain the data."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces",
+      "apiVersion": "2025-02-01",
+      "name": "[parameters('workspaceName')]",
+      "location": "[resourceGroup().location]",
+      "resources": [
+        {
+          "type": "Microsoft.OperationalInsights/workspaces/tables",
+          "apiVersion": "2025-02-01",
+          "name": "[concat(parameters('workspaceName'), '/', parameters('tableName'))]",
+          "properties": {
+            "retentionInDays": "[parameters('retentionInDays')]"
+          },
+          "dependsOn": [ "[resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]" ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+### Parameter file
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "value": "MyWorkspace"
+    },
+    "tableName": {
+      "value": "AppRequests"
+    },
+    "retentionInDays": {
+      "value": 120
+    }
+  }
+}
 
 ---
 
