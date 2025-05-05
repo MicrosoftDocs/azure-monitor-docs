@@ -277,8 +277,8 @@ This page contains a complete list of all the checks executed through resource h
 |- Is this log search alert rule currently disabled?<br> - Does this rule runs less frequently than every 15 minutes?<br> - Is there a semantic, syntax, or validation error in the query?<br> - Is  the response size is too large?<br> - Is the query consuming too many resources?<br> - Can the target Log Analytics/Application Insights workspace for this alert rule be found?<br> - Is the alert rule query failing because of throttling (Error 429)?<br> - Does the query have the correct permissions?<br> - Are there NSP validations issues for the query?<br> - Does the query evaluation fail due to exceeding the limit of fired (non- resolved) alerts per day?<br> - Did the alert evaluation fail due to exceeding the allowed limit of dimension combinations values that meet the threshold?|
 
 ## Microsoft.KeyVault/vaults
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Are requests to key vault failing due to Azure KeyVault platform issues?<br> - Are requests to key vault being throttled due to too many requests made by customer?|
 
@@ -319,20 +319,20 @@ This page contains a complete list of all the checks executed through resource h
 | - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
 
 ## Microsoft.network/applicationgateways
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is performance of the Application Gateway degraded?<br> - Is the Application Gateway available?|
 
 ## Microsoft.network/azureFirewalls
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Are there enough remaining available ports to perform Source NAT?<br> - Are there enough remaining available connections?|
 
 ## Microsoft.network/bastionhosts
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is the Bastion Host up and running?|
 
@@ -382,9 +382,10 @@ This page contains a complete list of all the checks executed through resource h
 |---|
 | - Is the ExpressRoute Gateway up and running?|
 
-## Microsoft.network/frontdoors
-|Executed Checks|
 
+## Microsoft.network/frontdoors
+
+|Executed Checks|
 |---|
 | - Are Front Door backends responding with errors to health probes?<br> - Are configuration changes delayed?|
 
@@ -408,14 +409,14 @@ This page contains a complete list of all the checks executed through resource h
 | - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
 
 ## Microsoft.network/trafficmanagerprofiles
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Are there any issues impacting the Traffic Manager profile?|
 
 ## Microsoft.Network/virtualHubs
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is the virtual hub router up and running?|
 
@@ -434,8 +435,8 @@ This page contains a complete list of all the checks executed through resource h
 
 
 ## Microsoft.network/vpnGateways (VPN Gateways in Virtual WAN)
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is the VPN gateway reachable from the internet?<br> - Is the VPN Gateway in standby mode?<br> - Is the VPN service running on the gateway?|
 
@@ -471,8 +472,8 @@ This page contains a complete list of all the checks executed through resource h
 | - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
 
 ## Microsoft.NotificationHubs/namespace
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Can runtime operations like registration, installation, or send be performed on the namespace?|
 
@@ -545,6 +546,7 @@ This page contains a complete list of all the checks executed through resource h
 | - Are customers experiencing user generated Service Bus errors?<br> - Are users experiencing an increase in transient errors due to a Service Bus namespace upgrade?|
 
 ## Microsoft.ServiceFabric/clusters
+
 |Executed Checks|
 
 |---|
@@ -558,8 +560,8 @@ This page contains a complete list of all the checks executed through resource h
 
 
 ## Microsoft.SignalRService/SignalR
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Is the Service Fabric cluster up and running?<br> - Can the Service Fabric cluster be managed through Azure Resource Manager?|
 
@@ -601,8 +603,8 @@ This page contains a complete list of all the checks executed through resource h
 | - When there are many logins, have more than a quarter of the login attempts failed for system reasons?<br> - Have more that one login attempt failed for system reasons (in two of the last three minutes)?|
 
 ## Microsoft.Storage/storageAccounts
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Are requests to read data from the Storage account failing due to Azure Storage platform issues?<br> - Are requests to write data to the Storage account failing due to Azure Storage platform issues?<br> - Is the Storage cluster where the Storage account resides unavailable?|
 
@@ -613,8 +615,8 @@ This page contains a complete list of all the checks executed through resource h
 | - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
 
 ## Microsoft.StreamAnalytics/streamingjobs
-|Executed Checks|
 
+|Executed Checks|
 |---|
 | - Are all the hosts where the job is executing up and running?<br> - Was the job unable to start?<br> - Are there ongoing runtime upgrades?<br> - Is the job in an expected state (for example running or stopped by customer)?<br> - Has the job encountered out of memory exceptions?<br> - Are there ongoing scheduled compute updates?<br> - Is the Execution Manager (control plan) available?|
 
@@ -629,6 +631,7 @@ This page contains a complete list of all the checks executed through resource h
 |Executed Checks|
 |---|
 | - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
+
 
 ## Microsoft.VoiceServices/communicationsgateway
 
