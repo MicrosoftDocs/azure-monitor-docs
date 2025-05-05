@@ -3,15 +3,17 @@ title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: conceptual
 ms.reviewer: noakuper
-ms.date: 11/26/2023
+ms.date: 05/05/2025
 ---
 
 # Use customer-managed storage accounts in Azure Monitor Logs
 
-Azure Monitor Logs relies on Azure Storage in various scenarios. Azure Monitor typically manages this type of storage automatically, but some cases require you to provide and manage your own storage account, also known as a customer-managed storage account. This article describes the use cases and requirements for setting up customer-managed storage for Azure Monitor Logs and explains how to link a storage account to a Log Analytics workspace. 
+Azure Monitor Logs relies on Azure Storage in various scenarios. Azure Monitor typically manages this type of storage automatically, but some cases require you to provide and manage your own storage account, also known as a customer-managed storage account. This article describes the use cases and requirements for setting up customer-managed storage for Azure Monitor Logs and explains how to link a storage account to a Log Analytics workspace. However, the content uploaded to customer-managed storage might change in formatting or other unexpected ways, so we recommend carefully considering what is dependent on this content.
 
 > [!NOTE]
-> We recommend that you don't take a dependency on the contents that Azure Monitor Logs uploads to customer-managed storage because formatting and content might change.
+> Starting June 30th, 2025, creating or updating custom logs and IIS logs will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](azure-monitor-agent-overview.md).
+>
+> Starting August 31st, Log Analytics Workspaces must have a manageed identity assigned to them to add or update linked storage accounts for saved queries and saved log alert queries.
 
 ## Private links
 Customer-managed storage accounts are used to ingest custom logs when private links are used to connect to Azure Monitor resources. The ingestion process of these data types first uploads logs to an intermediary Azure Storage account, and only then ingests them to a workspace.
@@ -53,17 +55,19 @@ A customer-managed storage account is required for:
 Follow this guidance to apply CMKs to customer-managed storage accounts.
 
 #### Storage account requirements
-The storage account and the key vault must be in the same region, but they also can be in different subscriptions. For more information about Azure Storage encryption and key management, see [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
+The storage account and the key vault must be in the same region. They don't need to be from the same subscription though. For more information, see [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
 
 #### Apply CMKs to your storage accounts
 To configure your Azure Storage account to use CMKs with Key Vault, use the [Azure portal](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json), [PowerShell](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json), or the [Azure CLI](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json).
 
 > [!NOTE]
-> - When linking Storage Account for query, existing saved queries in workspace are deleted permanently for privacy. You can copy existing saved queries before storage link using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch).
-> - Queries saved in [query pack](./query-packs.md) aren't encrypted with Customer-managed key. Select **Save as Legacy query** when saving queries instead, to protect them with Customer-managed key.
-> - Saved queries are stored in table storage and encrypted with Customer-managed key when encryption is configured at Storage Account creation.
-> - Log search alerts are saved in blob storage where configuration of Customer-managed key encryption can be at Storage Account creation, or later.
-> - You can use a single Storage Account for all purposes, query, alert, custom log and IIS logs. Linking storage for custom log and IIS logs might require more Storage Accounts for scale, depending on the ingestion rate and storage limits. You can link up to five Storage Accounts to a workspace.
+> Carefully consider these special circumstances when configuring customer managed storage with CMK.
+
+| Special case | Remediation |
+| When linking storage account for queries, existing saved queries in a workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an example using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
+| Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK.
+| Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
+| A single storage account can be used for all purposes - queries, alerts, custom logs and IIS logs. | Linking storage for custom log and IIS logs might require more storage accounts for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025. You can link up to five storage accounts to a workspace. |
 
 ## Link storage accounts to your Log Analytics workspace
 
@@ -82,7 +86,7 @@ You can also link a storage account to your workspace via the [Azure CLI](/cli/a
 
 The applicable `dataSourceType` values are:
 
-* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion.
+* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025.
 * `Query`: To use the storage account to store saved queries (required for CMK encryption).
 * `Alerts`: To use the storage account to store log-based alerts (required for CMK encryption).
 
