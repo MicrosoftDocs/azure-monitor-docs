@@ -265,7 +265,7 @@ For example:
 ```powershell
 Update-AzOperationalInsightsTable -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName Syslog -RetentionInDays -1 -TotalRetentionInDays -1
 ```
-## [Resource Manager template](#tab/azure-resource-manager)
+# [Resource Manager template](#tab/azure-resource-manager-1)
 
 ### Template file
 
