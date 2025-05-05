@@ -11,7 +11,7 @@ ms.date: 05/05/2025
 Azure Monitor Logs relies on Azure Storage in various scenarios. Azure Monitor typically manages this type of storage automatically, but some cases require you to provide and manage your own storage account, also known as a customer-managed storage account. This article describes the use cases and requirements for setting up customer-managed storage for Azure Monitor Logs and explains how to link a storage account to a Log Analytics workspace. However, the content uploaded to customer-managed storage might change in formatting or other unexpected ways, so we recommend carefully considering what is dependent on this content.
 
 > [!NOTE]
-> Starting June 30th, 2025, creating or updating custom logs and IIS logs will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](azure-monitor-agent-overview.md).
+> Starting June 30th, 2025, creating or updating custom logs and IIS logs will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview).
 >
 > Starting August 31st, Log Analytics Workspaces must have a manageed identity assigned to them to add or update linked storage accounts for saved queries and saved log alert queries.
 
@@ -64,6 +64,7 @@ To configure your Azure Storage account to use CMKs with Key Vault, use the [Azu
 > Carefully consider these special circumstances when configuring customer managed storage with CMK.
 
 | Special case | Remediation |
+|---|---|
 | When linking storage account for queries, existing saved queries in a workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an example using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
 | Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK.
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
