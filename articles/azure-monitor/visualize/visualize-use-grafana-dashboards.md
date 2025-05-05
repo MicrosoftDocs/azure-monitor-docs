@@ -73,7 +73,7 @@ For more details on editing a Grafana dashboard, see the [Grafana documentation]
 
 ## Import Grafana dashboards using JSON
 
-The following instructions assume that you signed in to your Grafana account in one browser window or tab and, in another window or tab, you signed in to your Azure account, are in the Azure Monitor area of the Azure portal, and selected **Dashboards with Grafana (preview)**.
+The following instructions assume you signed in to your Azure account, are in the Azure Monitor area of the Azure portal, and selected **Dashboards with Grafana (preview)**.
 
 Using the Grafana website window or tab, navigate to the dashboard you want to import.
 
@@ -93,7 +93,7 @@ Using the Grafana website window or tab, navigate to the dashboard you want to i
 1.  Follow the import steps listed above.
 
 > [!NOTE]
-> Only dashboards using supported data sources can be imported.
+> Only Azure Monitor and Prometheus dashboards using supported data sources can be imported.
 
 ## Share links to dashboards
 
@@ -101,19 +101,20 @@ Dashboards that you import or create require RBAC access configuration to share 
 
 1. Open the dashboard.
 1. Select **Share**. The Sare Dashboard pane opens. Copy the link to the dashboard to your clipboard.
-1. Select **Manage sharing options** to use the RBAC workflow for sharing. The **Reader** role is required for viewing the dashboard. **Contributor** is requred to edit the dashboard.
+1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is requred to edit the dashboard.
 1. Paste the link into your preferred communication method to share it with the intended people or groups.
 
 ## Use dashboards with Azure Kubernetes Service (AKS)
 
 > [!Note]
-> The Kubernetes cluster must be onboarded to Azure Managed Prometheus.
+> The Kubernetes cluster must be onboarded to Azure Managed Prometheus. For more information about onboarding to Prometheus, see Query Prometheus metrics using [Azure workbooks: Prerequisites](../metrics/prometheus-workbooks.md#prerequisites).
 
-1.  Navigate to the AKS cluster you want to work with in the Azure portal.
-1.  Select **Dashboards with Grafana (Preview)**.
-1.  Select the Kubernetes cluster you want to work with.
-1.  Select a dashboard using *Azure Monitor Workspace* as the data source.
-1.  To apply filters, select the **Workspace**, **Cluster**, and any additional, needed filters. The dashboard visuals update to reflect selections.
+1. Navigate to the AKS cluster you want to work with in the Azure portal.
+1. Select **Dashboards with Grafana (Preview)**.
+1. Select a single dashboard.
+1. Select the Kubernetes cluster you want to work with.
+1. Select a dashboard using *Azure Monitor Workspace* as the data source.
+1. To apply filters, select the **Workspace**, **Cluster**, and any additional, needed filters. The dashboard visuals update to reflect selections. Filters for Data source and Cluster are pre-populated based on cluster context.
 
 > [NOTE]
 > The relevant filters for Data Source and Cluster are pre-populated based on your AKS Cluster. Apply additional filters as needed. The dashboard visuals update to reflect selections.
@@ -123,6 +124,8 @@ Dashboards that you import or create require RBAC access configuration to share 
 Azure Monitor dashboards with Grafana tags are managed using Azure tags. Open-source Grafana dashboard tags remain in the dashboard JSON during import and export but are not used for populating Azure tags.
 
 To add Dashboard tags to a saved dashboard, add or update the Azure tag with the key GrafanaDashboardTags with your tag names using commas to separate entries.
+
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-edit-tags.png" alt-text="screenshot of tagging interface":::
 
 Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters added.  
 

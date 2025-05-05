@@ -14,11 +14,11 @@ This document provides an overview of using Grafana with Azure Monitor, highligh
 Azure Monitor dashboards with [Grafana](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/manage-library-panels/) enable you to use Grafana's query, transformation, and visualization capability on: 
 
 - Azure Monitor 
-    - Metrics
-    - Logs
-    - Traces
-- Azure Monitor managed service for Prometheus
-- Azure Resource Graph in the Azure portal. 
+    - [Metrics](../essentials/data-platform-metrics.md)
+    - [Logs](../logs/data-platform-logs.md)
+    - [Traces](./../app/distributed-trace-data.md)
+- [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md)
+- [Azure Resource Graph](/azure/governance/resource-graph/overview) in the Azure portal. 
 
 You can:
 
@@ -52,7 +52,7 @@ You can monitor Azure services and applications by using [Grafana](https://grafa
 - [Azure Monitor Traces](./../app/distributed-trace-data.md) to query and visualize distributed tracing data from Application Insights.
 - [Azure Resource Graph](/azure/governance/resource-graph/overview) to quickly query and identify Azure resources across subscriptions.
 
-You can also use the plug-in to query and visualize data from Azure Monitor managed service for Prometheus. For more information, see [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
+You can also use the Grafana Prometheus plugin to query and visualize data from Azure Monitor managed service for Prometheus. For more information, see [Connect Grafana to Azure Monitor Prometheus metrics](../essentials/prometheus-grafana.md).
 
 You can then display this performance and availability data on your Grafana dashboard.
 
@@ -89,14 +89,14 @@ Choose managed Grafana if you need access to external data sources and automatio
 
 ## Solution comparison
 
-| **Feature** | **Azure Monitor dashboards with Grafana** | **Azure Managed Grafana** |
+| **Feature** | **Azure Monitor dashboards with Grafana (preview)** | **Azure Managed Grafana** |
 |--|--|--|
 | Access | Azure portal | Grafana Web Interface |
 | Pricing | No cost | [Per user pricing](https://azure.microsoft.com/pricing/details/managed-grafana/?msockid=01a84dc8ec106f122df65931ed6b6e5d) plus compute costs for Standard SKU |
 | Data Sources | Azure Monitor and Azure Prometheus | Azure Monitor, Azure Prometheus, Azure Data Explorer, [OSS data sources](/azure/managed-grafana/how-to-data-source-plugins-managed-identity?tabs=azure-portal), [Enterprise data sources](/azure/managed-grafana/how-to-grafana-enterprise) available with license |
 | Data source authentication | Current-user only | User-configurable: Current-user, Managed Identity, App registration |
 | Data source administration | N/A – depends on user RBAC roles | User-managed data sources |
-| Compute resources | Shared | Dedicated |
+| Compute resources | SaaS | Dedicated VMSS |
 | Grafana Enterprise | Not supported | Available with [license](/azure/managed-grafana/how-to-grafana-enterprise#update-a-grafana-enterprise-plan) |
 | Additional Plugins | Azure-managed only | Azure-managed, open-source, and optional third-party with Enterprise |
 | Grafana Alerts | Not supported | Supported |
