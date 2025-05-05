@@ -1,14 +1,15 @@
 ---
 title:  Use Azure Monitor issue and investigation (preview)
 description: This article shows you how to use Azure Monitor issue and investigation to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+ms.topic: conceptual
+ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.topic: conceptual 
-ms.date: 05/01/2025
+ms.date: 05/05/2025
 ---
 
 # Use Azure Monitor issue and investigation (preview)
 
-This article shows you how to use Azure Monitor issue and investigation to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+This article shows you how to use Azure Monitor issues and investigations (preview) to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
 
 > [!NOTE]
 > For preview, the only alert supported is an Application Insights resource alert.

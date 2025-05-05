@@ -1,18 +1,19 @@
 ---
 title: Azure Monitor issue and investigation (preview)
 description: This article explains what Azure Monitor issue and investigation is and how it's used to triage and mitigate problems with an Azure resource.
+ms.topic: conceptual
+ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.topic: conceptual 
-ms.date: 05/01/2025
+ms.date: 05/05/2025
 ---
 
 # Azure Monitor issues and investigations (preview)
 
-This article explains what Azure Monitor issues and investigations are and how they are used to triage and mitigate problems with an Azure resource.
+This article explains what Azure Monitor issues and investigations (preview) are and how they are used to triage and mitigate problems with an Azure resource.
 
 ## What is Azure Monitor issues and investigations?
 
-Azure Monitor issues and investigations is an AIOPs capability that automates an investigation process for an [Azure monitor alert](). It provides actionable information and next steps for mitigating the service issue that resulted from the alert.
+Azure Monitor issues and investigations is an AIOPs capability that automates an investigation process for an [Azure monitor alert](/azure/azure-monitor/alerts/alerts-overview). It provides actionable information and next steps for mitigating the service issue that resulted from the alert.
 
 
 > [!NOTE]
