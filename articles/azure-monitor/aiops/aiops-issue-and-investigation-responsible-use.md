@@ -49,5 +49,6 @@ To integrate Azure Monitor investigations effectively into your operations, it's
 
 ## Related content
 
--   [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation-overview.md)
--   [Use Azure Monitor issue and investigation (preview)](aiops-issue-and-investigation-how-to.md)
+- [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
+- [Use Azure Monitor issues and investigations (preview)](aiops-issue-and-investigation-how-to.md)
+- [Azure Monitor issues and investigations (preview) troubleshooting](aiops-issue-and-investigation-troubleshooting.md)

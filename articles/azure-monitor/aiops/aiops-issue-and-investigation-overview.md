@@ -118,5 +118,6 @@ These are the supported zure regions for issues and investigatation services:
 
 ## Next steps
 
-- [How to use Azure Monitor issues and investigation](aiops-issue-and-investigation-how-to.md)
-- [Azure Monitor issue and investigation (preview) responsible use](aiops-issue-and-investigation-responsible-use.md)
+- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
+- [Azure Monitor issues and investigations (preview) responsible use](aiops-issue-and-investigation-responsible-use.md)
+- [Azure Monitor issues and investigations (preview) troubleshooting](aiops-issue-and-investigation-troubleshooting.md)

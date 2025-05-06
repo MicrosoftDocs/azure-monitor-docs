@@ -7,7 +7,7 @@ ms.reviewer: enauerman
 ms.date: 05/05/2025
 ---
 
-# Troubleshoot Azure Monitor issue and investigation
+# Troubleshoot Azure Monitor issues and investigations
 
 This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 
@@ -19,18 +19,18 @@ If you don't have permission, you won't receive an access result, and you should
 
 ## No findings
 
-When an investigation is run, you might receive a ‘No findings’ result. This is not a problem – it just means the investigation did not detect any anomalies in the metrics, logs, or other monitored data. It's important to remember that this result does not necessarily indicate the absence of underlying issues, but rather that the current data does not reveal any obvious problems.
+When an investigation is run, you might receive a *No findings* result. This is not a problem – it just means the investigation did not detect any anomalies in the metrics, logs, or other monitored data. It's important to remember that this result doesn't necessarily indicate the absence of underlying issues, but rather that the current data doesn't reveal any obvious problems.
 
 :::image type="content" source="media/troubleshooting-no-findings.png" alt-text="screenshot of no findings message":::
 
 ## OpenAI issue
 
-Our service depends on OpenAI to function correctly. Occasionally, OpenAI might experience issues. If you encounter a screen indicating a problem with OpenAI, try refreshing the page and running the investigation again from the beginning. In the meantime, you can still review the anomalies detected without the summary, which can help identify potential issues even if the summary functionality is unavailable.
+The feature depends on OpenAI to function correctly. Occasionally, OpenAI might experience problems. If you encounter a screen indicating a problem with OpenAI, try refreshing the page and running the investigation again from the beginning. In the meantime, you can still review the anomalies detected without the summary, which can help identify potential issues even if the summary functionality is unavailable.
 
 :::image type="content" source="media/troubleshooting-openai-failure.png" alt-text="screenshot of openai failure":::
 
 ## Related content
 
--   [Azure Monitor issue (preview) overview](aiops-issue-and-investigation-overview.md)
--   [How to use Azure Monitor issue](aiops-issue-and-investigation-how-to.md)
-- [Azure Monitor isssues and investiation repsonsible use](aiops-issue-and-investigation-responsible-use.md)
+- [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
+- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
+- [Azure Monitor isssues and investigations repsonsible use](aiops-issue-and-investigation-responsible-use.md)

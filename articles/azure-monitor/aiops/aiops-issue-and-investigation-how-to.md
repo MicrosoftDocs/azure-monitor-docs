@@ -9,7 +9,7 @@ ms.date: 05/05/2025
 
 # Use Azure Monitor issue and investigation (preview)
 
-This article shows you how to use Azure Monitor issues and investigations (preview) to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+This article shows you how to use Azure Monitor issues and investigations (preview) to trigger an investigation into resource problems, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
 
 > [!NOTE]
 > For preview, the only alert supported is an Application Insights resource alert.
@@ -77,5 +77,6 @@ An investigation will present findings based on the evidence it analyzed.
 
 ## Related content
 
-- [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation-overview.md)
-- [Azure Monitor issue and investigation (preview) responsible use](aiops-issue-and-investigation-responsible-use.md)
+- [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
+- [Azure Monitor issues and investigations (preview) responsible use](aiops-issue-and-investigation-responsible-use.md)
+- [Azure Monitor issues and investigations (preview) troubleshooting](aiops-issue-and-investigation-troubleshooting.md)
