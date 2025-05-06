@@ -21,13 +21,13 @@ If you don't have permission, you won't receive an access result, and you should
 
 When an investigation is run, you might receive a *No findings* result. This is not a problem – it just means the investigation did not detect any anomalies in the metrics, logs, or other monitored data. It's important to remember that this result doesn't necessarily indicate the absence of underlying issues, but rather that the current data doesn't reveal any obvious problems.
 
-:::image type="content" source="media/troubleshooting-no-findings.png" alt-text="screenshot of no findings message":::
+:::image type="content" source="media/troubleshooting-no-findings.png" alt-text="screenshot of no findings message" lightbox="media/troubleshooting-no-findings.png":::
 
 ## OpenAI issue
 
 The feature depends on OpenAI to function correctly. Occasionally, OpenAI might experience problems. If you encounter a screen indicating a problem with OpenAI, try refreshing the page and running the investigation again from the beginning. In the meantime, you can still review the anomalies detected without the summary, which can help identify potential issues even if the summary functionality is unavailable.
 
-:::image type="content" source="media/troubleshooting-openai-failure.png" alt-text="screenshot of openai failure":::
+:::image type="content" source="media/troubleshooting-openai-failure.png" alt-text="screenshot of openai failure" lightbox="media/troubleshooting-openai-failure.png":::
 
 ## Related content
 

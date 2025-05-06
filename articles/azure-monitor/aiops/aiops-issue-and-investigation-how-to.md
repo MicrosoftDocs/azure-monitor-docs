@@ -30,7 +30,7 @@ There are two ways to start an investigation on an alert:
     2.  From the **Alerts** page, select the alert that you want to investigate.
     3.  In the alert details pane, select **Investigate (preview)**.
     
-    :::image type="content" source="media/investigate-an-alert.png" alt-text="screenshot of alerts screen with investigate an alert link":::
+    :::image type="content" source="media/investigate-an-alert.png" alt-text="screenshot of alerts screen with investigate an alert link" lightbox="media/investigate-an-alert.png":::
 
 1.  From the alert email notification: Alternatively, you can select **Investigate (preview)** from the email notification about an alert. An issue is created, and the investigation begins.
 
