@@ -13,14 +13,16 @@ items:
       items:
       - name: AIOps and machine learning
         href: aiops/aiops-machine-learning.md
-      - name: Issue and investigation
+      - name: Issues and investigations
         items:
-        - name: Issue and investigation overview
+        - name: Issues and investigations overview
           href: aiops/aiops-issue-and-investigation-overview.md
-        - name: Use issue and investigation
+        - name: Use issues and investigations
           href: aiops/aiops-issue-and-investigation-how-to.md
-        - name: Issue and investigation responsible use
+        - name: Issues and investigations responsible use
           href: aiops/aiops-issue-and-investigation-responsible-use.md
+        - name: Issues and investigations troubleshooting
+          href: aiops/aiops-issue-and-investigation-troubleshooting.md
     - name: What's new?
       href: fundamentals/whats-new.md
 - name: Getting started
