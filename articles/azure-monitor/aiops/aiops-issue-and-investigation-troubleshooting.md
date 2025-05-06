@@ -1,13 +1,13 @@
 ---
-title: Troubleshoot Azure Monitor issues and investigations (preview)
+title: Troubleshooting Guide: Azure Monitor issues and investigations (preview)
 description: This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 ms.topic: conceptual
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 05/05/2025
+ms.date: 05/06/2025
 ---
 
-# Troubleshoot Azure Monitor issues and investigations
+# Troubleshooting Guide: Azure Monitor issues and investigations (preview)
 
 This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 

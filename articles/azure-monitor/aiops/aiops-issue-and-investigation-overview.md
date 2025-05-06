@@ -4,7 +4,7 @@ description: This article explains what Azure Monitor issue and investigation is
 ms.topic: conceptual
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 05/05/2025
+ms.date: 05/06/2025
 ---
 
 # Azure Monitor issues and investigations (preview)
@@ -13,7 +13,7 @@ This article explains what Azure Monitor issues and investigations (preview) are
 
 ## What are Azure Monitor issues and investigations?
 
-Azure Monitor issues and investigations are an AIOPs capability that automates an investigation process for an [Azure monitor alert](/azure/azure-monitor/alerts/alerts-overview). It provides actionable information and next steps for mitigating the service issue that resulted from the alert.
+Azure Monitor Issues and Investigations are new AIOps capabilities that automate the troubleshooting processes for [Azure monitor alerts](/azure/azure-monitor/alerts/alerts-overview).
 
 > [!NOTE]
 > For preview, the only alert supported is an Application Insights resource alert.
@@ -66,9 +66,13 @@ The investigation scans the application logs for anomalies. The top three failur
 - **Transaction Pattern**: If there's a specific transaction pattern the failure, it is displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
 - **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they'll be displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
 
+:::image type="content" source="media/application-anomalies.png" alt-text="screenshot of application anomalies" lightbox="media/application-anomalies.png":::
+
 ### Diagnostic insights
 
 Provides actionable solutions and diagnostics based on abnormal telemetry from Azure support best practices, enhancing issue resolution efficiency.
+
+:::image type="content" source="media/diagnostics-and-troubleshooting.png" alt-text="screenshot of metric anomalies" lightbox="media/diagnostics-and-troubleshooting.png":::
 
 ### Related Alerts
 
