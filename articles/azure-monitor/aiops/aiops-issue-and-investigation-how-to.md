@@ -29,7 +29,10 @@ There are two ways to start an investigation on an alert:
     1.  From the home page in the [Azure portal](https://portal.azure.com/), select **Monitor** \> **Alerts**.
     2.  From the **Alerts** page, select the alert that you want to investigate.
     3.  In the alert details pane, select **Investigate (preview)**.
-2.  From the alert email notification: Alternatively, you can select **Investigate (preview)** from the email notification about an alert. An issue is created, and the investigation begins.
+    
+    :::image type="content" source="media/investigate-an-alert.png" alt-text="screenshot of alerts screen with investigate an alert link":::
+
+1.  From the alert email notification: Alternatively, you can select **Investigate (preview)** from the email notification about an alert. An issue is created, and the investigation begins.
 
 When the investigation is complete, a set of findings is displayed. For next steps, see the [Working with investigations](#work-with-investigation-findings) section of this article.
 
