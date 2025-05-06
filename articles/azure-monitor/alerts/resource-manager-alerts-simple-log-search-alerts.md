@@ -288,58 +288,6 @@ The following sample creates a [metric measurement alert rule](../alerts/alerts-
 
 ### Template file
 
-# [Bicep](#tab/bicep)
-
-```bicep
-@description('Resource ID of the Log Analytics workspace.')
-param sourceId string = ''
-
-@description('Location for the alert. Must be the same location as the workspace.')
-param location string = ''
-
-@description('The ID of the action group that is triggered when the alert is activated.')
-param actionGroupId string = ''
-
-resource metricMeasurementLogQueryAlert 'Microsoft.Insights/scheduledQueryRules@2018-04-16' = {
-  name: 'Sample metric measurement log query alert'
-  location: location
-  properties: {
-    description: 'Sample metric measurement query alert rule'
-    enabled: 'true'
-    source: {
-      query: 'Event | where EventLevelName == "Error" | summarize AggregatedValue = count() by bin(TimeGenerated,1h), Computer'
-      dataSourceId: sourceId
-      queryType: 'ResultCount'
-    }
-    schedule: {
-      frequencyInMinutes: 15
-      timeWindowInMinutes: 60
-    }
-    action: {
-      'odata.type': 'Microsoft.WindowsAzure.Management.Monitoring.Alerts.Models.Microsoft.AppInsights.Nexus.DataContracts.Resources.ScheduledQueryRules.AlertingAction'
-      severity: '4'
-      aznsAction: {
-        actionGroup: array(actionGroupId)
-        emailSubject: 'Alert mail subject'
-      }
-      trigger: {
-        thresholdOperator: 'GreaterThan'
-        threshold: 10
-        metricTrigger: {
-          thresholdOperator: 'Equal'
-          threshold: 1
-          metricTriggerType: 'Consecutive'
-          metricColumn: 'Computer'
-        }
-      }
-    }
-  }
-}
-
-```
-
-# [JSON](#tab/json)
-
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -408,8 +356,6 @@ resource metricMeasurementLogQueryAlert 'Microsoft.Insights/scheduledQueryRules@
   ]
 }
 ```
-
----
 
 ### Parameter file
 
