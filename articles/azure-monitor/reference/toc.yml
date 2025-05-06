@@ -576,6 +576,7 @@ items:
             href: supported-logs/microsoft-communication-communicationservices-logs.md
             displayName: Advanced Messaging Logs,Operational Authentication Logs,Call
               Automation Events Summary Logs,Operational Call Automation
+              Logs,Call Automation Media Streaming features usage information
               Logs,Call Client Media Stats Time Series Logs,Call Client
               Operations Logs,Service Side Request and Outcome Logs,Call Closed
               Captions Logs,Call Diagnostics Logs,Call Diagnostics Logs with
