@@ -13,13 +13,13 @@ This article provides guidance on using Azure Monitor dashboards with Grafana. I
 ## Prerequisites
 
 - Running Azure resources that have created data over at least a 15-minute period.
-- Assigned *Monitoring Data Reader* for access to Azure Managed Prometheus (Azure Monitor Workspace).
+- Assigned *Monitoring Reader* for access to Azure Managed Prometheus (Azure Monitor Workspace).
 
-For more information about RBAC and assigning roles, see [Azure RBAC]().
+For more information about RBAC and assigning roles, see [Azure RBAC](/azure/role-based-access-control/).
 
 ## Use dashboard templates
 
-Azure managed template dashboards are pre-provisioned and automatically updated dashboards for frequently used Azure resources and Azure Kubernetes Services. They help you get started quickly. The following steps are for using Grafana dashboards that are already available in the Azure portal. Azure managed templates are identified with a tag.
+Azure managed template dashboards are pre-provisioned and automatically updated dashboards for frequently used Azure resources and Azure Kubernetes Services. They help you get started quickly. The following steps are for using these Grafana dashboards that are already available in the Azure portal. Azure managed templates are identified with a tag.
 
 :::image type="content" source="media/visualizations-grafana/azure-managed-templates.png" alt-text="screenshot of azure managed template listing the gallery":::
 

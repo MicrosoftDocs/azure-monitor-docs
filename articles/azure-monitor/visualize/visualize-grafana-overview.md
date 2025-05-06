@@ -19,7 +19,7 @@ Azure Monitor dashboards with [Grafana](https://grafana.com/docs/grafana/latest/
     - [Logs](../logs/data-platform-logs.md)
     - [Traces](./../app/distributed-trace-data.md)
 - [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md)
-- [Azure Resource Graph](/azure/governance/resource-graph/overview) in the Azure portal. 
+- [Azure Resource Graph](/azure/governance/resource-graph/overview)
 
 You can:
 
