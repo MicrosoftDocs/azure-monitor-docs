@@ -1,5 +1,5 @@
 ---
-title:  Use Azure Monitor issue and investigation (preview)
+title:  Use Azure Monitor issues and investigations (preview)
 description: This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
 ms.topic: conceptual
 ms.servce: azure-monitor
@@ -7,7 +7,7 @@ ms.reviewer: enauerman
 ms.date: 05/05/2025
 ---
 
-# Use Azure Monitor issue and investigation (preview)
+# Use Azure Monitor issues and investigations (preview)
 
 This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
 
@@ -16,8 +16,8 @@ This article helps guide you through getting started with Azure Monitor issues a
 
 ## Prerequisites
 
-- Read the [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation-overview.md).
-- Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigation.
+- Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
+- Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigations.
 - Identify an alert fired on an Application Insights resource to investigate.
 - Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the resource you’re investigating. For more informtion about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
