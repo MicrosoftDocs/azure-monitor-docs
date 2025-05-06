@@ -20,8 +20,6 @@ This article includes samples of [Azure Resource Manager templates](/azure/azure
 
 The following sample creates a rule that can target any resource.
 
-# [JSON](#tab/json)
-
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -151,11 +149,7 @@ The following sample creates a rule that can target any resource.
     }
   ]
 }
-
-
 ```
-
----
 
 ### Parameter file
 
@@ -190,8 +184,6 @@ The following sample creates a rule that can target any resource.
     }
   }
 }
-
-
 ```
 
 ## Number of results template (up to version 2018-04-16)
@@ -203,8 +195,6 @@ The following sample creates a [number of results alert rule](../alerts/alerts-t
 - This sample includes a [webhook payload](../alerts/alerts-log-webhook.md). If the alert rule shouldn't trigger a webhook, then remove the **customWebhookPayload** element.
 
 ### Template file
-
-# [JSON](#tab/json)
 
 ```json
 {
