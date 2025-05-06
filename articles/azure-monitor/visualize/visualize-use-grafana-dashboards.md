@@ -114,14 +114,15 @@ To query Prometheus metrics from an Azure Monitor workspace with Azure Monitor d
 > Azure Managed Grafana is not required to view Prometheus in Azure Monitor dashboards with Grafana. See a comparison of the solutions [here](visualize-grafana-overview.md#solution-comparison). 
 
 ### Role assignment
-The user must be assigned role that can perform the microsoft.monitor/accounts/read operation on the Azure Monitor workspace. 
+The user must be assigned role that can perform the microsoft.monitor/accounts/read operation on the Azure Monitor workspace.
+
+### Select a dashboard
 
 1. Navigate to the AKS cluster you want to work with in the Azure portal.
 1. Select **Dashboards with Grafana (preview)**.
 1. Select a dashboard. The dashboard is populated with the Data source and the cluster.
 
-> [NOTE]
-> The relevant filters for Data Source and Cluster are pre-populated based on your AKS Cluster. Apply additional filters as needed. The dashboard visuals update to reflect selections.
+The relevant filters for Data Source and Cluster are pre-populated based on your AKS Cluster. Apply additional filters as needed. The dashboard visuals update to reflect selections.
 
 ## Tag a dashboard
 
