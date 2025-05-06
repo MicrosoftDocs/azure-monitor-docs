@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 04/28/2025
+ms.date: 05/06/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -109,6 +109,11 @@ Microsoft.Automation/AutomationAccounts
 
 microsoft.avs/privateClouds  
 
+- [AVSVcSyslog](./tables/avsvcsyslog.md)
+- [AVSEsxiFirewallSyslog](./tables/avsesxifirewallsyslog.md)
+- [AVSEsxiSyslog](./tables/avsesxisyslog.md)
+- [AVSNsxManagerSyslog](./tables/avsnsxmanagersyslog.md)
+- [AVSNsxEdgeSyslog](./tables/avsnsxedgesyslog.md)
 - [AVSSyslog](./tables/avssyslog.md)
 
 ### Azure Active Directory Logs  
@@ -1357,6 +1362,7 @@ NGINX.NGINXPLUS/nginxDeployments
 Microsoft.OnlineExperimentation/workspaces  
 
 - [AzureActivity](./tables/azureactivity.md)
+- [OEWAuditLogs](./tables/oewauditlogs.md)
 - [OEWExperimentAssignmentSummary](./tables/oewexperimentassignmentsummary.md)
 - [OEWExperimentScorecards](./tables/oewexperimentscorecards.md)
 - [OEWExperimentScorecardMetricPairs](./tables/oewexperimentscorecardmetricpairs.md)
