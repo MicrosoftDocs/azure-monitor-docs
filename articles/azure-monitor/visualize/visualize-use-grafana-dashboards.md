@@ -2,18 +2,7 @@
 title: Use Azure Monitor Dashboards with Grafana
 description: This article provides guidance on using Azure Monitor dasbhoards with Grafana. It covers prerequisites, such as having Azure resources and appropriate RBAC roles, and explains how to use pre-existing dashboard templates, create new dashboards, and customize or edit dashboards. It also details importing dashboards from JSON files or the Grafana public gallery, saving copies of dashboards, and sharing them with others using RBAC configurations.
 ms.topic: conceptual
-
-
-
-
-
-
-
-
-
-
-
-
+ms.reviewer: kayodeprinceMS
 ms.date: 04/30/2025
 ---
 
@@ -110,11 +99,8 @@ Dashboards that you import or create require RBAC access configuration to share 
 > The Kubernetes cluster must be onboarded to Azure Managed Prometheus. For more information about onboarding to Prometheus, see Query Prometheus metrics using [Azure workbooks: Prerequisites](../metrics/prometheus-workbooks.md#prerequisites).
 
 1. Navigate to the AKS cluster you want to work with in the Azure portal.
-1. Select **Dashboards with Grafana (Preview)**.
-1. Select a single dashboard.
-1. Select the Kubernetes cluster you want to work with.
-1. Select a dashboard using *Azure Monitor Workspace* as the data source.
-1. To apply filters, select the **Workspace**, **Cluster**, and any additional, needed filters. The dashboard visuals update to reflect selections. Filters for Data source and Cluster are pre-populated based on cluster context.
+1. Select **Dashboards with Grafana (preview)**.
+1. Select a dashboard. The dashboard is populated with the Data source and the cluster.
 
 > [NOTE]
 > The relevant filters for Data Source and Cluster are pre-populated based on your AKS Cluster. Apply additional filters as needed. The dashboard visuals update to reflect selections.
