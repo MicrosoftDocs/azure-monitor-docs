@@ -1062,6 +1062,7 @@ This table maps Application Insights data types to OpenTelemetry concepts and th
 | exceptions          | ExceptionTelemetry            | Exceptions                         | System.Exception                     |
 | requests            | RequestTelemetry              | Spans (Server, Producer)           | System.Diagnostics.Activity          |
 | traces              | TraceTelemetry                | Logs                               | Microsoft.Extensions.Logging.ILogger |
+| traces              | TraceTelemetry                | Span Events                        | System.Diagnostics.ActivityEvent     |
 
 The following documents provide more information.
 
