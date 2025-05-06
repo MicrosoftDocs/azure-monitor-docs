@@ -72,7 +72,7 @@ The investigation scans the application logs for anomalies. The top three failur
 
 Provides actionable solutions and diagnostics based on abnormal telemetry from Azure support best practices, enhancing issue resolution efficiency.
 
-:::image type="content" source="media/diagnostics-and-troubleshooting.png" alt-text="screenshot of metric anomalies" lightbox="media/diagnostics-and-troubleshooting.png":::
+:::image type="content" source="media/diagnostics-and-troubleshooting.png" alt-text="screenshot of diagnostics and troubleshooting" lightbox="media/diagnostics-and-troubleshooting.png":::
 
 ### Related Alerts
 

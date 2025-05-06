@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting Guide: Azure Monitor issues and investigations (preview)
+title: Troubleshooting Guide - Azure Monitor issues and investigations (preview)
 description: This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 ms.topic: conceptual
 ms.servce: azure-monitor
@@ -13,13 +13,13 @@ This article provides troubleshooting guidance for Azure Monitor issues and inve
 
 ## Lack of permissions to run investigations
 
-You must have the *Issue Contributor, Monitoring Contributor or Contributor* role assigned for the target resource.
+You must have the *Issue Contributor, Monitoring Contributor, or Contributor* role assigned for the target resource.
 
 If you don't have permission, you won't be able to create an issue or run an investigation, and you should consult with your system administrator.
 
 ## No findings
 
-When an investigation is run, you might receive a *No findings* result. This is not a problem – it just means the investigation did not detect any anomalies in the metrics, logs, or other monitored data. It's important to remember that this result doesn't necessarily indicate the absence of underlying issues, but rather that the current data doesn't reveal any obvious problems.
+When an investigation is run, you might receive a *No findings* result. This result isn't a problem – it just means the investigation didn't detect any anomalies in the metrics, logs, or other monitored data. It's important to remember that this result doesn't necessarily indicate the absence of underlying issues, but rather that the current data doesn't reveal any obvious problems.
 
 :::image type="content" source="media/troubleshooting-no-findings.png" alt-text="screenshot of no findings message" lightbox="media/troubleshooting-no-findings.png":::
 
@@ -33,4 +33,4 @@ The feature depends on OpenAI for the text generation to function correctly. Occ
 
 - [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
 - [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
-- [Azure Monitor isssues and investigations repsonsible use](aiops-issue-and-investigation-responsible-use.md)
+- [Azure Monitor issues and investigations responsible use](aiops-issue-and-investigation-responsible-use.md)
