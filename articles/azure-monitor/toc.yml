@@ -1607,7 +1607,7 @@ items:
       items:
       - name: Log search alert rules
         href: alerts/resource-manager-alerts-log.md
-      - name: Simple log server alert rules
+      - name: Simple log search alert rules
         href: alerts/resource-manager-alerts-simple-log-search-alerts.md
       - name: Metric alert rules
         href: alerts/resource-manager-alerts-metric.md
