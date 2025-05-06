@@ -1,6 +1,6 @@
 ---
 title:  Use Azure Monitor issue and investigation (preview)
-description: This article shows you how to use Azure Monitor issue and investigation to trigger an investigation to identify resource issues, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+description: This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
 ms.topic: conceptual
 ms.servce: azure-monitor
 ms.reviewer: enauerman
@@ -9,17 +9,17 @@ ms.date: 05/05/2025
 
 # Use Azure Monitor issue and investigation (preview)
 
-This article shows you how to use Azure Monitor issues and investigations (preview) to trigger an investigation into resource problems, and to explain why an alert was fired, and provide next steps to mitigate and resolve problems with Azure resources.
+This article helps guide you through getting started with Azure Monitor issues and investigations. It includes how to trigger an investigation in order to identify resource issues, explain why an alert was fired, provide next steps to mitigate and resolve problems with Azure resources.
 
 > [!NOTE]
-> For preview, the only alert supported is an Application Insights resource alert.
+> For preview, investigation only supports Application Insights resource alert. 
 
 ## Prerequisites
 
 - Read the [Azure Monitor issue and investigation (preview) overview](aiops-issue-and-investigation-overview.md).
 - Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigation.
-- Assign either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role to the resource you’re investigating.
-- Trigger an alert.
+- Identify an alert fired on an Application Insights resource to investigate.
+- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the resource you’re investigating. For more informtion about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Ways to start an investigation on an alert
 
@@ -36,9 +36,9 @@ There are two ways to start an investigation on an alert:
 
 When the investigation is complete, a set of findings is displayed. For next steps, see the [Working with investigations](#work-with-investigation-findings) section of this article.
 
-## Change the settings of an issue
+## Change the parameters of an issue
 
-You can change the settings of an issue using the dropdowns on the overview tab of the issue page.
+You can change the parameters of an issue using the dropdowns on the overview tab of the issue page.
 
 - **Severity.** The severity of an issue can be verbose, informational, error, warning or critical.
 - **Status.** The status of an issue can be New, In-Progress, Mitigated, Resolved, Closed, Canceled or On-Hold.
@@ -50,15 +50,15 @@ You can share a link to the issue by selecting Share link. The link to the issue
 
 ## View the issue background
 
-The issue background provides information about the alert associated with the issue. Select Issue background.
+The issue background provides information about the alerts associated with the issue. Select Issue background.
 
 ## Work with investigation findings
 
-An investigation will present findings based on the evidence it analyzed.
+An investigation will present findings based on the evidence it analyzed. To investigate the findings:
 
 1. Select the **Investigation tab** of the issue page.
 1. Select the finding. Every finding has an AI summary.
-1. Read the **AI summary**. The AI summary includes a *What happened* section and 1. *What can be done next* section.
+1. Read the **AI summary**. The AI summary includes a *What happened* section, a *Possible cause* section and a *What can be done next* section.
 1. Select the **See cause + next steps** button to see the full summary.
 1. Select **Click to expand** to view more details about the data presented in the Evidence for summary section of the investigation. To understand the evidence types used in an investigation, see [Evidence types](link to overview goes here) in the Issues and investigation overview article.
 
