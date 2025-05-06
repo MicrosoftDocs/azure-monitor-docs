@@ -27,6 +27,8 @@ An issue presents an overview, the investigation, details about the alerts, and 
 
 You can set the severity, status, and impact time of an issue.
 
+:::image type="content" source="media/issue-frame.png" alt-text="screenshot of issue":::
+
 ## What is an investigation?
 
 An investigation is an analysis of a set of findings within the context of an issue. The analysis uses AI-based, iterative triage and diagnostic processes. The investigation minimizes manual effort to enable faster and more accurate troubleshooting.
@@ -53,6 +55,8 @@ A finding contains a summary that can include:
 
 In addition to detecting anomalies, explanations are created based the metric dimensions, for example, the specific region or error code of the anomaly.
 
+:::image type="content" source="media/metric-anomalies.png" alt-text="screenshot of metric anomalies":::
+
 ### Application logs Analysis
 
 The investigation scans the application logs for anomalies. The top three failure events (for dependencies, requests and exceptions) are analyzed. For each event:
@@ -71,6 +75,8 @@ Provides actionable solutions and diagnostics based on abnormal telemetry from A
 
 Contains data from related, high-severity alerts on the issue scoped resource that occurred in the last 15 minutes. Those alerts are synced back to the issue and appear in the Alerts tab.
 
+:::image type="content" source="media/related-alerts.png" alt-text="screenshot of related alerts":::
+
 ### Resource Health
 
 Provides events data from [Azure Resource Health](/azure/service-health/resource-health-overview) about resource health degredation in the investigated period.
@@ -84,6 +90,8 @@ Azure Monitor investigation makes suggestions for which resources to analyze bas
 ### Smart scoping
 
 An investigation also offers smart scoping for Application Insight resources. In this case, possible suspected resources are automatically identified by looking at the dependencies and the infrastructure where the service is running then includes them in the analysis. This happens during an investigation and the results are synced to the issue.
+
+:::image type="content" source="media/smart-scoping.png" alt-text="screenshot of smart scoping":::
 
 ## Issue and investigation initial workflow example
 

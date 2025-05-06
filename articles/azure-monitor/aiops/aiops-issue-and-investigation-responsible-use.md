@@ -4,7 +4,7 @@ description: This article explains the responsible use of Azure Monitor issue an
 ms.topic: conceptual
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 04/25/2025
+ms.date: 05/05/2025
 ---
 
 # Responsible AI FAQ for Azure Monitor investigations (preview)
