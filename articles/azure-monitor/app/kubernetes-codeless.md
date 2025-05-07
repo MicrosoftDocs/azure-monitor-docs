@@ -30,17 +30,25 @@ We cover [installing the aks-preview Azure CLI extension](#install-the-aks-previ
 
 [!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
-To install the aks-preview extension, run the following command:
+Install the `aks-preview` extension:
 
 ```azurecli
 az extension add --name aks-preview
 ```
 
-Run the following command to update to the latest version of the extension released:
+Update to the latest version of the extension:
 
 ```azurecli
 az extension update --name aks-preview
 ```
+
+Verify that the installed Azure CLI version meets the requirement in the [Prerequisites](#prerequisites) section:
+
+```azurecli
+az version
+```
+
+If the version doesn't meet the requirement, follow the steps mentioned earlier to install and update Azure CLI.
 
 ## Register the `AzureMonitorAppMonitoringPreview` feature flag
 
@@ -92,9 +100,7 @@ metadata:
   namespace: mynamespace1
 spec:
   settings:
-    autoInstrumentationPlatforms: # required
-      - Java
-      - NodeJs
+    autoInstrumentationPlatforms: []
   destination: # required
     applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
 ```
@@ -128,19 +134,13 @@ Use per-deployment onboarding to ensure deployments are instrumented with specif
       namespace: mynamespace1
     spec:
       settings:
-        autoInstrumentationPlatforms: # required
-          - Java
-          - NodeJs
+        autoInstrumentationPlatforms: []
       destination: # required
         applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
     ```
     
     At a minimum, the following configuration is required:
     - `spec.destination.applicationInsightsConnectionString`: The connections string of an Application Insights resource.
-
-    > [!TIP]
-    > `spec.settings.autoInstrumentationPlatforms` is ignored in nondefault _Instrumentation_ custom resources. The annotation that links a deployment to the custom resource determines the language.
-
 
 3. Associate each deployment with the appropriate custom resource using [annotations](#annotations). The annotation overrides the language set in the custom resource.
 
