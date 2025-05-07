@@ -13,12 +13,12 @@ ms.date: 05/08/2025
 
 # Granular RBAC (Preview)
 
-Granular RBAC (Roles Based Access Control) is a feature of Log Analytics that enables you to finely tune data access. Define access to your data such that each user can view or query based on the conditions and expressions you specify for their role. For example, define access at the data record level to give access according to the value of a specific field. This feature allows you to maintain all your data in a single Log Analytics workspace and still provide least privilege access at any level, including records.
+Granular Role Based Access Control (RBAC) is a feature of Log Analytics that enables you to finely tune data access. Define customized roles to view or query your workspace data based on the conditions and expressions you specify for authorized users. For example, define access at the row level based on the table and record values. This feature simplifies your workspace architecture by reducing the need for multiple workspaces.
 
-Granular RBAC can help you achieve various scenarios, such as
--    Data segregation: Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to them.
--    Data privacy: Protect the sensitive or confidential data of your organization, such as personal information, health records, or financial transactions, and restrict the access to only authorized users.
--    Data compliance: Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region. Enforce the appropriate policies and controls on the data access and usage.
+Here are a just a few scenarios where granular RBAC really excels:
+- **Data segregation** - Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to their group. Access conditions use custom log fields to enforce row-level access segregated by attributes like firewall, device type, subscription ID or other identifiers.
+- **Data privacy** - Protect sensitive or confidential data, such as personal information, health records, or financial transactions, and allow access to only authorized users.
+- **Data compliance** - Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region. Enforce the appropriate policies and controls on the data access and usage.
 
 Granular RBAC controls data access such as querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformations, and data export. 
 
@@ -104,16 +104,15 @@ To define conditions for a role, you must have a role assignment that includes t
 
 Azure RBAC and ABAC have the following limits:
 
-- <<<include ???>>>> Microsoft Sentinel: Any time data replicated from the original tables, such as hunting, bookmarks, and incidents aren't protected by the ABAC conditions.
+- Microsoft Sentinel: Any time data replicated from the original tables, such as hunting, bookmarks, and incidents aren't protected by the ABAC conditions.
 - Alerts: Only MSI based alerts are supported.
 - Application Insights: Only workspace-based Application Insights is supported.
 - Values are restricted in ABAC. The following characters are supported:
     -  Alphanumeric characters
     -  Special characters:`@`, `.`, `-`
-  - The maximum length of each value is  <<<<<<<<<<<<XYZ>>>>>>>>>>>> characters
+  - The maximum length of each value is characters
 
  For more information, see  [Azure ABAC limits](/azure/role-based-access-control/conditions-overview#limits) and [Azure RBAC limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-rbac-limits).
-
 
 ### Audit and monitoring
 
@@ -126,24 +125,22 @@ When enabling conditions for users who currently have access, you must remove an
 
 ## Frequently Asked Questions
 
-
-**My data doesn't have a column that I can use for conditions. How can I change my data to fit the conditions I wish to apply?**
+**My data doesn't have a column that I can use for conditions. How can I change my data to fit the conditions I wish to apply?**</br>
 Transformation can be used to create new columns with data that you can use to define conditions. For example for data with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
 
-**I'm accessing my logs via resource context. Can my condition be enforced?**
+**I'm accessing my logs via resource context. Can my condition be enforced?**</br>
 RBAC and ABAC are enforced for resource-context queries, but require the workspaces containing the resource logs meet two prerequisites:
-1.    Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. 
+1.  Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. 
     If set to *Use resources or workspace permissions*, the Azure read permission assigned to a resource provides access to all logs. Workspace and ABAC permissions are ignored. 
-1.    Setting ABAC on all relevant workspaces
+1.  Setting ABAC on all relevant workspaces
 
 For more information, on resource context, see [Manage access to Log Analytics workspaces, access mode](../logs/manage-access.md#access-mode).
 
-**What happens if data exported is configured for a table ?**
+**What happens if data exported is configured for a table?**</br>
 The ABAC conditions are only enforced on queries. Data exported using the workspace Data export feature isn't affected by ABAC conditions.
 
-**How do you configure access based on data classification ?**
-
-To implement [Bell-LaPadula](https://en.wikipedia.org/wiki/Bell%E2%80%93LaPadula_model) style access, you must explicitly set ABAC conditions to stick to principals such as Read Down. For example, a user with "Top-Secret" permissions must have permission explicitly set for lower levels like "Secret", "Confidential", and "Unclassified" to ensure they can access data at level that are lower than their top assigned level.
+**How do you configure access based on data classification?**</br>
+To implement the **Bell-LaPadula** style access model, you must explicitly set ABAC conditions to stick to principals such as *read down*. For example, a user with **top-secret** permissions must have permission explicitly set for lower levels like **secret**, **confidential**, and **unclassified** to ensure they can access data at levels lower than their top assigned level.
 
 ## Next steps
 
