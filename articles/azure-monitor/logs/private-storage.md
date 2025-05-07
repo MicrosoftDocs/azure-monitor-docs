@@ -82,9 +82,9 @@ Configure your storage account to use CMKs with Key Vault in one of the followin
 
 You must assign a managed identity to the workspace and configure your customer-managed storage account with an appropriate role assignment for the managed identity before linking the storage account. This requirement will be enforced starting August 31, 2025.
 
-Create or update your workspace with a managed identity using a [deployment template](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep#identity) or the [REST API](/rest/api/loganalytics/workspaces/get?view=rest-loganalytics-2025-02-01&tabs=HTTP#identity). For more information, see [What are managed identities for Azure resources?](/entra/identity/managed-identities-azure-resources/overview).
+Create or update your workspace with a managed identity using a [deployment template](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep#identity) or the [REST API](/rest/api/loganalytics/workspaces/get#identity). For more information, see [What are managed identities for Azure resources?](/entra/identity/managed-identities-azure-resources/overview).
 
-Assign appropriate permissions on the storage account for the managed identity. For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Blob Data Contributor** role on the storage account.
+Assign appropriate permissions on the storage account for the managed identity. For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Blob Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
 
 Now you're ready to link the storage account for your saved queries or log alert queries.
 
