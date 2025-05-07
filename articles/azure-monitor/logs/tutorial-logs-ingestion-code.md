@@ -49,9 +49,9 @@ The following script uses the [Azure Monitor Ingestion client library for .NET](
     
     // Create credential and client
     var credential = new DefaultAzureCredential();
-    LogsIngestionClient client = new(endpoint, credential);
-    
-    DateTimeOffset currentTime = DateTimeOffset.UtcNow;
+    LogsIngestionClient client = new LogsIngestionClient(endpoint, credential);
+ 
+    DateTime currentTime = DateTime.UtcNow;
     
     // Use BinaryData to serialize instances of an anonymous type into JSON
     BinaryData data = BinaryData.FromObjectAsJson(
@@ -83,58 +83,34 @@ The following script uses the [Azure Monitor Ingestion client library for .NET](
                 }
             },
         });
+
+    // Convert BinaryData to bytes
+    byte[] dataBytes = data.ToArray();
+ 
+    string contentEncoding = "gzip"; // Specify gzip if the content is already compressed
     
-    // Upload logs
+    // Upload logs and make request
     try
     {
-        var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(data)).ConfigureAwait(false);
-        if (response.IsError)
-        {
-            throw new Exception(response.ToString());
-        }
-    
-        Console.WriteLine("Log upload completed using content upload");
+     using (MemoryStream memoryStream = new MemoryStream())
+     {
+      using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
+      {
+        gzipStream.Write(dataBytes, 0, dataBytes.Length);
+      }
+ 
+      byte[] gzipBytes = memoryStream.ToArray();
+
+      var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
+      if (response.IsError)
+      {
+        throw new Exception(response.ToString());
+      }
+     }
     }
     catch (Exception ex)
     {
-        Console.WriteLine("Upload failed with Exception: " + ex.Message);
-    }
-    
-    // Logs can also be uploaded in a List
-    var entries = new List<object>();
-    for (int i = 0; i < 10; i++)
-    {
-        entries.Add(
-            new
-            {
-                Time = currentTime,
-                Computer = "Computer" + i.ToString(),
-                AdditionalContext = new
-                {
-                    InstanceName = "user" + i.ToString(),
-                    TimeZone = "Central Time",
-                    Level = 3,
-                    CounterName = "AppMetric1" + i.ToString(),
-                    CounterValue = i
-                }
-            }
-        );
-    }
-    
-    // Make the request
-    try
-    {
-        var response = await client.UploadAsync(ruleId, streamName, entries).ConfigureAwait(false);
-        if (response.IsError)
-        {
-            throw new Exception(response.ToString());
-        }
-    
-        Console.WriteLine("Log upload completed using list of entries");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine("Upload failed with Exception: " + ex.Message);
+      Console.WriteLine("Upload failed with Exception: " + ex.Message);
     }
     ```
 
