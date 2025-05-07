@@ -13,6 +13,9 @@ Azure Monitor typically manages storage automatically, but some scenarios requir
 > [!WARNING]
 > Starting June 30th, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
+> [!WARNING]
+> Starting August 31st, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
+
 Custom log content uploaded to customer-managed storage accounts might change in formatting or other unexpected ways, so carefully consider your dependencies on this content and understand the special circumstances for your use case.
 
 ## Private links
@@ -66,27 +69,32 @@ Configure your storage account to use CMKs with Key Vault in one of the followin
 - [Azure CLI](/azure/storage/common/customer-managed-keys-configure-key-vault?toc=%252fazure%252fstorage%252fblobs%252ftoc.json)
 
 > [!NOTE]
-> Carefully consider these special circumstances when configuring customer managed storage with CMK.
+> Carefully consider these special circumstances when configuring customer-managed storage with CMK.
 
 | Special case | Remediation |
 |---|---|
-| When linking a storage account for queries, existing saved queries in a workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
-| Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK.
+| When linking a storage account for queries with CMK, existing saved queries in a workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
+| Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK. |
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
 | A single storage account can be used for all purposes - queries, alerts, custom logs and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025.|
 
 ## Link storage accounts to your Log Analytics workspace
 
+You must assign a managed identity to the workspace and configure your customer-managed storage account with an appropriate role assignment for the managed identity before linking the storage account. This requirement will be enforced starting August 31, 2025.
+
+Create or update your workspace with a managed identity using a [deployment template](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep#identity) or the [REST API](/rest/api/loganalytics/workspaces/get?view=rest-loganalytics-2025-02-01&tabs=HTTP#identity). For more information, see [What are managed identities for Azure resources?](/entra/identity/managed-identities-azure-resources/overview).
+
+Assign appropriate permissions on the storage account for the managed identity. For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Blob Data Contributor** role on the storage account.
+
+Now you're ready to link the storage account for your saved queries or log alert queries.
+
 ### Use the Azure portal
 
-On the Azure portal, open your workspace menu and select **Linked storage accounts**. A pane shows the linked storage accounts by the use cases previously mentioned (ingestion over Private Link, applying CMKs to saved queries or to alerts).
+On the Azure portal, open your workspace menu and select **Linked storage accounts**. The linked storage account is shown for each type.
 
 :::image type="content" source="./media/private-storage/all-linked-storage-accounts.png" lightbox="./media/private-storage/all-linked-storage-accounts.png" alt-text="Screenshot that shows the Linked storage accounts pane.":::
 
-Selecting an item on the table opens its storage account details, where you can set or update the linked storage account for this type.
-
-:::image type="content" source="./media/private-storage/link-a-storage-account-blade.png" lightbox="./media/private-storage/link-a-storage-account-blade.png" alt-text="Screenshot that shows the Link storage account pane.":::
-You can use the same account for different use cases if you prefer.
+Selecting a type or the connection icon opens the storage account link details to setup or update the linked storage account for this type. Use the same storage account for multiple types to reduce complexity.
 
 ### Use the Azure CLI or REST API
 
