@@ -72,7 +72,6 @@ The following resources support metrics export using data collection rules:
 | Storage accounts | Microsoft.storage/storageaccounts<br>Microsoft.storage/Storageaccounts/blobservices<br>Microsoft.storage/storageaccounts/fileservices<br>Microsoft.storage/storageaccounts/queueservices<br>Microsoft.storage/storageaccounts/tableservices |
 | SQL Server | Microsoft.sql/servers<br>Microsoft.sql/servers/databases |
 |Operational Insights | Microsoft.operationalinsights/workspaces |
-| Media services | Microsoft.media/mediaservices<br>Microsoft.media/mediaservices/streamingendpoints<br>Microsoft.media/mediaservices/liveevents |
 | Data protection | Microsoft.dataprotection/backupvaults |
 | Azure Kubernetes Service| Microsoft.ContainerService/managedClusters |
 
