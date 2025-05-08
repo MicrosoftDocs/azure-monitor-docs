@@ -2,7 +2,7 @@
 title: Overview of Azure Monitor alerts
 description: Learn about Azure Monitor alerts, alert rules, action processing rules, and action groups, and how they work together to monitor your system.
 ms.topic: overview 
-ms.date: 04/22/2025
+ms.date: 05/08/2025
 ---
 
 # What are Azure Monitor alerts?
@@ -95,7 +95,7 @@ The system compiles a list of recommended alert rules based on:
 - Data that tells us what customers commonly alert on for this resource.
 
 > [!NOTE]
-> Recommended alert rules is enabled for:
+> Recommended alert rules are enabled for:
 > - Virtual machines
 > - AKS resources
 > - Log Analytics workspaces
@@ -123,7 +123,7 @@ If you use metric data at scale in the Log Analytics workspace, pricing will cha
 
 ### Simple log search alerts 
 
-Simple log search are designed to provide a simpler and faster alternative to traditional log search alerts. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.  
+Simple log search alerts are designed to provide a simpler and faster alternative to traditional log search alerts. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.  
 
 Simple log search alerts use the Kusto Query Language (KQL) but the feature is designed to simplify the query process, making it easier for you to create alerts without extensive KQL knowledge. 
 
