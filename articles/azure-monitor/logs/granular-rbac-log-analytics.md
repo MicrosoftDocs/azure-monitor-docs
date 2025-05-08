@@ -27,7 +27,7 @@ Granular RBAC controls data access such as querying data. It doesn't address con
 
 ## Azure ABAC
 
-Azure Log Analytics granular RBAC is based on Azure ABAC (Attribute Based Access Control). Azure ABAC extends the functionality of Azure RBAC by incorporating conditions to role assignments that depend on contextual attributes for particular actions. For more information on ABAC, see [Azure ABAC](/azure/role-based-access-control/conditions-overview).
+Granular RBAC is based on Azure attribute based access control (ABAC). Azure ABAC extends the functionality of Azure RBAC by incorporating conditions to role assignments that depend on contextual attributes for particular actions. For more information on ABAC, see [Azure ABAC](/azure/role-based-access-control/conditions-overview).
 
 Azure ABAC is supported in the following environments:
 
@@ -41,7 +41,7 @@ Azure ABAC is supported in the following environments:
 
 ### Conditions and expressions
 
-A condition is an addition to your role assignment, providing finely tuned access control. In Log Analytics, you can set a condition on tables and records, based on the data in each record. For example, restrict access to the activity logs so that users can only see records where the `caller` column is their user ID.
+A condition is an addition to your role assignment, providing finely tuned access control. Granular RBAC allows you to set a condition on tables and records, based on the data in each record. For example, restrict access to the activity logs so that users can only see records where the `caller` column is their user ID.
 
 A condition consists of expressions. An expression is a logic statement with the format of `attribute` `operator` `value`.
 
@@ -55,7 +55,7 @@ Log Analytics granular RBAC supports table and column/value attributes:
 Attribute source | Display Name | Type | Description | Attribute Name
 -----------------|--------------|------|-------------|----------------
 Resource         | Table Name   | String | Table names used to grant/limit to. | Microsoft.OperationalInsights/ workspaces/tables:name
-Resource         | Column value (Key is the column name) | Dictionary (Key-value) |Column name and value. Column name is the key. The data value in the column is the value. | Microsoft.OperationalInsights /workspaces/tables/record:<Key><case_sensitive column name>
+Resource         | Column value (Key is the column name) | Dictionary (Key-value) |Column name and value. Column name is the key. The data value in the column is the value. | Microsoft.OperationalInsights /workspaces/tables/record:/<Key/>/<case_sensitive column name/>
 
 Conditions are added at same scope as the role assignments you wish to set it for. Set the condition at a scope of a table, workspace, or subscription. 
 
@@ -84,7 +84,7 @@ The following table shows supported ABAC operators that can be used in expressio
  `StringNotLike` / `StringNotLikeIgnoreCase`                | `!has_cs` / `!has`            | Negation of StringLike (or StringLikeIgnoreCase) operator 
  `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | Case-sensitive (or case-insensitive) matching. The values start with the string. 
  `StringNotStartsWith`  / `StringNotStartsWithIgnoreCase`   | `!startswith_cs` / `!startswith`  | Negation of StringStartsWith (or StringStartsWithIgnoreCase) operator. 
- `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | 'ForAllOfAnyValues:BooleanFunction'. Supports multiple strings and numbers.</br>If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true.  
+ `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | 'ForAllOfAnyValues:/<BooleanFunction/>' supports multiple strings and numbers.</br>If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true.  
 
 ABAC conditions aren't set on functions directly. If you set the condition on a table, then it will propagate up to any function that relies on it. For more information on operators and terms, see [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators).
 
