@@ -89,7 +89,7 @@ The following table shows supported ABAC operators that can be used in expressio
 ABAC conditions can only be set on tables and not on functions. If you set the condition on a table, then it will propagate up to any function that relies on it. For more information on operators and terms, see [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators).
 
 > [!TIP]
-> Use transformations to enrich data, change data types, and change case to better suit your ABAC expressions. For more information, see [Data collection transformations in Azure Monitor](/azure/azure-monitor/essentials/data-collection-transformations).
+> Use transformations to enrich data, change data types, and change case to better suit your ABAC expressions. If your data doesn't support the conditions you want to apply, transformations are also solution. For example, to apply conditions to data with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
 
 ### Role prerequisites
 
@@ -130,7 +130,7 @@ Any time data replicated from the original tables, such as hunting, bookmarks, a
 
 ### Audit and monitoring
 
-Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether ABAC was effectively used in each query. Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs](../essentials/diagnostic-settings.md).
+Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether ABAC was effectively used by recording the evaluation steps in the [`ConditionalDataAccess` column](../reference/tables/laquerylogs.md#columns). Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs](../essentials/diagnostic-settings.md).
 
 ## Enable conditions for users with existing access
 
@@ -139,19 +139,16 @@ When enabling conditions for users who currently have access, you must remove an
 
 ## Frequently Asked Questions
 
-**My data doesn't have a column that I can use for conditions. How can I change my data to fit the conditions I wish to apply?**</br>
-Use a transformation to create new columns with data suitable to define conditions. For example for data with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
-
 **I'm accessing my logs via resource context. Can my condition be enforced?**</br>
-RBAC and ABAC are enforced for resource-context queries, but require the workspaces containing the resource logs meet two prerequisites:
+RBAC and ABAC are enforced for resource-context queries, but require the workspaces containing the resource logs to fulfill these prerequisites:
 1.  Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. 
     If set to *Use resources or workspace permissions*, the Azure read permission assigned to a resource provides access to all logs. Workspace and ABAC permissions are ignored. 
-1.  Setting ABAC on all relevant workspaces
+1.  Set ABAC on all relevant workspaces.
 
 For more information, on resource context, see [Manage access to Log Analytics workspaces, access mode](../logs/manage-access.md#access-mode).
 
 **What happens if data exported is configured for a table?**</br>
-ABAC conditions are only enforced on queries. Data successfully exported using the workspace Data export feature doesn't maintain the ABAC conditions from the original data.
+ABAC conditions are only enforced on queries. Data successfully exported using the workspace **Data export** feature doesn't maintain the ABAC conditions from the original data.
 
 **How do you configure access based on data classification?**</br>
 To implement the **Bell-LaPadula** style access model, you must explicitly set ABAC conditions to stick to principals such as *read down*. For example, a user with **top-secret** permissions must have permission explicitly set for lower levels like **secret**, **confidential**, and **unclassified** to ensure they can access data at levels lower than their top assigned level.
