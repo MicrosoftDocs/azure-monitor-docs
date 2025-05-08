@@ -4,7 +4,7 @@ description: This article provides troubleshooting guidance for Azure Monitor is
 ms.topic: conceptual
 ms.servce: azure-monitor
 ms.reviewer: enauerman
-ms.date: 05/06/2025
+ms.date: 05/08/2025
 ---
 
 # Troubleshooting Guide: Azure Monitor issues and investigations (preview)
@@ -16,6 +16,8 @@ This article provides troubleshooting guidance for Azure Monitor issues and inve
 You must have the *Issue Contributor, Monitoring Contributor, or Contributor* role assigned for the target resource.
 
 If you don't have permission, you won't be able to create an issue or run an investigation, and you should consult with your system administrator.
+
+:::image type="content" source="media/diagnostics-and-troubleshooting-no-access.png" alt-text="screenshot of no access" lightbox="media/diagnostics-and-troubleshooting-no-access.png":::
 
 ## No findings
 
