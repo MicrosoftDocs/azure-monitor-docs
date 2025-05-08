@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 01/07/2025
+ms.date: 05/08/2025
 ---
 
 
@@ -29,7 +29,7 @@ ms.date: 01/07/2025
 
 | Category | Limit | Comments |
 |:---------|:------|:---------|
-| Maximum records returned by a log query | 30,000 | Reduce results by using query scope, time range, and filters in the query. |
+| Maximum records returned by a log query | 100,000 | Reduce results by using query scope, time range, and filters in the query. |
 
 ### Data Collector API
 
