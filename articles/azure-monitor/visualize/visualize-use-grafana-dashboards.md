@@ -26,7 +26,7 @@ Azure managed template dashboards are pre-provisioned and automatically updated 
 1.  Navigate to **Azure Monitor** in the Azure portal.
 1.  Select **Dashboards with Grafana (Preview)**.
 1.  Browse the list of available dashboards in the Azure Monitor or Azure Managed Prometheus listings.
-1.  Select a dashboard, for example Azure > Insights > Storage Accounts or Azure > Insights > Key Vaults. 
+1.  Select a dashboard, for example **Azure | Insights | Storage Accounts** or **Azure | Insights | Key Vaults**. 
 1.  Choose a *subscription* and *resource group* where the target resource exists. The dashboard loads based on the dashboard you chose and the selected resources.
 
 ## Create a new Grafana dashboard
@@ -89,13 +89,13 @@ Using the Grafana website window or tab, navigate to the dashboard you want to i
 Dashboards that you import or create require RBAC access configuration to share them with specific people or groups.
 
 1. Open the dashboard.
-1. Select **Share**. The Sare Dashboard pane opens. Copy the link to the dashboard to your clipboard.
+1. Select **Share**. The Share Dashboard pane opens. Copy the link to the dashboard to your clipboard.
 1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is requred to edit the dashboard.
 1. Paste the link into your preferred communication method to share it with the intended people or groups.
 
 ## Use dashboards with Azure Kubernetes Service (AKS)
 
-The Kubernetes cluster must be onboarded to Azure Managed Prometheus. For more information about onboarding to Prometheus, see [Query Prometheus metrics using Azure workbooks](../metrics/prometheus-workbooks.md).
+The Kubernetes cluster must be onboarded to Azure Managed Prometheus.
 
 ### Prometheus prerequisites
 
@@ -132,7 +132,7 @@ To add Dashboard tags to a saved dashboard, add or update the Azure tag with the
 
 :::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-edit-tags.png" alt-text="screenshot of tagging interface":::
 
-Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters added.  
+Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* added.  
 
 You can also add this tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* to a saved dashboard to be able to access and view the dashboard in the context of AKS clusters.
 
