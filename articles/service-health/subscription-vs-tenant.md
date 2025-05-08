@@ -20,15 +20,15 @@ To create a tenant account in Service Health, follow these steps:
 3.	**Manage tenants**: Navigate to Identity > Overview > Manage tenants.
 4.	**Create a new tenant**: Select Create. On the Basics tab, choose the type of tenant you want to create, either Microsoft Entra ID or Microsoft Entra ID (B2C).
 5.	**Enter tenant details**: On the Configuration tab, enter the following information:
-    •	Organization name (for example, Contoso Organization)
-    •	Initial domain name (for example, Contosoorg)
-    •	"Country/Region" (you can leave the default option or select your desired "country/region")
+    - **Organization name**: Enter the name of your organization (e.g., Contoso Organization).
+    - **Initial domain name**: Provide an initial domain name for your tenant (e.g., Contosoorg).
+    - **Country/Region**: Select your desired country or region from the dropdown menu, or leave the default option.
 6.	**Review and create**: Select Next: Review + Create. Review the information you entered and if everything is correct, select Create in the lower left corner. Your new tenant account is created with the domain contoso.onmicrosoft.com (*this account is a sample account*).
 Once the tenant is created, you're the first user and automatically assigned the Global Administrator role. You can then manage your tenant account and assign roles to other users as needed. 
 
 For more information:
 
-| Scope | Access via Service Health Portal| Access via API|Access via Axure Resource Graph (ARG) queries| Permissions required|
+| Scope | Access via Service Health Portal| Access via API|Access via Axure Resource Graphs (ARG) queries| Permissions required|
 |---|----|---|---|---|
 |**Tenant** | Yes| yes| No|Tenant Admin Role sees [admin access](admin-access-reference).|
 |**Subscription**| Yes| Yes|Yes|Subscription reader role or equivalent.|
@@ -46,7 +46,7 @@ In Azure Service Health, subscription access allows users to view and manage var
 * Users can create Service Health alerts to receive notifications about Service Health events. The permissions required to create these alerts are like those for Azure Activity Logs.
     
 **Role-Based Access Control (RBAC)**<br>
-* Subscription access is managed through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. See [Elevated access for viewing Security Advisories](security-advisories-elevated-access) and [Resource Impact from Azure security incidents](impacted-resources-security).
+* Subscription access is managed through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. See [Elevated access for viewing Security Advisories](security-advisories-elevated-access) and [Resource impact from Azure security incidents](impacted-resources-security).
     
 **Filtering and Sorting Events** <br>
 * In the Service Health portal, users can filter and sort events by subscription scope. These filters allow them to see service issues, health advisories, security advisories, and health history at the subscription level. See [Azure Service Health Portal](service-health-portal-update).
