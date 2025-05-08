@@ -43,7 +43,12 @@ Azure ABAC is supported in the following environments:
 
 A condition is an addition to your role assignment, providing finely tuned access control. In Log Analytics, you can set a condition on tables and records, based on the data in each record. For example, restrict access to the activity logs so that users can only see records where the `caller` column is their user ID.
 
-A condition consists of expressions. An expression is a logic statement with the format of <attribute> <operator> <value>.
+A condition consists of expressions. An expression is a logic statement with the format of `attribute` `operator` `value`.
+
+Values are restricted with support for the following characters:
+- Alphanumeric characters
+- Special characters:`@`, `.`, `-`
+- The maximum length of each value is also limited.
 
 Log Analytics granular RBAC supports table and column/value attributes:
 
@@ -67,7 +72,9 @@ To avoid creating two roles, set the conditions at a higher level, such as Works
 
 ### ABAC expression operators 
 
-ABAC conditions defined for column values in Log Analytics are based on the data in that column. Only string data types can be compared. The following table shows supported ABAC operators that can be used in expressions. The equivalent Kusto operators are listed for clarity.
+ABAC conditions defined for column values in Log Analytics are based on the data in that column. Only string data types can be compared. For the row level access attribute, any casting is solely based on KQL behavior. 
+
+The following table shows supported ABAC operators that can be used in expressions. The equivalent Kusto operators are listed for clarity.
 
  ABAC operator                                          | Kusto equivalent operator | Description 
 --------------------------------------------------------|---------------------------|-------------
@@ -79,7 +86,8 @@ ABAC conditions defined for column values in Log Analytics are based on the data
  `StringNotStartsWith`  / `StringNotStartsWithIgnoreCase`   | `!startswith_cs` / `!startswith`  | Negation of StringStartsWith (or StringStartsWithIgnoreCase) operator. 
  `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true. Format: ForAllOfAnyValues:<BooleanFunction>. Supports multiple strings and numbers. 
 
-For more information on operators and terms, see [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators). 
+ABAC conditions can only be set on tables and not on functions. If you set the condition on a table, then it will propagate up to any function that relies on it. For more information on operators and terms, see [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators).
+
 > [!TIP]
 > Use transformations to enrich data, change data types, and change case to better suit your ABAC expressions. For more information, see [Data collection transformations in Azure Monitor](/azure/azure-monitor/essentials/data-collection-transformations).
 
@@ -100,19 +108,25 @@ You can also include other actions in the role definition For example, the requi
 To define conditions for a role, you must have a role assignment that includes the `Microsoft.Authorization/roleAssignments/write` action. Create a custom role or use one of the standard roles such as `Owner` , `Contributor`, `Role Based Access Control Administrator`, and `User Access Administrator`. For more information on roles, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
 
 
-### Limitations
+### Service limits
 
-Azure RBAC and ABAC have the following limits:
+#### Azure ABAC and RBAC
 
-- Microsoft Sentinel: Any time data replicated from the original tables, such as hunting, bookmarks, and incidents aren't protected by the ABAC conditions.
+Normal Azure RBAC and ABAC limitations apply. For example, the threshold of max role assignments per subscription is an Azure service limit for RBAC. Azure ABAC limits the number of expressions per condition and the overall size of the condition in KB. For more information, see the following articles:
+- [Azure RBAC limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-rbac-limits)
+- [Azure ABAC limits](/azure/role-based-access-control/conditions-overview#limits)
+- [FAQ for Azure role assignment conditions](/azure/role-based-access-control/conditions-faq)
+- [Troubleshoot Azure RBAC limits](/azure/role-based-access-control/troubleshoot-limits)
+
+#### Log Analytics 
+
+- **Data Export** - if full access doesn't exist, a clear error indicates the user isn't able to configure the rule.
 - Alerts: Only MSI based alerts are supported.
-- Application Insights: Only workspace-based Application Insights is supported.
-- Values are restricted in ABAC. The following characters are supported:
-    -  Alphanumeric characters
-    -  Special characters:`@`, `.`, `-`
-  - The maximum length of each value is characters
+- Application Insights: Only workspace-based Application Insights are supported.
 
- For more information, see  [Azure ABAC limits](/azure/role-based-access-control/conditions-overview#limits) and [Azure RBAC limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-rbac-limits).
+#### Microsoft Sentinel
+
+Any time data replicated from the original tables, such as hunting, bookmarks, and incidents aren't protected by the ABAC conditions.
 
 ### Audit and monitoring
 
@@ -126,7 +140,7 @@ When enabling conditions for users who currently have access, you must remove an
 ## Frequently Asked Questions
 
 **My data doesn't have a column that I can use for conditions. How can I change my data to fit the conditions I wish to apply?**</br>
-Transformation can be used to create new columns with data that you can use to define conditions. For example for data with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
+Use a transformation to create new columns with data suitable to define conditions. For example for data with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
 
 **I'm accessing my logs via resource context. Can my condition be enforced?**</br>
 RBAC and ABAC are enforced for resource-context queries, but require the workspaces containing the resource logs meet two prerequisites:
@@ -137,7 +151,7 @@ RBAC and ABAC are enforced for resource-context queries, but require the workspa
 For more information, on resource context, see [Manage access to Log Analytics workspaces, access mode](../logs/manage-access.md#access-mode).
 
 **What happens if data exported is configured for a table?**</br>
-The ABAC conditions are only enforced on queries. Data exported using the workspace Data export feature isn't affected by ABAC conditions.
+ABAC conditions are only enforced on queries. Data successfully exported using the workspace Data export feature doesn't maintain the ABAC conditions from the original data.
 
 **How do you configure access based on data classification?**</br>
 To implement the **Bell-LaPadula** style access model, you must explicitly set ABAC conditions to stick to principals such as *read down*. For example, a user with **top-secret** permissions must have permission explicitly set for lower levels like **secret**, **confidential**, and **unclassified** to ensure they can access data at levels lower than their top assigned level.
