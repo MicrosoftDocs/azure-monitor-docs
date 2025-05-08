@@ -8343,6 +8343,11 @@
     "source_path": "articles/azure-monitor/essentials/metrics-usage-insights.md",
     "redirect_url": "/azure/azure-monitor/metrics/metrics-usage-insights",
     "redirect_document_id": false
+  },
+  {
+    "source_path": "articles/azure-monitor/platform/grafana-plugin.md",
+    "redirect_url": "/azure/azure-monitor/visualize-use-managed-grafana.md",
+    "redirect_document_id": false
   }
  ]
 }
