@@ -78,15 +78,15 @@ The following table shows supported ABAC operators that can be used in expressio
 
  ABAC operator                                          | Kusto equivalent operator | Description 
 --------------------------------------------------------|---------------------------|-------------
- `StringEquals` / `StringEqualsIgnoreCase`                  | `==` / `=~`                   |Case-sensitive (or case insensitive) matching. The values must exactly match the string. 
+ `StringEquals` / `StringEqualsIgnoreCase`                  | `==` / `=~`                   | Case-sensitive (or case insensitive) matching. The values must exactly match the string. 
  `StringNotEquals` / `StringNotEqualsIgnoreCase`            | `!=` / `!~`                   | Negation of StringEquals (or StringEqualsIgnoreCase). 
  `StringLike` / `StringLikeIgnoreCase`                      | `has_cs` / `has`              | Case-sensitive (or case-insensitive) matching. Right-hand-side of the operator (RHS) is a whole term in left-hand-side (LHS). 
  `StringNotLike` / `StringNotLikeIgnoreCase`                | `!has_cs` / `!has`            | Negation of StringLike (or StringLikeIgnoreCase) operator 
- `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` |     Case-sensitive (or case-insensitive) matching. The values start with the string. 
+ `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | Case-sensitive (or case-insensitive) matching. The values start with the string. 
  `StringNotStartsWith`  / `StringNotStartsWithIgnoreCase`   | `!startswith_cs` / `!startswith`  | Negation of StringStartsWith (or StringStartsWithIgnoreCase) operator. 
- `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true. Format: ForAllOfAnyValues:<BooleanFunction>. Supports multiple strings and numbers. 
+ `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | 'ForAllOfAnyValues:BooleanFunction'. Supports multiple strings and numbers.</br>If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true.  
 
-ABAC conditions can only be set on tables and not on functions. If you set the condition on a table, then it will propagate up to any function that relies on it. For more information on operators and terms, see [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators).
+ABAC conditions aren't set on functions directly. If you set the condition on a table, then it will propagate up to any function that relies on it. For more information on operators and terms, see [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators).
 
 > [!TIP]
 > Use transformations to enrich data, change data types, and change case to better suit your ABAC expressions. If your data doesn't support the conditions you want to apply, transformations are also solution. For example, to apply conditions to data with high cardinality, such as IP ranges, use transformations to group IPs belonging to selected subnets by subnet name. For more information, see [Data collection transformations in Azure Monitor](../essentials/data-collection-transformations.md).
