@@ -51,9 +51,13 @@ Azure Monitor pipeline at edge is supported on the following Kubernetes distribu
 
 Azure Monitor pipeline at edge is supported in the following Azure regions:
 
+* Canada Central
 * East US2
+* Italy North
 * West US2
 * West Europe
+
+For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table)
 
 ## Prerequisites
 
