@@ -12,7 +12,7 @@ In the Azure Service Health portal, a tenant admin role refers to a dedicated in
 
 Tenant admin access in Azure refers to the permissions granted to roles that allow users to manage and view resources at the tenant level. These roles include Global Administrator, Application Administrator, and others. Tenant admin access enables users to manage users, groups, and permissions within the organization, and view tenant-level events in the Azure Service Health portal. 
 
-For Tenant-level roles, see [Roles with tenant admin access](admin-access-reference).
+For Tenant-level roles, see [Roles with tenant admin access](admin-access-reference.md).
 
 To create a tenant account in Service Health, follow these steps:
 1.	**Sign in to the Azure portal**: Go to the Azure portal and sign in with your credentials.
@@ -30,7 +30,7 @@ For more information:
 
 | Scope | Access via Service Health Portal| Access via API|Access via Axure Resource Graphs (ARG) queries| Permissions required|
 |---|----|---|---|---|
-|**Tenant** | Yes| yes| No|Tenant Admin Role sees [admin access](admin-access-reference).|
+|**Tenant** | Yes| yes| No|Tenant Admin Role sees [admin access](admin-access-reference.md).|
 |**Subscription**| Yes| Yes|Yes|Subscription reader role or equivalent.|
 
 ## Subscription Account
@@ -46,10 +46,10 @@ In Azure Service Health, subscription access allows users to view and manage var
 * Users can create Service Health alerts to receive notifications about Service Health events. The permissions required to create these alerts are like those for Azure Activity Logs.
     
 **Role-Based Access Control (RBAC)**<br>
-* Subscription access is managed through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. See [Elevated access for viewing Security Advisories](security-advisories-elevated-access) and [Resource impact from Azure security incidents](impacted-resources-security).
+* Subscription access is managed through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. See [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md) and [Resource impact from Azure security incidents](impacted-resources-security.md).
     
 **Filtering and Sorting Events** <br>
-* In the Service Health portal, users can filter and sort events by subscription scope. These filters allow them to see service issues, health advisories, security advisories, and health history at the subscription level. See [Azure Service Health Portal](service-health-portal-update).
+* In the Service Health portal, users can filter and sort events by subscription scope. These filters allow them to see service issues, health advisories, security advisories, and health history at the subscription level. See [Azure Service Health Portal](service-health-portal-update.md).
 
 **Access to Specific Endpoints**<br>
 * There are specific endpoints for accessing detailed information about service health events. For example, the `events/{trackingId}/fetchEventDetails` endpoint provides detailed properties of a particular event, including sensitive information for security advisory events.<br>
@@ -57,7 +57,7 @@ In Azure Service Health, subscription access allows users to view and manage var
     
 In the Service Health portal, you can filter and sort events by tenant or subscription scope. These filters allow you to see service issues, health advisories, security advisories, and health history at both the tenant and subscription levels.    
 
-For more information, see[Resource impact from Azure security incidents](impacted-resources-security).
+For more information, see[Resource impact from Azure security incidents](impacted-resources-security.md).
 
 >[!Note]
 > 
