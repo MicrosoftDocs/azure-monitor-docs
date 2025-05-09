@@ -23,6 +23,16 @@ A single diagnostic setting can define no more than one of each of the destinati
 >
 > Also, it's a good practice to delete the diagnostic settings for a resource you're going to delete and don't plan on using again to keep your environment clean.
 
+
+> [!NOTE]
+>
+> Azure Monitor Resource Logs aren't 100% lossless. Resource Logs are based on a store and forward architecture designed to affordably move 
+> petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform, but doesn't provide 
+> transactional guarantees. Transactional monitoring might reduce the reliability and performance of the monitored service. 
+> Also, transient logging errors must halt the upstream service when unable to confirm log delivery. 
+> Whenever the Azure Monitor team can confirm a persistent source of data loss, the team considers resolution and prevention its highest priority. 
+> However, small data losses might still happen due to temporary, non-repeating service issues distributed across Azure, and not all can be caught.
+
 The following video walks you through routing resource platform logs with diagnostic settings. The video was done at an earlier time. Be aware of the following changes:
 
 - There are now four destinations. You can send platform metrics and logs to certain Azure Monitor partners.
