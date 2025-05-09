@@ -12,17 +12,19 @@ ms.reviewer: mmcc
 
 This article covers the following areas:
 
-* [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
+* [**Users, Sessions & Events**](#users-sessions-and-events---analyze-telemetry-from-three-perspectives) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
 
-* [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application and where they might be dropping off.
+* [**Funnels**](#funnels---discover-how-customers-use-your-application) - Understand how users progress through a series of steps in your application and where they might be dropping off.
 
-* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
+* [**User Flows**](#user-flows---analyze-user-navigation-patterns) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
 
-* [**Cohorts**](#cohorts) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
+* [**Cohorts**](#cohorts---analyze-a-specific-set-of-users-sessions-events-or-operations) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
 
-* [**Impact Analysis**](#impact-analysis) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+* [**Retention Analysis**](#user-retention-analysis) - ...
 
-* [**HEART**](#heart) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
+* [**Impact Analysis**](#impact-analysis---discover-how-different-properties-influence-conversion-rates) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+
+* [**HEART**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
 
 ## Collect browser telemetry
 
@@ -43,7 +45,7 @@ To verify if browser telemetry is being collected, run your project in debug mod
 >
 > This dual implementation enables telemetry collection from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
-## Users, Sessions, and Events
+## Users, Sessions, and Events - Analyze telemetry from three perspectives
 
 Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features.
 
@@ -262,7 +264,7 @@ protected void Application_Start()
 
 ---
 
-## Funnels
+## Funnels - Discover how customers use your application
 
 Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in a web application is known as a *funnel*. You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates.
 
@@ -302,7 +304,7 @@ To create a funnel:
 
 1. To save your funnel to view at another time, select **Save** at the top. Use **Open** to open your saved funnels.
 
-## User Flows
+## User Flows - Analyze user navigation patterns
 
 :::image type="content" source="./media/usage-flows/flows.png" lightbox="./media/usage-flows/flows.png" alt-text="Screenshot that shows the Application Insights User Flows tool.":::
 
@@ -318,7 +320,7 @@ The User Flows tool starts from an initial custom event, exception, dependency, 
 > [!NOTE]
 > Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your app to collect page views automatically with the Application Insights JavaScript SDK](./javascript.md).
 
-### Choose an initial event
+### Create your visualization
 
 :::image type="content" source="./media/usage-flows/initial-event.png" lightbox="./media/usage-flows/initial-event.png" alt-text="Screenshot that shows choosing an initial event for User Flows.":::
 
@@ -343,6 +345,8 @@ If page views or custom events you expect to see in the visualization are missin
 
 If you want to see more steps in the visualization, use the **Previous steps** and **Next steps** dropdown lists above the visualization.
 
+### Use cases
+
 <details>
 <summary>After users visit a page or feature, where do they go and what do they select?</summary>
 
@@ -357,6 +361,8 @@ If your initial event is a custom event, the first column shows what users did a
 If your selected initial event is **Added Item to Shopping Cart**, for example, look to see if **Go to Checkout** and **Completed Purchase** appear in the visualization shortly thereafter. If user behavior is different from your expectations, use the visualization to understand how users are getting "trapped" by your site's current design.
 </details>
 
+<br>
+
 <details>
 <summary>Where are the places that users churn most from your site?</summary>
 
@@ -367,13 +373,15 @@ Sometimes churn is expected. For example, it's expected after a user makes a pur
 Keep in mind that **Session Ended** nodes are based only on telemetry collected by this Application Insights resource. If Application Insights doesn't receive telemetry for certain user interactions, users might have interacted with your site in those ways after the User Flows tool says the session ended.
 </details>
 
+<br>
+
 <details>
 <summary>Are there places where users repeat the same action over and over?</summary>
 
 Look for a page view or custom event that's repeated by many users across subsequent steps in the visualization. This activity usually means that users are performing repetitive actions on your site. If you find repetition, think about changing the design of your site or adding new functionality to reduce repetition. For example, you might add bulk edit functionality if you find users performing repetitive actions on each row of a table element.
 </details>
 
-## Cohorts
+## Cohorts - Analyze a specific set of users, sessions, events, or operations
 
 A cohort is a set of users, sessions, events, or operations that have something in common. In Application Insights, cohorts are defined by an analytics query. In cases where you have to analyze a specific set of users or events repeatedly, cohorts can give you more flexibility to express exactly the set you're interested in.
 
@@ -473,7 +481,7 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 
 
 
-## Impact Analysis
+## Impact Analysis - Discover how different properties influence conversion rates
 
 Impact Analysis discovers how any dimension of a page view, custom event, or request affects the usage of a different page view or custom event.
 
