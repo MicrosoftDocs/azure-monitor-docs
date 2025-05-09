@@ -2,7 +2,7 @@
 title: In-portal Billing Communications
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 4/25/2025
+ms.date: 5/09/2025
 ---
 
 # Overview
@@ -27,7 +27,7 @@ You can view up to three months of billing updates in the user interface and ret
 
 **Requirements:**
 
-- Subscription owner or subscription admin role
+- Subscription owner or subscription contributor role
 - Access to the Service Health portal or API
 
 
@@ -39,7 +39,7 @@ The detail pages for billing communication event types appear in the **Billing U
 To view the **Billing Updates** pane, you need one of the following roles:
 
 - Subscription owner
-- Subscription administrator
+- Subscription contributor
 - Custom role with the required permissions
 
 Users without access see a message instead of the pane.
@@ -48,7 +48,7 @@ Users without access see a message instead of the pane.
 
 ## How to view billing events
 
-Azure customers with any of the elevated accesses defined above can view billing communication events through the **Billing Updates pane**  in the [Service Health](service-health-overview.md) portal, as well as through the API access to retrieve billing event data,
+Azure customers with any of the elevated accesses defined here can view billing communication events through the **Billing Updates pane**  in the [Service Health](service-health-overview.md) portal, and through the API access to retrieve billing event data,
   
   ![Screenshot of the in-portal billing details.](./media/billing-elevated-access/in-portal-billing-details.png "Billing event details.")
 or use an **Azure Resource Graph (ARG)** using supported queries.
