@@ -190,11 +190,12 @@ For example:
 - Send data from Region B users to the Region B Application Insights resource using the Region B connection string.
 - Send all other user data to a general-purpose Application Insights resource using a different connection string.
 
-> **Important:** Using the global endpoint does not ensure regional compliance. To meet data residency requirements, always use region-specific endpoints and route telemetry based on the user’s region.
+> [!Important]
+> Using the global endpoint does not ensure regional compliance. To meet data residency requirements, always use region-specific endpoints and route telemetry based on the user’s region.
 
 The following diagram shows an example setup for a global web application:
 
-:::image type="content" source="media/connection-strings/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources" lightbox="media/connection-strings/routing-based-on-region.png":::
+:::image type="content" source="media/connection-strings/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources." lightbox="media/connection-strings/routing-based-on-region.png":::
 
 ## Next steps
 
