@@ -8,23 +8,23 @@ ms.reviewer: mmcc
 
 # Usage analysis with Application Insights
 
-[Application Insights](app-insights-overview.md) is a powerful observability tool that helps you monitor the performance and usage of your applications. It collects telemetry data that shows how users interact with your application. This includes information about which features are most popular, if users achieve their goals, where they drop off, and whether they return later. These insights help you understand user behavior, identify areas for improvement, and measure the impact of recent changes. With this information, you can make data-driven decisions about your next development cycles.
+[Application Insights](app-insights-overview.md) is a powerful observability tool that collects telemetry data to show how users interact with your application. This includes information about which features are most popular, if users achieve their goals, where they drop off, and whether they return later. These insights help you understand user behavior, identify areas for improvement, and measure the impact of recent changes, allowing you to make data-driven decisions about your next development cycles.
 
 This article covers the following areas:
 
-* [**Users, Sessions & Events**](#users-sessions-and-events---analyze-telemetry-from-three-perspectives) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
+* [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
 
-* [**Funnels**](#funnels---discover-how-customers-use-your-application) - Understand how users progress through a series of steps in your application and where they might be dropping off.
+* [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application and where they might be dropping off.
 
-* [**User Flows**](#user-flows---analyze-user-navigation-patterns) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
+* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
 
-* [**Cohorts**](#cohorts---analyze-a-specific-set-of-users-sessions-events-or-operations) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
+* [**Cohorts**](#cohorts) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
 
-* [**Impact Analysis**](#impact-analysis---discover-how-different-properties-influence-conversion-rates) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+* [**Impact Analysis**](#impact-analysis) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
 
-* [**HEART**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
+* [**HEART**](#heart) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
 
-## Send telemetry from your application
+## Collect browser telemetry
 
 ### Prerequisites
 
@@ -36,12 +36,14 @@ This article covers the following areas:
 
 If you only want to collect telemetry about the usage of your web application, use the [Application Insights JavaScript SDK](javascript-sdk.md). No server-side instrumentation is required.
 
-To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md). This dual implementation enables telemetry collection from both the client and server components of your application.
+To verify if browser telemetry is being collected, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
 
 > [!TIP]
-> To verify if browser telemetry is being collected, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
+> To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md).
+>
+> This dual implementation enables telemetry collection from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
-## Users, Sessions, and Events - Analyze telemetry from three perspectives
+## Users, Sessions, and Events
 
 Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features.
 
@@ -56,28 +58,9 @@ Three of the **Usage** panes use the same tool to slice and dice telemetry from 
 > [!NOTE]
 > For information on an alternative to using anonymous IDs and ensuring an accurate count, see the documentation for [authenticated IDs](data-model-complete.md#context).
 
-Clicking **View More Insights** displays the following information:
+### Query for certain users, sessions, or events
 
-* **Application Performance:** Sessions, Events, and a Performance evaluation related to users' perception of responsiveness.
-* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
-* **Meet Your Users:** View timelines of user activity.
-
-### Explore usage demographics and statistics
-
-Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use. Analyze business and usage telemetry by using Application Insights.
-
-:::image type="content" source="media/usage-overview/users.png" alt-text="Screenshot that shows the Users tab with a bar chart." lightbox="media/usage-overview/users.png":::
-
-* The **Users** report counts the numbers of unique users that access your pages within your chosen time periods. For web apps, users are counted by using cookies.
-
-    > [!IMPORTANT]
-    > If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
-
-* The **Sessions** report tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour.
-
-#### Query for certain users
-
-Explore different groups of users by adjusting the query options at the top of the Users pane:
+Explore different groups of users, sessions, or events by adjusting the query options at the top of each pane:
 
 | Option          | Description                                                                                                                               |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -89,11 +72,42 @@ Explore different groups of users by adjusting the query options at the top of t
 | Split By        | Choose a property to use to split or segment the data.                                                                                    |
 | Add Filters     | Limit the query to certain users, sessions, or events based on their properties, such as browser or city.                                 |
 
-#### Meet your users
+Clicking **View More Insights** displays the following information:
 
-The **Meet your users** section shows information about five sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
+#### [Users](#tab/users)
 
-### User retention analysis
+* **General information:** The number of sessions and events for the specified time window, and a Performance evaluation related to users' perception of responsiveness.
+* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
+* **Meet Your Users:** section shows information about five sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
+
+#### [Sessions](#tab/sessions)
+
+* **General information:** The number of users and events for the specified time window.
+* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
+* **Active Sessions:** 
+
+#### [Events](#tab/events)
+
+* **General information:** The number of users and sessions for the specified time window.
+* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
+* **Event Statistics:** A list of the top 10 events by count, including the number of users and sessions.
+
+---
+
+### Explore usage demographics and statistics
+
+Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
+
+:::image type="content" source="media/usage-overview/users.png" alt-text="Screenshot that shows the Users tab with a bar chart." lightbox="media/usage-overview/users.png":::
+
+* The **Users** report counts the numbers of unique users that access your pages within your chosen time periods. For web apps, users are counted by using cookies.
+
+    > [!IMPORTANT]
+    > If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
+
+* The **Sessions** report tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour.
+
+## User retention analysis
 
 The Application Insights retention feature provides valuable insights into user engagement by tracking the frequency and patterns of users returning to your app and their interactions with specific features. It enables you to compare user behaviors, such as the difference in return rates between users who win or lose a game, offering actionable data to enhance user experience and inform business strategies.
 
@@ -248,7 +262,7 @@ protected void Application_Start()
 
 ---
 
-## Funnels - Discover how customers use your application
+## Funnels
 
 Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in a web application is known as a *funnel*. You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates.
 
@@ -288,7 +302,7 @@ To create a funnel:
 
 1. To save your funnel to view at another time, select **Save** at the top. Use **Open** to open your saved funnels.
 
-## User Flows - Analyze user navigation patterns
+## User Flows
 
 :::image type="content" source="./media/usage-flows/flows.png" lightbox="./media/usage-flows/flows.png" alt-text="Screenshot that shows the Application Insights User Flows tool.":::
 
@@ -329,7 +343,8 @@ If page views or custom events you expect to see in the visualization are missin
 
 If you want to see more steps in the visualization, use the **Previous steps** and **Next steps** dropdown lists above the visualization.
 
-### After users visit a page or feature, where do they go and what do they select?
+<details>
+<summary>After users visit a page or feature, where do they go and what do they select?</summary>
 
 :::image type="content" source="./media/usage-flows/one-step.png" lightbox="./media/usage-flows/one-step.png" alt-text="Screenshot that shows using User Flows to understand where users select.":::
 
@@ -340,20 +355,25 @@ Open your site in a window next to the User Flows visualization. Compare your ex
 If your initial event is a custom event, the first column shows what users did after they performed that action. As with page views, consider if the observed behavior of your users matches your team's goals and expectations.
 
 If your selected initial event is **Added Item to Shopping Cart**, for example, look to see if **Go to Checkout** and **Completed Purchase** appear in the visualization shortly thereafter. If user behavior is different from your expectations, use the visualization to understand how users are getting "trapped" by your site's current design.
+</details>
 
-### Where are the places that users churn most from your site?
+<details>
+<summary>Where are the places that users churn most from your site?</summary>
 
 Watch for **Session Ended** nodes that appear high up in a column in the visualization, especially early in a flow. This positioning means many users probably churned from your site after they followed the preceding path of pages and UI interactions.
 
 Sometimes churn is expected. For example, it's expected after a user makes a purchase on an e-commerce site. But usually churn is a sign of design problems, poor performance, or other issues with your site that can be improved.
 
 Keep in mind that **Session Ended** nodes are based only on telemetry collected by this Application Insights resource. If Application Insights doesn't receive telemetry for certain user interactions, users might have interacted with your site in those ways after the User Flows tool says the session ended.
+</details>
 
-### Are there places where users repeat the same action over and over?
+<details>
+<summary>Are there places where users repeat the same action over and over?</summary>
 
 Look for a page view or custom event that's repeated by many users across subsequent steps in the visualization. This activity usually means that users are performing repetitive actions on your site. If you find repetition, think about changing the design of your site or adding new functionality to reduce repetition. For example, you might add bulk edit functionality if you find users performing repetitive actions on each row of a table element.
+</details>
 
-## Cohorts - Analyze a specific set of users, sessions, events, or operations
+## Cohorts
 
 A cohort is a set of users, sessions, events, or operations that have something in common. In Application Insights, cohorts are defined by an analytics query. In cases where you have to analyze a specific set of users or events repeatedly, cohorts can give you more flexibility to express exactly the set you're interested in.
 
@@ -366,7 +386,8 @@ You might define a cohort of users who have all tried a new feature in your app.
 > [!NOTE]
 > After cohorts are created, they're available from the Users, Sessions, Events, and User Flows tools.
 
-### Example: Engaged users
+<details>
+<summary>Example: Engaged users</summary>
 
 Your team defines an engaged user as anyone who uses your app five or more times in a given month. In this section, you define a cohort of these engaged users.
 
@@ -391,6 +412,7 @@ Your team defines an engaged user as anyone who uses your app five or more times
    > Give your cohort a name, like *Engaged Users (5+ Days)*. Save it to *My reports* or *Shared reports*, depending on whether you want other people who have access to this Application Insights resource to see this cohort.
 
 1. Select **Back to Gallery**.
+</details>
 
 #### What can you do by using this cohort?
 
@@ -405,7 +427,8 @@ Important points to notice:
 
 These filters support more sophisticated questions that are impossible to express through the query builder. An example is *people who were engaged in the past 28 days. How did those same people behave over the past 60 days?*
 
-### Example: Events cohort
+<details>
+<summary>Example: Events cohort</summary>
 
 You can also make cohorts of events. In this section, you define a cohort of events and page views. Then you see how to use them from the other tools. This cohort might define a set of events that your team considers *active usage* or a set related to a certain new feature.
 
@@ -414,8 +437,10 @@ You can also make cohorts of events. In this section, you define a cohort of eve
 1. Select **Events Picker**.
 1. In the **Activities** dropdown box, select the events you want to be in the cohort.
 1. Save the cohort and give it a name.
+</details>
 
-### Example: Active users where you modify a query
+<details>
+<summary>Example: Active users where you modify a query</summary>
 
 The previous two cohorts were defined by using dropdown boxes. You can also define cohorts by using analytics queries for total flexibility. To see how, create a cohort of users from the United Kingdom.
 
@@ -444,8 +469,11 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 1. Select **Run Query**. If you don't see user IDs appear in the table, change to a country/region where your application has users.
 
 1. Save and name the cohort.
+</details>
 
-## Impact Analysis - Discover how different properties influence conversion rates
+
+
+## Impact Analysis
 
 Impact Analysis discovers how any dimension of a page view, custom event, or request affects the usage of a different page view or custom event.
 
