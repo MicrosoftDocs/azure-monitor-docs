@@ -2,7 +2,7 @@
 title: Container insights region mappings
 description: Describes the region mappings supported between Container insights, Log Analytics Workspace, and custom metrics.
 ms.topic: conceptual
-ms.date: 2/28/2024
+ms.date: 04/23/2025
 ms.custom: references_regions
 ms.reviewer: aul
 ---
