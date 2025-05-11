@@ -53,8 +53,9 @@ The minimum required control and data actions are:
 
 To include access via the Azure portal add the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
  
-> [!NOTE]
-> Granular RBAC, like Azure RBAC, is an additive model. Your effective permissions are the sum of your role assignments. For example, if a you have two role assignments on the same scope, one set with a `*/read` action and the other with conditions that limit access to specific records, the resulting permission is the `*/read` action granting access to all logs in the scope. For granular RBAC conditions to take effect, you must remove any role assignments with higher access privileges.
+Granular RBAC, like Azure RBAC, is an additive model. Your effective permissions are the sum of your role assignments. For granular RBAC conditions to take effect, you must remove any role assignments with higher access privileges. 
+
+For example, if a you have two role assignments on the same scope, one set with a `*/read` action and the other with conditions that limit access to specific records, the resulting permission is the `*/read` action granting access to all logs in the scope. 
 
 ### Conditions and expressions
 
