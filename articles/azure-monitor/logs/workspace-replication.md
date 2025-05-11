@@ -250,6 +250,17 @@ Use the `GET` command to verify that the workspace provisioning state changes fr
 > [!NOTE]
 > When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
 
+### Check if replication is enabled on a workspace
+To check if a replication is enabled and where to, review workspace settings.
+
+In the Azure Portal, select the workspace and review the Essentials section on the Overview blade.
+If replication is enable, the Essentials includes a Secondary Location property, indicating the region of the replicated worksace:
+    :::image type="content" source="media/workspace-replication/ws-essentials-with-secondary-location.png" lightbox="media/workspace-replication/ws-essentials-with-secondary-location.png" alt-text="Screenshot that shows the secondary location property in the Workspace Essentials section in the Azure portal":::
+
+Alternatively, you can review the workspace replication properties through the JSON view (in the Workspace Overview page in the Azure portal) or via REST/CLI:
+    :::image type="content" source="media/workspace-replication/ws-replication-json.png" lightbox="media/workspace-replication/ws-replication-json.png" alt-text="Screenshot that shows the replication settings in the workspace JSON obejct":::
+
+
 ### Associate data collection rules with the workspace data collection endpoint
 
 Azure Monitor Agent, the Logs Ingestion API, and Azure Event Hubs collect data and send it to the destination you specify based on how you set up your [data collection rules (DCR)](../data-collection/data-collection-rule-overview.md).
