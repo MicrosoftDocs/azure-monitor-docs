@@ -11,6 +11,9 @@ ms.date: 05/08/2025
 # Customer intent: As an Azure administrator, I want to understand how to use granular RBAC in Log Analytics for the use case scenario of separating custom log table access at the row level.
 ---
 
+Granular Access Control for Logs: Many users emphasize the need for granular access control to logs based on roles, departments, and geographical locations. This includes scenarios like restricting HR personnel to employee data or limiting access to logs by country or department
+Custom Log Tables and Fields: Several scenarios involve the use of custom log tables (e.g., _CL) and fields (e.g., _CF) to enforce row-level access. Users aim to segregate data based on attributes like device type, subscription ID, or specific identifiers.
+
 # Getting started with granular RBAC in Log Analytics
 
 Granular RBAC (Roles Based Access Control) is a feature of Log Analytics that implements Azure ABAC for fine-grained data access control. 
