@@ -1,5 +1,5 @@
 ---
-title: Granular RBAC in Log Analytics
+title: Granular RBAC in Azure Monitor
 description: Granular RBAC in Log Analytics enables you to define data access in a fine-grained manner.
 services: azure-monitor
 sub-service: logs
@@ -11,7 +11,7 @@ ms.date: 05/08/2025
 # Customer intent: As an Azure administrator, I want to understand how to use attribute-based RBAC in Log Analytics
 ---
 
-# Granular RBAC (Preview) in Log Analytics
+# Granular RBAC (Preview) in Azure Monitor 
 
 Finely tune `view` and `query` access to your Log Analytics workspace with granular role based access control (RBAC). Access is configurable at the table level down to row-level with customized roles. 
 
@@ -19,13 +19,9 @@ If your Log Analytics architecture includes multiple workspaces to accommodate d
 
 ### Prerequisites
 
-Granular RBAC involves configuring conditions as part of a custom role, much like Azure attribute based access control (ABAC). To configure granular RBAC for Log Analytics, use one of the standard roles such as `Role Based Access Control Administrator`, or `User Access Administrator` assigned at the workspace scope. 
-
-For a custom role to configure granular RBAC, it must have a role assignment that includes the `Microsoft.Authorization/roleAssignments/write` action at the scope you intend to create the granular RBAC custom roles. 
-
-For more information, see the following articles:
-- [Azure built-in roles](/azure/role-based-access-control/built-in-roles)
-- [Azure ABAC](/azure/role-based-access-control/conditions-overview)
+| Action | Permission required |
+|---|---|
+| Configure a custom role | `Microsoft.Authorization/roleAssignments/write` permission to the Log Analytics workspace, for example, as provided by the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged?branch=main#role-based-access-control-administrator) |
 
 ## When to use granular RBAC?
 
@@ -62,7 +58,7 @@ To include access via the Azure portal add the `Microsoft.OperationalInsights/wo
 
 ### Conditions and expressions
 
-Conditions tell your role assignment to finely tune the access control. Granular RBAC allows you to set a condition on tables and records, based on the data in each record. For example, restrict access to activity logs so that users can only see records where the `caller` column is their own user ID.
+Conditions tell your role assignment to finely tune the access control. Granular RBAC allows you to set a condition on tables and records, based on the data in each record. For example, restrict access to application logs so that users can only see records where the `application id` column is an application they are allowed to access.
 
 A condition consists of the **data action** of the role and **expressions**. An expression is a logic statement with the format of `Attribute` `Operator` `Value`.
 
@@ -74,7 +70,7 @@ Log Analytics granular RBAC supports table and column/value attributes:
 
 Attribute source | Display Name | Type | Description | Attribute Name
 -----------------|--------------|------|-------------|----------------
-Resource         | Table Name   | String | Table names used to grant/limit to. | Microsoft.OperationalInsights/workspaces/tables:\<name\>
+Resource         | Table Name   | String | Table names used to grant/limit to. | Microsoft.OperationalInsights/workspaces/tables:\`<name\>`
 Resource         | Column value (Key is the column name) | Dictionary (Key-value) |Column name and value. Column name is the key. The data value in the column is the value. | Microsoft.OperationalInsights/workspaces/tables/record:\<key\>
 
 Here's an example screenshot of a granular RBAC role assignment condition:
