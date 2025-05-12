@@ -34,7 +34,7 @@ Here are a few scenarios granular RBAC helps you achieve:
 
 Granular RBAC controls data access such as querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformations, and data export. 
 
-## Key concepts to configure granular RBAC
+## Configure granular RBAC
 
 Understand the details of how to configure granular RBAC in Log Analytics. The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC.
 
@@ -50,12 +50,14 @@ For a step by step example, see [Getting started with granular RBAC in Log Analy
 
 To configure granular RBAC, you must create a custom role with required **actions** then assign the custom role with **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
 
-| Minimum required pand data actions are:
+The minimum required permissions for the custom role action and data actions are:
 
-- Actions: `Microsoft.OperationalInsights/workspaces/query/read`. This control action grants the permission to run queries in Log Analytics and see metadata, but doesn't grant access to data.
-- DataAction: `Microsoft.OperationalInsights/workspaces/tables/data/read`. This data action provides access to the data and is chosen in the role assignment condition. If no condition is set, access is granted to all data at the assigned scope.
+| Custom role component | Permission | Description |
+|---|---|---|
+| Control plane actions (Actions) |`Microsoft.OperationalInsights/workspaces/query/read` | This control action grants the permission to run queries in Log Analytics and see metadata, but doesn't grant access to data.|
+| Data plane actions (DataActions) | `Microsoft.OperationalInsights/workspaces/tables/data/read` | This data action provides access to the data and is chosen in the role assignment condition. If no condition is set, access is granted to all data at the assigned scope. |
 
-To include access via the Azure portal add the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
+Optionally, include access from the Azure portal by adding the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
  
 Granular RBAC, like Azure RBAC, is an additive model. Your effective permissions are the sum of your role assignments. For granular RBAC conditions to take effect, you must remove any role assignments with higher access privileges. 
 
@@ -73,18 +75,18 @@ Values are restricted with support for the following characters:
 
 Log Analytics granular RBAC supports table and column/value attributes:
 
-Attribute source | Display Name | Type | Description | Attribute Name
------------------|--------------|------|-------------|----------------
-Resource         | Table Name   | String | Table names used to grant/limit to. | Microsoft.OperationalInsights/workspaces/tables:\`<name\>`
-Resource         | Column value (Key is the column name) | Dictionary (Key-value) |Column name and value. Column name is the key. The data value in the column is the value. | Microsoft.OperationalInsights/workspaces/tables/record:\<key\>
+|Attribute source | Display Name | Type | Description | Attribute Name|
+|-----------------|--------------|------|-------------|----------------|
+|Resource         | Table Name   | String | Table names used to grant/limit to. | Microsoft.OperationalInsights/workspaces/tables:\`<name\>`|
+|Resource         | Column value (Key is the column name) | Dictionary (Key-value) |Column name and value. Column name is the key. The data value in the column is the value. | Microsoft.OperationalInsights/workspaces/tables/record:\<key\>|
 
 Here's an example screenshot of a granular RBAC role assignment condition:
 
 :::image type="content" source="media/granular-rbac-log-analytics/example-abac-role-assignment.png" alt-text="Screenshot showing an example role assignment condition for Log Analytics." lightbox="media/granular-rbac-log-analytics/example-abac-role-assignment.png":::
 
-Add conditions at the same scope as the role assignments you wish to set it for - table, workspace, or subscription. 
+Conditions should be added at the same scope - table, workspace, or subscription - as the role assignments you wish to set them for. 
 
-However, if you set a condition for a role assignment at the table level, two roles must be created as follows:
+However, if you set a condition for a role assignment at the table level, two roles must be created like this:
 - Role 1: Action: `Microsoft.OperationalInsights/workspaces/query/read` for the table's workspace.  
 - Role 2: DataAction: `Microsoft.OperationalInsights/workspaces/tables/data/read` for the table within this workspace. Define the condition on the role with the data action.  
 
