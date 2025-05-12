@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting Guide - Azure Monitor issues and investigations (preview)
+title: Troubleshooting guide - Azure Monitor issues and investigations (preview)
 description: This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 ms.topic: conceptual
 ms.servce: azure-monitor
@@ -7,7 +7,7 @@ ms.reviewer: enauerman
 ms.date: 05/08/2025
 ---
 
-# Troubleshooting Guide: Azure Monitor issues and investigations (preview)
+# Troubleshooting guide: Azure Monitor issues and investigations (preview)
 
 This article provides troubleshooting guidance for Azure Monitor issues and investigations. The article explains the causes of these problems and offers steps to address them. It also includes links to related Azure Monitor documentation for further reference.
 
@@ -17,13 +17,13 @@ You must have the *Issue Contributor, Monitoring Contributor, or Contributor* ro
 
 If you don't have permission, you won't be able to create an issue or run an investigation, and you should consult with your system administrator.
 
-:::image type="content" source="media/diagnostics-and-troubleshooting-no-access.png" alt-text="screenshot of no access" lightbox="media/diagnostics-and-troubleshooting-no-access.png":::
+:::image type="content" source="media/diagnostics-and-troubleshooting-no-access.png" alt-text="Screenshot of no access." lightbox="media/diagnostics-and-troubleshooting-no-access.png":::
 
 ## No findings
 
 When an investigation is run, you might receive a *No findings* result. This result isn't a problem – it just means the investigation didn't detect any anomalies in the metrics, logs, or other monitored data. It's important to remember that this result doesn't necessarily indicate the absence of underlying issues, but rather that the current data doesn't reveal any obvious problems.
 
-:::image type="content" source="media/troubleshooting-no-findings.png" alt-text="screenshot of no findings message" lightbox="media/troubleshooting-no-findings.png":::
+:::image type="content" source="media/troubleshooting-no-findings.png" alt-text="Screenshot of no findings message." lightbox="media/troubleshooting-no-findings.png":::
 
 ## OpenAI issue
 

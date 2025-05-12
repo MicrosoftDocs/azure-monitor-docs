@@ -19,7 +19,7 @@ This article helps guide you through getting started with Azure Monitor issues a
 - Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
 - Learn about the [responsible use](aiops-issue-and-investigation-responsible-use.md) of Azure Monitor investigations.
 - Identify an alert fired on an Application Insights resource to investigate.
-- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the resource you’re investigating. For more informtion about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor, or Issue Contributor* role on the resource you’re investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## Ways to start an investigation on an alert
 
@@ -30,7 +30,7 @@ There are two ways to start an investigation on an alert:
     2.  From the **Alerts** page, select the alert that you want to investigate.
     3.  In the alert details pane, select **Investigate (preview)**.
     
-    :::image type="content" source="media/investigate-an-alert.png" alt-text="screenshot of alerts screen with investigate an alert link" lightbox="media/investigate-an-alert.png":::
+    :::image type="content" source="media/investigate-an-alert.png" alt-text="Screenshot of alerts screen with investigate an alert link." lightbox="media/investigate-an-alert.png":::
 
 1.  From the alert email notification: Alternatively, you can select **Investigate** from the email notification about an alert. An issue is created, and the investigation begins.
 

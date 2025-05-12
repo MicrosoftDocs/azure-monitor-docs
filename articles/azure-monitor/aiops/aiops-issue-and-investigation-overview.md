@@ -5,11 +5,12 @@ ms.topic: conceptual
 ms.servce: azure-monitor
 ms.reviewer: enauerman
 ms.date: 05/08/2025
+ms.custom: references_regions
 ---
 
 # Azure Monitor issues and investigations (preview)
 
-Azure Monitor issues and ionvestigations (preview) are new AIOps capabilities that automate the troubleshooting processes for [Azure monitor alerts](/azure/azure-monitor/alerts/alerts-overview).
+Azure Monitor issues and investigations (preview) are new AIOps capabilities that automate the troubleshooting processes for [Azure monitor alerts](/azure/azure-monitor/alerts/alerts-overview).
 
 This article explains what Azure Monitor issues and investigations (preview) are and how they are used to triage and mitigate problems with an Azure resource.
 
@@ -24,13 +25,13 @@ An issue presents an overview, the investigation, details about the alerts, and 
 
 You can set the severity, status, and impact time of an issue.
 
-:::image type="content" source="media/issue-frame.png" alt-text="screenshot of issue" lightbox="media/issue-frame.png":::
+:::image type="content" source="media/issue-frame.png" alt-text="Screenshot of issue." lightbox="media/issue-frame.png":::
 
 ## What is an investigation?
 
 An investigation is an analysis of a set of findings within the context of an issue. The analysis uses AI-based, iterative triage and diagnostic processes. The investigation minimizes manual effort to enable faster and more accurate troubleshooting.
 
-Only the latest investigation is displayed. Users can edit the scope and impact time and run a new investigation. An investigation scans up to twp hours of telemetry from the issue impact time.
+Only the latest investigation is displayed. Users can edit the scope and impact time and run a new investigation. An investigation scans up to two hours of telemetry from the issue impact time.
 
 ### Findings
 
@@ -52,7 +53,7 @@ A finding contains a summary that can include:
 
 In addition to detecting anomalies, explanations are created based the metric dimensions, for example, the specific region or error code of the anomaly.
 
-:::image type="content" source="media/metric-anomalies.png" alt-text="screenshot of metric anomalies" lightbox="media/metric-anomalies.png":::
+:::image type="content" source="media/metric-anomalies.png" alt-text="Screenshot of metric anomalies." lightbox="media/metric-anomalies.png":::
 
 ### Application logs Analysis
 
@@ -70,17 +71,17 @@ The investigation scans the application logs for anomalies. The top three failur
 
 Provides actionable solutions and diagnostics based on abnormal telemetry from Azure support best practices, enhancing issue resolution efficiency.
 
-:::image type="content" source="media/diagnostics-and-troubleshooting.png" alt-text="screenshot of diagnostics and troubleshooting" lightbox="media/diagnostics-and-troubleshooting.png":::
+:::image type="content" source="media/diagnostics-and-troubleshooting.png" alt-text="Screenshot of diagnostics and troubleshooting." lightbox="media/diagnostics-and-troubleshooting.png":::
 
 ### Related Alerts
 
 Contains data from related, high-severity alerts on the issue scoped resource that occurred in the last 15 minutes. Those alerts are synced back to the issue and appear in the Alerts tab.
 
-:::image type="content" source="media/related-alerts.png" alt-text="screenshot of related alerts" lightbox="media/related-alerts.png":::
+:::image type="content" source="media/related-alerts.png" alt-text="Screenshot of related alerts." lightbox="media/related-alerts.png":::
 
 ### Resource Health
 
-Provides events data from [Azure Resource Health](/azure/service-health/resource-health-overview) about resource health degredation in the investigated period.
+Provides events data from [Azure Resource Health](/azure/service-health/resource-health-overview) about resource health degradation in the investigated period.
 
 ## Capabilities
 
@@ -92,7 +93,7 @@ Azure Monitor investigation makes suggestions for which resources to analyze bas
 
 An investigation also offers smart scoping for Application Insight resources. In this case, possible suspected resources are automatically identified by looking at the dependencies and the infrastructure where the service is running then includes them in the analysis. This happens during an investigation and the results are synced to the issue.
 
-:::image type="content" source="media/smart-scoping.png" alt-text="screenshot of smart scoping" lightbox="media/smart-scoping.png":::
+:::image type="content" source="media/smart-scoping.png" alt-text="Screenshot of smart scoping." lightbox="media/smart-scoping.png":::
 
 ## Issue and investigation initial workflow example
 
@@ -105,7 +106,7 @@ An investigation also offers smart scoping for Application Insight resources. In
 
 ## Regions
 
-These are the supported zure regions for issues and investigatation services:
+These are the supported Azure regions for issues and investigation services:
 
 | **Public preview region availability** |
 |----------------------------------------|
