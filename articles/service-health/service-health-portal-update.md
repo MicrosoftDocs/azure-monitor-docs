@@ -62,30 +62,30 @@ Health Advisories in Azure Service Health are notifications that inform users ab
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the health advisories window." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
 
 ## View and keep track of Security advisories
-This window lists all the current security advisories based on your subscription. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md)
+This window lists all the current security advisories based on your subscription. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md).
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-security.png" alt-text="A screenshot of the security advisories window." lightbox="media/service-health-portal-update/health-alerts-security.png":::
 
 
 ## See all Billing updates
-If you have access as a subscription owner or contributor, you see the billing updates on this window. For more information, see [In-Portal Billing](billing-elevated-access.md)
+If you have access as a subscription owner or contributor, you see the billing updates on this window. For more information, see [In-Portal Billing](billing-elevated-access.md).
 
 :::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates window." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
 
 
 ## See and manage your Resource health
-This page watches your resource and tells you if it's running as expected. There are links that open directly to information about the health of your selected resource. For more information, see [Resource Health overview](resource-health-overview.md)
+This page watches your resource and tells you if it's running as expected. There are links that open directly to information about the health of your selected resource. For more information, see [Resource Health overview](resource-health-overview.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health window." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
 ## View and sort Health alerts
 
 The Health Alerts window allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status. 
-<br>An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md)
+<br>An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md).
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts window filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 
-### Managing your information
+### Managing your account and information
 
 ##### Tenant and Subscription access
 Tenant access refers to the ability to view events that affect the entire organization, requiring tenant admin roles. Subscription access, on the other hand, allows users with appropriate permissions to view events specific to the resources within a particular subscription. Tenant-level events affect the whole organization, while subscription-level events are limited to the resources in that subscription. 
