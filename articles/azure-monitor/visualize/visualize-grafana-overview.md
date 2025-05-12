@@ -1,6 +1,6 @@
 ---
 title: Visualize with Grafana
-description: This document provides an overview of using Grafana with Azure Monitor, highlighting two approaches - Azure Monitor dashboards with Grafana for free, integrated visualization of Azure data in the Azure portal, and Managed Grafana for advanced features like external data sources, alerts, reports, and private networking. It includes a comparison table of features, pricing, and use cases, helping users choose the best solution for their needs.
+description: This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
 ms.topic: conceptual
 ms.reviewer: kayodeprinceMS
 ms.date: 05/06/2025
@@ -8,7 +8,7 @@ ms.date: 05/06/2025
 
 # Visualize with Grafana
 
-This document provides an overview of using Grafana with Azure Monitor, highlighting two approaches: Azure Monitor dashboards with Grafana for free, integrated visualization of Azure data in the Azure portal, and Managed Grafana for advanced features like external data sources, alerts, reports, and private networking. It includes a comparison table of features, pricing, and use cases, helping you choose the best solution for your needs.
+This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
 
 ## Dashboards with Grafana
 
@@ -32,11 +32,11 @@ You can access Azure Monitor dashboards with Grafana through the Azure portal fr
 
 You can create and edit dashboards and create your own copy to modify them without editing the original. You can also tag the dashboards.
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-azure-insights-applications.png" alt-text="dashboards with grafana azure insights application screenshot":::
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-azure-insights-applications.png" alt-text="Screenshot of dashboards with grafana azure insights application.":::
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" alt-text="dashboards with grafana kubernetes api server screenshot":::
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" alt-text="Screenshot of dashboards with grafana kubernetes api server.":::
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespacepods.png" alt-text="dashboards with grafana kubernetes namespacepds screenshot":::
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespacepods.png" alt-text="Screenshot of dashboards with grafana kubernetes namespacepods.":::
 
 ### Limitations
 
@@ -97,7 +97,7 @@ Choose managed Grafana if you need access to external data sources and automatio
 | Data Sources | Azure Monitor and Azure Prometheus | Azure Monitor, Azure Prometheus, Azure Data Explorer, [OSS data sources](/azure/managed-grafana/how-to-data-source-plugins-managed-identity?tabs=azure-portal), [Enterprise data sources](/azure/managed-grafana/how-to-grafana-enterprise) available with license |
 | Data source authentication | Current-user only | User-configurable: Current-user, Managed Identity, App registration |
 | Data source administration | N/A – depends on user RBAC roles | User-managed data sources |
-| Compute resources | SaaS | Dedicated VMSS |
+| Compute resources | SaaS | Dedicated virtual machine scale sets |
 | Grafana Enterprise | Not supported | Available with [license](/azure/managed-grafana/how-to-grafana-enterprise#update-a-grafana-enterprise-plan) |
 | Additional Plugins | Azure-managed only | Azure-managed, open-source, and optional third-party with Enterprise |
 | Grafana Alerts | Not supported | Supported |
@@ -106,7 +106,7 @@ Choose managed Grafana if you need access to external data sources and automatio
 | Private networking | Not supported | Private link and managed private endpoint |
 | Deterministic outbound IP | Not supported | Supported |
 | Zone redundancy | Enabled by default | Supported |
-| SLA | Not yet available | 99.9% availability |
+
 
 ## Next steps
 

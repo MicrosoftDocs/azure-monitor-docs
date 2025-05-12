@@ -1,14 +1,13 @@
 ---
 title: Use Azure Monitor Dashboards with Grafana
-description: This article provides guidance on using Azure Monitor dasbhoards with Grafana. It covers prerequisites, such as having Azure resources and appropriate RBAC roles, and explains how to use pre-existing dashboard templates, create new dashboards, and customize or edit dashboards. It also details importing dashboards from JSON files or the Grafana public gallery, saving copies of dashboards, and sharing them with others using RBAC configurations.
+description: This article explains how to use Azure Monitor dashboards with Grafana. It covers creating, editing, importing, and sharing dashboards for monitoring data.
 ms.topic: conceptual
 ms.reviewer: kayodeprinceMS
 ms.date: 05/06/2025
 ---
 
-# Use Azure Monitor Dashboards with Grafana
-
-This article provides guidance on using Azure Monitor dashboards with Grafana. It covers prerequisites, such as having Azure resources and appropriate RBAC roles, and explains how to use pre-existing dashboard templates, create new dashboards, and customize or edit dashboards. It also details importing dashboards from JSON files or the Grafana public gallery, saving copies of dashboards, and sharing them with others using RBAC configurations.
+# Use Azure Monitor dashboards with Grafana
+This article explains how to use Azure Monitor dashboards with Grafana. It covers creating, editing, importing, and sharing dashboards for monitoring data.
 
 ## Prerequisites
 
@@ -21,7 +20,7 @@ For more information about RBAC and assigning roles, see [Azure RBAC](/azure/rol
 
 Azure managed template dashboards are pre-provisioned and automatically updated dashboards for frequently used Azure resources and Azure Kubernetes Services. They help you get started quickly. The following steps are for using these Grafana dashboards that are already available in the Azure portal. Azure managed templates are identified with a tag.
 
-:::image type="content" source="media/visualizations-grafana/azure-managed-templates.png" alt-text="screenshot of azure managed template listing the gallery":::
+:::image type="content" source="media/visualizations-grafana/azure-managed-templates.png" alt-text="Screenshot of azure managed template listing the gallery.":::
 
 1.  Navigate to **Azure Monitor** in the Azure portal.
 1.  Select **Dashboards with Grafana (Preview)**.
@@ -90,7 +89,7 @@ Dashboards that you import or create require RBAC access configuration to share 
 
 1. Open the dashboard.
 1. Select **Share**. The Share Dashboard pane opens. Copy the link to the dashboard to your clipboard.
-1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is requred to edit the dashboard.
+1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is recquired for viewing the dashboard. **Contributor** is requred to edit the dashboard.
 1. Paste the link into your preferred communication method to share it with the intended people or groups.
 
 ## Use dashboards with Azure Kubernetes Service (AKS)
@@ -130,7 +129,7 @@ Azure Monitor dashboards with Grafana tags are managed using Azure tags. Open-so
 
 To add Dashboard tags to a saved dashboard, add or update the Azure tag with the key GrafanaDashboardTags with your tag names using commas to separate entries.
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-edit-tags.png" alt-text="screenshot of tagging interface":::
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-edit-tags.png" alt-text="Screenshot of tagging interface.":::
 
 Dashboards created or saved from the context of an Azure Kubernetes Service cluster automatically have the Azure tag *GrafanaDashboardResourceType: microsoft.ContainerService/managedClusters* added.  
 
