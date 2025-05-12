@@ -20,11 +20,13 @@ This article covers the following areas:
 
 * [**Cohorts**](#cohorts---analyze-a-specific-set-of-users-sessions-events-or-operations) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
 
-* [**Retention Analysis**](#user-retention-analysis) - ...
+* **Usage workbooks:**
 
-* [**Impact Analysis**](#impact-analysis---discover-how-different-properties-influence-conversion-rates) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+    * [**User Retention Analysis**](#user-retention-analysis) - Track the frequency and patterns of users returning to your application and their interactions with specific features.
 
-* [**HEART**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
+    * [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+
+    * [**HEART**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
 
 ## Collect browser telemetry
 
@@ -109,46 +111,6 @@ Find out when people use your web app, what pages they're most interested in, wh
 
 * The **Sessions** report tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour.
 
-## User retention analysis
-
-The Application Insights retention feature provides valuable insights into user engagement by tracking the frequency and patterns of users returning to your app and their interactions with specific features. It enables you to compare user behaviors, such as the difference in return rates between users who win or lose a game, offering actionable data to enhance user experience and inform business strategies.
-
-By analyzing cohorts of users based on their actions within a given timeframe, you can identify which features drive repeat usage. This knowledge can help you:
-
-* Understand what specific features cause users to come back more than others.
-* Determine whether retention is a problem in your product.
-* Form hypotheses based on real user data to help you improve the user experience and your business strategy.
-
-:::image type="content" source="./media/usage-overview/retention.png" alt-text="Screenshot that shows the Retention workbook, which displays information about how often users return to use their app." lightbox="./media/usage-overview/retention.png":::
-
-You can use the retention controls on top to define specific events and time ranges to calculate retention. The graph in the middle gives a visual representation of the overall retention percentage by the time range specified. The graph on the bottom represents individual retention in a specific time period. This level of detail allows you to understand what your users are doing and what might affect returning users on a more detailed granularity.
-
-For more information about the Retention workbook, see the section below.
-
-#### The retention workbook
-
-To use the retention workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Retention Analysis** workbook listed under the **Usage** category.
-
-**Workbook capabilities:**
-
-* By default, retention shows all users who did anything and then came back and did anything else over a defined period. You can select different combinations of events to narrow the focus on specific user activities.
-
-* To add one or more filters on properties, select **Add Filters**. For example, you can focus on users in a particular country or region.
-
-* The **Overall Retention** chart shows a summary of user retention across the selected time period.
-
-* The grid shows the number of users retained. Each row represents a cohort of users who performed any event in the time period shown. Each cell in the row shows how many of that cohort returned at least once in a later period. Some users might return in more than one period.
-
-* The insights cards show the top five initiating events and the top five returned events. This information gives users a better understanding of their retention report.
-
-    :::image type="content" source="./media/usage-retention/retention-2.png" alt-text="Screenshot that shows the Retention workbook showing the User returned after number of weeks chart." lightbox="./media/usage-retention/retention-2.png":::
-
-#### Use business events to track retention
-
-You should measure events that represent significant business activities to get the most useful retention analysis.
-
-For more information and example code, see the section below.
-
 ### Track user interactions with custom events
 
 To understand user interactions in your app, insert code lines to log custom events. These events track various user actions, like button selections, or important business events, such as purchases or game victories.
@@ -183,7 +145,7 @@ You can attach property values to these events so that you can filter or split t
 
 Learn more about [custom events](./api-custom-events-metrics.md#trackevent) and [properties](./api-custom-events-metrics.md#properties).
 
-#### Slice and dice events
+#### Slice and dice custom events
 
 In the Users, Sessions, and Events tools, you can slice and dice custom events by user, event name, and properties.
 
@@ -347,8 +309,13 @@ If you want to see more steps in the visualization, use the **Previous steps** a
 
 ### Use cases
 
+> [!NOTE]
+> Select one of the below use cases to expand the section.
+
+<br>
+
 <details>
-<summary>After users visit a page or feature, where do they go and what do they select?</summary>
+<summary><b>After users visit a page or feature, where do they go and what do they select?</b></summary>
 
 :::image type="content" source="./media/usage-flows/one-step.png" lightbox="./media/usage-flows/one-step.png" alt-text="Screenshot that shows using User Flows to understand where users select.":::
 
@@ -364,7 +331,7 @@ If your selected initial event is **Added Item to Shopping Cart**, for example, 
 <br>
 
 <details>
-<summary>Where are the places that users churn most from your site?</summary>
+<summary><b>Where are the places that users churn most from your site?</b></summary>
 
 Watch for **Session Ended** nodes that appear high up in a column in the visualization, especially early in a flow. This positioning means many users probably churned from your site after they followed the preceding path of pages and UI interactions.
 
@@ -376,7 +343,7 @@ Keep in mind that **Session Ended** nodes are based only on telemetry collected 
 <br>
 
 <details>
-<summary>Are there places where users repeat the same action over and over?</summary>
+<summary><b>Are there places where users repeat the same action over and over?</b></summary>
 
 Look for a page view or custom event that's repeated by many users across subsequent steps in the visualization. This activity usually means that users are performing repetitive actions on your site. If you find repetition, think about changing the design of your site or adding new functionality to reduce repetition. For example, you might add bulk edit functionality if you find users performing repetitive actions on each row of a table element.
 </details>
@@ -385,17 +352,24 @@ Look for a page view or custom event that's repeated by many users across subseq
 
 A cohort is a set of users, sessions, events, or operations that have something in common. In Application Insights, cohorts are defined by an analytics query. In cases where you have to analyze a specific set of users or events repeatedly, cohorts can give you more flexibility to express exactly the set you're interested in.
 
+> [!NOTE]
+> After cohorts are created, they're available from the Users, Sessions, Events, and User Flows tools.
+
 ### Cohorts vs basic filters
 
 You can use cohorts in ways similar to filters. But cohorts' definitions are built from custom analytics queries, so they're much more adaptable and complex. Unlike filters, you can save cohorts so that other members of your team can reuse them.
 
 You might define a cohort of users who have all tried a new feature in your app. You can save this cohort in your Application Insights resource. It's easy to analyze this saved group of specific users in the future.
 
+### Use cases
+
 > [!NOTE]
-> After cohorts are created, they're available from the Users, Sessions, Events, and User Flows tools.
+> Select one of the below use cases to expand the section.
+
+<br>
 
 <details>
-<summary>Example: Engaged users</summary>
+<summary><b>Example: Engaged users</b></summary>
 
 Your team defines an engaged user as anyone who uses your app five or more times in a given month. In this section, you define a cohort of these engaged users.
 
@@ -420,7 +394,6 @@ Your team defines an engaged user as anyone who uses your app five or more times
    > Give your cohort a name, like *Engaged Users (5+ Days)*. Save it to *My reports* or *Shared reports*, depending on whether you want other people who have access to this Application Insights resource to see this cohort.
 
 1. Select **Back to Gallery**.
-</details>
 
 #### What can you do by using this cohort?
 
@@ -434,9 +407,12 @@ Important points to notice:
 * You can further filter this cohort by using the normal filters in the Users tool. Although the cohort is defined on 28-day windows, you can still adjust the time range in the Users tool to be 30, 60, or 90 days.
 
 These filters support more sophisticated questions that are impossible to express through the query builder. An example is *people who were engaged in the past 28 days. How did those same people behave over the past 60 days?*
+</details>
+
+<br>
 
 <details>
-<summary>Example: Events cohort</summary>
+<summary><b>Example: Events cohort</b></summary>
 
 You can also make cohorts of events. In this section, you define a cohort of events and page views. Then you see how to use them from the other tools. This cohort might define a set of events that your team considers *active usage* or a set related to a certain new feature.
 
@@ -447,8 +423,10 @@ You can also make cohorts of events. In this section, you define a cohort of eve
 1. Save the cohort and give it a name.
 </details>
 
+<br>
+
 <details>
-<summary>Example: Active users where you modify a query</summary>
+<summary><b>Example: Active users where you modify a query</b></summary>
 
 The previous two cohorts were defined by using dropdown boxes. You can also define cohorts by using analytics queries for total flexibility. To see how, create a cohort of users from the United Kingdom.
 
@@ -479,9 +457,49 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 1. Save and name the cohort.
 </details>
 
+## Usage workbooks
 
+### User Retention Analysis
 
-## Impact Analysis - Discover how different properties influence conversion rates
+The Application Insights retention feature provides valuable insights into user engagement by tracking the frequency and patterns of users returning to your app and their interactions with specific features. It enables you to compare user behaviors, such as the difference in return rates between users who win or lose a game, offering actionable data to enhance user experience and inform business strategies.
+
+By analyzing cohorts of users based on their actions within a given timeframe, you can identify which features drive repeat usage. This knowledge can help you:
+
+* Understand what specific features cause users to come back more than others.
+* Determine whether retention is a problem in your product.
+* Form hypotheses based on real user data to help you improve the user experience and your business strategy.
+
+:::image type="content" source="./media/usage-overview/retention.png" alt-text="Screenshot that shows the Retention workbook, which displays information about how often users return to use their app." lightbox="./media/usage-overview/retention.png":::
+
+You can use the retention controls on top to define specific events and time ranges to calculate retention. The graph in the middle gives a visual representation of the overall retention percentage by the time range specified. The graph on the bottom represents individual retention in a specific time period. This level of detail allows you to understand what your users are doing and what might affect returning users on a more detailed granularity.
+
+For more information about the Retention workbook, see the section below.
+
+#### The user retention analysis workbook
+
+To use the retention workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Retention Analysis** workbook listed under the **Usage** category.
+
+**Workbook capabilities:**
+
+* By default, retention shows all users who did anything and then came back and did anything else over a defined period. You can select different combinations of events to narrow the focus on specific user activities.
+
+* To add one or more filters on properties, select **Add Filters**. For example, you can focus on users in a particular country or region.
+
+* The **Overall Retention** chart shows a summary of user retention across the selected time period.
+
+* The grid shows the number of users retained. Each row represents a cohort of users who performed any event in the time period shown. Each cell in the row shows how many of that cohort returned at least once in a later period. Some users might return in more than one period.
+
+* The insights cards show the top five initiating events and the top five returned events. This information gives users a better understanding of their retention report.
+
+    :::image type="content" source="./media/usage-retention/retention-2.png" alt-text="Screenshot that shows the Retention workbook showing the User returned after number of weeks chart." lightbox="./media/usage-retention/retention-2.png":::
+
+#### Use business events to track retention
+
+You should measure events that represent significant business activities to get the most useful retention analysis.
+
+For more information and example code, see the section below.
+
+### User Impact Analysis
 
 Impact Analysis discovers how any dimension of a page view, custom event, or request affects the usage of a different page view or custom event.
 
@@ -492,7 +510,7 @@ Analyzing performance is only a subset of Impact's capabilities. Impact supports
 > [!NOTE]
 > Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your app to collect page views automatically with the Application Insights JavaScript SDK](./javascript.md). Also, because you're analyzing correlation, sample size matters.
 
-### Impact analysis workbook
+#### The user impact analysis workbook
 
 To use the impact analysis workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Impact Analysis** workbook listed under the **Usage** category.
 
@@ -505,7 +523,7 @@ To use the impact analysis workbook in Application Insights, navigate to the **W
 1. From the  **Impacting event** dropdown list, select an event.
 1. To add a filter, use the **Add selected event filters** tab or the **Add impacting event filters** tab.
 
-### Is page load time affecting how many people convert on my page?
+#### Is page load time affecting how many people convert on my page?
 
 To begin answering questions with the Impact workbook, choose an initial page view, custom event, or request.
 
@@ -517,11 +535,11 @@ To begin answering questions with the Impact workbook, choose an initial page vi
 
    :::image type="content" source="./media/usage-impact/impact.png" alt-text="Screenshot that shows an example with the selected event as Home Page analyzed by duration." lightbox="./media/usage-impact/impact.png":::
 
-### What if I'm tracking page views or load times in custom ways?
+#### What if I'm tracking page views or load times in custom ways?
 
 Impact supports both standard and custom properties and measurements. Use whatever you want. Instead of duration, use filters on the primary and secondary events to get more specific.
 
-### Do users from different countries or regions convert at different rates?
+#### Do users from different countries or regions convert at different rates?
 
 1. From the **Selected event** dropdown list, select an event.
 
@@ -531,7 +549,7 @@ Impact supports both standard and custom properties and measurements. Use whatev
 
    :::image type="content" source="./media/usage-impact/regions.png" alt-text="Screenshot that shows an example with the selected event as GET analyzed by country and region." lightbox="./media/usage-impact/regions.png":::
 
-### How does the Impact analysis workbook calculate these conversion rates?
+#### How does the Impact analysis workbook calculate these conversion rates?
 
 Under the hood, the Impact analysis workbook relies on the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient). Results are computed between -1 and 1. The coefficient -1 represents a negative linear correlation and 1 represents a positive linear correlation.
 
@@ -549,7 +567,7 @@ Sessions are then broken into two different kinds of *subsessions* based on one 
 
 How Impact is ultimately calculated varies based on whether we're analyzing by metric or by dimension. For metrics, all *A*s in a subsession are averaged. For dimensions, the value of each *A* contributes *1/N* to the value assigned to *B*, where *N* is the number of *A*s in the subsession.
 
-## HEART - Five dimensions of customer experience
+### HEART - Five dimensions of customer experience
 
 This section describes how to enable and use the HEART Workbook in Azure Monitor. The HEART workbook is based on the HEART measurement framework, which was originally introduced by Google. Several Microsoft internal teams use HEART to deliver better software.
 
@@ -680,8 +698,8 @@ Engagement is a measure of user activity. Specifically, user actions are intenti
 
 Measuring engagement can vary based on the type of product being used. For example, a product like Microsoft Teams is expected to have a high daily usage, which makes it an important metric to track. But for a product like a paycheck portal, measurement might make more sense at a monthly or weekly level.
 
->[!IMPORTANT]
->A user who performs an intentional action, such as clicking a button or typing an input, is counted as an active user. For this reason, engagement metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
+> [!IMPORTANT]
+> A user who performs an intentional action, such as clicking a button or typing an input, is counted as an active user. For this reason, engagement metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
 
 #### Adoption
 
@@ -700,8 +718,8 @@ A retained user is a user who was active in a specified reporting period and its
 | Retained users | Count of active users who were also active the previous period                      | How many users are staying engaged with the product?        |
 | Retention      | Proportion of active users from the previous period who are also active this period | What percent of users are staying engaged with the product? |
 
->[!IMPORTANT]
->Because active users must have at least one telemetry event with an action type, retention metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
+> [!IMPORTANT]
+> Because active users must have at least one telemetry event with an action type, retention metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
 
 #### Task success
 
@@ -719,8 +737,8 @@ A successful task meets three requirements:
 
 A task is considered unsuccessful if any of the preceding requirements isn't met.
 
->[!IMPORTANT]
->Task success metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
+> [!IMPORTANT]
+> Task success metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
 
 Set up a custom task by using the following parameters.
 
