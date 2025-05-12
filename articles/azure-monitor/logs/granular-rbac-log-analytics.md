@@ -7,7 +7,6 @@ ms.reviewer: rofrenke
 ms.topic: conceptual 
 ms.date: 05/08/2025
 
-
 # Customer intent: As an Azure administrator, I want to understand how to use attribute-based RBAC in Log Analytics
 ---
 
@@ -17,6 +16,7 @@ Granular RBAC in Azure Monitor Log Analytics allows you to filter workspace data
 - Row level access
 - Table level access
 - Least privilege access instead of trusting inherited read permissions
+
 If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy or compliance - granular RBAC helps simplify by reducing the number of workspaces required.
 
 ### Prerequisites
@@ -36,15 +36,11 @@ Granular RBAC controls data access such as querying data. It doesn't address con
 
 ## Configure granular RBAC
 
-Understand the details of how to configure granular RBAC in Log Analytics. The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC.
+The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. For a step by step example, see [Getting started with granular RBAC in Log Analytics](./getting-started-abac-for-log-analytics.md).
 
 - [Role creation](#role-creation)
 - [Conditions and expressions](#conditions-and-expressions)
 - [ABAC expression operators](#abac-expression-operators)
-
-Once you understand these concepts, configure granular RBAC for your Log Analytics workspace. 
-
-For a step by step example, see [Getting started with granular RBAC in Log Analytics](./getting-started-abac-for-log-analytics.md).
 
 ### Role creation
 
@@ -52,10 +48,10 @@ To configure granular RBAC, you must create a custom role with required **action
 
 The minimum required permissions for the custom role action and data actions are:
 
-| Custom role component | Permission | Description |
+| Custom role definition | Permission | Description |
 |---|---|---|
-| Control plane actions (Actions) |`Microsoft.OperationalInsights/workspaces/query/read` | This control action grants the permission to run queries in Log Analytics and see metadata, but doesn't grant access to data.|
-| Data plane actions (DataActions) | `Microsoft.OperationalInsights/workspaces/tables/data/read` | This data action provides access to the data and is chosen in the role assignment condition. If no condition is set, access is granted to all data at the assigned scope. |
+| Control plane actions (Actions) |`Microsoft.OperationalInsights/workspaces/query/read` | Run queries in Log Analytics and see metadata. This permission doesn't grant access to data. |
+| Data plane actions (DataActions) | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Access to the data and is the `dataaction` chosen in the role assignment condition. If no condition is set, this permission grants access to all data at the assigned scope. |
 
 Optionally, include access from the Azure portal by adding the `Microsoft.OperationalInsights/workspaces/read` control action. For more information, see [Azure RBAC control and data actions](/azure/role-based-access-control/role-definitions#control-data-actions).
  
