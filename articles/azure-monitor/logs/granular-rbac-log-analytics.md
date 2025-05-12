@@ -24,7 +24,7 @@ If your Log Analytics architecture includes multiple workspaces to accommodate d
 
 | Action | Permission required |
 |---|---|
-| Configure a custom role | `Microsoft.Authorization/roleAssignments/write` permission to the Log Analytics workspace, for example, as provided by the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged?branch=main#role-based-access-control-administrator) |
+| Configure a custom role | `Microsoft.Authorization/roleAssignments/write` permission to the Log Analytics workspace, for example, as provided by the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) |
 
 ## When to use granular RBAC?
 
@@ -62,7 +62,12 @@ For example, if a you have two role assignments on the same scope, one set with 
 
 ### Conditions and expressions
 
-Conditions tell your role assignment to finely tune the access control. Granular RBAC allows you to set a condition on tables and records, based on the data in each record. For example, restrict access to application logs so that users can only see records where the `application id` column is an application they are allowed to access.
+Conditions tell your role assignment to finely tune the access control. Granular RBAC allows you to set a condition on tables and records, based on the data in each record. Plan restrictions based on these two strategies:
+
+| Access control method | Example |
+|---|---|
+| No access to data, except what is allowed | Restrict access to application logs so that users can only see records where the `application id` column is an application they are allowed to access. |
+| Access to all data, except what is not allowed | Allow access to all sign-in logs, except for the records where the `userPrincipalName` column is the CEO. |
 
 A condition consists of the **data action** of the role and **expressions**. An expression is a logic statement with the format of `Attribute` `Operator` `Value`.
 
@@ -77,7 +82,7 @@ Log Analytics granular RBAC supports table and column/value attributes:
 |Resource         | Table Name   | String | Table names used to grant/limit to. | Microsoft.OperationalInsights/workspaces/tables:\`<name\>`|
 |Resource         | Column value (Key is the column name) | Dictionary (Key-value) |Column name and value. Column name is the key. The data value in the column is the value. | Microsoft.OperationalInsights/workspaces/tables/record:\<key\>|
 
-Here's an example screenshot of a granular RBAC role assignment condition:
+Here's an example screenshot of a granular RBAC role assignment condition using the *No access to data, except what is allowed* method.
 
 :::image type="content" source="media/granular-rbac-log-analytics/example-abac-role-assignment.png" alt-text="Screenshot showing an example role assignment condition for Log Analytics." lightbox="media/granular-rbac-log-analytics/example-abac-role-assignment.png":::
 
