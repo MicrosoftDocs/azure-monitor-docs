@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 05/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Subscriptions
@@ -47,5 +47,23 @@ Recommendation ID: a58fd47f-d7b9-49dc-b763-c511d8774639
 
 
 <!--a58fd47f-d7b9-49dc-b763-c511d8774639_end-->
+
+<!--f52ed1b8-9d60-469c-b1d8-b671043fe264_begin-->
+
+#### Upgrade to latest version of carbon optimization API  
+  
+Upgrade the carbon optimization API version to 2025-04-01 for updated features and access to a more scalable API. The newer version improves performance and efficiency while managing carbon optimization tasks.  
+  
+**Potential benefits**: Access to new features and a more scalable API.  
+
+**Impact:** Low
+  
+For more information, see [Azure Carbon Optimization REST APIs (Preview)](/rest/api/carbon/)  
+
+ResourceType: microsoft.subscriptions/subscriptions  
+Recommendation ID: f52ed1b8-9d60-469c-b1d8-b671043fe264  
+
+
+<!--f52ed1b8-9d60-469c-b1d8-b671043fe264_end-->
 
 <!--articleBody-->

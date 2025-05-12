@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/08/2025
+ms.date: 05/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -110,5 +110,23 @@ Recommendation ID: fac2ad84-1421-4dd3-8477-9d6e605392b4
 Subcategory: HighAvailability
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_end-->
+
+<!--9f3263db-b9c0-43bb-8523-6800f9f50793_begin-->
+
+#### Configure and deploy Azure Kubernetes Service (AKS) and related resources to use availability zones  
+  
+The availability zones in Azure regions ensure high availability by offering independent locations. An availability zone is equipped with independent power, cooling, and networking to ensure applications and data are protected from datacenter-level failures.  
+  
+**Potential benefits**: Improved availability and reliability  
+
+**Impact:** High
+  
+For more information, see [Availability Zones in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/availability-zones?toc=%2Fazure%2Freliability%2Ftoc.json&bc=%2Fazure%2Freliability%2Fbreadcrumb%2Ftoc.json)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 9f3263db-b9c0-43bb-8523-6800f9f50793  
+Subcategory: HighAvailability
+
+<!--9f3263db-b9c0-43bb-8523-6800f9f50793_end-->
 
 <!--articleBody-->
