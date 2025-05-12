@@ -1,37 +1,40 @@
 ---
-title: Getting started with granular RBAC in Log Analytics
-description: Learn how to use granular row-level access control in Log Analytics.
+title: How to Configure Granular RBAC (Preview)
+titleSuffix: Azure Monitor Log Analytics
+description: Learn how to use granular RBAC in Azure Monitor Log Analytics including a step-by-step example of configuring row-level access.
 services: azure-monitor
 sub-service: logs
 ms.reviewer: rofrenke
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 05/12/2025
 
 
 # Customer intent: As an Azure administrator, I want to understand how to use granular RBAC in Log Analytics for the use case scenario of separating custom log table access at the row level.
 ---
 
-Granular Access Control for Logs: Many users emphasize the need for granular access control to logs based on roles, departments, and geographical locations. This includes scenarios like restricting HR personnel to employee data or limiting access to logs by country or department
-Custom Log Tables and Fields: Several scenarios involve the use of custom log tables (e.g., _CL) and fields (e.g., _CF) to enforce row-level access. Users aim to segregate data based on attributes like device type, subscription ID, or specific identifiers.
+# Configure granular RBAC (Preview) in Azure Monitor
 
-# Getting started with granular RBAC in Log Analytics
+Granular role-based access control (RBAC) is a feature of Azure Monitor Log Analytics that implements fine-grained data access control. 
 
-Granular RBAC (Roles Based Access Control) is a feature of Log Analytics that implements Azure ABAC for fine-grained data access control. 
+Learn how to control access to logs based on roles, departments, and geographical locations. This includes scenarios like restricting HR personnel to employee data or limiting access to logs by country or department. 
 
-This article helps you get started defining ABAC conditions in Log Analytics using the Azure portal.
+In this example scenario, custom log tables and fields are used to enforce row-level access. Data is segregated based on attributes like device type and user principal name (UPN).
 
-
-## Quickstart scenario
-
-In this quick start guide, we implement row-level access control in Log Analytics. We set conditions for a group of operations users as follows:
-- The users can only access sign in logs.
-- The users can't access sign in logs of company's CEO as identified by the user principal name johndoe@contoso.com.
+This article is a step-by-step example of defining granular RBAC conditions in Log Analytics using the Azure portal. For more information about granular RBAC concepts, see [Granular role-based access control (RBAC) in Azure Monitor](granular-rbac-log-analytics.md).
 
 ## Prerequisites
 
-- An Azure Log Analytics workspace
-- An Azure user with permissions to manage the Log Analytics workspace: `Microsoft.OperationalInsights/workspaces/tables/data/read `
+The following prerequisites are required to complete this scenario:
 
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- An Azure Log Analytics workspace (optionally enabled for Microsoft Sentinel) with custom log tables and fields.
+- A role assigned to your account giving permission to create custom roles and assign them to users or groups like the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/#role-based-access-control-administrator) or [User Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator).
+
+## Scenario
+
+In this scenario, we implement row-level access control in Log Analytics. We set conditions for a group of operations users as follows:
+- The users can only access sign in logs.
+- The users can't access sign in logs of company's CEO as identified by the user principal name johndoe@contoso.com.
 
 ## Create custom role with ABAC conditions
 

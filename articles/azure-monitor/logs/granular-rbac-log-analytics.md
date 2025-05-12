@@ -1,5 +1,6 @@
 ---
-title: Granular RBAC in Azure Monitor
+title: Granular RBAC (Preview)
+titleSuffix: Azure Monitor Log Analytics
 description: Granular RBAC in Log Analytics enables you to define data access in a fine-grained manner.
 services: azure-monitor
 sub-service: logs
@@ -36,7 +37,7 @@ Granular RBAC controls data access such as querying data. It doesn't address con
 
 ## Configure granular RBAC
 
-The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. For a step by step example, see [Getting started with granular RBAC in Log Analytics](./getting-started-abac-for-log-analytics.md).
+The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. For a step by step example, see [Configure granular RBAC](granular-rbac-use-case.md).
 
 - [Role creation](#role-creation)
 - [Conditions and expressions](#conditions-and-expressions)
