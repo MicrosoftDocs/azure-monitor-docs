@@ -36,7 +36,7 @@ You can create and edit dashboards and create your own copy to modify them witho
 
 :::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-api-server.png" alt-text="Screenshot of dashboards with grafana kubernetes api server.":::
 
-:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespacepods.png" alt-text="Screenshot of dashboards with grafana kubernetes namespacepods.":::
+:::image type="content" source="media/visualizations-grafana/dashboards-with-grafana-kubernetes-compute-resources-namespace-pods.png" alt-text="Screenshot of dashboards with grafana kubernetes namespace pods.":::
 
 ### Limitations
 
