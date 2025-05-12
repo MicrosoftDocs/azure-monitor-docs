@@ -8,25 +8,29 @@ ms.reviewer: mmcc
 
 # Usage analysis with Application Insights
 
-[Application Insights](app-insights-overview.md) is a powerful observability tool that collects telemetry data to show how users interact with your application. This includes information about which features are most popular, if users achieve their goals, where they drop off, and whether they return later. These insights help you understand user behavior, identify areas for improvement, and measure the impact of recent changes, allowing you to make data-driven decisions about your next development cycles.
+[Application Insights](app-insights-overview.md) is a powerful observability tool that collects telemetry data to show how users interact with your application. This includes information about which features are most popular, if users achieve their goals, where they drop off, and whether they return later.
+
+These insights help you understand user behavior, identify areas for improvement, and measure the impact of recent changes, allowing you to make data-driven decisions about your next development cycles.
 
 This article covers the following areas:
 
-* [**Users, Sessions & Events**](#users-sessions-and-events---analyze-telemetry-from-three-perspectives) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
+**Experiences**
 
-* [**Funnels**](#funnels---discover-how-customers-use-your-application) - Understand how users progress through a series of steps in your application and where they might be dropping off.
+* [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
 
-* [**User Flows**](#user-flows---analyze-user-navigation-patterns) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
+* [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application and where they might be dropping off.
 
-* [**Cohorts**](#cohorts---analyze-a-specific-set-of-users-sessions-events-or-operations) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
+* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
 
-* **Usage workbooks:**
+* [**Cohorts**](#cohorts) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
 
-    * [**User Retention Analysis**](#user-retention-analysis) - Track the frequency and patterns of users returning to your application and their interactions with specific features.
+**Workbooks**
 
-    * [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+* [**User Retention Analysis**](#user-retention-analysis) - Track the frequency and patterns of users returning to your application and their interactions with specific features.
 
-    * [**HEART**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
+* [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+
+* [**HEART Analysis**](#heart) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
 
 ## Collect browser telemetry
 
@@ -47,24 +51,29 @@ To verify if browser telemetry is being collected, run your project in debug mod
 >
 > This dual implementation enables telemetry collection from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
-## Users, Sessions, and Events - Analyze telemetry from three perspectives
+## Users, Sessions, and Events
 
-Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features.
+Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features. Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
 
-* **Users tool**: How many people used your app and its features? Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers or machines will be counted as more than one user.
+* **Users tool**: Counts the numbers of unique users that access your pages within your chosen time periods. Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers or machines will be counted as more than one user.
 
-* **Sessions tool**: How many sessions of user activity have included certain pages and features of your app? A session is reset after half an hour of user inactivity, or after 24 hours of continuous use.
+* **Sessions tool**: Tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour or after 24 hours of continuous use.
 
 * **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you've [instrumented it](javascript-sdk.md).
 
     A custom event represents one occurrence of something happening in your application. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](opentelemetry-add-modify.md#send-custom-events) or use the [Click Analytics](javascript-feature-extensions.md) extension.
+
+> [!IMPORTANT]
+> If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
 
 > [!NOTE]
 > For information on an alternative to using anonymous IDs and ensuring an accurate count, see the documentation for [authenticated IDs](data-model-complete.md#context).
 
 ### Query for certain users, sessions, or events
 
-Explore different groups of users, sessions, or events by adjusting the query options at the top of each pane:
+Explore different groups of users, sessions, or events by adjusting the query options at the top of each pane.
+
+:::image type="content" source="media/usage/users.png" lightbox="media/usage/users.png" alt-text="Screenshot that shows the Users tab with a bar chart." :::
 
 | Option          | Description                                                                                                                               |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -98,24 +107,9 @@ Clicking **View More Insights** displays the following information:
 
 ---
 
-### Explore usage demographics and statistics
-
-Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
-
-:::image type="content" source="media/usage-overview/users.png" alt-text="Screenshot that shows the Users tab with a bar chart." lightbox="media/usage-overview/users.png":::
-
-* The **Users** report counts the numbers of unique users that access your pages within your chosen time periods. For web apps, users are counted by using cookies.
-
-    > [!IMPORTANT]
-    > If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
-
-* The **Sessions** report tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour.
-
 ### Track user interactions with custom events
 
-To understand user interactions in your app, insert code lines to log custom events. These events track various user actions, like button selections, or important business events, such as purchases or game victories.
-
-You can also use the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) to collect custom events.
+To understand user interactions in your app, use custom events. These events can track various user actions like button selections or important business events such as purchases or game accomplishments.
 
 > [!TIP]
 > When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your app from the start.
@@ -124,14 +118,17 @@ In some cases, page views can represent useful events, but it isn't true in gene
 
 With specific business events, you can chart your users' progress through your site. You can find out their preferences for different options and where they drop out or have difficulties. With this knowledge, you can make informed decisions about the priorities in your development backlog.
 
-Events can be logged from the client side of the app:
+You can attach property values to these events so that you can filter or split the events when you inspect them in the portal. A standard set of properties is also attached to each event, such as anonymous user ID, which allows you to trace the sequence of activities of an individual user.
+
+Events can be logged from the client side of the app using the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) or `trackEvent`:
 
 ```javascript
 appInsights.trackEvent({name: "incrementCount"});
 ```
 
-Or events can be logged from the server side:
+You can also log server-side custom events using the Azure Monitor OpenTelemetry Distro. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
 
+<!--
 ```csharp
 var tc = new Microsoft.ApplicationInsights.TelemetryClient();
 tc.TrackEvent("CreatedAccount", new Dictionary<string,string> {"AccountType":account.Type}, null);
@@ -140,20 +137,19 @@ tc.TrackEvent("AddedItemToCart", new Dictionary<string,string> {"Item":item.Name
 ...
 tc.TrackEvent("CompletedPurchase");
 ```
+-->
 
-You can attach property values to these events so that you can filter or split the events when you inspect them in the portal. A standard set of properties is also attached to each event, such as anonymous user ID, which allows you to trace the sequence of activities of an individual user.
-
-Learn more about [custom events](./api-custom-events-metrics.md#trackevent) and [properties](./api-custom-events-metrics.md#properties).
+To learn how to use custom events with the Application Insights SDK (Classic API), see [custom events](api-custom-events-metrics.md#trackevent) and [properties](api-custom-events-metrics.md#properties).
 
 #### Slice and dice custom events
 
 In the Users, Sessions, and Events tools, you can slice and dice custom events by user, event name, and properties.
 
-:::image type="content" source="./media/usage-overview/events.png" alt-text="Screenshot that shows the Events tab filtered by AnalyticsItemsOperation and split by AppID." lightbox="./media/usage-overview/events.png":::
+:::image type="content" source="media/usage/events.png" lightbox="media/usage/events.png" alt-text="Screenshot that shows the Events tab filtered by AnalyticsItemsOperation and split by AppID.":::
 
 Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
 
-:::image type="content" source="./media/usage-overview/open-last-run-query-icon.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." lightbox="./media/usage-overview/open-last-run-query-icon.png":::
+:::image type="content" source="media/usage/open-last-run-query-icon.png" lightbox="media/usage/open-last-run-query-icon.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." :::
 
 You can then modify the underlying query to get the kind of information you're looking for. 
 
@@ -226,7 +222,7 @@ protected void Application_Start()
 
 ---
 
-## Funnels - Discover how customers use your application
+## Funnels
 
 Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in a web application is known as a *funnel*. You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates.
 
@@ -266,7 +262,7 @@ To create a funnel:
 
 1. To save your funnel to view at another time, select **Save** at the top. Use **Open** to open your saved funnels.
 
-## User Flows - Analyze user navigation patterns
+## User Flows
 
 :::image type="content" source="./media/usage-flows/flows.png" lightbox="./media/usage-flows/flows.png" alt-text="Screenshot that shows the Application Insights User Flows tool.":::
 
@@ -282,7 +278,7 @@ The User Flows tool starts from an initial custom event, exception, dependency, 
 > [!NOTE]
 > Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your app to collect page views automatically with the Application Insights JavaScript SDK](./javascript.md).
 
-### Create your visualization
+### Create a user flow visualization
 
 :::image type="content" source="./media/usage-flows/initial-event.png" lightbox="./media/usage-flows/initial-event.png" alt-text="Screenshot that shows choosing an initial event for User Flows.":::
 
