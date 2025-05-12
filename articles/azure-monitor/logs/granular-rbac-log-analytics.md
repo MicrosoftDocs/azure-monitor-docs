@@ -13,9 +13,11 @@ ms.date: 05/08/2025
 
 # Granular RBAC (Preview) in Azure Monitor 
 
-Finely tune `view` and `query` access to your Log Analytics workspace with granular role based access control (RBAC). Access is configurable at the table level down to row-level with customized roles. 
-
-If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
+Granular RBAC in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to accommodate your business and security needs. Benefits of this access control include:
+- Row level access
+- Table level access
+- Least privilege access instead of trusting inherited read permissions
+If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy or compliance - granular RBAC helps simplify by reducing the number of workspaces required.
 
 ### Prerequisites
 
@@ -40,13 +42,15 @@ Understand the details of how to configure granular RBAC in Log Analytics. The f
 - [Conditions and expressions](#conditions-and-expressions)
 - [ABAC expression operators](#abac-expression-operators)
 
-Once you understand these concepts, configure granular RBAC for your Log Analytics workspace. For a step by step example, see [Getting started with granular RBAC in Log Analytics](./getting-started-abac-for-log-analytics.md).
+Once you understand these concepts, configure granular RBAC for your Log Analytics workspace. 
+
+For a step by step example, see [Getting started with granular RBAC in Log Analytics](./getting-started-abac-for-log-analytics.md).
 
 ### Role creation
 
 To configure granular RBAC, you must create a custom role with required **actions** then assign the custom role with **conditions**. For more information on custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles-portal).
 
-The minimum required control and data actions are:
+| Minimum required pand data actions are:
 
 - Actions: `Microsoft.OperationalInsights/workspaces/query/read`. This control action grants the permission to run queries in Log Analytics and see metadata, but doesn't grant access to data.
 - DataAction: `Microsoft.OperationalInsights/workspaces/tables/data/read`. This data action provides access to the data and is chosen in the role assignment condition. If no condition is set, access is granted to all data at the assigned scope.
