@@ -57,8 +57,6 @@ You can also use the Grafana Prometheus plugin to query and visualize data from 
 
 You can then display this performance and availability data on your Grafana dashboard.
 
-The following is a list of managed Grafana related articles.
-
 ## Managed Grafana related content
 
 The following is a list of related managed Grafana documentation.
