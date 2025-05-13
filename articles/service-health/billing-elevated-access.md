@@ -2,10 +2,12 @@
 title: In-portal Billing Communications
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 5/09/2025
+ms.date: 5/13/2025
 ---
 
-# Overview
+# In-portal Billing Communications
+
+## Overview
 
 The in-portal billing communication in [Service Health](service-health-overview.md) shows billing updates for users with the **subscription owner** or **subscription contributor** roles. These users can view updates in both the **Billing Updates** pane and the Service Health API.
 
