@@ -110,9 +110,9 @@ try
         }
     }
 
-    //** To upload non-compressed data please use following block
+    /* To upload uncompressed data please use following block
     var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(data)).ConfigureAwait(false);
-    //**
+    */
 
 }
 catch (Exception ex)
