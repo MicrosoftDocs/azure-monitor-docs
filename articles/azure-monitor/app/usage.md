@@ -2,7 +2,7 @@
 title: Usage analysis with Application Insights | Azure Monitor
 description: Understand your users and what they do with your application.
 ms.topic: conceptual
-ms.date: 05/05/2025
+ms.date: 05/15/2025
 ms.reviewer: mmcc
 ---
 
@@ -170,10 +170,10 @@ Understanding the customer experience is of great importance to your business. I
 
 You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates. Selecting a step shows additional step-specific details.
 
-:::image type="content" source="media/usage/funnels-pane.png" lightbox="media/usage/funnels-pane.png" alt-text="Screenshot that shows the Funnels View tab that shows results from the top and second steps.":::
-
 > [NOTE]
 > If your app is sampled, you'll see a banner. Selecting it opens a context pane that explains how to turn off sampling.
+
+:::image type="content" source="media/usage/funnels-pane.png" lightbox="media/usage/funnels-pane.png" alt-text="Screenshot that shows the Funnels View tab that shows results from the top and second steps.":::
 
 ### Create a funnel
 
@@ -239,8 +239,7 @@ If you want to see more steps in the visualization, use the **Previous steps** a
 
 ### Use cases
 
-> [!NOTE]
-> Select one of the below use cases to expand the section.
+Select one of the below use cases to expand the section.
 
 <br>
 
@@ -278,7 +277,7 @@ Keep in mind that **Session Ended** nodes are based only on telemetry collected 
 Look for a page view or custom event that's repeated by many users across subsequent steps in the visualization. This activity usually means that users are performing repetitive actions on your site. If you find repetition, think about changing the design of your site or adding new functionality to reduce repetition. For example, you might add bulk edit functionality if you find users performing repetitive actions on each row of a table element.
 </details>
 
-## Cohorts - Analyze a specific set of users, sessions, events, or operations
+## Cohorts
 
 A cohort is a set of users, sessions, events, or operations that have something in common. In Application Insights, cohorts are defined by an analytics query. In cases where you have to analyze a specific set of users or events repeatedly, cohorts can give you more flexibility to express exactly the set you're interested in.
 
@@ -293,8 +292,7 @@ You might define a cohort of users who have all tried a new feature in your app.
 
 ### Use cases
 
-> [!NOTE]
-> Select one of the below use cases to expand the section.
+Select one of the below use cases to expand the section.
 
 <br>
 
