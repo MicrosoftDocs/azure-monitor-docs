@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 04/14/2025
+ms.date: 05/12/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -57,6 +57,11 @@ ms.reviewer: lualderm
 ## [AADDomainServicesPrivilegeUse](./queries/AADDomainServicesPrivilegeUse.md)
 
 - [Show logs from AADDomainServicesPrivilegeUse table](./queries/AADDomainServicesPrivilegeUse.md#show-logs-from-aaddomainservicesprivilegeuse-table)
+
+## [AADGraphActivityLogs](./queries/AADGraphActivityLogs.md)
+
+- [Frequent users endpoint callers (AAD Graph)](./queries/AADGraphActivityLogs.md#frequent-users-endpoint-callers-aad-graph)
+- [Failed groups endpoint requests (AAD Graph)](./queries/AADGraphActivityLogs.md#failed-groups-endpoint-requests-aad-graph)
 
 ## [AADManagedIdentitySignInLogs](./queries/AADManagedIdentitySignInLogs.md)
 
@@ -165,6 +170,12 @@ ms.reviewer: lualderm
 - [Call Automation API operations on a call](./queries/ACSCallAutomationIncomingOperations.md#call-automation-api-operations-on-a-call)
 - [CallDiagnostics log for CallAutomation API call](./queries/ACSCallAutomationIncomingOperations.md#calldiagnostics-log-for-callautomation-api-call)
 - [CallSummary log for CallAutomation API call](./queries/ACSCallAutomationIncomingOperations.md#callsummary-log-for-callautomation-api-call)
+- [Number of calls with MediaStreaming active](./queries/ACSCallAutomationIncomingOperations.md#number-of-calls-with-mediastreaming-active)
+- [MediaStreaming operation Success count](./queries/ACSCallAutomationIncomingOperations.md#mediastreaming-operation-success-count)
+- [MediaStreaming operation Failure count](./queries/ACSCallAutomationIncomingOperations.md#mediastreaming-operation-failure-count)
+- [Number of calls with Transcription active](./queries/ACSCallAutomationIncomingOperations.md#number-of-calls-with-transcription-active)
+- [Transcription operation Success count](./queries/ACSCallAutomationIncomingOperations.md#transcription-operation-success-count)
+- [Transcription operation Failure count](./queries/ACSCallAutomationIncomingOperations.md#transcription-operation-failure-count)
 
 ## [ACSCallAutomationMediaSummary](./queries/ACSCallAutomationMediaSummary.md)
 
@@ -678,6 +689,15 @@ ms.reviewer: lualderm
 - [Publish virtual network events by namespace](./queries/AZMSVnetConnectionEvents.md#publish-virtual-network-events-by-namespace)
 - [Publish deny connection by namespace](./queries/AZMSVnetConnectionEvents.md#publish-deny-connection-by-namespace)
 - [Publish virtual network events by namespace](./queries/AZMSVnetConnectionEvents.md#publish-virtual-network-events-by-namespace)
+
+## [AcsCallAutomationStreamingUsage](./queries/AcsCallAutomationStreamingUsage.md)
+
+- [Media Streaming minutes](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes)
+- [Media Streaming minutes per call](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes-per-call)
+- [Media Streaming minutes per call per participant](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes-per-call-per-participant)
+- [Transcription streaming minutes](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes)
+- [Transcription streaming minutes per call](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call)
+- [Transcription streaming minutes per call per participant](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call-per-participant)
 
 ## [AddonAzureBackupJobs](./queries/AddonAzureBackupJobs.md)
 
@@ -1570,6 +1590,10 @@ ms.reviewer: lualderm
 - [Office activity for user](./queries/OfficeActivity.md#office-activity-for-user)
 - [Creation of Forward rule](./queries/OfficeActivity.md#creation-of-forward-rule)
 - [Suspicious file name](./queries/OfficeActivity.md#suspicious-file-name)
+
+## [OktaSystemLogs](./queries/OktaSystemLogs.md)
+
+- [Okta SSO Successful logins](./queries/OktaSystemLogs.md#okta-sso-successful-logins)
 
 ## [Perf](./queries/Perf.md)
 

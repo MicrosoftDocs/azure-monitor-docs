@@ -4,7 +4,7 @@ description: Understand how Azure Chaos Studio makes chaos experiments and chaos
 author: prasha-microsoft 
 ms.reviewer: prashabora
 ms.topic: conceptual
-ms.date: 2/27/2025
+ms.date: 4/27/2025
 ms.custom: template-concept, references_regions
 ---
 
@@ -36,7 +36,7 @@ A chaos experiment can target a resource in a different region than the experime
 | Sweden Central | Available  | Available |
 | Germany West Central | Not Available  | Available |
 | France Central | Not Available  | Available |
-|Italy North | Not Available  | Coming soon |
+|Italy North | Not Available  | Available |
 | Brazil South | Available  | Available |
 | Australia East | Available  | Available |
  

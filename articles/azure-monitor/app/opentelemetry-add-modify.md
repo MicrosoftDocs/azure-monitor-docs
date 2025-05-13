@@ -1614,8 +1614,19 @@ with tracer.start_as_current_span("my request span", kind=SpanKind.SERVER) as sp
 
 ### Send custom events
 
-This section provides guidance on instrumenting your application to capture and send custom events.
-  
+[Application Insights](./app-insights-overview.md) stores custom events in the `customEvents` table. You can **analyze, filter, and visualize** them by using [Azure Monitor tools](./usage.md#slice-and-dice-events).
+
+Use custom events to track important actions that support business goals. Examples include **selecting a button, submitting a form, and completing a purchase**.
+
+Combine custom events with authenticated user IDs and session context to enable:
+
+> [!div class="checklist"]
+> - Tracking behavior across sessions.
+> - Analyzing conversion funnels based on user actions.
+> - Segmenting users by how they interact with your app.
+
+If you want to automate the collection of client-side interaction events, you can use the [plugin in the JavaScript SDK](./javascript-feature-extensions.md).
+
 #### [ASP.NET Core](#tab/aspnetcore)
 
 Custom events are in Public Preview and use `Azure.Monitor.OpenTelemetry.AspNetCore` 1.3.0-beta.3.

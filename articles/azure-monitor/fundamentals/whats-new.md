@@ -11,6 +11,14 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2025
 
+### April 2025
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application-Insights|[Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](../app/opentelemetry-add-modify.md)|Custom Events are now supported in the Azure Monitor OpenTelemetry Distro.  This long-requested capability removes a key blocker for teams migrating to OpenTelemetry while preserving rich insights through familiar Application Insights experiences like Usage Analysis Views.|
+|Application-Insights|[Metrics in Application Insights](../app/metrics-overview.md)|We enhanced metrics documentation by introducing detailed cardinality limits, dimension names, and aggregation support. |
+|Application-Insights|[Application Insights telemetry data model](../app/data-model-complete.md)|We introduced substantial updates to the telemetry data model, simplifying and modernizing how telemetry is categorized and correlated. Key changes include expanded support for OpenTelemetry.|
+
 ### March 2025
 
 |Subservice | Article | Description |
@@ -808,7 +816,7 @@ Logs|[Azure Monitor Log Analytics API overview](../logs/api/overview.md)| Added 
 Logs|[Azure Monitor Logs overview](../logs/data-platform-logs.md)| Added a new Azure SDK client library for Go.|
 Logs|[Log queries in Azure Monitor](../logs/log-query-overview.md)| Added a new Azure SDK client library for Go.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Added new tables to the list of tables that support the Basic Log data plan.|
-Visualizations|[Monitor your Azure services in Grafana](../visualize/grafana-plugin.md)|The Grafana integration is generally available and is no longer in preview.|
+Visualizations|[Monitor your Azure services in Grafana](../visualize/visualize-grafana-overview.md)|The Grafana integration is generally available and is no longer in preview.|
 Visualizations|[Get started with Azure Workbooks](../visualize/workbooks-getting-started.md)|Added instructions for how to share workbooks.|
 
 ### October 2022

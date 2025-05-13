@@ -212,7 +212,7 @@ If you're getting started with Application Insights and don't need to migrate fr
     Remove the `Microsoft.ApplicationInsights.WorkerService` package from your `csproj`.
 
     ```terminal
-    dotnet remove package Microsoft.ApplicationInsights.AspNetCore
+    dotnet remove package Microsoft.ApplicationInsights.WorkerService
     ```
 
 2. Remove Initialization Code and customizations
@@ -556,7 +556,7 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
 
 [Instrumentation libraries](https://opentelemetry.io/docs/specs/otel/overview/#instrumentation-libraries) can be added to your project to auto collect telemetry about specific components or dependencies. We recommend the following libraries:
 
-1. [OpenTelemetry.Instrumentation.AspNet](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNet) can be used to collect telemetry for incoming requests. Azure Monitor maps it to [Request Telemetry](./data-model-complete.md#request).
+1. [OpenTelemetry.Instrumentation.AspNet](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNet) can be used to collect telemetry for incoming requests. Azure Monitor maps it to [Request Telemetry](./data-model-complete.md#request-telemetry).
 
     ```terminal
     dotnet add package OpenTelemetry.Instrumentation.AspNet
@@ -578,7 +578,7 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
 
     A complete getting started guide is available here: [OpenTelemetry.Instrumentation.AspNet Readme](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.AspNet)
 
-2. [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) can be used to collect telemetry for outbound http dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency).
+2. [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) can be used to collect telemetry for outbound http dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency-telemetry).
 
     ```terminal
     dotnet add package OpenTelemetry.Instrumentation.Http
@@ -586,7 +586,7 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
 
     A complete getting started guide is available here: [OpenTelemetry.Instrumentation.Http Readme](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.Http)
 
-3. [OpenTelemetry.Instrumentation.SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) can be used to collect telemetry for MS SQL dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency).
+3. [OpenTelemetry.Instrumentation.SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) can be used to collect telemetry for MS SQL dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency-telemetry).
 
     ```terminal
     dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient
@@ -643,7 +643,7 @@ public class Global : System.Web.HttpApplication
 
 [Instrumentation libraries](https://opentelemetry.io/docs/specs/otel/overview/#instrumentation-libraries) can be added to your project to auto collect telemetry about specific components or dependencies. We recommend the following libraries:
 
-1. [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) can be used to collect telemetry for outbound http dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency).
+1. [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) can be used to collect telemetry for outbound http dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency-telemetry).
 
     ```terminal
     dotnet add package OpenTelemetry.Instrumentation.Http
@@ -651,7 +651,7 @@ public class Global : System.Web.HttpApplication
 
     A complete getting started guide is available here: [OpenTelemetry.Instrumentation.Http Readme](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.Http)
 
-2. [OpenTelemetry.Instrumentation.SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) can be used to collect telemetry for MS SQL dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency).
+2. [OpenTelemetry.Instrumentation.SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) can be used to collect telemetry for MS SQL dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency-telemetry).
 
     ```terminal
     dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient
@@ -701,7 +701,7 @@ internal class Program
 
 [Instrumentation libraries](https://opentelemetry.io/docs/specs/otel/overview/#instrumentation-libraries) can be added to your project to auto collect telemetry about specific components or dependencies. We recommend the following libraries:
 
-1. [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) can be used to collect telemetry for outbound http dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency).
+1. [OpenTelemetry.Instrumentation.Http](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) can be used to collect telemetry for outbound http dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency-telemetry).
 
     ```terminal
     dotnet add package OpenTelemetry.Instrumentation.Http
@@ -709,7 +709,7 @@ internal class Program
 
     A complete getting started guide is available here: [OpenTelemetry.Instrumentation.Http Readme](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/tree/main/src/OpenTelemetry.Instrumentation.Http)
 
-2. [OpenTelemetry.Instrumentation.SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) can be used to collect telemetry for MS SQL dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency).
+2. [OpenTelemetry.Instrumentation.SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) can be used to collect telemetry for MS SQL dependencies. Azure Monitor maps it to [Dependency Telemetry](./data-model-complete.md#dependency-telemetry).
 
     ```terminal
     dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient
@@ -1062,6 +1062,7 @@ This table maps Application Insights data types to OpenTelemetry concepts and th
 | exceptions          | ExceptionTelemetry            | Exceptions                         | System.Exception                     |
 | requests            | RequestTelemetry              | Spans (Server, Producer)           | System.Diagnostics.Activity          |
 | traces              | TraceTelemetry                | Logs                               | Microsoft.Extensions.Logging.ILogger |
+| traces              | TraceTelemetry                | Span Events                        | System.Diagnostics.ActivityEvent     |
 
 The following documents provide more information.
 

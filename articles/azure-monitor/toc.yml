@@ -340,6 +340,8 @@ items:
         displayName: azure ad authentication
       - name: Managed workspaces
         href: app/managed-workspaces.md
+      - name: Telemetry data model
+        href: app/data-model-complete.md        
       - name: Transport Layer Security (TLS) compliance
         href: app/application-insights-tls.md
         displayName: TLS, transport layer security, compliance, security
@@ -1324,13 +1326,19 @@ items:
     - name: Troubleshoot insights
       href: visualize/troubleshoot-workbooks.md
     - name: Dashboard Preview
-      href: visualize/workbooks-dashboard-preview.md
-  - name: Grafana
-    href: visualize/grafana-plugin.md
-  - name: Dashboards
+      href: visualize/workbooks-dashboard-preview.md 
+  - name: Azure Monitor Dashboards
     items:
      - name: Dashboard using log data
        href: visualize/tutorial-logs-dashboards.md
+  - name: Grafana
+    items:
+    - name: Grafana overview
+      href: visualize/visualize-grafana-overview.md
+    - name: Use Grafana dashboards
+      href: visualize/visualize-use-grafana-dashboards.md
+    - name: Use managed Grafana
+      href: visualize/visualize-use-managed-grafana-how-to.md
   - name: Power BI
     href: logs/log-powerbi.md
 - name: Analyze
@@ -1689,8 +1697,6 @@ items:
     href: agents/azure-monitor-agent-extension-versions.md
   - name: Application Insights
     items:
-    - name: Application Insights data model
-      href: app/data-model-complete.md
     - name: Statsbeat
       href: app/statsbeat.md
   - name: Azure PowerShell

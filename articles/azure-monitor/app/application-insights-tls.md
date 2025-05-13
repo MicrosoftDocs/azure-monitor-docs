@@ -12,6 +12,8 @@ Learn how Application Insights uses Transport Layer Security (TLS), which config
 
 [!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements.md)]
 
+[!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements-deprecating.md)]
+
 ## Frequently asked questions
 
 This section provides answers to common questions.

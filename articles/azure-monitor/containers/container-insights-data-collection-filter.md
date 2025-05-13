@@ -2,7 +2,7 @@
 title: Filter log collection in Container insights
 description: Options for filtering Container insights data that you don't require.
 ms.topic: conceptual
-ms.date: 05/14/2024
+ms.date: 04/23/2025
 ms.reviewer: aul
 ---
 
