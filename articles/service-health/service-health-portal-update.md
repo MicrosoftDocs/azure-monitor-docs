@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of impacted applications.
 ms.topic: overview
-ms.date: 4/29/2025
+ms.date: 5/13/2025
 ---
 
 # Azure Service Health Portal
@@ -25,9 +25,9 @@ The Service Issues window shows a map with all the user services across the worl
 
 
 > [!NOTE]
->The Azure Resource Graph (ARG) query is used to fetch service health events, and returns one record per subscription ID and tracking ID combination.
->The Azure Portal shows one tracking ID for the chosen list of subscriptions.
->The number of unique tracking IDs match across ARG and portal.
+>If you're using Azure Resource Graph (ARG) queries to retrieve service health events and notice a different count compared to the Service Health UI, this is expected. The ARG returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
+>
+>However, all updates for each tracking ID are still available in the Issue Updates tab, and the number of unique tracking IDs is the same in both ARG and the Service Health Portal.
 
 
 ##### Tenant and Subscription access
@@ -60,7 +60,7 @@ On this window, you can see a list of all planned maintenance events. For more i
 ## Health advisories
 Health Advisories in Azure Service Health are notifications that inform users about changes in Azure services that require attention. These advisories can include information about the deprecation of Azure features, upgrade requirements, or other actions needed to maintain the health and performance of your Azure resources.
 
-<br>Open this window to see all the Health Advisories based on your subscription access. For more information on how to configure alerts for service health events, see [Create Service Health alert using the Azure Portal](alerts-activity-log-service-notifications.md), [Create activity log alerts using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts using an ARM template](alerts-activity-log-service-notifications-arm.md).
+<br>Open this window to see all the Health Advisories based on your subscription access. For more information on how to configure alerts for service health events, see [Create Service Health alert using the Azure portal](alerts-activity-log-service-notifications.md), [Create activity log alerts using a Bicep file](alerts-activity-log-service-notifications-bicep.md), or [Create Service Health alerts using an ARM template](alerts-activity-log-service-notifications-arm.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-advisories.png" alt-text="A screenshot of the health advisories window." lightbox="media/service-health-portal-update/services-issue-health-advisories.png":::
 
@@ -84,7 +84,7 @@ This page watches your resource and tells you if it's running as expected. There
 ## Health alerts
 
 The Health Alerts window allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status. 
-<br>An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure Portal](alerts-activity-log-service-notifications-portal.md)
+<br>An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md)
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts window filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 
