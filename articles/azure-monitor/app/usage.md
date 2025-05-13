@@ -72,7 +72,7 @@ Three of the **Usage** panes use the same tool to slice and dice telemetry from 
 
 Explore different groups of users, sessions, or events by adjusting the query options at the top of each pane.
 
-:::image type="content" source="media/usage/users.png" lightbox="media/usage/users.png" alt-text="Screenshot that shows the Users tab with a bar chart.":::
+:::image type="content" source="media/usage/users-pane.png" lightbox="media/usage/users-pane.png" alt-text="Screenshot that shows the Users tab with a bar chart.":::
 
 | Option          | Description                                                                                                                               |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -89,19 +89,25 @@ Clicking **View More Insights** displays the following information:
 #### [Users](#tab/users)
 
 * **General information:** The number of sessions and events for the specified time window, and a Performance evaluation related to users' perception of responsiveness.
-* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
-* **Meet Your Users:** section shows information about five sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
+
+* **Properties:** Charts containing up to 6 user properties such as browser version, country or region, and operating system.
+
+* **Meet Your Users:** Information about 5 sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
 
 #### [Sessions](#tab/sessions)
 
 * **General information:** The number of users and events for the specified time window.
+
 * **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
-* **Active Sessions:** 
+
+* **Active Sessions:** Information about 5 sample sessions, including the location, number of events, and the OS.
 
 #### [Events](#tab/events)
 
 * **General information:** The number of users and sessions for the specified time window.
+
 * **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
+
 * **Event Statistics:** A list of the top 10 events by count, including the number of users and sessions.
 
 ---
@@ -129,7 +135,7 @@ To learn how to use custom events with the Application Insights SDK (Classic API
 
 In the Users, Sessions, and Events tools, you can slice and dice custom events by user, event name, and properties. Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
 
-:::image type="content" source="media/usage/open-last-run-query-icon.png" lightbox="media/usage/open-last-run-query-icon.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." :::
+:::image type="content" source="media/usage/custom-events-open-last-run-query.png" lightbox="media/usage/custom-events-open-last-run-query.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." :::
 
 You can then modify the underlying query to get the specific information you're looking for. Here's an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
 
@@ -160,30 +166,24 @@ After the A/B test, filter and split your data on the property values so that yo
 
 ## Funnels
 
-Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in a web application is known as a *funnel*. You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates.
+Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in a web application is known as a *funnel*.
 
-**Funnel features:**
+You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates. Selecting a step shows additional step-specific details.
 
-* If your app is sampled, you'll see a banner. Selecting it opens a context pane that explains how to turn off sampling.
-* Select a step to see more details on the right.
-* The historical conversion graph shows the conversion rates over the last 90 days.
-* Understand your users better by accessing the users tool. You can use filters in each step.
+:::image type="content" source="media/usage/funnels-pane.png" lightbox="media/usage/funnels-pane.png" alt-text="Screenshot that shows the Funnels View tab that shows results from the top and second steps.":::
+
+> [NOTE]
+> If your app is sampled, you'll see a banner. Selecting it opens a context pane that explains how to turn off sampling.
 
 ### Create a funnel
 
-#### Prerequisites
-
 Before you create a funnel, decide on the question you want to answer. For example, you might want to know how many users view the home page, view a customer profile, and create a ticket.
-
-#### Get started
-
-To create a funnel:
 
 1. On the **Funnels** tab, select **Edit**.
 
 1. Choose your **Top Step**.
 
-     :::image type="content" source="./media/usage-funnels/funnel.png" alt-text="Screenshot that shows the Funnel tab and selecting steps on the Edit tab." lightbox="./media/usage-funnels/funnel.png":::
+    :::image type="content" source="media/usage/funnels-create.png" lightbox="media/usage/funnels-create.png" alt-text="Screenshot that shows the Funnel tab and selecting steps on the Edit tab." :::
 
 1. To apply filters to the step, select **Add filters**. This option appears after you choose an item for the top step.
 
@@ -194,13 +194,11 @@ To create a funnel:
 
 1. Select the **View** tab to see your funnel results.
 
-      :::image type="content" source="./media/usage-funnels/funnel-2.png" alt-text="Screenshot that shows the Funnels View tab that shows results from the top and second steps." lightbox="./media/usage-funnels/funnel-2.png":::
-
 1. To save your funnel to view at another time, select **Save** at the top. Use **Open** to open your saved funnels.
 
 ## User Flows
 
-:::image type="content" source="./media/usage-flows/flows.png" lightbox="./media/usage-flows/flows.png" alt-text="Screenshot that shows the Application Insights User Flows tool.":::
+:::image type="content" source="media/usage/user-flows-pane.png" lightbox="media/usage/user-flows-pane.png" alt-text="Screenshot that shows the Application Insights User Flows tool.":::
 
 The User Flows tool visualizes how users move between the pages and features of your site. It's great for answering questions like:
 
@@ -212,11 +210,11 @@ The User Flows tool visualizes how users move between the pages and features of 
 The User Flows tool starts from an initial custom event, exception, dependency, page view or request that you specify. From this initial event, User Flows shows the events that happened before and after user sessions. Lines of varying thickness show how many times users followed each path. Special **Session Started** nodes show where the subsequent nodes began a session. **Session Ended** nodes show how many users sent no page views or custom events after the preceding node, highlighting where users probably left your site.
 
 > [!NOTE]
-> Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your app to collect page views automatically with the Application Insights JavaScript SDK](./javascript.md).
+> Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your app to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md).
 
 ### Create a user flow visualization
 
-:::image type="content" source="./media/usage-flows/initial-event.png" lightbox="./media/usage-flows/initial-event.png" alt-text="Screenshot that shows choosing an initial event for User Flows.":::
+:::image type="content" source="media/usage/user-flows-initial-event.png" lightbox="media/usage/user-flows-initial-event.png" alt-text="Screenshot that shows choosing an initial event for User Flows.":::
 
 To begin answering questions with the User Flows tool, choose an initial custom event, exception, dependency, page view or request to serve as the starting point for the visualization:
 
