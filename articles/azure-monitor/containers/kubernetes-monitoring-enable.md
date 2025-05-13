@@ -592,7 +592,7 @@ After the policy is assigned to the subscription, whenever you create a new clus
 
 ### New AKS cluster (Prometheus, Container insights, and Grafana)
 
-When you create a new AKS cluster in the Azure portal, you can enable Prometheus, Container insights, and Grafana from the **Monitoring** tab. Make sure that you check the **Enable Container Logs**, **Enable Prometheus metrics**, and **Enable Grafana** checkboxes.
+When you create a new AKS cluster in the Azure portal, you can enable Prometheus, Container insights, and Grafana from the **Monitoring** tab. **Enable Container Logs**, **Enable Prometheus metrics**, and **Enable Grafana** checkboxes are checked by default.
 
 :::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
