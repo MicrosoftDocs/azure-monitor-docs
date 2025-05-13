@@ -37,7 +37,8 @@ This article reviews how configuration is done through the Azure portal. It prov
 
 1. From the menu for your AMPLS, select **Azure Monitor Resources** and then **Add**.
 
-1. Select the component and select **Apply** to add it to your scope. Only Azure Monitor resources including Log Analytics workspaces, Application Insights components, and data collection endpoints (DCEs) are available.
+1. Select the component and select **Apply** to add it to your scope. Only Azure Monitor resources including Log Analytics workspaces, Application Insights components, and data collection endpoints (DCEs) are available. <br>
+Connecting the Azure Monitor resources to the AMPLS is vital, as this process creates the specific DNS entries required for each resource.
 
     :::image type="content" source="media/private-link-security/ampls-select-2.png" lightbox="media/private-link-security/ampls-select-2.png" alt-text="Screenshot that shows selecting a scope.":::
 
