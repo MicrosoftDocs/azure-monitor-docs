@@ -55,11 +55,11 @@ To verify if browser telemetry is being collected, run your project in debug mod
 
 Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features. Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
 
-* **Users tool**: Counts the numbers of unique users that access your pages within your chosen time periods. Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers or machines will be counted as more than one user.
+* **Users tool**: Counts the numbers of unique users that access your pages within your chosen time periods. Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers or machines is counted as more than one user.
 
 * **Sessions tool**: Tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour or after 24 hours of continuous use.
 
-* **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you've [instrumented it](javascript-sdk.md).
+* **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you [instrumented it](javascript-sdk.md).
 
     A custom event represents one occurrence of something happening in your application. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](opentelemetry-add-modify.md#send-custom-events) or use the [Click Analytics](javascript-feature-extensions.md) extension.
 
@@ -170,7 +170,7 @@ Understanding the customer experience is of great importance to your business. I
 
 You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates. Selecting a step shows additional step-specific details.
 
-> [NOTE]
+> [!NOTE]
 > If your app is sampled, you'll see a banner. Selecting it opens a context pane that explains how to turn off sampling.
 
 :::image type="content" source="media/usage/funnels-pane.png" lightbox="media/usage/funnels-pane.png" alt-text="Screenshot that shows the Funnels View tab that shows results from the top and second steps.":::
@@ -214,15 +214,19 @@ The User Flows tool starts from an initial custom event, exception, dependency, 
 
 ### Create a user flow visualization
 
-:::image type="content" source="media/usage/user-flows-initial-event.png" lightbox="media/usage/user-flows-initial-event.png" alt-text="Screenshot that shows choosing an initial event for User Flows.":::
-
 To begin answering questions with the User Flows tool, choose an initial custom event, exception, dependency, page view or request to serve as the starting point for the visualization:
 
-1. Select the link in the **What do users do after?** title or select **Edit**.
-1. Select a custom event, exception, dependency, page view or request from the **Initial event** dropdown list.
+1. On the User Flows pane, select **Edit** or **Select an event**.
+
+1. From the **Initial event** dropdown list, select a custom event, exception, dependency, page view or request.
+
+    :::image type="content" source="media/usage/user-flows-initial-event.png" lightbox="media/usage/user-flows-initial-event.png" alt-text="Screenshot that shows choosing an initial event for User Flows.":::
+
 1. Select **Create graph**.
 
 The **Step 1** column of the visualization shows what users did most frequently after the initial event. The items are ordered from top to bottom and from most to least frequent. The **Step 2** and subsequent columns show what users did next. The information creates a picture of all the ways that users moved through your site.
+
+### Edit a user flow visualization
 
 By default, the User Flows tool randomly samples only the last 24 hours of page views and custom events from your site. You can increase the time range and change the balance of performance and accuracy for random sampling on the **Edit** menu.
 
@@ -385,9 +389,7 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 1. Save and name the cohort.
 </details>
 
-## Usage workbooks
-
-### User Retention Analysis
+## User Retention Analysis
 
 The Application Insights retention feature provides valuable insights into user engagement by tracking the frequency and patterns of users returning to your app and their interactions with specific features. It enables you to compare user behaviors, such as the difference in return rates between users who win or lose a game, offering actionable data to enhance user experience and inform business strategies.
 
@@ -403,7 +405,7 @@ You can use the retention controls on top to define specific events and time ran
 
 For more information about the Retention workbook, see the section below.
 
-#### The user retention analysis workbook
+### The user retention analysis workbook
 
 To use the retention workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Retention Analysis** workbook listed under the **Usage** category.
 
@@ -421,13 +423,13 @@ To use the retention workbook in Application Insights, navigate to the **Workboo
 
     :::image type="content" source="./media/usage-retention/retention-2.png" alt-text="Screenshot that shows the Retention workbook showing the User returned after number of weeks chart." lightbox="./media/usage-retention/retention-2.png":::
 
-#### Use business events to track retention
+### Use business events to track retention
 
 You should measure events that represent significant business activities to get the most useful retention analysis.
 
 For more information and example code, see the section below.
 
-### User Impact Analysis
+## User Impact Analysis
 
 Impact Analysis discovers how any dimension of a page view, custom event, or request affects the usage of a different page view or custom event.
 
@@ -436,13 +438,13 @@ One way to think of Impact is as the ultimate tool for settling arguments with s
 Analyzing performance is only a subset of Impact's capabilities. Impact supports custom events and dimensions, so you can easily answer questions like, How does user browser choice correlate with different rates of conversion?
 
 > [!NOTE]
-> Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your app to collect page views automatically with the Application Insights JavaScript SDK](./javascript.md). Also, because you're analyzing correlation, sample size matters.
+> Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your app to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md). Also, because you're analyzing correlation, sample size matters.
 
-#### The user impact analysis workbook
+### The User Impact Analysis workbook
 
-To use the impact analysis workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Impact Analysis** workbook listed under the **Usage** category.
+To use the **User Impact Analysis** workbook in Application Insights, navigate to the **Workbooks** pane and locate it listed under the **Usage** category.
 
-#### Use the workbook
+### Use the workbook
 
 :::image type="content" source="./media/usage-impact/selected-event.png" alt-text="Screenshot that shows where to choose an initial page view, custom event, or request." lightbox="./media/usage-impact/selected-event.png":::
 
@@ -451,35 +453,9 @@ To use the impact analysis workbook in Application Insights, navigate to the **W
 1. From the  **Impacting event** dropdown list, select an event.
 1. To add a filter, use the **Add selected event filters** tab or the **Add impacting event filters** tab.
 
-#### Is page load time affecting how many people convert on my page?
+### How does the User Impact Analysis workbook calculate conversion rates?
 
-To begin answering questions with the Impact workbook, choose an initial page view, custom event, or request.
-
-1. From the **Selected event** dropdown list, select an event.
-
-1. Leave the **analyze how its** dropdown list on the default selection of **Duration**. (In this context, **Duration** is an alias for **Page Load Time**.)
-
-1. From the **Impacting event** dropdown list, select a custom event. This event should correspond to a UI element on the page view you selected in step 1.
-
-   :::image type="content" source="./media/usage-impact/impact.png" alt-text="Screenshot that shows an example with the selected event as Home Page analyzed by duration." lightbox="./media/usage-impact/impact.png":::
-
-#### What if I'm tracking page views or load times in custom ways?
-
-Impact supports both standard and custom properties and measurements. Use whatever you want. Instead of duration, use filters on the primary and secondary events to get more specific.
-
-#### Do users from different countries or regions convert at different rates?
-
-1. From the **Selected event** dropdown list, select an event.
-
-1. From the **analyze how its** dropdown list, select **Country or region**.
-
-1. From the **Impacting event** dropdown list, select a custom event that corresponds to a UI element on the page view you chose in step 1.
-
-   :::image type="content" source="./media/usage-impact/regions.png" alt-text="Screenshot that shows an example with the selected event as GET analyzed by country and region." lightbox="./media/usage-impact/regions.png":::
-
-#### How does the Impact analysis workbook calculate these conversion rates?
-
-Under the hood, the Impact analysis workbook relies on the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient). Results are computed between -1 and 1. The coefficient -1 represents a negative linear correlation and 1 represents a positive linear correlation.
+Under the hood, the User Impact Analysis workbook relies on the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient). Results are computed between -1 and 1. The coefficient -1 represents a negative linear correlation and 1 represents a positive linear correlation.
 
 The basic breakdown of how Impact analysis works is listed here:
 
@@ -494,6 +470,48 @@ Sessions are then broken into two different kinds of *subsessions* based on one 
 * An unconverted subsession occurs when all *A*s occur without a terminal *B*.
 
 How Impact is ultimately calculated varies based on whether we're analyzing by metric or by dimension. For metrics, all *A*s in a subsession are averaged. For dimensions, the value of each *A* contributes *1/N* to the value assigned to *B*, where *N* is the number of *A*s in the subsession.
+
+### Use cases
+
+Select one of the below use cases to expand the section.
+
+<br>
+
+<details>
+<summary><b>Is page load time affecting how many people convert on my page?</b></summary>
+
+To begin answering questions with the Impact workbook, choose an initial page view, custom event, or request.
+
+1. From the **Selected event** dropdown list, select an event.
+
+1. Leave the **analyze how its** dropdown list on the default selection of **Duration**. (In this context, **Duration** is an alias for **Page Load Time**.)
+
+1. From the **Impacting event** dropdown list, select a custom event. This event should correspond to a UI element on the page view you selected in step 1.
+
+   :::image type="content" source="./media/usage-impact/impact.png" alt-text="Screenshot that shows an example with the selected event as Home Page analyzed by duration." lightbox="./media/usage-impact/impact.png":::
+</details>
+
+<br>
+
+<details>
+<summary><b>What if I'm tracking page views or load times in custom ways?</b></summary>
+
+Impact supports both standard and custom properties and measurements. Use whatever you want. Instead of duration, use filters on the primary and secondary events to get more specific.
+</details>
+
+<br>
+
+<details>
+<summary><b>Do users from different countries or regions convert at different rates?</b></summary>
+
+1. From the **Selected event** dropdown list, select an event.
+
+1. From the **analyze how its** dropdown list, select **Country or region**.
+
+1. From the **Impacting event** dropdown list, select a custom event that corresponds to a UI element on the page view you chose in step 1.
+
+   :::image type="content" source="./media/usage-impact/regions.png" alt-text="Screenshot that shows an example with the selected event as GET analyzed by country and region." lightbox="./media/usage-impact/regions.png":::
+</details>
 
 ### HEART - Five dimensions of customer experience
 
