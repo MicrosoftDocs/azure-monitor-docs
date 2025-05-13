@@ -109,35 +109,20 @@ Clicking **View More Insights** displays the following information:
 
 ### Track user interactions with custom events
 
-To understand user interactions in your app, use custom events. These events can track various user actions like button selections or important business events such as purchases or game accomplishments.
+While page views can sometimes represent useful events, they aren't always reliable indicators. For example, a user might open a product page without making a purchase. By tracking specific business events, you can chart users' progress through your site, understand their preferences for different options, and identify where they encounter difficulties or drop out.
+
+Attaching property values to these events allows you to filter or split them during inspection in the portal. Each event also includes a standard set of properties, such as an anonymous user ID, allowing you to trace the sequence of activities of individual users. With this information, you can make informed decisions about prioritizing tasks in your development backlog.
 
 > [!TIP]
 > When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your app from the start.
 
-In some cases, page views can represent useful events, but it isn't true in general. A user can open a product page without buying the product.
-
-With specific business events, you can chart your users' progress through your site. You can find out their preferences for different options and where they drop out or have difficulties. With this knowledge, you can make informed decisions about the priorities in your development backlog.
-
-You can attach property values to these events so that you can filter or split the events when you inspect them in the portal. A standard set of properties is also attached to each event, such as anonymous user ID, which allows you to trace the sequence of activities of an individual user.
-
-Events can be logged from the client side of the app using the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) or `trackEvent`:
+Events can be logged from the client side of the app using the either the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) or `trackEvent`:
 
 ```javascript
 appInsights.trackEvent({name: "incrementCount"});
 ```
 
 You can also log server-side custom events using the Azure Monitor OpenTelemetry Distro. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
-
-<!--
-```csharp
-var tc = new Microsoft.ApplicationInsights.TelemetryClient();
-tc.TrackEvent("CreatedAccount", new Dictionary<string,string> {"AccountType":account.Type}, null);
-...
-tc.TrackEvent("AddedItemToCart", new Dictionary<string,string> {"Item":item.Name}, null);
-...
-tc.TrackEvent("CompletedPurchase");
-```
--->
 
 To learn how to use custom events with the Application Insights SDK (Classic API), see [custom events](api-custom-events-metrics.md#trackevent) and [properties](api-custom-events-metrics.md#properties).
 
@@ -172,55 +157,11 @@ dataset
 
 ### Determine feature success with A/B testing
 
-If you're unsure which feature variant is more successful, release both and let different users access each variant. Measure the success of each variant, and then transition to a unified version.
+If you're unsure which feature variant is more successful, run an A/B test and let different users access each variant.
 
-In this technique, you attach unique property values to all the telemetry sent by each version of your app. You can do it by defining properties in the active TelemetryContext. These default properties get included in every telemetry message sent by the application. It includes both custom messages and standard telemetry.
+To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span). If you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
-In the Application Insights portal, filter and split your data on the property values so that you can compare the different versions.
-
-To do this step, [set up a telemetry initializer](./api-filtering-sampling.md#addmodify-properties-itelemetryinitializer):
-
-```csharp
-// Telemetry initializer class
-public class MyTelemetryInitializer : ITelemetryInitializer
-{
-    // In this example, to differentiate versions, we use the value specified in the AssemblyInfo.cs
-    // for ASP.NET apps, or in your project file (.csproj) for the ASP.NET Core apps. Make sure that
-    // you set a different assembly version when you deploy your application for A/B testing.
-    static readonly string _version = 
-        System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        
-    public void Initialize(ITelemetry item)
-    {
-        item.Context.Component.Version = _version;
-    }
-}
-```
-
-#### [.NET Core](#tab/aspnetcore)
-
-For [ASP.NET Core](asp-net-core.md#add-telemetryinitializers) applications, add a new telemetry initializer to the Dependency Injection service collection in the `Program.cs` class:
-
-```csharp
-using Microsoft.ApplicationInsights.Extensibility;
-
-builder.Services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
-```
-
-#### [.NET Framework 4.8](#tab/aspnet-framework)
-
-In the web app initializer, such as `Global.asax.cs`:
-
-```csharp
-protected void Application_Start()
-{
-    // ...
-    TelemetryConfiguration.Active.TelemetryInitializers
-        .Add(new MyTelemetryInitializer());
-}
-```
-
----
+After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 
 ## Funnels
 
