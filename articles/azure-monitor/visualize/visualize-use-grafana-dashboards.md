@@ -89,7 +89,7 @@ Dashboards that you import or create require RBAC access configuration to share 
 
 1. Open the dashboard.
 1. Select **Share**. The Share Dashboard pane opens. Copy the link to the dashboard to your clipboard.
-1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is recquired for viewing the dashboard. **Contributor** is requred to edit the dashboard.
+1. Select **Manage sharing options** to use the RBAC workflow for granting *view* or *edit* access to users or groups. The **Reader** role is required for viewing the dashboard. **Contributor** is required to edit the dashboard.
 1. Paste the link into your preferred communication method to share it with the intended people or groups.
 
 ## Use dashboards with Azure Kubernetes Service (AKS)
