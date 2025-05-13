@@ -2,7 +2,7 @@
 title: Migrate from Application Insights .NET SDKs to Azure Monitor OpenTelemetry
 description: This article provides guidance on how to migrate .NET applications from the Application Insights Classic API SDKs to Azure Monitor OpenTelemetry.
 ms.topic: conceptual
-ms.date: 06/07/2024
+ms.date: 05/31/2025
 ms.devlang: csharp
 ms.custom: devx-track-dotnet
 ms.reviewer: mmcc
@@ -212,7 +212,7 @@ If you're getting started with Application Insights and don't need to migrate fr
     Remove the `Microsoft.ApplicationInsights.WorkerService` package from your `csproj`.
 
     ```terminal
-    dotnet remove package Microsoft.ApplicationInsights.AspNetCore
+    dotnet remove package Microsoft.ApplicationInsights.WorkerService
     ```
 
 2. Remove Initialization Code and customizations
@@ -1062,6 +1062,7 @@ This table maps Application Insights data types to OpenTelemetry concepts and th
 | exceptions          | ExceptionTelemetry            | Exceptions                         | System.Exception                     |
 | requests            | RequestTelemetry              | Spans (Server, Producer)           | System.Diagnostics.Activity          |
 | traces              | TraceTelemetry                | Logs                               | Microsoft.Extensions.Logging.ILogger |
+| traces              | TraceTelemetry                | Span Events                        | System.Diagnostics.ActivityEvent     |
 
 The following documents provide more information.
 

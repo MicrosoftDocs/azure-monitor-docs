@@ -9,14 +9,14 @@ ms.date: 10/23/2023
 # Set daily cap on Log Analytics workspace
 A daily cap on a Log Analytics workspace allows you to reduce unexpected increases in charges for data ingestion by stopping collection of billable log data for tables in the Analytics or Basic [table plans](/azure/azure-monitor/logs/manage-logs-tables#table-plan) for the rest of a 24-hour period whenever your specified threshold is reached. Tables in the Auxiliary table plan are not subject to any daily cap. 
 
+> [!IMPORTANT]
+> The daily cap feature in Azure Monitor should **not** be used as a primary mechanism to filter or reduce data before ingestion into a Log Analytics workspace to save costs. Instead, use **ingestion-time transformations** to filter or reshape data prior to ingestion ([learn more](../data-collection/data-collection-transformations.md)). 
+> The daily cap is designed to protect against **unexpected spikes in data volume** that could lead to unplanned charges. It should be used carefully and only as a safeguard—not as a routine cost-control tool. 
+> Keep in mind that once the daily cap is reached, **data collection stops**. This will impact your ability to monitor resources, receive alerts, and maintain the health and functionality of dependent services and solutions. When the daily cap is met, you are effectively blind to the current state of your monitored environment and no collecting potentially critical events that might be needed later. Your goal should be to **avoid regularly hitting the daily cap** and instead treat it as a backup measure for rare or unforeseen data surges. 
+> For strategies to optimize Azure Monitor costs, refer to [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md).
+
 This article describes how the daily cap works and how to configure one in your workspace.
 
-> [!IMPORTANT]
-> You should use care when setting a daily cap. When data collection stops, your ability to observe and receive or generate alerts about monitored resources and health states will be impacted. It will also impact other services and solutions whose functionality may depend on up-to-date data being available in the workspace. Your goal should not be to regularly hit the daily limit, but rather use it as an infrequent method to avoid unplanned charges resulting from an unexpected increase in the volume of data collected.
-> 
-> For strategies to reduce your Azure Monitor costs, see [Cost optimization and Azure Monitor](../best-practices-cost.md).
-
-## Permissions required
 
 | Action | Permissions or role needed |
 |------|------------------------------|

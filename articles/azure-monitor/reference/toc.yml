@@ -576,6 +576,7 @@ items:
             href: supported-logs/microsoft-communication-communicationservices-logs.md
             displayName: Advanced Messaging Logs,Operational Authentication Logs,Call
               Automation Events Summary Logs,Operational Call Automation
+              Logs,Call Automation Media Streaming features usage information
               Logs,Call Client Media Stats Time Series Logs,Call Client
               Operations Logs,Service Side Request and Outcome Logs,Call Closed
               Captions Logs,Call Diagnostics Logs,Call Diagnostics Logs with
@@ -1240,6 +1241,8 @@ items:
             href: tables/microsoft-automation_automationaccounts.md
           - name: microsoft.avs/privateclouds
             href: tables/microsoft-avs_privateclouds.md
+          - name: microsoft.azureadgraph/tenants
+            href: tables/microsoft-azureadgraph_tenants.md
           - name: microsoft.azuredatatransfer/connections
             href: tables/microsoft-azuredatatransfer_connections.md
           - name: microsoft.azureplaywrightservice/accounts
@@ -1462,6 +1465,8 @@ items:
             href: tables/microsoft-openlogisticsplatform_workspaces.md
           - name: microsoft.operationalinsights/workspaces
             href: tables/microsoft-operationalinsights_workspaces.md
+          - name: microsoft.orbital/geocatalogs
+            href: tables/microsoft-orbital_geocatalogs.md
           - name: microsoft.playfab/titles
             href: tables/microsoft-playfab_titles.md
           - name: microsoft.powerbi/tenants
@@ -1579,6 +1584,8 @@ items:
             href: tables/aaddomainservicesprivilegeuse.md
           - name: AADFirstPartyToFirstPartySignInLogs
             href: tables/aadfirstpartytofirstpartysigninlogs.md
+          - name: AADGraphActivityLogs
+            href: tables/aadgraphactivitylogs.md
           - name: AADManagedIdentitySignInLogs
             href: tables/aadmanagedidentitysigninlogs.md
           - name: AADNonInteractiveUserSignInLogs
@@ -1839,8 +1846,18 @@ items:
             href: tables/avnmnetworkgroupmembershipchange.md
           - name: AVNMRuleCollectionChange
             href: tables/avnmrulecollectionchange.md
+          - name: AVSEsxiFirewallSyslog
+            href: tables/avsesxifirewallsyslog.md
+          - name: AVSEsxiSyslog
+            href: tables/avsesxisyslog.md
+          - name: AVSNsxEdgeSyslog
+            href: tables/avsnsxedgesyslog.md
+          - name: AVSNsxManagerSyslog
+            href: tables/avsnsxmanagersyslog.md
           - name: AVSSyslog
             href: tables/avssyslog.md
+          - name: AVSVcSyslog
+            href: tables/avsvcsyslog.md
           - name: AWSCloudTrail
             href: tables/awscloudtrail.md
           - name: AWSCloudWatch
@@ -1901,6 +1918,8 @@ items:
             href: tables/azmsruntimeauditlogs.md
           - name: AZMSVnetConnectionEvents
             href: tables/azmsvnetconnectionevents.md
+          - name: AcsCallAutomationStreamingUsage
+            href: tables/acscallautomationstreamingusage.md
           - name: AddonAzureBackupAlerts
             href: tables/addonazurebackupalerts.md
           - name: AddonAzureBackupJobs
@@ -2431,10 +2450,16 @@ items:
             href: tables/functionapplogs.md
           - name: GCPAuditLogs
             href: tables/gcpauditlogs.md
+          - name: GCPDNS
+            href: tables/gcpdns.md
           - name: GCPFirewallLogs
             href: tables/gcpfirewalllogs.md
+          - name: GCPIAM
+            href: tables/gcpiam.md
           - name: GCPLoadBalancer
             href: tables/gcploadbalancer.md
+          - name: GCPVPCFlow
+            href: tables/gcpvpcflow.md
           - name: GoogleCloudSCC
             href: tables/googlecloudscc.md
           - name: HDInsightAmbariClusterAlerts
@@ -2707,12 +2732,16 @@ items:
             href: tables/oepelasticoperator.md
           - name: OEPElasticsearch
             href: tables/oepelasticsearch.md
+          - name: OEWAuditLogs
+            href: tables/oewauditlogs.md
           - name: OEWExperimentAssignmentSummary
             href: tables/oewexperimentassignmentsummary.md
           - name: OEWExperimentScorecardMetricPairs
             href: tables/oewexperimentscorecardmetricpairs.md
           - name: OEWExperimentScorecards
             href: tables/oewexperimentscorecards.md
+          - name: OGOAuditLogs
+            href: tables/ogoauditlogs.md
           - name: OLPSupplyChainEntityOperations
             href: tables/olpsupplychainentityoperations.md
           - name: OLPSupplyChainEvents
@@ -3085,6 +3114,8 @@ items:
             href: queries/AADDomainServicesPolicyChange.md
           - name: AADDomainServicesPrivilegeUse
             href: queries/AADDomainServicesPrivilegeUse.md
+          - name: AADGraphActivityLogs
+            href: queries/AADGraphActivityLogs.md
           - name: AADManagedIdentitySignInLogs
             href: queries/AADManagedIdentitySignInLogs.md
           - name: AADNonInteractiveUserSignInLogs
@@ -3271,6 +3302,8 @@ items:
             href: queries/AZMSRunTimeAuditLogs.md
           - name: AZMSVnetConnectionEvents
             href: queries/AZMSVnetConnectionEvents.md
+          - name: AcsCallAutomationStreamingUsage
+            href: queries/AcsCallAutomationStreamingUsage.md
           - name: AddonAzureBackupJobs
             href: queries/AddonAzureBackupJobs.md
           - name: AddonAzureBackupStorage
