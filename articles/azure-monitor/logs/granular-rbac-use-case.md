@@ -26,26 +26,34 @@ This article is a step-by-step example of defining granular RBAC conditions in L
 
 The following prerequisites are required to complete this scenario:
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
-- An Azure Log Analytics workspace (optionally enabled for Microsoft Sentinel) with custom log tables and fields.
+- Azure Log Analytics workspace (optionally enabled for Microsoft Sentinel) with custom log tables and fields
 - A role assigned to your account giving permission to create custom roles and assign them to users or groups like the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/#role-based-access-control-administrator) or [User Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator).
 
-## Scenario
+## Define the scenario
 
-In this scenario, we implement row-level access control in Log Analytics. We set conditions for a group of operations users as follows:
-- The users can only access sign in logs.
-- The users can't access sign in logs of company's CEO as identified by the user principal name johndoe@contoso.com.
+In this scenario, row-level access control is implemented for the Syslog table in a Microsoft Sentinel workspace. Conditions are set for a group of operations as follows:
 
-## Create custom role with ABAC conditions
+1. Users are only given access to the tables they need to work with in the workspace. Even if they have Read access at a higher level, they won't be able to see the data in any of the tables unless they have been assigned a custom role with the appropriate conditions.
+1. Some users have access to the Syslog table, but it's restricted to only the records that match their department. For example, if a user is in the network team, they can only see records for network devices.
 
-1. Create a custom role, called `Log Analytics Operator`, with the following action and data action:  
-   Actions:
-    - `Microsoft.OperationalInsights/workspaces/read`
-    - `Microsoft.OperationalInsights/workspaces/tables/data/read`
-    
-    Data actions:
-    - `Microsoft.OperationalInsights/workspaces/tables/data/read`
- 
+## Create custom role
+
+Setup a custom role with the appropriate actions and data actions. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-creation).
+
+1. Create a custom role, called `Log Analytics Network Device team`, with the following actions and data action:  
+
+| Custom role definition | Detail |
+|---|---|
+| Actions | `Microsoft.OperationalInsights/workspaces/read`</br>`Microsoft.OperationalInsights/workspaces/tables/data/read` |
+| Data actions | `Microsoft.OperationalInsights/workspaces/tables/data/read` |
+
+
+
+## Assign custom role
+
+Assign the custom role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#assign-role).
+
+
 1. From Log Analytics workspace, select **Access control (IAM)**.
 
 1. Select **Add role assignment**.
@@ -56,7 +64,7 @@ In this scenario, we implement row-level access control in Log Analytics. We set
       :::image type="content" source="media/granular-rbac-log-analytics/add-conditions.png" lightbox="media/granular-rbac-log-analytics/add-conditions.png" alt-text="A screenshot showing the conditions tab of the add role assignment page.":::
  
 1. Select **Add action**.
-1. Choose the **Read workspace data** data action and click **Select**  ????????????
+1. Choose the **Read workspace data** data action and click **Select** 
      :::image type="content" source="media/granular-rbac-log-analytics/add-action.png" lightbox="media/granular-rbac-log-analytics/add-action.png" alt-text="A screenshot showing the add action part of the add conditions page.":::
 1. In the **Build expression** section, select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
@@ -91,7 +99,13 @@ This configuration allows the group of users to access all tables in the workspa
 > It can take up to 15 minutes for the permissions to become active.
 
 
-**TBD need to verify steps and add screenshots**
+## Set conditions
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+1. boom
+1. bada boom
+1. bada bing
 
 ## Troubleshoot ABAC conditions
 
@@ -101,5 +115,7 @@ For general troubleshooting for ABAC, see (Troubleshoot Azure role assignment co
 
 *    Invalid conditions that cause a logic error trigger a "400 Bad Request" error message for all affected users. The condition must be revised by the administrator.
 
-## Next steps
-TBD
+## Related content
+
+- [Granular role-based access control (RBAC) in Azure Monitor](granular-rbac-log-analytics.md)
+- [Microsoft Sentinel Syslog data connector](/azure/sentinel/connect-syslog)
