@@ -65,15 +65,14 @@ Three of the **Usage** panes use the same tool to slice and dice telemetry from 
 
 > [!IMPORTANT]
 > If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
-
-> [!NOTE]
+>
 > For information on an alternative to using anonymous IDs and ensuring an accurate count, see the documentation for [authenticated IDs](data-model-complete.md#context).
 
 ### Query for certain users, sessions, or events
 
 Explore different groups of users, sessions, or events by adjusting the query options at the top of each pane.
 
-:::image type="content" source="media/usage/users.png" lightbox="media/usage/users.png" alt-text="Screenshot that shows the Users tab with a bar chart." :::
+:::image type="content" source="media/usage/users.png" lightbox="media/usage/users.png" alt-text="Screenshot that shows the Users tab with a bar chart.":::
 
 | Option          | Description                                                                                                                               |
 |-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
@@ -111,7 +110,7 @@ Clicking **View More Insights** displays the following information:
 
 While page views can sometimes represent useful events, they aren't always reliable indicators. For example, a user might open a product page without making a purchase. By tracking specific business events, you can chart users' progress through your site, understand their preferences for different options, and identify where they encounter difficulties or drop out.
 
-Attaching property values to these events allows you to filter or split them during inspection in the portal. Each event also includes a standard set of properties, such as an anonymous user ID, allowing you to trace the sequence of activities of individual users. With this information, you can make informed decisions about prioritizing tasks in your development backlog.
+Attaching property values to these events allows you to filter or split them during inspection in the portal. Each event also includes a standard set of properties, such as an anonymous user ID, allowing you to trace the sequence of activities of individual users.
 
 > [!TIP]
 > When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your app from the start.
@@ -128,17 +127,11 @@ To learn how to use custom events with the Application Insights SDK (Classic API
 
 #### Slice and dice custom events
 
-In the Users, Sessions, and Events tools, you can slice and dice custom events by user, event name, and properties.
-
-:::image type="content" source="media/usage/events.png" lightbox="media/usage/events.png" alt-text="Screenshot that shows the Events tab filtered by AnalyticsItemsOperation and split by AppID.":::
-
-Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
+In the Users, Sessions, and Events tools, you can slice and dice custom events by user, event name, and properties. Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
 
 :::image type="content" source="media/usage/open-last-run-query-icon.png" lightbox="media/usage/open-last-run-query-icon.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." :::
 
-You can then modify the underlying query to get the kind of information you're looking for. 
-
-Here's an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
+You can then modify the underlying query to get the specific information you're looking for. Here's an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
 
 ```kusto
 // average pageView duration by name
@@ -159,7 +152,9 @@ dataset
 
 If you're unsure which feature variant is more successful, run an A/B test and let different users access each variant.
 
-To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span). If you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span). 
+
+f you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
 After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 
