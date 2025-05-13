@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 02/07/2025
+ms.date: 05/13/2025
 ms.reviewer: jan.kalis
 ---
 
@@ -37,25 +37,25 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
 * **Visual Studio**
 
     ```
-    @Code_optimizations /connect <Your Application Insights resource name>
+    @code_optimizations /connect <Your Application Insights resource name>
     ```
  
 * **Visual Studio Code**
 
     ```
-    @Code_optimizations /connect <Your Application Insights AppID>
+    @code_optimizations /insights <Your Application Insights AppID>
     ```
 
     or:
     
     ```
-    @Code_optimizations /optimize <Your Code Optimizations GitHub Issue Number>
+    @code_optimizations /optimize <Your Code Optimizations GitHub Issue Number>
     ```
 
     or, select your code in the editor and ask:
     
     ```
-    @Code_optimizations /optimize
+    @code_optimizations /optimize
     ```
 
 ## Limitations

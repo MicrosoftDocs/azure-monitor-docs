@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 04/11/2025
+ms.date: 05/13/2025
 ms.reviewer: jan.kalis
 ---
 
@@ -81,7 +81,7 @@ To get started, make sure Code Optimizations are identified for your application
 
 ### Option 2: Optimize code based on GitHub issues from Code Optimizations
 
-Aside from the `@code-optimizations /insights` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command:
+Aside from the `@code_optimizations /insights` command, you can also use the `/optimize` commands to resolve issues in your code. The extension provides two ways to use the `/optimize` command:
 
 * With a Code Optimizations issue number.
 * With code selection directly in Visual Studio Code. 
@@ -128,7 +128,7 @@ Run the `/optimize` command along with the Azure DevOps or GitHub work item numb
 1. In Visual Studio Code, using GitHub Copilot, call `/optimize` with the issue number you created in the Code Optimizations service in the Azure portal. In the following example, "5" represents the GitHub issue number that you'd like to fix.
 
     ```bash
-    @code-optimizations /optimize 5
+    @code_optimizations /optimize 5
     ```
 
     :::image type="content" source="media/code-optimizations-vscode-extension/optimize-command.png" alt-text="Screenshot of the running the optimize command in copilot.":::
