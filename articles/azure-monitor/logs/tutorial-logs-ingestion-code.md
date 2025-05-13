@@ -28,93 +28,100 @@ The following script uses the [Azure Monitor Ingestion client library for .NET](
     dotnet add package Azure.Monitor.Ingestion
     ```
 
-3. Create the following environment variables with values for your Microsoft Entra application. These values are used by `DefaultAzureCredential` in the Azure Identity library.
+2. Create the following environment variables with values for your Microsoft Entra application. These values are used by `DefaultAzureCredential` in the Azure Identity library.
 
    - `AZURE_TENANT_ID`
    - `AZURE_CLIENT_ID`
    - `AZURE_CLIENT_SECRET`
 
-2. Replace the variables in the following sample code with values from your DCR. You may also want to replace the sample data with your own.
+3. Replace the variables in the following sample code with values from your DCR. You may also want to replace the sample data with your own.
 
-    ```csharp
-    using Azure;
-    using Azure.Core;
-    using Azure.Identity;
-    using Azure.Monitor.Ingestion;
+```csharp
+using Azure;
+using Azure.Core;
+using Azure.Identity;
+using Azure.Monitor.Ingestion;
 
-    // Initialize variables
-    var endpoint = new Uri("https://my-url.monitor.azure.com");
-    var ruleId = "dcr-00000000000000000000000000000000";
-    var streamName = "Custom-MyTableRawData";
-    
-    // Create credential and client
-    var credential = new DefaultAzureCredential();
-    LogsIngestionClient client = new LogsIngestionClient(endpoint, credential);
- 
-    DateTime currentTime = DateTime.UtcNow;
-    
-    // Use BinaryData to serialize instances of an anonymous type into JSON
-    BinaryData data = BinaryData.FromObjectAsJson(
-        new[] {
-            new
-            {
-                Time = currentTime,
-                Computer = "Computer1",
-                AdditionalContext = new
-                {
-                    InstanceName = "user1",
-                    TimeZone = "Pacific Time",
-                    Level = 4,
-                    CounterName = "AppMetric1",
-                    CounterValue = 15.3
-                }
-            },
-            new
-            {
-                Time = currentTime,
-                Computer = "Computer2",
-                AdditionalContext = new
-                {
-                    InstanceName = "user2",
-                    TimeZone = "Central Time",
-                    Level = 3,
-                    CounterName = "AppMetric1",
-                    CounterValue = 23.5
-                }
-            },
-        });
+// Initialize variables
+var endpoint = new Uri("https://my-url.monitor.azure.com");
+var ruleId = "dcr-00000000000000000000000000000000";
+var streamName = "Custom-MyTableRawData";
 
-    // Convert BinaryData to bytes
+// Create credential and client
+var credential = new DefaultAzureCredential();
+LogsIngestionClient client = new LogsIngestionClient(endpoint, credential);
+
+DateTime currentTime = DateTime.UtcNow;
+
+// Use BinaryData to serialize instances of an anonymous type into JSON
+BinaryData data = BinaryData.FromObjectAsJson(
+    new[] {
+				new
+				{
+						Time = currentTime,
+						Computer = "Computer1",
+						AdditionalContext = new
+						{
+							InstanceName = "user1",
+							TimeZone = "Pacific Time",
+							Level = 4,
+							CounterName = "AppMetric1",
+							CounterValue = 15.3
+						}
+					},
+				new
+				{
+						Time = currentTime,
+						Computer = "Computer2",
+						AdditionalContext = new
+						{
+							InstanceName = "user2",
+							TimeZone = "Central Time",
+							Level = 3,
+							CounterName = "AppMetric1",
+							CounterValue = 23.5
+						}
+				},
+		}
+);
+
+// Upload logs
+try
+{
+
+    //  To upload compressed data please use following block
     byte[] dataBytes = data.ToArray();
- 
+
     string contentEncoding = "gzip"; // Specify gzip if the content is already compressed
-    
-    // Upload logs and make request
-    try
-    {
-     using (MemoryStream memoryStream = new MemoryStream())
-     {
-      using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
-      {
-        gzipStream.Write(dataBytes, 0, dataBytes.Length);
-      }
- 
-      byte[] gzipBytes = memoryStream.ToArray();
 
-      var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
-      if (response.IsError)
-      {
-        throw new Exception(response.ToString());
-      }
-     }
-    }
-    catch (Exception ex)
+    using (MemoryStream memoryStream = new MemoryStream())
     {
-      Console.WriteLine("Upload failed with Exception: " + ex.Message);
-    }
-    ```
+        using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
+        {
+            gzipStream.Write(dataBytes, 0, dataBytes.Length);
+        }
 
-3. Execute the code, and the data should arrive in your Log Analytics workspace within a few minutes.
+        byte[] gzipBytes = memoryStream.ToArray();
+
+        var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
+        if (response.IsError)
+        {
+            throw new Exception(response.ToString());
+        }
+    }
+
+    //** To upload non-compressed data please use following block
+    var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(data)).ConfigureAwait(false);
+    //**
+
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Upload failed with Exception: " + ex.Message);
+}
+```
+
+4. Execute the code, and the data should arrive in your Log Analytics workspace within a few minutes.
 
 ## [Go](#tab/go)
 
