@@ -88,36 +88,39 @@ BinaryData data = BinaryData.FromObjectAsJson(
 // Upload logs
 try
 {
-
-    //  To upload compressed data please use following block
-    byte[] dataBytes = data.ToArray();
-
-    string contentEncoding = "gzip"; // Specify gzip if the content is already compressed
-
-    using (MemoryStream memoryStream = new MemoryStream())
-    {
-        using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
+	// ===== START: Block to upload compressed data
+	byte[] dataBytes = data.ToArray();
+   
+	string contentEncoding = "gzip"; // Specify gzip if the content is already compressed
+ 
+        using (MemoryStream memoryStream = new MemoryStream())
         {
-            gzipStream.Write(dataBytes, 0, dataBytes.Length);
-        }
-
-        byte[] gzipBytes = memoryStream.ToArray();
-
-        var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
+           using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
+           {
+  		gzipStream.Write(dataBytes, 0, dataBytes.Length);
+	   }
+           byte[] gzipBytes = memoryStream.ToArray();
+ 
+	   var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
+           if (response.IsError)
+           {
+           	throw new Exception(response.ToString());
+ 	   }
+	}
+        // ===== End : Block to upload compressed data
+ 
+        //** ===== START: Block to upload non-compressed data.
+        var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(data)).ConfigureAwait(false);
         if (response.IsError)
-        {
-            throw new Exception(response.ToString());
-        }
-    }
-
-    /* To upload uncompressed data please use following block
-    var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(data)).ConfigureAwait(false);
-    */
-
+	   {
+           	throw new Exception(response.ToString());
+	   }
+	//** ===== End: Block to upload non-compressed data.
+ 
 }
 catch (Exception ex)
 {
-    Console.WriteLine("Upload failed with Exception: " + ex.Message);
+	Console.WriteLine("Upload failed with Exception: " + ex.Message);
 }
 ```
 
