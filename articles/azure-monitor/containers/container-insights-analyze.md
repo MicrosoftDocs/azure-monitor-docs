@@ -18,40 +18,35 @@ Workbooks combine text, log queries, metrics, and parameters into rich interac
 
 
 ## Multi-cluster view from Azure Monitor
-Azure Monitor provides a multi-cluster view that shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. It also shows clusters discovered across all environments that aren't monitored by the solution. With this view, you can immediately understand cluster health and then drill down to the node and controller performance page or navigate to see performance charts for the cluster. For AKS clusters that were discovered and identified as unmonitored, you can enable monitoring from the view.
+Azure Monitor provides a multi-cluster view that shows the health status of all monitored Kubernetes clusters deployed across resource groups in your subscriptions. With this view, you can immediately understand cluster health and then drill down to the node and controller performance page or navigate to see performance charts for the cluster. For clusters that were discovered and identified as unmonitored, you can enable monitoring from the view.
+
+>[!NOTE]
+>Azure Stack (Preview) and Non-Azure (Preview) are no longer supported in this view.
 
 To access the multi-cluster view, select **Monitor** from the left pane in the Azure portal. Under the **Insights** section, select **Containers**.
 
 :::image type="content" source="./media/container-insights-analyze/azmon-containers-multiview.png" alt-text="Screenshot that shows an Azure Monitor multi-cluster dashboard example." lightbox="media/container-insights-analyze/azmon-containers-multiview.png":::
 
-You can scope the results presented in the grid to show clusters that are:
-
-* **Azure**: AKS and AKS Engine clusters hosted in Azure Kubernetes Service.
-* **Azure Stack (Preview)**: AKS Engine clusters hosted on Azure Stack.
-* **Non-Azure (Preview)**: Kubernetes clusters hosted on-premises.
-* **All**: View all the Kubernetes clusters hosted in Azure, Azure Stack, and on-premises environments that are onboarded to Container insights.
-
-To view clusters from a specific environment, select it from **Environment** in the upper-left corner.
-
-:::image type="content" source="./media/container-insights-analyze/clusters-multiview-environment-pill.png" alt-text="Screenshot that shows an Environment selector example." lightbox="media/container-insights-analyze/clusters-multiview-environment-pill.png":::
-
 On the **Monitored clusters** tab, you learn the following:
 
 - How many clusters are in a critical or unhealthy state versus how many are healthy or not reporting (referred to as an Unknown state).
-- Whether all of the [Azure Kubernetes Engine (AKS Engine)](https://github.com/Azure/aks-engine) deployments are healthy.
 - How many nodes and user and system pods are deployed per cluster.
 
 The health statuses included are:
 
-* **Healthy**: No issues are detected for the VM, and it's functioning as required.
 * **Critical**: One or more critical issues are detected that must be addressed to restore normal operational state as expected.
 * **Warning**: One or more issues are detected that must be addressed or the health condition could become critical.
-* **Unknown**: If the service wasn't able to make a connection with the node or pod, the status changes to an Unknown state.
+* **Unauthorized**: User doesn't have required permissions to read data in the workspace or Data Collection Rule.
 * **Not found**: Either the workspace, the resource group, or subscription that contains the workspace for this solution was deleted.
-* **Unauthorized**: User doesn't have required permissions to read the data in the workspace.
+* **Enable recording rules**: Enable [Prometheus recording rules](prometheus-metrics-scrape-default.md#prometheus-visualization-recording-rules) to unlock higher performance data and Prometheus visualizations.
+* **Misconfigured**: Something went wrong.
 * **Error**: An error occurred while attempting to read data from the workspace.
-* **Misconfigured**: Container insights wasn't configured correctly in the specified workspace.
 * **No data**: Data hasn't reported to the workspace for the last 30 minutes.
+* **Unknown**: If the service wasn't able to make a connection with the node or pod, the status changes to an Unknown state.
+* **Healthy**: No issues are detected for the VM, and it's functioning as required.
+* **Pending**: Monitoring configuration for Arc-enabled clusters typically takes around 5 minutes. If the cluster is disconnected from Azure, this process may be delayed. 
+* **Pending for X hours**: Monitoring configuration for the Arc-enabled cluster is taking longer than expected.
+* **Failed**: Monitoring configuration for the Arc-enabled cluster was unsuccessful.
 
 Health state calculates the overall cluster status as the *worst of* the three states with one exception. If any of the three states is Unknown, the overall cluster state shows **Unknown**.
 
