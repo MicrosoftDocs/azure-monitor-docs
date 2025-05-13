@@ -88,7 +88,7 @@ BinaryData data = BinaryData.FromObjectAsJson(
 // Upload logs
 try
 {
-	// ===== START: Block to upload compressed data
+	// ===== START: Use this block of code to upload compressed data
 	byte[] dataBytes = data.ToArray();
    
 	string contentEncoding = "gzip"; // Specify gzip if the content is already compressed
@@ -97,25 +97,25 @@ try
         {
            using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
            {
-  		gzipStream.Write(dataBytes, 0, dataBytes.Length);
+		gzipStream.Write(dataBytes, 0, dataBytes.Length);
 	   }
            byte[] gzipBytes = memoryStream.ToArray();
  
 	   var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
-           if (response.IsError)
-           {
-           	throw new Exception(response.ToString());
- 	   }
+	   if (response.IsError)
+	   {
+		throw new Exception(response.ToString());
+	   }
 	}
-        // ===== End : Block to upload compressed data
+        // ===== End: code block to upload compressed data
  
-        //** ===== START: Block to upload non-compressed data.
+        //** ===== START: Use this block of code to upload uncompressed data.
         var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(data)).ConfigureAwait(false);
         if (response.IsError)
-	   {
-           	throw new Exception(response.ToString());
-	   }
-	//** ===== End: Block to upload non-compressed data.
+	{
+	   throw new Exception(response.ToString());
+	}
+	//** ===== End: code block to upload uncompressed data.
  
 }
 catch (Exception ex)
