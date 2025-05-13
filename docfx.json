@@ -142,7 +142,7 @@
         "articles/azure-monitor/**/*": "bwren",
         "articles/azure-monitor/agents/**/*": "bwren",
         "articles/azure-monitor/alerts/**/*": "IngridAtMicrosoft",
-        "articles/azure-monitor/app/**/*": "AaronMaxwell",
+        "articles/azure-monitor/app/**/*": "AarDavMax",
         "articles/azure-monitor/autoscale/**/*": "IngridAtMicrosoft",
         "articles/azure-monitor/change/**/*": "hhunter-ms",
         "articles/azure-monitor/containers/**/*": "bwren",

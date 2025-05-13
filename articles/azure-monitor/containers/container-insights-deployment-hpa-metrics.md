@@ -2,7 +2,7 @@
 title: Deployment and HPA metrics with Container insights | Microsoft Docs
 description: This article describes what deployment and HPA metrics are collected with Container insights.
 ms.topic: conceptual
-ms.date: 2/28/2024
+ms.date: 04/23/2025
 ms.reviewer: viviandiec
 ---
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/07/2025
+ms.date: 05/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Azure Kubernetes Service (AKS)
@@ -65,5 +65,23 @@ Recommendation ID: 82d10dcf-5127-4a8c-a2b1-fd02ab46df60
 
 
 <!--82d10dcf-5127-4a8c-a2b1-fd02ab46df60_end-->
+
+<!--17f6ab99-c9b6-4800-bebd-7466699cec31_begin-->
+
+#### Consider Spot nodes for workloads that can handle interruptions  
+  
+Take advantage of unutilized Azure capacity at a reduced price with Spot nodes. Spot nodes are best for workloads that tolerate interruptions, early terminations, or evictions.  
+  
+**Potential benefits**: Use unutilized Azure capacity at a reduced price  
+
+**Impact:** Medium
+  
+For more information, see [Add an Azure Spot node pool to an Azure Kubernetes Service (AKS) cluster - Azure Kubernetes Service](https://aka.ms/aks/docs/spot)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 17f6ab99-c9b6-4800-bebd-7466699cec31  
+
+
+<!--17f6ab99-c9b6-4800-bebd-7466699cec31_end-->
 
 <!--articleBody-->

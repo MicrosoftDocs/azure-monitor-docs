@@ -86,7 +86,7 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 |---------------|--------------------------------------------------------------------------------------------------|
 | Africa        | South Africa North                                                                               |
 | Asia Pacific  | East Asia, Southeast Asia                                                                        |
-| Australia     | Australia Central, Australia East, Australia Southeast                                           |
+| Australia     | Australia Central, Australia East, Australia Southeast, Australia Central 2                      |
 | Brazil        | Brazil South, Brazil Southeast                                                                   |
 | Canada        | Canada Central, Canada East                                                                      |
 | China         | China North 3 (Preview)<sup>1</sup>, China East 3 (Preview)<sup>1</sup>                          |
@@ -102,7 +102,7 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 | Spain         | Spain Central                                                                                    |
 | Sweden        | Sweden South, Sweden Central                                                                     |
 | Switzerland   | Switzerland North, Switzerland West                                                              |
-| UAE           | UAE North                                                                                        |
+| UAE           | UAE North, UAE Central                                                                           |
 | UK            | UK South, UK West                                                                                |
 | US            | Central US, East US, East US 2, South Central US, West Central US, West US, West US 2, West US 3 |
 | US Government | USGov Virginia<sup>1</sup>, USGov Texas<sup>1</sup>                                              |
