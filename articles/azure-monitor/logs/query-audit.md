@@ -68,7 +68,7 @@ An audit record is created each time a query is run. If you send the data to a L
 |AzureMonitorLogsConnector|[Azure Monitor Logs Connector](/azure/connectors/connectors-azure-monitor-logs).|
 |csharpsdk|[Log Analytics Query API.](../logs/api/overview.md)|
 |Draft-Monitor|[Log search alert creation in the Azure portal.](../alerts/alerts-create-new-alert-rule.md?tabs=log)|
-|Grafana|[Grafana connector.](../visualize/grafana-plugin.md)|
+|Grafana|[Grafana connector.](../visualize/visualize-grafana-overview.md)|
 |IbizaExtension|Experiences of Log Analytics in the Azure portal.|
 |infraInsights/container|[Container insights.](../containers/container-insights-overview.md)|
 |infraInsights/vm|[VM insights.](../vm/vminsights-overview.md)|

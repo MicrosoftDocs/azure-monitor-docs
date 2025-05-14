@@ -1,7 +1,7 @@
 ---
 title: Filtering and preprocessing in the Application Insights SDK | Microsoft Docs
 description: Write telemetry processors and telemetry initializers for the SDK to filter or add properties to the data before the telemetry is sent to the Application Insights portal.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, python

@@ -4,7 +4,7 @@ description: Azure Monitor log analytics queries by tables
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 04/28/2025
+ms.date: 05/12/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -57,6 +57,11 @@ ms.reviewer: lualderm
 ## [AADDomainServicesPrivilegeUse](./queries/AADDomainServicesPrivilegeUse.md)
 
 - [Show logs from AADDomainServicesPrivilegeUse table](./queries/AADDomainServicesPrivilegeUse.md#show-logs-from-aaddomainservicesprivilegeuse-table)
+
+## [AADGraphActivityLogs](./queries/AADGraphActivityLogs.md)
+
+- [Frequent users endpoint callers (AAD Graph)](./queries/AADGraphActivityLogs.md#frequent-users-endpoint-callers-aad-graph)
+- [Failed groups endpoint requests (AAD Graph)](./queries/AADGraphActivityLogs.md#failed-groups-endpoint-requests-aad-graph)
 
 ## [AADManagedIdentitySignInLogs](./queries/AADManagedIdentitySignInLogs.md)
 
@@ -684,6 +689,15 @@ ms.reviewer: lualderm
 - [Publish virtual network events by namespace](./queries/AZMSVnetConnectionEvents.md#publish-virtual-network-events-by-namespace)
 - [Publish deny connection by namespace](./queries/AZMSVnetConnectionEvents.md#publish-deny-connection-by-namespace)
 - [Publish virtual network events by namespace](./queries/AZMSVnetConnectionEvents.md#publish-virtual-network-events-by-namespace)
+
+## [AcsCallAutomationStreamingUsage](./queries/AcsCallAutomationStreamingUsage.md)
+
+- [Media Streaming minutes](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes)
+- [Media Streaming minutes per call](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes-per-call)
+- [Media Streaming minutes per call per participant](./queries/AcsCallAutomationStreamingUsage.md#media-streaming-minutes-per-call-per-participant)
+- [Transcription streaming minutes](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes)
+- [Transcription streaming minutes per call](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call)
+- [Transcription streaming minutes per call per participant](./queries/AcsCallAutomationStreamingUsage.md#transcription-streaming-minutes-per-call-per-participant)
 
 ## [AddonAzureBackupJobs](./queries/AddonAzureBackupJobs.md)
 

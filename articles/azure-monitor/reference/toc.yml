@@ -1241,6 +1241,8 @@ items:
             href: tables/microsoft-automation_automationaccounts.md
           - name: microsoft.avs/privateclouds
             href: tables/microsoft-avs_privateclouds.md
+          - name: microsoft.azureadgraph/tenants
+            href: tables/microsoft-azureadgraph_tenants.md
           - name: microsoft.azuredatatransfer/connections
             href: tables/microsoft-azuredatatransfer_connections.md
           - name: microsoft.azureplaywrightservice/accounts
@@ -1463,6 +1465,8 @@ items:
             href: tables/microsoft-openlogisticsplatform_workspaces.md
           - name: microsoft.operationalinsights/workspaces
             href: tables/microsoft-operationalinsights_workspaces.md
+          - name: microsoft.orbital/geocatalogs
+            href: tables/microsoft-orbital_geocatalogs.md
           - name: microsoft.playfab/titles
             href: tables/microsoft-playfab_titles.md
           - name: microsoft.powerbi/tenants
@@ -1580,6 +1584,8 @@ items:
             href: tables/aaddomainservicesprivilegeuse.md
           - name: AADFirstPartyToFirstPartySignInLogs
             href: tables/aadfirstpartytofirstpartysigninlogs.md
+          - name: AADGraphActivityLogs
+            href: tables/aadgraphactivitylogs.md
           - name: AADManagedIdentitySignInLogs
             href: tables/aadmanagedidentitysigninlogs.md
           - name: AADNonInteractiveUserSignInLogs
@@ -1912,6 +1918,8 @@ items:
             href: tables/azmsruntimeauditlogs.md
           - name: AZMSVnetConnectionEvents
             href: tables/azmsvnetconnectionevents.md
+          - name: AcsCallAutomationStreamingUsage
+            href: tables/acscallautomationstreamingusage.md
           - name: AddonAzureBackupAlerts
             href: tables/addonazurebackupalerts.md
           - name: AddonAzureBackupJobs
@@ -3106,6 +3114,8 @@ items:
             href: queries/AADDomainServicesPolicyChange.md
           - name: AADDomainServicesPrivilegeUse
             href: queries/AADDomainServicesPrivilegeUse.md
+          - name: AADGraphActivityLogs
+            href: queries/AADGraphActivityLogs.md
           - name: AADManagedIdentitySignInLogs
             href: queries/AADManagedIdentitySignInLogs.md
           - name: AADNonInteractiveUserSignInLogs
@@ -3292,6 +3302,8 @@ items:
             href: queries/AZMSRunTimeAuditLogs.md
           - name: AZMSVnetConnectionEvents
             href: queries/AZMSVnetConnectionEvents.md
+          - name: AcsCallAutomationStreamingUsage
+            href: queries/AcsCallAutomationStreamingUsage.md
           - name: AddonAzureBackupJobs
             href: queries/AddonAzureBackupJobs.md
           - name: AddonAzureBackupStorage

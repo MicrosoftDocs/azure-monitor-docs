@@ -816,7 +816,7 @@ Logs|[Azure Monitor Log Analytics API overview](../logs/api/overview.md)| Added 
 Logs|[Azure Monitor Logs overview](../logs/data-platform-logs.md)| Added a new Azure SDK client library for Go.|
 Logs|[Log queries in Azure Monitor](../logs/log-query-overview.md)| Added a new Azure SDK client library for Go.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Added new tables to the list of tables that support the Basic Log data plan.|
-Visualizations|[Monitor your Azure services in Grafana](../visualize/grafana-plugin.md)|The Grafana integration is generally available and is no longer in preview.|
+Visualizations|[Monitor your Azure services in Grafana](../visualize/visualize-grafana-overview.md)|The Grafana integration is generally available and is no longer in preview.|
 Visualizations|[Get started with Azure Workbooks](../visualize/workbooks-getting-started.md)|Added instructions for how to share workbooks.|
 
 ### October 2022

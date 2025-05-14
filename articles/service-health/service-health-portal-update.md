@@ -23,7 +23,9 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 1. **Billing updates** - Billing communications related to your subscription.
 
 > [!NOTE]
-> To view Service Health events, users must be [granted the Reader role](/azure/role-based-access-control/role-assignments-portal) on a subscription.
+>If you're using Azure Resource Graph (ARG) queries to retrieve service health events and notice a different count compared to the Service Health UI, this is expected. The ARG returns one record per subscription ID and tracking ID combination. On the Azure portal, updates are grouped under each tracking ID, so you might see fewer rows.
+>
+>However, all updates for each tracking ID are still available in the Issue Updates tab, and the number of unique tracking IDs is the same in both ARG and the Service Health Portal.
 
 
 ## Get Started with Service Health
@@ -80,7 +82,9 @@ This page watches your resource and tells you if it's running as expected. There
 ### View and sort Health alerts
 
 The Health Alerts window allows you to search for and sort your alert rules by name. You can also group alert rules by subscription and status. 
+
 <br>An alert is triggered when the specified conditions are met. You can select any alert rule for more information, and details and see the alert firing history. You can also select the link of any alert to see more details. For more information on Service Health Alerts, see [Configure Service Health alerts using Azure portal](alerts-activity-log-service-notifications-portal.md).
+
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="A screenshot highlighting the health alerts window filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
 

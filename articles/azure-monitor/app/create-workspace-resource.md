@@ -1,7 +1,7 @@
 ---
 title: Create and configure Application Insights resources
 description: Learn how to create and configure Application Insights resources programmatically and in the Azure portal
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/25/2025
 ms.reviewer: cogoodson
 ms.custom: devx-track-azurepowershell, devx-track-azurecli

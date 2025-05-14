@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 05/06/2025
+ms.date: 05/12/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -18,6 +18,14 @@ ms.reviewer: lualderm
 
 ## Resource log / log analytics tables
 
+
+### AAD Graph Logs  
+
+Microsoft.AzureADGraph/tenants  
+
+- [AzureActivity](./tables/azureactivity.md)
+- [AuditLogs](./tables/auditlogs.md)
+- [AADGraphActivityLogs](./tables/aadgraphactivitylogs.md)
 
 ### Analysis Services  
 
@@ -695,6 +703,7 @@ Microsoft.Communication/CommunicationServices
 - [ACSRoomsIncomingOperations](./tables/acsroomsincomingoperations.md)
 - [ACSCallAutomationIncomingOperations](./tables/acscallautomationincomingoperations.md)
 - [ACSCallAutomationMediaSummary](./tables/acscallautomationmediasummary.md)
+- [AcsCallAutomationStreamingUsage](./tables/acscallautomationstreamingusage.md)
 - [ACSAdvancedMessagingOperations](./tables/acsadvancedmessagingoperations.md)
 
 ### Container Apps  
@@ -1210,6 +1219,12 @@ Microsoft.Graph/tenants
 - [AzureActivity](./tables/azureactivity.md)
 - [SigninLogs](./tables/signinlogs.md)
 - [AuditLogs](./tables/auditlogs.md)
+
+### Microsoft Planetary Computer Pro  
+
+Microsoft.Orbital/geocatalogs  
+
+- [OGOAuditLogs](./tables/ogoauditlogs.md)
 
 ### Microsoft Playwright Testing  
 
