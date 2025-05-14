@@ -411,7 +411,7 @@ The visualizations include:
 
 **Insights Cards:** Highlight the top five initiating and returning events to help pinpoint key engagement drivers.
 
-:::image type="content" source="media/usage/retention.png" lightbox="media/usage/retention.png" alt-text="Screenshot that shows the Retention workbook, which displays information about how often users return to use their app." :::
+:::image type="content" source="media/usage/user-retention-workbook.png" lightbox="media/usage/user-retention-workbook.png" alt-text="Screenshot that shows the Retention workbook, which displays information about how often users return to use their app.":::
 
 Use the retention controls at the top of the workbook to:
 
