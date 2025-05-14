@@ -26,7 +26,7 @@ This article details what is communicated to users and where they can view infor
 In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Planned Maintenance** displays resources affected by a planned maintenance event. The following example of the Impacted Resources tab shows a planned maintenance event with impacted resources.
 
 
-:::image type="content" source="./media/impacted-resource-maintenance/grid-image.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health." lightbox="./media/impacted-resource-maintenance/grid-image.PNG":::
+:::image type="content" source="./media/impacted-resource-maintenance/grid-images.PNG" alt-text="Screenshot of planned maintenance impacted resources in Azure Service Health." lightbox="./media/impacted-resource-maintenance/grid-image.PNG":::
 
 Service Health provides the following information on resources impacted by a planned maintenance event:
 
