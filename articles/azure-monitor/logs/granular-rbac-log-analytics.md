@@ -43,7 +43,7 @@ The following sections provide an overview of the key concepts and steps involve
 
 - [Role creation](#role-creation)
 - [Conditions and expressions](#conditions-and-expressions)
-- [Expression operators](#abac-expression-operators)
+- [Expression operators](#expression-operators)
 
 ### Role creation
 
@@ -65,7 +65,9 @@ For example, if a you have two role assignments on the same scope, one set with 
 
 ### Conditions and expressions
 
-Conditions are configured at the time of role assignment to finely tune access control. Granular RBAC allows you to set a condition on tables and row level, based on the data in each record. Plan restrictions based on these two strategies:
+Just like regular role assignments, the custom role created must be assigned to a user or group. The difference is, during the role assignment, conditions are configured to finely tune access control. 
+
+Granular RBAC allows you to set a condition on tables and row level, based on the data in each record. Plan restrictions based on these two strategies:
 
 | Access control method | Example |
 |---|---|
