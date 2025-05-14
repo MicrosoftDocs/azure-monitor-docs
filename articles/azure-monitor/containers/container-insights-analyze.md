@@ -35,7 +35,7 @@ The health statuses included are:
 * **Critical**: One or more critical issues are detected that must be addressed to restore normal operational state as expected.
 * **Warning**: One or more issues are detected that must be addressed or the health condition could become critical.
 * **Unauthorized**: User doesn't have required permissions to read data in the workspace or Data Collection Rule.
-* **Not found**: Either the workspace, the resource group, or subscription that contains the workspace for this solution was deleted.
+* **Not found**: Either the workspace, the resource group, or subscription that contains the workspace was deleted.
 * **Enable recording rules**: Enable [Prometheus recording rules](prometheus-metrics-scrape-default.md#prometheus-visualization-recording-rules) to unlock higher performance data and Prometheus visualizations.
 * **Misconfigured**: Something went wrong.
 * **Error**: An error occurred while attempting to read data from the workspace.
@@ -56,7 +56,7 @@ The following table provides a breakdown of the calculation that controls the he
 |**System pod**| Healthy<br>Warning<br>Critical<br>Unknown |100%<br>N/A<br>100%<br>Not reported in last 30 minutes |
 |**Node** | Healthy<br>Warning<br>Critical<br>Unknown | >85%<br>60 - 84%<br><60%<br>Not reported in last 30 minutes |
 
-From the list of clusters, you can drill down to the **Cluster** page by selecting the name of the cluster. Then go to the **Nodes** performance page by selecting the rollup of nodes in the **Nodes** column for that specific cluster. Or, you can drill down to the **Controllers** performance page by selecting the rollup of the **User pods** or **System pods** column.
+From the list of clusters, you can drill down to the **Overview** page for AKS and **Cluster** page for Arc-enabled clusters by selecting the name of the cluster. Then go to the **Nodes** performance page by selecting the rollup of nodes in the **Nodes** column for that specific cluster. Or, you can drill down to the **Controllers** performance page by selecting the rollup of the **User pods** or **System pods** column.
 
 ## View performance directly from a cluster
 
