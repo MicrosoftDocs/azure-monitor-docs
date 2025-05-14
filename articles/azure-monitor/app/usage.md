@@ -20,7 +20,7 @@ This article covers the following areas:
 
 * [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application and where they might be dropping off.
 
-* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and pinpointing areas where users are most engaged users or may encounter issues.
+* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and identify areas where users are most engaged or encounter issues.
 
 * [**Cohorts**](#cohorts) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
 
@@ -30,7 +30,7 @@ This article covers the following areas:
 
 * [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
 
-* [**HEART Analysis**](#heart) - Utilize the HEART framework to measure and understand user Happiness, Engagement, Adoption, Retention, and Task success.
+* [**HEART Analysis**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user happiness, engagement, adoption, retention, and task success.
 
 ## Collect browser telemetry
 
@@ -49,7 +49,7 @@ To verify if browser telemetry is being collected, run your project in debug mod
 > [!TIP]
 > To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md).
 >
-> This dual implementation enables telemetry collection from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
+> This dual implementation collects telemetry from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
 ## Users, Sessions, and Events
 
@@ -391,43 +391,36 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 
 ## User Retention Analysis
 
-The Application Insights retention feature provides valuable insights into user engagement by tracking the frequency and patterns of users returning to your app and their interactions with specific features. It enables you to compare user behaviors, such as the difference in return rates between users who win or lose a game, offering actionable data to enhance user experience and inform business strategies.
+The User Retention Analysis workbook helps you understand user engagement by tracking how often users return to your app and interact with specific features. It reveals patterns across user cohorts, such as differences in return rates between users who win or lose a game, offering actionable insights to improve user experience and guide business decisions.
 
-By analyzing cohorts of users based on their actions within a given timeframe, you can identify which features drive repeat usage. This knowledge can help you:
+By analyzing user cohorts based on their actions within a given timeframe, you can:
 
 * Understand what specific features cause users to come back more than others.
-* Determine whether retention is a problem in your product.
-* Form hypotheses based on real user data to help you improve the user experience and your business strategy.
+* Detect potential retention issues.
+* Form data-driven hypotheses to help you improve the user experience and your product strategy.
 
-:::image type="content" source="./media/usage-overview/retention.png" alt-text="Screenshot that shows the Retention workbook, which displays information about how often users return to use their app." lightbox="./media/usage-overview/retention.png":::
+### Use the User Retention Analysis workbook
 
-You can use the retention controls on top to define specific events and time ranges to calculate retention. The graph in the middle gives a visual representation of the overall retention percentage by the time range specified. The graph on the bottom represents individual retention in a specific time period. This level of detail allows you to understand what your users are doing and what might affect returning users on a more detailed granularity.
+To access the workbook, go to the **Workbooks** pane in Application Insights and select **User Retention Analysis** under the **Usage** category.
 
-For more information about the Retention workbook, see the section below.
+The visualizations include:
 
-### The user retention analysis workbook
+**Overall Retention:** A summary chart of the user retention percentage over the selected time frame.
 
-To use the retention workbook in Application Insights, navigate to the **Workbooks** pane and locate the **User Retention Analysis** workbook listed under the **Usage** category.
+**Retention Grid:** Displays the number of users retained. Each row represents a cohort of users who performed any event in the time period shown. Each cell in the row shows how many of that cohort returned at least once in a later period. Some users might return in more than one period.
 
-**Workbook capabilities:**
+**Insights Cards:** Highlight the top five initiating and returning events to help pinpoint key engagement drivers.
 
-* By default, retention shows all users who did anything and then came back and did anything else over a defined period. You can select different combinations of events to narrow the focus on specific user activities.
+:::image type="content" source="media/usage/retention.png" lightbox="media/usage/retention.png" alt-text="Screenshot that shows the Retention workbook, which displays information about how often users return to use their app." :::
 
-* To add one or more filters on properties, select **Add Filters**. For example, you can focus on users in a particular country or region.
+Use the retention controls at the top of the workbook to:
 
-* The **Overall Retention** chart shows a summary of user retention across the selected time period.
+* Define a specific time range.
+* Select different combinations of events to narrow the focus on specific user activities.
+* Add filters on properties, for example, to focus on users in a particular country or region.
 
-* The grid shows the number of users retained. Each row represents a cohort of users who performed any event in the time period shown. Each cell in the row shows how many of that cohort returned at least once in a later period. Some users might return in more than one period.
-
-* The insights cards show the top five initiating events and the top five returned events. This information gives users a better understanding of their retention report.
-
-    :::image type="content" source="./media/usage-retention/retention-2.png" alt-text="Screenshot that shows the Retention workbook showing the User returned after number of weeks chart." lightbox="./media/usage-retention/retention-2.png":::
-
-### Use business events to track retention
-
-You should measure events that represent significant business activities to get the most useful retention analysis.
-
-For more information and example code, see the section below.
+> [!TIP]
+> To get the most useful user retention analysis, measure events that represent significant business activities. For more information, see [Track user interactions with custom events](#track-user-interactions-with-custom-events).
 
 ## User Impact Analysis
 
