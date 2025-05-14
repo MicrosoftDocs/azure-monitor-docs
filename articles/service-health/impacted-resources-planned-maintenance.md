@@ -33,13 +33,13 @@ Service Health provides the following information on resources impacted by a pla
 
 |Fields  |Description |
 |---------|---------|
-|**Resource Name**|Name of the resource impacted by the planned maintenance event.|
-|**Resource Type**|Type of resource impacted by the planned maintenance event.|
-|**Resource Group**|Resource group which contains the impacted resource.|
-|**Region**|Region which contains the impacted resource.|
-|**Subscription ID**|Unique ID for the subscription that contains the impacted resource.|
-|**Action(*)**|Link to the applied update page during Self-Service window (only for rebootful updates on compute resources).|
-|**Self-serve Maintenance Due Date(*)**|The Due date for the Self-Service window when the the user applies the update (only for rebootful updates on compute resources).|
+|**Resource Name**|The name of the resource impacted by the planned maintenance event.|
+|**Resource Type**|The type of resource impacted by the planned maintenance event.|
+|**Resource Group**|The Resource group which contains the impacted resource.|
+|**Region**|The Region which contains the impacted resource.|
+|**Subscription ID**|The Unique ID for the subscription that contains the impacted resource.|
+|**Action(*)**|A link to the applied update page during Self-Service window (only for rebootful updates on compute resources).|
+|**Self-serve Maintenance Due Date(*)**|The due date for the Self-Service window when the the user applies the update (only for rebootful updates on compute resources).|
 
 >[!Note]
 >Fields with an asterisk * are optional fields that are available depending on the resource type.
@@ -50,7 +50,7 @@ Service Health provides the following information on resources impacted by a pla
 
 Customers can filter the results using these filters:
 
-* **Region** : The region where the impacted resource is located.
+* **Region**: The region where the impacted resource is located.
 * **Subscription ID**: All the subscription IDs the user has access to. 
 * **Resource Type**: All the resource types under the user subscriptions.
 
@@ -61,7 +61,7 @@ The list of impacted resources can be exported as an Excel file by clicking on t
 
 :::image type="content" source="./media/impacted-resource-maintenance/details-csv.PNG" alt-text="Screenshot of export to csv button.":::
 
-The CSV file includes the properties associated with each event and more details per event level. This CSV file could be used as a static point in time snapshot for all the active events under the **Service Health** > **Planned maintenance** view. <br> These details are a subset of more event level information available through Service Health API, which could be integrated with Event Grid or other events automation solutions.
+The CSV file includes the properties associated with each event and more details per event level. This file could be used as a static point in time snapshot for all the active events under the **Service Health** > **Planned maintenance** view. <br> These details are a subset of more event level information available through Service Health API, which could be integrated with Event Grid or other event automation solutions.
 
 :::image type="content" source="./media/impacted-resource-maintenance/impacted-services.png" alt-text="Screenshot of impacted services." lightbox="./media/impacted-resource-maintenance/impacted-services.png":::
 
@@ -74,10 +74,10 @@ This table contains a short description of each of the column properties.
 | **Impacted Services** | One or more services applicable to the published maintenance event. |
 | **Impact Start Time** | The Start Time in UTC for the event. There could be smaller work windows or timeframe within each event shared through update communications. |
 | **Impact End Time** | The End Time in UTC for the event. There could be smaller work windows or timeframe within each event shared through update communications. |
-| **Subscription(s)** | One of more SubscriptionId's which are in scope of the published event. |
-| **Estimated Impact Duration**\* | Estimated time in seconds for resource level impact. An event window could be for a broader timeframe (like several hours or sometimes even days). However, this field shows the estimated impact duration within the scheduled window. |
-| **Impact Type**\* | Predefined Impact types which are helpful in categorizing events based on how the service or resource level impact would be observed, during the event window. ***More details on categories in the following section.*** |
-| **Recommendation**\* | Steps or recommended actions for users, based on Impact Type. |
+| **Subscription(s)** | Any SubscriptionId's which are in the scope of the published event. |
+| **Estimated Impact Duration**\* | Estimated time in seconds for resource level impact. An event window could be for a broader timeframe (for example, several hours or sometimes even days). However, this field shows the estimated impact duration within the scheduled window. |
+| **Impact Type**\* | Predefined Impact types which are helpful in categorizing events based on how the service or resource level impact would be observed, during the event window. ***See more details on categories in the following section.*** |
+| **Recommendation**\* | Steps or recommended actions for users, based on the Impact Type. |
 
 > [!NOTE]
 > Fields with an asterisk * are newly introduced properties which might be empty for some services, since they have yet to adopt the new layout.
