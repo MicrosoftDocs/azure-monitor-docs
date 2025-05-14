@@ -100,7 +100,7 @@ az aks update --disable-azure-monitor-metrics -n <clusterName> -g <resourceGroup
 ```azurecli
 az aks update -n <clusterName> -g <resourceGroup> --enable-azure-monitor-metrics --ksm-metric-labels-allow-list "nodes=[*], pods=[*]" --azure-monitor-workspace-resource-id <amw-id>
 ```
-#### Arc-enalbed cluster 
+#### Arc-enabled cluster 
 1. If the managed Prometheus addon is currently deployed, we must first disable it
 
 ```azurecli
