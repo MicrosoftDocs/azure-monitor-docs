@@ -265,8 +265,8 @@ items:
             href: optimization-insights/code-optimizations-vs-extension.md
           - name: Visual Studio Code
             href: optimization-insights/code-optimizations-vscode-extension.md
-          - name: GitHub Copilot agents
-            href: optimization-insights/code-optimizations-vscode-extension.md #placeholder
+          - name: GitHub Copilot
+            href: optimization-insights/code-optimizations-github-copilot.md
         - name: Troubleshooting
           items:
           - name: Code Optimizations

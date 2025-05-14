@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 05/13/2025
+ms.date: 05/14/2025
 ms.reviewer: jan.kalis
 ---
 
@@ -96,7 +96,7 @@ Run the `/optimize` command along with the Azure DevOps or GitHub work item numb
 
 1. In the details pane, click **Create Work Item**.
 
-    :::image type="content" source="media/code-optimizations-vscode-extension/create-work-item-button.png" alt-text="Screenshot of the button for creating a work item in the details pane.":::
+    :::image type="content" source="media/code-optimizations-github-copilot/create-work-item.png" alt-text="Screenshot of the button for creating a work item in the details pane.":::
 
 1. From the dropdown, choose whether you'd like to create an issue through Azure DevOps or GitHub.
 
