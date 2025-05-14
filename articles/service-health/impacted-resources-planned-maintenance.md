@@ -1,12 +1,12 @@
 ---
-title: Viewing Impacted Resources from Azure planned maintenance events
+title: Impacted Resources from Azure planned maintenance events
 description: This article details where to find information from Azure Service Health about how Azure planned maintenance impacts your resources.
 ms.topic: conceptual
 ms.date: 5/14/2025
 
 ---
 
-# Viewing impacted resources from Azure planned maintenance
+# Impacted resources from Azure planned maintenance events
 
 To support of the experience of viewing Impacted Resources, Service Health has features to:
 
@@ -45,7 +45,7 @@ Service Health provides the following information on resources impacted by a pla
 >Fields with an asterisk * are optional fields that are available depending on the resource type.
 
 
-### Filter the results
+#### Filter the results
 
 
 Customers can filter the results using these filters:
@@ -56,17 +56,16 @@ Customers can filter the results using these filters:
 
 :::image type="content" source="./media/impacted-resource-maintenance/details-filters.PNG" alt-text="Screenshot of filters used to sort impacted resources.":::
 
-### Export to CSV
-
+#### Export to a CSV file
 The list of impacted resources can be exported as an Excel file by clicking on this option.
 
 :::image type="content" source="./media/impacted-resource-maintenance/details-csv.PNG" alt-text="Screenshot of export to csv button.":::
 
-The CSV file includes the properties associated with each event and more details per event level. This CSV file could be used as a static point in time snapshot for all the active events under the **Service Health** > **Planned maintenance** view. These details are a subset of more event level information available through Service Health API, which could be integrated with Event Grid or other events automation solutions.
+The CSV file includes the properties associated with each event and more details per event level. This CSV file could be used as a static point in time snapshot for all the active events under the **Service Health** > **Planned maintenance** view. <br> These details are a subset of more event level information available through Service Health API, which could be integrated with Event Grid or other events automation solutions.
 
 :::image type="content" source="./media/impacted-resource-maintenance/impacted-services.png" alt-text="Screenshot of impacted services." lightbox="./media/impacted-resource-maintenance/impacted-services.png":::
 
-The following table contains a short description of each of the column properties.
+This table contains a short description of each of the column properties.
 
 | Column Property | Description |
 |-----------------|-------------|
@@ -83,7 +82,7 @@ The following table contains a short description of each of the column propertie
 > [!NOTE]
 > Fields with an asterisk * are newly introduced properties which might be empty for some services, since they have yet to adopt the new layout.
 
-### Maintenance Impact Type and Duration fields
+#### Maintenance Impact Type and Duration fields
 
 In our continuous quest to make the **Planned maintenance** notifications more reliable and predictable for customers, we recently added 3 new properties, specifically on the impact aspect for the published event. These properties are currently available through CSV export option or through Service Health API call.
 
@@ -96,7 +95,7 @@ The new property *Impact Type* is the key to answering this common concern. The 
 
 We currently have a predefined set of categories which cover or represent different impact symptoms across Azure Services. There's a likelihood of minor overlap, as each service has its unique criteria on *Impact*, as per product design.
 
-The following table provides more insight into possible values for Impact Type property. The description columns also show the mapping with industry standard terms like blackout, brownout, and grayout.
+This table provides more insight into possible values for the Impact Type property. The description columns show the mapping with industry standard terms like blackout, brownout, and grayout.
 
 | Impact Type Category | Description | Examples |
 |----------------------|-------------|----------|
@@ -108,7 +107,7 @@ The following table provides more insight into possible values for Impact Type p
 | **No Impact Expected** | **#NoImpact**, **#Impactless**  | No noticeable impact.<br><br>**Network**: For example, fiber cable maintenance events usually don’t cause major issues—except during the brief moment when traffic is rerouted, which may then cause a minor, temporary packet loss. However, those packets are typically retried successfully. |
 | **Other (refer to message for details)** | If ***none*** of these categories directly apply or if there are ***more than one of above categories applicable***, then we would provide more details within the message content. | More than one of the Impact Categories is applicable. |
 
-### Impact duration
+#### Impact duration
 
 The Impact Duration field would show a numeric value representing the time in seconds the event would affect the listed resource. Depending on the service resiliency and implementation design, this Duration field combined with Impact Type field should help in overall level of Impact users might expect.
 
