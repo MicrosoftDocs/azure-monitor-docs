@@ -50,11 +50,11 @@ The following examples show a security incident with impacted resources from the
 
 **Subscription**
 
-:::image type="content" source="./media/impacted-resource-sec/impact-security.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health.":::
+:::image type="content" source="./media/impacted-resource-sec/impact-security.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health."lightbox="./media/impacted-resource-sec/impact-security.PNG":::
 
 **Tenant**
 
-:::image type="content" source="./media/impacted-resource-sec/security-tenant.PNG" alt-text="Screenshot of information about impacted resources from tenant scope in Azure Service Health.":::
+:::image type="content" source="./media/impacted-resource-sec/security-tenant.PNG" alt-text="Screenshot of information about impacted resources from tenant scope in Azure Service Health."lightbox="./media/impacted-resource-sec/security-tenant.PNG":::
 
 
 ## Accessing Impacted Resources programmatically via an API
@@ -76,4 +76,4 @@ https://management.azure.com/providers/microsoft.resourcehealth/events/("Trackin
 ## Next steps
 - [Introduction to the Azure Service Health dashboard](service-health-overview.md)
 - [Introduction to Azure Resource Health](resource-health-overview.md)
-- [Introduction to frequently asked questions about Azure Resource Health](resource-health-faq.yml)
+- [Azure Resource Health frequently asked questions](resource-health-faq.yml)
