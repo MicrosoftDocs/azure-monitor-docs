@@ -1,7 +1,7 @@
 ---
 title: Monitor performance on Azure VMs - Azure Application Insights
 description: Application performance monitoring for Azure virtual machines and virtual machine scale sets.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 02/05/2025
 ms.devlang: csharp
 ms.custom: devx-track-azurepowershell

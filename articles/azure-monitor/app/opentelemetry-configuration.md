@@ -1,7 +1,7 @@
 ---
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python

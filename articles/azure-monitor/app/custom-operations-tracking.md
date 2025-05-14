@@ -1,7 +1,7 @@
 ---
 title: Track custom operations with Application Insights .NET SDK 
 description: Learn how to track custom operations with the Application Insights .NET SDK.
-ms.topic: conceptual
+ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet
 ms.date: 12/07/2024
