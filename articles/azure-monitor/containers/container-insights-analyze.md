@@ -10,8 +10,6 @@ ms.reviewer: viviandiec
 
 Use the workbooks, performance charts, and health status in Container insights to monitor the workload of Kubernetes clusters hosted on Azure Kubernetes Service (AKS), Azure Stack, or another environment. This article helps you understand how to use Azure Monitor to help you quickly assess, investigate, and resolve detected issues.
 
-
-
 ## Workbooks
 
 Workbooks combine text, log queries, metrics, and parameters into rich interactive reports that you can use to analyze cluster performance. For a description of the workbooks available for Container insights and how to access them, see [Workbooks in Container insights](container-insights-reports.md). 
@@ -62,30 +60,7 @@ From the list of clusters, you can drill down to the **Cluster** page by selecti
 
 ## View performance directly from a cluster
 
-Access to Container insights is available directly from an AKS cluster by selecting **Insights** > **Cluster** from the left pane, or when you selected a cluster from the multi-cluster view. Information about your cluster is organized into four perspectives:
-
-- Cluster
-- Nodes
-- Controllers
-- Containers
-
->[!NOTE]
->The experiences described in the remainder of this article are also applicable for viewing performance and health status of your Kubernetes clusters hosted on Azure Stack or another environment when selected from the multi-cluster view.
-
-The default page opens and displays four line performance charts that show key performance metrics of your cluster.
-
-:::image type="content" source="./media/container-insights-analyze/containers-cluster-perfview.png" alt-text="Screenshot that shows example performance charts on the Cluster tab." lightbox="media/container-insights-analyze/containers-cluster-perfview.png":::
-
-The performance charts display four performance metrics:
-
-- **Node CPU utilization&nbsp;%**: An aggregated perspective of CPU utilization for the entire cluster. To filter the results for the time range, select **Avg**, **Min**, **50th**, **90th**, **95th**, or **Max** in the percentiles selector above the chart. The filters can be used either individually or combined.
-- **Node memory utilization&nbsp;%**: An aggregated perspective of memory utilization for the entire cluster. To filter the results for the time range, select **Avg**, **Min**, **50th**, **90th**, **95th**, or **Max** in the percentiles selector above the chart. The filters can be used either individually or combined.
-- **Node count**: A node count and status from Kubernetes. Statuses of the cluster nodes represented are **Total**, **Ready**, and **Not Ready**. They can be filtered individually or combined in the selector above the chart.
-- **Active pod count**: A pod count and status from Kubernetes. Statuses of the pods represented are **Total**, **Pending**, **Running**, **Unknown**, **Succeeded**, or **Failed**. They can be filtered individually or combined in the selector above the chart.
-
-Use the Left and Right arrow keys to cycle through each data point on the chart. Use the Up and Down arrow keys to cycle through the percentile lines. Select the pin icon in the upper-right corner of any one of the charts to pin the selected chart to the last Azure dashboard you viewed. From the dashboard, you can resize and reposition the chart. Selecting the chart from the dashboard redirects you to Container insights and loads the correct scope and view.
-
-Container insights also supports Azure Monitor [Metrics Explorer](../essentials/metrics-getting-started.md), where you can create your own plot charts, correlate and investigate trends, and pin to dashboards. From Metrics Explorer, you also can use the criteria that you set to visualize your metrics as the basis of a [metric-based alert rule](../alerts/alerts-metric.md).
+Access to Container insights is available directly from an AKS cluster by selecting **Monitor** from the left pane, or when you select a cluster from the multi-cluster view. For more information on Insights, please see [Managed Prometheus visualizations in Azure Monitor](container-insights-experience-v2.md).
 
 ## View container metrics in Metrics Explorer
 
