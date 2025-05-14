@@ -130,7 +130,7 @@
 - name: Resources
   items:
   - name: Azure Roadmap
-    href: https://azure.microsoft.com/updates/?searchterms=Azure+Roadmap
+    href: https://techcommunity.microsoft.com/discussions/microsoft-entra/introducing-the-azure-roadmap/113500
   - name: Pricing
     href: https://azure.microsoft.com/pricing/details/advisor/
   - name: Pricing calculator
