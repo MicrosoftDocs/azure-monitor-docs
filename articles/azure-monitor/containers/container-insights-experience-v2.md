@@ -104,7 +104,7 @@ az aks update -n <clusterName> -g <resourceGroup> --enable-azure-monitor-metrics
 1. If the managed Prometheus addon is currently deployed, we must first disable it
 
 ```azurecli
-az k8s-extension delete --name azuremonitor-metrics--cluster-name <cluster-name> --resource-group <resource-group-name> --cluster-type connectedClusters
+az k8s-extension delete --name azuremonitor-metrics --cluster-name <cluster-name> --resource-group <resource-group-name> --cluster-type connectedClusters
 ```
 
 2. Then, re-enable the addon with the following configuration settings
