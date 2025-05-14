@@ -50,9 +50,9 @@ Service Health provides the following information on resources impacted by a pla
 
 Customers can filter the results using these filters:
 
-* **Region**
-* **Subscription ID**: All subscription IDs the user has access to 
-* **Resource Type**: All resource types under the users' subscriptions
+* **Region** : The region where the impacted resource is located.
+* **Subscription ID**: All the subscription IDs the user has access to. 
+* **Resource Type**: All the resource types under the user subscriptions.
 
 :::image type="content" source="./media/impacted-resource-maintenance/details-filters.PNG" alt-text="Screenshot of filters used to sort impacted resources.":::
 
@@ -91,9 +91,9 @@ In our continuous quest to make the **Planned maintenance** notifications more r
 
 #### The impact on hosted services and end users
 
-The new property *Impact Type* is the key to answering this common concern. The Azure Service Health portal includes a new "Impact Type" field for maintenance events, which quickly shows the expected impact during the scheduled time.
+The *Impact Type* property is the key to answering this common concern. The Azure Service Health portal includes a new "Impact Type" field for maintenance events, which quickly shows the expected impact during the scheduled time.
 
-We currently have a predefined set of categories which cover or represent different impact symptoms across Azure Services. There's a likelihood of minor overlap, as each service has its unique criteria on *Impact*, as per product design.
+We have a predefined set of categories which cover or represent different impact symptoms across Azure Services. There's a likelihood of minor overlap, as each service has its unique criteria on *Impact*, as per product design.
 
 This table provides more insight into possible values for the Impact Type property. The description columns show the mapping with industry standard terms like blackout, brownout, and grayout.
 
