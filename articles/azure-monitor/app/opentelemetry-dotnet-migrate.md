@@ -1,7 +1,7 @@
 ---
 title: Migrate from Application Insights .NET SDKs to Azure Monitor OpenTelemetry
 description: This article provides guidance on how to migrate .NET applications from the Application Insights Classic API SDKs to Azure Monitor OpenTelemetry.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 05/31/2025
 ms.devlang: csharp
 ms.custom: devx-track-dotnet

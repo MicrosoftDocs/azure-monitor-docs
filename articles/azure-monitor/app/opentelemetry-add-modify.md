@@ -1,7 +1,7 @@
 ---
 title: Add and modify OpenTelemetry in Application Insights
 description: Learn how to add and modify OpenTelemetry (OTel) in Application Insights. Includes .NET, Java, Node.js, and Python applications, custom attributes, telemetry processors, and log and trace modifications.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/23/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
