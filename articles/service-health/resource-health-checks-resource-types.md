@@ -474,11 +474,11 @@ This page contains a complete list of all the checks executed through resource h
 |---|
 | - Can runtime operations like registration, installation, or send be performed on the namespace?|
 
-## Microsoft.OnlineExperimentation/workspaces
+## Microsoft.OnlineExperimentation/workspaces (Preview)
 
 |Executed Checks|
 |---|
-| - Is the server up and running?<br> - Has the server run out of memory?<br> - Is the server starting up?<br> - Is the server recovering?|
+| - Is data export rule configured on AppEvents table in the linked log analytics workspace?<br> - Has access to read AM-APPEVENTS container blob files in the linked storage account?<br> - Is summary log configured on OEWExperimentAssignmentSummary_CL table in the linked log analytics workspace?<br> - Has access to query OEWExperimentAssignmentSummary_CL table in the linked log analytics workspace?|
 
 ## Microsoft.operationalinsights/workspaces
 

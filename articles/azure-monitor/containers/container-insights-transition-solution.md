@@ -1,6 +1,6 @@
 ---
 title: Transition from the Container Monitoring Solution to using Container Insights
-ms.date: 2/28/2024
+ms.date: 04/23/2025
 ms.topic: article
 description: "Learn how to migrate from using the legacy OMS solution to monitoring your containers using Container Insights"
 ms.reviewer: viviandiec

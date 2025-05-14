@@ -1,7 +1,7 @@
 ---
 title: Failures and performance views in Application Insights | Microsoft Docs
 description: Monitor application performance and failures with Application Insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 03/26/2025
 ms.reviewer: cogoodson
 ---

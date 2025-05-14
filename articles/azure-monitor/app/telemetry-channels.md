@@ -1,7 +1,7 @@
 ---
 title: Telemetry channels in Application Insights | Microsoft Docs
 description: How to customize telemetry channels in Application Insights SDKs for .NET and .NET Core.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-dotnet

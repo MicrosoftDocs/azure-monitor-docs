@@ -2,7 +2,7 @@
 title: Configure PV monitoring with Container insights | Microsoft Docs
 description: This article describes how you can configure monitoring Kubernetes clusters with persistent volumes with Container insights.
 ms.topic: conceptual
-ms.date: 5/15/2024
+ms.date: 04/23/2025
 ms.reviewer: aul
 ---
 

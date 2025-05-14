@@ -1,7 +1,7 @@
 ---
 title: Get-Metric in Azure Monitor Application Insights
 description: Learn how to effectively use the GetMetric() call to capture locally preaggregated metrics for .NET and .NET Core applications with Azure Monitor Application Insights.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 3/21/2025
 ms.devlang: csharp
 ms.custom: devx-track-dotnet

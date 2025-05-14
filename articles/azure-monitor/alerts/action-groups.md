@@ -556,7 +556,7 @@ Webhook action groups generally follow these rules when called:
 
 ### Configure authentication for Secure webhook
 
-The secure webhook action authenticates to the protected API by using a Service Principal instance in the Microsoft Entra tenant of the "AZNS Microsoft Entra Webhook" Microsoft Entra application. To make the action group work, this Microsoft Entra Webhook Service Principal must be added as a member of a role on the target Microsoft Entra application that grants access to the target endpoint.
+The secure webhook action authenticates to the protected API by using a Service Principal instance in the Microsoft Entra tenant of the "AZNS AAD Webhook" Microsoft Entra application. To make the action group work, this Microsoft Entra Webhook Service Principal must be added as a member of a role on the target Microsoft Entra application that grants access to the target endpoint.
 
 For an overview of Microsoft Entra applications and service principals, see [Microsoft identity platform (v2.0) overview](/azure/active-directory/develop/v2-overview). Follow these steps to take advantage of the secure webhook functionality.
 

@@ -1,7 +1,7 @@
 ---
 title: Diagnose failures and exceptions with Azure Application Insights
 description: Capture exceptions from ASP.NET apps along with request telemetry.
-ms.topic: conceptual
+ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 ms.date: 3/21/2025
