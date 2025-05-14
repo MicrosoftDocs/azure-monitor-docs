@@ -1,7 +1,7 @@
 ---
 title: Application Insights SDK support guidance 
 description: Support guidance for Application Insights legacy and preview SDKs
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 06/08/2024
 ms.reviewer: vgorbenko
 ---

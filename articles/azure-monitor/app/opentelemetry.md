@@ -1,7 +1,7 @@
 ---
 title: OpenTelemetry on Azure 
 description: This article provides an overview of OpenTelemetry on Azure.
-ms.topic: conceptual
+ms.topic: overview
 ms.date: 06/21/2024
 ms.reviewer: quying
 ---

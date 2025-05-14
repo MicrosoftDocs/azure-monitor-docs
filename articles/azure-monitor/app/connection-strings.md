@@ -1,7 +1,7 @@
 ---
 title: Connection strings in Application Insights
 description: This article explains the components of connection strings and how to use them.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 10/10/2024
 ms.reviewer: cogoodson
 ---

@@ -1,7 +1,7 @@
 ---
 title: Monitor applications running on Azure Functions with Application Insights - Azure Monitor | Microsoft Docs
 description: Azure Monitor integrates with your Azure Functions application, allowing performance monitoring and quickly identifying problems.
-ms.topic: conceptual
+ms.topic: how-to
 ms.custom: devx-track-extended-java, devx-track-python, devx-track-js
 ms.date: 08/24/2024
 ms.reviewer: abinetabate

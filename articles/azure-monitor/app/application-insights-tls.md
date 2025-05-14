@@ -1,7 +1,7 @@
 ---
 title: TLS Support and Configuration Requirements in Azure Application Insights
 description: Learn how Application Insights uses TLS 1.2 and 1.3, which configurations are supported, and what changes take effect after the Azure-wide TLS retirement.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 04/01/2025
 ms.reviewer: cogoodson
 ---
