@@ -14,11 +14,11 @@ ms.reviewer: jan.kalis
 
 You can get code-level suggestions and insights based on Code Optimizations recommendations with GitHub Copilot using either:
 - The GitHub Copilot chat in the Application Insights Code Optimizations extensions (preview) for [Visual Studio](./code-optimizations-vs-extension.md) or [Visual Studio Code](./code-optimizations-vscode-extension.md). 
-- The [GitHub Copilot coding agent (preview)] to assign GitHub issues from Code Optimizations and iterate with GitHub Copilot through pull request reviews.
+- The [GitHub Copilot coding agent (preview)](./code-optimizations-github-copilot.md) to assign GitHub issues from Code Optimizations and iterate with GitHub Copilot through pull request reviews.
 
 > [!NOTE]
 > Using the GitHub Copilot coding agent requires transferring your data to other countries in which Microsoft operates, including the United States. By using this functionality, you agree to the transfer of your data outside your country. [Read the
-Microsoft Privacy Statement.](http://go.microsoft.com/fwlink/?LinkId=521839)
+Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
 ## Prerequisites
 
@@ -76,4 +76,4 @@ Some Code Optimization extension features are only available:
 
 Learn how to:
 - Use the [the Visual Studio Code extension](code-optimizations-vscode-extension.md) or [the Visual Studio extension](code-optimizations-vs-extension.md)
-- [Assign to GitHub Copilot]()
+- [Assign to GitHub Copilot](code-optimizations-github-copilot.md)

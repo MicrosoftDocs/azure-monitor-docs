@@ -21,7 +21,7 @@ Get code-level suggestions based on Code Optimizations recommendations with [the
 
 > [!NOTE]
 > Using the GitHub Copilot coding agent requires transferring your data to other countries in which Microsoft operates, including the United States. By using this functionality, you agree to the transfer of your data outside your country. [Read the
-Microsoft Privacy Statement.](http://go.microsoft.com/fwlink/?LinkId=521839)
+Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
  
 ## Prerequisites
 - Enable the [GitHub Copilot coding agent in your repository](https://docs.github.com/enterprise-cloud@latest/early-access/copilot/coding-agent/using-copilot-coding-agent#enabling-copilot-coding-agent-in-a-repository)
