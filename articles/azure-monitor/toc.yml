@@ -611,6 +611,8 @@ items:
       - name: Log alert rules
         displayName: Container insights
         href: containers/container-insights-log-alerts.md
+      - name: Cost-effective Alerts
+        href: containers/cost-effective-alerts.md
     - name: Disable monitoring
       href: containers/kubernetes-monitoring-disable.md      
     - name: Troubleshooting
