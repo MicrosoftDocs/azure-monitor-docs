@@ -2,7 +2,7 @@
 title: Application Insights telemetry data model
 description: This article describes the Application Insights telemetry data model and its different telemetry types.
 ms.tgt_pltfrm: ibiza
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 04/30/2025
 ms.reviewer: mmcc
 ---
