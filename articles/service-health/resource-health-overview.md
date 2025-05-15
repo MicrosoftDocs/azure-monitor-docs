@@ -110,7 +110,7 @@ To open Resource Health for one resource:
 4. From the health history grid, select the link to the resource health name to open a new window with information about this resource.
 1. In this window, you can select to *Diagnose and solve problems* or select to open the *Troubleshooting tool*.
 
-:::image type="content"source="./media/resource-health-overview/from-resource-blade.png"alt-text+"Opening Resource Health from the resource view"Lightbox="./media/resource-health-overview/from-resource-blade.png":::
+:::image type="content"source="./media/resource-health-overview/from-resource-blade.png"alt-text="Opening Resource Health from the resource view"Lightbox="./media/resource-health-overview/from-resource-blade.png":::
 
 
 ## Next steps
