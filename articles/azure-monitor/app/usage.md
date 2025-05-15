@@ -18,9 +18,9 @@ This article covers the following areas:
 
 * [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
 
-* [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application and where they might be dropping off.
+* [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application, and where they might be dropping off.
 
-* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and identify areas where users are most engaged or encounter issues.
+* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and areas where users are most engaged or encounter issues.
 
 * [**Cohorts**](#cohorts) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
 
@@ -28,7 +28,7 @@ This article covers the following areas:
 
 * [**User Retention Analysis**](#user-retention-analysis) - Track the frequency and patterns of users returning to your application and their interactions with specific features.
 
-* [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics, like load times, influence user experience and behavior, to help you to prioritize improvements.
+* [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics (for example, load times) influence user experience and behavior, to help you to prioritize improvements.
 
 * [**HEART Analysis**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user happiness, engagement, adoption, retention, and task success.
 
@@ -503,7 +503,7 @@ Impact supports both standard and custom properties and measurements. Use whatev
 
 1. From the **Impacting event** dropdown list, select a custom event that corresponds to a UI element on the page view you chose in step 1.
 
-   :::image type="content" source="./media/usage-impact/regions.png" alt-text="Screenshot that shows an example with the selected event as GET analyzed by country and region." lightbox="./media/usage-impact/regions.png":::
+   :::image type="content" source="media/usage-impact/regions.png" lightbox="media/usage-impact/regions.png" alt-text="Screenshot that shows an example with the selected event as GET analyzed by country and region.":::
 </details>
 
 ### HEART - Five dimensions of customer experience
@@ -522,7 +522,7 @@ HEART is an acronym that stands for happiness, engagement, adoption, retention, 
 
 These dimensions are measured independently, but they interact with each other.
 
-:::image type="content" source="media/usage-overview/heart-funnel.png" alt-text="Diagram that shows the funnel relationship between HEART dimensions. The funnel path is Adoption to Engagement to Retention to Happiness. Task Success is a driver of this funnel.":::
+:::image type="content" source="media/usage/heart-funnel.png" lightbox="media/usage/heart-funnel.png" alt-text="Diagram that shows the funnel relationship between HEART dimensions. The funnel path is Adoption to Engagement to Retention to Happiness. Task Success is a driver of this funnel.":::
 
 * Adoption, engagement, and retention form a user activity funnel. Only a portion of users who adopt the tool come back to use it.
 * Task success is the driver that progresses users down the funnel and moves them from adoption to retention.
@@ -571,32 +571,20 @@ These dimensions are measured independently, but they interact with each other.
 
 #### Open the workbook
 
-To use the HEART workbook in Application Insights, navigate to the **Workbooks** pane and locate the **Product Analytics using the Click Analytics Plugin** category.
-
-There are seven workbooks:
-
-* HEART Analytics - All sections
-* HEART Analytics Section - Adoption
-* HEART Analytics Section - Engagement
-* HEART Analytics Section - Retention
-* HEART Analytics Section - Task Success
-* HEART Analytics Section - Happiness
-* HEART Analytics Section - Feature Drill-Down
-
-You only have to interact with the main workbook, **HEART Analytics - All Sections**. This workbook contains the other six workbooks as tabs.
+To use the HEART workbook in Application Insights, navigate to the **Workbooks** pane and locate the **Product Analytics using the Click Analytics Plugin** category. You only have to interact with the main workbook, **HEART Analytics - All Sections**. This workbook contains the other six workbooks as tabs.
 
 #### Confirm that data is flowing
 
 To validate that data is flowing as expected to light up the metrics accurately, select the **Development Requirements** tab.
 
 > [!IMPORTANT]
-> Unless you [set the authenticated user context](./javascript-feature-extensions.md#optional-set-the-authenticated-user-context), you must select **Anonymous Users** from the **ConversionScope** dropdown to see telemetry data.
+> Unless you [set the authenticated user context](javascript-feature-extensions.md#optional-set-the-authenticated-user-context), you must select **Anonymous Users** from the **ConversionScope** dropdown to see telemetry data.
 
-:::image type="content" source="media/usage-overview/development-requirements-1.png" alt-text="Screenshot that shows the Development Requirements tab of the HEART Analytics - All Sections workbook.":::
+:::image type="content" source="media/usage/heart-development-requirements-1.png" lightbox="media/usage/heart-development-requirements-1.png" alt-text="Screenshot that shows the Development Requirements tab of the HEART Analytics - All Sections workbook.":::
 
 If data isn't flowing as expected, this tab shows the specific attributes with issues.
 
-:::image type="content" source="media/usage-overview/development-requirements-2.png" alt-text="Screenshot that shows data discrepancies on the Development Requirements tab of the HEART workbook.":::
+:::image type="content" source="media/usage/heart-development-requirements-2.png" lightbox="media/usage/heart-development-requirements-2.png" alt-text="Screenshot that shows data discrepancies on the Development Requirements tab of the HEART workbook.":::
 
 ### Workbook structure
 
@@ -713,7 +701,7 @@ Cohorts and filters are different. Suppose you have a cohort of users from the U
 
 You can select the **Date Grain** filter to change the grain. The filter is available across all the dimension tabs.
 
-:::image type="content" source="media/usage-overview/date-grain-monthly.png" alt-text="Screenshot that shows the filter to change date grain to daily, monthly, or weekly in the workbook.":::
+:::image type="content" source="media/usage/faq-date-grain-monthly.png" lightbox="media/usage/faq-date-grain-monthly.png" alt-text="Screenshot that shows the filter to change date grain to daily, monthly, or weekly in the workbook.":::
 
 #### How do I access insights from my application that aren't available on the HEART workbooks?
 
