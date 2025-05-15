@@ -44,7 +44,7 @@ Log Analytics workspace data export continuously exports data that's sent to you
 ## Limitations
 
 - Custom logs created using the [HTTP Data Collector API](./data-collector-api.md) can't be exported, including text-based logs consumed by Log Analytics agent. Custom logs created using [data collection rules](./logs-ingestion-api-overview.md), including text-based logs, can be exported.
-- Data export will gradually support more tables. See [supported tables](#supported-tables) section.
+- Data export will gradually support more tables. See [Unsupported tables](#unsupported-tables) section.
 - The maximum number of active rules per workspace is 10, each can include multiple tables.
 - The Storage Account must be unique across rules in the workspace.
 - Supported table plans are Analytics and Basic. Auxiliary plan isn't supported.
