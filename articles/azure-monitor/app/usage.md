@@ -559,6 +559,7 @@ These dimensions are measured independently, but they interact with each other.
 
     | Source         | Attribute            | Description                                |
     |----------------|----------------------|--------------------------------------------|
+    | customEvents   | user_AuthenticatedId	| Unique authenticated user identifier       |
     | customEvents   | session_Id           | Unique session identifier                  |
     | customEvents   | appName              | Unique Application Insights app identifier |
     | customEvents   | itemType             | Category of customEvents record            |
