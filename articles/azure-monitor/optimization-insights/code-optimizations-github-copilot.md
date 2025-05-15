@@ -58,11 +58,13 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
 1. Click **Create Work Item**.
 
-## Follow pull request opened by GitHub Copilot
+1. When prompted with a warning about leaving the Azure portal, select **Continue** to finish creating the GitHub issue.
+
+## Track the pull request opened by GitHub Copilot
 
 Once the issue is created in GitHub, GitHub Copilot:
-- Responds to the issue with the observe the eyes emoji (👀).  
-- Opens a pull request as assignee.  
+1. Responds to the issue with the eyes emoji (👀).  
+1. Opens a pull request as assignee.  
  
 The GitHub issue includes special instructions for the Copilot coding agent to fix and validate your specific performance issue. Copilot:
 - Benchmarks your code before and after the performance code suggestion.
@@ -70,7 +72,7 @@ The GitHub issue includes special instructions for the Copilot coding agent to f
 
 This process takes a couple minutes to finish. When the process finishes, the Copilot agent updates the pull request details and the title. 
 
-To review Copilot's changes, you can either:
+To review Copilot's changes, you can:
 - Ask Copilot to make changes using pull request comments.
 - Check out Copilot's branch and commit changes yourself.
 
