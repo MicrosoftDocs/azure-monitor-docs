@@ -25,7 +25,7 @@ The health of a resource is displayed with a status shown.
 
 *Available* means that there are no events detected that affect the health of the resource. In cases where the resource recovered from unplanned downtime during the last 24 hours, you see a "Recently resolved" notification.
 
-:::image type="content" source="./media/resource-health-overview/resource-health-available.png" alt-text="Status of *Available* for a gateway."Lightbox="./media/resource-health-overview/resource-health-available.png":::
+:::image type="content" source="./media/resource-health-overview/resource-health-available.png" alt-text="Screenshot of Status of *Available* for a gateway."Lightbox="./media/resource-health-overview/resource-health-available.png":::
 
 ### Unavailable
 
@@ -37,13 +37,13 @@ Multiple components of the Azure infrastructure trigger Platform events. They in
 
 Resource Health provides more details about the event and the recovery process. It also enables you to contact Microsoft Support even if you don't have an active support agreement.
 
-:::image type="content"source="./media/resource-health-overview/Unavailable.png"alt-text="Status of *Unavailable* for a virtual machine because of a platform event"Lightbox="./media/resource-health-overview/Unavailable.png":::
+:::image type="content"source="./media/resource-health-overview/Unavailable.png"alt-text="Status of *Unavailable* for a virtual machine because of a platform event."Lightbox="./media/resource-health-overview/Unavailable.png":::
 
 #### Non-platform events
 
 User actions can trigger non-platform events. Examples include stopping a virtual machine or reaching the maximum number of connections to Azure Cache for Redis.
 
-:::image type="content"source="./media/resource-health-overview/Unavailable-NonPlatform.png"alt-text="Status of Unavailable for a virtual machine because of a non-platform event"Lightbox="./media/resource-health-overview/Unavailable-NonPlatform.png":::
+:::image type="content"source="./media/resource-health-overview/Unavailable-NonPlatform.png"alt-text="Screenshot that shows status of Unavailable for a virtual machine because of a non-platform event."Lightbox="./media/resource-health-overview/Unavailable-NonPlatform.png":::
 
 ### Unknown
 
@@ -54,7 +54,7 @@ If the resource starts to run as expected, the status of the resource will chang
 If you experience problems with the resource, the *Unknown* health status might mean that an event in the platform is affecting the resource.
 
 
-:::image type="content"source="./media/resource-health-overview/resource-health-unknown.png"alt-text="Status of *Unknown* for an app service plan"Lightbox="./media/resource-health-overview/resource-health-unknown.png":::
+:::image type="content"source="./media/resource-health-overview/resource-health-unknown.png"alt-text="Screenshot that shows status of *Unknown* for an app service plan."Lightbox="./media/resource-health-overview/resource-health-unknown.png":::
 
 ### Degraded
 
@@ -62,7 +62,7 @@ If you experience problems with the resource, the *Unknown* health status might 
 
 Different resources have their own criteria for when they report they're degraded.
 
-:::image type="content"source="./media/resource-health-overview/degraded.png"alt-text="Status of *Degraded* for a virtual machine"Lightbox="./media/resource-health-overview/degraded.png"
+:::image type="content"source="./media/resource-health-overview/degraded.png"alt-text="Screenshot that shows status of *Degraded* for a virtual machine."Lightbox="./media/resource-health-overview/degraded.png"
 
 For Virtual Machine Scale Sets, visit [Resource health state is "Degraded" in Azure Virtual Machine Scale Set](/troubleshoot/azure/virtual-machine-scale-sets/resource-health-degraded-state) page for more information.
 
@@ -94,7 +94,7 @@ The following resource health transitions aren't recorded in the activity log:
  
 You can access up to 30 days of history in the **Health history** section of Resource Health from Azure portal.
 
-:::image type="content"source="./media/resource-health-overview/history-blade.png"alt-text="List of Resource Health events over the last two weeks."Lightbox="./media/resource-health-overview/history-blade.png":::
+:::image type="content"source="./media/resource-health-overview/history-blade.png"alt-text="Screenshot that shows list of Resource Health events over the last two weeks."Lightbox="./media/resource-health-overview/history-blade.png":::
 
 ## Root cause information
 
@@ -110,7 +110,7 @@ To open Resource Health for one resource:
 4. From the health history grid, select the link to the resource health name to open a new window with information about this resource.
 1. In this window, you can select to *Diagnose and solve problems* or select to open the *Troubleshooting tool*.
 
-:::image type="content"source="./media/resource-health-overview/from-resource-blade.png"alt-text="Opening Resource Health from the resource view"Lightbox="./media/resource-health-overview/from-resource-blade.png":::
+:::image type="content"source="./media/resource-health-overview/from-resource-blade.png"alt-text="Screenshot that shows opening Resource Health from the resource view."Lightbox="./media/resource-health-overview/from-resource-blade.png":::
 
 
 ## Next steps
