@@ -14,6 +14,8 @@ ms.reviewer: jan.kalis
 
 With the [Code Optimizations extension for Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps.
 
+The Code Optimizations extension integrates with [GitHub Copilot for Azure in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot), so you can interact with it indirectly via [`@Azure` in the Ask mode](#sample-questions). If you haven't already installed the Application Insights Code Optimizations (Preview) extension, you'll be prompted to install it.
+
 This article guides you through using the extension with GitHub Copilot in Visual Studio Code.
 
 ## Prerequisites
@@ -71,6 +73,12 @@ To get started, make sure Code Optimizations are identified for your application
 
     ```bash
     @code_optimizations /insights <YOUR_APPLICATION_INSIGHTS_RESOURCE_NAME_OR_APPLICATION_ID>
+    ```
+
+    Or, if you are using the [GitHub Copilot for Azure extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot), in the Ask mode, you can ask the following question:
+
+    ```bash
+    @azure Any code optimizations for this app?
     ```
 
     The command pulls the top issues from Code Optimizations, maps them to source code in your local repo, and suggests fixes/recommendations. It automatically generates the top recommendation.
@@ -133,6 +141,12 @@ Run the `/optimize` command along with the Azure DevOps or GitHub work item numb
 
     ```bash
     @code_optimizations /optimize 5
+    ```
+
+    Or, if you are using the [GitHub Copilot for Azure extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot), in the Ask mode, you can ask the following question:
+
+    ```bash
+    @azure Optimize my code based on GitHub issue number 5
     ```
 
     :::image type="content" source="media/code-optimizations-vscode-extension/optimize-command.png" alt-text="Screenshot of the running the optimize command in copilot.":::

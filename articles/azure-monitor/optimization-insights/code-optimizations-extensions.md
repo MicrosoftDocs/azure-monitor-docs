@@ -14,6 +14,7 @@ ms.reviewer: jan.kalis
 
 You can get code-level suggestions and insights based on Code Optimizations recommendations with GitHub Copilot using either:
 - The GitHub Copilot chat in the Application Insights Code Optimizations extensions (preview) for [Visual Studio](./code-optimizations-vs-extension.md) or [Visual Studio Code](./code-optimizations-vscode-extension.md). 
+    - The Code Optimizations extension integrates with [GitHub Copilot for Azure in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot), so you can interact with it indirectly via [`@Azure` in the Ask mode](#sample-questions). If you haven't already installed the Application Insights Code Optimizations (Preview) extension, you'll be prompted to install it.
 - The [GitHub Copilot coding agent (preview)](./code-optimizations-github-copilot.md) to assign GitHub issues from Code Optimizations and iterate with GitHub Copilot through pull request reviews.
 
 > [!NOTE]
@@ -54,14 +55,18 @@ Once installed, the Code Optimizations extension (preview) introduces an agent c
     @code_optimizations /insights <Your Application Insights AppID>
     ```
 
-    or:
-    
+    ```
+    @azure Any code optimizations for this app?
+    ```
+   
     ```
     @code_optimizations /optimize <Your Code Optimizations GitHub Issue Number>
     ```
-
-    or, select your code in the editor and ask:
     
+    ```
+    @azure Optimize my code based on GitHub issue number <Your Code Optimizations GitHub Issue Number>
+    ```
+
     ```
     @code_optimizations /optimize
     ```
