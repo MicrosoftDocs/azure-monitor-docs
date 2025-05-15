@@ -43,7 +43,7 @@ Resource Health provides more details about the event and the recovery process. 
 
 User actions can trigger Non-platform events. Examples include stopping a virtual machine or reaching the maximum number of connections to Azure Cache for Redis.
 
-:::image type="content"source="./media/resource-health-overview/Unavailable_NonPlatform.png"alt-text="Status of "Unavailable" for a virtual machine because of a non-platform event"Lightbox="./media/resource-health-overview/Unavailable_NonPlatform.png":::
+:::image type="content"source="./media/resource-health-overview/Unavailable-NonPlatform.png"alt-text="Status of Unavailable for a virtual machine because of a non-platform event"Lightbox="./media/resource-health-overview/Unavailable-NonPlatform.png":::
 
 ### Unknown
 
@@ -52,6 +52,7 @@ User actions can trigger Non-platform events. Examples include stopping a virtua
 If the resource starts to run as expected, the status of the resource will change to *Available* after a few minutes.
 
 If you experience problems with the resource, the *Unknown* health status might mean that an event in the platform is affecting the resource.
+
 
 :::image type="content"source="./media/resource-health-overview/resource-health-unknown.png"alt-text="Status of *Unknown* for an app service plan"Lightbox="./media/resource-health-overview/resource-health-unknown.png":::
 
@@ -114,7 +115,7 @@ To open Resource Health for one resource:
 
 You can also access Resource Health by selecting **All services** and typing **resource health** in the filter text box. In the **Help + support** pane, select [Resource health](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth).
 
-:::image type="content"source"./media/resource-health-overview/FromOtherServices.png"alt-text="Opening Resource Health from "All services"Lightbox="./media/resource-health-overview/FromOtherServices.png":::
+:::image type="content"source"./media/resource-health-overview/from-other-services.png"alt-text="Opening Resource Health from "All services"Lightbox="./media/resource-health-overview/from-other-services.png":::
 
 ## Next steps
 
