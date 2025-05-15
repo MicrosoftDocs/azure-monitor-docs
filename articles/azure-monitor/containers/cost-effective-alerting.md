@@ -37,12 +37,18 @@ For example, you may set a rule to fire on every occurrence of a specific error 
 
 In addition to firing on every occurrence of a message, you can also set a threshold for the number of occurrences within a specified time window. For example, you may have a message indicating a failed login and want to be alerted when the number of failed login attempts in their application in a minute exceeds a threshold. Once identified, you can use a log query on the table itself to identify the failed login attempts
 
-## Create Summary rules (Preview)
+## Create Summary rules
 [Summary rules](../logs/summary-rules.md) are scheduled queries that run at defined intervals to perform aggregations or transformations and store the results in a custom Analytics-tier tables. This allows you to ingest your container logs into a Basic Logs table and then perform advanced analysis and alerting on an aggregated version of the data. 
 
 :::image type="content" source="media/cost-effective-alerts/summary-rule.png" lightbox="media/cost-effective-alerts/summary-rule.png" alt-text="Diagram that shows alerting from an analytics table created by a summary rule." border="false":::
 
-Consider a scenario where you want to monitor error rates in your container logs. Using the guidance at [Create or update a summary rule](../logs/summary-rules.md#create-or-update-a-summary-rule), create a summary rule with a query such as `ContainerLogv2 | where LogLevel == \"Error\" | summarize ErrorCount = count() by ContainerID`, which counts the number of error-level logs for each container. 
+Consider a scenario where you want to monitor error rates in your container logs. Using the guidance at [Create or update a summary rule](../logs/summary-rules.md#create-or-update-a-summary-rule), create a summary rule with a query such as the following, which counts the number of error-level logs for each container.
+
+```kusto
+ContainerLogv2
+| where LogLevel == "Error" 
+| summarize ErrorCount = count() by ContainerID
+```
 
 > [!TIP]
 > To reduce scan costs, use a query that returns multiple aggregations and dimensions that can be used by multiple alert rules. 
@@ -51,7 +57,9 @@ Create log query alerts with a window greater than the bin size on the new Analy
 
 
 ## Create transformation to send critical logs to Analytics tier
-Summary rules may not be responsive enough if you need near-real time alerting on container logs. In operationally sensitive scenarios where near real-time log alerting is required, use a [transformation](../data-collection/data-collection-transformations-create.md) to route high-value logs to an Analytics Logs table while sending other logs to a Basic Logs table. Configuration for this transformation is provided in [Data transformations in Container insights](./container-insights-transformations.md#send-data-to-different-tables).
+Summary rules may not be responsive enough if you need near-real time alerting on container logs. In operationally sensitive scenarios where near real-time log alerting is required, use a [transformation](../data-collection/data-collection-transformations-create.md) to route high-value logs (such as error and critical events) to an Analytics Logs table while sending other logs to a Basic Logs table. 
+
+Configuration for this transformation is provided in [Data transformations in Container insights](./container-insights-transformations.md#send-data-to-different-tables).
 
 :::image type="content" source="media/cost-effective-alerts/transformation.png" lightbox="media/cost-effective-alerts/transformation.png" alt-text="Diagram that shows a transformation that sends some data to analytics table and other data to basic logs." border="false":::
 
@@ -59,3 +67,6 @@ Using this strategy, you can perform advanced alerting on the Analytics Logs tab
 
 
 ## Next steps
+
+- [Learn more about Basic logs](../logs/data-platform-logs.md#table-plans)
+- [Learn more about alerts in Azure Monitor](../alerts/alerts-overview.md)
