@@ -26,14 +26,17 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
    - [Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace)
    - [Visual Studio](https://aka.ms/CodeOptimizations/VS/Marketplace)
 - Set up a [GitHub Copilot subscription](https://docs.github.com/copilot/about-github-copilot/subscription-plans-for-github-copilot) 
-- Enable the [GitHub Copilot coding agent](https://docs.github.com/enterprise-cloud@latest/early-access/copilot/coding-agent/using-copilot-coding-agent) to assign issues from Code Optimizations to GitHub Copilot
+- Enable the [GitHub Copilot coding agent](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent) to assign issues from Code Optimizations to GitHub Copilot
 
 ## Usage
 
-Learn how to use the Code Optimizations extensions via the following how-to guides:
+Learn how to use GitHub Copilot to fix your code via the following how-to guides:
 
-- [Visual Studio Code extension](code-optimizations-vscode-extension.md)
-- [Visual Studio extension](code-optimizations-vs-extension.md)
+- Code Optimizations extensions
+   - [Visual Studio Code extension](code-optimizations-vscode-extension.md)
+   - [Visual Studio extension](code-optimizations-vs-extension.md)
+- GitHub Copilot coding agent
+   - [Assign to GitHub Copilot](./code-optimizations-github-copilot.md)
 
 ## Sample questions
 

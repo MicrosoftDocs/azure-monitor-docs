@@ -12,7 +12,7 @@ ms.reviewer: jan.kalis
 
 # Assign Code Optimizations insights work items to GitHub Copilot (preview)
 
-Get code-level suggestions based on Code Optimizations recommendations with [the GitHub Copilot coding agent](https://docs.github.com/enterprise-cloud@latest/early-access/copilot/coding-agent). In this article, you learn how to:
+Get code-level suggestions based on Code Optimizations recommendations with [the GitHub Copilot coding agent](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent). In this article, you learn how to:
 
 > [!div class="checklist"]
 >
@@ -24,11 +24,11 @@ Get code-level suggestions based on Code Optimizations recommendations with [the
 Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
  
 ## Prerequisites
-- Enable the [GitHub Copilot coding agent in your repository](https://docs.github.com/enterprise-cloud@latest/early-access/copilot/coding-agent/using-copilot-coding-agent#enabling-copilot-coding-agent-in-a-repository)
+- Enable the [GitHub Copilot coding agent in your repository](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent)
 - Enable the following services for your .NET application:
    - [Application Insights](../app/create-workspace-resource.md)
    - [.NET Profiler](../profiler/profiler.md)
-- [Review the limitations for the GitHub Copilot coding agent](https://docs.github.com/enterprise-cloud@latest/early-access/copilot/coding-agent/using-copilot-coding-agent#limitations-of-copilot-coding-agent)
+- [Review the limitations for the GitHub Copilot coding agent](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent)
 
 ## Verify Code Optimizations for your application 
 
@@ -54,7 +54,9 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
 1. Toggle on the **Assign to GitHub Copilot (Preview)** option.
 
-    :::image type="content" source="./media/code-optimizations-github-copilot/create-work-item.png" alt-text="Screenshot of Code Optimizations details pane and selecting the create work item button.":::
+    :::image type="content" source="./media/code-optimizations-github-copilot/assign-to-github-copilot-toggle-off.png" alt-text="Screenshot of the unchecked Assign to GitHub Copilot option.":::
+
+    :::image type="content" source="./media/code-optimizations-github-copilot/assign-to-github-copilot-toggle-on.png" alt-text="Screenshot of the checked Assign to GitHub Copilot option.":::
 
 1. Click **Create Work Item**.
 
@@ -75,4 +77,4 @@ To review Copilot's changes, you can either:
 - Check out Copilot's branch and commit changes yourself.
 
 ## Next steps
-- Learn more about [the GitHub Copilot coding agent](https://docs.github.com/enterprise-cloud@latest/early-access/copilot/coding-agent/using-copilot-coding-agent).
+- Learn more about [the GitHub Copilot coding agent](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent).
