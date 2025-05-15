@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Configure the network firewall for Azure Monitor SCOM Managed Instance
 description: This article describes how to configure the network firewall.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 05/22/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance

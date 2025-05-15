@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Troubleshoot issues with Azure Monitor SCOM Managed Instance
 description: This article describes the errors that might occur when you deploy or use Azure Monitor SCOM Managed Instance and how to resolve them.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 06/19/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
