@@ -38,7 +38,7 @@ Get started by enabling a set of [recommended alert rules](./kubernetes-metric-a
 
 [Simple log search alerts](../alerts/alerts-types.md#simple-log-search-alerts) in Azure Monitor are designed to provide a simpler and faster alternative to traditional log search alerts, and they're supported on Basic Logs tables. Unlike log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually and allow a single-condition log search. They're also ideal for scenarios such as watching for a specific error event or status change.
 
-:::image type="content" source="media/cost-effective-alerts/simple-alert-rule.png" lightbox="media/cost-effective-alerts/simple-alert-rule.png" alt-text="Diagram that shows a simple alert." border="false":::
+:::image type="content" source="media/cost-effective-alerts/simple-log-alert-rule.png" lightbox="media/cost-effective-alerts/simple-log-alert-rule.png" alt-text="Diagram that shows a simple alert." border="false":::
 
 You have a cloud-based application and want to ensure that any critical error, such as a failed deployment or a service outage, is detected immediately so the engineering team can respond quickly. One of the services occasionally transitions into a *Degraded* or *Unavailable* state due to upstream dependency issues. You want to be notified immediately when this happens to reduce downtime and improve incident response.
 
