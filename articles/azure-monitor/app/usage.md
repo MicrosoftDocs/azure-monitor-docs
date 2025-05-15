@@ -14,23 +14,25 @@ These insights help you understand user behavior, identify areas for improvement
 
 This article covers the following areas:
 
-**Experiences**
+* **Usage custom events and custom properties**
 
-* [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
+* **Native usage experiences**
 
-* [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application, and where they might be dropping off.
+    * [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
+    
+    * [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application, and where they might be dropping off.
+    
+    * [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and areas where users are most engaged or encounter issues.
+    
+    * [**Cohorts**](#cohorts) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
 
-* [**User Flows**](#user-flows) - Visualize user paths to identify the most common routes and areas where users are most engaged or encounter issues.
+* **Usage workbook templates**
 
-* [**Cohorts**](#cohorts) - Group users or events by common characteristics to analyze behavior patterns, feature usage, and the impact of changes over time.
-
-**Workbooks**
-
-* [**User Retention Analysis**](#user-retention-analysis) - Track the frequency and patterns of users returning to your application and their interactions with specific features.
-
-* [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics (for example, load times) influence user experience and behavior, to help you to prioritize improvements.
-
-* [**HEART Analysis**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user happiness, engagement, adoption, retention, and task success.
+    * [**User Retention Analysis**](#user-retention-analysis) - Track the frequency and patterns of users returning to your application and their interactions with specific features.
+    
+    * [**User Impact Analysis**](#user-impact-analysis) - Analyze how application performance metrics (for example, load times) influence user experience and behavior, to help you to prioritize improvements.
+    
+    * [**HEART Analysis**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user happiness, engagement, adoption, retention, and task success.
 
 ## Collect browser telemetry
 
@@ -51,66 +53,7 @@ To verify if browser telemetry is being collected, run your project in debug mod
 >
 > This dual implementation collects telemetry from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
-## Users, Sessions, and Events
-
-Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features. Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
-
-* **Users tool**: Counts the numbers of unique users that access your pages within your chosen time periods. Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers or machines is counted as more than one user.
-
-* **Sessions tool**: Tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour or after 24 hours of continuous use.
-
-* **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you [instrumented it](javascript-sdk.md).
-
-    A custom event represents one occurrence of something happening in your application. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](opentelemetry-add-modify.md#send-custom-events) or use the [Click Analytics](javascript-feature-extensions.md) extension.
-
-> [!IMPORTANT]
-> If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
->
-> For information on an alternative to using anonymous IDs and ensuring an accurate count, see the documentation for [authenticated IDs](data-model-complete.md#context).
-
-### Query for certain users, sessions, or events
-
-Explore different groups of users, sessions, or events by adjusting the query options at the top of each pane.
-
-:::image type="content" source="media/usage/users-pane.png" lightbox="media/usage/users-pane.png" alt-text="Screenshot that shows the Users tab with a bar chart.":::
-
-| Option          | Description                                                                                                                               |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| During          | Choose a time range.                                                                                                                      |
-| Show            | Choose a cohort of users to analyze.                                                                                                      |
-| Who used        | Choose custom events, requests, and page views.                                                                                           |
-| Events          | Choose multiple events, requests, and page views that will show users who did at least one, not necessarily all, of the selected options. |
-| By value x-axis | Choose how to categorize the data, either by time range or by another property, such as browser or city.                                  |
-| Split By        | Choose a property to use to split or segment the data.                                                                                    |
-| Add Filters     | Limit the query to certain users, sessions, or events based on their properties, such as browser or city.                                 |
-
-Clicking **View More Insights** displays the following information:
-
-#### [Users](#tab/users)
-
-* **General information:** The number of sessions and events for the specified time window, and a Performance evaluation related to users' perception of responsiveness.
-
-* **Properties:** Charts containing up to 6 user properties such as browser version, country or region, and operating system.
-
-* **Meet Your Users:** Information about 5 sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
-
-#### [Sessions](#tab/sessions)
-
-* **General information:** The number of users and events for the specified time window.
-
-* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
-
-* **Active Sessions:** Information about 5 sample sessions, including the location, number of events, and the OS.
-
-#### [Events](#tab/events)
-
-* **General information:** The number of users and sessions for the specified time window.
-
-* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
-
-* **Event Statistics:** A list of the top 10 events by count, including the number of users and sessions.
-
----
+## Usage custom events and custom properties
 
 ### Track user interactions with custom events
 
@@ -164,7 +107,70 @@ f you're using the Application Insights SDK (Classic API), use a telemetry initi
 
 After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 
-## Funnels
+## Native usage experiences
+
+### Users, Sessions, and Events
+
+Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features. Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
+
+* **Users tool**: Counts the numbers of unique users that access your pages within your chosen time periods. Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers or machines is counted as more than one user.
+
+* **Sessions tool**: Tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour or after 24 hours of continuous use.
+
+* **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you [instrumented it](javascript-sdk.md).
+
+    A custom event represents one occurrence of something happening in your application. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](opentelemetry-add-modify.md#send-custom-events) or use the [Click Analytics](javascript-feature-extensions.md) extension.
+
+> [!IMPORTANT]
+> If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
+>
+> For information on an alternative to using anonymous IDs and ensuring an accurate count, see the documentation for [authenticated IDs](data-model-complete.md#context).
+
+#### Query for certain users, sessions, or events
+
+Explore different groups of users, sessions, or events by adjusting the query options at the top of each pane.
+
+:::image type="content" source="media/usage/users-pane.png" lightbox="media/usage/users-pane.png" alt-text="Screenshot that shows the Users tab with a bar chart.":::
+
+| Option          | Description                                                                                                                               |
+|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| During          | Choose a time range.                                                                                                                      |
+| Show            | Choose a cohort of users to analyze.                                                                                                      |
+| Who used        | Choose custom events, requests, and page views.                                                                                           |
+| Events          | Choose multiple events, requests, and page views that will show users who did at least one, not necessarily all, of the selected options. |
+| By value x-axis | Choose how to categorize the data, either by time range or by another property, such as browser or city.                                  |
+| Split By        | Choose a property to use to split or segment the data.                                                                                    |
+| Add Filters     | Limit the query to certain users, sessions, or events based on their properties, such as browser or city.                                 |
+
+Clicking **View More Insights** displays the following information:
+
+#### [Users](#tab/users)
+
+* **General information:** The number of sessions and events for the specified time window, and a Performance evaluation related to users' perception of responsiveness.
+
+* **Properties:** Charts containing up to 6 user properties such as browser version, country or region, and operating system.
+
+* **Meet Your Users:** Information about 5 sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
+
+#### [Sessions](#tab/sessions)
+
+* **General information:** The number of users and events for the specified time window.
+
+* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
+
+* **Active Sessions:** Information about 5 sample sessions, including the location, number of events, and the OS.
+
+#### [Events](#tab/events)
+
+* **General information:** The number of users and sessions for the specified time window.
+
+* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
+
+* **Event Statistics:** A list of the top 10 events by count, including the number of users and sessions.
+
+---
+
+### Funnels
 
 Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in a web application is known as a *funnel*.
 
@@ -175,7 +181,7 @@ You can use Application Insights funnels to gain insights into your users and mo
 
 :::image type="content" source="media/usage/funnels-pane.png" lightbox="media/usage/funnels-pane.png" alt-text="Screenshot that shows the Funnels View tab that shows results from the top and second steps.":::
 
-### Create a funnel
+#### Create a funnel
 
 Before you create a funnel, decide on the question you want to answer. For example, you might want to know how many users view the home page, view a customer profile, and create a ticket.
 
@@ -196,7 +202,7 @@ Before you create a funnel, decide on the question you want to answer. For examp
 
 1. To save your funnel to view at another time, select **Save** at the top. Use **Open** to open your saved funnels.
 
-## User Flows
+### User Flows
 
 :::image type="content" source="media/usage/user-flows-pane.png" lightbox="media/usage/user-flows-pane.png" alt-text="Screenshot that shows the Application Insights User Flows tool.":::
 
@@ -212,7 +218,7 @@ The User Flows tool starts from an initial custom event, exception, dependency, 
 > [!NOTE]
 > Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your app to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md).
 
-### Create a user flow visualization
+#### Create a user flow visualization
 
 To begin answering questions with the User Flows tool, choose an initial custom event, exception, dependency, page view or request to serve as the starting point for the visualization:
 
@@ -226,7 +232,7 @@ To begin answering questions with the User Flows tool, choose an initial custom 
 
 The **Step 1** column of the visualization shows what users did most frequently after the initial event. The items are ordered from top to bottom and from most to least frequent. The **Step 2** and subsequent columns show what users did next. The information creates a picture of all the ways that users moved through your site.
 
-### Edit a user flow visualization
+#### Edit a user flow visualization
 
 By default, the User Flows tool randomly samples only the last 24 hours of page views and custom events from your site. You can increase the time range and change the balance of performance and accuracy for random sampling on the **Edit** menu.
 
@@ -241,7 +247,7 @@ If page views or custom events you expect to see in the visualization are missin
 
 If you want to see more steps in the visualization, use the **Previous steps** and **Next steps** dropdown lists above the visualization.
 
-### Use cases
+#### Use cases
 
 Select one of the below use cases to expand the section.
 
@@ -281,20 +287,20 @@ Keep in mind that **Session Ended** nodes are based only on telemetry collected 
 Look for a page view or custom event that's repeated by many users across subsequent steps in the visualization. This activity usually means that users are performing repetitive actions on your site. If you find repetition, think about changing the design of your site or adding new functionality to reduce repetition. For example, you might add bulk edit functionality if you find users performing repetitive actions on each row of a table element.
 </details>
 
-## Cohorts
+### Cohorts
 
 A cohort is a set of users, sessions, events, or operations that have something in common. In Application Insights, cohorts are defined by an analytics query. In cases where you have to analyze a specific set of users or events repeatedly, cohorts can give you more flexibility to express exactly the set you're interested in.
 
 > [!NOTE]
 > After cohorts are created, they're available from the Users, Sessions, Events, and User Flows tools.
 
-### Cohorts vs basic filters
+#### Cohorts vs basic filters
 
 You can use cohorts in ways similar to filters. But cohorts' definitions are built from custom analytics queries, so they're much more adaptable and complex. Unlike filters, you can save cohorts so that other members of your team can reuse them.
 
 You might define a cohort of users who have all tried a new feature in your app. You can save this cohort in your Application Insights resource. It's easy to analyze this saved group of specific users in the future.
 
-### Use cases
+#### Use cases
 
 Select one of the below use cases to expand the section.
 
@@ -389,7 +395,9 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 1. Save and name the cohort.
 </details>
 
-## User Retention Analysis
+## Usage workbook templates
+
+### User Retention Analysis
 
 The User Retention Analysis workbook helps you understand user engagement by tracking how often users return to your app and interact with specific features. It reveals patterns across user cohorts, such as differences in return rates between users who win or lose a game, offering actionable insights to improve user experience and guide business decisions.
 
@@ -399,7 +407,7 @@ By analyzing user cohorts based on their actions within a given timeframe, you c
 * Detect potential retention issues.
 * Form data-driven hypotheses to help you improve the user experience and your product strategy.
 
-### Use the User Retention Analysis workbook
+#### Use the User Retention Analysis workbook
 
 To access the workbook, go to the **Workbooks** pane in Application Insights and select **User Retention Analysis** under the **Usage** category.
 
@@ -422,7 +430,7 @@ Use the retention controls at the top of the workbook to:
 > [!TIP]
 > To get the most useful user retention analysis, measure events that represent significant business activities. For more information, see [Track user interactions with custom events](#track-user-interactions-with-custom-events).
 
-## User Impact Analysis
+### User Impact Analysis
 
 Impact Analysis discovers how any dimension of a page view, custom event, or request affects the usage of a different page view or custom event.
 
@@ -433,11 +441,9 @@ Analyzing performance is only a subset of Impact's capabilities. Impact supports
 > [!NOTE]
 > Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your app to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md). Also, because you're analyzing correlation, sample size matters.
 
-### The User Impact Analysis workbook
+#### The User Impact Analysis workbook
 
 To use the **User Impact Analysis** workbook in Application Insights, navigate to the **Workbooks** pane and locate it listed under the **Usage** category.
-
-### Use the workbook
 
 :::image type="content" source="./media/usage-impact/selected-event.png" alt-text="Screenshot that shows where to choose an initial page view, custom event, or request." lightbox="./media/usage-impact/selected-event.png":::
 
@@ -446,7 +452,7 @@ To use the **User Impact Analysis** workbook in Application Insights, navigate t
 1. From the  **Impacting event** dropdown list, select an event.
 1. To add a filter, use the **Add selected event filters** tab or the **Add impacting event filters** tab.
 
-### How does the User Impact Analysis workbook calculate conversion rates?
+#### How does the User Impact Analysis workbook calculate conversion rates?
 
 Under the hood, the User Impact Analysis workbook relies on the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient). Results are computed between -1 and 1. The coefficient -1 represents a negative linear correlation and 1 represents a positive linear correlation.
 
@@ -464,7 +470,7 @@ Sessions are then broken into two different kinds of *subsessions* based on one 
 
 How Impact is ultimately calculated varies based on whether we're analyzing by metric or by dimension. For metrics, all *A*s in a subsession are averaged. For dimensions, the value of each *A* contributes *1/N* to the value assigned to *B*, where *N* is the number of *A*s in the subsession.
 
-### Use cases
+#### Use cases
 
 Select one of the below use cases to expand the section.
 
@@ -510,7 +516,7 @@ Impact supports both standard and custom properties and measurements. Use whatev
 
 This section describes how to enable and use the HEART Workbook in Azure Monitor. The HEART workbook is based on the HEART measurement framework, which was originally introduced by Google. Several Microsoft internal teams use HEART to deliver better software.
 
-### Overview
+#### Overview
 
 HEART is an acronym that stands for happiness, engagement, adoption, retention, and task success. It helps product teams deliver better software by focusing on five dimensions of customer experience:
 
@@ -527,8 +533,6 @@ These dimensions are measured independently, but they interact with each other.
 * Adoption, engagement, and retention form a user activity funnel. Only a portion of users who adopt the tool come back to use it.
 * Task success is the driver that progresses users down the funnel and moves them from adoption to retention.
 * Happiness is an outcome of the other dimensions and not a stand-alone measurement. Users who have progressed down the funnel and are showing a higher level of activity are ideally happier.
-
-### Get started
 
 #### Prerequisites
 
@@ -586,7 +590,7 @@ If data isn't flowing as expected, this tab shows the specific attributes with i
 
 :::image type="content" source="media/usage/heart-development-requirements-2.png" lightbox="media/usage/heart-development-requirements-2.png" alt-text="Screenshot that shows data discrepancies on the Development Requirements tab of the HEART workbook.":::
 
-### Workbook structure
+#### Workbook structure
 
 The workbook shows metric trends for the HEART dimensions split over seven tabs. Each tab contains descriptions of the dimensions, the metrics contained within each dimension, and how to use them.
 
@@ -603,9 +607,9 @@ The tabs are:
 > [!WARNING]
 > The HEART workbook is currently built on logs and effectively are [log-based metrics](pre-aggregated-metrics-log-metrics.md). The accuracy of these metrics is negatively affected by sampling and filtering.
 
-### How HEART dimensions are defined and measured
+#### How HEART dimensions are defined and measured
 
-#### Happiness
+##### Happiness
 
 Happiness is a user-reported dimension that measures how users feel about the product offered to them.
 
@@ -613,7 +617,7 @@ A common approach to measure happiness is to ask users a CSAT question like How 
 
 Common happiness metrics include values such as **Average Star Rating** and **Customer Satisfaction Score**. Send these values to Azure Monitor by using one of the custom ingestion methods described in [Custom sources](../data-sources.md#custom-sources).
 
-#### Engagement
+##### Engagement
 
 Engagement is a measure of user activity. Specifically, user actions are intentional, such as clicks. Active usage can be broken down into three subdimensions:
 
@@ -628,7 +632,7 @@ Measuring engagement can vary based on the type of product being used. For examp
 > [!IMPORTANT]
 > A user who performs an intentional action, such as clicking a button or typing an input, is counted as an active user. For this reason, engagement metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
 
-#### Adoption
+##### Adoption
 
 Adoption enables understanding of penetration among the relevant users, who you're gaining as your user base, and how you're gaining them. Adoption metrics are useful for measuring:
 
@@ -636,7 +640,7 @@ Adoption enables understanding of penetration among the relevant users, who you'
 * Newly updated products.
 * Marketing campaigns.
 
-#### Retention
+##### Retention
 
 A retained user is a user who was active in a specified reporting period and its previous reporting period. Retention is typically measured with the following metrics.
 
@@ -648,7 +652,7 @@ A retained user is a user who was active in a specified reporting period and its
 > [!IMPORTANT]
 > Because active users must have at least one telemetry event with an action type, retention metrics require the [Click Analytics plug-in for Application Insights](javascript-feature-extensions.md) to be implemented in the application.
 
-#### Task success
+##### Task success
 
 Task success tracks whether users can do a task efficiently and effectively by using the product's features. Many products include structures that are designed to funnel users through completing a task. Some examples include:
 
@@ -730,4 +734,3 @@ Yes. To learn how to edit workbook templates, see [Azure Workbooks templates](..
 * Check out the [GitHub repository](https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-clickanalytics-js) and [npm Package](https://www.npmjs.com/package/@microsoft/applicationinsights-clickanalytics-js) for the Click Analytics Autocollection plug-in.
 * Learn more about the [Google HEART framework](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36299.pdf).
 * To learn more about workbooks, see the [Workbooks overview](../visualize/workbooks-overview.md).
-
