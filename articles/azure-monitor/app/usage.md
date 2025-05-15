@@ -14,7 +14,7 @@ These insights help you understand user behavior, identify areas for improvement
 
 This article covers the following areas:
 
-* **Usage custom events and custom properties**
+* **Usage analysis with custom events and properties**
 
 * **Native usage experiences**
 
@@ -53,16 +53,26 @@ To verify if browser telemetry is being collected, run your project in debug mod
 >
 > This dual implementation collects telemetry from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
-## Usage custom events and custom properties
+## Usage analysis with custom events and properties
 
 ### Track user interactions with custom events
 
+Use custom events to track important actions that support business goals. Examples include *selecting a button, submitting a form, and completing a purchase*.
+
 While page views can sometimes represent useful events, they aren't always reliable indicators. For example, a user might open a product page without making a purchase. By tracking specific business events, you can chart users' progress through your site, understand their preferences for different options, and identify where they encounter difficulties or drop out.
+
+Combine custom events with user IDs and session context to enable:
+
+* Tracking behavior across sessions.
+* Analyzing conversion funnels based on user actions.
+* Segmenting users by how they interact with your app.
+
+> [!NOTE]
+> Use [authenticated user IDs](data-model-complete.md#context) to enable tracking across devices and browsers, and improve user-level analysis over time.
 
 Attaching property values to these events allows you to filter or split them during inspection in the portal. Each event also includes a standard set of properties, such as an anonymous user ID, allowing you to trace the sequence of activities of individual users.
 
-> [!TIP]
-> When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your app from the start.
+#### How to log custom events
 
 Events can be logged from the client side of the app using the either the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) or `trackEvent`:
 
@@ -74,9 +84,12 @@ You can also log server-side custom events using the Azure Monitor OpenTelemetry
 
 To learn how to use custom events with the Application Insights SDK (Classic API), see [custom events](api-custom-events-metrics.md#trackevent) and [properties](api-custom-events-metrics.md#properties).
 
+> [!TIP]
+> When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your app from the start.
+
 #### Slice and dice custom events
 
-In the Users, Sessions, and Events tools, you can slice and dice custom events by user, event name, and properties. Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
+In the [Users, Sessions, and Events tools](#users-sessions-and-events), you can slice and dice custom events by user, event name, and properties. Whenever you're in any usage experience, select the **Open the last run query** icon to take you back to the underlying query.
 
 :::image type="content" source="media/usage/custom-events-open-last-run-query.png" lightbox="media/usage/custom-events-open-last-run-query.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." :::
 
