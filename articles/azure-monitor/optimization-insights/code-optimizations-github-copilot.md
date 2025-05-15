@@ -54,8 +54,6 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
 1. Toggle on the **Assign to GitHub Copilot (Preview)** option.
 
-    :::image type="content" source="./media/code-optimizations-github-copilot/assign-to-github-copilot-toggle-off.png" alt-text="Screenshot of the unchecked Assign to GitHub Copilot option.":::
-
     :::image type="content" source="./media/code-optimizations-github-copilot/assign-to-github-copilot-toggle-on.png" alt-text="Screenshot of the checked Assign to GitHub Copilot option.":::
 
 1. Click **Create Work Item**.

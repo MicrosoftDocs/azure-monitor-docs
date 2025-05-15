@@ -119,6 +119,10 @@ Run the `/optimize` command along with the Azure DevOps or GitHub work item numb
     
         :::image type="content" source="media/code-optimizations-vscode-extension/create-github-issue.png" alt-text="Screenshot of the options for creating an issue using GitHub.":::
     
+    1. To assign the work item to GitHub Copilot, select the **Assign to GitHub Copilot (Preview)** toggle [per these instructions](./code-optimizations-github-copilot.md) Otherwise, leave unchecked. 
+
+        :::image type="content" source="./media/code-optimizations-vscode-extension/github-copilot-option.png" alt-text="Screenshot of the unchecked Assign to GitHub Copilot option.":::
+
     ---
 
 1. Click **Create Work Item**.
