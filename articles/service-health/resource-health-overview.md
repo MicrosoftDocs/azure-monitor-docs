@@ -47,7 +47,7 @@ User actions can trigger Non-platform events. Examples include stopping a virtua
 
 ### Unknown
 
-*Unknown* means that Resource Health does not have information about the resource for more than 10 minutes, which commonly occurs when virtual machines are deallocated. Although this status isn't a definitive indication of the state of the resource, it can be an important data point for troubleshooting.
+*Unknown* means that Resource Health doesn't have information about the resource for more than 10 minutes, which commonly occurs when virtual machines are deallocated. Although this status isn't a definitive indication of the state of the resource, it can be an important data point for troubleshooting.
 
 If the resource starts to run as expected, the status of the resource will change to *Available* after a few minutes.
 
@@ -97,7 +97,7 @@ You can access up to 30 days of history in the **Health history** section of Res
 
 ## Root cause information
 
-If Azure has further information about the root cause of a platform-initiated unavailability, that information may be posted in resource health up to 72 hours after the initial unavailability. This information is only available for virtual machines at this time. 
+If Azure has further information about the root cause of a platform-initiated unavailability, that information might be posted in resource health up to 72 hours after the initial unavailability. This information is only available for virtual machines at this time. 
 
 ## Get started
 
@@ -106,7 +106,7 @@ To open Resource Health for one resource:
 1. Sign in to the Azure portal.
 2. Browse to your resource.
 3. On the resource menu in the left pane, select **Resource health**.
-4. From the health history grid, you can either download a PDF or click the "Share/Manage" RCA (Root Cause Analysis) button.
+4. From the health history grid, you can either download a PDF or select the "Share/Manage" RCA (Root Cause Analysis) button.
 
 ![Opening Resource Health from the resource view](./media/resource-health-overview/from-resource-blade.png)
 
