@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Customizations on Azure Monitor SCOM Managed Instance management servers
 description: This article describes about the Customizations on Azure Monitor SCOM Managed Instance management servers.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 05/22/2024
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance

@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Azure Monitor SCOM Managed Instance activity log 
 description: This article provides information on how to view the activity log.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 05/22/2024
 ms.custom: engagement-fy24
 ms.service: azure-monitor

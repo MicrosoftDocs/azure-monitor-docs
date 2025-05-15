@@ -6,7 +6,6 @@ author: bwren
 ms.author: bwren
 ms.date: 07/26/2024
 ms.reviewer: shijain
-
 ---
 
 # Optimize your environment with the System Center Operations Manager Health Check (Preview) solution

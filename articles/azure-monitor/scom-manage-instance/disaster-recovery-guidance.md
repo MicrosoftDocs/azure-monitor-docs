@@ -2,9 +2,8 @@
 ms.assetid: 
 title: Disaster Recovery guidance – Azure Monitor SCOM Managed Instance
 description: This article provides information to review in advance of application deployment.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+author: jyothisuri
+ms.author: jsuri
 ms.date: 01/09/2025
 ms.custom: references_regions, engagement-fy24
 ms.service: azure-monitor
