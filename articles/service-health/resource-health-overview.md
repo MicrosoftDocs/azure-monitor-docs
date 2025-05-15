@@ -9,7 +9,7 @@ ms.date: 05/15/2025
  
 Azure Resource Health helps you diagnose and get support for service problems that affect your Azure resources. It reports on the current and past health of your resources.
 
-[Azure status](https://azure.status.microsoft) reports on service problems that affect a broad set of Azure customers. Resource Health gives you a personalized dashboard of the health of your resources. Resource Health shows all the times that your resources are unavailable because of Azure service problems. This data makes it easy for you to see if a Service Level Agreement (SLA) was violated.
+[Azure status](https://azure.status.microsoft) reports on service problems that affect a broad set of Azure customers. Resource Health gives you a personalized dashboard of the health of your resources and shows all the times that your resources are unavailable because of Azure service problems. This data makes it easy for you to see if a Service Level Agreement (SLA) was violated.
 
 ## Resource definition and health assessment
 
@@ -19,7 +19,7 @@ For more information on how health is assessed, see the list of resource types a
 
 ## Health status
 
-The health of a resource is displayed with a status displayed.
+The health of a resource is displayed with a status shown.
 
 ### Available
 
@@ -41,7 +41,7 @@ Resource Health provides more details about the event and the recovery process. 
 
 #### Non-platform events
 
-User actions can trigger Non-platform events. Examples include stopping a virtual machine or reaching the maximum number of connections to Azure Cache for Redis.
+User actions can trigger non-platform events. Examples include stopping a virtual machine or reaching the maximum number of connections to Azure Cache for Redis.
 
 :::image type="content"source="./media/resource-health-overview/Unavailable-NonPlatform.png"alt-text="Status of Unavailable for a virtual machine because of a non-platform event"Lightbox="./media/resource-health-overview/Unavailable-NonPlatform.png":::
 
@@ -107,11 +107,10 @@ To open Resource Health for one resource:
 1. Sign in to the Azure portal.
 2. Browse to your resource.
 3. On the resource menu in the left pane, select **Resource health**.
-4. From the health history grid, you can either download a PDF or select the "Share/Manage" RCA (Root Cause Analysis) button.
+4. From the health history grid, select the link to the resource health name to open a new window with information about this resource.
+1. In this window, you can select to *Diagnose and solve problems* or select to open the *Troubleshooting tool*.
 
-![Opening Resource Health from the resource view](./media/resource-health-overview/from-resource-blade.png)
-
-:::image type="content" source="./media/resource-health-overview/resource-health-history-grid.png" lightbox="./media/resource-health-overview/resource-health-history-grid.png" alt-text="Screenshot of the Resource Health pane in the Azure portal. The Unavailable message and Download as PDF and Share/Manage RCA (Root Cause Analysis) buttons are highlighted.":::
+:::image type="content"source="./media/resource-health-overview/from-resource-blade.png"alt-text+"Opening Resource Health from the resource view"Lightbox="./media/resource-health-overview/from-resource-blade.png":::
 
 
 ## Next steps
