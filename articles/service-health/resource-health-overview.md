@@ -43,7 +43,7 @@ Resource Health provides more details about the event and the recovery process. 
 
 User actions can trigger Non-platform events. Examples include stopping a virtual machine or reaching the maximum number of connections to Azure Cache for Redis.
 
-:::image type="content"source="./media/resource-health-overview/Unavailable_NonPlatform.png"alt-text="Status of "Unavailable" for a virtual machine because of a non-platform event" Lightbox="./media/resource-health-overview/Unavailable_NonPlatform.png":::
+:::image type="content"source="./media/resource-health-overview/Unavailable_NonPlatform.png"alt-text="Status of "Unavailable" for a virtual machine because of a non-platform event"Lightbox="./media/resource-health-overview/Unavailable_NonPlatform.png":::
 
 ### Unknown
 
@@ -93,7 +93,7 @@ The following resource health transitions aren't recorded in the activity log:
  
 You can access up to 30 days of history in the **Health history** section of Resource Health from Azure portal.
 
-:::image type="content source"./media/resource-health-overview/history-blade.png"alt-text="List of Resource Health events over the last two weeks"Lightbox="./media/resource-health-overview/history-blade.png":::
+:::image type="content"source="./media/resource-health-overview/history-blade.png"alt-text="List of Resource Health events over the last two weeks."Lightbox="./media/resource-health-overview/history-blade.png":::
 
 ## Root cause information
 
@@ -114,7 +114,7 @@ To open Resource Health for one resource:
 
 You can also access Resource Health by selecting **All services** and typing **resource health** in the filter text box. In the **Help + support** pane, select [Resource health](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/resourceHealth).
 
-:::image type="content source"./media/resource-health-overview/FromOtherServices.png"alt-text="Opening Resource Health from "All services"Lightbox="./media/resource-health-overview/FromOtherServices.png":::
+:::image type="content"source"./media/resource-health-overview/FromOtherServices.png"alt-text="Opening Resource Health from "All services"Lightbox="./media/resource-health-overview/FromOtherServices.png":::
 
 ## Next steps
 
