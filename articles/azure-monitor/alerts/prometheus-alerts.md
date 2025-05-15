@@ -12,6 +12,10 @@ As part of [Azure Monitor managed services for Prometheus](../essentials/prometh
 
 Whenever the alert query results in one or more time series meeting the condition, the alert counts as pending for these metric and label sets. A pending alert becomes active after a user-defined period of time during which all the consecutive query evaluations for the respective time series meet the alert condition. After an alert becomes active, it's fired and triggers your actions or notifications of choice, as defined in the Azure action groups configured in your alert rule.
 
+>[!NOTE]
+> To enable recommended metric alert rules that are predefined for your Kubernetes clusters, refer to this [guide](../containers/kubernetes-metric-alerts.md).
+>
+
 ## Create Prometheus alert rules
 
 You create and manage Prometheus alert rules as part of a Prometheus rule group. For details, see [Azure Monitor managed service for Prometheus rule groups](../essentials/prometheus-rule-groups.md).
