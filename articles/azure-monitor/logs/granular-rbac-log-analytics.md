@@ -37,8 +37,6 @@ Granular RBAC controls data access such as viewing or querying data. It doesn't 
 
 ## Configure granular RBAC
 
-Jump into granular RBAC with a [**Step by step granular RBAC example**](granular-rbac-use-case.md).
-
 The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. 
 
 - [Role creation](#role-creation)
