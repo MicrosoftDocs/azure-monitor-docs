@@ -33,7 +33,7 @@ The **Current Impact** tab displays active events that affect the entirety of Az
 
 ## Azure status history
 
-Although the **Azure status** page shows the latest health information, you can view older events on the **Azure status history** page. The **Azure status history** page is used to provide Post Incident Reviews (PIRs) for Scenario 1 events.
+Although the **Azure status** page shows the latest health information, you can view older events on the **Azure status history** pane. The **Azure status history** page is used to provide Post Incident Reviews (PIRs) for Scenario 1 events.
 
 :::image type="content"source="./media/azure-status-overview/status-history.png"alt-text="Screenshot of the Azure status history page."Lightbox="./media/azure-status-overview/status-history.png":::
 
@@ -44,7 +44,7 @@ Although the **Azure status** page shows the latest health information, you can 
 
 You can also subscribe to the Azure status [RSS feed](https://azure.status.microsoft/status/feed/) to view changes to the health of Azure services.
 
-## When does Azure publish communications to the status page?
+## Publishing communications to the Azure status page
 
 We send most of our service issue communications as targeted notifications to affected customers and partners. These communications are delivered through [Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal and trigger any configured [Service Health alerts](./alerts-activity-log-service-notifications-portal.md?toc=%2fazure%2fservice-health%2ftoc.json).
 
@@ -54,9 +54,9 @@ The public **Azure status** page is used only to communicate about service issue
 * **Scenario 2** <br>A service issue impedes you from accessing the Azure portal or Service Health, and we're unable to contact you via our standard outage communications path.
 * **Scenario 3** <br>A service issue has broad/significant customer impact, but we can't yet confirm which customers, regions, or services are affected. We can't send targeted communications, so we provide public updates.
 
-## What does Azure publish to the status history page?
+### Information published on the status history page
 
-You can view older events by using the [Azure status history](https://azure.status.microsoft/status/history/) page. This page contains PIRs for incidents that happen on or after November 20, 2019.
+You can view older events by using the [Azure status history](https://azure.status.microsoft/status/history/) page. This page only contains PIRs for incidents that happen on or after November 20, 2019.
 
 The **Azure status history** page displays Post-Incident Reviews (PIR) only for Scenario 1 events. We're committed to publishing PIRs publicly for service issues with the broadest impact, like issues with both multiple-service and multiple-region impacts. We conduct and publish PIRs to ensure all customers and the industry at large can:
 
@@ -67,7 +67,7 @@ During Scenario 2 and 3 events, we might communicate publicly on the **Azure sta
 
 After a Scenario 2 or 3 issue is mitigated, we conduct a thorough impact analysis to determine which customer subscriptions were affected. We provide the relevant PIR only to affected customers via [Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal.
 
-## Related content
+#### Related content
 
 * Learn how you can get a more personalized view into Azure health by using [Service Health](./service-health-portal-update.md).
 * Learn how you can get a more granular view into the health of your specific Azure resources by using [Azure Resource Health](./resource-health-overview.md).
