@@ -30,6 +30,7 @@ Managed workspaces have the following limitations:
 
 - Support only the Application Insights resource that created them. A managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.
 - Changes to workspace settings, such as quotas, are allowed, but the workspace can't be repurposed for other uses.
+- Tags cannot be added to a managed workspace
 - Deletion of the connected Application Insights resource is required to remove managed workspaces. To keep the Application Insights resource, connect it to a different workspace and then delete the managed workspaces.
 
 ## Identify managed workspaces
