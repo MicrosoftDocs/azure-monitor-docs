@@ -13,9 +13,9 @@ ms.reviewer: jan.kalis
 # Fix code based on Code Optimizations insights using GitHub Copilot (preview)
 
 You can get code-level suggestions and insights based on Code Optimizations recommendations with GitHub Copilot using either:
-- The GitHub Copilot chat in the Application Insights Code Optimizations extensions (preview) for [Visual Studio](./code-optimizations-vs-extension.md) or [Visual Studio Code](./code-optimizations-vscode-extension.md). 
+- The GitHub Copilot chat in [Visual Studio](./code-optimizations-vs-extension.md) or [Visual Studio Code](./code-optimizations-vscode-extension.md) with the Application Insights Code Optimizations extensions. 
     - The Code Optimizations extension integrates with [GitHub Copilot for Azure in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot), so you can interact with it indirectly via [`@Azure` in the Ask mode](#sample-questions). If you haven't already installed the Application Insights Code Optimizations (Preview) extension, you'll be prompted to install it.
-- The [GitHub Copilot coding agent (preview)](./code-optimizations-github-copilot.md) to assign GitHub issues from Code Optimizations and iterate with GitHub Copilot through pull request reviews.
+- The [GitHub Copilot coding agent](./code-optimizations-github-copilot.md) to assign GitHub issues from Code Optimizations and iterate with GitHub Copilot through pull request reviews.
 
 > [!NOTE]
 > Using the GitHub Copilot coding agent requires transferring your data to other countries in which Microsoft operates, including the United States. By using this functionality, you agree to the transfer of your data outside your country. [Read the
@@ -41,7 +41,7 @@ Learn how to use GitHub Copilot to fix your code via the following how-to guides
 
 ## Sample questions
 
-Once installed, the Code Optimizations extension (preview) introduces an agent called `@code_optimizations` with a few commands or "skills" that you can use in GitHub Copilot to interface with Code Optimizations issues. For example:
+Once installed, the Code Optimizations extension introduces an agent called `@code_optimizations` with a few commands or "skills" that you can use in GitHub Copilot to interface with Code Optimizations issues. For example:
 
 - **Visual Studio**
 
