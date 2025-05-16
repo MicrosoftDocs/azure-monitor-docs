@@ -179,5 +179,5 @@ To implement the *Bell-LaPadula* style access model, you must explicitly set ABA
 
 ## Related content
 
-- [Getting started with Azure ABAC for Log Analytics Workspaces](granular-rbac-use-case.md)
+- [Manage access to Log Analytics workspaces](/azure/azure-monitor/logs/manage-access.md)
 - [Azure ABAC](/azure/role-based-access-control/conditions-overview)
