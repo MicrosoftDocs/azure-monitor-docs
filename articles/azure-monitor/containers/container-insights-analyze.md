@@ -10,8 +10,6 @@ ms.reviewer: viviandiec
 
 Use the workbooks, performance charts, and health status in Container insights to monitor the workload of Kubernetes clusters hosted on Azure Kubernetes Service (AKS), Azure Stack, or another environment. This article helps you understand how to use Azure Monitor to help you quickly assess, investigate, and resolve detected issues.
 
-
-
 ## Workbooks
 
 Workbooks combine text, log queries, metrics, and parameters into rich interactive reports that you can use to analyze cluster performance. For a description of the workbooks available for Container insights and how to access them, see [Workbooks in Container insights](container-insights-reports.md). 
