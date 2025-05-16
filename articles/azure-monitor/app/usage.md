@@ -18,7 +18,7 @@ This article covers the following areas:
 
 * **Native usage experiences**
 
-    * [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and app performance.
+    * [**Users, Sessions & Events**](#users-sessions-and-events) - Track and analyze user interaction with your application, session trends, and specific events to gain insights into user behavior and application performance.
     
     * [**Funnels**](#funnels) - Understand how users progress through a series of steps in your application, and where they might be dropping off.
     
@@ -34,17 +34,17 @@ This article covers the following areas:
     
     * [**HEART Analysis**](#heart---five-dimensions-of-customer-experience) - Utilize the HEART framework to measure and understand user happiness, engagement, adoption, retention, and task success.
 
-## Collect browser telemetry
+### How to get started
 
-### Prerequisites
+#### Prerequisites
 
 > [!div class="checklist"]
 > * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
 > * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
-### Instrument your web application
+#### Instrument your application
 
-To collect browser telemetry about the usage of your web application, use the [Application Insights JavaScript SDK](javascript-sdk.md). No server-side instrumentation is required.
+To collect browser telemetry about the usage of your application, use the [Application Insights JavaScript SDK](javascript-sdk.md). No server-side instrumentation is required.
 
 To verify if browser telemetry is being collected, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
 
@@ -74,7 +74,7 @@ Attaching property values to these events allows you to filter or split them dur
 
 #### How to log custom events
 
-Events can be logged from the client side of the app using the either the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) or `trackEvent`:
+Events can be logged from the client side of the application using either the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) or `trackEvent`:
 
 ```javascript
 appInsights.trackEvent({name: "incrementCount"});
@@ -85,7 +85,7 @@ You can also log server-side custom events using the Azure Monitor OpenTelemetry
 To learn how to use custom events with the Application Insights SDK (Classic API), see [custom events](api-custom-events-metrics.md#trackevent) and [properties](api-custom-events-metrics.md#properties).
 
 > [!TIP]
-> When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your app from the start.
+> When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your application from the start.
 
 #### Slice and dice custom events
 
@@ -93,7 +93,7 @@ In the [Users, Sessions, and Events tools](#users-sessions-and-events), you can 
 
 :::image type="content" source="media/usage/custom-events-open-last-run-query.png" lightbox="media/usage/custom-events-open-last-run-query.png" alt-text="Screenshot of the Application Insights Session pane in the Azure portal. The Open the last run query icon is highlighted." :::
 
-You can then modify the underlying query to get the specific information you're looking for. Here's an example of an underlying query about page views. Go ahead and paste it directly into the query editor to test it out.
+You can then modify the underlying query to get the specific information you're looking for. Here's an example of an underlying query about page views.
 
 ```kusto
 // average pageView duration by name
@@ -114,15 +114,15 @@ dataset
 
 ### Users, Sessions, and Events
 
-Three of the **Usage** panes use the same tool to slice and dice telemetry from your web app from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features. Find out when people use your web app, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
+Three of the **Usage** panes use the same tool to slice and dice telemetry from your application from three perspectives. By filtering and splitting the data, you can uncover insights about the relative use of different pages and features. Find out when people use your application, what pages they're most interested in, where your users are located, and what browsers and operating systems they use.
 
 * **Users tool**: Counts the numbers of unique users that access your pages within your chosen time periods. Users are counted by using anonymous IDs stored in browser cookies. A single person using different browsers or machines is counted as more than one user.
 
 * **Sessions tool**: Tabulates the number of user sessions that access your site. A session represents a period of activity initiated by a user and concludes with a period of inactivity exceeding half an hour or after 24 hours of continuous use.
 
-* **Events tool**: How often are certain pages and features of your app used? A page view is counted when a browser loads a page from your app, provided you [instrumented it](javascript-sdk.md).
+* **Events tool**: How often are certain pages and features of your application used? A page view is counted when a browser loads a page from your app, provided you [instrumented it](javascript-sdk.md).
 
-    A custom event represents one occurrence of something happening in your application. It's often a user interaction like a button selection or the completion of a task. You insert code in your app to [generate custom events](opentelemetry-add-modify.md#send-custom-events) or use the [Click Analytics](javascript-feature-extensions.md) extension.
+    A custom event represents one occurrence of something happening in your application. It's often a user interaction like a button selection or the completion of a task. You insert code in your application to [generate custom events](opentelemetry-add-modify.md#send-custom-events) or use the [Click Analytics](javascript-feature-extensions.md) extension.
 
 > [!IMPORTANT]
 > If someone accesses your site with different browsers or client machines, or clears their cookies, they're counted more than once.
@@ -135,15 +135,15 @@ Explore different groups of users, sessions, or events by adjusting the query op
 
 :::image type="content" source="media/usage/users-pane.png" lightbox="media/usage/users-pane.png" alt-text="Screenshot that shows the Users tab with a bar chart.":::
 
-| Option          | Description                                                                                                                               |
-|-----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| During          | Choose a time range.                                                                                                                      |
-| Show            | Choose a cohort of users to analyze.                                                                                                      |
-| Who used        | Choose custom events, requests, and page views.                                                                                           |
-| Events          | Choose multiple events, requests, and page views that will show users who did at least one, not necessarily all, of the selected options. |
-| By value x-axis | Choose how to categorize the data, either by time range or by another property, such as browser or city.                                  |
-| Split By        | Choose a property to use to split or segment the data.                                                                                    |
-| Add Filters     | Limit the query to certain users, sessions, or events based on their properties, such as browser or city.                                 |
+| Option          | Description                                                                                                                          |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| During          | Choose a time range.                                                                                                                 |
+| Show            | Choose a cohort of users to analyze.                                                                                                 |
+| Who used        | Choose custom events, requests, and page views.                                                                                      |
+| Events          | Choose multiple events, requests, and page views that show users who did at least one, not necessarily all, of the selected options. |
+| By value x-axis | Choose how to categorize the data, either by time range or by another property, such as browser or city.                             |
+| Split By        | Choose a property to use to split or segment the data.                                                                               |
+| Add Filters     | Limit the query to certain users, sessions, or events based on their properties, such as browser or city.                            |
 
 Clicking **View More Insights** displays the following information:
 
@@ -151,9 +151,9 @@ Clicking **View More Insights** displays the following information:
 
 * **General information:** The number of sessions and events for the specified time window, and a Performance evaluation related to users' perception of responsiveness.
 
-* **Properties:** Charts containing up to 6 user properties such as browser version, country or region, and operating system.
+* **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
 
-* **Meet Your Users:** Information about 5 sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
+* **Meet Your Users:** Information about five sample users matched by the current query. Exploring the behaviors of individuals and in aggregate can provide insights about how people use your app.
 
 #### [Sessions](#tab/sessions)
 
@@ -161,7 +161,7 @@ Clicking **View More Insights** displays the following information:
 
 * **Properties:** Charts containing up to six user properties such as browser version, country or region, and operating system.
 
-* **Active Sessions:** Information about 5 sample sessions, including the location, number of events, and the OS.
+* **Active Sessions:** Information about five sample sessions, including the location, number of events, and the OS.
 
 #### [Events](#tab/events)
 
@@ -179,18 +179,18 @@ If you're unsure which feature variant is more successful, run an A/B test and l
 
 To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span). 
 
-f you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+If you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
 After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 
 ### Funnels
 
-Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in a web application is known as a *funnel*.
+Understanding the customer experience is of great importance to your business. If your application involves multiple stages, you need to know if customers are progressing through the entire process or ending the process at some point. The progression through a series of steps in an application is known as a *funnel*.
 
 You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates. Selecting a step shows additional step-specific details.
 
 > [!NOTE]
-> If your app is sampled, you'll see a banner. Selecting it opens a context pane that explains how to turn off sampling.
+> If your application is sampled, you see a banner. Selecting it opens a context pane that explains how to turn off sampling.
 
 :::image type="content" source="media/usage/funnels-pane.png" lightbox="media/usage/funnels-pane.png" alt-text="Screenshot that shows the Funnels View tab that shows results from the top and second steps.":::
 
@@ -226,20 +226,20 @@ The User Flows tool visualizes how users move between the pages and features of 
 * Where are the places that users churn most from your site?
 * Are there places where users repeat the same action over and over?
 
-The User Flows tool starts from an initial custom event, exception, dependency, page view or request that you specify. From this initial event, User Flows shows the events that happened before and after user sessions. Lines of varying thickness show how many times users followed each path.
+The User Flows tool starts from an initial custom event, exception, dependency, page view, or request that you specify. From this initial event, User Flows shows the events that happened before and after user sessions. Lines of varying thickness show how many times users followed each path.
 
 Special **Session Started** nodes show where the subsequent nodes began a session. **Session Ended** nodes show how many users sent no page views or custom events after the preceding node, highlighting where users probably left your site.
 
 > [!NOTE]
-> Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your app to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md).
+> Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your application to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md).
 
 #### Create a user flow visualization
 
-To begin answering questions with the User Flows tool, choose an initial custom event, exception, dependency, page view or request to serve as the starting point for the visualization:
+To begin answering questions with the User Flows tool, choose an initial custom event, exception, dependency, page view, or request to serve as the starting point for the visualization:
 
 1. On the User Flows pane, select **Edit** or **Select an event**.
 
-1. From the **Initial event** dropdown list, select a custom event, exception, dependency, page view or request.
+1. From the **Initial event** dropdown list, select a custom event, exception, dependency, page view, or request.
 
     :::image type="content" source="media/usage/user-flows-initial-event.png" lightbox="media/usage/user-flows-initial-event.png" alt-text="Screenshot that shows choosing an initial event for User Flows.":::
 
@@ -251,20 +251,20 @@ The **Step 1** column of the visualization shows what users did most frequently 
 
 By default, the User Flows tool randomly samples only the last 24 hours of page views and custom events from your site. You can increase the time range and change the balance of performance and accuracy for random sampling on the **Edit** menu.
 
-If some of the page views, custom events, and exceptions aren't relevant to you, select **X** on the nodes you want to hide. After you've selected the nodes you want to hide, select **Create graph**. To see all the nodes you've hidden, select **Edit** and look at the **Excluded events** section.
+If some of the page views, custom events, and exceptions aren't relevant to you, select **X** on the nodes you want to hide. After selecting the nodes you want to hide, select **Create graph**. To see all hidden nodes, select **Edit** and look at the **Excluded events** section.
 
 If page views or custom events you expect to see in the visualization are missing that:
 
 * Check the **Excluded events** section on the **Edit** menu.
 * Use the plus buttons on **Others** nodes to include less-frequent events in the visualization.
 * If the page view or custom event you expect is sent infrequently by users, increase the time range of the visualization on the **Edit** menu.
-* Make sure the custom event, exception, dependency, page view or request you expect is set up to be collected by the Application Insights SDK in the source code of your site.
+* Make sure the custom event, exception, dependency, page view, or request you expect is set up to be collected by the Application Insights SDK in the source code of your site.
 
 If you want to see more steps in the visualization, use the **Previous steps** and **Next steps** dropdown lists above the visualization.
 
-#### Use cases
+#### Example questions you can answer with user flows
 
-Select one of the below use cases to expand the section.
+Select one of the following examples to expand the section.
 
 <br>
 
@@ -315,7 +315,7 @@ You might define a cohort of users who have all tried a new feature in your app.
 
 #### Create a cohort
 
-Your team defines an engaged user as anyone who uses your app five or more times in a given month. In this section, you define a cohort of these engaged users.
+Your team defines an engaged user as anyone who uses your application five or more times in a given month. In this section, you define a cohort of these engaged users.
 
 1. Select **Create a Cohort**.
 
@@ -348,13 +348,16 @@ Open the Users tool. In the **Show** dropdown box, choose the cohort you created
 Important points to notice:
 
 * You can't create this set through normal filters. The date logic is more advanced.
+
 * You can further filter this cohort by using the normal filters in the Users tool. Although the cohort is defined on 28-day windows, you can still adjust the time range in the Users tool to be 30, 60, or 90 days.
 
 These filters support more sophisticated questions that are impossible to express through the query builder. An example is *people who were engaged in the past 28 days. How did those same people behave over the past 60 days?*
 
-#### More examples
+#### More cohort examples
 
-Select one of the below examples to expand the section.
+Select one of the following examples to expand the section.
+
+<br>
 
 <details>
 <summary><b>Events cohort</b></summary>
@@ -406,7 +409,7 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 
 ### User Retention Analysis
 
-The User Retention Analysis workbook helps you understand user engagement by tracking how often users return to your app and interact with specific features. It reveals patterns across user cohorts, such as differences in return rates between users who win or lose a game, offering actionable insights to improve user experience and guide business decisions.
+The User Retention Analysis workbook helps you understand user engagement by tracking how often users return to your application and interact with specific features. It reveals patterns across user cohorts, such as differences in return rates between users who win or lose a game, offering actionable insights to improve user experience and guide business decisions.
 
 By analyzing user cohorts based on their actions within a given timeframe, you can:
 
@@ -446,7 +449,7 @@ One way to think of Impact is as the ultimate tool for settling arguments with s
 Analyzing performance is only a subset of Impact's capabilities. Impact supports custom events and dimensions, so you can easily answer questions like, How does user browser choice correlate with different rates of conversion?
 
 > [!NOTE]
-> Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your app to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md). Also, because you're analyzing correlation, sample size matters.
+> Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your application to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md). Also, because you're analyzing correlation, sample size matters.
 
 #### The User Impact Analysis workbook
 
@@ -463,7 +466,7 @@ To use the **User Impact Analysis** workbook in Application Insights, navigate t
 
 Under the hood, the User Impact Analysis workbook relies on the [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient). Results are computed between -1 and 1. The coefficient -1 represents a negative linear correlation and 1 represents a positive linear correlation.
 
-The basic breakdown of how Impact analysis works is listed here:
+The basic breakdown of how user impact analysis works:
 
 * Let *A* = the main page view, custom event, or request you select in the **Selected event** dropdown list.
 * Let *B* = the secondary page view or custom event you select in the **impacts the usage of** dropdown list.
@@ -472,14 +475,14 @@ Impact looks at a sample of all the sessions from users in the selected time ran
 
 Sessions are then broken into two different kinds of *subsessions* based on one of two conditions:
 
-* A converted subsession consists of a session ending with a *B* event and encompasses all *A* events that occur prior to *B*.
+* A converted subsession consists of a session ending with a *B* event and encompasses all *A* events that occur before *B*.
 * An unconverted subsession occurs when all *A*s occur without a terminal *B*.
 
 How Impact is ultimately calculated varies based on whether we're analyzing by metric or by dimension. For metrics, all *A*s in a subsession are averaged. For dimensions, the value of each *A* contributes *1/N* to the value assigned to *B*, where *N* is the number of *A*s in the subsession.
 
 #### Use cases
 
-Select one of the below use cases to expand the section.
+Select one of the following use cases to expand the section.
 
 <br>
 
@@ -539,7 +542,7 @@ These dimensions are measured independently, but they interact with each other.
 
 * Adoption, engagement, and retention form a user activity funnel. Only a portion of users who adopt the tool come back to use it.
 * Task success is the driver that progresses users down the funnel and moves them from adoption to retention.
-* Happiness is an outcome of the other dimensions and not a stand-alone measurement. Users who have progressed down the funnel and are showing a higher level of activity are ideally happier.
+* Happiness is an outcome of the other dimensions and not a stand-alone measurement. Users who progressed down the funnel and are showing a higher level of activity are ideally happier.
 
 #### Prerequisites
 
@@ -572,7 +575,7 @@ These dimensions are measured independently, but they interact with each other.
 
     ¹: To emit these attributes, use the [Click Analytics Autocollection plug-in](javascript-feature-extensions.md) via npm.
 
-* If you're setting up the authenticated user context, instrument the below attributes:
+* If you're setting up the authenticated user context, instrument the following attributes:
 
     | Source       | Attribute            | Description                           |
     |--------------|----------------------|---------------------------------------|
@@ -609,11 +612,11 @@ The tabs are:
 * **Engagement**: Shows frequency, depth, and breadth of usage.
 * **Retention**: Shows repeat usage.
 * **Task success**: Enables understanding of user flows and their time distributions.
-* **Happiness**: We recommend using a survey tool to measure customer satisfaction score (CSAT) over a five-point scale. On this tab, we've provided the likelihood of happiness via usage and performance metrics.
+* **Happiness**: We recommend using a survey tool to measure customer satisfaction score (CSAT) over a five-point scale. On this tab, we provide the likelihood of happiness via usage and performance metrics.
 * **Feature metrics**: Enables understanding of HEART metrics at feature granularity.
 
 > [!WARNING]
-> The HEART workbook is currently built on logs and effectively are [log-based metrics](pre-aggregated-metrics-log-metrics.md). The accuracy of these metrics is negatively affected by sampling and filtering.
+> The HEART workbook is currently built on logs and effectively [log-based metrics](pre-aggregated-metrics-log-metrics.md). The accuracy of these metrics is negatively affected by sampling and filtering.
 
 #### How HEART dimensions are defined and measured
 
@@ -689,7 +692,7 @@ Set up a custom task by using the following parameters.
 
 ## Frequently asked questions
 
-#### Does the initial event represent the first time the event appears in a session or any time it appears in a session?
+#### Does the initial event represent the first time the event appears in a session or anytime it appears in a session?
 
 The initial event on the visualization only represents the first time a user sent that page view or custom event during a session. If users can send the initial event multiple times in a session, then the **Step 1** column only shows how users behave after the *first* instance of an initial event, not all instances.
 
