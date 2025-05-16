@@ -27,7 +27,8 @@ The factors that define the data you can access are described in the following t
 | [Access mode](#access-mode)                            | Method used to access the workspace. Defines the scope of the data available and the access control mode that's applied.                                 |
 | [Access control mode](#access-control-mode)            | Setting on the workspace that defines whether permissions are applied at the workspace or resource level.                                                |
 | [Azure role-based access control (RBAC)](#azure-rbac)  | Permissions applied to individuals or groups of users for the workspace or resource sending data to the workspace. Defines what data you have access to. |
-| [Table-level Azure RBAC](#set-table-level-read-access) | Optional permissions that define specific data types in the workspace that you can access. Can be applies to all access modes or access control modes.   |
+| [Granular RBAC](#set-granular-rbac)                        | Optional permissions that define table and row-level access based on conditions. Applies to all access modes, but should only be used with workspace access control mode.   |
+| [Table-level Azure RBAC](#set-table-level-read-access) | Optional permissions that define specific data types in the workspace that you can access. Applies to all access modes or access control modes.   |
 
 ## Access mode
 
@@ -289,9 +290,13 @@ In addition to using the built-in roles for a Log Analytics workspace, you can c
 * Assign the user to the [Log Analytics Contributor](/azure/role-based-access-control/built-in-roles/analytics#log-analytics-contributor) role.
 * Add the following NonAction to block users from restoring data from long-term retention: `Microsoft.OperationalInsights/workspaces/restoreLogs/write`
 
+## Set granular RBAC
+
+This is the recommended method for table and row-level access control. For more information, see [Granular role-based access control (RBAC) in Azure Monitor](granular-rbac-log-analytics.md).
+
 ## Set table-level read access
 
-See [Manage table-level read access](manage-table-access.md).
+Granular RBAC has all the capabilities of table-level read access. The best practice for new access control configuration is to implement granular RBAC. To reference the method that only does table-level control, see [Manage table-level read access](manage-table-access.md).
 
 ## Next steps
 
