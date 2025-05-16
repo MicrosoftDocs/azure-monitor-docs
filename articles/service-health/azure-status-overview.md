@@ -67,7 +67,7 @@ During Scenario 2 and 3 events, we might communicate publicly on the **Azure sta
 
 After a Scenario 2 or 3 issue is mitigated, we conduct a thorough impact analysis to determine which customer subscriptions were affected. We provide the relevant PIR only to affected customers via [Service Health](https://azure.microsoft.com/features/service-health/) in the Azure portal.
 
-#### Related content
+## Related content
 
 * Learn how you can get a more personalized view into Azure health by using [Service Health](./service-health-portal-update.md).
 * Learn how you can get a more granular view into the health of your specific Azure resources by using [Azure Resource Health](./resource-health-overview.md).
