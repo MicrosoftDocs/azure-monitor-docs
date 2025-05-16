@@ -330,7 +330,7 @@ Your team defines an engaged user as anyone who uses your application five or mo
 
 1. Change **UsedAtLeastCustom** to **5+ days**. Leave **Period** set as the default of 28 days.
 
-    Now this cohort represents all user IDs sent with any custom event or page view on 5 separate days in the past 28 days.
+    Now this cohort represents all user IDs sent with any custom event or page view on five separate days in the past 28 days.
 
 1. Select **Save**.
 
@@ -339,11 +339,9 @@ Your team defines an engaged user as anyone who uses your application five or mo
 
 1. Select **Back to Gallery**.
 
-##### What can you do by using this cohort?
+#### What can you do by using this cohort?
 
 Open the Users tool. In the **Show** dropdown box, choose the cohort you created under **Users who belong to**.
-
-:::image type="content" source="media/usage/cohorts-dropdown.png" lightbox="media/usage/cohorts-dropdown.png" alt-text="Screenshot that shows the Show dropdown showing a cohort.":::
 
 Important points to notice:
 
@@ -480,9 +478,9 @@ Sessions are then broken into two different kinds of *subsessions* based on one 
 
 How Impact is ultimately calculated varies based on whether we're analyzing by metric or by dimension. For metrics, all *A*s in a subsession are averaged. For dimensions, the value of each *A* contributes *1/N* to the value assigned to *B*, where *N* is the number of *A*s in the subsession.
 
-#### Use cases
+#### Example questions you can answer with user impact analysis
 
-Select one of the following use cases to expand the section.
+Select one of the following questions to expand the section.
 
 <br>
 
@@ -720,7 +718,7 @@ You can select the **Date Grain** filter to change the grain. The filter is avai
 
 #### How do I access insights from my application that aren't available on the HEART workbooks?
 
-You can dig into the data that feeds the HEART workbook if the visuals don't answer all your questions. To do this task, under the **Monitoring** section in Application Insights, select **Logs** and query the `customEvents` table. Some of the Click Analytics attributes are contained within the `customDimensions` field.
+You can dig into the data that feeds the HEART workbook if the visuals don't answer all your questions. To do this task, under the **Monitoring** section in Application Insights, select **Logs**, and query the `customEvents` table. Some of the Click Analytics attributes are contained within the `customDimensions` field.
 
 An example query is shown here:
 
