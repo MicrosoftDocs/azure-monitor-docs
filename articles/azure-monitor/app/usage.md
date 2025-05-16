@@ -226,7 +226,9 @@ The User Flows tool visualizes how users move between the pages and features of 
 * Where are the places that users churn most from your site?
 * Are there places where users repeat the same action over and over?
 
-The User Flows tool starts from an initial custom event, exception, dependency, page view or request that you specify. From this initial event, User Flows shows the events that happened before and after user sessions. Lines of varying thickness show how many times users followed each path. Special **Session Started** nodes show where the subsequent nodes began a session. **Session Ended** nodes show how many users sent no page views or custom events after the preceding node, highlighting where users probably left your site.
+The User Flows tool starts from an initial custom event, exception, dependency, page view or request that you specify. From this initial event, User Flows shows the events that happened before and after user sessions. Lines of varying thickness show how many times users followed each path.
+
+Special **Session Started** nodes show where the subsequent nodes began a session. **Session Ended** nodes show how many users sent no page views or custom events after the preceding node, highlighting where users probably left your site.
 
 > [!NOTE]
 > Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your app to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md).
@@ -268,8 +270,6 @@ Select one of the below use cases to expand the section.
 
 <details>
 <summary><b>After users visit a page or feature, where do they go and what do they select?</b></summary>
-
-:::image type="content" source="media/usage/user-flows-one-step.png" lightbox="media/usage/user-flows-one-step.png" alt-text="Screenshot that shows using User Flows to understand where users select.":::
 
 If your initial event is a page view, the first column (**Step 1**) of the visualization is a quick way to understand what users did immediately after they visited the page. 
 
@@ -313,14 +313,7 @@ You can use cohorts in ways similar to filters. But cohorts' definitions are bui
 
 You might define a cohort of users who have all tried a new feature in your app. You can save this cohort in your Application Insights resource. It's easy to analyze this saved group of specific users in the future.
 
-#### Use cases
-
-Select one of the below use cases to expand the section.
-
-<br>
-
-<details>
-<summary><b>Example: Engaged users</b></summary>
+#### Create a cohort
 
 Your team defines an engaged user as anyone who uses your app five or more times in a given month. In this section, you define a cohort of these engaged users.
 
@@ -346,7 +339,7 @@ Your team defines an engaged user as anyone who uses your app five or more times
 
 1. Select **Back to Gallery**.
 
-#### What can you do by using this cohort?
+##### What can you do by using this cohort?
 
 Open the Users tool. In the **Show** dropdown box, choose the cohort you created under **Users who belong to**.
 
@@ -358,12 +351,13 @@ Important points to notice:
 * You can further filter this cohort by using the normal filters in the Users tool. Although the cohort is defined on 28-day windows, you can still adjust the time range in the Users tool to be 30, 60, or 90 days.
 
 These filters support more sophisticated questions that are impossible to express through the query builder. An example is *people who were engaged in the past 28 days. How did those same people behave over the past 60 days?*
-</details>
 
-<br>
+#### More examples
+
+Select one of the below examples to expand the section.
 
 <details>
-<summary><b>Example: Events cohort</b></summary>
+<summary><b>Events cohort</b></summary>
 
 You can also make cohorts of events. In this section, you define a cohort of events and page views. Then you see how to use them from the other tools. This cohort might define a set of events that your team considers *active usage* or a set related to a certain new feature.
 
@@ -377,7 +371,7 @@ You can also make cohorts of events. In this section, you define a cohort of eve
 <br>
 
 <details>
-<summary><b>Example: Active users where you modify a query</b></summary>
+<summary><b>Active users where you modify a query</b></summary>
 
 The previous two cohorts were defined by using dropdown boxes. You can also define cohorts by using analytics queries for total flexibility. To see how, create a cohort of users from the United Kingdom.
 
