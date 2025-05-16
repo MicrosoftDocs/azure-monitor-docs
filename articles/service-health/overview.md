@@ -22,11 +22,11 @@ Azure Service Health is a combination of three separate smaller services.
 
 Using Azure Monitor, you can configure alerts to notify you of the availability changes to your cloud resources. The notifications and tailored alerts you receive tell you about issues affecting your specific resources, ensuring they're promptly informed about any disruptions.
 
-Through proactive management that you define, you can stay informed about planned maintenance and potential issues, and then take proactive steps to mitigate any impact on your services.
+Through proactive management that you define, you can stay informed about planned maintenance and potential issues, and then take proactive steps to mitigate any affect on your services.
 
 The detailed updates in Resource Health provide you minute-by-minute updates on the availability of individual resources, helping you quickly diagnose and address problems.
 
-By leveraging Azure Status, Service Health, and Resource Health together, you gain a holistic view of your cloud environment's health. This comprehensive perspective empowers you to make informed decisions and manage your resources more effectively. 
+By using Azure Status, Service Health, and Resource Health together, you gain a holistic view of your cloud environment's health. This comprehensive perspective empowers you to make informed decisions and manage your resources more effectively. 
 
 Overall, Azure Service Health helps you maintain the availability and performance of your Azure resources by providing timely and relevant information about service health and potential issues.
 
