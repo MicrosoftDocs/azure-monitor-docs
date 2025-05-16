@@ -37,7 +37,7 @@ Multiple components of the Azure infrastructure trigger Platform events. They in
 
 Resource Health provides more details about the event and the recovery process. It also enables you to contact Microsoft Support even if you don't have an active support agreement.
 
-:::image type="content"source="./media/resource-health-overview/Unavailable.png"alt-text="Status of *Unavailable* for a virtual machine because of a platform event."Lightbox="./media/resource-health-overview/Unavailable.png":::
+:::image type="content"source="./media/resource-health-overview/Unavailable.png"alt-text="Screenshot of Status of *Unavailable* for a virtual machine because of a platform event."Lightbox="./media/resource-health-overview/Unavailable.png":::
 
 #### Non-platform events
 
