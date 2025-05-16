@@ -685,7 +685,7 @@ The function is asynchronous for the [server telemetry channel](https://www.nuge
 
 ## Authenticated users
 
-In a web app, users are [identified by cookies](./usage.md#users-sessions-and-events---analyze-telemetry-from-three-perspectives) by default. A user might be counted more than once if they access your app from a different machine or browser, or if they delete cookies.
+In a web app, users are [identified by cookies](usage.md#users-sessions-and-events) by default. A user might be counted more than once if they access your app from a different machine or browser, or if they delete cookies.
 
 If users sign in to your app, you can get a more accurate count by setting the authenticated user ID in the browser code:
 
