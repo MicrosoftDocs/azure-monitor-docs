@@ -19,7 +19,7 @@ Container Insights currently uses data from Log Analytics to power the visualiza
 
 To view your Container Insights data using Prometheus, ensure the following steps are complete.
 
-* Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes cluster [configured with managed Prometheus](./kubernetes-monitoring-enable.md#existing-cluster-prometheus-only)
+* Azure Kubernetes Service (AKS) or Azure Arc-enabled Kubernetes cluster [configured with managed Prometheus](./kubernetes-monitoring-enable.md)
 * User has `Reader` permission or higher on the associated Prometheus Data Collection Rule and [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md)
 * Ad block is disabled or set to allow `monitor.azure.com` traffic
 * For Windows clusters, [enable Windows metric collection](./kubernetes-monitoring-enable.md#enable-windows-metrics-collection-preview)
