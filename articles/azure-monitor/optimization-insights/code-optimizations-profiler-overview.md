@@ -6,7 +6,7 @@ ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
 ms.author: hannahhunter
-ms.date: 03/07/2025
+ms.date: 05/16/2025
 ms.reviewer: jan.kalis
 ms.collection: ce-skilling-ai-copilot
 ---
@@ -45,6 +45,8 @@ Once your environment's data has been collected, Code Optimizations provides cod
 #### Resolve
 
 After identifying and analyzing the Code Optimization results, you can resolve these issues in your code using the Code Optimizations [Visual Studio](code-optimizations-vs-extension.md) and [Visual Studio Code](code-optimizations-vscode-extension.md) extensions. With these extensions, interact with GitHub Copilot to receive a code fix grounded in Code Optimizations insights. 
+
+You can also create a GitHub issue from the Code Optimizations page in the Azure portal and [assign it to the GitHub Copilot coding agent](./code-optimizations-github-copilot.md). From there, GitHub Copilot opens a pull request and pushes code change commits based on Code Optimization insights.
 
 #### Demo video
 
