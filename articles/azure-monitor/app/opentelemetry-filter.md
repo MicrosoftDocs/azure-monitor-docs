@@ -23,6 +23,9 @@ Reasons why you might want to filter out telemetry include:
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+
 ## Filter OpenTelemetry using instrumentation libraries
 
 For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).

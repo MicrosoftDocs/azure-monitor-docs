@@ -29,6 +29,9 @@ To learn more about collecting data using OpenTelemetry, check out [Data Collect
 
 OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](opentelemetry-help-support-feedback.md#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
 
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+
 ## Enable OpenTelemetry with Application Insights
 
 Follow the steps in this section to instrument your application with OpenTelemetry. Select a tab for langauge-specific instructions.

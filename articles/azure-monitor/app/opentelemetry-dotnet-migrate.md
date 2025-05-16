@@ -20,6 +20,9 @@ Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as 
 
 If you're getting started with Application Insights and don't need to migrate from the Classic API, see [Enable Azure Monitor OpenTelemetry](opentelemetry-enable.md).
 
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+
 ## Prerequisites
 
 ### [ASP.NET Core](#tab/aspnetcore)
