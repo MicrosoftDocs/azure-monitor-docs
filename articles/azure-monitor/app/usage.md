@@ -14,7 +14,7 @@ These insights help you understand user behavior, identify areas for improvement
 
 This article covers the following areas:
 
-* **Usage analysis with custom events and properties**
+* **Usage analysis with custom events**
 
 * **Native usage experiences**
 
@@ -44,16 +44,16 @@ This article covers the following areas:
 
 ### Instrument your web application
 
-If you only want to collect telemetry about the usage of your web application, use the [Application Insights JavaScript SDK](javascript-sdk.md). No server-side instrumentation is required.
+To collect browser telemetry about the usage of your web application, use the [Application Insights JavaScript SDK](javascript-sdk.md). No server-side instrumentation is required.
 
 To verify if browser telemetry is being collected, run your project in debug mode for a few minutes, then look for results in the **Overview** pane in Application Insights.
 
 > [!TIP]
 > To optimize your experience, consider integrating Application Insights into both your application server code using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) and your web pages using the [JavaScript SDK](javascript-sdk.md).
 >
-> This dual implementation collects telemetry from both the client and server components of your application, which enables additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
+> This dual implementation collects telemetry from both the client and server components of your application, enabling additional monitoring capabilities. For more information, see [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
 
-## Usage analysis with custom events and properties
+## Usage analysis with custom events
 
 ### Track user interactions with custom events
 
@@ -109,16 +109,6 @@ dataset
 // render result in a chart
 | render timechart
 ```
-
-### Determine feature success with A/B testing
-
-If you're unsure which feature variant is more successful, run an A/B test and let different users access each variant.
-
-To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span). 
-
-f you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
-
-After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 
 ## Native usage experiences
 
@@ -182,6 +172,16 @@ Clicking **View More Insights** displays the following information:
 * **Event Statistics:** A list of the top 10 events by count, including the number of users and sessions.
 
 ---
+
+### Determine feature success with A/B testing
+
+If you're unsure which feature variant is more successful, run an A/B test and let different users access each variant.
+
+To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span). 
+
+f you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+
+After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 
 ### Funnels
 
@@ -269,7 +269,7 @@ Select one of the below use cases to expand the section.
 <details>
 <summary><b>After users visit a page or feature, where do they go and what do they select?</b></summary>
 
-:::image type="content" source="./media/usage-flows/one-step.png" lightbox="./media/usage-flows/one-step.png" alt-text="Screenshot that shows using User Flows to understand where users select.":::
+:::image type="content" source="media/usage/user-flows-one-step.png" lightbox="media/usage/user-flows-one-step.png" alt-text="Screenshot that shows using User Flows to understand where users select.":::
 
 If your initial event is a page view, the first column (**Step 1**) of the visualization is a quick way to understand what users did immediately after they visited the page. 
 
@@ -350,7 +350,7 @@ Your team defines an engaged user as anyone who uses your app five or more times
 
 Open the Users tool. In the **Show** dropdown box, choose the cohort you created under **Users who belong to**.
 
-:::image type="content" source="./media/usage-cohorts/cohort-2.png" alt-text="Screenshot that shows the Show dropdown showing a cohort.":::
+:::image type="content" source="media/usage/cohorts-dropdown.png" lightbox="media/usage/cohorts-dropdown.png" alt-text="Screenshot that shows the Show dropdown showing a cohort.":::
 
 Important points to notice:
 
@@ -383,7 +383,7 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
 
 1. Open the Cohorts tool, select the **Template Gallery** tab, and select **Blank Users cohort**.
 
-    :::image type="content" source="./media/usage-cohorts/cohort.png" alt-text="Screenshot that shows the template gallery for cohorts." lightbox="./media/usage-cohorts/cohort.png":::
+    :::image type="content" source="media/usage/cohorts-templates.png" lightbox="media/usage/cohorts-templates.png" alt-text="Screenshot that shows the template gallery for cohorts.":::
 
     There are three sections:
 
@@ -458,7 +458,7 @@ Analyzing performance is only a subset of Impact's capabilities. Impact supports
 
 To use the **User Impact Analysis** workbook in Application Insights, navigate to the **Workbooks** pane and locate it listed under the **Usage** category.
 
-:::image type="content" source="./media/usage-impact/selected-event.png" alt-text="Screenshot that shows where to choose an initial page view, custom event, or request." lightbox="./media/usage-impact/selected-event.png":::
+:::image type="content" source="media/usage/user-impact-selected-event.png" lightbox="media/usage/user-impact-selected-event.png" alt-text="Screenshot that shows where to choose an initial page view, custom event, or request.":::
 
 1. From the **Selected event** dropdown list, select an event.
 1. From the **analyze how its** dropdown list, select a metric.
@@ -500,7 +500,7 @@ To begin answering questions with the Impact workbook, choose an initial page vi
 
 1. From the **Impacting event** dropdown list, select a custom event. This event should correspond to a UI element on the page view you selected in step 1.
 
-   :::image type="content" source="./media/usage-impact/impact.png" alt-text="Screenshot that shows an example with the selected event as Home Page analyzed by duration." lightbox="./media/usage-impact/impact.png":::
+   :::image type="content" source="media/usage/user-impact-example.png" lightbox="media/usage/user-impact-example.png" alt-text="Screenshot that shows an example with the selected event as Home Page analyzed by duration." :::
 </details>
 
 <br>
@@ -522,7 +522,7 @@ Impact supports both standard and custom properties and measurements. Use whatev
 
 1. From the **Impacting event** dropdown list, select a custom event that corresponds to a UI element on the page view you chose in step 1.
 
-   :::image type="content" source="media/usage-impact/regions.png" lightbox="media/usage-impact/regions.png" alt-text="Screenshot that shows an example with the selected event as GET analyzed by country and region.":::
+   :::image type="content" source="media/usage/user-impact-by-region.png" lightbox="media/usage/user-impact-by-region.png" alt-text="Screenshot that shows an example with the selected event as GET analyzed by country and region.":::
 </details>
 
 ### HEART - Five dimensions of customer experience
