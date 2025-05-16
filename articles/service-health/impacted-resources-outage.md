@@ -28,12 +28,12 @@ In the Azure portal, the **Impacted Resources** tab under **Service Health** > *
 
 The following is an example of outage **Impacted Resources** from the subscription and tenant scope.
 
-:::image type="content"source="./media/impacted-resource-outage/ir-portal-crop.PNG"alt-text="Screenshot of information about subscription impacted resources in Azure Service Health."Lightbox"=./media/impacted-resource-outage/ir-portal-crop.PNG:::
+:::image type="content"source="./media/impacted-resource-outage/ir-portal-crop.png"alt-text="Screenshot of information about subscription impacted resources in Azure Service Health."Lightbox="./media/impacted-resource-outage/ir-portal-crop.png":::
 
 >[!Note]
 >Not all resources in subscription scope will show a Resource Health status. The status appears only on resources for which a Resource Health signal is available. The status of resources for which a Resource Health signal is not available appears as **N/A**, and the corresponding **Resource Name** value is text instead of a clickable link.
 
-:::image type="content" source="./media/impacted-resource-outage/ir-tenant.PNG" alt-text="Screenshot of information about tenant impacted resources in Azure Service Health."Lightbox="./media/impacted-resource-outage/ir-tenant.PNG":::
+:::image type="content"source="./media/impacted-resource-outage/ir-tenant.png"alt-text="Screenshot of information about tenant impacted resources in Azure Service Health."Lightbox="./media/impacted-resource-outage/ir-tenant.png":::
 
 >[!Note]
 >Resource Health status, tenant name, and tenant ID are not included at the tenant level scope. The corresponding **Resource Name** value is text only instead of a clickable link.
@@ -55,6 +55,7 @@ To export the list of impacted resources to an Excel file, select the **Export t
 You can get information about outage-impacted resources programmatically by using the Events API. For details on how to access this data, see [API documentation](/rest/api/resourcehealth/2022-10-01/impacted-resources).
 
 ### Frequently Asked Questions
+
 |Question|Answer|
 |--------|------|
 |Are the Impacted resources only available for 'Active' service health events?|Yes, the Azure portal shows Impacted resources only for Active events in Service Issues.|
