@@ -28,7 +28,7 @@ In the Azure portal, the **Impacted Resources** tab under **Service Health** > *
 
 The following is an example of outage **Impacted Resources** from the subscription and tenant scope.
 
-:::image type="content" source="./media/impacted-resource-outage/ir-portal-crop.PNG" alt-text="Screenshot of information about subscription impacted resources in Azure Service Health."Lightbox=./media/impacted-resource-outage/ir-portal-crop.PNG:::
+:::image type="content" source="./media/impacted-resource-outage/ir-portal-crop.PNG" alt-text="Screenshot of information about subscription impacted resources in Azure Service Health."Lightbox"=./media/impacted-resource-outage/ir-portal-crop.PNG:::
 
 >[!Note]
 >Not all resources in subscription scope will show a Resource Health status. The status appears only on resources for which a Resource Health signal is available. The status of resources for which a Resource Health signal is not available appears as **N/A**, and the corresponding **Resource Name** value is text instead of a clickable link.
