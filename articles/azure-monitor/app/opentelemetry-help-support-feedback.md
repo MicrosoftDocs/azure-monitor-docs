@@ -19,6 +19,9 @@ This document outlines available resources for assistance, support channels, and
 > - [Get support](#support)
 > - [Provide feedback](#opentelemetry-feedback)
 
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+
 ## Frequently asked questions
 
 ### What is OpenTelemetry?

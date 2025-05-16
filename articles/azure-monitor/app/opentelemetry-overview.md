@@ -15,6 +15,9 @@ Before you can monitor your application, it needs to be instrumented. In the fol
 
 Instrumenting applications with OpenTelemetry (OTel) in Application Insights enables standardized telemetry collection across platforms. This improves observability, simplifies performance monitoring, and supports distributed tracing, metrics, and log analysis.
 
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+
 ## Instrumentation approaches for Application Insights: OpenTelemetry and more
 
 At a basic level, "instrumenting" is simply enabling an application to capture telemetry.
