@@ -137,17 +137,18 @@ ABAC conditions aren't set on functions directly. If you set the condition on a 
 
 ## Considerations
 
-Several considerations apply when using granular RBAC in Log Analytics. The following sections provide specifics of these considerations.
+Several considerations apply when using granular RBAC in Log Analytics. The following sections provide specifics.
+- Granular RBAC is only available in the public cloud.
 
 ### Log Analytics 
 
-- Data Export Search Jobs, Summary Rules- if full access doesn't exist, a clear error indicates the user isn't able to configure the rule.
+- Data Export Search Jobs, Summary Rules: If full access doesn't exist, the user isn't able to configure the rule and will receive an error.
 - Alerts: Only managed identity based log alerts are supported.
 - Application Insights: Only workspace-based Application Insights are supported.
 
 ### Microsoft Sentinel
 
-Any time data replicated from the original tables, such as hunting, bookmarks, and incidents aren't protected by the ABAC conditions.
+Any time data is replicated from the original tables, such as hunting, bookmarks, and incidents -- the replicated data isn't protected by the ABAC conditions.
 
 ### Azure ABAC and RBAC
 
@@ -159,7 +160,7 @@ Normal Azure RBAC and ABAC limitations apply. For example, the threshold of max 
 
 ## Audit and monitoring
 
-Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether ABAC was effectively used by recording the evaluation steps in the [`ConditionalDataAccess` column](../reference/tables/laquerylogs.md#columns). Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs](../essentials/diagnostic-settings.md).
+Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether ABAC was effectively used by recording the evaluation steps in the [`ConditionalDataAccess` column](../reference/tables/laquerylogs.md#columns). Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs diagnostic settings](../essentials/diagnostic-settings.md).
 
 
 ## Frequently Asked Questions
@@ -170,7 +171,7 @@ RBAC and ABAC are enforced for resource-context queries, but require the workspa
     If set to *Use resources or workspace permissions*, the Azure read permission assigned to a resource provides access to all logs. Workspace and ABAC permissions are ignored. 
 1.  Set ABAC on all relevant workspaces.
 
-For more information, on resource context, see [Manage access to Log Analytics workspaces, access mode](../logs/manage-access.md#access-mode).
+For more information, see [Manage access to Log Analytics workspaces, access mode](../logs/manage-access.md#access-mode).
 
 **Do granular RBAC conditions persist when a table is exported?**</br>
 Granular RBAC conditions are only enforced on queries. For example, data successfully exported using the workspace data export feature doesn't maintain the ABAC conditions on the target table's data.
