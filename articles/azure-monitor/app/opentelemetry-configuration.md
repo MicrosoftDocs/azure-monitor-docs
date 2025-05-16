@@ -16,6 +16,9 @@ ms.reviewer: mmcc
 
 This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Application Insights](app-insights-overview.md) using the Azure Monitor OpenTelemetry distro. Proper configuration ensures consistent telemetry data collection across .NET, Java, Node.js, and Python applications, allowing for more reliable monitoring and diagnostics.
 
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+
 ## Connection string
 
 A connection string in Application Insights defines the target location for sending telemetry data.

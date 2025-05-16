@@ -21,6 +21,9 @@ This guide provides two options to upgrade from the Azure Monitor Application In
     * Access richer OpenTelemetry instrumentation libraries.
     * Maintain eligibility for the latest bug and security fixes.
 
+> [!NOTE]
+> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+
 ## [Clean install](#tab/cleaninstall)
 
 1. Gain prerequisite knowledge of the OpenTelemetry JavaScript Application Programming Interface (API) and Software Development Kit (SDK).

@@ -554,6 +554,6 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 * [Confirm data is flowing](./javascript-sdk.md#confirm-data-is-flowing).
 * See the [documentation on utilizing HEART workbook](usage.md#heart---five-dimensions-of-customer-experience) for expanded product analytics.
 * See the [GitHub repository](https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-clickanalytics-js) and [npm Package](https://www.npmjs.com/package/@microsoft/applicationinsights-clickanalytics-js) for the Click Analytics Autocollection Plug-in.
-* Use [Events Analysis in the Usage experience](usage.md#users-sessions-and-events---analyze-telemetry-from-three-perspectives) to analyze top clicks and slice by available dimensions.
+* Use [Events Analysis in the Usage experience](usage.md#users-sessions-and-events) to analyze top clicks and slice by available dimensions.
 * See [Log Analytics](../logs/log-analytics-tutorial.md#write-a-query) if you aren't familiar with the process of writing a query. 
 * Build a [workbook](../visualize/workbooks-overview.md) or [export to Power BI](../logs/log-powerbi.md) to create custom visualizations of click data.

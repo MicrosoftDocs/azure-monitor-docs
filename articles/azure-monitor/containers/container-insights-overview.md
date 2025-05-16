@@ -51,10 +51,7 @@ Container Insights supports the following environments:
 
 ## Access Container Insights
 
-Access Container Insights in the Azure portal from **Containers** in the **Monitor** menu or directly from the selected AKS cluster by selecting **Insights**. The Azure Monitor menu gives you the global perspective of all the containers that are deployed and monitored. This information allows you to search and filter across your subscriptions and resource groups. You can then drill into Container Insights from the selected container. Access Container Insights for a particular cluster from its page in the Azure portal.
-
-:::image type="content" source="media/container-insights-overview/azmon-containers-experience.png" lightbox="media/container-insights-overview/azmon-containers-experience.png" alt-text="Screenshot that shows an overview of methods to access Container Insights." border="false":::
-
+Access Container Insights in the Azure portal directly from the selected AKS cluster by selecting **Monitor** or **Containers** in the **Monitor** menu. The Azure Monitor menu gives you the global perspective of all the containers that are deployed and monitored. This information allows you to search and filter across your subscriptions and resource groups. You can then drill into Container Insights from the selected container. Access Container Insights for a particular cluster from its page in the Azure portal.
 
 ## Agent
 
@@ -81,7 +78,7 @@ No. Container Insights don't support collection of Kubernetes audit logs.
 Yes, Container Insights supports pod sandboxing through support for Kata Containers. See [Pod Sandboxing (preview) with Azure Kubernetes Service (AKS)](/azure/aks/use-pod-sandboxing).
 
 **Is it possible for a single AKS cluster to use multiple Log Analytics workspaces in Container Insights?**
-Yes. Container Insights supports segregating logs accross multiple Log Analytics Workspaces. See [Multitenant managed logging in Container insights (Preview)](../containers/container-insights-multitenant.md).
+Yes. Container Insights supports segregating logs across multiple Log Analytics Workspaces. See [Multitenant managed logging in Container insights (Preview)](../containers/container-insights-multitenant.md).
 
 ## Next steps
 

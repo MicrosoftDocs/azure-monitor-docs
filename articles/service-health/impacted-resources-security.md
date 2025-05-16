@@ -1,18 +1,18 @@
 ---
-title: Resource impact from Azure security incidents
+title: Viewing impacted resource from Azure security incidents
 description: This article details where to find information from Azure Service Health about how Azure security incidents impact your resources.
 ms.topic: conceptual
-ms.date: 4/11/2025
+ms.date: 5/14/2025
 ---
 
-# Resource impact from Azure security incidents
+# Viewing impacted resource from Azure security incidents
 
-In support of the experience of viewing impacted resources, Service Health added a feature to:
+To support of the experience of viewing impacted resources, Service Health contains a feature that:
 
-- Display resources impacted by a security incident
-- Enable role-based access control (RBAC) for viewing security incident impacted resource information
+- Displays resources impacted by a security incident.
+- Enables role-based access control (RBAC) for viewing security incident impacted resource information.
 
-This article explains what is communicated to users, and where they can view information about their impacted resources.
+This article explains what and where you can view information about your impacted resources.
 
 >[!Note]
 >This feature will be rolled out in phases. The rollout will gradually expand to 100 percent of subscription and tenant customers.
@@ -23,7 +23,7 @@ This article explains what is communicated to users, and where they can view inf
 Given the sensitive nature of security incidents, role-based access is used to limit the audience of their impacted resource information. <!--
 Along with resource information, Service Health provides the information shown here to users whose resources are impacted from a security incident: -->
 
-Users authorized with the following roles can view security impacted resource information and sensitive details such as description, summary, and updates:
+Users with the authorized roles shown here can view security impacted resource information and sensitive details such as description, summary, and updates:
 
 **Subscription level**
 - Subscription Owner
@@ -50,11 +50,11 @@ The following examples show a security incident with impacted resources from the
 
 **Subscription**
 
-:::image type="content" source="./media/impacted-resource-sec/impact-security.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health.":::
+:::image type="content" source="./media/impacted-resource-sec/impact-security.PNG" alt-text="Screenshot of information about impacted resources from subscription scope in Azure Service Health."Lightbox="./media/impacted-resource-sec/impact-security.PNG":::
 
 **Tenant**
 
-:::image type="content" source="./media/impacted-resource-sec/security-tenant.PNG" alt-text="Screenshot of information about impacted resources from tenant scope in Azure Service Health.":::
+:::image type="content" source="./media/impacted-resource-sec/security-tenant.PNG" alt-text="Screenshot of information about impacted resources from tenant scope in Azure Service Health."Lightbox="./media/impacted-resource-sec/security-tenant.PNG":::
 
 
 ## Accessing Impacted Resources programmatically via an API
@@ -76,4 +76,4 @@ https://management.azure.com/providers/microsoft.resourcehealth/events/("Trackin
 ## Next steps
 - [Introduction to the Azure Service Health dashboard](service-health-overview.md)
 - [Introduction to Azure Resource Health](resource-health-overview.md)
-- [Introduction to frequently asked questions about Azure Resource Health](resource-health-faq.yml)
+- [Azure Resource Health frequently asked questions](resource-health-faq.yml)

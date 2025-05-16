@@ -40,10 +40,10 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 
 ### Usage
 
-* [Users, sessions, and events](usage.md#users-sessions-and-events---analyze-telemetry-from-three-perspectives): Determine when, where, and how users interact with your web app.
-* [Funnels](usage.md#funnels---discover-how-customers-use-your-application): Analyze conversion rates to identify where users progress or drop off in the funnel.
-* [Flows](usage.md#user-flows---analyze-user-navigation-patterns): Visualize user paths on your site to identify high engagement areas and exit points.
-* [Cohorts](usage.md#cohorts---analyze-a-specific-set-of-users-sessions-events-or-operations): Group users by shared characteristics to simplify trend identification, segmentation, and performance troubleshooting.
+* [Users, sessions, and events](usage.md#users-sessions-and-events): Determine when, where, and how users interact with your web app.
+* [Funnels](usage.md#funnels): Analyze conversion rates to identify where users progress or drop off in the funnel.
+* [Flows](usage.md#user-flows): Visualize user paths on your site to identify high engagement areas and exit points.
+* [Cohorts](usage.md#cohorts): Group users by shared characteristics to simplify trend identification, segmentation, and performance troubleshooting.
 
 ### Code analysis
 

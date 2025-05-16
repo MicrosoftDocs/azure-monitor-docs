@@ -360,7 +360,7 @@ After the policy is assigned to the subscription, whenever you create a new clus
 Use one of the following methods to enable Container insights on your cluster. Once this is complete, see [Configure agent data collection for Container insights](container-insights-data-collection-configmap.md) to customize your configuration to ensure that you aren't collecting more data than you require.
 
 > [!NOTE] 
-> If you have a single Azure Monitor Resource that is private-linked, then Container insights enablement will not work through the Azure Portal.
+> If you have a single Azure Monitor Resource that is private-linked, then Container insights enablement will not work through the Azure portal.
 > For full instructions on how to configure Container insights with Private Link, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
 
 ### [CLI](#tab/cli)
@@ -592,26 +592,16 @@ After the policy is assigned to the subscription, whenever you create a new clus
 
 ### New AKS cluster (Prometheus, Container insights, and Grafana)
 
-When you create a new AKS cluster in the Azure portal, you can enable Prometheus, Container insights, and Grafana from the **Monitoring** tab. Make sure that you check the **Enable Container Logs**, **Enable Prometheus metrics**, and **Enable Grafana** checkboxes.
+When you create a new AKS cluster in the Azure portal, **Enable Container Logs**, **Enable Prometheus metrics**, **Enable Grafana**, and **Enable Recommended Alerts** checkboxes are checked by default in the Monitoring tab.
 
 :::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
 ### Existing cluster (Prometheus, Container insights, and Grafana)
 
 1. Navigate to your cluster in the Azure portal.
-
-2. In the service menu, under **Monitoring**, select **Insights** > **Configure monitoring**.
-3. Container insights is already enabled. Select the **Enable Prometheus metrics** and **Enable Grafana** checkboxes. If you have existing Azure Monitor workspace and Grafana workspace, then they're selected for you.
-4. Select **Advanced settings** if you want to select alternate workspaces or create new ones. The **Cost presets** setting allows you to modify the default collection details to reduce your monitoring costs. See [Enable cost optimization settings in Container insights](./container-insights-cost-config.md) for details.
-5. Select **Configure**.
-
-### Existing cluster (Prometheus only)
-
-1. Navigate to your cluster in the Azure portal.
-
-2. In the service menu, under **Monitoring**, select **Insights** > **Configure monitoring**.
-3. Select the **Enable Prometheus metrics** checkbox.
-4. Select **Advanced settings** if you want to select alternate workspaces or create new ones. The **Cost presets** setting allows you to modify the default collection details to reduce your monitoring costs.
+2. In the service menu, select **Monitor** > **Monitor Settings**.
+3. Prometheus metrics, Grafana and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you.
+4. Select **Advanced settings** if you want to select alternate workspaces or create new ones. The **Logging profiles and Classic profiles** setting allows you to modify the default collection details to reduce your monitoring costs. See [Enable cost optimization settings in Container insights](./container-insights-cost-config.md) for details.
 5. Select **Configure**.
 
 ## Enable Windows metrics collection (preview)
