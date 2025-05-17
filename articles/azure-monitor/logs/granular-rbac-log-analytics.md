@@ -8,17 +8,17 @@ ms.reviewer: rofrenke
 ms.topic: conceptual 
 ms.date: 05/08/2025
 
-# Customer intent: As an Azure administrator, I want to understand how to use attribute-based RBAC in Log Analytics
+# Customer intent: As an Azure administrator, I want to understand how to use attribute-based access control to granularly define access in Log Analytics workspaces.
 ---
 
 # Granular RBAC (Preview) in Azure Monitor 
 
-Granular RBAC in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to accommodate your business and security needs. Benefits of this access control include:
+Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to accommodate your business and security needs. Benefits of this access control include:
 - Row level access
 - Table level access
 - Separation of control and data planes instead of full read access to all data in a workspace
 
-If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
+If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy, or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
 
 ### Prerequisites
 
@@ -28,8 +28,8 @@ If your Log Analytics architecture includes multiple workspaces to accommodate d
 
 ## When to use granular RBAC?
 
-Here are a few scenarios granular RBAC helps you achieve:
-- **Data segregation** - Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to their group. Access conditions use custom log fields to enforce row-level access segregated by attributes like firewall, device type, subscription ID or other identifiers.
+Granular RBAC helps you achieve the following scenarios:
+- **Data segregation** - Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to their group. Access conditions use custom log fields to enforce row-level access segregated by attributes like firewall, device type, subscription ID, or other identifiers.
 - **Data privacy** - Protect sensitive or confidential data, such as personal information, health records, or financial transactions, and only allow access to authorized users.
 - **Data compliance** - Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region. Enforce appropriate policies and controls on data access and usage.
 
@@ -140,13 +140,13 @@ Several considerations apply when using granular RBAC in Log Analytics. The foll
 
 ### Log Analytics 
 
-- Data Export Search Jobs, Summary Rules: If full access doesn't exist, the user isn't able to configure the rule and will receive an error.
+- Data Export Search Jobs, Summary Rules: If full access doesn't exist, the user isn't able to configure the rule and receives an error.
 - Alerts: Only managed identity based log alerts are supported.
 - Application Insights: Only workspace-based Application Insights are supported.
 
 ### Microsoft Sentinel
 
-Any time data is replicated from the original tables, such as hunting, bookmarks, and incidents -- the replicated data isn't protected by the ABAC conditions.
+When data is replicated from their original tables when using hunting, bookmarks, and incidents, the replicated data isn't protected by the ABAC conditions.
 
 ### Azure ABAC and RBAC
 
