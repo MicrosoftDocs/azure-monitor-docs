@@ -59,7 +59,7 @@ Optionally, include access from the Azure portal by adding the `Microsoft.Operat
 > [!NOTE]
 > Granular RBAC, like Azure RBAC, is an additive model. Your effective permissions are the sum of your role assignments. For granular RBAC conditions to take effect, you must remove any role assignments with higher access privileges. 
 
-For example, if a you have two role assignments on the same scope, one set with a `*/read` action and the other with conditions that limit access to specific records, the resulting permission is the `*/read` action granting access to all logs in the scope. There is no explicit deny action, only deny assignments.
+For example, if you have two role assignments on the same scope, one set with a `*/read` action and the other with conditions that limit access to specific records, the resulting permission is the `*/read` action granting access to all logs in the scope. There's no explicit deny action, only deny assignments.
 
 ### Conditions and expressions
 
@@ -69,8 +69,8 @@ Granular RBAC allows you to set a condition on tables and row level, based on th
 
 | Access control method | Example |
 |---|---|
-| No access to data, except what is allowed | Restrict access to application logs so that users can only see records where the `application id` column is an application they are allowed to access. |
-| Access to all data, except what is not allowed | Allow access to all sign-in logs, except for the records where the `userPrincipalName` column is the CEO. |
+| No access to data, except what is allowed | Restrict access to application logs so that users can only see records where the `application id` column is an application they're allowed to access. |
+| Access to all data, except what isn't allowed | Allow access to all sign-in logs, except for the records where the `userPrincipalName` column is the CEO. |
 
 A condition consists of the **data action** of the role and **expressions**. An expression is a logic statement with the format of `Attribute` `Operator` `Value`.
 
@@ -124,7 +124,7 @@ The following table shows supported ABAC expression operators. The equivalent Ku
 | `StringNotLike` / `StringNotLikeIgnoreCase`                | `!has_cs` / `!has`            | Negation of StringLike (or StringLikeIgnoreCase) operator |
 | `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | Case-sensitive (or case-insensitive) matching. The values start with the string. |
 | `StringNotStartsWith`  / `StringNotStartsWithIgnoreCase`   | `!startswith_cs` / `!startswith`  | Negation of StringStartsWith (or StringStartsWithIgnoreCase) operator. |
-| `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | 'ForAllOfAnyValues:\<BooleanFunction\>' supports multiple strings and numbers.</br>If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true.|
+| `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | 'ForAllOfAnyValues:\<BooleanFunction\>' supports multiple strings and numbers. </br>If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true.|
 
 ABAC conditions aren't set on functions directly. If you set the condition on a table, then it will propagate up to any function that relies on it. For more information on operators and terms, see [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators).
 
@@ -165,9 +165,8 @@ Changes to role assignments are logged in Azure Activity Logs. User queries in t
 
 **I'm accessing my logs via resource context. Can my condition be enforced?**</br>
 RBAC and ABAC are enforced for resource-context queries, but require the workspaces containing the resource logs to fulfill these prerequisites:
-1.  Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. 
-    If set to *Use resources or workspace permissions*, the Azure read permission assigned to a resource provides access to all logs. Workspace and ABAC permissions are ignored. 
-1.  Set ABAC on all relevant workspaces.
+- Set all relevant workspaces' **Access control mode** to *Require workspace permissions*. </br>If set to *Use resources or workspace permissions*, the Azure read permission assigned to a resource provides access to all logs. Workspace and ABAC permissions are ignored. 
+- Set ABAC on all relevant workspaces.
 
 For more information, see [Manage access to Log Analytics workspaces, access mode](../logs/manage-access.md#access-mode).
 
