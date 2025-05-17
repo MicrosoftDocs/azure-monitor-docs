@@ -87,7 +87,7 @@ Log Analytics granular RBAC supports table and column/value attributes:
 
 Here's an example screenshot of a granular RBAC role assignment condition using the *No access to data, except what is allowed* method [configured using the Azure portal](/azure/role-based-access-control/conditions-role-assignments-portal).
 
-:::image type="content" source="media/granular-rbac-log-analytics/example-abac-role-assignment.png" alt-text="Screenshot showing an example role assignment condition for Log Analytics." lightbox="media/granular-rbac-log-analytics/example-abac-role-assignment.png":::
+:::image type="content" source="media/granular-rbac-log-analytics/example-role-assignment.png" alt-text="Screenshot showing an example role assignment condition for Log Analytics." lightbox="media/granular-rbac-log-analytics/example-role-assignment.png":::
 
 Reduce complexity and prevent unexpected results by configuring your granular RBAC role assignments at the scope you set its conditions to match. For example, if your custom role is assigned at a resource group scope, it's possible other workspaces don't have the table or column resources specified in your expression, causing your condition to apply unexpectedly.
 
