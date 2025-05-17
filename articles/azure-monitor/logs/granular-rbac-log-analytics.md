@@ -13,7 +13,7 @@ ms.date: 05/08/2025
 
 # Granular RBAC (Preview) in Azure Monitor 
 
-Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to accommodate your business and security needs. Benefits of this access control include:
+Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to meet your business and security needs. Benefits of this access control include:
 - Row level access
 - Table level access
 - Separation of control and data planes instead of full read access to all data in a workspace
@@ -24,14 +24,14 @@ If your Log Analytics architecture includes multiple workspaces to accommodate d
 
 | Action | Permission required |
 |---|---|
-| Configure a custom role | `Microsoft.Authorization/roleAssignments/write` permission to the Log Analytics workspace, for example, as provided by the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) |
+| Configure a custom role | `Microsoft.Authorization/roleAssignments/write` permission to the Log Analytics workspace. </br>For example, as provided by the privileged built-in role, [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) |
 
 ## When to use granular RBAC?
 
 Granular RBAC helps you achieve the following scenarios:
 - **Data segregation** - Separate the data of different units, teams, and geographical locations from within the same workspace, and ensure that each user can only access data that's relevant to their group. Access conditions use custom log fields to enforce row-level access segregated by attributes like firewall, device type, subscription ID, or other identifiers.
 - **Data privacy** - Protect sensitive or confidential data, such as personal information, health records, or financial transactions, and only allow access to authorized users.
-- **Data compliance** - Use granular RBAC as tool to help you meet the regulatory or legal requirements of your industry or region. Enforce appropriate policies and controls on data access and usage.
+- **Data compliance** - Use granular RBAC as a tool to help you meet the regulatory or legal requirements of your industry or region. Enforce appropriate policies and controls on data access and usage.
 
 Granular RBAC controls data access such as viewing or querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformations, or data export. 
 
@@ -65,7 +65,7 @@ For example, if you have two role assignments on the same scope, one set with a 
 
 Just like regular role assignments, the custom role created must be assigned to a user or group. The difference is, during the role assignment, conditions are configured to finely tune access control. 
 
-Granular RBAC allows you to set a condition on tables and row level, based on the data in each record. Plan restrictions based on these two strategies:
+Granular RBAC allows you to set a condition on tables and at the row level, based on the data in each record. Plan restrictions based on these two strategies:
 
 | Access control method | Example |
 |---|---|
@@ -89,13 +89,13 @@ Here's an example screenshot of a granular RBAC role assignment condition using 
 
 :::image type="content" source="media/granular-rbac-log-analytics/example-role-assignment.png" alt-text="Screenshot showing an example role assignment condition for Log Analytics." lightbox="media/granular-rbac-log-analytics/example-role-assignment.png":::
 
-Reduce complexity and prevent unexpected results by configuring your granular RBAC role assignments at the scope you set its conditions to match. For example, if your custom role is assigned at a resource group scope, it's possible other workspaces don't have the table or column resources specified in your expression, causing your condition to apply unexpectedly.
+Reduce complexity by configuring your granular RBAC role assignments at the scope you set its conditions to match. For example, if your custom role is assigned at a resource group scope, it's possible other workspaces don't have the table or column resources specified in your expression, causing your condition to apply unexpectedly.
 
 However, if you set a condition for a role assignment at the table level, two roles must be created like this:
 - Role 1: Action: `Microsoft.OperationalInsights/workspaces/query/read` for the table's workspace.  
 - Role 2: DataAction: `Microsoft.OperationalInsights/workspaces/tables/data/read` for the table within this workspace. Define the condition on the role with the data action.  
 
-To avoid creating two roles, assign the role at the workspace and set the conditions to control the table level.
+To avoid creating two roles use the simplest approach by assigning the role at the workspace and setting the conditions to control the table level.
 
 For more information, see [Azure RBAC scope levels](/azure/role-based-access-control/scope-overview#scope-levels).
 
@@ -103,7 +103,7 @@ For more information, see [Azure RBAC scope levels](/azure/role-based-access-con
 
 Granular RBAC expressions use a subset of attribute-based access control [(ABAC) operators](/azure/role-based-access-control/conditions-format#function-operators).
 
-The table name attribute supports four operators. Match the values of table names with flexibility when setting a condition.
+The table name attribute supports four operators. These operators give you flexibility to match the values of table names when setting a condition.
 
 | ABAC operators | Description |
 |----------------|-------------|
@@ -112,17 +112,17 @@ The table name attribute supports four operators. Match the values of table name
 | `ForAllOfAnyValues:StringEquals` | Logically equivalent to `in()`. If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true. |
 | `ForAllOfAllValues:StringNotEquals` | Logically equivalent to `!in()`. If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to false. |
 
-ABAC conditions defined for column values in Log Analytics are based on the data in that column. Only string data types can be compared. For the row level access attribute, any casting is solely based on KQL behavior. 
+ABAC conditions defined for column values in Log Analytics are based on the data in that column. Only string data types can be compared. For the row-level access attribute, any casting is solely based on KQL behavior. 
 
 The following table shows supported ABAC expression operators. The equivalent Kusto operators are listed for clarity.
 
 | ABAC operator                                          | Kusto equivalent operator | Description |
 |--------------------------------------------------------|---------------------------|-------------|
-| `StringEquals` / `StringEqualsIgnoreCase`                  | `==` / `=~`                   | Case-sensitive (or case insensitive) matching. The values must exactly match the string. |
+| `StringEquals` / `StringEqualsIgnoreCase`                  | `==` / `=~`                   | Case-sensitive (or case-insensitive) matching. The values must exactly match the string. |
 | `StringNotEquals` / `StringNotEqualsIgnoreCase`            | `!=` / `!~`                   | Negation of StringEquals (or StringEqualsIgnoreCase). |
 | `StringLike` / `StringLikeIgnoreCase`                      | `has_cs` / `has`              | Case-sensitive (or case-insensitive) matching. Right-hand-side of the operator (RHS) is a whole term in left-hand-side (LHS). |
 | `StringNotLike` / `StringNotLikeIgnoreCase`                | `!has_cs` / `!has`            | Negation of StringLike (or StringLikeIgnoreCase) operator |
-| `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | Case-sensitive (or case-insensitive) matching. The values start with the string. |
+| `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | Case-sensitive (or case-insensitive) matching. The values starts with the string. |
 | `StringNotStartsWith`  / `StringNotStartsWithIgnoreCase`   | `!startswith_cs` / `!startswith`  | Negation of StringStartsWith (or StringStartsWithIgnoreCase) operator. |
 | `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | 'ForAllOfAnyValues:\<BooleanFunction\>' supports multiple strings and numbers. </br>If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true.|
 
@@ -146,7 +146,7 @@ Several considerations apply when using granular RBAC in Log Analytics. The foll
 
 ### Microsoft Sentinel
 
-When data is replicated from their original tables when using hunting, bookmarks, and incidents, the replicated data isn't protected by the ABAC conditions.
+When data is replicated from original tables using hunting, bookmarks, and incidents, the replicated data isn't protected by the ABAC conditions.
 
 ### Azure ABAC and RBAC
 
