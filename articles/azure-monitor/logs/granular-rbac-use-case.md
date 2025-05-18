@@ -206,7 +206,7 @@ For general ABAC troubleshooting, see [Troubleshoot Azure role assignment condit
    
    Here's an example of an audited query run by a tier 1 security analyst that triggered the condition configured for the `SigninLogs` table:
    
-   :::image type="content" source="media/configure-granular-rbac/conditional-data-access-troubleshooting.png" lightbox="conditional-data-access-troubleshooting.png" alt-text="Screenshot shows condition applied for an audited query.":::
+   :::image type="content" source="media/configure-granular-rbac/conditional-data-access-troubleshooting.png" lightbox="media/configure-granular-rbac/conditional-data-access-troubleshooting.png" alt-text="Screenshot shows condition applied for an audited query.":::
 
 - The values used for table names and column values are case-sensitive. If a table name or value is incorrectly specified, the condition may fail, or yield unexpected behavior, and access to the requested data may be denied.
 - Invalid conditions that cause a logic error trigger a "400 Bad Request" error message for all affected users. The condition must be revised by the administrator. An example is setting a condition on a workspace level with a column that does not exist in all tables.
