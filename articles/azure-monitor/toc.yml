@@ -1170,6 +1170,8 @@ items:
           href: fundamentals/roles-permissions-security.md
         - name: Granular RBAC
           href: logs/granular-rbac-log-analytics.md
+        - name: Configure granular RBAC
+          href: logs/granular-rbac-use-case.md
         - name: Customer-managed keys
           href: logs/customer-managed-keys.md
         - name: Private storage

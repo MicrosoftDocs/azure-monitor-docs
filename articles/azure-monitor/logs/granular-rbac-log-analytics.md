@@ -16,7 +16,7 @@ ms.date: 05/08/2025
 Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to meet your business and security needs. Benefits of this access control include:
 - Row level access
 - Table level access
-- Separation of control and data planes instead of full read access to all data in a workspace
+- Separation of control and data planes
 
 If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy, or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
 
@@ -24,7 +24,8 @@ If your Log Analytics architecture includes multiple workspaces to accommodate d
 
 | Action | Permission required |
 |---|---|
-| Configure a custom role | `Microsoft.Authorization/roleAssignments/write` permission to the Log Analytics workspace. </br>For example, as provided by the privileged built-in role, [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) |
+| Create a new custom role | `Microsoft.Authorization/roleDefinitions/write` permission at the assignable scopes. </br>For example, as provided by the privileged built-in role, [User Access Administrators](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrators). |
+| Add or update conditions | `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions to the Log Analytics workspace. </br>For example, as provided by the privileged built-in role, [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator). |
 
 ## When to use granular RBAC?
 
@@ -36,6 +37,8 @@ Granular RBAC helps you achieve the following scenarios:
 Granular RBAC controls data access such as viewing or querying data. It doesn't address control plane actions, such as setting permissions for data access, workspace management, transformations, or data export. 
 
 ## Configure granular RBAC
+
+Jump into granular RBAC with a [**Step by step granular RBAC example**](granular-rbac-use-case.md).
 
 The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. 
 
@@ -122,7 +125,7 @@ The following table shows supported ABAC expression operators. The equivalent Ku
 | `StringNotEquals` / `StringNotEqualsIgnoreCase`            | `!=` / `!~`                   | Negation of StringEquals (or StringEqualsIgnoreCase). |
 | `StringLike` / `StringLikeIgnoreCase`                      | `has_cs` / `has`              | Case-sensitive (or case-insensitive) matching. Right-hand-side of the operator (RHS) is a whole term in left-hand-side (LHS). |
 | `StringNotLike` / `StringNotLikeIgnoreCase`                | `!has_cs` / `!has`            | Negation of StringLike (or StringLikeIgnoreCase) operator |
-| `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | Case-sensitive (or case-insensitive) matching. The values starts with the string. |
+| `StringStartsWith` / `StringStartsWithIgnoreCase`          | `startswith_cs`/ `startswith` | Case-sensitive (or case-insensitive) matching. The value starts with the string. |
 | `StringNotStartsWith`  / `StringNotStartsWithIgnoreCase`   | `!startswith_cs` / `!startswith`  | Negation of StringStartsWith (or StringStartsWithIgnoreCase) operator. |
 | `ForAllOfAnyValues:StringEquals` / `ForAllOfAnyValues:StringEqualsIgnoreCase` <br><br>`ForAllOfAllValues:StringNotEquals` / `ForAllOfAllValues:StringNotEqualsIgnoreCase`<br><br>`ForAnyOfAnyValues:StringLikeIgnoreCase`    | `In` / `In~` <br><br><br> `!in` / `!in~`  <br><br><br> `has_any`                  | 'ForAllOfAnyValues:\<BooleanFunction\>' supports multiple strings and numbers. </br>If every value on the left-hand side satisfies the comparison to at least one value on the right-hand side, then the expression evaluates to true.|
 
@@ -140,7 +143,7 @@ Several considerations apply when using granular RBAC in Log Analytics. The foll
 
 ### Log Analytics 
 
-- Data Export Search Jobs, Summary Rules: If full access doesn't exist, the user isn't able to configure the rule and receives an error.
+- Search Jobs and Summary Rules are planned for granular RBAC support, but not Data Export. For all of these experiences, if full access doesn't exist to the queried tables, the user isn't able to configure the search job or rule and receives an error.
 - Alerts: Only managed identity based log alerts are supported.
 - Application Insights: Only workspace-based Application Insights are supported.
 
@@ -158,7 +161,7 @@ Normal Azure RBAC and ABAC limitations apply. For example, the threshold of max 
 
 ## Audit and monitoring
 
-Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether ABAC was effectively used by recording the evaluation steps in the [`ConditionalDataAccess` column](../reference/tables/laquerylogs.md#columns). Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs diagnostic settings](../essentials/diagnostic-settings.md).
+Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether the query was executed with an applicable ABAC access condition in the [`ConditionalDataAccess` column](../reference/tables/laquerylogs.md#columns). Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs diagnostic settings](../essentials/diagnostic-settings.md).
 
 
 ## Frequently Asked Questions
@@ -178,5 +181,6 @@ To implement the *Bell-LaPadula* style access model, you must explicitly set ABA
 
 ## Related content
 
+- [Granular RBAC use case for Log Analytics Workspaces](granular-rbac-use-case.md)
 - [Manage access to Log Analytics workspaces](manage-access.md)
 - [Azure ABAC](/azure/role-based-access-control/conditions-overview)
