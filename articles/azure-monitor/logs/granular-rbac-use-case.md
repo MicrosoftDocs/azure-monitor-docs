@@ -26,21 +26,20 @@ For more information about granular RBAC concepts, see [Granular role-based acce
 
 The following prerequisites are required to complete this scenario:
 
-- Azure Log Analytics workspace (optionally enabled for Microsoft Sentinel) with custom log tables and fields
+- Azure Log Analytics workspace with custom log tables and fields
 - A role assigned to your account giving permission to create custom roles and assign them to users or groups like the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/#role-based-access-control-administrator) or [User Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator).
 
 ## Define the scenario
 
-In this scenario, row-level access control is implemented for the `CommonSecurityLog` and `SigninLogs` tables in a Microsoft Sentinel workspace. Conditions are set for a group of operators as follows:
+In this scenario, row-level access control is implemented for the `CommonSecurityLog` and `SigninLogs` tables in a Logs Analytics workspace. Conditions are set for a group of operators as follows:
 
-1. Remove operators' `read` access from higher level scopes for the operators.
 1. Set group access to most tables with general data access using the *Access to all data, except what is not allowed* strategy.
 1. Set row-level access to network team members to have access to the `CommonSecurityLog` table, but restricted to only the records that match network devices using the *No access to data, except what is allowed* strategy.
 1. Allow security tier 1 analysts access to the entire `CommonSecurityLog` table, but restrict access to the `SigninLogs` table to prevent accessing records for the UPN of the CEO by theme (UPN).
 
 ## Create custom roles
 
-Setup custom roles for the scenario. Create one with general data access, but no access to the restricted tables. Then create one for the network team and another for the security team. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-creation).
+Setup custom roles for the defined scenario. Create one with general data access, but the condition configured at assignment gives no access to the restricted tables. Then create one for the network team and another for the security team. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-creation).
 
 1. From the resource group containing the prerequisite Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add custom role**.
@@ -48,10 +47,12 @@ Setup custom roles for the scenario. Create one with general data access, but no
 
    | Custom role definition | Detail |
    |---|---|
-   | Actions | `Microsoft.OperationalInsights/workspaces/query/read`</br>`Microsoft.OperationalInsights/workspaces/read` |
+   | Actions | `Microsoft.OperationalInsights/workspaces/read`</br>`Microsoft.OperationalInsights/workspaces/query/read` |
    | Data actions | `Microsoft.OperationalInsights/workspaces/tables/data/read` |
 
-   :::image type="content" source="media/configure-granular-rbac/custom-role-example.png" alt-text="Screenshot showing how the custom role actions and data actions appear.":::
+   This image shows how the custom role actions and data actions appear in the **Add custom role** page.
+
+   :::image type="content" source="media/configure-granular-rbac/custom-role-example.png" lightbox="media/configure-granular-rbac/custom-role-example.png" alt-text="Screenshot showing how the custom role actions and data actions appear.":::
 
 1. Enter a name for the custom role, such as `Log Analytics Data Access`
 1. Repeat steps 2-4 for the `Log Analytics Network Device team` and `Log Analytics Security Analysts tier 1` custom roles. Use the **Clone a role** option and choose the `Log Analytics Data Access` role as a base.
@@ -62,17 +63,12 @@ Assign the custom roles to a user or group. For more information, see [Assign gr
 
 The first custom role uses the *Access to all data, except what is not allowed* strategy.
 
-1. From Log Analytics workspace, select **Access control (IAM)**.
+1. From the Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add role assignment**.
-1. Select the  `Log Analytics Network Device team` custom role you created, then select **Next**.
-1. Select the user or group you want to assign the role to, then select **Next**. For this example, assign the role to the group of users.
+1. Select the `Log Analytics Data Access` custom role you created, then select **Next**.
+1. Select the user or group you want to assign the role to, then select **Next**. This example assigns the role to the network team and security team groups.
 
 1. Select the **Conditions** tab.
-
-## Add condition
-
-Another paragraph is about stuff here.
-
 1. Select **Add condition**.
 
    :::image type="content" source="media/configure-granular-rbac/add-conditions.png" lightbox="media/configure-granular-rbac/add-conditions.png" alt-text="A screenshot showing the conditions tab of the add role assignment page.":::
@@ -84,7 +80,7 @@ Another paragraph is about stuff here.
 
 1. In the **Build expression** section, select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
-1. Select *Table* from the **Attribute** dropdown.
+1. Select *Table Name* from the **Attribute** dropdown.
 1. Select *StringEquals* from the **Operator** dropdown then select **Value**.
 1. Select **SigninLogs** from the **Value** dropdown.
 
@@ -99,7 +95,7 @@ Another paragraph is about stuff here.
 1. In the **Value** field, enter the name of the user you want to restrict access to. 
 1. Select **Save**.
 
-   :::image type="content" source="media/granular-rbac-log-analytics/add-second-expression.png" lightbox="media/granular-rbac-log-analytics/add-second-expression.png" alt-text="A screenshot showing the adding of a second expression.":::
+   :::image type="content" source="media/configure-granular-rbac/add-second-expression.png" lightbox="media/configure-granular-rbac/add-second-expression.png" alt-text="A screenshot showing the adding of a second expression.":::
 
 ## Configure Security Analysts tier 1 role
 
