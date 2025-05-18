@@ -161,7 +161,7 @@ Normal Azure RBAC and ABAC limitations apply. For example, the threshold of max 
 
 ## Audit and monitoring
 
-Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether ABAC was effectively used by recording the evaluation steps in the [`ConditionalDataAccess` column](../reference/tables/laquerylogs.md#columns). Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs diagnostic settings](../essentials/diagnostic-settings.md).
+Changes to role assignments are logged in Azure Activity Logs. User queries in the `LAQueryLogs` table indicate whether the query was executed with an applicable ABAC access condition in the [`ConditionalDataAccess` column](../reference/tables/laquerylogs.md#columns). Enable logs using the diagnostics settings in the Log Analytics workspace. For more information, see [Azure Monitor logs diagnostic settings](../essentials/diagnostic-settings.md).
 
 
 ## Frequently Asked Questions
