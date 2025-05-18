@@ -33,9 +33,8 @@ The following prerequisites are required to complete this scenario:
 
 In this scenario, row-level access control is implemented for the `CommonSecurityLog` and `SigninLogs` tables in a Logs Analytics workspace. Conditions are set for a group of operators as follows:
 
-1. Set group access to most tables with general data access using the *Access to all data, except what is not allowed* strategy.
-1. Set row-level access to network team members to have access to the `CommonSecurityLog` table, but restricted to only the records that match network devices using the *No access to data, except what is allowed* strategy.
-1. Allow security tier 1 analysts access to the entire `CommonSecurityLog` table, but restrict access to the `SigninLogs` table to prevent accessing records for the UPN of the CEO by theme (UPN).
+1. Set the network team's group access to just access the `CommonSecurityLog` table where the DeviceVendor name matches the network firewalls. This configuration uses the *No access to data, except what is allowed* strategy.
+1. Set the tier 1 security analyst team's access to all tables, but restrict the `SigninLogs` and `DnsEvents` tables to prevent accessing records for the UPN or computername of the CEO using the *Access to all data, except what is not allowed* strategy.
 
 ## Create custom roles
 
@@ -54,50 +53,66 @@ Setup custom roles for the defined scenario. Create one with general data access
 
    :::image type="content" source="media/configure-granular-rbac/custom-role-example.png" lightbox="media/configure-granular-rbac/custom-role-example.png" alt-text="Screenshot showing how the custom role actions and data actions appear.":::
 
-1. Enter a name for the custom role, such as `Log Analytics Data Access`
-1. Repeat steps 2-4 for the `Log Analytics Network Device team` and `Log Analytics Security Analysts tier 1` custom roles. Use the **Clone a role** option and choose the `Log Analytics Data Access` role as a base.
+1. Enter a name for the custom role, such as `Log Analytics Network Device team`
+1. Repeat steps 2-4 for the `Log Analytics Security Analysts tier 1` custom role. Use the **Clone a role** option and choose the `Log Analytics Network Device team` role as a base.
 
 ## Assign custom roles
 
 Assign the custom roles to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions). 
 
-The first custom role uses the *Access to all data, except what is not allowed* strategy.
-
 1. From the Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add role assignment**.
-1. Select the `Log Analytics Data Access` custom role you created, then select **Next**.
-1. Select the user or group you want to assign the role to, then select **Next**. This example assigns the role to the network team and security team groups.
-
-1. Select the **Conditions** tab.
-1. Select **Add condition**.
-
-   :::image type="content" source="media/configure-granular-rbac/add-conditions.png" lightbox="media/configure-granular-rbac/add-conditions.png" alt-text="A screenshot showing the conditions tab of the add role assignment page.":::
-
-1. Select **Add action**.
-1. Choose the **Read workspace data** data action and click **Select** 
+1. Select the `Log Analytics Network Device team` custom role you created, then select **Next**.
+1. Select the user or group you want to assign the role to, then select **Next**. This example assigns the role to the network team security group.
+1. Select **Conditions** > **Add condition** > **Add action**.
+1. Choose the **Read workspace data** data action > **Select**.
 
    :::image type="content" source="media/configure-granular-rbac/add-action.png" lightbox="media/configure-granular-rbac/add-action.png" alt-text="A screenshot showing the add action part of the add conditions page.":::
+
+### Build restrictive expression
+
+The first custom role uses the *No access to data, except what is allowed* strategy.
 
 1. In the **Build expression** section, select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Table Name* from the **Attribute** dropdown.
 1. Select *StringEquals* from the **Operator** dropdown then select **Value**.
-1. Select **SigninLogs** from the **Value** dropdown.
-
-   :::image type="content" source="media/configure-granular-rbac/build-expression.png" lightbox="media/configure-granular-rbac/build-expression.png" alt-text="A screenshot showing the build expression part of the add conditions page.":::
+1. Type **CommonSecurityLog** in the **Value** dropdown.
 
 1. Select **Add expression**, then select **And** to add another expression.
-
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Column value* from the **Attribute** dropdown.
-1. Select *UserPrincipalName* from the **Key** dropdown. 
-1. Select *StringEquals* from the **Operator** dropdown then select **Value**.
-1. In the **Value** field, enter the name of the user you want to restrict access to. 
+1. Enter *DeviceVendor* for the **Key**. 
+1. Select *ForAnyOfAnyValues:StringLikeIgnoreCase* from the **Operator** dropdown then select **Value**.
+1. In the **Value** fields, enter `Check Point` and `SonicWall`.
+1. Select expression **1** and **2** > select **Group** with the **And** radio button selected.
+   
+   Here's how the condition looks when completed:
+
+   :::image type="content" source="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" lightbox="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" alt-text="A screenshot showing the adding of a second expression.":::
+
+   Here's how the condition looks in code form:
+   ```
+   (
+    (
+     !(ActionMatches{'Microsoft.OperationalInsights/workspaces/tables/data/read'})
+    )
+    OR 
+    (
+     (
+      @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'CommonSecurityLog'
+      AND
+      @Resource[Microsoft.OperationalInsights/workspaces/tables/record:DeviceVendor<$key_case_sensitive$>] ForAnyOfAnyValues:StringLikeIgnoreCase {'Check Point', 'SonicWall'}
+     )
+    )
+   )
+   ```
+   
 1. Select **Save**.
 
-   :::image type="content" source="media/configure-granular-rbac/add-second-expression.png" lightbox="media/configure-granular-rbac/add-second-expression.png" alt-text="A screenshot showing the adding of a second expression.":::
+### Build permissive expression
 
-## Configure Security Analysts tier 1 role
+The second custom role uses the *Access to all data, except what is not allowed* strategy.
 
 Assume that this group of users needs access to all other tables in this workspace, while still restricting access to records in the SigninLogs table. This change can be achieved by making two modifications to the conditions: 
 
