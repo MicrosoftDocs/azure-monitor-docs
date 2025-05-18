@@ -24,7 +24,8 @@ If your Log Analytics architecture includes multiple workspaces to accommodate d
 
 | Action | Permission required |
 |---|---|
-| Configure a custom role | `Microsoft.Authorization/roleAssignments/write` permission to the Log Analytics workspace. </br>For example, as provided by the privileged built-in role, [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) |
+| Create a new custom role | `Microsoft.Authorization/roleDefinitions/write` permission at the assignable scopes. |
+| Add or update conditions | `Microsoft.Authorization/roleAssignments/write` and `Microsoft.Authorization/roleAssignments/delete` permissions to the Log Analytics workspace. </br>For example, as provided by the privileged built-in role, [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/privileged#role-based-access-control-administrator) |
 
 ## When to use granular RBAC?
 

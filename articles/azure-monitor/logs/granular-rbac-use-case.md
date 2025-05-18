@@ -26,7 +26,7 @@ For more information about granular RBAC concepts, see [Granular role-based acce
 
 The following prerequisites are required to complete this scenario:
 
-- Azure Log Analytics workspace with custom log tables and fields
+- Azure Log Analytics workspace with tables
 - A role assigned to your account giving permission to create custom roles and assign them to users or groups like the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/#role-based-access-control-administrator) or [User Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator).
 
 ## Define the scenario
@@ -202,9 +202,9 @@ The second custom role uses the *Access to all data, except what is not allowed*
 For general ABAC troubleshooting, see [Troubleshoot Azure role assignment conditions](/azure/role-based-access-control/conditions-troubleshoot).
 
 - Changes to role assignments are logged in Azure Activity logs.
-- User queries in the LAQueryLogs table records how conditions are evaluated in the `ConditionalDataAccess` column. For more information, see [LAQueryLogs table reference](./azure-monitor/reference/tables/laquerylogs.md). 
+- User queries in the LAQueryLogs table records how conditions are evaluated in the `ConditionalDataAccess` column. For more information, see [LAQueryLogs table reference](./reference/tables/laquerylogs.md). 
 - The values used for table names and column values are case-sensitive. If a table name or value is incorrectly specified, the condition may fail, or yield unexpected behavior, and access to the requested data may be denied.
-- Invalid conditions that cause a logic error trigger a "400 Bad Request" error message for all affected users. The condition must be revised by the administrator.
+- Invalid conditions that cause a logic error trigger a "400 Bad Request" error message for all affected users. The condition must be revised by the administrator. An example is setting a condition on a workspace level with a column that does not exist in all tables.
 
 ## Related content
 
