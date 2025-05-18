@@ -197,10 +197,12 @@ The second custom role uses the *Access to all data, except what is not allowed*
 
    Allow up to 15 minutes for effective permissions to take effect.
 
-## Troubleshoot ABAC conditions
+## Troubleshoot and monitor
 
 For general ABAC troubleshooting, see [Troubleshoot Azure role assignment conditions](/azure/role-based-access-control/conditions-troubleshoot).
 
+- Changes to role assignments are logged in Azure Activity logs.
+- User queries in the LAQueryLogs table records how conditions are evaluated in the `ConditionalDataAccess` column. For more information, see [LAQueryLogs table reference](./azure-monitor/reference/tables/laquerylogs.md). 
 - The values used for table names and column values are case-sensitive. If a table name or value is incorrectly specified, the condition may fail, or yield unexpected behavior, and access to the requested data may be denied.
 - Invalid conditions that cause a logic error trigger a "400 Bad Request" error message for all affected users. The condition must be revised by the administrator.
 
