@@ -16,7 +16,7 @@ ms.date: 05/08/2025
 Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows you to filter workspace data that each user can view or query, based on conditions you specify to meet your business and security needs. Benefits of this access control include:
 - Row level access
 - Table level access
-- Separation of control and data planes instead of full read access to all data in a workspace
+- Separation of control and data planes
 
 If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy, or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
 
@@ -143,7 +143,7 @@ Several considerations apply when using granular RBAC in Log Analytics. The foll
 
 ### Log Analytics 
 
-- Data Export Search Jobs, Summary Rules: If full access doesn't exist, the user isn't able to configure the rule and receives an error.
+- Search Jobs and Summary Rules are planned for granular RBAC support, but not Data Export. For all of these experiences, if full access doesn't exist to the queried tables, the user isn't able to configure the search job or rule and receives an error.
 - Alerts: Only managed identity based log alerts are supported.
 - Application Insights: Only workspace-based Application Insights are supported.
 
