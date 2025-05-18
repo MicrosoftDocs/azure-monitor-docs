@@ -37,6 +37,8 @@ Granular RBAC controls data access such as viewing or querying data. It doesn't 
 
 ## Configure granular RBAC
 
+Jump into granular RBAC with a [**Step by step granular RBAC example**](granular-rbac-use-case.md).
+
 The following sections provide an overview of the key concepts and steps involved in configuring granular RBAC. 
 
 - [Role creation](#role-creation)
@@ -178,5 +180,6 @@ To implement the *Bell-LaPadula* style access model, you must explicitly set ABA
 
 ## Related content
 
+- [Granular RBAC use case for Log Analytics Workspaces](granular-rbac-use-case.md)
 - [Manage access to Log Analytics workspaces](manage-access.md)
 - [Azure ABAC](/azure/role-based-access-control/conditions-overview)
