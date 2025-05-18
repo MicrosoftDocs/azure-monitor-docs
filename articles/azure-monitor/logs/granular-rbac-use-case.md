@@ -202,7 +202,7 @@ The second custom role uses the *Access to all data, except what is not allowed*
 For general ABAC troubleshooting, see [Troubleshoot Azure role assignment conditions](/azure/role-based-access-control/conditions-troubleshoot).
 
 - Changes to role assignments are logged in Azure Activity logs.
-- LAQueryLogs table records whether user queries executed with an applicable ABAC condition in the `ConditionalDataAccess` column. For more information, see [LAQueryLogs table reference](./reference/tables/laquerylogs.md). 
+- LAQueryLogs table records whether user queries executed with an applicable ABAC condition in the `ConditionalDataAccess` column. For more information, see [LAQueryLogs table reference](../reference/tables/laquerylogs.md). 
    
    Here's an example of an audited query run by a tier 1 security analyst that triggered the condition configured for the `SigninLogs` table:
    
