@@ -31,14 +31,14 @@ The following prerequisites are required to complete this scenario:
 
 ## Define the scenario
 
-In this scenario, row-level access control is implemented for the `CommonSecurityLog` and `SigninLogs` tables in a Logs Analytics workspace. Conditions are set for a group of operators as follows:
+In this scenario, row-level access control is implemented in a restrictive manner with the `CommonSecurityLog` and a permissive manner to control the `SigninLogs` and `DnsEvents` tables in a Logs Analytics workspace. Conditions are set for a group of operators as follows:
 
-1. Set the network team's group access to just access the `CommonSecurityLog` table where the DeviceVendor name matches the network firewalls. This configuration uses the *No access to data, except what is allowed* strategy.
+1. Set the network team's group access to only access the `CommonSecurityLog` table where the DeviceVendor name matches the network firewalls. This configuration uses the *No access to data, except what is allowed* strategy.
 1. Set the tier 1 security analyst team's access to all tables, but restrict the `SigninLogs` and `DnsEvents` tables to prevent accessing records for the UPN or computername of the CEO using the *Access to all data, except what is not allowed* strategy.
 
 ## Create custom roles
 
-Setup custom roles for the defined scenario. Create one with general data access, but the condition configured at assignment gives no access to the restricted tables. Then create one for the network team and another for the security team. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-creation).
+Setup custom roles for the defined scenario. Create one for the network team and another for the security team. For more information, see [Configure granular RBAC role creation](granular-rbac-log-analytics.md#role-creation).
 
 1. From the resource group containing the prerequisite Log Analytics workspace, select **Access control (IAM)**.
 1. Select **Add custom role**.
@@ -67,11 +67,12 @@ Assign the custom roles to a user or group. For more information, see [Assign gr
 1. Select **Conditions** > **Add condition** > **Add action**.
 1. Choose the **Read workspace data** data action > **Select**.
 
+   Here's how the action portion looks when completed:
    :::image type="content" source="media/configure-granular-rbac/add-action.png" lightbox="media/configure-granular-rbac/add-action.png" alt-text="A screenshot showing the add action part of the add conditions page.":::
 
-## Build restrictive expression
+## Build restrictive condition
 
-The first custom role uses the *No access to data, except what is allowed* strategy. In this use case, the network team only needs access to the `CommonSecurityLog` table, and only for records where the DeviceVendor is either `Check Point` or `SonicWall`.
+The first custom role uses the *No access to data, except what is allowed* strategy. In this use case, the network team only needs access to the `CommonSecurityLog` table, and only for records where the DeviceVendor matches their firewall solutions, either `Check Point` or `SonicWall`.
 
 1. In the **Build expression** section, select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
@@ -87,11 +88,11 @@ The first custom role uses the *No access to data, except what is allowed* strat
 1. In the **Value** fields, enter `Check Point` and `SonicWall`.
 1. Select expression **1** and **2** > select **Group** with the **And** radio button selected.
    
-   Here's how the condition looks when completed:
+   Here's how the restrictive condition looks when completed:
 
-   :::image type="content" source="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" lightbox="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" alt-text="A screenshot showing the adding of a second expression.":::
+   :::image type="content" source="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" lightbox="media/configure-granular-rbac/no-access-to-data-except-allowed-condition.png" alt-text="A screenshot showing the expressions for the restrictive condition.":::
 
-   Here's how the condition looks in code form:
+   Here's how the restrictive condition looks in code form:
    ```
    (
     (
@@ -113,7 +114,7 @@ The first custom role uses the *No access to data, except what is allowed* strat
 
    Allow up to 15 minutes for effective permissions to take effect.
 
-## Build permissive expression
+## Build permissive condition
 
 The second custom role uses the *Access to all data, except what is not allowed* strategy. In this use case, the tier 1 security analyst team needs access to all tables, but restricts access to the `SigninLogs` and `DnsEvents` tables to prevent accessing records for the UPN or computername of the CEO.
 
@@ -155,7 +156,7 @@ The second custom role uses the *Access to all data, except what is not allowed*
 1. Select *StringEquals* from the **Operator** dropdown.
 1. In the **Value** field, enter `DnsEvents`.
 
-   **Expression 5** - five expressions is the limit in the visual editor, but more expressions can be added in the code editor.
+   **Expression 5** - Five expressions is the limit in the visual editor, but more expressions can be added in the code editor.
 1. Select **Add expression**
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Column value* from the **Attribute** dropdown.
@@ -164,11 +165,11 @@ The second custom role uses the *Access to all data, except what is not allowed*
 1. Type `CEOlaptop` in the **Value** field.
 1. Select expression **4** and **5** > select **Group** with the **And** radio button selected.
 
-   Here's how the condition looks when completed:
+   Here's how the permissive condition looks when completed - notice the **Add expression** button is disabled. This is because the maximum number of expressions has been reached.
 
-   :::image type="content" source="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" lightbox="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" alt-text="A screenshot showing the adding of a second expression.":::
+   :::image type="content" source="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" lightbox="media/configure-granular-rbac/access-data-except-not-allowed-condition.png" alt-text="A screenshot showing the permissive  second expression.":::
 
-   Here's how the condition looks in code form:
+   Here's how the permissive condition looks in code form:
    ```
    (
     (
@@ -181,7 +182,7 @@ The second custom role uses the *Access to all data, except what is not allowed*
      (
       @Resource[Microsoft.OperationalInsights/workspaces/tables:name] StringEquals 'SigninLogs'
       AND
-      @Resource[Microsoft.OperationalInsights/workspaces/tables/record:UserPrincipalName<$key_case_sensitive$>] StringNotEquals 'AdeleV@6p8wf4.onmicrosoft.com'
+      @Resource[Microsoft.OperationalInsights/workspaces/tables/record:UserPrincipalName<$key_case_sensitive$>] StringNotEquals 'CEO@contoso.com'
      )
      OR
      (
