@@ -18,7 +18,7 @@ Granular role-based access control (RBAC) is a feature of Azure Monitor Log Anal
 
 Learn how to control access to logs based on roles, departments, and geographical locations. This includes scenarios like restricting HR personnel to employee data or limiting access to logs by country or department. 
 
-In this example scenario, custom log tables and fields are used to enforce row-level access. Data is segregated based on attributes like device type and user principal name (UPN).
+In this example scenario, well-known Log Analytics tables and fields are used to enforce row-level access. Data is segregated based on attributes like device type and user principal name (UPN).
 
 For more information about granular RBAC concepts, see [Granular role-based access control (RBAC) in Azure Monitor](granular-rbac-log-analytics.md).
 
@@ -26,15 +26,15 @@ For more information about granular RBAC concepts, see [Granular role-based acce
 
 The following prerequisites are required to complete this scenario:
 
-- Azure Log Analytics workspace with tables
-- A role assigned to your account giving permission to create custom roles and assign them to users or groups like the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/#role-based-access-control-administrator) or [User Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator).
+- Azure Monitor Log Analytics workspace with tables
+- A role assigned to your account giving permission to configure custom roles and assign them to users or groups with conditions like the [Role Based Access Control Administrator](/azure/role-based-access-control/built-in-roles/#role-based-access-control-administrator) or [User Access Administrator](/azure/role-based-access-control/built-in-roles/privileged#user-access-administrator).
 
 ## Define the scenario
 
 In this scenario, row-level access control is implemented in a restrictive manner with the `CommonSecurityLog` and a permissive manner to control the `SigninLogs` and `DnsEvents` tables in a Logs Analytics workspace. Conditions are set for a group of operators as follows:
 
 1. Set the network team's group access to only access the `CommonSecurityLog` table where the DeviceVendor name matches the network firewalls. This configuration uses the *No access to data, except what is allowed* strategy.
-1. Set the tier 1 security analyst team's access to all tables, but restrict the `SigninLogs` and `DnsEvents` tables to prevent accessing records for the UPN or computername of the CEO using the *Access to all data, except what isn't allowed* strategy.
+1. Give the tier 1 security analyst team access to all tables, but restrict the `SigninLogs` and `DnsEvents` tables to prevent them from accessing records containing the UPN or computername of the CEO. This configuration uses the *Access to all data, except what isn't allowed* strategy.
 
 ## Create custom roles
 
@@ -74,7 +74,7 @@ Assign the custom roles to a user or group. For more information, see [Assign gr
 
 The first custom role uses the *No access to data, except what is allowed* strategy. In this use case, the network team only needs access to the `CommonSecurityLog` table, and only for records where the DeviceVendor matches their firewall solutions, either `Check Point` or `SonicWall`.
 
-1. In the **Build expression** section, select **Add expression**
+1. In the **Build expression** section, select **Add expression**.
 1. Select *Resource* from the **Attribute source** dropdown.
 1. Select *Table Name* from the **Attribute** dropdown.
 1. Select *StringEquals* from the **Operator** dropdown.
