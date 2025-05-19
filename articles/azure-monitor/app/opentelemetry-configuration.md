@@ -210,7 +210,7 @@ builder.Services.AddOpenTelemetry()
     .UseAzureMonitor()
     // Configure the ResourceBuilder to add the custom resource attributes to all signals.
     // Custom resource attributes should be added AFTER AzureMonitor to override the default ResourceDetectors.
-    .ConfigureResource(resourceBuilder => resourceBuilder.AddAttributes(_testResourceAttributes));
+    .ConfigureResource(resourceBuilder => resourceBuilder.AddAttributes(resourceAttributes));
 
 // Build the ASP.NET Core web application.
 var app = builder.Build();
