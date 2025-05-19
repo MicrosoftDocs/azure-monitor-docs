@@ -68,9 +68,51 @@ sections:
            * [Log Analytics](../logs/data-collector-api.md)
            * [Logstash](../logs/data-collector-api.md)
     
-    
+      - question: How many Application Insights resources should I deploy?
+        answer: |
+          To understand the number of Application Insights resources required to cover your application or components across environments, see the [Application Insights deployment planning guide](create-workspace-resource.md#how-many-application-insights-resources-should-i-deploy).  
 
+      - question: How can I manage Application Insights resources with PowerShell?
+        answer: |
+          You can [write PowerShell scripts](./powershell.md) by using Azure Resource Monitor to:
+          
+          * Create and update Application Insights resources.
+          * Set the pricing plan.
+          * Get the instrumentation key.
+          * Add a metric alert.
+          * Add an availability test.
+          
+          You can't set up a metrics explorer report or set up continuous export.    
 
+      - question: How can I query Application Insights telemetry? 
+        answer: |
+           Use the [REST API](/rest/api/application-insights/) to run [Log Analytics](../logs/log-query-overview.md) queries.
+
+      - question: Can I send telemetry to the Application Insights portal?
+        answer: |
+          We recommend the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
+
+          The [ingestion schema](https://github.com/microsoft/ApplicationInsights-dotnet/tree/master/BASE/Schema/PublicSchema) and [endpoint protocol](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/ENDPOINT-PROTOCOL.md) are available publicly.    
+
+      - question: How long does it take for telemetry to be collected?
+        answer: |
+           Most Application Insights data has a latency of under 5 minutes. Some data can take longer, which is typical for larger log files. See the [Application Insights service-level agreement](https://azure.microsoft.com/support/legal/sla/application-insights/v1_2/).    
+
+      - question: How does Application Insights handle data collection, retention, storage, and privacy?
+        answer: |
+          #### Collection
+
+          Application Insights collects telemetry about your app, including web server telemetry, web page telemetry, and performance counters. This data can be used to monitor your app's performance, health, and usage. You can select the location when you [create a new Application Insights resource](./create-workspace-resource.md).
+
+          #### Retention and Storage
+
+          Data is sent to an Application Insights [Log Analytics workspace](../logs/log-analytics-workspace-overview.md). You can choose the retention period for raw data, from 30 to 730 days. Aggregated data is retained for 90 days, and debug snapshots are retained for 15 days.
+
+          #### Privacy
+
+          Application Insights doesn't handle sensitive data by default. We recommend you don't put sensitive data in URLs as plain text and ensure your custom code doesn't collect personal or other sensitive details. During development and testing, check the sent data in your IDE and browser's debugging output windows.
+
+          For archived information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
 
   - name: Application Insights API for custom events and metrics
     questions:
