@@ -20,6 +20,56 @@ sections:
         answer: |
           For detailed information about instrumenting applications to enable Application Insights, see [data collection basics](opentelemetry-overview.md).
 
+      - question: How do I use Application Insights?
+        answer: |
+          After enabling Application Insights by [instrumenting an application](opentelemetry-overview.md), we suggest first checking out [Live metrics](live-stream.md) and the [Application map](app-map.md).
+
+      - question: What telemetry does Application Insights collect?
+        answer: |
+          From server web apps:
+
+          * HTTP requests.
+          * [Dependencies](./asp-net-dependencies.md). Calls to SQL databases, HTTP calls to external services, Azure Cosmos DB, Azure Table Storage, Azure Blob Storage, and Azure Queue Storage.
+          * [Exceptions](./asp-net-exceptions.md) and stack traces.
+          * [Performance counters](./asp-net-counters.md): Performance counters are available when using:
+             * [Azure Monitor Application Insights agent](application-insights-asp-net-agent.md)
+             * [Azure monitoring for VMs or virtual machine scale sets](./azure-vm-vmss-apps.md)
+             * [Application Insights `collectd` writer](/previous-versions/azure/azure-monitor/app/deprecated-java-2x#collectd-linux-performance-metrics-in-application-insights-deprecated).
+          * [Custom events and metrics](./api-custom-events-metrics.md) that you code.
+          * [Trace logs](./asp-net-trace-logs.md) if you configure the appropriate collector.
+          
+          From [client webpages](./javascript-sdk.md):
+          
+          * Uncaught exceptions in your app, including information on
+             * Stack trace
+             * Exception details and message accompanying the error
+             * Line & column number of error
+             * URL where error was raised
+             * Network Dependency Requests made by your app XML Http Request (XHR) and Fetch (fetch collection is disabled by default) requests, include information on:
+                * Url of dependency source
+                * Command & Method used to request the dependency
+                * Duration of the request
+                * Result code and success status of the request
+                * ID (if any) of user making the request
+                * Correlation context (if any) where request is made
+          * User information (for example, Location, network, IP)
+          * Device information (for example, Browser, OS, version, language, model)
+          * Session information
+
+             > [!NOTE]
+             > For some applications, such as single-page applications (SPAs), the duration isn't always recorded and, in those cases, defaults to 0.
+
+             For more information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
+          
+           From other sources, if you configure them:
+          
+           * [Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md)
+           * [Import to Log Analytics](../logs/data-collector-api.md)
+           * [Log Analytics](../logs/data-collector-api.md)
+           * [Logstash](../logs/data-collector-api.md)
+    
+    
+
 
 
   - name: Application Insights API for custom events and metrics
