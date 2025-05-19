@@ -8,7 +8,7 @@ ms.reviewer: cogoodson
 
 # Transaction Search and Diagnostics
 
-Azure Monitor Application Insights offers Transaction Search for pinpointing specific telemetry items and Transaction Diagnostics for comprehensive end-to-end transaction analysis.
+Application Insights offers Transaction Search for pinpointing specific telemetry items and Transaction Diagnostics for comprehensive end-to-end transaction analysis.
 
 **Transaction Search**: This experience enables users to locate and examine individual telemetry items such as page views, exceptions, and web requests. Additionally, it offers the capability to view log traces and events coded into the application. It identifies performance issues and errors within the application.
 
@@ -16,15 +16,15 @@ Azure Monitor Application Insights offers Transaction Search for pinpointing spe
 
 ## [Transaction Search](#tab/transaction-search)
 
-Transaction search is a feature of [Application Insights](./app-insights-overview.md) that you use to find and explore individual telemetry items, such as page views, exceptions, or web requests. You can also view log traces and events that you code.
+Transaction search is a feature of [Application Insights](app-insights-overview.md) that you use to find and explore individual telemetry items, such as page views, exceptions, or web requests. You can also view log traces and events that you code.
 
 For more complex queries over your data, use [Log Analytics](../logs/log-analytics-tutorial.md).
 
 ## Get started
 
-You can open transaction search from the Application Insights **Overview** tab of your application. You can also select **Search** under **Investigate** on the left menu.
+Open transaction search by selectin **Search** on the Application Insights **Overview** pane or **Transaction search** under **Investigate** in the navigation menu.
 
-:::image type="content" source="./media/search-and-transaction-diagnostics/view-custom-events.png" lightbox="./media/search-and-transaction-diagnostics/view-custom-events.png" alt-text="Screenshot that shows the Search tab.":::
+:::image type="content" source="media/search-and-transaction-diagnostics/transaction-search.png" lightbox="media/search-and-transaction-diagnostics/transaction-search.png" alt-text="Screenshot that shows the Search tab.":::
 
 Go to the **Event types** dropdown menu to see a list of telemetry items such as server requests, page views, and custom events you coded. The top of the **Results** list has a summary chart showing counts of events over time.
 
@@ -34,7 +34,7 @@ Back out of the dropdown menu or select **Refresh** to get new events.
 
 Select any telemetry item to see key fields and related items.
 
-:::image type="content" source="./media/search-and-transaction-diagnostics/telemetry-item.png" lightbox="./media/search-and-transaction-diagnostics/telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
+:::image type="content" source="media/search-and-transaction-diagnostics/transaction-search-telemetry-item.png" lightbox="media/search-and-transaction-diagnostics/transaction-search-telemetry-item.png" alt-text="Screenshot that shows an individual dependency request.":::
 
 The end-to-end transaction details view opens.
 
@@ -96,8 +96,9 @@ You can use the following search expressions:
 
 ## Sampling
 
+<!-- Replace SDK with OTel info
 If your app generates significant telemetry and uses ASP.NET SDK version 2.0.0-beta3 or later, it automatically reduces the volume sent to the portal through adaptive sampling. This module sends only a representative fraction of events. It selects or deselects events related to the same request as a group, allowing you to navigate between related events.
-
+-->
 Learn about [sampling](./sampling.md).
 
 ## Create work item
@@ -196,9 +197,9 @@ This collapsible pane shows the other results that meet the filter criteria. Sel
 
 [.NET Profiler](./profiler-overview.md) or [Snapshot Debugger](snapshot-debugger.md) help with code-level diagnostics of performance and failure issues. With this experience, you can see .NET Profiler traces or snapshots from any component with a single selection.
 
-If you can't get the .NET Profiler working, contact serviceprofilerhelp\@microsoft.com.
+If you can't get the .NET Profiler working, contact [serviceprofilerhelp@microsoft.com](mailto:serviceprofilerhelp@microsoft.com).
 
-If you can't get Snapshot Debugger working, contact snapshothelp\@microsoft.com.
+If you can't get Snapshot Debugger working, contact [snapshothelp@microsoft.com](mailto:snapshothelp@microsoft.com).
 
 :::image type="content" source="media/search-and-transaction-diagnostics/profiler-traces.png" lightbox="media/search-and-transaction-diagnostics/profiler-traces.png" alt-text="Screenshot that shows .NET Profiler integration.":::
 
