@@ -4,7 +4,7 @@ metadata:
   description: "Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor."
   author: 
   ms.author: 
-  ms.service: 
+  ms.service: application-insights
   ms.topic: faq 
   ms.date: 05/23/2025
 
