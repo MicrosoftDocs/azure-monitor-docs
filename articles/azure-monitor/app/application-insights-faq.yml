@@ -14,7 +14,7 @@ summary: |
 
 
 sections:
-  - name: <a name="overview-faq">Overview</a>
+  - name: Overview
     questions:
       - question: How do I instrument an application?
         answer: |
