@@ -65,7 +65,7 @@ The investigation scans the application logs for anomalies. The top three failur
 - **Transaction Pattern**: If there's a specific transaction pattern the failure, it is displayed. This information can help explain the issue and show the root cause. If there are multiple transaction patterns, no pattern is displayed.
 - **Trace Message Patterns**: If there are specific trace message patterns that correlate with the failure, they'll be displayed with the count of appearance in the logs. The patterns are explained in natural language and an example is provided.
 
-:::image type="content" source="media/application-anomalies.png" alt-text="screenshot of application anomalies" lightbox="media/application-anomalies.png":::
+:::image type="content" source="media/application-anomalies.png" alt-text="Screenshot of application anomalies." lightbox="media/application-anomalies.png":::
 
 ### Diagnostic insights
 
