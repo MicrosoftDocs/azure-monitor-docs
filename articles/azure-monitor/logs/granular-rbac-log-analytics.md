@@ -6,7 +6,7 @@ services: azure-monitor
 sub-service: logs
 ms.reviewer: rofrenke
 ms.topic: conceptual 
-ms.date: 05/08/2025
+ms.date: 05/19/2025
 
 # Customer intent: As an Azure administrator, I want to understand how to use attribute-based access control to granularly define access in Log Analytics workspaces.
 ---
@@ -19,6 +19,10 @@ Granular role-based access control (RBAC) in Azure Monitor Log Analytics allows 
 - Separation of control and data planes
 
 If your Log Analytics architecture includes multiple workspaces to accommodate data segregation, privacy, or compliance, granular RBAC helps simplify by reducing the number of workspaces required.
+
+## Introduction video
+
+> [!VIDEO 661dc5e1-bbe4-4f41-8a3d-05a008becfe7]
 
 ### Prerequisites
 
