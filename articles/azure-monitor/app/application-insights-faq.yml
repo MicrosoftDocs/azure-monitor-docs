@@ -14,21 +14,20 @@ summary: |
 
 
 sections:
-  - name: # Name of first section.
+  - name: Application Insights API for custom events and metrics
     questions:
       - question: Why am I missing telemetry data?
-        answer: Both [TelemetryChannels](telemetry-channels.md#what-are-telemetry-channels) will lose buffered telemetry if it isn't flushed before an application shuts down.
-
-                To avoid data loss, flush the TelemetryClient when an application is shutting down.
-
-                For more information, see [Flushing data](api-custom-events-metrics.md#flushing-data).
-          
-      - question: # Question.
         answer: |
-          A multiline or formatted answer to the question.
-          Use any Markdown formatting you want, provided 
-          that you maintain the indent on the lines after 
-          the | characters.
+          Both [TelemetryChannels](telemetry-channels.md#what-are-telemetry-channels) will lose buffered telemetry if it isn't flushed before an application shuts down.
+
+          To avoid data loss, flush the TelemetryClient when an application is shutting down.
+
+          For more information, see [Flushing data](api-custom-events-metrics.md#flushing-data).
+          
+      - question: What exceptions might `Track_()` calls throw?
+        answer: |
+          None. You don't need to wrap them in try-catch clauses. If the SDK encounters problems, it will log messages in the debug console output and, if the messages get through, in Diagnostic Search.
+          
 
   - name: # Name of second section. Omit if you have only 
           # a few questions. In that case, the first name 
