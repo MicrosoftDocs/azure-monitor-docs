@@ -156,10 +156,10 @@ using (_logger.BeginScope(new Dictionary<string, object> { ["MyKey"] = "MyValue"
 If any other type is used as a scope, it gets stored under the property `Scope` in Application Insights telemetry. In the following example, `TraceTelemetry` has a property called `Scope` that contains the scope.
 
 ```csharp
-    using (_logger.BeginScope("hello scope"))
-    {
-        _logger.LogError("An example of an Error level message");
-    }
+using (_logger.BeginScope("hello scope"))
+{
+    _logger.LogError("An example of an Error level message");
+}
 ```
 
 ## Frequently asked questions
