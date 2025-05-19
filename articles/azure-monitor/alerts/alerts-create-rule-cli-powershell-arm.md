@@ -3,7 +3,7 @@ title: Create Azure Monitor alert rules using the CLI, PowerShell or an ARM temp
 description: This article shows you how to create a new alert rule using the CLI, PowerShell or an ARM template.
 ms.topic: how-to
 ms.custom: devx-track-arm-template
-ms.date: 01/03/2024
+ms.date: 04/30/2025
 ms.reviewer: harelbr
 ---
 
@@ -58,6 +58,7 @@ You can use an [Azure Resource Manager template (ARM template)](/azure/azure-res
 1. Copy one of the templates from these sample ARM templates.
     - For metric alerts: [Resource Manager template samples for metric alert rules](resource-manager-alerts-metric.md)
     - For log search alerts: [Resource Manager template samples for log search alert rules](resource-manager-alerts-log.md)
+    - For simple log search alerts: [Resource Managers template samples for simple log search alerts](resource-manager-alerts-simple-log-search-alerts.md)
     - For activity log alerts: [Resource Manager template samples for activity log alert rules](resource-manager-alerts-activity-log.md)
     - For service health alerts: [Resource Manager template samples for service health alert rules](resource-manager-alerts-service-health.md)
     - For resource health alerts: [Resource Manager template samples for resource health alert rules](resource-manager-alerts-resource-health.md)
