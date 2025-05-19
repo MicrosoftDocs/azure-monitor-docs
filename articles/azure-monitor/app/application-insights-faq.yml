@@ -14,7 +14,7 @@ summary: |
 
 
 sections:
-  - name: Overview
+  - name: <a name="overview-faq">Overview</a>
     questions:
       - question: How do I instrument an application?
         answer: |
@@ -150,7 +150,7 @@ sections:
 
           For more information, see [Flushing data](#flushing-data).
           
-      - question: What exceptions might `Track_()` calls throw?
+      - question: What exceptions might Track_() calls throw?
         answer: |
           None. You don't need to wrap them in try-catch clauses. If the SDK encounters problems, it will log messages in the debug console output and, if the messages get through, in Diagnostic Search.
 

@@ -1007,48 +1007,6 @@ Added the ASP.NET Core autoinstrumentation feature
 
 ---
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Does Application Insights Agent support proxy installations?
-
-Yes. There are multiple ways to download Application Insights Agent:
-
-* If your computer has internet access, you can onboard to the PowerShell Gallery by using `-Proxy` parameters.
-* You can also manually download the module and either install it on your computer or use it directly.
-
-Each of these options is described in the [detailed instructions](?tabs=detailed-instructions#instructions).
-
-### Does Application Insights Agent support ASP.NET Core applications?
-
-Yes. In [Application Insights Agent 2.0.0](https://www.powershellgallery.com/packages/Az.ApplicationMonitor/2.0.0) and later, ASP.NET Core applications hosted in IIS are supported.
-
-### How do I verify that the enablement succeeded?
-
-* You can use the [Get-ApplicationInsightsMonitoringStatus](?tabs=api-reference#get-applicationinsightsmonitoringstatus) cmdlet to verify that enablement succeeded.
-* Use [Live Metrics](./live-stream.md) to quickly determine if your app is sending telemetry.
-* You can also use [Log Analytics](../logs/log-analytics-tutorial.md) to list all the cloud roles currently sending telemetry:
-
-    ```Kusto
-    union * | summarize count() by cloud_RoleName, cloud_RoleInstance
-    ```
-
-### How do I achieve proxy passthrough?
-
-To achieve proxy passthrough, configure a machine-level proxy or an application-level proxy.
-See [DefaultProxy](/dotnet/framework/configure-apps/file-schema/network/defaultproxy-element-network-settings).
-
-Example Web.config:
-
-```xml
-<system.net>
-    <defaultProxy>
-    <proxy proxyaddress="http://xx.xx.xx.xx:yyyy" bypassonlocal="true"/>
-    </defaultProxy>
-</system.net>
-```
-
 ## Troubleshooting
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/status-monitor-v2-troubleshoot).
