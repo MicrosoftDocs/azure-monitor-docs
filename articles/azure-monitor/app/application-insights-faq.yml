@@ -1,0 +1,47 @@
+### YamlMime:FAQ
+metadata:
+  title: Application Insights FAQ – Frequently Asked Questions
+  description: "Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor."
+  author: 
+  ms.author: 
+  ms.service: 
+  ms.topic: faq 
+  ms.date: 05/21/2025
+
+title: "Application Insights FAQ – Frequently Asked Questions"
+summary: |
+   Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor.
+
+
+sections:
+  - name: # Name of first section.
+    questions:
+      - question: Why am I missing telemetry data?
+        answer: Both [TelemetryChannels](telemetry-channels.md#what-are-telemetry-channels) will lose buffered telemetry if it isn't flushed before an application shuts down.
+
+                To avoid data loss, flush the TelemetryClient when an application is shutting down.
+
+                For more information, see [Flushing data](api-custom-events-metrics.md#flushing-data).
+          
+      - question: # Question.
+        answer: |
+          A multiline or formatted answer to the question.
+          Use any Markdown formatting you want, provided 
+          that you maintain the indent on the lines after 
+          the | characters.
+
+  - name: # Name of second section. Omit if you have only 
+          # a few questions. In that case, the first name 
+          # value is ignored and your questions 
+          # become the H2 level.
+    questions:
+      - question: # Question.
+        answer: # Answer.
+
+      - question: # Question.
+        answer: # Answer.
+
+additionalContent: |
+    ## Related content
+
+    To learn more, see [article title](link.md).
