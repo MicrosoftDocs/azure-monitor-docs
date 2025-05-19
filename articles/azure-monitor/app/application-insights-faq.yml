@@ -14,8 +14,7 @@ summary: |
 
 
 sections:
-  - name: | 
-      <a name="custom-anchor-name"></a>Overview
+  - name: Overview
     questions:
       - question: How do I instrument an application?
         answer: |
