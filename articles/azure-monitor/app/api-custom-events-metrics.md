@@ -1135,46 +1135,6 @@ To determine how long data is kept, see [Data retention and privacy](/previous-v
 * [Node.js SDK](https://github.com/Microsoft/ApplicationInsights-Node.js)
 * [JavaScript SDK](https://github.com/Microsoft/ApplicationInsights-JS)
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Why am I missing telemetry data?
-
-Both [TelemetryChannels](telemetry-channels.md#what-are-telemetry-channels) will lose buffered telemetry if it isn't flushed before an application shuts down.
-
-To avoid data loss, flush the TelemetryClient when an application is shutting down.
-
-For more information, see [Flushing data](#flushing-data).
-
-### What exceptions might `Track_()` calls throw?
-
-None. You don't need to wrap them in try-catch clauses. If the SDK encounters problems, it will log messages in the debug console output and, if the messages get through, in Diagnostic Search.
-
-### Is there a REST API to get data from the portal?
-
-Yes, the [data access API](/rest/api/application-insights/). Other ways to extract data include [Power BI](..\logs\log-powerbi.md) on [workspace-based resource](create-workspace-resource.md).
-
-### Why are my calls to custom events and metrics APIs ignored?
-
-The Application Insights SDK isn't compatible with autoinstrumentation. If autoinstrumentation is enabled, calls to <code class="notranslate">Track()</code> and other custom events and metrics APIs will be ignored.
-
-Turn off autoinstrumentation in the Azure portal on the Application Insights tab of the App Service page or set <code class="notranslate">ApplicationInsightsAgent_EXTENSION_VERSION</code> to <code class="notranslate">disabled</code>.
-
-### Why are the counts in Search and Metrics charts unequal?
-
-[Sampling](./sampling.md) reduces the number of telemetry items (like requests and custom events) that are sent from your app to the portal. In Search, you see the number of items received. In metric charts that display a count of events, you see the number of original events that occurred.
-          
-Each item that's transmitted carries an `itemCount` property that shows how many original events that item represents. To observe sampling in operation, you can run this query in Log Analytics:
-          
-```
-    requests | summarize original_events = sum(itemCount), transmitted_events = count()
-```
-
-### How can I set an alert on an event?
-
-Azure alerts are only on metrics. Create a custom metric that crosses a value threshold whenever your event occurs. Then set an alert on the metric. You get a notification whenever the metric crosses the threshold in either direction. You won't get a notification until the first crossing, no matter whether the initial value is high or low. There's always a latency of a few minutes.
-
 ## <a name="next"></a>Next steps
 
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
