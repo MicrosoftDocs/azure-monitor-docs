@@ -482,4 +482,4 @@ For troubleshooting information, including "no data" scenarios and customizing l
 
 <!--references-->
 
-[FAQ]: ./app-insights-overview.md#frequently-asked-questions
+[FAQ]: ./application-insights-faq.yml#overview

@@ -112,4 +112,4 @@ Select your enablement approach:
     - [JavaScript: Web](./javascript.md)
 - [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
 
-Check out the [Azure Monitor Application Insights FAQ](./app-insights-overview.md#frequently-asked-questions) and [OpenTelemetry FAQ](./opentelemetry-help-support-feedback.md#frequently-asked-questions) for more information.
+Check out the [Azure Monitor Application Insights FAQ](./application-insights-faq.yml#foverview) and [OpenTelemetry FAQ](./opentelemetry-help-support-feedback.md#frequently-asked-questions) for more information.
