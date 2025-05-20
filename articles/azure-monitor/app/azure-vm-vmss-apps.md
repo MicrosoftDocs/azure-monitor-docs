@@ -168,15 +168,6 @@ Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss.Name -Virtu
 
 ---
 
-## Frequently asked questions
-
-### How can I disable client-side monitoring for ASP.NET Core apps?
-
-Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable it, define an environment variable in the server with the following information:
-
-* **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
-* **Value:** `false`
-
 ## Troubleshooting
 
 Find troubleshooting tips for the Application Insights Monitoring Agent extension for .NET applications running on Azure virtual machines and virtual machine scale sets.
@@ -215,3 +206,4 @@ Added the ASP.NET Core autoinstrumentation feature.
 * [Deploy your application on Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app).
 * [Application Insights availability tests](availability.md)
 * [Monitor VM guest data](/azure/virtual-machines/monitor-vm#vm-guest-data)
+* To review frequently asked questions (FAQ), see [Azure VMs and virtual machine scale sets FAQ](application-insights-faq.yml#zure-vms-and-virtual-machine-scale-sets)

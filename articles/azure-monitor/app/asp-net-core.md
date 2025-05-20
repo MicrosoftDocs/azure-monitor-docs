@@ -213,7 +213,7 @@ The preceding sample is for a console app, but the same code can be used in any 
 
 ### ILogger logs
 
-The default configuration collects `ILogger` `Warning` logs and more severe logs. For more information, see [How do I customize ILogger logs collection?](#how-do-i-customize-ilogger-logs-collection).
+The default configuration collects `ILogger` `Warning` logs and more severe logs. For more information, see [How do I customize ILogger logs collection?](application-insights-faq.yml#how-do-i-customize-ilogger-logs-collection).
 
 ### Dependencies
 

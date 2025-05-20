@@ -259,6 +259,105 @@ sections:
         answer: |
            For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem). 
 
+  - name: ASP.NET
+    questions:
+      - question: How can I uninstall the SDK?
+        answer: |
+          To remove Application Insights, you need to remove the NuGet packages and references from the API in your application. You can uninstall NuGet packages by using the NuGet Package Manager in Visual Studio.
+
+          1. If trace collection is enabled, first uninstall the Microsoft.ApplicationInsights.TraceListener package by using the [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-a-package) but don't remove any dependencies.
+          1. Uninstall the Microsoft.ApplicationInsights.Web package and remove its dependencies by using the [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-a-package) and its [Uninstall options](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-options) within the [NuGet Package Manager Options control](/nuget/consume-packages/install-use-packages-visual-studio#nuget-package-manager-options-control).
+          1. To fully remove Application Insights, check and manually delete the added code or files along with any API calls you added in your project. For more information, see [What is automatically created when you add the Application Insights SDK?](#what-is-automatically-created-when-you-add-the-application-insights-sdk).
+      
+      - question: What is automatically created when you add the Application Insights SDK?
+        answer: |
+          When you add Application Insights to your project, it automatically creates files and adds code to some of your files. Solely uninstalling the NuGet Packages doesn't always discard the files and code. To fully remove Application Insights, you should check and manually delete the added code or files along with any API calls you added in your project.
+
+          When you add Application Insights Telemetry to a Visual Studio ASP.NET project, it adds the following files:
+
+          * *ApplicationInsights.config*
+          * *AiHandleErrorAttribute.cs*
+
+          The following pieces of code are automatically added:
+
+          * *[Your project's name].csproj*
+
+          ```C#
+           <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
+          ```
+
+          * *Packages.config*
+
+          ```xml
+          <packages>
+          ...
+    
+            <package id="Microsoft.ApplicationInsights" version="2.12.0" targetFramework="net472" />
+            <package id="Microsoft.ApplicationInsights.Agent.Intercept" version="2.4.0" targetFramework="net472" />
+            <package id="Microsoft.ApplicationInsights.DependencyCollector" version="2.12.0" targetFramework="net472" />
+            <package id="Microsoft.ApplicationInsights.PerfCounterCollector" version="2.12.0" targetFramework="net472" />
+            <package id="Microsoft.ApplicationInsights.Web" version="2.12.0" targetFramework="net472" />
+            <package id="Microsoft.ApplicationInsights.WindowsServer" version="2.12.0" targetFramework="net472" />
+            <package id="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel" version="2.12.0" targetFramework="net472" />
+    
+            <package id="Microsoft.AspNet.TelemetryCorrelation" version="1.0.7" targetFramework="net472" />
+    
+            <package id="System.Buffers" version="4.4.0" targetFramework="net472" />
+            <package id="System.Diagnostics.DiagnosticSource" version="4.6.0" targetFramework="net472" />
+            <package id="System.Memory" version="4.5.3" targetFramework="net472" />
+            <package id="System.Numerics.Vectors" version="4.4.0" targetFramework="net472" />
+            <package id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" targetFramework="net472" />
+          ...
+          </packages>
+          ```
+          * *Layout.cshtml*
+
+          If your project has a *Layout.cshtml* file, the following code is added.
+    
+          ```html
+          <head>
+          ...
+              <script type = 'text/javascript' >
+                  var appInsights=window.appInsights||function(config)
+                  {
+                      function r(config){ t[config] = function(){ var i = arguments; t.queue.push(function(){ t[config].apply(t, i)})} }
+                      var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
+                  }({
+                      instrumentationKey:'00000000-0000-0000-0000-000000000000'
+                  });
+            
+                  window.appInsights=appInsights;
+                  appInsights.trackPageView();
+              </script>
+          ...
+          </head>
+          ```
+
+          * *ConnectedService.json*
+
+          ```json
+          {
+            "ProviderId": "Microsoft.ApplicationInsights.ConnectedService.ConnectedServiceProvider",
+            "Version": "16.0.0.0",
+            "GettingStartedDocument": {
+              "Uri": "https://go.microsoft.com/fwlink/?LinkID=613413"
+           }
+          }
+          ```
+
+          * *FilterConfig.cs*
+
+          ```csharp
+                  public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+                  {
+                      filters.Add(new ErrorHandler.AiHandleErrorAttribute());// This line was added
+                  }
+          ```
+
+      - question: How can I disable telemetry correlation?
+        answer: |
+          To disable telemetry correlation in configuration, see `<ExcludeComponentCorrelationHttpHeadersOnDomains>` in [Application Insights for console applications](/previous-versions/azure/azure-monitor/app/console).
+  
   - name: ASP.NET Core applications
     questions:
       - question: Does Application Insights support ASP.NET Core 3.1?
@@ -298,7 +397,7 @@ sections:
          
       - question: How do I capture Request and Response body in my telemetry?
         answer: |
-          ASP.NET Core has [built-in support](/aspnet/core/fundamentals/http-logging) for logging HTTP Request/Response information (including body) via [`ILogger`](#ilogger-logs). It's recommended to leverage this. This may potentially expose personally identifiable information (PII) in telemetry, and can cause costs (performance costs and Application Insights billing) to significantly increase, so evaluate the risks carefully before using this.
+          ASP.NET Core has [built-in support](/aspnet/core/fundamentals/http-logging) for logging HTTP Request/Response information (including body) via [`ILogger`](asp-net-core.md#ilogger-logs). It's recommended to leverage this. This may potentially expose personally identifiable information (PII) in telemetry, and can cause costs (performance costs and Application Insights billing) to significantly increase, so evaluate the risks carefully before using this.
 
       - question: How do I customize ILogger logs collection?
         answer: |
@@ -436,7 +535,59 @@ sections:
         answer: |
           To disable telemetry correlation in code, see `<ExcludeComponentCorrelationHttpHeadersOnDomains>` in [Application Insights for console applications](/previous-versions/azure/azure-monitor/app/console).
 
- 
+  - name: ASP.NET performance counters      
+    questions:
+      - question: What's the difference between the Exception rate and Exceptions metrics?
+        answer:  |
+          * `Exception rate`: The Exception rate is a system performance counter. The CLR counts all the handled and unhandled exceptions that are thrown and divides the total in a sampling interval by the length of the interval. The Application Insights SDK collects this result and sends it to the portal.
+          * `Exceptions`: The Exceptions metric counts the `TrackException` reports received by the portal in the sampling interval of the chart. It includes only the handled exceptions where you write `TrackException` calls in your code. It doesn't include all [unhandled exceptions](./asp-net-exceptions.md).  
+
+  - name: ASP.NET event counters 
+    questions:
+      - question: Can I see EventCounters in Live Metrics?
+        answer: |
+          Live Metrics don't show EventCounters. Use Metric Explorer or Analytics to see the telemetry.
+
+      - question: After I enabled Application Insights from the Azure Web App Portal, why can't I see event counters?
+        answer: | 
+          [Application Insights extension](./azure-web-apps.md) for ASP.NET Core doesn't yet support this feature.
+
+  - name: Azure VMs and virtual machine scale sets
+    questions:
+      - question: How can I disable client-side monitoring for ASP.NET Core apps?
+        answer: |  
+          Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable it, define an environment variable in the server with the following information:
+
+          * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
+          * **Value:** `false`
+
+  - name: Dependency tracking
+    questions:
+      - question: How does the automatic dependency collector report failed calls to dependencies?
+        answer: |
+          Failed dependency calls have the `success` field set to False. The module `DependencyTrackingTelemetryModule` doesn't report `ExceptionTelemetry`. The full data model for dependency is described in [Application Insights telemetry data model](data-model-complete.md#dependency-telemetry).
+
+      - question: How do I calculate ingestion latency for my dependency telemetry?
+        answer: |
+          Use this code:
+
+          ```kusto
+          dependencies
+          | extend E2EIngestionLatency = ingestion_time() - timestamp 
+          | extend TimeIngested = ingestion_time()
+          ```
+
+      - question: How do I determine the time the dependency call was initiated?
+        answer: |
+          In the Log Analytics query view, `timestamp` represents the moment the TrackDependency() call was initiated, which occurs immediately after the dependency call response is received. To calculate the time when the dependency call began, you would take `timestamp` and subtract the recorded `duration` of the dependency call.
+
+      - question: Does dependency tracking in Application Insights include logging response bodies?
+        answer: |
+          Dependency tracking in Application Insights doesn't include logging response bodies as it would generate too much telemetry for most applications.            
+           
+  
+
+
 additionalContent: |
     ## Related content
 
