@@ -463,35 +463,6 @@ In order to enable telemetry collection with Application Insights, only the foll
 
 [!INCLUDE [azure-web-apps-arm-automation](includes/azure-monitor-app-insights-azure-web-apps-arm-automation.md)]
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### What does Application Insights modify in my project?
-
-The details depend on the type of project. The following list is an example for a web application.
-          
-* **Adds files to your project:**
-    * ApplicationInsights.config
-    * ai.js
-
-* **Installs NuGet packages:**
-    * Application Insights API: The core API
-    * Application Insights API for Web Applications: Used to send telemetry from the server
-    * Application Insights API for JavaScript Applications: Used to send telemetry from the client
-
-* **Includes assemblies in packages:**
-    * Microsoft.ApplicationInsights
-    * Microsoft.ApplicationInsights.Platform
-
-* **Inserts items into:**
-    * Web.config
-    * packages.config
-
-* Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*. For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).
-
-[!INCLUDE [azure-web-apps-troubleshoot](includes/azure-monitor-app-insights-azure-web-apps-troubleshoot.md)]
-
 ## Troubleshooting
 
 [!INCLUDE [azure-monitor-app-insights-test-connectivity](includes/azure-monitor-app-insights-test-connectivity.md)]
@@ -780,3 +751,4 @@ For the latest updates and bug fixes, [consult the release notes](web-app-extens
 * [Monitor service health metrics](../data-platform.md) to make sure your service is available and responsive.
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.
 * [Set up availability tests](availability-overview.md) for your application.
+* To review frequently asked questions (FAQ), see [Monitoring in Azure App Service for .NET, Node.js, Python, and Java applications FAQ](application-insights-faq.yml#monitoring-in-azure-app-service-for-net-node-js-python-and-java-applications)

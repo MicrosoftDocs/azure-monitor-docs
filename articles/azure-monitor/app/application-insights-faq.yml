@@ -627,6 +627,84 @@ sections:
         answer: |
           For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem).
 
+  - name: Monitoring in Azure App Service for .NET, Node.js, Python, and Java applications
+    questions:
+      - question: What does Application Insights modify in my project?
+        answer: |  
+          The details depend on the type of project. The following list is an example for a web application.
+          
+          * **Adds files to your project:**
+             * ApplicationInsights.config
+             * ai.js
+
+          * **Installs NuGet packages:**
+             * Application Insights API: The core API
+             * Application Insights API for Web Applications: Used to send telemetry from the server
+             * Application Insights API for JavaScript Applications: Used to send telemetry from the client
+
+          * **Includes assemblies in packages:**
+            * Microsoft.ApplicationInsights
+            * Microsoft.ApplicationInsights.Platform
+
+          * **Inserts items into:**
+            * Web.config
+            * packages.config
+
+          * Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*. For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).
+        
+      - question: What's the difference between standard metrics from Application Insights vs. Azure App Service metrics?
+        answer: |
+          Application Insights collects telemetry for the requests that made it to the application. If the failure occurs in WebApps/WebServer, and the request didn't reach the user application, Application Insights doesn't have any telemetry about it.
+
+          The duration for `serverresponsetime` calculated by Application Insights doesn't necessarily match the server response time observed by Web Apps. This behavior is because Application Insights only counts the duration when the request actually reaches the user application. If the request is stuck or queued in WebServer, the waiting time is included in the Web Apps metrics but not in Application Insights metrics.
+
+  - name: Autoinstrumentation
+    questions:
+      - question: Should the term "autoinstrumentation" be hyphenated?
+        answer: |
+          We follow the [Microsoft Style Guide](/style-guide/punctuation/dashes-hyphens/hyphens#prefixes) for product documentation published to the [Microsoft Learn](/) platform.
+
+          In general, we don't include a hyphen after the "auto" prefix.
+        
+  - name: Connection strings 
+    questions:
+      - question: Do new Azure regions require the use of connection strings?
+        answer: |
+          New Azure regions *require* the use of connection strings instead of instrumentation keys. Connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints your resource uses as a destination for your telemetry. Copy the connection string and add it to your application's code or to an environment variable.
+
+      - question: Should I use connection strings or instrumentation keys?
+        answer: |
+          We recommend that you use connection strings instead of instrumentation keys.
+
+      - question: When do I need to set the environment variable?
+        answer: |
+          Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` manually in all scenarios where the system doesn't provide it automatically. These scenarios include, but aren't limited to: local development and .NET Isolated Functions using ASP.NET Core integration. In these cases, the environment variable ensures the OpenTelemetry pipeline can send telemetry to Application Insights. For more information on configuring connection strings with an environment variable, see [Configuring OpenTelemetry in Application Insights](./opentelemetry-configuration.md#connection-string).
+
+      - question: How do I instrument a global web application to meet regional data compliance requirements?
+        answer: |
+          To meet regional data compliance requirements, use regional Application Insights endpoints instead of the global endpoint. The global endpoint doesn't guarantee that data stays within a specific region. Regional endpoints help ensure that telemetry from users in regulated areas is sent only to data centers in those regions.
+
+          To configure your global web application for regional compliance:
+
+          - Create one Application Insights resource per region with strict compliance requirements, such as the European Union or the United States.
+          - Create another Application Insights resource for users in all other regions.
+          - Configure your application to send telemetry to the appropriate Application Insights resource based on each user’s region. Determine the region using signals like IP address, account metadata, or location settings.
+          - Connect all Application Insights resources to a Log Analytics workspace if you need a unified query experience across regions.
+
+          For example:
+          - Send data from Region A users to the Region A Application Insights resource using the Region A connection string.
+          - Send data from Region B users to the Region B Application Insights resource using the Region B connection string.
+          - Send all other user data to a general-purpose Application Insights resource using a different connection string.
+
+          > [!Important]
+          > Using the global endpoint does not ensure regional compliance. To meet data residency requirements, always use region-specific endpoints and route telemetry based on the user’s region.
+
+          The following diagram shows an example setup for a global web application:
+
+          :::image type="content" source="media/connection-strings/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources." lightbox="media/application-insights-faq/routing-based-on-region.png":::
+
+
+
 additionalContent: |
     ## Related content
 
