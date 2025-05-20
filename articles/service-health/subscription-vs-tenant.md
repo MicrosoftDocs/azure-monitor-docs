@@ -2,7 +2,7 @@
 title: Subscription vs Tenant admin accounts in Service Health
 description: Information on the difference and how to set up the accounts 
 ms.topic: overview
-ms.date: 05/08/2025
+ms.date: 05/20/2025
 ---
 # Subscription vs Tenant Admin accounts in Service Health
 
@@ -30,7 +30,7 @@ For more information:
 
 | Scope | Access via Service Health Portal| Access via API|Access via Axure Resource Graphs (ARG) queries| Permissions required|
 |---|----|---|---|---|
-|**Tenant** | Yes| yes| No|Tenant Admin Role sees [admin access](admin-access-reference.md).|
+|**Tenant** | Yes| yes| No|Tenant Admin Role for more information see [admin access](admin-access-reference.md).|
 |**Subscription**| Yes| Yes|Yes|Subscription reader role or equivalent.|
 
 ## Subscription Account
