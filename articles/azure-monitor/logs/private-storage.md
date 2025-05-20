@@ -8,22 +8,22 @@ ms.date: 05/20/2025
 
 # Use customer-managed storage accounts in Azure Monitor Logs
 
-Azure Monitor typically manages storage automatically, but some scenarios require you to configure a customer-managed storage account. This article describes the use cases, requirements and procedures for setting up a customer-managed storage account link to a Log Analytics workspace.
+Azure Monitor typically manages storage automatically, but some scenarios require you to configure a customer-managed storage account. This article describes the use cases, requirements, and procedures for setting up a customer-managed storage account link to a Log Analytics workspace.
 
 | Scenarios requiring customer-managed storage account |
 |---|
 | [Private links](#private-links) used for custom/IIS log ingestion |
 | [Customer-managed key (CMK)](#customer-managed-key-data-encryption) data encryption of log alert queries and saved queries |
 
-Custom log content uploaded to customer-managed storage accounts might change in formatting or other unexpected ways, so carefully consider your dependencies on this content and understand the special circumstances for your use case.
+Custom log content uploaded to customer-managed storage accounts might change in formatting or other unexpected ways. Carefully consider your dependencies on this content and understand the special circumstances for your use case.
 
 ## Prerequisites
 
 > [!WARNING]
-> Starting June 30th, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
+> Starting June 30, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
 > [!WARNING]
-> Starting August 31st, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
+> Starting August 31, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
 
 | Action | Permission required |
 |---|---|
@@ -75,10 +75,10 @@ The storage account and the key vault must be in the same region. They don't nee
 
 | Special case | Remediation |
 |---|---|
-| When linking a storage account for queries with CMK, existing saved queries in a workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
+| When a storage account is linked for queries with CMK, existing saved queries in the workspace are deleted permanently for privacy. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). |
 | Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK. |
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
-| A single storage account can be used for all purposes - queries, alerts, custom logs and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025.|
+| A single storage account can be used for all purposes - queries, alerts, custom logs, and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.|
 
 ## Link storage accounts to your Log Analytics workspace
 
@@ -86,8 +86,8 @@ The following requirements will be enforced no earlier than August 31, 2025.
 
 | Upcoming requirement | Description |
 |---|---|
-| Managed identity assigned to the workspace | Creating new links to customer-managed storage accounts when no managed identity is assigned is blocked for all workspaces, including updating those already linked to a storage account. |
-| Storage account configured with role assignment for managed identity | Creating new links to customer-managed storage accounts when the storage account doesn't have a role assignment for the managed identity will be blocked for all workspaces, including updating those already linked to a storage account. |
+| Managed identity assigned to the workspace | Creating new links to customer-managed storage accounts when no managed identity is assigned is blocked for all workspaces, including updating existing links. |
+| Storage account configured with role assignment for managed identity | Creating new links to customer-managed storage accounts when the storage account doesn't have a role assignment for the managed identity will be blocked for all workspaces, including updating existing links.|
 
 ### Create a managed identity
 
@@ -118,7 +118,7 @@ On the Azure portal, open your workspace menu and select **Linked storage accoun
 
 :::image type="content" source="./media/private-storage/all-linked-storage-accounts.png" lightbox="./media/private-storage/all-linked-storage-accounts.png" alt-text="Screenshot that shows the Linked storage accounts pane.":::
 
-Selecting a type or the connection icon opens the storage account link details to setup or update the linked storage account for this type. Use the same storage account for multiple types to reduce complexity.
+Selecting a **Type** or the connection icon opens the storage account link details to set up or update the linked storage account for this type. Use the same storage account for multiple types to reduce complexity.
 
 #### [Azure CLI](#tab/azure-cli)
 
@@ -126,7 +126,7 @@ For more information, see [Configure linked storage account with Azure CLI](/cli
 
 The applicable `dataSourceType` values are:
 
-* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025.
+* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.
 * `Query`: To use the storage account to store saved queries (required for CMK encryption).
 * `Alerts`: To use the storage account to store log-based alerts (required for CMK encryption).
 
@@ -136,7 +136,7 @@ For more information, see [Configure linked storage account with REST API](/rest
 
 The applicable `dataSourceType` values are:
 
-* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1st, 2025.
+* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.
 * `Query`: To use the storage account to store saved queries (required for CMK encryption).
 * `Alerts`: To use the storage account to store log-based alerts (required for CMK encryption).
 
@@ -161,8 +161,8 @@ To stop using a storage account, unlink the storage from the workspace. When you
 
 To replace a storage account used for ingestion:
 
-1. **Create a link to a new storage account**. The logging agents will get the updated configuration and start sending data to the new storage. The process could take a few minutes.
-2. **Unlink the old storage account so agents will stop writing to the removed account**. The ingestion process keeps reading data from this account until it's all ingested. Don't delete the storage account until you see that all logs were ingested.
+1. **Create a link to a new storage account**. The logging agents get the updated configuration and start sending data to the new storage. The process could take a few minutes.
+2. **Unlink the old storage account so agents stop writing to the removed account**. The ingestion process keeps reading data from this account until it's all ingested. Don't delete the storage account until you see that all logs were ingested.
 
 ### Maintain storage accounts
 
