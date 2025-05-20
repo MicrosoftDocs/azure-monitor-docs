@@ -24,7 +24,7 @@ This article shows you how to set up Azure service health alerts with OpsGenie u
 
 1.  Fill out the other fields like **Recipients**, **Enabled**, and **Suppress Notifications**.
 
-1.  Copy and save the **Integration URL**, which should already contain your `apiKey` appended to the end.
+1.  Copy and save the **Integration** URL, which should already contain your `apiKey` appended to the end.
 
     ![The "Integration URL" in OpsGenie](./media/webhook-alerts/opsgenie-integration-url.png)
 
@@ -34,7 +34,7 @@ This article shows you how to set up Azure service health alerts with OpsGenie u
 ### For a new action group:
 1. Follow steps 1 through 8 in [Action Groups](./alerts-activity-log-service-notifications-portal.md).
 
-1. Define in the list of **Actions**:
+1. Define this data in the list of **Actions**:
 
     a. **Action Type:** *Webhook*
 
