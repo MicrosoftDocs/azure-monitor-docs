@@ -1617,7 +1617,7 @@ with tracer.start_as_current_span("my request span", kind=SpanKind.SERVER) as sp
 
 ### Send custom events
 
-[Application Insights](./app-insights-overview.md) stores custom events in the `customEvents` table. One way to *analyze, filter, and visualize* them is by using the [Application Insights usage experiences](./usage.md#slice-and-dice-custom-events).
+[Application Insights](./app-insights-overview.md) stores custom events in the `customEvents` table. One way to *analyze, filter, and visualize* them is by using the [Application Insights usage experiences](./usage.md#usage-analysis-with-custom-events).
 
 If you want to automate the collection of client-side interaction events, you can use the [plugin in the JavaScript SDK](./javascript-feature-extensions.md).
 

@@ -6,7 +6,7 @@ services: azure-monitor
 sub-service: logs
 ms.reviewer: rofrenke
 ms.topic: conceptual 
-ms.date: 05/08/2025
+ms.date: 05/19/2025
 
 # Customer intent: As an Azure administrator, I want to understand how to use attribute-based access control to granularly define access in Log Analytics workspaces.
 ---
