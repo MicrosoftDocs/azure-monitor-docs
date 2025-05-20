@@ -206,4 +206,4 @@ Added the ASP.NET Core autoinstrumentation feature.
 * [Deploy your application on Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-deploy-app).
 * [Application Insights availability tests](availability.md)
 * [Monitor VM guest data](/azure/virtual-machines/monitor-vm#vm-guest-data)
-* To review frequently asked questions (FAQ), see [Application Insights for Azure VMs and virtual machine scale sets FAQ](application-insights-faq.yml#zure-vms-and-virtual-machine-scale-sets)
+* To review frequently asked questions (FAQ), see [Application Insights for Azure VMs and virtual machine scale sets FAQ](application-insights-faq.yml#azure-vms-and-virtual-machine-scale-sets)
