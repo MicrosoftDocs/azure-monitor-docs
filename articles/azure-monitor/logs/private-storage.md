@@ -10,26 +10,34 @@ ms.date: 05/20/2025
 
 Azure Monitor typically manages storage automatically, but some scenarios require you to configure a customer-managed storage account. This article describes the use cases, requirements and procedures for setting up a customer-managed storage account link to a Log Analytics workspace.
 
+| Scenario requiring customer-managed storage account |
+|---|
+| [Private links](#private-links) used for custom/IIS log ingestion |
+| [Customer-managed key (CMK)](#customer-managed-key-data-encryption) data encryption of log alert queries and saved queries |
+
+Custom log content uploaded to customer-managed storage accounts might change in formatting or other unexpected ways, so carefully consider your dependencies on this content and understand the special circumstances for your use case.
+
+## Prerequisites
+
 > [!WARNING]
 > Starting June 30th, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1st, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
 > [!WARNING]
 > Starting August 31st, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
 
-Custom log content uploaded to customer-managed storage accounts might change in formatting or other unexpected ways, so carefully consider your dependencies on this content and understand the special circumstances for your use case.
-
-## Prerequisites
-
 | Action | Permission required |
 |---|---|
-| Manage linked storage accounts for a workspace | `Microsoft.OperationalInsights/workspaces/write` permission at the workspace. </br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). 
-| Manage a user assigned identity for a workspace | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identity. </br>For example, as provided by the built-in role, [Managed Identity Operator](azure/role-based-access-control/built-in-roles#managed-identity-operator) or [Managed Identity Contributor](/azure/role-based-access-control/built-in-roles#managed-identity-contributor). |
-| Minimum permissions for managed identity on storage account | [Storage Table Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#storage-table-data-contributor). |
+| Manage linked storage accounts for a workspace | `Microsoft.OperationalInsights/workspaces/write` permission at the workspace. </br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). |
+| Manage a system assigned managed identity for a workspace | `Microsoft.OperationalInsights/workspaces/write` permission at the workspace. </br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). |
+| Manage a user assigned managed identity for a workspace | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identity. </br>For example, as provided by the built-in role, [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) or [Managed Identity Contributor](/azure/role-based-access-control/built-in-roles#managed-identity-contributor). |
+| Minimum permissions for managed identity on storage account | [Storage Table Data Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-table-data-contributor). |
+
+Additionally, the linked storage account must be in the same region as the workspace.
 
 ## Private links
 Customer-managed storage accounts are used to ingest custom logs when private links are used to connect to Azure Monitor resources. The ingestion process of these data types first uploads logs to an intermediary Azure Storage account, and only then ingests them to a workspace.
 
-### Workspace requirements
+### Workspace requirements 
 When you connect to Azure Monitor over a private link, Azure Monitor Agent can only send logs to workspaces accessible over a private link. This requirement means you should:
 
 * Configure an Azure Monitor Private Link Scope (AMPLS) object.
@@ -38,18 +46,18 @@ When you connect to Azure Monitor over a private link, Azure Monitor Agent can o
 
 For more information on the AMPLS configuration procedure, see [Use Azure Private Link to securely connect networks to Azure Monitor](./private-link-security.md).
 
-### Storage account requirements
+### Storage account requirements for private link
+When you connect to Azure Monitor over a private link, the storage account must be accessible over a private link. This requirement means you should:
 For the storage account to connect to your private link, it must:
 
 * Be located on your virtual network or a peered network and connected to your virtual network over a private link.
-* Be located on the same region as the workspace it's linked to.
 * Allow Azure Monitor to access the storage account. To allow only specific networks to access your storage account, select the exception **Allow trusted Microsoft services to access this storage account**.
 
   :::image type="content" source="./media/private-storage/storage-trust.png" lightbox="./media/private-storage/storage-trust.png" alt-text="Screenshot that shows Storage account trust Microsoft services.":::
 
 If your workspace handles traffic from other networks, configure the storage account to allow incoming traffic coming from the relevant networks/internet.
 
-Coordinate the TLS version between the agents and the storage account. We recommend that you send data to Azure Monitor Logs by using TLS 1.2 or higher. If necessary, [configure your agents to use TLS](../agents/agent-windows.md#configure-agent-to-use-tls-12). If that's not possible, configure the storage account to accept TLS 1.0.
+Coordinate the TLS version between the agents and the storage account. We recommend that you send data to Azure Monitor Logs by using TLS 1.2 or higher. If necessary, [configure your agents to use TLS](../agents/agent-windows.md#configure-agent-to-use-tls-12). If that's not possible, configure the storage account to accept TLS 1.2.
 
 ## Customer-managed key data encryption
 Azure Storage encrypts all data at rest in a storage account. By default, it uses Microsoft-managed keys (MMKs) to encrypt the data. However, Azure Storage also allows you to use customer-managed keys (CMKs) from Azure Key Vault to encrypt your storage data. Either import your own keys into Key Vault or use the Key Vault APIs to generate keys.
@@ -82,18 +90,29 @@ Configure your storage account to use CMKs with Key Vault in one of the followin
 
 ## Link storage accounts to your Log Analytics workspace
 
-You must assign a managed identity to the workspace and configure your customer-managed storage account with an appropriate role assignment for the managed identity before linking the storage account. This requirement will be enforced starting August 31, 2025.
+The following requirements will be enforced no earlier than August 31, 2025. Get ready for this change by configuring your workspace with a managed identity.
+
+| Upcoming requirement | Description |
+|---|---|
+| Managed identity assigned to the workspace | Creating new links to customer-managed storage accounts when no managed identity is assigned is blocked for all workspaces, including updating those that are already linked to a storage account. |
+| Customer-managed storage account configured with an appropriate role assignment for the managed identity | Creating new links to customer-managed storage accounts when the storage account doesn't have permissions for the managed identity will be blocked for all workspaces, including updating those that are already linked to a storage account. |
+
+Until that enforcement though, the workspace doesn't use the managed identity for authentication to private storage. Don't remove your existing authentication method until the announcement is made that managed identities are enabled for authentication to private storage.
 
 Create or update your workspace with a managed identity using one of these methods:
 
-- Use the Azure portalthe **Identity** menu in the Log Analytics workspace user interface
+- Use the Azure portal Log Analytics workspaces **Identity** settings
+
+   :::image type="content" source="./media/private-storage/identity-setting.png" alt-text="Screenshot showing the workspace identity setting in the Azure portal.":::
+
 - Use a [Bicep](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep#identity) 
 - Use the [REST API](/rest/api/loganalytics/workspaces/get#identity). 
 - Use the [Azure CLI](/cli/azure/monitor/log-analytics/workspace/identity).
  
 For more information, see [What are managed identities for Azure resources?](/entra/identity/managed-identities-azure-resources/overview).
 
-Assign appropriate permissions on the storage account for the managed identity. For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Table Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
+Once the managed identity is assigned to the workspace, update the storage account to allow access to the managed identity.
+For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Table Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
 
 Now you're ready to link the storage account for your saved queries or log alert queries.
 
