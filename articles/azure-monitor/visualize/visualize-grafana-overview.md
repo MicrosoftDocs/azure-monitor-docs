@@ -3,7 +3,7 @@ title: Visualize with Grafana
 description: This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
 ms.topic: conceptual
 ms.reviewer: kayodeprinceMS
-ms.date: 05/06/2025
+ms.date: 05/20/2025
 ---
 
 # Visualize with Grafana
@@ -59,7 +59,7 @@ You can then display this performance and availability data on your Grafana dash
 
 ## Managed Grafana related content
 
-The following is a list of related managed Grafana documentation.
+The following is a list of related managed Grafana documentation. For general information about Azure Managed Grafana, see [Azure Managed Grafana overview](/azure/managed-grafana/overview.md)
 
 ### Containers
 - [Monitor Kubernetes](../containers/monitor-kubernetes.md)
