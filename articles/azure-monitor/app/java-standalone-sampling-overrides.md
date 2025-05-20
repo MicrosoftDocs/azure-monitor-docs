@@ -422,4 +422,4 @@ warning messages.
 
 ## Next step
 
-- To review frequently asked questions (FAQ), see [Sampling overrides FAQ](application-insights-faq.yml#sampling-overrides-application-insights-for-java).
+- To review frequently asked questions (FAQ), see [Sampling overrides FAQ](application-insights-faq.yml#sampling---overrides-application-insights-for-java).

@@ -131,7 +131,7 @@ To paste the connection string in your environment, follow these steps:
 
     The `connectionString` format must follow "InstrumentationKey=xxxx;....". If the string provided doesn't meet this format, the SDK load process fails.
  
-    The connection string isn't considered a security token or key. For more information, see [Do new Azure regions require the use of connection strings?](./connection-strings.md#do-new-azure-regions-require-the-use-of-connection-strings).
+    The connection string isn't considered a security token or key. For more information, see [Do new Azure regions require the use of connection strings?](./application-insights-faq.yml#do-new-azure-regions-require-the-use-of-connection-strings).
 
    > [!NOTE]
    > The Application Insights JavaScript SDK requires the connection string to be provided during initialization and configuration. This connection string is visible in plain text in client browsers, and there is no straightforward way to use [Microsoft Entra ID-based authentication](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights) for browser telemetry. We recommend that you consider creating a separate Application Insights resource with local authentication enabled for JavaScript browser-based telemetry if you need to secure the service telemetry separately using Microsoft Entra ID-based authentication.
