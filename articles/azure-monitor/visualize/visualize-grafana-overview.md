@@ -59,7 +59,7 @@ You can then display this performance and availability data on your Grafana dash
 
 ## Managed Grafana related content
 
-The following is a list of related managed Grafana documentation. For general information about Azure Managed Grafana, see [Azure Managed Grafana overview](/azure/managed-grafana/overview.md)
+The following is a list of related managed Grafana documentation. For general information about Azure Managed Grafana, see [Azure Managed Grafana overview](https://learn.microsoft.com/azure/managed-grafana/overview)
 
 ### Containers
 - [Monitor Kubernetes](../containers/monitor-kubernetes.md)
