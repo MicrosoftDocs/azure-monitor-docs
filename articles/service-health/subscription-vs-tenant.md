@@ -6,6 +6,8 @@ ms.date: 05/20/2025
 ---
 # Subscription vs Tenant Admin accounts in Service Health
 
+In Azure Service Health, tenant-level and subscription-level access are different. These differences determine what service health updates a user can see and who is allowed to view them. This article provides a breakdown on the access needed to use Azure Service Health.
+
 ## Tenant Admin Account
 
 In the Azure Service Health portal, a tenant admin role refers to a dedicated instance of Azure Active Directory (Azure AD) that an organization receives when it signs up for a Microsoft cloud service. The tenant is used to manage users, groups, and permissions within the organization. Tenant-level events affect the entire organization, and users with tenant admin access can see them.
@@ -61,5 +63,5 @@ For more information, see[Resource impact from Azure security incidents](impacte
 
 >[!Note]
 > 
-* Tenant level events can't be seen within Subscription scope on UI. 
-* Subscription level events can't be seen at Tenant scope. Events published on Azure Service Health are mutually exclusive in view scope.
+>* Tenant level events can't be seen within Subscription scope on UI. 
+>* Subscription level events can't be seen at Tenant scope. Events published on Azure Service Health are mutually exclusive in view scope.
