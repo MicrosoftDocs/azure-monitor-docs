@@ -701,7 +701,7 @@ sections:
 
           The following diagram shows an example setup for a global web application:
 
-          :::image type="content" source="media/connection-strings/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources." lightbox="media/application-insights-faq/routing-based-on-region.png":::
+          :::image type="content" source="media/application-insights-faq/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources." lightbox="media/application-insights-faq/routing-based-on-region.png":::
 
 
 

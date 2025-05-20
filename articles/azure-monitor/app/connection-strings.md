@@ -158,45 +158,6 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 | Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
 | Python | [OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
 
-## Frequently asked questions
-
-This section provides answers to common questions.
-
-### Do new Azure regions require the use of connection strings?
-
-New Azure regions *require* the use of connection strings instead of instrumentation keys. Connection string identifies the resource that you want to associate with your telemetry data. It also allows you to modify the endpoints your resource uses as a destination for your telemetry. Copy the connection string and add it to your application's code or to an environment variable.
-
-### Should I use connection strings or instrumentation keys?
-
-We recommend that you use connection strings instead of instrumentation keys.
-
-#### When do I need to set the environment variable?
-
-Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` manually in all scenarios where the system doesn't provide it automatically. These scenarios include, but aren't limited to: local development and .NET Isolated Functions using ASP.NET Core integration. In these cases, the environment variable ensures the OpenTelemetry pipeline can send telemetry to Application Insights. For more information on configuring connection strings with an environment variable, see [Configuring OpenTelemetry in Application Insights](./opentelemetry-configuration.md#connection-string).
-
-### FAQ: How do I instrument a global web application to meet regional data compliance requirements?
-
-To meet regional data compliance requirements, use regional Application Insights endpoints instead of the global endpoint. The global endpoint doesn't guarantee that data stays within a specific region. Regional endpoints help ensure that telemetry from users in regulated areas is sent only to data centers in those regions.
-
-To configure your global web application for regional compliance:
-
-- Create one Application Insights resource per region with strict compliance requirements, such as the European Union or the United States.
-- Create another Application Insights resource for users in all other regions.
-- Configure your application to send telemetry to the appropriate Application Insights resource based on each user’s region. Determine the region using signals like IP address, account metadata, or location settings.
-- Connect all Application Insights resources to a Log Analytics workspace if you need a unified query experience across regions.
-
-For example:
-- Send data from Region A users to the Region A Application Insights resource using the Region A connection string.
-- Send data from Region B users to the Region B Application Insights resource using the Region B connection string.
-- Send all other user data to a general-purpose Application Insights resource using a different connection string.
-
-> [!Important]
-> Using the global endpoint does not ensure regional compliance. To meet data residency requirements, always use region-specific endpoints and route telemetry based on the user’s region.
-
-The following diagram shows an example setup for a global web application:
-
-:::image type="content" source="media/connection-strings/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources." lightbox="media/connection-strings/routing-based-on-region.png":::
-
 ## Next steps
 
 Get started at runtime with:
@@ -212,3 +173,5 @@ Get started at development time with:
 * [Java](./opentelemetry-enable.md?tabs=java)
 * [Node.js](./nodejs.md)
 * [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
+
+To review frequently asked questions (FAQ), see [Connection strings in Application Insights FAQ](application-insights-faq.yml#connetion-strings)
