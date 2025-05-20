@@ -3,7 +3,7 @@ title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: conceptual
 ms.reviewer: noakuper
-ms.date: 05/05/2025
+ms.date: 05/20/2025
 ---
 
 # Use customer-managed storage accounts in Azure Monitor Logs
@@ -17,6 +17,14 @@ Azure Monitor typically manages storage automatically, but some scenarios requir
 > Starting August 31st, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
 
 Custom log content uploaded to customer-managed storage accounts might change in formatting or other unexpected ways, so carefully consider your dependencies on this content and understand the special circumstances for your use case.
+
+## Prerequisites
+
+| Action | Permission required |
+|---|---|
+| Manage linked storage accounts for a workspace | `Microsoft.OperationalInsights/workspaces/write` permission at the workspace. </br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). 
+| Manage a user assigned identity for a workspace | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identity. </br>For example, as provided by the built-in role, [Managed Identity Operator](azure/role-based-access-control/built-in-roles#managed-identity-operator) or [Managed Identity Contributor](/azure/role-based-access-control/built-in-roles#managed-identity-contributor). |
+| Minimum permissions for managed identity on storage account | [Storage Table Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles#storage-table-data-contributor). |
 
 ## Private links
 Customer-managed storage accounts are used to ingest custom logs when private links are used to connect to Azure Monitor resources. The ingestion process of these data types first uploads logs to an intermediary Azure Storage account, and only then ingests them to a workspace.
@@ -44,20 +52,14 @@ If your workspace handles traffic from other networks, configure the storage acc
 Coordinate the TLS version between the agents and the storage account. We recommend that you send data to Azure Monitor Logs by using TLS 1.2 or higher. If necessary, [configure your agents to use TLS](../agents/agent-windows.md#configure-agent-to-use-tls-12). If that's not possible, configure the storage account to accept TLS 1.0.
 
 ## Customer-managed key data encryption
-Azure Storage encrypts all data at rest in a storage account. By default, it uses Microsoft-managed keys (MMKs) to encrypt the data. However, Azure Storage also allows you to use customer-managed keys (CMKs) from Azure Key Vault to encrypt your storage data. You can either import your own keys into Key Vault or use the Key Vault APIs to generate keys.
-
-### CMK scenarios that require a customer-managed storage account
+Azure Storage encrypts all data at rest in a storage account. By default, it uses Microsoft-managed keys (MMKs) to encrypt the data. However, Azure Storage also allows you to use customer-managed keys (CMKs) from Azure Key Vault to encrypt your storage data. Either import your own keys into Key Vault or use the Key Vault APIs to generate keys.
 
 A customer-managed storage account is required for:
 
 * Encrypting log-alert queries with CMKs.
 * Encrypting saved queries with CMKs.
 
-### Apply CMKs to customer-managed storage accounts
-
-Follow this guidance to apply CMKs to customer-managed storage accounts.
-
-#### Storage account requirements
+#### Storage account requirements for CMKs
 
 The storage account and the key vault must be in the same region. They don't need to be from the same subscription though. For more information, see [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
 
@@ -82,9 +84,16 @@ Configure your storage account to use CMKs with Key Vault in one of the followin
 
 You must assign a managed identity to the workspace and configure your customer-managed storage account with an appropriate role assignment for the managed identity before linking the storage account. This requirement will be enforced starting August 31, 2025.
 
-Create or update your workspace with a managed identity using a [deployment template](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep#identity) or the [REST API](/rest/api/loganalytics/workspaces/get#identity). For more information, see [What are managed identities for Azure resources?](/entra/identity/managed-identities-azure-resources/overview).
+Create or update your workspace with a managed identity using one of these methods:
 
-Assign appropriate permissions on the storage account for the managed identity. For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Blob Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
+- Use the Azure portalthe **Identity** menu in the Log Analytics workspace user interface
+- Use a [Bicep](/azure/templates/microsoft.operationalinsights/workspaces?tabs=bicep&pivots=deployment-language-bicep#identity) 
+- Use the [REST API](/rest/api/loganalytics/workspaces/get#identity). 
+- Use the [Azure CLI](/cli/azure/monitor/log-analytics/workspace/identity).
+ 
+For more information, see [What are managed identities for Azure resources?](/entra/identity/managed-identities-azure-resources/overview).
+
+Assign appropriate permissions on the storage account for the managed identity. For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Table Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
 
 Now you're ready to link the storage account for your saved queries or log alert queries.
 
