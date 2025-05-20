@@ -20,17 +20,17 @@ To create a tenant account in Service Health, follow these steps:
 3.	**Manage tenants**: Navigate to Identity > Overview > Manage tenants.
 4.	**Create a new tenant**: Select Create. On the Basics tab, choose the type of tenant you want to create, either Microsoft Entra ID or Microsoft Entra ID (B2C).
 5.	**Enter tenant details**: On the Configuration tab, enter the following information:
-    - **Organization name**: Enter the name of your organization (e.g., Contoso Organization).
-    - **Initial domain name**: Provide an initial domain name for your tenant (e.g., Contosoorg).
+    - **Organization name**: Enter the name of your organization (for example, Contoso Organization).
+    - **Initial domain name**: Provide an initial domain name for your tenant (for example, Contosoorg).
     - **Country/Region**: Select your desired country or region from the dropdown menu, or leave the default option.
 6.	**Review and create**: Select Next: Review + Create. Review the information you entered and if everything is correct, select Create in the lower left corner. Your new tenant account is created with the domain contoso.onmicrosoft.com (*this account is a sample account*).
 Once the tenant is created, you're the first user and automatically assigned the Global Administrator role. You can then manage your tenant account and assign roles to other users as needed. 
 
 For more information:
 
-| Scope | Access via Service Health Portal| Access via API|Access via Axure Resource Graphs (ARG) queries| Permissions required|
+| Scope | Access via Service Health Portal| Access via API|Access via Azure Resource Graphs (ARG) queries| Permissions required|
 |---|----|---|---|---|
-|**Tenant** | Yes| yes| No|Tenant Admin Role for more information see [admin access](admin-access-reference.md).|
+|**Tenant** | Yes| yes| No|Tenant Admin Role for  see [Roles with tenant admin access](admin-access-reference.md).|
 |**Subscription**| Yes| Yes|Yes|Subscription reader role or equivalent.|
 
 ## Subscription Account
