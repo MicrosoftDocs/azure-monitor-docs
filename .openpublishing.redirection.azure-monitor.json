@@ -8348,7 +8348,8 @@
    "source_path": "articles/azure-monitor/reference/tables/aadfirstpartytofirstpartysigninlogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
-  }
+  },
+  {
     "source_path": "articles/azure-monitor/visualize/grafana-plugin.md",
     "redirect_url": "/azure/azure-monitor/visualize/visualize-grafana-overview",
     "redirect_document_id": false
