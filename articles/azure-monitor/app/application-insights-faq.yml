@@ -703,9 +703,174 @@ sections:
 
           :::image type="content" source="media/application-insights-faq/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources." lightbox="media/application-insights-faq/routing-based-on-region.png":::
 
+  - name: Creating and configuring Application Insights resources
+    questions:
+      - question: How do I move an Application Insights resource to a new region?
+        answer: | 
+          Transferring existing Application Insights resources between regions isn't supported, and you can't migrate historical data to a new region. The workaround involves:
 
+          * Creating a new Application Insights resource in the desired region.
+          * Re-creating any unique customizations from the original resource in the new one.
+          * Updating your application with the new region resource's [connection string](./connection-strings.md).
+          * Testing to ensure everything works as expected with the new Application Insights resource.
+          * Decide to either keep or delete the original Application Insights resource. Deleting a classic resource means to lose all historical data. If the resource is workspace-based, the data remains in Log Analytics, enabling access to historical data until the retention period expires.
 
-additionalContent: |
-    ## Related content
+          Unique customizations that commonly need to be manually re-created or updated for the resource in the new region include but aren't limited to:
 
-    To learn more, see [article title](link.md).
+          * Re-create custom dashboards and workbooks.
+          * Re-create or update the scope of any custom log/metric alerts.
+          * Re-create availability alerts.
+          * Re-create any custom Azure role-based access control settings that are required for your users to access the new resource.
+          * Replicate settings involving ingestion sampling, data retention, daily cap, and custom metrics enablement. These settings are controlled via the **Usage and estimated costs** pane.
+          * Any integration that relies on API keys, such as [release annotations](./release-and-work-item-insights.md?tabs=release-annotations) and [live metrics secure control channel](./live-stream.md#secure-the-control-channel). You need to generate new API keys and update the associated integration.
+          * Continuous export in classic resources must be configured again.
+          * Diagnostic settings in workspace-based resources must be configured again.
+
+      - question: Can I use providers('Microsoft.Insights', 'components').apiVersions[0] in my Azure Resource Manager deployments?
+        answer: |
+          We don't recommend using this method of populating the API version. The newest version can represent preview releases, which might contain breaking changes. Even with newer non-preview releases, the API versions aren't always backward compatible with existing templates. In some cases, the API version might not be available to all subscriptions.
+        
+  - name: Telemetry data model
+    questions:
+      - question: How can I report data model or schema problems and suggestions?
+        answer: |
+          To report data model or schema problems and suggestions, use our [GitHub repository](https://github.com/microsoft/ApplicationInsights-dotnet/issues/new/choose).
+
+      - question: How would I measure the impact of a monitoring campaign?
+        answer: |
+          PageView Telemetry includes URL and you could parse the UTM parameter using a regex function in Kusto.
+
+          Occasionally, this data might be missing or inaccurate if the user or enterprise disables sending User Agent in browser settings. The [UA Parser regexes](https://github.com/ua-parser/uap-core/blob/master/regexes.yaml) might not include all device information. Or Application Insights might not have adopted the latest updates.
+
+      - question: Why would a custom measurement succeed without error but the log doesn't show up?
+        answer: |
+          This can occur if you're using string values. Only numeric values work with custom measurements.
+        
+  - name: Logging with .NET
+    questions:
+      - question: What Application Insights telemetry type is produced from ILogger logs? Where can I see ILogger logs in Application Insights?
+        answer: |
+          `ApplicationInsightsLoggerProvider` captures `ILogger` logs and creates `TraceTelemetry` from them. If an `Exception` object is passed to the `Log` method on `ILogger`, `ExceptionTelemetry` is created instead of `TraceTelemetry`. 
+
+          **Viewing ILogger Telemetry**
+
+          In the Azure portal:
+
+          1. Go to the Azure portal and access your Application Insights resource.
+          1. Select the **Logs** section inside Application Insights.
+          1. Use Kusto Query Language (KQL) to query ILogger messages stored in the `traces` table.
+              Example Query: `traces | where message contains "YourSearchTerm"`.
+          1. Refine your queries to filter ILogger data by severity, time range, or specific message content.
+
+          In Visual Studio (Local Debugger):
+
+          1. Start your application in debug mode within Visual Studio.
+          1. Open the **Diagnostic Tools** window while the application runs.
+          1. In the **Events** tab, ILogger logs appear along with other telemetry data.
+          1. To locate specific ILogger messages, use the search and filter features in the **Diagnostic Tools** window.
+
+          If you prefer to always send `TraceTelemetry`, use this snippet:
+
+          ```csharp
+          builder.AddApplicationInsights(
+              options => options.TrackExceptionsAsExceptionTelemetry = false);
+          ```
+
+      - question: Why do some ILogger logs not have the same properties as others?
+        answer: |
+          Application Insights captures and sends `ILogger` logs by using the same `TelemetryConfiguration` information that's used for every other telemetry. But there's an exception. By default, `TelemetryConfiguration` isn't fully set up when you log from *Program.cs* or *Startup.cs*. Logs from these places don't have the default configuration, so they aren't running all `TelemetryInitializer` instances and `TelemetryProcessor` instances.
+         
+      - question: I'm using the standalone package Microsoft.Extensions.Logging.ApplicationInsights, and I want to log more custom telemetry manually. How should I do that?
+        answer: |
+          When you use the standalone package, `TelemetryClient` isn't injected to the dependency injection (DI) container. You need to create a new instance of `TelemetryClient` and use the same configuration that the logger provider uses, as the following code shows. This requirement ensures that the same configuration is used for all custom telemetry and telemetry from `ILogger`.
+
+          ```csharp
+          public class MyController : ApiController
+          {
+             // This TelemetryClient instance can be used to track additional telemetry through the TrackXXX() API.
+             private readonly TelemetryClient _telemetryClient;
+             private readonly ILogger _logger;
+
+             public MyController(IOptions<TelemetryConfiguration> options, ILogger<MyController> logger)
+             {
+                  _telemetryClient = new TelemetryClient(options.Value);
+                  _logger = logger;
+             }  
+          }
+          ```
+
+          > [!NOTE]
+          > If you use the `Microsoft.ApplicationInsights.AspNetCore` package to enable Application Insights, modify this code to get `TelemetryClient` directly in the constructor.
+
+      - question: I don't have the SDK installed, and I use the Azure Web Apps extension to enable Application Insights for my ASP.NET Core applications. How do I use the new provider? 
+        answer: |
+          The Application Insights extension in Azure Web Apps uses the new provider. You can modify the filtering rules in the *appsettings.json* file for your application.
+       
+  - name: Java Profiler
+    questions:
+      - question: What is Azure Monitor Application Insights Java Profiling?
+        answer: |     
+          The Java Profiler uses Java Flight Recorder (JFR) to profile your application using  a customized configuration.
+
+      - question: What is Java Flight Recorder?
+        answer: |
+          Java Flight Recorder (JFR) is a tool for collecting profiling data of a running Java application. JFR is integrated into the Java Virtual Machine (JVM) and is used for troubleshooting performance issues. Learn more about [Java SE JFR Runtime](https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/about.htm#JFRUH170).
+
+      - question: What is the price and/or licensing fee implications for enabling App Insights Java Profiling?
+        answer: | 
+          Java Profiling is a free feature with Application Insights. [Azure Monitor Application Insights pricing](https://azure.microsoft.com/pricing/details/monitor/) is based on ingestion cost.
+
+      - question: Which Java profiling information is collected? 
+        answer: |
+          Profiling data collected by the JFR includes: method and execution profiling data, garbage collection data, and lock profiles.
+
+      - question: How can I use App Insights Java Profiling and visualize the data?
+        answer:  |
+          JFR recording can be viewed and analyzed with your preferred tool, for example [Java Mission Control (JMC)](https://jdk.java.net/jmc/8/).
+
+      - question: Are performance diagnosis and fix recommendations provided with App Insights Java Profiling?
+        answer: | 
+          'Performance diagnostics and recommendations' is a new feature that is available soon as Application Insights Java Diagnostics. You can [sign up](https://aka.ms/JavaO11y) to preview this feature. JFR recording can be viewed with Java Mission Control (JMC).
+          
+      - question: What's the difference between on-demand and automatic Java Profiling in App Insights?
+        answer: | 
+          On-demand is user triggered profiling in real-time whereas automatic profiling is with preconfigured triggers.
+
+          Use [Profile Now](../profiler/profiler-settings.md) for the on-demand profiling option. [Profile Now](../profiler/profiler-settings.md) immediately profiles all agents that are attached to the Application Insights instance.
+
+          Automated profiling is triggered by reaching a resource threshold.
+
+      - question: Which Java profiling triggers can I configure?
+        answer: |
+          Application Insights Java Agent currently supports monitoring of CPU and memory consumption. CPU threshold is configured as a percentage of all available cores on the machine. Memory is the current Tenured memory region (OldGen) occupancy against the maximum possible size of the region.
+
+      - question: What are the required prerequisites to enable Java Profiling?
+        answer: |
+          Review the [Prerequisites](java-standalone-profiler.md#prerequisites).
+
+      - question: Can I use Java Profiling for a microservices application?
+        answer: |
+          Yes, you can profile a JVM running microservices using the JFR.
+
+  - name: Sampling overrides - Application Insights for Java       
+    questions:
+      - question: Do I need to use manual instrumentation to enable Sampling Overrides?
+        answer: | 
+          No, Sampling Overrides is now generally available (GA) and can be used with both autoinstrumentation and manual instrumentation.
+
+      - question: How do I configure Sampling Overrides when using Azure App Service with autoinstrumentation?
+        answer: |
+          If you use autoinstrumentation, update the `applicationinsights.json` file in the Azure portal.
+
+      - question: Is it necessary to manually upload the Application Insights agent file for Sampling Overrides?
+        answer: |
+          For autoinstrumentation, no manual agent upload is required. However, for manual instrumentation, you still need to include the Application Insights agent JAR file and configuration files in your deployment package.
+
+      - question: What is the difference between "local development" and "application server" in the context of manual instrumentation?
+        answer: |
+          Local development refers to the environment where the app is being built or tested, such as a developer's machine or an Azure Cloud Shell instance. Application server refers to the web server running the application, such as Tomcat 11 in an Azure App Service environment. When using manual instrumentation, you must ensure that the agent JAR file is correctly placed on the application server.
+
+      - question: If I'm using an Azure App Service with a Java runtime (for example, Tomcat 11), how do I configure Sampling Overrides?
+        answer: |
+          For autoinstrumentation, you can configure Sampling Overrides via the Azure portal. If using manual instrumentation, you should place the Application Insights agent JAR in the appropriate directory and include the applicationinsights.json file with your desired sampling settings.
+        

@@ -174,4 +174,4 @@ Get started at development time with:
 * [Node.js](./nodejs.md)
 * [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
 
-To review frequently asked questions (FAQ), see [Connection strings in Application Insights FAQ](application-insights-faq.yml#connetion-strings)
+To review frequently asked questions (FAQ), see [Connection strings in Application Insights FAQ](application-insights-faq.yml#connection-strings)
