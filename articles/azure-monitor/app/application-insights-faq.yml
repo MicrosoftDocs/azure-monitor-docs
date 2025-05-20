@@ -148,7 +148,7 @@ sections:
 
           To avoid data loss, flush the TelemetryClient when an application is shutting down.
 
-          For more information, see [Flushing data](#flushing-data).
+          For more information, see [Flushing data](api-custom-events-metrics.md#flushing-data).
           
       - question: What exceptions might Track_() calls throw?
         answer: |

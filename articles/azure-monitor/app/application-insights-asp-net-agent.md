@@ -315,7 +315,7 @@ When you monitor a computer on your private intranet, you need to route HTTP tra
 The PowerShell commands to download and install Az.ApplicationMonitor from the PowerShell Gallery support a `-Proxy` parameter.
 Review the preceding instructions when you write your installation scripts.
 
-The Application Insights SDK needs to send your app's telemetry to Microsoft. We recommend that you configure proxy settings for your app in your web.config file. For more information, see [How do I achieve proxy passthrough?](#how-do-i-achieve-proxy-passthrough).
+The Application Insights SDK needs to send your app's telemetry to Microsoft. We recommend that you configure proxy settings for your app in your web.config file. For more information, see [How do I achieve proxy passthrough?](application-insights-faq.yml#how-do-i-achieve-proxy-passthrough).
 
 ### Enable monitoring
 
