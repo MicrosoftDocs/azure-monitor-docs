@@ -2,7 +2,7 @@
 title: Performance efficiency in Azure Monitor
 description: Recommendations for configuring Azure Monitor for performance efficiency.
 ms.topic: conceptual
-ms.date: 03/12/2024
+ms.date: 05/21/2025
 ms.reviewer: bwren
 ---
 
