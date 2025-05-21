@@ -108,7 +108,7 @@ For more information, see [What are managed identities for Azure resources?](/en
 
 ### Add a role assignment
 
-Once the managed identity is assigned to the workspace, update the storage account to allow access to the managed identity. For example, if you configured your workspace to use a system-assigned managed identity, assign that identity the **Storage Table Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
+Once the managed identity is assigned to the workspace, update the storage account to allow access to the managed identity. Assign that identity the **Storage Table Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
 
 ### Add the link
 
