@@ -70,7 +70,7 @@ This table lists the Azure Monitor Agent disk space requirements. Azure Monitor 
 | Extension logs | Linux (Azure Arc) | */var/lib/GuestConfig/extension_logs/Microsoft.Azure.Monitor.AzureMonitorLinuxAgent-{version}/* | 100 MB |
 | Extension logs | Windows (Azure VM) | *C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 100 MB |
 | Extension logs | Windows (Azure Arc) | *C:\ProgramData\GuestConfig\extension_logs\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent* | 100 MB |
-| Agent cache | Linux | */etc/opt/microsoft/azuremonitoragent*, */var/opt/microsoft/azuremonitoragent* | 500 MB |
+| Agent cache | Linux | */etc/opt/microsoft/azuremonitoragent*, */opt/microsoft/azuremonitoragent* | 500 MB |
 | Agent cache | Windows (Azure VM) | *C:\WindowsAzure\Resources\AMADataStore.{DataStoreName}* | 10.5 GB |
 | Agent cache | Windows (Azure Arc) | *C:\Resources\Directory\AMADataStore.{DataStoreName}* | 10.5 GB |
 | Event cache | Linux | */var/opt/microsoft/azuremonitoragent/events* | 10 GB |
