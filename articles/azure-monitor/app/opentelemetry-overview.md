@@ -93,12 +93,6 @@ Dependencies | Other Span Types (Client, Internal, etc.)
 Operation ID | Trace ID
 ID or Operation Parent ID | Span ID
 
-## Frequently asked questions
-
-#### Where can I find a list of Application Insights SDK versions and their names?
-
-A list of SDK versions and names is hosted on GitHub. For more information, see [SDK Version](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/docs/versions_and_names.md).
-
 ## Next steps
 
 Select your enablement approach:
@@ -112,4 +106,4 @@ Select your enablement approach:
     - [JavaScript: Web](./javascript.md)
 - [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
 
-Check out the [Azure Monitor Application Insights FAQ](./application-insights-faq.yml#overview) and [OpenTelemetry FAQ](./opentelemetry-help-support-feedback.md#frequently-asked-questions) for more information.
+Check out the [Azure Monitor Application Insights FAQ](./application-insights-faq.yml#overview), [OpenTelemetry FAQ](application-insights-faq.yml#azure-monitor-opentelemetry) and [OpenTelemetry FAQ](./opentelemetry-help-support-feedback.md#frequently-asked-questions) for more information.

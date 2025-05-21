@@ -1029,6 +1029,11 @@ sections:
           The supported values are NONE, ERROR, WARN, INFO, DEBUG, VERBOSE and ALL.
           For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js?tab=readme-ov-file#applicationinsights-3x-sdk-unsupported-properties).
         
+  - name: Azure Monitor OpenTelemetry
+    questions:
+      - question: Where can I find a list of Application Insights SDK versions and their names?
+        answer: |
+          A list of SDK versions and names is hosted on GitHub. For more information, see [SDK Version](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/docs/versions_and_names.md). 
 
   - name: Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry
     questions:
@@ -1529,13 +1534,13 @@ sections:
           * Reduces enablement effort
           * Supported by Microsoft
           * Brings in Azure-specific features such as:
-          * Sampling compatible with classic Application Insights SDKs
-          * [Microsoft Entra authentication](../app/azure-ad-authentication.md)
-          * [Offline Storage and Automatic Retries](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries)
-          * [Statsbeat](../app/statsbeat.md)
-          * [Application Insights Standard Metrics](../app/standard-metrics.md)
-          * Detect resource metadata to autopopulate [Cloud Role Name](../app/java-standalone-config.md#cloud-role-name) and [Cloud Role Instance](../app/java-standalone-config.md#cloud-role-instance) on various Azure environments
-          * [Live Metrics](../app/live-stream.md)
+             * Sampling compatible with classic Application Insights SDKs
+             * [Microsoft Entra authentication](../app/azure-ad-authentication.md)
+             * [Offline Storage and Automatic Retries](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries)
+             * [Statsbeat](../app/statsbeat.md)
+             * [Application Insights Standard Metrics](../app/standard-metrics.md)
+             * Detect resource metadata to autopopulate [Cloud Role Name](../app/java-standalone-config.md#cloud-role-name) and [Cloud Role Instance](../app/java-standalone-config.md#cloud-role-instance) on various Azure environments
+             * [Live Metrics](../app/live-stream.md)
 
           In the spirit of OpenTelemetry, we designed the distro to be open and extensible. For example, you can add:
 
@@ -1646,7 +1651,7 @@ sections:
         answer: |
           [OpenCensus](https://opencensus.io/) is the precursor to [OpenTelemetry](https://opentelemetry.io/). Microsoft helped bring together [OpenTracing](https://opentracing.io/) and OpenCensus to create OpenTelemetry, a single observability standard for the world. The current [production-recommended Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) for Azure Monitor is based on OpenCensus. Microsoft is committed to making Azure Monitor based on OpenTelemetry.
 
-      - question: In Grafana, why do I see `Status 500. Can't visualize trace events using the trace visualizer`?
+      - question: In Grafana, why do I see "Status 500. Can't visualize trace events using the trace visualizer"?
         answer: |
           You could be trying to visualize raw text logs rather than OpenTelemetry traces.
 
