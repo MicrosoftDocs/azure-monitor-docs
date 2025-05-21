@@ -2,7 +2,7 @@
 title: Data collection endpoints in Azure Monitor 
 description: Overview of how data collection endpoints work and how to create and set them up based on your deployment.
 ms.topic: conceptual
-ms.date: 03/18/2024
+ms.date: 05/21/2025
 ms.custom: references_region
 ms.reviwer: nikeist
 ---
@@ -36,10 +36,7 @@ A DCE is required for certain [AMA data sources](../vm/data-collection.md). In t
 
 The following data sources currently require a DCE:
 
-* [IIS Logs](../agents/data-collection-iis.md)
 * [Windows Firewall Logs](../agents/data-sources-firewall-logs.md)
-* [Text Logs](../agents/data-collection-log-text.md)
-* [JSON Logs](../agents/data-collection-log-json.md)
 * [Prometheus Metrics (Container Insights)](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
 
 You can view the DCE for a DCR from the **Overview** page of the DCR. Click **Configure DCE** to modify it.
