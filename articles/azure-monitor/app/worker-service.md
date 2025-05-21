@@ -346,6 +346,9 @@ It's important to note that the following example doesn't cause the Application 
 }
 ```
 
+> [!NOTE]
+> Application Insights respects the log levels configured via ConfigureLogging(...) in code. If only appsettings.json is used, and ConfigureLogging isn't overridden explicitly, the default log level is **Warning**.
+
 For more information, follow [ILogger docs](/dotnet/core/extensions/logging#configure-logging) to customize which log levels are captured by Application Insights.
 
 ### Dependencies
