@@ -29,7 +29,7 @@ Custom log content uploaded to customer-managed storage accounts might change in
 |---|---|
 | Manage linked storage accounts for a workspace | `Microsoft.OperationalInsights/workspaces/write` - workspace scope</br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). |
 | Manage a system assigned managed identity for a workspace | `Microsoft.OperationalInsights/workspaces/write` - workspace scope</br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). |
-| Manage a user assigned managed identity for a workspace | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` - identity resource scope</br>For example, as provided by the built-in roles, [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) or [Managed Identity Contributor](/azure/role-based-access-control/built-in-roles#managed-identity-contributor). |
+| Manage a user assigned managed identity for a workspace | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` - identity scope</br>For example, as provided by the built-in roles, [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) or [Managed Identity Contributor](/azure/role-based-access-control/built-in-roles#managed-identity-contributor). |
 | Minimum permissions for managed identity on storage account | [Storage Table Data Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-table-data-contributor). |
 
 Additionally, the linked storage account must be in the same region as the workspace.
