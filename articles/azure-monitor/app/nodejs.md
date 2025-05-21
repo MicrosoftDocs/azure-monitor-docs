@@ -459,18 +459,6 @@ These properties are client specific, so you can configure `appInsights.defaultC
 | correlationIdRetryIntervalMs    | The time to wait before retrying to retrieve the ID for cross-component correlation. (Default is `30000`.)     |
 | correlationHeaderExcludedDomains| A list of domains to exclude from cross-component correlation header injection. (Default. See [Config.ts](https://github.com/Microsoft/ApplicationInsights-node.js/blob/develop/Library/Config.ts).)|
 
-## Frequently asked questions
-
-#### How can I disable telemetry correlation?
-
-To disable telemetry correlation, use the `correlationHeaderExcludedDomains` property in configuration. For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js#configuration).
-
-#### How can I configure the desired log level?
-
-To configure the desired log level that Application Insights will use, use the `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL` environment variable.
-The supported values are NONE, ERROR, WARN, INFO, DEBUG, VERBOSE and ALL.
-For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js?tab=readme-ov-file#applicationinsights-3x-sdk-unsupported-properties).
-
 ## Troubleshooting
 
 For troubleshooting information, including "no data" scenarios and customizing logs, see [Troubleshoot Application Insights monitoring of Node.js apps and services](/troubleshoot/azure/azure-monitor/app-insights/troubleshoot-app-insights-nodejs).
@@ -479,6 +467,7 @@ For troubleshooting information, including "no data" scenarios and customizing l
 
 * [Monitor your telemetry in the portal](./overview-dashboard.md)
 * [Write Analytics queries over your telemetry](../logs/log-analytics-tutorial.md)
+* To review frequently asked questions (FAQ), see [Node.js FAQ](application-insights-faq.yml#node-js)
 
 <!--references-->
 

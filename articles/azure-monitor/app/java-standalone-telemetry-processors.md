@@ -669,4 +669,4 @@ The following sample shows how to turn off all metrics including the default aut
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Telemetry processors FAQ](application-insights-faq.yml#telemetry-prossesors)
+* To review frequently asked questions (FAQ), see [Telemetry processors FAQ](application-insights-faq.yml#telemetry-processors)

@@ -260,48 +260,6 @@ AKS Clusters can be prepared for this feature during cluster creation. Run the f
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
 ```
 
-
-## Frequently asked questions
-
-#### Does AKS autoinstrumentation support custom metrics?
-
-If you want custom metrics in Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro.](opentelemetry-enable.md)
-
-Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
-
-#### Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
-
-AKS autoinstrumentation can disrupt the telemetry sent to third parties by an OSS OpenTelemetry SDK.
-
-#### Can AKS autoinstrumentation coexist with manual instrumentation?
-
-AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights classic API SDK and OpenTelemetry Distro.
-
-It always prevents duplicate data and ensures custom metrics work.
-
-Refer to this chart to determine when autoinstrumentation or manual instrumentation takes precedence.
-
-| Language | Precedence             |
-|----------|------------------------|
-| Node.js  | Manual instrumentation |
-| Java     | Autoinstrumentation    |
-
-#### How do I ensure I'm using the latest and most secure versions of Azure Monitor OpenTelemetry Distro?
-
-Vulnerabilities detected in the Azure Monitor OpenTelemetry Distro are prioritized, fixed, and released in the next version.
-
-AKS autoinstrumentation injects the latest version of the Azure Monitor OpenTelemetry Distro into your application pods every time your deployment is changed or restarted.
-
-The OpenTelemetry Distro can become vulnerable on deployments that aren't changed or restarted for extended periods of time. For this reason, we suggest updating or restarting deployments weekly to ensure a recent version of the Distro is being used.
-
-#### How do I learn more about the Azure Monitor OpenTelemetry Distro?
-
-This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods. 
-
-For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary. 
-
-For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code based configurations steps related to manual instrumentation. However, everything else in our distro documentation such as default settings, environment variable configurations, etc. is applicable to this feature.
-
 ## Troubleshooting
 
 #### Missing telemetry
@@ -346,3 +304,4 @@ The following steps can help to resolve problems when no data appears in your Ap
 
 * Learn more about [Azure Monitor](../overview.md) and [Application Insights](./app-insights-overview.md).
 * See what [Application Map](./app-map.md?tabs=net) can do for your business.
+* To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)

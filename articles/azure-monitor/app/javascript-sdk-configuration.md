@@ -318,7 +318,7 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 * [Track usage](usage.md)
 * [Custom events and metrics](api-custom-events-metrics.md)
 * [Azure file copy task](/azure/devops/pipelines/tasks/deploy/azure-file-copy)
-* To review frequently asked questions (FAQ), see [JavaScript SDK configuration FAQ](application-insights-faq.yml#javascript-sck-configuration)
+* To review frequently asked questions (FAQ), see [JavaScript SDK configuration FAQ](application-insights-faq.yml#javascript-sdk-configuration)
 
 <!-- Remote URLs -->
 [create storage account]: /azure/storage/common/storage-account-create?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=azure-portal

@@ -79,34 +79,6 @@ Some classic Application Insights resources can't be migrated until you take oth
 
 To prevent service interruptions, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
-## Frequently asked questions
-
-### Do I need to update scripts or automation that reference classic resources?
-
-No. Existing ARM templates and API calls continue to work. When you attempt to create a classic resource, a workspace-based resource with a managed workspace is created instead.
-
-### Am I notified before my resource is migrated?
-
-No. Notification for individual resource migrations isn't available. To control when and how your resources are migrated, use [manual migration](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
-
-### How long does the migration process take?
-
-Individual migrations usually complete in less than two minutes. The full rollout takes place over several weeks across all regions.
-
-### How can I tell if a resource is migrated?
-
-After migration, the resource links to a Log Analytics workspace on the Overview page. The classic retirement notice is removed, and the retirements workbook no longer lists the resource.
-
-### Will my billing change after migration?
-
-Costs typically remain similar. Workspace-based Application Insights enables cost-saving features and we recommend reviewing [pricing plans](./create-workspace-resource.md#set-the-pricing-plan).
-
-If you're on a legacy billing model, review the [pricing documentation](https://azure.microsoft.com/pricing/details/monitor/) for details.
-
-### Do I lose alerts or availability tests during migration?
-
-No. All alerts, dashboards, and availability tests remain intact and continue to function after migration.
-
 ## Next steps
 
 - [Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)
@@ -114,3 +86,4 @@ No. All alerts, dashboards, and availability tests remain intact and continue to
 - [Manage connection strings in Application Insights](./connection-strings.md)
 - [Understand data collection basics](./opentelemetry-overview.md)
 - [Explore the Application Insights overview](./app-insights-overview.md)
+- To review frequently asked questions (FAQ), see [Managed workspaces FAQ](application-insights-faq.yml#managed-workspaces)
