@@ -91,7 +91,7 @@ The following requirements will be enforced no earlier than August 31, 2025.
 
 ### Create a managed identity
 
-Get ready for upcoming enforcement change by configuring your workspace with a managed identity.
+Get ready for the upcoming enforcement change by configuring your workspace with a managed identity.
 
 :::image type="content" source="./media/private-storage/identity-setting.png" alt-text="Screenshot showing the workspace identity setting in the Azure portal.":::
 
