@@ -3,7 +3,7 @@ title: Enable VM insights using Azure Policy
 description: This article describes how you enable VM insights for multiple Azure virtual machines or virtual machine scale sets by using Azure Policy.
 ms.topic: how-to
 ms.reviewer: Rahul.Bagaria
-ms.date: 05/21/2025
+ms.date: 07/09/2023
 
 ---
 
