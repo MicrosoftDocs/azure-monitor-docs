@@ -154,7 +154,7 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 | ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
 | .NET Framework | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
 | Java | [N/A](java-standalone-upgrade-from-2x.md) | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
-| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | [N/A](opentelemetry-help-support-feedback.md?tabs=aspnetcore#can-opentelemetry-be-used-for-web-browsers) |
+| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | [N/A](application-insights-faq.yml#can-opentelemetry-be-used-for-web-browsers) |
 | Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
 | Python | [OpenCensus Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python#tracing) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
 

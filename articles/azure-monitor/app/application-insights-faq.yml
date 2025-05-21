@@ -1561,7 +1561,7 @@ sections:
 
       - question: Should I use OpenTelemetry or the Application Insights SDK?
         answer: |
-          We recommend using the Azure Monitor OpenTelemetry Distro for new projects when [its capabilities](#whats-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro) align with your monitoring needs. OpenTelemetry is an industry-standard framework that enhances cross-platform observability and provides a standardized approach to telemetry collection.
+          We recommend using the Azure Monitor OpenTelemetry Distro for new projects when [its capabilities](#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro) align with your monitoring needs. OpenTelemetry is an industry-standard framework that enhances cross-platform observability and provides a standardized approach to telemetry collection.
 
           However, the Application Insights SDKs still provide certain capabilities that aren't yet fully automated in OpenTelemetry, including:
 

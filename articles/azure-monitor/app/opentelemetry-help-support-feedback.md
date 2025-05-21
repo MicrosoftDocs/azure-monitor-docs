@@ -14,7 +14,6 @@ ms.reviewer: mmcc
 This document outlines available resources for assistance, support channels, and feedback mechanisms related to OpenTelemetry (OTel) integration with [Azure Monitor Application Insights](.\opentelemetry-enable.md) for .NET, Java, Node.js, and Python applications.
 
 > [!div class="checklist"]
-> - [Review frequently asked questions](#frequently-asked-questions)
 > - [Take troubleshooting steps](#troubleshooting)
 > - [Get support](#support)
 > - [Provide feedback](#opentelemetry-feedback)
