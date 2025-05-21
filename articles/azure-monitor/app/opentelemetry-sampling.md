@@ -53,7 +53,7 @@ The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
 To configure the sampling percentage, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
-For more detailed information and sampling edge cases, see [Frequently Asked Questions](#frequently-asked-questions).
+For more detailed information and sampling edge cases, see [Frequently Asked Questions](application-insights-faq.yml#opentelemetry-sampling).
 
 ## Ingestion sampling (not recommended)
 

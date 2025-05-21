@@ -1704,3 +1704,106 @@ sections:
         answer: |
           To instrument a Blazor app, first identify the hosting model. Blazor Server supports full [OpenTelemetry-based instrumentation](opentelemetry-enable.md). Blazor WebAssembly runs in the browser and supports limited instrumentation through JavaScript.
           
+  - name: Overview dashboard
+    questions:
+      - question: Can I display more than 30 days of data? 
+        answer: |
+          No, there's a limit of 30 days of data displayed in a dashboard.
+
+      - question: I'm seeing a "resource not found" error on the dashboard.
+        answer: |
+          A "resource not found" error can occur if you move or rename your Application Insights instance.
+
+          To work around this behavior, delete the default dashboard and select **Application Dashboard** again to re-create a new one.
+
+  - name: Telemetry channels
+    questions:
+      - question: Does the Application Insights channel guarantee telemetry delivery? If not, what are the scenarios in which telemetry can be lost?
+        answer: |
+          The short answer is that none of the built-in channels offer a transaction-type guarantee of telemetry delivery to the back end. `ServerTelemetryChannel` is more advanced compared with `InMemoryChannel` for reliable delivery, but it also makes only a best-effort attempt to send telemetry. Telemetry can still be lost in several situations, including these common scenarios:
+
+          - Items in memory are lost when the application crashes.
+          - Telemetry is lost during extended periods of network problems. Telemetry is stored to local disk during network outages or when problems occur with the Application Insights back end. However, items older than 48 hours are discarded.
+          - The default disk locations for storing telemetry in Windows are %LOCALAPPDATA% or %TEMP%. These locations are typically local to the machine. If the application migrates physically from one location to another, any telemetry stored in the original location is lost.
+          - In Azure Web Apps on Windows, the default disk-storage location is D:\local\LocalAppData. This location isn't persisted. It's wiped out in app restarts, scale-outs, and other such operations, which leads to loss of any telemetry stored there. You can override the default and specify storage to a persisted location like D:\home. However, such persisted locations are served by remote storage and so can be slow.
+
+          Although less likely, it's also possible that the channel can cause duplicate telemetry items. This behavior occurs when `ServerTelemetryChannel` retries because of network failure or timeout, when the telemetry was delivered to the back end, but the response was lost because of network issues or there was a timeout.
+
+
+      - question: Does ServerTelemetryChannel work on systems other than Windows?
+        answer: |
+          Although the name of its package and namespace includes "WindowsServer," this channel is supported on systems other than Windows, with the following exception. On systems other than Windows, the channel doesn't create a local storage folder by default. You must create a local storage folder and configure the channel to use it. After local storage has been configured, the channel works the same way on all systems.
+
+          > [!NOTE]
+          > With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows. For non-Windows systems, the SDK will automatically create a local storage folder based on the following logic:
+          >
+          > - `${TMPDIR}`: If the `${TMPDIR}` environment variable is set, this location is used.
+          > - `/var/tmp`: If the previous location doesn't exist, we try `/var/tmp`.
+          > - `/tmp`: If both the previous locations don't exist, we try `tmp`.
+          > - If none of those locations exist, local storage isn't created and manual configuration is still required. For full implementation details, see [this GitHub repo](https://github.com/microsoft/ApplicationInsights-dotnet/pull/1860).
+
+      - question: Does the SDK create temporary local storage? Is the data encrypted at storage?
+        answer: |
+          The SDK stores telemetry items in local storage during network problems or during throttling. This data isn't encrypted locally.
+
+          For Windows systems, the SDK automatically creates a temporary local folder in the %TEMP% or %LOCALAPPDATA% directory and restricts access to administrators and the current user only.
+
+          For systems other than Windows, no local storage is created automatically by the SDK, so no data is stored locally by default.
+
+          > [!NOTE]
+          > With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows.
+
+          You can create a storage directory yourself and configure the channel to use it. In this case, you're responsible for ensuring that the directory is secured. Read more about [data protection and privacy](/previous-versions/azure/azure-monitor/app/data-retention-privacy#does-the-sdk-create-temporary-local-storage).
+
+  - name: Transaction Search
+    questions:
+      - question: How much data is retained?
+        answer: |
+          See the [Limits summary](../service-limits.md#application-insights).
+
+      - question: How can I see POST data in my server requests?
+        answer: |
+          We don't log the POST data automatically, but you can use [TrackTrace or log calls](./asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
+
+      - question: Why does my Azure Function search return no results?
+        answer: |
+          Azure Functions doesn't log URL query strings. 
+
+  - name: Transaction Diagnostics
+    questions:
+      - question: Why do I see a single component on the chart and the other components only show as external dependencies without any details?
+        answer: |
+          Potential reasons:
+
+          * Are the other components instrumented with Application Insights?
+          * Are they using the latest stable Application Insights SDK?
+          * If these components are separate Application Insights resources, validate you have [access](../roles-permissions-security.md).
+          If you do have access and the components are instrumented with the latest Application Insights SDKs, let us know via the feedback channel in the upper-right corner.
+
+      - question: I see duplicate rows for the dependencies. Is this behavior expected?
+        answer: |
+          Currently, we're showing the outbound dependency call separate from the inbound request. Typically, the two calls look identical with only the duration value being different because of the network round trip. The leading icon and distinct styling of the duration bars help differentiate between them. Is this presentation of the data confusing? Give us your feedback!
+
+      - question: What about clock skews across different component instances?
+        answer: |
+          Timelines are adjusted for clock skews in the transaction chart. You can see the exact timestamps in the details pane or by using Log Analytics.
+        
+      - question: Why is the new experience missing most of the related items queries?
+        answer: |
+          This behavior is by design. All the related items, across all components, are already available on the left side in the top and bottom sections. The new experience has two related items that the left side doesn't cover: all telemetry from five minutes before and after this event and the user timeline.
+
+      - question: Is there a way to see fewer events per transaction when I use the Application Insights JavaScript SDK?
+        answer: |
+          The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is generated and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
+
+          In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
+
+      - question: Why do transaction detail durations not add up to the top-request duration?
+        answer: |
+          Time not explained in the Gantt chart is time that isn't covered by a tracked dependency. This issue can occur because external calls weren't instrumented, either automatically or manually. It can also occur because the time taken was in process rather than because of an external call.
+
+          If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](./profiler-overview.md).
+
+      - question: What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal? 
+        answer: |
+          This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs more investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
