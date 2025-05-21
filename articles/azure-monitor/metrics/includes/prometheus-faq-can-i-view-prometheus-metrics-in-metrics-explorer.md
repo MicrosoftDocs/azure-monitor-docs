@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 4/08/2024
+ms.date: 05/21/2025
 ---
 
 ### Can I view my Prometheus metrics in Azure Monitor metrics explorer?
