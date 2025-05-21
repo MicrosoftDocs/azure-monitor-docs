@@ -667,8 +667,6 @@ The following sample shows how to turn off all metrics including the default aut
 | `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | default metrics | `/proc/[pid]/io` Sum of bytes read and written by the process (diff since last reported). See [proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html). | no |
 | `\Memory\Available Bytes` | default metrics | See [OperatingSystemMXBean.getFreePhysicalMemorySize()](https://docs.oracle.com/javase/7/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getFreePhysicalMemorySize()). | no |
 
-## Frequently asked questions
+## Next steps
 
-### Why doesn't the log processor process log files using TelemetryClient.trackTrace()?
-
-TelemetryClient.trackTrace() is part of the Application Insights Classic SDK bridge, and the log processors only work with the new [OpenTelemetry-based instrumentation](opentelemetry-enable.md).
+* To review frequently asked questions (FAQ), see [Telemetry processors FAQ](application-insights-faq.yml#telemetry-prossesors)
