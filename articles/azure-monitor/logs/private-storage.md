@@ -86,7 +86,7 @@ The following requirements will be enforced no earlier than August 31, 2025.
 
 | Upcoming requirement | Description |
 |---|---|
-| Managed identity assigned to the workspace | Creating new links to customer-managed storage accounts when no managed identity is assigned is blocked for all workspaces, including updating existing links. |
+| Managed identity assigned to the workspace | Creating new links to customer-managed storage accounts when no managed identity is assigned will be blocked for all workspaces, including updating existing links. |
 | Storage account configured with role assignment for managed identity | Creating new links to customer-managed storage accounts when the storage account doesn't have a role assignment for the managed identity will be blocked for all workspaces, including updating existing links.|
 
 ### Create a managed identity
