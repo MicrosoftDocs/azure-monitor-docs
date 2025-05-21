@@ -2,7 +2,7 @@
 title: Configuration of Azure Monitor pipeline at edge and multicloud
 description: Configuration of Azure Monitor pipeline for edge and multicloud
 ms.topic: conceptual
-ms.date: 04/25/2024
+ms.date: 05/21/2025
 ms.custom: references_regions, devx-track-azurecli
 ---
 
