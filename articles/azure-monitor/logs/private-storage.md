@@ -28,9 +28,9 @@ Custom log content uploaded to customer-managed storage accounts might change in
 | Action | Permission required |
 |---|---|
 | Manage linked storage accounts for a workspace | `Microsoft.OperationalInsights/workspaces/write` - workspace scope</br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). |
-| Manage a system assigned managed identity for a workspace | `Microsoft.OperationalInsights/workspaces/write` - workspace scope</br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). |
-| Manage a user assigned managed identity for a workspace | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` - identity scope</br>For example, as provided by the built-in roles, [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) or [Managed Identity Contributor](/azure/role-based-access-control/built-in-roles#managed-identity-contributor). |
-| Minimum permissions for managed identity on storage account | [Storage Table Data Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-table-data-contributor). |
+| <a id="assignidentity"></a>[Assign any managed identity to a workspace](#add-a-role-assignment) | `Microsoft.OperationalInsights/workspaces/write` - workspace scope</br>For example, as provided by the built-in role, [Log analytics Contributor](manage-access.md#log-analytics-contributor). |
+| <a id="userassigned"></a>[Manage a user assigned managed identity for a workspace](#add-a-role-assignment) | `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` - identity scope</br>For example, as provided by the built-in roles, [Managed Identity Operator](/azure/role-based-access-control/built-in-roles#managed-identity-operator) or [Managed Identity Contributor](/azure/role-based-access-control/built-in-roles#managed-identity-contributor). |
+| [Minimum permissions for managed identity on storage account](#add-a-role-assignment) | [Storage Table Data Contributor](/azure/role-based-access-control/built-in-roles/storage#storage-table-data-contributor). |
 
 Additionally, the linked storage account must be in the same region as the workspace.
 
@@ -108,7 +108,7 @@ For more information, see [What are managed identities for Azure resources?](/en
 
 ### Add a role assignment
 
-Once the managed identity is assigned to the workspace, update the storage account to allow access to the managed identity. Assign that identity the **Storage Table Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries.
+Once the managed identity is assigned to the workspace, update the storage account to allow access to the managed identity. Assign that identity the **Storage Table Data Contributor** role on the storage account to allow the workspace to send saved queries and log alert queries. Note the required permissions needed to <a href="#assignidentity">assign managed identities</a> and <a href="#userassigned">manage user assigned identities</a>.
 
 ### Add the link
 
