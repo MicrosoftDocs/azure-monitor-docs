@@ -14,39 +14,23 @@ You can significantly reduce your data ingestion costs by converting tables hold
 
 This article describes multiple strategies for alerting on AKS workloads being monitored with cost effective log configurations. These recommendations help you balance cost and performance while still meeting your operational needs and service-level objectives (SLOs). 
 
-The following table summarizes the strategies discussed in this article, including when to use them and which tables they apply to:
+The following table summarizes the strategies discussed in this article, including when to use them and which tables they're most applicable to:
 
-| Strategy | When to use | Tables |
+| Strategy | When to use | Applicable tables |
 |:---|:---|:---|
-| [Managed Prometheus alerts](#managed-prometheus-alerts) | When metrics are available, especially for pod, node, or container status. Metrics should be your first choice for alerting whenever possible. Only use log alerting when metrics aren't available.  |Replace alerts from the following tables:<br> [Perf](/azure/azure-monitor/reference/tables/perf)<br>[InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>[KubePodInventory](/azure/azure-monitor/reference/tables/KubePodInventory)<br>[KubeNodeInventory](/azure/azure-monitor/reference/tables/KubeNodeInventory)<br>[ContainerInventory](/azure/azure-monitor/reference/tables/ContainerInventory) |
-| [Simple log search alert rules (preview)](#simple-log-search-alert-rules-preview) | When you need to monitor specific messages or patterns that are not available with metrics. These are quick, per-occurrence log-based alerts with low complexity, such as alerting on unauthorized access errors or agent errors. | [Syslog](/azure/azure-monitor/reference/tables/syslog)<br>[AKSAudit](/azure/azure-monitor/reference/tables/aks_audit)<br>[AKSAuditAdmin](/azure/azure-monitor/reference/tables/aks_auditadmin)<br>[AKSControlPlane](/azure/azure-monitor/reference/tables/aks_controlplane)<br>[ContainerLog](/azure/azure-monitor/reference/tables/containerlog)<br>[ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2) |
-| [Summary rules](#summary-rules) | When you need to perform aggregations over time, such as counting error events or grouping by dimensions like container ID. Use summary rules when simple alerts aren't sufficient for your requirements, such as alerting on specific rates or patterns. | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
-| [Analytics tier with transformations](#analytics-tier-with-transformations) | When you need near-real time alerting on critical log data, and other strategies aren't responsive or granular enough. Send only high-value data to Analytics for powerful alerting and dashboards while routing other data to Basic or Auxiliary Logs for cost-effective storage. Use this strategy when Summary Rules aren’t responsive enough and full Analytics-tier is too expensive. | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
+| [Managed Prometheus alerts](#managed-prometheus-alerts) | When metrics are available, especially for pod, node, or container status. Metrics should be your first choice for alerting whenever possible. Only use log alerts when metrics aren't available.  |Replace alerts from the following tables:<br> [Perf](/azure/azure-monitor/reference/tables/perf)<br>[InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>[KubePodInventory](/azure/azure-monitor/reference/tables/KubePodInventory)<br>[KubeNodeInventory](/azure/azure-monitor/reference/tables/KubeNodeInventory)<br>[ContainerInventory](/azure/azure-monitor/reference/tables/ContainerInventory) |
+| [Simple log search alert rules (preview)](#simple-log-search-alert-rules-preview) | When you need to monitor specific messages or patterns that aren't available with metrics. These are quick, per-occurrence log-based alerts with low complexity, such as alerting on unauthorized access errors or agent errors. | [Syslog](/azure/azure-monitor/reference/tables/syslog)<br>[AKSAudit](/azure/azure-monitor/reference/tables/aksaudit)<br>[AKSAuditAdmin](/azure/azure-monitor/reference/tables/aksauditadmin)<br>[AKSControlPlane](/azure/azure-monitor/reference/tables/akscontrolplane)<br>[ContainerLog](/azure/azure-monitor/reference/tables/containerlog)<br>[ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2) |
+| [Summary rules](#summary-rules) | When you need to perform aggregations over time, such as counting error events or grouping by dimensions like container ID. Use summary rules when simple alerts aren't sufficient for your requirements. This may be alerting on specific patterns or rates such as number of failures per minute. | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
+| [Analytics tier with transformations](#analytics-tier-with-transformations) | When you need near-real time alerting on critical log data, and other strategies aren't responsive or granular enough.  | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
 
-
-
-
-> [!TIP]
-> Use the guidance at [Select a table plan based on data usage in a Log Analytics workspace](../logs/logs-table-plans.md) to set the plan for any tables to Basic.
 
 ## Managed Prometheus alerts
 
 Whenever possible, you should prioritize alerting on metrics rather than logs, as this is typically more scalable and cost-efficient, especially in large AKS environments. Metrics are compact, purpose-built for fast evaluation, and incur lower ingestion, storage, and query costs compared to logs.
 
-Prometheus alerts are ideal when you're monitoring infrastructure health or performance (e.g., CPU, memory, restarts, container statuses). If the alert scenario is already covered by metrics, prefer this over logs to reduce ingestion and evaluation cost. Use this as your first choice wherever possible. If metrics do not capture the required scenario (e.g., specific application error messages), consider log-based alerting options next.
-
 [Azure Managed Prometheus](./prometheus-metrics-scrape-default.md) enables near real-time metric ingestion and alerting without the overhead of managing your own Prometheus infrastructure. It integrates directly with your AKS clusters and supports Kubernetes-native metrics scraping using Prometheus format. Alert rules can be visualized and analyzed in [Azure Managed Grafana](/azure/managed-grafana/overview) or integrated into Azure Monitor for alert routing.
 
 Start by enabling [recommended alert rules](./kubernetes-metric-alerts.md#enable-recommended-alert-rules). This includes platform metric alerts such as firing when CPU of a node exceeds a threshold. You can also enable different levels of Prometheus alerts for a variety of scenarios. In addition to the built-in alert rules, [create your own custom alert rules](../alerts/prometheus-alerts.md) using Prometheus metrics.
-
-### When to use
-Use Prometheus alerts for any scenario where metrics are available, especially for pod, node, or container status.  This is particularly effective for replacing alerts on the following log tables:
-
-• Perf
-• InsightsMetrics
-• KubePodInventory
-• KubeNodeInventory
-• ContainerInventory
 
 
 ## Simple log search alert rules (preview)
@@ -58,16 +42,6 @@ Use Prometheus alerts for any scenario where metrics are available, especially f
 For example, you may set a rule to fire on every occurrence of a specific error message from a cloud-based  application have a cloud-based application, or you may choose to fire on any message with an error level severity. 
 
 In addition to firing on every occurrence of a message, you can also set a threshold for the number of occurrences within a specified time window. For example, you may have a message indicating a failed login and want to be alerted when the number of failed login attempts in their application in a minute exceeds a threshold. Once identified, you can use a log query on the table itself to identify the failed login attempts
-
-### When to use
-
-Use simple log alerts when you need to monitor specific messages or patterns that are not available via metrics — such as specific error messages, status changes, or filtered log events from the following tables:
-
-• Syslog
-• AKSAudit/ AKSAuditAdmin/ AKSControlPlane
-• ContainerLog/ ContainerLogV2
-
-These are suitable when metrics don’t cover the need and you want quick, per-occurrence log-based alerts with low complexity. For example, alerting on unauthorized access errors or agent errors.
 
 
 ## Summary rules
@@ -92,28 +66,11 @@ Create log query alerts with a window greater than the bin size on the new Analy
 ## Analytics tier with transformations
 
 
-Summary rules may not be responsive enough if you need near-real time alerting on container logs. In operationally sensitive scenarios where near real-time log alerting is required, use a [transformation](../data-collection/data-collection-transformations-create.md) to route high-value logs (such as error and critical events) to an Analytics Logs table while sending other logs to a Basic Logs table. 
+Summary rules may not be responsive enough if you need near-real time alerting on container logs. In operationally sensitive scenarios where near real-time log alerting is required, use a [transformation](../data-collection/data-collection-transformations-create.md) to route high-value logs (such as error and critical events) to an Analytics Logs table while sending other logs to a Basic Logs or Auxiliary Logs table. Using this strategy, you can perform advanced alerting on the table in the Analytics tier while routing other data to a lower cost tier for cost-effective storage and occasional analysis.
 
-Using this strategy, you can perform advanced alerting on the Analytics Logs table while keeping the Basic Logs table for cost-effective storage and analysis of less critical logs.
-
-
-This is ideal for alerting from the following tables when other strategies are not responsive or granular enough:
-
-- KubeHealth 
-- ContainerLogV2
-
-Configuration for this transformation is provided in [Data transformations in Container insights](./container-insights-transformations.md#send-data-to-different-tables).
+Detailed configuration for this transformation is provided in [Data transformations in Container insights](./container-insights-transformations.md#send-data-to-different-tables).
 
 :::image type="content" source="media/cost-effective-alerts/transformation.png" lightbox="media/cost-effective-alerts/transformation.png" alt-text="Diagram that shows a transformation that sends some data to analytics table and other data to basic logs." border="false":::
-
-
-
-### When to use
-
-Use transformations when you need near real-time alerting on critical log data and 
-
-This lets you send only high-value data to Analytics (for powerful alerting and dashboards) while routing the rest to Basic/Auxiliary for cost-effective storage. Use this when Summary Rules aren’t fast enough and full Analytics-tier is too expensive.
-
 
 ## Next steps
 
