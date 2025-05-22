@@ -2,7 +2,7 @@
 title: Azure Activity Log event schema
 description: Describes the event schema for each category in the Azure Activity log.
 ms.topic: reference
-ms.date: 09/30/2020
+ms.date: 05/21/2025
 ---
 # Azure Activity Log event schema
 The [Azure Activity log](./platform-logs-overview.md) provides insight into any subscription-level events that occurred in Azure. This article describes Activity log categories and the schema for each. 

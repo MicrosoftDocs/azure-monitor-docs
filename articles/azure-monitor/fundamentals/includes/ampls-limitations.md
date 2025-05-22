@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 10/10/2023
+ms.date: 05/21/2025
 ---
 
 AMPLS objects have the following limits:
