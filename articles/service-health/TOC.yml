@@ -20,16 +20,16 @@
     items:
     - name: View service health notifications in the Azure portal
       href: service-notifications.md
-    - name: Configure alerts for service health events in the Azure portal
-      href: ./alerts-activity-log-service-notifications-portal.md
     - name: Service Health Notifications by Event Level
       href: metadata-filter.md
-    - name: Create activity log alerts using Bicep
-      displayName: Resource Manager-ARM
-      href: alerts-activity-log-service-notifications-bicep.md
-    - name: Create activity log alerts using ARM template
-      displayName: Resource Manager
-      href: alerts-activity-log-service-notifications-arm.md
+    - name: How to create alerts
+      items:
+      - name: Configure alerts for service health events in the Azure portal
+        href: ./alerts-activity-log-service-notifications-portal.md
+      - name: Create activity log alerts using Bicep
+        href: alerts-activity-log-service-notifications-bicep.md
+      - name: Create activity log alerts using ARM template
+        href: alerts-activity-log-service-notifications-arm.md
     - name: How to send alerts
       items:
       - name: How to send alerts to outside systems via webhook
