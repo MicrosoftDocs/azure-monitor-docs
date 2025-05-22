@@ -32,13 +32,13 @@
         href: alerts-activity-log-service-notifications-arm.md
     - name: How to send alerts
       items:
-      - name: How to send alerts to outside systems via webhook
+      - name: Send alerts to outside systems via webhook
         href: service-health-alert-webhook-guide.md
-      - name: How to send alerts with ServiceNow
+      - name: Send alerts with ServiceNow
         href: service-health-alert-webhook-servicenow.md
-      - name: How to send alerts with PagerDuty
+      - name: Send alerts with PagerDuty
         href: service-health-alert-webhook-pagerduty.md
-      - name: How to send alerts using OpsGenie
+      - name: Send alerts using OpsGenie
         href: service-health-alert-webhook-opsgenie.md
   - name: Resource Health
     items:
