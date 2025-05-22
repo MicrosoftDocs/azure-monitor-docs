@@ -10,6 +10,10 @@ ms.date: 01/29/2025
 
 Dependency Agent collects data about processes running on the virtual machine and their external process dependencies. Updates include bug fixes or support of new features or functionality. This article describes Dependency Agent requirements and how to upgrade it manually or through automation.
 
+> [!IMPORTANT]
+>  The Dependency Agent and the Map experience in VM Insights will be retired on April 30th, 2028. After this date, Microsoft will no longer support data collection using the Dependency Agent and the associated Map experience in VM Insights will be not be accessible. See [our retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details. 
+
+
 >[!NOTE]
 > Dependency Agent sends heartbeat data to the [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics) table, for which you incur data ingestion charges. This behavior is different from Azure Monitor Agent, which sends agent health data to the [Heartbeat](/azure/azure-monitor/reference/tables/heartbeat) table that is free from data collection charges.
 
