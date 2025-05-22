@@ -1807,3 +1807,102 @@ sections:
       - question: What if I see the message "Error retrieving data" while navigating Application Insights in the Azure portal? 
         answer: |
           This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs more investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
+
+  - name: Usage analysis
+    questions:
+      - question: Does the initial event represent the first time the event appears in a session or anytime it appears in a session?
+        answer: |
+          The initial event on the visualization only represents the first time a user sent that page view or custom event during a session. If users can send the initial event multiple times in a session, then the **Step 1** column only shows how users behave after the *first* instance of an initial event, not all instances.
+
+      - question: Some of the nodes in my visualization have a level that's too high. How can I get more detailed nodes?
+        answer: |
+          Use the **Split by** options on the **Edit** menu:
+
+          1. Select the event you want to break down on the **Event** menu.
+
+          1. Select a dimension on the **Dimension** menu. For example, if you have an event called **Button Clicked**, try a custom property called **Button Name**.
+
+      - question: I defined a cohort of users from a certain country/region. When I compare this cohort in the Users tool to setting a filter on that country/region, why do I see different results?
+        answer: |
+          Cohorts and filters are different. Suppose you have a cohort of users from the United Kingdom (defined like the previous example), and you compare its results to setting the filter `Country or region = United Kingdom`:
+
+          * The cohort version shows all events from users who sent one or more events from the United Kingdom in the current time range. If you split by country or region, you likely see many countries and regions.
+
+          * The filters version only shows events from the United Kingdom. If you split by country or region, you see only the United Kingdom.
+
+      - question: How do I view the data at different grains (daily, monthly, or weekly)?
+        answer: |
+          You can select the **Date Grain** filter to change the grain. The filter is available across all the dimension tabs.
+
+          :::image type="content" source="media/usage/faq-date-grain-monthly.png" lightbox="media/usage/faq-date-grain-monthly.png" alt-text="Screenshot that shows the filter to change date grain to daily, monthly, or weekly in the workbook.":::
+
+      - question: How do I access insights from my application that aren't available on the HEART workbooks?
+        answer: |
+          You can dig into the data that feeds the HEART workbook if the visuals don't answer all your questions. To do this task, under the **Monitoring** section in Application Insights, select **Logs**, and query the `customEvents` table. Some of the Click Analytics attributes are contained within the `customDimensions` field.
+
+          An example query is shown here:
+
+          ```kusto
+          customEvents
+          | where isnotnull(customDimensions.actionType)
+          | extend parentid=tostring(customDimensions.parenId),
+          pagename=tostring(customDimensions.pageName),
+          actiontype=tostring(customDimensions.actionType)
+          | project actiontype,parentid,pagename,
+          user_AuthenticatedId,user_Id,session_Id,itemType,timestamp
+          ```
+
+          To learn more about Logs in Azure Monitor, see [Azure Monitor Logs overview](../logs/data-platform-logs.md).
+
+      - question: Can I edit visuals in the workbook?
+        answer: |
+          Yes. To learn how to edit workbook templates, see [Azure Workbooks templates](../visualize/workbooks-templates.md#edit-a-template).
+
+  - name: Worker Service applications
+    questions:
+      - question: Which package should I use?
+        answer: |
+           | .NET Core app scenario | Package  |
+           |---------|---------|
+           | Without HostedServices                              | WorkerService                     |
+           | With HostedServices                                 | AspNetCore (not WorkerService) |
+           | With HostedServices, monitoring only HostedServices | WorkerService (rare scenario)  |
+
+      - question: Can HostedServices inside a .NET Core app using the AspNetCore package have TelemetryClient injected to it?
+        answer: |
+          Yes, the configuration is shared with the rest of the web application.
+
+      - question: How can I track telemetry that's not automatically collected?
+        answer: |
+          Get an instance of `TelemetryClient` by using constructor injection and call the required `TrackXXX()` method on it. We don't recommend creating new `TelemetryClient` instances. A singleton instance of `TelemetryClient` is already registered in the `DependencyInjection` container, which shares `TelemetryConfiguration` with the rest of the telemetry. Creating a new `TelemetryClient` instance is recommended only if it needs a configuration that's separate from the rest of the telemetry.
+
+      - question: Can I use Visual Studio IDE to onboard Application Insights to a Worker Service project?
+        answer: |
+          Visual Studio IDE onboarding is currently supported only for ASP.NET/ASP.NET Core applications. This document is updated when Visual Studio ships support for onboarding Worker Service applications.
+
+      - question: Can I enable Application Insights monitoring by using tools like Azure Monitor Application Insights Agent (formerly Status Monitor v2)?
+        answer: |
+          No. [Azure Monitor Application Insights Agent](./application-insights-asp-net-agent.md) currently supports [.NET](/dotnet/fundamentals/) only.
+
+      - question: Are all features supported if I run my application in Linux?
+        answer: |
+          Yes. Feature support for this SDK is the same in all platforms, with the following exceptions:
+
+          * Performance counters are supported only in Windows except for Process CPU/Memory shown in live metrics.
+          * Even though `ServerTelemetryChannel` is enabled by default, if the application is running in Linux or macOS, the channel doesn't automatically create a local storage folder to keep telemetry temporarily if there are network issues. Because of this limitation, telemetry is lost when there are temporary network or server issues. To work around this issue, configure a local folder for the channel:
+
+          ```csharp
+          using Microsoft.ApplicationInsights.Channel;
+          using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
+
+              public void ConfigureServices(IServiceCollection services)
+              {
+                  // The following will configure the channel to use the given folder to temporarily
+                  // store telemetry items during network or Application Insights server issues.
+                  // User should ensure that the given folder already exists
+                  // and that the application has read/write permissions.
+                  services.AddSingleton(typeof(ITelemetryChannel),
+                                          new ServerTelemetryChannel () {StorageFolder = "/tmp/myfolder"});
+                  services.AddApplicationInsightsTelemetryWorkerService();
+              }
+              ```

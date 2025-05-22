@@ -688,58 +688,9 @@ Set up a custom task by using the following parameters.
 | Expected task duration | The time window to consider a completed task a success. Any tasks completed outside of this constraint are considered a failure. Not all tasks necessarily have a time constraint. For such tasks, select **No Time Expectation**. |
 | Last step              | The feature that completes the task. In the cart/purchase example, **Purchasing items from the cart** is the last step.                                                                                                            |
 
-## Frequently asked questions
-
-#### Does the initial event represent the first time the event appears in a session or anytime it appears in a session?
-
-The initial event on the visualization only represents the first time a user sent that page view or custom event during a session. If users can send the initial event multiple times in a session, then the **Step 1** column only shows how users behave after the *first* instance of an initial event, not all instances.
-
-#### Some of the nodes in my visualization have a level that's too high. How can I get more detailed nodes?
-
-Use the **Split by** options on the **Edit** menu:
-
-1. Select the event you want to break down on the **Event** menu.
-
-1. Select a dimension on the **Dimension** menu. For example, if you have an event called **Button Clicked**, try a custom property called **Button Name**.
-
-#### I defined a cohort of users from a certain country/region. When I compare this cohort in the Users tool to setting a filter on that country/region, why do I see different results?
-
-Cohorts and filters are different. Suppose you have a cohort of users from the United Kingdom (defined like the previous example), and you compare its results to setting the filter `Country or region = United Kingdom`:
-
-* The cohort version shows all events from users who sent one or more events from the United Kingdom in the current time range. If you split by country or region, you likely see many countries and regions.
-
-* The filters version only shows events from the United Kingdom. If you split by country or region, you see only the United Kingdom.
-
-#### How do I view the data at different grains (daily, monthly, or weekly)?
-
-You can select the **Date Grain** filter to change the grain. The filter is available across all the dimension tabs.
-
-:::image type="content" source="media/usage/faq-date-grain-monthly.png" lightbox="media/usage/faq-date-grain-monthly.png" alt-text="Screenshot that shows the filter to change date grain to daily, monthly, or weekly in the workbook.":::
-
-#### How do I access insights from my application that aren't available on the HEART workbooks?
-
-You can dig into the data that feeds the HEART workbook if the visuals don't answer all your questions. To do this task, under the **Monitoring** section in Application Insights, select **Logs**, and query the `customEvents` table. Some of the Click Analytics attributes are contained within the `customDimensions` field.
-
-An example query is shown here:
-
-```kusto
-customEvents
-| where isnotnull(customDimensions.actionType)
-| extend parentid=tostring(customDimensions.parenId),
-pagename=tostring(customDimensions.pageName),
-actiontype=tostring(customDimensions.actionType)
-| project actiontype,parentid,pagename,
-user_AuthenticatedId,user_Id,session_Id,itemType,timestamp
-```
-
-To learn more about Logs in Azure Monitor, see [Azure Monitor Logs overview](../logs/data-platform-logs.md).
-
-#### Can I edit visuals in the workbook?
-
-Yes. To learn how to edit workbook templates, see [Azure Workbooks templates](../visualize/workbooks-templates.md#edit-a-template).
-
 ## Next steps
 
 * Check out the [GitHub repository](https://github.com/microsoft/ApplicationInsights-JS/tree/master/extensions/applicationinsights-clickanalytics-js) and [npm Package](https://www.npmjs.com/package/@microsoft/applicationinsights-clickanalytics-js) for the Click Analytics Autocollection plug-in.
 * Learn more about the [Google HEART framework](https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/36299.pdf).
 * To learn more about workbooks, see the [Workbooks overview](../visualize/workbooks-overview.md).
+* To review frequently asked questions (FAQ), see [Usage analysis FAQ](application-insights-faq.yml#usage-analysis)
