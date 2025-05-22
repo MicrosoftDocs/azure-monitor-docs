@@ -20,7 +20,7 @@ The following table summarizes the strategies discussed in this article, includi
 |:---|:---|:---|
 | [Managed Prometheus alerts](#managed-prometheus-alerts) | When metrics are available, especially for pod, node, or container status. Metrics should be your first choice for alerting whenever possible. Only use log alerts when metrics aren't available.  |Replace alerts from the following tables:<br> [Perf](/azure/azure-monitor/reference/tables/perf)<br>[InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>[KubePodInventory](/azure/azure-monitor/reference/tables/KubePodInventory)<br>[KubeNodeInventory](/azure/azure-monitor/reference/tables/KubeNodeInventory)<br>[ContainerInventory](/azure/azure-monitor/reference/tables/ContainerInventory) |
 | [Simple log search alert rules (preview)](#simple-log-search-alert-rules-preview) | When you need to monitor specific messages or patterns that aren't available with metrics. These are quick, per-occurrence log-based alerts with low complexity, such as alerting on unauthorized access errors or agent errors. | [Syslog](/azure/azure-monitor/reference/tables/syslog)<br>[AKSAudit](/azure/azure-monitor/reference/tables/aksaudit)<br>[AKSAuditAdmin](/azure/azure-monitor/reference/tables/aksauditadmin)<br>[AKSControlPlane](/azure/azure-monitor/reference/tables/akscontrolplane)<br>[ContainerLog](/azure/azure-monitor/reference/tables/containerlog)<br>[ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2) |
-| [Summary rules](#summary-rules) | When you need to perform aggregations over time, such as counting error events or grouping by dimensions like container ID. Use summary rules when simple alerts aren't sufficient for your requirements. This may be alerting on specific patterns or rates such as number of failures per minute. | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
+| [Summary rules](#summary-rules) | When you need to perform aggregations over time, such as counting error events or grouping by dimensions like container ID. Use summary rules when simple alerts aren't sufficient for your requirements. This may be alerting on specific patterns, on rates such as number of failures per minute, or on trend direction of a particular measure. | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
 | [Analytics tier with transformations](#analytics-tier-with-transformations) | When you need near-real time alerting on critical log data, and other strategies aren't responsive or granular enough.  | [ContainerLogV2](/azure/azure-monitor/reference/tables/containerlogv2)<br>[KubeHealth](/azure/azure-monitor/reference/tables/KubeHealth) |
 
 
@@ -62,9 +62,10 @@ ContainerLogv2
 
 Create log query alerts with a window greater than the bin size on the new Analytics-tier table to notify when error counts exceed defined thresholds. For example, if the bin size is 30min, you might create an alert rule with a 1hr window so that each alert evaluation will include two summaries.
 
+> [!NOTE]
+> Summary rules currently support a minimum bin size of 20 minutes. If you need alerting with lower latency, consider using Analytics tier with transformations as described below. 
 
 ## Analytics tier with transformations
-
 
 Summary rules may not be responsive enough if you need near-real time alerting on container logs. In operationally sensitive scenarios where near real-time log alerting is required, use a [transformation](../data-collection/data-collection-transformations-create.md) to route high-value logs (such as error and critical events) to an Analytics Logs table while sending other logs to a Basic Logs or Auxiliary Logs table. Using this strategy, you can perform advanced alerting on the table in the Analytics tier while routing other data to a lower cost tier for cost-effective storage and occasional analysis.
 
