@@ -261,7 +261,7 @@ appInsights.loadAppInsights();
 Set up an instance of Application Insights in the entry component in your app:
 
 > [!IMPORTANT]
-> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. you MUST include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
+> When using the ErrorService, there is an implicit dependency on the `@microsoft/applicationinsights-analytics-js` extension. You must include either the `'@microsoft/applicationinsights-web'` or include the `@microsoft/applicationinsights-analytics-js` extension. Otherwise, unhandled exceptions caught by the error service will not be sent.
 
 ```js
 import { Component } from '@angular/core';
@@ -765,4 +765,4 @@ Check out the [Application Insights Angular demo](https://github.com/microsoft/a
 ## Next steps
 
 - [Confirm data is flowing](javascript-sdk.md#confirm-data-is-flowing).
-- To review frequently asked questions (FAQ), see [JavaScript framework extenstions FAQ](application-insights-faq.yml#javascript-framework-extenstions)
+- To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extenstions)
