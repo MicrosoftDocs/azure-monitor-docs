@@ -1621,7 +1621,7 @@ This template creates a diagnostic setting for a storage service in the account 
 
 # [Bicep](#tab/bicep)
 
-main.bicep
+**main.bicep**
 
 ```bicep
 param storageAccountName string
@@ -1641,7 +1641,7 @@ module nested './module.bicep' = {
 }
 ```
 
-module.bicep
+**module.bicep**
 
 ```bicep
 param endpoints object
@@ -1781,7 +1781,6 @@ resource queue 'Microsoft.Storage/storageAccounts/queueServices@2021-09-01' exis
   parent:storageAccount
 }
 
-
 resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = if (hasqueue) {
   name: settingName
   scope: queue
@@ -1906,7 +1905,7 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               "condition": "[variables('hasblob')]",
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Storage/storageAccounts/{0}/blobServices/{1}', split(parameters('storageAccountName'), '/')[0], split(parameters('storageAccountName'), '/')[1])]",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}/blobServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
                 "workspaceId": "[parameters('workspaceId')]",
@@ -1937,7 +1936,7 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               "condition": "[variables('hastable')]",
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Storage/storageAccounts/{0}/tableServices/{1}', split(parameters('storageAccountName'), '/')[0], split(parameters('storageAccountName'), '/')[1])]",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}/tableServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
                 "workspaceId": "[parameters('workspaceId')]",
@@ -1968,7 +1967,7 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               "condition": "[variables('hasfile')]",
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
-              "scope": "[format('Microsoft.Storage/storageAccounts/{0}/fileServices/{1}', split(parameters('storageAccountName'), '/')[0], split(parameters('storageAccountName'), '/')[1])]",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}/fileServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
                 "workspaceId": "[parameters('workspaceId')]",
@@ -1999,6 +1998,7 @@ resource queueSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview'
               "condition": "[variables('hasqueue')]",
               "type": "Microsoft.Insights/diagnosticSettings",
               "apiVersion": "2021-05-01-preview",
+              "scope": "[format('Microsoft.Storage/storageAccounts/{0}/queueServices/{1}', parameters('storageAccountName'), 'default')]",
               "name": "[parameters('settingName')]",
               "properties": {
                 "workspaceId": "[parameters('workspaceId')]",
