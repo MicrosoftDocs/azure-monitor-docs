@@ -140,6 +140,9 @@ sections:
 
           For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
+      - question: Where can I get more information about Application Insights? 
+        answer: For more information about Appliation Insights, see [Introduction to Application Insights](../app/app-insights-overview.md).     
+
   - name: Application Insights API for custom events and metrics
     questions:
       - question: Why am I missing telemetry data?
