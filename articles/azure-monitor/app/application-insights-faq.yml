@@ -182,7 +182,7 @@ sections:
              Azure alerts are only on metrics. Create a custom metric that crosses a value threshold whenever your event occurs. Then set an alert on the metric. You get a notification whenever the metric crosses the threshold in either direction. You won't get a notification until the first crossing, no matter whether the initial value is high or low. There's always a latency of a few minutes.
      
       - question: Where can I get more information about the Application Insights API for custom events and metrics? 
-        answer: For more information about Application Insights API for custom events and metrics, see [Application Insights API for custom events and metrics](../app/api-custom-events-metrics).
+        answer: For more information about Application Insights API for custom events and metrics, see [Application Insights API for custom events and metrics](../app/api-custom-events-metrics.md).
   
   - name: Deploying Application Insights Agent for on-premises servers
     questions:
@@ -224,7 +224,7 @@ sections:
           ```
 
       - question: Where can I get more information about deploying Application Insights Agent for on-premises servers? 
-        answer: For more information about deploying Application Insights Agent for on-premises servers, see [Deploy Application Insights Agent for on-premises servers](../app/application-insights-asp-net-agent).
+        answer: For more information about deploying Application Insights Agent for on-premises servers, see [Deploy Application Insights Agent for on-premises servers](../app/application-insights-asp-net-agent.md).
 
   - name: TLS support 
     questions: 
@@ -270,7 +270,7 @@ sections:
            For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem). 
 
       - question: Where can I get more information about TLS support in Application Insights? 
-        answer: For more information about TLS support in Application Insights, see [TLS support](../app/application-insights-tls).    
+        answer: For more information about TLS support in Application Insights, see [TLS support](../app/application-insights-tls.md).    
 
   - name: ASP.NET
     questions:
@@ -372,7 +372,7 @@ sections:
           To disable telemetry correlation in configuration, see `<ExcludeComponentCorrelationHttpHeadersOnDomains>` in [Application Insights for console applications](/previous-versions/azure/azure-monitor/app/console).
 
       - question: Where can I get more information about using Application Insights with ASP.NET? 
-        answer: For more information about using Application Insights with ASP.NET, see [Configure Application Insights for your ASP.NET website](../app/asp-net). 
+        answer: For more information about using Application Insights with ASP.NET, see [Configure Application Insights for your ASP.NET website](../app/asp-net.md). 
   
   - name: ASP.NET Core applications
     questions:
@@ -552,7 +552,7 @@ sections:
           To disable telemetry correlation in code, see `<ExcludeComponentCorrelationHttpHeadersOnDomains>` in [Application Insights for console applications](/previous-versions/azure/azure-monitor/app/console).
 
       - question: Where can I get more information about using Application Insights for ASP.NET Core applications? 
-        answer: For more information about using Application Insights for ASP.NET Core applications, see [Application Insights for ASP.NET Core](../app/asp-net-core).
+        answer: For more information about using Application Insights for ASP.NET Core applications, see [Application Insights for ASP.NET Core](../app/asp-net-core.md).
 
   - name: ASP.NET performance counters      
     questions:
@@ -562,7 +562,7 @@ sections:
           * `Exceptions`: The Exceptions metric counts the `TrackException` reports received by the portal in the sampling interval of the chart. It includes only the handled exceptions where you write `TrackException` calls in your code. It doesn't include all [unhandled exceptions](./asp-net-exceptions.md).  
 
       - question: Where can I get more information about ASP.NET performance counters? 
-        answer: For more information about ASP.NET performance counters, see [Counters for .NET in Application Insights](../app/asp-net-counters).    
+        answer: For more information about ASP.NET performance counters, see [Counters for .NET in Application Insights](../app/asp-net-counters.md).    
 
   - name: ASP.NET event counters 
     questions:
@@ -575,7 +575,7 @@ sections:
           [Application Insights extension](./azure-web-apps.md) for ASP.NET Core doesn't yet support this feature.
 
       - question: Where can I get more information about ASP.NET event counters? 
-        answer: For more information about ASP.NET event counters, see [Counters for .NET in Application Insights](../app/asp-net-counters). 
+        answer: For more information about ASP.NET event counters, see [Counters for .NET in Application Insights](../app/asp-net-counters.md). 
 
   - name: Azure VMs and virtual machine scale sets
     questions:
@@ -587,7 +587,7 @@ sections:
           * **Value:** `false`
 
       - question: Where can I get more information about using Application Insights for Azure VMs and virtual machine scale sets? 
-        answer: For more information about using Application Insights for Azure VMs and virtual machine scale sets, see [Application Insights for Azure VMs and virtual machine scale sets](../app/azure-vm-vmss-apps).
+        answer: For more information about using Application Insights for Azure VMs and virtual machine scale sets, see [Application Insights for Azure VMs and virtual machine scale sets](../app/azure-vm-vmss-apps.md).
 
   - name: Dependency tracking
     questions:
@@ -614,7 +614,7 @@ sections:
           Dependency tracking in Application Insights doesn't include logging response bodies as it would generate too much telemetry for most applications. 
 
       - question: Where can I get more information about dependency tracking in Application Insights? 
-        answer: For more information about dependency tracking in Application Insights, see [Dependency tracking](../app/asp-net-dependencies).
+        answer: For more information about dependency tracking in Application Insights, see [Dependency tracking](../app/asp-net-dependencies.md).
            
   - name: Availability tests
     questions:
@@ -630,7 +630,7 @@ sections:
           The user agent string is **Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; AppInsights)**
 
       - question: Where can I get more information about Application Insights availability tests? 
-        answer: For more information about availability tests, see [Availability tests](../app/availability).
+        answer: For more information about availability tests, see [Availability tests](../app/availability.md).
        
   - name: TLS support for availability tests
     questions:
@@ -662,7 +662,7 @@ sections:
           For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem).
 
       - question: Where can I get more information about TLS support for availability tests? 
-        answer: For more information about TLS support for availability tests, see [Supported TLS configurations](../app/availability#supported-tls-configurations).
+        answer: For more information about TLS support for availability tests, see [Supported TLS configurations](../app/availability.md#supported-tls-configurations).
           
   - name: Monitoring in Azure App Service for .NET, Node.js, Python, and Java applications
     questions:
