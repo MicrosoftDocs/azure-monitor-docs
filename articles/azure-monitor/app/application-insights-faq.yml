@@ -1891,18 +1891,18 @@ sections:
           * Performance counters are supported only in Windows except for Process CPU/Memory shown in live metrics.
           * Even though `ServerTelemetryChannel` is enabled by default, if the application is running in Linux or macOS, the channel doesn't automatically create a local storage folder to keep telemetry temporarily if there are network issues. Because of this limitation, telemetry is lost when there are temporary network or server issues. To work around this issue, configure a local folder for the channel:
 
-          ```csharp
-          using Microsoft.ApplicationInsights.Channel;
-          using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
+             ```csharp
+             using Microsoft.ApplicationInsights.Channel;
+             using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
 
-              public void ConfigureServices(IServiceCollection services)
-              {
-                  // The following will configure the channel to use the given folder to temporarily
-                  // store telemetry items during network or Application Insights server issues.
-                  // User should ensure that the given folder already exists
-                  // and that the application has read/write permissions.
-                  services.AddSingleton(typeof(ITelemetryChannel),
-                                          new ServerTelemetryChannel () {StorageFolder = "/tmp/myfolder"});
-                  services.AddApplicationInsightsTelemetryWorkerService();
-              }
-              ```
+                 public void ConfigureServices(IServiceCollection services)
+                 {
+                     // The following will configure the channel to use the given folder to temporarily
+                     // store telemetry items during network or Application Insights server issues.
+                     // User should ensure that the given folder already exists
+                     // and that the application has read/write permissions.
+                     services.AddSingleton(typeof(ITelemetryChannel),
+                                             new ServerTelemetryChannel () {StorageFolder = "/tmp/myfolder"});
+                     services.AddApplicationInsightsTelemetryWorkerService();
+                 }
+             ```
