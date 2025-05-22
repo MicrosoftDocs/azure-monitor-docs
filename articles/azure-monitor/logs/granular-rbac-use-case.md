@@ -8,7 +8,6 @@ ms.reviewer: rofrenke
 ms.topic: how-to
 ms.date: 05/12/2025
 
-
 # Customer intent: As an Azure administrator, I want to understand how to use granular RBAC in Log Analytics for the use case scenario of separating custom log table access at the row level.
 ---
 

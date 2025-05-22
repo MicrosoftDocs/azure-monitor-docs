@@ -1,31 +1,90 @@
 ---
-title: Manage read access to tables in a Log Analytics workspace
-description: This article explains how you to manage read access to specific tables in a Log Analytics workspace.
+title: Manage table-level access
+titleSuffix: Log Analytics workspaces
+description: This article explains how you to manage table-level access in a Log Analytics workspace.
+services: azure-monitor
+sub-service: logs
 ms.topic: how-to
-ms.reviewer: MeirMen
-ms.date: 07/22/2024
+ms.reviewer: rofrenke
+ms.date: 05/22/2024
 ms.custom: devx-track-azurepowershell
 
+# Customer intent: As an Azure Monitor Log Analytics administrator, I want to understand the best method for creating access at the table level.
 ---
 
-# Manage table-level read access in a Log Analytics workspace
+# Manage table-level access in a Log Analytics workspace
 
-Table-level access settings let you grant specific users or groups read-only permission to data in a table. Users with table-level read access can read data from the specified table in both the workspace and the resource context. 
+There are three ways to manage table-level access in a Log Analytics workspace using role-based access control (RBAC). This article references all the methods, even though only granular RBAC is recommended.
 
-This article describes two ways to manage table-level read access.
+- [Granular RBAC (Recommended)](#configure-granular-rbac-for-table-level-access)
+- Table-level RBAC (Limited) 
+- Table-level RBAC (Legacy)
 
-> [!NOTE]
-> We recommend using the first method described here, which is currently in **preview**. During preview, the recommended method described here does not apply to Microsoft Sentinel Detection Rules, which might have access to more tables than intended. 
-Alternatively, you can use the [legacy method of setting table-level read access](#legacy-method-of-setting-table-level-read-access), which has some limitations related to custom log tables. Before using either method, see [Table-level access considerations and limitations](#table-level-access-considerations-and-limitations).
+Granular RBAC lets you finely tune access at the table or row level. Users with table-level access can read data and query from the specified table in both the workspace and the resource context. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
 
-## Set table-level read access (preview)
+## Configure granular RBAC for table-level access
 
-Granting table-level read access involves assigning a user two roles:
+Table-level access configuration in granular RBAC is less complex than earlier methods and offers the flexibility to implement row-level conditions. These steps just focus on the table-level access. For more information, see [Granular RBAC](granular-rbac-log-analytics.md).
+
+1. Create a granular RBAC custom role. The control plane "data action" is one of the things that sets granular RBAC apart from earlier methods of configuring table-level access. For more information, see [Create granular RBAC custom role](granular-rbac-use-case.md#create-custom-roles).
+
+Here's the JSON for an example custom role:
+
+```json
+{    "properties": {
+        "roleName": "Log Analytics Standard Table Access",
+        "description": "This custom role provides general access to all non-restricted tables.",
+        "assignableScopes": [
+            "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso-US-la-workspace"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.OperationalInsights/workspaces/read",
+                    "Microsoft.OperationalInsights/workspaces/query/read"
+                ],
+                "notActions": [],
+                "dataActions": [
+                     "Microsoft.OperationalInsights/workspaces/tables/data/read"
+                ],
+                "notDataActions": []
+            }
+        ]
+    }
+}
+```
+
+1. Assign the custom role to a user or group. For more information, see [Assign granular RBAC roles](granular-rbac-log-analytics.md#conditions-and-expressions). 
+   1. From the Log Analytics workspace, select **Access control (IAM)**.
+   1. Select **Add role assignment**.
+   1. Select the `Log Analytics Standard Table Access` example custom role you created, then select **Next**.
+   1. Select the user or group you want to assign the role to, then select **Next**. This example assigns the role to the network team security group.
+   1. Select **Conditions** > **Add condition** > **Add action**.
+   1. Choose the **Read workspace data** data action > **Select**.
+
+1. Build a permissive condition using the *Access to all data, except what isn't allowed* strategy. In this case, we'll restrict access to the `SigninLogs` and `SecurityEvent` tables but allow access to all other tables.
+   1. In the **Build expression** section, select **Add expression**
+   1. Select *Resource* from the **Attribute source** dropdown.
+   1. Select *Table Name* from the **Attribute** dropdown.
+   1. Select *ForAnyOfAllValues:StringNotEquals* from the **Operator** dropdown.
+   1. Type `SigninLogs` and `SecurityEvent` in the **Value** fields.
+
+Here's how the permissive table-level access condition looks when completed.
+
+:::image type="content" source="media/manage-access/granular-table-access-condition.png" alt-text="Screenshot of granular RBAC table-level permissive access condition.":::
+
+For more information, see [granular RBAC considerations](granular-rbac-log-analytics.md#considerations) and [troubleshooting granular RBAC](granular-rbac-use-case.md#troubleshoot-and-monitor). 
+
+## Configure table-level read access using limited method of RBAC
+
+The best practice is to use the granular RBAC method instead of this method. For reference, this section outlines the steps on how the limited access method was configured. 
+
+The limited method of table-level access control uses Azure custom roles to grant users or groups access to specific tables in a workspace. It also requires assigning two roles for each user or group:
 
 - At the workspace level - a custom role that provides limited permissions to read workspace details and run a query in the workspace, but not to read data from any tables.        
 - At the table level - a **Reader** role, scoped to the specific table. 
 
-**To grant a user or group limited permissions to the Log Analytics workspace:**
+**Grant a user or group limited permissions to the Log Analytics workspace:**
 
 1. Create a [custom role](/azure/role-based-access-control/custom-roles) at the workspace level to let users read workspace details and run a query in the workspace, without providing read access to data in any tables:
 
@@ -58,26 +117,15 @@ Granting table-level read access involves assigning a user two roles:
             "Microsoft.OperationalInsights/workspaces/sharedKeys/read"
             ```
 
-        :::image type="content" source="media/manage-access/manage-access-create-custom-role-json.png" alt-text="Screenshot that shows the JSON tab of the Create a custom role screen with the actions section of the JSON file highlighted." lightbox="media/manage-access/manage-access-create-custom-role-json.png":::    
-
     1. Select **Save** > **Review + Create** at the bottom of the screen, and then **Create** on the next page.   
 
 1. Assign your custom role to the relevant user:
     1. Select **Access control (AIM)** > **Add** > **Add role assignment**.
-
-       :::image type="content" source="media/manage-access/manage-access-add-role-assignment-button.png" alt-text="Screenshot that shows the Access control screen with the Add role assignment button highlighted." lightbox="media/manage-access/manage-access-add-role-assignment-button.png":::
-
     1. Select the custom role you created and select **Next**.
-
-       :::image type="content" source="media/manage-access/manage-access-add-role-assignment-screen.png" alt-text="Screenshot that shows the Add role assignment screen with a custom role and the Next button highlighted." lightbox="media/manage-access/manage-access-add-role-assignment-screen.png":::
-
 
        This opens the **Members** tab of the **Add custom role assignment** screen.   
 
     1. Click **+ Select members** to open the **Select members** screen.
-
-        :::image type="content" source="media/manage-access/manage-access-add-role-assignment-select-members.png" alt-text="Screenshot that shows the Select members screen." lightbox="media/manage-access/manage-access-add-role-assignment-select-members.png":::
-
     1. Search for and select a user and click **Select**.
     1. Select **Review and assign**.
  
@@ -99,6 +147,8 @@ The user can now read workspace details and run a query, but can't read data fro
 The user can now read data from this specific table. Grant the user read access to other tables in the workspace, as needed. 
     
 ## Legacy method of setting table-level read access
+
+The best practice is to use the granular RBAC method instead of this method. For reference, this section outlines the steps on how the legacy method was configured.
 
 The legacy method of table-level also uses [Azure custom roles](/azure/role-based-access-control/custom-roles) to let you grant specific users or groups access to specific tables in the workspace. Azure custom roles apply to workspaces with either workspace-context or resource-context [access control modes](manage-access.md#access-control-mode) regardless of the user's [access mode](manage-access.md#access-mode).
 
@@ -168,6 +218,6 @@ Using the legacy method of table-level access, you can't grant access to individ
 - Workspace owners are treated like any other user for per-table access control.
 - Assign roles to security groups instead of individual users to reduce the number of assignments. This practice will also help you use existing group management tools to configure and verify access.
 
-## Next steps
+## Related content
 
-* Learn more about [managing access to Log Analytics workspaces](manage-access.md).
+- [Managing access to Log Analytics workspaces](manage-access.md).
