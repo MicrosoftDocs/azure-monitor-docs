@@ -3,7 +3,7 @@ title: Enhance resilience by replicating your Log Analytics workspace across reg
 description: Use the workspace replication feature in Log Analytics to create copies of a workspace in different regions for data resiliency.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 01/30/2025
+ms.date: 05/22/2025
 ms.custom: references_regions 
 
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
@@ -255,10 +255,10 @@ To check if and where workspace replication is enabled, review these settings.
 
 In the Azure portal, select the workspace > **Overview**.
 If replication is enabled, the **Essentials** section displays the **Secondary location**, indicating the region of the replicated workspace.
-    :::image type="content" source="media/workspace-replication/ws-essentials-with-secondary-location.png" lightbox="media/workspace-replication/ws-essentials-with-secondary-location.png" alt-text="Screenshot that shows the secondary location property in the Workspace Essentials section in the Azure portal.":::
+    :::image type="content" source="media/workspace-replication/workspace-essentials-with-secondary-location.png" lightbox="media/workspace-replication/workspace-essentials-with-secondary-location.png" alt-text="Screenshot that shows the secondary location property in the Workspace Essentials section in the Azure portal.":::
 
 The same **Essentials** section has a **JSON View** that displays the replication details as a JSON object, which is also available via REST/CLI.
-    :::image type="content" source="media/workspace-replication/ws-replication-json.png" lightbox="media/workspace-replication/ws-replication-json.png" alt-text="Screenshot that shows the replication settings in the workspace JSON object.":::
+    :::image type="content" source="media/workspace-replication/workspace-replication-json.png" lightbox="media/workspace-replication/workspace-replication-json.png" alt-text="Screenshot that shows the replication settings in the workspace JSON object.":::
 
 ### Associate data collection rules with the workspace data collection endpoint
 
@@ -365,7 +365,7 @@ The `PUT` command is a long running operation that can take some time to complet
 > Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and are unable to access again. Their original copy on your primary location isn't changed in this process.
 
 > [!IMPORTANT]
-> The process of removing cluster replication takes 14 days. If you need this process to complete create an [Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
+> The process of removing cluster replication takes 14 days. If you need this process to complete quicker, create an [Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
 
 ## Monitor workspace and service health
 
