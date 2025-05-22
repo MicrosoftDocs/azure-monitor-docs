@@ -29,7 +29,7 @@ Start by enabling [recommended alert rules](./kubernetes-metric-alerts.md#enable
 
 ## Simple log search alert rules (preview)
 
-[Simple log search alerts](../alerts/alerts-types.md#simple-log-search-alert-rules-preview) in Azure Monitor are designed to provide a simpler and faster alternative to traditional log search alerts, and they're supported on Basic Logs tables. Unlike log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually and allow a single-condition log search. They're ideal for scenarios such as watching for a specific error event or status change. 
+[Simple log search alerts](../alerts/alerts-types.md#simple-log-search-alerts---preview) in Azure Monitor are designed to provide a simpler and faster alternative to traditional log search alerts, and they're supported on Basic Logs tables. Unlike log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually and allow a single-condition log search. They're ideal for scenarios such as watching for a specific error event or status change. 
 
 :::image type="content" source="media/cost-effective-alerts/simple-log-alert-rule.png" lightbox="media/cost-effective-alerts/simple-log-alert-rule.png" alt-text="Diagram that shows a simple alert." border="false":::
 
