@@ -1138,3 +1138,4 @@ To determine how long data is kept, see [Data retention and privacy](/previous-v
 ## <a name="next"></a>Next steps
 
 * [Search events and logs](./transaction-search-and-diagnostics.md?tabs=transaction-search)
+* To review frequently asked questions (FAQ), see [Application Insights API for custom events and metrics FAQ](application-insights-faq.yml#application-insights-api-for-custom-events-and-metrics)
