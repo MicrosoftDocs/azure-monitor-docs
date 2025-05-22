@@ -129,7 +129,7 @@ The following chart breaks out OpenTelemetry feature support for each language.
 | Filter requests, dependencies, logs, and exceptions by anonymous user ID and synthetic source                        | :x:                | :x:                | :x:                | :white_check_mark: |
 | Filter dependencies, logs, and exceptions by operation name                                                          | :x:                | :x:                | :x:                | :white_check_mark: |
 | [Adaptive sampling](../app/sampling.md#adaptive-sampling)                                                            | :x:                | :x:                | :x:                | :white_check_mark: |
-| Profiler ([.NET](../profiler/profiler-overview.md) / [Java](./java-standalone-profiler.md)                           | :warning:          | :x:                | :x:                | :warning:          |
+| Profiler ([.NET](../profiler/profiler-overview.md) / [Java](./java-standalone-profiler.md))                          | :warning:          | :x:                | :x:                | :warning:          |
 | [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)                                                       | :x:                | :x:                | :x:                | :x:                |
 
 **Key**
