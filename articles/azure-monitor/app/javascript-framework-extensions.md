@@ -765,4 +765,4 @@ Check out the [Application Insights Angular demo](https://github.com/microsoft/a
 ## Next steps
 
 - [Confirm data is flowing](javascript-sdk.md#confirm-data-is-flowing).
-- To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extenstions)
+- To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extensions)
