@@ -744,6 +744,7 @@ If your app uses Django and is either failing to start or using incorrect settin
 
 For the latest updates and bug fixes, [consult the release notes](web-app-extension-release-notes.md).
           
+---
 ## Next steps
 
 * [Enable the .NET Profiler for Azure App Service apps](./profiler.md) on your live app.
