@@ -4,7 +4,7 @@ description: Field definitions for Azure Monitor resource log / log analytics ta
 author: EdB-MSFT
 ms.topic: generated-reference
 ms.service: azure-monitor
-ms.date: 05/12/2025
+ms.date: 05/19/2025
 ms.author: edbaynash
 ms.reviewer: lualderm
 
@@ -703,7 +703,7 @@ Microsoft.Communication/CommunicationServices
 - [ACSRoomsIncomingOperations](./tables/acsroomsincomingoperations.md)
 - [ACSCallAutomationIncomingOperations](./tables/acscallautomationincomingoperations.md)
 - [ACSCallAutomationMediaSummary](./tables/acscallautomationmediasummary.md)
-- [AcsCallAutomationStreamingUsage](./tables/acscallautomationstreamingusage.md)
+- [ACSCallAutomationStreamingUsage](./tables/acscallautomationstreamingusage.md)
 - [ACSAdvancedMessagingOperations](./tables/acsadvancedmessagingoperations.md)
 
 ### Container Apps  

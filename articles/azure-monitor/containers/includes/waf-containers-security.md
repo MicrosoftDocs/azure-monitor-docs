@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 03/19/2025
+ms.date: 05/21/2025
 ---
 
 #### Connect clusters to Container insights using managed identity authentication 

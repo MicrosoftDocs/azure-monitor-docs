@@ -30,3 +30,9 @@ When a resource is inactive and exporting zero-value metrics, the diagnostic set
 When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This means that there is a potential latency of up to 15 minutes for the next nonzero value to be exported. The maximum backoff time of two hours is reached after seven days of inactivity. Once the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes. 
 
 This behavior only applies to exported metrics and doesn't affect metrics-based alerts or autoscale.
+
+### Why do I see duplicate telemetry in Application Insights after enabling Diagnostic Settings?
+
+When you enable Diagnostic Settings to export workspace-based Application Insights data to any Log Analytics workspace—including the same one that already stores Application Insights data—queries return duplicate results. This duplication happens because both the default pipeline and Diagnostic Settings send the same data to the workspace.
+
+To avoid duplicate telemetry, don't configure Diagnostic Settings to send data to the same workspace. If you need to export data to a different workspace, use a Data Collection Rule (DCR) with a transformation and a custom table. This setup filters the data before ingestion and prevents duplicate records in your queries.
