@@ -981,7 +981,7 @@ sections:
           In this scenario, a 502 or 503 response might be returned to a client because of an issue at the reverse proxy layer, so it isn't captured out-of-box by Application Insights. To help detect issues at this layer, you might need to forward logs from your reverse proxy to Log Analytics and create a custom rule to check for 502 or 503 responses. To learn more about common causes of 502 and 503 errors, see [Troubleshoot HTTP errors of "502 bad gateway" and "503 service unavailable" in Azure App Service](/azure/app-service/troubleshoot-http-502-http-503).
                 
          
-  - name: JavaScript framework extenstions 
+  - name: JavaScript framework extensions 
     questions:
       - question: How does Application Insights generate device information like browser, OS, language, and model?
         answer: |
