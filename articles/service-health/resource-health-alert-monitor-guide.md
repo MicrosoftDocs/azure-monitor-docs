@@ -56,7 +56,7 @@ For information on how to configure resource health notification alerts by using
 
 1. The **Create an alert rule** wizard opens the **Condition** tab, with the **Scope** tab already populated. 
 
-1. Follow the steps for Resource Health alerts, starting from the **Condition** tab, in the [new alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
+1. Follow the steps to create Resource Health alerts, starting from the **Condition** tab, in the [Alert rule wizard](../azure-monitor/alerts/alerts-create-activity-log-alert-rule.md).
 
 
 ## Next steps
