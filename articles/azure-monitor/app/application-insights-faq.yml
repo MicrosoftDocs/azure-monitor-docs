@@ -1834,7 +1834,7 @@ sections:
         answer: |
           You can select the **Date Grain** filter to change the grain. The filter is available across all the dimension tabs.
 
-          :::image type="content" source="media/usage/faq-date-grain-monthly.png" lightbox="media/usage/faq-date-grain-monthly.png" alt-text="Screenshot that shows the filter to change date grain to daily, monthly, or weekly in the workbook.":::
+          :::image type="content" source="media/usage/faq-date-grain-monthly.png" lightbox="media/application-insights-faq/faq-date-grain-monthly.png" alt-text="Screenshot that shows the filter to change date grain to daily, monthly, or weekly in the workbook.":::
 
       - question: How do I access insights from my application that aren't available on the HEART workbooks?
         answer: |
