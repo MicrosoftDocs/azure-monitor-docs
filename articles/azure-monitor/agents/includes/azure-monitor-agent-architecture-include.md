@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 3/22/2022
+ms.date: 05/21/2025
 ---
 
 ## Overview for Azure Monitor agent
