@@ -196,5 +196,5 @@ If you want to use the extra features provided by plugins for specific framework
 * [Track custom events and metrics](api-custom-events-metrics.md)
 * [Insert a JavaScript telemetry initializer](api-filtering-sampling.md#javascript-telemetry-initializers)
 * [Add JavaScript SDK configuration](javascript-sdk-configuration.md)
-* See the detailed [release notes](https://github.com/microsoft/ApplicationInsights-JS/releases) on GitHub for updates and bug fixes.
-* [Query data in Log Analytics](../../azure-monitor/logs/log-query-overview.md).
+* See the detailed [release notes](https://github.com/microsoft/ApplicationInsights-JS/releases) on GitHub for updates and bug fixes
+* [Query data in Log Analytics](../../azure-monitor/logs/log-query-overview.md)
