@@ -1,12 +1,12 @@
 ---
-title: Create Service Health alerts for Azure service notifications using Azure portal
+title: Create Service Health alerts for Azure service notifications in Azure portal
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
 ms.date: 05/23/2025
 
 ---
 
-# Create Service Health alerts using the Azure portal
+# Create Service Health alerts in the Azure portal
 
 ## Overview
 
@@ -14,7 +14,7 @@ This article provides a step-by-step guide on how to configure alerts for Azure 
 
 Service Health notifications are stored in the [Azure activity log](../azure-monitor/essentials/platform-logs-overview.md). Given the large volume of information stored in the activity log, there's a separate user interface to make it easier to view and set up alerts on service health notifications. 
 
-**Key Features**
+## Key features of Service Health alerts
 
 - Alerts are based on the type of notification, affected subscription, services, and regions.
 - They're created using the Azure portal’s Service Health interface.
@@ -43,7 +43,7 @@ To learn more about action groups, see [Create and manage action groups](../azur
 
 For information on how to configure service health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](../azure-monitor/alerts/alerts-activity-log.md).
 
-## Create a Service Health alert using the Azure portal
+## Create a Service Health alert in the Azure portal
 1. In the [portal](https://portal.azure.com/), select **Service Health**.
 
     ![The "Service Health" service](media/alerts-activity-log-service-notifications/home-service-health.png)
@@ -56,7 +56,9 @@ For information on how to configure service health notification alerts by using 
 
     :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png"alt-text="Screenshot of the Create service health alert command."Lightbox="media/alerts-activity-log-service-notifications/service-health-portal-create-alert-rule.png":::
 
-Learn how to [Configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md). For information on the webhook schema for activity log alerts, see [Webhooks for Azure activity log alerts](../azure-monitor/alerts/activity-log-alerts-webhook.md).
+Learn how to [Configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md). 
+
+For information on the webhook schema for activity log alerts, see [Webhooks for Azure activity log alerts](../azure-monitor/alerts/activity-log-alerts-webhook.md).
 
 
 ## Next steps
