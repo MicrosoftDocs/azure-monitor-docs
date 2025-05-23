@@ -16,11 +16,9 @@ Service Health notifications are stored in the [Azure activity log](../azure-mon
 
 ## Key features of Service Health alerts
 
-- Alerts are based on the type of notification, affected subscription, services, and regions.
-- They're created using the Azure portal’s Service Health interface.
-- You can choose or create an "action group" to define who receives the alert.
-- Alerts are only supported in public clouds within the global region.
-- Advanced options allow for more detailed configurations, including webhook notifications for integration with external systems.
+Alerts are based on the type of notification, affected subscription, services, and regions. They're created using the Azure portal’s Service Health interface. <br>
+You can choose or create an "action group" to define who receives the alert. Alerts are only supported in public clouds within the global region.
+Advanced options allow for more detailed configurations, including webhook notifications for integration with external systems.
 
  You can receive an alert when Azure sends Service Health notifications to your Azure subscription. You can configure the alert based on
 
