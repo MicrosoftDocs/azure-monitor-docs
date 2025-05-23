@@ -49,7 +49,7 @@ The diagram depicts the Azure Monitor system components:
     * Azure Monitor's core consumption methods include tools to provide **insights**, **visualize**, and **analyze** data. The visualization tools build on the analysis tools and the insights build on top of both the visualization and analysis tools.
     * There are additional mechanisms to help you **respond** to incoming monitoring data.
 
-* Interoperability options are shown in the **integrate** section. Not all services integrate at all levels. SCOM MI only integrates with Power BI.
+* Interoperability options are shown in the **integrate** section. Not all services integrate at all levels.
 
 ## Data sources
 
