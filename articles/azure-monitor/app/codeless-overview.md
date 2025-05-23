@@ -62,7 +62,7 @@ Links are provided to more information for each supported scenario.
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)
 * [Application Insights overview](app-insights-overview.md)
 * [Application Insights overview dashboard](overview-dashboard.md)
 * [Application map](app-map.md)
-* To review frequently asked questions (FAQ), see [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)

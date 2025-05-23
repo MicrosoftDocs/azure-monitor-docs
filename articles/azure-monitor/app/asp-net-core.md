@@ -503,9 +503,10 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
 
 ## Next steps
 
+* To review frequently asked questions (FAQ), see [Application Insights for ASP.NET Core FAQ](application-insights-faq.yml#asp-net-core-applications)
 * [Explore user flows](./usage.md#user-flows) to understand how users move through your app.
 * [Configure a snapshot collection](./snapshot-debugger.md) to see the state of source code and variables at the moment an exception is thrown.
 * [Use the API](./api-custom-events-metrics.md) to send your own events and metrics for a detailed view of your app's performance and usage.
 * Use [availability tests](./availability-overview.md) to check your app constantly from around the world.
 * Learn about [dependency injection in ASP.NET Core](/aspnet/core/fundamentals/dependency-injection).
-* To review frequently asked questions (FAQ), see [Application Insights for ASP.NET Core FAQ](application-insights-faq.yml#asp-net-core-applications)
+

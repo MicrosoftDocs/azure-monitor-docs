@@ -1491,9 +1491,9 @@ Available properties for [Application Insights](/azure/templates/microsoft.insig
 
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Creating and configuring Application Insights resources FAQ](application-insights-faq.yml#creating-and-configuring-application-insights-resources)
 * [Explore metrics](../essentials/metrics-charts.md)
 * [Write Log Analytics queries](../logs/log-query-overview.md)
 * [Shared resources for multiple roles](./app-map.md)
 * [Send Azure Diagnostics to Application Insights](../agents/diagnostics-extension-to-application-insights.md).
 * [Create release annotations](release-and-work-item-insights.md?tabs=release-annotations).
-* To review frequently asked questions (FAQ), see [Creating and configuring Application Insights resources FAQ](application-insights-faq.yml#creating-and-configuring-application-insights-resources)

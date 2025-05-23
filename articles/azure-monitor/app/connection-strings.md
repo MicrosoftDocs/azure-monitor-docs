@@ -160,6 +160,10 @@ Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
 ## Next steps
 
+To review frequently asked questions (FAQ): 
+
+* [Connection strings in Application Insights FAQ](application-insights-faq.yml#connection-strings)
+
 Get started at runtime with:
 
 * [Azure Virtual Machine (VM) and Azure Virtual Machine Scale Sets IIS-hosted apps](./azure-vm-vmss-apps.md)
@@ -174,4 +178,3 @@ Get started at development time with:
 * [Node.js](./nodejs.md)
 * [Python](/previous-versions/azure/azure-monitor/app/opencensus-python)
 
-To review frequently asked questions (FAQ), see [Connection strings in Application Insights FAQ](application-insights-faq.yml#connection-strings)

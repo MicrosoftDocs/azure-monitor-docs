@@ -246,6 +246,7 @@ A list of the latest [currently supported modules](https://github.com/microsoft/
 
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking)
 * [Exceptions](./asp-net-exceptions.md)
 * [User and page data](./javascript.md)
 * [Availability](./availability-overview.md)
@@ -254,4 +255,4 @@ A list of the latest [currently supported modules](https://github.com/microsoft/
 * [Write custom dependency telemetry](./api-custom-events-metrics.md#trackdependency)
 * See [data model](./data-model-complete.md) for Application Insights types and data model
 * Check out [platforms](./app-insights-overview.md#supported-languages) supported by Application Insights
-* To review frequently asked questions (FAQ), see [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking)
+

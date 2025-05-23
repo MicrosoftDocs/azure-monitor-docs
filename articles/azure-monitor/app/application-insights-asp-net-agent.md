@@ -1015,6 +1015,9 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 
 ## Next steps
 
+Review frequently asked questions (FAQ): 
+* [Deploying Application Insights Agent for on-premises servers FAQ](application-insights-faq.yml#deploying-application-insights-agent-for-on-premises-servers)
+
 View your telemetry:
 
 * [Explore metrics](../essentials/metrics-charts.md) to monitor performance and usage.

@@ -151,6 +151,7 @@ Leave product feedback for the engineering team in the [Feedback Community](http
 
 ## Next steps
 
+- To review frequently asked questions (FAQ), see [Application Insights FAQ](application-insights-faq.yml#overview)
 - [Data collection basics](opentelemetry-overview.md)
 - [Workspace-based resources](create-workspace-resource.md)
 - [Automatic instrumentation overview](codeless-overview.md)
@@ -160,4 +161,4 @@ Leave product feedback for the engineering team in the [Feedback Community](http
 - [Transaction search](transaction-search-and-diagnostics.md?tabs=transaction-search)
 - [Availability overview](availability-overview.md)
 - [Users, sessions, and events](usage.md)
-- To review frequently asked questions (FAQ), see [Application Insights FAQ](application-insights-faq.yml#overview)
+

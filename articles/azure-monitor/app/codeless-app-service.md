@@ -747,9 +747,10 @@ For the latest updates and bug fixes, [consult the release notes](web-app-extens
 ---
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Monitoring in Azure App Service for .NET, Node.js, Python, and Java applications FAQ](application-insights-faq.yml#monitoring-in-azure-app-service-for--net--node-js--python--and-java-applications). 
 * [Enable the .NET Profiler for Azure App Service apps](./profiler.md) on your live app.
 * [Enable Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md) to be sent to Application Insights.
 * [Monitor service health metrics](../data-platform.md) to make sure your service is available and responsive.
 * [Receive alert notifications](../alerts/alerts-overview.md) whenever operational events happen or metrics cross a threshold.
 * [Set up availability tests](availability-overview.md) for your application.
-* To review frequently asked questions (FAQ), see [Monitoring in Azure App Service for .NET, Node.js, Python, and Java applications FAQ](application-insights-faq.yml#monitoring-in-azure-app-service-for--net--node-js--python--and-java-applications)
+

@@ -16,7 +16,8 @@ Learn how Application Insights uses Transport Layer Security (TLS), which config
 
 ## Next steps
 
+- [TLS support in Application Insights FAQ](application-insights-faq.yml#tls-support)
 - [Azure-wide legacy TLS retirement](https://azure.microsoft.com/updates/azure-support-tls-will-end-by-31-october-2024-2/)
 - [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support)
 - [2nd Edition Solving the TLS 1.0 Problem](/security/engineering/solving-tls1-problem)
-- To review frequently asked questions (FAQ), see [TLS support in Application Insights FAQ](application-insights-faq.yml#tls-support).
+

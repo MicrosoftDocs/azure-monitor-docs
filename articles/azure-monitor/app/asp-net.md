@@ -470,6 +470,7 @@ Our [Service Updates](https://azure.microsoft.com/updates/?service=application-i
 
 ## Next steps
 
+* Review frequently asked questions (FAQ): [Applications Insights for ASP.NET FAQ](application-insights-faq.yml#asp-net) 
 * Add synthetic transactions to test that your website is available from all over the world with [availability monitoring](availability-overview.md).
 * [Configure sampling](sampling.md) to help reduce telemetry traffic and data storage costs.
-* To review frequently asked questions (FAQ), see [Applications Insights for ASP.NET FAQ](application-insights-faq.yml#asp-net) 
+
