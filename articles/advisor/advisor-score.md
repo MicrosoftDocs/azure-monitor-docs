@@ -57,7 +57,7 @@ Advisor displays two scores as percentages.
 
 | Score | Detail |
 |:--- |:--- |
-| Overall Advisor score | Calculated as a sum of each applicable category score divided by the sum of the highest potential score from all applicable categories. In most cases, the overall Advisor score is the sum of the five category scores divided by 500. |
+| Overall Advisor score | Calculated as a sum of each applicable category score divided by the sum of the highest potential score from all applicable categories. In most cases, the overall Advisor score is the sum of the five category scores divided by 5. |
 | Score by category | The platform has separate score methodology for different categories. The details are outlined for each category score calculation in the Score methodology sections. |
 
 ### Overall Advisor score example
