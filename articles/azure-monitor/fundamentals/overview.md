@@ -96,6 +96,7 @@ Azure Monitor collects and routes monitoring data using a few different mechanis
 
 A common way to route monitoring data to other non-Microsoft tools is using *Event hubs*. See more in the [Integrate](#integrate) section.
 
+For detailed information about data collection, see [data collection](best-practices-data-collection.md).
 
 ## Data platform
 
