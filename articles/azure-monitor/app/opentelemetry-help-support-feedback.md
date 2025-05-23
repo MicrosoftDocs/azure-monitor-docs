@@ -102,6 +102,6 @@ To provide feedback:
 - Engage with other Azure Monitor users in the [Microsoft Tech Community](https://techcommunity.microsoft.com/t5/azure-monitor/bd-p/AzureMonitor).
 - Make a feature request at the [Azure Feedback Forum](https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0).
  
-## Next step
+## Next steps
 
 - * To review frequently asked questions (FAQ), see [OpenTelemetry support and feedback FAQ](application-insights-faq.yml#opentelemetry-support-and-feedback)

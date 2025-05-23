@@ -420,6 +420,6 @@ you have an issue with the first regex and read [this regex documentation](https
 If it doesn't work with `.*`, you might have a syntax issue in your `application-insights.json file`. Look at the Application Insights logs and see if you notice
 warning messages.
 
-## Next step
+## Next steps
 
 - To review frequently asked questions (FAQ), see [Sampling overrides FAQ](application-insights-faq.yml#sampling-overrides---application-insights-for-java).

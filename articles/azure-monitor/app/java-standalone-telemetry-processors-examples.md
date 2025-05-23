@@ -643,6 +643,6 @@ Let's assume the input log message body is `User account with userId 123456xx fa
 }
 ```
 
-## Next step
+## Next steps
 
 * To review frequently asked questions (FAQ), see [Telemetry processors FAQ](application-insights-faq.yml#telemetry-processors)

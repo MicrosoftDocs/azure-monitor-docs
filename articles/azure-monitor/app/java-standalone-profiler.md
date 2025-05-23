@@ -202,6 +202,6 @@ This value can be one of:
 
 `periodicRecordingDurationSeconds` Profiling recording duration in seconds when a profiling session is started by using the **Profile now** button. The default value is `120`.
 
-## Next step
+## Next steps
  
 - To review frequently asked questions (FAQ), see [Java Profiler FAQ](application-insights-faq.yml#java-profiler)

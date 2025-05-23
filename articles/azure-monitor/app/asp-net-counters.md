@@ -295,6 +295,6 @@ Like other metrics, you can [set an alert](../alerts/alerts-log.md) to warn if a
 
 To set an alert, open the **Alerts** pane and select **Add Alert**.
 
-## Next step
+## Next steps
 
 -  To review frequently asked questions (FAQ), see [Performance counters FAQ](application-insights-faq.yml#asp-net-performance-counters) and [Event counters FAQ](application-insights-faq.yml#asp-net-event-counters)
