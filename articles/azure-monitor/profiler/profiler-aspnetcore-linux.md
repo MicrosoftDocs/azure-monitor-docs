@@ -207,6 +207,10 @@ You have three options to add Application Insights to your web app:
 
 ---
 
+## Troubleshooting
+
+If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
+
 ## Next steps
 
 > [!div class="nextstepaction"]
