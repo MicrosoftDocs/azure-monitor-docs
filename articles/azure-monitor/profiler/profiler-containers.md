@@ -86,6 +86,8 @@ In this article, you learn about the various ways that you can:
    var app = builder.Build();
    ```   
 
+   You can also [add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
+
    ### [ASP.NET Core 5 and earlier](#tab/net-core-old)
    
    Add `services.AddApplicationInsightsTelemetry()` and `services.AddServiceProfiler()` to the `ConfigureServices()` method in `Startup.cs`:
@@ -98,6 +100,8 @@ In this article, you learn about the various ways that you can:
      services.AddControllersWithViews();
    }
    ```
+
+   You can also [add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
    
    ---
 
