@@ -184,6 +184,10 @@ Finished calling trace uploader. Exit code: 0   # Uploader is called with exit c
 Service Profiler session finished.              # A profiling session is completed.
 ```
 
+## Troubleshooting
+
+If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
+
 ## View the .NET Profiler traces
 
 1. Wait for 2 to 5 minutes so that the events can be aggregated to Application Insights.
